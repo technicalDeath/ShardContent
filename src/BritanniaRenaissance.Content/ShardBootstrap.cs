@@ -8,6 +8,8 @@ public static class ShardBootstrap
 {
     public static void Configure()
     {
-        // ModernUO discovers this method automatically when the assembly is loaded.
+        ShardRulesConfiguration.Load();
+        EraGateConfiguration.Load();
+        ShardRulesCommands.Register();
     }
 }

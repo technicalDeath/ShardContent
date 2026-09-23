@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "settings": {
+    "insurance.enable": "False",
+    "vetRewards.enable": "False",
+    "vetRewards.skillCapRewards": "False",
+    "questSystem.enableMLQuests": "False",
+    "taming.enableBonding": "False",
+    "taming.petsStandDownOnCommand": "False"
+  }
+}

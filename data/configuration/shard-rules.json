@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "pinnedModernUoCommit": "29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895",
+  "world": {
+    "era": "UOR",
+    "enabledMaps": ["Felucca"]
+  },
+  "character": {
+    "totalSkillCap": 700,
+    "individualSkillCap": 100,
+    "statCap": 225
+  },
+  "combat": {
+    "automaticWeaponProcs": false,
+    "wrestlingStun": false,
+    "wrestlingDisarm": false
+  },
+  "featureFlags": {
+    "safeWorld": false,
+    "hotZones": false,
+    "coolZones": false,
+    "housingGeography": false,
+    "expeditions": false,
+    "pilgrimage": false,
+    "roadSpeed": false,
+    "retentionContent": false
+  }
+}
