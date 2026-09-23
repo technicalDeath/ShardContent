@@ -6,6 +6,7 @@
     "vetRewards.skillCapRewards": "False",
     "questSystem.enableMLQuests": "False",
     "taming.enableBonding": "False",
-    "taming.petsStandDownOnCommand": "False"
+    "taming.petsStandDownOnCommand": "False",
+    "melee.enableInstaHit": "True"
   }
 }

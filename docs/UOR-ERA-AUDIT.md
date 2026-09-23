@@ -81,3 +81,52 @@ monster target. These are observation checks, not authorization to retune any re
 5. Fire bow, crossbow, and heavy crossbow while stationary and immediately after moving. Record
    the one-second movement restriction, cadence, range, hit/miss outcomes, and arrow/bolt use in
    PvP and PvM.
+
+## Alpha 1 Step 2 — instant-hit and classic precasting
+
+Implementation evidence is pinned to ModernUO `6544ba825` and the ShardContent baseline at
+`6099ab9369cd540831aa824aea9e07dd6d3d9f51`. The only behavior change in this step is
+the narrow UOR timer restoration described below; no Outlands-only balance systems are imported.
+
+| System | Exact source path | Finding | Classification | Player-visible | Coverage |
+| --- | --- | --- | --- | --- | --- |
+| Insta-hit enablement | `UOContent/Items/Weapons/BaseWeapon.cs`; `data/configuration/modernuo-era-gates.json` | `melee.enableInstaHit` is explicitly enabled by the shard configuration. The stock equip path is retained for the first legal swing. | Configuration-only / retain | Yes: the first legal swing is no longer delayed by equip. | `ClassicCombatIdentityTests.UorInstaHit_QuickSwitchUsesLastSwingAndCurrentWeaponDelay` |
+| Last-swing anchor and quick switching | `Server/Mobiles/Mobile.cs`; `UOContent/Items/Weapons/BaseWeapon.cs` | The last resolved swing anchors the next deadline. A faster weapon may become ready on its own delay; a slower weapon cannot bypass the slower deadline. Equip/unequip does not create a free swing, and legality is still checked by the normal combat path. | Defect to restore pinned UOR baseline | Yes: halberd/katana swaps change readiness without granting an extra attack. | The same test covers immediate first equip, fast and slow swaps. |
+| Miss/disarm/death/logout cleanup | `Server/Mobiles/Mobile.cs`; `UOContent/Items/Weapons/Abilities/DoubleStrike.cs` | Swing resolution refreshes `LastSwingTime` even on a miss; disconnection and death clear transient combat deadlines. Existing disarm and target legality checks remain authoritative. | Defect to restore pinned UOR baseline | Yes: no queued swing survives a disconnect or death. | Focused timer test plus existing combat and disarm-gate suites. |
+| Equip while casting | `Server/Spells/Spell.cs`; `Server/Mobiles/Mobile.cs` | Equipping during `Casting` invokes `OnCasterEquipping` and interrupts. An equip after the cast reaches `Sequencing` preserves the held spell. | Retain | Yes: classic precast weapon swap remains usable. | `ClassicCombatIdentityTests.ClassicPrecast_EquipAndUseCancellationMatchesUorStateFlow` |
+| Object/potion use after precast | `Server/Spells/Spell.cs` | Object use during `Casting` is allowed; object use after `Sequencing` cancels the pending spell. This preserves the existing UOR cancellation boundary. | Retain | Yes: potion/object use cannot silently release a held spell. | `ClassicCombatIdentityTests.ClassicPrecast_EquipAndUseCancellationMatchesUorStateFlow` |
+| Held-spell release | `Server/Spells/Spell.cs`; `Server/Spells/SpellHelper.cs` | Release continues to recheck target, range, line-of-sight, region, and harmful authorization. The existing 30-second held-target timeout remains unchanged. | Retain | Yes: invalid or unsafe releases fail instead of bypassing authorization. | Existing spell and region tests; live release check required. |
+| Recovery and interruption cadence | `Server/Spells/Spell.cs` | The pinned UOR recovery and disturbance timing remains in force. Outlands' published 0.2-second recovery and circle-specific five-second interrupt windows are documented as compatibility differences, not silently imported. | Deferred | Yes: players may notice cadence differences from Outlands. | Record live cast/recovery observations; no balance change in Alpha 1. |
+| Disarm/re-arm and dungeon-transition rules | `UOContent/Items/Weapons/Fists.cs`; `Server/Spells/Spell.cs` | Wrestling Stun/Disarm remains explicitly disabled. Outlands' five-second re-arm cooldown, custom `UnequipOnCast`, and dungeon-transition damage reduction are not part of this step. | Deferred | Yes: the shard intentionally differs from Outlands in these excluded systems. | Existing `FistsSpecialGateTests`; no new rule imported. |
+
+### Outlands compatibility notes
+
+Outlands' public [Combat Overview](https://wiki.uooutlands.com/Combat_Overview) and
+[Armor & Weapons](https://wiki.uooutlands.com/Armor_&_Weapons) describe the player-visible
+interaction this step targets: the timer is based on the last weapon swung rather than the
+currently equipped weapon, quick switching uses each weapon's own delay, and equipping during a
+cast interrupts while a post-cast weapon swap preserves a held spell. The published
+[Magery](https://wiki.uooutlands.com/Magery) page additionally documents a 0.2-second cast
+recovery and circle-dependent interrupt windows. Those timings, Outlands armor systems, custom
+disarm cooldowns, `UnequipOnCast`, and dungeon-transition reductions are measured for future
+compatibility work only; importing them would be an unapproved Alpha 1 balance change.
+
+### Verification record
+
+- Focused ModernUO suite: **9 passed, 0 failed** (`ClassicCombatIdentityTests` and
+  `FistsSpecialGateTests`), built with `--maxcpucount:1`.
+- The server was stopped before deployment. The Alpha 1 content build completed with 0 warnings
+  and 0 errors; the deployed configuration contains `melee.enableInstaHit=True`.
+- Restart log evidence at 2026-09-23 16:51:46–16:51:47: `Loaded shard rules schema 1: UOR /
+  Felucca`, `Validated UOR era gates ... melee.enableInstaHit`, and listeners on
+  `127.0.0.1:2593` and `127.0.0.1:12000`.
+- Controlled client evidence at 16:57:17–16:57:34: the Navrey client loaded UOData client
+  version `7.0.117.0`, connected to `127.0.0.1:2593`, authenticated the `Administrator` account,
+  entered the world as `Generic Player` at `(5445, 1153, 0)`, and completed a movement/speech
+  command. `[ShardRulesStatus` returned schema 1, `UOR / Felucca`, caps `700/100/225`, combat
+  specials disabled, deferred features none, and the expected runtime era-gate key list. The
+  effective `melee.enableInstaHit=True` value was separately verified in the deployed
+  `modernuo.json` and by the passing timer regression test.
+- The headless client emitted state/world-file permission warnings for its default `C:\tmp`
+  paths; these are workstation-local telemetry paths and do not affect login, world entry, or
+  shard behavior. The custom command and log files under `work/` were healthy.
