@@ -41,7 +41,7 @@ Make the shard launch as a stable, recognizably pre-AoS UOR-era world with the i
    - Preserve ordinary pre-AoS weapon, poison, mace, shield and archery identities. Keep optional numerical buffs disabled until comparative testing justifies them.
 4. Establish character, death and economic foundations.
    - Enforce 700 total skill, 100 individual skill and 225 stat caps.
-   - Implement and test the accelerated-but-capped skill-gain curve and new-character Skill Gain Balls, including binding and logged-in-time rules.
+   - Implement and test the accelerated-but-capped skill-gain curve.
    - Validate pre-AoS death, corpse, loot, blessed runebook, stealable-key/property and travel behavior.
    - Validate ordinary crafting, BODs, player trade, vendors, boats, and the no-combat-pets-in-dungeons / restricted pet-PvP policy.
    - Implement the starter package and one-time account/character issuance controls without economic extraction loopholes.

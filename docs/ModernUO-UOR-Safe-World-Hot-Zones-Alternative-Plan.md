@@ -934,7 +934,7 @@ Mastery Time:
 
 #### Temporary skill-gain bonuses at 95+
 
-Skill Gain Balls, Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the Mastery calendar or increase Mastery Time accrual**.
+Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the Mastery calendar or increase Mastery Time accrual**.
 
 The 14-active-day 95–100 gate remains intact.
 
@@ -943,11 +943,9 @@ When a Mastery opportunity is mature, temporary gain bonuses may increase the no
 Examples:
 
 - base Mastery trigger: 10%;
-- +25% Skill Gain Ball: 12.5% trigger chance;
 - +10% Pilgrimage Inspiration: 11% trigger chance;
 - +20% Greater Inspiration: 12% trigger chance;
-- +25% Ball + +10% Inspiration = +35% relative modifier → 13.5%;
-- +25% Ball + +20% Greater Inspiration = +45% relative modifier → 14.5%.
+- temporary gain modifiers apply only when explicitly active and never shorten the Mastery calendar;
 
 Do not allow bonuses to:
 
@@ -1021,113 +1019,6 @@ Audit `Configuration/antimacro.json` and document:
 
 Make these settings intentionally configurable. Anti-macro rules should prevent exploitative unattended progression below 95 and invalid-attempt spam above 95 without forcing players to reproduce 1999-era training friction.
 
-### New-character Skill Gain Balls
-
-Every newly created character receives:
-
-- **20 Skill Gain Balls**
-- each ball grants **+25% relative skill gain** for **one hour**
-- balls are **blessed**
-- balls are **character-bound and non-transferable**
-
-The purpose is to give every new character a finite pool of accelerated training without permanently increasing the shard-wide skill-gain rate.
-
-#### Gain behavior
-
-Below 95.0, activating one ball applies a multiplier conceptually equivalent to:
-
-`effectiveSkillGainMultiplier = normalConfiguredSkillGainMultiplier * 1.25`
-
-At 95.0+, the ball does **not** accelerate Mastery Time. It increases only the matured Mastery-opportunity trigger chance from 10% to 12.5% relative while active; the 10th eligible attempt remains guaranteed.
-
-The bonus applies only to otherwise-eligible gain checks/opportunities.
-
-It must **not**:
-
-- raise the 100.0 individual skill cap
-- raise the 700.0 total skill cap
-- bypass skill locks
-- bypass stat/skill-cap checks
-- bypass anti-macro restrictions
-- create gains when the underlying skill-gain system says no gain is eligible
-- change combat damage, spell power, crafting output, taming control chance or any other non-gain mechanic
-
-Crafting and Animal Taming still retain their intentionally slower **pre-95** baseline progression. Below 95, the ball multiplies that configured gain rate by 1.25 rather than replacing it with ordinary combat-skill tuning. At 95+, all skills use the Mastery rules above unless an owner-approved exception is explicitly documented.
-
-#### Duration
-
-One ball provides **60 minutes of logged-in character time**.
-
-Preferred behavior:
-
-- timer begins when the character successfully activates the ball
-- timer advances only while that character is logged in
-- timer pauses on logout/disconnect
-- timer persists correctly through server save/restart
-- remaining time is visible to the player
-- death/resurrection does not cancel the active bonus
-
-This avoids wasting a limited new-character consumable because of disconnects, maintenance or real-life interruption.
-
-Only **one Skill Gain Ball may be active at a time**.
-
-Using another while a bonus is already active should be rejected without consuming the second ball. Do not stack the multiplier and do not extend/queue time implicitly.
-
-#### Blessed and character-bound
-
-Skill Gain Balls must remain with the character through death.
-
-They must not be transferable to another character or account through:
-
-- direct trade
-- ground dropping
-- player vendors
-- secure containers
-- house containers
-- pack animals
-- pets
-- mail/reward systems
-- commodity/deed conversion
-- any other container or transfer path that can change effective ownership
-
-They may be stored in that same character's bank if the implementation can preserve character ownership reliably. Otherwise, keep them in a protected character-bound container/inventory representation.
-
-A ball must never become normal loot on a corpse.
-
-#### Character creation and deletion
-
-Grant exactly **20** balls once during successful character creation.
-
-Do not grant additional balls on:
-
-- login
-- resurrection
-- skill loss
-- stat loss
-- template change
-- account relog
-- server restart
-- rename
-- character transfer/relocation
-
-Deleting a character deletes that character's unused balls and active remaining bonus time with it.
-
-Because the balls are character-bound and cannot be extracted, creating and deleting characters must not allow stockpiling them on another character.
-
-Existing characters created before this feature is enabled do **not** automatically receive a retroactive grant unless the owner explicitly performs a one-time migration/grant.
-
-#### Player-facing information
-
-The item or activation UI should clearly state:
-
-- `Skill Gain Bonus: +25%`
-- `Duration: 1 hour of logged-in time`
-- `Blessed`
-- `Character Bound`
-- current remaining active bonus time, when applicable
-
-Do not imply that +25% means a guaranteed fixed number of gains; it is a relative multiplier on the shard's normal eligible skill-gain system.
-
 ---
 
 ### 5.1 Hot-Zone Skill Veteran — approved optional title (#19)
@@ -1147,7 +1038,7 @@ Do not imply that +25% means a guaranteed fixed number of gains; it is a relativ
 - On **every** actual skill-value change, including safe-area/house/boat gains, administrative or scripted grants, template/skill transfer and skill reductions, update the high-water mark to `max(previousHighWater, newActualSkill)`; it never decreases. In the genuine skill-gain event, first capture the old high-water mark and prior actual value; only eligible normal advancement or an actually consumed 95–100 Mastery +0.1 increment may award credit. Staff/scripted/starting/transferred gains never award credit, but must raise high-water marks to prevent subsequent laundering.
 - For an eligible real increase, award in tenths: `max(0, newActualTenths - max(previousHighWaterTenths, oldActualTenths, 600))`, subject to the ordinary 100.0 individual cap and remaining 1600-tenths title cap; then update high-water. This awards **only the newly achieved portion strictly over 60.0**, once per skill, and handles a gain crossing 60.0 without counting its below-threshold portion. Always use integral tenths (or equivalent exact fixed-point skill units) to avoid floating-point boundary/duplicate errors.
 - Examples: 40.0→60.0 awards 0; 59.9→60.1 awards 0.1; 60.0→65.0 awards 5.0; 80.0→90.0 awards 10.0; lowering 90.0→60.0 and retraining to 90.0 awards 0; raising 90.0→91.0 afterwards in a qualifying Hot location awards 1.0. Gains anywhere else still set high-water marks and cannot be retrained for Hot credit later.
-- Skill Gain Balls and Pilgrimage Inspiration may affect underlying eligible skill-gain **rates** according to their own rules but add no title progress independently. Mastery Period activations, Mastery Hours, banked opportunities and failed attempts do not award title points; only the successful actual +0.1 that is committed in a qualifying Hot location and outside any house/boat does. Do not let Mastery credits be silently awarded as title progress while the character is elsewhere.
+- Pilgrimage Inspiration may affect underlying eligible skill-gain **rates** according to its own rules but adds no title progress independently. Mastery Period activations, Mastery Hours, banked opportunities and failed attempts do not award title points; only the successful actual +0.1 that is committed in a qualifying Hot location and outside any house/boat does. Do not let Mastery credits be silently awarded as title progress while the character is elsewhere.
 - Up to 40.0 points are available per skill (60.0→100.0), so four skills fully developed across this bracket inside qualifying Hot Zones can reach 160.0. The 700 total/100 individual skill caps, locks, normal gain eligibility, pet restrictions and anti-macro remain untouched. No credit is awarded for effective bonuses, GM skill titles, item equipping, player trading, time spent in a region or character creation.
 
 **Title, UX and persistence**
@@ -2712,14 +2603,7 @@ Once activated:
 - it does not bypass anti-macro/gain-eligibility rules
 - it does not affect combat damage, crafting quality, taming control chance or other non-gain mechanics
 
-Pilgrimage Inspiration stacks **additively** with the new-character Skill Gain Ball.
-
-Examples:
-
-- ordinary Pilgrimage + Skill Gain Ball = **+35% relative skill gain**
-- top-five Pilgrimage + Skill Gain Ball = **+45% relative skill gain**
-
-Do not multiply the bonuses together.
+Pilgrimage Inspiration is a standalone temporary gain modifier.
 
 Only one unconsumed Pilgrimage Inspiration reward for the current completed weekly pilgrimage needs to be retained.
 
@@ -2916,7 +2800,6 @@ Every newly created character receives:
 - backpack;
 - one small organization pouch/bag;
 - scissors;
-- the already-settled 20 blessed, character-bound Skill Gain Balls;
 - **one free physical Starter-Issued Backpack Ward** with ordinary priming/detection/120-second protection mechanics and no skill requirement;
 - the invisible, nonconsumable **Loot Protection Ward entitlement** (server state, not a visible inventory item);
 - a concise Welcome/Rules item or equivalent onboarding surface explaining both different Ward systems.
@@ -3103,7 +2986,6 @@ Required onboarding should explain:
 - entering a Hot Zone exposes the player to unrestricted player attacks and full-loot risk
 - Hot Zones pay materially better rewards
 - combat pets remain prohibited in dungeons even when a dungeon is Hot
-- each newly created character receives 20 blessed, character-bound Skill Gain Balls; each provides +25% relative skill gain for one hour of logged-in time
 - weekly Pilgrimage starts in Britain during announced departure windows and requires physical travel to the current mainland shrine
 - roads provide a modest travel-speed bonus outside active PvP/Hot Zones
 
@@ -4375,7 +4257,6 @@ At minimum, make likely-to-change shard policies configurable:
 - Mastery eligible-attempt base chance (`10%`) and guaranteed-attempt index (`10`)
 - Mastery Time banking/persistence/concurrency rules
 - temporary gain-bonus behavior below 95 vs matured Mastery opportunities at 95+
-- new-character Skill Gain Ball count, multiplier, duration and transfer policy
 - starter-protection duration (launch default: 4 logged-in hours)
 - starter-issued gear/consumable economic restrictions
 - once-per-account starter-gold amount (launch target: 500)
@@ -4446,15 +4327,6 @@ Conceptual launch values should be equivalent to:
 - `housing.alwaysOpenSpecialDistricts` includes `FireIslandResidential`
 - `housing.fireIslandCountsTowardMainlandExpansion = false`
 - `housing.inactiveAccountDecayDays = 45` as an initial tuning target
-- `skillGainBalls.enabled = true`
-- `skillGainBalls.newCharacterCount = 20`
-- `skillGainBalls.multiplier = 1.25`
-- `skillGainBalls.durationMinutes = 60`
-- `skillGainBalls.timerMode = loggedInCharacterTime`
-- `skillGainBalls.maxActive = 1`
-- `skillGainBalls.blessed = true`
-- `skillGainBalls.characterBound = true`
-- `skillGainBalls.retroactiveGrant = false`
 - `hotZones.permanentDungeon = Hythloth`
 - `hotZones.permanentOutdoorRegions = [FireIsland, BuccaneersDenIsland]`
 - `hotZones.rotatingDungeon.enabled = true`
@@ -5279,20 +5151,9 @@ Verify:
 - failed eligible attempts do not consume Mastery Time; successful +0.1 consumes exactly the current bracket cost
 - invalid/trivial/blocked uses do not count toward the 10-attempt guarantee
 - Mastery survives logout/death/restart without duplication
-- Skill Gain Balls and Pilgrimage Inspiration do not shorten Mastery Periods, accelerate Mastery Time accrual or reduce Mastery Time cost
+- Pilgrimage Inspiration does not shorten Mastery Periods, accelerate Mastery Time accrual or reduce Mastery Time cost
 - temporary gain bonuses only modify the matured Mastery-opportunity trigger chance at 95+; the 10th attempt remains guaranteed
 - representative Easy/Standard/Hard/VeryHard pre-95 milestone times remain in the intended order after temporary bonuses
-- new characters receive exactly 20 Skill Gain Balls once
-- activating one ball applies a 1.25× relative multiplier to otherwise-eligible skill gains for 60 minutes of logged-in character time
-- Skill Gain Ball time pauses offline and persists through save/restart
-- only one ball can be active; a second activation is rejected without consumption
-- the ball bonus does not bypass 100/700 caps, skill locks, anti-macro rules or eligibility checks
-- crafting/taming retain their slower baseline curves while receiving the same relative 1.25× multiplier
-- balls survive death and never appear as corpse loot
-- balls cannot be traded, dropped, vendored, secured, moved through pets/pack animals or otherwise transferred to another character/account
-- deleting a character destroys its unused balls and remaining active bonus time
-- login, resurrection, restart and other lifecycle events do not duplicate the grant
-- pre-existing characters receive no automatic retroactive grant unless an explicit migration is run
 - blessed runebooks survive death and retain normal UOR travel requirements
 - BOD rewards do not leak post-era items
 - Artisan Signature crafting, Standard-baseline 10× durability, ordinary skill-based repair/degradation, full loot and zero extra NPC/vendor/salvage value pass the Section 9.1 regression matrix
@@ -5333,7 +5194,7 @@ Verify at minimum:
 - anchored, moving, docked and stationary boats, including deck and hold, block gains even when their region qualifies as Hot; stepping off and gaining legitimately on Hot land may count;
 - gains in any nonqualifying area, house or boat update global per-skill high-water; lower/retrain below the previous record yields zero when subsequently in Hot, while genuinely exceeding the record outdoors in Hot counts only the new amount;
 - administrative/scripted grants, initial skills, transfers, item/effective-skill changes and skill restoration yield no progress, but any actual raises update the high-water; gain callbacks cannot duplicate one committed increase;
-- Skill Gain Balls/Pilgrimage add no direct points; Mastery time/credits/failed attempts add none, while a consumed successful +0.1 gain at 95+ can count when physically eligible at commit;
+- Pilgrimage adds no direct title points; Mastery time/credits/failed attempts add none, while a consumed successful +0.1 gain at 95+ can count when physically eligible at commit;
 - progress and per-skill highs persist through restart, logout, death, rename and weekly rotation; character deletion removes state and another character never inherits it;
 - exact 160.0 permanently unlocks the selectable `Forged in Danger` title once; selection does not change stats, cap, combat/PvP legality, identity color, loot, guild or notoriety, and hiding/showing it does not reset progress;
 - inspection, corrections, logs and player-facing descriptions show the threshold and all exclusions accurately.
@@ -5638,8 +5499,7 @@ Verify:
 - the Inspiration reward is stored ready-to-activate rather than beginning immediately
 - activated Inspiration lasts 60 minutes of logged-in character time and pauses offline
 - Inspiration does not bypass skill caps, skill locks, anti-macro logic or normal gain eligibility
-- +10% Inspiration plus a +25% Skill Gain Ball produces +35% relative gain, not 37.5%
-- +20% Greater Inspiration plus a +25% Skill Gain Ball produces +45% relative gain, not 50%
+- +10% Inspiration and +20% Greater Inspiration remain separate, explicitly activated modifiers;
 - weekly rotation expires/reconciles old incomplete pilgrimage state according to configured policy
 
 ### Road Travel Bonus
@@ -6070,10 +5930,6 @@ Pet PvP: Lawful Grey/Red Targets Only
 Faction Pet Combat: Disabled  
 Bulk Orders: Enabled  
 Skill Cap: 700  
-New Character Skill Gain Balls: 20  
-Skill Gain Ball Bonus: +25% relative  
-Skill Gain Ball Duration: 60 minutes logged-in time  
-Skill Gain Ball Transfer: Character-Bound / Blessed  
 Hot-Zone Skill Veteran: Enabled / 160.0 skill points earned strictly above 60.0  
 Hot-Zone Skill Veteran Exclusions: All player houses and all boats; lifetime high-water anti-retraining  
 Hot-Zone Skill Veteran Reward: Optional character title `Forged in Danger`; no power  
@@ -6193,7 +6049,6 @@ Player-facing rules must clearly explain:
 - permanent Hythloth PvP
 - current rotating Hot Dungeon
 - full-loot Hot-Zone risk
-- new-character Skill Gain Balls: 20 per character, +25% relative gain, 1 hour logged-in time each, blessed and character-bound
 - optional `Forged in Danger` title: 160.0 actual skill points earned strictly above 60.0 in eligible Hot Zones, never inside any player house or on a boat; no lowering/retraining credit or power reward
 - Nemesis Monsters: rare named endurance variants across eligible wilderness/all dungeons, +50% HP with normal damage, optional subtle visual differentiation, one 25% collectible species trophy OR +200% pre-region gold on non-trophy kills; normal crime/PvP/loot rights still apply and no extra gear tier exists
 - Wanted Monsters: current rotating Hot and Cool dungeon each display 2–3 natural species contracts, one living player receives each single token payout by existing ModernUO ranked damage (NOT the rejected rolling-60s model), direct backpack delivery, physical Hot Marks/Cool Seals and Britain's dungeon-specific decorative curator; no new loot/PvP rights or Hythloth contracts at launch
@@ -6335,7 +6190,7 @@ Remove access to post-UOR mechanics through configuration, feature flags and era
 
 **Phase 5 — Preserve shared Classic+ mechanics**
 
-Validate the **Section 4 hybrid combat**, baseline build diversity, stats, accelerated skill progression, **new-character Skill Gain Balls**, death/loot, runebooks/travel, keys/property, crafting/BODs, taming restrictions and economy. For housing, audit existing mechanics but defer launch placement geography to the dedicated residential-concentration phase below.
+Validate the **Section 4 hybrid combat**, baseline build diversity, stats, accelerated skill progression, death/loot, runebooks/travel, keys/property, crafting/BODs, taming restrictions and economy. For housing, audit existing mechanics but defer launch placement geography to the dedicated residential-concentration phase below.
 
 **Phase 6 — Central safe-world hostility, `[Intent]` and automatic murder gate**
 
@@ -6477,7 +6332,7 @@ Implement:
 - first 5 finishers = +20% skill gain for 60 minutes
 - later finishers = +10% skill gain for 60 minutes
 - ready-to-activate logged-in-time Inspiration status
-- additive stacking with Skill Gain Balls
+- reward stacking remains limited to explicitly approved temporary modifiers
 - winner announcements and activity-board status
 - save/restart/death persistence and anti-duplication
 
@@ -6536,12 +6391,10 @@ The following are **settled launch rules** and should not be silently weakened:
 - do not replace the approved loot-rights/damage attribution scorer or safe-world hostility policy when modifying combat
 
 - safe-by-default blue-vs-blue hostility outside Hot Zones
-- every newly created character receives 20 blessed, character-bound Skill Gain Balls
 - the approved `Forged in Danger` optional title requires 160.0 genuine skill points earned strictly above 60.0 in Hot Zones, never in any player house or aboard a boat; global lifetime skill highs prevent lowering/retraining credit and the unlock grants no combat power
 - approved Nemesis Monsters apply to eligible wilderness and all dungeons at 2% natural-spawn conversion with ordinary spawn pressure, +50% HP and unchanged outgoing damage; 25% species trophy OR, exclusively, +200% base gold when no trophy drops; approved stock-client-safe visual differentiation and no new item power tier
 - approved Wanted Monsters selects 2–3 natural species in each current rotating Hot/Cool dungeon, excludes Hythloth at launch, awards **one** fixed 1/3/8/15 token stack per death to the first living player in ModernUO's existing ranked damage list (NOT a new 60-second tracker), directly to backpack with nonduplicating same-character overflow reservation; physical Hot Marks/Cool Seals buy separate dungeon-specific cosmetic trophies from Britain at 40/120/300/600, without changing corpse rights, group scaling, regional premiums or combat power
 - approved Shipwreck Salvage adds exactly one independent 25% bonus Wreck Chart roll per completed ordinary SOS chest, no displacement of normal SOS loot, a tradable unblessed chart with fixed valid Felucca ocean coordinates and real boat activation, 4–6 finite salvage actions, 30m activation-party exclusivity then public recovery until 60m expiry, and exactly one guaranteed decoration **only on full completion** with rarity weights 60/25/12/3 and no combat/economic extraction bonus
-- each Skill Gain Ball provides +25% relative eligible skill gain for 60 minutes of logged-in character time
 - pre-95 progression preserves the UOR/T2A-era distinction between easy, standard, hard and very-hard skills rather than using one universal gain curve
 - Standard pre-95 focused-training targets are 1h to 50, 2.5h cumulative to 70, 4.5h to 80, 7.5h to 90 and 12.5h to 95
 - historically difficult skills retain distinct slower pre-95 curves; temporary gain bonuses modify each skill's own baseline instead of normalizing it
@@ -6561,7 +6414,6 @@ The following are **settled launch rules** and should not be silently weakened:
 - starter-material packages are one-time account-level entitlements per profession/category and are not restored by character deletion
 - raw starter materials remain bound/non-sellable/non-transferable until consumed
 - there is **no Starter-Crafted output state**; legitimate items crafted from starter materials are immediately normal crafted items with full quality rolls and ordinary market/loot/BOD behavior
-- Skill Gain Balls cannot stack, transfer or bypass caps/skill locks/anti-macro rules
 - stealing enabled except active Cool Dungeon, mapped bank theft-protection regions and activated Backpack Wards; snooping enabled everywhere
 - approved Backpack Ward: physical single-use item, no skill prerequisite or dormant expiry while in equipped backpack; item consumed on triggering detection; extra victim detection 25%/50%/100% after successive ordinarily undetected **successful** thefts **per thief account**, with independent progress for other thieves; detected failures can trigger; completed triggering theft stands; 120s subsequent-theft protection from everyone; no Awareness, Bless rewrite, trap/untrap rewrite, stun or Wardbreaker
 - approved Loot Protection Ward: permanent invisible character entitlement, first unlawful monster-corpse loot transfer outside Hot Zones allowed with normal crime, then offender-account blocked from that character’s still-rights-protected monster corpses for ten minutes; independent fixed-UTC entries expire without blocked-attempt refresh, rights holders/party/public corpses/Hot-Zone full loot remain otherwise ordinary
@@ -6591,7 +6443,7 @@ The following are **settled launch rules** and should not be silently weakened:
 - Pilgrimage mounts are allowed and routes use broad ordered checkpoints
 - each character may successfully complete the weekly Pilgrimage once
 - first 5 valid finishers in each departure window earn +20% relative skill gain for 60 minutes; later finishers earn +10% for 60 minutes
-- Pilgrimage skill-gain rewards are ready-to-activate, use logged-in time and stack additively with Skill Gain Balls
+- Pilgrimage skill-gain rewards are ready-to-activate and use logged-in time
 - approved roads grant approximately +15% movement on foot and +10% mounted
 - road movement bonus is disabled during active PvP aggression and inside Hot Zones
 - no global Hot-Zone respawn acceleration
@@ -6753,12 +6605,6 @@ A matured Mastery opportunity succeeds at 10% per otherwise-eligible use and is 
 
 Temporary skill-gain bonuses preserve distinct pre-95 difficulty curves and do not shorten Mastery calendar time at 95+.
 
-Every newly created character receives exactly 20 blessed, character-bound Skill Gain Balls.
-
-Each ball provides a 1.25× relative multiplier to otherwise-eligible skill gains for 60 minutes of logged-in character time, with offline pause and save/restart persistence.
-
-Skill Gain Balls cannot stack, transfer, become corpse loot, duplicate through lifecycle events or bypass skill caps, locks, anti-macro rules or normal gain eligibility.
-
 Starter equipment is Standard/vendor quality, protected from ordinary death loss for exactly 4 logged-in hours, and cannot be directly converted into repeatable character-creation economic value.
 
 The once-per-account starter-gold grant cannot be duplicated through character deletion/recreation.
@@ -6853,7 +6699,7 @@ Each character can successfully complete the weekly Pilgrimage once; abandonment
 
 The first five valid finishers per departure window atomically receive a ready-to-activate +20% relative skill-gain reward for 60 minutes of logged-in time, while later valid finishers receive +10% for 60 minutes.
 
-Pilgrimage skill-gain rewards obey caps/locks/anti-macro eligibility and stack additively with the +25% Skill Gain Ball.
+Pilgrimage skill-gain rewards obey caps/locks/anti-macro eligibility and use the documented reward-stacking policy.
 
 Approved roads provide approximately +15% on-foot and +10% mounted movement-speed benefit using stable server/client timing.
 
@@ -6901,44 +6747,43 @@ Produce an initial report containing:
 4. Current enabled maps.
 5. Current relevant feature flags.
 6. Whether a world/save already exists.
-7. Current character-creation/starting-item hooks suitable for granting character-bound Skill Gain Balls exactly once.
-8. Current character-creation equipment/package hooks suitable for archetype-based Standard starter gear, 4-hour logged-in protection and persistent `StarterIssued` restrictions.
-9. Current account-persistence hooks suitable for a once-per-account starter-gold entitlement and once-per-account-per-profession starter-material entitlements that survive character deletion.
-10. Current item-stack/resource-consumption hooks suitable for bound starter raw materials that cannot be laundered by merging but create completely normal output when legitimately consumed by crafting.
-11. Current skill-gain calculation hooks suitable for applying a temporary 1.25× relative multiplier without bypassing caps, locks or anti-macro rules.
-12. Enumerate UOR/T2A/AoS era branches and all combat-special paths against the pinned commit (including cumulative `Core.T2A` checks); report verified behavior, unverified absence, chosen override, code-change layer and per-branch regression tests. Specifically locate actual insta-hit/equip/target timer, precast/recovery, `Fists` Stun/Disarm activation and hit resolution, all original automatic weapon procs and later AoS abilities, Lumberjacking formula, poison/healing, Archery, Parrying, armor/material/durability, veteran skill-cap rewards, party/corpse scorer, BODs/travel/housing/loot/client flags.
-13. Exact ModernUO hooks used to decide whether one player may harm another, plus separate murderer/reporting/status/count/expiry, per-pair aggression snapshot, player-kill attribution and client intent-tag hooks; identify which legacy short/long decay, reports and stat-loss dependencies must be replaced or isolated for Sections 3/14.
-14. Exact code paths for stealing/criminal/notoriety/aggression relationships; normal victim/bystander detection, nested backpack targets, theft validation/commit concurrency, Ward persistence/UI and bank-region boundaries; additionally monster-corpse rights ownership/public expiry, criminal item-transfer/loot-all commit, Hot source classification, per-offender persistence and universal entitlement migration hooks.
-15. Region definitions for Hythloth, Fire Island and Buccaneer's Den island/town.
-16. Candidate region definitions for the rotating Hot Dungeon pool and Cool Dungeon pool, including conflict/overlap handling.
-17. House-placement behavior on Fire Island and Buccaneer's Den island.
-18. A proposed Fire Island residential-region overlay that preserves Hythloth/Fire Temple approaches, roads, shoreline access, outdoor PvP space and major spawns.
-19. Current generic house-placement/payment/refund hooks and the cleanest shard-specific point to classify placement as residential, rural or protected while supporting an always-open Fire Island exception.
-20. A rural-housing implementation proposal showing how to charge a non-refundable surcharge without duplicating every house deed unless necessary.
-21. An in-game survey proposal for the complete ordered set of Greater Britain residential districts, including roads, landmarks, dungeon-entry buffers and representative practical capacity.
-22. Verification that no normal-cost residential district definitions are proposed for Cove, Vesper, Yew, Trinsic or any other non-Britain region.
-23. Travel/shoreline transition points for both permanent PvP islands.
-24. Loot-generation hooks suitable for region-specific risk multipliers.
-25. Current spawn/respawn code so Hot rewards can be implemented **without** respawn acceleration.
-26. Current Recall/Gate/public-moongate/custom-teleporter hooks that can prevent instant travel only for characters carrying Expedition cargo.
-27. Candidate Expedition Region corridors and Britain-origin trade routes using existing roads, bridges, crossroads, inns and secondary towns.
-28. Current mining/lumberjacking/skinning/fishing/other approved harvesting hooks suitable for a region-owned 1.50× yield multiplier without changing respawn cadence.
-29. Current item-weight, stack split/merge, bank/storage/trade/drop/refine and pack-animal hooks suitable for a 3× resource-only Logistics system with server-authoritative provenance.
-30. Current item/container serialization hooks suitable for persistent character-bound cargo that cannot be banked/traded/secured/pet-carried or duplicated.
-31. Exact mainland-continent virtue shrine locations/regions available on the UOR Felucca map and proposed Britain-to-shrine checkpoint corridors.
-32. Current item/state hooks suitable for a blessed character-bound persistent Pilgrimage Scroll and once-per-character weekly completion state.
-33. Current travel hooks required to block Recall/Gate/moongate/custom teleport while Pilgrimage is active without affecting ordinary travel.
-34. Current skill-gain modifier infrastructure suitable for ready-to-activate +10%/+20% temporary Pilgrimage Inspiration that stacks additively with Skill Gain Balls.
-35. Current skill-gain entry points needed to hard-stop ordinary gains at 95.0 and route 95+ gains through a per-skill Mastery service.
-36. Current character/account persistence and server-time facilities suitable for rolling 24-hour per-skill Mastery Periods, Active-period flags, Mastery Time banks and attempt counters.
-37. Current gain-eligibility checks suitable for ensuring only otherwise-valid skill uses count toward the Mastery 10% roll / guaranteed 10th eligible attempt.
-38. Current ModernUO/UOContent skill-gain logic and any UOR/T2A-era per-skill distinctions needed to classify all enabled launch skills into Easy / Standard / Hard / VeryHard or explicit override profiles.
-39. Representative historical/current milestone-time baselines for easy versus difficult skills so shard acceleration can preserve relative difficulty rather than flatten it.
-40. Current movement-delay, road-tile/land-tile detection, mounted-state and speedhack-detection hooks suitable for server-authoritative road-speed bonuses.
-41. Proposed changes separated into configuration, shard-specific code and upstream-code changes.
-42. Nemesis natural-spawn conversion/death-reward hooks, per-species whitelist and cap strategy, HP-only modification safety, stock-client per-mobile scaling feasibility with name/hue fallback, existing trophy art and an additive pre-region gold calculation that avoids double region premiums.
-43. Existing four RP POI book placement, compatible paged book/Gump and append-only journal persistence; server-side owner-bound `RoleplayIssued` equipment/proximity validation on submit, global cooldown atomicity, archive rollover, player-report deduplication and audited retrospective moderation.
-44. Proposed bank theft-only region polygons (including any bank inside Hot Buccaneer's Den), exact start/commit theft-validity hooks and Ward item/snooping/persistence integration with existing theft detection and ordinary criminal consequences.
+7. Current character-creation equipment/package hooks suitable for archetype-based Standard starter gear, 4-hour logged-in protection and persistent `StarterIssued` restrictions.
+8. Current account-persistence hooks suitable for a once-per-account starter-gold entitlement and once-per-account-per-profession starter-material entitlements that survive character deletion.
+9. Current item-stack/resource-consumption hooks suitable for bound starter raw materials that cannot be laundered by merging but create completely normal output when legitimately consumed by crafting.
+10. Current skill-gain calculation hooks suitable for applying the approved accelerated pre-95 curves without bypassing caps, locks or anti-macro rules.
+11. Enumerate UOR/T2A/AoS era branches and all combat-special paths against the pinned commit (including cumulative `Core.T2A` checks); report verified behavior, unverified absence, chosen override, code-change layer and per-branch regression tests. Specifically locate actual insta-hit/equip/target timer, precast/recovery, `Fists` Stun/Disarm activation and hit resolution, all original automatic weapon procs and later AoS abilities, Lumberjacking formula, poison/healing, Archery, Parrying, armor/material/durability, veteran skill-cap rewards, party/corpse scorer, BODs/travel/housing/loot/client flags.
+12. Exact ModernUO hooks used to decide whether one player may harm another, plus separate murderer/reporting/status/count/expiry, per-pair aggression snapshot, player-kill attribution and client intent-tag hooks; identify which legacy short/long decay, reports and stat-loss dependencies must be replaced or isolated for Sections 3/14.
+13. Exact code paths for stealing/criminal/notoriety/aggression relationships; normal victim/bystander detection, nested backpack targets, theft validation/commit concurrency, Ward persistence/UI and bank-region boundaries; additionally monster-corpse rights ownership/public expiry, criminal item-transfer/loot-all commit, Hot source classification, per-offender persistence and universal entitlement migration hooks.
+14. Region definitions for Hythloth, Fire Island and Buccaneer's Den island/town.
+15. Candidate region definitions for the rotating Hot Dungeon pool and Cool Dungeon pool, including conflict/overlap handling.
+16. House-placement behavior on Fire Island and Buccaneer's Den island.
+17. A proposed Fire Island residential-region overlay that preserves Hythloth/Fire Temple approaches, roads, shoreline access, outdoor PvP space and major spawns.
+18. Current generic house-placement/payment/refund hooks and the cleanest shard-specific point to classify placement as residential, rural or protected while supporting an always-open Fire Island exception.
+19. A rural-housing implementation proposal showing how to charge a non-refundable surcharge without duplicating every house deed unless necessary.
+20. An in-game survey proposal for the complete ordered set of Greater Britain residential districts, including roads, landmarks, dungeon-entry buffers and representative practical capacity.
+21. Verification that no normal-cost residential district definitions are proposed for Cove, Vesper, Yew, Trinsic or any other non-Britain region.
+22. Travel/shoreline transition points for both permanent PvP islands.
+23. Loot-generation hooks suitable for region-specific risk multipliers.
+24. Current spawn/respawn code so Hot rewards can be implemented **without** respawn acceleration.
+25. Current Recall/Gate/public-moongate/custom-teleporter hooks that can prevent instant travel only for characters carrying Expedition cargo.
+26. Candidate Expedition Region corridors and Britain-origin trade routes using existing roads, bridges, crossroads, inns and secondary towns.
+27. Current mining/lumberjacking/skinning/fishing/other approved harvesting hooks suitable for a region-owned 1.50× yield multiplier without changing respawn cadence.
+28. Current item-weight, stack split/merge, bank/storage/trade/drop/refine and pack-animal hooks suitable for a 3× resource-only Logistics system with server-authoritative provenance.
+29. Current item/container serialization hooks suitable for persistent character-bound cargo that cannot be banked/traded/secured/pet-carried or duplicated.
+30. Exact mainland-continent virtue shrine locations/regions available on the UOR Felucca map and proposed Britain-to-shrine checkpoint corridors.
+31. Current item/state hooks suitable for a blessed character-bound persistent Pilgrimage Scroll and once-per-character weekly completion state.
+32. Current travel hooks required to block Recall/Gate/moongate/custom teleport while Pilgrimage is active without affecting ordinary travel.
+33. Current skill-gain modifier infrastructure suitable for ready-to-activate +10%/+20% temporary Pilgrimage Inspiration.
+34. Current skill-gain entry points needed to hard-stop ordinary gains at 95.0 and route 95+ gains through a per-skill Mastery service.
+35. Current character/account persistence and server-time facilities suitable for rolling 24-hour per-skill Mastery Periods, Active-period flags, Mastery Time banks and attempt counters.
+36. Current gain-eligibility checks suitable for ensuring only otherwise-valid skill uses count toward the Mastery 10% roll / guaranteed 10th eligible attempt.
+37. Current ModernUO/UOContent skill-gain logic and any UOR/T2A-era per-skill distinctions needed to classify all enabled launch skills into Easy / Standard / Hard / VeryHard or explicit override profiles.
+38. Representative historical/current milestone-time baselines for easy versus difficult skills so shard acceleration can preserve relative difficulty rather than flatten it.
+39. Current movement-delay, road-tile/land-tile detection, mounted-state and speedhack-detection hooks suitable for server-authoritative road-speed bonuses.
+40. Proposed changes separated into configuration, shard-specific code and upstream-code changes.
+41. Nemesis natural-spawn conversion/death-reward hooks, per-species whitelist and cap strategy, HP-only modification safety, stock-client per-mobile scaling feasibility with name/hue fallback, existing trophy art and an additive pre-region gold calculation that avoids double region premiums.
+42. Existing four RP POI book placement, compatible paged book/Gump and append-only journal persistence; server-side owner-bound `RoleplayIssued` equipment/proximity validation on submit, global cooldown atomicity, archive rollover, player-report deduplication and audited retrospective moderation.
+43. Proposed bank theft-only region polygons (including any bank inside Hot Buccaneer's Den), exact start/commit theft-validity hooks and Ward item/snooping/persistence integration with existing theft detection and ordinary criminal consequences.
 Then implement the obvious low-risk baseline configuration:
 
 **UOR platform + Felucca-only + later-era features disabled + verified T2A-style insta-hit; gated-off Wrestling/weapon specials; no optional numeric buffs before testing.**
