@@ -84,8 +84,9 @@ monster target. These are observation checks, not authorization to retune any re
 
 ## Alpha 1 Step 2 — instant-hit and classic precasting
 
-Implementation evidence is pinned to ModernUO `6544ba825` and the ShardContent baseline at
-`6099ab9369cd540831aa824aea9e07dd6d3d9f51`. The only behavior change in this step is
+Implementation evidence is pinned to ModernUO `6544ba825a5493329e6c800f2107468f1ab13a50` and
+the ShardContent baseline at `3aebbadc143055e85722c70611bb3bb4b13692ba`. The only behavior change in
+this step is
 the narrow UOR timer restoration described below; no Outlands-only balance systems are imported.
 
 | System | Exact source path | Finding | Classification | Player-visible | Coverage |
