@@ -59,7 +59,7 @@ item properties, or cross-system combat tuning.
 | Weapon poison | `Skills/Poisoning.cs`; `Items/Weapons/{Swords/BaseSword,Knives/BaseKnife,SpearsAndForks/BaseSpear}.cs`; `Misc/{Poison,PoisonKinds}.cs` | Pre-AoS application permits one-handed slashing or piercing weapons; a successful application grants `18 - 2 × poison level` charges. Eligible hits consume a charge and make the existing 50% delivery roll. Standard poison tiers, cure behavior, and damage timer are retained. No separate corrosion mechanic exists in this pinned path. | Retain | Poison remains a resource- and skill-based weapon specialization; no new spell scaling or healing-denial rule is introduced. | `ClassicCombatIdentityTests.UorBladedAndPiercingWeapons_ConsumePoisonChargesOnHit`; manual cure/healing matrix required below. |
 | Maces and staves | `Items/Weapons/Maces/BaseBashing.cs`; `Items/Weapons/Staves/BaseStaff.cs`; `Items/Armor/BaseArmor.cs` | `WeaponType.Bashing` is used by true maces and receives Bashing-specific armor wear when armor absorbs a hit. Stock `WeaponType.Staff` remains distinct and does not take that Bashing wear branch. Both current stock base classes apply the ordinary 3–5 stamina hit effect; this is recorded, not broadened or tuned. | Retain | Maces and staves keep their existing separate classifications. | `ClassicCombatIdentityTests.UorMacesAndStaves_KeepTheirDistinctWeaponTypesAndStaminaHitEffect` |
 | Shields and Parrying | `Items/Shields/BaseShield.cs`; `Items/Weapons/BaseWeapon.cs`; `Items/Armor/BaseArmor.cs` | A shield equipped in the two-handed layer scales its AR by the holder's Parrying skill. In the pre-AoS absorption branch, a successful shield Parry reduces melee damage by half shield AR and Archery damage by full shield AR; shield durability may wear. Armor continues to absorb and wear through its own path. | Retain | Shield defense requires an equipped shield; two-handed weapons cannot use it at the same time. | `ClassicCombatIdentityTests.UorShieldParrying_ScalesShieldArmorAndRequiresAShield`; manual block/durability matrix required below. |
-| Archery | `Items/Weapons/Ranged/{BaseRanged,Bow,Crossbow,HeavyCrossbow}.cs`; `Items/Weapons/BaseWeapon.cs` | Pre-AoS ranged attacks require one second since the last move, use each weapon's old damage/speed/range profile, consume arrows or bolts when fired, and retain ordinary hit checks and two-handed equipment requirements. Bow/crossbow/heavy-crossbow profiles are respectively 9–41/20/10, 8–43/18/8, and 11–56/10/8 (damage/speed/range). | Retain | Archery keeps range, ammo, cadence, and positioning as its differentiators; no blanket accuracy, speed, or damage buff is enabled. | `ClassicCombatIdentityTests.UorRangedWeapons_PreserveClassicProfilesAndConsumeTheirAmmo`; manual movement/cadence matrix required below. |
+| Archery | `Items/Weapons/Ranged/{BaseRanged,Bow,Crossbow,HeavyCrossbow}.cs`; `Items/Weapons/BaseWeapon.cs` | Pre-AoS ranged attacks use a Dex-scaled stationary delay in both PvM and PvP: 1.0s at 25 Dex or below, 0.5s at 100 Dex or above, rounded to 50ms steps. They retain each weapon's old damage/speed/range profile, consume arrows or bolts when fired, and use ordinary hit checks and two-handed equipment requirements. Bow/crossbow/heavy-crossbow profiles are respectively 9–41/20/10, 8–43/18/8, and 11–56/10/8 (damage/speed/range). | Approved hybrid compatibility change | Archery keeps range, ammo, cadence, and positioning as its differentiators; only the stationary timing curve is adjusted toward the selected Outlands interaction. No damage delay, setup bonus, custom special, or crossbow hand change is enabled. | `ClassicCombatIdentityTests.UorRangedWeapons_PreserveClassicProfilesAndConsumeTheirAmmo`; `UorRangedStationaryDelay_ScalesWithDexInPvmAndPvp`; `UorRangedMovementAttempt_DoesNotAdvanceTheSwingAnchor`. |
 
 ### Manual Alpha 1 validation matrix
 
@@ -79,8 +79,8 @@ monster target. These are observation checks, not authorization to retune any re
    damage absorption, and durability. Confirm equipping a two-handed weapon removes ordinary
    shield mitigation.
 5. Fire bow, crossbow, and heavy crossbow while stationary and immediately after moving. Record
-   the one-second movement restriction, cadence, range, hit/miss outcomes, and arrow/bolt use in
-   PvP and PvM.
+   the Dex-scaled 1.0-to-0.5-second movement restriction, cadence, range, hit/miss outcomes, and
+   arrow/bolt use in PvP and PvM.
 
 ## Alpha 1 Step 2 — instant-hit and classic precasting
 
@@ -111,6 +111,11 @@ cast interrupts while a post-cast weapon swap preserves a held spell. The publis
 recovery and circle-dependent interrupt windows. Those timings, Outlands armor systems, custom
 disarm cooldowns, `UnequipOnCast`, and dungeon-transition reductions are measured for future
 compatibility work only; importing them would be an unapproved Alpha 1 balance change.
+
+The one selected ranged compatibility rule is narrower: the stationary delay now follows the
+published Outlands 1.0-to-0.5-second Dexterity curve in both PvM and PvP. Outlands' separate PvP
+damage delay, one-handed crossbow classification, weapon-role rebalance, setup bonuses, and
+custom Archery specials remain intentionally excluded.
 
 ### Verification record
 
