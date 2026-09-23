@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>BritanniaRenaissance.Content</AssemblyName>
+    <RootNamespace>BritanniaRenaissance.Content</RootNamespace>
+    <ModernUOPath Condition="'$(ModernUOPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\ModernUO</ModernUOPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts\obj\</BaseIntermediateOutputPath>
+    <OutDir>$(ModernUOPath)\Distribution\Assemblies\</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(ModernUOPath)\Projects\Server\Server.csproj"
+                      Private="false"
+                      PrivateAssets="All"
+                      IncludeAssets="None" />
+  </ItemGroup>
+</Project>

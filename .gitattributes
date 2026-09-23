@@ -1,0 +1,13 @@
+# Keep authored binary assets out of text diffs without imposing Git LFS on contributors.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.psd binary
+*.aseprite binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.fbx binary
+*.blend binary
