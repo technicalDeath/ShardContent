@@ -294,7 +294,7 @@ custom Archery specials remain intentionally excluded.
 
 The current Alpha 2 implementation was rebuilt in an isolated staging host on 2026-09-23 so
 the production/Alpha 1 process and configuration were not changed. The bundle used ModernUO
-`8e733f5cf48faa0085e92d385f956b8854e9e9d2` and ShardContent `099366b`.
+`8e733f5cf48faa0085e92d385f956b8854e9e9d2` and ShardContent `723ba49`.
 
 - ModernUO `Application.csproj` completed with `--maxcpucount:1`, 0 warnings and 0 errors.
 - ShardContent compiled against that bundle with 0 warnings and 0 errors.
