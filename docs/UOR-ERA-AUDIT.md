@@ -190,6 +190,14 @@ selection. It extracts the pinned `DungeonRegion` rectangles, identifies the ten
 names as candidate-compatible, and preserves later-era/special regions for explicit review. Its
 output is review-only and does not create active Cool-Dungeon polygons.
 
+The 2026-09-24 review export found 18 Felucca Banker spawners and 18 Felucca dungeon regions.
+The bank source hash was `acc0d004ead4d81e681eefeae62e54dfb3fe8420c4067dc83a3fc3271c9bd31d`;
+the dungeon-region source hash was
+`cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d`. Ten dungeon names were
+marked UOR-era candidates (Covetous, Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun,
+Shame and Wrong). These are evidence for staff survey only: no radius, apron, or dungeon polygon
+was inferred and the checked-in Alpha 1 geometry remains empty.
+
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:
 automatic murder adjudication and theft protection require SafeWorld, while Knocked Out also
