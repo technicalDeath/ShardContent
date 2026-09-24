@@ -47,4 +47,22 @@ public class MurderAdjudicationTests
             MurderAdjudicationService.ExtendRedUntilUtc(now, now.AddHours(12))
         );
     }
+
+    [Theory]
+    [InlineData(false, true, true, false)]
+    [InlineData(true, false, true, false)]
+    [InlineData(true, true, false, false)]
+    [InlineData(true, true, true, true)]
+    public void AutomaticRedSourceHonorsFeatureGateAndExpiry(
+        bool enabled,
+        bool hasExpiry,
+        bool expiryIsFuture,
+        bool expected
+    )
+    {
+        var now = new DateTime(2026, 9, 24, 0, 0, 0, DateTimeKind.Utc);
+        DateTime? expiry = hasExpiry ? now.AddHours(expiryIsFuture ? 1 : -1) : null;
+
+        Assert.Equal(expected, MurderAdjudicationService.IsAutomaticRedAt(enabled, expiry, now));
+    }
 }

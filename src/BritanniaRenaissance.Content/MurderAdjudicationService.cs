@@ -34,7 +34,14 @@ public static class MurderAdjudicationService
     }
 
     public static bool IsAutomaticallyRed(Mobile mobile) =>
-        mobile is PlayerMobile player && GetRedUntilUtc(player) is { } redUntil && redUntil > Core.Now;
+        mobile is PlayerMobile player && IsAutomaticRedAt(Enabled, GetRedUntilUtc(player), Core.Now);
+
+    /// <summary>
+    /// Keeps the custom red source completely inert while Alpha 2 is disabled. This matters when
+    /// an account retains custom tags from a staging rehearsal or a later feature rollback.
+    /// </summary>
+    public static bool IsAutomaticRedAt(bool enabled, DateTime? redUntilUtc, DateTime nowUtc) =>
+        enabled && redUntilUtc is { } expiry && expiry.ToUniversalTime() > nowUtc.ToUniversalTime();
 
     [OnEvent(nameof(PlayerMobile.PlayerDeathEvent))]
     public static void OnPlayerDeath(PlayerMobile victim)
@@ -154,7 +161,9 @@ public static class MurderAdjudicationService
     public static IEnumerable<string> DescribeStatus(Mobile mobile)
     {
         yield return $"Automatic murder adjudication enabled: {Enabled}.";
-        yield return "Stock murder reports, five-count threshold and decay remain authoritative until replacement enablement.";
+        yield return Enabled
+            ? "Stock murder reports, five-count threshold and decay are disabled; the custom UTC ledger is authoritative."
+            : "Stock murder reports, five-count threshold and decay remain authoritative until replacement enablement.";
 
         if (mobile is PlayerMobile player)
         {
