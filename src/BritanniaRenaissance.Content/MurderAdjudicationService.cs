@@ -181,6 +181,9 @@ public static class MurderAdjudicationService
         var legacyThreshold = 0;
         var customLedger = 0;
         var customRed = 0;
+        var legacyOnly = 0;
+        var customOnly = 0;
+        var overlapping = 0;
 
         foreach (var mobile in World.Mobiles.Values)
         {
@@ -190,7 +193,8 @@ public static class MurderAdjudicationService
             }
 
             players++;
-            if (player.Kills >= 5)
+            var hasLegacyThreshold = player.Kills >= 5;
+            if (hasLegacyThreshold)
             {
                 legacyThreshold++;
             }
@@ -200,9 +204,23 @@ public static class MurderAdjudicationService
                 customLedger++;
             }
 
-            if (IsAutomaticallyRed(player))
+            var hasCustomRed = IsAutomaticallyRed(player);
+            if (hasCustomRed)
             {
                 customRed++;
+            }
+
+            switch (ClassifyMigrationState(hasLegacyThreshold, hasCustomRed))
+            {
+                case MigrationState.LegacyOnly:
+                    legacyOnly++;
+                    break;
+                case MigrationState.CustomOnly:
+                    customOnly++;
+                    break;
+                case MigrationState.Overlapping:
+                    overlapping++;
+                    break;
             }
         }
 
@@ -210,9 +228,19 @@ public static class MurderAdjudicationService
         yield return $"Player mobiles scanned: {players}.";
         yield return $"Legacy Kills >= 5: {legacyThreshold}.";
         yield return $"Custom murder ledgers present: {customLedger}; custom red currently active: {customRed}.";
+        yield return $"Migration state: legacy-only={legacyOnly}; custom-only={customOnly}; overlapping={overlapping}.";
         yield return $"Legacy reporting enabled: {PlayerMurderSystem.LegacyReportingEnabled}; legacy threshold source enabled: {Mobile.LegacyMurdererCountsEnabled}.";
         yield return "No migration mutation was performed.";
     }
+
+    public static MigrationState ClassifyMigrationState(bool hasLegacyThreshold, bool hasCustomRed) =>
+        (hasLegacyThreshold, hasCustomRed) switch
+        {
+            (true, true) => MigrationState.Overlapping,
+            (true, false) => MigrationState.LegacyOnly,
+            (false, true) => MigrationState.CustomOnly,
+            _ => MigrationState.Neither
+        };
 
     /// <summary>
     /// Records one automatic count for a qualifying death. Calls are idempotent for a victim and
@@ -292,3 +320,11 @@ public static class MurderAdjudicationService
 }
 
 public readonly record struct MurderDecision(bool Qualifies, string Reason);
+
+public enum MigrationState
+{
+    Neither,
+    LegacyOnly,
+    CustomOnly,
+    Overlapping
+}

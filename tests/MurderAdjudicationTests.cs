@@ -65,4 +65,18 @@ public class MurderAdjudicationTests
 
         Assert.Equal(expected, MurderAdjudicationService.IsAutomaticRedAt(enabled, expiry, now));
     }
+
+    [Theory]
+    [InlineData(false, false, MigrationState.Neither)]
+    [InlineData(true, false, MigrationState.LegacyOnly)]
+    [InlineData(false, true, MigrationState.CustomOnly)]
+    [InlineData(true, true, MigrationState.Overlapping)]
+    public void MigrationAuditSeparatesLegacyAndCustomRedSources(
+        bool hasLegacyThreshold,
+        bool hasCustomRed,
+        MigrationState expected
+    )
+    {
+        Assert.Equal(expected, MurderAdjudicationService.ClassifyMigrationState(hasLegacyThreshold, hasCustomRed));
+    }
 }
