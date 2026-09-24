@@ -29,4 +29,29 @@ public class KnockedOutTests
     {
         Assert.Equal(TimeSpan.FromSeconds(90), KnockedOutService.Duration);
     }
+
+    [Theory]
+    [InlineData(false, false, true, true, false, "feature-disabled")]
+    [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
+    [InlineData(true, true, true, false, true, "hot-zone-red-looting")]
+    [InlineData(true, false, true, true, true, "recorded-target-rights")]
+    [InlineData(true, false, true, false, false, "missing-target-rights")]
+    public void LootRequiresRedIdentityAndRecordedRightsOutsideHotZones(
+        bool featureEnabled,
+        bool hotZone,
+        bool actorIsCriminalOrMurderer,
+        bool recordedTargetRights,
+        bool qualifies,
+        string reason)
+    {
+        var decision = KnockedOutService.ClassifyLoot(
+            featureEnabled,
+            hotZone,
+            actorIsCriminalOrMurderer,
+            recordedTargetRights
+        );
+
+        Assert.Equal(qualifies, decision.Qualifies);
+        Assert.Equal(reason, decision.Reason);
+    }
 }

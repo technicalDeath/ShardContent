@@ -2,7 +2,9 @@ using System.Globalization;
 using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
+using Server.Items;
 using Server.Mobiles;
+using Server.SkillHandlers;
 
 namespace BritanniaRenaissance.Content;
 
@@ -24,6 +26,7 @@ public static class KnockedOutService
     {
         Mobile.LethalDamageHandler = TryInterceptLethalDamage;
         Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Stealing.KnockedOutLoot = CanLootKnockedOut;
     }
 
     [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
@@ -94,6 +97,37 @@ public static class KnockedOutService
 
     public static bool IsQualifyingVictim(PlayerMobile player) =>
         player.Alive && !player.Criminal && !player.Murderer;
+
+    public static bool CanLootKnockedOut(Mobile thief, Item item, Mobile victim)
+    {
+        if (thief is not PlayerMobile playerThief || victim is not PlayerMobile playerVictim ||
+            playerThief == playerVictim ||
+            item.RootParent != playerVictim || !IsKnockedOut(playerVictim))
+        {
+            return false;
+        }
+
+        var isRed = playerThief.Criminal || playerThief.Murderer;
+        var hotZone = ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true;
+        var recordedAttacker = GetRecordedAttackerSerial(playerVictim);
+        var hasRights = recordedAttacker == playerThief.Serial;
+        var decision = ClassifyLoot(Enabled, hotZone, isRed, hasRights);
+
+        if (decision.Qualifies)
+        {
+            ShardAuditLog.Record("knocked-out-loot", "authorized", playerThief, playerVictim);
+        }
+
+        return decision.Qualifies;
+    }
+
+    public static KnockedOutLootDecision ClassifyLoot(
+        bool featureEnabled, bool hotZone, bool actorIsCriminalOrMurderer, bool recordedTargetRights
+    ) => !featureEnabled ? new(false, "feature-disabled") :
+        !actorIsCriminalOrMurderer ? new(false, "actor-not-criminal-or-murderer") :
+        hotZone ? new(true, "hot-zone-red-looting") :
+        recordedTargetRights ? new(true, "recorded-target-rights") :
+        new(false, "missing-target-rights");
 
     public static bool IsKnockedOut(Mobile mobile)
     {
@@ -223,6 +257,18 @@ public static class KnockedOutService
 
     private static string? GetCompletedEncounter(PlayerMobile player) =>
         player.Account is Account account ? account.GetTag(CompletedPrefix + SerialKey(player)) : null;
+
+    private static Serial GetRecordedAttackerSerial(PlayerMobile player)
+    {
+        if (player.Account is not Account account ||
+            !uint.TryParse(account.GetTag(AttackerPrefix + SerialKey(player)), out var serial))
+        {
+            return Serial.Zero;
+        }
+
+        return (Serial)serial;
+    }
 }
 
 public readonly record struct KnockedOutDecision(bool Qualifies, string Reason);
+public readonly record struct KnockedOutLootDecision(bool Qualifies, string Reason);
