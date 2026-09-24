@@ -86,14 +86,26 @@ public static class ShardRulesConfiguration
             errors.Add("automatic UOR weapon procs and Wrestling Stun/Disarm must remain disabled.");
         }
 
-        if (rules.FeatureFlags.SafeWorld || rules.FeatureFlags.HotZones || rules.FeatureFlags.CoolZones ||
-            rules.FeatureFlags.AutomaticMurderAdjudication ||
-            rules.FeatureFlags.TheftProtection ||
-            rules.FeatureFlags.KnockedOut ||
+        if (rules.FeatureFlags.HotZones || rules.FeatureFlags.CoolZones ||
             rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {
-            errors.Add("all post-Alpha-1 shard feature flags must remain disabled.");
+            errors.Add("Alpha 3+ shard feature flags must remain disabled until their phase is approved.");
+        }
+
+        if (rules.FeatureFlags.AutomaticMurderAdjudication && !rules.FeatureFlags.SafeWorld)
+        {
+            errors.Add("automaticMurderAdjudication requires safeWorld.");
+        }
+
+        if (rules.FeatureFlags.TheftProtection && !rules.FeatureFlags.SafeWorld)
+        {
+            errors.Add("theftProtection requires safeWorld so crime protections share one law policy.");
+        }
+
+        if (rules.FeatureFlags.KnockedOut && (!rules.FeatureFlags.SafeWorld || !rules.FeatureFlags.AutomaticMurderAdjudication))
+        {
+            errors.Add("knockedOut requires safeWorld and automaticMurderAdjudication.");
         }
 
         return errors;
