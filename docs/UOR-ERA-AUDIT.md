@@ -290,11 +290,11 @@ custom Archery specials remain intentionally excluded.
 
 The current Alpha 2 implementation was rebuilt in an isolated staging host on 2026-09-23 so
 the production/Alpha 1 process and configuration were not changed. The bundle used ModernUO
-`8e733f5cf48faa0085e92d385f956b8854e9e9d2` and ShardContent `b0b7e16`.
+`8e733f5cf48faa0085e92d385f956b8854e9e9d2` and ShardContent `099366b`.
 
 - ModernUO `Application.csproj` completed with `--maxcpucount:1`, 0 warnings and 0 errors.
 - ShardContent compiled against that bundle with 0 warnings and 0 errors.
-- `BritanniaRenaissance.Content.Tests` passed **61/61** at the current source revision; the only output was the offline NuGet
+- `BritanniaRenaissance.Content.Tests` passed **67/67** at the current source revision; the only output was the offline NuGet
   vulnerability-metadata warning (`NU1900`).
 - The isolated server loaded the current `shard-rules.json`, reported `UOR / Felucca`, loaded
   385 regions and listened on `127.0.0.1:2594`.
