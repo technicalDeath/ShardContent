@@ -17,5 +17,9 @@ public static class ShardBootstrap
         KnockedOutService.Configure();
     }
 
-    public static void Initialize() => PvpIntentService.Configure();
+    public static void Initialize()
+    {
+        PvpIntentService.Configure();
+        KnockedOutService.Initialize();
+    }
 }

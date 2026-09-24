@@ -42,6 +42,17 @@ public static class KnockedOutService
         Stealing.KnockedOutLoot = CanLootKnockedOut;
     }
 
+    public static void Initialize()
+    {
+        if (!_configured || Mobile.AllowBeneficialHandler == AllowBeneficial)
+        {
+            return;
+        }
+
+        _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
+        Mobile.AllowBeneficialHandler = AllowBeneficial;
+    }
+
     [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
     public static void OnPlayerLogin(PlayerMobile player)
     {
