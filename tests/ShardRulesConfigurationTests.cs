@@ -8,6 +8,7 @@ public class ShardRulesConfigurationTests
     public void AlphaTwoFlagsAreValidWhenTheirDependenciesAreExplicit()
     {
         var rules = Baseline();
+        rules.Alpha2EnablementAcknowledged = true;
         rules.FeatureFlags.SafeWorld = true;
         rules.FeatureFlags.AutomaticMurderAdjudication = true;
         rules.FeatureFlags.TheftProtection = true;
@@ -27,6 +28,7 @@ public class ShardRulesConfigurationTests
 
         Assert.Contains(errors, error => error.Contains("Alpha 3+", StringComparison.Ordinal));
         Assert.Contains(errors, error => error.Contains("knockedOut requires", StringComparison.Ordinal));
+        Assert.Contains(errors, error => error.Contains("alpha2EnablementAcknowledged", StringComparison.Ordinal));
     }
 
     private static ShardRules Baseline() => new()

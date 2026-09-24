@@ -74,7 +74,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
    - Route direct player hostility through a single auditable authority that considers region, blue/grey/red state, `[Intent]`, guild-war exceptions and inherited lawful encounter rights.
    - Block ordinary-blue versus ordinary-blue initiation outside Hot Zones.
    - Preserve attacks on criminals and murderers everywhere, direct-target retaliation rights, approved guild conflict and independent pet restrictions.
-   - Current implementation status: `PvpIntentService` is the single stock-boundary decision point and resolves controlled-creature hostility to the player master before applying the same consent/retaliation policy; Alpha 2 flags are dependency-validated but remain disabled in the current Alpha 1 profile until region and migration gates are ready.
+   - Current implementation status: `PvpIntentService` is the single stock-boundary decision point and resolves controlled-creature hostility to the player master before applying the same consent/retaliation policy; Alpha 2 flags are dependency-validated and require an explicit `alpha2EnablementAcknowledged` gate, but remain disabled in the current Alpha 1 profile until region and migration gates are ready.
 2. Implement `[Intent]` as a stored, blue-only voluntary PvP preference.
    - Make `[Intent]` opt-in, visible, persistent and independently reversible for new opponents.
    - Preserve existing encounter rights when it is turned off; prohibit turning it off while genuinely criminal or red.

@@ -158,7 +158,8 @@ repeating against the same corpse for ten minutes. Bank/Cool region restrictions
 `theftProtection` is false in Alpha 1 and automatically bypasses corpse protection while
 `hotZones` is enabled.
 
-The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared:
+The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
+and `alpha2EnablementAcknowledged` is explicitly true:
 automatic murder adjudication and theft protection require SafeWorld, while Knocked Out also
 requires automatic murder adjudication. Alpha 3+ flags remain rejected. The checked-in Alpha 1
 profile keeps every Alpha 2 flag false.

@@ -15,6 +15,7 @@
     "wrestlingStun": false,
     "wrestlingDisarm": false
   },
+  "alpha2EnablementAcknowledged": false,
   "featureFlags": {
     "safeWorld": false,
     "automaticMurderAdjudication": false,

@@ -108,6 +108,13 @@ public static class ShardRulesConfiguration
             errors.Add("knockedOut requires safeWorld and automaticMurderAdjudication.");
         }
 
+        var alpha2Enabled = rules.FeatureFlags.SafeWorld || rules.FeatureFlags.AutomaticMurderAdjudication ||
+                            rules.FeatureFlags.TheftProtection || rules.FeatureFlags.KnockedOut;
+        if (alpha2Enabled && !rules.Alpha2EnablementAcknowledged)
+        {
+            errors.Add("alpha2EnablementAcknowledged must be true before enabling any Alpha 2 feature flag.");
+        }
+
         return errors;
     }
 
@@ -117,6 +124,7 @@ public static class ShardRulesConfiguration
         yield return $"Shard rules schema: {rules.SchemaVersion}";
         yield return $"Pinned ModernUO commit: {rules.PinnedModernUoCommit}";
         yield return $"Era/maps: {rules.World.Era} / {string.Join(", ", rules.World.EnabledMaps)}";
+        yield return $"Alpha 2 enablement acknowledged: {rules.Alpha2EnablementAcknowledged}.";
         yield return string.Format(
             CultureInfo.InvariantCulture,
             "Character caps: {0} skill total, {1} per skill, {2} stats",
@@ -145,6 +153,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("combat")]
     public CombatRules Combat { get; set; } = new();
+
+    [JsonPropertyName("alpha2EnablementAcknowledged")]
+    public bool Alpha2EnablementAcknowledged { get; set; }
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
