@@ -31,4 +31,15 @@ public class TheftProtectionTests
     {
         Assert.Equal(TimeSpan.FromMinutes(10), TheftProtectionService.LootProtectionDuration);
     }
+
+    [Theory]
+    [InlineData(null, false)]
+    [InlineData("", false)]
+    [InlineData("0", false)]
+    [InlineData("1", true)]
+    [InlineData("2", false)]
+    public void LootProtectionEntitlementVersionIsIdempotent(string? value, bool expected)
+    {
+        Assert.Equal(expected, TheftProtectionService.IsLootProtectionEntitlementCurrent(value));
+    }
 }

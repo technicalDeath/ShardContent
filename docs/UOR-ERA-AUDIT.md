@@ -149,7 +149,10 @@ so stale account tags from a rehearsal cannot affect the Alpha 1 profile. This m
 not active in the current Alpha 1 profile; `MurderAdjudicationTests.AutomaticRedSourceHonorsFeatureGateAndExpiry`
 covers the boundary.
 
-The theft boundary now has a feature-gated physical `BackpackWard` and stock Stealing hooks.
+The theft boundary now has a feature-gated physical `BackpackWard`, a permanent invisible
+character-specific Loot Protection entitlement, and stock Stealing hooks. Existing characters are
+migrated idempotently in bounded world-load batches; login, character creation and the first
+eligible corpse action are safe fallbacks if a character was not present during the sweep.
 Stock success, failure, criminality and snooping remain unchanged. An eligible Ward is selected
 deterministically from the equipped backpack, tracks undetected successful thefts per thief
 account at 25%/50%/100% detection, is consumed after ordinary detection, and persists the
@@ -274,7 +277,7 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
 
 - ModernUO `Application.csproj` completed with `--maxcpucount:1`, 0 warnings and 0 errors.
 - ShardContent compiled against that bundle with 0 warnings and 0 errors.
-- `BritanniaRenaissance.Content.Tests` passed **56/56** at the current source revision; the only output was the offline NuGet
+- `BritanniaRenaissance.Content.Tests` passed **61/61** at the current source revision; the only output was the offline NuGet
   vulnerability-metadata warning (`NU1900`).
 - The isolated server loaded the current `shard-rules.json`, reported `UOR / Felucca`, loaded
   385 regions and listened on `127.0.0.1:2594`.

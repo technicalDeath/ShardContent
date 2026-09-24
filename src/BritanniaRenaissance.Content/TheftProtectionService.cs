@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Diagnostics;
 using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
@@ -17,7 +18,12 @@ public static class TheftProtectionService
 {
     private const string ProtectionTagPrefix = "BritanniaRenaissance.BackpackWard.ProtectedUntil.";
     private const string LootProtectionTagPrefix = "BritanniaRenaissance.LootWard.";
+    private const string LootEntitlementTagPrefix = "BritanniaRenaissance.LootWard.Entitlement.";
+    private const string LootEntitlementVersion = "1";
+    private const int EntitlementMigrationBatchSize = 64;
     private static bool _configured;
+    private static Queue<PlayerMobile>? _entitlementMigration;
+    private static bool _entitlementMigrationScheduled;
 
     public static readonly TimeSpan LootProtectionDuration = TimeSpan.FromMinutes(10);
 
@@ -35,7 +41,11 @@ public static class TheftProtectionService
         Stealing.TheftResolved = ResolveTheft;
         Corpse.LootEligibility = CanLiftCorpseItem;
         Corpse.LootResolved = RecordCorpseTransfer;
+        EventSink.WorldLoad += BeginEntitlementMigration;
     }
+
+    [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
+    public static void OnPlayerLogin(PlayerMobile player) => EnsureLootProtectionEntitlement(player, "login");
 
     [OnEvent(nameof(CharacterCreation.CharacterCreatedEvent))]
     public static void IssueStarterWard(CharacterCreatedEventArgs args)
@@ -49,6 +59,7 @@ public static class TheftProtectionService
         var ward = new BackpackWard();
         ward.TryBindTo(player);
         player.Backpack.DropItem(ward);
+        EnsureLootProtectionEntitlement(player, "character-creation");
         ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character account");
     }
 
@@ -79,6 +90,7 @@ public static class TheftProtectionService
         if (mobile is PlayerMobile player)
         {
             yield return $"Equipped-backpack wards present: {(FindEligibleWard(player) is not null ? "yes" : "no")}.";
+            yield return $"Loot Protection entitlement: {(HasLootProtectionEntitlement(player) ? "present" : Enabled ? "pending migration" : "not active")}.";
         }
     }
 
@@ -167,6 +179,11 @@ public static class TheftProtectionService
             return true;
         }
 
+        if (looter is PlayerMobile player)
+        {
+            EnsureLootProtectionEntitlement(player, "corpse-loot");
+        }
+
         var tag = LootProtectionTag(corpse, account);
         if (!DateTime.TryParse(
                 account.GetTag(tag),
@@ -190,6 +207,11 @@ public static class TheftProtectionService
             looter.Account is not Account account)
         {
             return;
+        }
+
+        if (looter is PlayerMobile player)
+        {
+            EnsureLootProtectionEntitlement(player, "corpse-transfer");
         }
 
         account.SetTag(
@@ -261,6 +283,74 @@ public static class TheftProtectionService
 
     private static string ProtectionTag(PlayerMobile victim) =>
         ProtectionTagPrefix + victim.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
+
+    public static bool IsLootProtectionEntitlementCurrent(string? value) =>
+        string.Equals(value, LootEntitlementVersion, StringComparison.Ordinal);
+
+    public static bool HasLootProtectionEntitlement(PlayerMobile player) =>
+        player.Account is Account account &&
+        IsLootProtectionEntitlementCurrent(account.GetTag(LootEntitlementTag(player)));
+
+    private static bool EnsureLootProtectionEntitlement(PlayerMobile player, string reason)
+    {
+        if (!Enabled || player.Account is not Account account || HasLootProtectionEntitlement(player))
+        {
+            return false;
+        }
+
+        account.SetTag(LootEntitlementTag(player), LootEntitlementVersion);
+        ShardAuditLog.Record("corpse-loot", "entitlement-migrated", player, details: reason);
+        return true;
+    }
+
+    private static void BeginEntitlementMigration()
+    {
+        if (!Enabled || _entitlementMigrationScheduled)
+        {
+            return;
+        }
+
+        _entitlementMigration = new Queue<PlayerMobile>(World.Mobiles.Values.OfType<PlayerMobile>());
+        _entitlementMigrationScheduled = true;
+        Server.Timer.DelayCall(TimeSpan.Zero, ProcessEntitlementMigration);
+    }
+
+    private static void ProcessEntitlementMigration()
+    {
+        _entitlementMigrationScheduled = false;
+
+        if (!Enabled || _entitlementMigration is null)
+        {
+            _entitlementMigration = null;
+            return;
+        }
+
+        var startedAt = Stopwatch.GetTimestamp();
+        var processed = 0;
+        while (_entitlementMigration.Count > 0 && processed < EntitlementMigrationBatchSize &&
+               (processed == 0 || Stopwatch.GetElapsedTime(startedAt).TotalMilliseconds < 2))
+        {
+            var player = _entitlementMigration.Dequeue();
+            processed++;
+            if (!player.Deleted)
+            {
+                EnsureLootProtectionEntitlement(player, "world-load-migration");
+            }
+        }
+
+        if (_entitlementMigration.Count > 0)
+        {
+            _entitlementMigrationScheduled = true;
+            Server.Timer.DelayCall(TimeSpan.Zero, ProcessEntitlementMigration);
+        }
+        else
+        {
+            _entitlementMigration = null;
+        }
+    }
+
+    private static string LootEntitlementTag(PlayerMobile player) =>
+        LootEntitlementTagPrefix + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 
     private static string LootProtectionTag(Corpse corpse, Account account) =>
         LootProtectionTagPrefix + corpse.Serial.Value.ToString("X8", CultureInfo.InvariantCulture) + "." +
