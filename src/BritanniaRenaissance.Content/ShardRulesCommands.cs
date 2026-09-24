@@ -11,6 +11,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("ShardRulesStatus", AccessLevel.Administrator, OnStatus);
         CommandSystem.Register("Intent", AccessLevel.Player, OnIntent);
         CommandSystem.Register("IntentStatus", AccessLevel.Player, OnIntentStatus);
+        CommandSystem.Register("MurderStatus", AccessLevel.Administrator, OnMurderStatus);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
@@ -29,6 +30,16 @@ public static class ShardRulesCommands
     private static void OnIntentStatus(CommandEventArgs e)
     {
         foreach (var line in PvpIntentService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("MurderStatus")]
+    [Description("Displays the automatic murder adjudication policy and ledger state.")]
+    private static void OnMurderStatus(CommandEventArgs e)
+    {
+        foreach (var line in MurderAdjudicationService.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

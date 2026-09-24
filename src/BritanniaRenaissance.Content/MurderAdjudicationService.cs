@@ -1,4 +1,5 @@
 using System.Globalization;
+using Server;
 using Server.Accounting;
 using Server.Mobiles;
 
@@ -91,6 +92,18 @@ public static class MurderAdjudicationService
         }
 
         return expiry.ToUniversalTime();
+    }
+
+    public static IEnumerable<string> DescribeStatus(Mobile mobile)
+    {
+        yield return $"Automatic murder adjudication enabled: {Enabled}.";
+        yield return "Stock murder reports, five-count threshold and decay remain authoritative until replacement enablement.";
+
+        if (mobile is PlayerMobile player)
+        {
+            yield return $"Automatic counts: {GetAutomaticCount(player)}.";
+            yield return $"Cumulative red until UTC: {GetRedUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
+        }
     }
 
     /// <summary>

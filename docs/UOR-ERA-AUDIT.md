@@ -105,7 +105,8 @@ continues to take precedence. The wrapper is inert while SafeWorld is disabled.
 
 The next law-system boundary is `MurderAdjudicationService`. Its policy and account-tag ledger
 are implemented but remain disabled behind `featureFlags.automaticMurderAdjudication`; no
-`PlayerDeathEvent` hook is registered yet. The ledger classifies an ordinary-blue victim
+`PlayerDeathEvent` hook is registered yet. Administrator `[MurderStatus` exposes the feature gate
+and any recorded ledger values. The ledger classifies an ordinary-blue victim
 independently from attack legality, excludes an encounter already classified as Intent-exposed,
 deduplicates a victim/death timestamp, and extends the killer's UTC red timer by 24 hours from
 the later of the current time or prior expiry. Stock murder reports, five-count thresholds and
