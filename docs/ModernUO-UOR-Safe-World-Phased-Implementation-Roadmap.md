@@ -95,7 +95,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
    - Make qualifying zero-health outcomes for genuinely blue players enter a durable, untargetable, damage-immune 90-second Knocked Out state rather than death; clear effects and active aggression while retaining an immutable completed-encounter record.
    - Permit no-skill Knocked-Out looting only to the criminal/red who held recorded target-specific engagement rights at the moment of Knock Out; retain all item-binding and Ward rules.
    - Make safe-world Execution an explicit, encounter-authorized action that applies the same automatic ordinary-blue murder count and cumulative red time as a normal player kill.
-   - Current implementation status: the feature-gated `KnockedOutService` and narrow ModernUO lethal-damage/damageability hooks persist a 90-second ordinary-blue state, clear combat/targets, reject further damage and expose `[KnockedOutStatus`; encounter-authorized looting, execution, Hot/Cool resolution, and live enablement remain gated work.
+   - Current implementation status: the feature-gated `KnockedOutService` and narrow ModernUO lethal-damage/damageability hooks persist a 90-second ordinary-blue state, clear combat/targets, reject further damage, retain a completed-encounter record, and expose `[KnockedOutStatus`; encounter-authorized looting, execution, Hot/Cool resolution, and live enablement remain gated work.
 6. Add the observability needed to support the rules.
    - Log hostility decisions, encounter classification, murder adjudication, theft/Ward activity and corpse-transfer enforcement with stable character/account identifiers.
    - Provide staff inspection and recovery tools before public enablement.

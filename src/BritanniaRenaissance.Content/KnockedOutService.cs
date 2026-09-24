@@ -16,6 +16,7 @@ public static class KnockedOutService
 
     private const string UntilPrefix = "BritanniaRenaissance.KnockedOut.UntilUtc.";
     private const string AttackerPrefix = "BritanniaRenaissance.KnockedOut.Attacker.";
+    private const string CompletedPrefix = "BritanniaRenaissance.KnockedOut.Completed.";
 
     public static bool Enabled => ShardRulesConfiguration.Settings?.FeatureFlags.KnockedOut == true;
 
@@ -67,6 +68,14 @@ public static class KnockedOutService
             if (from is PlayerMobile attacker)
             {
                 account.SetTag(AttackerPrefix + SerialKey(player), attacker.Serial.Value.ToString(CultureInfo.InvariantCulture));
+                account.SetTag(
+                    CompletedPrefix + SerialKey(player),
+                    $"{until:O}|{attacker.Serial.Value.ToString(CultureInfo.InvariantCulture)}"
+                );
+            }
+            else
+            {
+                account.SetTag(CompletedPrefix + SerialKey(player), $"{until:O}|none");
             }
         }
 
@@ -161,6 +170,7 @@ public static class KnockedOutService
         if (mobile is PlayerMobile player)
         {
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
+            yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
             yield return "Encounter-authorized no-skill looting and execution are not yet enabled.";
         }
     }
@@ -210,6 +220,9 @@ public static class KnockedOutService
 
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
+
+    private static string? GetCompletedEncounter(PlayerMobile player) =>
+        player.Account is Account account ? account.GetTag(CompletedPrefix + SerialKey(player)) : null;
 }
 
 public readonly record struct KnockedOutDecision(bool Qualifies, string Reason);
