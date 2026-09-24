@@ -118,6 +118,10 @@ The ModernUO fork now provides the narrow integration boundary: custom configura
 legacy report/decay hooks and supply an additional red-status handler without changing stock
 behavior while the flag is false.
 
+When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
+PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
+the custom red-status source. This migration hook is not active in the current Alpha 1 profile.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,
