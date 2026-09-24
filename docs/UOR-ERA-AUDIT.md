@@ -401,3 +401,19 @@ This proves the new external-assembly lifecycle bridge through a real client log
 surface. Character-creation and death-event paths remain covered by the focused engine bridge tests
 and the 71/71 content suite; the full multi-character combat matrix is still required before public
 enablement.
+
+### Alpha 2 two-account SafeWorld rehearsal (2026-09-24)
+
+A disposable two-account host also exercised the ordinary-blue hostility boundary with two Navrey
+clients. Both accounts entered the world at the same location. Before the refresh correction,
+`attack` against the other ordinary-blue player was refused by the client as `Innocent (blue)`, and
+both characters successfully toggled and reported `[Intent]` enabled. The server audit recorded both
+intent changes, but the already-visible target remained cached as Innocent in the client world
+snapshot, so this run does not count as proof that the opted-in attack is accepted.
+
+`PvpIntentService.ToggleIntent` now re-sends the normal mobile-incoming packet to nearby observers
+after an Intent change (`fef2fc28ac4f323d070ee9d7a2886641776ec55a`). That packet recomputes the
+observer-specific notoriety and is the narrow fix for the stale client state. The next disposable
+matrix must repeat the two-account run against that revision and record both the refreshed
+`CanBeAttacked` presentation and the accepted/denied server hostility result before Alpha 2 is
+enabled publicly.

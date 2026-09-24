@@ -71,6 +71,13 @@ public static class PvpIntentService
         IntentByCharacter[unchecked((int)player.Serial.Value)] = enabled;
         SaveIntent(player, enabled);
         ShardAuditLog.Record("intent", enabled ? "enabled" : "disabled", player);
+
+        // Intent changes alter the notoriety that every nearby client must use for this
+        // character.  Re-send the normal mobile-incoming packet so clients refresh the
+        // target's hue/notoriety immediately instead of retaining a stale Innocent flag
+        // until the next movement or relog.
+        player.SendIncomingPacket();
+
         player.SendMessage(enabled ? "PvP Intent enabled: other players may challenge you." :
             "PvP Intent disabled for new opponents.");
         return enabled;
