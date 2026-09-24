@@ -1,6 +1,7 @@
 # UOR combat branch audit
 
-Pinned ModernUO commit: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`  
+Pinned ModernUO integration commit: `8e733f5cf48faa0085e92d385f956b8854e9e9d2`
+UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
 ## Approved shard policy
@@ -48,8 +49,9 @@ not authoritative and cannot make these moves active.
 
 ## Classic combat-identity baseline
 
-The following findings are pinned to ModernUO commit
-`29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`. They are intentionally a **retain**
+The following Alpha 1 findings are pinned to the UOR baseline reference
+`29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`; the current integration checkout is
+`8e733f5cf48faa0085e92d385f956b8854e9e9d2`. They are intentionally a **retain**
 baseline: Alpha 1 does not add weapon specials, numerical class buffs, later-era
 item properties, or cross-system combat tuning.
 
