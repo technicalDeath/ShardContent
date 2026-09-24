@@ -108,14 +108,14 @@ public static class TheftProtectionService
             return true;
         }
 
-        if (TheftRegionPolicy.IsBankProtectionRegion(thief))
+        if (TheftRegionPolicy.IsBankProtectionRegionForEither(thief, playerVictim))
         {
             thief.SendMessage("You cannot steal from players in this bank protection area.");
             ShardAuditLog.Record("theft", "bank-region-denied", thief, playerVictim);
             return false;
         }
 
-        if (TheftRegionPolicy.IsCoolDungeonRegion(thief))
+        if (TheftRegionPolicy.IsCoolDungeonRegionForEither(thief, playerVictim))
         {
             thief.SendMessage("Direct player stealing is disabled in this dungeon.");
             ShardAuditLog.Record("theft", "cool-region-denied", thief, playerVictim);

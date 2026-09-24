@@ -9,24 +9,53 @@ public static class TheftRegionPolicy
     public static bool IsBankProtectionRegion(Mobile mobile) =>
         IsWithin(mobile, ShardRulesConfiguration.Settings?.TheftRegions.BankProtectionPolygons);
 
+    public static bool IsBankProtectionRegion(string? mapName, int x, int y) =>
+        IsWithin(mapName, x, y, ShardRulesConfiguration.Settings?.TheftRegions.BankProtectionPolygons);
+
+    public static bool IsBankProtectionRegionForEither(Mobile first, Mobile second) =>
+        IsWithinEither(first.Map?.Name, first.X, first.Y, second.Map?.Name, second.X, second.Y,
+            ShardRulesConfiguration.Settings?.TheftRegions.BankProtectionPolygons);
+
     public static bool IsCoolDungeonRegion(Mobile mobile) =>
         IsWithin(mobile, ShardRulesConfiguration.Settings?.TheftRegions.CoolDungeonPolygons);
 
+    public static bool IsCoolDungeonRegionForEither(Mobile first, Mobile second) =>
+        IsWithinEither(first.Map?.Name, first.X, first.Y, second.Map?.Name, second.X, second.Y,
+            ShardRulesConfiguration.Settings?.TheftRegions.CoolDungeonPolygons);
+
+    public static bool IsWithinEither(
+        string? firstMap,
+        int firstX,
+        int firstY,
+        string? secondMap,
+        int secondX,
+        int secondY,
+        IReadOnlyList<TheftPolygonDefinition>? polygons
+    ) => IsWithin(firstMap, firstX, firstY, polygons) || IsWithin(secondMap, secondX, secondY, polygons);
+
     public static bool IsWithin(Mobile mobile, IReadOnlyList<TheftPolygonDefinition>? polygons)
+        => IsWithin(mobile.Map?.Name, mobile.X, mobile.Y, polygons);
+
+    public static bool IsWithin(
+        string? mapName,
+        int x,
+        int y,
+        IReadOnlyList<TheftPolygonDefinition>? polygons
+    )
     {
-        if (mobile.Map is null || polygons is null)
+        if (string.IsNullOrWhiteSpace(mapName) || polygons is null)
         {
             return false;
         }
 
         foreach (var polygon in polygons)
         {
-            if (!string.Equals(polygon.Map, mobile.Map.Name, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(polygon.Map, mapName, StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
 
-            if (Contains(polygon.Points, mobile.X, mobile.Y))
+            if (Contains(polygon.Points, x, y))
             {
                 return true;
             }
