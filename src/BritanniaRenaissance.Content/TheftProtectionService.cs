@@ -10,8 +10,8 @@ using Server.Engines.CharacterCreation;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Feature-gated Backpack Ward and invisible monster-corpse Loot Protection Ward behavior layered
-/// around stock Stealing. Bank polygons and the Cool Dungeon remain separate region work.
+/// Feature-gated Backpack Ward, invisible monster-corpse Loot Protection Ward, and explicit
+/// bank/Cool-Dungeon boundary feedback layered around stock Stealing.
 /// </summary>
 public static class TheftProtectionService
 {
@@ -28,6 +28,7 @@ public static class TheftProtectionService
     private static int _entitlementMigrationGranted;
     private static DateTime? _entitlementMigrationStartedUtc;
     private static DateTime? _entitlementMigrationCompletedUtc;
+    private static readonly Dictionary<Serial, TheftRegionState> RegionStates = new();
 
     public static readonly TimeSpan LootProtectionDuration = TimeSpan.FromMinutes(10);
 
@@ -47,6 +48,8 @@ public static class TheftProtectionService
         Corpse.LootResolved = RecordCorpseTransfer;
         EventSink.WorldLoad += BeginEntitlementMigration;
         EventSink.Connected += OnConnected;
+        EventSink.Disconnected += OnDisconnected;
+        EventSink.Movement += OnMovement;
         CharacterCreation.CharacterCreatedHandler = IssueStarterWard;
     }
 
@@ -92,8 +95,92 @@ public static class TheftProtectionService
         if (mobile is PlayerMobile player)
         {
             OnPlayerLogin(player);
+            ObserveTheftRegions(player, notify: false);
         }
     }
+
+    private static void OnDisconnected(Mobile mobile)
+    {
+        if (mobile is PlayerMobile player)
+        {
+            RegionStates.Remove(player.Serial);
+        }
+    }
+
+    private static void OnMovement(MovementEventArgs args)
+    {
+        if (!Enabled || args.Mobile is not PlayerMobile player || player.Deleted)
+        {
+            return;
+        }
+
+        // Movement is raised before the step is applied. Observe on the next server tick so a
+        // blocked step does not produce a false boundary notification.
+        Server.Timer.DelayCall(TimeSpan.Zero, () =>
+        {
+            if (!player.Deleted)
+            {
+                ObserveTheftRegions(player, notify: true);
+            }
+        });
+    }
+
+    private static void ObserveTheftRegions(PlayerMobile player, bool notify)
+    {
+        var current = new TheftRegionState(
+            TheftRegionPolicy.IsBankProtectionRegion(player),
+            TheftRegionPolicy.IsCoolDungeonRegion(player)
+        );
+
+        if (RegionStates.TryGetValue(player.Serial, out var previous))
+        {
+            if (notify)
+            {
+                foreach (var message in DescribeRegionTransitions(previous, current))
+                {
+                    player.SendMessage(message);
+                }
+            }
+        }
+
+        RegionStates[player.Serial] = current;
+    }
+
+    public static IEnumerable<string> DescribeRegionTransitions(
+        bool wasBankProtected,
+        bool isBankProtected,
+        bool wasCoolDungeon,
+        bool isCoolDungeon
+    ) => DescribeRegionTransitions(
+        new TheftRegionState(wasBankProtected, wasCoolDungeon),
+        new TheftRegionState(isBankProtected, isCoolDungeon)
+    );
+
+    private static IEnumerable<string> DescribeRegionTransitions(
+        TheftRegionState previous,
+        TheftRegionState current
+    )
+    {
+        if (!previous.BankProtected && current.BankProtected)
+        {
+            yield return "You are now protected from theft by the bank guards";
+        }
+        else if (previous.BankProtected && !current.BankProtected)
+        {
+            yield return "You are outside bank guard protection from theft";
+        }
+
+        if (!previous.CoolDungeon && current.CoolDungeon)
+        {
+            yield return "You are entering a protected dungeon: direct player stealing is disabled here";
+        }
+        else if (previous.CoolDungeon && !current.CoolDungeon)
+        {
+            yield return "You have left the protected dungeon: normal player stealing rules now apply";
+        }
+    }
+
+    private readonly record struct TheftRegionState(bool BankProtected, bool CoolDungeon);
 
     public static bool IsProtectionWindowActive(DateTime nowUtc, DateTime protectedUntilUtc) =>
         protectedUntilUtc.ToUniversalTime() > nowUtc.ToUniversalTime();

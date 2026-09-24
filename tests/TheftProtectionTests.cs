@@ -42,4 +42,26 @@ public class TheftProtectionTests
     {
         Assert.Equal(expected, TheftProtectionService.IsLootProtectionEntitlementCurrent(value));
     }
+
+    [Fact]
+    public void RegionEntryAndExitMessagesArePlayerFacingAndTransitionOnly()
+    {
+        Assert.Equal(
+            new[] { "You are now protected from theft by the bank guards" },
+            TheftProtectionService.DescribeRegionTransitions(false, true, false, false)
+        );
+        Assert.Equal(
+            new[] { "You are outside bank guard protection from theft" },
+            TheftProtectionService.DescribeRegionTransitions(true, false, false, false)
+        );
+        Assert.Equal(
+            new[] { "You are entering a protected dungeon: direct player stealing is disabled here" },
+            TheftProtectionService.DescribeRegionTransitions(false, false, false, true)
+        );
+        Assert.Equal(
+            new[] { "You have left the protected dungeon: normal player stealing rules now apply" },
+            TheftProtectionService.DescribeRegionTransitions(false, false, true, false)
+        );
+        Assert.Empty(TheftProtectionService.DescribeRegionTransitions(true, true, true, true));
+    }
 }

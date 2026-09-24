@@ -182,8 +182,11 @@ repeating against the same corpse for ten minutes. Bank/Cool region restrictions
 
 The theft-region policy now loads explicit `map`/point polygons from `shard-rules.json`. Bank
 polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing while
-leaving snooping and combat decisions untouched. Both lists are intentionally empty in the Alpha 1
-profile until the shard's approved map geometry is authored.
+leaving snooping and combat decisions untouched. The runtime policy now contains 18 banker
+envelopes and the stock rectangles for the ten UOR-era dungeons. Bank envelopes are compact
+24-by-24-tile survey areas around each observed banker footprint, providing approximately a 5–6
+tile apron without creating a town-wide combat bubble. Entering or leaving a bank or Cool Dungeon
+emits one player-facing explanation; blocked movement does not emit a false transition.
 
 The theft boundary rechecks both participants at the target-selection boundary: a direct player
 steal is denied when either the thief or the intended victim is inside a configured bank/Cool
@@ -192,23 +195,23 @@ polygon. Map names are compared case-insensitively, and empty/invalid polygons r
 The next Alpha 2 geography gate is now reproducible: `tools/Export-FeluccaBankCandidates.ps1`
 extracts Banker spawner coordinates from the pinned ModernUO
 `Distribution/Data/Spawns/shared/felucca/Vendors.json`, records the source SHA-256 and spawner
-GUIDs, and writes a review-only candidate file. The tool does not mutate configuration or infer a
-bank radius. Staff must survey the actual bank premises/apron and approve explicit polygons before
-any bank or Cool-Dungeon theft rule is enabled; client POIs are not authoritative for this step.
+GUIDs, and writes a review-only candidate file. Client commands were used to visit every banker
+candidate; the resulting polygons are recorded explicitly rather than inferred at runtime.
 
 `tools/Export-FeluccaDungeonCandidates.ps1` provides the matching review surface for Cool-Dungeon
 selection. It extracts the pinned `DungeonRegion` rectangles, identifies the ten UOR-era dungeon
-names as candidate-compatible, and preserves later-era/special regions for explicit review. Its
-output is review-only and does not create active Cool-Dungeon polygons.
+names as candidate-compatible, and preserves later-era/special regions for explicit review. The
+ten UOR-era candidates' stock rectangles are now active Cool-Dungeon polygons; later-era/special
+regions remain deferred.
 
 The 2026-09-24 review export found 18 Felucca Banker spawners and 18 Felucca dungeon regions.
 The bank source hash was `acc0d004ead4d81e681eefeae62e54dfb3fe8420c4067dc83a3fc3271c9bd31d`;
 the dungeon-region source hash was
 `cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d`. Ten dungeon names were
 marked UOR-era candidates (Covetous, Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun,
-Shame and Wrong). These are evidence for staff survey only: no radius, apron, or dungeon polygon
-was inferred and the checked-in Alpha 1 geometry remains empty. The reproducible review exports
-are committed under `docs/generated/alpha2/` alongside their regeneration notes.
+Shame and Wrong). The 18 bank envelopes and 14 split rectangle polygons for those ten dungeons are
+recorded in the shard policy. The reproducible review exports remain committed under
+`docs/generated/alpha2/` alongside the final configuration.
 
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:
