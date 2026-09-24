@@ -28,6 +28,7 @@ public static class MurderAdjudicationService
     public static void Configure()
     {
         Mobile.AdditionalMurdererHandler = IsAutomaticallyRed;
+        Mobile.LegacyMurdererCountsEnabled = !Enabled;
         PlayerMurderSystem.SetLegacyReportingEnabled(!Enabled);
     }
 
