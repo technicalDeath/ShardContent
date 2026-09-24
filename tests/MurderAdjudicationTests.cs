@@ -79,4 +79,19 @@ public class MurderAdjudicationTests
     {
         Assert.Equal(expected, MurderAdjudicationService.ClassifyMigrationState(hasLegacyThreshold, hasCustomRed));
     }
+
+    [Theory]
+    [InlineData("2026-09-24T00:00:00.0000000Z", true)]
+    [InlineData("2026-09-23T20:00:00-04:00", true)]
+    [InlineData("2026-09-24T00:00:01.0000000Z", false)]
+    [InlineData(null, false)]
+    public void DeathMarkerDeduplicationUsesUtcInstant(
+        string? marker,
+        bool expected
+    )
+    {
+        var death = new DateTime(2026, 9, 24, 0, 0, 0, DateTimeKind.Utc);
+
+        Assert.Equal(expected, MurderAdjudicationService.DeathMarkerMatches(marker, death));
+    }
 }

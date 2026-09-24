@@ -290,19 +290,20 @@ public static class MurderAdjudicationService
             killer == victim
         );
 
-        if (!Enabled || !decision.Qualifies || killer is null || killer.Account is not Account account)
+        if (!Enabled || !decision.Qualifies || killer is null ||
+            killer.Account is not Account killerAccount || victim.Account is not Account victimAccount)
         {
             return false;
         }
 
         deathUtc = deathUtc.ToUniversalTime();
         var markerKey = DeathMarkerPrefix + SerialKey(victim);
-        if (DateTime.TryParse(
-                account.GetTag(markerKey),
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.RoundtripKind,
-                out var previousDeath
-            ) && previousDeath.ToUniversalTime() == deathUtc)
+        // The marker belongs to the victim's account: a qualifying death is one event even if
+        // duplicate callbacks resolve a different most-recent damager. Older staging builds wrote
+        // it on the killer account, so read that location once as a compatibility fallback and
+        // migrate the marker to the authoritative victim-owned location below.
+        var previousMarker = victimAccount.GetTag(markerKey) ?? killerAccount.GetTag(markerKey);
+        if (DeathMarkerMatches(previousMarker, deathUtc))
         {
             return false;
         }
@@ -311,11 +312,21 @@ public static class MurderAdjudicationService
         var priorExpiry = GetRedUntilUtc(killer) ?? deathUtc;
         var redUntil = ExtendRedUntilUtc(deathUtc, priorExpiry);
 
-        account.SetTag(CountPrefix + SerialKey(killer), count.ToString(CultureInfo.InvariantCulture));
-        account.SetTag(RedUntilPrefix + SerialKey(killer), redUntil.ToString("O", CultureInfo.InvariantCulture));
-        account.SetTag(markerKey, deathUtc.ToString("O", CultureInfo.InvariantCulture));
+        killerAccount.SetTag(CountPrefix + SerialKey(killer), count.ToString(CultureInfo.InvariantCulture));
+        killerAccount.SetTag(RedUntilPrefix + SerialKey(killer), redUntil.ToString("O", CultureInfo.InvariantCulture));
+        victimAccount.SetTag(markerKey, deathUtc.ToString("O", CultureInfo.InvariantCulture));
         ShardAuditLog.Record("murder", "automatic-count", killer, victim, $"count={count}; redUntil={redUntil:O}");
         return true;
+    }
+
+    public static bool DeathMarkerMatches(string? marker, DateTime deathUtc)
+    {
+        return DateTime.TryParse(
+                   marker,
+                   CultureInfo.InvariantCulture,
+                   DateTimeStyles.RoundtripKind,
+                   out var previousDeath
+               ) && previousDeath.ToUniversalTime() == deathUtc.ToUniversalTime();
     }
 
     public static bool TryRecordAutomaticCount(PlayerMobile? killer, PlayerMobile victim, DateTime deathUtc) =>

@@ -137,7 +137,8 @@ are implemented but remain disabled behind `featureFlags.automaticMurderAdjudica
 Administrator `[MurderStatus` exposes the feature gate and any recorded ledger values. When the
 flag is enabled, its `PlayerDeathEvent` hook classifies an ordinary-blue victim
 independently from attack legality, excludes an encounter already classified as Intent-exposed,
-deduplicates a victim/death timestamp, and extends the killer's UTC red timer by 24 hours from
+deduplicates a victim/death timestamp on the victim account (with a one-time fallback for the
+older killer-account marker), and extends the killer's UTC red timer by 24 hours from
 the later of the current time or prior expiry. The disposable all-feature host has now exercised
 the replacement through an encounter-authorized execution: one automatic count and a cumulative
 24-hour UTC red deadline were observed while legacy reporting and the five-count source were
@@ -638,3 +639,24 @@ Raw client evidence is retained in
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-heal\admin-log`; server audit output is in
 `work/alpha2-heal-staging.stdout`. The staging host and both staging clients were stopped after
 the rehearsal; production remained listening on `2593`.
+
+### Alpha 2 Knocked Out reagent-equipped recovery rehearsal (2026-09-24)
+
+A second disposable all-feature host on `127.0.0.1:2594` supplied the missing reagent-equipped
+post-recovery check. `TestAlpha2` was given 100.0 Magery, Garlic and Ginseng, then entered the
+90-second Knocked Out state at `12:13:07` after the staged hostile swing. The administrator
+recovered the character at `12:13:23`; the victim received `A staff member has recovered you from
+Knocked Out.` Staff then restored 10 mana and applied `Lesser` poison. The victim cast `Cure`,
+selected self, and the client displayed `You have been cured of all poisons!`; the resulting state
+was `hits=3`, `mana=4`, `isPoisoned=false`, `charGhost=false`. This confirms that recovery restores
+ordinary beneficial spell targeting when reagents and mana are present; it does not claim a heal
+test, which remains a separate matrix row.
+
+The live murder-deduplication audit also found and corrected a persistence edge: the duplicate
+death marker is now authoritative on the victim account, with a one-time fallback for the older
+killer-account marker. Focused ShardContent coverage passes **78/78**, including UTC marker
+deduplication. Raw evidence is retained in
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery3\admin-log`,
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery3\victim-log`, and
+`work/alpha2-recovery3-server.stdout`. The disposable host and clients were stopped; production
+remained listening on `2593`.
