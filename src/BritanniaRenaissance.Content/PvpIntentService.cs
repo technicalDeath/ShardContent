@@ -17,6 +17,7 @@ public static class PvpIntentService
 {
     private const string TagPrefix = "BritanniaRenaissance.PvpIntent.";
     private static readonly Dictionary<int, bool> IntentByCharacter = new();
+    private static readonly Dictionary<EncounterKey, EncounterSnapshot> Encounters = new();
     private static AllowHarmfulHandler? _stockAllowHarmful;
     private static NotorietyHandler? _stockNotoriety;
     private static bool _configured;
@@ -35,6 +36,7 @@ public static class PvpIntentService
         _stockNotoriety = Notoriety.Handler;
         Mobile.AllowHarmfulHandler = AllowHarmful;
         Notoriety.Handler = ComputeNotoriety;
+        EventSink.AggressiveAction += CaptureEncounter;
     }
 
     public static bool IsIntentEnabled(PlayerMobile player)
@@ -105,6 +107,27 @@ public static class PvpIntentService
     public static int GetIntentNotoriety(bool intentEnabled, bool targetIsCriminal, bool targetIsMurderer,
         int stockNotoriety) =>
         intentEnabled && !targetIsCriminal && !targetIsMurderer ? Notoriety.CanBeAttacked : stockNotoriety;
+
+    public static bool WasIntentClassified(PlayerMobile killer, PlayerMobile victim)
+    {
+        var key = new EncounterKey(killer, victim);
+        return Encounters.TryGetValue(key, out var snapshot) && snapshot.ExpiresUtc > Core.Now &&
+               snapshot.VictimWasIntentClassified;
+    }
+
+    private static void CaptureEncounter(AggressiveActionEventArgs e)
+    {
+        if (!SafeWorldEnabled || e.Aggressor is not PlayerMobile attacker ||
+            e.Aggressed is not PlayerMobile defender || attacker == defender)
+        {
+            return;
+        }
+
+        Encounters[new EncounterKey(attacker, defender)] = new EncounterSnapshot(
+            IsIntentEnabled(defender) && !defender.Criminal && !defender.Murderer,
+            Core.Now.AddMinutes(2)
+        );
+    }
 
     private static int ComputeNotoriety(Mobile source, Mobile target)
     {
@@ -253,3 +276,14 @@ public static class PvpIntentService
         }
     }
 }
+
+internal readonly record struct EncounterKey(int AttackerSerial, int DefenderSerial)
+{
+    public EncounterKey(PlayerMobile attacker, PlayerMobile defender) : this(
+        unchecked((int)attacker.Serial.Value),
+        unchecked((int)defender.Serial.Value))
+    {
+    }
+}
+
+internal readonly record struct EncounterSnapshot(bool VictimWasIntentClassified, DateTime ExpiresUtc);

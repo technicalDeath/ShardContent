@@ -139,6 +139,14 @@ public static class MurderAdjudicationService
         return true;
     }
 
+    public static bool TryRecordAutomaticCount(PlayerMobile? killer, PlayerMobile victim, DateTime deathUtc) =>
+        TryRecordAutomaticCount(
+            killer,
+            victim,
+            deathUtc,
+            killer is not null && PvpIntentService.WasIntentClassified(killer, victim)
+        );
+
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 }

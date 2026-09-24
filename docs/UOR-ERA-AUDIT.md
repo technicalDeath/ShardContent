@@ -94,8 +94,10 @@ Felucca's stock handler intentionally allows every player pair, the service repl
 unrestricted result with only explicit safe-world reasons for direct player hostility: an ordinary blue targeting a
 criminal/murderer or an opted-in `[Intent]` target, mutual Intent, or an existing aggression
 relationship. Criminal/murderer players cannot change Intent, and safe-zone restrictions remain
-authoritative. Hot-zone regions, murder adjudication, encounter snapshots and Knocked Out remain
-separate Alpha 2 work and are not enabled by this slice.
+authoritative. A short-lived encounter snapshot is captured from `EventSink.AggressiveAction` so
+later Intent changes do not reclassify an active pair; durable save/restart recovery for those
+snapshots remains part of the murder-adjudication integration. Hot-zone regions and Knocked Out
+remain separate Alpha 2 work and are not enabled by this slice.
 
 When enabled, the same service wraps the stock notoriety handler so an otherwise-blue Intent
 character is presented with the attackable/grey hue while genuine criminal or murderer status
