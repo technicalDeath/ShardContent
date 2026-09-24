@@ -2,7 +2,7 @@
 
 Recorded: 2026-09-23  
 Baseline: UOR, Felucca only, integration-pinned ModernUO commit
-`5fba7cc393112170536aac250086e451e0a0b149` (UOR baseline reference
+`90e8517b9e978a4e36821259888dd62bf634c3ab` (UOR baseline reference
 `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`)
 
 This audit distinguishes active runtime behavior from planning documents and staff/development
