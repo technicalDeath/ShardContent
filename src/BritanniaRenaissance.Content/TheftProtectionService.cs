@@ -50,8 +50,16 @@ public static class TheftProtectionService
     [OnEvent(nameof(CharacterCreation.CharacterCreatedEvent))]
     public static void IssueStarterWard(CharacterCreatedEventArgs args)
     {
-        if (!Enabled || args.Mobile is not PlayerMobile player || player.Backpack is null ||
-            FindEligibleWard(player) is not null)
+        if (!Enabled || args.Mobile is not PlayerMobile player)
+        {
+            return;
+        }
+
+        // The invisible entitlement is independent of the physical starter item and must not be
+        // skipped merely because the new character already has a backpack ward or a delayed bag.
+        EnsureLootProtectionEntitlement(player, "character-creation");
+
+        if (player.Backpack is null || FindEligibleWard(player) is not null)
         {
             return;
         }
@@ -59,7 +67,6 @@ public static class TheftProtectionService
         var ward = new BackpackWard();
         ward.TryBindTo(player);
         player.Backpack.DropItem(ward);
-        EnsureLootProtectionEntitlement(player, "character-creation");
         ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character account");
     }
 
