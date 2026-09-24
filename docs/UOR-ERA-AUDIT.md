@@ -623,8 +623,9 @@ returned `That is not accessible.` and the victim's hits did not increase. Staff
 `Lesser` poison through the read-only staging setup (`[serial 0x00000002 set Poison Lesser`),
 leaving `isPoisoned=true`. `cast cure` likewise reached the `An Nox` target cursor, returned
 `That is not accessible.`, and left poison active. These are real client/server observations of
-the `KnockedOutService.CanTarget`, `BlockHeal`, and `BlockCurePoison` boundaries; no beneficial
-state change was observed while Knocked Out.
+the `KnockedOutService.CanTarget` boundary; the pinned ModernUO hook regression above covers the
+corresponding `BlockHeal` and `BlockCurePoison` short-circuits. No beneficial state change was
+observed while Knocked Out.
 
 The 90-second timer then expired naturally at `11:47:30`, and the victim received `You recover
 from being Knocked Out.` The immediately-following cure attempt was not treated as a recovery
