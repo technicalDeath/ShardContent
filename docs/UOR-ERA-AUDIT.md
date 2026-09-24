@@ -422,18 +422,23 @@ enabled publicly.
 
 The stale-client result exposed an initialization-order defect: ModernUO's stock notoriety
 initializer ran after the external shard bridge and replaced the custom delegate. The bridge now
-marks `ShardBootstrap.Initialize` with `Server.CallPriority(1000)`, so it installs the Intent-aware
-handler after stock `NotorietyHandlers`. The corrected assembly was rebuilt against pinned
-ModernUO `075d7859eb9646ed681a18b064754bb066799812` and loaded by a fresh disposable host on
+registers a one-shot `ServerStarted` callback and rebinds after every stock `Initialize` method;
+the existing `Server.CallPriority(1000)` boundary remains as a fallback for world-dependent setup.
+The corrected assembly was rebuilt against pinned ModernUO
+`075d7859eb9646ed681a18b064754bb066799812` and loaded by a fresh disposable host on
 `127.0.0.1:2598`; startup completed with the UOR/Felucca policy and all staged Alpha 2 systems
 recognized. The checked-in policy and production runtime were not changed.
 
-The focused content suite now has a regression assertion for that lifecycle priority and passes
-72/72 tests. A second Navrey launch authenticated two fresh disposable accounts against the
-corrected host, but the restored-save character-selection path did not advance into the world, so
-this run is not counted as post-fix proof of the client hue refresh or accepted hostility packet.
-The earlier two-account evidence therefore remains explicitly pre-fix, and the full post-fix
-two-character matrix is still required before public Alpha 2 enablement.
+The focused content suite passes 72/72 tests. A post-fix Navrey run authenticated two disposable
+accounts (`FreshD`, `FreshE`; serials `0x00000002` and `0x00000003`) and entered the world on both
+clients. `[IntentStatus` reported `PvpIntentService.ComputeNotoriety` and `CanBeAttacked` for the
+nearby opted-in player on both observers; both client world snapshots rendered the other player
+as `Gray`. `FreshD` then issued `attack 0x00000003`; the client confirmed the attack, the server
+completed a `FreshD -> FreshE` swing, and `FreshE`'s observed hits fell from 100 to 98. This is
+the first live proof that the post-startup handler, packet presentation, and opted-in hostility
+path agree. Toggling `FreshE` off afterward retained the already-established aggression relationship,
+as required by the encounter rule; a fresh no-encounter denial matrix remains deferred before
+public Alpha 2 enablement.
 
 ### Alpha 2 geography review exports (2026-09-24)
 
