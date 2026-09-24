@@ -17,6 +17,7 @@
   },
   "featureFlags": {
     "safeWorld": false,
+    "automaticMurderAdjudication": false,
     "hotZones": false,
     "coolZones": false,
     "housingGeography": false,

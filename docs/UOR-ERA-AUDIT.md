@@ -97,6 +97,15 @@ relationship. Criminal/murderer players cannot change Intent, and safe-zone rest
 authoritative. Hot-zone regions, murder adjudication, encounter snapshots and Knocked Out remain
 separate Alpha 2 work and are not enabled by this slice.
 
+The next law-system boundary is `MurderAdjudicationService`. Its policy and account-tag ledger
+are implemented but remain disabled behind `featureFlags.automaticMurderAdjudication`; no
+`PlayerDeathEvent` hook is registered yet. The ledger classifies an ordinary-blue victim
+independently from attack legality, excludes an encounter already classified as Intent-exposed,
+deduplicates a victim/death timestamp, and extends the killer's UTC red timer by 24 hours from
+the later of the current time or prior expiry. Stock murder reports, five-count thresholds and
+decay therefore remain the only live behavior until their replacement and encounter snapshots
+are ready to be enabled together.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,
