@@ -580,3 +580,20 @@ Raw evidence is retained in `work/alpha2-recovery-restart3.stdout`,
 The staging host was stopped after the check (`2594` closed; production `2593` remained
 listening). Heal/cure denial and the full corpse/loot concurrency matrix are still unverified and
 remain separate gates.
+
+### Alpha 2 production migration audit (2026-09-24)
+
+Using a fresh administrator Navrey login against the running production profile on `127.0.0.1:2593`,
+`[MurderMigrationAudit` scanned one player mobile. The read-only result was:
+
+- Legacy `Kills >= 5`: `0`.
+- Custom murder ledgers present: `0`.
+- Custom red timers active: `0`.
+- Migration state: `legacy-only=0`, `custom-only=0`, `overlapping=0`.
+- Legacy reporting and legacy threshold source remained enabled because the replacement flag is off.
+- The command reported `No migration mutation was performed.`
+
+This is a clean current-world baseline, not a migration approval for future characters or imported
+worlds; the owner still needs to select the treatment for any non-neutral legacy rows before the
+custom murder flag can be enabled. Raw client evidence is retained in
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-migration-audit\log`.
