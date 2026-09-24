@@ -70,6 +70,7 @@ public static class PvpIntentService
         var enabled = !IsIntentEnabled(player);
         IntentByCharacter[unchecked((int)player.Serial.Value)] = enabled;
         SaveIntent(player, enabled);
+        ShardAuditLog.Record("intent", enabled ? "enabled" : "disabled", player);
         player.SendMessage(enabled ? "PvP Intent enabled: other players may challenge you." :
             "PvP Intent disabled for new opponents.");
         return enabled;
@@ -151,6 +152,13 @@ public static class PvpIntentService
 
         Encounters[new EncounterKey(attacker, defender)] = snapshot;
         SaveEncounterSnapshot(attacker, defender, snapshot);
+        ShardAuditLog.Record(
+            "encounter",
+            snapshot.VictimWasIntentClassified ? "intent-classified" : "ordinary",
+            attacker,
+            defender,
+            "AggressiveAction snapshot"
+        );
     }
 
     private static int ComputeNotoriety(Mobile source, Mobile target)
@@ -209,12 +217,19 @@ public static class PvpIntentService
             return true;
         }
 
-        return IsSafeWorldPlayerAttackAllowed(
+        var allowed = IsSafeWorldPlayerAttackAllowed(
             targetIsCriminalOrMurderer,
             targetHasIntent,
             attackerHasIntent,
             existingRetaliation
         );
+
+        if (!allowed)
+        {
+            ShardAuditLog.Record("hostility", "denied", attacker, defender, "ordinary-blue safe-world policy");
+        }
+
+        return allowed;
     }
 
     private static bool IsGuildWarOrDuel(PlayerMobile attacker, PlayerMobile defender)

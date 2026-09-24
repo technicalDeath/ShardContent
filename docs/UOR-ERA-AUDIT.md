@@ -127,6 +127,12 @@ The ModernUO fork now provides the narrow integration boundary: custom configura
 legacy report/decay hooks and supply an additional red-status handler without changing stock
 behavior while the flag is false.
 
+`ShardAuditLog` records low-volume Alpha 2 decisions with stable character serial/account
+identifiers: Intent changes and encounter snapshots, denied safe-world hostility, automatic murder
+counts, Ward/corpse enforcement, and Knocked Out entry/recovery. The existing diagnostic commands
+remain the staff inspection surface; public enablement still requires migration rehearsal and
+recovery procedures.
+
 When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
 the custom red-status source. This migration hook is not active in the current Alpha 1 profile.

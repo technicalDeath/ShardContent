@@ -78,6 +78,7 @@ public static class KnockedOutService
         player.Target = null;
         ClearAggression(player);
         player.SendMessage("You have been Knocked Out for 90 seconds.");
+        ShardAuditLog.Record("knocked-out", "entered", player, from, "90-second damage-immune state");
         ScheduleRecovery(player);
         return true;
     }
@@ -166,6 +167,7 @@ public static class KnockedOutService
             account.RemoveTag(AttackerPrefix + SerialKey(pm));
             pm.Hits = Math.Max(pm.Hits, 1);
             pm.SendMessage("You recover from being Knocked Out.");
+            ShardAuditLog.Record("knocked-out", "recovered", pm);
         }, player);
     }
 

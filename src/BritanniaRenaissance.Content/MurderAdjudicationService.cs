@@ -195,6 +195,7 @@ public static class MurderAdjudicationService
         account.SetTag(CountPrefix + SerialKey(killer), count.ToString(CultureInfo.InvariantCulture));
         account.SetTag(RedUntilPrefix + SerialKey(killer), redUntil.ToString("O", CultureInfo.InvariantCulture));
         account.SetTag(markerKey, deathUtc.ToString("O", CultureInfo.InvariantCulture));
+        ShardAuditLog.Record("murder", "automatic-count", killer, victim, $"count={count}; redUntil={redUntil:O}");
         return true;
     }
 

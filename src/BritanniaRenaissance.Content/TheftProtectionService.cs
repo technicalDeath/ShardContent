@@ -69,12 +69,14 @@ public static class TheftProtectionService
         if (item is BackpackWard)
         {
             thief.SendMessage("That ward cannot be stolen.");
+            ShardAuditLog.Record("theft", "ward-denied", thief, victim, "ward item");
             return false;
         }
 
         if (IsProtectionActive(playerVictim))
         {
             thief.SendMessage("That backpack is protected from stealing for a short time.");
+            ShardAuditLog.Record("theft", "protected-denied", thief, playerVictim, "120-second backpack ward");
             return false;
         }
 
@@ -100,6 +102,7 @@ public static class TheftProtectionService
         if (caught)
         {
             ActivateProtection(playerVictim, ward);
+            ShardAuditLog.Record("theft", "ward-consumed", playerThief, playerVictim, "stock detection");
             return;
         }
 
@@ -114,6 +117,7 @@ public static class TheftProtectionService
         {
             playerVictim.SendMessage("You detect a theft from your backpack.");
             ActivateProtection(playerVictim, ward);
+            ShardAuditLog.Record("theft", "ward-triggered", playerThief, playerVictim, $"undetectedSuccesses={successes}");
         }
     }
 
@@ -138,6 +142,7 @@ public static class TheftProtectionService
         }
 
         looter.SendMessage("You cannot repeatedly loot this monster's corpse right now.");
+        ShardAuditLog.Record("corpse-loot", "repeat-denied", looter, corpse.Owner, "10-minute offender protection");
         return false;
     }
 
@@ -154,6 +159,7 @@ public static class TheftProtectionService
             LootProtectionTag(corpse, account),
             Core.Now.Add(LootProtectionDuration).ToString("O", CultureInfo.InvariantCulture)
         );
+        ShardAuditLog.Record("corpse-loot", "first-transfer", looter, corpse.Owner, "10-minute offender protection armed");
     }
 
     private static BackpackWard? FindEligibleWard(PlayerMobile victim)
