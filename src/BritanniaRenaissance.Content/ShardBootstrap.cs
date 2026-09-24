@@ -13,4 +13,6 @@ public static class ShardBootstrap
         ShardRulesCommands.Register();
         MasteryProgression.Configure();
     }
+
+    public static void Initialize() => PvpIntentService.Configure();
 }

@@ -1,4 +1,5 @@
 using Server;
+using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
@@ -8,7 +9,29 @@ public static class ShardRulesCommands
     public static void Register()
     {
         CommandSystem.Register("ShardRulesStatus", AccessLevel.Administrator, OnStatus);
+        CommandSystem.Register("Intent", AccessLevel.Player, OnIntent);
+        CommandSystem.Register("IntentStatus", AccessLevel.Player, OnIntentStatus);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
+    }
+
+    [Usage("Intent")]
+    [Description("Toggle voluntary PvP Intent for new opponents.")]
+    private static void OnIntent(CommandEventArgs e)
+    {
+        if (e.Mobile is PlayerMobile player)
+        {
+            PvpIntentService.ToggleIntent(player);
+        }
+    }
+
+    [Usage("IntentStatus")]
+    [Description("Displays the safe-world PvP Intent status.")]
+    private static void OnIntentStatus(CommandEventArgs e)
+    {
+        foreach (var line in PvpIntentService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("ShardRulesStatus")]

@@ -40,4 +40,28 @@ public class MasteryPeriodScheduleTests
         Assert.Equal(0.1, MasteryProgression.AwardTenths / 10.0);
         Assert.Equal(0.6, MasteryProgression.PendingCapTenths / 10.0);
     }
+
+    [Theory]
+    [InlineData(true, false, false, false, true)]
+    [InlineData(false, true, false, false, true)]
+    [InlineData(false, false, true, false, false)]
+    [InlineData(false, false, false, true, true)]
+    [InlineData(false, false, false, false, false)]
+    public void SafeWorldIntentPolicyAllowsOnlyExplicitLegalReasons(
+        bool targetIsCriminalOrMurderer,
+        bool targetHasIntent,
+        bool attackerHasIntent,
+        bool existingRetaliation,
+        bool expected)
+    {
+        Assert.Equal(
+            expected,
+            PvpIntentService.IsSafeWorldPlayerAttackAllowed(
+                targetIsCriminalOrMurderer,
+                targetHasIntent,
+                attackerHasIntent,
+                existingRetaliation
+            )
+        );
+    }
 }

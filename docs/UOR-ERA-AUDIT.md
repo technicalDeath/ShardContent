@@ -84,6 +84,19 @@ ID. The state survives logout, death, restart and save/load; unused pending tent
 100.0. Temporary gain bonuses, anti-macro configuration, combat rules and deferred Alpha 2/3 systems
 do not change period length, award size or the 0.6 cap.
 
+### Alpha 2 hostility foundation (implemented, feature-gated)
+
+`PvpIntentService` is the first Alpha 2 slice. It persists a blue player's voluntary PvP Intent
+through the account-tag layer and exposes `[Intent` and `[IntentStatus` commands. When the
+`safeWorld` feature flag is disabled, it delegates entirely to the pinned ModernUO hostility
+handler. When enabled, it preserves stock blessedness, region, duel and guild checks. Because
+Felucca's stock handler intentionally allows every player pair, the service replaces that
+unrestricted result with only explicit safe-world reasons for direct player hostility: an ordinary blue targeting a
+criminal/murderer or an opted-in `[Intent]` target, mutual Intent, or an existing aggression
+relationship. Criminal/murderer players cannot change Intent, and safe-zone restrictions remain
+authoritative. Hot-zone regions, murder adjudication, encounter snapshots and Knocked Out remain
+separate Alpha 2 work and are not enabled by this slice.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,
