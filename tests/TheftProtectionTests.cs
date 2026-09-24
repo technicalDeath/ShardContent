@@ -25,4 +25,10 @@ public class TheftProtectionTests
         Assert.False(TheftProtectionService.IsProtectionWindowActive(now, now));
         Assert.False(TheftProtectionService.IsProtectionWindowActive(now, now.AddSeconds(-1)));
     }
+
+    [Fact]
+    public void LootProtectionUsesTheApprovedTenMinuteWindow()
+    {
+        Assert.Equal(TimeSpan.FromMinutes(10), TheftProtectionService.LootProtectionDuration);
+    }
 }

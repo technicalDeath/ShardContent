@@ -8,14 +8,16 @@ using Server.SkillHandlers;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Feature-gated Backpack Ward behavior layered around stock Stealing. Bank polygons, the Cool
-/// Dungeon, and the invisible corpse-loot ward remain separate region/corpse work; this service
-/// only handles the physical backpack item and its post-resolution detection contract.
+/// Feature-gated Backpack Ward and invisible monster-corpse Loot Protection Ward behavior layered
+/// around stock Stealing. Bank polygons and the Cool Dungeon remain separate region work.
 /// </summary>
 public static class TheftProtectionService
 {
     private const string ProtectionTagPrefix = "BritanniaRenaissance.BackpackWard.ProtectedUntil.";
+    private const string LootProtectionTagPrefix = "BritanniaRenaissance.LootWard.";
     private static bool _configured;
+
+    public static readonly TimeSpan LootProtectionDuration = TimeSpan.FromMinutes(10);
 
     public static bool Enabled => ShardRulesConfiguration.Settings?.FeatureFlags.TheftProtection == true;
 
@@ -29,6 +31,8 @@ public static class TheftProtectionService
         _configured = true;
         Stealing.TheftEligibility = CanAttemptTheft;
         Stealing.TheftResolved = ResolveTheft;
+        Corpse.LootEligibility = CanLiftCorpseItem;
+        Corpse.LootResolved = RecordCorpseTransfer;
     }
 
     public static bool IsProtectionWindowActive(DateTime nowUtc, DateTime protectedUntilUtc) =>
@@ -47,7 +51,7 @@ public static class TheftProtectionService
     {
         yield return $"Backpack Ward protection enabled: {Enabled}.";
         yield return "Stock stealing success, criminality and snooping remain authoritative.";
-        yield return "Bank polygons, Cool Dungeon restrictions and Loot Protection Ward are not enabled by this slice.";
+        yield return "Bank polygons and Cool Dungeon restrictions remain deferred; corpse repeat protection is enabled with this gate outside Hot Zones.";
 
         if (mobile is PlayerMobile player)
         {
@@ -113,6 +117,45 @@ public static class TheftProtectionService
         }
     }
 
+    private static bool CanLiftCorpseItem(Mobile looter, Corpse corpse, Item item)
+    {
+        if (!Enabled || ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true ||
+            corpse.OwnerWasBaseCreature != true || !corpse.IsCriminalAction(looter) ||
+            looter.Account is not Account account)
+        {
+            return true;
+        }
+
+        var tag = LootProtectionTag(corpse, account);
+        if (!DateTime.TryParse(
+                account.GetTag(tag),
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind,
+                out var protectedUntil
+            ) || !IsProtectionWindowActive(Core.Now, protectedUntil))
+        {
+            return true;
+        }
+
+        looter.SendMessage("You cannot repeatedly loot this monster's corpse right now.");
+        return false;
+    }
+
+    private static void RecordCorpseTransfer(Mobile looter, Corpse corpse, Item item)
+    {
+        if (!Enabled || ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true ||
+            corpse.OwnerWasBaseCreature != true || !corpse.IsCriminalAction(looter) ||
+            looter.Account is not Account account)
+        {
+            return;
+        }
+
+        account.SetTag(
+            LootProtectionTag(corpse, account),
+            Core.Now.Add(LootProtectionDuration).ToString("O", CultureInfo.InvariantCulture)
+        );
+    }
+
     private static BackpackWard? FindEligibleWard(PlayerMobile victim)
     {
         var backpack = victim.Backpack;
@@ -175,4 +218,8 @@ public static class TheftProtectionService
 
     private static string ProtectionTag(PlayerMobile victim) =>
         ProtectionTagPrefix + victim.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
+
+    private static string LootProtectionTag(Corpse corpse, Account account) =>
+        LootProtectionTagPrefix + corpse.Serial.Value.ToString("X8", CultureInfo.InvariantCulture) + "." +
+        account.Username;
 }
