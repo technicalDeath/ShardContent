@@ -1,13 +1,18 @@
 param(
     [string]$ModernUOPath = (Join-Path $PSScriptRoot '..\..\ModernUO'),
-    [string]$ShardContentPath = (Join-Path $PSScriptRoot '..')
+    [string]$ShardContentPath = (Join-Path $PSScriptRoot '..'),
+    [string]$RulesPath
 )
 
 $ErrorActionPreference = 'Stop'
 
 $modernUOPath = (Resolve-Path -LiteralPath $ModernUOPath).Path
 $shardContentPath = (Resolve-Path -LiteralPath $ShardContentPath).Path
-$rulesPath = Join-Path $shardContentPath 'data\configuration\shard-rules.json'
+$rulesPath = if ([string]::IsNullOrWhiteSpace($RulesPath)) {
+    Join-Path $shardContentPath 'data\configuration\shard-rules.json'
+} else {
+    (Resolve-Path -LiteralPath $RulesPath).Path
+}
 $rules = Get-Content -LiteralPath $rulesPath -Raw | ConvertFrom-Json
 
 function Get-GitValue([string]$repository, [string[]]$arguments) {

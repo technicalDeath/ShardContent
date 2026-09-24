@@ -23,4 +23,10 @@ not create Cool-Dungeon polygons or change region behavior.
 to `pinnedModernUoCommit`, checks both repositories for uncommitted changes, reports the active
 Alpha 2 flags and acknowledgement gate, and counts configured bank/Cool polygons. It never edits
 configuration or enables a feature. The current Alpha 1 profile is expected to report geometry
-blockers until staff approve surveyed polygons.
+blockers until staff approve surveyed polygons. Disposable staging hosts can validate a separate
+rules file without touching the checked-in policy:
+
+```powershell
+.\Verify-Alpha2Readiness.ps1 -ModernUOPath ..\..\work\ModernUO-alpha2-live `
+  -RulesPath ..\..\work\ModernUO-alpha2-live\Distribution\Configuration\shard-rules.json
+```
