@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `8e733f5cf48faa0085e92d385f956b8854e9e9d2`
+Pinned ModernUO integration commit: `bf4b676467b7a98b9ba09490b3cb74e7dcb23a59`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -51,7 +51,7 @@ not authoritative and cannot make these moves active.
 
 The following Alpha 1 findings are pinned to the UOR baseline reference
 `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`; the current integration checkout is
-`8e733f5cf48faa0085e92d385f956b8854e9e9d2`. They are intentionally a **retain**
+`bf4b676467b7a98b9ba09490b3cb74e7dcb23a59`. They are intentionally a **retain**
 baseline: Alpha 1 does not add weapon specials, numerical class buffs, later-era
 item properties, or cross-system combat tuning.
 
@@ -110,7 +110,8 @@ retains a separate completed-encounter account record after recovery/expiry for 
 encounter-authorized loot and execution checks.
 ModernUO fork exposes only the narrow lethal-damage, damageability, and Stealing delegates required
 by this service (`Mobile.LethalDamageHandler`, `Mobile.CanBeDamagedHandler`, and
-`Stealing.KnockedOutLoot`, fork revision `8e733f5cf48faa0085e92d385f956b8854e9e9d2`). `[KnockedOutStatus` is staff-only. No-skill looting now
+`Stealing.KnockedOutLoot`, `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
+`bf4b676467b7a98b9ba09490b3cb74e7dcb23a59`). `[KnockedOutStatus` is staff-only. No-skill looting now
 uses the stock Stealing boundary and requires the recorded criminal/red
 engagement holder outside Hot Zones; controlled-creature lethal damage resolves its player master
 as that holder. Item range, movability, bindings, Wards, and post-resolution handling remain active.
@@ -313,6 +314,8 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   vulnerability-metadata warning (`NU1900`).
 - The current post-staging Alpha 2 source revision passes **71/71** focused tests, including the
   attributable-player/active-encounter Knocked Out cases; the only output remains `NU1900`.
+- The ModernUO recovery-hook regression suite passes **2/2** in an isolated worktree for
+  integration commit `bf4b676467b7a98b9ba09490b3cb74e7dcb23a59`; the live server was not stopped.
 - The isolated server loaded the current `shard-rules.json`, reported `UOR / Felucca`, loaded
   385 regions and listened on `127.0.0.1:2594`.
 - The Alpha 1 profile kept all Alpha 2 flags disabled (`deferred features: none`); no live

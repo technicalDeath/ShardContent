@@ -20,13 +20,25 @@ public static class KnockedOutService
     private const string UntilPrefix = "BritanniaRenaissance.KnockedOut.UntilUtc.";
     private const string AttackerPrefix = "BritanniaRenaissance.KnockedOut.Attacker.";
     private const string CompletedPrefix = "BritanniaRenaissance.KnockedOut.Completed.";
+    private static AllowBeneficialHandler? _stockAllowBeneficial;
+    private static bool _configured;
 
     public static bool Enabled => ShardRulesConfiguration.Settings?.FeatureFlags.KnockedOut == true;
 
     public static void Configure()
     {
+        if (_configured)
+        {
+            return;
+        }
+
+        _configured = true;
+        _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
+        Mobile.AllowBeneficialHandler = AllowBeneficial;
         Mobile.LethalDamageHandler = TryInterceptLethalDamage;
         Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Mobile.HealHandler = BlockHeal;
+        Mobile.CurePoisonHandler = BlockCurePoison;
         Stealing.KnockedOutLoot = CanLootKnockedOut;
     }
 
@@ -324,6 +336,34 @@ public static class KnockedOutService
             player.RemoveAggressed(info.Defender);
         }
     }
+
+    private static bool AllowBeneficial(Mobile from, Mobile target)
+    {
+        if (IsKnockedOut(target))
+        {
+            return false;
+        }
+
+        if (_stockAllowBeneficial is null)
+        {
+            return true;
+        }
+
+        var current = Mobile.AllowBeneficialHandler;
+        Mobile.AllowBeneficialHandler = _stockAllowBeneficial;
+        try
+        {
+            return _stockAllowBeneficial(from, target);
+        }
+        finally
+        {
+            Mobile.AllowBeneficialHandler = current;
+        }
+    }
+
+    private static bool BlockHeal(Mobile target, Mobile from, int amount) => IsKnockedOut(target);
+
+    private static bool BlockCurePoison(Mobile target, Mobile from) => IsKnockedOut(target);
 
     private static void ClearActiveState(PlayerMobile player)
     {
