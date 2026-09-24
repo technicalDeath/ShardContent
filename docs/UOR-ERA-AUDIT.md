@@ -139,8 +139,9 @@ identifiers: Intent changes and encounter snapshots, denied safe-world hostility
 counts, Ward/corpse enforcement, and Knocked Out entry/recovery. The existing diagnostic commands,
 including administrator-only `[MurderMigrationAudit` and `[KnockedOutRecover`, provide the staff
 inspection/recovery surface; the migration audit is read-only and reports legacy threshold versus
-custom ledger state. Public enablement still requires migration rehearsal and complete encounter
-procedures.
+custom ledger state. It now emits bounded per-character serial/name rows for non-neutral
+legacy-only, custom-only, and overlapping red state, with an explicit truncation count. Public
+enablement still requires migration rehearsal and complete encounter procedures.
 
 When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
