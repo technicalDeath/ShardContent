@@ -144,7 +144,10 @@ procedures.
 
 When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
-the custom red-status source. This migration hook is not active in the current Alpha 1 profile.
+the custom red-status source. The custom red handler is explicitly inert while the flag is false,
+so stale account tags from a rehearsal cannot affect the Alpha 1 profile. This migration hook is
+not active in the current Alpha 1 profile; `MurderAdjudicationTests.AutomaticRedSourceHonorsFeatureGateAndExpiry`
+covers the boundary.
 
 The theft boundary now has a feature-gated physical `BackpackWard` and stock Stealing hooks.
 Stock success, failure, criminality and snooping remain unchanged. An eligible Ward is selected
