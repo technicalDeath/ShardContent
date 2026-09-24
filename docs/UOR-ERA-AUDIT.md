@@ -143,6 +143,9 @@ custom ledger state. It now emits bounded per-character serial/name rows for non
 legacy-only, custom-only, and overlapping red state, with an explicit truncation count. Public
 enablement still requires migration rehearsal and complete encounter procedures.
 
+`[TheftStatus` also reports the current Loot Protection migration queue depth and whether another
+bounded batch is scheduled, allowing a rehearsal to prove that the world-load sweep drained.
+
 When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
 the custom red-status source. The custom red handler is explicitly inert while the flag is false,

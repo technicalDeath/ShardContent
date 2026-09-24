@@ -94,6 +94,8 @@ public static class TheftProtectionService
             yield return line;
         }
 
+        yield return $"Loot entitlement migration pending: {_entitlementMigration?.Count ?? 0}; scheduled: {_entitlementMigrationScheduled}.";
+
         if (mobile is PlayerMobile player)
         {
             yield return $"Equipped-backpack wards present: {(FindEligibleWard(player) is not null ? "yes" : "no")}.";
