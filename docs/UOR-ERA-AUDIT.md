@@ -607,3 +607,33 @@ focused `Server.Tests` filter covering `RecoveryHookTests` and `TargetabilityHoo
 that the targetability hook can reject a mobile without stopping production or changing the live
 checkout. The isolated worktree was removed after the run; raw output is retained in
 `work/modernuo-alpha2-hooks-isolated.log`.
+
+### Alpha 2 Knocked Out beneficial-action rehearsal (2026-09-24)
+
+The disposable all-feature host on `127.0.0.1:2594` was used to exercise the actual Navrey
+client path for healing and curing while a player was Knocked Out. Production on `127.0.0.1:2593`
+was not stopped or changed. `TestAlpha2` opted into `[Intent]`; the staged Administrator reduced
+the victim to the one-hit Knocked Out state at `11:46:00`. The server audit recorded the
+`knocked-out entered` transition and the client displayed `You have been Knocked Out for 90
+seconds.`
+
+While the state was active, the victim had a full spellbook and sufficient mana for the test
+spells. `cast heal` completed the cast and the self-target cursor, but resolving the target
+returned `That is not accessible.` and the victim's hits did not increase. Staff then applied
+`Lesser` poison through the read-only staging setup (`[serial 0x00000002 set Poison Lesser`),
+leaving `isPoisoned=true`. `cast cure` likewise reached the `An Nox` target cursor, returned
+`That is not accessible.`, and left poison active. These are real client/server observations of
+the `KnockedOutService.CanTarget`, `BlockHeal`, and `BlockCurePoison` boundaries; no beneficial
+state change was observed while Knocked Out.
+
+The 90-second timer then expired naturally at `11:47:30`, and the victim received `You recover
+from being Knocked Out.` The immediately-following cure attempt was not treated as a recovery
+assertion because the staging character lacked cure reagents; it returned `More reagents are
+needed for this spell`. The natural-recovery transition itself is retained as evidence, while a
+post-recovery heal/cure success remains part of the broader reagent-equipped matrix.
+
+Raw client evidence is retained in
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-heal\victim-log` and
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-heal\admin-log`; server audit output is in
+`work/alpha2-heal-staging.stdout`. The staging host and both staging clients were stopped after
+the rehearsal; production remained listening on `2593`.
