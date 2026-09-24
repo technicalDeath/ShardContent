@@ -27,7 +27,7 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="DeployShardContentAssembly" AfterTargets="Build">
+  <Target Name="DeployShardContentAssembly" AfterTargets="Build" Condition="'$(SkipShardContentDeploy)' != 'true'">
     <Copy SourceFiles="$(TargetPath)"
           DestinationFolder="$(ModernUOPath)\Distribution\Assemblies\" />
   </Target>

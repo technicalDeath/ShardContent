@@ -4,6 +4,18 @@ namespace BritanniaRenaissance.Content.Tests;
 
 public class TheftProtectionTests
 {
+    [Fact]
+    public void BackpackWardIsAvailableToAdministrativeItemCreation()
+    {
+        var constructor = typeof(BackpackWard).GetConstructor(Type.EmptyTypes);
+
+        Assert.NotNull(constructor);
+        Assert.Contains(
+            constructor!.GetCustomAttributes(inherit: false),
+            attribute => string.Equals(attribute.GetType().Name, "ConstructibleAttribute", StringComparison.Ordinal)
+        );
+    }
+
     [Theory]
     [InlineData(-1, 0.0)]
     [InlineData(0, 0.0)]

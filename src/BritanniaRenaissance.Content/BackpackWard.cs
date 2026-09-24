@@ -13,6 +13,7 @@ public sealed class BackpackWard : Item
 {
     private readonly Dictionary<string, int> _successfulThefts = new(StringComparer.OrdinalIgnoreCase);
 
+    [Constructible]
     public BackpackWard() : base(0x1F14)
     {
         Weight = 1.0;

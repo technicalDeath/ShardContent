@@ -504,3 +504,27 @@ reported the expected disposable-world split between the staged custom ledger an
 seeded legacy-kills record, with no mutation performed. This completes the core Knocked Out and
 execution rehearsal; migration policy, no-encounter denial, and the broader cross-system matrix
 remain required before enabling either feature on production.
+
+### Alpha 2 Backpack Ward live rehearsal (2026-09-24)
+
+The disposable all-feature host was rebuilt with the current content assembly and exercised with
+fresh headless Navrey clients for `Administrator` and `TestAlpha2` on `127.0.0.1:2594`. The victim
+received a physical `BackpackWard` in its backpack and `[TheftStatus` reported the enabled service,
+18 bank polygons, 14 Cool-Dungeon polygons, completed entitlement migration (`processed=2/2`,
+`pending=0`), and a present Loot Protection entitlement. The thief was made empty-handed and
+assigned the stock Thieves Guild before attempting Stealing.
+
+The live target-path check confirmed the service callback: attempting to steal a ward produced
+`That ward cannot be stolen.` and the staging audit recorded `theft ward-denied`; no ward was
+transferred or consumed. The ordinary victim-backpack item attempt was also kept non-destructive:
+the headless client cannot target an item it has not received in its own object cache, so no
+success/failure outcome was inferred from that attempt. This is a client-observation limitation,
+not a change to stock Stealing. The focused content suite passes **74/74**, including the
+administrative-item-creation regression asserting the `BackpackWard` constructor is marked
+`[Constructible]` for controlled staging and staff repair workflows.
+
+The production server was restarted only to load the tested assembly; it remains on the approved
+SafeWorld + TheftProtection profile, with automatic murder adjudication and Knocked Out disabled.
+The staging host was stopped after the rehearsal (`2594` closed; production `2593` remained
+listening). Raw evidence is retained in `work/Navrey-alpha2/alpha2-admin6-log`,
+`work/Navrey-alpha2-test/alpha2-test6-log`, and the disposable host session output.
