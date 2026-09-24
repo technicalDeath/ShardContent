@@ -18,3 +18,9 @@ premises and approve polygons without relying on stale client POIs or invented r
 ModernUO's Felucca `DungeonRegion` rectangles. It marks the ten UOR-era dungeon names as
 candidate-compatible while retaining later-era and special regions for explicit review; it does
 not create Cool-Dungeon polygons or change region behavior.
+
+`Verify-Alpha2Readiness.ps1` is a read-only preflight check. It compares the ModernUO checkout
+to `pinnedModernUoCommit`, checks both repositories for uncommitted changes, reports the active
+Alpha 2 flags and acknowledgement gate, and counts configured bank/Cool polygons. It never edits
+configuration or enables a feature. The current Alpha 1 profile is expected to report geometry
+blockers until staff approve surveyed polygons.
