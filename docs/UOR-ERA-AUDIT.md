@@ -584,9 +584,28 @@ enabled, non-Hot, unlawful lift from a monster corpse with an unexpired offender
 player corpses, non-criminal actions, missing/malformed/expired markers, disabled Theft Protection,
 and Hot Zones remain allowed. Markers are keyed by rights-holder character and offender account,
 so a repeat offense against a different corpse from the same rights holder is covered. This is
-automated policy and hook coverage; the two-account live first-transfer/repeat-transfer matrix and
-its concurrency/restart evidence remain required before public Knocked Out or murder enablement.
+automated policy and hook coverage; the two-account live first-transfer/repeat-transfer matrix is
+covered below, while concurrency/restart evidence remains required before public Knocked Out or
+murder enablement.
 Production was not stopped or changed.
+
+### Alpha 2 corpse first/repeat live matrix (2026-09-24)
+
+The matching all-feature staging host on `127.0.0.1:2594` was exercised with fresh Navrey clients
+for `FreshOrdinary` and the staged rights-holder/administrator accounts. The ordinary client opened
+an unlawful rat corpse and transferred one gold stack successfully; the server recorded
+`corpse-loot first-transfer` and armed the ten-minute marker. A second transfer attempt by the same
+offender account against that corpse was refused with `You cannot repeatedly loot this monster's
+corpse right now.` and the server recorded `corpse-loot repeat-denied`. The same offender then opened
+a separate rat corpse belonging to the same rights holder and transferred its gold successfully;
+the server recorded a second `corpse-loot first-transfer`, proving the marker is keyed by rights
+holder and offender rather than by one corpse serial.
+
+Raw server evidence is retained in `work/alpha2-rights-live.stdout`; client observations are in
+`work/alpha2-rights-live/ordinary-log` and `work/alpha2-rights-live/victim2-log`. This closes the
+live first-transfer/repeat-transfer and separate-corpse rows. Concurrent-transfer ordering,
+restart persistence of an active marker, and the broader Knocked Out cross-system matrix remain
+required before public Murder or Knocked Out enablement.
 
 ### Alpha 2 Knocked Out save/restart persistence rehearsal (2026-09-24)
 
