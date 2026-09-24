@@ -371,3 +371,29 @@ synthetic bank polygon and one synthetic Cool-Dungeon polygon only in the copied
 The verifier reported matching pin, clean repositories, all four Alpha 2 flags acknowledged, and
 `ReadyForEnablement: True`. The synthetic geometry was not written to the checked-in Alpha 1
 policy and is not a substitute for staff-approved geography.
+
+### Alpha 2 lifecycle-hook live rehearsal (2026-09-24)
+
+The lifecycle-hook revision was rebuilt and run in a fresh disposable host using ModernUO
+`075d7859eb9646ed681a18b064754bb066799812`, the matching ShardContent assembly, and a copied
+world save. The host listened on `127.0.0.1:2594`; the checked-in Alpha 1 configuration was not
+changed. The disposable policy acknowledged Alpha 2, enabled SafeWorld, automatic murder
+adjudication, theft protection, and Knocked Out, and supplied one synthetic bank polygon and one
+synthetic Cool-Dungeon polygon.
+
+- Navrey authenticated the Administrator account and entered the world as `Generic Player` at
+  `(5445, 1153, 0)`.
+- `[ShardRulesStatus` reported the matching ModernUO pin, `UOR / Felucca`, Alpha 2 acknowledged,
+  all four staged flags enabled, and the automatic weapon/Wrestling special exclusions intact.
+- `[MurderStatus` reported the custom UTC ledger enabled with stock murder reporting, five-count
+  threshold, and decay disabled; `[MurderMigrationAudit` scanned one player with no legacy-only,
+  custom-only, or overlapping state and performed no mutation.
+- `[TheftStatus` reported one bank polygon, one Cool polygon, migration `processed=1/1`,
+  `pending=0`, and the Loot Protection entitlement present after connected-login reconciliation.
+- `[KnockedOutStatus` reported the state enabled with no active encounter and encounter-authorized
+  looting/execution active outside Hot Zones.
+
+This proves the new external-assembly lifecycle bridge through a real client login and live status
+surface. Character-creation and death-event paths remain covered by the focused engine bridge tests
+and the 71/71 content suite; the full multi-character combat matrix is still required before public
+enablement.
