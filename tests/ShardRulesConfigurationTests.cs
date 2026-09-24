@@ -31,6 +31,21 @@ public class ShardRulesConfigurationTests
         Assert.Contains(errors, error => error.Contains("alpha2EnablementAcknowledged", StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void TheftRegionsRequireNamedMapsAndThreePoints()
+    {
+        var rules = Baseline();
+        rules.TheftRegions.BankProtectionPolygons.Add(new TheftPolygonDefinition
+        {
+            Map = string.Empty,
+            Points = [new TheftPoint { X = 1, Y = 1 }, new TheftPoint { X = 2, Y = 2 }]
+        });
+
+        var errors = ShardRulesConfiguration.Validate(rules);
+
+        Assert.Contains(errors, error => error.Contains("bankProtectionPolygons", StringComparison.Ordinal));
+    }
+
     private static ShardRules Baseline() => new()
     {
         SchemaVersion = 1,
