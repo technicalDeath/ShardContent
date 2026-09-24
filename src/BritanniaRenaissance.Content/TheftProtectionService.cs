@@ -24,6 +24,11 @@ public static class TheftProtectionService
     private static bool _configured;
     private static Queue<PlayerMobile>? _entitlementMigration;
     private static bool _entitlementMigrationScheduled;
+    private static int _entitlementMigrationTotal;
+    private static int _entitlementMigrationProcessed;
+    private static int _entitlementMigrationGranted;
+    private static DateTime? _entitlementMigrationStartedUtc;
+    private static DateTime? _entitlementMigrationCompletedUtc;
 
     public static readonly TimeSpan LootProtectionDuration = TimeSpan.FromMinutes(10);
 
@@ -94,7 +99,10 @@ public static class TheftProtectionService
             yield return line;
         }
 
-        yield return $"Loot entitlement migration pending: {_entitlementMigration?.Count ?? 0}; scheduled: {_entitlementMigrationScheduled}.";
+        yield return $"Loot entitlement migration: processed={_entitlementMigrationProcessed}/{_entitlementMigrationTotal}; " +
+            $"granted={_entitlementMigrationGranted}; pending={_entitlementMigration?.Count ?? 0}; " +
+            $"scheduled={_entitlementMigrationScheduled}; started={_entitlementMigrationStartedUtc?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}; " +
+            $"completed={_entitlementMigrationCompletedUtc?.ToString("O", CultureInfo.InvariantCulture) ?? "pending"}.";
 
         if (mobile is PlayerMobile player)
         {
@@ -319,7 +327,13 @@ public static class TheftProtectionService
             return;
         }
 
-        _entitlementMigration = new Queue<PlayerMobile>(World.Mobiles.Values.OfType<PlayerMobile>());
+        var players = World.Mobiles.Values.OfType<PlayerMobile>().ToArray();
+        _entitlementMigration = new Queue<PlayerMobile>(players);
+        _entitlementMigrationTotal = players.Length;
+        _entitlementMigrationProcessed = 0;
+        _entitlementMigrationGranted = 0;
+        _entitlementMigrationStartedUtc = Core.Now;
+        _entitlementMigrationCompletedUtc = null;
         _entitlementMigrationScheduled = true;
         Server.Timer.DelayCall(TimeSpan.Zero, ProcessEntitlementMigration);
     }
@@ -341,9 +355,13 @@ public static class TheftProtectionService
         {
             var player = _entitlementMigration.Dequeue();
             processed++;
+            _entitlementMigrationProcessed++;
             if (!player.Deleted)
             {
-                EnsureLootProtectionEntitlement(player, "world-load-migration");
+                if (EnsureLootProtectionEntitlement(player, "world-load-migration"))
+                {
+                    _entitlementMigrationGranted++;
+                }
             }
         }
 
@@ -355,6 +373,7 @@ public static class TheftProtectionService
         else
         {
             _entitlementMigration = null;
+            _entitlementMigrationCompletedUtc = Core.Now;
         }
     }
 
