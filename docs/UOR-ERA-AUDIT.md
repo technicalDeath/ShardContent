@@ -158,6 +158,11 @@ repeating against the same corpse for ten minutes. Bank/Cool region restrictions
 `theftProtection` is false in Alpha 1 and automatically bypasses corpse protection while
 `hotZones` is enabled.
 
+The theft-region policy now loads explicit `map`/point polygons from `shard-rules.json`. Bank
+polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing while
+leaving snooping and combat decisions untouched. Both lists are intentionally empty in the Alpha 1
+profile until the shard's approved map geometry is authored.
+
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:
 automatic murder adjudication and theft protection require SafeWorld, while Knocked Out also

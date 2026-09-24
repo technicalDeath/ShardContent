@@ -69,6 +69,10 @@ public static class TheftProtectionService
         yield return $"Backpack Ward protection enabled: {Enabled}.";
         yield return "Stock stealing success, criminality and snooping remain authoritative.";
         yield return "Starter wards bind to the character account; bank polygons and Cool Dungeon restrictions remain deferred; corpse repeat protection is enabled with this gate outside Hot Zones.";
+        foreach (var line in TheftRegionPolicy.Describe())
+        {
+            yield return line;
+        }
 
         if (mobile is PlayerMobile player)
         {
@@ -81,6 +85,20 @@ public static class TheftProtectionService
         if (!Enabled || victim is not PlayerMobile playerVictim)
         {
             return true;
+        }
+
+        if (TheftRegionPolicy.IsBankProtectionRegion(thief))
+        {
+            thief.SendMessage("You cannot steal from players in this bank protection area.");
+            ShardAuditLog.Record("theft", "bank-region-denied", thief, playerVictim);
+            return false;
+        }
+
+        if (TheftRegionPolicy.IsCoolDungeonRegion(thief))
+        {
+            thief.SendMessage("Direct player stealing is disabled in this dungeon.");
+            ShardAuditLog.Record("theft", "cool-region-denied", thief, playerVictim);
+            return false;
         }
 
         if (item is BackpackWard)

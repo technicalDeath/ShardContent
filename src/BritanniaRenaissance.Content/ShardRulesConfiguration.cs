@@ -108,6 +108,9 @@ public static class ShardRulesConfiguration
             errors.Add("knockedOut requires safeWorld and automaticMurderAdjudication.");
         }
 
+        ValidatePolygons(rules.TheftRegions.BankProtectionPolygons, "bankProtectionPolygons", errors);
+        ValidatePolygons(rules.TheftRegions.CoolDungeonPolygons, "coolDungeonPolygons", errors);
+
         var alpha2Enabled = rules.FeatureFlags.SafeWorld || rules.FeatureFlags.AutomaticMurderAdjudication ||
                             rules.FeatureFlags.TheftProtection || rules.FeatureFlags.KnockedOut;
         if (alpha2Enabled && !rules.Alpha2EnablementAcknowledged)
@@ -116,6 +119,22 @@ public static class ShardRulesConfiguration
         }
 
         return errors;
+    }
+
+    private static void ValidatePolygons(
+        IEnumerable<TheftPolygonDefinition> polygons, string name, ICollection<string> errors
+    )
+    {
+        var index = 0;
+        foreach (var polygon in polygons)
+        {
+            if (string.IsNullOrWhiteSpace(polygon.Map) || polygon.Points.Count < 3)
+            {
+                errors.Add($"theftRegions.{name}[{index}] must specify a map and at least three points.");
+            }
+
+            index++;
+        }
     }
 
     public static IEnumerable<string> Describe()
@@ -157,6 +176,9 @@ public sealed class ShardRules
     [JsonPropertyName("alpha2EnablementAcknowledged")]
     public bool Alpha2EnablementAcknowledged { get; set; }
 
+    [JsonPropertyName("theftRegions")]
+    public TheftRegionRules TheftRegions { get; set; } = new();
+
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
 }
@@ -192,6 +214,33 @@ public sealed class CombatRules
 
     [JsonPropertyName("wrestlingDisarm")]
     public bool WrestlingDisarm { get; set; }
+}
+
+public sealed class TheftRegionRules
+{
+    [JsonPropertyName("bankProtectionPolygons")]
+    public List<TheftPolygonDefinition> BankProtectionPolygons { get; set; } = [];
+
+    [JsonPropertyName("coolDungeonPolygons")]
+    public List<TheftPolygonDefinition> CoolDungeonPolygons { get; set; } = [];
+}
+
+public sealed class TheftPolygonDefinition
+{
+    [JsonPropertyName("map")]
+    public string Map { get; set; } = string.Empty;
+
+    [JsonPropertyName("points")]
+    public List<TheftPoint> Points { get; set; } = [];
+}
+
+public sealed class TheftPoint
+{
+    [JsonPropertyName("x")]
+    public int X { get; set; }
+
+    [JsonPropertyName("y")]
+    public int Y { get; set; }
 }
 
 public sealed class DeferredFeatureFlags

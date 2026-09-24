@@ -16,6 +16,10 @@
     "wrestlingDisarm": false
   },
   "alpha2EnablementAcknowledged": false,
+  "theftRegions": {
+    "bankProtectionPolygons": [],
+    "coolDungeonPolygons": []
+  },
   "featureFlags": {
     "safeWorld": false,
     "automaticMurderAdjudication": false,
