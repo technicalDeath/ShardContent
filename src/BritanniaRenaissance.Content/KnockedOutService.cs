@@ -56,7 +56,25 @@ public static class KnockedOutService
     [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
     public static void OnPlayerLogin(PlayerMobile player)
     {
-        if (!Enabled || !IsKnockedOut(player))
+        if (!Enabled)
+        {
+            return;
+        }
+
+        var until = GetUntilUtc(player);
+        if (until is null)
+        {
+            return;
+        }
+
+        if (until <= Core.Now.ToUniversalTime())
+        {
+            ClearActiveState(player);
+            WakePlayer(player, "You recover from being Knocked Out.");
+            return;
+        }
+
+        if (!IsKnockedOut(player))
         {
             return;
         }
@@ -118,6 +136,7 @@ public static class KnockedOutService
         player.Hits = 1;
         player.Stam = 0;
         player.Mana = 0;
+        ClearCombatEffects(player);
         player.Warmode = false;
         player.Combatant = null;
         player.Target = null;
@@ -233,6 +252,7 @@ public static class KnockedOutService
         }
 
         ClearActiveState(player);
+        WakePlayer(player, "You recover from being Knocked Out.");
         return false;
     }
 
@@ -254,22 +274,17 @@ public static class KnockedOutService
 
     public static bool Recover(PlayerMobile player)
     {
-        if (player.Account is not Account account)
+        if (player.Account is not Account)
         {
             return false;
         }
 
         var wasKnockedOut = GetUntilUtc(player) is not null;
-        account.RemoveTag(UntilPrefix + SerialKey(player));
-        account.RemoveTag(AttackerPrefix + SerialKey(player));
+        ClearActiveState(player);
 
         if (wasKnockedOut)
         {
-            player.Hits = Math.Max(player.Hits, 1);
-            player.Warmode = false;
-            player.Combatant = null;
-            player.Target = null;
-            player.SendMessage("A staff member has recovered you from Knocked Out.");
+            WakePlayer(player, "A staff member has recovered you from Knocked Out.");
             ShardAuditLog.Record("knocked-out", "staff-recovered", player);
         }
 
@@ -322,15 +337,13 @@ public static class KnockedOutService
 
         Server.Timer.DelayCall(expiry - Core.Now, static pm =>
         {
-            if (pm.Deleted || pm.Account is not Account account)
+            if (pm.Deleted || pm.Account is not Account)
             {
                 return;
             }
 
-            account.RemoveTag(UntilPrefix + SerialKey(pm));
-            account.RemoveTag(AttackerPrefix + SerialKey(pm));
-            pm.Hits = Math.Max(pm.Hits, 1);
-            pm.SendMessage("You recover from being Knocked Out.");
+            ClearActiveState(pm);
+            WakePlayer(pm, "You recover from being Knocked Out.");
             ShardAuditLog.Record("knocked-out", "recovered", pm);
         }, player);
     }
@@ -346,6 +359,27 @@ public static class KnockedOutService
         {
             player.RemoveAggressed(info.Defender);
         }
+    }
+
+    private static void ClearCombatEffects(PlayerMobile player)
+    {
+        player.Poison = null;
+        player.Paralyzed = false;
+        player.Frozen = false;
+        BleedAttack.EndBleed(player, false);
+        MortalStrike.EndWound(player);
+        player.Spell?.OnCasterKilled();
+    }
+
+    private static void WakePlayer(PlayerMobile player, string message)
+    {
+        player.Hits = Math.Max(1, player.HitsMax / 2);
+        player.Stam = Math.Max(1, player.StamMax / 2);
+        player.Mana = Math.Max(0, player.ManaMax / 2);
+        player.Warmode = false;
+        player.Combatant = null;
+        player.Target = null;
+        player.SendMessage(message);
     }
 
     private static bool AllowBeneficial(Mobile from, Mobile target)

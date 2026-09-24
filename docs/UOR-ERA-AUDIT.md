@@ -114,7 +114,9 @@ by this service (`Mobile.LethalDamageHandler`, `Mobile.CanBeDamagedHandler`, and
 `bf4b676467b7a98b9ba09490b3cb74e7dcb23a59`). `[KnockedOutStatus` is staff-only. No-skill looting now
 uses the stock Stealing boundary and requires the recorded criminal/red
 engagement holder outside Hot Zones; controlled-creature lethal damage resolves its player master
-as that holder. Item range, movability, bindings, Wards, and post-resolution handling remain active.
+as that holder. KO entry clears poison, paralysis, bleeding, Mortal Strike, and active casting;
+heals/cures are blocked while active, and expiry/login wake-up restores half health. Item range,
+movability, bindings, Wards, and post-resolution handling remain active.
 Encounter-authorized `[Execute` clears the active state, resolves through
 the same automatic murder ledger, and is gated on the recorded criminal/red engagement holder.
 Hot/Cool resolution, migration rehearsal, and public enablement remain deferred until the full
