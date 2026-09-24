@@ -171,7 +171,7 @@ public static class ShardRulesConfiguration
             rules.Character.StatCap
         );
         yield return "Combat specials: automatic weapon procs, Wrestling Stun, and Wrestling Disarm disabled";
-        yield return $"Deferred features enabled: {string.Join(", ", rules.FeatureFlags.EnabledNames())}";
+        yield return $"Configured feature flags enabled: {string.Join(", ", rules.FeatureFlags.EnabledNames())}";
     }
 }
 

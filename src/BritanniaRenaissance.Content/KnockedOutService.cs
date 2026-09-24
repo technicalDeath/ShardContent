@@ -246,7 +246,9 @@ public static class KnockedOutService
         {
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
             yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
-            yield return "Encounter-authorized no-skill looting and execution are feature-gated; Hot-Zone execution remains deferred.";
+            yield return Enabled
+                ? "Encounter-authorized no-skill looting and execution are active outside Hot Zones; Hot-Zone execution remains deferred."
+                : "Encounter-authorized no-skill looting and execution are feature-gated; Hot-Zone execution remains deferred.";
         }
     }
 
