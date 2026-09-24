@@ -409,14 +409,14 @@ clients. Both accounts entered the world at the same location. Before the refres
 `attack` against the other ordinary-blue player was refused by the client as `Innocent (blue)`, and
 both characters successfully toggled and reported `[Intent]` enabled. The server audit recorded both
 intent changes, but the already-visible target remained cached as Innocent in the client world
-snapshot, so this run does not count as proof that the opted-in attack is accepted.
+snapshot. This paragraph is retained as the pre-fix failure evidence and does not count as proof
+that the opted-in attack is accepted.
 
 `PvpIntentService.ToggleIntent` now re-sends the normal mobile-incoming packet to nearby observers
-after an Intent change (`4332a77815e93bec4fb51331ca6d518bedc16246`). That packet recomputes the
-observer-specific notoriety and is the narrow fix for the stale client state. The next disposable
-matrix must repeat the two-account run against that revision and record both the refreshed
-`CanBeAttacked` presentation and the accepted/denied server hostility result before Alpha 2 is
-enabled publicly.
+after an Intent change. That packet recomputes the observer-specific notoriety and remains part of
+the current implementation. The post-startup lifecycle correction and successful two-account
+matrix are recorded in the following section; this older paragraph must not be used as the current
+acceptance result.
 
 ### Alpha 2 notoriety lifecycle correction (2026-09-24)
 
