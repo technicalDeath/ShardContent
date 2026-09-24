@@ -528,3 +528,30 @@ SafeWorld + TheftProtection profile, with automatic murder adjudication and Knoc
 The staging host was stopped after the rehearsal (`2594` closed; production `2593` remained
 listening). Raw evidence is retained in `work/Navrey-alpha2/alpha2-admin6-log`,
 `work/Navrey-alpha2-test/alpha2-test6-log`, and the disposable host session output.
+
+### Alpha 2 consent and encounter-rights denial rehearsal (2026-09-24)
+
+The disposable all-feature host was exercised again on `127.0.0.1:2594` with fresh Navrey
+clients for an ordinary-blue player, the staged criminal attacker, and the ordinary-blue target.
+The production host remained on `127.0.0.1:2593` with only SafeWorld and TheftProtection enabled.
+
+- A fresh ordinary-blue character attempted `attack 0x00000002` against the ordinary-blue
+  `TestVictim` without opting into `[Intent]`. Navrey displayed `TestVictim is Innocent (blue) -
+  refusing`; no encounter or swing was created. The same client reported SafeWorld enabled,
+  PvP Intent disabled, and the target as `Innocent` in `[IntentStatus`.
+- A criminal attacker attempted `[Execute` while the target had no Knocked Out state or completed
+  encounter. The target cursor was accepted, then the service returned `That target is not eligible
+  for encounter-authorized execution.` `[KnockedOutStatus` showed `Knocked Out until UTC: none`
+  and `Completed encounter record: none`.
+- In the same staging run, after an opted-in target was reduced to zero health, the victim received
+  `You have been Knocked Out for 90 seconds.` The server audit recorded `encounter intent-classified`
+  followed by `knocked-out entered` with the attacker and victim serials. An unrelated ordinary-blue
+  observer then attempted `[Execute` against that active Knocked Out target and received the same
+  encounter-authorization denial; no execution or murder record was created.
+
+This closes the fresh no-consent, no-record execution, and outsider-rights denial checks in the
+real-client matrix. It does not enable Murder or Knocked Out on production: migration, recovery,
+Hot-Zone, corpse/loot, concurrency, and the remaining cross-system rehearsals are still required.
+Raw evidence is retained in `work/Navrey-alpha2-ordinary/ordinary-log`,
+`work/Navrey-alpha2/noenc-admin-log`, `work/Navrey-alpha2-test/noenc-victim-log`, and the
+disposable staging host output.
