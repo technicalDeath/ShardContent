@@ -65,16 +65,20 @@ public static class KnockedOutService
             return false;
         }
 
+        var responsibleAttacker = ResolvePlayerAttacker(from);
         var until = Core.Now.ToUniversalTime().Add(Duration);
         if (player.Account is Account account)
         {
             account.SetTag(UntilPrefix + SerialKey(player), until.ToString("O", CultureInfo.InvariantCulture));
-            if (from is PlayerMobile attacker)
+            if (responsibleAttacker is not null)
             {
-                account.SetTag(AttackerPrefix + SerialKey(player), attacker.Serial.Value.ToString(CultureInfo.InvariantCulture));
+                account.SetTag(
+                    AttackerPrefix + SerialKey(player),
+                    responsibleAttacker.Serial.Value.ToString(CultureInfo.InvariantCulture)
+                );
                 account.SetTag(
                     CompletedPrefix + SerialKey(player),
-                    $"{until:O}|{attacker.Serial.Value.ToString(CultureInfo.InvariantCulture)}"
+                    $"{until:O}|{responsibleAttacker.Serial.Value.ToString(CultureInfo.InvariantCulture)}"
                 );
             }
             else
@@ -91,7 +95,13 @@ public static class KnockedOutService
         player.Target = null;
         ClearAggression(player);
         player.SendMessage("You have been Knocked Out for 90 seconds.");
-        ShardAuditLog.Record("knocked-out", "entered", player, from, "90-second damage-immune state");
+        ShardAuditLog.Record(
+            "knocked-out",
+            "entered",
+            player,
+            responsibleAttacker ?? from,
+            responsibleAttacker is null ? "90-second damage-immune state" : "90-second state; attacker resolved to player master"
+        );
         ScheduleRecovery(player);
         return true;
     }
@@ -306,6 +316,9 @@ public static class KnockedOutService
 
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
+
+    private static PlayerMobile? ResolvePlayerAttacker(Mobile from) =>
+        from as PlayerMobile ?? (from as BaseCreature)?.GetMaster() as PlayerMobile;
 
     private static string? GetCompletedEncounter(PlayerMobile player) =>
         player.Account is Account account ? account.GetTag(CompletedPrefix + SerialKey(player)) : null;

@@ -112,8 +112,9 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, and Stealing
 by this service (`Mobile.LethalDamageHandler`, `Mobile.CanBeDamagedHandler`, and
 `Stealing.KnockedOutLoot`, fork revision `8e733f5cf48faa0085e92d385f956b8854e9e9d2`). `[KnockedOutStatus` is staff-only. No-skill looting now
 uses the stock Stealing boundary and requires the recorded criminal/red
-engagement holder outside Hot Zones; item range, movability, bindings, Wards, and post-resolution
-handling remain active. Encounter-authorized `[Execute` clears the active state, resolves through
+engagement holder outside Hot Zones; controlled-creature lethal damage resolves its player master
+as that holder. Item range, movability, bindings, Wards, and post-resolution handling remain active.
+Encounter-authorized `[Execute` clears the active state, resolves through
 the same automatic murder ledger, and is gated on the recorded criminal/red engagement holder.
 Hot/Cool resolution, migration rehearsal, and public enablement remain deferred until the full
 Alpha 2 matrix and region policy are implemented.
