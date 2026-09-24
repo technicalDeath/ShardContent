@@ -54,4 +54,29 @@ public class KnockedOutTests
         Assert.Equal(qualifies, decision.Qualifies);
         Assert.Equal(reason, decision.Reason);
     }
+
+    [Theory]
+    [InlineData(false, false, true, true, false, "feature-disabled")]
+    [InlineData(true, true, true, true, false, "hot-zone-execution-deferred")]
+    [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
+    [InlineData(true, false, true, false, false, "missing-target-rights")]
+    [InlineData(true, false, true, true, true, "recorded-target-rights")]
+    public void ExecutionRequiresRecordedRedEngagementOutsideHotZones(
+        bool featureEnabled,
+        bool hotZone,
+        bool actorIsCriminalOrMurderer,
+        bool recordedTargetRights,
+        bool qualifies,
+        string reason)
+    {
+        var decision = KnockedOutService.ClassifyExecution(
+            featureEnabled,
+            hotZone,
+            actorIsCriminalOrMurderer,
+            recordedTargetRights
+        );
+
+        Assert.Equal(qualifies, decision.Qualifies);
+        Assert.Equal(reason, decision.Reason);
+    }
 }

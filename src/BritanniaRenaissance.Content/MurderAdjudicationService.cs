@@ -10,9 +10,9 @@ namespace BritanniaRenaissance.Content;
 /// <summary>
 /// Alpha 2's automatic-murder policy and durable ledger boundary.
 ///
-/// This is intentionally not wired to PlayerDeathEvent yet. ModernUO's report-based murder
-/// system must be disabled and encounter snapshots must be available before this ledger can be
-/// enabled; keeping the policy and persistence code separate prevents accidental double-counting.
+/// The replacement remains feature-gated. ModernUO's report-based murder system is disabled only
+/// when the custom flag is enabled, and execution callbacks use the same event boundary to avoid
+/// double-counting.
 /// </summary>
 public static class MurderAdjudicationService
 {
@@ -21,6 +21,7 @@ public static class MurderAdjudicationService
     private const string CountPrefix = "BritanniaRenaissance.Murder.AutomaticCount.";
     private const string RedUntilPrefix = "BritanniaRenaissance.Murder.RedUntilUtc.";
     private const string DeathMarkerPrefix = "BritanniaRenaissance.Murder.LastDeathUtc.";
+    private static readonly Dictionary<Serial, PlayerMobile> PendingExecutions = new();
 
     public static bool Enabled =>
         ShardRulesConfiguration.Settings?.FeatureFlags.AutomaticMurderAdjudication == true;
@@ -43,14 +44,20 @@ public static class MurderAdjudicationService
             return;
         }
 
-        var killer = victim.FindMostRecentDamager(false);
+        var execution = PendingExecutions.Remove(victim.Serial, out var executionKiller);
+        var killer = execution ? executionKiller : victim.FindMostRecentDamager(false);
         if (killer is BaseCreature creature)
         {
             killer = creature.GetMaster();
         }
 
         if (killer is not PlayerMobile playerKiller || playerKiller == victim ||
-            !TryRecordAutomaticCount(playerKiller, victim, Core.Now))
+            !TryRecordAutomaticCount(
+                playerKiller,
+                victim,
+                Core.Now,
+                execution ? false : PvpIntentService.WasIntentClassified(playerKiller, victim)
+            ))
         {
             return;
         }
@@ -62,6 +69,13 @@ public static class MurderAdjudicationService
         );
         ScheduleRedExpiryRefresh(playerKiller);
     }
+
+    public static void RegisterExecution(PlayerMobile executor, PlayerMobile victim)
+    {
+        PendingExecutions[victim.Serial] = executor;
+    }
+
+    public static void CancelExecution(PlayerMobile victim) => PendingExecutions.Remove(victim.Serial);
 
     [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
     public static void OnPlayerLogin(PlayerMobile player) => ScheduleRedExpiryRefresh(player);

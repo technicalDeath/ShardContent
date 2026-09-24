@@ -5,6 +5,7 @@ using Server.Accounting;
 using Server.Items;
 using Server.Mobiles;
 using Server.SkillHandlers;
+using Server.Targeting;
 
 namespace BritanniaRenaissance.Content;
 
@@ -129,6 +130,47 @@ public static class KnockedOutService
         recordedTargetRights ? new(true, "recorded-target-rights") :
         new(false, "missing-target-rights");
 
+    public static KnockedOutExecutionDecision ClassifyExecution(
+        bool featureEnabled, bool hotZone, bool actorIsCriminalOrMurderer, bool recordedTargetRights
+    ) => !featureEnabled ? new(false, "feature-disabled") :
+        hotZone ? new(false, "hot-zone-execution-deferred") :
+        !actorIsCriminalOrMurderer ? new(false, "actor-not-criminal-or-murderer") :
+        recordedTargetRights ? new(true, "recorded-target-rights") :
+        new(false, "missing-target-rights");
+
+    public static bool Execute(PlayerMobile executor, PlayerMobile victim)
+    {
+        if (MurderAdjudicationService.Enabled == false || victim == executor || !IsKnockedOut(victim))
+        {
+            return false;
+        }
+
+        var decision = ClassifyExecution(
+            Enabled,
+            ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
+            executor.Criminal || executor.Murderer,
+            GetRecordedAttackerSerial(victim) == executor.Serial
+        );
+
+        if (!decision.Qualifies)
+        {
+            return false;
+        }
+
+        ClearActiveState(victim);
+        MurderAdjudicationService.RegisterExecution(executor, victim);
+        victim.Hits = 0;
+        victim.Kill();
+        if (victim.Alive)
+        {
+            MurderAdjudicationService.CancelExecution(victim);
+            return false;
+        }
+
+        ShardAuditLog.Record("knocked-out", "executed", executor, victim, decision.Reason);
+        return true;
+    }
+
     public static bool IsKnockedOut(Mobile mobile)
     {
         if (!Enabled || mobile is not PlayerMobile player || player.Account is not Account account)
@@ -152,8 +194,7 @@ public static class KnockedOutService
             return true;
         }
 
-        account.RemoveTag(UntilPrefix + SerialKey(player));
-        account.RemoveTag(AttackerPrefix + SerialKey(player));
+        ClearActiveState(player);
         return false;
     }
 
@@ -205,7 +246,7 @@ public static class KnockedOutService
         {
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
             yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
-            yield return "Encounter-authorized no-skill looting and execution are not yet enabled.";
+            yield return "Encounter-authorized no-skill looting and execution are feature-gated; Hot-Zone execution remains deferred.";
         }
     }
 
@@ -252,6 +293,15 @@ public static class KnockedOutService
         }
     }
 
+    private static void ClearActiveState(PlayerMobile player)
+    {
+        if (player.Account is Account account)
+        {
+            account.RemoveTag(UntilPrefix + SerialKey(player));
+            account.RemoveTag(AttackerPrefix + SerialKey(player));
+        }
+    }
+
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 
@@ -272,3 +322,4 @@ public static class KnockedOutService
 
 public readonly record struct KnockedOutDecision(bool Qualifies, string Reason);
 public readonly record struct KnockedOutLootDecision(bool Qualifies, string Reason);
+public readonly record struct KnockedOutExecutionDecision(bool Qualifies, string Reason);

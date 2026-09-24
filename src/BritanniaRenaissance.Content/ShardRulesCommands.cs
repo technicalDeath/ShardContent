@@ -1,5 +1,6 @@
 using Server;
 using Server.Mobiles;
+using Server.Targeting;
 
 namespace BritanniaRenaissance.Content;
 
@@ -16,6 +17,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("TheftStatus", AccessLevel.Administrator, OnTheftStatus);
         CommandSystem.Register("KnockedOutStatus", AccessLevel.Administrator, OnKnockedOutStatus);
         CommandSystem.Register("KnockedOutRecover", AccessLevel.Administrator, OnKnockedOutRecover);
+        CommandSystem.Register("Execute", AccessLevel.Player, OnExecute);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
@@ -101,6 +103,33 @@ public static class ShardRulesCommands
                 ? $"Recovered {target.Name} from Knocked Out."
                 : $"{target.Name} is not currently Knocked Out."
         );
+    }
+
+    [Usage("Execute")]
+    [Description("Execute an encounter-authorized Knocked Out player.")]
+    private static void OnExecute(CommandEventArgs e)
+    {
+        if (e.Mobile is not PlayerMobile executor)
+        {
+            return;
+        }
+
+        executor.Target = new ExecuteTarget(executor);
+        executor.SendMessage("Select the Knocked Out player to execute.");
+    }
+
+    private sealed class ExecuteTarget(PlayerMobile executor) : Target(-1, false, TargetFlags.None)
+    {
+        protected override void OnTarget(Mobile from, object targeted)
+        {
+            if (targeted is not PlayerMobile victim || !KnockedOutService.Execute(executor, victim))
+            {
+                from.SendMessage("That target is not eligible for encounter-authorized execution.");
+                return;
+            }
+
+            from.SendMessage("The Knocked Out player has been executed.");
+        }
     }
 
     [Usage("ShardRulesStatus")]
