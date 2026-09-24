@@ -74,7 +74,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
    - Route direct player hostility through a single auditable authority that considers region, blue/grey/red state, `[Intent]`, guild-war exceptions and inherited lawful encounter rights.
    - Block ordinary-blue versus ordinary-blue initiation outside Hot Zones.
    - Preserve attacks on criminals and murderers everywhere, direct-target retaliation rights, approved guild conflict and independent pet restrictions.
-   - Current implementation status: `PvpIntentService` is the single stock-boundary decision point and resolves controlled-creature hostility to the player master before applying the same consent/retaliation policy; Alpha 2 flags are dependency-validated and require an explicit `alpha2EnablementAcknowledged` gate, but remain disabled in the current Alpha 1 profile until region and migration gates are ready.
+   - Current implementation status: `PvpIntentService` is the single stock-boundary decision point and resolves controlled-creature hostility to the player master before applying the same consent/retaliation policy. Its notoriety and harmful-action delegates are rebound after stock startup, and a staged two-account matrix proves ordinary-blue refusal plus opted-in attack acceptance; Alpha 2 flags are dependency-validated and require an explicit `alpha2EnablementAcknowledged` gate, but remain disabled in the current Alpha 1 profile until region and migration gates are ready.
 2. Implement `[Intent]` as a stored, blue-only voluntary PvP preference.
    - Make `[Intent]` opt-in, visible, persistent and independently reversible for new opponents.
    - Preserve existing encounter rights when it is turned off; prohibit turning it off while genuinely criminal or red.
@@ -99,7 +99,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
 6. Add the observability needed to support the rules.
    - Log hostility decisions, encounter classification, murder adjudication, theft/Ward activity and corpse-transfer enforcement with stable character/account identifiers.
    - Provide staff inspection and recovery tools before public enablement.
-   - Current implementation status: `ShardAuditLog` records stable subject/other serial and account identifiers for Intent toggles, encounter classification, denied hostility, murder adjudication, Backpack Ward/corpse enforcement, and Knocked Out transitions; `[IntentStatus`, `[MurderStatus`, `[MurderMigrationAudit`, `[TheftStatus`, `[KnockedOutStatus`, `[KnockedOutRecover`, and `[ShardRulesStatus` provide staff/player inspection and recovery. Live dispute rehearsal remains gated work.
+   - Current implementation status: `ShardAuditLog` records stable subject/other serial and account identifiers for Intent toggles, encounter classification, denied hostility, murder adjudication, Backpack Ward/corpse enforcement, and Knocked Out transitions; `[IntentStatus`, `[MurderStatus`, `[MurderMigrationAudit`, `[TheftStatus`, `[KnockedOutStatus`, `[KnockedOutRecover`, and `[ShardRulesStatus` provide staff/player inspection and recovery. Intent lifecycle and two-account hostility evidence are complete; live murder, theft, Knocked Out and dispute rehearsals remain gated work.
 
 ### Exit criteria
 
