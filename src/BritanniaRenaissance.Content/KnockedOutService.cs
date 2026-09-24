@@ -39,6 +39,7 @@ public static class KnockedOutService
         Mobile.CanTargetHandler = CanTarget;
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
+        Mobile.ActionCheckHandler = CanPerformAction;
         Stealing.KnockedOutLoot = CanLootKnockedOut;
         EventSink.Connected += OnConnected;
     }
@@ -86,6 +87,7 @@ public static class KnockedOutService
         Mobile.CanTargetHandler = CanTarget;
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
+        Mobile.ActionCheckHandler = CanPerformAction;
         Stealing.KnockedOutLoot = CanLootKnockedOut;
     }
 
@@ -454,6 +456,10 @@ public static class KnockedOutService
     private static bool BlockCurePoison(Mobile target, Mobile from) => IsKnockedOut(target);
 
     private static bool CanTarget(Mobile mobile) => !IsKnockedOut(mobile);
+
+    public static bool CanPerformAction(Mobile mobile) => !ShouldBlockActions(Enabled, IsKnockedOut(mobile));
+
+    public static bool ShouldBlockActions(bool featureEnabled, bool knockedOut) => featureEnabled && knockedOut;
 
     private static void ClearActiveState(PlayerMobile player)
     {

@@ -31,6 +31,20 @@ public class KnockedOutTests
     }
 
     [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(false, true, false)]
+    [InlineData(true, false, false)]
+    [InlineData(true, true, true)]
+    public void ActionLockoutAppliesOnlyToActiveKnockedOutPlayers(
+        bool featureEnabled,
+        bool knockedOut,
+        bool expectedBlocked
+    )
+    {
+        Assert.Equal(expectedBlocked, KnockedOutService.ShouldBlockActions(featureEnabled, knockedOut));
+    }
+
+    [Theory]
     [InlineData(false, true, true, false, true, true, false, "feature-disabled")]
     [InlineData(true, true, true, false, false, true, false, "damage-not-attributable-to-player")]
     [InlineData(true, true, true, false, true, false, false, "missing-active-encounter")]

@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `a5a92dc0e73e1438c4c61160b35743a0f324f47f`
+Pinned ModernUO integration commit: `85d2c59fc64bb19b6979fa71536f8ee3fe71d5de`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -112,7 +112,7 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, targetabilit
 Stealing delegates required by this service (`Mobile.LethalDamageHandler`,
 `Mobile.CanBeDamagedHandler`, `Mobile.CanTargetHandler`, `Stealing.KnockedOutLoot`,
 `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
-`a5a92dc0e73e1438c4c61160b35743a0f324f47f`). The same fork now supplies explicit
+`85d2c59fc64bb19b6979fa71536f8ee3fe71d5de`). The same fork now supplies explicit
 `PlayerMobile.PlayerDeathHandler` and `CharacterCreation.CharacterCreatedHandler` observers, plus
 an `EventSink.Connected` bridge used by the external assembly for login reconciliation. These
 observers are invoked after the stock engine handlers and remain inert unless the corresponding
@@ -349,7 +349,7 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   environment-gated map tests skipped (915 total) against the same `075d7859...` revision. The
   test run used the matching built `Distribution/Data` fixture set; no source or checked-in
   runtime configuration was changed.
-- The current Alpha 2 engine revision `a5a92dc0e73e1438c4c61160b35743a0f324f47f` adds the
+- The current Alpha 2 engine revision `85d2c59fc64bb19b6979fa71536f8ee3fe71d5de` adds the
   missing `Corpse.OnItemLifted` post-transfer observer, so ordinary drag/lift corpse looting arms
   the ten-minute repeat-protection entry just like context-menu use, and exposes the snapshot of
   player mobiles that held monster-corpse rights. `UOContent` builds cleanly in an isolated output
@@ -571,7 +571,7 @@ disposable staging host output.
 
 ### Alpha 2 corpse-transfer policy and lift-hook regression (2026-09-24)
 
-The pinned ModernUO `a5a92dc0e73e1438c4c61160b35743a0f324f47f` engine now invokes the external
+The pinned ModernUO `85d2c59fc64bb19b6979fa71536f8ee3fe71d5de` engine now invokes the external
 `Corpse.LootResolved` observer after both the stock context-menu item-use path and ordinary
 `OnItemLifted` drag/lift path. The isolated `UOContent.Tests` hook regression passes **2/2** and
 asserts one callback with the looter, corpse, and transferred item, plus a snapshot of the player
