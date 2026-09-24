@@ -30,3 +30,7 @@ rules file without touching the checked-in policy:
 .\Verify-Alpha2Readiness.ps1 -ModernUOPath ..\..\work\ModernUO-alpha2-live `
   -RulesPath ..\..\work\ModernUO-alpha2-live\Distribution\Configuration\shard-rules.json
 ```
+
+`Deploy-Alpha1Baseline.ps1` fails before building or copying if a ModernUO process has the target
+distribution assemblies loaded. Stop only the verified server process during a controlled
+deployment window, then rerun the script; it never stops a process itself.

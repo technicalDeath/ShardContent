@@ -17,9 +17,34 @@ $modernUOConfiguration = Join-Path $modernUOPath 'Distribution\Configuration\mod
 $targetEraGates = Join-Path $modernUOPath 'Distribution\Configuration\modernuo-era-gates.json'
 $assemblyRegistry = Join-Path $modernUOPath 'Distribution\Data\assemblies.json'
 $contentAssembly = 'BritanniaRenaissance.Content.dll'
+$distributionPath = (Resolve-Path -LiteralPath (Join-Path $modernUOPath 'Distribution')).Path
 
 if (-not (Test-Path -LiteralPath $dotnet)) {
     throw "Workspace .NET SDK was not found: $dotnet"
+}
+
+# Windows locks loaded assemblies. Fail before building or copying if a verified ModernUO
+# process has this distribution loaded; this prevents a partial deployment that leaves the
+# policy/configuration newer than the engine assemblies.
+$loadedBy = [System.Collections.Generic.List[string]]::new()
+foreach ($process in @(Get-Process -ErrorAction SilentlyContinue)) {
+    try {
+        $loaded = @($process.Modules | Where-Object {
+            $_.FileName -like "$distributionPath*\ModernUO.dll" -or
+            $_.FileName -like "$distributionPath*\Server.dll" -or
+            $_.FileName -like "$distributionPath*\Assemblies\UOContent.dll"
+        })
+        if ($loaded.Count -gt 0) {
+            $loadedBy.Add("PID $($process.Id) ($($process.ProcessName))")
+        }
+    } catch {
+        # Access to another process's module list may be denied; it is safer to let the copy
+        # operation fail than to stop or guess at an inaccessible process.
+    }
+}
+
+if ($loadedBy.Count -gt 0) {
+    throw "ModernUO distribution assemblies are loaded by $($loadedBy -join ', '). Stop the verified server and rerun deployment."
 }
 
 # The local SDK's shared compiler pipe can be inaccessible from a different integrity level.
