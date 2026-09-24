@@ -21,6 +21,7 @@ public static class MurderAdjudicationService
     private const string CountPrefix = "BritanniaRenaissance.Murder.AutomaticCount.";
     private const string RedUntilPrefix = "BritanniaRenaissance.Murder.RedUntilUtc.";
     private const string DeathMarkerPrefix = "BritanniaRenaissance.Murder.LastDeathUtc.";
+    private const int MaxMigrationDetailRows = 100;
     private static readonly Dictionary<Serial, PlayerMobile> PendingExecutions = new();
 
     public static bool Enabled =>
@@ -184,6 +185,7 @@ public static class MurderAdjudicationService
         var legacyOnly = 0;
         var customOnly = 0;
         var overlapping = 0;
+        var detailRows = new List<string>();
 
         foreach (var mobile in World.Mobiles.Values)
         {
@@ -210,7 +212,8 @@ public static class MurderAdjudicationService
                 customRed++;
             }
 
-            switch (ClassifyMigrationState(hasLegacyThreshold, hasCustomRed))
+            var migrationState = ClassifyMigrationState(hasLegacyThreshold, hasCustomRed);
+            switch (migrationState)
             {
                 case MigrationState.LegacyOnly:
                     legacyOnly++;
@@ -222,6 +225,14 @@ public static class MurderAdjudicationService
                     overlapping++;
                     break;
             }
+
+            if (migrationState != MigrationState.Neither && detailRows.Count < MaxMigrationDetailRows)
+            {
+                detailRows.Add(
+                    $"{migrationState}: {player.Name} serial=0x{player.Serial.Value:X8}; legacyKills={player.Kills}; " +
+                    $"customCount={GetAutomaticCount(player)}; customRedUntil={GetRedUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}."
+                );
+            }
         }
 
         yield return $"Migration audit UTC: {Core.Now:O}.";
@@ -229,6 +240,17 @@ public static class MurderAdjudicationService
         yield return $"Legacy Kills >= 5: {legacyThreshold}.";
         yield return $"Custom murder ledgers present: {customLedger}; custom red currently active: {customRed}.";
         yield return $"Migration state: legacy-only={legacyOnly}; custom-only={customOnly}; overlapping={overlapping}.";
+        foreach (var detail in detailRows)
+        {
+            yield return detail;
+        }
+
+        var totalDetailRows = legacyOnly + customOnly + overlapping;
+        if (totalDetailRows > detailRows.Count)
+        {
+            yield return $"Migration detail rows truncated at {MaxMigrationDetailRows}; total non-neutral rows: {totalDetailRows}.";
+        }
+
         yield return $"Legacy reporting enabled: {PlayerMurderSystem.LegacyReportingEnabled}; legacy threshold source enabled: {Mobile.LegacyMurdererCountsEnabled}.";
         yield return "No migration mutation was performed.";
     }
