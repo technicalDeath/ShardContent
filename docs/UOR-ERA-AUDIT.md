@@ -169,6 +169,13 @@ polygons deny direct player stealing only; Cool-Dungeon polygons deny direct pla
 leaving snooping and combat decisions untouched. Both lists are intentionally empty in the Alpha 1
 profile until the shard's approved map geometry is authored.
 
+The next Alpha 2 geography gate is now reproducible: `tools/Export-FeluccaBankCandidates.ps1`
+extracts Banker spawner coordinates from the pinned ModernUO
+`Distribution/Data/Spawns/shared/felucca/Vendors.json`, records the source SHA-256 and spawner
+GUIDs, and writes a review-only candidate file. The tool does not mutate configuration or infer a
+bank radius. Staff must survey the actual bank premises/apron and approve explicit polygons before
+any bank or Cool-Dungeon theft rule is enabled; client POIs are not authoritative for this step.
+
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:
 automatic murder adjudication and theft protection require SafeWorld, while Knocked Out also
