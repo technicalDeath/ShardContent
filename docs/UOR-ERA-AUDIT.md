@@ -492,7 +492,7 @@ The first execution attempt also found a narrow command-path defect: the global 
 untargetable guard rejected the `[Execute` target cursor before the encounter-authorized execution
 check could run. `ExecuteTarget` now permits only an already Knocked Out player through that target
 cursor; `KnockedOutService.Execute` remains authoritative for feature, region, criminality and
-recorded-attacker rights. The content suite passes 73/73 after this correction. Production remains
+recorded-attacker rights. The content suite passes 74/74 after this correction. Production remains
 on SafeWorld + TheftProtection only; Murder and Knocked Out still require their migration and full
 live matrices before enablement.
 
@@ -555,3 +555,28 @@ Hot-Zone, corpse/loot, concurrency, and the remaining cross-system rehearsals ar
 Raw evidence is retained in `work/Navrey-alpha2-ordinary/ordinary-log`,
 `work/Navrey-alpha2/noenc-admin-log`, `work/Navrey-alpha2-test/noenc-victim-log`, and the
 disposable staging host output.
+
+### Alpha 2 Knocked Out save/restart persistence rehearsal (2026-09-24)
+
+The disposable all-feature host on `127.0.0.1:2594` was used for a bounded persistence check;
+the production host on `127.0.0.1:2593` was not stopped or changed. An opted-in ordinary-blue
+`TestAlpha2` character was reduced to zero health by the staged Administrator attacker. The
+server recorded `knocked-out entered` at `11:23:14`, then completed an explicit world save at
+`11:23:18`.
+
+Only the verified staging server and its two staging Navrey clients were stopped. The staging
+server loaded the saved world and listened again at `11:23:21`; both accounts reconnected at
+`11:23:25`, before the 90-second state could expire. The victim did not receive a natural
+recovery message on login. The Administrator then issued `[KnockedOutRecover 0x00000002`, which
+returned `Recovered TestVictim from Knocked Out.` and the server recorded
+`knocked-out staff-recovered`. This proves the active Knocked Out account state, attacker
+relationship, and recovery path survive save/restart/reconnect; it is stronger than the earlier
+reconnect attempt that reached the natural expiry boundary.
+
+Raw evidence is retained in `work/alpha2-recovery-restart3.stdout`,
+`work/alpha2-recovery-final.stdout`,
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery\victim-recovery-final-log`, and
+`C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery\admin-recovery-final-log`.
+The staging host was stopped after the check (`2594` closed; production `2593` remained
+listening). Heal/cure denial and the full corpse/loot concurrency matrix are still unverified and
+remain separate gates.
