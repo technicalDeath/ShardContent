@@ -1,9 +1,11 @@
 using System.Globalization;
+using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
 using Server.Items;
 using Server.Mobiles;
 using Server.SkillHandlers;
+using Server.Engines.CharacterCreation;
 
 namespace BritanniaRenaissance.Content;
 
@@ -33,6 +35,21 @@ public static class TheftProtectionService
         Stealing.TheftResolved = ResolveTheft;
         Corpse.LootEligibility = CanLiftCorpseItem;
         Corpse.LootResolved = RecordCorpseTransfer;
+    }
+
+    [OnEvent(nameof(CharacterCreation.CharacterCreatedEvent))]
+    public static void IssueStarterWard(CharacterCreatedEventArgs args)
+    {
+        if (!Enabled || args.Mobile is not PlayerMobile player || player.Backpack is null ||
+            FindEligibleWard(player) is not null)
+        {
+            return;
+        }
+
+        var ward = new BackpackWard();
+        ward.TryBindTo(player);
+        player.Backpack.DropItem(ward);
+        ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character account");
     }
 
     public static bool IsProtectionWindowActive(DateTime nowUtc, DateTime protectedUntilUtc) =>
@@ -171,23 +188,23 @@ public static class TheftProtectionService
         }
 
         var wards = new List<BackpackWard>();
-        CollectWards(backpack, wards);
+        CollectWards(backpack, wards, victim);
         wards.Sort(static (left, right) => left.Serial.Value.CompareTo(right.Serial.Value));
         return wards.Count == 0 ? null : wards[0];
     }
 
-    private static void CollectWards(Container container, List<BackpackWard> wards)
+    private static void CollectWards(Container container, List<BackpackWard> wards, PlayerMobile owner)
     {
         foreach (var item in container.Items)
         {
-            if (item is BackpackWard ward && !ward.Deleted)
+            if (item is BackpackWard ward && !ward.Deleted && ward.TryBindTo(owner))
             {
                 wards.Add(ward);
             }
 
             if (item is Container child)
             {
-                CollectWards(child, wards);
+                CollectWards(child, wards, owner);
             }
         }
     }

@@ -144,7 +144,9 @@ The theft boundary now has a feature-gated physical `BackpackWard` and stock Ste
 Stock success, failure, criminality and snooping remain unchanged. An eligible Ward is selected
 deterministically from the equipped backpack, tracks undetected successful thefts per thief
 account at 25%/50%/100% detection, is consumed after ordinary detection, and persists the
-victim-wide 120-second protection window through account tags. The same feature-gated service now
+victim-wide 120-second protection window through account tags. When enabled, character creation
+issues one ward and binds it durably to the character account; transferred wards are ignored by
+the protection selector. The same feature-gated service now
 allows the first unlawful non-Hot monster-corpse transfer, then blocks that offender account from
 repeating against the same corpse for ten minutes. Bank/Cool region restrictions remain deferred;
 `theftProtection` is false in Alpha 1 and automatically bypasses corpse protection while

@@ -1,5 +1,7 @@
 using Server;
+using Server.Accounting;
 using Server.Items;
+using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
@@ -22,6 +24,8 @@ public sealed class BackpackWard : Item
 
     public bool Primed { get; private set; }
 
+    public string? BoundAccount { get; private set; }
+
     public override string DefaultName => Primed ? "a primed backpack ward" : "a backpack ward";
 
     public int RecordSuccessfulTheft(string thiefAccount)
@@ -40,11 +44,29 @@ public sealed class BackpackWard : Item
         InvalidateProperties();
     }
 
+    public bool TryBindTo(PlayerMobile owner)
+    {
+        if (owner.Account is not Account account)
+        {
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(BoundAccount))
+        {
+            BoundAccount = account.Username;
+            InvalidateProperties();
+            return true;
+        }
+
+        return string.Equals(BoundAccount, account.Username, StringComparison.OrdinalIgnoreCase);
+    }
+
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);
-        writer.WriteEncodedInt(0);
+        writer.WriteEncodedInt(1);
         writer.Write(Primed);
+        writer.Write(BoundAccount);
         writer.WriteEncodedInt(_successfulThefts.Count);
 
         foreach (var (account, count) in _successfulThefts)
@@ -57,8 +79,9 @@ public sealed class BackpackWard : Item
     public override void Deserialize(IGenericReader reader)
     {
         base.Deserialize(reader);
-        _ = reader.ReadEncodedInt();
+        var version = reader.ReadEncodedInt();
         Primed = reader.ReadBool();
+        BoundAccount = version >= 1 ? reader.ReadString() : null;
 
         var count = reader.ReadEncodedInt();
         for (var i = 0; i < count; i++)
