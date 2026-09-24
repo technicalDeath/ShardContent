@@ -176,6 +176,11 @@ GUIDs, and writes a review-only candidate file. The tool does not mutate configu
 bank radius. Staff must survey the actual bank premises/apron and approve explicit polygons before
 any bank or Cool-Dungeon theft rule is enabled; client POIs are not authoritative for this step.
 
+`tools/Export-FeluccaDungeonCandidates.ps1` provides the matching review surface for Cool-Dungeon
+selection. It extracts the pinned `DungeonRegion` rectangles, identifies the ten UOR-era dungeon
+names as candidate-compatible, and preserves later-era/special regions for explicit review. Its
+output is review-only and does not create active Cool-Dungeon polygons.
+
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:
 automatic murder adjudication and theft protection require SafeWorld, while Knocked Out also
