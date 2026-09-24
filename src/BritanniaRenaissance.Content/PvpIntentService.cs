@@ -40,6 +40,24 @@ public static class PvpIntentService
         EventSink.AggressiveAction += CaptureEncounter;
     }
 
+    /// <summary>
+    /// Rebinds the presentation delegate after ModernUO's stock Initialize handlers have run.
+    /// Some hosts invoke external assembly Initialize methods before the stock UOContent
+    /// assembly, so the server-started lifecycle callback is the authoritative final boundary.
+    /// </summary>
+    public static void RebindAfterStockHandlers()
+    {
+        Configure();
+
+        if (Notoriety.Handler?.Method.DeclaringType == typeof(PvpIntentService))
+        {
+            return;
+        }
+
+        _stockNotoriety = Notoriety.Handler;
+        Notoriety.Handler = ComputeNotoriety;
+    }
+
     public static bool IsIntentEnabled(PlayerMobile player)
     {
         var serial = unchecked((int)player.Serial.Value);
@@ -90,12 +108,47 @@ public static class PvpIntentService
         if (mobile is PlayerMobile player)
         {
             yield return $"PvP Intent: {(IsIntentEnabled(player) ? "enabled ([Intent])" : "disabled")}.";
+            yield return $"Notoriety handler: {Notoriety.Handler?.Method.DeclaringType?.FullName}.{Notoriety.Handler?.Method.Name ?? "<none>"}.";
             if (player.Criminal || player.Murderer)
             {
                 yield return "Intent changes are unavailable while criminal or murderer status is active.";
             }
+
+            // Keep the policy decision observable while Alpha 2 is being validated. This is
+            // deliberately limited to nearby player mobiles and reports the same value that the
+            // outgoing mobile packet uses, so staff can distinguish a server-policy result from
+            // a stale client presentation without enabling any additional combat behavior.
+            var nearbyLines = new List<string>();
+            foreach (var nearbyMobile in player.GetMobilesInRange(18))
+            {
+                if (nearbyMobile is not PlayerMobile nearby || nearby == player || !player.CanSee(nearby))
+                {
+                    continue;
+                }
+
+                nearbyLines.Add(
+                    $"Nearby notoriety: {nearby.Name} = {DescribeNotoriety(Notoriety.Compute(player, nearby))}."
+                );
+            }
+
+            foreach (var nearbyLine in nearbyLines)
+            {
+                yield return nearbyLine;
+            }
         }
     }
+
+    private static string DescribeNotoriety(int notoriety) => notoriety switch
+    {
+        Notoriety.Innocent => "Innocent",
+        Notoriety.Ally => "Ally",
+        Notoriety.CanBeAttacked => "CanBeAttacked",
+        Notoriety.Criminal => "Criminal",
+        Notoriety.Enemy => "Enemy",
+        Notoriety.Murderer => "Murderer",
+        Notoriety.Invulnerable => "Invulnerable",
+        _ => notoriety.ToString(CultureInfo.InvariantCulture)
+    };
 
     /// <summary>
     /// Pure policy rule used by regression tests and the live handler. A target who has opted into

@@ -15,15 +15,21 @@ public static class ShardBootstrap
         MurderAdjudicationService.Configure();
         TheftProtectionService.Configure();
         KnockedOutService.Configure();
+        Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
 
-    // ModernUO's stock Initialize methods include NotorietyHandlers, which installs the
-    // baseline delegate. Run the shard bridge after those handlers so the Alpha 2 policy is
-    // not silently replaced during startup.
+    // Keep world-dependent initialization at the normal assembly boundary. The Intent
+    // presentation delegate is rebound from the ServerStarted callback below, after every
+    // stock UOContent Initialize method has completed.
     [Server.CallPriority(1000)]
     public static void Initialize()
     {
-        PvpIntentService.Configure();
         KnockedOutService.Initialize();
+    }
+
+    private static void RebindAlpha2AfterStockHandlers()
+    {
+        Server.EventSink.ServerStarted -= RebindAlpha2AfterStockHandlers;
+        PvpIntentService.RebindAfterStockHandlers();
     }
 }
