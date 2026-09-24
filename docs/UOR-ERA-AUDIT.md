@@ -597,3 +597,13 @@ This is a clean current-world baseline, not a migration approval for future char
 worlds; the owner still needs to select the treatment for any non-neutral legacy rows before the
 custom murder flag can be enabled. Raw client evidence is retained in
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-migration-audit\log`.
+
+### Alpha 2 ModernUO hook regression verification (2026-09-24)
+
+Because the production process holds `Distribution/ModernUO.dll`, the pinned ModernUO revision
+`075d7859eb9646ed681a18b064754bb066799812` was built in a disposable isolated worktree. The
+focused `Server.Tests` filter covering `RecoveryHookTests` and `TargetabilityHookTests` passed
+**5/5**. This verifies that healing/cure interception can short-circuit before state changes and
+that the targetability hook can reject a mobile without stopping production or changing the live
+checkout. The isolated worktree was removed after the run; raw output is retained in
+`work/modernuo-alpha2-hooks-isolated.log`.
