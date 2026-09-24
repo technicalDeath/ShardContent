@@ -279,3 +279,21 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   Alpha 2 behavior was enabled by this smoke test. Client login and the full real-client Alpha 2
   matrix remain the next gated verification step after approved bank/Cool geometry and migration
   rehearsal are available.
+
+For the follow-up feature-gated rehearsal, only the isolated host configuration was changed to
+acknowledge Alpha 2 and enable `safeWorld`, `automaticMurderAdjudication`, `theftProtection`, and
+`knockedOut`; the checked-in Alpha 1 profile was not changed. After restart, the Navrey headless
+client authenticated the `Administrator` account, entered the world as `Generic Player` at
+`(5445, 1153, 0)`, and reported:
+
+- `[ShardRulesStatus`: Alpha 2 acknowledged and all four flags enabled.
+- `[IntentStatus`: Safe-world policy enabled.
+- `[MurderStatus`: automatic adjudication enabled; legacy reporting and legacy red source disabled.
+- `[TheftStatus`: Backpack Ward protection enabled; bank/Cool polygon counts both zero.
+- `[KnockedOutStatus`: Knocked Out enabled.
+
+`[Intent` was toggled once and the server audit log recorded the stable Administrator identity.
+The staging server and client were then stopped, and the workstation-local Navrey settings were
+restored to the normal 2593 profile. This proves startup, login, command registration, feature
+gate wiring, and audit logging; it does not prove the missing map geometry, cross-character combat
+matrix, or production enablement.
