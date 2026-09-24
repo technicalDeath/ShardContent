@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `12d3dd52ba5264548bc3877ea49a1a448247a11e`
+Pinned ModernUO integration commit: `5fba7cc393112170536aac250086e451e0a0b149`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -51,7 +51,7 @@ not authoritative and cannot make these moves active.
 
 The following Alpha 1 findings are pinned to the UOR baseline reference
 `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`; the current integration checkout is
-`12d3dd52ba5264548bc3877ea49a1a448247a11e`. They are intentionally a **retain**
+`5fba7cc393112170536aac250086e451e0a0b149`. They are intentionally a **retain**
 baseline: Alpha 1 does not add weapon specials, numerical class buffs, later-era
 item properties, or cross-system combat tuning.
 
@@ -112,7 +112,7 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, targetabilit
 Stealing delegates required by this service (`Mobile.LethalDamageHandler`,
 `Mobile.CanBeDamagedHandler`, `Mobile.CanTargetHandler`, `Stealing.KnockedOutLoot`,
 `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
-`12d3dd52ba5264548bc3877ea49a1a448247a11e`). `[KnockedOutStatus` is staff-only. No-skill looting now
+`5fba7cc393112170536aac250086e451e0a0b149`). `[KnockedOutStatus` is staff-only. No-skill looting now
 uses the stock Stealing boundary and requires the recorded criminal/red
 engagement holder outside Hot Zones; controlled-creature lethal damage resolves its player master
 as that holder. KO entry clears poison, paralysis, bleeding, Mortal Strike, and active casting;
@@ -318,7 +318,7 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
 - The current post-staging Alpha 2 source revision passes **71/71** focused tests, including the
   attributable-player/active-encounter Knocked Out cases; the only output remains `NU1900`.
 - The ModernUO recovery/targetability regression suites pass **4/4** in an isolated worktree for
-  integration commit `12d3dd52ba5264548bc3877ea49a1a448247a11e`; the live server was not stopped.
+  integration commit `5fba7cc393112170536aac250086e451e0a0b149`; the live server was not stopped.
 - The complete isolated ModernUO `Server.Tests` suite passes **895/895** with **17** environment-gated
   map tests skipped (912 total) at the same integration commit.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so

@@ -6,7 +6,7 @@ Recorded: 2026-09-23
 
 - ModernUO fork: `technicalDeath/ModernUO`
 - UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
-- Current Alpha 2 integration commit: `12d3dd52ba5264548bc3877ea49a1a448247a11e`
+- Current Alpha 2 integration commit: `5fba7cc393112170536aac250086e451e0a0b149`
 - Local SDK: .NET SDK `10.0.401`
 - Content assembly: `BritanniaRenaissance.Content.dll`, loaded from
   `ModernUO/Distribution/Assemblies`
