@@ -184,9 +184,10 @@ The theft-region policy now loads explicit `map`/point polygons from `shard-rule
 polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing while
 leaving snooping and combat decisions untouched. The runtime policy now contains 18 banker
 envelopes and the stock rectangles for the ten UOR-era dungeons. Bank envelopes are compact
-24-by-24-tile survey areas around each observed banker footprint, providing approximately a 5–6
-tile apron without creating a town-wide combat bubble. Entering or leaving a bank or Cool Dungeon
-emits one player-facing explanation; blocked movement does not emit a false transition.
+24-by-24-tile survey areas around each observed banker spawner/approach tile, selected to provide
+approximately a 5–6 tile apron without creating a town-wide combat bubble. Entering or leaving a
+bank or Cool Dungeon emits one player-facing explanation; blocked movement does not emit a false
+transition.
 
 The theft boundary rechecks both participants at the target-selection boundary: a direct player
 steal is denied when either the thief or the intended victim is inside a configured bank/Cool
@@ -195,8 +196,9 @@ polygon. Map names are compared case-insensitively, and empty/invalid polygons r
 The next Alpha 2 geography gate is now reproducible: `tools/Export-FeluccaBankCandidates.ps1`
 extracts Banker spawner coordinates from the pinned ModernUO
 `Distribution/Data/Spawns/shared/felucca/Vendors.json`, records the source SHA-256 and spawner
-GUIDs, and writes a review-only candidate file. Client commands were used to visit every banker
-candidate; the resulting polygons are recorded explicitly rather than inferred at runtime.
+GUIDs, and writes a review-only candidate file. The Navrey client then queried the center tile of
+all 18 candidates (static/roof/wall flags are retained in `work/alpha2-bank-survey.log`); the
+resulting polygons are recorded explicitly rather than inferred at runtime.
 
 `tools/Export-FeluccaDungeonCandidates.ps1` provides the matching review surface for Cool-Dungeon
 selection. It extracts the pinned `DungeonRegion` rectangles, identifies the ten UOR-era dungeon

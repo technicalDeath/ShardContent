@@ -11,8 +11,9 @@ envelopes and the ten UOR-era dungeon rectangles; later-era/special regions rema
 ## Staff approval checklist
 
 For each Banker candidate, the current survey uses a compact 24-by-24-tile envelope centered on
-the observed bank footprint, providing about 5–6 tiles outside the walls without creating a
-town-wide or neighboring-building bubble. Each boundary transition is announced to the player.
+the observed banker spawner/approach tile, providing about 5–6 tiles outside the bank frontage
+without creating a town-wide or neighboring-building bubble. Each boundary transition is
+announced to the player. The center-tile observations are retained in `work/alpha2-bank-survey.log`.
 
 For Cool-Dungeon selection, review the marked UOR-era candidates in the dungeon export—Covetous,
 Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun, Shame, and Wrong—and approve the exact
