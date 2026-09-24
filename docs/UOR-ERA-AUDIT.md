@@ -418,6 +418,23 @@ matrix must repeat the two-account run against that revision and record both the
 `CanBeAttacked` presentation and the accepted/denied server hostility result before Alpha 2 is
 enabled publicly.
 
+### Alpha 2 notoriety lifecycle correction (2026-09-24)
+
+The stale-client result exposed an initialization-order defect: ModernUO's stock notoriety
+initializer ran after the external shard bridge and replaced the custom delegate. The bridge now
+marks `ShardBootstrap.Initialize` with `Server.CallPriority(1000)`, so it installs the Intent-aware
+handler after stock `NotorietyHandlers`. The corrected assembly was rebuilt against pinned
+ModernUO `075d7859eb9646ed681a18b064754bb066799812` and loaded by a fresh disposable host on
+`127.0.0.1:2598`; startup completed with the UOR/Felucca policy and all staged Alpha 2 systems
+recognized. The checked-in policy and production runtime were not changed.
+
+The focused content suite now has a regression assertion for that lifecycle priority and passes
+72/72 tests. A second Navrey launch authenticated two fresh disposable accounts against the
+corrected host, but the restored-save character-selection path did not advance into the world, so
+this run is not counted as post-fix proof of the client hue refresh or accepted hostility packet.
+The earlier two-account evidence therefore remains explicitly pre-fix, and the full post-fix
+two-character matrix is still required before public Alpha 2 enablement.
+
 ### Alpha 2 geography review exports (2026-09-24)
 
 The review-only geography tools were run against the pinned checkout's current ModernUO data.
