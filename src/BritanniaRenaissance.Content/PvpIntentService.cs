@@ -49,13 +49,17 @@ public static class PvpIntentService
     {
         Configure();
 
-        if (Notoriety.Handler?.Method.DeclaringType == typeof(PvpIntentService))
+        if (Notoriety.Handler?.Method.DeclaringType != typeof(PvpIntentService))
         {
-            return;
+            _stockNotoriety = Notoriety.Handler;
+            Notoriety.Handler = ComputeNotoriety;
         }
 
-        _stockNotoriety = Notoriety.Handler;
-        Notoriety.Handler = ComputeNotoriety;
+        if (Mobile.AllowHarmfulHandler?.Method.DeclaringType != typeof(PvpIntentService))
+        {
+            _stockAllowHarmful = Mobile.AllowHarmfulHandler;
+            Mobile.AllowHarmfulHandler = AllowHarmful;
+        }
     }
 
     public static bool IsIntentEnabled(PlayerMobile player)
@@ -109,6 +113,7 @@ public static class PvpIntentService
         {
             yield return $"PvP Intent: {(IsIntentEnabled(player) ? "enabled ([Intent])" : "disabled")}.";
             yield return $"Notoriety handler: {Notoriety.Handler?.Method.DeclaringType?.FullName}.{Notoriety.Handler?.Method.Name ?? "<none>"}.";
+            yield return $"Harmful handler: {Mobile.AllowHarmfulHandler?.Method.DeclaringType?.FullName}.{Mobile.AllowHarmfulHandler?.Method.Name ?? "<none>"}.";
             if (player.Criminal || player.Murderer)
             {
                 yield return "Intent changes are unavailable while criminal or murderer status is active.";

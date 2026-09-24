@@ -420,10 +420,11 @@ acceptance result.
 
 ### Alpha 2 notoriety lifecycle correction (2026-09-24)
 
-The stale-client result exposed an initialization-order defect: ModernUO's stock notoriety
-initializer ran after the external shard bridge and replaced the custom delegate. The bridge now
-registers a one-shot `ServerStarted` callback and rebinds after every stock `Initialize` method;
-the existing `Server.CallPriority(1000)` boundary remains as a fallback for world-dependent setup.
+The stale-client result exposed an initialization-order defect: ModernUO's stock notoriety and
+harmful-action initializers ran after the external shard bridge and replaced the custom delegates.
+The bridge now registers a one-shot `ServerStarted` callback and rebinds both delegates after every
+stock `Initialize` method; the existing `Server.CallPriority(1000)` boundary remains as a fallback
+for world-dependent setup.
 The corrected assembly was rebuilt against pinned ModernUO
 `075d7859eb9646ed681a18b064754bb066799812` and loaded by a fresh disposable host on
 `127.0.0.1:2598`; startup completed with the UOR/Felucca policy and all staged Alpha 2 systems
@@ -439,6 +440,13 @@ the first live proof that the post-startup handler, packet presentation, and opt
 path agree. Toggling `FreshE` off afterward retained the already-established aggression relationship,
 as required by the encounter rule; a fresh no-encounter denial matrix remains deferred before
 public Alpha 2 enablement.
+
+A second fresh two-account matrix (`DenyF`, `DenyG`) then verified the harmful-action boundary.
+`DenyF` opted in while `DenyG` remained ordinary blue: the client refused the attack as
+`Innocent (blue)`, and no encounter was logged. After `DenyG` opted in, `[IntentStatus` reported
+both custom delegates, the attack was confirmed, the server recorded an `intent-classified`
+encounter, and the swing completed. This proves both lifecycle rebinding paths in the same staged
+host; murder, theft and Knocked Out resolution remain separately gated.
 
 ### Alpha 2 geography review exports (2026-09-24)
 
