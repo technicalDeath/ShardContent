@@ -12,6 +12,7 @@ public static class ShardBootstrap
         EraGateConfiguration.Load();
         ShardRulesCommands.Register();
         MasteryProgression.Configure();
+        MurderAdjudicationService.Configure();
     }
 
     public static void Initialize() => PvpIntentService.Configure();

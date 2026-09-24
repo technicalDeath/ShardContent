@@ -113,6 +113,10 @@ the later of the current time or prior expiry. Stock murder reports, five-count 
 decay therefore remain the only live behavior until their replacement and encounter snapshots
 are ready to be enabled together.
 
+The ModernUO fork now provides the narrow integration boundary: custom configuration can disable
+legacy report/decay hooks and supply an additional red-status handler without changing stock
+behavior while the flag is false.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,

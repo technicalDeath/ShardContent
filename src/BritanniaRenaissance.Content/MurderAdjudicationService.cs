@@ -1,6 +1,8 @@
 using System.Globalization;
+using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
+using Server.Engines.PlayerMurderSystem;
 using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
@@ -22,6 +24,46 @@ public static class MurderAdjudicationService
 
     public static bool Enabled =>
         ShardRulesConfiguration.Settings?.FeatureFlags.AutomaticMurderAdjudication == true;
+
+    public static void Configure()
+    {
+        Mobile.AdditionalMurdererHandler = IsAutomaticallyRed;
+        PlayerMurderSystem.SetLegacyReportingEnabled(!Enabled);
+    }
+
+    public static bool IsAutomaticallyRed(Mobile mobile) =>
+        mobile is PlayerMobile player && GetRedUntilUtc(player) is { } redUntil && redUntil > Core.Now;
+
+    [OnEvent(nameof(PlayerMobile.PlayerDeathEvent))]
+    public static void OnPlayerDeath(PlayerMobile victim)
+    {
+        if (!Enabled || victim.Criminal || victim.Murderer)
+        {
+            return;
+        }
+
+        var killer = victim.FindMostRecentDamager(false);
+        if (killer is BaseCreature creature)
+        {
+            killer = creature.GetMaster();
+        }
+
+        if (killer is not PlayerMobile playerKiller || playerKiller == victim ||
+            !TryRecordAutomaticCount(playerKiller, victim, Core.Now))
+        {
+            return;
+        }
+
+        playerKiller.Delta(MobileDelta.Noto);
+        playerKiller.InvalidateProperties();
+        playerKiller.SendMessage(
+            $"You have received an automatic murder count. Red status now expires at {GetRedUntilUtc(playerKiller):O} UTC."
+        );
+        ScheduleRedExpiryRefresh(playerKiller);
+    }
+
+    [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
+    public static void OnPlayerLogin(PlayerMobile player) => ScheduleRedExpiryRefresh(player);
 
     /// <summary>
     /// Classifies the victim independently from the attacker's legality. An ordinary blue victim
@@ -159,6 +201,24 @@ public static class MurderAdjudicationService
             deathUtc,
             killer is not null && PvpIntentService.WasIntentClassified(killer, victim)
         );
+
+    private static void ScheduleRedExpiryRefresh(PlayerMobile player)
+    {
+        var redUntil = GetRedUntilUtc(player);
+        if (redUntil is not { } expiry || expiry <= Core.Now)
+        {
+            return;
+        }
+
+        Server.Timer.DelayCall(expiry - Core.Now, static pm =>
+        {
+            if (!pm.Deleted)
+            {
+                pm.Delta(MobileDelta.Noto);
+                pm.InvalidateProperties();
+            }
+        }, player);
+    }
 
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);

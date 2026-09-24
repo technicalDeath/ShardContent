@@ -21,6 +21,10 @@
       <HintPath>$(ModernUOPath)\Distribution\Assemblies\UOContent.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="ModernUO.CodeGeneratedEvents.Annotations">
+      <HintPath>$(ModernUOPath)\Distribution\Assemblies\ModernUO.CodeGeneratedEvents.Annotations.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <Target Name="DeployShardContentAssembly" AfterTargets="Build">
