@@ -336,15 +336,27 @@ public static class TheftProtectionService
             EnsureLootProtectionEntitlement(player, "corpse-loot");
         }
 
-        var tag = LootProtectionTag(corpse, account);
-        if (!IsCorpseLootProtectionActive(
-                Enabled,
-                ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
-                corpse.OwnerWasBaseCreature == true,
-                corpse.IsCriminalAction(looter),
-                account.GetTag(tag),
-                Core.Now
-            ))
+        var criminalAction = corpse.IsCriminalAction(looter);
+        var hotZonesEnabled = ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true;
+        var hasActiveWard = false;
+
+        foreach (var victim in GetMonsterLootRights(corpse))
+        {
+            if (IsCorpseLootProtectionActive(
+                    Enabled,
+                    hotZonesEnabled,
+                    corpse.OwnerWasBaseCreature,
+                    criminalAction,
+                    account.GetTag(LootProtectionTag(victim, account)),
+                    Core.Now
+                ))
+            {
+                hasActiveWard = true;
+                break;
+            }
+        }
+
+        if (!hasActiveWard)
         {
             return true;
         }
@@ -368,11 +380,38 @@ public static class TheftProtectionService
             EnsureLootProtectionEntitlement(player, "corpse-transfer");
         }
 
-        account.SetTag(
-            LootProtectionTag(corpse, account),
-            Core.Now.Add(LootProtectionDuration).ToString("O", CultureInfo.InvariantCulture)
-        );
-        ShardAuditLog.Record("corpse-loot", "first-transfer", looter, corpse.Owner, "10-minute offender protection armed");
+        var expiry = Core.Now.Add(LootProtectionDuration).ToString("O", CultureInfo.InvariantCulture);
+        var protectedVictims = 0;
+
+        foreach (var victim in GetMonsterLootRights(corpse))
+        {
+            account.SetTag(LootProtectionTag(victim, account), expiry);
+            protectedVictims++;
+        }
+
+        if (protectedVictims > 0)
+        {
+            ShardAuditLog.Record(
+                "corpse-loot",
+                "first-transfer",
+                looter,
+                corpse.Owner,
+                $"10-minute offender protection armed for {protectedVictims} rights holder(s)"
+            );
+        }
+    }
+
+    private static IEnumerable<PlayerMobile> GetMonsterLootRights(Corpse corpse)
+    {
+        var seen = new HashSet<Serial>();
+
+        foreach (var mobile in corpse.MonsterLootRights)
+        {
+            if (mobile is PlayerMobile player && !player.Deleted && player.Account is Account && seen.Add(player.Serial))
+            {
+                yield return player;
+            }
+        }
     }
 
     private static BackpackWard? FindEligibleWard(PlayerMobile victim)
@@ -517,7 +556,7 @@ public static class TheftProtectionService
     private static string LootEntitlementTag(PlayerMobile player) =>
         LootEntitlementTagPrefix + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 
-    private static string LootProtectionTag(Corpse corpse, Account account) =>
-        LootProtectionTagPrefix + corpse.Serial.Value.ToString("X8", CultureInfo.InvariantCulture) + "." +
+    private static string LootProtectionTag(PlayerMobile victim, Account account) =>
+        LootProtectionTagPrefix + victim.Serial.Value.ToString("X8", CultureInfo.InvariantCulture) + "." +
         account.Username;
 }

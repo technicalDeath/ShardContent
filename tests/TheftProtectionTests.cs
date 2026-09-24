@@ -84,6 +84,29 @@ public class TheftProtectionTests
         );
     }
 
+    [Fact]
+    public void CorpseRepeatWardTreatsAnActiveRightsHolderMarkerAsCorpseIndependent()
+    {
+        var now = new DateTime(2026, 9, 24, 12, 0, 0, DateTimeKind.Utc);
+        var markers = new[]
+        {
+            now.AddMinutes(-1).ToString("O", System.Globalization.CultureInfo.InvariantCulture),
+            now.AddMinutes(5).ToString("O", System.Globalization.CultureInfo.InvariantCulture)
+        };
+
+        Assert.Contains(
+            markers,
+            marker => TheftProtectionService.IsCorpseLootProtectionActive(
+                enabled: true,
+                hotZonesEnabled: false,
+                monsterCorpse: true,
+                criminalAction: true,
+                marker,
+                now
+            )
+        );
+    }
+
     [Theory]
     [InlineData(null, false)]
     [InlineData("", false)]

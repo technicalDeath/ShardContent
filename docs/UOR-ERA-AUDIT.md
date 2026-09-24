@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2`
+Pinned ModernUO integration commit: `a5a92dc0e73e1438c4c61160b35743a0f324f47f`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -112,7 +112,7 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, targetabilit
 Stealing delegates required by this service (`Mobile.LethalDamageHandler`,
 `Mobile.CanBeDamagedHandler`, `Mobile.CanTargetHandler`, `Stealing.KnockedOutLoot`,
 `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
-`f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2`). The same fork now supplies explicit
+`a5a92dc0e73e1438c4c61160b35743a0f324f47f`). The same fork now supplies explicit
 `PlayerMobile.PlayerDeathHandler` and `CharacterCreation.CharacterCreatedHandler` observers, plus
 an `EventSink.Connected` bridge used by the external assembly for login reconciliation. These
 observers are invoked after the stock engine handlers and remain inert unless the corresponding
@@ -180,7 +180,7 @@ victim-wide 120-second protection window through account tags. When enabled, cha
 issues one ward and binds it durably to the character account; transferred wards are ignored by
 the protection selector. The same feature-gated service now
 allows the first unlawful non-Hot monster-corpse transfer, then blocks that offender account from
-repeating against the same corpse for ten minutes. Bank/Cool region restrictions are enabled in
+repeating against the same rights holder's still-protected monster corpses for ten minutes. Bank/Cool region restrictions are enabled in
 the current production profile; corpse protection is bypassed only while `hotZones` is enabled.
 
 The theft-region policy now loads explicit `map`/point polygons from `shard-rules.json`. Bank
@@ -349,14 +349,16 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   environment-gated map tests skipped (915 total) against the same `075d7859...` revision. The
   test run used the matching built `Distribution/Data` fixture set; no source or checked-in
   runtime configuration was changed.
-- The current Alpha 2 engine revision `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2` adds the
+- The current Alpha 2 engine revision `a5a92dc0e73e1438c4c61160b35743a0f324f47f` adds the
   missing `Corpse.OnItemLifted` post-transfer observer, so ordinary drag/lift corpse looting arms
-  the ten-minute repeat-protection entry just like context-menu use. `UOContent` builds cleanly
-  in an isolated output directory; the focused `UOContent.Tests` hook test passes **1/1**, and
-  ShardContent focused coverage passes **86/86** against the matching source. The new
+  the ten-minute repeat-protection entry just like context-menu use, and exposes the snapshot of
+  player mobiles that held monster-corpse rights. `UOContent` builds cleanly in an isolated output
+  directory; the focused `UOContent.Tests` hook/rights tests pass **2/2**, and ShardContent
+  focused coverage passes **87/87** against the matching source. The new
   `TheftProtectionTests.CorpseRepeatWardRequiresAllPolicyPredicatesAndActiveMarker` matrix covers
   the feature gate, Hot-Zone bypass, monster-corpse/criminal-action predicates, missing or malformed
-  markers, expiry, and an active repeat block. The production
+  markers, expiry, and an active repeat block. Markers are keyed by rights-holder character and
+  offender account, so a different corpse from the same rights holder cannot bypass the ward. The production
   process was not stopped; this engine revision is queued for the next controlled deployment
   window.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
@@ -569,19 +571,22 @@ disposable staging host output.
 
 ### Alpha 2 corpse-transfer policy and lift-hook regression (2026-09-24)
 
-The pinned ModernUO `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2` engine now invokes the external
+The pinned ModernUO `a5a92dc0e73e1438c4c61160b35743a0f324f47f` engine now invokes the external
 `Corpse.LootResolved` observer after both the stock context-menu item-use path and ordinary
-`OnItemLifted` drag/lift path. The isolated `UOContent.Tests` hook regression passes **1/1** and
-asserts one callback with the looter, corpse, and transferred item. This closes the engine-level
-observer gap that previously allowed ordinary drag looting to bypass the custom post-transfer
-ward.
+`OnItemLifted` drag/lift path. The isolated `UOContent.Tests` hook regression passes **2/2** and
+asserts one callback with the looter, corpse, and transferred item, plus a snapshot of the player
+mobiles that held monster-corpse rights. This closes the engine-level observer gap that previously
+allowed ordinary drag looting to bypass the custom post-transfer ward and supplies the durable
+rights-holder identity needed across separate corpses.
 
-The ShardContent policy matrix passes **8/8** new cases (within **86/86** focused tests): only an
+The ShardContent policy matrix passes **8/8** new cases (within **87/87** focused tests): only an
 enabled, non-Hot, unlawful lift from a monster corpse with an unexpired offender marker is blocked;
 player corpses, non-criminal actions, missing/malformed/expired markers, disabled Theft Protection,
-and Hot Zones remain allowed. This is automated policy and hook coverage; the two-account live
-first-transfer/repeat-transfer matrix and its concurrency/restart evidence remain required before
-public Knocked Out or murder enablement. Production was not stopped or changed.
+and Hot Zones remain allowed. Markers are keyed by rights-holder character and offender account,
+so a repeat offense against a different corpse from the same rights holder is covered. This is
+automated policy and hook coverage; the two-account live first-transfer/repeat-transfer matrix and
+its concurrency/restart evidence remain required before public Knocked Out or murder enablement.
+Production was not stopped or changed.
 
 ### Alpha 2 Knocked Out save/restart persistence rehearsal (2026-09-24)
 
