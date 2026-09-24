@@ -319,6 +319,8 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   attributable-player/active-encounter Knocked Out cases; the only output remains `NU1900`.
 - The ModernUO recovery/targetability regression suites pass **4/4** in an isolated worktree for
   integration commit `12d3dd52ba5264548bc3877ea49a1a448247a11e`; the live server was not stopped.
+- The complete isolated ModernUO `Server.Tests` suite passes **895/895** with **17** environment-gated
+  map tests skipped (912 total) at the same integration commit.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
   target requests are rejected while the state is active and the existing timer/expiry recovery
   path remains authoritative.
