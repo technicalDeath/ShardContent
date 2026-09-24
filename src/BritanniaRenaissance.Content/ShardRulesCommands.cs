@@ -120,6 +120,21 @@ public static class ShardRulesCommands
 
     private sealed class ExecuteTarget(PlayerMobile executor) : Target(-1, false, TargetFlags.None)
     {
+        protected override bool CanTarget(Mobile from, Mobile mobile, ref Point3D loc, ref Map map)
+        {
+            // Knocked Out players are intentionally untargetable for ordinary actions. The
+            // explicit Execute command is the one encounter-authorized exception; Execute()
+            // still performs the feature, region, criminality and recorded-attacker checks.
+            if (mobile is PlayerMobile victim && KnockedOutService.IsKnockedOut(victim))
+            {
+                loc = mobile.Location;
+                map = mobile.Map;
+                return true;
+            }
+
+            return base.CanTarget(from, mobile, ref loc, ref map);
+        }
+
         protected override void OnTarget(Mobile from, object targeted)
         {
             if (targeted is not PlayerMobile victim || !KnockedOutService.Execute(executor, victim))

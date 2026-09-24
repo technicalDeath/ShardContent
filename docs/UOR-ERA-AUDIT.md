@@ -458,9 +458,9 @@ The same startup audit found that ModernUO's stock `NotorietyHandlers.Initialize
 guard before stock content initialization, the Alpha 2 `ServerStarted` callback now rebinds that
 handler as well, preserving the stock delegate for ordinary beneficial checks while rejecting
 heals and cures on a Knocked Out target. The callback also reasserts the remaining Knocked Out
-damage, targetability, and no-skill-loot hooks; this is covered by the 72-test content suite and
-the next disposable all-feature staging boot. Production remains disabled until approved geography
-is supplied.
+damage, targetability, and no-skill-loot hooks; this is covered by the focused content suite and
+the disposable all-feature staging boot. This historical staging note predates the approved
+geography; the current live profile enables only SafeWorld and TheftProtection.
 
 ### Alpha 2 geography review exports (2026-09-24)
 
@@ -470,6 +470,26 @@ The bank export produced 18 Felucca banker candidates from `Vendors.json` (sourc
 18 Felucca dungeon-region candidates from `regions.json` (source SHA-256
 `cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d`), including the ten named
 UOR-era candidates Covetous, Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun, Shame, and
-Wrong. The JSON outputs are retained in local `work/alpha2-review/` for staff survey only. No
-active bank or Cool-Dungeon polygon was created; the checked-in policy remains empty and the
-readiness gate remains closed until staff approve surveyed boundaries.
+Wrong. The JSON outputs are retained in local `work/alpha2-review/` as source evidence. The
+subsequent Navrey tile survey queried all 18 banker candidates; the checked-in policy now contains
+18 bank envelopes and 14 stock-area polygons for the ten UOR-era dungeons. The readiness gate
+passes with SafeWorld and TheftProtection enabled; automatic murder adjudication and Knocked Out
+remain separate deferred gates.
+
+### Alpha 2 Knocked Out two-account rehearsal (2026-09-24)
+
+On the disposable all-feature host, an Administrator test character was made non-invulnerable and
+criminal for the rehearsal while a second ordinary-blue player opted into `[Intent]`. The Navrey
+clients entered the same location, the attack was confirmed, weapon swings reduced the victim to
+zero-health resolution, and the victim received `You have been Knocked Out for 90 seconds.` The
+server audit recorded the encounter and `knocked-out entered` transition. This confirms the
+attributable-player-damage and active-encounter gates in a real client session without enabling the
+feature on production.
+
+The first execution attempt also found a narrow command-path defect: the global Knocked Out
+untargetable guard rejected the `[Execute` target cursor before the encounter-authorized execution
+check could run. `ExecuteTarget` now permits only an already Knocked Out player through that target
+cursor; `KnockedOutService.Execute` remains authoritative for feature, region, criminality and
+recorded-attacker rights. The content suite passes 73/73 after this correction. Production remains
+on SafeWorld + TheftProtection only; Murder and Knocked Out still require their migration and full
+live matrices before enablement.
