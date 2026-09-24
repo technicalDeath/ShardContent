@@ -56,9 +56,9 @@
   },
   "featureFlags": {
     "safeWorld": true,
-    "automaticMurderAdjudication": false,
+    "automaticMurderAdjudication": true,
     "theftProtection": true,
-    "knockedOut": false,
+    "knockedOut": true,
     "hotZones": false,
     "coolZones": false,
     "housingGeography": false,
