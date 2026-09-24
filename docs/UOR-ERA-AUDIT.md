@@ -493,3 +493,12 @@ cursor; `KnockedOutService.Execute` remains authoritative for feature, region, c
 recorded-attacker rights. The content suite passes 73/73 after this correction. Production remains
 on SafeWorld + TheftProtection only; Murder and Knocked Out still require their migration and full
 live matrices before enablement.
+
+A fresh repeat on the rebuilt staging host then crossed the corrected path end-to-end: the criminal
+attacker's `[Execute` target was accepted, the victim transitioned to a corpse/ghost, the attacker
+received exactly one automatic murder count, and `[MurderStatus` showed the cumulative 24-hour UTC
+red deadline with legacy reporting and the five-count source disabled. `[MurderMigrationAudit` also
+reported the expected disposable-world split between the staged custom ledger and the intentionally
+seeded legacy-kills record, with no mutation performed. This completes the core Knocked Out and
+execution rehearsal; migration policy, no-encounter denial, and the broader cross-system matrix
+remain required before enabling either feature on production.
