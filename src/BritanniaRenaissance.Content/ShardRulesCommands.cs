@@ -8,6 +8,7 @@ public static class ShardRulesCommands
     public static void Register()
     {
         CommandSystem.Register("ShardRulesStatus", AccessLevel.Administrator, OnStatus);
+        CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
     [Usage("ShardRulesStatus")]
@@ -20,6 +21,16 @@ public static class ShardRulesCommands
         }
 
         foreach (var line in EraGateConfiguration.Describe())
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("MasteryStatus")]
+    [Description("Displays the server-controlled Mastery schedule and your pending increments.")]
+    private static void OnMasteryStatus(CommandEventArgs e)
+    {
+        foreach (var line in MasteryProgression.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

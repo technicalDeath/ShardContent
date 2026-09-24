@@ -42,6 +42,9 @@ Make the shard launch as a stable, recognizably pre-AoS UOR-era world with the i
 4. Establish character, death and economic foundations.
    - Enforce 700 total skill, 100 individual skill and 225 stat caps.
    - Implement and test the accelerated-but-capped skill-gain curve.
+   - Implement 95.0+ Mastery with one server-wide UTC period schedule: four-hour boundaries,
+     +0.1 pending increments, login-date qualification, offline reconciliation, a 0.6 pending cap,
+     and valid-use consumption through 100.0.
    - Validate pre-AoS death, corpse, loot, blessed runebook, stealable-key/property and travel behavior.
    - Validate ordinary crafting, BODs, player trade, vendors, boats, and the no-combat-pets-in-dungeons / restricted pet-PvP policy.
    - Implement the starter package and one-time account/character issuance controls without economic extraction loopholes.
@@ -49,7 +52,7 @@ Make the shard launch as a stable, recognizably pre-AoS UOR-era world with the i
 ### Exit criteria
 
 - Clean build and repeatable startup from a clean test save.
-- Automated and manual tests prove expansion/map gating, caps, insta-hit, precast timing, special-attack removal, swing behavior, death/loot, key recovery, starter issuance and save/restart persistence.
+- Automated and manual tests prove expansion/map gating, caps, insta-hit, precast timing, special-attack removal, swing behavior, 95+ Mastery period banking/consumption, death/loot, key recovery, starter issuance and save/restart persistence.
 - A client can complete the basic loop—create, train, fight, loot, die, bank, travel, craft and trade—without accessing disabled era content.
 - The configuration layer exposes only verified shard controls and produces understandable startup validation errors.
 

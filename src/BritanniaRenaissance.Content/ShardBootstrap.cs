@@ -11,5 +11,6 @@ public static class ShardBootstrap
         ShardRulesConfiguration.Load();
         EraGateConfiguration.Load();
         ShardRulesCommands.Register();
+        MasteryProgression.Configure();
     }
 }

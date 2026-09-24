@@ -349,7 +349,7 @@ Core design principle:
 Mechanical/tuning changes retained from the main plan:
 
 - accelerate skill gain substantially relative to historical OSI rates while keeping the 700 total / 100 individual skill caps
-- make characters become viable quickly through 90, make 90–95 the final conventional training push, and move 95–100 into the 14-active-day Mastery system
+- make characters become viable quickly through 90, make 90–95 the final conventional training push, and move 95–100 into the server-controlled four-hour-period Mastery system
 - keep crafting and especially taming slower than ordinary combat/mage skills **before 95** because they create significant economic/PvM power; all enabled skills use the shared Mastery rules at 95+ unless explicitly approved otherwise
 - keep blessed runebooks
 - reconsider pet bonding only as a restricted convenience mechanic
@@ -684,7 +684,7 @@ Regression sequences: spawn with weapon equipped; unarmed-to-halberd; precast→
 
 ### 4.3 Passive UOR improvements retained, with measured limits
 
-**Lumberjacking/axes — adopt stock UOR formula initially:** The ModernUO version examined in the September 18 research applies an axe damage modifier of approximately `Lumberjacking / 5` percent, up to a **+20 percentage-point damage modifier at 100.0** when UOR is active. Its additional historical GM-only +10 points appeared gated behind a later expansion in that inspected implementation; independently confirm in the pinned checkout. The modifier is additive with applicable damage modifiers, **not a promise of 20% final post-armor DPS**. Approve +20 at GM for launch; **do not** add the 2001 GM-only spike to +30 without separate approval. Smooth scaling is particularly important because Section 5 makes 95→100 a 14-active-day Mastery path and says 90–95 should already be viable. Verify the actual `WeaponType.Axe` classification of each approved axe; do not give the bonus to unrelated War Axe/mace types by name. A two-handed axe cannot simultaneously be used with a shield. Test whether tank mages can cheaply absorb Lumberjacking and still dominate the intended specializations.
+**Lumberjacking/axes — adopt stock UOR formula initially:** The ModernUO version examined in the September 18 research applies an axe damage modifier of approximately `Lumberjacking / 5` percent, up to a **+20 percentage-point damage modifier at 100.0** when UOR is active. Its additional historical GM-only +10 points appeared gated behind a later expansion in that inspected implementation; independently confirm in the pinned checkout. The modifier is additive with applicable damage modifiers, **not a promise of 20% final post-armor DPS**. Approve +20 at GM for launch; **do not** add the 2001 GM-only spike to +30 without separate approval. Smooth scaling is particularly important because Section 5 makes 95→100 a 50-period / 200-hour Mastery path and says 90–95 should already be viable. Verify the actual `WeaponType.Axe` classification of each approved axe; do not give the bonus to unrelated War Axe/mace types by name. A two-handed axe cannot simultaneously be used with a shield. Test whether tank mages can cheaply absorb Lumberjacking and still dominate the intended specializations.
 
 **Poison — retain weapon specialization; defer potentially systemic changes:** Retain eligible poisoned blades, skill-dependent application, poison tiers, normal on-hit delivery and tier-appropriate curing **as implemented and verified**. Preserve a meaningful equipment/resource cost and corrosion reduction for Poisoning if that mechanic actually exists; don't invent a new corrosion system. Audit *separately* poison spell potency, cure probabilities, poisoning damage and whether poison prevents bandage or magical healing. Do not automatically add enhanced mage Poison-spell scaling and healing denial as a package: both can strengthen tank mages as well as dexers. If stock UOR already applies healing denial, document that current behavior and require an owner choice before removing it; don't claim it is already disabled. PvP and PvM cure/heal regression cases are mandatory before any change. Do not make Poisoning a required skill for all competitive mages merely to make poison weapons attractive.
 
@@ -772,7 +772,7 @@ For a representative **Standard** skill trained efficiently with no temporary ga
 | 70.0 → 80.0 | Moderately fast | **2 hours** | **4.5 hours** |
 | 80.0 → 90.0 | Average | **3 hours** | **7.5 hours** |
 | 90.0 → 95.0 | Slow | **5 hours** | **12.5 hours** |
-| 95.0 → 100.0 | Mastery calendar | **14 active Mastery days** | calendar-gated |
+| 95.0 → 100.0 | Server-controlled Mastery periods | **50 four-hour periods / 200 hours** | calendar-gated |
 
 A "focused-training hour" means an hour using an appropriate gain-eligible training method at a reasonably efficient cadence with adequate resources, no temporary skill-gain bonus, no skill-cap blockage and no substantial idle time.
 
@@ -840,118 +840,40 @@ Mastery is **per skill**.
 
 Multiple skills at 95+ can accumulate Mastery time concurrently. A character with Swords, Tactics, Anatomy and Healing all at 95 should not have to complete four sequential 14-day calendars.
 
-#### Mastery active-day rule
+#### Server-controlled Mastery periods and banking
 
-Each skill begins its own rolling Mastery calendar when it first reaches **95.0**.
+At **95.0**, ordinary random gain stops and the skill enters Mastery. Every character uses the same
+server-wide UTC schedule; there are no login-relative timers, client clocks, timezone offsets or
+random period starts.
 
-The calendar is divided into consecutive **24-hour Mastery Periods** for that skill.
+- Each period is **4 hours**, closing at **00:00, 04:00, 08:00, 12:00, 16:00 and 20:00 UTC**.
+- Each completed eligible period deposits exactly **one +0.1 pending increment** for that skill.
+- A UTC calendar date is eligible after the character logs in once during that date. Completed
+  periods earlier in that same date are reconciled on login; dates with no login produce nothing.
+- Online characters are reconciled at the boundary. Offline characters reconcile the same fixed
+  period IDs at their next login, without duplication.
+- Pending balance is stored per character and skill, persists through logout, death, restart and
+  account saves, and is capped at **0.6** (six increments). Periods observed while the cap is full
+  are consumed without adding more balance, forcing active use before additional banking.
+- A normal, non-trivial, gain-eligible skill use at 95.0–99.9 consumes one pending increment and
+  grants exactly +0.1. Failed, trivial, invalid, locked, capped or anti-macro-blocked uses consume
+  nothing. Multiple increments may be consumed in one day.
+- Reaching 100.0 ends Mastery for that skill and discards unused pending increments.
 
-For each period:
-
-- if the character logs in at least once during that 24-hour period, the period is **Active**;
-- an Active period contributes the full **24 hours of Mastery Time** for that skill;
-- after the period has been activated, the character may log out and the period still counts in full;
-- if the character never logs in during that period, it contributes **0 Mastery Time**;
-- missed periods do not backfill later;
-- ordinary offline time in an unactivated period produces no Mastery progress;
-- a server save/restart must not lose whether a period was activated.
-
-This is deliberately a **daily-active trigger**, not a logged-in-playtime requirement.
-
-The player does not need to remain online for 24 hours. Logging in during the period is enough to activate that day's Mastery accrual.
-
-Do not use real-world midnight as the boundary. Use the skill's/server-authoritative rolling 24-hour Mastery Period so timezone and midnight-boundary gaming do not determine progression.
-
-#### Mastery Time accounting
-
-Internally, track **Mastery Time** rather than creating generic fixed-cost credits that can be hoarded at a cheap early rate.
-
-Each Active 24-hour period adds 24 hours to that skill's Mastery Time Bank.
-
-The next +0.1 gain consumes the amount of Mastery Time required by the character's **current skill bracket**.
-
-This prevents a player from sitting at 95.0, stockpiling cheap 95-level credits, and then spending them through 99–100.
-
-The UI may describe a matured increment as a **Mastery Credit** or **Mastery Opportunity**, but its cost is always determined by the current bracket when the gain is consumed.
-
-#### 14-active-day Mastery schedule
-
-The 50 increments from 95.0 to 100.0 must require exactly **336 Mastery Hours = 14 Active Mastery Days** if the character activates every consecutive 24-hour period.
-
-Use this launch schedule:
-
-| Skill range | Mastery Time required per +0.1 | Increments | Total Mastery Time |
-| --- | ---: | ---: | ---: |
-| 95.0 → 96.0 | **4 hours** | 10 | **40 hours** |
-| 96.0 → 97.0 | **5 hours** | 10 | **50 hours** |
-| 97.0 → 98.0 | **6 hours** | 10 | **60 hours** |
-| 98.0 → 99.0 | **8 hours** | 10 | **80 hours** |
-| 99.0 → 100.0 | **10 hours 36 minutes** | 10 | **106 hours** |
-| **Total** |  | **50** | **336 hours / 14 active days** |
-
-The interval intentionally increases as the player approaches GM.
-
-If the character misses a Mastery Period entirely, expected calendar completion moves back by one day for that missed period.
-
-#### Consuming a matured Mastery opportunity
-
-Having enough Mastery Time does **not** grant +0.1 automatically.
-
-The player must actually use the skill in a normal, gain-eligible way.
-
-Once the Mastery Time Bank contains enough time for the next +0.1:
-
-- each otherwise-valid eligible use has a **10% chance** to grant +0.1;
-- failed attempts do **not** consume Mastery Time;
-- failed attempts increment a per-opportunity attempt counter;
-- the **10th eligible attempt is guaranteed** to grant the +0.1 if the first nine did not;
-- on success, consume the bracket's required Mastery Time and reset that opportunity's attempt counter;
-- if enough Mastery Time remains for another +0.1, the next Mastery opportunity can begin immediately;
-- skill locks, 700 total cap, anti-macro rules and normal gain eligibility still apply;
-- a gain blocked by skill lock/cap/invalid difficulty consumes neither Mastery Time nor the opportunity;
-- invalid or trivial uses that would not normally be gain-eligible do not count toward the ten attempts.
-
-This keeps the final five points tied to actual skill use while bounding repetitive grind and resource cost.
-
-For crafting and consumable skills, every +0.1 Mastery gain therefore requires at most **10 legitimate eligible attempts**, not hundreds or thousands of resource-consuming attempts.
-
-#### Mastery banking
-
-Mastery Time may accumulate while the skill is waiting for the player to consume an opportunity.
-
-Do not require the player to log in exactly when a 4/5/6/8/10.6-hour interval matures.
-
-A returning player may therefore have enough banked Mastery Time for multiple +0.1 opportunities, but still must trigger each gain separately through eligible use and the 10%-with-10th-attempt-guarantee rule.
-
-Mastery Time:
-
-- belongs to that character and that specific skill;
-- cannot be traded or transferred;
-- persists through logout, death and restart;
-- is destroyed when the character is deleted;
-- cannot exceed what was legitimately earned from activated Mastery Periods;
-- cannot be earned before that skill reaches 95.0.
+The 95.0→100.0 path requires 50 increments / 200 elapsed hours: eight complete six-period days
+plus two periods on the final day. Multiple skills at 95+ accrue concurrently, each with its own
+pending balance and processed-period cursor.
 
 #### Temporary skill-gain bonuses at 95+
 
-Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the Mastery calendar or increase Mastery Time accrual**.
-
-The 14-active-day 95–100 gate remains intact.
-
-When a Mastery opportunity is mature, temporary gain bonuses may increase the normal **10% per-eligible-attempt trigger chance** by their existing relative/additive gain modifier, while the **10th eligible attempt remains guaranteed**.
-
-Examples:
-
-- base Mastery trigger: 10%;
-- +10% Pilgrimage Inspiration: 11% trigger chance;
-- +20% Greater Inspiration: 12% trigger chance;
-- temporary gain modifiers apply only when explicitly active and never shorten the Mastery calendar;
+Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the fixed
+four-hour periods or increase pending accrual**. They may not create extra pending increments.
 
 Do not allow bonuses to:
 
-- generate Mastery Time faster;
-- activate a missed 24-hour period;
-- reduce the bracket's Mastery Time cost;
+- generate pending Mastery increments faster;
+- activate a missed UTC date or period;
+- increase the 0.6 pending cap;
 - bypass the 95 threshold;
 - create more than +0.1 from one consumed opportunity.
 
@@ -964,17 +886,16 @@ When a skill first reaches 95.0, tell the player that ordinary gain has ended an
 Expose at least:
 
 - current skill value;
-- whether the current 24-hour Mastery Period is Active;
-- current Mastery Time Bank;
-- Mastery Time required for the next +0.1;
-- whether a Mastery opportunity is currently ready;
-- attempts used on the current ready opportunity (0–9 before guaranteed 10th);
-- approximate next period boundary / next available Mastery accrual information;
-- confirmation that missed inactive periods do not accrue.
+- the current UTC server time and next fixed four-hour boundary;
+- whether today's UTC date is qualified by login;
+- current pending balance out of 0.6;
+- current skill value and remaining +0.1 increments to 100.0;
+- confirmation that missed login dates do not accrue and that multiple increments may be consumed
+  in one day.
 
 Suggested player-facing explanation:
 
-> **At 95.0, this skill enters Mastery. Log this character in during each 24-hour Mastery Period to earn Mastery Time. When enough time is banked, use the skill normally for a chance to gain +0.1; the 10th eligible attempt is guaranteed. Grandmaster requires 14 active Mastery days from 95.0 if no periods are missed.**
+> **At 95.0, this skill enters Mastery. Log in during a UTC day to qualify its fixed four-hour periods. Each period banks +0.1 pending skill up to 0.6; use the skill normally to consume pending increments. Grandmaster requires 50 periods (200 hours) from 95.0.**
 
 #### Anti-exploit requirements
 
@@ -982,13 +903,13 @@ Prevent at minimum:
 
 - changing the client clock/timezone to alter Mastery periods;
 - reconnect spam activating more than one period;
-- save/restart duplicating Mastery Time;
+- save/restart duplicating pending increments or processed UTC periods;
 - character transfer or rename duplicating state;
-- skill decrease/re-raise to 95 duplicating already-earned Mastery Time;
-- lowering a skill to obtain cheaper bracket costs and then restoring it without correct accounting;
-- hoarding low-bracket generic credits and spending them at higher brackets;
-- trivial/non-gain-eligible action spam counting toward the 10-attempt guarantee;
-- multiple simultaneous attempts consuming one opportunity twice;
+- skill decrease/re-raise to 95 duplicating already-processed periods;
+- lowering and restoring a skill to duplicate processed periods or pending increments;
+- hoarding more than the six-increment pending cap;
+- trivial/non-gain-eligible action spam consuming pending increments;
+- multiple simultaneous attempts consuming one pending increment twice;
 - deleting/recreating characters transferring Mastery state.
 
 If a skill falls below 95 because of an approved game mechanic, preserve its earned Mastery state but suspend further Mastery accrual/consumption until the skill returns to 95 unless a separate loss policy is explicitly approved.
@@ -1002,11 +923,11 @@ Before final launch tuning:
 3. calibrate the Standard profile toward the canonical 1h / 1.5h / 2h / 3h / 5h bracket targets;
 4. verify Easy/Hard/VeryHard skills remain materially distinct before 95;
 5. verify 95.0 completely disables ordinary gain and enters Mastery;
-6. simulate 50 Mastery increments and confirm the configured schedule totals exactly 336 Mastery Hours;
-7. verify one login in an otherwise-offline Mastery Period activates the full period, while no login produces zero Mastery Time;
+6. simulate 50 Mastery increments and confirm the configured schedule totals exactly 200 elapsed hours;
+7. verify the six fixed UTC boundaries, login-date qualification, offline reconciliation and no duplicate period IDs;
 8. verify multiple 95+ skills accrue concurrently on the same character;
-9. measure resource consumption for crafting/consumable skills from 95→100 and confirm each increment requires no more than 10 eligible attempts;
-10. verify temporary gain bonuses affect only the matured-opportunity trigger chance, never the calendar gate.
+9. verify the 0.6 pending cap and multiple same-day consumption through valid skill uses;
+10. verify temporary gain bonuses do not affect period length or pending accrual.
 
 Do **not** attempt to recreate every historical anti-macro quirk.
 
@@ -4252,10 +4173,10 @@ At minimum, make likely-to-change shard policies configurable:
 - pre-95 range-based gain curves for Easy / Standard / Hard / VeryHard profiles and documented per-skill overrides
 - Mastery threshold (`95.0`)
 - rolling Mastery Period duration (`24h`) and active-period trigger policy
-- Mastery Time costs per +0.1: 4h / 5h / 6h / 8h / 10h36m across 95–96 / 96–97 / 97–98 / 98–99 / 99–100
-- Mastery active-calendar target (`336h / 14 active days`)
+- Mastery period length (`4h` UTC) and award (`+0.1` per completed period)
+- Mastery path target (`50 periods / 200 elapsed hours`)
 - Mastery eligible-attempt base chance (`10%`) and guaranteed-attempt index (`10`)
-- Mastery Time banking/persistence/concurrency rules
+- Mastery pending-increment banking/persistence/concurrency rules
 - temporary gain-bonus behavior below 95 vs matured Mastery opportunities at 95+
 - starter-protection duration (launch default: 4 logged-in hours)
 - starter-issued gear/consumable economic restrictions
@@ -5140,18 +5061,18 @@ Verify:
 - crafting and Animal Taming do not accidentally inherit ordinary combat-skill pre-95 curves
 - normal random skill gain stops exactly at 95.0 and cannot advance a skill above 95
 - reaching 95 initializes persistent per-skill Mastery state exactly once
-- each skill uses rolling 24-hour Mastery Periods anchored server-side rather than local midnight/client time
+- each skill uses the same fixed four-hour UTC periods anchored to the server epoch
 - a login during a period marks it Active and awards that full period's 24 Mastery Hours even if the character subsequently logs out
 - a 24-hour period with no login awards 0 Mastery Hours and cannot be backfilled
-- multiple skills at 95+ accrue Mastery Time concurrently on the same character
-- 95→96 costs 4h per +0.1, 96→97 costs 5h, 97→98 costs 6h, 98→99 costs 8h and 99→100 costs 10h36m
-- exactly 50 Mastery increments total 336 Mastery Hours / 14 Active Mastery Days from 95.0 to 100.0
-- cheap earlier-bracket Mastery Time cannot be converted into fixed generic credits that bypass higher-bracket costs
+- multiple skills at 95+ accrue pending increments concurrently on the same character
+- each completed qualified period deposits exactly one +0.1 pending increment
+- exactly 50 Mastery increments / 200 elapsed hours are required from 95.0 to 100.0
+- pending balance is capped at 0.6 per skill and must be consumed through valid uses
 - a matured Mastery opportunity has a 10% chance per eligible use and succeeds automatically on the 10th eligible attempt if not earlier
-- failed eligible attempts do not consume Mastery Time; successful +0.1 consumes exactly the current bracket cost
+- valid non-trivial skill uses consume one pending +0.1; invalid/trivial/blocked uses consume nothing
 - invalid/trivial/blocked uses do not count toward the 10-attempt guarantee
 - Mastery survives logout/death/restart without duplication
-- Pilgrimage Inspiration does not shorten Mastery Periods, accelerate Mastery Time accrual or reduce Mastery Time cost
+- temporary gain bonuses do not shorten four-hour periods, increase pending accrual or raise the pending cap
 - temporary gain bonuses only modify the matured Mastery-opportunity trigger chance at 95+; the 10th attempt remains guaranteed
 - representative Easy/Standard/Hard/VeryHard pre-95 milestone times remain in the intended order after temporary bonuses
 - blessed runebooks survive death and retain normal UOR travel requirements
@@ -5949,8 +5870,8 @@ RP Guestbook Reporting: player reports to staff queue / retrospective moderation
 Standard Skill Targets: 1h to 50 / 2.5h to 70 / 4.5h to 80 / 7.5h to 90 / 12.5h to 95  
 Mastery Threshold: 95.0  
 Mastery Period: rolling 24 hours per skill; login once activates full period  
-Mastery Schedule: 4h / 5h / 6h / 8h / 10h36m per +0.1 across 95–96 / 96–97 / 97–98 / 98–99 / 99–100  
-Mastery Total: 336 active hours / 14 active days  
+Mastery Schedule: +0.1 pending per completed four-hour UTC period
+Mastery Total: 50 periods / 200 elapsed hours
 Mastery Trigger: 10% per eligible attempt; guaranteed on 10th eligible attempt  
 Stat Cap: 225  
 House Limit: 1/account  
@@ -6400,11 +6321,11 @@ The following are **settled launch rules** and should not be silently weakened:
 - historically difficult skills retain distinct slower pre-95 curves; temporary gain bonuses modify each skill's own baseline instead of normalizing it
 - normal random skill gain stops at 95.0; 95.0–100.0 uses the Mastery system
 - Mastery is per skill and multiple 95+ skills accrue concurrently
-- each skill uses rolling 24-hour Mastery Periods; logging in once during the period activates the full 24 hours, while a period with no login grants no Mastery Time
-- Mastery Time cost per +0.1 is 4h at 95–96, 5h at 96–97, 6h at 97–98, 8h at 98–99 and 10h36m at 99–100
-- 95.0→100.0 requires exactly 336 activated Mastery Hours / 14 Active Mastery Days if no periods are missed
+- each skill uses the same fixed four-hour UTC periods; a login qualifies that UTC date and missed login dates grant nothing
+- each completed qualified period banks exactly +0.1 pending skill, up to a 0.6 cap
+- 95.0→100.0 requires exactly 50 period awards / 200 elapsed hours if no qualified periods are missed
 - each matured Mastery opportunity has a 10% chance per eligible attempt and is guaranteed on the 10th eligible attempt
-- failed attempts do not consume Mastery Time and invalid/blocked uses do not count toward the ten-attempt guarantee
+- valid uses consume one pending increment; invalid, trivial or blocked uses consume nothing
 - temporary skill-gain bonuses do not shorten the Mastery calendar; at 95+ they modify only the matured-opportunity trigger chance
 - issued starter equipment receives 4 hours of logged-in Starter Protection
 - starter-issued gear is Standard/vendor quality and cannot be directly sold, player-vendored, salvaged into economic value or used for BODs
@@ -6471,10 +6392,9 @@ Owner approval is required before changing:
 - reclassifying historically difficult skills into an ordinary/easy profile without explicit design approval
 - changing the settled Standard pre-95 milestone targets (1h/2.5h/4.5h/7.5h/12.5h cumulative to 50/70/80/90/95) beyond minor calibration necessary to hit those targets
 - changing the 95.0 Mastery threshold
-- changing the 14-active-day / 336-hour Mastery total
-- changing the 4h/5h/6h/8h/10h36m per-0.1 Mastery schedule
+- changing the 4-hour UTC period / +0.1 pending schedule or 0.6 cap
 - changing the 10% Mastery trigger chance or guaranteed 10th eligible attempt
-- allowing temporary skill-gain bonuses to accelerate Mastery Time/calendar accrual
+- allowing temporary skill-gain bonuses to accelerate period accrual or increase the pending cap
 - final Easy/Hard/VeryHard pre-95 calibration scalars after testing
 - Power Hour
 - stat-gain speed
@@ -6597,11 +6517,13 @@ The Standard profile measures approximately 1 hour to 50, 2.5 cumulative hours t
 
 Normal random skill gain cannot raise an enabled skill above 95.0.
 
-Every 95+ skill uses persistent per-skill Mastery state with rolling 24-hour periods; one login activates the whole period, no-login periods award nothing, and multiple skills accrue concurrently.
+Every 95+ skill uses persistent per-skill Mastery state with the same fixed four-hour UTC periods; a
+login qualifies that UTC date, offline periods reconcile on login, and multiple skills accrue
+concurrently.
 
-The Mastery schedule consumes 4h / 5h / 6h / 8h / 10h36m per +0.1 across the five mastery bands and totals exactly 336 Active Mastery Hours / 14 active days from 95.0 to 100.0.
-
-A matured Mastery opportunity succeeds at 10% per otherwise-eligible use and is guaranteed on the 10th eligible attempt; failed attempts do not consume Mastery Time.
+Each completed qualified period deposits +0.1 pending skill, capped at 0.6. The 50 increments from
+95.0 to 100.0 therefore require 200 elapsed hours, and valid uses may consume multiple increments
+in one day.
 
 Temporary skill-gain bonuses preserve distinct pre-95 difficulty curves and do not shorten Mastery calendar time at 95+.
 
@@ -6775,7 +6697,7 @@ Produce an initial report containing:
 32. Current travel hooks required to block Recall/Gate/moongate/custom teleport while Pilgrimage is active without affecting ordinary travel.
 33. Current skill-gain modifier infrastructure suitable for ready-to-activate +10%/+20% temporary Pilgrimage Inspiration.
 34. Current skill-gain entry points needed to hard-stop ordinary gains at 95.0 and route 95+ gains through a per-skill Mastery service.
-35. Current character/account persistence and server-time facilities suitable for rolling 24-hour per-skill Mastery Periods, Active-period flags, Mastery Time banks and attempt counters.
+35. Current character/account persistence and server-time facilities suitable for fixed four-hour UTC per-skill Mastery periods, qualified login dates, pending increments and processed-period cursors.
 36. Current gain-eligibility checks suitable for ensuring only otherwise-valid skill uses count toward the Mastery 10% roll / guaranteed 10th eligible attempt.
 37. Current ModernUO/UOContent skill-gain logic and any UOR/T2A-era per-skill distinctions needed to classify all enabled launch skills into Easy / Standard / Hard / VeryHard or explicit override profiles.
 38. Representative historical/current milestone-time baselines for easy versus difficult skills so shard acceleration can preserve relative difficulty rather than flatten it.

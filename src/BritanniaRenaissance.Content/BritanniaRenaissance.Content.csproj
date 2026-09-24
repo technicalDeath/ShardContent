@@ -17,6 +17,10 @@
       <HintPath>$(ModernUOPath)\Distribution\Assemblies\Logger.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UOContent">
+      <HintPath>$(ModernUOPath)\Distribution\Assemblies\UOContent.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <Target Name="DeployShardContentAssembly" AfterTargets="Build">

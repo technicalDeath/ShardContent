@@ -61,6 +61,29 @@ item properties, or cross-system combat tuning.
 | Shields and Parrying | `Items/Shields/BaseShield.cs`; `Items/Weapons/BaseWeapon.cs`; `Items/Armor/BaseArmor.cs` | A shield equipped in the two-handed layer scales its AR by the holder's Parrying skill. In the pre-AoS absorption branch, a successful shield Parry reduces melee damage by half shield AR and Archery damage by full shield AR; shield durability may wear. Armor continues to absorb and wear through its own path. | Retain | Shield defense requires an equipped shield; two-handed weapons cannot use it at the same time. | `ClassicCombatIdentityTests.UorShieldParrying_ScalesShieldArmorAndRequiresAShield`; manual block/durability matrix required below. |
 | Archery | `Items/Weapons/Ranged/{BaseRanged,Bow,Crossbow,HeavyCrossbow}.cs`; `Items/Weapons/BaseWeapon.cs` | Pre-AoS ranged attacks use a Dex-scaled stationary delay in both PvM and PvP: 1.0s at 25 Dex or below, 0.5s at 100 Dex or above, rounded to 50ms steps. They retain each weapon's old damage/speed/range profile, consume arrows or bolts when fired, and use ordinary hit checks and two-handed equipment requirements. Bow/crossbow/heavy-crossbow profiles are respectively 9–41/20/10, 8–43/18/8, and 11–56/10/8 (damage/speed/range). | Approved hybrid compatibility change | Archery keeps range, ammo, cadence, and positioning as its differentiators; only the stationary timing curve is adjusted toward the selected Outlands interaction. No damage delay, setup bonus, custom special, or crossbow hand change is enabled. | `ClassicCombatIdentityTests.UorRangedWeapons_PreserveClassicProfilesAndConsumeTheirAmmo`; `UorRangedStationaryDelay_ScalesWithDexInPvmAndPvp`; `UorRangedMovementAttempt_DoesNotAdvanceTheSwingAnchor`. |
 
+## Alpha 1 Mastery progression
+
+Mastery is a shard-owned progression layer implemented in `ShardContent` with one narrow
+ModernUO gain-override hook. Ordinary stock skill checks and gain factors remain unchanged below
+95.0; the hook suppresses stock gains at 95.0+ and lets the shard consume pending increments.
+
+| Rule | Source/implementation | Decision | Player-visible behavior | Coverage |
+| --- | --- | --- | --- | --- |
+| Threshold | `ShardContent/src/BritanniaRenaissance.Content/MasteryProgression.cs` | Retain: ordinary gain stops at 95.0; Mastery ends at 100.0. | A skill enters Mastery at 95.0 and cannot advance through ordinary random gains. | Engine gain-override regression; live skill-use check. |
+| Global schedule | Same path; `GetPeriodId` uses `DateTime.UnixEpoch` and four-hour UTC periods. | Retain: boundaries are 00:00, 04:00, 08:00, 12:00, 16:00 and 20:00 UTC for every player. | `[MasteryStatus` reports server UTC time and the next shared boundary. | `MasteryPeriodScheduleTests`. |
+| Login qualification | Per-character persisted UTC day set in the account tag state. | Retain: one login qualifies that UTC date; dates with no login produce nothing. | The status command reports whether today is qualified. | Login/reconciliation integration matrix. |
+| Offline reconciliation | Per-skill processed-period cursor and persisted qualified dates. | Retain: offline completed periods reconcile once at login; period IDs cannot duplicate. | Login reports reconciled pending skill. | Restart, logout/reconnect and missed-date tests. |
+| Pending award | One fixed-point tenth per completed qualified period. | Retain: 0.1 increments only; no random chance, bracket cost, or one-award-per-day throttle. | Online players receive a period-award message and can consume multiple increments in one day. | Pending increment and same-day consumption tests. |
+| Pending cap | Six tenths per skill. | Retain: cap is 0.6, and full-bank periods are consumed without adding more. | Players must use pending points before later periods can bank additional points. | Cap and overflow tests. |
+| Valid consumption | ModernUO hook runs after region and anti-macro eligibility checks. | Retain: a valid non-trivial use at 95.0–99.9 consumes one pending tenth and grants +0.1; invalid, trivial, locked, capped or blocked uses consume nothing. | Multiple eligible uses can advance the skill on the same day. | Gain-override and skill-use tests. |
+| Completion | 50 increments from 95.0 to 100.0. | Retain: 200 elapsed hours, eight complete six-period days plus two periods on the final day. | The last day has only the remaining two awards. | Schedule simulation and final-period tests. |
+
+The persisted state is character-specific and stored through the account save layer under a serial-keyed
+shard tag. It includes qualified UTC dates, each skill's pending tenths and the last processed period
+ID. The state survives logout, death, restart and save/load; unused pending tenths are discarded at
+100.0. Temporary gain bonuses, anti-macro configuration, combat rules and deferred Alpha 2/3 systems
+do not change period length, award size or the 0.6 cap.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,
@@ -136,3 +159,21 @@ custom Archery specials remain intentionally excluded.
 - The headless client emitted state/world-file permission warnings for its default `C:\tmp`
   paths; these are workstation-local telemetry paths and do not affect login, world entry, or
   shard behavior. The custom command and log files under `work/` were healthy.
+
+### Mastery implementation verification
+
+- `ModernUO` `Application.csproj` and `ShardContent` content assembly build with
+  `--maxcpucount:1`, `UseSharedCompilation=false`, 0 compiler warnings and 0 errors.
+- `UOContent.Tests` focused `SkillEventsTests`: **5 passed, 0 failed**.
+- `ShardContent` `BritanniaRenaissance.Content.Tests`: **6 passed, 0 failed**. NuGet vulnerability
+  metadata was unavailable in the restricted environment (`NU1900`); package restore used the
+  existing local cache.
+- The online Mastery sweep is boundary-driven: the ten-second observer returns without scanning
+  players until a completed UTC period changes, then reconciles online characters in bounded
+  main-loop batches (64 players or approximately 2 ms per tick). It never mutates player or
+  account state from a background thread. Long offline catch-up counts qualified UTC dates up to
+  the six-tenth pending cap and advances the processed-period cursor directly instead of walking
+  every missed four-hour period. Account tags are written only when Mastery state changes.
+- After deployment with the server stopped, the restarted runtime loaded the shard assembly,
+  validated UOR/Felucca and the existing era gates, and listened on `127.0.0.1:2593` and
+  `127.0.0.1:12000` at the final verification restart. The server remains running for client testing.
