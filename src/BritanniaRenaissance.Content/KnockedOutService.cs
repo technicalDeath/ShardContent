@@ -130,6 +130,30 @@ public static class KnockedOutService
         return until.ToUniversalTime();
     }
 
+    public static bool Recover(PlayerMobile player)
+    {
+        if (player.Account is not Account account)
+        {
+            return false;
+        }
+
+        var wasKnockedOut = GetUntilUtc(player) is not null;
+        account.RemoveTag(UntilPrefix + SerialKey(player));
+        account.RemoveTag(AttackerPrefix + SerialKey(player));
+
+        if (wasKnockedOut)
+        {
+            player.Hits = Math.Max(player.Hits, 1);
+            player.Warmode = false;
+            player.Combatant = null;
+            player.Target = null;
+            player.SendMessage("A staff member has recovered you from Knocked Out.");
+            ShardAuditLog.Record("knocked-out", "staff-recovered", player);
+        }
+
+        return wasKnockedOut;
+    }
+
     public static IEnumerable<string> DescribeStatus(Mobile mobile)
     {
         yield return $"Knocked Out enabled: {Enabled}.";

@@ -14,6 +14,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("MurderStatus", AccessLevel.Administrator, OnMurderStatus);
         CommandSystem.Register("TheftStatus", AccessLevel.Administrator, OnTheftStatus);
         CommandSystem.Register("KnockedOutStatus", AccessLevel.Administrator, OnKnockedOutStatus);
+        CommandSystem.Register("KnockedOutRecover", AccessLevel.Administrator, OnKnockedOutRecover);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
@@ -65,6 +66,30 @@ public static class ShardRulesCommands
         {
             e.Mobile.SendMessage(line);
         }
+    }
+
+    [Usage("KnockedOutRecover [serial]")]
+    [Description("Recovers a player from the Knocked Out state.")]
+    private static void OnKnockedOutRecover(CommandEventArgs e)
+    {
+        PlayerMobile? target = e.Mobile as PlayerMobile;
+
+        if (e.Length > 0)
+        {
+            target = World.FindMobile((Serial)e.GetUInt32(0)) as PlayerMobile;
+        }
+
+        if (target is null)
+        {
+            e.Mobile.SendMessage("Specify a player serial or use this command while possessing a player body.");
+            return;
+        }
+
+        e.Mobile.SendMessage(
+            KnockedOutService.Recover(target)
+                ? $"Recovered {target.Name} from Knocked Out."
+                : $"{target.Name} is not currently Knocked Out."
+        );
     }
 
     [Usage("ShardRulesStatus")]
