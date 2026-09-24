@@ -99,7 +99,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
 6. Add the observability needed to support the rules.
    - Log hostility decisions, encounter classification, murder adjudication, theft/Ward activity and corpse-transfer enforcement with stable character/account identifiers.
    - Provide staff inspection and recovery tools before public enablement.
-   - Current implementation status: `ShardAuditLog` records stable subject/other serial and account identifiers for Intent toggles, encounter classification, denied hostility, murder adjudication, Backpack Ward/corpse enforcement, and Knocked Out transitions; `[IntentStatus`, `[MurderStatus`, `[TheftStatus`, `[KnockedOutStatus`, `[KnockedOutRecover`, and `[ShardRulesStatus` provide staff/player inspection and recovery. Live dispute rehearsal remains gated work.
+   - Current implementation status: `ShardAuditLog` records stable subject/other serial and account identifiers for Intent toggles, encounter classification, denied hostility, murder adjudication, Backpack Ward/corpse enforcement, and Knocked Out transitions; `[IntentStatus`, `[MurderStatus`, `[MurderMigrationAudit`, `[TheftStatus`, `[KnockedOutStatus`, `[KnockedOutRecover`, and `[ShardRulesStatus` provide staff/player inspection and recovery. Live dispute rehearsal remains gated work.
 
 ### Exit criteria
 

@@ -12,6 +12,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("Intent", AccessLevel.Player, OnIntent);
         CommandSystem.Register("IntentStatus", AccessLevel.Player, OnIntentStatus);
         CommandSystem.Register("MurderStatus", AccessLevel.Administrator, OnMurderStatus);
+        CommandSystem.Register("MurderMigrationAudit", AccessLevel.Administrator, OnMurderMigrationAudit);
         CommandSystem.Register("TheftStatus", AccessLevel.Administrator, OnTheftStatus);
         CommandSystem.Register("KnockedOutStatus", AccessLevel.Administrator, OnKnockedOutStatus);
         CommandSystem.Register("KnockedOutRecover", AccessLevel.Administrator, OnKnockedOutRecover);
@@ -43,6 +44,16 @@ public static class ShardRulesCommands
     private static void OnMurderStatus(CommandEventArgs e)
     {
         foreach (var line in MurderAdjudicationService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("MurderMigrationAudit")]
+    [Description("Audits legacy and custom murder state without changing it.")]
+    private static void OnMurderMigrationAudit(CommandEventArgs e)
+    {
+        foreach (var line in MurderAdjudicationService.DescribeMigrationAudit())
         {
             e.Mobile.SendMessage(line);
         }

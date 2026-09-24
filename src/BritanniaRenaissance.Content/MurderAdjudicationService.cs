@@ -152,6 +152,45 @@ public static class MurderAdjudicationService
         yield return $"Legacy murder reporting enabled: {PlayerMurderSystem.LegacyReportingEnabled}.";
     }
 
+    public static IEnumerable<string> DescribeMigrationAudit()
+    {
+        var players = 0;
+        var legacyThreshold = 0;
+        var customLedger = 0;
+        var customRed = 0;
+
+        foreach (var mobile in World.Mobiles.Values)
+        {
+            if (mobile is not PlayerMobile player)
+            {
+                continue;
+            }
+
+            players++;
+            if (player.Kills >= 5)
+            {
+                legacyThreshold++;
+            }
+
+            if (GetAutomaticCount(player) > 0)
+            {
+                customLedger++;
+            }
+
+            if (IsAutomaticallyRed(player))
+            {
+                customRed++;
+            }
+        }
+
+        yield return $"Migration audit UTC: {Core.Now:O}.";
+        yield return $"Player mobiles scanned: {players}.";
+        yield return $"Legacy Kills >= 5: {legacyThreshold}.";
+        yield return $"Custom murder ledgers present: {customLedger}; custom red currently active: {customRed}.";
+        yield return $"Legacy reporting enabled: {PlayerMurderSystem.LegacyReportingEnabled}; legacy threshold source enabled: {Mobile.LegacyMurdererCountsEnabled}.";
+        yield return "No migration mutation was performed.";
+    }
+
     /// <summary>
     /// Records one automatic count for a qualifying death. Calls are idempotent for a victim and
     /// death timestamp, which protects the event boundary from duplicate callbacks and replayed

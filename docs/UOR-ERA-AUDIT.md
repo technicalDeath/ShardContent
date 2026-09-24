@@ -131,8 +131,10 @@ behavior while the flag is false.
 `ShardAuditLog` records low-volume Alpha 2 decisions with stable character serial/account
 identifiers: Intent changes and encounter snapshots, denied safe-world hostility, automatic murder
 counts, Ward/corpse enforcement, and Knocked Out entry/recovery. The existing diagnostic commands,
-including administrator-only `[KnockedOutRecover`, provide the staff inspection/recovery surface;
-public enablement still requires migration rehearsal and complete encounter procedures.
+including administrator-only `[MurderMigrationAudit` and `[KnockedOutRecover`, provide the staff
+inspection/recovery surface; the migration audit is read-only and reports legacy threshold versus
+custom ledger state. Public enablement still requires migration rehearsal and complete encounter
+procedures.
 
 When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and short-term
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
