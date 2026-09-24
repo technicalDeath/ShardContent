@@ -274,7 +274,7 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
 
 - ModernUO `Application.csproj` completed with `--maxcpucount:1`, 0 warnings and 0 errors.
 - ShardContent compiled against that bundle with 0 warnings and 0 errors.
-- `BritanniaRenaissance.Content.Tests` passed **52/52**; the only output was the offline NuGet
+- `BritanniaRenaissance.Content.Tests` passed **56/56** at the current source revision; the only output was the offline NuGet
   vulnerability-metadata warning (`NU1900`).
 - The isolated server loaded the current `shard-rules.json`, reported `UOR / Felucca`, loaded
   385 regions and listened on `127.0.0.1:2594`.
