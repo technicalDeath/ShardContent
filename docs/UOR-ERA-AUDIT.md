@@ -203,7 +203,8 @@ the dungeon-region source hash was
 `cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d`. Ten dungeon names were
 marked UOR-era candidates (Covetous, Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun,
 Shame and Wrong). These are evidence for staff survey only: no radius, apron, or dungeon polygon
-was inferred and the checked-in Alpha 1 geometry remains empty.
+was inferred and the checked-in Alpha 1 geometry remains empty. The reproducible review exports
+are committed under `docs/generated/alpha2/` alongside their regeneration notes.
 
 The shard-rules validator permits explicit Alpha 2 flags only when their dependencies are declared
 and `alpha2EnablementAcknowledged` is explicitly true:

@@ -1,0 +1,447 @@
+{
+  "generatedUtc": "2026-09-24T06:21:25.6021633Z",
+  "source": "ModernUO/Distribution/Data/regions.json",
+  "sourceSha256": "cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d",
+  "purpose": "Review candidates only; this output is not a Cool-Dungeon configuration.",
+  "candidateCount": 18,
+  "candidates": [
+    {
+      "name": "Blighted Grove",
+      "uorEraCandidate": false,
+      "entrance": [
+        587,
+        1641,
+        -1
+      ],
+      "goLocation": [
+        6478,
+        863,
+        11
+      ],
+      "areas": [
+        {
+          "x1": 6440,
+          "y1": 820,
+          "x2": 6600,
+          "y2": 970
+        }
+      ]
+    },
+    {
+      "name": "Covetous",
+      "uorEraCandidate": true,
+      "entrance": [
+        2499,
+        916,
+        0
+      ],
+      "goLocation": [
+        5456,
+        1862,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5376,
+          "y1": 1793,
+          "x2": 5577,
+          "y2": 2048
+        },
+        {
+          "x1": 5576,
+          "y1": 1791,
+          "x2": 5633,
+          "y2": 2048
+        }
+      ]
+    },
+    {
+      "name": "Deceit",
+      "uorEraCandidate": true,
+      "entrance": [
+        4111,
+        429,
+        0
+      ],
+      "goLocation": [
+        5187,
+        635,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5122,
+          "y1": 518,
+          "x2": 5370,
+          "y2": 770
+        }
+      ]
+    },
+    {
+      "name": "Despise",
+      "uorEraCandidate": true,
+      "entrance": [
+        1296,
+        1082,
+        0
+      ],
+      "goLocation": [
+        5501,
+        570,
+        59
+      ],
+      "areas": [
+        {
+          "x1": 5377,
+          "y1": 516,
+          "x2": 5631,
+          "y2": 1022
+        }
+      ]
+    },
+    {
+      "name": "Destard",
+      "uorEraCandidate": true,
+      "entrance": [
+        1176,
+        2635,
+        0
+      ],
+      "goLocation": [
+        5243,
+        1004,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5120,
+          "y1": 770,
+          "x2": 5371,
+          "y2": 1028
+        }
+      ]
+    },
+    {
+      "name": "Fire",
+      "uorEraCandidate": true,
+      "entrance": [
+        2922,
+        3402,
+        0
+      ],
+      "goLocation": [
+        5760,
+        2908,
+        15
+      ],
+      "areas": [
+        {
+          "x1": 5635,
+          "y1": 1285,
+          "x2": 5880,
+          "y2": 1520
+        }
+      ]
+    },
+    {
+      "name": "Hythloth",
+      "uorEraCandidate": true,
+      "entrance": [
+        4722,
+        3814,
+        0
+      ],
+      "goLocation": [
+        5905,
+        22,
+        44
+      ],
+      "areas": [
+        {
+          "x1": 5898,
+          "y1": 2,
+          "x2": 6136,
+          "y2": 246
+        }
+      ]
+    },
+    {
+      "name": "Ice",
+      "uorEraCandidate": true,
+      "entrance": [
+        1996,
+        80,
+        0
+      ],
+      "goLocation": [
+        5210,
+        2322,
+        30
+      ],
+      "areas": [
+        {
+          "x1": 5668,
+          "y1": 130,
+          "x2": 5888,
+          "y2": 268
+        },
+        {
+          "x1": 5800,
+          "y1": 319,
+          "x2": 5863,
+          "y2": 384
+        },
+        {
+          "x1": 5654,
+          "y1": 300,
+          "x2": 5708,
+          "y2": 340
+        }
+      ]
+    },
+    {
+      "name": "Khaldun",
+      "uorEraCandidate": true,
+      "entrance": [
+        5882,
+        3819,
+        0
+      ],
+      "goLocation": [
+        5571,
+        1302,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5381,
+          "y1": 1284,
+          "x2": 5628,
+          "y2": 1509
+        }
+      ]
+    },
+    {
+      "name": "Misc Dungeons",
+      "uorEraCandidate": false,
+      "entrance": [
+        1492,
+        1641,
+        0
+      ],
+      "goLocation": [
+        6032,
+        1499,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5886,
+          "y1": 1281,
+          "x2": 6143,
+          "y2": 1535
+        }
+      ]
+    },
+    {
+      "name": "Orc Cave",
+      "uorEraCandidate": false,
+      "entrance": [
+        1014,
+        1434,
+        0
+      ],
+      "goLocation": [
+        5137,
+        2015,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5281,
+          "y1": 1283,
+          "x2": 5373,
+          "y2": 1386
+        },
+        {
+          "x1": 5267,
+          "y1": 1955,
+          "x2": 5364,
+          "y2": 2046
+        },
+        {
+          "x1": 5127,
+          "y1": 1941,
+          "x2": 5164,
+          "y2": 2024
+        }
+      ]
+    },
+    {
+      "name": "Sanctuary",
+      "uorEraCandidate": false,
+      "entrance": [
+        762,
+        1645,
+        0
+      ],
+      "goLocation": [
+        6174,
+        23,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 6144,
+          "y1": 0,
+          "x2": 6399,
+          "y2": 255
+        }
+      ]
+    },
+    {
+      "name": "Shame",
+      "uorEraCandidate": true,
+      "entrance": [
+        512,
+        1559,
+        0
+      ],
+      "goLocation": [
+        5395,
+        126,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5377,
+          "y1": 2,
+          "x2": 5634,
+          "y2": 262
+        },
+        {
+          "x1": 5635,
+          "y1": 2,
+          "x2": 5895,
+          "y2": 126
+        }
+      ]
+    },
+    {
+      "name": "Terathan Keep",
+      "uorEraCandidate": false,
+      "entrance": [
+        5426,
+        3120,
+        0
+      ],
+      "goLocation": [
+        5451,
+        3143,
+        -60
+      ],
+      "areas": [
+        {
+          "x1": 5404,
+          "y1": 3099,
+          "x2": 5481,
+          "y2": 3167
+        },
+        {
+          "x1": 5120,
+          "y1": 1530,
+          "x2": 5374,
+          "y2": 1788
+        }
+      ]
+    },
+    {
+      "name": "The Painted Caves",
+      "uorEraCandidate": false,
+      "entrance": [
+        1716,
+        892,
+        0
+      ],
+      "goLocation": [
+        6308,
+        892,
+        -1
+      ],
+      "areas": [
+        {
+          "x1": 6240,
+          "y1": 850,
+          "x2": 6315,
+          "y2": 920
+        }
+      ]
+    },
+    {
+      "name": "The Palace of Paroxysmus",
+      "uorEraCandidate": false,
+      "entrance": [
+        5574,
+        3024,
+        31
+      ],
+      "goLocation": [
+        6222,
+        335,
+        60
+      ],
+      "areas": [
+        {
+          "x1": 6191,
+          "y1": 311,
+          "x2": 6561,
+          "y2": 671
+        }
+      ]
+    },
+    {
+      "name": "The Prism of Light",
+      "uorEraCandidate": false,
+      "entrance": [
+        3784,
+        1097,
+        14
+      ],
+      "goLocation": [
+        6474,
+        188,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 6400,
+          "y1": 0,
+          "x2": 6621,
+          "y2": 255
+        }
+      ]
+    },
+    {
+      "name": "Wrong",
+      "uorEraCandidate": true,
+      "entrance": [
+        2042,
+        226,
+        0
+      ],
+      "goLocation": [
+        5825,
+        599,
+        0
+      ],
+      "areas": [
+        {
+          "x1": 5633,
+          "y1": 511,
+          "x2": 5886,
+          "y2": 1021
+        }
+      ]
+    }
+  ]
+}

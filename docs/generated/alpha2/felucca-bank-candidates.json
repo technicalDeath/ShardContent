@@ -1,0 +1,243 @@
+﻿{
+    "generatedUtc":  "2026-09-24T06:21:15.5483701Z",
+    "source":  "ModernUO/Distribution/Data/Spawns/shared/felucca/Vendors.json",
+    "sourceSha256":  "acc0d004ead4d81e681eefeae62e54dfb3fe8420c4067dc83a3fc3271c9bd31d",
+    "purpose":  "Review candidates only; this output is not a theft-region configuration.",
+    "candidateCount":  18,
+    "candidates":  [
+                       {
+                           "spawnerGuid":  "ff657041-f430-4a17-9995-279fdbb05ff1",
+                           "location":  [
+                                            5347,
+                                            76,
+                                            25
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "95195876-4c1c-422a-962e-31ce7ea8e3f8",
+                           "location":  [
+                                            2503,
+                                            552,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "d9af91c7-daae-47de-958d-0169069fabde",
+                           "location":  [
+                                            2881,
+                                            684,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "f439eb85-35d6-487c-884f-a7a71716748f",
+                           "location":  [
+                                            652,
+                                            820,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "43be54dd-c46c-4d7b-819e-a792890ff138",
+                           "location":  [
+                                            4471,
+                                            1156,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "64afa061-436e-4816-acc8-b4b932a2f31f",
+                           "location":  [
+                                            3764,
+                                            1317,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "59739d59-4955-4749-b91e-0dc56587d9d4",
+                           "location":  [
+                                            1650,
+                                            1608,
+                                            20
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "d3757ec1-febf-4562-9ae6-62181a418b8a",
+                           "location":  [
+                                            1425,
+                                            1690,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "017536ca-0a2b-45c1-90a2-e6279f1a2e79",
+                           "location":  [
+                                            587,
+                                            2146,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "5cc88170-da30-4eb5-a8c7-19e8f29caa86",
+                           "location":  [
+                                            3734,
+                                            2149,
+                                            20
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "13a55ac1-98b8-4c8e-ae53-5408dc9aa8bb",
+                           "location":  [
+                                            2731,
+                                            2192,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "99dbe037-b50c-43b1-b490-94940fbe4cf9",
+                           "location":  [
+                                            3695,
+                                            2511,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "5d2fdc26-5ecb-44f8-a59f-a04aa21f7f29",
+                           "location":  [
+                                            1897,
+                                            2684,
+                                            10
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "2ce77da7-68d6-4c82-a3f4-8fdc1161ab7f",
+                           "location":  [
+                                            1813,
+                                            2825,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "81f52dcd-ccb6-470c-a58a-9141b90be9c3",
+                           "location":  [
+                                            5669,
+                                            3131,
+                                            14
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "cfcb2873-b661-44a8-b500-8cab42fefcf1",
+                           "location":  [
+                                            2880,
+                                            3472,
+                                            15
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "cfc4ea82-efcb-455c-b01a-482e43313f65",
+                           "location":  [
+                                            1317,
+                                            3773,
+                                            0
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       },
+                       {
+                           "spawnerGuid":  "acbb59a0-32ac-4add-9b8b-479cf4be15a3",
+                           "location":  [
+                                            5275,
+                                            3977,
+                                            37
+                                        ],
+                           "bankerCount":  1,
+                           "sourceEntries":  [
+                                                 "Banker",
+                                                 "Minter"
+                                             ]
+                       }
+                   ]
+}
