@@ -399,7 +399,7 @@ synthetic Cool-Dungeon polygon.
 
 This proves the new external-assembly lifecycle bridge through a real client login and live status
 surface. Character-creation and death-event paths remain covered by the focused engine bridge tests
-and the 71/71 content suite; the full multi-character combat matrix is still required before public
+and the 72/72 content suite; the full multi-character combat matrix is still required before public
 enablement.
 
 ### Alpha 2 two-account SafeWorld rehearsal (2026-09-24)
