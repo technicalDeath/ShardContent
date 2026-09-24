@@ -32,6 +32,18 @@ public class MasteryPeriodScheduleTests
     }
 
     [Fact]
+    public void IntentBridgeInitializesAfterStockNotorietyHandlers()
+    {
+        var method = typeof(ShardBootstrap).GetMethod(nameof(ShardBootstrap.Initialize));
+        var attributes = method!.CustomAttributes
+            .Where(attribute => attribute.AttributeType.FullName == "Server.CallPriorityAttribute")
+            .ToArray();
+
+        var attribute = Assert.Single(attributes);
+        Assert.Equal(1000, (int)attribute.ConstructorArguments[0].Value!);
+    }
+
+    [Fact]
     public void MasteryPathUsesFiftyTenthsAcrossTwoHundredHours()
     {
         var periods = (int)(TimeSpan.FromHours(200).Ticks / MasteryProgression.PeriodLength.Ticks);
