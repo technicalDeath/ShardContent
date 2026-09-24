@@ -337,6 +337,10 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   observers close the external-assembly event-dispatch gap found during live staging: connected
   players now receive login reconciliation, character creation can issue the starter Ward, and
   player death reaches automatic murder adjudication without relying on generated event metadata.
+- The complete isolated ModernUO `Server.Tests` suite also passes **898/898** with **17**
+  environment-gated map tests skipped (915 total) against the same `075d7859...` revision. The
+  test run used the matching built `Distribution/Data` fixture set; no source or checked-in
+  runtime configuration was changed.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
   target requests are rejected while the state is active and the existing timer/expiry recovery
   path remains authoritative.
