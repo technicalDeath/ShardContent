@@ -18,6 +18,7 @@ public static class PvpIntentService
     private const string TagPrefix = "BritanniaRenaissance.PvpIntent.";
     private static readonly Dictionary<int, bool> IntentByCharacter = new();
     private static AllowHarmfulHandler? _stockAllowHarmful;
+    private static NotorietyHandler? _stockNotoriety;
     private static bool _configured;
 
     public static bool SafeWorldEnabled => ShardRulesConfiguration.Settings?.FeatureFlags.SafeWorld == true;
@@ -31,7 +32,9 @@ public static class PvpIntentService
 
         _configured = true;
         _stockAllowHarmful = Mobile.AllowHarmfulHandler;
+        _stockNotoriety = Notoriety.Handler;
         Mobile.AllowHarmfulHandler = AllowHarmful;
+        Notoriety.Handler = ComputeNotoriety;
     }
 
     public static bool IsIntentEnabled(PlayerMobile player)
@@ -97,6 +100,27 @@ public static class PvpIntentService
     {
         return targetIsCriminalOrMurderer || targetHasIntent || attackerHasIntent && targetHasIntent ||
                existingRetaliation;
+    }
+
+    public static int GetIntentNotoriety(bool intentEnabled, bool targetIsCriminal, bool targetIsMurderer,
+        int stockNotoriety) =>
+        intentEnabled && !targetIsCriminal && !targetIsMurderer ? Notoriety.CanBeAttacked : stockNotoriety;
+
+    private static int ComputeNotoriety(Mobile source, Mobile target)
+    {
+        var stockNotoriety = _stockNotoriety?.Invoke(source, target) ?? Notoriety.CanBeAttacked;
+
+        if (!SafeWorldEnabled || target is not PlayerMobile player)
+        {
+            return stockNotoriety;
+        }
+
+        return GetIntentNotoriety(
+            IsIntentEnabled(player),
+            player.Criminal,
+            player.Murderer,
+            stockNotoriety
+        );
     }
 
     private static bool AllowHarmful(Mobile from, Mobile target)

@@ -64,4 +64,22 @@ public class MasteryPeriodScheduleTests
             )
         );
     }
+
+    [Theory]
+    [InlineData(true, false, false, 1, 3)]
+    [InlineData(true, true, false, 1, 1)]
+    [InlineData(true, false, true, 6, 6)]
+    [InlineData(false, false, false, 6, 6)]
+    public void IntentUsesGreyNotorietyWithoutOverridingRealCrime(
+        bool intentEnabled,
+        bool targetIsCriminal,
+        bool targetIsMurderer,
+        int stockNotoriety,
+        int expected)
+    {
+        Assert.Equal(
+            expected,
+            PvpIntentService.GetIntentNotoriety(intentEnabled, targetIsCriminal, targetIsMurderer, stockNotoriety)
+        );
+    }
 }

@@ -97,6 +97,10 @@ relationship. Criminal/murderer players cannot change Intent, and safe-zone rest
 authoritative. Hot-zone regions, murder adjudication, encounter snapshots and Knocked Out remain
 separate Alpha 2 work and are not enabled by this slice.
 
+When enabled, the same service wraps the stock notoriety handler so an otherwise-blue Intent
+character is presented with the attackable/grey hue while genuine criminal or murderer status
+continues to take precedence. The wrapper is inert while SafeWorld is disabled.
+
 The next law-system boundary is `MurderAdjudicationService`. Its policy and account-tag ledger
 are implemented but remain disabled behind `featureFlags.automaticMurderAdjudication`; no
 `PlayerDeathEvent` hook is registered yet. The ledger classifies an ordinary-blue victim
