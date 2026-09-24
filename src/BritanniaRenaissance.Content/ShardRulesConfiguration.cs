@@ -108,8 +108,18 @@ public static class ShardRulesConfiguration
             errors.Add("knockedOut requires safeWorld and automaticMurderAdjudication.");
         }
 
-        ValidatePolygons(rules.TheftRegions.BankProtectionPolygons, "bankProtectionPolygons", errors);
-        ValidatePolygons(rules.TheftRegions.CoolDungeonPolygons, "coolDungeonPolygons", errors);
+        ValidatePolygons(
+            rules.TheftRegions.BankProtectionPolygons,
+            "bankProtectionPolygons",
+            rules.World.EnabledMaps,
+            errors
+        );
+        ValidatePolygons(
+            rules.TheftRegions.CoolDungeonPolygons,
+            "coolDungeonPolygons",
+            rules.World.EnabledMaps,
+            errors
+        );
 
         var alpha2Enabled = rules.FeatureFlags.SafeWorld || rules.FeatureFlags.AutomaticMurderAdjudication ||
                             rules.FeatureFlags.TheftProtection || rules.FeatureFlags.KnockedOut;
@@ -122,7 +132,10 @@ public static class ShardRulesConfiguration
     }
 
     private static void ValidatePolygons(
-        IEnumerable<TheftPolygonDefinition> polygons, string name, ICollection<string> errors
+        IEnumerable<TheftPolygonDefinition> polygons,
+        string name,
+        IReadOnlyCollection<string> enabledMaps,
+        ICollection<string> errors
     )
     {
         var index = 0;
@@ -131,6 +144,12 @@ public static class ShardRulesConfiguration
             if (string.IsNullOrWhiteSpace(polygon.Map) || polygon.Points.Count < 3)
             {
                 errors.Add($"theftRegions.{name}[{index}] must specify a map and at least three points.");
+            }
+            else if (!enabledMaps.Any(map => string.Equals(map, polygon.Map, StringComparison.OrdinalIgnoreCase)))
+            {
+                errors.Add(
+                    $"theftRegions.{name}[{index}] references map '{polygon.Map}', which is not enabled by world.enabledMaps."
+                );
             }
 
             index++;

@@ -46,6 +46,26 @@ public class ShardRulesConfigurationTests
         Assert.Contains(errors, error => error.Contains("bankProtectionPolygons", StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void TheftRegionsCannotReferenceDisabledMaps()
+    {
+        var rules = Baseline();
+        rules.TheftRegions.CoolDungeonPolygons.Add(new TheftPolygonDefinition
+        {
+            Map = "Trammel",
+            Points =
+            [
+                new TheftPoint { X = 1, Y = 1 },
+                new TheftPoint { X = 2, Y = 1 },
+                new TheftPoint { X = 2, Y = 2 }
+            ]
+        });
+
+        var errors = ShardRulesConfiguration.Validate(rules);
+
+        Assert.Contains(errors, error => error.Contains("not enabled", StringComparison.Ordinal));
+    }
+
     private static ShardRules Baseline() => new()
     {
         SchemaVersion = 1,
