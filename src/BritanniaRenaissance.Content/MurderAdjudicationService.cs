@@ -146,7 +146,10 @@ public static class MurderAdjudicationService
         {
             yield return $"Automatic counts: {GetAutomaticCount(player)}.";
             yield return $"Cumulative red until UTC: {GetRedUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
+            yield return $"Legacy Kills value: {player.Kills}; legacy red-count source enabled: {Mobile.LegacyMurdererCountsEnabled}.";
         }
+
+        yield return $"Legacy murder reporting enabled: {PlayerMurderSystem.LegacyReportingEnabled}.";
     }
 
     /// <summary>
