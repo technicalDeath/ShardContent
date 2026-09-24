@@ -321,6 +321,10 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   integration commit `1d3330a7517a1d290c363b370d754c38baba4e1a`; the live server was not stopped.
 - The complete isolated ModernUO `Server.Tests` suite passes **896/896** with **17** environment-gated
   map tests skipped (913 total) at the same integration commit.
+- A fresh matching worktree at `1d3330a7517a1d290c363b370d754c38baba4e1a` was rebuilt with
+  `--maxcpucount:1` (0 warnings, 0 errors), and `BritanniaRenaissance.Content.Tests` passed
+  **71/71** against that exact engine output. This closes the content-test evidence gap after
+  the targetability regression revision was published.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
   target requests are rejected while the state is active and the existing timer/expiry recovery
   path remains authoritative.
