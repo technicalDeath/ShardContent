@@ -185,6 +185,34 @@ public static class TheftProtectionService
     public static bool IsProtectionWindowActive(DateTime nowUtc, DateTime protectedUntilUtc) =>
         protectedUntilUtc.ToUniversalTime() > nowUtc.ToUniversalTime();
 
+    /// <summary>
+    /// Returns whether the offender-specific monster-corpse repeat ward is active for a lift.
+    /// Keeping the policy decision separate from the stock corpse callback makes the feature-gate
+    /// and expiry matrix testable without constructing a live world item or account.
+    /// </summary>
+    public static bool IsCorpseLootProtectionActive(
+        bool enabled,
+        bool hotZonesEnabled,
+        bool monsterCorpse,
+        bool criminalAction,
+        string? protectionMarker,
+        DateTime nowUtc
+    )
+    {
+        if (!enabled || hotZonesEnabled || !monsterCorpse || !criminalAction ||
+            !DateTime.TryParse(
+                protectionMarker,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind,
+                out var protectedUntil
+            ))
+        {
+            return false;
+        }
+
+        return IsProtectionWindowActive(nowUtc, protectedUntil);
+    }
+
     public static double AdditionalDetectionChance(int successfulUndetectedThefts) =>
         successfulUndetectedThefts switch
         {
@@ -309,12 +337,14 @@ public static class TheftProtectionService
         }
 
         var tag = LootProtectionTag(corpse, account);
-        if (!DateTime.TryParse(
+        if (!IsCorpseLootProtectionActive(
+                Enabled,
+                ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
+                corpse.OwnerWasBaseCreature == true,
+                corpse.IsCriminalAction(looter),
                 account.GetTag(tag),
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.RoundtripKind,
-                out var protectedUntil
-            ) || !IsProtectionWindowActive(Core.Now, protectedUntil))
+                Core.Now
+            ))
         {
             return true;
         }

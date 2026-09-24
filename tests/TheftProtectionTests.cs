@@ -45,6 +45,46 @@ public class TheftProtectionTests
     }
 
     [Theory]
+    [InlineData(false, false, true, true, "active", false)]
+    [InlineData(true, true, true, true, "active", false)]
+    [InlineData(true, false, false, true, "active", false)]
+    [InlineData(true, false, true, false, "active", false)]
+    [InlineData(true, false, true, true, "missing", false)]
+    [InlineData(true, false, true, true, "expired", false)]
+    [InlineData(true, false, true, true, "malformed", false)]
+    [InlineData(true, false, true, true, "active", true)]
+    public void CorpseRepeatWardRequiresAllPolicyPredicatesAndActiveMarker(
+        bool enabled,
+        bool hotZonesEnabled,
+        bool monsterCorpse,
+        bool criminalAction,
+        string markerKind,
+        bool expected
+    )
+    {
+        var now = new DateTime(2026, 9, 24, 12, 0, 0, DateTimeKind.Utc);
+        var marker = markerKind switch
+        {
+            "active" => now.AddMinutes(5).ToString("O", System.Globalization.CultureInfo.InvariantCulture),
+            "expired" => now.AddMinutes(-1).ToString("O", System.Globalization.CultureInfo.InvariantCulture),
+            "malformed" => "not-a-timestamp",
+            _ => null
+        };
+
+        Assert.Equal(
+            expected,
+            TheftProtectionService.IsCorpseLootProtectionActive(
+                enabled,
+                hotZonesEnabled,
+                monsterCorpse,
+                criminalAction,
+                marker,
+                now
+            )
+        );
+    }
+
+    [Theory]
     [InlineData(null, false)]
     [InlineData("", false)]
     [InlineData("0", false)]

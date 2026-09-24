@@ -353,7 +353,10 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   missing `Corpse.OnItemLifted` post-transfer observer, so ordinary drag/lift corpse looting arms
   the ten-minute repeat-protection entry just like context-menu use. `UOContent` builds cleanly
   in an isolated output directory; the focused `UOContent.Tests` hook test passes **1/1**, and
-  ShardContent focused coverage passes **78/78** against the matching source. The production
+  ShardContent focused coverage passes **86/86** against the matching source. The new
+  `TheftProtectionTests.CorpseRepeatWardRequiresAllPolicyPredicatesAndActiveMarker` matrix covers
+  the feature gate, Hot-Zone bypass, monster-corpse/criminal-action predicates, missing or malformed
+  markers, expiry, and an active repeat block. The production
   process was not stopped; this engine revision is queued for the next controlled deployment
   window.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
@@ -564,6 +567,22 @@ Raw evidence is retained in `work/Navrey-alpha2-ordinary/ordinary-log`,
 `work/Navrey-alpha2/noenc-admin-log`, `work/Navrey-alpha2-test/noenc-victim-log`, and the
 disposable staging host output.
 
+### Alpha 2 corpse-transfer policy and lift-hook regression (2026-09-24)
+
+The pinned ModernUO `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2` engine now invokes the external
+`Corpse.LootResolved` observer after both the stock context-menu item-use path and ordinary
+`OnItemLifted` drag/lift path. The isolated `UOContent.Tests` hook regression passes **1/1** and
+asserts one callback with the looter, corpse, and transferred item. This closes the engine-level
+observer gap that previously allowed ordinary drag looting to bypass the custom post-transfer
+ward.
+
+The ShardContent policy matrix passes **8/8** new cases (within **86/86** focused tests): only an
+enabled, non-Hot, unlawful lift from a monster corpse with an unexpired offender marker is blocked;
+player corpses, non-criminal actions, missing/malformed/expired markers, disabled Theft Protection,
+and Hot Zones remain allowed. This is automated policy and hook coverage; the two-account live
+first-transfer/repeat-transfer matrix and its concurrency/restart evidence remain required before
+public Knocked Out or murder enablement. Production was not stopped or changed.
+
 ### Alpha 2 Knocked Out save/restart persistence rehearsal (2026-09-24)
 
 The disposable all-feature host on `127.0.0.1:2594` was used for a bounded persistence check;
@@ -586,8 +605,8 @@ Raw evidence is retained in `work/alpha2-recovery-restart3.stdout`,
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery\victim-recovery-final-log`, and
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery\admin-recovery-final-log`.
 The staging host was stopped after the check (`2594` closed; production `2593` remained
-listening). Heal/cure denial and the full corpse/loot concurrency matrix are still unverified and
-remain separate gates.
+listening). The full corpse/loot concurrency matrix is still unverified and remains a separate
+gate.
 
 ### Alpha 2 production migration audit (2026-09-24)
 
@@ -638,8 +657,8 @@ observed while Knocked Out.
 The 90-second timer then expired naturally at `11:47:30`, and the victim received `You recover
 from being Knocked Out.` The immediately-following cure attempt was not treated as a recovery
 assertion because the staging character lacked cure reagents; it returned `More reagents are
-needed for this spell`. The natural-recovery transition itself is retained as evidence, while a
-post-recovery heal/cure success remains part of the broader reagent-equipped matrix.
+needed for this spell`. The natural-recovery transition itself is retained as evidence; the
+reagent-equipped cure follow-up is recorded below.
 
 Raw client evidence is retained in
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-heal\victim-log` and
