@@ -19,6 +19,7 @@
     "safeWorld": false,
     "automaticMurderAdjudication": false,
     "theftProtection": false,
+    "knockedOut": false,
     "hotZones": false,
     "coolZones": false,
     "housingGeography": false,

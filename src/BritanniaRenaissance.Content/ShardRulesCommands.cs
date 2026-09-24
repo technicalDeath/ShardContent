@@ -13,6 +13,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("IntentStatus", AccessLevel.Player, OnIntentStatus);
         CommandSystem.Register("MurderStatus", AccessLevel.Administrator, OnMurderStatus);
         CommandSystem.Register("TheftStatus", AccessLevel.Administrator, OnTheftStatus);
+        CommandSystem.Register("KnockedOutStatus", AccessLevel.Administrator, OnKnockedOutStatus);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
@@ -51,6 +52,16 @@ public static class ShardRulesCommands
     private static void OnTheftStatus(CommandEventArgs e)
     {
         foreach (var line in TheftProtectionService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("KnockedOutStatus")]
+    [Description("Displays Knocked Out state and deferred resolution restrictions.")]
+    private static void OnKnockedOutStatus(CommandEventArgs e)
+    {
+        foreach (var line in KnockedOutService.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

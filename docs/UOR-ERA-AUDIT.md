@@ -100,6 +100,15 @@ attacker account tag layer and restored after logout/restart; it expires with th
 two-minute encounter window. Hot-zone regions and Knocked Out remain separate Alpha 2 work and
 are not enabled by this slice.
 
+`KnockedOutService` now provides the gated resolution boundary for the next Alpha 2 slice. When
+enabled with SafeWorld, a qualifying ordinary-blue player intercepted at lethal damage is persisted
+for 90 seconds, has combat and targeting cleared, and is protected from additional damage. The
+ModernUO fork exposes only the narrow lethal-damage and damageability delegates required by this
+service (`Mobile.LethalDamageHandler` and `Mobile.CanBeDamagedHandler`, fork revision
+`8dcbd1c4081771bd1b399f7565760ade3340e0ba`). `[KnockedOutStatus` is staff-only. Encounter-authorized no-skill looting, execution,
+Hot/Cool resolution, migration rehearsal, and public enablement remain deferred until the full
+Alpha 2 matrix and region policy are implemented.
+
 When enabled, the same service wraps the stock notoriety handler so an otherwise-blue Intent
 character is presented with the attackable/grey hue while genuine criminal or murderer status
 continues to take precedence. The wrapper is inert while SafeWorld is disabled.

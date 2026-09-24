@@ -14,6 +14,7 @@ public static class ShardBootstrap
         MasteryProgression.Configure();
         MurderAdjudicationService.Configure();
         TheftProtectionService.Configure();
+        KnockedOutService.Configure();
     }
 
     public static void Initialize() => PvpIntentService.Configure();

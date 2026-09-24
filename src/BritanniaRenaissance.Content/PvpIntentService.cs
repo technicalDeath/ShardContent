@@ -172,6 +172,11 @@ public static class PvpIntentService
 
     private static bool AllowHarmful(Mobile from, Mobile target)
     {
+        if (KnockedOutService.IsKnockedOut(target))
+        {
+            return false;
+        }
+
         if (!SafeWorldEnabled || from is not PlayerMobile attacker || target is not PlayerMobile defender ||
             attacker == defender)
         {
