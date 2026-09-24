@@ -31,6 +31,34 @@ public class KnockedOutTests
     }
 
     [Theory]
+    [InlineData(false, true, true, false, true, true, false, "feature-disabled")]
+    [InlineData(true, true, true, false, false, true, false, "damage-not-attributable-to-player")]
+    [InlineData(true, true, true, false, true, false, false, "missing-active-encounter")]
+    [InlineData(true, true, true, false, true, true, true, "ordinary-blue-player-encounter")]
+    public void LethalDamageRequiresAttributablePlayerEncounter(
+        bool featureEnabled,
+        bool player,
+        bool ordinaryBlue,
+        bool hotZone,
+        bool attributablePlayerDamage,
+        bool activeEncounter,
+        bool qualifies,
+        string reason)
+    {
+        var decision = KnockedOutService.ClassifyDamage(
+            featureEnabled,
+            player,
+            ordinaryBlue,
+            hotZone,
+            attributablePlayerDamage,
+            activeEncounter
+        );
+
+        Assert.Equal(qualifies, decision.Qualifies);
+        Assert.Equal(reason, decision.Reason);
+    }
+
+    [Theory]
     [InlineData(false, false, true, true, false, "feature-disabled")]
     [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
     [InlineData(true, true, true, false, true, "hot-zone-red-looting")]

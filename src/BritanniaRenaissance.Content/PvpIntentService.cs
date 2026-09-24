@@ -113,18 +113,14 @@ public static class PvpIntentService
     public static bool WasIntentClassified(PlayerMobile killer, PlayerMobile victim)
     {
         var key = new EncounterKey(killer, victim);
-        if (Encounters.TryGetValue(key, out var snapshot))
-        {
-            return snapshot.ExpiresUtc > Core.Now && snapshot.VictimWasIntentClassified;
-        }
+        return TryGetActiveEncounter(killer, victim, key, out var snapshot) && snapshot.VictimWasIntentClassified;
+    }
 
-        if (LoadEncounterSnapshot(killer, victim, out snapshot) && snapshot.ExpiresUtc > Core.Now)
-        {
-            Encounters[key] = snapshot;
-            return snapshot.VictimWasIntentClassified;
-        }
-
-        return false;
+    /// <summary>Returns whether a target-specific direct encounter is still active.</summary>
+    public static bool HasActiveEncounter(PlayerMobile attacker, PlayerMobile victim)
+    {
+        var key = new EncounterKey(attacker, victim);
+        return TryGetActiveEncounter(attacker, victim, key, out _);
     }
 
     private static void CaptureEncounter(AggressiveActionEventArgs e)
@@ -370,6 +366,27 @@ public static class PvpIntentService
 
         snapshot = new EncounterSnapshot(parts[0] == "1", expiresUtc.ToUniversalTime());
         return true;
+    }
+
+    private static bool TryGetActiveEncounter(
+        PlayerMobile attacker,
+        PlayerMobile defender,
+        EncounterKey key,
+        out EncounterSnapshot snapshot)
+    {
+        if (Encounters.TryGetValue(key, out snapshot))
+        {
+            return snapshot.ExpiresUtc > Core.Now;
+        }
+
+        if (LoadEncounterSnapshot(attacker, defender, out snapshot) && snapshot.ExpiresUtc > Core.Now)
+        {
+            Encounters[key] = snapshot;
+            return true;
+        }
+
+        snapshot = default;
+        return false;
     }
 
     private static string EncounterTag(PlayerMobile attacker, PlayerMobile defender) =>

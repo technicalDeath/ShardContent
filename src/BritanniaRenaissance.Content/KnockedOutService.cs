@@ -53,11 +53,17 @@ public static class KnockedOutService
             return false;
         }
 
-        var decision = Classify(
+        var responsibleAttacker = ResolvePlayerAttacker(from);
+        var hasActiveEncounter = responsibleAttacker is not null &&
+                                 (!PvpIntentService.SafeWorldEnabled ||
+                                  PvpIntentService.HasActiveEncounter(responsibleAttacker, player));
+        var decision = ClassifyDamage(
             Enabled,
             player: true,
             ordinaryBlue: IsQualifyingVictim(player),
-            hotZone: ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true
+            hotZone: ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
+            attributablePlayerDamage: responsibleAttacker is not null,
+            activeEncounter: hasActiveEncounter
         );
 
         if (!decision.Qualifies)
@@ -65,7 +71,6 @@ public static class KnockedOutService
             return false;
         }
 
-        var responsibleAttacker = ResolvePlayerAttacker(from);
         var until = Core.Now.ToUniversalTime().Add(Duration);
         if (player.Account is Account account)
         {
@@ -268,6 +273,21 @@ public static class KnockedOutService
         !ordinaryBlue ? new(false, "not-ordinary-blue") :
         hotZone ? new(false, "hot-zone-resolution-deferred") :
         new(true, "ordinary-blue-safe-world");
+
+    public static KnockedOutDecision ClassifyDamage(
+        bool featureEnabled,
+        bool player,
+        bool ordinaryBlue,
+        bool hotZone,
+        bool attributablePlayerDamage,
+        bool activeEncounter
+    ) => !featureEnabled ? new(false, "feature-disabled") :
+        !player ? new(false, "not-player") :
+        !ordinaryBlue ? new(false, "not-ordinary-blue") :
+        hotZone ? new(false, "hot-zone-resolution-deferred") :
+        !attributablePlayerDamage ? new(false, "damage-not-attributable-to-player") :
+        !activeEncounter ? new(false, "missing-active-encounter") :
+        new(true, "ordinary-blue-player-encounter");
 
     private static void ScheduleRecovery(PlayerMobile player)
     {
