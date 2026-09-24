@@ -31,5 +31,6 @@ public static class ShardBootstrap
     {
         Server.EventSink.ServerStarted -= RebindAlpha2AfterStockHandlers;
         PvpIntentService.RebindAfterStockHandlers();
+        KnockedOutService.RebindAfterStockHandlers();
     }
 }
