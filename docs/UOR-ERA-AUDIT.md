@@ -93,8 +93,9 @@ handler. When enabled, it preserves stock blessedness, region, duel and guild ch
 Felucca's stock handler intentionally allows every player pair, the service replaces that
 unrestricted result with only explicit safe-world reasons for direct player hostility: an ordinary blue targeting a
 criminal/murderer or an opted-in `[Intent]` target, mutual Intent, or an existing aggression
-relationship. Criminal/murderer players cannot change Intent, and safe-zone restrictions remain
-authoritative. A short-lived encounter snapshot is captured from `EventSink.AggressiveAction` so
+relationship. Controlled creatures resolve their attacking player master through the same policy,
+so pets cannot bypass safe-world consent. Criminal/murderer players cannot change Intent, and
+safe-zone restrictions remain authoritative. A short-lived encounter snapshot is captured from `EventSink.AggressiveAction` so
 later Intent changes do not reclassify an active pair. The snapshot is also persisted in the
 attacker account tag layer and restored after logout/restart; it expires with the ordinary
 two-minute encounter window. Hot-zone regions and Knocked Out remain separate Alpha 2 work and

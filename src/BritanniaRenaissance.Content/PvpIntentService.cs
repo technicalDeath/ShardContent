@@ -185,8 +185,18 @@ public static class PvpIntentService
             return false;
         }
 
-        if (!SafeWorldEnabled || from is not PlayerMobile attacker || target is not PlayerMobile defender ||
-            attacker == defender)
+        if (!SafeWorldEnabled || target is not PlayerMobile defender)
+        {
+            return InvokeStock(from, target);
+        }
+
+        var attacker = from as PlayerMobile;
+        if (attacker is null && from is BaseCreature creature)
+        {
+            attacker = creature.GetMaster() as PlayerMobile;
+        }
+
+        if (attacker is null || attacker == defender)
         {
             return InvokeStock(from, target);
         }
