@@ -417,3 +417,15 @@ observer-specific notoriety and is the narrow fix for the stale client state. Th
 matrix must repeat the two-account run against that revision and record both the refreshed
 `CanBeAttacked` presentation and the accepted/denied server hostility result before Alpha 2 is
 enabled publicly.
+
+### Alpha 2 geography review exports (2026-09-24)
+
+The review-only geography tools were run against the pinned checkout's current ModernUO data.
+The bank export produced 18 Felucca banker candidates from `Vendors.json` (source SHA-256
+`acc0d004ead4d81e681eefeae62e54dfb3fe8420c4067dc83a3fc3271c9bd31d`); the dungeon export produced
+18 Felucca dungeon-region candidates from `regions.json` (source SHA-256
+`cbfe5df4097d16185ce3fd9b902b42f71029227c366247214ca16a401340687d`), including the ten named
+UOR-era candidates Covetous, Deceit, Despise, Destard, Fire, Hythloth, Ice, Khaldun, Shame, and
+Wrong. The JSON outputs are retained in local `work/alpha2-review/` for staff survey only. No
+active bank or Cool-Dungeon polygon was created; the checked-in policy remains empty and the
+readiness gate remains closed until staff approve surveyed boundaries.
