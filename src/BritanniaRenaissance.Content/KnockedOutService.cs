@@ -37,6 +37,7 @@ public static class KnockedOutService
         Mobile.AllowBeneficialHandler = AllowBeneficial;
         Mobile.LethalDamageHandler = TryInterceptLethalDamage;
         Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Mobile.CanTargetHandler = CanTarget;
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
         Stealing.KnockedOutLoot = CanLootKnockedOut;
@@ -44,13 +45,21 @@ public static class KnockedOutService
 
     public static void Initialize()
     {
-        if (!_configured || Mobile.AllowBeneficialHandler == AllowBeneficial)
+        if (!_configured)
         {
             return;
         }
 
-        _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
-        Mobile.AllowBeneficialHandler = AllowBeneficial;
+        if (Mobile.AllowBeneficialHandler != AllowBeneficial)
+        {
+            _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
+            Mobile.AllowBeneficialHandler = AllowBeneficial;
+        }
+
+        if (Mobile.CanTargetHandler != CanTarget)
+        {
+            Mobile.CanTargetHandler = CanTarget;
+        }
     }
 
     [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
@@ -409,6 +418,8 @@ public static class KnockedOutService
     private static bool BlockHeal(Mobile target, Mobile from, int amount) => IsKnockedOut(target);
 
     private static bool BlockCurePoison(Mobile target, Mobile from) => IsKnockedOut(target);
+
+    private static bool CanTarget(Mobile mobile) => !IsKnockedOut(mobile);
 
     private static void ClearActiveState(PlayerMobile player)
     {
