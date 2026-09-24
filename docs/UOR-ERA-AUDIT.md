@@ -262,3 +262,20 @@ custom Archery specials remain intentionally excluded.
 - After deployment with the server stopped, the restarted runtime loaded the shard assembly,
   validated UOR/Felucca and the existing era gates, and listened on `127.0.0.1:2593` and
   `127.0.0.1:12000` at the final verification restart. The server remains running for client testing.
+
+### Alpha 2 isolated staging verification
+
+The current Alpha 2 implementation was rebuilt in an isolated staging host on 2026-09-23 so
+the production/Alpha 1 process and configuration were not changed. The bundle used ModernUO
+`8e733f5cf48faa0085e92d385f956b8854e9e9d2` and ShardContent `b0b7e16`.
+
+- ModernUO `Application.csproj` completed with `--maxcpucount:1`, 0 warnings and 0 errors.
+- ShardContent compiled against that bundle with 0 warnings and 0 errors.
+- `BritanniaRenaissance.Content.Tests` passed **52/52**; the only output was the offline NuGet
+  vulnerability-metadata warning (`NU1900`).
+- The isolated server loaded the current `shard-rules.json`, reported `UOR / Felucca`, loaded
+  385 regions and listened on `127.0.0.1:2594`.
+- The Alpha 1 profile kept all Alpha 2 flags disabled (`deferred features: none`); no live
+  Alpha 2 behavior was enabled by this smoke test. Client login and the full real-client Alpha 2
+  matrix remain the next gated verification step after approved bank/Cool geometry and migration
+  rehearsal are available.
