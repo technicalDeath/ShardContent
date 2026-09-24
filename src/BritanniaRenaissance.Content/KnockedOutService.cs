@@ -62,6 +62,33 @@ public static class KnockedOutService
         }
     }
 
+    /// <summary>
+    /// Rebinds the safe-world guards after stock UOContent initialization. The stock Notoriety
+    /// initializer owns AllowBeneficialHandler and can run after this assembly's normal
+    /// CallPriority boundary, so ServerStarted is the final lifecycle point at which the custom
+    /// guard is restored while preserving the stock delegate for ordinary beneficial checks.
+    /// </summary>
+    public static void RebindAfterStockHandlers()
+    {
+        if (!_configured)
+        {
+            return;
+        }
+
+        if (Mobile.AllowBeneficialHandler?.Method.DeclaringType != typeof(KnockedOutService))
+        {
+            _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
+            Mobile.AllowBeneficialHandler = AllowBeneficial;
+        }
+
+        Mobile.LethalDamageHandler = TryInterceptLethalDamage;
+        Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Mobile.CanTargetHandler = CanTarget;
+        Mobile.HealHandler = BlockHeal;
+        Mobile.CurePoisonHandler = BlockCurePoison;
+        Stealing.KnockedOutLoot = CanLootKnockedOut;
+    }
+
     public static void OnPlayerLogin(PlayerMobile player)
     {
         if (!Enabled)

@@ -448,6 +448,15 @@ both custom delegates, the attack was confirmed, the server recorded an `intent-
 encounter, and the swing completed. This proves both lifecycle rebinding paths in the same staged
 host; murder, theft and Knocked Out resolution remain separately gated.
 
+The same startup audit found that ModernUO's stock `NotorietyHandlers.Initialize` also assigns
+`Mobile.AllowBeneficialHandler`. Because the safe-world Knocked Out service installs its recovery
+guard before stock content initialization, the Alpha 2 `ServerStarted` callback now rebinds that
+handler as well, preserving the stock delegate for ordinary beneficial checks while rejecting
+heals and cures on a Knocked Out target. The callback also reasserts the remaining Knocked Out
+damage, targetability, and no-skill-loot hooks; this is covered by the 72-test content suite and
+the next disposable all-feature staging boot. Production remains disabled until approved geography
+is supplied.
+
 ### Alpha 2 geography review exports (2026-09-24)
 
 The review-only geography tools were run against the pinned checkout's current ModernUO data.
