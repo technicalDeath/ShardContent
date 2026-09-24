@@ -124,8 +124,9 @@ heals/cures are blocked while active, and expiry/login wake-up restores half hea
 movability, bindings, Wards, and post-resolution handling remain active.
 Encounter-authorized `[Execute` clears the active state, resolves through
 the same automatic murder ledger, and is gated on the recorded criminal/red engagement holder.
-Hot/Cool resolution, migration rehearsal, and public enablement remain deferred until the full
-Alpha 2 matrix and region policy are implemented.
+Hot/Cool region-policy checks and the core staging resolution path are implemented. Production
+still leaves Knocked Out disabled pending the migration decision, no-encounter denial, and the
+complete cross-system matrix.
 
 When enabled, the same service wraps the stock notoriety handler so an otherwise-blue Intent
 character is presented with the attackable/grey hue while genuine criminal or murderer status
@@ -137,9 +138,11 @@ Administrator `[MurderStatus` exposes the feature gate and any recorded ledger v
 flag is enabled, its `PlayerDeathEvent` hook classifies an ordinary-blue victim
 independently from attack legality, excludes an encounter already classified as Intent-exposed,
 deduplicates a victim/death timestamp, and extends the killer's UTC red timer by 24 hours from
-the later of the current time or prior expiry. Stock murder reports, five-count thresholds and
-decay therefore remain the only live behavior until their replacement and encounter snapshots
-are ready to be enabled together.
+the later of the current time or prior expiry. The disposable all-feature host has now exercised
+the replacement through an encounter-authorized execution: one automatic count and a cumulative
+24-hour UTC red deadline were observed while legacy reporting and the five-count source were
+disabled. Production still leaves this flag off until the migration decision, no-encounter denial,
+and the complete cross-system matrix are approved together.
 
 The ModernUO fork now provides the narrow integration boundary: custom configuration can disable
 legacy report/decay hooks and supply an additional red-status handler without changing stock
@@ -162,7 +165,7 @@ When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and s
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
 the custom red-status source. The custom red handler is explicitly inert while the flag is false,
 so stale account tags from a rehearsal cannot affect the Alpha 1 profile. This migration hook is
-not active in the current Alpha 1 profile; `MurderAdjudicationTests.AutomaticRedSourceHonorsFeatureGateAndExpiry`
+not active in the current production profile; `MurderAdjudicationTests.AutomaticRedSourceHonorsFeatureGateAndExpiry`
 covers the boundary.
 
 The theft boundary now has a feature-gated physical `BackpackWard`, a permanent invisible
@@ -176,9 +179,8 @@ victim-wide 120-second protection window through account tags. When enabled, cha
 issues one ward and binds it durably to the character account; transferred wards are ignored by
 the protection selector. The same feature-gated service now
 allows the first unlawful non-Hot monster-corpse transfer, then blocks that offender account from
-repeating against the same corpse for ten minutes. Bank/Cool region restrictions remain deferred;
-`theftProtection` is false in Alpha 1 and automatically bypasses corpse protection while
-`hotZones` is enabled.
+repeating against the same corpse for ten minutes. Bank/Cool region restrictions are enabled in
+the current production profile; corpse protection is bypassed only while `hotZones` is enabled.
 
 The theft-region policy now loads explicit `map`/point polygons from `shard-rules.json`. Bank
 polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing while
