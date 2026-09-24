@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Diagnostics;
-using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
 using Server.Items;
@@ -47,12 +46,25 @@ public static class TheftProtectionService
         Corpse.LootEligibility = CanLiftCorpseItem;
         Corpse.LootResolved = RecordCorpseTransfer;
         EventSink.WorldLoad += BeginEntitlementMigration;
+        EventSink.Connected += OnConnected;
+        CharacterCreation.CharacterCreatedHandler = IssueStarterWard;
     }
 
-    [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
-    public static void OnPlayerLogin(PlayerMobile player) => EnsureLootProtectionEntitlement(player, "login");
+    public static void OnPlayerLogin(PlayerMobile player)
+    {
+        // World-load migration can observe a persisted mobile before its account binding is
+        // attached. Reconcile once immediately and once on the next server tick so that login
+        // remains a durable fallback without blocking the login event or duplicating tags.
+        EnsureLootProtectionEntitlement(player, "login");
+        Server.Timer.DelayCall(TimeSpan.Zero, () =>
+        {
+            if (!player.Deleted)
+            {
+                EnsureLootProtectionEntitlement(player, "login-deferred");
+            }
+        });
+    }
 
-    [OnEvent(nameof(CharacterCreation.CharacterCreatedEvent))]
     public static void IssueStarterWard(CharacterCreatedEventArgs args)
     {
         if (!Enabled || args.Mobile is not PlayerMobile player)
@@ -73,6 +85,14 @@ public static class TheftProtectionService
         ward.TryBindTo(player);
         player.Backpack.DropItem(ward);
         ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character account");
+    }
+
+    private static void OnConnected(Mobile mobile)
+    {
+        if (mobile is PlayerMobile player)
+        {
+            OnPlayerLogin(player);
+        }
     }
 
     public static bool IsProtectionWindowActive(DateTime nowUtc, DateTime protectedUntilUtc) =>

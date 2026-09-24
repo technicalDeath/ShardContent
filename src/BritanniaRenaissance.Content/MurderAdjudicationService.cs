@@ -1,5 +1,4 @@
 using System.Globalization;
-using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
 using Server.Engines.PlayerMurderSystem;
@@ -32,6 +31,8 @@ public static class MurderAdjudicationService
         Mobile.AdditionalMurdererHandler = IsAutomaticallyRed;
         Mobile.LegacyMurdererCountsEnabled = !Enabled;
         PlayerMurderSystem.SetLegacyReportingEnabled(!Enabled);
+        PlayerMobile.PlayerDeathHandler = OnPlayerDeath;
+        EventSink.Connected += OnConnected;
     }
 
     public static bool IsAutomaticallyRed(Mobile mobile) =>
@@ -44,7 +45,6 @@ public static class MurderAdjudicationService
     public static bool IsAutomaticRedAt(bool enabled, DateTime? redUntilUtc, DateTime nowUtc) =>
         enabled && redUntilUtc is { } expiry && expiry.ToUniversalTime() > nowUtc.ToUniversalTime();
 
-    [OnEvent(nameof(PlayerMobile.PlayerDeathEvent))]
     public static void OnPlayerDeath(PlayerMobile victim)
     {
         if (!Enabled || victim.Criminal || victim.Murderer)
@@ -85,8 +85,15 @@ public static class MurderAdjudicationService
 
     public static void CancelExecution(PlayerMobile victim) => PendingExecutions.Remove(victim.Serial);
 
-    [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
     public static void OnPlayerLogin(PlayerMobile player) => ScheduleRedExpiryRefresh(player);
+
+    private static void OnConnected(Mobile mobile)
+    {
+        if (mobile is PlayerMobile player)
+        {
+            OnPlayerLogin(player);
+        }
+    }
 
     /// <summary>
     /// Classifies the victim independently from the attacker's legality. An ordinary blue victim

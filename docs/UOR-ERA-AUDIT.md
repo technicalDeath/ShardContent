@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `1d3330a7517a1d290c363b370d754c38baba4e1a`
+Pinned ModernUO integration commit: `075d7859eb9646ed681a18b064754bb066799812`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -112,7 +112,11 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, targetabilit
 Stealing delegates required by this service (`Mobile.LethalDamageHandler`,
 `Mobile.CanBeDamagedHandler`, `Mobile.CanTargetHandler`, `Stealing.KnockedOutLoot`,
 `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
-`1d3330a7517a1d290c363b370d754c38baba4e1a`). `[KnockedOutStatus` is staff-only. No-skill looting now
+`075d7859eb9646ed681a18b064754bb066799812`). The same fork now supplies explicit
+`PlayerMobile.PlayerDeathHandler` and `CharacterCreation.CharacterCreatedHandler` observers, plus
+an `EventSink.Connected` bridge used by the external assembly for login reconciliation. These
+observers are invoked after the stock engine handlers and remain inert unless the corresponding
+shard feature is enabled. `[KnockedOutStatus` is staff-only. No-skill looting now
 uses the stock Stealing boundary and requires the recorded criminal/red
 engagement holder outside Hot Zones; controlled-creature lethal damage resolves its player master
 as that holder. KO entry clears poison, paralysis, bleeding, Mortal Strike, and active casting;
@@ -326,6 +330,13 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   `--maxcpucount:1` (0 warnings, 0 errors), and `BritanniaRenaissance.Content.Tests` passed
   **71/71** against that exact engine output. This closes the content-test evidence gap after
   the targetability regression revision was published.
+- The follow-up lifecycle-hook revision `075d7859eb9646ed681a18b064754bb066799812` builds with
+  `--maxcpucount:1` at 0 warnings and 0 errors. Its focused ModernUO regression set passes **5/5**
+  (targetability plus the PlayerDeath/CharacterCreated bridge tests), and the content assembly
+  builds against that exact output with **71/71** focused tests passing. The explicit engine
+  observers close the external-assembly event-dispatch gap found during live staging: connected
+  players now receive login reconciliation, character creation can issue the starter Ward, and
+  player death reaches automatic murder adjudication without relying on generated event metadata.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
   target requests are rejected while the state is active and the existing timer/expiry recovery
   path remains authoritative.

@@ -1,5 +1,4 @@
 using System.Globalization;
-using ModernUO.CodeGeneratedEvents;
 using Server;
 using Server.Accounting;
 using Server.Items;
@@ -41,6 +40,7 @@ public static class KnockedOutService
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
         Stealing.KnockedOutLoot = CanLootKnockedOut;
+        EventSink.Connected += OnConnected;
     }
 
     public static void Initialize()
@@ -62,7 +62,6 @@ public static class KnockedOutService
         }
     }
 
-    [OnEvent(nameof(PlayerMobile.PlayerLoginEvent))]
     public static void OnPlayerLogin(PlayerMobile player)
     {
         if (!Enabled)
@@ -94,6 +93,14 @@ public static class KnockedOutService
         player.Target = null;
         player.SendMessage("You are Knocked Out and cannot be harmed for a short time.");
         ScheduleRecovery(player);
+    }
+
+    private static void OnConnected(Mobile mobile)
+    {
+        if (mobile is PlayerMobile player)
+        {
+            OnPlayerLogin(player);
+        }
     }
 
     public static bool TryInterceptLethalDamage(Mobile victim, Mobile from, int amount)
