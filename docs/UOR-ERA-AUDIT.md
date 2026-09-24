@@ -348,3 +348,10 @@ The staging server and client were then stopped, and the workstation-local Navre
 restored to the normal 2593 profile. This proves startup, login, command registration, feature
 gate wiring, and audit logging; it does not prove the missing map geometry, cross-character combat
 matrix, or production enablement.
+
+The readiness tooling now accepts a separate `-RulesPath` for disposable hosts. A 2026-09-24
+rehearsal against the current `5fba7cc393112170536aac250086e451e0a0b149` worktree used one
+synthetic bank polygon and one synthetic Cool-Dungeon polygon only in the copied staging policy.
+The verifier reported matching pin, clean repositories, all four Alpha 2 flags acknowledged, and
+`ReadyForEnablement: True`. The synthetic geometry was not written to the checked-in Alpha 1
+policy and is not a substitute for staff-approved geography.
