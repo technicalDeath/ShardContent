@@ -169,6 +169,10 @@ polygons deny direct player stealing only; Cool-Dungeon polygons deny direct pla
 leaving snooping and combat decisions untouched. Both lists are intentionally empty in the Alpha 1
 profile until the shard's approved map geometry is authored.
 
+The theft boundary rechecks both participants at the target-selection boundary: a direct player
+steal is denied when either the thief or the intended victim is inside a configured bank/Cool
+polygon. Map names are compared case-insensitively, and empty/invalid polygons remain inert.
+
 The next Alpha 2 geography gate is now reproducible: `tools/Export-FeluccaBankCandidates.ps1`
 extracts Banker spawner coordinates from the pinned ModernUO
 `Distribution/Data/Spawns/shared/felucca/Vendors.json`, records the source SHA-256 and spawner
