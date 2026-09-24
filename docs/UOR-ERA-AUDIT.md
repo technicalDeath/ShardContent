@@ -710,3 +710,25 @@ deduplication. Raw evidence is retained in
 `C:\Users\brend\AppData\Local\Temp\Navrey-alpha2-recovery3\victim-log`, and
 `work/alpha2-recovery3-server.stdout`. The disposable host and clients were stopped; production
 remained listening on `2593`.
+
+### Alpha 2 enablement closure and isolated release smoke test (2026-09-24)
+
+The final Alpha 2 source gate reports matching ModernUO/content pins at
+`9fb5448445c0a53ebb77a4ad9d72e9ec06ce8f3d`, clean ModernUO and ShardContent repositories,
+explicit Alpha 2 acknowledgement, all four enabled gates (`safeWorld`,
+`automaticMurderAdjudication`, `theftProtection`, and `knockedOut`), 18 bank-protection
+polygons, 14 Cool-Dungeon polygons, and `ReadyForEnablement: True` with no blockers. The
+ModernUO engine build completed with zero warnings and errors; the focused ShardContent suite
+passes **97/97**.
+
+An isolated release copy was refreshed from the complete local distribution, rebuilt against the
+pinned engine, and deployed with `Deploy-Alpha1Baseline.ps1`. The staged `ModernUO.dll`,
+`Server.dll`, `UOContent.dll`, and `BritanniaRenaissance.Content.dll` all loaded successfully.
+A disposable startup smoke test read the UOR/Felucca configuration, loaded maps, regions, world
+data, shard rules, all four Alpha 2 gates, and listened on `127.0.0.1:2593`; the process was then
+stopped cleanly. No production process or checked-in distribution was changed.
+
+Alpha 2 enablement is therefore complete for this no-production workspace. Optional follow-ups are
+high-contention concurrency testing and a formal dispute/recovery rehearsal; they are hardening
+work, not release blockers. Hot-Zone activation and all Beta/Alpha 3 content remain deferred by
+roadmap design.
