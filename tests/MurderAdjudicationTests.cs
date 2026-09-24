@@ -83,9 +83,11 @@ public class MurderAdjudicationTests
     [Theory]
     [InlineData("2026-09-24T00:00:00.0000000Z", true)]
     [InlineData("2026-09-23T20:00:00-04:00", true)]
-    [InlineData("2026-09-24T00:00:01.0000000Z", false)]
+    [InlineData("2026-09-24T00:00:04.9999999Z", true)]
+    [InlineData("2026-09-24T00:00:05.0000001Z", false)]
+    [InlineData("2026-09-24T00:00:01.0000000Z", true)]
     [InlineData(null, false)]
-    public void DeathMarkerDeduplicationUsesUtcInstant(
+    public void DeathMarkerDeduplicationUsesBoundedUtcWindow(
         string? marker,
         bool expected
     )

@@ -19,6 +19,7 @@ public static class PvpIntentService
     private const string EncounterTagPrefix = TagPrefix + "Encounter.";
     private static readonly Dictionary<int, bool> IntentByCharacter = new();
     private static readonly Dictionary<EncounterKey, EncounterSnapshot> Encounters = new();
+    private static readonly TimeSpan EncounterCleanupInterval = TimeSpan.FromMinutes(1);
     private static AllowHarmfulHandler? _stockAllowHarmful;
     private static NotorietyHandler? _stockNotoriety;
     private static bool _configured;
@@ -38,6 +39,8 @@ public static class PvpIntentService
         Mobile.AllowHarmfulHandler = AllowHarmful;
         Notoriety.Handler = ComputeNotoriety;
         EventSink.AggressiveAction += CaptureEncounter;
+        EventSink.Disconnected += OnDisconnected;
+        Server.Timer.StartTimer(EncounterCleanupInterval, EncounterCleanupInterval, CleanupExpiredEncounters);
     }
 
     /// <summary>
@@ -186,6 +189,43 @@ public static class PvpIntentService
     {
         var key = new EncounterKey(attacker, victim);
         return TryGetActiveEncounter(attacker, victim, key, out _);
+    }
+
+    private static void OnDisconnected(Mobile mobile)
+    {
+        if (mobile is not PlayerMobile player)
+        {
+            return;
+        }
+
+        IntentByCharacter.Remove(unchecked((int)player.Serial.Value));
+
+        foreach (var key in Encounters.Keys.Where(key =>
+                     key.AttackerSerial == unchecked((int)player.Serial.Value) ||
+                     key.DefenderSerial == unchecked((int)player.Serial.Value)).ToArray())
+        {
+            Encounters.Remove(key);
+        }
+    }
+
+    private static void CleanupExpiredEncounters()
+    {
+        var now = Core.Now;
+
+        foreach (var pair in Encounters.ToArray())
+        {
+            if (pair.Value.ExpiresUtc <= now)
+            {
+                Encounters.Remove(pair.Key);
+
+                var attacker = World.FindMobile((Serial)(uint)pair.Key.AttackerSerial) as PlayerMobile;
+                var defender = World.FindMobile((Serial)(uint)pair.Key.DefenderSerial) as PlayerMobile;
+                if (attacker is not null && defender is not null)
+                {
+                    RemoveEncounterSnapshot(attacker, defender);
+                }
+            }
+        }
     }
 
     private static void CaptureEncounter(AggressiveActionEventArgs e)
@@ -417,6 +457,11 @@ public static class PvpIntentService
         }
 
         var value = account.GetTag(EncounterTag(attacker, defender));
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
         var parts = value?.Split('|', 2);
         if (parts?.Length != 2 || (parts[0] != "0" && parts[0] != "1") ||
             !DateTime.TryParse(
@@ -426,6 +471,7 @@ public static class PvpIntentService
                 out var expiresUtc
             ))
         {
+            account.RemoveTag(EncounterTag(attacker, defender));
             return false;
         }
 
@@ -441,7 +487,15 @@ public static class PvpIntentService
     {
         if (Encounters.TryGetValue(key, out snapshot))
         {
-            return snapshot.ExpiresUtc > Core.Now;
+            if (snapshot.ExpiresUtc > Core.Now)
+            {
+                return true;
+            }
+
+            Encounters.Remove(key);
+            RemoveEncounterSnapshot(attacker, defender);
+            snapshot = default;
+            return false;
         }
 
         if (LoadEncounterSnapshot(attacker, defender, out snapshot) && snapshot.ExpiresUtc > Core.Now)
@@ -450,8 +504,20 @@ public static class PvpIntentService
             return true;
         }
 
+        // An expired durable snapshot must be removed as well as the in-memory copy; otherwise a
+        // stale account tag is re-read on every later encounter lookup.
+        RemoveEncounterSnapshot(attacker, defender);
+
         snapshot = default;
         return false;
+    }
+
+    private static void RemoveEncounterSnapshot(PlayerMobile attacker, PlayerMobile defender)
+    {
+        if (attacker.Account is Account account)
+        {
+            account.RemoveTag(EncounterTag(attacker, defender));
+        }
     }
 
     private static string EncounterTag(PlayerMobile attacker, PlayerMobile defender) =>

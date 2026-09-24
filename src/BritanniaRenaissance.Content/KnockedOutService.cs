@@ -35,7 +35,7 @@ public static class KnockedOutService
         _stockAllowBeneficial = Mobile.AllowBeneficialHandler;
         Mobile.AllowBeneficialHandler = AllowBeneficial;
         Mobile.LethalDamageHandler = TryInterceptLethalDamage;
-        Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Mobile.CanBeDamagedHandler = mobile => IsStaff(mobile) || !IsKnockedOut(mobile);
         Mobile.CanTargetHandler = CanTarget;
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
@@ -83,7 +83,7 @@ public static class KnockedOutService
         }
 
         Mobile.LethalDamageHandler = TryInterceptLethalDamage;
-        Mobile.CanBeDamagedHandler = mobile => !IsKnockedOut(mobile);
+        Mobile.CanBeDamagedHandler = mobile => IsStaff(mobile) || !IsKnockedOut(mobile);
         Mobile.CanTargetHandler = CanTarget;
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
@@ -101,6 +101,13 @@ public static class KnockedOutService
         var until = GetUntilUtc(player);
         if (until is null)
         {
+            return;
+        }
+
+        if (IsStaff(player))
+        {
+            ClearActiveState(player);
+            WakePlayer(player, "Staff characters are exempt from Knocked Out restrictions.");
             return;
         }
 
@@ -134,7 +141,7 @@ public static class KnockedOutService
 
     public static bool TryInterceptLethalDamage(Mobile victim, Mobile from, int amount)
     {
-        if (victim is not PlayerMobile player)
+        if (victim is not PlayerMobile player || IsStaff(player))
         {
             return false;
         }
@@ -280,6 +287,12 @@ public static class KnockedOutService
             return false;
         }
 
+        if (IsStaff(player))
+        {
+            ClearActiveState(player);
+            return false;
+        }
+
         if (!DateTime.TryParse(
                 account.GetTag(UntilPrefix + SerialKey(player)),
                 CultureInfo.InvariantCulture,
@@ -408,6 +421,7 @@ public static class KnockedOutService
 
     private static void ClearCombatEffects(PlayerMobile player)
     {
+        BandageContext.GetContext(player)?.StopHeal();
         player.Poison = null;
         player.Paralyzed = false;
         player.Frozen = false;
@@ -429,7 +443,7 @@ public static class KnockedOutService
 
     private static bool AllowBeneficial(Mobile from, Mobile target)
     {
-        if (IsKnockedOut(target))
+        if (!IsStaff(target) && IsKnockedOut(target))
         {
             return false;
         }
@@ -451,15 +465,20 @@ public static class KnockedOutService
         }
     }
 
-    private static bool BlockHeal(Mobile target, Mobile from, int amount) => IsKnockedOut(target);
+    private static bool BlockHeal(Mobile target, Mobile from, int amount) => !IsStaff(target) && IsKnockedOut(target);
 
-    private static bool BlockCurePoison(Mobile target, Mobile from) => IsKnockedOut(target);
+    private static bool BlockCurePoison(Mobile target, Mobile from) => !IsStaff(target) && IsKnockedOut(target);
 
-    private static bool CanTarget(Mobile mobile) => !IsKnockedOut(mobile);
+    private static bool CanTarget(Mobile mobile) => IsStaff(mobile) || !IsKnockedOut(mobile);
 
-    public static bool CanPerformAction(Mobile mobile) => !ShouldBlockActions(Enabled, IsKnockedOut(mobile));
+    public static bool CanPerformAction(Mobile mobile) => !ShouldBlockActions(Enabled, IsKnockedOut(mobile), IsStaff(mobile));
 
     public static bool ShouldBlockActions(bool featureEnabled, bool knockedOut) => featureEnabled && knockedOut;
+
+    public static bool ShouldBlockActions(bool featureEnabled, bool knockedOut, bool staff) =>
+        featureEnabled && knockedOut && !staff;
+
+    private static bool IsStaff(Mobile mobile) => mobile.AccessLevel > AccessLevel.Player;
 
     private static void ClearActiveState(PlayerMobile player)
     {
@@ -473,8 +492,45 @@ public static class KnockedOutService
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 
-    private static PlayerMobile? ResolvePlayerAttacker(Mobile from) =>
-        from as PlayerMobile ?? (from as BaseCreature)?.GetMaster() as PlayerMobile;
+    /// <summary>
+    /// Resolves a damage source to a player only when ownership is explicit. Independent monsters,
+    /// hazards, and other unowned sources intentionally return null. Nested controlled/summoned
+    /// creatures are followed until their player owner is found.
+    /// </summary>
+    public static PlayerMobile? ResolvePlayerAttacker(Mobile? from)
+    {
+        var current = from;
+
+        for (var depth = 0; current is not null && depth < 8; depth++)
+        {
+            if (current is PlayerMobile player)
+            {
+                return player;
+            }
+
+            if (current is not BaseCreature creature)
+            {
+                return null;
+            }
+
+            var master = creature.GetMaster();
+            if (master is null || master == current)
+            {
+                return null;
+            }
+
+            current = master;
+        }
+
+        return null;
+    }
+
+    /// <summary>Returns the player recorded when this victim entered Knocked Out, if still online.</summary>
+    public static PlayerMobile? GetRecordedAttacker(PlayerMobile player)
+    {
+        var serial = GetRecordedAttackerSerial(player);
+        return serial.IsValid ? World.FindMobile(serial) as PlayerMobile : null;
+    }
 
     private static string? GetCompletedEncounter(PlayerMobile player) =>
         player.Account is Account account ? account.GetTag(CompletedPrefix + SerialKey(player)) : null;

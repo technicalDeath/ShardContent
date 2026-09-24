@@ -16,12 +16,14 @@ namespace BritanniaRenaissance.Content;
 public static class MurderAdjudicationService
 {
     public static readonly TimeSpan RedDuration = TimeSpan.FromHours(24);
+    public static readonly TimeSpan DeathDeduplicationWindow = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan PendingExecutionLifetime = TimeSpan.FromSeconds(30);
 
     private const string CountPrefix = "BritanniaRenaissance.Murder.AutomaticCount.";
     private const string RedUntilPrefix = "BritanniaRenaissance.Murder.RedUntilUtc.";
     private const string DeathMarkerPrefix = "BritanniaRenaissance.Murder.LastDeathUtc.";
     private const int MaxMigrationDetailRows = 100;
-    private static readonly Dictionary<Serial, PlayerMobile> PendingExecutions = new();
+    private static readonly Dictionary<Serial, PendingExecution> PendingExecutions = new();
 
     public static bool Enabled =>
         ShardRulesConfiguration.Settings?.FeatureFlags.AutomaticMurderAdjudication == true;
@@ -33,6 +35,8 @@ public static class MurderAdjudicationService
         PlayerMurderSystem.SetLegacyReportingEnabled(!Enabled);
         PlayerMobile.PlayerDeathHandler = OnPlayerDeath;
         EventSink.Connected += OnConnected;
+        EventSink.Disconnected += OnDisconnected;
+        Server.Timer.StartTimer(PendingExecutionLifetime, PendingExecutionLifetime, CleanupPendingExecutions);
     }
 
     public static bool IsAutomaticallyRed(Mobile mobile) =>
@@ -52,12 +56,9 @@ public static class MurderAdjudicationService
             return;
         }
 
-        var execution = PendingExecutions.Remove(victim.Serial, out var executionKiller);
-        var killer = execution ? executionKiller : victim.FindMostRecentDamager(false);
-        if (killer is BaseCreature creature)
-        {
-            killer = creature.GetMaster();
-        }
+        CleanupPendingExecutions();
+        var execution = PendingExecutions.Remove(victim.Serial, out var pendingExecution);
+        var killer = execution ? pendingExecution.Executor : ResolveAttributableKiller(victim);
 
         if (killer is not PlayerMobile playerKiller || playerKiller == victim ||
             !TryRecordAutomaticCount(
@@ -78,12 +79,45 @@ public static class MurderAdjudicationService
         ScheduleRedExpiryRefresh(playerKiller);
     }
 
+    private static PlayerMobile? ResolveAttributableKiller(PlayerMobile victim)
+    {
+        // A directly recorded player or an explicitly owned pet/summon is attributable. An
+        // independent monster or environmental source is not. If the victim entered Knocked Out
+        // earlier, retain that qualifying player rather than letting a later source erase it.
+        var killer = KnockedOutService.ResolvePlayerAttacker(victim.FindMostRecentDamager(false));
+        return killer ?? KnockedOutService.GetRecordedAttacker(victim);
+    }
+
     public static void RegisterExecution(PlayerMobile executor, PlayerMobile victim)
     {
-        PendingExecutions[victim.Serial] = executor;
+        PendingExecutions[victim.Serial] = new(executor, Core.Now.Add(PendingExecutionLifetime));
     }
 
     public static void CancelExecution(PlayerMobile victim) => PendingExecutions.Remove(victim.Serial);
+
+    private static void OnDisconnected(Mobile mobile)
+    {
+        if (mobile is not PlayerMobile player)
+        {
+            return;
+        }
+
+        PendingExecutions.Remove(player.Serial);
+
+        foreach (var pair in PendingExecutions.Where(pair => pair.Value.Executor == player).ToArray())
+        {
+            PendingExecutions.Remove(pair.Key);
+        }
+    }
+
+    private static void CleanupPendingExecutions()
+    {
+        var now = Core.Now;
+        foreach (var pair in PendingExecutions.Where(pair => pair.Value.ExpiresUtc <= now).ToArray())
+        {
+            PendingExecutions.Remove(pair.Key);
+        }
+    }
 
     public static void OnPlayerLogin(PlayerMobile player) => ScheduleRedExpiryRefresh(player);
 
@@ -326,7 +360,7 @@ public static class MurderAdjudicationService
                    CultureInfo.InvariantCulture,
                    DateTimeStyles.RoundtripKind,
                    out var previousDeath
-               ) && previousDeath.ToUniversalTime() == deathUtc.ToUniversalTime();
+        ) && (previousDeath.ToUniversalTime() - deathUtc.ToUniversalTime()).Duration() <= DeathDeduplicationWindow;
     }
 
     public static bool TryRecordAutomaticCount(PlayerMobile? killer, PlayerMobile victim, DateTime deathUtc) =>
@@ -358,6 +392,8 @@ public static class MurderAdjudicationService
     private static string SerialKey(PlayerMobile player) =>
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 }
+
+internal readonly record struct PendingExecution(PlayerMobile Executor, DateTime ExpiresUtc);
 
 public readonly record struct MurderDecision(bool Qualifies, string Reason);
 
