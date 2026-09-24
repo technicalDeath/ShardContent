@@ -83,7 +83,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
    - Award at most one automatic count for each qualifying ordinary-blue death and add 24 hours to a cumulative UTC red timer.
    - Ensure Hot-Zone location, lawful self-defense and guild-war status do not waive the ordinary-blue murder consequence unless the death was actually intent-classified.
    - Disable conflicting stock reporting, threshold and decay behavior before enabling any reward system.
-   - Current implementation status: `MurderAdjudicationService` contains the tested policy and account-tag ledger behind `featureFlags.automaticMurderAdjudication`; event wiring remains intentionally deferred until stock reporting/threshold/decay replacement and durable encounter snapshots are complete.
+   - Current implementation status: `MurderAdjudicationService` contains the tested policy, account-tag ledger, and feature-gated `PlayerDeathEvent` hook behind `featureFlags.automaticMurderAdjudication`; the ModernUO fork exposes the narrow legacy-reporting disable and additional-red-status hooks. Durable encounter save/restart recovery, stock-context migration, and public enablement remain gated work.
 4. Preserve crime while adding narrowly targeted anti-harassment protections.
    - Keep ordinary stealing and snooping intact by default.
    - Add explicit bank theft-protection polygons and Cool-Dungeon-compatible theft checks that do not create combat-safe bank bubbles.
