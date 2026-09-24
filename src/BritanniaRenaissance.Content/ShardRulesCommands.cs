@@ -12,6 +12,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("Intent", AccessLevel.Player, OnIntent);
         CommandSystem.Register("IntentStatus", AccessLevel.Player, OnIntentStatus);
         CommandSystem.Register("MurderStatus", AccessLevel.Administrator, OnMurderStatus);
+        CommandSystem.Register("TheftStatus", AccessLevel.Administrator, OnTheftStatus);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
     }
 
@@ -40,6 +41,16 @@ public static class ShardRulesCommands
     private static void OnMurderStatus(CommandEventArgs e)
     {
         foreach (var line in MurderAdjudicationService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("TheftStatus")]
+    [Description("Displays Backpack Ward protection state and deferred theft restrictions.")]
+    private static void OnTheftStatus(CommandEventArgs e)
+    {
+        foreach (var line in TheftProtectionService.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

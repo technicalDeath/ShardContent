@@ -13,6 +13,7 @@ public static class ShardBootstrap
         ShardRulesCommands.Register();
         MasteryProgression.Configure();
         MurderAdjudicationService.Configure();
+        TheftProtectionService.Configure();
     }
 
     public static void Initialize() => PvpIntentService.Configure();

@@ -89,6 +89,7 @@ Make the shard’s defining social contract correct: ordinary blue players are p
    - Add explicit bank theft-protection polygons and Cool-Dungeon-compatible theft checks that do not create combat-safe bank bubbles.
    - Add consumable Backpack Wards: one-active physical backpack presence, account-aware post-success detection escalation, 120-second victim protection, durable persistence and starter-issued binding rules.
    - Add the invisible Loot Protection Ward: permit the first unlawful non-Hot monster-corpse transfer, then block only repeated unlawful looting by that offender account against the protected victim’s still-rights-protected monster corpses for ten minutes.
+   - Current implementation status: the feature-gated `BackpackWard` and stock Stealing pre/post hooks implement deterministic physical-Ward selection, per-thief-account 25%/50%/100% escalation, post-resolution consumption, and persistent 120-second victim protection. Bank/Cool polygons, starter issuance/binding, and the corpse Loot Protection Ward remain gated work.
 5. Implement the Knocked Out state and safe-world resolution path.
    - Make qualifying zero-health outcomes for genuinely blue players enter a durable, untargetable, damage-immune 90-second Knocked Out state rather than death; clear effects and active aggression while retaining an immutable completed-encounter record.
    - Permit no-skill Knocked-Out looting only to the criminal/red who held recorded target-specific engagement rights at the moment of Knock Out; retain all item-binding and Ward rules.

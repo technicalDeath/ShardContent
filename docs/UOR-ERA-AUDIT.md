@@ -122,6 +122,13 @@ When the custom flag is true, the fork also suppresses legacy `Kills >= 5` and s
 PingPong red decisions without deleting historical values; the account-tag UTC expiry becomes
 the custom red-status source. This migration hook is not active in the current Alpha 1 profile.
 
+The theft boundary now has a feature-gated physical `BackpackWard` and stock Stealing hooks.
+Stock success, failure, criminality and snooping remain unchanged. An eligible Ward is selected
+deterministically from the equipped backpack, tracks undetected successful thefts per thief
+account at 25%/50%/100% detection, is consumed after ordinary detection, and persists the
+victim-wide 120-second protection window through account tags. Bank/Cool region restrictions and
+the separate corpse Loot Protection Ward remain deferred; `theftProtection` is false in Alpha 1.
+
 ### Manual Alpha 1 validation matrix
 
 After the automated suite passes and the server is restarted with the UOR/Felucca profile,

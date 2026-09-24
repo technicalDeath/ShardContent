@@ -88,6 +88,7 @@ public static class ShardRulesConfiguration
 
         if (rules.FeatureFlags.SafeWorld || rules.FeatureFlags.HotZones || rules.FeatureFlags.CoolZones ||
             rules.FeatureFlags.AutomaticMurderAdjudication ||
+            rules.FeatureFlags.TheftProtection ||
             rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {
@@ -177,6 +178,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("automaticMurderAdjudication")]
     public bool AutomaticMurderAdjudication { get; set; }
 
+    [JsonPropertyName("theftProtection")]
+    public bool TheftProtection { get; set; }
+
     [JsonPropertyName("hotZones")]
     public bool HotZones { get; set; }
 
@@ -202,6 +206,7 @@ public sealed class DeferredFeatureFlags
     {
         if (SafeWorld) yield return nameof(SafeWorld);
         if (AutomaticMurderAdjudication) yield return nameof(AutomaticMurderAdjudication);
+        if (TheftProtection) yield return nameof(TheftProtection);
         if (HotZones) yield return nameof(HotZones);
         if (CoolZones) yield return nameof(CoolZones);
         if (HousingGeography) yield return nameof(HousingGeography);
@@ -209,7 +214,7 @@ public sealed class DeferredFeatureFlags
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !HotZones && !CoolZones && !HousingGeography && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !HotZones && !CoolZones && !HousingGeography && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }
