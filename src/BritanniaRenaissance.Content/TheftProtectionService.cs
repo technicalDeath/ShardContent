@@ -68,7 +68,7 @@ public static class TheftProtectionService
     {
         yield return $"Backpack Ward protection enabled: {Enabled}.";
         yield return "Stock stealing success, criminality and snooping remain authoritative.";
-        yield return "Bank polygons and Cool Dungeon restrictions remain deferred; corpse repeat protection is enabled with this gate outside Hot Zones.";
+        yield return "Starter wards bind to the character account; bank polygons and Cool Dungeon restrictions remain deferred; corpse repeat protection is enabled with this gate outside Hot Zones.";
 
         if (mobile is PlayerMobile player)
         {
