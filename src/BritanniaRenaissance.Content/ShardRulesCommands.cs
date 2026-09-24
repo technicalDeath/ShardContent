@@ -62,7 +62,7 @@ public static class ShardRulesCommands
     }
 
     [Usage("TheftStatus")]
-    [Description("Displays Backpack Ward protection state and deferred theft restrictions.")]
+    [Description("Displays Backpack Ward, theft-region, and corpse-protection state.")]
     private static void OnTheftStatus(CommandEventArgs e)
     {
         foreach (var line in TheftProtectionService.DescribeStatus(e.Mobile))
@@ -72,7 +72,7 @@ public static class ShardRulesCommands
     }
 
     [Usage("KnockedOutStatus")]
-    [Description("Displays Knocked Out state and deferred resolution restrictions.")]
+    [Description("Displays Knocked Out state and encounter-resolution permissions.")]
     private static void OnKnockedOutStatus(CommandEventArgs e)
     {
         foreach (var line in KnockedOutService.DescribeStatus(e.Mobile))
