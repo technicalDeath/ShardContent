@@ -1,6 +1,6 @@
 # UOR combat branch audit
 
-Pinned ModernUO integration commit: `075d7859eb9646ed681a18b064754bb066799812`
+Pinned ModernUO integration commit: `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2`
 UOR baseline reference: `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`
 Recorded: 2026-09-23
 
@@ -112,7 +112,7 @@ ModernUO fork exposes only the narrow lethal-damage, damageability, targetabilit
 Stealing delegates required by this service (`Mobile.LethalDamageHandler`,
 `Mobile.CanBeDamagedHandler`, `Mobile.CanTargetHandler`, `Stealing.KnockedOutLoot`,
 `Mobile.HealHandler`, and `Mobile.CurePoisonHandler`, fork revision
-`075d7859eb9646ed681a18b064754bb066799812`). The same fork now supplies explicit
+`f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2`). The same fork now supplies explicit
 `PlayerMobile.PlayerDeathHandler` and `CharacterCreation.CharacterCreatedHandler` observers, plus
 an `EventSink.Connected` bridge used by the external assembly for login reconciliation. These
 observers are invoked after the stock engine handlers and remain inert unless the corresponding
@@ -349,6 +349,13 @@ the production/Alpha 1 process and configuration were not changed. The bundle us
   environment-gated map tests skipped (915 total) against the same `075d7859...` revision. The
   test run used the matching built `Distribution/Data` fixture set; no source or checked-in
   runtime configuration was changed.
+- The current Alpha 2 engine revision `f2b7e5efe4a12407ff9dfd7880d88ba914b0f2d2` adds the
+  missing `Corpse.OnItemLifted` post-transfer observer, so ordinary drag/lift corpse looting arms
+  the ten-minute repeat-protection entry just like context-menu use. `UOContent` builds cleanly
+  in an isolated output directory; the focused `UOContent.Tests` hook test passes **1/1**, and
+  ShardContent focused coverage passes **78/78** against the matching source. The production
+  process was not stopped; this engine revision is queued for the next controlled deployment
+  window.
 - Knocked Out now uses the targetability hook as well as damage, healing, and curing guards, so
   target requests are rejected while the state is active and the existing timer/expiry recovery
   path remains authoritative.
