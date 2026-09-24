@@ -16,6 +16,7 @@ namespace BritanniaRenaissance.Content;
 public static class PvpIntentService
 {
     private const string TagPrefix = "BritanniaRenaissance.PvpIntent.";
+    private const string EncounterTagPrefix = TagPrefix + "Encounter.";
     private static readonly Dictionary<int, bool> IntentByCharacter = new();
     private static readonly Dictionary<EncounterKey, EncounterSnapshot> Encounters = new();
     private static AllowHarmfulHandler? _stockAllowHarmful;
@@ -111,22 +112,45 @@ public static class PvpIntentService
     public static bool WasIntentClassified(PlayerMobile killer, PlayerMobile victim)
     {
         var key = new EncounterKey(killer, victim);
-        return Encounters.TryGetValue(key, out var snapshot) && snapshot.ExpiresUtc > Core.Now &&
-               snapshot.VictimWasIntentClassified;
+        if (Encounters.TryGetValue(key, out var snapshot))
+        {
+            return snapshot.ExpiresUtc > Core.Now && snapshot.VictimWasIntentClassified;
+        }
+
+        if (LoadEncounterSnapshot(killer, victim, out snapshot) && snapshot.ExpiresUtc > Core.Now)
+        {
+            Encounters[key] = snapshot;
+            return snapshot.VictimWasIntentClassified;
+        }
+
+        return false;
     }
 
     private static void CaptureEncounter(AggressiveActionEventArgs e)
     {
-        if (!SafeWorldEnabled || e.Aggressor is not PlayerMobile attacker ||
-            e.Aggressed is not PlayerMobile defender || attacker == defender)
+        if (!SafeWorldEnabled || e.Aggressed is not PlayerMobile defender)
         {
             return;
         }
 
-        Encounters[new EncounterKey(attacker, defender)] = new EncounterSnapshot(
+        var attacker = e.Aggressor as PlayerMobile;
+        if (attacker is null && e.Aggressor is BaseCreature creature)
+        {
+            attacker = creature.GetMaster() as PlayerMobile;
+        }
+
+        if (attacker is null || attacker == defender)
+        {
+            return;
+        }
+
+        var snapshot = new EncounterSnapshot(
             IsIntentEnabled(defender) && !defender.Criminal && !defender.Murderer,
             Core.Now.AddMinutes(2)
         );
+
+        Encounters[new EncounterKey(attacker, defender)] = snapshot;
+        SaveEncounterSnapshot(attacker, defender, snapshot);
     }
 
     private static int ComputeNotoriety(Mobile source, Mobile target)
@@ -275,6 +299,52 @@ public static class PvpIntentService
             );
         }
     }
+
+    private static void SaveEncounterSnapshot(
+        PlayerMobile attacker,
+        PlayerMobile defender,
+        EncounterSnapshot snapshot)
+    {
+        if (attacker.Account is Account account)
+        {
+            account.SetTag(
+                EncounterTag(attacker, defender),
+                $"{(snapshot.VictimWasIntentClassified ? '1' : '0')}|{snapshot.ExpiresUtc:O}"
+            );
+        }
+    }
+
+    private static bool LoadEncounterSnapshot(
+        PlayerMobile attacker,
+        PlayerMobile defender,
+        out EncounterSnapshot snapshot)
+    {
+        snapshot = default;
+        if (attacker.Account is not Account account)
+        {
+            return false;
+        }
+
+        var value = account.GetTag(EncounterTag(attacker, defender));
+        var parts = value?.Split('|', 2);
+        if (parts?.Length != 2 || (parts[0] != "0" && parts[0] != "1") ||
+            !DateTime.TryParse(
+                parts[1],
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind,
+                out var expiresUtc
+            ))
+        {
+            return false;
+        }
+
+        snapshot = new EncounterSnapshot(parts[0] == "1", expiresUtc.ToUniversalTime());
+        return true;
+    }
+
+    private static string EncounterTag(PlayerMobile attacker, PlayerMobile defender) =>
+        EncounterTagPrefix + unchecked((int)attacker.Serial.Value).ToString("X8", CultureInfo.InvariantCulture) + "." +
+        unchecked((int)defender.Serial.Value).ToString("X8", CultureInfo.InvariantCulture);
 }
 
 internal readonly record struct EncounterKey(int AttackerSerial, int DefenderSerial)
