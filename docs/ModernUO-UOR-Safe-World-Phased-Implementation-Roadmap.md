@@ -215,6 +215,12 @@ Apply the legal and economic geography to the accepted Alpha 2b world: predictab
 5. Preserve T2A/UOR Arms Lore behavior. Keep its stock weapon, armor and swamp-dragon-barding inspection; do not add direct combat bonuses or the later exceptional-crafting weapon-damage and armor-resistance bonuses. Those crafting effects remain unavailable under the UOR expansion. The Skill Bank changes skill retention only and does not change Arms Lore mechanics.
 6. Include one ordinary pair of scissors in the universal starting package for every newly created character. Apply the package's four-hour Starter Protection and permanent `StarterIssued` resale/salvage restrictions; never replace scissors after loss or destruction.
 7. Allocate character-creation stats for every selectable template and the **Advanced** custom option. Each receives exactly **120 starting stat points** across Strength, Dexterity, and Intelligence, with every stat at least **30**. Tune the distribution to the selected template's playstyle; preserve the 225 total stat cap and do not grant ongoing stat bonuses. Audit every option and add regression checks for the 120-point total and per-stat minimum.
+8. Complete a full UOR-era compliance audit of every player skill exposed by the shard.
+   - Build a definitive skill matrix from the UOR skill table. For every skill, record whether it is enabled, its intended UOR behavior, the authoritative era reference, the ModernUO entry points and configuration gates that implement it, and its automated and live-client evidence. No skill may be marked compliant solely because it is rarely used or lacks an obvious command.
+   - Trace active uses and passive hooks end to end: success formulas, difficulty and target rules, skill-delay and cooldown behavior, stat influence, gain eligibility, anti-macro behavior, skill-cap loss, required tools and resources, crafted or harvested outputs, combat modifiers, creature and item interactions, criminal/notoriety effects, messages, and persistence where applicable.
+   - Identify every pre-UOR, T2A/UOR, and post-UOR branch reachable from each skill. Disable or remove later-era mechanics, bonuses, recipes, resources, mastery/special-move interactions and expansion-only targets unless a separately approved shard rule explicitly overrides the era; document every intentional deviation rather than allowing it to inherit silently from stock content.
+   - Add focused regression tests for each skill's important era boundary and representative real-client rehearsals for actions that depend on targeting, timing, world objects, vendors, crafting menus, combat or network state. Include cross-skill and cross-system cases where one skill changes another skill's result.
+   - Publish the completed audit matrix with no unreviewed skills, unresolved era classifications or unexplained stock defaults. Any uncertain historical behavior is a release blocker until an owner-approved ruling and testable shard policy replace the ambiguity.
 
 ### Exit criteria
 
@@ -222,6 +228,7 @@ Apply the legal and economic geography to the accepted Alpha 2b world: predictab
 - Housing placement obeys one-per-account, polygon, rural-cost, protected-land and special-island rules; capacity/expansion data is visible to staff.
 - Permanent Hot-Zone reward multipliers, if enabled, pass economy and anti-exploit validation while ordinary spawn cadence and cap remain unchanged.
 - Skill Bank deposits, replacement, restoration, Mastery interaction, both skill caps, anti-macro eligibility and save/restart persistence pass focused automated and real-client tests. Full-bank behavior never removes Locked entries, silently changes balances, or exceeds the 300.0 bank cap.
+- The complete player-skill matrix is reviewed and approved: every UOR skill has a cited era classification, traced implementation/configuration path, automated boundary coverage and proportionate live-client evidence; no reachable post-UOR behavior or unresolved stock default remains.
 
 ### Explicitly deferred
 
