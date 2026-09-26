@@ -18,6 +18,7 @@ $targetEraGates = Join-Path $modernUOPath 'Distribution\Configuration\modernuo-e
 $assemblyRegistry = Join-Path $modernUOPath 'Distribution\Data\assemblies.json'
 $contentAssembly = 'BritanniaRenaissance.Content.dll'
 $distributionPath = (Resolve-Path -LiteralPath (Join-Path $modernUOPath 'Distribution')).Path
+$prepareAlpha2bData = Join-Path $contentRoot 'tools\Prepare-Alpha2bWorldData.ps1'
 
 if (-not (Test-Path -LiteralPath $dotnet)) {
     throw "Workspace .NET SDK was not found: $dotnet"
@@ -46,6 +47,8 @@ foreach ($process in @(Get-Process -ErrorAction SilentlyContinue)) {
 if ($loadedBy.Count -gt 0) {
     throw "ModernUO distribution assemblies are loaded by $($loadedBy -join ', '). Stop the verified server and rerun deployment."
 }
+
+& $prepareAlpha2bData -ModernUOPath $modernUOPath
 
 # The local SDK's shared compiler pipe can be inaccessible from a different integrity level.
 # A single MSBuild node keeps this deployment repeatable in that environment.
@@ -84,4 +87,5 @@ if ($assemblies -notcontains $contentAssembly) {
 Write-Host "Deployed shard rules to $targetRules"
 Write-Host "Deployed UOR expansion and era gates to $targetExpansion and $modernUOConfiguration"
 Write-Host "Registered $contentAssembly in $assemblyRegistry"
+Write-Host 'Prepared the era-reviewed Alpha 2b world-generation inputs.'
 Write-Host 'Restart ModernUO to load the updated content assembly and rules.'

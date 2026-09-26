@@ -1,0 +1,38 @@
+[
+  {
+    "$type": "Spawner",
+    "guid": "06054f54-b0fa-4f88-9306-92972f4dcca4",
+    "name": "Spawner (225)",
+    "location": [1498, 1659, 27],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "Herbalist", "maxCount": 1, "probability": 100 },
+      { "name": "Alchemist", "maxCount": 1, "probability": 100 },
+      { "name": "Mage", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "81a9449b-b653-4dca-ba75-4fadc2415691",
+    "name": "Spawner (225)",
+    "location": [1575, 1703, 20],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "Mage", "maxCount": 1, "probability": 100 },
+      { "name": "Alchemist", "maxCount": 1, "probability": 100 },
+      { "name": "MageGuildmaster", "maxCount": 1, "probability": 100 }
+    ]
+  }
+]

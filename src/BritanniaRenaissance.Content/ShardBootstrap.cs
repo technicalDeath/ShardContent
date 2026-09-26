@@ -10,7 +10,9 @@ public static class ShardBootstrap
     {
         ShardRulesConfiguration.Load();
         EraGateConfiguration.Load();
+        Alpha2bWorldGenerationConfiguration.Load();
         ShardRulesCommands.Register();
+        Alpha2bWorldGenerationCommands.Register();
         MasteryProgression.Configure();
         MurderAdjudicationService.Configure();
         TheftProtectionService.Configure();
