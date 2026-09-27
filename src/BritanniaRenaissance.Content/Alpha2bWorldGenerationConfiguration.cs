@@ -11,6 +11,7 @@ public sealed record Alpha2bWorldGenerationManifest
     public string TargetMap { get; init; } = "";
     public string GeneratedDataRoot { get; init; } = "";
     public int MaximumEraMapXExclusive { get; init; }
+    public Alpha2bRectangleBounds BritainBounds { get; init; } = new();
     public string DecorationsDirectory { get; init; } = "";
     public string SpawnersDirectory { get; init; } = "";
     public string SignsFile { get; init; } = "";
@@ -21,11 +22,23 @@ public sealed record Alpha2bWorldGenerationManifest
     public Alpha2bDecorationDuplicateCleanup[] DecorationDuplicateCleanup { get; init; } = [];
     public string[] CustomSpawnerFiles { get; init; } = [];
     public string[] SpawnerFiles { get; init; } = [];
+    public string[] BritainOnlySpawnerFiles { get; init; } = [];
     public string[] ExcludedSpawnerTypes { get; init; } = [];
     public bool GeneratePublicMoongates { get; init; }
     public int ExpectedPublicMoongates { get; init; }
     public bool GenerateKhaldunPuzzles { get; init; }
     public int ExpectedKhaldunDynamicItems { get; init; }
+}
+
+public sealed record Alpha2bRectangleBounds
+{
+    public int XMin { get; init; }
+    public int YMin { get; init; }
+    public int XMax { get; init; }
+    public int YMax { get; init; }
+
+    public bool Contains(Point3D location) =>
+        location.X >= XMin && location.X <= XMax && location.Y >= YMin && location.Y <= YMax;
 }
 
 public sealed record Alpha2bDecorationRewrite
@@ -127,6 +140,21 @@ public static class Alpha2bWorldGenerationConfiguration
         if (manifest.DecorationFiles.Length == 0 || manifest.SpawnerFiles.Length == 0)
         {
             throw new InvalidDataException("The Alpha 2b generation allowlists cannot be empty.");
+        }
+
+        if (manifest.BritainBounds != new Alpha2bRectangleBounds
+            {
+                XMin = 1280, YMin = 1400, XMax = 1750, YMax = 1900
+            })
+        {
+            throw new InvalidDataException("The Alpha 2b Greater Britain boundary is invalid.");
+        }
+
+        var spawnerFiles = manifest.SpawnerFiles.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        if (manifest.BritainOnlySpawnerFiles.Length == 0 ||
+            manifest.BritainOnlySpawnerFiles.Any(file => !spawnerFiles.Contains(file)))
+        {
+            throw new InvalidDataException("Every Britain-only spawner source must be explicitly allowlisted.");
         }
 
         var decorationFiles = manifest.DecorationFiles.ToHashSet(StringComparer.OrdinalIgnoreCase);

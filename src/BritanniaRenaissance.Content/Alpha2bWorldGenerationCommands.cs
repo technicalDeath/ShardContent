@@ -587,6 +587,8 @@ public static class Alpha2bWorldGenerationCommands
                 factionEnabled = FactionSystem.Enabled,
                 factionInfrastructure,
                 inactiveFacetsEmpty = !errors.Any(error => error.StartsWithOrdinal("inactive facet")),
+                britainOnlySpawners = inputs.BritainOnlySpawners,
+                britainOnlySpawnersOutsideGreaterBritain = 0,
                 feluccaRootItems = feluccaItems,
                 feluccaNonPlayerMobiles = feluccaMobiles,
                 errors
@@ -639,13 +641,31 @@ public static class Alpha2bWorldGenerationCommands
                 Alpha2bWorldGenerationConfiguration.ResolveGeneratedPath(manifest.TeleportersFile)
             );
             var spawners = new List<SpawnerDto>();
+            var britainOnlySpawners = 0;
+            var britainOnlySources = manifest.BritainOnlySpawnerFiles.ToHashSet(StringComparer.OrdinalIgnoreCase);
 
             foreach (var fileName in manifest.SpawnerFiles)
             {
                 var path = Alpha2bWorldGenerationConfiguration.ResolveGeneratedPath(
                     Path.Combine(manifest.SpawnersDirectory, fileName)
                 );
-                spawners.AddRange(JsonConfig.Deserialize<List<SpawnerDto>>(path, SpawnerJsonSerializer.Options));
+                var definitions = JsonConfig.Deserialize<List<SpawnerDto>>(path, SpawnerJsonSerializer.Options);
+                if (britainOnlySources.Contains(fileName))
+                {
+                    var outsideBritain = definitions.Count(
+                        definition => !manifest.BritainBounds.Contains(definition.Location)
+                    );
+                    if (outsideBritain != 0)
+                    {
+                        throw new InvalidDataException(
+                            $"Britain-only spawner source {fileName} contains {outsideBritain} placements outside Greater Britain."
+                        );
+                    }
+
+                    britainOnlySpawners += definitions.Count;
+                }
+
+                spawners.AddRange(definitions);
             }
 
             foreach (var fileName in manifest.CustomSpawnerFiles)
@@ -659,7 +679,14 @@ public static class Alpha2bWorldGenerationCommands
             var canonicalTeleporters = CanonicalizeTeleporters(teleporters);
             var canonicalSpawners = CanonicalizeSpawners(spawners);
             ValidateInputs(manifest, signs, canonicalTeleporters, canonicalSpawners);
-            inputs = new GenerationInputs(manifest, decorationFiles, signs, canonicalTeleporters, canonicalSpawners);
+            inputs = new GenerationInputs(
+                manifest,
+                decorationFiles,
+                signs,
+                canonicalTeleporters,
+                canonicalSpawners,
+                britainOnlySpawners
+            );
             return true;
         }
         catch (Exception ex)
@@ -948,7 +975,8 @@ public static class Alpha2bWorldGenerationCommands
         string[] DecorationFiles,
         List<SignDefinition> Signs,
         List<TeleporterDefinition> Teleporters,
-        List<SpawnerDto> Spawners
+        List<SpawnerDto> Spawners,
+        int BritainOnlySpawners
     )
     {
         public int TeleporterPlacementCount => Teleporters.Sum(teleporter => teleporter.Back ? 2 : 1);

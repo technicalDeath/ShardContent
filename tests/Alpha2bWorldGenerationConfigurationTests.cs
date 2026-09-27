@@ -79,6 +79,11 @@ public class Alpha2bWorldGenerationConfigurationTests
         Assert.NotNull(manifest);
         Assert.True(manifest.GenerateKhaldunPuzzles);
         Assert.Equal(63, manifest.ExpectedKhaldunDynamicItems);
+        Assert.Equal(
+            new Alpha2bRectangleBounds { XMin = 1280, YMin = 1400, XMax = 1750, YMax = 1900 },
+            manifest.BritainBounds
+        );
+        Assert.Equal(["TownsPeople.json", "Vendors.json"], manifest.BritainOnlySpawnerFiles);
         Assert.Equal(2, manifest.DecorationRewrites.Length);
         Assert.Contains(
             manifest.DecorationRewrites,
@@ -132,6 +137,33 @@ public class Alpha2bWorldGenerationConfigurationTests
         );
     }
 
+    [Fact]
+    public void RejectsBritainOnlySpawnerSourceOutsideTheAllowlist()
+    {
+        var manifest = ValidManifest() with { BritainOnlySpawnerFiles = ["TownsPeople.json"] };
+
+        var error = Assert.Throws<InvalidDataException>(
+            () => Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit)
+        );
+
+        Assert.Contains("Britain-only spawner source", error.Message);
+    }
+
+    [Fact]
+    public void RejectsChangedGreaterBritainBoundary()
+    {
+        var manifest = ValidManifest() with
+        {
+            BritainBounds = new Alpha2bRectangleBounds { XMin = 1281, YMin = 1400, XMax = 1750, YMax = 1900 }
+        };
+
+        var error = Assert.Throws<InvalidDataException>(
+            () => Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit)
+        );
+
+        Assert.Contains("Greater Britain boundary", error.Message);
+    }
+
     private static Alpha2bWorldGenerationManifest ValidManifest() => new()
     {
         SchemaVersion = 1,
@@ -140,12 +172,14 @@ public class Alpha2bWorldGenerationConfigurationTests
         TargetMap = "Felucca",
         GeneratedDataRoot = "Data/BritanniaRenaissance/Alpha2b",
         MaximumEraMapXExclusive = 6144,
+        BritainBounds = new Alpha2bRectangleBounds { XMin = 1280, YMin = 1400, XMax = 1750, YMax = 1900 },
         DecorationsDirectory = "Decoration",
         SpawnersDirectory = "Spawns",
         SignsFile = "signs.cfg",
         TeleportersFile = "teleporters.json",
         DecorationFiles = ["Britannia/britain.cfg"],
         SpawnerFiles = ["Vendors.json"],
+        BritainOnlySpawnerFiles = ["Vendors.json"],
         ExpectedPublicMoongates = 9,
         GenerateKhaldunPuzzles = true,
         ExpectedKhaldunDynamicItems = 63
