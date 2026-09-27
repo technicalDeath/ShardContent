@@ -2,7 +2,7 @@
 
 **Accepted local baseline:** 2026-09-26  
 **ModernUO pin:** `9fb5448445c0a53ebb77a4ad9d72e9ec06ce8f3d`  
-**ShardContent implementation:** `f9e54f3`, `283356e`, and `d38fa51`
+**ShardContent implementation:** `f9e54f3`, `283356e`, `d38fa51`, and `89a64c3`
 
 This record covers the clean UOR/Felucca population run required by Alpha 2b. Runtime saves,
 generated deployment copies, logs, accounts, and client credentials remain local and are not source
@@ -13,15 +13,20 @@ artifacts.
 - The former authoritative world was stopped after both the listener and loaded-module checks
   proved there was no second ModernUO writer. It was preserved intact at
   `ModernUO/Distribution/WorldStateArchive/alpha2b-reset-2026-09-26-14-13-19`.
+- When missing town/shop doors were confirmed, the first accepted Alpha 2b save was stopped and
+  preserved intact at
+  `ModernUO/Distribution/WorldStateArchive/alpha2b-door-rebuild-2026-09-26-20-55-00`.
+  The door-corrected baseline was then generated from another empty world rather than layered onto
+  the accepted save.
 - The generation save began empty except for the existing owner account index needed to authorize
   the owner-only generation command. No prior items, mobiles, guilds, or world systems were copied
   into the new save.
 - The generated world completed a controlled save, clean shutdown, restart, client reconnect,
   strict audit, convergence rerun, second save, and another restart.
-- The stopped accepted `Distribution/Saves` contains 18 files / 8,358,965 bytes with latest write
-  `2026-09-26T20:20:43.7585753-04:00`. SHA-256 over the sorted UTF-8 lines
+- The stopped accepted `Distribution/Saves` contains 18 files / 8,559,105 bytes with latest write
+  `2026-09-26T21:05:00.9456000-04:00`. SHA-256 over the sorted UTF-8 lines
   `<relative-path> <per-file-sha256>` is
-  `e50a337c794b50fea4bf50283b2809b0e2ccf0e7ad00d0cf0df9a1048a7b3ea8`.
+  `b1f2bc835e6a39922354265330bbabfdcb951da1dd81c62233cde70811274452`.
 - Rollback was tested from a disposable distribution copy. The archived `Saves` loaded 175,622
   items and 34,854 mobiles, opened the game and ping listeners, and shut down normally. The
   authoritative `Distribution/Saves` was not replaced or written during this test; the disposable
@@ -32,14 +37,16 @@ artifacts.
 `data/world-generation/alpha2b/world-generation.json` is the source manifest.
 `tools/Prepare-Alpha2bWorldData.ps1` reads stock data from the pinned Git commit rather than the
 working-tree copies and writes only to the shard-specific runtime namespace. Its schema-2
-`generation-report.json` records SHA-256 for all 56 selected inputs and 55 generated outputs.
+`generation-report.json` records SHA-256 for all 57 selected inputs and 55 generated outputs,
+including the pinned stock `DoorGenerator.cs` source used by the shard-owned scanner.
 Two consecutive preparations produced identical output hashes.
 
 The accepted prepared set contains 28 decoration files, 410 Felucca signs, 353 teleporter
 definitions reduced from 390 candidates to 385 canonical placements, and 1,546 canonical spawner
-records reduced from 1,669 candidates. The runtime command refuses an unexpected non-empty initial
-world, validates the UOR/Felucca and ModernUO pins, and writes a per-operation JSON report before it
-saves.
+records reduced from 1,669 candidates. It also contains the 16 reviewed Britannia scan rectangles,
+four stock exclusions and an exact expectation of 1,345 Felucca door placements. The runtime
+command refuses an unexpected non-empty initial world, validates the UOR/Felucca and ModernUO pins,
+and writes a per-operation JSON report before it saves.
 
 ## Exact runtime audit
 
@@ -48,6 +55,7 @@ The final strict post-restart audit passed with:
 | Contract | Accepted result |
 | --- | ---: |
 | Felucca signs with exact graphic, height, and ordinary/localized label | 410 |
+| Town/shop door-frame placements | 1,345 exact; 327/327 double-door pairs linked |
 | Canonical generic teleporters with exact destination and multiplicity | 385 |
 | Canonical spawners with unique GUID and exact location | 1,546 |
 | Felucca public moongates | 9 |
@@ -58,7 +66,9 @@ The final strict post-restart audit passed with:
 | Root objects on inactive facets | 0 |
 
 The audit also validates every selected spawner against the explicit post-UOR exclusion list and
-rejects any teleporter outside the UOR Felucca map boundary.
+rejects any teleporter outside the UOR Felucca map boundary. Door generation uses only Felucca,
+preserves intentional decoration door types within the stock frame Z tolerance, and fails on any
+blocked, duplicate, missing or conflicting placement.
 
 ## Convergence defect and remediation
 
@@ -77,6 +87,13 @@ again created zero decorations and removed zero duplicates. Both runs retained a
 objects, rebuilt only the intentionally replaceable travel/spawner/sign layers, passed the exact
 audit, and saved successfully.
 
+The door-corrected clean run created 1,215 dark-wood doors and preserved 130 matching decoration
+doors for 1,345 audited placements. Its immediate rerun and first rerun after save/restart each
+created zero doors, found all 1,345 existing, reported zero failures, and retained all 327 linked
+double-door pairs. The first attempted clean rehearsal correctly refused to save when 11 decorated
+doors differed from their static frame Z by one or two units; the final implementation recognizes
+that same occupancy tolerance and preserves ten Yew barred doors and one Britain strong-wood door.
+
 ## Real-client release rehearsal
 
 - Greater Britain: the mage shop exposed its buy list, a localized Reagent Shop sign rendered,
@@ -94,6 +111,10 @@ audit, and saved successfully.
   orc, ratman, and wildlife spawns. Covetous produced slimes, spiders, a water elemental, shades,
   spectres, zombies, and skeletons. A generated Covetous metal door opened and the client crossed
   its tile.
+- Town/shop doors: a real client opened and crossed the generated double-door entrance at Minoc
+  bank, then opened the generated entrance at Britain's Lord's Clothiers and arrived inside the
+  staffed tailor shop. These checks cover a secondary-town shell and a functioning Greater Britain
+  shop; the exact runtime audit covers every other door-frame placement.
 - Death/recovery: on disposable staging, the test character was made mortal, died, entered true
   ghost state at 0/100 hits, approached the generated Britain healer, received the Resurrection
   gump, explicitly accepted it, and returned alive at 10/100 hits.
@@ -110,7 +131,7 @@ allowlist. `git diff --check` passes for all Alpha 2b implementation and evidenc
 
 ## Exit decision
 
-All five Alpha 2b exit criteria are accepted: rebuild inputs are versioned and hashed; save
+All five Alpha 2b exit criteria remain accepted after the door-corrected clean rebuild: rebuild inputs are versioned and hashed; save
 lineage, sole-writer discipline, restart and rollback are proven; all generated layers pass exact
 and representative client checks; immediate and post-restart reruns converge; and inactive facets,
 Faction/champion content, excluded later-era spawns, and peer-city services remain absent.
