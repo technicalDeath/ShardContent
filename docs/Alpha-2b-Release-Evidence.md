@@ -18,6 +18,10 @@ artifacts.
   into the new save.
 - The generated world completed a controlled save, clean shutdown, restart, client reconnect,
   strict audit, convergence rerun, second save, and another restart.
+- The stopped accepted `Distribution/Saves` contains 18 files / 8,358,965 bytes with latest write
+  `2026-09-26T20:20:43.7585753-04:00`. SHA-256 over the sorted UTF-8 lines
+  `<relative-path> <per-file-sha256>` is
+  `e50a337c794b50fea4bf50283b2809b0e2ccf0e7ad00d0cf0df9a1048a7b3ea8`.
 - Rollback was tested from a disposable distribution copy. The archived `Saves` loaded 175,622
   items and 34,854 mobiles, opened the game and ping listeners, and shut down normally. The
   authoritative `Distribution/Saves` was not replaced or written during this test; the disposable
