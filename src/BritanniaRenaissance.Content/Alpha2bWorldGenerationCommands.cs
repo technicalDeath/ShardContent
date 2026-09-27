@@ -1,7 +1,9 @@
 using Server;
 using Server.Collections;
 using Server.Commands;
+using Server.Engines.CannedEvil;
 using Server.Engines.Spawners;
+using Server.Factions;
 using Server.Items;
 using Server.Json;
 using Server.Mobiles;
@@ -132,8 +134,11 @@ public static class Alpha2bWorldGenerationCommands
             from.SendMessage("Alpha 2b: generating Felucca shop and location signs.");
             GenerateSigns(inputs.Signs);
 
-            from.SendMessage("Alpha 2b: generating UOR Khaldun puzzle infrastructure.");
-            GenKhaldun.GenKhaldun_OnCommand(new CommandEventArgs(from, "GenKhaldun", "", []));
+            if (inputs.Manifest.GenerateKhaldunPuzzles)
+            {
+                from.SendMessage("Alpha 2b: generating UOR Khaldun puzzle infrastructure.");
+                GenKhaldun.GenKhaldun_OnCommand(new CommandEventArgs(from, "GenKhaldun", "", []));
+            }
 
             from.SendMessage(
                 $"Alpha 2b generated {decorationCount} decorations, {teleporterCount} teleporters, " +
@@ -272,22 +277,41 @@ public static class Alpha2bWorldGenerationCommands
             errors.Add(inactiveError);
         }
 
-        var signsFound = inputs.Signs.Count(SignExists);
-        if (signsFound != inputs.Signs.Count)
+        var signCounts = inputs.Signs.Select(CountMatchingSigns).ToArray();
+        var signPlacementCounts = inputs.Signs.Select(CountSignsAtPlacement).ToArray();
+        var signsFound = signCounts.Count(count => count == 1);
+        if (signsFound != inputs.Signs.Count || signPlacementCounts.Any(count => count != 1))
         {
-            errors.Add($"signs {signsFound}/{inputs.Signs.Count}");
+            errors.Add(
+                $"signs exact {signsFound}/{inputs.Signs.Count}; " +
+                $"duplicate or unexpected-label placements {signPlacementCounts.Count(count => count != 1)}"
+            );
         }
 
-        var teleportersFound = CountExpectedTeleporters(inputs.Teleporters);
-        if (teleportersFound != inputs.TeleporterPlacementCount)
+        var teleporterMatches = inputs.Teleporters.Select(CountMatchingTeleporters).ToArray();
+        var teleporterPlacementCounts = inputs.Teleporters.Select(
+            definition => CountGenericTeleportersAt(definition.Source)
+        ).ToArray();
+        var teleportersFound = teleporterMatches.Count(count => count == 1);
+        if (teleportersFound != inputs.TeleporterPlacementCount || teleporterPlacementCounts.Any(count => count != 1))
         {
-            errors.Add($"teleporters {teleportersFound}/{inputs.TeleporterPlacementCount}");
+            errors.Add(
+                $"teleporters exact {teleportersFound}/{inputs.TeleporterPlacementCount}; " +
+                $"duplicate or conflicting placements {teleporterPlacementCounts.Count(count => count != 1)}"
+            );
         }
 
-        var spawnersFound = inputs.Spawners.Count(SpawnerExists);
+        var spawnersByGuid = CountSpawnersByGuid();
+        var spawnersFound = inputs.Spawners.Count(
+            definition => spawnersByGuid.TryGetValue(definition.Guid, out var matches) &&
+                          matches.Count == 1 && matches[0].Location == definition.Location
+        );
         if (spawnersFound != inputs.Spawners.Count)
         {
-            errors.Add($"spawners {spawnersFound}/{inputs.Spawners.Count}");
+            var duplicates = inputs.Spawners.Count(
+                definition => spawnersByGuid.TryGetValue(definition.Guid, out var matches) && matches.Count > 1
+            );
+            errors.Add($"spawners exact {spawnersFound}/{inputs.Spawners.Count}; duplicate GUIDs {duplicates}");
         }
 
         var moongates = CountItems<PublicMoongate>(Map.Felucca);
@@ -296,10 +320,35 @@ public static class Alpha2bWorldGenerationCommands
             errors.Add($"public moongates {moongates}/{inputs.Manifest.ExpectedPublicMoongates}");
         }
 
-        var khaldunItems = CountItemsInBounds<MorphItem>(Map.Felucca, new Rectangle2D(5400, 1350, 150, 150));
-        if (inputs.Manifest.GenerateKhaldunPuzzles && khaldunItems == 0)
+        var khaldunBounds = new Rectangle2D(5380, 1320, 160, 200);
+        var khaldunItems = CountItemsInBounds<MorphItem>(Map.Felucca, khaldunBounds) +
+                           CountItemsInBounds<EffectController>(Map.Felucca, khaldunBounds) +
+                           CountItemsInBounds<RaiseSwitch>(Map.Felucca, khaldunBounds) +
+                           CountItemsInBounds<RaisableItem>(Map.Felucca, khaldunBounds);
+        if (inputs.Manifest.GenerateKhaldunPuzzles &&
+            khaldunItems != inputs.Manifest.ExpectedKhaldunDynamicItems)
         {
-            errors.Add("Khaldun puzzle infrastructure is absent");
+            errors.Add(
+                $"Khaldun dynamic items {khaldunItems}/{inputs.Manifest.ExpectedKhaldunDynamicItems}"
+            );
+        }
+
+        var championSpawns = CountItems<ChampionSpawn>(Map.Felucca);
+        if (championSpawns != 0)
+        {
+            errors.Add($"excluded champion spawns {championSpawns}/0");
+        }
+
+        var factionInfrastructure = CountItems<BaseMonolith>(Map.Felucca) +
+                                    CountItems<JoinStone>(Map.Felucca) +
+                                    CountItems<FactionStone>(Map.Felucca) +
+                                    CountItems<TownStone>(Map.Felucca) +
+                                    CountItems<Sigil>(Map.Felucca);
+        if (FactionSystem.Enabled || factionInfrastructure != 0)
+        {
+            errors.Add(
+                $"excluded Faction state enabled={FactionSystem.Enabled}, infrastructure={factionInfrastructure}/0"
+            );
         }
 
         if (errors.Count > 0)
@@ -313,7 +362,9 @@ public static class Alpha2bWorldGenerationCommands
             var (items, mobiles) = CountWorldObjects(Map.Felucca);
             from.SendMessage(
                 $"Alpha 2b audit passed: {signsFound} signs, {teleportersFound} teleporters, " +
-                $"{spawnersFound} spawners, {moongates} moongates; Felucca roots {items} items/{mobiles} non-player mobiles."
+                $"{spawnersFound} spawners, {moongates} moongates, {khaldunItems} Khaldun dynamic items; " +
+                $"excluded champions {championSpawns}, Faction infrastructure {factionInfrastructure}; " +
+                $"Felucca roots {items} items/{mobiles} non-player mobiles."
             );
         }
 
@@ -502,44 +553,25 @@ public static class Alpha2bWorldGenerationCommands
         return signs;
     }
 
-    private static bool SignExists(SignDefinition definition)
-    {
-        foreach (var sign in Map.Felucca.GetItemsAt<Sign>(definition.Location))
-        {
-            if (sign.Z == definition.Location.Z && sign.ItemID == definition.ItemId)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static bool SpawnerExists(SpawnerDto definition)
-    {
-        foreach (var spawner in Map.Felucca.GetItemsAt<BaseSpawner>(definition.Location))
-        {
-            if (spawner.Guid == definition.Guid)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static int CountExpectedTeleporters(IEnumerable<TeleporterDefinition> definitions)
+    private static int CountMatchingSigns(SignDefinition definition)
     {
         var count = 0;
-
-        foreach (var definition in definitions)
+        foreach (var sign in Map.Felucca.GetItemsAt<Sign>(definition.Location))
         {
-            if (TeleporterExists(definition.Source, definition.Destination))
+            if (sign.Z != definition.Location.Z || sign.ItemID != definition.ItemId)
             {
-                count++;
+                continue;
             }
 
-            if (definition.Back && TeleporterExists(definition.Destination, definition.Source))
+            if (definition.Text.StartsWithOrdinal("#"))
+            {
+                if (sign is LocalizedSign localized &&
+                    localized.LabelNumber == int.Parse(definition.Text.AsSpan()[1..]))
+                {
+                    count++;
+                }
+            }
+            else if (sign is not LocalizedSign && string.Equals(sign.Name, definition.Text, StringComparison.Ordinal))
             {
                 count++;
             }
@@ -548,19 +580,66 @@ public static class Alpha2bWorldGenerationCommands
         return count;
     }
 
-    private static bool TeleporterExists(WorldLocation source, WorldLocation destination)
+    private static int CountSignsAtPlacement(SignDefinition definition)
     {
-        foreach (var teleporter in Map.Felucca.GetItemsAt<Teleporter>(source))
+        var count = 0;
+        foreach (var sign in Map.Felucca.GetItemsAt<Sign>(definition.Location))
         {
-            if (teleporter is not (KeywordTeleporter or SkillTeleporter) &&
-                Math.Abs(teleporter.Z - source.Z) <= 12 && teleporter.PointDest == destination &&
-                teleporter.MapDest == Map.Felucca)
+            if (sign.Z == definition.Location.Z && sign.ItemID == definition.ItemId)
             {
-                return true;
+                count++;
             }
         }
 
-        return false;
+        return count;
+    }
+
+    private static int CountMatchingTeleporters(TeleporterDefinition definition)
+    {
+        var count = 0;
+        foreach (var teleporter in Map.Felucca.GetItemsAt<Teleporter>(definition.Source))
+        {
+            if (teleporter is not (KeywordTeleporter or SkillTeleporter) &&
+                Math.Abs(teleporter.Z - definition.Source.Z) <= 12 &&
+                teleporter.PointDest == definition.Destination && teleporter.MapDest == Map.Felucca)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static int CountGenericTeleportersAt(WorldLocation source)
+    {
+        var count = 0;
+        foreach (var teleporter in Map.Felucca.GetItemsAt<Teleporter>(source))
+        {
+            if (teleporter is not (KeywordTeleporter or SkillTeleporter) && Math.Abs(teleporter.Z - source.Z) <= 12)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static Dictionary<Guid, List<BaseSpawner>> CountSpawnersByGuid()
+    {
+        var result = new Dictionary<Guid, List<BaseSpawner>>();
+        var bounds = new Rectangle2D(0, 0, Map.Felucca.Width, Map.Felucca.Height);
+        foreach (var spawner in Map.Felucca.GetItemsInBounds<BaseSpawner>(bounds))
+        {
+            if (!result.TryGetValue(spawner.Guid, out var matches))
+            {
+                matches = [];
+                result.Add(spawner.Guid, matches);
+            }
+
+            matches.Add(spawner);
+        }
+
+        return result;
     }
 
     private static bool InactiveFacetsAreEmpty(out string error)

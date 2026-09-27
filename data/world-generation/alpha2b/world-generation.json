@@ -129,5 +129,6 @@
   "decorationsDirectory": "Decoration",
   "generatePublicMoongates": true,
   "expectedPublicMoongates": 9,
-  "generateKhaldun": true
+  "generateKhaldunPuzzles": true,
+  "expectedKhaldunDynamicItems": 63
 }

@@ -1,4 +1,5 @@
 using BritanniaRenaissance.Content;
+using System.Text.Json;
 using Xunit;
 
 namespace BritanniaRenaissance.Content.Tests;
@@ -49,6 +50,38 @@ public class Alpha2bWorldGenerationConfigurationTests
         );
     }
 
+    [Fact]
+    public void RejectsUnexpectedKhaldunDynamicItemCount()
+    {
+        var manifest = ValidManifest() with { ExpectedKhaldunDynamicItems = 62 };
+
+        var error = Assert.Throws<InvalidDataException>(
+            () => Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit)
+        );
+
+        Assert.Contains("Khaldun expectation", error.Message);
+    }
+
+    [Fact]
+    public void SourceManifestEnablesTheExactKhaldunContract()
+    {
+        var path = Path.GetFullPath(
+            Path.Combine(
+                AppContext.BaseDirectory,
+                "..", "..", "..", "..", "data", "world-generation", "alpha2b", "world-generation.json"
+            )
+        );
+        var manifest = JsonSerializer.Deserialize<Alpha2bWorldGenerationManifest>(
+            File.ReadAllText(path),
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+        );
+
+        Assert.NotNull(manifest);
+        Assert.True(manifest.GenerateKhaldunPuzzles);
+        Assert.Equal(63, manifest.ExpectedKhaldunDynamicItems);
+        Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit);
+    }
+
     private static Alpha2bWorldGenerationManifest ValidManifest() => new()
     {
         SchemaVersion = 1,
@@ -63,6 +96,8 @@ public class Alpha2bWorldGenerationConfigurationTests
         TeleportersFile = "teleporters.json",
         DecorationFiles = ["Britannia/britain.cfg"],
         SpawnerFiles = ["Vendors.json"],
-        ExpectedPublicMoongates = 9
+        ExpectedPublicMoongates = 9,
+        GenerateKhaldunPuzzles = true,
+        ExpectedKhaldunDynamicItems = 63
     };
 }

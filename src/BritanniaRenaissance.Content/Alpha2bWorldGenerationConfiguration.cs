@@ -23,6 +23,7 @@ public sealed record Alpha2bWorldGenerationManifest
     public bool GeneratePublicMoongates { get; init; }
     public int ExpectedPublicMoongates { get; init; }
     public bool GenerateKhaldunPuzzles { get; init; }
+    public int ExpectedKhaldunDynamicItems { get; init; }
 }
 
 public static class Alpha2bWorldGenerationConfiguration
@@ -88,9 +89,12 @@ public static class Alpha2bWorldGenerationConfiguration
             throw new InvalidDataException("The Alpha 2b manifest and shard rules pin different ModernUO commits.");
         }
 
-        if (manifest.MaximumEraMapXExclusive != 6144 || manifest.ExpectedPublicMoongates != 9)
+        if (manifest.MaximumEraMapXExclusive != 6144 || manifest.ExpectedPublicMoongates != 9 ||
+            manifest.GenerateKhaldunPuzzles && manifest.ExpectedKhaldunDynamicItems != 63)
         {
-            throw new InvalidDataException("The Alpha 2b UOR map boundary or moongate expectation is invalid.");
+            throw new InvalidDataException(
+                "The Alpha 2b UOR map boundary, moongate expectation, or Khaldun expectation is invalid."
+            );
         }
 
         ValidateRelativePath(manifest.GeneratedDataRoot, nameof(manifest.GeneratedDataRoot));

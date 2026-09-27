@@ -61,6 +61,20 @@ function Get-PinnedModernUOText([string]$RelativePath) {
     return $lines -join "`n"
 }
 
+function Get-TextSha256([string]$Text) {
+    $bytes = [Text.Encoding]::UTF8.GetBytes($Text)
+    $sha256 = [Security.Cryptography.SHA256]::Create()
+    try {
+        return [Convert]::ToHexString($sha256.ComputeHash($bytes)).ToLowerInvariant()
+    } finally {
+        $sha256.Dispose()
+    }
+}
+
+function Get-FileSha256([string]$Path) {
+    return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+
 $generatedRoot = [IO.Path]::GetFullPath((Join-Path $distributionPath $manifest.generatedDataRoot))
 $allowedRoot = [IO.Path]::GetFullPath((Join-Path $distributionPath 'Data\BritanniaRenaissance'))
 
@@ -77,21 +91,40 @@ $spawnerTarget = Join-Path $generatedRoot $manifest.spawnersDirectory
 New-Item -ItemType Directory -Path $decorationTarget -Force | Out-Null
 New-Item -ItemType Directory -Path $spawnerTarget -Force | Out-Null
 
+$inputs = [System.Collections.Generic.List[object]]::new()
 $outputs = [System.Collections.Generic.List[object]]::new()
+$inputs.Add([ordered]@{
+    kind = 'manifest'
+    source = 'ShardContent/world-generation.json'
+    sha256 = Get-FileSha256 $manifestPath
+})
 
 foreach ($relativePath in $manifest.decorationFiles) {
     $safeName = $relativePath.Replace('/', '__').Replace('\', '__')
     $target = Join-Path $decorationTarget $safeName
     $sourcePath = "Distribution/Data/Decoration/$($relativePath.Replace('\', '/'))"
-    Get-PinnedModernUOText $sourcePath | Set-Content -LiteralPath $target -Encoding utf8
-    $outputs.Add([ordered]@{ kind = 'decoration'; source = $relativePath; output = $safeName })
+    $sourceText = Get-PinnedModernUOText $sourcePath
+    $sourceText | Set-Content -LiteralPath $target -Encoding utf8
+    $inputs.Add([ordered]@{ kind = 'decoration'; source = $sourcePath; sha256 = Get-TextSha256 $sourceText })
+    $outputs.Add([ordered]@{
+        kind = 'decoration'
+        source = $relativePath
+        output = $safeName
+        sha256 = Get-FileSha256 $target
+    })
 }
 
 foreach ($fileName in $manifest.customDecorationFiles) {
     $source = Join-Path $sourceRoot $fileName
     $target = Join-Path $decorationTarget $fileName
     Copy-Item -LiteralPath $source -Destination $target
-    $outputs.Add([ordered]@{ kind = 'decoration'; source = "ShardContent/$fileName"; output = $fileName })
+    $inputs.Add([ordered]@{ kind = 'decoration'; source = "ShardContent/$fileName"; sha256 = Get-FileSha256 $source })
+    $outputs.Add([ordered]@{
+        kind = 'decoration'
+        source = "ShardContent/$fileName"
+        output = $fileName
+        sha256 = Get-FileSha256 $target
+    })
 }
 
 $signTarget = Join-Path $generatedRoot $manifest.signsFile
@@ -101,7 +134,10 @@ foreach ($sign in $manifest.excludedSigns) {
     [void]$excludedSigns.Add("$($sign.mapCode)|$($sign.itemId)|$($sign.x)|$($sign.y)|$($sign.z)")
 }
 
-foreach ($line in (Get-PinnedModernUOText 'Distribution/Data/signs.cfg') -split "`r?`n") {
+$signSourcePath = 'Distribution/Data/signs.cfg'
+$signSourceText = Get-PinnedModernUOText $signSourcePath
+$inputs.Add([ordered]@{ kind = 'signs'; source = $signSourcePath; sha256 = Get-TextSha256 $signSourceText })
+foreach ($line in $signSourceText -split "`r?`n") {
     if ([string]::IsNullOrWhiteSpace($line)) {
         continue
     }
@@ -116,10 +152,23 @@ foreach ($line in (Get-PinnedModernUOText 'Distribution/Data/signs.cfg') -split 
 }
 
 $signLines | Set-Content -LiteralPath $signTarget -Encoding utf8
-$outputs.Add([ordered]@{ kind = 'signs'; source = 'Data/signs.cfg'; output = $manifest.signsFile; records = $signLines.Count })
+$outputs.Add([ordered]@{
+    kind = 'signs'
+    source = 'Data/signs.cfg'
+    output = $manifest.signsFile
+    records = $signLines.Count
+    sha256 = Get-FileSha256 $signTarget
+})
 
 $teleporterTarget = Join-Path $generatedRoot $manifest.teleportersFile
-$teleporters = @(Get-PinnedModernUOText 'Distribution/Data/teleporters.json' | ConvertFrom-Json)
+$teleporterSourcePath = 'Distribution/Data/teleporters.json'
+$teleporterSourceText = Get-PinnedModernUOText $teleporterSourcePath
+$inputs.Add([ordered]@{
+    kind = 'teleporters'
+    source = $teleporterSourcePath
+    sha256 = Get-TextSha256 $teleporterSourceText
+})
+$teleporters = @($teleporterSourceText | ConvertFrom-Json)
 $eraTeleporters = @(
     $teleporters | Where-Object {
         $_.src.map -eq $manifest.targetMap -and
@@ -160,6 +209,7 @@ $outputs.Add([ordered]@{
     definitions = $eraTeleporters.Count
     placementCandidates = $teleporterPlacementCandidates
     placements = $teleporterPlacements
+    sha256 = Get-FileSha256 $teleporterTarget
 })
 
 $excludedTypes = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
@@ -175,7 +225,10 @@ foreach ($fileName in $manifest.britainOnlySpawnerFiles) {
 $totalSpawners = 0
 $allFilteredSpawners = [System.Collections.Generic.List[object]]::new()
 foreach ($fileName in $manifest.spawnerFiles) {
-    $sourceSpawners = @(Get-PinnedModernUOText "Distribution/Data/Spawns/shared/felucca/$fileName" | ConvertFrom-Json)
+    $sourcePath = "Distribution/Data/Spawns/shared/felucca/$fileName"
+    $sourceText = Get-PinnedModernUOText $sourcePath
+    $inputs.Add([ordered]@{ kind = 'spawners'; source = $sourcePath; sha256 = Get-TextSha256 $sourceText })
+    $sourceSpawners = @($sourceText | ConvertFrom-Json)
     $filteredSpawners = [System.Collections.Generic.List[object]]::new()
 
     foreach ($spawner in $sourceSpawners) {
@@ -216,6 +269,7 @@ foreach ($fileName in $manifest.spawnerFiles) {
         output = "$($manifest.spawnersDirectory)/$fileName"
         sourceRecords = $sourceSpawners.Count
         records = $filteredSpawners.Count
+        sha256 = Get-FileSha256 $target
     })
 }
 
@@ -224,6 +278,7 @@ foreach ($fileName in $manifest.customSpawnerFiles) {
     $customSpawners = @(Get-Content -LiteralPath $source -Raw | ConvertFrom-Json)
     $target = Join-Path $spawnerTarget $fileName
     Copy-Item -LiteralPath $source -Destination $target
+    $inputs.Add([ordered]@{ kind = 'spawners'; source = "ShardContent/$fileName"; sha256 = Get-FileSha256 $source })
 
     foreach ($spawner in $customSpawners) {
         $allFilteredSpawners.Add($spawner)
@@ -236,6 +291,7 @@ foreach ($fileName in $manifest.customSpawnerFiles) {
         output = "$($manifest.spawnersDirectory)/$fileName"
         sourceRecords = $customSpawners.Count
         records = $customSpawners.Count
+        sha256 = Get-FileSha256 $target
     })
 }
 
@@ -251,7 +307,7 @@ for ($index = $allFilteredSpawners.Count - 1; $index -ge 0; $index--) {
 }
 
 $report = [ordered]@{
-    schemaVersion = 1
+    schemaVersion = 2
     pinnedModernUoCommit = $currentCommit
     generatedUtc = [DateTime]::UtcNow.ToString('O')
     targetEra = $manifest.era
@@ -263,6 +319,7 @@ $report = [ordered]@{
     teleporterPlacements = $teleporterPlacements
     spawnerRecordCandidates = $totalSpawners
     spawnerRecords = $canonicalSpawnerCount
+    inputs = $inputs
     outputs = $outputs
 }
 
