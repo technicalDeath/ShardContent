@@ -58,7 +58,9 @@ public static class Alpha2bWorldGenerationCommands
         from.SendMessage("Alpha 2b input validation passed: UOR / Felucca only.");
         from.SendMessage(
             $"Inputs: {inputs.DecorationFiles.Length} decoration files, {inputs.Signs.Count} signs, " +
-            $"{inputs.TeleporterPlacementCount} teleporter placements, {inputs.Spawners.Count} spawners."
+            $"{inputs.TeleporterPlacementCount} teleporter placements, {inputs.Spawners.Count} spawners, " +
+            $"and {inputs.DoorPlacementCount} Felucca door placements " +
+            $"(manifest expects {inputs.Manifest.DoorGeneration.ExpectedPlacements})."
         );
         from.SendMessage($"Current Felucca world roots: {feluccaItems} items and {feluccaMobiles} non-player mobiles.");
         from.SendMessage($"Apply requires: {CommandSystem.Prefix}Alpha2bWorldGen apply {Confirmation}");
@@ -125,6 +127,9 @@ public static class Alpha2bWorldGenerationCommands
             operations.AddRange(GenerateDecorations(inputs.DecorationFiles));
             operations.Add(NormalizeDecorationDuplicates(inputs.Manifest));
 
+            from.SendMessage("Alpha 2b: generating pinned UOR Felucca town and shop doors.");
+            operations.Add(GenerateDoors(inputs.DoorSets));
+
             from.SendMessage("Alpha 2b: generating Felucca teleporters.");
             operations.Add(GenerateTeleporters(inputs.Teleporters));
 
@@ -160,9 +165,11 @@ public static class Alpha2bWorldGenerationCommands
             var decorationCount = operations.Where(result => result.Stage == "decorations").Sum(result => result.Created);
             var teleporterCount = operations.Single(result => result.Stage == "teleporters").Created;
             var spawnerCount = operations.Single(result => result.Stage == "spawners").Created;
+            var doorResult = operations.Single(result => result.Stage == "doors");
             from.SendMessage(
                 $"Alpha 2b generated {decorationCount} decorations, {teleporterCount} teleporters, " +
-                $"{spawnerCount} spawners, and {inputs.Signs.Count} signs."
+                $"{spawnerCount} spawners, {inputs.Signs.Count} signs, and {doorResult.Created} doors " +
+                $"({doorResult.Skipped} existing)."
             );
 
             if (!Audit(from, false, operations, rerun ? "rerun" : "apply"))
@@ -250,6 +257,104 @@ public static class Alpha2bWorldGenerationCommands
 
         return new GenerationOperationReport(
             "decoration-cleanup", "manifest duplicate cleanup", "Felucca", 0, removed, 0, 0
+        )
+        {
+            Details = details.ToArray()
+        };
+    }
+
+    private static GenerationOperationReport GenerateDoors(IReadOnlyCollection<DoorSetDefinition> doorSets)
+    {
+        var created = 0;
+        var skipped = 0;
+        var failed = 0;
+        var details = new List<string>();
+
+        foreach (var doorSet in doorSets)
+        {
+            var resolved = new BaseDoor?[doorSet.Placements.Length];
+            var newDoors = new List<BaseDoor>();
+            var setFailed = false;
+
+            for (var index = 0; index < doorSet.Placements.Length; index++)
+            {
+                var placement = doorSet.Placements[index];
+                var matches = FindDoorsAtClosedLocation(placement.Location);
+                if (matches.Count > 1)
+                {
+                    details.Add($"duplicate existing doors at {placement.Location}");
+                    failed++;
+                    setFailed = true;
+                    continue;
+                }
+
+                if (matches.Count == 1)
+                {
+                    resolved[index] = matches[0];
+                    skipped++;
+                    continue;
+                }
+
+                if (!Map.Felucca.CanFit(
+                        placement.Location.X,
+                        placement.Location.Y,
+                        placement.Location.Z,
+                        16,
+                        false,
+                        false
+                    ))
+                {
+                    details.Add($"blocked door placement at {placement.Location}");
+                    failed++;
+                    setFailed = true;
+                    continue;
+                }
+
+                var door = new DarkWoodDoor(placement.Facing);
+                door.MoveToWorld(placement.Location, Map.Felucca);
+                resolved[index] = door;
+                newDoors.Add(door);
+            }
+
+            if (!setFailed && resolved.Length == 2)
+            {
+                var first = resolved[0]!;
+                var second = resolved[1]!;
+                if ((first.Link is not null && first.Link != second) ||
+                    (second.Link is not null && second.Link != first))
+                {
+                    details.Add($"conflicting door link at {first.Location} / {second.Location}");
+                    failed++;
+                    setFailed = true;
+                }
+                else
+                {
+                    first.Link = second;
+                    second.Link = first;
+                }
+            }
+
+            if (setFailed)
+            {
+                foreach (var door in newDoors)
+                {
+                    door.Delete();
+                }
+            }
+            else
+            {
+                created += newDoors.Count;
+                details.AddRange(
+                    newDoors.Select(
+                        door => $"created {door.GetType().FullName}|0x{door.ItemID:X4}|" +
+                                $"{door.X},{door.Y},{door.Z}|{door.Serial}"
+                    )
+                );
+            }
+        }
+
+        return new GenerationOperationReport(
+            "doors", "pinned DoorGenerator Felucca scan", "Felucca", created, 0, skipped, failed
         )
         {
             Details = details.ToArray()
@@ -377,6 +482,38 @@ public static class Alpha2bWorldGenerationCommands
             errors.Add(inactiveError);
         }
 
+        var doorPlacementCounts = inputs.DoorSets.SelectMany(set => set.Placements)
+            .Select(placement => FindDoorsAtClosedLocation(placement.Location).Count)
+            .ToArray();
+        var doorsFound = doorPlacementCounts.Count(count => count == 1);
+        var doorLinksValid = inputs.DoorSets.Where(set => set.Placements.Length == 2).Count(
+            set =>
+            {
+                var first = FindDoorsAtClosedLocation(set.Placements[0].Location);
+                var second = FindDoorsAtClosedLocation(set.Placements[1].Location);
+                return first.Count == 1 && second.Count == 1 &&
+                       first[0].Link == second[0] && second[0].Link == first[0];
+            }
+        );
+        var expectedLinkedDoorSets = inputs.DoorSets.Count(set => set.Placements.Length == 2);
+        if (inputs.DoorPlacementCount != inputs.Manifest.DoorGeneration.ExpectedPlacements ||
+            doorsFound != inputs.DoorPlacementCount || doorPlacementCounts.Any(count => count != 1) ||
+            doorLinksValid != expectedLinkedDoorSets)
+        {
+            errors.Add(
+                $"doors exact {doorsFound}/{inputs.DoorPlacementCount}, " +
+                $"manifest expectation {inputs.Manifest.DoorGeneration.ExpectedPlacements}; " +
+                $"duplicate or missing placements {doorPlacementCounts.Count(count => count != 1)}, " +
+                $"linked pairs {doorLinksValid}/{expectedLinkedDoorSets}"
+            );
+        }
+
+        var operationFailures = operations?.Sum(result => result.Failed) ?? 0;
+        if (operationFailures != 0)
+        {
+            errors.Add($"generation operation failures {operationFailures}/0");
+        }
+
         var signCounts = inputs.Signs.Select(CountMatchingSigns).ToArray();
         var signPlacementCounts = inputs.Signs.Select(CountSignsAtPlacement).ToArray();
         var signsFound = signCounts.Count(count => count == 1);
@@ -455,6 +592,10 @@ public static class Alpha2bWorldGenerationCommands
                 operation,
                 operations ?? [],
                 signsFound,
+                doorsFound,
+                inputs.DoorPlacementCount,
+                doorLinksValid,
+                expectedLinkedDoorSets,
                 teleportersFound,
                 spawnersFound,
                 moongates,
@@ -481,7 +622,8 @@ public static class Alpha2bWorldGenerationCommands
         {
             from.SendMessage(
                 $"Alpha 2b audit passed: {signsFound} signs, {teleportersFound} teleporters, " +
-                $"{spawnersFound} spawners, {moongates} moongates, {khaldunItems} Khaldun dynamic items; " +
+                $"{spawnersFound} spawners, {doorsFound} doors, {moongates} moongates, " +
+                $"{khaldunItems} Khaldun dynamic items; " +
                 $"excluded champions {championSpawns}, Faction infrastructure {factionInfrastructure}; " +
                 $"Felucca roots {items} items/{mobiles} non-player mobiles."
             );
@@ -553,6 +695,10 @@ public static class Alpha2bWorldGenerationCommands
         string operation,
         IReadOnlyCollection<GenerationOperationReport> operations,
         int signs,
+        int doors,
+        int doorPlacements,
+        int linkedDoorSets,
+        int expectedLinkedDoorSets,
         int teleporters,
         int spawners,
         int moongates,
@@ -579,6 +725,11 @@ public static class Alpha2bWorldGenerationCommands
             {
                 passed = errors.Count == 0,
                 signs,
+                doors,
+                doorPlacements,
+                expectedDoorPlacements = inputs.Manifest.DoorGeneration.ExpectedPlacements,
+                linkedDoorSets,
+                expectedLinkedDoorSets,
                 teleporters,
                 spawners,
                 moongates,
@@ -678,6 +829,7 @@ public static class Alpha2bWorldGenerationCommands
 
             var canonicalTeleporters = CanonicalizeTeleporters(teleporters);
             var canonicalSpawners = CanonicalizeSpawners(spawners);
+            var doorSets = ReadDoorSets(manifest.DoorGeneration);
             ValidateInputs(manifest, signs, canonicalTeleporters, canonicalSpawners);
             inputs = new GenerationInputs(
                 manifest,
@@ -685,7 +837,8 @@ public static class Alpha2bWorldGenerationCommands
                 signs,
                 canonicalTeleporters,
                 canonicalSpawners,
-                britainOnlySpawners
+                britainOnlySpawners,
+                doorSets
             );
             return true;
         }
@@ -809,6 +962,178 @@ public static class Alpha2bWorldGenerationCommands
         }
 
         return signs;
+    }
+
+    private static List<DoorSetDefinition> ReadDoorSets(Alpha2bDoorGeneration configuration)
+    {
+        var sets = new List<DoorSetDefinition>();
+        var seen = new HashSet<DoorLocationKey>();
+
+        foreach (var region in configuration.Regions)
+        {
+            for (var x = region.XMin; x < region.XMaxExclusive; x++)
+            {
+                for (var y = region.YMin; y < region.YMaxExclusive; y++)
+                {
+                    foreach (var tile in Map.Felucca.Tiles.GetStaticTiles(x, y))
+                    {
+                        if (DoorGenerator.IsWestFrame(tile.ID))
+                        {
+                            if (TryFindFrameZ(x + 2, y, tile.Z, DoorGenerator.IsEastFrame, out var newZ))
+                            {
+                                AddDoorSet(
+                                    [new DoorPlacement(new Point3D(x + 1, y, Math.Min(tile.Z, newZ)), DoorFacing.WestCW)]
+                                );
+                            }
+                            else if (TryFindFrameZ(x + 3, y, tile.Z, DoorGenerator.IsEastFrame, out newZ))
+                            {
+                                AddDoorSet(
+                                    [
+                                        new DoorPlacement(
+                                            new Point3D(x + 1, y, Math.Min(tile.Z, newZ)), DoorFacing.WestCW
+                                        ),
+                                        new DoorPlacement(
+                                            new Point3D(x + 2, y, Math.Min(tile.Z, newZ)), DoorFacing.EastCCW
+                                        )
+                                    ]
+                                );
+                            }
+                        }
+                        else if (DoorGenerator.IsNorthFrame(tile.ID))
+                        {
+                            if (TryFindFrameZ(x, y + 2, tile.Z, DoorGenerator.IsSouthFrame, out var newZ))
+                            {
+                                AddDoorSet(
+                                    [new DoorPlacement(new Point3D(x, y + 1, Math.Min(tile.Z, newZ)), DoorFacing.SouthCW)]
+                                );
+                            }
+                            else if (TryFindFrameZ(x, y + 3, tile.Z, DoorGenerator.IsSouthFrame, out newZ))
+                            {
+                                AddDoorSet(
+                                    [
+                                        new DoorPlacement(
+                                            new Point3D(x, y + 1, Math.Min(tile.Z, newZ)), DoorFacing.NorthCCW
+                                        ),
+                                        new DoorPlacement(
+                                            new Point3D(x, y + 2, Math.Min(tile.Z, newZ)), DoorFacing.SouthCW
+                                        )
+                                    ]
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return sets;
+
+        void AddDoorSet(DoorPlacement[] placements)
+        {
+            if (placements.Any(
+                    placement => configuration.Exclusions.Any(
+                        exclusion => exclusion.Contains(placement.Location.X, placement.Location.Y)
+                    )
+                ))
+            {
+                return;
+            }
+
+            var keys = placements.Select(placement => DoorLocationKey.From(placement.Location)).ToArray();
+            if (keys.Any(seen.Contains) || placements.Any(
+                    placement => !CanFitStaticDoor(placement.Location)
+                ))
+            {
+                return;
+            }
+
+            foreach (var key in keys)
+            {
+                seen.Add(key);
+            }
+
+            sets.Add(new DoorSetDefinition(placements));
+        }
+    }
+
+    private static bool CanFitStaticDoor(Point3D location)
+    {
+        const int height = 16;
+        var map = Map.Felucca;
+        var hasSurface = false;
+        var landTile = map.Tiles.GetLandTile(location.X, location.Y);
+        map.GetAverageZ(location.X, location.Y, out var lowZ, out var averageZ, out _);
+        var landFlags = TileData.LandTable[landTile.ID & TileData.MaxLandValue].Flags;
+
+        if ((landFlags & TileFlag.Impassable) != 0 && averageZ > location.Z &&
+            location.Z + height > lowZ)
+        {
+            return false;
+        }
+
+        if ((landFlags & TileFlag.Impassable) == 0 && location.Z == averageZ && !landTile.Ignored)
+        {
+            hasSurface = true;
+        }
+
+        foreach (var tile in map.Tiles.GetStaticTiles(location.X, location.Y))
+        {
+            var data = TileData.ItemTable[tile.ID & TileData.MaxItemValue];
+            if ((data.Surface || data.Impassable) && tile.Z + data.CalcHeight > location.Z &&
+                location.Z + height > tile.Z)
+            {
+                return false;
+            }
+
+            if (data.Surface && !data.Impassable && location.Z == tile.Z + data.CalcHeight)
+            {
+                hasSurface = true;
+            }
+        }
+
+        return hasSurface;
+    }
+
+    private static bool TryFindFrameZ(
+        int x,
+        int y,
+        int z,
+        Func<int, bool> isFrame,
+        out int newZ
+    )
+    {
+        foreach (var tile in Map.Felucca.Tiles.GetStaticTiles(x, y))
+        {
+            if (isFrame(tile.ID) && tile.Z - z is >= -1 and <= 1)
+            {
+                newZ = tile.Z;
+                return true;
+            }
+        }
+
+        newZ = -1;
+        return false;
+    }
+
+    private static List<BaseDoor> FindDoorsAtClosedLocation(Point3D location)
+    {
+        var matches = new List<BaseDoor>();
+        foreach (var door in Map.Felucca.GetItemsInRange<BaseDoor>(location, 2))
+        {
+            var closedLocation = door.Open
+                ? new Point3D(door.X - door.Offset.X, door.Y - door.Offset.Y, door.Z - door.Offset.Z)
+                : door.Location;
+            // Stock decoration data contains a small number of intentional doors one or two Z
+            // units away from the map-frame Z. DoorGenerator's CanFit check treats those doors as
+            // occupying the candidate, so the shard-owned pass must preserve and audit them too.
+            if (closedLocation.X == location.X && closedLocation.Y == location.Y &&
+                Math.Abs(closedLocation.Z - location.Z) <= 2)
+            {
+                matches.Add(door);
+            }
+        }
+
+        return matches;
     }
 
     private static int CountMatchingSigns(SignDefinition definition)
@@ -957,6 +1282,15 @@ public static class Alpha2bWorldGenerationCommands
 
     private sealed record SignDefinition(int MapCode, int ItemId, Point3D Location, string Text);
 
+    private readonly record struct DoorLocationKey(int X, int Y, int Z)
+    {
+        public static DoorLocationKey From(Point3D point) => new(point.X, point.Y, point.Z);
+    }
+
+    private sealed record DoorPlacement(Point3D Location, DoorFacing Facing);
+
+    private sealed record DoorSetDefinition(DoorPlacement[] Placements);
+
     private sealed record GenerationOperationReport(
         string Stage,
         string Source,
@@ -976,9 +1310,11 @@ public static class Alpha2bWorldGenerationCommands
         List<SignDefinition> Signs,
         List<TeleporterDefinition> Teleporters,
         List<SpawnerDto> Spawners,
-        int BritainOnlySpawners
+        int BritainOnlySpawners,
+        List<DoorSetDefinition> DoorSets
     )
     {
         public int TeleporterPlacementCount => Teleporters.Sum(teleporter => teleporter.Back ? 2 : 1);
+        public int DoorPlacementCount => DoorSets.Sum(set => set.Placements.Length);
     }
 }

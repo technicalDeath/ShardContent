@@ -28,6 +28,35 @@ public sealed record Alpha2bWorldGenerationManifest
     public int ExpectedPublicMoongates { get; init; }
     public bool GenerateKhaldunPuzzles { get; init; }
     public int ExpectedKhaldunDynamicItems { get; init; }
+    public Alpha2bDoorGeneration DoorGeneration { get; init; } = new();
+}
+
+public sealed record Alpha2bDoorGeneration
+{
+    public bool Enabled { get; init; }
+    public string SourceFile { get; init; } = "";
+    public int ExpectedPlacements { get; init; }
+    public Alpha2bScanRectangle[] Regions { get; init; } = [];
+    public Alpha2bDoorExclusion[] Exclusions { get; init; } = [];
+}
+
+public sealed record Alpha2bScanRectangle
+{
+    public int XMin { get; init; }
+    public int YMin { get; init; }
+    public int XMaxExclusive { get; init; }
+    public int YMaxExclusive { get; init; }
+}
+
+public sealed record Alpha2bDoorExclusion
+{
+    public int XMin { get; init; }
+    public int YMin { get; init; }
+    public int XMax { get; init; }
+    public int YMax { get; init; }
+    public string Reason { get; init; } = "";
+
+    public bool Contains(int x, int y) => x >= XMin && x <= XMax && y >= YMin && y <= YMax;
 }
 
 public sealed record Alpha2bRectangleBounds
@@ -103,7 +132,7 @@ public static class Alpha2bWorldGenerationConfiguration
 
     public static void Validate(Alpha2bWorldGenerationManifest manifest, string expectedPinnedCommit)
     {
-        if (manifest.SchemaVersion != 1)
+        if (manifest.SchemaVersion != 2)
         {
             throw new InvalidDataException($"Unsupported Alpha 2b manifest schema {manifest.SchemaVersion}.");
         }
@@ -174,6 +203,35 @@ public static class Alpha2bWorldGenerationConfiguration
             ))
         {
             throw new InvalidDataException("Alpha 2b decoration duplicate cleanup contains an unsupported target.");
+        }
+
+        var doors = manifest.DoorGeneration;
+        if (!doors.Enabled ||
+            !string.Equals(
+                doors.SourceFile,
+                "Projects/UOContent/Misc/DoorGenerator.cs",
+                StringComparison.Ordinal
+            ) || doors.ExpectedPlacements <= 0 || doors.Regions.Length != 16)
+        {
+            throw new InvalidDataException("The Alpha 2b Felucca door-generation contract is invalid.");
+        }
+
+        if (doors.Regions.Any(
+                region => region.XMin < 0 || region.YMin < 0 ||
+                          region.XMaxExclusive <= region.XMin || region.YMaxExclusive <= region.YMin ||
+                          region.XMaxExclusive > manifest.MaximumEraMapXExclusive || region.YMaxExclusive > 4096
+            ))
+        {
+            throw new InvalidDataException("Every door scan region must remain inside the UOR Felucca boundary.");
+        }
+
+        if (doors.Exclusions.Length != 4 || doors.Exclusions.Any(
+                exclusion => exclusion.XMin < 0 || exclusion.YMin < 0 ||
+                             exclusion.XMax < exclusion.XMin || exclusion.YMax < exclusion.YMin ||
+                             string.IsNullOrWhiteSpace(exclusion.Reason)
+            ))
+        {
+            throw new InvalidDataException("Every stock Britannia door exclusion must be explicit and justified.");
         }
     }
 

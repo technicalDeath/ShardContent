@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pinnedModernUoCommit": "9fb5448445c0a53ebb77a4ad9d72e9ec06ce8f3d",
   "era": "UOR",
   "targetMap": "Felucca",
@@ -152,5 +152,34 @@
   "generatePublicMoongates": true,
   "expectedPublicMoongates": 9,
   "generateKhaldunPuzzles": true,
-  "expectedKhaldunDynamicItems": 63
+  "expectedKhaldunDynamicItems": 63,
+  "doorGeneration": {
+    "enabled": true,
+    "sourceFile": "Projects/UOContent/Misc/DoorGenerator.cs",
+    "expectedPlacements": 1345,
+    "regions": [
+      { "xMin": 250, "yMin": 750, "xMaxExclusive": 775, "yMaxExclusive": 1330 },
+      { "xMin": 525, "yMin": 2095, "xMaxExclusive": 925, "yMaxExclusive": 2430 },
+      { "xMin": 1025, "yMin": 2155, "xMaxExclusive": 1265, "yMaxExclusive": 2310 },
+      { "xMin": 1635, "yMin": 2430, "xMaxExclusive": 1705, "yMaxExclusive": 2508 },
+      { "xMin": 1775, "yMin": 2605, "xMaxExclusive": 2165, "yMaxExclusive": 2975 },
+      { "xMin": 1055, "yMin": 3520, "xMaxExclusive": 1570, "yMaxExclusive": 4075 },
+      { "xMin": 2860, "yMin": 3310, "xMaxExclusive": 3120, "yMaxExclusive": 3630 },
+      { "xMin": 2470, "yMin": 1855, "xMaxExclusive": 3950, "yMaxExclusive": 3045 },
+      { "xMin": 3425, "yMin": 990, "xMaxExclusive": 3900, "yMaxExclusive": 1455 },
+      { "xMin": 4175, "yMin": 735, "xMaxExclusive": 4840, "yMaxExclusive": 1600 },
+      { "xMin": 2375, "yMin": 330, "xMaxExclusive": 3100, "yMaxExclusive": 1045 },
+      { "xMin": 2100, "yMin": 1090, "xMaxExclusive": 2310, "yMaxExclusive": 1450 },
+      { "xMin": 1495, "yMin": 1400, "xMaxExclusive": 1550, "yMaxExclusive": 1475 },
+      { "xMin": 1085, "yMin": 1520, "xMaxExclusive": 1415, "yMaxExclusive": 1910 },
+      { "xMin": 1410, "yMin": 1500, "xMaxExclusive": 1745, "yMaxExclusive": 1795 },
+      { "xMin": 5120, "yMin": 2300, "xMaxExclusive": 6143, "yMaxExclusive": 4095 }
+    ],
+    "exclusions": [
+      { "xMin": 1343, "yMin": 1743, "xMax": 1344, "yMax": 1743, "reason": "Pinned stock DoorGenerator Britain exclusion." },
+      { "xMin": 1392, "yMin": 1679, "xMax": 1393, "yMax": 1679, "reason": "Pinned stock DoorGenerator Britain exclusion." },
+      { "xMin": 1320, "yMin": 1618, "xMax": 1320, "yMax": 1640, "reason": "Pinned stock DoorGenerator Britain exclusion." },
+      { "xMin": 1383, "yMin": 1642, "xMax": 1383, "yMax": 1643, "reason": "Pinned stock DoorGenerator Britain exclusion." }
+    ]
+  }
 }

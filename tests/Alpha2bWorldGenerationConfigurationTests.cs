@@ -92,6 +92,10 @@ public class Alpha2bWorldGenerationConfigurationTests
                        rewrite.Replacement.StartsWith("Static 0x0DE3", StringComparison.Ordinal)
         );
         Assert.Equal(4, manifest.DecorationDuplicateCleanup.Length);
+        Assert.True(manifest.DoorGeneration.Enabled);
+        Assert.Equal(16, manifest.DoorGeneration.Regions.Length);
+        Assert.Equal(4, manifest.DoorGeneration.Exclusions.Length);
+        Assert.True(manifest.DoorGeneration.ExpectedPlacements > 0);
         Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit);
     }
 
@@ -166,7 +170,7 @@ public class Alpha2bWorldGenerationConfigurationTests
 
     private static Alpha2bWorldGenerationManifest ValidManifest() => new()
     {
-        SchemaVersion = 1,
+        SchemaVersion = 2,
         PinnedModernUoCommit = Commit,
         Era = "UOR",
         TargetMap = "Felucca",
@@ -182,6 +186,33 @@ public class Alpha2bWorldGenerationConfigurationTests
         BritainOnlySpawnerFiles = ["Vendors.json"],
         ExpectedPublicMoongates = 9,
         GenerateKhaldunPuzzles = true,
-        ExpectedKhaldunDynamicItems = 63
+        ExpectedKhaldunDynamicItems = 63,
+        DoorGeneration = ValidDoorGeneration()
+    };
+
+    private static Alpha2bDoorGeneration ValidDoorGeneration() => new()
+    {
+        Enabled = true,
+        SourceFile = "Projects/UOContent/Misc/DoorGenerator.cs",
+        ExpectedPlacements = 1,
+        Regions = Enumerable.Range(0, 16).Select(
+            index => new Alpha2bScanRectangle
+            {
+                XMin = index,
+                YMin = index,
+                XMaxExclusive = index + 1,
+                YMaxExclusive = index + 1
+            }
+        ).ToArray(),
+        Exclusions = Enumerable.Range(0, 4).Select(
+            index => new Alpha2bDoorExclusion
+            {
+                XMin = index,
+                YMin = index,
+                XMax = index,
+                YMax = index,
+                Reason = "Pinned stock exclusion."
+            }
+        ).ToArray()
     };
 }

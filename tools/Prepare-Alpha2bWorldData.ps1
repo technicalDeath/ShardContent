@@ -99,6 +99,13 @@ $inputs.Add([ordered]@{
     sha256 = Get-FileSha256 $manifestPath
 })
 
+$doorSourceText = Get-PinnedModernUOText ([string]$manifest.doorGeneration.sourceFile)
+$inputs.Add([ordered]@{
+    kind = 'door-generator-source'
+    source = $manifest.doorGeneration.sourceFile
+    sha256 = Get-TextSha256 $doorSourceText
+})
+
 foreach ($relativePath in $manifest.decorationFiles) {
     $safeName = $relativePath.Replace('/', '__').Replace('\', '__')
     $target = Join-Path $decorationTarget $safeName
@@ -338,6 +345,8 @@ $report = [ordered]@{
     teleporterPlacements = $teleporterPlacements
     spawnerRecordCandidates = $totalSpawners
     spawnerRecords = $canonicalSpawnerCount
+    doorScanRegions = @($manifest.doorGeneration.regions).Count
+    expectedDoorPlacements = [int]$manifest.doorGeneration.expectedPlacements
     inputs = $inputs
     outputs = $outputs
 }
