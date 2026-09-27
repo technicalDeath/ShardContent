@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Server;
 using Server.Collections;
 using Server.Commands;
@@ -36,7 +37,7 @@ public static class Alpha2bWorldGenerationCommands
                 Apply(e);
                 break;
             case "audit":
-                Audit(e.Mobile, true);
+                Audit(e.Mobile, true, null, "audit");
                 break;
             default:
                 e.Mobile.SendMessage(
@@ -118,34 +119,53 @@ public static class Alpha2bWorldGenerationCommands
 
         try
         {
+            var operations = new List<GenerationOperationReport>();
             NetState.FlushAll();
             from.SendMessage("Alpha 2b: generating era-reviewed Felucca decorations.");
-            var decorationCount = GenerateDecorations(inputs.DecorationFiles);
+            operations.AddRange(GenerateDecorations(inputs.DecorationFiles));
+            operations.Add(NormalizeDecorationDuplicates(inputs.Manifest));
 
             from.SendMessage("Alpha 2b: generating Felucca teleporters.");
-            var teleporterCount = GenerateTeleporters(inputs.Teleporters);
+            operations.Add(GenerateTeleporters(inputs.Teleporters));
 
             from.SendMessage("Alpha 2b: generating UOR public moongates.");
+            var moongatesBefore = CountItems<PublicMoongate>(Map.Felucca);
             PublicMoongate.MoonGen_OnCommand(new CommandEventArgs(from, "MoonGen", "", []));
+            var moongatesAfter = CountItems<PublicMoongate>(Map.Felucca);
+            operations.Add(
+                new GenerationOperationReport(
+                    "moongates", "PublicMoongate.MoonGen", "Felucca", moongatesAfter, moongatesBefore, 0, 0
+                )
+            );
 
             from.SendMessage("Alpha 2b: generating era-reviewed Felucca spawners.");
-            var spawnerCount = GenerateSpawners(inputs.Spawners);
+            operations.Add(GenerateSpawners(inputs.Spawners));
 
             from.SendMessage("Alpha 2b: generating Felucca shop and location signs.");
-            GenerateSigns(inputs.Signs);
+            operations.Add(GenerateSigns(inputs.Signs));
 
             if (inputs.Manifest.GenerateKhaldunPuzzles)
             {
                 from.SendMessage("Alpha 2b: generating UOR Khaldun puzzle infrastructure.");
+                var khaldunBefore = CountKhaldunDynamicItems();
                 GenKhaldun.GenKhaldun_OnCommand(new CommandEventArgs(from, "GenKhaldun", "", []));
+                var khaldunAfter = CountKhaldunDynamicItems();
+                operations.Add(
+                    new GenerationOperationReport(
+                        "khaldun", "GenKhaldun", "Felucca", khaldunAfter - khaldunBefore, 0, khaldunBefore, 0
+                    )
+                );
             }
 
+            var decorationCount = operations.Where(result => result.Stage == "decorations").Sum(result => result.Created);
+            var teleporterCount = operations.Single(result => result.Stage == "teleporters").Created;
+            var spawnerCount = operations.Single(result => result.Stage == "spawners").Created;
             from.SendMessage(
                 $"Alpha 2b generated {decorationCount} decorations, {teleporterCount} teleporters, " +
                 $"{spawnerCount} spawners, and {inputs.Signs.Count} signs."
             );
 
-            if (!Audit(from, false))
+            if (!Audit(from, false, operations, rerun ? "rerun" : "apply"))
             {
                 from.SendMessage("Alpha 2b audit failed. The world was not saved; stop the server and repeat from a clean reset.");
                 return;
@@ -162,43 +182,105 @@ public static class Alpha2bWorldGenerationCommands
         }
     }
 
-    private static int GenerateDecorations(IEnumerable<string> files)
+    private static List<GenerationOperationReport> GenerateDecorations(IEnumerable<string> files)
     {
-        var generated = 0;
+        var results = new List<GenerationOperationReport>();
 
         foreach (var file in files)
         {
+            var before = CaptureRootItemSerials(Map.Felucca);
+            var generated = 0;
             foreach (var list in DecorationList.ReadAll(file))
             {
                 generated += list.Generate([Map.Felucca]);
             }
+
+            var placements = CountDecorationPlacements(file);
+            results.Add(
+                new GenerationOperationReport(
+                    "decorations",
+                    Path.GetFileName(file),
+                    "Felucca",
+                    generated,
+                    0,
+                    placements - generated,
+                    0
+                )
+                {
+                    Details = DescribeNewRootItems(Map.Felucca, before)
+                }
+            );
         }
 
-        return generated;
+        return results;
     }
 
-    private static int GenerateTeleporters(IEnumerable<TeleporterDefinition> definitions)
+    private static GenerationOperationReport NormalizeDecorationDuplicates(
+        Alpha2bWorldGenerationManifest manifest
+    )
+    {
+        var removed = 0;
+        var details = new List<string>();
+
+        foreach (var cleanup in manifest.DecorationDuplicateCleanup)
+        {
+            var location = new Point3D(cleanup.X, cleanup.Y, cleanup.Z);
+            var matches = new List<SpikeTrap>();
+            foreach (var item in Map.Felucca.GetItemsAt<SpikeTrap>(location))
+            {
+                if (item.Z == cleanup.Z && item.ItemID == cleanup.ItemId)
+                {
+                    matches.Add(item);
+                }
+            }
+
+            matches.Sort((left, right) => left.Serial.CompareTo(right.Serial));
+
+            for (var index = cleanup.Keep; index < matches.Count; index++)
+            {
+                var duplicate = matches[index];
+                details.Add(
+                    $"removed {duplicate.GetType().FullName}|0x{duplicate.ItemID:X4}|" +
+                    $"{duplicate.X},{duplicate.Y},{duplicate.Z}|{duplicate.Serial}"
+                );
+                duplicate.Delete();
+                removed++;
+            }
+        }
+
+        return new GenerationOperationReport(
+            "decoration-cleanup", "manifest duplicate cleanup", "Felucca", 0, removed, 0, 0
+        )
+        {
+            Details = details.ToArray()
+        };
+    }
+
+    private static GenerationOperationReport GenerateTeleporters(IEnumerable<TeleporterDefinition> definitions)
     {
         var generated = 0;
+        var replaced = 0;
 
         foreach (var definition in definitions)
         {
-            DeleteGenericTeleporters(definition.Source);
+            replaced += DeleteGenericTeleporters(definition.Source);
             new Teleporter(definition.Destination, Map.Felucca).MoveToWorld(definition.Source, Map.Felucca);
             generated++;
 
             if (definition.Back)
             {
-                DeleteGenericTeleporters(definition.Destination);
+                replaced += DeleteGenericTeleporters(definition.Destination);
                 new Teleporter(definition.Source, Map.Felucca).MoveToWorld(definition.Destination, Map.Felucca);
                 generated++;
             }
         }
 
-        return generated;
+        return new GenerationOperationReport(
+            "teleporters", "teleporters.json", "Felucca", generated, replaced, 0, 0
+        );
     }
 
-    private static void DeleteGenericTeleporters(WorldLocation location)
+    private static int DeleteGenericTeleporters(WorldLocation location)
     {
         using var queue = PooledRefQueue<Item>.Create();
 
@@ -210,15 +292,19 @@ public static class Alpha2bWorldGenerationCommands
             }
         }
 
+        var deleted = queue.Count;
         while (queue.Count > 0)
         {
             queue.Dequeue().Delete();
         }
+
+        return deleted;
     }
 
-    private static int GenerateSpawners(IEnumerable<SpawnerDto> definitions)
+    private static GenerationOperationReport GenerateSpawners(IEnumerable<SpawnerDto> definitions)
     {
         var generated = 0;
+        var replaced = 0;
 
         foreach (var definition in definitions)
         {
@@ -237,6 +323,7 @@ public static class Alpha2bWorldGenerationCommands
             while (queue.Count > 0)
             {
                 queue.Dequeue().Delete();
+                replaced++;
             }
 
             try
@@ -252,18 +339,31 @@ public static class Alpha2bWorldGenerationCommands
             }
         }
 
-        return generated;
+        return new GenerationOperationReport(
+            "spawners", "manifest allowlist", "Felucca", generated, replaced, 0, 0
+        );
     }
 
-    private static void GenerateSigns(IEnumerable<SignDefinition> definitions)
+    private static GenerationOperationReport GenerateSigns(IEnumerable<SignDefinition> definitions)
     {
+        var generated = 0;
+        var replaced = 0;
         foreach (var definition in definitions)
         {
+            replaced += CountSignsAtPlacement(definition);
             SignParser.Add_Static(definition.ItemId, definition.Location, Map.Felucca, definition.Text);
+            generated++;
         }
+
+        return new GenerationOperationReport("signs", "signs.cfg", "Felucca", generated, replaced, 0, 0);
     }
 
-    private static bool Audit(Mobile from, bool reportSuccess)
+    private static bool Audit(
+        Mobile from,
+        bool reportSuccess,
+        IReadOnlyCollection<GenerationOperationReport>? operations,
+        string operation
+    )
     {
         if (!TryLoadInputs(from, out var inputs))
         {
@@ -320,11 +420,7 @@ public static class Alpha2bWorldGenerationCommands
             errors.Add($"public moongates {moongates}/{inputs.Manifest.ExpectedPublicMoongates}");
         }
 
-        var khaldunBounds = new Rectangle2D(5380, 1320, 160, 200);
-        var khaldunItems = CountItemsInBounds<MorphItem>(Map.Felucca, khaldunBounds) +
-                           CountItemsInBounds<EffectController>(Map.Felucca, khaldunBounds) +
-                           CountItemsInBounds<RaiseSwitch>(Map.Felucca, khaldunBounds) +
-                           CountItemsInBounds<RaisableItem>(Map.Felucca, khaldunBounds);
+        var khaldunItems = CountKhaldunDynamicItems();
         if (inputs.Manifest.GenerateKhaldunPuzzles &&
             khaldunItems != inputs.Manifest.ExpectedKhaldunDynamicItems)
         {
@@ -351,6 +447,30 @@ public static class Alpha2bWorldGenerationCommands
             );
         }
 
+        var (items, mobiles) = CountWorldObjects(Map.Felucca);
+        try
+        {
+            WriteExecutionReport(
+                inputs,
+                operation,
+                operations ?? [],
+                signsFound,
+                teleportersFound,
+                spawnersFound,
+                moongates,
+                khaldunItems,
+                championSpawns,
+                factionInfrastructure,
+                items,
+                mobiles,
+                errors
+            );
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"execution report could not be written: {ex.Message}");
+        }
+
         if (errors.Count > 0)
         {
             from.SendMessage($"Alpha 2b audit failed: {string.Join("; ", errors)}.");
@@ -359,7 +479,6 @@ public static class Alpha2bWorldGenerationCommands
 
         if (reportSuccess)
         {
-            var (items, mobiles) = CountWorldObjects(Map.Felucca);
             from.SendMessage(
                 $"Alpha 2b audit passed: {signsFound} signs, {teleportersFound} teleporters, " +
                 $"{spawnersFound} spawners, {moongates} moongates, {khaldunItems} Khaldun dynamic items; " +
@@ -369,6 +488,118 @@ public static class Alpha2bWorldGenerationCommands
         }
 
         return true;
+    }
+
+    private static int CountDecorationPlacements(string path)
+    {
+        var count = 0;
+        foreach (var line in File.ReadLines(path))
+        {
+            var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length >= 3 && int.TryParse(parts[0], out _) && int.TryParse(parts[1], out _) &&
+                int.TryParse(parts[2], out _))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static HashSet<Serial> CaptureRootItemSerials(Map map)
+    {
+        var serials = new HashSet<Serial>();
+        var bounds = new Rectangle2D(0, 0, map.Width, map.Height);
+        foreach (var item in map.GetItemsInBounds(bounds))
+        {
+            if (item.Parent is null)
+            {
+                serials.Add(item.Serial);
+            }
+        }
+
+        return serials;
+    }
+
+    private static string[] DescribeNewRootItems(Map map, HashSet<Serial> before)
+    {
+        var details = new List<string>();
+        var bounds = new Rectangle2D(0, 0, map.Width, map.Height);
+        foreach (var item in map.GetItemsInBounds(bounds))
+        {
+            if (item.Parent is null && !before.Contains(item.Serial))
+            {
+                details.Add(
+                    $"{item.GetType().FullName}|0x{item.ItemID:X4}|{item.X},{item.Y},{item.Z}|{item.Serial}"
+                );
+            }
+        }
+
+        details.Sort(StringComparer.Ordinal);
+        return details.ToArray();
+    }
+
+    private static int CountKhaldunDynamicItems()
+    {
+        var bounds = new Rectangle2D(5380, 1320, 160, 200);
+        return CountItemsInBounds<MorphItem>(Map.Felucca, bounds) +
+               CountItemsInBounds<EffectController>(Map.Felucca, bounds) +
+               CountItemsInBounds<RaiseSwitch>(Map.Felucca, bounds) +
+               CountItemsInBounds<RaisableItem>(Map.Felucca, bounds);
+    }
+
+    private static void WriteExecutionReport(
+        GenerationInputs inputs,
+        string operation,
+        IReadOnlyCollection<GenerationOperationReport> operations,
+        int signs,
+        int teleporters,
+        int spawners,
+        int moongates,
+        int khaldunItems,
+        int championSpawns,
+        int factionInfrastructure,
+        int feluccaItems,
+        int feluccaMobiles,
+        IReadOnlyCollection<string> errors
+    )
+    {
+        var utcNow = DateTime.UtcNow;
+        var report = new
+        {
+            schemaVersion = 2,
+            generatedUtc = utcNow.ToString("O"),
+            operation,
+            manifestSchemaVersion = inputs.Manifest.SchemaVersion,
+            inputs.Manifest.PinnedModernUoCommit,
+            targetEra = inputs.Manifest.Era,
+            targetMap = inputs.Manifest.TargetMap,
+            operations,
+            audit = new
+            {
+                passed = errors.Count == 0,
+                signs,
+                teleporters,
+                spawners,
+                moongates,
+                khaldunDynamicItems = khaldunItems,
+                championSpawns,
+                factionEnabled = FactionSystem.Enabled,
+                factionInfrastructure,
+                inactiveFacetsEmpty = !errors.Any(error => error.StartsWithOrdinal("inactive facet")),
+                feluccaRootItems = feluccaItems,
+                feluccaNonPlayerMobiles = feluccaMobiles,
+                errors
+            }
+        };
+
+        var directory = Path.Combine(Core.BaseDirectory, "Logs", "BritanniaRenaissance", "Alpha2b");
+        Directory.CreateDirectory(directory);
+        var fileName = $"{utcNow:yyyyMMdd-HHmmss-fff}-{operation}-{Guid.NewGuid():N}.json";
+        File.WriteAllText(
+            Path.Combine(directory, fileName),
+            JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true })
+        );
     }
 
     private static bool TryLoadInputs(Mobile from, out GenerationInputs inputs)
@@ -698,6 +929,19 @@ public static class Alpha2bWorldGenerationCommands
     }
 
     private sealed record SignDefinition(int MapCode, int ItemId, Point3D Location, string Text);
+
+    private sealed record GenerationOperationReport(
+        string Stage,
+        string Source,
+        string Facet,
+        int Created,
+        int Replaced,
+        int Skipped,
+        int Failed
+    )
+    {
+        public string[] Details { get; init; } = [];
+    }
 
     private sealed record GenerationInputs(
         Alpha2bWorldGenerationManifest Manifest,

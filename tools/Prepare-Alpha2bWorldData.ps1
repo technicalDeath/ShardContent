@@ -104,13 +104,32 @@ foreach ($relativePath in $manifest.decorationFiles) {
     $target = Join-Path $decorationTarget $safeName
     $sourcePath = "Distribution/Data/Decoration/$($relativePath.Replace('\', '/'))"
     $sourceText = Get-PinnedModernUOText $sourcePath
+    $sourceSha256 = Get-TextSha256 $sourceText
+    $appliedRewrites = [System.Collections.Generic.List[object]]::new()
+    foreach ($rewrite in @($manifest.decorationRewrites | Where-Object { $_.source -eq $relativePath })) {
+        $pattern = "(?m)^$([regex]::Escape([string]$rewrite.match))$"
+        $matches = [regex]::Matches($sourceText, $pattern).Count
+        if ($matches -ne [int]$rewrite.expectedMatches) {
+            throw "Decoration rewrite for $relativePath expected $($rewrite.expectedMatches) match(es) for '$($rewrite.match)' but found $matches."
+        }
+
+        $sourceText = $sourceText.Replace([string]$rewrite.match, [string]$rewrite.replacement)
+        $appliedRewrites.Add([ordered]@{
+            match = $rewrite.match
+            replacement = $rewrite.replacement
+            matches = $matches
+            reason = $rewrite.reason
+        })
+    }
+
     $sourceText | Set-Content -LiteralPath $target -Encoding utf8
-    $inputs.Add([ordered]@{ kind = 'decoration'; source = $sourcePath; sha256 = Get-TextSha256 $sourceText })
+    $inputs.Add([ordered]@{ kind = 'decoration'; source = $sourcePath; sha256 = $sourceSha256 })
     $outputs.Add([ordered]@{
         kind = 'decoration'
         source = $relativePath
         output = $safeName
         sha256 = Get-FileSha256 $target
+        rewrites = $appliedRewrites
     })
 }
 

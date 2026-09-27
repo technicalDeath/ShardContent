@@ -79,7 +79,57 @@ public class Alpha2bWorldGenerationConfigurationTests
         Assert.NotNull(manifest);
         Assert.True(manifest.GenerateKhaldunPuzzles);
         Assert.Equal(63, manifest.ExpectedKhaldunDynamicItems);
+        Assert.Equal(2, manifest.DecorationRewrites.Length);
+        Assert.Contains(
+            manifest.DecorationRewrites,
+            rewrite => rewrite.Source == "Britannia/_orccave.cfg" &&
+                       rewrite.Match == "CampFire 0x0DE3" &&
+                       rewrite.Replacement.StartsWith("Static 0x0DE3", StringComparison.Ordinal)
+        );
+        Assert.Equal(4, manifest.DecorationDuplicateCleanup.Length);
         Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit);
+    }
+
+    [Fact]
+    public void RejectsDecorationRewriteOutsideTheAllowlist()
+    {
+        var manifest = ValidManifest() with
+        {
+            DecorationRewrites =
+            [
+                new Alpha2bDecorationRewrite
+                {
+                    Source = "Felucca/not-allowed.cfg",
+                    Match = "CampFire 0x0DE3",
+                    Replacement = "Static 0x0DE3",
+                    ExpectedMatches = 1,
+                    Reason = "test"
+                }
+            ]
+        };
+
+        Assert.Throws<InvalidDataException>(
+            () => Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit)
+        );
+    }
+
+    [Fact]
+    public void RejectsUnsupportedDecorationDuplicateCleanup()
+    {
+        var manifest = ValidManifest() with
+        {
+            DecorationDuplicateCleanup =
+            [
+                new Alpha2bDecorationDuplicateCleanup
+                {
+                    Type = "Static", ItemId = 0x111B, X = 1, Y = 1, Z = 0, Keep = 1
+                }
+            ]
+        };
+
+        Assert.Throws<InvalidDataException>(
+            () => Alpha2bWorldGenerationConfiguration.Validate(manifest, Commit)
+        );
     }
 
     private static Alpha2bWorldGenerationManifest ValidManifest() => new()

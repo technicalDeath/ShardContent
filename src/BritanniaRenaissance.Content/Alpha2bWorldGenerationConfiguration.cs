@@ -17,6 +17,8 @@ public sealed record Alpha2bWorldGenerationManifest
     public string TeleportersFile { get; init; } = "";
     public string[] DecorationFiles { get; init; } = [];
     public string[] CustomDecorationFiles { get; init; } = [];
+    public Alpha2bDecorationRewrite[] DecorationRewrites { get; init; } = [];
+    public Alpha2bDecorationDuplicateCleanup[] DecorationDuplicateCleanup { get; init; } = [];
     public string[] CustomSpawnerFiles { get; init; } = [];
     public string[] SpawnerFiles { get; init; } = [];
     public string[] ExcludedSpawnerTypes { get; init; } = [];
@@ -24,6 +26,25 @@ public sealed record Alpha2bWorldGenerationManifest
     public int ExpectedPublicMoongates { get; init; }
     public bool GenerateKhaldunPuzzles { get; init; }
     public int ExpectedKhaldunDynamicItems { get; init; }
+}
+
+public sealed record Alpha2bDecorationRewrite
+{
+    public string Source { get; init; } = "";
+    public string Match { get; init; } = "";
+    public string Replacement { get; init; } = "";
+    public int ExpectedMatches { get; init; }
+    public string Reason { get; init; } = "";
+}
+
+public sealed record Alpha2bDecorationDuplicateCleanup
+{
+    public string Type { get; init; } = "";
+    public int ItemId { get; init; }
+    public int X { get; init; }
+    public int Y { get; init; }
+    public int Z { get; init; }
+    public int Keep { get; init; }
 }
 
 public static class Alpha2bWorldGenerationConfiguration
@@ -106,6 +127,25 @@ public static class Alpha2bWorldGenerationConfiguration
         if (manifest.DecorationFiles.Length == 0 || manifest.SpawnerFiles.Length == 0)
         {
             throw new InvalidDataException("The Alpha 2b generation allowlists cannot be empty.");
+        }
+
+        var decorationFiles = manifest.DecorationFiles.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        if (manifest.DecorationRewrites.Any(
+                rewrite => !decorationFiles.Contains(rewrite.Source) ||
+                           string.IsNullOrWhiteSpace(rewrite.Match) ||
+                           string.IsNullOrWhiteSpace(rewrite.Replacement) ||
+                           string.IsNullOrWhiteSpace(rewrite.Reason) || rewrite.ExpectedMatches <= 0
+            ))
+        {
+            throw new InvalidDataException("Every Alpha 2b decoration rewrite must be explicit and allowlisted.");
+        }
+
+        if (manifest.DecorationDuplicateCleanup.Any(
+                cleanup => cleanup.Type != nameof(Server.Items.SpikeTrap) || cleanup.ItemId != 0x111B ||
+                           cleanup.Keep != 1
+            ))
+        {
+            throw new InvalidDataException("Alpha 2b decoration duplicate cleanup contains an unsupported target.");
         }
     }
 

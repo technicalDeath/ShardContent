@@ -43,6 +43,28 @@
   "customDecorationFiles": [
     "britain-bountyboards.cfg"
   ],
+  "decorationRewrites": [
+    {
+      "source": "Britannia/_orccave.cfg",
+      "match": "SpikeTrap 0x1121",
+      "replacement": "SpikeTrap 0x111B",
+      "expectedMatches": 1,
+      "reason": "The extended north-wall trap resets to its base graphic after deserialization; generate the stable base state so restart/rerun is convergent."
+    },
+    {
+      "source": "Britannia/_orccave.cfg",
+      "match": "CampFire 0x0DE3",
+      "replacement": "Static 0x0DE3 (Light=Circle300)",
+      "expectedMatches": 1,
+      "reason": "Campfire intentionally skips serialization and self-deletes after 100 seconds; use a persistent ambient fire for world decoration."
+    }
+  ],
+  "decorationDuplicateCleanup": [
+    { "type": "SpikeTrap", "itemId": 4379, "x": 5324, "y": 1360, "z": 5, "keep": 1 },
+    { "type": "SpikeTrap", "itemId": 4379, "x": 5329, "y": 1360, "z": 5, "keep": 1 },
+    { "type": "SpikeTrap", "itemId": 4379, "x": 5335, "y": 1360, "z": 5, "keep": 1 },
+    { "type": "SpikeTrap", "itemId": 4379, "x": 5340, "y": 1360, "z": 5, "keep": 1 }
+  ],
   "customSpawnerFiles": [
     "britain-vendor-overrides.json"
   ],
