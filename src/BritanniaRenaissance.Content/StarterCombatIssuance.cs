@@ -6,9 +6,20 @@ using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
+/// <summary>
+/// Owner ruling (2026-09-28): starter combat gear and consumables are newbied only, not bound.
+/// This shard's UOR era already stamps every stock creation grant Newbied with no shard code
+/// (CharacterCreation.EquipItem/PackItem, gated on !Core.AOS), so this observer only tops up
+/// quantities stock under-grants and patches gaps stock leaves empty. It never deletes or
+/// replaces anything stock already issued. See Alpha-3-Contract-Review.md G-1 through G-3.
+/// </summary>
 public static class StarterCombatIssuance
 {
-    private const string ProcessedTagPrefix = "BritanniaRenaissance.StarterCombatProcessed.v1.";
+    private const string ProcessedTagPrefix = "BritanniaRenaissance.StarterCombatProcessed.v2.";
+    private const int ArrowTarget = 100;
+    private const int ReagentTarget = 50;
+    private const int BandageTarget = 50;
+
     private static bool _configured;
 
     public static void Configure()
@@ -37,152 +48,106 @@ public static class StarterCombatIssuance
             return;
         }
 
+        var pack = player.Backpack;
         var selectedSkills = ProfessionInfo.GetProfession(args.Profession, out var profession)
             ? profession.Skills
             : args.Skills;
         var selection = StarterPackagePlanner.Select(selectedSkills);
-        var combat = selection.PrimaryCombatSkill is { } primary &&
-                     player.Skills[primary].BaseFixedPoint > 0
-            ? selection.Combat
-            : StarterCombatPackage.None;
-        var magerySelected = Selected(SkillName.Magery);
-        var healingSelected = Selected(SkillName.Healing);
-        var archerySelected = Selected(SkillName.Archery);
 
         bool Selected(SkillName skill) =>
             selectedSkills.Any(entry => entry.Item1 == skill && entry.Item2 > 0) &&
             player.Skills[skill].BaseFixedPoint > 0;
 
-        // Stock creation grants an unrestricted dagger to everyone. Keep that useful
-        // fallback, but prevent character recreation from extracting it for resale.
-        RemoveExact(player, typeof(Dagger));
-        player.Backpack.DropItem(new StarterDagger(player));
-
-        if (combat != StarterCombatPackage.None)
+        // Stock grants 25 arrows for Archery regardless of whether it is the character's
+        // strongest selected combat skill; raise that stack to the approved quantity the same way.
+        if (Selected(SkillName.Archery))
         {
-            RemoveExact(player, typeof(Katana), typeof(Club), typeof(Kryss),
-                typeof(Bow), typeof(Crossbow));
+            TopUpOrGrant(pack, ArrowTarget, () => new Arrow(ArrowTarget));
         }
 
-        if (combat is StarterCombatPackage.Melee or StarterCombatPackage.Archer)
+        if (Selected(SkillName.Magery))
         {
-            RemoveArmor(player);
-            if (combat == StarterCombatPackage.Melee)
+            // Stock's reagent grant is a nested BagOfReagents with 30 of each classic reagent;
+            // leave that container structure alone and just raise each stack inside it.
+            if (pack.FindItemByType<BagOfReagents>() is { } reagentBag)
             {
-                EquipOrPack(player, new StarterStuddedChest(player));
-                EquipOrPack(player, new StarterStuddedLegs(player));
-                Item weapon = selection.PrimaryCombatSkill switch
-                {
-                    SkillName.Macing => new StarterClub(player),
-                    SkillName.Fencing => new StarterKryss(player),
-                    _ => new StarterKatana(player)
-                };
-                EquipOrPack(player, weapon);
-                if (selection.Shield)
-                {
-                    EquipOrPack(player, new StarterWoodenShield(player));
-                }
+                TopUp<BlackPearl>(reagentBag, ReagentTarget);
+                TopUp<Bloodmoss>(reagentBag, ReagentTarget);
+                TopUp<Garlic>(reagentBag, ReagentTarget);
+                TopUp<Ginseng>(reagentBag, ReagentTarget);
+                TopUp<MandrakeRoot>(reagentBag, ReagentTarget);
+                TopUp<Nightshade>(reagentBag, ReagentTarget);
+                TopUp<SulfurousAsh>(reagentBag, ReagentTarget);
+                TopUp<SpidersSilk>(reagentBag, ReagentTarget);
             }
-            else
-            {
-                EquipOrPack(player, new StarterLeatherChest(player));
-                EquipOrPack(player, new StarterLeatherLegs(player));
-                EquipOrPack(player, new StarterBow(player));
-            }
+
+            // Stock's Spellbook constructor unconditionally sets LootType.Blessed, which stays:
+            // spellbooks are conventionally blessed. The vendor-sale guard (Newbied/Nontransferable
+            // only) doesn't cover Blessed, so this one item remains vendor-sellable — an accepted,
+            // minor residual alongside the rest of G-3's few-gold resale tradeoff.
         }
 
-        if (healingSelected || combat is StarterCombatPackage.Melee or StarterCombatPackage.Archer)
+        if (selection.Combat is StarterCombatPackage.Melee or StarterCombatPackage.Archer)
         {
-            RemoveExact(player, typeof(Bandage));
-            player.Backpack.DropItem(new StarterBandage(player, 50));
-        }
-
-        if (archerySelected)
-        {
-            RemoveExact(player, typeof(Arrow));
-            if (combat == StarterCombatPackage.Archer)
+            // Stock grants archers no armor at all (only a bow and arrows); melee professions
+            // that do match a stock profession branch already have their own armor and don't
+            // need this patch.
+            if (selection.Combat == StarterCombatPackage.Archer)
             {
-                player.Backpack.DropItem(new StarterArrow(player, 100));
-            }
-        }
-
-        if (magerySelected)
-        {
-            RemoveExact(player, typeof(BagOfReagents), typeof(Spellbook));
-            RemoveStockScrolls(player);
-            var book = new StarterSpellbook(player);
-            if (combat == StarterCombatPackage.Mage)
-            {
-                EquipOrPack(player, book);
-            }
-            else
-            {
-                player.Backpack.DropItem(book);
+                EquipOrPack(player, Newbied(new LeatherChest()));
+                EquipOrPack(player, Newbied(new LeatherLegs()));
             }
 
-            foreach (var reagent in StarterCraftMaterialIssuance.CreateReagents(player))
+            // Stock never grants a shield to anyone, even with Parry selected.
+            if (selection.Shield)
             {
-                player.Backpack.DropItem(reagent);
+                EquipOrPack(player, Newbied(new WoodenShield()));
             }
+
+            // Stock only grants bandages via Healing (50), Veterinary (5) or Anatomy (3); top up
+            // to the approved quantity regardless of which of those, if any, was selected.
+            TopUpOrGrant(pack, BandageTarget, () => new Bandage(BandageTarget));
         }
 
         account.SetTag(processedTag, "processed");
+    }
+
+    private static void TopUp<T>(Container container, int target) where T : Item
+    {
+        var item = container.FindItemByType<T>();
+        if (item is not null && item.Amount < target)
+        {
+            item.Amount = target;
+        }
+    }
+
+    private static void TopUpOrGrant<T>(Container container, int target, Func<T> create) where T : Item
+    {
+        var item = container.FindItemByType<T>();
+        if (item is not null)
+        {
+            if (item.Amount < target)
+            {
+                item.Amount = target;
+            }
+        }
+        else
+        {
+            container.DropItem(Newbied(create()));
+        }
+    }
+
+    private static T Newbied<T>(T item) where T : Item
+    {
+        item.LootType = LootType.Newbied;
+        return item;
     }
 
     private static void EquipOrPack(PlayerMobile player, Item item)
     {
         if (!player.EquipItem(item))
         {
-            player.Backpack.DropItem(item);
-        }
-    }
-
-    private static void RemoveArmor(PlayerMobile player)
-    {
-        foreach (var item in player.Items.ToArray())
-        {
-            if (item is BaseArmor)
-            {
-                item.Delete();
-            }
-        }
-
-        foreach (var item in player.Backpack.Items.ToArray())
-        {
-            if (item is BaseArmor)
-            {
-                item.Delete();
-            }
-        }
-    }
-
-    private static void RemoveExact(PlayerMobile player, params Type[] types)
-    {
-        foreach (var item in player.Items.ToArray())
-        {
-            if (types.Contains(item.GetType()))
-            {
-                item.Delete();
-            }
-        }
-
-        foreach (var item in player.Backpack.Items.ToArray())
-        {
-            if (types.Contains(item.GetType()))
-            {
-                item.Delete();
-            }
-        }
-    }
-
-    private static void RemoveStockScrolls(PlayerMobile player)
-    {
-        foreach (var item in player.Backpack.Items.ToArray())
-        {
-            if (item is SpellScroll && item is not IStarterIssued)
-            {
-                item.Delete();
-            }
+            player.Backpack!.DropItem(item);
         }
     }
 }

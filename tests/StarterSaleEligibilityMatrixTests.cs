@@ -29,10 +29,6 @@ public class StarterSaleEligibilityMatrixTests
         var types = new[]
         {
             typeof(StarterScissors), typeof(StarterIronIngot), typeof(BackpackWard),
-            typeof(StarterKatana), typeof(StarterClub), typeof(StarterKryss), typeof(StarterBow),
-            typeof(StarterDagger), typeof(StarterStuddedChest), typeof(StarterStuddedLegs),
-            typeof(StarterLeatherChest), typeof(StarterLeatherLegs), typeof(StarterWoodenShield),
-            typeof(StarterSpellbook), typeof(StarterBandage), typeof(StarterArrow),
             typeof(StarterTongs), typeof(StarterPickaxe), typeof(StarterTinkerTools), typeof(StarterSewingKit),
             typeof(StarterSaw), typeof(StarterFletcherTools), typeof(StarterScribesPen), typeof(StarterMortarPestle),
             typeof(StarterRawFishSteak), typeof(StarterKindling), typeof(StarterBoard), typeof(StarterFeather),
@@ -64,6 +60,46 @@ public class StarterSaleEligibilityMatrixTests
             Assert.False(sellInfo.IsResellable(item), type.Name);
         }
 
-        Assert.Equal(40, types.Length);
+        Assert.Equal(27, types.Length);
+    }
+
+    [Fact]
+    public void NewbiedCombatGearIsIneligibleForVendorSaleButNotNontransferable()
+    {
+        // Feature G (2026-09-28): starter combat gear/consumables are plain stock types, newbied
+        // only. A Newbied item is blocked from vendor sale (alongside Nontransferable ones) so
+        // repeated character creation can't be turned into gold, but it is not otherwise bound.
+        var types = new[]
+        {
+            typeof(Katana), typeof(Club), typeof(Kryss), typeof(Bow), typeof(Dagger),
+            typeof(StuddedChest), typeof(StuddedLegs), typeof(LeatherChest), typeof(LeatherLegs),
+            typeof(WoodenShield), typeof(Spellbook), typeof(Bandage), typeof(Arrow)
+        };
+
+        var sellInfo = new GenericSellInfo();
+
+        foreach (var type in types)
+        {
+            var item = (Item)RuntimeHelpers.GetUninitializedObject(type);
+            item.LootType = LootType.Newbied;
+            sellInfo.Add(type, 1);
+
+            Assert.False(item.Nontransferable, type.Name);
+            Assert.False(sellInfo.IsSellable(item), type.Name);
+            Assert.False(sellInfo.IsResellable(item), type.Name);
+        }
+    }
+
+    [Fact]
+    public void OrdinaryRegularLootItemsRemainSellable()
+    {
+        var item = (Item)RuntimeHelpers.GetUninitializedObject(typeof(Katana));
+        var sellInfo = new GenericSellInfo();
+        sellInfo.Add(typeof(Katana), 1);
+
+        Assert.Equal(LootType.Regular, item.LootType);
+        Assert.False(item.Nontransferable);
+        Assert.True(sellInfo.IsSellable(item));
+        Assert.True(sellInfo.IsResellable(item));
     }
 }

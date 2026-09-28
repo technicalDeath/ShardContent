@@ -199,7 +199,6 @@ public static class StarterEconomyProbe
         var scissors = pack.FindItemByType<StarterScissors>() ?? Add(pack, new StarterScissors(owner));
         var ingots = pack.FindItemByType<StarterIronIngot>() ?? Add(pack, new StarterIronIngot(owner, 10));
         var tools = pack.FindItemByType<StarterTinkerTools>() ?? Add(pack, new StarterTinkerTools(owner));
-        var weapon = pack.FindItemByType<StarterKatana>() ?? Add(pack, new StarterKatana(owner));
         BackpackWard? ward = null;
         foreach (var candidate in pack.FindItemsByType<BackpackWard>())
         {
@@ -238,13 +237,13 @@ public static class StarterEconomyProbe
         }
 
         SeededItems.Clear();
-        SeededItems.AddRange([scissors, ingots, tools, weapon, ward, ordinary, _nestedBag]);
+        SeededItems.AddRange([scissors, ingots, tools, ward, ordinary, _nestedBag]);
         if (_nestedIron is not null)
         {
             SeededItems.Add(_nestedIron);
         }
 
-        requester.SendMessage($"Starter economy seed owner={owner.Serial}; scissors={scissors.Serial}; ingots={ingots.Serial} amount={ingots.Amount}; tools={tools.Serial}; weapon={weapon.Serial}; ward={ward.Serial} wardMarked={wardMarked}; ordinary={ordinary.Serial}; nestedBag={_nestedBag.Serial}; nestedIron={_nestedIron?.Serial}.");
+        requester.SendMessage($"Starter economy seed owner={owner.Serial}; scissors={scissors.Serial}; ingots={ingots.Serial} amount={ingots.Amount}; tools={tools.Serial}; ward={ward.Serial} wardMarked={wardMarked}; ordinary={ordinary.Serial}; nestedBag={_nestedBag.Serial}; nestedIron={_nestedIron?.Serial}.");
     }
 
     private static T Add<T>(Container pack, T item) where T : Item
@@ -272,28 +271,22 @@ public static class StarterEconomyProbe
     private static void SeedSalvageTargets(PlayerMobile player, Mobile requester)
     {
         var cloth = new StarterCloth(player, 2);
-        var armor = new StarterStuddedChest(player);
         var ordinaryCloth = new Cloth(2);
         var salvageBag = new SalvageBag();
         var scissors = new StarterScissors(player);
         var tongs = new Tongs();
         var nestedCloth = new StarterCloth(player, 2);
-        var nestedArmor = new StarterStuddedChest(player);
-        var nestedKatana = new StarterKatana(player);
         var ordinaryKatana = new Katana();
         salvageBag.DropItem(nestedCloth);
-        salvageBag.DropItem(nestedArmor);
-        salvageBag.DropItem(nestedKatana);
         salvageBag.DropItem(ordinaryKatana);
         player.Backpack.DropItem(cloth);
-        player.Backpack.DropItem(armor);
         player.Backpack.DropItem(ordinaryCloth);
         player.Backpack.DropItem(salvageBag);
         player.Backpack.DropItem(scissors);
         player.Backpack.DropItem(tongs);
         player.MoveToWorld(new Point3D(1354, 1778, 15), Map.Felucca);
-        SeededItems.AddRange([cloth, armor, ordinaryCloth, salvageBag, scissors, tongs, nestedCloth, nestedArmor, nestedKatana, ordinaryKatana]);
-        requester.SendMessage($"Starter economy salvage targets: cloth={cloth.Serial}; armor={armor.Serial}; ordinaryCloth={ordinaryCloth.Serial}; bag={salvageBag.Serial}; scissors={scissors.Serial}; tongs={tongs.Serial}; nestedCloth={nestedCloth.Serial}; nestedArmor={nestedArmor.Serial}; nestedKatana={nestedKatana.Serial}; ordinaryKatana={ordinaryKatana.Serial}; owner={player.Serial}; location={player.Location}.");
+        SeededItems.AddRange([cloth, ordinaryCloth, salvageBag, scissors, tongs, nestedCloth, ordinaryKatana]);
+        requester.SendMessage($"Starter economy salvage targets: cloth={cloth.Serial}; ordinaryCloth={ordinaryCloth.Serial}; bag={salvageBag.Serial}; scissors={scissors.Serial}; tongs={tongs.Serial}; nestedCloth={nestedCloth.Serial}; ordinaryKatana={ordinaryKatana.Serial}; owner={player.Serial}; location={player.Location}.");
     }
 
     private static void SeedNpcSaleTargets(PlayerMobile player, Mobile requester)
@@ -740,10 +733,6 @@ public static class StarterEconomyProbe
         Item[] items =
         [
             new StarterScissors(player), new StarterIronIngot(player, 2), ward,
-            new StarterKatana(player), new StarterClub(player), new StarterKryss(player), new StarterBow(player),
-            new StarterDagger(player), new StarterStuddedChest(player), new StarterStuddedLegs(player),
-            new StarterLeatherChest(player), new StarterLeatherLegs(player), new StarterWoodenShield(player),
-            new StarterSpellbook(player), new StarterBandage(player, 1), new StarterArrow(player, 1),
             new StarterTongs(player), new StarterPickaxe(player), new StarterTinkerTools(player),
             new StarterSewingKit(player), new StarterSaw(player), new StarterFletcherTools(player),
             new StarterScribesPen(player), new StarterMortarPestle(player),

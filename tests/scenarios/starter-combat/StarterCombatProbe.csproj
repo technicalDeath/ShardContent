@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ServerHostPath Condition="'$(ServerHostPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\..\work\hosts\phase-g</ServerHostPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Server"><HintPath>$(ServerHostPath)\Server.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UOContent"><HintPath>$(ServerHostPath)\Assemblies\UOContent.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BritanniaRenaissance.Content"><HintPath>$(ServerHostPath)\Assemblies\BritanniaRenaissance.Content.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

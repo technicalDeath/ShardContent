@@ -2768,6 +2768,8 @@ Starter equipment is always equivalent to **Standard / vendor-quality** equipmen
 
 This ensures the player's first Well-Made crafted item or low-tier magic drop can immediately be exciting.
 
+**Feature G exception (owner ruling, 2026-09-28).** Starter combat gear and consumables — the universal dagger, melee/archer weapons and armor, a Parry shield, bandages, arrows, and the mage spellbook and reagents — are **newbied only, not nontransferable**. Under this shard's UOR era, stock `CharacterCreation.cs` already stamps every piece of creation gear `LootType.Newbied` with no shard code (`EquipItem`/`PackItem`, gated on `!Core.AOS`); the owner judged the engineering cost of ~20 bound subclasses and their full conversion-route test matrix not worth the few gold of resale value at stake for these specific items. To keep that resale value from becoming a repeated-character-creation gold faucet, a Newbied item **cannot be sold at any NPC or player vendor** (the shard's existing vendor-sale guard, alongside `Nontransferable`), but it can otherwise be traded, dropped, or banked like any ordinary item. Scissors, the free Backpack Ward, and craft materials/tools remain under the general newbied-and-permanently-bound policy above, pending their own letters (D, F, H) reconsidering it.
+
 #### Universal starting package
 
 Every newly created character receives:
@@ -2808,9 +2810,9 @@ If the existing engine has a different unavoidable per-character starting-gold m
 A character whose selected starting skills clearly indicate melee receives:
 
 - one appropriate Standard/vendor-quality weapon matching the strongest selected melee weapon skill;
-- modest Standard/vendor-quality armor appropriate to the template rather than an endgame suit;
-- a Standard shield if the selected skills indicate Parrying;
-- **50 starter bandages**.
+- modest Standard/vendor-quality armor appropriate to the template rather than an endgame suit — per the 2026-09-28 Feature G ruling, this means keeping whatever stock character creation already grants for the selected profession/skills (for example a Warrior profession's full studded suit) rather than deleting it and issuing a separate smaller set;
+- a Standard shield if the selected skills indicate Parrying (stock never grants one; this is a targeted top-up);
+- **50 starter bandages** (topped up to 50 if Healing, Veterinary, or Anatomy granted fewer).
 
 The objective is that the character can immediately fight an appropriate beginner monster.
 
@@ -2819,20 +2821,20 @@ The objective is that the character can immediately fight an appropriate beginne
 An archer receives:
 
 - one Standard/vendor-quality bow or crossbow appropriate to the selected skill/template;
-- modest Standard/vendor-quality armor;
-- **100 starter arrows or bolts** as appropriate;
-- **50 starter bandages**.
+- modest Standard/vendor-quality armor (stock grants archers none at all; per the 2026-09-28 Feature G ruling this is a targeted top-up of Standard leather, not a replaced/curated set);
+- **100 starter arrows or bolts** as appropriate (stock grants 25; topped up);
+- **50 starter bandages** (topped up to 50 if Healing, Veterinary, or Anatomy granted fewer).
 
 #### Mage starter package
 
 A mage receives:
 
 - a basic low-circle spellbook appropriate to launch UOR rules;
-- a basic fallback weapon;
+- a basic fallback weapon (the universal stock dagger every character already receives, per G-2, serves this without any extra grant);
 - ordinary clothing/robe;
-- **50 of each classic reagent**.
+- **50 of each classic reagent** (stock grants 30; topped up).
 
-Starter reagents are character-bound/non-sellable starter consumables. They may be consumed normally for spellcasting but may not be traded, vendored, dropped for transfer, or converted into economic value merely by character creation.
+Starter reagents are ordinary newbied consumables (2026-09-28 Feature G ruling), not bound: they may be consumed normally for spellcasting, and may also be traded or dropped like any other newbied item — only vendor sale (NPC or player) is blocked, per the Feature G exception above.
 
 Do not give a fully completed high-circle spellbook at character creation. Filling and upgrading a spellbook should remain an early economic/social goal.
 
@@ -2916,7 +2918,9 @@ Do not solve character-creation exploits by penalizing legitimate crafted output
 
 #### Starter consumables
 
-Starter bandages, ammunition, reagents and similar directly issued consumables should:
+Combat starter consumables (bandages, arrows/ammunition, spellcasting reagents) are newbied only, per the Feature G exception above: usable normally, kept through death, vendor-sale blocked, otherwise ordinary (tradeable, droppable).
+
+Craft-package starter consumables (for example Inscription's blank scrolls, Alchemy's bottles) remain under the general bound policy pending Feature H's own ruling:
 
 - be usable normally by the receiving character;
 - remain character-bound/non-sellable while they retain the starter marker;

@@ -44,7 +44,7 @@ public class StarterDeathRuleTests
 
     [Fact]
     public void EveryStarterItemTypeIsCovered() =>
-        Assert.Equal(40, FindStarterTypes().Count);
+        Assert.Equal(27, FindStarterTypes().Count);
 
     [Fact]
     public void StarterBagIsAPlainStockBag() =>

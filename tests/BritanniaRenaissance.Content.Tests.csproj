@@ -27,5 +27,20 @@
       <HintPath>$(ModernUOPath)\Distribution\Assemblies\Logger.dll</HintPath>
       <Private>true</Private>
     </Reference>
+    <!-- Server's static initializers log through Serilog; without a copy-local reference here,
+         any test that triggers Server.dll's own type initialization (not just ShardContent's)
+         fails with a FileNotFoundException instead of the test's actual assertions. -->
+    <Reference Include="Serilog">
+      <HintPath>$(ModernUOPath)\Distribution\Serilog.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Async">
+      <HintPath>$(ModernUOPath)\Distribution\Serilog.Sinks.Async.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Console">
+      <HintPath>$(ModernUOPath)\Distribution\Serilog.Sinks.Console.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
   </ItemGroup>
 </Project>
