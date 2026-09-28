@@ -26,16 +26,11 @@ public class StarterSaleEligibilityMatrixTests
     [Fact]
     public void EveryBoundStarterTypeIsIneligibleForNpcSaleAndResale()
     {
+        // Only D's scissors and F's Ward remain bound after G (2026-09-28) and H (2026-09-28)
+        // moved their respective ~20 combat/craft bound types to newbied-only.
         var types = new[]
         {
-            typeof(StarterScissors), typeof(StarterIronIngot), typeof(BackpackWard),
-            typeof(StarterTongs), typeof(StarterPickaxe), typeof(StarterTinkerTools), typeof(StarterSewingKit),
-            typeof(StarterSaw), typeof(StarterFletcherTools), typeof(StarterScribesPen), typeof(StarterMortarPestle),
-            typeof(StarterRawFishSteak), typeof(StarterKindling), typeof(StarterBoard), typeof(StarterFeather),
-            typeof(StarterCloth), typeof(StarterLeather), typeof(StarterBlankScroll), typeof(StarterBottle),
-            typeof(StarterBlackPearl), typeof(StarterBloodmoss), typeof(StarterGarlic), typeof(StarterGinseng),
-            typeof(StarterMandrakeRoot), typeof(StarterNightshade), typeof(StarterSulfurousAsh),
-            typeof(StarterSpidersSilk)
+            typeof(StarterScissors), typeof(BackpackWard)
         };
 
         var wardStarterMarker = typeof(BackpackWard).GetField("_starterIssued", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -60,20 +55,26 @@ public class StarterSaleEligibilityMatrixTests
             Assert.False(sellInfo.IsResellable(item), type.Name);
         }
 
-        Assert.Equal(27, types.Length);
+        Assert.Equal(2, types.Length);
     }
 
     [Fact]
-    public void NewbiedCombatGearIsIneligibleForVendorSaleButNotNontransferable()
+    public void NewbiedStarterItemsAreIneligibleForVendorSaleButNotNontransferable()
     {
-        // Feature G (2026-09-28): starter combat gear/consumables are plain stock types, newbied
-        // only. A Newbied item is blocked from vendor sale (alongside Nontransferable ones) so
-        // repeated character creation can't be turned into gold, but it is not otherwise bound.
+        // Feature G (2026-09-28) and Feature H (2026-09-28): starter combat gear/consumables and
+        // craft materials/tools are plain stock types, newbied only. A Newbied item is blocked
+        // from vendor sale (alongside Nontransferable ones) so repeated character creation can't
+        // be turned into gold, but it is not otherwise bound.
         var types = new[]
         {
             typeof(Katana), typeof(Club), typeof(Kryss), typeof(Bow), typeof(Dagger),
             typeof(StuddedChest), typeof(StuddedLegs), typeof(LeatherChest), typeof(LeatherLegs),
-            typeof(WoodenShield), typeof(Spellbook), typeof(Bandage), typeof(Arrow)
+            typeof(WoodenShield), typeof(Spellbook), typeof(Bandage), typeof(Arrow),
+            typeof(IronIngot), typeof(Tongs), typeof(Pickaxe), typeof(TinkerTools),
+            typeof(Cloth), typeof(Leather), typeof(SewingKit), typeof(Board), typeof(Saw),
+            typeof(Feather), typeof(FletcherTools), typeof(BlankScroll), typeof(ScribesPen),
+            typeof(Bottle), typeof(MortarPestle), typeof(BagOfReagents),
+            typeof(RawLambLeg), typeof(RawChickenLeg), typeof(RawFishSteak)
         };
 
         var sellInfo = new GenericSellInfo();

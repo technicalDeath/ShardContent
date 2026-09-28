@@ -6,10 +6,23 @@ using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
+/// <summary>
+/// Owner ruling (2026-09-28): starter craft materials and tools are newbied only, not bound,
+/// matching Feature G. Stock creation grants stay as-is; this observer only tops up quantities
+/// stock under-grants and adds what stock is missing entirely (Tinker iron, Tailor cloth/leather,
+/// Bowyer/Scribe tools, Scribe/Alchemist reagents), gated once per account per category (H-1) -
+/// which also fixes H-2: a second same-profession character keeps its own ordinary stock grant
+/// instead of losing it to a deletion that used to run before the entitlement check.
+/// See Alpha-3-Contract-Review.md H-1 through H-6.
+/// </summary>
 public static class StarterCraftMaterialIssuance
 {
-    private const string EntitlementTagPrefix = "BritanniaRenaissance.StarterCraftMaterials.v1.";
-    private const string ProcessedTagPrefix = "BritanniaRenaissance.StarterCraftProcessed.v1.";
+    private const string EntitlementTagPrefix = "BritanniaRenaissance.StarterCraftMaterials.v2.";
+
+    // Owner ruling (2026-09-28): a fixed, predictable tool life for every starter crafter, rather
+    // than stock's own random 25-75 uses (BaseTool(int) : this(Utility.RandomMinMax(25, 75), ...)).
+    private const int ToolUses = 50;
+
     private static bool _configured;
 
     public static void Configure()
@@ -32,135 +45,108 @@ public static class StarterCraftMaterialIssuance
             return;
         }
 
-        var processedTag = $"{ProcessedTagPrefix}{player.Serial.Value}";
-        if (account.GetTag(processedTag) is not null)
-        {
-            return;
-        }
-
+        var pack = player.Backpack;
         var selectedSkills = ProfessionInfo.GetProfession(args.Profession, out var profession)
             ? profession.Skills
             : args.Skills;
         var selection = StarterPackagePlanner.Select(selectedSkills);
-        var hasBlacksmith = selection.CraftPackages.Contains(StarterCraftPackage.Blacksmith) &&
-                            player.Skills[SkillName.Blacksmith].BaseFixedPoint > 0;
-        var hasTinker = selection.CraftPackages.Contains(StarterCraftPackage.Tinker) &&
-                        player.Skills[SkillName.Tinkering].BaseFixedPoint > 0;
-        var hasTailor = selection.CraftPackages.Contains(StarterCraftPackage.Tailor) &&
-                        player.Skills[SkillName.Tailoring].BaseFixedPoint > 0;
-        var hasCarpenter = selection.CraftPackages.Contains(StarterCraftPackage.Carpenter) &&
-                           player.Skills[SkillName.Carpentry].BaseFixedPoint > 0;
-        var hasBowyer = selection.CraftPackages.Contains(StarterCraftPackage.Bowyer) &&
-                        player.Skills[SkillName.Fletching].BaseFixedPoint > 0;
-        var hasScribe = selection.CraftPackages.Contains(StarterCraftPackage.Scribe) &&
-                        player.Skills[SkillName.Inscribe].BaseFixedPoint > 0;
-        var hasAlchemist = selection.CraftPackages.Contains(StarterCraftPackage.Alchemist) &&
-                           player.Skills[SkillName.Alchemy].BaseFixedPoint > 0;
-        var hasCook = selection.CraftPackages.Contains(StarterCraftPackage.Cook) &&
-                      player.Skills[SkillName.Cooking].BaseFixedPoint > 0;
 
-        if (hasBlacksmith)
+        bool Has(StarterCraftPackage craft, SkillName skill) =>
+            selection.CraftPackages.Contains(craft) && player.Skills[skill].BaseFixedPoint > 0;
+
+        if (Has(StarterCraftPackage.Blacksmith, SkillName.Blacksmith))
         {
-            // Stock Blacksmith supplies include an unrestricted 50-ingot stack.
-            RemoveStock(player.Backpack, typeof(IronIngot));
-            ReplaceStockTools(player, [typeof(Tongs), typeof(Pickaxe)],
-                new StarterTongs(player), new StarterPickaxe(player));
-            Claim(account, player, StarterCraftPackage.Blacksmith,
-                () => [new StarterIronIngot(player, 250)]);
-        }
-
-        if (hasTinker)
-        {
-            // Stock UOR creation adds three transferable random parts per Tinkering pick.
-            RemoveStock(player.Backpack, typeof(Axle), typeof(Gears), typeof(Hinge), typeof(Springs));
-            ReplaceStockTools(player, [typeof(TinkerTools)], new StarterTinkerTools(player));
-            Claim(account, player, StarterCraftPackage.Tinker,
-                () => [new StarterIronIngot(player, 200)]);
-        }
-
-        if (hasTailor)
-        {
-            RemoveStock(player.Backpack, typeof(BoltOfCloth));
-            ReplaceStockTools(player, [typeof(SewingKit)], new StarterSewingKit(player));
-            Claim(account, player, StarterCraftPackage.Tailor,
-                () => [new StarterCloth(player, 300), new StarterLeather(player, 50)]);
-        }
-
-        if (hasCarpenter || hasBowyer)
-        {
-            RemoveStock(player.Backpack, typeof(Board));
-        }
-
-        if (hasCarpenter)
-        {
-            ReplaceStockTools(player, [typeof(Saw)], new StarterSaw(player));
-            Claim(account, player, StarterCraftPackage.Carpenter,
-                () => [new StarterBoard(player, 250)]);
-        }
-
-        if (hasBowyer)
-        {
-            RemoveStock(player.Backpack, typeof(Feather), typeof(Shaft));
-            ReplaceStockTools(player, [typeof(FletcherTools)], new StarterFletcherTools(player));
-            Claim(account, player, StarterCraftPackage.Bowyer,
-                () => [new StarterBoard(player, 200), new StarterFeather(player, 100)]);
-        }
-
-        if (hasScribe)
-        {
-            RemoveStock(player.Backpack, typeof(BlankScroll));
-            ReplaceStockTools(player, [typeof(ScribesPen)], new StarterScribesPen(player));
-            Claim(account, player, StarterCraftPackage.Scribe,
-                () => [new StarterBlankScroll(player, 75), .. CreateReagents(player)]);
-        }
-
-        if (hasAlchemist)
-        {
-            RemoveStock(player.Backpack, typeof(Bottle));
-            ReplaceStockTools(player, [typeof(MortarPestle)], new StarterMortarPestle(player));
-            Claim(account, player, StarterCraftPackage.Alchemist,
-                () => [new StarterBottle(player, 75), .. CreateReagents(player)]);
-        }
-
-        if (hasCook)
-        {
-            RemoveStock(player.Backpack, typeof(Kindling), typeof(RawLambLeg),
-                typeof(RawChickenLeg), typeof(RawFishSteak), typeof(SackFlour), typeof(Pitcher));
-            Claim(account, player, StarterCraftPackage.Cook,
-                () => [new StarterRawFishSteak(player, 60), new StarterKindling(player, 2)]);
-        }
-
-        account.SetTag(processedTag, "processed");
-    }
-
-    private static void RemoveStock(Container pack, params Type[] types)
-    {
-        var stock = new List<Item>();
-        foreach (var item in pack.Items)
-        {
-            if (types.Contains(item.GetType()))
+            ClaimOnce(account, StarterCraftPackage.Blacksmith, () =>
             {
-                stock.Add(item);
-            }
+                TopUp<IronIngot>(pack, 250);
+                SetToolUses<Tongs>(pack);
+                SetToolUses<Pickaxe>(pack);
+            });
         }
 
-        foreach (var item in stock)
+        if (Has(StarterCraftPackage.Tinker, SkillName.Tinkering))
         {
-            item.Delete();
+            ClaimOnce(account, StarterCraftPackage.Tinker, () =>
+            {
+                // Stock Tinkering never grants ingots, in any era - only three random tinker
+                // parts. Tinkering's own recipes (Gears, Scissors, ...) consume ingots though, so
+                // add them; this merges with any ingots Blacksmith/Mining already granted.
+                pack.DropItem(Newbied(new IronIngot(200)));
+                SetToolUses<TinkerTools>(pack);
+            });
+        }
+
+        if (Has(StarterCraftPackage.Tailor, SkillName.Tailoring))
+        {
+            ClaimOnce(account, StarterCraftPackage.Tailor, () =>
+            {
+                // Stock grants a BoltOfCloth, which Tailoring recipes cannot consume as a Cloth
+                // resource, and no Leather at all; add the actual resource types instead of
+                // "topping up" a stock grant that crafting can't use.
+                pack.DropItem(Newbied(new Cloth(300)));
+                pack.DropItem(Newbied(new Leather(50)));
+                SetToolUses<SewingKit>(pack);
+            });
+        }
+
+        if (Has(StarterCraftPackage.Carpenter, SkillName.Carpentry))
+        {
+            ClaimOnce(account, StarterCraftPackage.Carpenter, () =>
+            {
+                TopUp<Board>(pack, 250);
+                SetToolUses<Saw>(pack);
+            });
+        }
+
+        if (Has(StarterCraftPackage.Bowyer, SkillName.Fletching))
+        {
+            ClaimOnce(account, StarterCraftPackage.Bowyer, () =>
+            {
+                TopUp<Board>(pack, 200);
+                TopUp<Feather>(pack, 100);
+                // Stock grants no tool at all for Fletching.
+                pack.DropItem(Newbied(new FletcherTools(ToolUses)));
+            });
+        }
+
+        if (Has(StarterCraftPackage.Scribe, SkillName.Inscribe))
+        {
+            ClaimOnce(account, StarterCraftPackage.Scribe, () =>
+            {
+                TopUp<BlankScroll>(pack, 75);
+                // Stock grants no reagents at all for Inscription; the stock BagOfReagents
+                // constructor already gives 50 of each classic reagent, matching the target.
+                pack.DropItem(Newbied(new BagOfReagents(50)));
+                // Stock grants no tool at all for Inscription.
+                pack.DropItem(Newbied(new ScribesPen(ToolUses)));
+            });
+        }
+
+        if (Has(StarterCraftPackage.Alchemist, SkillName.Alchemy))
+        {
+            ClaimOnce(account, StarterCraftPackage.Alchemist, () =>
+            {
+                TopUp<Bottle>(pack, 75);
+                pack.DropItem(Newbied(new BagOfReagents(50)));
+                SetToolUses<MortarPestle>(pack);
+            });
+        }
+
+        if (Has(StarterCraftPackage.Cook, SkillName.Cooking))
+        {
+            ClaimOnce(account, StarterCraftPackage.Cook, () =>
+            {
+                // Stock grants one each of lamb, chicken and fish (plus kindling and a fixed
+                // 20-use flour sack/pitcher, both left untouched); top up the three stackable
+                // proteins so a new cook can actually practice more than a single recipe.
+                TopUp<RawLambLeg>(pack, 20);
+                TopUp<RawChickenLeg>(pack, 20);
+                TopUp<RawFishSteak>(pack, 20);
+            });
         }
     }
 
-    private static void ReplaceStockTools(PlayerMobile player, Type[] stockTypes, params Item[] tools)
-    {
-        RemoveStock(player.Backpack, stockTypes);
-        foreach (var tool in tools)
-        {
-            player.Backpack.DropItem(tool);
-        }
-    }
-
-    private static void Claim(Account account, PlayerMobile player, StarterCraftPackage craft,
-        Func<Item[]> createItems)
+    private static void ClaimOnce(Account account, StarterCraftPackage craft, Action grant)
     {
         var tag = $"{EntitlementTagPrefix}{craft}";
         if (account.GetTag(tag) is not null)
@@ -168,23 +154,30 @@ public static class StarterCraftMaterialIssuance
             return;
         }
 
-        foreach (var item in createItems())
-        {
-            player.Backpack.DropItem(item);
-        }
-
+        grant();
         account.SetTag(tag, "issued");
     }
 
-    internal static Item[] CreateReagents(PlayerMobile player) =>
-    [
-        new StarterBlackPearl(player, 50),
-        new StarterBloodmoss(player, 50),
-        new StarterGarlic(player, 50),
-        new StarterGinseng(player, 50),
-        new StarterMandrakeRoot(player, 50),
-        new StarterNightshade(player, 50),
-        new StarterSulfurousAsh(player, 50),
-        new StarterSpidersSilk(player, 50)
-    ];
+    private static void TopUp<T>(Container container, int target) where T : Item
+    {
+        var item = container.FindItemByType<T>();
+        if (item is not null && item.Amount < target)
+        {
+            item.Amount = target;
+        }
+    }
+
+    private static void SetToolUses<T>(Container container) where T : Item, IUsesRemaining
+    {
+        foreach (var tool in container.FindItemsByType<T>())
+        {
+            tool.UsesRemaining = ToolUses;
+        }
+    }
+
+    private static T Newbied<T>(T item) where T : Item
+    {
+        item.LootType = LootType.Newbied;
+        return item;
+    }
 }

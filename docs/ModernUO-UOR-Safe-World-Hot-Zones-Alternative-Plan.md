@@ -2768,7 +2768,7 @@ Starter equipment is always equivalent to **Standard / vendor-quality** equipmen
 
 This ensures the player's first Well-Made crafted item or low-tier magic drop can immediately be exciting.
 
-**Feature G exception (owner ruling, 2026-09-28).** Starter combat gear and consumables — the universal dagger, melee/archer weapons and armor, a Parry shield, bandages, arrows, and the mage spellbook and reagents — are **newbied only, not nontransferable**. Under this shard's UOR era, stock `CharacterCreation.cs` already stamps every piece of creation gear `LootType.Newbied` with no shard code (`EquipItem`/`PackItem`, gated on `!Core.AOS`); the owner judged the engineering cost of ~20 bound subclasses and their full conversion-route test matrix not worth the few gold of resale value at stake for these specific items. To keep that resale value from becoming a repeated-character-creation gold faucet, a Newbied item **cannot be sold at any NPC or player vendor** (the shard's existing vendor-sale guard, alongside `Nontransferable`), but it can otherwise be traded, dropped, or banked like any ordinary item. Scissors, the free Backpack Ward, and craft materials/tools remain under the general newbied-and-permanently-bound policy above, pending their own letters (D, F, H) reconsidering it.
+**Feature G exception (owner ruling, 2026-09-28).** Starter combat gear and consumables — the universal dagger, melee/archer weapons and armor, a Parry shield, bandages, arrows, and the mage spellbook and reagents — are **newbied only, not nontransferable**. Under this shard's UOR era, stock `CharacterCreation.cs` already stamps every piece of creation gear `LootType.Newbied` with no shard code (`EquipItem`/`PackItem`, gated on `!Core.AOS`); the owner judged the engineering cost of ~20 bound subclasses and their full conversion-route test matrix not worth the few gold of resale value at stake for these specific items. To keep that resale value from becoming a repeated-character-creation gold faucet, a Newbied item **cannot be sold at any NPC or player vendor** (the shard's existing vendor-sale guard, alongside `Nontransferable`), but it can otherwise be traded, dropped, or banked like any ordinary item. Scissors (D) and the free Backpack Ward (F) remain under the general newbied-and-permanently-bound policy above, pending their own letters reconsidering it; craft materials/tools followed the same exception in Feature H (2026-09-28, see §16.1 Crafter/gatherer starter package below).
 
 #### Universal starting package
 
@@ -2853,27 +2853,20 @@ Initial tuning targets:
 | Bowyer/Fletcher | **200 boards + 100 feathers** |
 | Scribe | **75 blank scrolls + 50 of each classic reagent** |
 | Alchemist | **75 empty bottles + 50 of each relevant classic reagent** |
-| Cook | approximately **50–75 basic recipe attempts** worth of ordinary ingredients |
+| Cook | **20 each of the stock-granted raw lamb leg, chicken leg and fish steak** (kindling and the flour sack/pitcher stay at their stock quantities) |
 | Other approved launch craft | enough ordinary inputs for approximately **40–60 low-level attempts**, tuned by recipe cost |
 
 Also issue the profession's ordinary Standard/vendor-quality starting tools.
 
 These quantities are onboarding targets and should remain configurable after testing.
 
+**Feature H exception (owner ruling, 2026-09-28).** Starter craft materials and tools are **newbied only, not bound** - the same exception Feature G established for combat gear, for the same reason: stock's own UOR-era creation grant is already `LootType.Newbied` with no shard code, and the owner judged ~17 bound material/reagent types and 8 bound tool types not worth their engineering cost against the resale value at stake. As with G, a Newbied item **cannot be sold at any NPC or player vendor** (the shard's vendor-sale guard, alongside `Nontransferable`), but it can otherwise be traded, dropped, or banked like any ordinary item. Two of the targets above are additions rather than quantity raises, because stock's own creation grant doesn't cover them at all: stock Tinkering never grants ingots (only three random parts), and stock Tailoring grants a `BoltOfCloth` that Tailoring recipes cannot consume as a `Cloth` resource. Starter tools keep a fixed 50 uses (an owner-chosen, deliberate deviation from stock's own random 25-75) whether the tool came from stock or is a new addition (Fletcher's Tools, Scribe's Pen - stock grants no tool at all for Fletching or Inscription).
+
 #### Starter material anti-exploit rule
 
 Starter raw materials are different from starter gear.
 
-The **raw starter material itself** must be:
-
-- character-bound while unconsumed;
-- non-sellable;
-- non-tradeable;
-- non-player-vendorable;
-- non-droppable for another character to acquire;
-- unable to be transferred through pets/pack animals;
-- unable to be converted back into unrestricted raw resources;
-- unable to merge with unrestricted stacks in a way that erases its starter provenance.
+Per the Feature H exception above, the raw starter material itself is **newbied, not bound** - it is not character-bound, sellable-only-to-NPCs-blocked-by-Newbied, tradeable, player-vendorable (blocked by the Newbied vendor-sale guard specifically, not by binding), droppable, or transferable through pets in the way originally specified here; only the vendor-sale block and the account-level entitlement below still apply.
 
 Most importantly, starter materials are **not an infinitely refreshable character grant**.
 
@@ -2885,7 +2878,7 @@ Maintain an account-level entitlement ledger per crafting profession/category:
 - a separate eligible profession may still claim its own one-time package;
 - only a character that selected the relevant profession at creation may consume that entitlement.
 
-This finite account-level grant is the primary protection against creating/deleting crafters for free resources.
+This finite account-level grant is the primary protection against creating/deleting crafters for free resources - doubly so now that materials are newbied only: the entitlement ledger is the *only* thing preventing repeated character creation from farming materials, since binding no longer backs it up.
 
 #### No `Starter-Crafted` state
 
@@ -2920,12 +2913,7 @@ Do not solve character-creation exploits by penalizing legitimate crafted output
 
 Combat starter consumables (bandages, arrows/ammunition, spellcasting reagents) are newbied only, per the Feature G exception above: usable normally, kept through death, vendor-sale blocked, otherwise ordinary (tradeable, droppable).
 
-Craft-package starter consumables (for example Inscription's blank scrolls, Alchemy's bottles) remain under the general bound policy pending Feature H's own ruling:
-
-- be usable normally by the receiving character;
-- remain character-bound/non-sellable while they retain the starter marker;
-- not be directly convertible into saleable raw materials;
-- not merge with unrestricted stacks in a way that launders provenance.
+Craft-package starter consumables (for example Inscription's blank scrolls, Alchemy's bottles) are newbied only too, per the Feature H exception above (2026-09-28): usable normally, kept through death, vendor-sale blocked, otherwise ordinary. Scissors (D) and the Backpack Ward (F) remain the only starter items still under the original bound policy below.
 
 They may simply disappear through normal consumption.
 

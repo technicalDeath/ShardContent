@@ -17,7 +17,7 @@ public static class StarterEconomyProbe
     private static readonly List<Item> SeededItems = [];
     private static PlayerVendor? _vendor;
     private static Bag? _nestedBag;
-    private static StarterIronIngot? _nestedIron;
+    private static IronIngot? _nestedIron;
 
     public static void Configure() => CommandSystem.Register("StarterEconomyProbe", AccessLevel.Administrator, OnCommand);
 
@@ -113,13 +113,13 @@ public static class StarterEconomyProbe
                 SeedCarpentryInputs(player!, e.Mobile);
                 break;
             case "makewood":
-                CraftChairFromStarterBoards(player!, e.Mobile);
+                CraftChairFromBoards(player!, e.Mobile);
                 break;
             case "craftcloth":
                 SeedTailoringInputs(player!, e.Mobile);
                 break;
             case "makecloth":
-                CraftShirtFromStarterCloth(player!, e.Mobile);
+                CraftShirtFromCloth(player!, e.Mobile);
                 break;
             case "crafttinker":
                 SeedTinkeringInputs(player!, e.Mobile);
@@ -137,16 +137,16 @@ public static class StarterEconomyProbe
                 SeedTailoringLeather(player!, e.Mobile);
                 break;
             case "makeleather":
-                CraftLeatherCapFromStarterLeather(player!, e.Mobile);
+                CraftLeatherCapFromLeather(player!, e.Mobile);
                 break;
             case "craftbowyer":
                 SeedBowyerInputs(player!, e.Mobile);
                 break;
             case "makebowyer":
-                CraftShaftFromStarterBoard(player!, e.Mobile);
+                CraftShaftFromBoard(player!, e.Mobile);
                 break;
             case "makearrow":
-                CraftArrowFromStarterFeather(player!, e.Mobile);
+                CraftArrowFromFeather(player!, e.Mobile);
                 break;
             case "craftscribe":
                 SeedInscriptionInputs(player!, e.Mobile);
@@ -197,8 +197,8 @@ public static class StarterEconomyProbe
     {
         var pack = owner.Backpack!;
         var scissors = pack.FindItemByType<StarterScissors>() ?? Add(pack, new StarterScissors(owner));
-        var ingots = pack.FindItemByType<StarterIronIngot>() ?? Add(pack, new StarterIronIngot(owner, 10));
-        var tools = pack.FindItemByType<StarterTinkerTools>() ?? Add(pack, new StarterTinkerTools(owner));
+        var ingots = pack.FindItemByType<IronIngot>() ?? Add(pack, Newbied(new IronIngot(10)));
+        var tools = pack.FindItemByType<TinkerTools>() ?? Add(pack, Newbied(new TinkerTools()));
         BackpackWard? ward = null;
         foreach (var candidate in pack.FindItemsByType<BackpackWard>())
         {
@@ -227,13 +227,13 @@ public static class StarterEconomyProbe
         if (_nestedBag is null)
         {
             _nestedBag = new Bag { Name = "A3 nested transfer wrapper" };
-            _nestedIron = new StarterIronIngot(owner, 1);
+            _nestedIron = Newbied(new IronIngot(1));
             _nestedBag.DropItem(_nestedIron);
             pack.DropItem(_nestedBag);
         }
         else
         {
-            _nestedIron = _nestedBag.FindItemByType<StarterIronIngot>();
+            _nestedIron = _nestedBag.FindItemByType<IronIngot>();
         }
 
         SeededItems.Clear();
@@ -249,6 +249,15 @@ public static class StarterEconomyProbe
     private static T Add<T>(Container pack, T item) where T : Item
     {
         pack.DropItem(item);
+        return item;
+    }
+
+    // Feature H (2026-09-28): craft materials/tools are plain stock types, newbied only (no more
+    // owner-serial bound subclasses), matching Feature G's combat gear. Vendor sale is blocked by
+    // the shared Newbied guard; trade, drop, banking and salvage are not.
+    private static T Newbied<T>(T item) where T : Item
+    {
+        item.LootType = LootType.Newbied;
         return item;
     }
 
@@ -270,12 +279,14 @@ public static class StarterEconomyProbe
 
     private static void SeedSalvageTargets(PlayerMobile player, Mobile requester)
     {
-        var cloth = new StarterCloth(player, 2);
+        // Feature H (2026-09-28): newbied Cloth is no longer Nontransferable, so it (unlike the
+        // still-bound Scissors) is expected to salvage/scissor exactly like the ordinary control.
+        var cloth = Newbied(new Cloth(2));
         var ordinaryCloth = new Cloth(2);
         var salvageBag = new SalvageBag();
         var scissors = new StarterScissors(player);
         var tongs = new Tongs();
-        var nestedCloth = new StarterCloth(player, 2);
+        var nestedCloth = Newbied(new Cloth(2));
         var ordinaryKatana = new Katana();
         salvageBag.DropItem(nestedCloth);
         salvageBag.DropItem(ordinaryKatana);
@@ -291,7 +302,9 @@ public static class StarterEconomyProbe
 
     private static void SeedNpcSaleTargets(PlayerMobile player, Mobile requester)
     {
-        var bound = new StarterIronIngot(player, 2);
+        // Feature H (2026-09-28): "bound" here means newbied-only (vendor-blocked by LootType, not
+        // Nontransferable); the ordinary control has Regular loot type and stays sellable.
+        var bound = Newbied(new IronIngot(2));
         var ordinary = new IronIngot(2);
         player.Backpack.DropItem(bound);
         player.Backpack.DropItem(ordinary);
@@ -350,8 +363,8 @@ public static class StarterEconomyProbe
             player.Resurrect();
         }
 
-        var ingots = new StarterIronIngot(player, 100);
-        var tongs = new StarterTongs(player);
+        var ingots = Newbied(new IronIngot(100));
+        var tongs = Newbied(new Tongs());
         pack.DropItem(ingots);
         pack.DropItem(tongs);
         // The newly created disposable character starts at 10 Strength and has stock kit weight.
@@ -367,8 +380,8 @@ public static class StarterEconomyProbe
 
     private static void CraftDaggerFromStarterIngots(PlayerMobile player, Mobile requester)
     {
-        var ingots = player.Backpack!.FindItemByType<StarterIronIngot>();
-        var tongs = player.Backpack.FindItemByType<StarterTongs>();
+        var ingots = player.Backpack!.FindItemByType<IronIngot>();
+        var tongs = player.Backpack.FindItemByType<Tongs>();
         var system = DefBlacksmithy.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(Dagger));
         if (ingots is null || tongs is null || craftItem is null)
@@ -395,8 +408,8 @@ public static class StarterEconomyProbe
             player.Resurrect();
         }
 
-        var boards = new StarterBoard(player, 100);
-        var saw = new StarterSaw(player);
+        var boards = Newbied(new Board(100));
+        var saw = Newbied(new Saw());
         player.Backpack!.DropItem(boards);
         player.Backpack.DropItem(saw);
         player.Str = 100;
@@ -407,10 +420,10 @@ public static class StarterEconomyProbe
         requester.SendMessage($"Starter economy carpentry targets: boards={boards.Serial}; amount={boards.Amount}; saw={saw.Serial}; carpentry={player.Skills[SkillName.Carpentry].Base}; owner={player.Serial}; location={player.Location}.");
     }
 
-    private static void CraftChairFromStarterBoards(PlayerMobile player, Mobile requester)
+    private static void CraftChairFromBoards(PlayerMobile player, Mobile requester)
     {
-        var boards = player.Backpack!.FindItemByType<StarterBoard>();
-        var saw = player.Backpack.FindItemByType<StarterSaw>();
+        var boards = player.Backpack!.FindItemByType<Board>();
+        var saw = player.Backpack.FindItemByType<Saw>();
         var system = DefCarpentry.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(WoodenChair));
         if (boards is null || saw is null || craftItem is null)
@@ -430,8 +443,8 @@ public static class StarterEconomyProbe
             player.Resurrect();
         }
 
-        var cloth = new StarterCloth(player, 100);
-        var kit = new StarterSewingKit(player);
+        var cloth = Newbied(new Cloth(100));
+        var kit = Newbied(new SewingKit());
         player.Backpack!.DropItem(cloth);
         player.Backpack.DropItem(kit);
         player.Str = 100;
@@ -442,10 +455,10 @@ public static class StarterEconomyProbe
         requester.SendMessage($"Starter economy tailoring targets: cloth={cloth.Serial}; amount={cloth.Amount}; kit={kit.Serial}; tailoring={player.Skills[SkillName.Tailoring].Base}; owner={player.Serial}; location={player.Location}.");
     }
 
-    private static void CraftShirtFromStarterCloth(PlayerMobile player, Mobile requester)
+    private static void CraftShirtFromCloth(PlayerMobile player, Mobile requester)
     {
-        var cloth = player.Backpack!.FindItemByType<StarterCloth>();
-        var kit = player.Backpack.FindItemByType<StarterSewingKit>();
+        var cloth = player.Backpack!.FindItemByType<Cloth>();
+        var kit = player.Backpack.FindItemByType<SewingKit>();
         var system = DefTailoring.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(Shirt));
         if (cloth is null || kit is null || craftItem is null)
@@ -466,8 +479,8 @@ public static class StarterEconomyProbe
             player.Resurrect();
         }
 
-        var ingots = new StarterIronIngot(player, 100);
-        var tools = new StarterTinkerTools(player);
+        var ingots = Newbied(new IronIngot(100));
+        var tools = Newbied(new TinkerTools());
         player.Backpack!.DropItem(ingots);
         player.Backpack.DropItem(tools);
         player.Str = 100;
@@ -480,8 +493,8 @@ public static class StarterEconomyProbe
 
     private static void CraftGearsFromStarterIngots(PlayerMobile player, Mobile requester)
     {
-        var ingots = player.Backpack!.FindItemByType<StarterIronIngot>();
-        var tools = player.Backpack.FindItemByType<StarterTinkerTools>();
+        var ingots = player.Backpack!.FindItemByType<IronIngot>();
+        var tools = player.Backpack.FindItemByType<TinkerTools>();
         var system = DefTinkering.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(Gears));
         if (ingots is null || tools is null || craftItem is null)
@@ -502,9 +515,9 @@ public static class StarterEconomyProbe
             player.Resurrect();
         }
 
-        var ingots = new StarterIronIngot(player, 6);
-        var tools = new StarterTinkerTools(player);
-        var cloth = new StarterCloth(player, 5);
+        var ingots = Newbied(new IronIngot(6));
+        var tools = Newbied(new TinkerTools());
+        var cloth = Newbied(new Cloth(5));
         player.Backpack!.DropItem(ingots);
         player.Backpack.DropItem(tools);
         player.Backpack.DropItem(cloth);
@@ -518,8 +531,8 @@ public static class StarterEconomyProbe
 
     private static void CraftScissorsFromStarterIngots(PlayerMobile player, Mobile requester)
     {
-        var ingots = player.Backpack!.FindItemByType<StarterIronIngot>();
-        var tools = player.Backpack.FindItemByType<StarterTinkerTools>();
+        var ingots = player.Backpack!.FindItemByType<IronIngot>();
+        var tools = player.Backpack.FindItemByType<TinkerTools>();
         var system = DefTinkering.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(Scissors));
         if (ingots is null || tools is null || craftItem is null)
@@ -536,8 +549,8 @@ public static class StarterEconomyProbe
     private static void SeedTailoringLeather(PlayerMobile player, Mobile requester)
     {
         if (!player.Alive) player.Resurrect();
-        var leather = new StarterLeather(player, 20);
-        var kit = new StarterSewingKit(player);
+        var leather = Newbied(new Leather(20));
+        var kit = Newbied(new SewingKit());
         player.Backpack!.DropItem(leather);
         player.Backpack.DropItem(kit);
         player.Str = 100;
@@ -548,10 +561,10 @@ public static class StarterEconomyProbe
         requester.SendMessage($"Starter economy leather tailoring targets: leather={leather.Serial}; amount={leather.Amount}; kit={kit.Serial}; owner={player.Serial}.");
     }
 
-    private static void CraftLeatherCapFromStarterLeather(PlayerMobile player, Mobile requester)
+    private static void CraftLeatherCapFromLeather(PlayerMobile player, Mobile requester)
     {
-        var leather = player.Backpack!.FindItemByType<StarterLeather>();
-        var kit = player.Backpack.FindItemByType<StarterSewingKit>();
+        var leather = player.Backpack!.FindItemByType<Leather>();
+        var kit = player.Backpack.FindItemByType<SewingKit>();
         var system = DefTailoring.CraftSystem;
         var craftItem = system.CraftItems.SearchFor(typeof(LeatherCap));
         if (leather is null || kit is null || craftItem is null)
@@ -568,9 +581,9 @@ public static class StarterEconomyProbe
     private static void SeedBowyerInputs(PlayerMobile player, Mobile requester)
     {
         if (!player.Alive) player.Resurrect();
-        var boards = new StarterBoard(player, 1);
-        var feathers = new StarterFeather(player, 1);
-        var tools = new StarterFletcherTools(player);
+        var boards = Newbied(new Board(1));
+        var feathers = Newbied(new Feather(1));
+        var tools = Newbied(new FletcherTools());
         player.Backpack!.DropItem(boards);
         player.Backpack.DropItem(feathers);
         player.Backpack.DropItem(tools);
@@ -582,10 +595,10 @@ public static class StarterEconomyProbe
         requester.SendMessage($"Starter economy bowyer targets: boards={boards.Serial}; amount={boards.Amount}; feathers={feathers.Serial}; featherAmount={feathers.Amount}; tools={tools.Serial}; owner={player.Serial}.");
     }
 
-    private static void CraftShaftFromStarterBoard(PlayerMobile player, Mobile requester)
+    private static void CraftShaftFromBoard(PlayerMobile player, Mobile requester)
     {
-        var boards = player.Backpack!.FindItemByType<StarterBoard>();
-        var tools = player.Backpack.FindItemByType<StarterFletcherTools>();
+        var boards = player.Backpack!.FindItemByType<Board>();
+        var tools = player.Backpack.FindItemByType<FletcherTools>();
         var system = DefBowFletching.CraftSystem;
         var shaftRecipe = system.CraftItems.SearchFor(typeof(Shaft));
         if (boards is null || tools is null || shaftRecipe is null)
@@ -599,16 +612,16 @@ public static class StarterEconomyProbe
         requester.SendMessage($"Starter economy bowyer selection: recipe=Shaft; resource=Board/Log; boardBefore={boards.Amount}.");
     }
 
-    private static void CraftArrowFromStarterFeather(PlayerMobile player, Mobile requester)
+    private static void CraftArrowFromFeather(PlayerMobile player, Mobile requester)
     {
-        var feathers = player.Backpack!.FindItemByType<StarterFeather>();
+        var feathers = player.Backpack!.FindItemByType<Feather>();
         var shaft = player.Backpack.FindItemByType<Shaft>();
-        var tools = player.Backpack.FindItemByType<StarterFletcherTools>();
+        var tools = player.Backpack.FindItemByType<FletcherTools>();
         var system = DefBowFletching.CraftSystem;
         var recipe = system.CraftItems.SearchFor(typeof(Arrow));
         if (feathers is null || shaft is null || tools is null || recipe is null)
         {
-            requester.SendMessage("Starter economy bowyer fixture is missing StarterFeather, stock Shaft, Fletcher Tools or Arrow recipe.");
+            requester.SendMessage("Starter economy bowyer fixture is missing Feather, stock Shaft, Fletcher Tools or Arrow recipe.");
             return;
         }
 
@@ -619,8 +632,8 @@ public static class StarterEconomyProbe
     private static void SeedInscriptionInputs(PlayerMobile player, Mobile requester)
     {
         if (!player.Alive) player.Resurrect();
-        var scrolls = new StarterBlankScroll(player, 8);
-        var pen = new StarterScribesPen(player);
+        var scrolls = Newbied(new BlankScroll(8));
+        var pen = Newbied(new ScribesPen());
         var recall = new RecallScroll();
         var gate = new GateTravelScroll();
         var blankRune = new RecallRune();
@@ -638,8 +651,8 @@ public static class StarterEconomyProbe
 
     private static void CraftRunebookFromStarterScrolls(PlayerMobile player, Mobile requester)
     {
-        var scrolls = player.Backpack!.FindItemByType<StarterBlankScroll>();
-        var pen = player.Backpack.FindItemByType<StarterScribesPen>();
+        var scrolls = player.Backpack!.FindItemByType<BlankScroll>();
+        var pen = player.Backpack.FindItemByType<ScribesPen>();
         var system = DefInscription.CraftSystem;
         var recipe = system.CraftItems.SearchFor(typeof(Runebook));
         if (scrolls is null || pen is null || recipe is null)
@@ -656,9 +669,9 @@ public static class StarterEconomyProbe
     private static void SeedAlchemyInputs(PlayerMobile player, Mobile requester)
     {
         if (!player.Alive) player.Resurrect();
-        var bottles = new StarterBottle(player, 1);
-        var ginseng = new StarterGinseng(player, 3);
-        var tool = new StarterMortarPestle(player);
+        var bottles = Newbied(new Bottle(1));
+        var ginseng = Newbied(new Ginseng(3));
+        var tool = Newbied(new MortarPestle());
         player.Backpack!.DropItem(bottles);
         player.Backpack.DropItem(ginseng);
         player.Backpack.DropItem(tool);
@@ -671,9 +684,9 @@ public static class StarterEconomyProbe
 
     private static void CraftHealPotionFromStarterInputs(PlayerMobile player, Mobile requester)
     {
-        var bottles = player.Backpack!.FindItemByType<StarterBottle>();
-        var ginseng = player.Backpack.FindItemByType<StarterGinseng>();
-        var tool = player.Backpack.FindItemByType<StarterMortarPestle>();
+        var bottles = player.Backpack!.FindItemByType<Bottle>();
+        var ginseng = player.Backpack.FindItemByType<Ginseng>();
+        var tool = player.Backpack.FindItemByType<MortarPestle>();
         var system = DefAlchemy.CraftSystem;
         var recipe = system.CraftItems.SearchFor(typeof(LesserHealPotion));
         if (bottles is null || ginseng is null || tool is null || recipe is null)
@@ -690,8 +703,8 @@ public static class StarterEconomyProbe
     private static void SeedCookingInputs(PlayerMobile player, Mobile requester)
     {
         if (!player.Alive) player.Resurrect();
-        var fish = new StarterRawFishSteak(player, 1);
-        var kindling = new StarterKindling(player, 1);
+        var fish = Newbied(new RawFishSteak(1));
+        var kindling = Newbied(new Kindling(1));
         var skillet = new Skillet(50);
         player.Backpack!.DropItem(fish);
         player.Backpack.DropItem(kindling);
@@ -706,7 +719,7 @@ public static class StarterEconomyProbe
 
     private static void CookFishFromStarterFish(PlayerMobile player, Mobile requester)
     {
-        var fish = player.Backpack!.FindItemByType<StarterRawFishSteak>();
+        var fish = player.Backpack!.FindItemByType<RawFishSteak>();
         var skillet = player.Backpack.FindItemByType<Skillet>();
         var system = DefCooking.CraftSystem;
         var recipe = system.CraftItems.SearchFor(typeof(FishSteak));
@@ -717,7 +730,7 @@ public static class StarterEconomyProbe
         }
 
         system.CreateItem(player, recipe.ItemType, null, skillet, recipe);
-        requester.SendMessage($"Starter economy cooking selection: recipe={recipe.ItemType.Name}; rawFishBefore={fish.Amount}; heatStation=(3704,2245,20); kindlingPresent={player.Backpack.FindItemByType<StarterKindling>() is not null}; tool=Skillet.");
+        requester.SendMessage($"Starter economy cooking selection: recipe={recipe.ItemType.Name}; rawFishBefore={fish.Amount}; heatStation=(3704,2245,20); kindlingPresent={player.Backpack.FindItemByType<Kindling>() is not null}; tool=Skillet.");
     }
 
     private static void SeedTransferMatrix(PlayerMobile player, Mobile requester)
@@ -730,18 +743,23 @@ public static class StarterEconomyProbe
 
         var ward = new BackpackWard();
         ward.MarkStarterIssued(player);
+        // Feature H (2026-09-28): only StarterScissors and the marked Ward are still bound
+        // (Nontransferable) here - "stays with owner" no longer holds for the rest via secure
+        // trade/drop, only via the vendor-sale guard (Newbied). Kept in one matrix so `verify`
+        // reports both kinds side by side; a live drop/trade attempt on the newbied items is
+        // expected to succeed, unlike the two still-bound ones.
         Item[] items =
         [
-            new StarterScissors(player), new StarterIronIngot(player, 2), ward,
-            new StarterTongs(player), new StarterPickaxe(player), new StarterTinkerTools(player),
-            new StarterSewingKit(player), new StarterSaw(player), new StarterFletcherTools(player),
-            new StarterScribesPen(player), new StarterMortarPestle(player),
-            new StarterRawFishSteak(player, 1), new StarterKindling(player, 1),
-            new StarterBoard(player, 1), new StarterFeather(player, 1), new StarterCloth(player, 1),
-            new StarterLeather(player, 1), new StarterBlankScroll(player, 1), new StarterBottle(player, 1),
-            new StarterBlackPearl(player, 1), new StarterBloodmoss(player, 1), new StarterGarlic(player, 1),
-            new StarterGinseng(player, 1), new StarterMandrakeRoot(player, 1), new StarterNightshade(player, 1),
-            new StarterSulfurousAsh(player, 1), new StarterSpidersSilk(player, 1)
+            new StarterScissors(player), Newbied(new IronIngot(2)), ward,
+            Newbied(new Tongs()), Newbied(new Pickaxe()), Newbied(new TinkerTools()),
+            Newbied(new SewingKit()), Newbied(new Saw()), Newbied(new FletcherTools()),
+            Newbied(new ScribesPen()), Newbied(new MortarPestle()),
+            Newbied(new RawFishSteak(1)), Newbied(new Kindling(1)),
+            Newbied(new Board(1)), Newbied(new Feather(1)), Newbied(new Cloth(1)),
+            Newbied(new Leather(1)), Newbied(new BlankScroll(1)), Newbied(new Bottle(1)),
+            Newbied(new BlackPearl(1)), Newbied(new Bloodmoss(1)), Newbied(new Garlic(1)),
+            Newbied(new Ginseng(1)), Newbied(new MandrakeRoot(1)), Newbied(new Nightshade(1)),
+            Newbied(new SulfurousAsh(1)), Newbied(new SpidersSilk(1))
         ];
 
         foreach (var item in items)
@@ -838,9 +856,9 @@ public static class StarterEconomyProbe
     {
         var raw = value.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? value[2..] : value;
         if (!uint.TryParse(raw, System.Globalization.NumberStyles.HexNumber, null, out var serial) ||
-            World.FindItem((Serial)serial) is not StarterIronIngot item)
+            World.FindItem((Serial)serial) is not IronIngot item)
         {
-            requester.SendMessage("Starter economy trim requires a StarterIronIngot serial.");
+            requester.SendMessage("Starter economy trim requires a IronIngot serial.");
             return;
         }
 
