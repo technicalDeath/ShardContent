@@ -349,8 +349,8 @@ Core design principle:
 Mechanical/tuning changes retained from the main plan:
 
 - accelerate skill gain substantially relative to historical OSI rates while keeping the 700 total / 100 individual skill caps
-- make characters become viable quickly through 90, make 90–95 the final conventional training push, and move 95–100 into the server-controlled four-hour-period Mastery system
-- keep crafting and especially taming slower than ordinary combat/mage skills **before 95** because they create significant economic/PvM power; all enabled skills use the shared Mastery rules at 95+ unless explicitly approved otherwise
+- make characters become viable quickly through 90, make 90–95 the final conventional training push, and move 95–100 into the deterministic 18-hour-cycle Mastery system
+- keep crafting and especially taming slower than ordinary combat/mage skills because they create significant economic/PvM power; preserve their slower pre-95 curves and assign their 95+ Mastery allowances from the approved difficulty bands
 - keep blessed runebooks
 - reconsider pet bonding only as a restricted convenience mechanic
 - evaluate BODs positively as a crafter activity loop rather than defaulting them off
@@ -432,7 +432,7 @@ Validate that:
 
 ## 3. Safe-By-Default Britannia, Crime Broadly Preserved, PvP Hot Zones
 
-This plan changes the geography of unsolicited PvP, retains actual theft/criminal/guard mechanics, and **replaces stock UOR murderer thresholds, reporting and decay with the approved voluntary `[Intent]` and cumulative-red rules in Sections 3 and 14**. The optional **Hot-Zone Skill Veteran** title uses the same server-authoritative Hot-area classification with stricter outdoors/no-house/no-boat rules in Section 5.1; it does not modify PvP legality.
+This plan changes the geography of unsolicited PvP, retains actual theft/criminal/guard mechanics, and **replaces stock UOR murderer thresholds, reporting and decay with the approved voluntary `[Intent]` and cumulative-red rules in Sections 3 and 14**. The optional **Hot-Zone Skill Veteran** title uses the same server-authoritative Hot-area classification with stricter outdoors/no-house/no-boat rules in Section 5.2; it does not modify PvP legality.
 
 ### Safe-world default
 
@@ -684,7 +684,7 @@ Regression sequences: spawn with weapon equipped; unarmed-to-halberd; precast→
 
 ### 4.3 Passive UOR improvements retained, with measured limits
 
-**Lumberjacking/axes — adopt stock UOR formula initially:** The ModernUO version examined in the September 18 research applies an axe damage modifier of approximately `Lumberjacking / 5` percent, up to a **+20 percentage-point damage modifier at 100.0** when UOR is active. Its additional historical GM-only +10 points appeared gated behind a later expansion in that inspected implementation; independently confirm in the pinned checkout. The modifier is additive with applicable damage modifiers, **not a promise of 20% final post-armor DPS**. Approve +20 at GM for launch; **do not** add the 2001 GM-only spike to +30 without separate approval. Smooth scaling is particularly important because Section 5 makes 95→100 a 50-period / 200-hour Mastery path and says 90–95 should already be viable. Verify the actual `WeaponType.Axe` classification of each approved axe; do not give the bonus to unrelated War Axe/mace types by name. A two-handed axe cannot simultaneously be used with a shield. Test whether tank mages can cheaply absorb Lumberjacking and still dominate the intended specializations.
+**Lumberjacking/axes — adopt stock UOR formula initially:** The ModernUO version examined in the September 18 research applies an axe damage modifier of approximately `Lumberjacking / 5` percent, up to a **+20 percentage-point damage modifier at 100.0** when UOR is active. Its additional historical GM-only +10 points appeared gated behind a later expansion in that inspected implementation; independently confirm in the pinned checkout. The modifier is additive with applicable damage modifiers, **not a promise of 20% final post-armor DPS**. Approve +20 at GM for launch; **do not** add the 2001 GM-only spike to +30 without separate approval. Smooth scaling is particularly important because Section 5 calendar-gates 95→100 through difficulty-rated Mastery and says 90–95 should already be viable. Verify the actual `WeaponType.Axe` classification of each approved axe; do not give the bonus to unrelated War Axe/mace types by name. A two-handed axe cannot simultaneously be used with a shield. Test whether tank mages can cheaply absorb Lumberjacking and still dominate the intended specializations.
 
 **Poison — retain weapon specialization; defer potentially systemic changes:** Retain eligible poisoned blades, skill-dependent application, poison tiers, normal on-hit delivery and tier-appropriate curing **as implemented and verified**. Preserve a meaningful equipment/resource cost and corrosion reduction for Poisoning if that mechanic actually exists; don't invent a new corrosion system. Audit *separately* poison spell potency, cure probabilities, poisoning damage and whether poison prevents bandage or magical healing. Do not automatically add enhanced mage Poison-spell scaling and healing denial as a package: both can strengthen tank mages as well as dexers. If stock UOR already applies healing denial, document that current behavior and require an owner choice before removing it; don't claim it is already disabled. PvP and PvM cure/heal regression cases are mandatory before any change. Do not make Poisoning a required skill for all competitive mages merely to make poison weapons attractive.
 
@@ -730,6 +730,12 @@ The September 18 research found an insta-hit configuration key and relevant weap
 
 ## 5. Character Rules
 
+### Cosmetic Elf appearance — planned for Beta 1
+
+Offer Human and Elf at character creation in the distributed Britannia Renaissance ClassicUO fork. An Elf keeps the native Elf body, skin and hair choices, including the absence of facial hair, through death, resurrection and save/restart. This is an appearance choice only: starting stats, skills, equipment and account entitlements follow the Human UOR path. Elf appearance grants no racial skill, stat, regeneration, resistance, night-vision, harvest, taming, equipment or other gameplay advantage, and does not unlock ML content.
+
+At Beta 1 activation, set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true while keeping `SupportedFeatures.ML` false and `Id` at UOR. The fork uses only the character-list bit to permit Elf selection; Gargoyle creation remains subject to the separate SA gate. Keep the bit disabled on the active shard until Beta 1 activation. Implement creation through shard-owned hooks where possible and preserve existing character-created handlers such as starter Ward issuance. Test Human/Elf parity, race-restricted content, appearance persistence and the client creation flow on a disposable server before activation.
+
 Audit and establish explicit shard-level values for:
 
 **Total skill cap:** target classic UOR value, normally `700.0`.
@@ -772,7 +778,7 @@ For a representative **Standard** skill trained efficiently with no temporary ga
 | 70.0 → 80.0 | Moderately fast | **2 hours** | **4.5 hours** |
 | 80.0 → 90.0 | Average | **3 hours** | **7.5 hours** |
 | 90.0 → 95.0 | Slow | **5 hours** | **12.5 hours** |
-| 95.0 → 100.0 | Server-controlled Mastery periods | **50 four-hour periods / 200 hours** | calendar-gated |
+| 95.0 → 100.0 | Difficulty-rated Mastery cycles | **5–25 active 18-hour cycles** | calendar- and use-gated |
 
 A "focused-training hour" means an hour using an appropriate gain-eligible training method at a reasonably efficient cadence with adequate resources, no temporary skill-gain bonus, no skill-cap blockage and no substantial idle time.
 
@@ -838,42 +844,50 @@ The purpose is to remove the incentive to stand in a house macroing or burn enor
 
 Mastery is **per skill**.
 
-Multiple skills at 95+ can accumulate Mastery time concurrently. A character with Swords, Tactics, Anatomy and Healing all at 95 should not have to complete four sequential 14-day calendars.
+Multiple skills at 95+ receive their own allowance concurrently. A character with Swords, Tactics,
+Anatomy and Healing all at 95 should not have to complete four sequential calendars.
 
-#### Server-controlled Mastery periods and banking
+#### Character Mastery cycles, skill allowances and limited banking
 
-At **95.0**, ordinary random gain stops and the skill enters Mastery. Every character uses the same
-server-wide UTC schedule; there are no login-relative timers, client clocks, timezone offsets or
-random period starts.
+At **95.0**, ordinary random gain stops and the skill enters Mastery. Mastery uses one
+server-authoritative **18-hour cycle per character**. The cycle is shared by all of that character's
+95+ skills; it is not a separate timer for every skill. The server records the cycle anchor when the
+character first enters Mastery and derives later cycle IDs from that durable anchor. Client clocks
+and timezone settings have no effect.
 
-- Each period is **4 hours**, closing at **00:00, 04:00, 08:00, 12:00, 16:00 and 20:00 UTC**.
-- Each completed eligible period deposits exactly **one +0.1 pending increment** for that skill.
-- A UTC calendar date is eligible after the character logs in once during that date. Completed
-  periods earlier in that same date are reconciled on login; dates with no login produce nothing.
-- Online characters are reconciled at the boundary. Offline characters reconcile the same fixed
-  period IDs at their next login, without duplication.
-- Pending balance is stored per character and skill, persists through logout, death, restart and
-  account saves, and is capped at **0.6** (six increments). Periods observed while the cap is full
-  are consumed without adding more balance, forcing active use before additional banking.
-- A normal, non-trivial, gain-eligible skill use at 95.0–99.9 consumes one pending increment and
-  grants exactly +0.1. Failed, trivial, invalid, locked, capped or anti-macro-blocked uses consume
-  nothing. Multiple increments may be consumed in one day.
-- Reaching 100.0 ends Mastery for that skill and discards unused pending increments.
+- At the start of each cycle, every skill currently at 95.0–99.9 receives its configured Mastery
+  allowance. A skill reaching 95 during an existing character cycle receives that cycle's full
+  allowance once; lowering and re-raising it cannot issue the allowance again.
+- Every normal, non-trivial attempt that would otherwise have a valid chance to gain grants exactly
+  **+0.1**, deterministically, until that skill's available allowance is exhausted. The attempt need
+  not win the suppressed stock random-gain roll. Failed actions, trivial checks, locked/down skills,
+  total-cap blockage, anti-macro rejection and other gain-ineligible uses grant and consume nothing.
+- Allowance is stored in fixed-point tenths per character and skill and survives logout, death,
+  restart and account saves. Unused allowance may carry forward, capped at **three cycles of that
+  skill's configured allowance**. Further cycle allocations are discarded while the bank is full.
+- The launch difficulty bands are `Easy` **1.0/cycle**, `Standard` **0.5/cycle**, `Hard`
+  **0.3/cycle**, and `VeryHard` **0.2/cycle**, with an explicit per-skill override where testing
+  justifies one. The classification must be visible to players and owned by shard configuration.
+- Multiple 95+ skills receive and spend allowance independently during the same character cycle.
+- Reaching 100.0 ends Mastery for that skill and discards unused allowance.
 
-The 95.0→100.0 path requires 50 increments / 200 elapsed hours: eight complete six-period days
-plus two periods on the final day. Multiple skills at 95+ accrue concurrently, each with its own
-pending balance and processed-period cursor.
+The path always requires 50 valid +0.1 gains, but its minimum calendar time depends on the
+difficulty allowance. Easy requires 5 cycles / 90 hours (3.75 days), Standard 10 cycles / 180 hours
+(7.5 days), Hard 17 cycles / 306 hours (12.75 days, with only 0.2 needed in the final cycle), and
+VeryHard 25 cycles / 450 hours (18.75 days). These are uninterrupted minimums, not promises about
+real elapsed time. If design targets are instead meant to be exactly 5 and 25 calendar days, use a
+24-hour cycle; do not label the 18-hour results as 5 and 25 days.
 
 #### Temporary skill-gain bonuses at 95+
 
-Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the fixed
-four-hour periods or increase pending accrual**. They may not create extra pending increments.
+Pilgrimage Inspiration and any future temporary gain-rate effects must **not shorten the 18-hour
+cycle, increase a skill's allowance or bypass the deterministic Mastery rules**.
 
 Do not allow bonuses to:
 
-- generate pending Mastery increments faster;
-- activate a missed UTC date or period;
-- increase the 0.6 pending cap;
+- refresh Mastery allowance early;
+- activate or duplicate a cycle;
+- increase the three-cycle bank cap;
 - bypass the 95 threshold;
 - create more than +0.1 from one consumed opportunity.
 
@@ -886,30 +900,29 @@ When a skill first reaches 95.0, tell the player that ordinary gain has ended an
 Expose at least:
 
 - current skill value;
-- the current UTC server time and next fixed four-hour boundary;
-- whether today's UTC date is qualified by login;
-- current pending balance out of 0.6;
+- the next character-cycle refresh time;
+- the skill's difficulty band and allowance per cycle;
+- current available allowance and the three-cycle bank cap;
 - current skill value and remaining +0.1 increments to 100.0;
-- confirmation that missed login dates do not accrue and that multiple increments may be consumed
-  in one day.
+- confirmation that every otherwise gain-eligible attempt grants +0.1 until allowance is exhausted.
 
 Suggested player-facing explanation:
 
-> **At 95.0, this skill enters Mastery. Log in during a UTC day to qualify its fixed four-hour periods. Each period banks +0.1 pending skill up to 0.6; use the skill normally to consume pending increments. Grandmaster requires 50 periods (200 hours) from 95.0.**
+> **At 95.0, this skill enters Mastery. Every 18 hours your character receives a new allowance for each Mastery skill. Every valid chance to gain awards +0.1 until that skill's allowance is spent; unused allowance carries up to three cycles. Use `[MasteryStatus` to see the next refresh and each skill's allowance.**
 
 #### Anti-exploit requirements
 
 Prevent at minimum:
 
 - changing the client clock/timezone to alter Mastery periods;
-- reconnect spam activating more than one period;
-- save/restart duplicating pending increments or processed UTC periods;
+- reconnect spam activating more than one cycle;
+- save/restart duplicating allowance or processed cycle IDs;
 - character transfer or rename duplicating state;
-- skill decrease/re-raise to 95 duplicating already-processed periods;
-- lowering and restoring a skill to duplicate processed periods or pending increments;
-- hoarding more than the six-increment pending cap;
-- trivial/non-gain-eligible action spam consuming pending increments;
-- multiple simultaneous attempts consuming one pending increment twice;
+- skill decrease/re-raise to 95 duplicating a cycle allocation;
+- lowering and restoring a skill to duplicate allowance;
+- hoarding more than the configured three-cycle cap;
+- trivial/non-gain-eligible action spam producing Mastery gains;
+- multiple simultaneous attempts overspending one skill's available allowance;
 - deleting/recreating characters transferring Mastery state.
 
 If a skill falls below 95 because of an approved game mechanic, preserve its earned Mastery state but suspend further Mastery accrual/consumption until the skill returns to 95 unless a separate loss policy is explicitly approved.
@@ -923,11 +936,11 @@ Before final launch tuning:
 3. calibrate the Standard profile toward the canonical 1h / 1.5h / 2h / 3h / 5h bracket targets;
 4. verify Easy/Hard/VeryHard skills remain materially distinct before 95;
 5. verify 95.0 completely disables ordinary gain and enters Mastery;
-6. simulate 50 Mastery increments and confirm the configured schedule totals exactly 200 elapsed hours;
-7. verify the six fixed UTC boundaries, login-date qualification, offline reconciliation and no duplicate period IDs;
-8. verify multiple 95+ skills accrue concurrently on the same character;
-9. verify the 0.6 pending cap and multiple same-day consumption through valid skill uses;
-10. verify temporary gain bonuses do not affect period length or pending accrual.
+6. simulate all difficulty bands and confirm the 5/10/17/25-cycle minimums and 90/180/306/450-hour results;
+7. verify the durable per-character anchor, 18-hour refresh, restart reconciliation and no duplicate cycle IDs;
+8. verify multiple 95+ skills receive allowance concurrently on the same character;
+9. verify deterministic +0.1 gains, per-skill allowance exhaustion and the three-cycle bank cap;
+10. verify temporary gain bonuses do not affect cycle length, allowance or banking.
 
 Do **not** attempt to recreate every historical anti-macro quirk.
 
@@ -942,7 +955,52 @@ Make these settings intentionally configurable. Anti-macro rules should prevent 
 
 ---
 
-### 5.1 Hot-Zone Skill Veteran — approved optional title (#19)
+### 5.1 Skill Bank — recoverable skill investment (planned for Alpha 3)
+
+**Status: approved for Alpha 3 design; implementation and release gates remain outstanding.** The Skill Bank preserves skill points removed by ordinary skill-cap displacement so a player can change builds and later regain prior investment through valid use. It does not raise the 700.0 total skill cap or the 100.0 individual cap. At any moment, only the character's active skills count toward those caps.
+
+#### Bank capacity and ownership
+
+- Each character has one persistent Skill Bank with a **300.0-point total capacity**, measured in 0.1 increments. The cap is a typed, validated setting with a default of 300.0 so a future balance revision does not require rewriting the policy.
+- Balances are character-specific, never shared across an account, transferable, tradable, or withdrawable as an item. Each skill may hold no more than its configured individual skill cap (normally 100.0).
+- The bank stores only real points removed by ordinary player skill advancement through the stock total-skill-cap displacement rule: a successful skill gain lowers a skill the player has set Down. Record the exact removed amount in tenths.
+- Staff/scripted changes, trainers, scrolls, transfers, skill-cap adjustments, temporary gameplay penalties, and expiration of temporary skill bonuses do not create bank credit. Only permanent base-skill displacement from an organic gain qualifies. No credit is created for a skill above its individual cap.
+- Banked points never expire and carry no conversion fee. The interface always distinguishes active skill from banked skill.
+
+#### Skill Bank controls and replacement policy
+
+- Every skill with a nonzero bank balance has its own **Locked** or **Down** retention setting. This is separate from the active skill's Up/Locked/Down setting: active arrows govern skill-cap behavior; bank retention governs which stored points may be forgotten to make bank room.
+- A banked skill defaults to **Locked**, so new entries cannot silently displace existing investment. Players may explicitly set any banked entry Down.
+- Down means eligible for replacement only when a new genuine skill loss must be banked and the shared bank is full. It does not cause passive decay or automatic removal while space exists.
+- If replacement is needed, remove stored tenths from Down entries in a deterministic order: largest remaining Down balance first, then skill name in ordinal alphabetical order for ties. Re-evaluate after each tenth. Never remove a Locked balance.
+- If no Down balance can make room, do not alter the existing bank; the incoming 0.1 loss is not preserved, and the player receives a clear message. Warn as the bank approaches capacity and show the amount at risk before/when a qualifying gain can overflow it.
+- A Down entry reduced to zero has no stored investment and is omitted from the active bank listing; a later deposit for that skill starts at zero and defaults to Locked.
+
+#### Regaining banked skill
+
+- A character regains a skill by setting its active skill to Up and making ordinary skill uses that pass the existing alive, region, skill-use, and anti-macro eligibility checks. Invalid, blocked, too-difficult, no-challenge, or anti-macro-rejected attempts consume nothing.
+- Once the stock skill engine reaches its eligible gain-chance stage for that use, a banked 0.1 is restored deterministically, regardless of the skill-check success roll or the ordinary random skill-gain roll. Consume exactly one stored tenth for each such eligible restoration opportunity; do not also award a random stock gain for the same opportunity. This preserves the promised 0.1-per-valid-attempt pace and leaves stock eligibility and anti-macro rules authoritative.
+- Bank restoration takes priority over ordinary random skill gains below 95.0 and over the existing 95.0–100.0 Mastery pending balance. Previously earned points restored from the bank do not require Mastery periods a second time. When no banked points remain for that skill, ordinary gain and Mastery behavior resume unchanged.
+- Restoration must obey the active individual cap and 700.0 total cap. If there is free total capacity, add the tenth directly. At the total cap, restore only as an atomic exchange: lower an eligible active skill set Down by 0.1 and bank that actual loss while restoring 0.1 from the destination skill's bank. The player's bank-retention replacement policy still applies. If no eligible active Down skill can be lowered or the transaction cannot safely preserve the loss, consume nothing and change no active skill.
+- A restoration from banked value above 95.0 is restored as already-earned skill and must not award or consume Mastery-period credit. Reaching the individual cap consumes no bank credit beyond the amount actually restored; excess bank balance is retained up to the normal per-skill bank limit.
+
+#### Player interface and persistence
+
+- Provide a Skill Bank gump (or equivalent supported UI) and a read-only `[SkillBank` status command. Show total banked/capacity, each skill's active value and banked balance, its Locked/Down retention state, and any points that would be lost if a new deposit arrived while full.
+- Let the player change each banked skill's retention state directly in the interface and confirm the selected state. Save bank balances and retention settings durably per character; validate malformed, negative, over-cap, or unknown-skill records on load without minting skill points.
+- Deposits, replacement, and restoration use one atomic server-side transaction. Persist the resulting bank and active skill values together so a save, disconnect, restart, or repeated callback cannot duplicate or erase value. Character deletion removes only that character's bank; account tools and character slots cannot move it to another character.
+- Log only exceptional or staff-relevant bank adjustments with stable character identity, skill, amount, reason, and before/after totals. Provide a staff diagnostic view for persistence and reconciliation disputes.
+
+#### Integration and release gates
+
+- Preserve the stock skill check, region allowance, alive-state check, anti-macro validation, skill locks, and both character caps. The existing `SkillEvents.SkillGainOverride` boundary runs after eligibility checks but before the stock random gain roll; the engine integration must also expose the exact skill and amount actually displaced by a gain so the bank records only real reductions. Do not infer the displaced skill by re-running the stock selection algorithm.
+- Coordinate with `MasteryProgression`: banked restoration has precedence, restores already-earned value through 100.0, and leaves period qualification, pending caps, and consumption unchanged when the skill bank is empty. Do not store the same tenth in both systems.
+- Add a `skillBank` feature flag and schema/configuration validation. Keep it disabled until persistence, concurrency, anti-macro, overflow, total-cap exchanges, save/restart, and client-interface cases pass focused tests and a disposable real-client rehearsal.
+- Publish the 300.0 cap, the exact overflow/replacement order, and the valid-use restoration rule before enablement. Make the cap configurable, but do not change it retroactively without a documented balance decision and a plan for characters already at capacity.
+
+The design intentionally allows a mature character to preserve a limited archive of alternate skills while retaining only a 700.0 active build. At 300.0 stored points, the bank can preserve roughly three additional Grandmaster skills; Locked/Down controls ensure the player, rather than an implicit eviction rule, decides which stored investment is expendable.
+
+### 5.2 Hot-Zone Skill Veteran — approved optional title (#19)
 
 **Status: approved for launch.** A character earns the permanent, optional **`Forged in Danger`** title upon accumulating **160.0 qualifying skill points** above 60.0 while physically training in qualifying PvP Hot Zones. This is a character-specific achievement, never a skill/stat-cap increase, a skill-gain modifier, a combat bonus or a mandatory progression system. Since the shard has not launched, initialize tracking at character creation; no retroactive conversion or completed-character alternative route is required.
 
@@ -959,7 +1017,7 @@ Make these settings intentionally configurable. Anti-macro rules should prevent 
 - On **every** actual skill-value change, including safe-area/house/boat gains, administrative or scripted grants, template/skill transfer and skill reductions, update the high-water mark to `max(previousHighWater, newActualSkill)`; it never decreases. In the genuine skill-gain event, first capture the old high-water mark and prior actual value; only eligible normal advancement or an actually consumed 95–100 Mastery +0.1 increment may award credit. Staff/scripted/starting/transferred gains never award credit, but must raise high-water marks to prevent subsequent laundering.
 - For an eligible real increase, award in tenths: `max(0, newActualTenths - max(previousHighWaterTenths, oldActualTenths, 600))`, subject to the ordinary 100.0 individual cap and remaining 1600-tenths title cap; then update high-water. This awards **only the newly achieved portion strictly over 60.0**, once per skill, and handles a gain crossing 60.0 without counting its below-threshold portion. Always use integral tenths (or equivalent exact fixed-point skill units) to avoid floating-point boundary/duplicate errors.
 - Examples: 40.0→60.0 awards 0; 59.9→60.1 awards 0.1; 60.0→65.0 awards 5.0; 80.0→90.0 awards 10.0; lowering 90.0→60.0 and retraining to 90.0 awards 0; raising 90.0→91.0 afterwards in a qualifying Hot location awards 1.0. Gains anywhere else still set high-water marks and cannot be retrained for Hot credit later.
-- Pilgrimage Inspiration may affect underlying eligible skill-gain **rates** according to its own rules but adds no title progress independently. Mastery Period activations, Mastery Hours, banked opportunities and failed attempts do not award title points; only the successful actual +0.1 that is committed in a qualifying Hot location and outside any house/boat does. Do not let Mastery credits be silently awarded as title progress while the character is elsewhere.
+- Pilgrimage Inspiration may affect underlying eligible skill-gain **rates** according to its own rules but adds no title progress independently. Mastery cycle refreshes, available allowance and gain-ineligible attempts do not award title points; only the successful actual +0.1 that is committed in a qualifying Hot location and outside any house/boat does. Do not let Mastery gains be silently awarded as title progress while the character is elsewhere.
 - Up to 40.0 points are available per skill (60.0→100.0), so four skills fully developed across this bracket inside qualifying Hot Zones can reach 160.0. The 700 total/100 individual skill caps, locks, normal gain eligibility, pet restrictions and anti-macro remain untouched. No credit is awarded for effective bonuses, GM skill titles, item equipping, player trading, time spent in a region or character creation.
 
 **Title, UX and persistence**
@@ -1150,19 +1208,22 @@ Explicitly disable or exclude later systems including:
 
 ### Dungeon pet restriction
 
-Combat-capable tamed or controlled creatures must not participate in dungeon gameplay.
+Tamed or controlled creatures must not enter or remain in dungeon regions unless the creature is
+currently being ridden.
 
 Required behavior:
 
-- combat pets cannot enter normal dungeon regions
-- if a player crosses into a dungeon while followed by a combat pet, the pet must remain outside rather than teleporting across the boundary
+- pets cannot enter normal dungeon regions unless they are currently being ridden
+- if a player crosses into a dungeon while followed by a pet, the pet must remain outside rather than teleporting across the boundary
 - Recall, Gate Travel, teleportation, login relocation, resurrection, server restart or other transport mechanics must not provide a loophole that places a combat pet inside a prohibited dungeon
 - if an existing save somehow contains a prohibited combat pet inside a dungeon, relocate it safely outside the dungeon or to an appropriate stable/recovery location rather than allowing continued dungeon use
-- combat pets must not be summonable, released and retamed, transferred, traded or otherwise introduced inside a dungeon through a loophole
+- pets must not be summonable, released and retamed, transferred, traded or otherwise introduced inside a dungeon through a loophole
 - the active **Hot Dungeon** is still a dungeon for this rule; its bonuses never override the pet restriction
 - outdoor/wilderness PvE remains available to tamers using normal controlled creatures
+- a ridden mount is the sole exception; if the rider dismounts inside a dungeon, the animal must be removed safely or otherwise prevented from remaining as a controlled dungeon pet
 
-Ordinary riding mounts may be exempted from the entry restriction if technically practical, but they must not become a combat-pet loophole. A mount or other exempt noncombat animal may not provide meaningful offensive dungeon combat. If ModernUO's creature model makes this distinction unreliable, prefer the simpler rule that controlled creatures cannot accompany players into dungeon regions.
+A ridden mount must not become a combat-pet loophole. The exception applies only while the player
+is mounted and the animal cannot participate independently in dungeon combat.
 
 Document the exact creature/category test used to decide whether a controlled creature is prohibited.
 
@@ -2673,6 +2734,10 @@ New players should learn the actual launch rules from the beginning.
 
 New characters should be able to begin their chosen playstyle immediately without first creating an economic support character or spending the opening session acquiring a basic weapon, armor, reagents or tools.
 
+#### Starting stats for every template
+
+Every selectable character-creation template and the **Advanced** custom option allocates exactly **120 starting stat points** across Strength, Dexterity, and Intelligence. Each stat must be at least **30**. Tune the distribution to fit the selected template's intended playstyle; preserve the shard's **225 total stat cap** and grant no ongoing stat bonuses. Audit every selectable option and provide regression checks for the 120-point total, per-stat floor, and total stat cap.
+
 Design principle:
 
 > **Starter gear removes friction, not progression. It should be immediately useful, strictly ordinary in power, and have no exploitable character-creation resale loop.**
@@ -2720,7 +2785,7 @@ Every newly created character receives:
 - basic clothing appropriate to the selected character setup;
 - backpack;
 - one small organization pouch/bag;
-- scissors;
+- one ordinary pair of scissors, issued to every new character and subject to the same Starter Protection and permanent `StarterIssued` resale/salvage restrictions as other starter gear; do not grant replacement pairs after loss or destruction;
 - **one free physical Starter-Issued Backpack Ward** with ordinary priming/detection/120-second protection mechanics and no skill requirement;
 - the invisible, nonconsumable **Loot Protection Ward entitlement** (server state, not a visible inventory item);
 - a concise Welcome/Rules item or equivalent onboarding surface explaining both different Ward systems.
@@ -4172,12 +4237,12 @@ At minimum, make likely-to-change shard policies configurable:
 - Standard pre-95 milestone targets: 1h to 50, 2.5h to 70, 4.5h to 80, 7.5h to 90, 12.5h to 95 under focused-training conditions
 - pre-95 range-based gain curves for Easy / Standard / Hard / VeryHard profiles and documented per-skill overrides
 - Mastery threshold (`95.0`)
-- rolling Mastery Period duration (`24h`) and active-period trigger policy
-- Mastery period length (`4h` UTC) and award (`+0.1` per completed period)
-- Mastery path target (`50 periods / 200 elapsed hours`)
-- Mastery eligible-attempt base chance (`10%`) and guaranteed-attempt index (`10`)
-- Mastery pending-increment banking/persistence/concurrency rules
-- temporary gain-bonus behavior below 95 vs matured Mastery opportunities at 95+
+- character-wide Mastery cycle duration (`18h`) and durable per-character anchor policy
+- Mastery difficulty bands and allowance (`1.0` / `0.5` / `0.3` / `0.2` per cycle)
+- Mastery path targets (5 / 10 / 17 / 25 cycles; 90 / 180 / 306 / 450 minimum hours)
+- deterministic `+0.1` on every otherwise gain-eligible attempt while allowance remains
+- three-cycle allowance banking, persistence and per-skill concurrency rules
+- temporary gain-bonus behavior below 95 versus deterministic Mastery gains at 95+
 - starter-protection duration (launch default: 4 logged-in hours)
 - starter-issued gear/consumable economic restrictions
 - once-per-account starter-gold amount (launch target: 500)
@@ -5061,24 +5126,23 @@ Verify:
 - crafting and Animal Taming do not accidentally inherit ordinary combat-skill pre-95 curves
 - normal random skill gain stops exactly at 95.0 and cannot advance a skill above 95
 - reaching 95 initializes persistent per-skill Mastery state exactly once
-- each skill uses the same fixed four-hour UTC periods anchored to the server epoch
-- a login during a period marks it Active and awards that full period's 24 Mastery Hours even if the character subsequently logs out
-- a 24-hour period with no login awards 0 Mastery Hours and cannot be backfilled
-- multiple skills at 95+ accrue pending increments concurrently on the same character
-- each completed qualified period deposits exactly one +0.1 pending increment
-- exactly 50 Mastery increments / 200 elapsed hours are required from 95.0 to 100.0
-- pending balance is capped at 0.6 per skill and must be consumed through valid uses
-- a matured Mastery opportunity has a 10% chance per eligible use and succeeds automatically on the 10th eligible attempt if not earlier
-- valid non-trivial skill uses consume one pending +0.1; invalid/trivial/blocked uses consume nothing
-- invalid/trivial/blocked uses do not count toward the 10-attempt guarantee
+- each character uses one durable, server-authoritative 18-hour cycle shared by all of its 95+ skills
+- each skill receives the configured Easy/Standard/Hard/VeryHard allowance at most once per cycle
+- a skill newly reaching 95 receives the current cycle's allowance once without changing the character anchor
+- multiple skills at 95+ receive and spend allowance concurrently on the same character
+- every otherwise gain-eligible attempt grants exactly +0.1 while that skill has allowance remaining
+- Easy/Standard/Hard/VeryHard require minimums of 5/10/17/25 cycles (90/180/306/450 hours)
+- unused allowance is capped at three cycles of that skill's configured allowance
+- valid non-trivial skill uses consume one available +0.1; invalid/trivial/blocked uses consume nothing
+- the suppressed stock random-gain roll is not required once the attempt is otherwise gain-eligible
 - Mastery survives logout/death/restart without duplication
-- temporary gain bonuses do not shorten four-hour periods, increase pending accrual or raise the pending cap
-- temporary gain bonuses only modify the matured Mastery-opportunity trigger chance at 95+; the 10th attempt remains guaranteed
+- temporary gain bonuses do not shorten the 18-hour cycle, increase allowance or raise the bank cap
+- temporary gain bonuses do not alter deterministic Mastery gain resolution at 95+
 - representative Easy/Standard/Hard/VeryHard pre-95 milestone times remain in the intended order after temporary bonuses
 - blessed runebooks survive death and retain normal UOR travel requirements
 - BOD rewards do not leak post-era items
 - Artisan Signature crafting, Standard-baseline 10× durability, ordinary skill-based repair/degradation, full loot and zero extra NPC/vendor/salvage value pass the Section 9.1 regression matrix
-- Hot-Zone Skill Veteran passes Section 5.1 and the dedicated Section 23 tests: 160.0 only from genuine above-60.0 increases outdoors in current Hot Zones, never in a house/boat, with persistent global high-water protection and cosmetic-only optional title
+- Hot-Zone Skill Veteran passes Section 5.2 and the dedicated Section 23 tests: 160.0 only from genuine above-60.0 increases outdoors in current Hot Zones, never in a house/boat, with persistent global high-water protection and cosmetic-only optional title
 - Nemesis Monsters pass Section 6.1 and the dedicated Section 23 matrix: Scope A wilderness/all dungeons, unchanged spawn pressure, +50% HP only, 25% trophy versus exclusive +200% pre-region gold, no duplicate regional multiplier or loot
 - Roleplay Guestbooks pass Section 16A.1 and Section 23: exactly four persistent journals, two authentic equipped own-issued pieces at submission, immediate 280-character posts, global 10-minute cooldown, archives, audited retrospective moderation, player reports without automatic hiding and no RP rewards or PvP protection
 - Rare Expedition Destination Vendor passes Section 15.12A and its Section 23 matrix: current-route town only for the full week, town-exclusive core and fixed 2–3 rotating rares, purchasing-character completed delivery required, unlimited core and exactly one rare purchase per account/week, transactional gold/item/allowance persistence and no power or NPC buyback
@@ -5869,10 +5933,10 @@ RP Guestbook Posting: immediate / 280 characters / one global 10m writer cooldow
 RP Guestbook Reporting: player reports to staff queue / retrospective moderation / no automatic hide or daily cap  
 Standard Skill Targets: 1h to 50 / 2.5h to 70 / 4.5h to 80 / 7.5h to 90 / 12.5h to 95  
 Mastery Threshold: 95.0  
-Mastery Period: rolling 24 hours per skill; login once activates full period  
-Mastery Schedule: +0.1 pending per completed four-hour UTC period
-Mastery Total: 50 periods / 200 elapsed hours
-Mastery Trigger: 10% per eligible attempt; guaranteed on 10th eligible attempt  
+Mastery Cycle: one server-authoritative rolling 18-hour cycle per character
+Mastery Allowances: Easy 1.0 / Standard 0.5 / Hard 0.3 / VeryHard 0.2 per cycle
+Mastery Minimums: 5 / 10 / 17 / 25 cycles (90 / 180 / 306 / 450 hours)
+Mastery Trigger: deterministic +0.1 on every otherwise gain-eligible attempt while allowance remains
 Stat Cap: 225  
 House Limit: 1/account  
 Housing Placement: Restricted to Approved Districts  
@@ -6321,12 +6385,12 @@ The following are **settled launch rules** and should not be silently weakened:
 - historically difficult skills retain distinct slower pre-95 curves; temporary gain bonuses modify each skill's own baseline instead of normalizing it
 - normal random skill gain stops at 95.0; 95.0–100.0 uses the Mastery system
 - Mastery is per skill and multiple 95+ skills accrue concurrently
-- each skill uses the same fixed four-hour UTC periods; a login qualifies that UTC date and missed login dates grant nothing
-- each completed qualified period banks exactly +0.1 pending skill, up to a 0.6 cap
-- 95.0→100.0 requires exactly 50 period awards / 200 elapsed hours if no qualified periods are missed
-- each matured Mastery opportunity has a 10% chance per eligible attempt and is guaranteed on the 10th eligible attempt
-- valid uses consume one pending increment; invalid, trivial or blocked uses consume nothing
-- temporary skill-gain bonuses do not shorten the Mastery calendar; at 95+ they modify only the matured-opportunity trigger chance
+- each character uses one durable 18-hour Mastery cycle shared by all of its 95+ skills
+- each skill receives its configured Easy/Standard/Hard/VeryHard allowance once per cycle, banked up to three cycles
+- 95.0→100.0 requires minimums of 5/10/17/25 cycles (90/180/306/450 hours) by difficulty band
+- every otherwise gain-eligible use grants +0.1 deterministically while that skill has allowance remaining
+- invalid, trivial, locked, capped, anti-macro-blocked or otherwise ineligible uses grant and consume nothing
+- temporary skill-gain bonuses do not shorten the Mastery calendar or increase allowance; they do not alter deterministic Mastery resolution at 95+
 - issued starter equipment receives 4 hours of logged-in Starter Protection
 - starter-issued gear is Standard/vendor quality and cannot be directly sold, player-vendored, salvaged into economic value or used for BODs
 - each new character gets one free character-bound Starter-Issued Backpack Ward (normal consumable effect, no trade/sale/loot/extraction; destroyed unused on death) and an invisible persistent Loot Protection Ward entitlement; existing characters receive the latter through a one-time migration
@@ -6392,9 +6456,10 @@ Owner approval is required before changing:
 - reclassifying historically difficult skills into an ordinary/easy profile without explicit design approval
 - changing the settled Standard pre-95 milestone targets (1h/2.5h/4.5h/7.5h/12.5h cumulative to 50/70/80/90/95) beyond minor calibration necessary to hit those targets
 - changing the 95.0 Mastery threshold
-- changing the 4-hour UTC period / +0.1 pending schedule or 0.6 cap
-- changing the 10% Mastery trigger chance or guaranteed 10th eligible attempt
-- allowing temporary skill-gain bonuses to accelerate period accrual or increase the pending cap
+- changing the 18-hour per-character cycle or its durable anchor rules
+- changing the Easy/Standard/Hard/VeryHard allowances or three-cycle bank cap
+- changing deterministic +0.1 resolution on every otherwise gain-eligible attempt while allowance remains
+- allowing temporary skill-gain bonuses to accelerate cycle refresh or increase allowance/banking
 - final Easy/Hard/VeryHard pre-95 calibration scalars after testing
 - Power Hour
 - stat-gain speed
@@ -6496,7 +6561,7 @@ A complete commit-pinned T2A-versus-UOR branch audit documents selected features
 
 AoS insurance and later itemization do not leak into gameplay.
 The approved Artisan Signature feature meets Section 9.1: rare Masterwork/Grandmaster signatures, exact 10× Standard-baseline effective durability where applicable, ordinary repair/full loot and no durability-driven gold-extraction path.
-The approved Hot-Zone Skill Veteran feature meets Section 5.1: exactly 160.0 genuine above-60.0 Hot-zone skill points outside all player houses and boats, permanent high-water anti-retraining, persistent cosmetic-only `Forged in Danger` character title.
+The approved Hot-Zone Skill Veteran feature meets Section 5.2: exactly 160.0 genuine above-60.0 Hot-zone skill points outside all player houses and boats, permanent high-water anti-retraining, persistent cosmetic-only `Forged in Danger` character title.
 
 The approved Nemesis Monsters feature meets Section 6.1: eligible wilderness and all dungeons have 2% replacement spawns without added spawn pressure, +50% HP with no damage increase, visible identity without required client changes, exclusive 25% decorative species trophy or +200% unmultiplied base-gold consolation, ordinary loot/full-loot/regional reward handling, and completed anti-duplication/economy tests.
 The approved Wanted Monster feature meets Section 20.6A: each current rotating Hot/Cool dungeon has viable persistent natural-species contracts, existing ranked ModernUO scores select the first living contributor, exactly one fixed physical token payout is directly delivered or reserved for that character, separate Hot/Cool currencies purchase dungeon-specific cosmetic-only trophies, and kill/restart/overflow/redemption exploit tests pass without changing ordinary corpse looting rights.
@@ -6517,13 +6582,13 @@ The Standard profile measures approximately 1 hour to 50, 2.5 cumulative hours t
 
 Normal random skill gain cannot raise an enabled skill above 95.0.
 
-Every 95+ skill uses persistent per-skill Mastery state with the same fixed four-hour UTC periods; a
-login qualifies that UTC date, offline periods reconcile on login, and multiple skills accrue
-concurrently.
+Every character with a 95+ skill uses one persistent, server-authoritative 18-hour Mastery cycle.
+Each 95+ skill receives and spends its own difficulty-rated allowance concurrently, with unused
+allowance banked up to three cycles.
 
-Each completed qualified period deposits +0.1 pending skill, capped at 0.6. The 50 increments from
-95.0 to 100.0 therefore require 200 elapsed hours, and valid uses may consume multiple increments
-in one day.
+Every otherwise gain-eligible use grants +0.1 while allowance remains. The 50 increments from 95.0
+to 100.0 therefore require minimums of 5/10/17/25 cycles (90/180/306/450 hours) for
+Easy/Standard/Hard/VeryHard skills.
 
 Temporary skill-gain bonuses preserve distinct pre-95 difficulty curves and do not shorten Mastery calendar time at 95+.
 
@@ -6697,8 +6762,8 @@ Produce an initial report containing:
 32. Current travel hooks required to block Recall/Gate/moongate/custom teleport while Pilgrimage is active without affecting ordinary travel.
 33. Current skill-gain modifier infrastructure suitable for ready-to-activate +10%/+20% temporary Pilgrimage Inspiration.
 34. Current skill-gain entry points needed to hard-stop ordinary gains at 95.0 and route 95+ gains through a per-skill Mastery service.
-35. Current character/account persistence and server-time facilities suitable for fixed four-hour UTC per-skill Mastery periods, qualified login dates, pending increments and processed-period cursors.
-36. Current gain-eligibility checks suitable for ensuring only otherwise-valid skill uses count toward the Mastery 10% roll / guaranteed 10th eligible attempt.
+35. Current character/account persistence and server-time facilities suitable for a durable per-character 18-hour Mastery anchor, processed-cycle IDs, per-skill allowance and three-cycle banking.
+36. Current gain-eligibility checks suitable for ensuring only otherwise-valid skill uses receive the deterministic Mastery +0.1 while allowance remains.
 37. Current ModernUO/UOContent skill-gain logic and any UOR/T2A-era per-skill distinctions needed to classify all enabled launch skills into Easy / Standard / Hard / VeryHard or explicit override profiles.
 38. Representative historical/current milestone-time baselines for easy versus difficult skills so shard acceleration can preserve relative difficulty rather than flatten it.
 39. Current movement-delay, road-tile/land-tile detection, mounted-state and speedhack-detection hooks suitable for server-authoritative road-speed bonuses.

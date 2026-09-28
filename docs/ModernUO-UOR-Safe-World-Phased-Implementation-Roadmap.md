@@ -104,6 +104,7 @@ the local baseline; Hot-Zone activation remains deferred to Alpha 3.
    - Add consumable Backpack Wards: one-active physical backpack presence, account-aware post-success detection escalation, 120-second victim protection, durable persistence and starter-issued binding rules.
    - Add the invisible Loot Protection Ward: permit the first unlawful non-Hot monster-corpse transfer, then block only repeated unlawful looting by that offender account against the protected victim’s still-rights-protected monster corpses for ten minutes.
    - Current implementation status: the feature-gated `BackpackWard` and stock Stealing/Corpse pre/post hooks implement deterministic physical-Ward selection, per-thief-account 25%/50%/100% escalation, post-resolution consumption, persistent 120-second victim protection, first-transfer/ten-minute-repeat protection for unlawful non-Hot monster corpses, a permanent invisible Loot Protection entitlement with idempotent bounded world-load migration plus login/creation fallback, character-creation starter issuance with durable account binding, and data-driven bank/Cool polygon checks at the theft boundary. The pinned engine now observes ordinary drag/lift corpse transfers as well as context-menu use and exposes the monster-corpse rights snapshot; markers are keyed by rights-holder character and offender account so separate corpses from the same victim cannot bypass the ward. The 87/87 content suite covers the corpse-repeat policy matrix. The runtime geometry contains 18 compact bank envelopes with a 5–6 tile apron and the ten UOR-era dungeon rectangles. Movement transitions explain the active theft rules to players; snooping and combat remain untouched. The review export tools remain the reproducible source evidence for future map revisions.
+   - Phase boundary correction: the configured Cool Dungeon polygons are dormant while `coolZones` is false. Bank protection, Backpack Wards and monster-corpse Loot Protection remain Alpha 2 behavior; Cool Dungeon theft immunity and its entry/exit messages begin in Beta 2.
 5. Implement the Knocked Out state and safe-world resolution path.
    - Make qualifying zero-health outcomes for genuinely blue players enter a durable, untargetable, damage-immune 90-second Knocked Out state rather than death; clear effects and active aggression while retaining an immutable completed-encounter record.
    - Permit no-skill Knocked-Out looting only to the criminal/red who held recorded target-specific engagement rights at the moment of Knock Out; retain all item-binding and Ward rules.
@@ -124,7 +125,7 @@ the local baseline; Hot-Zone activation remains deferred to Alpha 3.
 
 ### Explicitly deferred
 
-Production world population, permanent zone activation, weekly Hot/Cool dungeon rotations, reward premiums, housing placement policy, weekly activity systems, and feature content. The code may understand a Hot-region context, but no live bonus/reward program ships until Alpha 3 is stable.
+Production world population, permanent outdoor Hot-Zone activation, housing placement policy, weekly activity systems, and feature content remain deferred beyond Alpha 2. Hot/Cool dungeon designation, Cool Dungeon theft immunity, weekly rotations and their reward premiums remain dormant until Beta 2. The code may recognize dormant region data, but it must not enforce a dungeon rule before that phase.
 
 ---
 
@@ -188,57 +189,66 @@ Faction activation, champion spawns and their reward progression, post-UOR locat
 
 ---
 
-## Alpha 3 — Geographic risk and housing foundation
+## Alpha 3 — Geographic risk, progression and skill foundation
+
+The [Alpha 3 feature enablement plan](Alpha-3-Feature-Enablement-Plan.md) is the active, lettered work order for preparing one feature at a time. This roadmap remains the phase scope and exit-criteria authority; its dated implementation-status notes are milestones rather than the current task queue. The former [implementation log](Alpha-3-Implementation-Log.md) is historical evidence.
 
 ### Goal
 
-Apply the legal and economic geography to the accepted Alpha 2b world: predictable permanent PvP regions and a housing system that makes Greater Britain the social and commercial capital without artificial global scarcity. Establish region boundaries that the weekly Hot/Cool dungeon rotations can use in Beta 1.
+Apply permanent outdoor PvP geography and the remaining Alpha 3 systems to the accepted Alpha 2b world. House zoning—including residential districts, land classification, capacity and district expansion—is deferred to Beta 2 by owner decision. Dungeon Hot/Cool rules, including permanent Hythloth and weekly rotations, also begin in Beta 2.
 
 For Alpha 3, UOR is the default historical baseline, not a mandate to roll back intentional Britannia Renaissance behavior. A documented, owner-approved shard rule or already-delivered custom system takes precedence over stock UOR behavior; otherwise, the UOR-era result is authoritative. The phase must preserve those approved deviations while rejecting accidental or inherited later-era behavior.
 
 ### Scope
 
-1. Deliver the permanent high-risk geography.
-   - Define Hythloth as the permanent Hot Dungeon and Fire Island plus Buccaneer’s Den island as permanent outdoor Hot regions.
+1. Deliver the permanent high-risk outdoor geography.
+   - Define Fire Island and Buccaneer’s Den island as permanent outdoor Hot regions. Keep dungeon interiors under ordinary rules until Beta 2.
    - Implement authoritative region boundaries, entry/exit messaging, combat carryover, login placement and extraction behavior.
-   - Apply Fire Island’s special residential rules and Buccaneer’s Den’s house-placement prohibition.
    - Apply the shared Knocked Out state in Hot Zones while changing its resolution: any criminal/red may perform no-skill looting without engagement-right restrictions, any player may Execute, and physical Backpack Wards have no effect on Hot-Zone theft or Knocked-Out looting.
-2. Implement concentrated housing policy.
-   - Enforce one house per account with explicit household/IP exception tooling.
-   - Survey Greater Britain, define launch residential polygons, classify land as residential/rural/protected, estimate capacity and protect roads, landmarks, dungeons and reserves.
-   - Allow normal-cost placement only inside opened Greater Britain districts; implement a one-way, observable district expansion sequence.
-   - Implement optional high-cost rural placement, non-refundable surcharge, protected-land override prevention, inactive-house qualification/decay and occupancy metrics.
+   - Current implementation status: named source polygons now cover the two connected island landmasses with zero missed land tiles in the local map survey documented in `Alpha-3-Outdoor-Hot-Zone-Survey.md`. The policy excludes dungeon interiors. Hostility requires both players inside the same active outdoor Hot region and retains the stock targetability boundary; controlled pets do not gain Hot-only attack permission. Knocked Out classification, open criminal/red looting, any-player Execution and Ward/corpse-loot exceptions now use physical Hot membership instead of the global feature flag. `[HotZoneStatus` reports the configured regions and current membership. Settled-position notifications now provide entry/exit and Hot-zone login warnings for ordinary players, including the continued murder consequence. The Hot-Zone flag remains disabled while nearshore water, docks, map-data updates, boundary/extraction, login/restart and real-client combat/theft matrices remain unverified. Housing zoning is a separate Beta 2 deliverable.
+   - The harmful-action policy now preserves stock safe-zone and duel denials before considering shard consent. Focused tests cover direct-player same-region initiation, cross-boundary refusal, controlled-pet refusal, stock denial and existing-aggression carryover; delayed spells, poison, fields, projectiles and live boundary movement still need end-to-end checks.
+   - A disposable real-client session confirmed Fire Island and Buccaneer's Den entry warnings, exits to ordinary land and Hythloth's interior, and no Hot entry warning inside Hythloth. The validator permits this isolated test only with explicit Alpha 3 acknowledgment and both named polygons. Source activation remains off.
+2. Keep house placement safe while district zoning remains dormant.
+   - Existing stock one-house-per-account checks, foundation-wide geography hooks, placement quote/recheck paths and staff survey/status commands remain in the codebase behind the disabled housing gate. Do not open districts or continue residential/protected-land surveying in Alpha 3.
+   - Owner decision: defer house zoning to Beta 2. Greater Britain and Fire Island residential polygons, land classification, capacity estimates, protected/landmark/road/reserve polygons, district expansion order, household/IP exceptions, inactivity policy and zoning release checks move to Beta 2.
+   - Existing evidence is retained in `Alpha-3-Greater-Britain-Housing-Survey.md`: accepted-world placement/spawner rehearsals, approved east-Britain spawner relocations, resource exclusion fix, rural-premium quote/recheck implementation, and read-only diagnostics. The survey is background evidence only; its candidate lots and small-house lower bounds do not authorize zoning or placement.
 3. Establish release-level operational tools.
    - Add permanent-region and housing inspection commands, audit reports and regression fixtures for boundary and placement cases.
 4. Deliver the Skill Bank defined in `ModernUO-UOR-Safe-World-Hot-Zones-Alternative-Plan.md`, Section 5.1.
-   - Preserve only exact skill points organically displaced by ordinary skill-cap gains, in a per-character bank capped at 300.0 total points and the individual skill cap per entry.
+   - Preserve only exact base-skill points organically displaced by ordinary skill-cap gains, in a per-character bank capped at 300.0 total points and the individual skill cap per entry. Temporary gameplay penalties and expiring bonuses never create bank credit.
    - Provide per-entry Locked/Down retention controls. At capacity, replace only Down bank entries, draining the largest balance first with alphabetical tie-breaking; if no Down balance is available, preserve existing bank contents and notify the player that the incoming loss was not banked.
    - Restore one banked 0.1 per valid gain-eligible skill use, subject to existing anti-macro and skill-use eligibility. Bank restoration precedes ordinary gains and Mastery, including restoration of previously earned value through 100.0.
    - Preserve the 700.0 active cap with atomic exchanges that bank the exact active Down-skill loss. Provide player-visible balances and retention states, durable character persistence, staff diagnostics, a feature flag and a safe disabled default.
+   - Current implementation status: the typed capacity setting, disabled `skillBank` flag, and per-character ledger policy cover bounded deposits, Locked/Down retention, deterministic Down-entry replacement, and consumption in tenths. The ModernUO content gain path emits the exact displaced base skill and tenths after an organic, anti-macro-eligible gain, without treating direct scripted gains as organic. Stock under-10 gains still occur after anti-macro denial, but their displaced points are not reported for banking. Tests confirm that temporary skill penalties and expiring bonuses change effective skill values without reporting a bankable base-skill loss; a separate test confirms that a genuine cap displacement during a penalty reports only the exact base-skill tenth lost. ShardContent connects that observer to validated per-character deposits and a `[SkillBank` status/retention command; the payload saves in the same `PlayerMobile` record as active skills. An eligible bank restoration takes precedence over ordinary gain and Mastery, including below 10.0 and above 95.0, and a full active cap uses a planned one-tenth Down-skill exchange that aborts without consuming bank credit if it cannot preserve the loss. Administrators can inspect a player's saved bank and active total with the read-only `[SkillBankStatus [serial]` command even while the feature is disabled. Focused policy and integration-boundary tests pass; edge-case and persistence rehearsals, client UI review and full live validation remain outstanding. The flag cannot yet be enabled.
+   - Player status now warns when bank capacity reaches its final 10% and explains full-bank loss or Down-entry replacement. A deterministic mixed-operation test checks bank totals, individual caps and full-cap restoration plans. `Alpha-3-Skill-Bank-Persistence-Rehearsal.md` records a service-level exchange and an ordinary-client full-cap Anatomy restoration followed by an organic deposit; the client's retention command and 0.2-point balance survived save/restart. The client run exposed duplicate gain-handler registration from automatic and bootstrap configuration, now guarded. A second ordinary-client matrix confirmed anti-macro denial consumes no bank credit, all-Locked full-bank overflow preserves balances with a warning, and explicit Down retention replaces the exact incoming displaced amount while leaving Locked balances intact. Other skills, gain stages, malformed-data recovery and longer persistence sequences remain release work.
 5. Preserve T2A/UOR Arms Lore behavior. Keep its stock weapon, armor and swamp-dragon-barding inspection; do not add direct combat bonuses or the later exceptional-crafting weapon-damage and armor-resistance bonuses. Those crafting effects remain unavailable under the UOR expansion. The Skill Bank changes skill retention only and does not change Arms Lore mechanics.
 6. Include one ordinary pair of scissors in the universal starting package for every newly created character. Apply the package's four-hour Starter Protection and permanent `StarterIssued` resale/salvage restrictions; never replace scissors after loss or destruction.
+   - Current implementation status: a post-creation hook replaces stock skill-package scissors with one shard-owned `StarterScissors` pair for ordinary new characters and persists an account issuance tag to prevent regrants. A disposable save/restart rehearsal confirmed duplicate stock-pair removal and no replacement after loss. The item carries an `IStarterIssued` marker, remains nontransferable for direct sale/trade routes, and uses the owner's persistent logged-in `GameTime` for death protection until exactly four hours; after that, ordinary death rules can move it to a corpse. A separate `alpha3StarterGold` gate now replaces the stock 1,000-gold-per-character stack with a 500-gold account entitlement when enabled; the account tag survives character deletion, and prior current characters or saved playtime suppress another grant. An isolated server rehearsal confirmed first/second character 500/0 and a zero grant after both characters were deleted and the account was saved and reloaded. A fresh Navrey account also completed the normal client creation path and opened a backpack containing one 500-gold stack. A repeatable `[Welcome` command explains physical Backpack Ward and invisible Loot Protection rules, and the creation hook prompts new ordinary players to read it; an isolated client login confirmed the command response. The free physical Backpack Ward is now persistently marked for its creation character, has an account issuance tag, accepts nested movement inside that character's equipped backpack, refuses player transfer out, and is deleted unused at player death; a disposable probe covered idempotence, transfer boundaries, ordinary-Ward separation and callback cleanup. A real client then created a character with a marked Ward and received the Welcome prompt; after save/restart, the marker remained valid, and an actual player death deleted the unused Ward without corpse loot. The universal `StarterBag` is now issued once behind its own disabled Alpha 3 flag; it is permanently nontransferable and protected through the first four logged-in hours. A disposable shard death probe confirmed that ordinary and blessed direct or nested contents follow their own death rules both before protection expires and at the four-hour boundary. A separate disposable save/restart confirmed the issued bag, owner marker, contents, protection state and duplicate-issuance guard persist. A fresh Navrey character then received one bag through the normal client creation packet; its label and direct ground-drop refusal were observed, and a staff probe verified the bound server-side item. A disposable item-path matrix refused direct world, mobile, bank and nested-container moves, and an explicitly listed NPC sell entry still rejected sale and resale. `StarterPackagePlanner` now selects one primary combat archetype, melee Parry shield eligibility and the selected craft categories from creation skills; the stock Warrior, Mage, Blacksmith and Advanced grant overlap is cataloged in the starter audit. A disabled, validation-blocked combat gate now replaces stock Warrior, Archer and Mage overlap with character-owned Standard gear and bound consumables; a separate starter-craft gate implements all eight named craft resource packages and their starting tools. One combined disposable creation probe passed these issuance paths. All Alpha 3 starter flags remain off in source. `Alpha-3-Starter-Package-Audit.md` records the integration, disposable death results, persistence result and pre-existing-account classification caveat. Two-client bag trade, player-vendor and remaining conversion/economy routes, legacy-Ward review and remaining Ward economy routes, ordinary-client archetype use, material consumption and persistence, item economy matrices, scissors transfer/death matrix, same-account client recreation, and broader real-client death tests remain outstanding.
+   - Starter craft materials now have a disabled, validation-blocked gate and Blacksmith, Tinker, Tailor, Carpenter, Bowyer, Scribe, Alchemist and Cook resource packages with separate account entitlements and bound material types. Bound starting tools now replace the relevant stock tools or fill missing Bowyer and Scribe tools; one combined disposable creation probe confirmed tool issuance and stock removal. It is not ready for activation: craft-menu use, crafting consumption and runtime persistence/economy checks remain open.
 7. Allocate character-creation stats for every selectable template and the **Advanced** custom option. Each receives exactly **120 starting stat points** across Strength, Dexterity, and Intelligence, with every stat at least **30**. Tune the distribution to the selected template's playstyle; preserve the 225 total stat cap and do not grant ongoing stat bonuses. Audit every option and add regression checks for the 120-point total and per-stat minimum.
+   - Current implementation status: the shard post-creation hook allocates Warrior 50/40/30, Mage 30/30/60, Blacksmith 60/30/30, and Advanced from the player's relative stat preferences with a 30-point floor. These are the three templates in the active UOR `Data/Professions/None/prof.txt` plus Advanced. A disposable real-client packet matrix confirmed Warrior 50/40/30, Mage 30/30/60, Blacksmith 60/30/30 and Advanced Healing/Anatomy 42/42/36, each totaling 120 with a 30-point floor. The test also exposed and corrected a creation-hook registration overwrite that had suppressed stats, scissors and bag issuance. The source flag `alpha3StartingStats` remains off pending the rest of the Alpha 3 phase gate.
 8. Complete a full UOR-baseline and shard-contract compliance audit of every player skill exposed by the shard.
    - Apply this decision order consistently: an explicit, owner-approved Britannia Renaissance rule or already-delivered custom contract; otherwise the cited UOR-era behavior; never an uncatalogued stock default. Later-era implementation code may remain only when it is necessary to support an approved player-visible result and cannot expose unapproved behavior.
    - Build a definitive skill matrix from the UOR skill table. For every skill, record whether it is enabled, its cited UOR baseline, its effective Britannia Renaissance behavior, any approved-deviation identifier, the ModernUO entry points and configuration gates that implement it, and its automated and live-client evidence. No skill may be marked compliant solely because it is rarely used or lacks an obvious command.
    - Maintain an approved-deviation register for every intentional non-UOR or custom result. Seed it before discrepancy triage from the roadmap's delivered-status notes, committed shard code and tests, active shard configuration, persistence/migration contracts, and recorded owner decisions; absence from a UOR source is not evidence that delivered custom behavior is a defect. Each entry must identify its authority and rationale, implementation or configuration source, feature gate, player-visible contract, persistence or migration concerns, affected skills and systems, and required tests.
-   - Treat delivered shard systems as protected compatibility surfaces, including at minimum the hybrid combat contract (T2A-style instant hit and precasting, removed original-weapon procs, and removed Wrestling Stun/Disarm); the accelerated-but-capped gain curve and 95+ Mastery cycle; the no-pets-in-dungeons exception and restricted pet-PvP policy; SafeWorld and Criminal Intent; automatic murder adjudication and the custom murder/red ledger; bank and Cool-zone theft rules, Backpack Wards, corpse protections, and Loot Protection; Knocked Out and Execute; and shard-specific starter issuance, binding, and protection rules. Treat the accepted Alpha 2b population manifest, bank polygons, Greater Britain world identity, and other approved shard geography as the world baseline consumed by Alpha 3. Audit these systems' interactions with skills rather than classifying their mere deviation from stock UOR as a defect.
+   - Treat delivered shard systems as protected compatibility surfaces, including at minimum the hybrid combat contract (T2A-style instant hit and precasting, removed original-weapon procs, and removed Wrestling Stun/Disarm); the accelerated-but-capped gain curve and 95+ Mastery cycle; the no-pets-in-dungeons exception and restricted pet-PvP policy; SafeWorld and Criminal Intent; automatic murder adjudication and the custom murder/red ledger; bank theft rules, Backpack Wards, corpse protections, and Loot Protection; Knocked Out and Execute; and shard-specific starter issuance, binding, and protection rules. Treat the accepted Alpha 2b population manifest, bank polygons, Greater Britain world identity, and other approved shard geography as the world baseline consumed by Alpha 3. Audit these systems' interactions with skills rather than classifying their mere deviation from stock UOR as a defect.
    - Trace active uses and passive hooks end to end: success formulas, difficulty and target rules, skill-delay and cooldown behavior, stat influence, gain eligibility, anti-macro behavior, skill-cap loss, required tools and resources, crafted or harvested outputs, combat modifiers, creature and item interactions, criminal/notoriety effects, messages, and persistence where applicable.
    - Identify every pre-UOR, T2A/UOR, post-UOR, and shard-custom branch reachable from each skill. Disable or remove unapproved later-era mechanics, bonuses, recipes, resources, mastery/special-move interactions and expansion-only targets, but do not remove or silently normalize an approved custom outcome merely because it is not stock UOR.
    - Add focused regression tests for each skill's important era boundary and every approved deviation, plus representative real-client rehearsals for actions that depend on targeting, timing, world objects, vendors, crafting menus, combat or network state. Include cross-skill and cross-system cases where one skill changes another skill's result, and run non-regression coverage against the delivered custom systems before and after remediation.
    - Publish the completed audit matrix, approved-deviation register, and discrepancy log with no unreviewed skills, unresolved classifications or unexplained stock defaults. Any uncertain historical or shard-contract behavior is a release blocker until an owner-approved ruling and testable shard policy replace the ambiguity.
+   - Current audit evidence and open classifications are tracked in `Alpha-3-Player-Skill-Audit.md`. The 58-entry runtime inventory and initial deviation register are recorded; UOR character creation, NPC training, and generic skill checks/gains now reject all nine later-era skill IDs. Power scrolls cannot raise a UOR skill beyond 100.0 or act on a later-era skill, and throwing weapons cannot be equipped before SA. Exceptional armor resistance distribution now requires AoS, preserving the UOR Arms Lore crafting boundary. The UOR Detect Hidden delay now follows the documented one-second March 2000 behavior. Item skill bonuses now exclude unavailable skills under UOR. The owner approved retaining Blacksmith BODs as a shard deviation and instructed Alpha 3 to exclude runic hammers before AoS. The vendor path now issues and accepts Smith BODs under UOR while Tailor/Weaver BOD issue and turn-in stay gated to AoS; an ordinary client verified Smith issuance/acceptance and no Tailor BOD option. The reward lookup filters the runic hammer and four items added in Publish 16; four focused reward tests pass in isolated output. Earlier isolated ModernUO runs passed 60 UOR-focused cases, 20 SkillEvents cases and one starter-bound BOD case; the full ShardContent suite passed 211 cases against staged current-source ModernUO assemblies. Other Smith BOD reward types and economy remain open; the current table can pay up to 222,222 gold on a high-value deed and has not been assessed against the accepted shard economy. Item-specific routes, the full skill-by-skill baseline, remediation and client matrix also remain open.
 
 ### Exit criteria
 
-- All permanent Hot-Zone boundaries produce the correct hostility, theft, loot and log-in behavior under client and restart tests.
-- Housing placement obeys one-per-account, polygon, rural-cost, protected-land and special-island rules; capacity/expansion data is visible to staff.
-- Permanent Hot-Zone reward multipliers, if enabled, pass economy and anti-exploit validation while ordinary spawn cadence and cap remain unchanged.
+- All permanent outdoor Hot-Zone boundaries produce the correct hostility, theft, loot and log-in behavior under client and restart tests.
+- House zoning remains closed: `housingGeography` stays disabled and no residential district is opened in Alpha 3. Existing account and payment safeguards retain their focused regression coverage.
+- Alpha 3 outdoor Hot Zones retain ordinary spawn cadence, caps and reward tables; the code adds no PvE multiplier. Any later surface reward premium requires a separate owner-approved economy review. Hot/Cool dungeon reward premiums remain Beta 2.
 - Skill Bank deposits, replacement, restoration, Mastery interaction, both skill caps, anti-macro eligibility and save/restart persistence pass focused automated and real-client tests. Full-bank behavior never removes Locked entries, silently changes balances, or exceeds the 300.0 bank cap.
 - The complete player-skill matrix is reviewed and approved: every exposed skill has a cited UOR baseline and effective shard-contract classification, traced implementation/configuration path, automated boundary coverage and proportionate live-client evidence; every intentional deviation is registered and covered; delivered custom behavior passes non-regression checks; and no unapproved reachable post-UOR behavior or unresolved stock default remains.
 
 ### Explicitly deferred
 
-Weekly Hot/Cool dungeon rotations and their reward premiums, Expeditions, trade cargo, Pilgrimage and road speed; these depend on trustworthy regions, travel and housing topology. Nemesis, Wanted, Salvage and roleplay systems remain disabled.
+All Hot/Cool dungeon rules, including permanent Hythloth, weekly rotations and their reward premiums, and house zoning begin in Beta 2. Expeditions, trade cargo, Pilgrimage and road speed remain deferred to Beta 1. Nemesis, Wanted, Salvage and roleplay systems remain disabled.
 
 ---
 
@@ -246,47 +256,44 @@ Weekly Hot/Cool dungeon rotations and their reward premiums, Expeditions, trade 
 
 ### Goal
 
-Create repeatable, synchronized reasons for players to leave Britain, gather in changing Hot and Cool dungeons, travel roads and wilderness together, and return to the economy—without raising the permanent character-power ceiling or relying on respawn acceleration.
+Create repeatable, synchronized reasons for players to leave Britain, travel roads and wilderness together, and return to the economy—without raising the permanent character-power ceiling or relying on respawn acceleration.
 
 ### Scope
-
-1. Deliver the weekly Hot/Cool dungeon rotations before economic bonuses.
-   - Implement exactly one rotating Hot Dungeon and exactly one distinct Cool Dungeon, with schedule, eligibility pool, conflict prevention, announcements, offline transition handling, staff override and player-visible status.
-   - In the Cool Dungeon, retain Safe-World hostility and disable direct player stealing while retaining snooping.
-   - First ship rotations with reward multipliers disabled; activate the modest +10% ordinary reward/gold and relative magic-chance premium only after region and exploit tests pass. Do not change spawn rate, spawn cap or difficulty as a shortcut.
-   - Add force/advance/disable controls, rotation audit reports and regression fixtures for boundary and transition cases.
-2. Implement the weekly Expedition Region and physical Britain trade route.
-   - Activate exactly one outdoor Expedition Region and one Britain-origin route to a configured destination town.
+1. Implement the weekly Expedition Region and physical Britain trade route.
+   - Activate one outdoor Expedition Region and one Britain-origin route to a configured destination town.
    - Use broad ordered checkpoints/waystations; add player boards/status and staff controls.
    - Apply +50% eligible ordinary harvest yield only within the active Expedition while keeping respawn cadence and rare-resource chances unchanged.
    - Add Expedition Logistics: 3× resource-only carrying capacity in Britain, the active corridor and destination town, with server-authoritative eligibility, provenance and cleanup.
    - Implement character-bound cargo, fast-travel blocking only while it is carried, death/logout/restart handling, rotation grace/abandonment, atomic turn-in and anti-duplication safeguards.
-3. Implement the weekly Virtue Pilgrimage.
+2. Implement the weekly Virtue Pilgrimage.
    - Use Britain-only start, 15-minute windows every four hours, one mainland shrine route, blessed character-bound scrolls and ordered checkpoints.
    - Block fast travel while active, allow mounted travel, preserve state through death/restart, enforce one weekly success and award the documented first-five/later finisher logged-in-time skill bonuses.
-4. Implement road travel incentives.
+3. Implement road travel incentives.
    - Audit road tiles/regions and add modest on-foot/mounted speed only on approved roads.
    - Disable the bonus during active PvP aggression and within Hot Zones; validate client synchronization and speedhack detection.
-5. Validate the combined economy and population effect.
-   - Test dungeon premiums, harvest yield, carrying capacity, cargo rewards, Pilgrimage gain bonuses and road travel together so stacking does not create a hidden progression or inflation system.
-6. Review all user-facing text.
+4. Validate the combined economy and population effect.
+   - Test harvest yield, carrying capacity, cargo rewards, Pilgrimage gain bonuses and road travel together so stacking does not create a hidden progression or inflation system.
+5. Review all user-facing text.
    - Audit messages, gumps, menus, prompts, journals, status displays, help text, system notifications and staff-facing player text introduced or modified through Beta 1.
    - Bring the wording, tone, terminology, capitalization and localization style into consistency with the base game's prose, and require human review before release.
-
+   - Clearly label starter gear and other starter items when they have special restrictions or properties, such as being non-sellable or nontransferable, so players can distinguish them from ordinary items.
+6. Enable cosmetic Elf character creation in the distributed Britannia Renaissance ClassicUO fork.
+   - Set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true at activation while keeping `SupportedFeatures.ML` false and the UOR/Felucca ruleset intact; retain the SA-off Gargoyle restriction.
+   - Preserve native Elf body, skin and hair while applying Human-equivalent starting rules and gameplay permissions. Keep Elf-only equipment, creature access and ML racial bonuses unavailable.
+   - Verify character creation, starter entitlements, Human/Elf parity and appearance after death, resurrection and save/restart on a disposable server before activation.
 ### Exit criteria
 
-- Hot/Cool rotation selection never overlaps prohibited regions and safely handles online/offline players, boundary transitions, restart and schedule changes; Cool-Dungeon theft and hostility rules pass client tests.
-- Dungeon rotations, Expedition, cargo, Pilgrimage and road state are fully server-authoritative, feature-flagged, visible to players and recoverable by staff.
+- Expedition, cargo, Pilgrimage and road state are server-authoritative, feature-flagged, visible to players and recoverable by staff.
 - Tests cover bypass attempts: teleporting with cargo, route skips, duplicate turn-ins, rotation changes, death, logout, restart, mixed inventories, mounted travel, PvP suppression and client speed synchronization.
-- Reward multipliers, if enabled, pass economy and anti-exploit validation; no system accelerates resource respawn, changes ordinary spawn caps or raises the character cap.
+- Expedition and Pilgrimage rewards pass economy and anti-exploit validation; no system accelerates resource respawn, changes ordinary spawn caps or raises the character cap.
 - All Beta 1 user-facing text has passed a human editorial review for consistency with the base game's prose style, terminology and localization conventions.
+- Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests.
 
 ### Explicitly deferred
 
-New monster/loot/content systems and roleplay collections. Beta 1 should demonstrate that the world-concentration loop works before adding more reward surfaces.
+Hot/Cool dungeon rules and new monster/loot/content systems and roleplay collections. Beta 1 should demonstrate that the world-concentration loop works before adding more reward surfaces.
 
 ---
-
 ## Beta 2 — Horizontal endgame and world-content extensions
 
 ### Goal
@@ -294,25 +301,40 @@ New monster/loot/content systems and roleplay collections. Beta 1 should demonst
 Add optional repeatable goals—harder natural spawns, themed collections, sea activity and weekly bounties—using existing ModernUO systems and the stable risk/reward foundations from earlier releases. These features broaden choice rather than create vertical power.
 
 ### Scope
+1. Deliver the deferred house-zoning foundation.
+   - Survey and configure Greater Britain and Fire Island residential districts; classify residential, rural and protected land, and protect roads, landmarks, dungeons and reserves. Preserve Buccaneer's Den housing prohibition.
+   - Establish usable capacity by house size and access constraints; define the one-way district expansion order and occupancy metrics.
+   - Complete household/IP exception tooling, inactive-house qualification and decay policy, and placement/payment/save/restart verification before opening a district.
+   - Reconcile the Alpha 3 placement, premium, spawner and resource-exclusion work with the approved zoning policy. Keep housingGeography disabled until Beta 2 exit criteria pass.
 
-1. Add Nemesis Monsters as a controlled variation of existing natural spawns.
+2. Deliver the permanent Hythloth Hot Dungeon and weekly Hot/Cool dungeon rotations.
+   - Define Hythloth as a permanent Hot Dungeon without making other dungeon interiors Hot merely because their entrances are on Fire Island.
+   - Apply dungeon-specific hostility, theft, Knocked Out, loot and Execute rules at the authoritative boundary; cover entry/exit messages, login placement, extraction, combat carryover and restart.
+   - Implement exactly one rotating Hot Dungeon outside Hythloth and one distinct Cool Dungeon, with a schedule, eligibility pool, conflict prevention, announcements, offline transition handling, staff override and player-visible status.
+   - In the Cool Dungeon, retain Safe-World hostility and disable direct player stealing while retaining snooping.
+   - First ship dungeon rules with reward multipliers disabled; enable the modest +10% ordinary reward/gold and relative magic-chance premium only after region and exploit tests pass. Do not change spawn rate, spawn cap or difficulty as a shortcut.
+   - Add force/advance/disable controls, rotation audit reports and regression fixtures for boundary and transition cases.
+3. Add Nemesis Monsters as a controlled variation of existing natural spawns.
    - Use a data-driven species/spawner/region whitelist, per-area caps and opt-outs.
    - Keep the approved horizontal rewards: a mutually exclusive trophy path or consolation gold path, no extra spawn/respawn acceleration, and compatibility-gated presentation fallback.
-2. Add Shipwreck Salvage through existing SOS, fishing and boat systems.
+4. Add Shipwreck Salvage through existing SOS, fishing and boat systems.
    - Use valid Felucca water/chart locations, finite timed salvage rights and at least one weighted decoration outcome.
    - Preserve ordinary MiB/SOS treasure generation; do not add early fishing chart drops or bypass normal treasure paths.
-3. Add Wanted Monsters after the existing looting-rights scorer is audited.
+5. Add Wanted Monsters after the existing looting-rights scorer is audited.
    - Restrict contracts to approved Hot/Cool rotations and eligible existing creatures/dungeons.
    - Rank contributors through the proven ModernUO scoring API, select the first living recipient deterministically, and use one atomic physical backpack payout with durable same-character overflow reservation.
    - Keep ordinary corpse rights untouched and avoid an independent rolling-damage tracker.
-4. Add the approved horizontal crafting and collection work.
+6. Add the approved horizontal crafting and collection work.
    - Enable Artisan Signature Collections and destination-specific cosmetics only after BOD, vendor, currency, weight, supply and demand audits.
    - Keep rewards cosmetic, collectible, convenience-oriented or otherwise non-escalating; do not introduce artifacts, power scrolls, mastery ladders or mandatory grind.
-5. Build content/economy operations.
+7. Build content/economy operations.
    - Add reward-table validation, catalog checks, per-spawner opt-outs, analytics and crash/restart recovery tests.
 
 ### Exit criteria
 
+- Housing districts remain closed until land classification, protections, capacity, occupancy and placement/payment/recovery checks pass; keep `housingGeography` disabled until then.
+- Hot/Cool rotation selection never overlaps prohibited regions and safely handles online/offline players, boundary transitions, restart and schedule changes; Hythloth and Cool-Dungeon theft and hostility rules pass client tests.
+- Dungeon rotation state is server-authoritative, feature-flagged, visible to players and recoverable by staff.
 - Every custom reward flow has atomic issuance, duplication protection, recipient/rights correctness and save/restart coverage.
 - Spawn caps and respawn cadence remain unchanged unless a separately approved rule says otherwise.
 - Economy review confirms that rewards are horizontal and that Hot/Cool premiums, cargo rewards, collections and gold sources do not combine into runaway inflation.
@@ -320,10 +342,9 @@ Add optional repeatable goals—harder natural spawns, themed collections, sea a
 
 ### Explicitly deferred
 
-Broader roleplay POIs, guestbooks and scene systems. Beta 2 focuses on combat/PvE/crafting/maritime systems that consume the now-proven world infrastructure.
+Broader roleplay POIs, guestbooks and scene systems. Beta 2 focuses on optional endgame and content systems that consume the proven world infrastructure.
 
 ---
-
 ## Beta 3 — Social layer, hardening and launch candidate
 
 ### Goal
@@ -353,6 +374,7 @@ Complete the shard’s social identity and prove launch readiness: roleplay supp
 - All custom serialized entities and migrations survive repeated save/reload and versioned configuration changes.
 - Documentation, operations and feature flags support a staged launch, and the owner formally accepts the launch rules that require approval.
 
+
 ## Release gates and feature activation order
 
 | Gate | Required before enabling | Examples |
@@ -360,10 +382,11 @@ Complete the shard’s social identity and prove launch readiness: roleplay supp
 | Core gate | Alpha 1 complete | era/content audit, hybrid combat, caps, starter and classic economy | 
 | Law gate | Alpha 2 complete | Safe-World, Intent, murder adjudication, theft and corpse protection | 
 | World gate | Alpha 2b complete | versioned Felucca/UOR population manifest, reviewed generators, restart-stable save and tested rollback |
-| Geography gate | Alpha 3 complete | permanent Hot regions, boundaries, housing policy, Skill Bank and verified permanent reward premiums |
-| Living-world gate | Beta 1 complete | Hot/Cool dungeon rotations, verified rotation premiums, Expedition, cargo, Pilgrimage, roads and combined economy tests |
-| Content gate | Beta 2 complete | Nemesis, Salvage, Wanted and collections | 
+| Geography gate | Alpha 3 complete | permanent outdoor Hot regions and boundaries, starter systems, Skill Bank and UOR player-skill audit; ordinary outdoor spawn/reward tables remain unchanged |
+| Living-world gate | Beta 1 complete | Expedition, cargo, Pilgrimage, roads, cosmetic Elf creation and combined economy tests |
+| Content gate | Beta 2 complete | permanent Hythloth Hot Dungeon, Hot/Cool dungeon rotations and premiums, Nemesis, Salvage, Wanted and collections |
 | Launch gate | Beta 3 complete | RP systems, full operations, fresh-world rehearsal and launch sign-off | 
+
 
 ## Definition of readiness for any phase
 

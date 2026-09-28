@@ -49,6 +49,10 @@ not authoritative and cannot make these moves active.
 
 ## Classic combat-identity baseline
 
+### Arms Lore
+
+The stock `UOContent/Skills/ArmsLore.cs` inspection behavior is retained for T2A/UOR: players can target weapons and armor for condition and combat-property descriptions, and swamp dragon barding can be inspected. Do not describe Arms Lore as a direct combat damage bonus. The exceptional-weapon damage and exceptional-armor resistance additions in `BaseWeapon.OnCraft` and `BaseArmor.OnCraft` are guarded by `Core.ML` and are therefore inactive under the configured UOR expansion. Keep those later-era effects out of the UOR ruleset. Alpha 3's Skill Bank preserves skill value displaced by cap changes; it does not alter Arms Lore mechanics. The independent Skill Breadth proposal explicitly defers crafting skills.
+
 The following Alpha 1 findings are pinned to the UOR baseline reference
 `29a3ab1bd443b9c2a8ff6bf34f4df47d9f837895`; the current integration checkout is
 `1d3330a7517a1d290c363b370d754c38baba4e1a`. They are intentionally a **retain**
@@ -180,21 +184,25 @@ victim-wide 120-second protection window through account tags. When enabled, cha
 issues one ward and binds it durably to the character account; transferred wards are ignored by
 the protection selector. The same feature-gated service now
 allows the first unlawful non-Hot monster-corpse transfer, then blocks that offender account from
-repeating against the same rights holder's still-protected monster corpses for ten minutes. Bank/Cool region restrictions are enabled in
-the current production profile; corpse protection is bypassed only while `hotZones` is enabled.
+repeating against the same rights holder's still-protected monster corpses for ten minutes. Bank
+restrictions are enabled in the current production profile. Cool Dungeon theft restrictions are
+gated by `coolZones`, which remains disabled until Beta 2; corpse protection is bypassed only
+while `hotZones` is enabled.
 
 The theft-region policy now loads explicit `map`/point polygons from `shard-rules.json`. Bank
-polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing while
-leaving snooping and combat decisions untouched. The runtime policy now contains 18 banker
+polygons deny direct player stealing only; Cool-Dungeon polygons deny direct player stealing only
+when the Beta 2 `coolZones` flag is enabled, leaving snooping and combat decisions untouched. The
+runtime policy now contains 18 banker
 envelopes and the stock rectangles for the ten UOR-era dungeons. Bank envelopes are compact
 24-by-24-tile survey areas around each observed banker spawner/approach tile, selected to provide
 approximately a 5–6 tile apron without creating a town-wide combat bubble. Entering or leaving a
-bank or Cool Dungeon emits one player-facing explanation; blocked movement does not emit a false
-transition.
+bank emits one player-facing explanation. Cool Dungeon entry/exit messages require `coolZones`;
+blocked movement does not emit a false transition.
 
 The theft boundary rechecks both participants at the target-selection boundary: a direct player
-steal is denied when either the thief or the intended victim is inside a configured bank/Cool
-polygon. Map names are compared case-insensitively, and empty/invalid polygons remain inert.
+steal is denied when either the thief or the intended victim is inside a configured bank polygon,
+or inside an active Cool Dungeon after `coolZones` is enabled. Map names are compared
+case-insensitively, and empty/invalid polygons remain inert.
 
 The next Alpha 2 geography gate is now reproducible: `tools/Export-FeluccaBankCandidates.ps1`
 extracts Banker spawner coordinates from the pinned ModernUO
@@ -206,8 +214,9 @@ resulting polygons are recorded explicitly rather than inferred at runtime.
 `tools/Export-FeluccaDungeonCandidates.ps1` provides the matching review surface for Cool-Dungeon
 selection. It extracts the pinned `DungeonRegion` rectangles, identifies the ten UOR-era dungeon
 names as candidate-compatible, and preserves later-era/special regions for explicit review. The
-ten UOR-era candidates' stock rectangles are now active Cool-Dungeon polygons; later-era/special
-regions remain deferred.
+ten UOR-era candidates' stock rectangles are retained as dormant Cool-Dungeon candidate data;
+later-era/special regions remain deferred. Beta 2 must select one current Cool Dungeon rather
+than enabling every candidate rectangle at once.
 
 The 2026-09-24 review export found 18 Felucca Banker spawners and 18 Felucca dungeon regions.
 The bank source hash was `acc0d004ead4d81e681eefeae62e54dfb3fe8420c4067dc83a3fc3271c9bd31d`;
