@@ -9,6 +9,8 @@ assets/processed/
 *.log
 
 # Local tooling and editor state
+__pycache__/
+*.pyc
 .vs/
 .idea/
 *.user
