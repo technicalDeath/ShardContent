@@ -6,7 +6,11 @@ namespace BritanniaRenaissance.Content;
 
 public sealed class StarterBoard : Board, IStarterIssued, ICommodity
 {
-    public StarterBoard(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterBoard(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterBoard(Serial serial) : base(serial) { }
 
     public Serial OwnerSerial { get; private set; }
@@ -15,8 +19,6 @@ public sealed class StarterBoard : Board, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterBoard other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
 
     public override void Serialize(IGenericWriter writer)
     {
@@ -35,7 +37,11 @@ public sealed class StarterBoard : Board, IStarterIssued, ICommodity
 
 public sealed class StarterFeather : Feather, IStarterIssued, ICommodity
 {
-    public StarterFeather(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterFeather(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterFeather(Serial serial) : base(serial) { }
 
     public Serial OwnerSerial { get; private set; }
@@ -44,8 +50,6 @@ public sealed class StarterFeather : Feather, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterFeather other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
 
     public override void Serialize(IGenericWriter writer)
     {
@@ -64,7 +68,11 @@ public sealed class StarterFeather : Feather, IStarterIssued, ICommodity
 
 public sealed class StarterCloth : Cloth, IStarterIssued, ICommodity
 {
-    public StarterCloth(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterCloth(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterCloth(Serial serial) : base(serial) { }
 
     public Serial OwnerSerial { get; private set; }
@@ -73,8 +81,6 @@ public sealed class StarterCloth : Cloth, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterCloth other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
 
     public override void Serialize(IGenericWriter writer)
     {
@@ -93,7 +99,11 @@ public sealed class StarterCloth : Cloth, IStarterIssued, ICommodity
 
 public sealed class StarterLeather : Leather, IStarterIssued, ICommodity
 {
-    public StarterLeather(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterLeather(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterLeather(Serial serial) : base(serial) { }
 
     public Serial OwnerSerial { get; private set; }
@@ -102,8 +112,6 @@ public sealed class StarterLeather : Leather, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterLeather other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
 
     public override void Serialize(IGenericWriter writer)
     {

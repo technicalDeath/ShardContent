@@ -6,14 +6,16 @@ namespace BritanniaRenaissance.Content;
 
 public sealed class StarterBandage : Bandage, IStarterIssued
 {
-    public StarterBandage(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterBandage(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterBandage(Serial serial) : base(serial) { }
     public Serial OwnerSerial { get; private set; }
     public override bool Nontransferable => true;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterBandage other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);
@@ -30,7 +32,11 @@ public sealed class StarterBandage : Bandage, IStarterIssued
 
 public sealed class StarterArrow : Arrow, IStarterIssued, ICommodity
 {
-    public StarterArrow(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterArrow(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterArrow(Serial serial) : base(serial) { }
     public Serial OwnerSerial { get; private set; }
     public override bool Nontransferable => true;
@@ -38,8 +44,6 @@ public sealed class StarterArrow : Arrow, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterArrow other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);

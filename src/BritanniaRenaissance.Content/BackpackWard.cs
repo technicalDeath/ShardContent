@@ -89,6 +89,7 @@ public sealed class BackpackWard : Item
 
         _starterIssued = true;
         _starterOwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
         InvalidateProperties();
         return true;
     }
@@ -96,78 +97,6 @@ public sealed class BackpackWard : Item
     public override bool VerifyMove(Mobile from) =>
         base.VerifyMove(from) && (!_starterIssued || from.AccessLevel > AccessLevel.Player ||
             from.Serial == _starterOwnerSerial);
-
-    public override bool OnDroppedInto(Mobile from, Container target, Point3D p)
-    {
-        if (!_starterIssued)
-        {
-            return base.OnDroppedInto(from, target, p);
-        }
-
-        if (!IsInOwnerBackpack(from, target))
-        {
-            return false;
-        }
-
-        if (target == from.Backpack)
-        {
-            return base.OnDroppedInto(from, target, p);
-        }
-
-        if (!from.OnDroppedItemInto(this, target, p))
-        {
-            return false;
-        }
-
-        return target.OnDragDropInto(from, this, p);
-    }
-
-    public override bool OnDroppedOnto(Mobile from, Item target)
-    {
-        if (!_starterIssued)
-        {
-            return base.OnDroppedOnto(from, target);
-        }
-
-        if (!IsInOwnerBackpack(from, target))
-        {
-            return false;
-        }
-
-        if (target == from.Backpack)
-        {
-            return base.OnDroppedOnto(from, target);
-        }
-
-        if (Deleted || from.Deleted || target.Deleted ||
-            from.Map != target.Map || from.Map is null ||
-            from.AccessLevel < AccessLevel.GameMaster && !from.InRange(target.GetWorldLocation(), 2) ||
-            !from.CanSee(target) || !from.InLOS(target) || !target.IsAccessibleTo(from) ||
-            !from.OnDroppedItemOnto(this, target))
-        {
-            return false;
-        }
-
-        return target.OnDragDrop(from, this);
-    }
-
-    private bool IsInOwnerBackpack(Mobile from, Item target)
-    {
-        if (from.Serial != _starterOwnerSerial || from.Backpack is null)
-        {
-            return false;
-        }
-
-        for (var item = target; item is not null; item = item.Parent as Item)
-        {
-            if (item == from.Backpack)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     public override void Serialize(IGenericWriter writer)
     {
@@ -196,6 +125,12 @@ public sealed class BackpackWard : Item
         {
             _starterIssued = reader.ReadBool();
             _starterOwnerSerial = reader.ReadSerial();
+        }
+
+        // Starter Wards issued before the newbied ruling were destroyed on death instead.
+        if (_starterIssued && LootType == LootType.Regular)
+        {
+            LootType = LootType.Newbied;
         }
 
         var count = reader.ReadEncodedInt();

@@ -11,16 +11,16 @@ public interface IStarterIssued
 }
 
 /// <summary>
-/// One ordinary pair issued at creation. Its type remains an economic marker after
-/// the four logged-in hours of death protection have expired.
+/// One ordinary pair issued at creation. Like every starter-issued item it is stock UOR
+/// newbied (kept through death unless its owner is a murderer) and permanently
+/// nontransferable, so it can never be traded, sold or salvaged.
 /// </summary>
 public sealed class StarterScissors : Scissors, IStarterIssued
 {
-    public static readonly TimeSpan ProtectionDuration = TimeSpan.FromHours(4);
-
     public StarterScissors(PlayerMobile owner)
     {
         OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
     }
 
     public StarterScissors(Serial serial) : base(serial)
@@ -29,35 +29,8 @@ public sealed class StarterScissors : Scissors, IStarterIssued
 
     public Serial OwnerSerial { get; private set; }
 
-    // Stock transfer and vendor checks use this property. The marker is permanent;
-    // death routing below has its own time-limited rule.
+    // Stock transfer and vendor checks use this property.
     public override bool Nontransferable => true;
-
-    public static bool IsProtected(TimeSpan ownerGameTime) => ownerGameTime < ProtectionDuration;
-
-    private bool IsProtectedFor(Mobile parent) =>
-        parent is PlayerMobile player && player.Serial == OwnerSerial && IsProtected(player.GameTime);
-
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) =>
-        IsProtectedFor(parent) || KeepByOrdinaryDeathRules(parent)
-            ? DeathMoveResult.MoveToBackpack
-            : DeathMoveResult.MoveToCorpse;
-
-    public override DeathMoveResult OnParentDeath(Mobile parent)
-    {
-        if (!Movable)
-        {
-            return DeathMoveResult.RemainEquipped;
-        }
-
-        return IsProtectedFor(parent) || KeepByOrdinaryDeathRules(parent)
-            ? DeathMoveResult.MoveToBackpack
-            : DeathMoveResult.MoveToCorpse;
-    }
-
-    private bool KeepByOrdinaryDeathRules(Mobile parent) =>
-        !Movable || parent.KeepsItemsOnDeath || CheckBlessed(parent) ||
-        CheckNewbied() && !parent.Murderer;
 
     public override void Serialize(IGenericWriter writer)
     {

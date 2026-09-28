@@ -2742,35 +2742,25 @@ Design principle:
 
 > **Starter gear removes friction, not progression. It should be immediately useful, strictly ordinary in power, and have no exploitable character-creation resale loop.**
 
-#### Four logged-in hours of starter protection
+#### Starter-issued items: newbied and permanently bound
 
-Issued starter equipment receives temporary **Starter Protection** for the first **4 hours of logged-in time on that character**.
+**Owner ruling (2026-09-28).** This replaces the earlier four-logged-in-hour Starter Protection timer, which the owner did not want.
 
-The protection timer:
+Every starter-issued item (equipment, consumables, craft materials and tools, scissors and the free starter Backpack Ward) is:
 
-- advances only while that character is logged in;
-- pauses on logout/disconnect;
-- persists through save/restart;
-- is not reset by death/resurrection;
-- is not reset by character rename/template changes;
-- is never re-granted because the character lost or destroyed an issued item.
+- **newbied**, stock UOR `LootType.Newbied`;
+- **permanently nontransferable**, the stock ModernUO `Nontransferable` rule.
 
-While Starter Protection is active, issued starter equipment:
+Together, stock ModernUO then gives these rules, with no timer and no custom death code:
 
-- does not drop as normal corpse loot;
-- remains with the character through death;
-- cannot be directly traded;
-- cannot be placed on a player vendor;
-- cannot be sold to an NPC;
-- cannot be smelted, cut, salvaged or otherwise converted into economic materials;
-- cannot satisfy BODs;
-- cannot be used as a recipe input where doing so would extract transferable value.
+- **Only loose in the owner's backpack.** A player can drop it only directly into their own backpack. It cannot go into any bag, the bank box, the ground, another player, a pet, trade or a vendor. Keeping bound items out of bags is deliberate: a bag can travel (trade, ground, bank, vendor, house containers), and every one of those routes would otherwise have to inspect its contents.
+- **Kept through every death,** murderer or not. It never lands on a corpse, so it cannot leak to another player.
+- **Never economic.** It cannot be sold to an NPC, placed on a player vendor, smelted, cut, salvaged or otherwise converted into materials, used for BODs, or used as a recipe input where that would extract transferable value. Starter-issued gear exists to equip a new character, not to create an item faucet through character deletion/recreation.
+- **Never replaced** after loss or destruction.
 
-After the character reaches **4 logged-in hours**, the death protection ends and ordinary issued equipment becomes subject to normal shard loss/loot rules.
+**Ordinary newbied items and bags.** Stock UOR newbied items that are not starter-bound (for example stock character-creation equipment) are also kept on death unless the owner is a murderer. They stay protected **inside bags**; stock ModernUO only protects them at the top level of the backpack, so the shard returns them from any bag on the corpse (`KeptItemDeathRouting`). A murderer still loses them.
 
-However, the permanent `StarterIssued` economic marker should continue to prevent direct NPC resale, player-vendor sale, BOD use and salvage/resource extraction. Starter-issued gear exists to equip a new character, not to create an infinite item faucet through character deletion/recreation.
-
-Direct trade may remain blocked for `StarterIssued` gear. After protection expires, the item can still change hands through normal world-loss mechanics such as corpse looting if the underlying item would normally be lootable. This is acceptable because the gear is ordinary vendor-quality and requires four logged-in hours before it can enter that risk loop.
+**Starter bag.** The organization bag is an ordinary stock `Bag`. It is transferable, sellable, follows normal loot rules, and carries no starter binding.
 
 Do **not** give starter equipment superior craftsmanship grades, magic tiers or special combat properties.
 
@@ -2784,8 +2774,8 @@ Every newly created character receives:
 
 - basic clothing appropriate to the selected character setup;
 - backpack;
-- one small organization pouch/bag;
-- one ordinary pair of scissors, issued to every new character and subject to the same Starter Protection and permanent `StarterIssued` resale/salvage restrictions as other starter gear; do not grant replacement pairs after loss or destruction;
+- one small organization bag, an ordinary stock `Bag` with no starter binding;
+- one ordinary pair of scissors, issued to every new character and newbied and permanently bound like other starter gear; do not grant replacement pairs after loss or destruction;
 - **one free physical Starter-Issued Backpack Ward** with ordinary priming/detection/120-second protection mechanics and no skill requirement;
 - the invisible, nonconsumable **Loot Protection Ward entitlement** (server state, not a visible inventory item);
 - a concise Welcome/Rules item or equivalent onboarding surface explaining both different Ward systems.
@@ -2799,7 +2789,7 @@ Do **not** automatically grant:
 
 A first horse and first runebook should remain small, understandable early goals.
 
-**Free Backpack Ward anti-farming rule:** Grant exactly one Starter-Issued Ward per newly created character, idempotently; it works as an ordinary one-use physical Backpack Ward but is character-bound, unstackable, nontradable, nondroppable, unbankable, unvendorable, non-salvageable and cannot be transferred through pets, shared or other-character containers, mail, another character or an NPC; movement among nested containers inside its own character’s equipped backpack remains allowed and retains normal lazy-priming behavior. Destroy an unused starter Ward on death rather than bless/insure or expose it as transferable corpse loot; consuming it by its actual detection effect is the only normal use. Never replace it on resurrection, relog or starter-package reentry. Creation/deletion cannot extract gold, items or materials from this grant. Regular purchased/crafted Wards retain their separately approved ordinary physical and death-loot rules; the starter-specific restrictions do not silently bind those normal items. The invisible Loot Protection entitlement is not a physical starter consumable and remains present beyond Starter Protection's four logged-in hours; never grant it more than once per character, and migrate existing characters once.
+**Free Backpack Ward anti-farming rule:** Grant exactly one Starter-Issued Ward per newly created character, idempotently; it works as an ordinary one-use physical Backpack Ward but is character-bound, unstackable, nontradable, nondroppable, unbankable, unvendorable, non-salvageable and cannot be transferred through pets, shared or other-character containers, mail, another character or an NPC. Per the 2026-09-28 owner ruling it follows the same rules as all starter-issued items: newbied, loose in the owner's backpack only (no bags), and kept through every death rather than destroyed. Consuming it by its actual detection effect is the only normal use. Never replace it on resurrection, relog or starter-package reentry. Creation/deletion cannot extract gold, items or materials from this grant. Regular purchased/crafted Wards retain their separately approved ordinary physical and death-loot rules; the starter-specific restrictions do not silently bind those normal items. The invisible Loot Protection entitlement is not a physical starter consumable and is permanent; never grant it more than once per character, and migrate existing characters once.
 
 #### Starting gold
 
@@ -4243,7 +4233,6 @@ At minimum, make likely-to-change shard policies configurable:
 - deterministic `+0.1` on every otherwise gain-eligible attempt while allowance remains
 - three-cycle allowance banking, persistence and per-skill concurrency rules
 - temporary gain-bonus behavior below 95 versus deterministic Mastery gains at 95+
-- starter-protection duration (launch default: 4 logged-in hours)
 - starter-issued gear/consumable economic restrictions
 - once-per-account starter-gold amount (launch target: 500)
 - profession starter-material quantities
@@ -5260,7 +5249,7 @@ Verify:
 - each new character receives exactly one free, character-bound Starter-Issued physical Backpack Ward and an invisible permanent Loot Protection entitlement; duplicate create/init/relog/resurrection do not grant either twice, and one-time migration supplies only the invisible entitlement to all existing characters;
 - the free Backpack Ward follows normal Ward priming/detection/protection but cannot be traded, dropped, banked, player/NPC-vendored, salvaged, mailed, transferred via pets/containers or merged; death destroys it if unused, with no regrant or extraction from repeated character deletion/creation; ordinary purchased/crafted Ward behavior is unaffected;
 - no starter gear receives craftsmanship or magic-item bonuses;
-- Starter Protection lasts exactly 4 hours of logged-in character time;
+- starter-issued items are newbied, stay loose in the owner's backpack (no bags), and are kept through every death, murderer or not; ordinary newbied items inside bags are kept unless the owner is a murderer;
 - the timer pauses offline and survives save/restart;
 - death/resurrection does not reset or duplicate the protection timer;
 - protected starter equipment does not become corpse loot during the protected period;
@@ -6391,7 +6380,7 @@ The following are **settled launch rules** and should not be silently weakened:
 - every otherwise gain-eligible use grants +0.1 deterministically while that skill has allowance remaining
 - invalid, trivial, locked, capped, anti-macro-blocked or otherwise ineligible uses grant and consume nothing
 - temporary skill-gain bonuses do not shorten the Mastery calendar or increase allowance; they do not alter deterministic Mastery resolution at 95+
-- issued starter equipment receives 4 hours of logged-in Starter Protection
+- issued starter equipment is newbied and permanently bound (owner ruling 2026-09-28; no protection timer)
 - starter-issued gear is Standard/vendor quality and cannot be directly sold, player-vendored, salvaged into economic value or used for BODs
 - each new character gets one free character-bound Starter-Issued Backpack Ward (normal consumable effect, no trade/sale/loot/extraction; destroyed unused on death) and an invisible persistent Loot Protection Ward entitlement; existing characters receive the latter through a one-time migration
 - mage starter package includes 50 of each classic reagent
@@ -6448,7 +6437,7 @@ The following are **settled launch rules** and should not be silently weakened:
 
 Owner approval is required before changing:
 
-- changing starter protection from 4 logged-in hours
+- changing the starter death rule from newbied and permanently bound (owner ruling 2026-09-28)
 - materially changing the starter reagent/resource quantities after launch tuning
 - making profession starter-resource grants repeatable rather than once per account/profession
 - introducing a Starter-Crafted restriction or otherwise penalizing items legitimately crafted from starter resources
@@ -6592,7 +6581,7 @@ Easy/Standard/Hard/VeryHard skills.
 
 Temporary skill-gain bonuses preserve distinct pre-95 difficulty curves and do not shorten Mastery calendar time at 95+.
 
-Starter equipment is Standard/vendor quality, protected from ordinary death loss for exactly 4 logged-in hours, and cannot be directly converted into repeatable character-creation economic value.
+Starter equipment is Standard/vendor quality, newbied and permanently bound (kept through death, loose in the owner's backpack only), and cannot be directly converted into repeatable character-creation economic value.
 
 The once-per-account starter-gold grant cannot be duplicated through character deletion/recreation.
 

@@ -28,7 +28,7 @@ public class StarterSaleEligibilityMatrixTests
     {
         var types = new[]
         {
-            typeof(StarterBag), typeof(StarterScissors), typeof(StarterIronIngot), typeof(BackpackWard),
+            typeof(StarterScissors), typeof(StarterIronIngot), typeof(BackpackWard),
             typeof(StarterKatana), typeof(StarterClub), typeof(StarterKryss), typeof(StarterBow),
             typeof(StarterDagger), typeof(StarterStuddedChest), typeof(StarterStuddedLegs),
             typeof(StarterLeatherChest), typeof(StarterLeatherLegs), typeof(StarterWoodenShield),
@@ -64,6 +64,6 @@ public class StarterSaleEligibilityMatrixTests
             Assert.False(sellInfo.IsResellable(item), type.Name);
         }
 
-        Assert.Equal(41, types.Length);
+        Assert.Equal(40, types.Length);
     }
 }

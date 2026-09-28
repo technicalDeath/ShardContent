@@ -52,7 +52,6 @@ public static class TheftProtectionService
         EventSink.Disconnected += OnDisconnected;
         EventSink.Movement += OnMovement;
         CharacterCreation.CharacterCreatedHandler += IssueStarterWard;
-        PlayerMobile.PlayerDeathHandler += DestroyUnusedStarterWards;
     }
 
     public static void OnPlayerLogin(PlayerMobile player)
@@ -102,28 +101,6 @@ public static class TheftProtectionService
         player.Backpack.DropItem(ward);
         account.SetTag(issuanceTag, "issued");
         ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character");
-    }
-
-    private static void DestroyUnusedStarterWards(PlayerMobile player)
-    {
-        if (player.Backpack is null)
-        {
-            return;
-        }
-
-        var unused = new List<BackpackWard>();
-        foreach (var ward in player.Backpack.FindItemsByType<BackpackWard>())
-        {
-            if (ward.IsStarterIssued)
-            {
-                unused.Add(ward);
-            }
-        }
-
-        foreach (var ward in unused)
-        {
-            ward.Delete();
-        }
     }
 
     private static void OnConnected(Mobile mobile)

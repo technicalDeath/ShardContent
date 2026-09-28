@@ -6,7 +6,11 @@ namespace BritanniaRenaissance.Content;
 
 public sealed class StarterBlankScroll : BlankScroll, IStarterIssued, ICommodity
 {
-    public StarterBlankScroll(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterBlankScroll(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterBlankScroll(Serial serial) : base(serial) { }
     public Serial OwnerSerial { get; private set; }
     public override bool Nontransferable => true;
@@ -14,8 +18,6 @@ public sealed class StarterBlankScroll : BlankScroll, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterBlankScroll other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);
@@ -32,7 +34,11 @@ public sealed class StarterBlankScroll : BlankScroll, IStarterIssued, ICommodity
 
 public sealed class StarterBottle : Bottle, IStarterIssued, ICommodity
 {
-    public StarterBottle(PlayerMobile owner, int amount) : base(amount) => OwnerSerial = owner.Serial;
+    public StarterBottle(PlayerMobile owner, int amount) : base(amount)
+    {
+        OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
+    }
     public StarterBottle(Serial serial) : base(serial) { }
     public Serial OwnerSerial { get; private set; }
     public override bool Nontransferable => true;
@@ -40,8 +46,6 @@ public sealed class StarterBottle : Bottle, IStarterIssued, ICommodity
     int ICommodity.DescriptionNumber => LabelNumber;
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterBottle other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);

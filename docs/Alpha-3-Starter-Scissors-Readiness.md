@@ -1,5 +1,7 @@
 # Alpha 3 Phase D: Starter scissors readiness
 
+> **Superseded death rule (owner ruling, 2026-09-28).** The four-logged-in-hour death protection described below no longer exists. The pair is newbied and permanently nontransferable: it stays loose in the owner's backpack (no bags) and is kept through every death, murderer or not. Both were re-verified live under Phase E; see [Starter Bag readiness](Alpha-3-Starter-Bag-Readiness.md). The issuance, no-regrant and economic-binding results below still stand.
+
 **Decision:** Ready for Alpha 3 enablement, with `alpha3StarterScissors` still disabled. This closes feature readiness only; the combined Phase L activation decision remains outstanding.
 
 ## Reused accepted evidence

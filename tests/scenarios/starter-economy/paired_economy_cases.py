@@ -34,7 +34,6 @@ def direct_vendor(label, serial, amount=None):
  time.sleep(1.2)
 
 for label,serial,amount in [
- ('StarterBag','0x40079ED0',None),
  ('StarterScissors','0x40079ED1',None),
  ('StarterIronIngot full stack','0x40079ED2',10),
  ('StarterTinkerTools','0x40079ED3',None),
@@ -52,7 +51,6 @@ print('ordinary wrapper with nested bound ingot secure_trade=PASS blocked')
 time.sleep(1.2)
 
 for label,serial,amount in [
- ('StarterBag','0x40079ED0',None),
  ('StarterScissors','0x40079ED1',None),
  ('StarterIronIngot full stack','0x40079ED2',10),
  ('StarterTinkerTools','0x40079ED3',None),

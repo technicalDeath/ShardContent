@@ -1,5 +1,7 @@
 # Alpha 3 starter package audit
 
+> **Superseded death rules (owner ruling, 2026-09-28).** The four-logged-in-hour Starter Protection, the bound `StarterBag`, the Ward's nested-bag exception and its destroy-on-death rule no longer exist. Death and bag results below that depend on them are historical; see [Owner rulings and Phase E closure](#owner-rulings-and-phase-e-closure--september-28-2026). Economy results (sale, trade, vendor, salvage, crafting) are unaffected.
+
 ## Economy route checkpoint — September 28, 2026
 
 | Case | Expected behavior | Setup and effective configuration | Source/test | Observed result | Remaining limitation |
@@ -338,6 +340,53 @@ The death timing test sets the persisted game-time value directly to each bounda
 waiting four wall-clock hours. It exercises the real death routing method at both values; the
 existing unit boundary test separately checks 14,399, 14,400, and 14,401 seconds. No source or
 deployed feature flags were enabled by this rehearsal.
+
+## Owner rulings and Phase E closure — September 28, 2026
+
+### Rulings
+
+**Starter-issued items** (40 types, including the free starter Backpack Ward) are stock UOR newbied and permanently nontransferable. Stock ModernUO then keeps them:
+- loose in the owner's backpack only, never in a bag;
+- through every death, murderer or not.
+
+The owner chose the stock no-bags rule deliberately: a bag can travel, and bound contents would otherwise need checks on every route a bag can take.
+
+**The starter bag** is an ordinary stock `Bag`.
+
+**Ordinary newbied items** stay protected inside bags (`KeptItemDeathRouting`), except for murderers, as stock UOR. This rule is always on; it has no feature flag.
+
+### Code
+
+- The timer and the custom death overrides are removed. So are the `StarterBag` class, the Ward's nested-bag exception and the Ward's destroy-on-death handler.
+- Existing marked Wards become newbied when loaded.
+- The test `StarterDeathRuleTests` fails if any starter type overrides death routing again. It also confirms the `StarterBag` type is gone.
+- Full Shard suite: 263/263, run `20260928T170808008Z-8da2fd` (the final source, including the Ward change).
+
+### Live cases
+
+**Setup:**
+- A disposable copy of the dev distribution with Alpha 3 acknowledgment, `alpha3StarterBag` and `alpha3StarterScissors` on.
+- `automaticMurderAdjudication` and `knockedOut` were off in the copy only, so `[set Kills 5` produces a murderer.
+- Fresh ordinary account and character (Warrior, profession 1), created through the shard account request and Navrey `createcharacter`.
+- A staff Navrey session issued `[kill`, `[res` and `[set`.
+- The ModernUO Young system (on by default) was cleared on the test character with `[set Young false`, because Young keeps every item on death.
+
+**Driver:** `tests/scenarios/starter-death/starter_death_live.py`.
+
+**Cleanup:** the copy and its throwaway accounts were deleted afterwards.
+
+| Case | Expected | Observed |
+| --- | --- | --- |
+| E-ISSUE | One plain bag, scissors and Ward at creation | Pass. One regular `bag`, one pair of scissors, one marked Ward |
+| E-NOBAG | Starter items refused by any bag | Pass. Scissors and Ward refused by the plain bag; both stayed loose |
+| E-DEATH | Ordinary death: starter items and newbied items kept, even from inside a bag; regular bag to corpse | Pass. Newbied katana moved into the bag returned to the backpack. Dagger, scissors and Ward kept. Regular bag went to the corpse |
+| E-MURDERER | Murderer death: newbied items drop; bound starter items kept | Pass. Katanas and dagger went to the corpse; scissors and Ward kept |
+
+### Limits
+
+- The murderer case ran as a continuation after a notoriety-check bug in the first script version: it read `6` instead of `"Murderer"`. The script is fixed.
+- Save/restart was not repeated. Loot type is saved by stock code, and issuance persistence was accepted earlier.
+- Blessed items inside bags follow the same code path as newbied, but no blessed case was run.
 
 
 

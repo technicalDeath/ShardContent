@@ -196,7 +196,6 @@ public static class StarterEconomyProbe
     private static void Seed(PlayerMobile owner, Mobile requester)
     {
         var pack = owner.Backpack!;
-        var bag = pack.FindItemByType<StarterBag>() ?? Add(pack, new StarterBag(owner));
         var scissors = pack.FindItemByType<StarterScissors>() ?? Add(pack, new StarterScissors(owner));
         var ingots = pack.FindItemByType<StarterIronIngot>() ?? Add(pack, new StarterIronIngot(owner, 10));
         var tools = pack.FindItemByType<StarterTinkerTools>() ?? Add(pack, new StarterTinkerTools(owner));
@@ -239,13 +238,13 @@ public static class StarterEconomyProbe
         }
 
         SeededItems.Clear();
-        SeededItems.AddRange([bag, scissors, ingots, tools, weapon, ward, ordinary, _nestedBag]);
+        SeededItems.AddRange([scissors, ingots, tools, weapon, ward, ordinary, _nestedBag]);
         if (_nestedIron is not null)
         {
             SeededItems.Add(_nestedIron);
         }
 
-        requester.SendMessage($"Starter economy seed owner={owner.Serial}; bag={bag.Serial}; scissors={scissors.Serial}; ingots={ingots.Serial} amount={ingots.Amount}; tools={tools.Serial}; weapon={weapon.Serial}; ward={ward.Serial} wardMarked={wardMarked}; ordinary={ordinary.Serial}; nestedBag={_nestedBag.Serial}; nestedIron={_nestedIron?.Serial}.");
+        requester.SendMessage($"Starter economy seed owner={owner.Serial}; scissors={scissors.Serial}; ingots={ingots.Serial} amount={ingots.Amount}; tools={tools.Serial}; weapon={weapon.Serial}; ward={ward.Serial} wardMarked={wardMarked}; ordinary={ordinary.Serial}; nestedBag={_nestedBag.Serial}; nestedIron={_nestedIron?.Serial}.");
     }
 
     private static T Add<T>(Container pack, T item) where T : Item
@@ -740,7 +739,7 @@ public static class StarterEconomyProbe
         ward.MarkStarterIssued(player);
         Item[] items =
         [
-            new StarterBag(player), new StarterScissors(player), new StarterIronIngot(player, 2), ward,
+            new StarterScissors(player), new StarterIronIngot(player, 2), ward,
             new StarterKatana(player), new StarterClub(player), new StarterKryss(player), new StarterBow(player),
             new StarterDagger(player), new StarterStuddedChest(player), new StarterStuddedLegs(player),
             new StarterLeatherChest(player), new StarterLeatherLegs(player), new StarterWoodenShield(player),

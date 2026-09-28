@@ -17,10 +17,10 @@ All source Alpha 3 feature flags and `alpha3EnablementAcknowledged` are currentl
 | A | Skill Bank | `skillBank` | Focused ledger, gain, recovery, ordinary-client and three-save/reload matrix | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Skill-Bank-Readiness.md) |
 | B | Starting stats | `alpha3StartingStats` | Four normal creation templates, including Advanced, met 120 total and 30 minimum | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Starting-Stats-Readiness.md) |
 | C | Starter gold | `alpha3StarterGold` | 500 once-per-account, repeated character and save/restart checks; ordinary first grant | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Starter-Gold-Readiness.md) |
-| D | Starter scissors | `alpha3StarterScissors` | Issuance/no-regrant probe, ordinary Healing creation, paired transfer matrix, movement callback and four-hour death boundary | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Starter-Scissors-Readiness.md) |
-| E | Starter Bag | `alpha3StarterBag` | Issuance, persistence, item-path and protected-death probes | Paired-client intake and post-protection corpse cases remain |
-| F | Welcome and Backpack Ward compatibility | Existing theft-protection path; no new Alpha 3 flag | Welcome, marked Ward issuance/death, legacy trade/vendor and NPC buyback | Old-world unmarked-Ward population/location review remains |
-| G | Starter combat gear and consumables | `alpha3StarterCombatGear` | Package selection/issuance and 41-type direct transfer matrix | Ordinary-client use, lifecycle and economy cases remain |
+| D | Starter scissors | `alpha3StarterScissors` | Issuance/no-regrant probe, ordinary Healing creation, paired transfer matrix, movement callback; 2026-09-28 newbied death rule re-verified live (E-NOBAG, E-MURDERER) | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Starter-Scissors-Readiness.md) (death section superseded by the 2026-09-28 ruling) |
+| E | Starter Bag | `alpha3StarterBag` | Plain stock Bag issuance; live E-ISSUE, E-NOBAG, E-DEATH and E-MURDERER cases | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Starter-Bag-Readiness.md) |
+| F | Welcome and Backpack Ward compatibility | Existing theft-protection path; no new Alpha 3 flag | Welcome, marked Ward issuance, legacy trade/vendor and NPC buyback; 2026-09-28 Ward is newbied and kept on death, loose in backpack only (live E-NOBAG/E-DEATH/E-MURDERER) | Old-world unmarked-Ward population/location review remains |
+| G | Starter combat gear and consumables | `alpha3StarterCombatGear` | Package selection/issuance and 41-type direct transfer matrix; now newbied and permanently bound (2026-09-28) | Ordinary-client use, lifecycle and economy cases remain |
 | H | Starter craft materials and tools | `alpha3StarterCraftMaterials` | Eight package grants, selected stock recipes, conversion and NPC-family cases | Distinct remaining conversion/failure, persistence and output routes remain |
 | I | Blacksmith Bulk Order Deeds | UOR stock-content paths; no separate shard flag | Owner-approved retention, UOR vendor acceptance and reward exclusions | Remaining reward classification and gold-economy ruling remain |
 | J | UOR player skills and approved deviations | UOR era gates plus skill-specific paths | 58-ID inventory, initial deviation register and selected boundary fixes | Full cited matrix, reachable-path audit, owner skill-15 ruling and client evidence remain |
@@ -51,22 +51,22 @@ Status key: `[x]` accepted evidence on file; `[ ]` open; `[?]` owner ruling; `[!
 ### D. Starter scissors
 
 - [x] The disposable issuance/loss probe and bound-item policy matrix cover one marked pair, removal of stock pairs, persistence of the no-regrant tag and permanent sale/transfer restrictions. See [starter audit](Alpha-3-Starter-Package-Audit.md).
-- [x] Use an ordinary Healing-selected creation to check duplicate stock scissors removal; verify owner movement and paired trade/vendor refusal at the actual item callbacks, no regrant after destruction, and protected versus exactly four logged-in hours of death routing. Assert the pair remains economically bound after protection expires. See [starter scissors readiness](Alpha-3-Starter-Scissors-Readiness.md).
+- [x] Use an ordinary Healing-selected creation to check duplicate stock scissors removal; verify owner movement and paired trade/vendor refusal at the actual item callbacks and no regrant after destruction. See [starter scissors readiness](Alpha-3-Starter-Scissors-Readiness.md). The four-hour death boundary was superseded by the 2026-09-28 newbied ruling; the pair's bag refusal and murderer-death retention were re-verified live under Phase E.
 
 ### E. Starter Bag
 
-- [x] Creation, owner marker, direct move refusal, nested-content death routing and save/restart were checked in disposable probes and one normal client creation. See [starter audit](Alpha-3-Starter-Package-Audit.md).
-- [ ] Finish paired-client trade/player-vendor refusal, ordinary contents versus blessed contents on real death, and post-protection corpse acquisition. Reuse the accepted saved owner marker and duplicate-grant evidence unless its source changes.
+- [x] Creation, issuance guard and save/restart were checked in disposable probes and one normal client creation. See [starter audit](Alpha-3-Starter-Package-Audit.md).
+- [x] Owner ruling 2026-09-28: the bag is a plain stock `Bag` (the bound `StarterBag` and its trade/vendor/corpse cases no longer exist). Starter-issued items are newbied, bound, loose in the backpack only and kept through every death. Ordinary newbied items stay protected inside bags except for murderers. Live disposable cases E-ISSUE, E-NOBAG, E-DEATH and E-MURDERER passed. See [Starter Bag readiness](Alpha-3-Starter-Bag-Readiness.md).
 
 ### F. Welcome and Backpack Ward compatibility
 
-- [x] Ordinary-client Welcome and marked-Ward issuance, marker persistence and unused-Ward death deletion pass. Unmarked legacy Wards passed paired trade/player-vendor intake, NPC sale/same-serial repurchase and a disposable save/restart no-op. See [starter audit](Alpha-3-Starter-Package-Audit.md).
+- [x] Ordinary-client Welcome and marked-Ward issuance and marker persistence pass. The earlier unused-Ward death deletion was replaced on 2026-09-28: the marked Ward is newbied and kept through death, loose in the backpack only (live under Phase E); existing marked Wards become newbied on load. Unmarked legacy Wards passed paired trade/player-vendor intake, NPC sale/same-serial repurchase and a disposable save/restart no-op. See [starter audit](Alpha-3-Starter-Package-Audit.md).
 - [ ] Classify the remaining pre-marker Ward population and locations in the accepted old world, confirm no migration retroactively marks or deletes ordinary Wards, and record the compatibility result. Starter restriction labels remain a Beta 1 text task.
 
 ### G. Starter combat gear and consumables
 
 - [x] Package planner and synthetic issuance cover melee, archer and mage stock overlap; the 41-type direct bound-transfer matrix covers the emitted item set. See [starter audit](Alpha-3-Starter-Package-Audit.md).
-- [ ] Complete ordinary-client archetype creation and weapon, ammunition, spell/reagent and bandage use; check duplicate/loss handling, output and BOD/conversion paths that differ from the shared transfer policy, save/restart, and protected versus expired death handling for gear and consumables.
+- [ ] Complete ordinary-client archetype creation and weapon, ammunition, spell/reagent and bandage use; check duplicate/loss handling, output and BOD/conversion paths that differ from the shared transfer policy, save/restart, and the 2026-09-28 death rule (newbied, bound, kept through every death) for gear and consumables.
 - [ ] Reconcile each distinct NPC/player-vendor, salvage and crafting entry point with existing 41-type policy evidence and representative live transactions; list any genuinely untested hook before adding another item example. Record readiness without lifting the validation guard prematurely.
 
 ### H. Starter craft materials and tools
@@ -95,6 +95,7 @@ Status key: `[x]` accepted evidence on file; `[ ]` open; `[?]` owner ruling; `[!
 
 ### L. Integrated Alpha 3 release and activation
 
+- [?] Owner ruling required: ModernUO's Young player system (`ContentFeatureFlags.YoungPlayerSystem`, on by default) is active on the dev world. For each new account's first 40 logged-in hours it keeps every item through death and teleports the ghost to a healer. Design doc §16 rejects account-age immunity, and Young likely postdates the April 2000 UOR baseline. Decide whether to disable it before activation.
 - [!] Keep house zoning and all Hot/Cool dungeon rules, including Hythloth, in Beta 2; keep Beta 1 starter restriction labels and living-world systems in Beta 1. Maintain the accepted Alpha 2b world and disabled source Alpha 3 gates during feature preparation.
 - [g] Review the readiness record for every A–K feature and rerun only evidence affected by intervening source/configuration changes. Complete the grouped current-source, ordinary-client, persistence and regression release pass.
 - [g] Verify pinned and deployed assemblies/configuration, disabled dungeon/housing behavior, accepted-world save lineage, single-writer safety, recovery/rollback and no accidental shared-world mutation.

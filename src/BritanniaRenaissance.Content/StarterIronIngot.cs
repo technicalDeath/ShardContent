@@ -10,6 +10,7 @@ public sealed class StarterIronIngot : IronIngot, IStarterIssued, ICommodity
     public StarterIronIngot(PlayerMobile owner, int amount) : base(amount)
     {
         OwnerSerial = owner.Serial;
+        LootType = LootType.Newbied;
     }
 
     public StarterIronIngot(Serial serial) : base(serial)
@@ -27,10 +28,6 @@ public sealed class StarterIronIngot : IronIngot, IStarterIssued, ICommodity
     // A starter stack must never absorb an unrestricted stack or another character's grant.
     public override bool CanStackWith(Item dropped) =>
         dropped is StarterIronIngot other && other.OwnerSerial == OwnerSerial && base.CanStackWith(dropped);
-
-    public override DeathMoveResult OnInventoryDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
-
-    public override DeathMoveResult OnParentDeath(Mobile parent) => DeathMoveResult.MoveToBackpack;
 
     public override void Serialize(IGenericWriter writer)
     {

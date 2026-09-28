@@ -31,6 +31,7 @@ public static class ShardBootstrap
         StarterOnboarding.Configure();
         KnockedOutService.Configure();
         LocalAccountRequest.Configure();
+        KeptItemDeathRouting.Configure();
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
 
