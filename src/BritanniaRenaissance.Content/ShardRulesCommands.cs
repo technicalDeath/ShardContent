@@ -19,6 +19,27 @@ public static class ShardRulesCommands
         CommandSystem.Register("KnockedOutRecover", AccessLevel.Administrator, OnKnockedOutRecover);
         CommandSystem.Register("Execute", AccessLevel.Player, OnExecute);
         CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
+        CommandSystem.Register("SkillBank", AccessLevel.Player, OnSkillBank);
+        CommandSystem.Register("SkillBankStatus", AccessLevel.Administrator, OnSkillBankStatus);
+        CommandSystem.Register("SkillBankRecover", AccessLevel.Administrator, OnSkillBankRecover);
+        CommandSystem.Register("HotZoneStatus", AccessLevel.Administrator, OnHotZoneStatus);
+        CommandSystem.Register("Welcome", AccessLevel.Player, OnWelcome);
+    }
+
+    [Usage("Welcome")]
+    [Description("Explains player combat consent and the two Ward systems.")]
+    private static void OnWelcome(CommandEventArgs e)
+    {
+        if (!TheftProtectionService.Enabled)
+        {
+            e.Mobile.SendMessage("Ward rules are not currently active.");
+            return;
+        }
+
+        foreach (var line in StarterOnboarding.DescribeRules())
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("Intent")]
@@ -167,6 +188,93 @@ public static class ShardRulesCommands
     private static void OnMasteryStatus(CommandEventArgs e)
     {
         foreach (var line in MasteryProgression.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("SkillBank [lock|down <skill>]")]
+    [Description("Displays stored skills or changes a banked skill's retention setting.")]
+    private static void OnSkillBank(CommandEventArgs e)
+    {
+        if (e.Length > 0)
+        {
+            if (e.Mobile is not PlayerMobile player || e.Length != 2 ||
+                !Enum.TryParse<SkillName>(e.GetString(1), true, out var skillName) ||
+                !Enum.IsDefined(skillName))
+            {
+                e.Mobile.SendMessage("Use [SkillBank lock <skill> or [SkillBank down <skill>.");
+                return;
+            }
+
+            var retention = e.GetString(0).ToLowerInvariant() switch
+            {
+                "lock" => BankRetention.Locked,
+                "down" => BankRetention.Down,
+                _ => (BankRetention?)null
+            };
+            e.Mobile.SendMessage(retention is null
+                ? "Use lock or down for bank retention."
+                : SkillBankService.SetRetention(player, (int)skillName, retention.Value));
+            return;
+        }
+
+        foreach (var line in SkillBankService.Describe(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("SkillBankStatus [serial]")]
+    [Description("Inspect a player's saved Skill Bank and active skill totals without changing them.")]
+    private static void OnSkillBankStatus(CommandEventArgs e)
+    {
+        PlayerMobile? target = e.Mobile as PlayerMobile;
+        if (e.Length > 0)
+        {
+            target = World.FindMobile((Serial)e.GetUInt32(0)) as PlayerMobile;
+        }
+
+        if (target is null)
+        {
+            e.Mobile.SendMessage("Specify a player serial or use this command while possessing a player body.");
+            return;
+        }
+
+        foreach (var line in SkillBankService.DescribeForStaff(target))
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("SkillBankRecover <serial>")]
+    [Description("Archive and reset an invalid saved Skill Bank payload without changing active skills.")]
+    private static void OnSkillBankRecover(CommandEventArgs e)
+    {
+        if (e.Mobile.AccessLevel < AccessLevel.Administrator)
+        {
+            e.Mobile.SendMessage("Only authorized staff may recover Skill Bank data.");
+            return;
+        }
+
+        if (e.Length != 1 || World.FindMobile((Serial)e.GetUInt32(0)) is not PlayerMobile target)
+        {
+            e.Mobile.SendMessage("Specify a valid player serial: [SkillBankRecover <serial>.");
+            return;
+        }
+
+        e.Mobile.SendMessage(SkillBankService.RecoverInvalidPayload(
+            target,
+            true,
+            ShardRulesConfiguration.Settings.SkillBank.CapacityTenths
+        ));
+    }
+
+    [Usage("HotZoneStatus")]
+    [Description("Inspect configured outdoor Hot regions and current membership.")]
+    private static void OnHotZoneStatus(CommandEventArgs e)
+    {
+        foreach (var line in OutdoorHotZonePolicy.Describe(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

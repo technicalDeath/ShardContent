@@ -11,10 +11,12 @@ $project = Join-Path $contentRoot 'src\BritanniaRenaissance.Content\BritanniaRen
 $sourceRules = Join-Path $contentRoot 'data\configuration\shard-rules.json'
 $sourceExpansion = Join-Path $contentRoot 'data\configuration\expansion.json'
 $sourceEraGates = Join-Path $contentRoot 'data\configuration\modernuo-era-gates.json'
+$sourceAntiMacro = Join-Path $contentRoot 'data\configuration\antimacro.json'
 $targetRules = Join-Path $modernUOPath 'Distribution\Configuration\shard-rules.json'
 $targetExpansion = Join-Path $modernUOPath 'Distribution\Configuration\expansion.json'
 $modernUOConfiguration = Join-Path $modernUOPath 'Distribution\Configuration\modernuo.json'
 $targetEraGates = Join-Path $modernUOPath 'Distribution\Configuration\modernuo-era-gates.json'
+$targetAntiMacro = Join-Path $modernUOPath 'Distribution\Configuration\antimacro.json'
 $assemblyRegistry = Join-Path $modernUOPath 'Distribution\Data\assemblies.json'
 $contentAssembly = 'BritanniaRenaissance.Content.dll'
 $distributionPath = (Resolve-Path -LiteralPath (Join-Path $modernUOPath 'Distribution')).Path
@@ -60,6 +62,7 @@ if ($LASTEXITCODE -ne 0) {
 Copy-Item -LiteralPath $sourceRules -Destination $targetRules -Force
 Copy-Item -LiteralPath $sourceExpansion -Destination $targetExpansion -Force
 Copy-Item -LiteralPath $sourceEraGates -Destination $targetEraGates -Force
+Copy-Item -LiteralPath $sourceAntiMacro -Destination $targetAntiMacro -Force
 
 if (-not (Test-Path -LiteralPath $modernUOConfiguration)) {
     throw "ModernUO configuration was not found: $modernUOConfiguration"

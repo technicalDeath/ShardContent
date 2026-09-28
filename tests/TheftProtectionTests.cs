@@ -139,4 +139,28 @@ public class TheftProtectionTests
         );
         Assert.Empty(TheftProtectionService.DescribeRegionTransitions(true, true, true, true));
     }
+
+    [Fact]
+    public void ConfiguredCoolDungeonHasNoTheftRuleUntilBetaTwoFlagIsEnabled()
+    {
+        var polygons = new List<TheftPolygonDefinition>
+        {
+            new()
+            {
+                Map = "Felucca",
+                Points =
+                [
+                    new TheftPoint { X = 100, Y = 100 },
+                    new TheftPoint { X = 110, Y = 100 },
+                    new TheftPoint { X = 110, Y = 110 },
+                    new TheftPoint { X = 100, Y = 110 }
+                ]
+            }
+        };
+
+        Assert.True(TheftRegionPolicy.IsWithin("Felucca", 105, 105, polygons));
+        Assert.False(TheftRegionPolicy.IsCoolDungeonRegion("Felucca", 105, 105, false, polygons));
+        Assert.True(TheftRegionPolicy.IsCoolDungeonRegion("Felucca", 105, 105, true, polygons));
+        Assert.False(TheftRegionPolicy.IsCoolDungeonRegion("Trammel", 105, 105, true, polygons));
+    }
 }

@@ -161,18 +161,28 @@ public static class PvpIntentService
     /// <summary>
     /// Pure policy rule used by regression tests and the live handler. A target who has opted into
     /// Intent is exposed; two opted-in blues may duel; existing aggression relationships persist.
-    /// Criminal/murderer targets remain lawful everywhere. The attacker must still pass the stock
-    /// blessedness, life, region and visibility checks before this rule is reached.
+    /// Criminal/murderer targets remain lawful where the stock harmful handler permits them.
+    /// Stock safe-zone and duel restrictions remain binding before shard consent is considered.
     /// </summary>
     public static bool IsSafeWorldPlayerAttackAllowed(
+        bool stockAllowed,
         bool targetIsCriminalOrMurderer,
         bool targetHasIntent,
         bool attackerHasIntent,
         bool existingRetaliation)
     {
-        return targetIsCriminalOrMurderer || targetHasIntent || attackerHasIntent && targetHasIntent ||
-               existingRetaliation;
+        return stockAllowed &&
+               (targetIsCriminalOrMurderer || targetHasIntent || attackerHasIntent && targetHasIntent ||
+                existingRetaliation);
     }
+
+    public static bool IsOutdoorHotInitiationAllowed(
+        bool directPlayerSource,
+        bool stockAllowed,
+        string? attackerRegion,
+        string? defenderRegion
+    ) => directPlayerSource && stockAllowed && attackerRegion is not null &&
+         string.Equals(attackerRegion, defenderRegion, StringComparison.OrdinalIgnoreCase);
 
     public static int GetIntentNotoriety(bool intentEnabled, bool targetIsCriminal, bool targetIsMurderer,
         int stockNotoriety) =>
@@ -313,7 +323,22 @@ public static class PvpIntentService
         var mapHasHarmfulRestrictions = (from.Map?.Rules & MapRules.HarmfulRestrictions) != 0;
         var stockAllowed = InvokeStock(from, target);
 
-        if (mapHasHarmfulRestrictions && stockAllowed)
+        if (!stockAllowed)
+        {
+            return false;
+        }
+
+        if (mapHasHarmfulRestrictions)
+        {
+            return true;
+        }
+
+        if (IsOutdoorHotInitiationAllowed(
+                from == attacker,
+                stockAllowed,
+                OutdoorHotZonePolicy.GetRegionName(attacker),
+                OutdoorHotZonePolicy.GetRegionName(defender)
+            ))
         {
             return true;
         }
@@ -329,6 +354,7 @@ public static class PvpIntentService
         }
 
         var allowed = IsSafeWorldPlayerAttackAllowed(
+            stockAllowed,
             targetIsCriminalOrMurderer,
             targetHasIntent,
             attackerHasIntent,

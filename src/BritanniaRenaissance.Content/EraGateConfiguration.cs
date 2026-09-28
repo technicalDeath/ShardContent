@@ -75,6 +75,11 @@ public static class EraGateConfiguration
             errors.Add($"ModernUO map selection must be only Felucca, but was {ExpansionInfo.CoreExpansion.MapSelectionFlags}.");
         }
 
+        if (ExpansionInfo.CoreExpansion.SupportedFeatures.HasFlag(FeatureFlags.ML))
+        {
+            errors.Add("The ML supported-feature bit must remain disabled; cosmetic Elf uses only the character-list capability.");
+        }
+
         foreach (var key in RequiredDisabledSettings)
         {
             if (ServerConfiguration.GetSetting(key, true))

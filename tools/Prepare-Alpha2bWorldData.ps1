@@ -1,12 +1,17 @@
 param(
-    [string]$ModernUOPath = (Join-Path $PSScriptRoot '..\..\ModernUO')
+    [string]$ModernUOPath = (Join-Path $PSScriptRoot '..\..\ModernUO'),
+    [string]$OutputDistributionPath
 )
 
 $ErrorActionPreference = 'Stop'
 
 $contentRoot = Split-Path $PSScriptRoot -Parent
 $modernUOPath = (Resolve-Path -LiteralPath $ModernUOPath).Path
-$distributionPath = (Resolve-Path -LiteralPath (Join-Path $modernUOPath 'Distribution')).Path
+$distributionPath = if ($OutputDistributionPath) {
+    (Resolve-Path -LiteralPath $OutputDistributionPath).Path
+} else {
+    (Resolve-Path -LiteralPath (Join-Path $modernUOPath 'Distribution')).Path
+}
 $sourceRoot = Join-Path $contentRoot 'data\world-generation\alpha2b'
 $manifestPath = Join-Path $sourceRoot 'world-generation.json'
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json -AsHashtable

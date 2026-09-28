@@ -54,12 +54,15 @@ public class MasteryPeriodScheduleTests
     }
 
     [Theory]
-    [InlineData(true, false, false, false, true)]
-    [InlineData(false, true, false, false, true)]
-    [InlineData(false, false, true, false, false)]
-    [InlineData(false, false, false, true, true)]
-    [InlineData(false, false, false, false, false)]
+    [InlineData(true, true, false, false, false, true)]
+    [InlineData(true, false, true, false, false, true)]
+    [InlineData(true, false, false, true, false, false)]
+    [InlineData(true, false, false, false, true, true)]
+    [InlineData(true, false, false, false, false, false)]
+    [InlineData(false, true, false, false, false, false)]
+    [InlineData(false, false, false, false, true, false)]
     public void SafeWorldIntentPolicyAllowsOnlyExplicitLegalReasons(
+        bool stockAllowed,
         bool targetIsCriminalOrMurderer,
         bool targetHasIntent,
         bool attackerHasIntent,
@@ -69,6 +72,7 @@ public class MasteryPeriodScheduleTests
         Assert.Equal(
             expected,
             PvpIntentService.IsSafeWorldPlayerAttackAllowed(
+                stockAllowed,
                 targetIsCriminalOrMurderer,
                 targetHasIntent,
                 attackerHasIntent,

@@ -8,9 +8,9 @@ public class KnockedOutTests
     [InlineData(false, true, true, false, false, "feature-disabled")]
     [InlineData(true, false, true, false, false, "not-player")]
     [InlineData(true, true, false, false, false, "not-ordinary-blue")]
-    [InlineData(true, true, true, true, false, "hot-zone-resolution-deferred")]
+    [InlineData(true, true, true, true, true, "ordinary-blue-hot-zone")]
     [InlineData(true, true, true, false, true, "ordinary-blue-safe-world")]
-    public void ClassificationKeepsHotZoneResolutionDeferred(
+    public void ClassificationKeepsBlueKnockoutInHotZones(
         bool featureEnabled,
         bool player,
         bool ordinaryBlue,
@@ -64,6 +64,8 @@ public class KnockedOutTests
     [InlineData(true, true, true, false, false, true, false, "damage-not-attributable-to-player")]
     [InlineData(true, true, true, false, true, false, false, "missing-active-encounter")]
     [InlineData(true, true, true, false, true, true, true, "ordinary-blue-player-encounter")]
+    [InlineData(true, true, true, true, false, false, false, "damage-not-attributable-to-player")]
+    [InlineData(true, true, true, true, true, false, true, "ordinary-blue-hot-zone-player-damage")]
     public void LethalDamageRequiresAttributablePlayerEncounter(
         bool featureEnabled,
         bool player,
@@ -114,7 +116,8 @@ public class KnockedOutTests
 
     [Theory]
     [InlineData(false, false, true, true, false, "feature-disabled")]
-    [InlineData(true, true, true, true, false, "hot-zone-execution-deferred")]
+    [InlineData(true, true, true, true, true, "hot-zone-open-execution")]
+    [InlineData(true, true, false, false, true, "hot-zone-open-execution")]
     [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
     [InlineData(true, false, true, false, false, "missing-target-rights")]
     [InlineData(true, false, true, true, true, "recorded-target-rights")]

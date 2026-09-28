@@ -410,24 +410,36 @@ public static class Alpha2bWorldGenerationCommands
     {
         var generated = 0;
         var replaced = 0;
+        var existingByGuid = CountSpawnersByGuid();
 
         foreach (var definition in definitions)
         {
             var spawner = definition.ToSpawner();
             var type = spawner.GetType();
-            using var queue = PooledRefQueue<Item>.Create();
+            var obsolete = new HashSet<BaseSpawner>();
+
+            if (existingByGuid.TryGetValue(definition.Guid, out var priorMatches))
+            {
+                foreach (var prior in priorMatches)
+                {
+                    if (prior != spawner && !prior.Deleted)
+                    {
+                        obsolete.Add(prior);
+                    }
+                }
+            }
 
             foreach (var existing in Map.Felucca.GetItemsAt<BaseSpawner>(definition.Location))
             {
                 if (existing != spawner && existing.GetType() == type)
                 {
-                    queue.Enqueue(existing);
+                    obsolete.Add(existing);
                 }
             }
 
-            while (queue.Count > 0)
+            foreach (var prior in obsolete)
             {
-                queue.Dequeue().Delete();
+                prior.Delete();
                 replaced++;
             }
 

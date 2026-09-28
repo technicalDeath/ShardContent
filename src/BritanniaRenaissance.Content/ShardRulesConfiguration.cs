@@ -86,7 +86,23 @@ public static class ShardRulesConfiguration
             errors.Add("automatic UOR weapon procs and Wrestling Stun/Disarm must remain disabled.");
         }
 
-        if (rules.FeatureFlags.HotZones || rules.FeatureFlags.CoolZones ||
+        if (rules.FeatureFlags.CoolZones)
+        {
+            errors.Add("coolZones is reserved for Beta 2 after single-dungeon rotation is implemented.");
+        }
+
+        if (rules.FeatureFlags.HotZones && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("hotZones requires alpha3EnablementAcknowledged.");
+        }
+
+        if (rules.FeatureFlags.SkillBank && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("skillBank requires alpha3EnablementAcknowledged.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterCraftMaterials ||
+            rules.FeatureFlags.Alpha3StarterCombatGear ||
             rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {
@@ -121,11 +137,124 @@ public static class ShardRulesConfiguration
             errors
         );
 
+        var hotRegionNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var region in rules.HotZones.PermanentOutdoorRegions)
+        {
+            if (string.IsNullOrWhiteSpace(region.Name) || !hotRegionNames.Add(region.Name))
+            {
+                errors.Add("hotZones.permanentOutdoorRegions must have unique non-empty names.");
+            }
+
+            if (region.Points.Count < 3 ||
+                !rules.World.EnabledMaps.Any(map => string.Equals(map, region.Map, StringComparison.OrdinalIgnoreCase)))
+            {
+                errors.Add($"hotZones.permanentOutdoorRegions '{region.Name}' needs at least three points on an enabled map.");
+            }
+        }
+
+        if (rules.FeatureFlags.HotZones &&
+            (!hotRegionNames.Contains("FireIsland") || !hotRegionNames.Contains("BuccaneersDenIsland")))
+        {
+            errors.Add("hotZones requires surveyed FireIsland and BuccaneersDenIsland outdoor regions.");
+        }
+
+        if (rules.FeatureFlags.HousingGeography && !hotRegionNames.Contains("BuccaneersDenIsland"))
+        {
+            errors.Add("housingGeography requires the surveyed BuccaneersDenIsland no-housing polygon.");
+        }
+
+        var housingNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var housingSequences = new HashSet<int>();
+        foreach (var district in rules.Housing.ResidentialDistricts)
+        {
+            ValidateHousingRegion(district.Name, district.Map, district.Points,
+                "housing.residentialDistricts", housingNames, errors);
+            if (!district.Name.StartsWith("GreaterBritain", StringComparison.OrdinalIgnoreCase) ||
+                district.Sequence <= 0 || !housingSequences.Add(district.Sequence) || district.SoftCapacity <= 0)
+            {
+                errors.Add($"housing.residentialDistricts '{district.Name}' requires a GreaterBritain name, unique positive sequence and positive soft capacity.");
+            }
+        }
+
+        var orderedDistricts = rules.Housing.ResidentialDistricts.OrderBy(district => district.Sequence).ToArray();
+        var closedDistrictSeen = false;
+        for (var i = 0; i < orderedDistricts.Length; i++)
+        {
+            var district = orderedDistricts[i];
+            if (district.Sequence != i + 1 || closedDistrictSeen && district.Open)
+            {
+                errors.Add("housing.residentialDistricts must have a contiguous sequence and open only an initial prefix.");
+                break;
+            }
+
+            closedDistrictSeen |= !district.Open;
+        }
+
+        foreach (var region in rules.Housing.FireIslandResidentialRegions)
+        {
+            ValidateHousingRegion(region.Name, region.Map, region.Points,
+                "housing.fireIslandResidentialRegions", housingNames, errors);
+        }
+
+        foreach (var region in rules.Housing.ProtectedRegions)
+        {
+            ValidateHousingRegion(region.Name, region.Map, region.Points,
+                "housing.protectedRegions", housingNames, errors);
+        }
+
+        if (rules.FeatureFlags.HousingGeography &&
+            (!rules.Housing.ResidentialDistricts.Any(district => district.Open) ||
+             rules.Housing.FireIslandResidentialRegions.Count == 0 ||
+             rules.Housing.ProtectedRegions.Count == 0))
+        {
+            errors.Add("housingGeography requires surveyed open Greater Britain, Fire Island residential, and protected regions.");
+        }
+
         var alpha2Enabled = rules.FeatureFlags.SafeWorld || rules.FeatureFlags.AutomaticMurderAdjudication ||
                             rules.FeatureFlags.TheftProtection || rules.FeatureFlags.KnockedOut;
         if (alpha2Enabled && !rules.Alpha2EnablementAcknowledged)
         {
             errors.Add("alpha2EnablementAcknowledged must be true before enabling any Alpha 2 feature flag.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StartingStats && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling Alpha 3 starting stats.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterScissors && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling Alpha 3 starter scissors.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterBag && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling the Alpha 3 starter bag.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterGold && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling Alpha 3 starter gold.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterCraftMaterials && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling Alpha 3 starter craft materials.");
+        }
+
+        if (rules.FeatureFlags.Alpha3StarterCombatGear && !rules.Alpha3EnablementAcknowledged)
+        {
+            errors.Add("alpha3EnablementAcknowledged must be true before enabling Alpha 3 starter combat gear.");
+        }
+
+        if (rules.SkillBank.CapacityTenths <= 0 || rules.SkillBank.CapacityTenths > 60000)
+        {
+            errors.Add("skillBank.capacityTenths must be between 1 and 60000.");
+        }
+
+        if (rules.Housing.RuralCostMultiplier is < 2m or > 5m)
+        {
+            errors.Add("housing.ruralCostMultiplier must be between 2.0 and 5.0.");
         }
 
         return errors;
@@ -156,6 +285,18 @@ public static class ShardRulesConfiguration
         }
     }
 
+    private static void ValidateHousingRegion(
+        string name, string map, IReadOnlyList<TheftPoint> points, string path,
+        ISet<string> names, ICollection<string> errors
+    )
+    {
+        if (string.IsNullOrWhiteSpace(name) || !names.Add(name) ||
+            !string.Equals(map, "Felucca", StringComparison.OrdinalIgnoreCase) || points.Count < 3)
+        {
+            errors.Add($"{path} requires unique non-empty names and Felucca polygons with at least three points.");
+        }
+    }
+
     public static IEnumerable<string> Describe()
     {
         var rules = Settings;
@@ -163,6 +304,7 @@ public static class ShardRulesConfiguration
         yield return $"Pinned ModernUO commit: {rules.PinnedModernUoCommit}";
         yield return $"Era/maps: {rules.World.Era} / {string.Join(", ", rules.World.EnabledMaps)}";
         yield return $"Alpha 2 enablement acknowledged: {rules.Alpha2EnablementAcknowledged}.";
+        yield return $"Alpha 3 enablement acknowledged: {rules.Alpha3EnablementAcknowledged}.";
         yield return string.Format(
             CultureInfo.InvariantCulture,
             "Character caps: {0} skill total, {1} per skill, {2} stats",
@@ -195,8 +337,20 @@ public sealed class ShardRules
     [JsonPropertyName("alpha2EnablementAcknowledged")]
     public bool Alpha2EnablementAcknowledged { get; set; }
 
+    [JsonPropertyName("alpha3EnablementAcknowledged")]
+    public bool Alpha3EnablementAcknowledged { get; set; }
+
     [JsonPropertyName("theftRegions")]
     public TheftRegionRules TheftRegions { get; set; } = new();
+
+    [JsonPropertyName("hotZones")]
+    public OutdoorHotZoneRules HotZones { get; set; } = new();
+
+    [JsonPropertyName("housing")]
+    public HousingLandRules Housing { get; set; } = new();
+
+    [JsonPropertyName("skillBank")]
+    public SkillBankRules SkillBank { get; set; } = new();
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
@@ -244,6 +398,60 @@ public sealed class TheftRegionRules
     public List<TheftPolygonDefinition> CoolDungeonPolygons { get; set; } = [];
 }
 
+public sealed class OutdoorHotZoneRules
+{
+    [JsonPropertyName("permanentOutdoorRegions")]
+    public List<OutdoorHotRegionDefinition> PermanentOutdoorRegions { get; set; } = [];
+}
+
+public sealed class OutdoorHotRegionDefinition
+{
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("map")]
+    public string Map { get; set; } = string.Empty;
+
+    [JsonPropertyName("points")]
+    public List<TheftPoint> Points { get; set; } = [];
+}
+
+public sealed class HousingLandRules
+{
+    [JsonPropertyName("ruralCostMultiplier")]
+    public decimal RuralCostMultiplier { get; set; } = 2m;
+
+    [JsonPropertyName("residentialDistricts")]
+    public List<HousingDistrictDefinition> ResidentialDistricts { get; set; } = [];
+
+    [JsonPropertyName("fireIslandResidentialRegions")]
+    public List<OutdoorHotRegionDefinition> FireIslandResidentialRegions { get; set; } = [];
+
+    [JsonPropertyName("protectedRegions")]
+    public List<OutdoorHotRegionDefinition> ProtectedRegions { get; set; } = [];
+}
+
+public sealed class HousingDistrictDefinition
+{
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("map")]
+    public string Map { get; set; } = string.Empty;
+
+    [JsonPropertyName("points")]
+    public List<TheftPoint> Points { get; set; } = [];
+
+    [JsonPropertyName("sequence")]
+    public int Sequence { get; set; }
+
+    [JsonPropertyName("softCapacity")]
+    public int SoftCapacity { get; set; }
+
+    [JsonPropertyName("open")]
+    public bool Open { get; set; }
+}
+
 public sealed class TheftPolygonDefinition
 {
     [JsonPropertyName("map")]
@@ -260,6 +468,12 @@ public sealed class TheftPoint
 
     [JsonPropertyName("y")]
     public int Y { get; set; }
+}
+
+public sealed class SkillBankRules
+{
+    [JsonPropertyName("capacityTenths")]
+    public int CapacityTenths { get; set; } = 3000;
 }
 
 public sealed class DeferredFeatureFlags
@@ -285,6 +499,27 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("housingGeography")]
     public bool HousingGeography { get; set; }
 
+    [JsonPropertyName("alpha3StartingStats")]
+    public bool Alpha3StartingStats { get; set; }
+
+    [JsonPropertyName("alpha3StarterScissors")]
+    public bool Alpha3StarterScissors { get; set; }
+
+    [JsonPropertyName("alpha3StarterBag")]
+    public bool Alpha3StarterBag { get; set; }
+
+    [JsonPropertyName("alpha3StarterGold")]
+    public bool Alpha3StarterGold { get; set; }
+
+    [JsonPropertyName("alpha3StarterCraftMaterials")]
+    public bool Alpha3StarterCraftMaterials { get; set; }
+
+    [JsonPropertyName("alpha3StarterCombatGear")]
+    public bool Alpha3StarterCombatGear { get; set; }
+
+    [JsonPropertyName("skillBank")]
+    public bool SkillBank { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -306,11 +541,18 @@ public sealed class DeferredFeatureFlags
         if (HotZones) yield return nameof(HotZones);
         if (CoolZones) yield return nameof(CoolZones);
         if (HousingGeography) yield return nameof(HousingGeography);
+        if (Alpha3StartingStats) yield return nameof(Alpha3StartingStats);
+        if (Alpha3StarterScissors) yield return nameof(Alpha3StarterScissors);
+        if (Alpha3StarterBag) yield return nameof(Alpha3StarterBag);
+        if (Alpha3StarterGold) yield return nameof(Alpha3StarterGold);
+        if (Alpha3StarterCraftMaterials) yield return nameof(Alpha3StarterCraftMaterials);
+        if (Alpha3StarterCombatGear) yield return nameof(Alpha3StarterCombatGear);
+        if (SkillBank) yield return nameof(SkillBank);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

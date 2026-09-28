@@ -17,11 +17,21 @@ public static class TheftRegionPolicy
             ShardRulesConfiguration.Settings?.TheftRegions.BankProtectionPolygons);
 
     public static bool IsCoolDungeonRegion(Mobile mobile) =>
-        IsWithin(mobile, ShardRulesConfiguration.Settings?.TheftRegions.CoolDungeonPolygons);
+        IsCoolDungeonRegion(
+            mobile.Map?.Name, mobile.X, mobile.Y,
+            ShardRulesConfiguration.Settings?.FeatureFlags.CoolZones == true,
+            ShardRulesConfiguration.Settings?.TheftRegions.CoolDungeonPolygons
+        );
 
     public static bool IsCoolDungeonRegionForEither(Mobile first, Mobile second) =>
+        ShardRulesConfiguration.Settings?.FeatureFlags.CoolZones == true &&
         IsWithinEither(first.Map?.Name, first.X, first.Y, second.Map?.Name, second.X, second.Y,
-            ShardRulesConfiguration.Settings?.TheftRegions.CoolDungeonPolygons);
+            ShardRulesConfiguration.Settings.TheftRegions.CoolDungeonPolygons);
+
+    public static bool IsCoolDungeonRegion(
+        string? mapName, int x, int y, bool coolZonesEnabled,
+        IReadOnlyList<TheftPolygonDefinition>? polygons
+    ) => coolZonesEnabled && IsWithin(mapName, x, y, polygons);
 
     public static bool IsWithinEither(
         string? firstMap,
@@ -91,6 +101,6 @@ public static class TheftRegionPolicy
     {
         var rules = ShardRulesConfiguration.Settings?.TheftRegions;
         yield return $"Bank protection polygons configured: {rules?.BankProtectionPolygons.Count ?? 0}.";
-        yield return $"Cool Dungeon polygons configured: {rules?.CoolDungeonPolygons.Count ?? 0}.";
+        yield return $"Cool Dungeon candidate polygons configured: {rules?.CoolDungeonPolygons.Count ?? 0}; Beta 2 rule enabled: {ShardRulesConfiguration.Settings?.FeatureFlags.CoolZones == true}.";
     }
 }

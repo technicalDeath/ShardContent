@@ -154,7 +154,7 @@ public static class KnockedOutService
             Enabled,
             player: true,
             ordinaryBlue: IsQualifyingVictim(player),
-            hotZone: ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
+            hotZone: OutdoorHotZonePolicy.IsHot(player),
             attributablePlayerDamage: responsibleAttacker is not null,
             activeEncounter: hasActiveEncounter
         );
@@ -212,13 +212,13 @@ public static class KnockedOutService
     {
         if (thief is not PlayerMobile playerThief || victim is not PlayerMobile playerVictim ||
             playerThief == playerVictim ||
-            item.RootParent != playerVictim || !IsKnockedOut(playerVictim))
+            item.RootParent != playerVictim || item.Nontransferable || !IsKnockedOut(playerVictim))
         {
             return false;
         }
 
         var isRed = playerThief.Criminal || playerThief.Murderer;
-        var hotZone = ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true;
+        var hotZone = OutdoorHotZonePolicy.IsHot(playerVictim);
         var recordedAttacker = GetRecordedAttackerSerial(playerVictim);
         var hasRights = recordedAttacker == playerThief.Serial;
         var decision = ClassifyLoot(Enabled, hotZone, isRed, hasRights);
@@ -242,7 +242,7 @@ public static class KnockedOutService
     public static KnockedOutExecutionDecision ClassifyExecution(
         bool featureEnabled, bool hotZone, bool actorIsCriminalOrMurderer, bool recordedTargetRights
     ) => !featureEnabled ? new(false, "feature-disabled") :
-        hotZone ? new(false, "hot-zone-execution-deferred") :
+        hotZone ? new(true, "hot-zone-open-execution") :
         !actorIsCriminalOrMurderer ? new(false, "actor-not-criminal-or-murderer") :
         recordedTargetRights ? new(true, "recorded-target-rights") :
         new(false, "missing-target-rights");
@@ -256,7 +256,7 @@ public static class KnockedOutService
 
         var decision = ClassifyExecution(
             Enabled,
-            ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true,
+            OutdoorHotZonePolicy.IsHot(victim),
             executor.Criminal || executor.Murderer,
             GetRecordedAttackerSerial(victim) == executor.Serial
         );
@@ -358,8 +358,8 @@ public static class KnockedOutService
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
             yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
             yield return Enabled
-                ? "Encounter-authorized no-skill looting and execution are active outside Hot Zones; Hot-Zone execution remains deferred."
-                : "Encounter-authorized no-skill looting and execution are feature-gated; Hot-Zone execution remains deferred.";
+                ? "Outside Hot Zones, recorded encounter rights govern looting and execution. In Hot Zones, any criminal/red may loot and any player may execute."
+                : "Knocked Out looting and execution are feature-gated.";
         }
     }
 
@@ -367,7 +367,7 @@ public static class KnockedOutService
         !featureEnabled ? new(false, "feature-disabled") :
         !player ? new(false, "not-player") :
         !ordinaryBlue ? new(false, "not-ordinary-blue") :
-        hotZone ? new(false, "hot-zone-resolution-deferred") :
+        hotZone ? new(true, "ordinary-blue-hot-zone") :
         new(true, "ordinary-blue-safe-world");
 
     public static KnockedOutDecision ClassifyDamage(
@@ -380,8 +380,8 @@ public static class KnockedOutService
     ) => !featureEnabled ? new(false, "feature-disabled") :
         !player ? new(false, "not-player") :
         !ordinaryBlue ? new(false, "not-ordinary-blue") :
-        hotZone ? new(false, "hot-zone-resolution-deferred") :
         !attributablePlayerDamage ? new(false, "damage-not-attributable-to-player") :
+        hotZone ? new(true, "ordinary-blue-hot-zone-player-damage") :
         !activeEncounter ? new(false, "missing-active-encounter") :
         new(true, "ordinary-blue-player-encounter");
 

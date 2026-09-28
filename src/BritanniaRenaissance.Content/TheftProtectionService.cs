@@ -19,6 +19,7 @@ public static class TheftProtectionService
     private const string LootProtectionTagPrefix = "BritanniaRenaissance.LootWard.";
     private const string LootEntitlementTagPrefix = "BritanniaRenaissance.LootWard.Entitlement.";
     private const string LootEntitlementVersion = "1";
+    private const string StarterWardTagPrefix = "BritanniaRenaissance.StarterWard.v1.";
     private const int EntitlementMigrationBatchSize = 64;
     private static bool _configured;
     private static Queue<PlayerMobile>? _entitlementMigration;
@@ -50,7 +51,8 @@ public static class TheftProtectionService
         EventSink.Connected += OnConnected;
         EventSink.Disconnected += OnDisconnected;
         EventSink.Movement += OnMovement;
-        CharacterCreation.CharacterCreatedHandler = IssueStarterWard;
+        CharacterCreation.CharacterCreatedHandler += IssueStarterWard;
+        PlayerMobile.PlayerDeathHandler += DestroyUnusedStarterWards;
     }
 
     public static void OnPlayerLogin(PlayerMobile player)
@@ -79,15 +81,49 @@ public static class TheftProtectionService
         // skipped merely because the new character already has a backpack ward or a delayed bag.
         EnsureLootProtectionEntitlement(player, "character-creation");
 
-        if (player.Backpack is null || FindEligibleWard(player) is not null)
+        if (player.Backpack is null || player.Account is not Account account)
+        {
+            return;
+        }
+
+        var issuanceTag = $"{StarterWardTagPrefix}{player.Serial.Value}";
+        if (account.GetTag(issuanceTag) is not null)
         {
             return;
         }
 
         var ward = new BackpackWard();
-        ward.TryBindTo(player);
+        if (!ward.MarkStarterIssued(player))
+        {
+            ward.Delete();
+            return;
+        }
+
         player.Backpack.DropItem(ward);
-        ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character account");
+        account.SetTag(issuanceTag, "issued");
+        ShardAuditLog.Record("theft", "starter-ward-issued", player, details: "bound to character");
+    }
+
+    private static void DestroyUnusedStarterWards(PlayerMobile player)
+    {
+        if (player.Backpack is null)
+        {
+            return;
+        }
+
+        var unused = new List<BackpackWard>();
+        foreach (var ward in player.Backpack.FindItemsByType<BackpackWard>())
+        {
+            if (ward.IsStarterIssued)
+            {
+                unused.Add(ward);
+            }
+        }
+
+        foreach (var ward in unused)
+        {
+            ward.Delete();
+        }
     }
 
     private static void OnConnected(Mobile mobile)
@@ -267,11 +303,16 @@ public static class TheftProtectionService
             return false;
         }
 
-        if (item is BackpackWard)
+        if (item is BackpackWard || item.Nontransferable)
         {
-            thief.SendMessage("That ward cannot be stolen.");
-            ShardAuditLog.Record("theft", "ward-denied", thief, victim, "ward item");
+            thief.SendMessage("That protected item cannot be stolen.");
+            ShardAuditLog.Record("theft", "item-binding-denied", thief, victim, "nontransferable item");
             return false;
+        }
+
+        if (OutdoorHotZonePolicy.IsHot(playerVictim))
+        {
+            return true;
         }
 
         if (IsProtectionActive(playerVictim))
@@ -287,7 +328,7 @@ public static class TheftProtectionService
     private static void ResolveTheft(Mobile thief, Item item, Mobile victim, Item stolen, bool caught)
     {
         if (!Enabled || victim is not PlayerMobile playerVictim || thief is not PlayerMobile playerThief ||
-            playerVictim == playerThief)
+            playerVictim == playerThief || OutdoorHotZonePolicy.IsHot(playerVictim))
         {
             return;
         }
@@ -324,7 +365,7 @@ public static class TheftProtectionService
 
     private static bool CanLiftCorpseItem(Mobile looter, Corpse corpse, Item item)
     {
-        if (!Enabled || ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true ||
+        if (!Enabled || OutdoorHotZonePolicy.IsHot(corpse) ||
             corpse.OwnerWasBaseCreature != true || !corpse.IsCriminalAction(looter) ||
             looter.Account is not Account account)
         {
@@ -337,7 +378,7 @@ public static class TheftProtectionService
         }
 
         var criminalAction = corpse.IsCriminalAction(looter);
-        var hotZonesEnabled = ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true;
+        var hotZonesEnabled = OutdoorHotZonePolicy.IsHot(corpse);
         var hasActiveWard = false;
 
         foreach (var victim in GetMonsterLootRights(corpse))
@@ -368,7 +409,7 @@ public static class TheftProtectionService
 
     private static void RecordCorpseTransfer(Mobile looter, Corpse corpse, Item item)
     {
-        if (!Enabled || ShardRulesConfiguration.Settings?.FeatureFlags.HotZones == true ||
+        if (!Enabled || OutdoorHotZonePolicy.IsHot(corpse) ||
             corpse.OwnerWasBaseCreature != true || !corpse.IsCriminalAction(looter) ||
             looter.Account is not Account account)
         {

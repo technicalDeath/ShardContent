@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "pinnedModernUoCommit": "9fb5448445c0a53ebb77a4ad9d72e9ec06ce8f3d",
+  "pinnedModernUoCommit": "16f6189aebde85fd06a9839d6e96a86367fbfc5e",
   "era": "UOR",
   "targetMap": "Felucca",
   "generatedDataRoot": "Data/BritanniaRenaissance/Alpha2b",
@@ -66,7 +66,8 @@
     { "type": "SpikeTrap", "itemId": 4379, "x": 5340, "y": 1360, "z": 5, "keep": 1 }
   ],
   "customSpawnerFiles": [
-    "britain-vendor-overrides.json"
+    "britain-vendor-overrides.json",
+    "greater-britain-housing-spawner-relocations.json"
   ],
   "spawnerFiles": [
     "BritainSewer.json",

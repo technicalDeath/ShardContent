@@ -24,6 +24,7 @@ public static class MurderAdjudicationService
     private const string DeathMarkerPrefix = "BritanniaRenaissance.Murder.LastDeathUtc.";
     private const int MaxMigrationDetailRows = 100;
     private static readonly Dictionary<Serial, PendingExecution> PendingExecutions = new();
+    private static bool _configured;
 
     public static bool Enabled =>
         ShardRulesConfiguration.Settings?.FeatureFlags.AutomaticMurderAdjudication == true;
@@ -33,7 +34,14 @@ public static class MurderAdjudicationService
         Mobile.AdditionalMurdererHandler = IsAutomaticallyRed;
         Mobile.LegacyMurdererCountsEnabled = !Enabled;
         PlayerMurderSystem.SetLegacyReportingEnabled(!Enabled);
-        PlayerMobile.PlayerDeathHandler = OnPlayerDeath;
+
+        if (_configured)
+        {
+            return;
+        }
+
+        _configured = true;
+        PlayerMobile.PlayerDeathHandler += OnPlayerDeath;
         EventSink.Connected += OnConnected;
         EventSink.Disconnected += OnDisconnected;
         Server.Timer.StartTimer(PendingExecutionLifetime, PendingExecutionLifetime, CleanupPendingExecutions);

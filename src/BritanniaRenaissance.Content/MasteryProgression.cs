@@ -32,9 +32,16 @@ public static class MasteryProgression
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.General);
     private static long _lastObservedCompletedPeriodId = -1;
     private static bool _onlineBatchScheduled;
+    private static bool _configured;
 
     public static void Configure()
     {
+        if (_configured)
+        {
+            return;
+        }
+
+        _configured = true;
         SkillEvents.SkillGainOverride += HandleSkillGain;
         EventSink.Connected += OnConnected;
         Server.Timer.StartTimer(TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(10), ProcessOnlinePlayers);
@@ -207,8 +214,17 @@ public static class MasteryProgression
     /// </summary>
     public static bool HandleSkillGain(Mobile mobile, Skill skill, bool success)
     {
-        if (mobile is not PlayerMobile pm || pm.AccessLevel != AccessLevel.Player ||
-            skill.BaseFixedPoint < ThresholdFixedPoint)
+        if (mobile is not PlayerMobile pm || pm.AccessLevel != AccessLevel.Player)
+        {
+            return false;
+        }
+
+        if (SkillBankService.TryRestore(pm, skill) != SkillBankRestoreOutcome.NotApplicable)
+        {
+            return true;
+        }
+
+        if (skill.BaseFixedPoint < ThresholdFixedPoint)
         {
             return false;
         }

@@ -13,10 +13,24 @@ public static class ShardBootstrap
         Alpha2bWorldGenerationConfiguration.Load();
         ShardRulesCommands.Register();
         Alpha2bWorldGenerationCommands.Register();
+        HousingPlacementSurveyCommands.Register();
+        HousingStatusCommands.Register();
         MasteryProgression.Configure();
+        SkillBankService.Configure();
+        OutdoorHotZoneBoundaryService.Configure();
+        HousingGeographyPolicy.Configure();
         MurderAdjudicationService.Configure();
         TheftProtectionService.Configure();
+        CosmeticElfCreationService.Configure();
+        Alpha3StartingStats.Configure();
+        StarterScissorsIssuance.Configure();
+        StarterBagIssuance.Configure();
+        StarterGoldPolicy.Configure();
+        StarterCraftMaterialIssuance.Configure();
+        StarterCombatIssuance.Configure();
+        StarterOnboarding.Configure();
         KnockedOutService.Configure();
+        LocalAccountRequest.Configure();
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
 

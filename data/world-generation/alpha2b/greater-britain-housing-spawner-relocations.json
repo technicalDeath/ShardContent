@@ -1,0 +1,108 @@
+[
+  {
+    "$type": "Spawner",
+    "guid": "362c3cc5-8548-43be-8fab-4d981cab5ed1",
+    "name": "Spawner (213)",
+    "location": [
+      1750,
+      1250,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Mongbat",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "41dd143d-0df5-41eb-a23e-bc65a7255c49",
+    "name": "Spawner (213)",
+    "location": [
+      2000,
+      1210,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 7,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 7,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "046e36ec-faf1-4f5f-8f8f-4cf50e2ba3ef",
+    "name": "Spawner (229)",
+    "location": [1938, 1220, 0],
+    "map": "Felucca",
+    "count": 160,
+    "minDelay": "00:11:00",
+    "maxDelay": "00:23:00",
+    "team": 0,
+    "homeRange": 200,
+    "walkingRange": 200,
+    "entries": [
+      { "name": "BlackPearl", "maxCount": 160, "probability": 100 },
+      { "name": "Bloodmoss", "maxCount": 160, "probability": 100 },
+      { "name": "SpidersSilk", "maxCount": 160, "probability": 100 },
+      { "name": "SulfurousAsh", "maxCount": 160, "probability": 100 },
+      { "name": "Garlic", "maxCount": 160, "probability": 100 },
+      { "name": "Ginseng", "maxCount": 160, "probability": 100 },
+      { "name": "Nightshade", "maxCount": 160, "probability": 100 },
+      { "name": "MandrakeRoot", "maxCount": 160, "probability": 100 }
+    ]
+  }
+]
