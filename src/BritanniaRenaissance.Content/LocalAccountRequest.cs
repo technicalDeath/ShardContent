@@ -7,11 +7,11 @@ using Server.Misc;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Creates one ordinary player account at startup from a request file named by
-/// <see cref="EnvironmentVariable"/>. The workspace's "Create Player Account" launcher writes
-/// the file while the server is stopped, because local-only hosts disable automatic account
-/// creation at login. The file holds the account name on the first line and the password on
-/// the second; it is deleted as soon as it is read, whatever the outcome.
+/// Creates ordinary player accounts at startup from a request file named by
+/// <see cref="EnvironmentVariable"/>. The workspace's "Create Player Account" launcher and the
+/// agent test helpers write the file while the server is stopped, because local-only hosts
+/// disable automatic account creation at login. The file holds pairs of lines: account name,
+/// then password. It is deleted as soon as it is read, whatever the outcome.
 /// </summary>
 public static class LocalAccountRequest
 {
@@ -37,37 +37,48 @@ public static class LocalAccountRequest
     }
 
     /// <summary>
-    /// Parses request contents: account name, then password, one per line. Name rules are
-    /// checked separately against <see cref="AccountHandler.IsValidUsername"/> at startup.
+    /// Parses request contents: repeated pairs of lines, account name then password. One trailing
+    /// newline is allowed. Any malformed pair rejects the whole request. Name rules are checked
+    /// separately against <see cref="AccountHandler.IsValidUsername"/> at startup.
     /// </summary>
     public static bool TryParse(
         string? contents,
-        [NotNullWhen(true)] out string? username,
-        [NotNullWhen(true)] out string? password,
+        [NotNullWhen(true)] out List<(string Username, string Password)>? accounts,
         [NotNullWhen(false)] out string? error
     )
     {
-        username = null;
-        password = null;
-
-        var lines = (contents ?? "").Replace("\r\n", "\n").Split('\n');
-        var name = lines.Length > 0 ? lines[0] : "";
-        var secret = lines.Length > 1 ? lines[1] : "";
-
-        if (string.IsNullOrWhiteSpace(name))
+        accounts = null;
+        var lines = (contents ?? "").Replace("\r\n", "\n").Split('\n').ToList();
+        if (lines.Count > 1 && lines[^1].Length == 0)
         {
-            error = "the account name is empty";
+            lines.RemoveAt(lines.Count - 1);
+        }
+
+        if (lines.Count < 2 || lines.Count % 2 != 0)
+        {
+            error = "expected pairs of lines (account name, then password)";
             return false;
         }
 
-        if (secret.Length == 0)
+        var parsed = new List<(string, string)>();
+        for (var i = 0; i < lines.Count; i += 2)
         {
-            error = "the password is empty";
-            return false;
+            if (string.IsNullOrWhiteSpace(lines[i]))
+            {
+                error = $"account {i / 2 + 1}: the account name is empty";
+                return false;
+            }
+
+            if (lines[i + 1].Length == 0)
+            {
+                error = $"account {i / 2 + 1}: the password is empty";
+                return false;
+            }
+
+            parsed.Add((lines[i], lines[i + 1]));
         }
 
-        username = name;
-        password = secret;
+        accounts = parsed;
         error = null;
         return true;
     }
@@ -97,26 +108,29 @@ public static class LocalAccountRequest
             TryDelete(path);
         }
 
-        if (!TryParse(contents, out var username, out var password, out var error))
+        if (!TryParse(contents, out var accounts, out var error))
         {
             Logger.Warning("Player account request rejected: {Reason}.", error);
             return;
         }
 
-        if (!AccountHandler.IsValidUsername(username) || !AccountHandler.IsValidPassword(password))
+        foreach (var (username, password) in accounts)
         {
-            Logger.Warning("Player account request rejected: the account name contains a forbidden character or ends with a space or period.");
-            return;
-        }
+            if (!AccountHandler.IsValidUsername(username) || !AccountHandler.IsValidPassword(password))
+            {
+                Logger.Warning("Player account request skipped an entry: the account name contains a forbidden character or ends with a space or period.");
+                continue;
+            }
 
-        if (Accounts.GetAccount(username) != null)
-        {
-            Logger.Warning("Player account request skipped: account '{Username}' already exists; its password was not changed.", username);
-            return;
-        }
+            if (Accounts.GetAccount(username) != null)
+            {
+                Logger.Warning("Player account request skipped: account '{Username}' already exists; its password was not changed.", username);
+                continue;
+            }
 
-        _ = new Account(username, password);
-        Logger.Information("Created player account '{Username}' from the local account request.", username);
+            _ = new Account(username, password);
+            Logger.Information("Created player account '{Username}' from the local account request.", username);
+        }
     }
 
     private static void TryDelete(string path)

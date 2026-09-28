@@ -95,6 +95,8 @@ Status key: `[x]` accepted evidence on file; `[ ]` open; `[?]` owner ruling; `[!
 
 ### L. Integrated Alpha 3 release and activation
 
+- [?] Owner rulings required on the custom F–K rules in [Alpha-3-Contract-Review.md](Alpha-3-Contract-Review.md) before each letter starts. The two bugs it lists (G-5 arrows, H-2 second-character materials) are fixed within G and H regardless of rulings.
+- [?] Owner rulings required on the post-UOR stock defaults in [Alpha-3-Stock-Default-Audit.md](Alpha-3-Stock-Default-Audit.md): passive Detect Hidden, virtues (Honor damage, Sacrifice self-resurrection), one house per account, mount stamina, insta-hit confirmation, and the insurance flag check gap.
 - [?] Owner ruling required: ModernUO's Young player system (`ContentFeatureFlags.YoungPlayerSystem`, on by default) is active on the dev world. For each new account's first 40 logged-in hours it keeps every item through death and teleports the ghost to a healer. Design doc §16 rejects account-age immunity, and Young likely postdates the April 2000 UOR baseline. Decide whether to disable it before activation.
 - [!] Keep house zoning and all Hot/Cool dungeon rules, including Hythloth, in Beta 2; keep Beta 1 starter restriction labels and living-world systems in Beta 1. Maintain the accepted Alpha 2b world and disabled source Alpha 3 gates during feature preparation.
 - [g] Review the readiness record for every A–K feature and rerun only evidence affected by intervening source/configuration changes. Complete the grouped current-source, ordinary-client, persistence and regression release pass.
