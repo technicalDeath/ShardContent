@@ -205,7 +205,7 @@ For Alpha 3, UOR is the default historical baseline, not a mandate to roll back 
 1. Deliver the permanent high-risk outdoor geography.
    - Define Fire Island and Buccaneer’s Den island as permanent outdoor Hot regions. Keep dungeon interiors under ordinary rules until Beta 2.
    - Implement authoritative region boundaries, entry/exit messaging, combat carryover, login placement and extraction behavior.
-   - Apply the shared Knocked Out state in Hot Zones while changing its resolution: any criminal/red may perform no-skill looting without engagement-right restrictions, any player may Execute, and physical Backpack Wards have no effect on Hot-Zone theft or Knocked-Out looting.
+   - Apply the shared Knocked Out state in Hot Zones while changing its resolution: anyone may perform no-skill looting of a Knocked Out player's pack (a blue who does becomes criminal), only a criminal/red with damage-record rights on the victim may Execute (owner ruling K-4, 2026-09-29), and physical Backpack Wards have no effect on Hot-Zone theft or Knocked-Out looting.
    - Current implementation status: named source polygons now cover the two connected island landmasses with zero missed land tiles in the local map survey documented in `Alpha-3-Outdoor-Hot-Zone-Survey.md`. The policy excludes dungeon interiors. Hostility requires both players inside the same active outdoor Hot region and retains the stock targetability boundary; controlled pets do not gain Hot-only attack permission. Knocked Out classification, open criminal/red looting, any-player Execution and Ward/corpse-loot exceptions now use physical Hot membership instead of the global feature flag. `[HotZoneStatus` reports the configured regions and current membership. Settled-position notifications now provide entry/exit and Hot-zone login warnings for ordinary players, including the continued murder consequence. The Hot-Zone flag remains disabled while nearshore water, docks, map-data updates, boundary/extraction, login/restart and real-client combat/theft matrices remain unverified. Housing zoning is a separate Beta 2 deliverable.
    - The harmful-action policy now preserves stock safe-zone and duel denials before considering shard consent. Focused tests cover direct-player same-region initiation, cross-boundary refusal, controlled-pet refusal, stock denial and existing-aggression carryover; delayed spells, poison, fields, projectiles and live boundary movement still need end-to-end checks.
    - A disposable real-client session confirmed Fire Island and Buccaneer's Den entry warnings, exits to ordinary land and Hythloth's interior, and no Hot entry warning inside Hythloth. The validator permits this isolated test only with explicit Alpha 3 acknowledgment and both named polygons. Source activation remains off.
@@ -282,6 +282,9 @@ Create repeatable, synchronized reasons for players to leave Britain, travel roa
    - Set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true at activation while keeping `SupportedFeatures.ML` false and the UOR/Felucca ruleset intact; retain the SA-off Gargoyle restriction.
    - Preserve native Elf body, skin and hair while applying Human-equivalent starting rules and gameplay permissions. Keep Elf-only equipment, creature access and ML racial bonuses unavailable.
    - Verify character creation, starter entitlements, Human/Elf parity and appearance after death, resurrection and save/restart on a disposable server before activation.
+7. Address recall and gate rules in dungeons (owner request, 2026-09-29).
+   - Audit how Recall, Gate Travel, runes, runebooks and moongates behave into, out of and inside dungeons under the shard's current rules, then get an owner ruling on the intended behavior before building anything. Prefer stock UOR behavior.
+   - This is separate from the Beta 2 dungeon Hot/Cool rules; do not add Hot/Cool activation here.
 ### Exit criteria
 
 - Expedition, cargo, Pilgrimage and road state are server-authoritative, feature-flagged, visible to players and recoverable by staff.
@@ -289,6 +292,7 @@ Create repeatable, synchronized reasons for players to leave Britain, travel roa
 - Expedition and Pilgrimage rewards pass economy and anti-exploit validation; no system accelerates resource respawn, changes ordinary spawn caps or raises the character cap.
 - All Beta 1 user-facing text has passed a human editorial review for consistency with the base game's prose style, terminology and localization conventions.
 - Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests.
+- Dungeon recall and gate rules have an owner ruling and matching tests.
 
 ### Explicitly deferred
 

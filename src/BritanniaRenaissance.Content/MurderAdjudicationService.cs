@@ -66,6 +66,11 @@ public static class MurderAdjudicationService
 
         CleanupPendingExecutions();
         var execution = PendingExecutions.Remove(victim.Serial, out var pendingExecution);
+        if (execution && !pendingExecution.CountsAsMurder)
+        {
+            return;
+        }
+
         var killer = execution ? pendingExecution.Executor : ResolveAttributableKiller(victim);
 
         if (killer is not PlayerMobile playerKiller || playerKiller == victim ||
@@ -96,9 +101,9 @@ public static class MurderAdjudicationService
         return killer ?? KnockedOutService.GetRecordedAttacker(victim);
     }
 
-    public static void RegisterExecution(PlayerMobile executor, PlayerMobile victim)
+    public static void RegisterExecution(PlayerMobile executor, PlayerMobile victim, bool countsAsMurder = true)
     {
-        PendingExecutions[victim.Serial] = new(executor, Core.Now.Add(PendingExecutionLifetime));
+        PendingExecutions[victim.Serial] = new(executor, Core.Now.Add(PendingExecutionLifetime), countsAsMurder);
     }
 
     public static void CancelExecution(PlayerMobile victim) => PendingExecutions.Remove(victim.Serial);
@@ -401,7 +406,7 @@ public static class MurderAdjudicationService
         player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 }
 
-internal readonly record struct PendingExecution(PlayerMobile Executor, DateTime ExpiresUtc);
+internal readonly record struct PendingExecution(PlayerMobile Executor, DateTime ExpiresUtc, bool CountsAsMurder = true);
 
 public readonly record struct MurderDecision(bool Qualifies, string Reason);
 

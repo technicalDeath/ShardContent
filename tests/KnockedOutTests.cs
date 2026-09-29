@@ -93,6 +93,7 @@ public class KnockedOutTests
     [InlineData(false, false, true, true, false, "feature-disabled")]
     [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
     [InlineData(true, true, true, false, true, "hot-zone-red-looting")]
+    [InlineData(true, true, false, false, true, "hot-zone-blue-looting")]
     [InlineData(true, false, true, true, true, "recorded-target-rights")]
     [InlineData(true, false, true, false, false, "missing-target-rights")]
     public void LootRequiresRedIdentityAndRecordedRightsOutsideHotZones(
@@ -115,25 +116,34 @@ public class KnockedOutTests
     }
 
     [Theory]
-    [InlineData(false, false, true, true, false, "feature-disabled")]
-    [InlineData(true, true, true, true, true, "hot-zone-open-execution")]
-    [InlineData(true, true, false, false, true, "hot-zone-open-execution")]
-    [InlineData(true, false, false, true, false, "actor-not-criminal-or-murderer")]
-    [InlineData(true, false, true, false, false, "missing-target-rights")]
-    [InlineData(true, false, true, true, true, "recorded-target-rights")]
-    public void ExecutionRequiresRecordedRedEngagementOutsideHotZones(
+    [InlineData(null, 5u, true)]
+    [InlineData("none", 5u, false)]
+    [InlineData("7", 5u, false)]
+    [InlineData("7,5", 5u, true)]
+    [InlineData("5", 5u, true)]
+    [InlineData("55", 5u, false)]
+    public void ExecutionCountsAsMurderOnlyForReportableAttackers(string? reportable, uint executor, bool counts)
+    {
+        Assert.Equal(counts, KnockedOutService.ExecutionCountsAsMurder(reportable, executor));
+    }
+
+    [Theory]
+    [InlineData(false, true, true, false, "feature-disabled")]
+    [InlineData(true, false, true, false, "actor-not-criminal-or-murderer")]
+    [InlineData(true, false, false, false, "actor-not-criminal-or-murderer")]
+    [InlineData(true, true, false, false, "missing-damage-record-rights")]
+    [InlineData(true, true, true, true, "damage-record-rights")]
+    public void ExecutionRequiresRedActorWithDamageRecordRights(
         bool featureEnabled,
-        bool hotZone,
         bool actorIsCriminalOrMurderer,
-        bool recordedTargetRights,
+        bool damageRecordRights,
         bool qualifies,
         string reason)
     {
         var decision = KnockedOutService.ClassifyExecution(
             featureEnabled,
-            hotZone,
             actorIsCriminalOrMurderer,
-            recordedTargetRights
+            damageRecordRights
         );
 
         Assert.Equal(qualifies, decision.Qualifies);

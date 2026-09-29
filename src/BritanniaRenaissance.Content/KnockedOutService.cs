@@ -1,6 +1,7 @@
 using System.Globalization;
 using Server;
 using Server.Accounting;
+using Server.Collections;
 using Server.Items;
 using Server.Mobiles;
 using Server.SkillHandlers;
@@ -19,6 +20,7 @@ public static class KnockedOutService
     private const string UntilPrefix = "BritanniaRenaissance.KnockedOut.UntilUtc.";
     private const string AttackerPrefix = "BritanniaRenaissance.KnockedOut.Attacker.";
     private const string CompletedPrefix = "BritanniaRenaissance.KnockedOut.Completed.";
+    private const string ReportablePrefix = "BritanniaRenaissance.KnockedOut.Reportable.";
     private static AllowBeneficialHandler? _stockAllowBeneficial;
     private static bool _configured;
 
@@ -185,6 +187,11 @@ public static class KnockedOutService
             }
         }
 
+        if (player.Account is Account reportableAccount)
+        {
+            reportableAccount.SetTag(ReportablePrefix + SerialKey(player), DescribeReportableAttackers(player));
+        }
+
         player.Hits = 1;
         player.Stam = 0;
         player.Mana = 0;
@@ -234,18 +241,52 @@ public static class KnockedOutService
     public static KnockedOutLootDecision ClassifyLoot(
         bool featureEnabled, bool hotZone, bool actorIsCriminalOrMurderer, bool recordedTargetRights
     ) => !featureEnabled ? new(false, "feature-disabled") :
+        hotZone ? new(true, actorIsCriminalOrMurderer ? "hot-zone-red-looting" : "hot-zone-blue-looting") :
         !actorIsCriminalOrMurderer ? new(false, "actor-not-criminal-or-murderer") :
-        hotZone ? new(true, "hot-zone-red-looting") :
         recordedTargetRights ? new(true, "recorded-target-rights") :
         new(false, "missing-target-rights");
 
+    /// <summary>
+    /// A blue who takes an item from a Knocked Out player in a Hot Zone becomes criminal. Stock
+    /// Stealing only flags a thief who is caught, and the Knocked Out bypass never rolls detection.
+    /// </summary>
+    public static void OnKnockedOutLootResolved(Mobile thief, Mobile victim, Item? stolen)
+    {
+        if (stolen is null || thief is not PlayerMobile playerThief || victim is not PlayerMobile playerVictim ||
+            !IsKnockedOut(playerVictim) || !OutdoorHotZonePolicy.IsHot(playerVictim) ||
+            playerThief.Criminal || playerThief.Murderer)
+        {
+            return;
+        }
+
+        playerThief.CriminalAction(true);
+        ShardAuditLog.Record("knocked-out-loot", "blue-flagged-criminal", playerThief, playerVictim);
+    }
+
     public static KnockedOutExecutionDecision ClassifyExecution(
-        bool featureEnabled, bool hotZone, bool actorIsCriminalOrMurderer, bool recordedTargetRights
+        bool featureEnabled, bool actorIsCriminalOrMurderer, bool damageRecordRights
     ) => !featureEnabled ? new(false, "feature-disabled") :
-        hotZone ? new(true, "hot-zone-open-execution") :
         !actorIsCriminalOrMurderer ? new(false, "actor-not-criminal-or-murderer") :
-        recordedTargetRights ? new(true, "recorded-target-rights") :
-        new(false, "missing-target-rights");
+        damageRecordRights ? new(true, "damage-record-rights") :
+        new(false, "missing-damage-record-rights");
+
+    private static bool HasDamageRecordRights(PlayerMobile victim, PlayerMobile actor)
+    {
+        if (GetRecordedAttackerSerial(victim) == actor.Serial)
+        {
+            return true;
+        }
+
+        foreach (var entry in victim.DamageEntries)
+        {
+            if (!entry.HasExpired && entry.Damager != victim && ResolvePlayerAttacker(entry.Damager) == actor)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static bool Execute(PlayerMobile executor, PlayerMobile victim)
     {
@@ -256,9 +297,8 @@ public static class KnockedOutService
 
         var decision = ClassifyExecution(
             Enabled,
-            OutdoorHotZonePolicy.IsHot(victim),
             executor.Criminal || executor.Murderer,
-            GetRecordedAttackerSerial(victim) == executor.Serial
+            HasDamageRecordRights(victim, executor)
         );
 
         if (!decision.Qualifies)
@@ -266,18 +306,70 @@ public static class KnockedOutService
             return false;
         }
 
+        var countsAsMurder = ExecutionCountsAsMurder(GetReportableAttackers(victim), executor.Serial.Value);
         ClearActiveState(victim);
-        MurderAdjudicationService.RegisterExecution(executor, victim);
+        MurderAdjudicationService.RegisterExecution(executor, victim, countsAsMurder);
+        RecordExecutorAsAggressor(executor, victim);
         victim.Hits = 0;
         victim.Kill();
         if (victim.Alive)
         {
             MurderAdjudicationService.CancelExecution(victim);
+            victim.RemoveAggressor(executor);
+            executor.RemoveAggressed(victim);
             return false;
         }
 
-        ShardAuditLog.Record("knocked-out", "executed", executor, victim, decision.Reason);
+        ShardAuditLog.Record(
+            "knocked-out",
+            "executed",
+            executor,
+            victim,
+            countsAsMurder ? decision.Reason : $"{decision.Reason}; victim aggressed first, no murder count"
+        );
         return true;
+    }
+
+    // Mirrors stock murder reporting: only a player whose aggression against the victim was reportable
+    // (they attacked an innocent first) can be a murderer. Captured before Knocked Out clears the lists.
+    private static string DescribeReportableAttackers(PlayerMobile victim)
+    {
+        var serials = new HashSet<uint>();
+        foreach (var info in victim.Aggressors)
+        {
+            if (info.CanReportMurder && ResolvePlayerAttacker(info.Attacker) is { } attacker)
+            {
+                serials.Add(attacker.Serial.Value);
+            }
+        }
+
+        return serials.Count == 0
+            ? "none"
+            : string.Join(',', serials.Select(s => s.ToString(CultureInfo.InvariantCulture)));
+    }
+
+    private static string? GetReportableAttackers(PlayerMobile victim) =>
+        victim.Account is Account account ? account.GetTag(ReportablePrefix + SerialKey(victim)) : null;
+
+    // A missing record (state predating it) keeps the strict behavior: the Execute counts.
+    public static bool ExecutionCountsAsMurder(string? reportableAttackers, uint executorSerial) =>
+        reportableAttackers is null ||
+        reportableAttackers.Split(',').Contains(executorSerial.ToString(CultureInfo.InvariantCulture));
+
+    // Knocking out clears the victim's aggressor lists; the corpse copies them at death, so restore the executor.
+    private static void RecordExecutorAsAggressor(PlayerMobile executor, PlayerMobile victim)
+    {
+        foreach (var info in victim.Aggressors)
+        {
+            if (info.Attacker == executor)
+            {
+                info.Refresh();
+                return;
+            }
+        }
+
+        victim.Aggressors.Add(AggressorInfo.Create(executor, victim, false));
+        executor.Aggressed.Add(AggressorInfo.Create(executor, victim, false));
     }
 
     public static bool IsKnockedOut(Mobile mobile)
@@ -358,7 +450,7 @@ public static class KnockedOutService
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
             yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
             yield return Enabled
-                ? "Outside Hot Zones, recorded encounter rights govern looting and execution. In Hot Zones, any criminal/red may loot and any player may execute."
+                ? "Outside Hot Zones, only a criminal/red with recorded encounter rights may loot a Knocked Out player. In Hot Zones anyone may, and a blue who does becomes criminal. Execution needs a criminal/red actor with damage-record rights everywhere."
                 : "Knocked Out looting and execution are feature-gated.";
         }
     }
@@ -486,6 +578,7 @@ public static class KnockedOutService
         {
             account.RemoveTag(UntilPrefix + SerialKey(player));
             account.RemoveTag(AttackerPrefix + SerialKey(player));
+            account.RemoveTag(ReportablePrefix + SerialKey(player));
         }
     }
 

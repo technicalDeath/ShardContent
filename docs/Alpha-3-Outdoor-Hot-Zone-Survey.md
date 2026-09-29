@@ -96,6 +96,53 @@ Disposable host (`hotZones` on with acknowledgment, scratch only; the source fla
 
 Not covered by these checks: house multis (Beta 2 zoning), ship decks (dynamic, see B8), and any client asset changes after the hashes above.
 
+## K2 combat and consequence pass (2026-09-29)
+
+Scope: behavior at and across the Hot boundary. Login, save and restart, spawn and rewards, and the readiness record are K3. Membership is evaluated where the victim, thief or corpse is at decision time (`OutdoorHotZonePolicy.IsHot`). Pure decisions already have unit tests (`OutdoorHotZonePolicyTests`, `KnockedOutTests`, `TheftProtectionTests`, `MurderAdjudicationTests`); this pass adds the live cases that prove the hooks are wired to them.
+
+Live driver: `tests/scenarios/hot-zones/hot_consequences_live.py`. Disposable host with `hotZones` on and `alpha3EnablementAcknowledged`; `safeWorld`, `knockedOut`, `theftProtection` and `automaticMurderAdjudication` are already on in the deployed config. Six fresh ordinary players (attacker A, victims V1-V3, bystander E, thief T) plus one staff session.
+
+| ID | Behavior | Entry point | Expected | Verification | Result |
+| --- | --- | --- | --- | --- | --- |
+| H1 | Blue attacks blue, both in the same Hot region | `PvpIntentService.AllowHarmful` | Allowed; victim loses hits | Live | Pass. Hits 72 to 71, attacker Criminal |
+| H2 | Same pair, both in a safe town | same | Refused; no damage | Live (control) | Pass. No damage, `hostility denied` +1 |
+| H3 | Attacker in Hot, victim one tile outside | same (`attackerRegion` != `defenderRegion`) | Refused | Live | Pass. Denied +1, no damage |
+| H4 | Attacker outside, victim one tile inside | same | Refused | Live | Pass. Denied +1, no damage |
+| H5 | Fight begun in Hot, both then step outside | `HasExistingRelationship` | Attacker may keep attacking; a bystander outside may not join | Live | Pass. Attacker continued after the crossing (victim hits 72 to 71), bystander denied +1 with no damage. The crossing is by staff placement, not walking, and the attacker was already Criminal from the Hot initiation |
+| H6 | Same fight after the 2-minute aggression window lapses | `Aggressors` expiry | Attacker refused again | Live | Pass on rerun. Idle 207 s, attacker Innocent again, denied +1, no damage. The first two attempts were harness faults (the victim's client kept swinging, then the attacker was a ghost) |
+| H7 | Pet or summon as the source | `directPlayerSource` | No Hot initiation | Unit test (`NewHotZoneHostility...`) | Unit only (named limit) |
+| H8 | Delayed damage (poison tick, field, explosion) landing after a crossing | `Mobile.Damage` then `TryInterceptLethalDamage` | Hostility is not re-checked; Knocked Out decided at the victim's position when the damage lands | Source only (named limit) | Source only (named limit) |
+| KO1 | Lethal blow to a blue in Hot | `TryInterceptLethalDamage` | Knocked Out, no death | Live | Pass. Knocked Out, hits 1, unarmed attacker |
+| KO2 | Lethal blow outside Hot after an H5 carryover | same, active encounter | Knocked Out | Live | Pass. Knocked Out audit, attacker recorded |
+| KO3 | Attacking a Knocked Out player | `AllowHarmful` first line | Refused, hits stay at 1 | Live | Pass. No second Knocked Out (client hits read 1 to 2 through regeneration, not damage) |
+| KO4 | Criminal or murderer victim at lethal damage | `IsQualifyingVictim` | Dies, not Knocked Out | Live (found while running L2) | Observed. A Criminal victim in Hot died outright. Matches the source predicate `Alive && !Criminal && !Murderer` |
+| L1 | Blue takes an item from a Knocked Out blue's pack in Hot | `Stealing.KnockedOutLoot`, then `KnockedOutService.OnKnockedOutLootResolved` | Allowed (K-4 follow-up ruling 2026-09-29); the blue becomes criminal | Unit (`hot-zone-blue-looting`); live driver updated, rerun in K3 | Originally passed live as "denied" under the old rule (`authorized` +0). That rule is superseded. Live rerun pending |
+| L2 | Criminal looter, no recorded rights, in Hot | same | Allowed | Live | Pass on rerun. `knocked-out-loot authorized` +1 and "You take the item from the Knocked Out player." Needs a plain item (see limits) and the pack opened before the Knocked Out |
+| L2a | Snooping a Knocked Out victim's pack | stock `Snooping` (`CanBeHarmful`) | Observation only | Live observation | Refused ("You cannot perform negative acts on your target."). See limits |
+| L3 | Knocked Out victim moved outside Hot: blue bystander, then criminal non-attacker, then criminal recorded attacker | same | Bystander and non-attacker denied; recorded criminal attacker allowed | Live | Pass. Denied, denied, authorized. Asserts the authorization decision only (see limits) |
+| X1 | Blue bystander executes a Knocked Out blue in Hot | `[Execute` then `KnockedOutService.Execute` | Refused: K-4 ruling (2026-09-29) limits Execute to a grey or red actor with damage-record rights. Victim stays alive, no murder count | Unit (`ExecutionRequiresRedActorWithDamageRecordRights`); live driver updated, rerun in K3 | Originally passed live under the old "anyone may Execute" rule (executed, murder audit +1). That rule is superseded. Live rerun of the refusal is pending |
+| X2 | Red executor with damage-record rights kills a Knocked Out blue; executor loots the corpse | `KnockedOutService.Execute` → `RecordExecutorAsAggressor` | Corpse aggressor list contains the executor (Knocked Out cleared the victim's lists), so lifting an item raises no "criminal act" warning | Live in K3: read the corpse's aggressor membership (probe or absence of the warning); no unit test (engine state) | Added 2026-09-29; source-reviewed only |
+| X3 | K-5: red executes a Knocked Out blue who attacked the red first; and red executes a blue the red attacked first | `KnockedOutService.Execute` → `ExecutionCountsAsMurder` | Blue attacked first: no murder count, audit says "victim aggressed first". Red attacked first: murder count plus 24h red | Unit (`ExecutionCountsAsMurderOnlyForReportableAttackers`); live in K3 (both orders, since it depends on engine aggressor bookkeeping) | Added 2026-09-29; source-reviewed only |
+| X2 | Blue bystander executes outside Hot | same | Refused | Live | Pass. "not eligible for encounter-authorized execution" |
+| X3 | Criminal recorded attacker executes outside Hot | same | Allowed | Live | Pass. Executed, automatic murder count |
+| T1 | Thieves-guild thief attempts a steal from a blue in Hot | `CanAttemptTheft` (Hot bypass) | Reaches the stock skill roll | Live | Pass. Roll message ("You fail to steal the item.") |
+| T2 | Same attempt outside Hot on a blue | `Stealing` harmful check | No steal | Live (control) | Pass. No roll and no message, `hostility denied` +1, no Ward consumed |
+| T3 | Ward protection seeded on a criminal victim outside Hot, then victim enters Hot | `IsProtectionActive` after the Hot bypass | Denied outside while protected; allowed in Hot; denied again outside within 120 s | Live | Pass (T3a seed, T3b denied, T3c Hot allowed, T3d denied again 48 s after the seed). Needs a victim who still carries a Backpack Ward |
+| T4 | Caught theft in Hot | `ResolveTheft` skips Hot | Ward not consumed, no protection started | Live | Pass. `ward-consumed` +0 |
+| C1 | Player corpse created in Hot | stock corpse rules; `CanLiftCorpseItem` skips Hot | Recorded only (stock behavior, no shard rule) | Live observation | Observed. Corpses appear at the death position in Hot |
+| B10 | Ghost leaves Hot | `PlayerMobile.PositionChanged` | Exit message | Live | Pass. Exit and re-entry messages both sent |
+
+**Run.** Driver `tests/scenarios/hot-zones/hot_consequences_live.py` on the disposable host `phase-k2`, nine fresh players and one staff session, run in stages (the theft, loot and H6 stages were rerun after harness fixes). Every pass above is from the final assertions of the stage that closed it.
+
+**Named limits and findings.**
+- **H7** is unit-tested only and **H8** is source-only: delayed damage does not re-check hostility, and Knocked Out is decided where the victim stands when the damage lands.
+- **Stock stealing refuses Newbied, blessed, immovable and container items** ("You can't steal that!"). Starter items, including the starter gold, are all Newbied, so no starter pack item can be stolen. Theft and loot cases use plain items added by staff.
+- **Stock Snooping cannot open a Knocked Out victim's pack** because it calls `CanBeHarmful` and `AllowHarmful` refuses a Knocked Out target. Knocked Out loot that moves an item therefore requires the looter to have opened the pack before the victim went down.
+- **L3 asserts the authorization decision only.** The only thing a looter can target is the pack container, and stock Stealing refuses containers, so the audit line `knocked-out-loot authorized` is the observable result.
+- **Crossing by placement.** H5 moves players with staff placement rather than walking; both call the same `PositionChanged` path.
+- **A Backpack Ward is single-use.** A caught theft outside Hot consumes and deletes the victim's physical Ward (`ActivateProtection`), so a victim reused across theft runs has none left and T3a cannot seed protection. The theft stage uses a victim that still carries a Ward. This was first mistaken for a death-handling loss; the server log shows the `theft ward-consumed` audit for that character, and Newbied starter items (Ward included) are kept through non-murderer death.
+- **K-4 ruled 2026-09-29:** Execute needs a grey or red actor with rights on the victim's damage record (the KO's recorded attacker, or a live `DamageEntries` entry, pets credited to their master), in Hot and outside it. Blue bystanders can no longer Execute. Looting a Knocked Out player's pack in a Hot Zone is open to anyone, and a blue who takes an item becomes criminal (audit `knocked-out-loot blue-flagged-criminal`); outside Hot it still needs a grey or red with recorded rights. X3 (criminal recorded attacker outside Hot) still applies. A live check that a red damage-record holder executes in Hot is owed in K3.
+- **Open owner rulings K-5 and K-7** were not resolved here. The behavior above is the current implementation.
 ## Release checks still required
 
 The September 28 source-data check reproduced both hashes above in the workspace `UOData` directory. No separate `ModernUO/Distribution/UOData` copy was present, so this confirms the contour inputs have not changed in the workspace; it does not establish which map/tiledata files a running distribution loaded.

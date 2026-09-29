@@ -304,6 +304,8 @@ public static class TheftProtectionService
 
     private static void ResolveTheft(Mobile thief, Item item, Mobile victim, Item stolen, bool caught)
     {
+        KnockedOutService.OnKnockedOutLootResolved(thief, victim, stolen);
+
         if (!Enabled || victim is not PlayerMobile playerVictim || thief is not PlayerMobile playerThief ||
             playerVictim == playerThief || OutdoorHotZonePolicy.IsHot(playerVictim))
         {
