@@ -18,7 +18,7 @@ This page lists every **custom (non-stock)** rule the remaining letters depend o
 - Newbied items in bags are kept.
 - There is no starter timer.
 
-**Tracked elsewhere:** skill ID 15, the 222,222 BOD cap, anti-macro (SK-004), and Young (plan L). Stock ModernUO defaults that may be post-UOR are in [Alpha-3-Stock-Default-Audit.md](Alpha-3-Stock-Default-Audit.md).
+**Tracked elsewhere:** skill ID 15, anti-macro (SK-004), and Young (plan L). Stock ModernUO defaults that may be post-UOR are in [Alpha-3-Stock-Default-Audit.md](Alpha-3-Stock-Default-Audit.md).
 
 In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `ShardContent/src/BritanniaRenaissance.Content/` unless they start with `UOContent/`.
 
@@ -28,6 +28,7 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 | --- | --- | --- |
 | G-5 | A character who picks Archery as a **secondary** skill loses the stock 25 arrows and gets no replacement. Arrows are only reissued for an archer primary. | `StarterCombatIssuance.cs:100-107` |
 | H-2 | Stock craft materials are removed **before** the per-account claim. A second same-profession character on an account gets zero, which is less than stock. | `StarterCraftMaterialIssuance.cs:65-69` (same pattern for every package) |
+| J-9 | Chivalry/Bushido/Ninjitsu spellbooks (`BookOfChivalry`, `BookOfBushido`, `BookOfNinjitsu`) had no era gate on their NPC vendor stock (`SBKeeperOfChivalry`, `SBSamurai`, `SBNinja`), and Bushido/Ninjitsu had no gate on the `Ronin`/`EliteNinja` monster death-drop either — reachable under UOR if those vendors/monsters spawned (they do not appear in this shard's Alpha 2b spawner data, so not exploitable in practice, but a real latent gap). Fixed 2026-09-28 to match the existing Necromancy precedent (`SBMage`'s `Core.AOS` guard). | `ModernUO/Projects/UOContent/Mobiles/Vendors/SBInfo/{SBKeeperOfChivalry,SBSamurai,SBNinja}.cs`, `Mobiles/Monsters/SE/{Ronin,EliteNinja}.cs` |
 
 ## F. Welcome and Backpack Ward compatibility
 
@@ -72,10 +73,12 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 
 | ID | Custom rule | Built? | Rec. | Ruling |
 | --- | --- | --- | --- | --- |
-| I-1 | Smith BODs enabled under UOR (Publish 14, 2001); Tailor/Weaver stay AoS-gated. | yes | keep (already owner-approved) | |
-| I-2 | Runic hammers excluded. Top reward tiers (500–1200 points) become gold and fame only. | yes | owner call: accept gold-only tiers or pick a non-power reward | |
-| I-3 | Four Publish 16 rewards filtered out. | yes | keep | |
-| I-4 | Remaining rewards (sturdy tools, mining gloves, colored anvils, Ancient Smithy Hammers) have no era classification. | open | owner call: simplest is to accept them as part of the BOD deviation | |
+| I-1 | Smith BODs enabled under UOR (Publish 14, 2001); Tailor/Weaver stay AoS-gated. | yes | keep (already owner-approved) | 2026-09-28: kept, unchanged. |
+| I-2 | Runic hammers excluded. Top reward tiers (500–1200 points) become gold and fame only. | yes | owner call: accept gold-only tiers or pick a non-power reward | 2026-09-28: gold and fame only, kept as built (zero new engineering). Owner flagged these tiers for a real reward addition in **Beta 3**; tracked as a named limitation below, not a blocker. |
+| I-3 | Four Publish 16 rewards filtered out. | yes | keep | 2026-09-28: kept, unchanged. |
+| I-4 | Remaining rewards (sturdy tools, mining gloves, colored anvils, Ancient Smithy Hammers) have no era classification. | open | owner call: simplest is to accept them as part of the BOD deviation | 2026-09-28: kept in the reward pool, conditioned on no UOR-era-rule violation. Traced all five (`SturdyShovel`, `SturdyPickaxe`, the three `GlovesOfMining` variants, `ColoredAnvil`, `AncientSmithyHammer`): each is a plain `BaseHarvestTool`/`BaseAxe`/`BaseArmor`/`BaseTool`/`Item` using only the stock dual Old/AOS stat fields already used everywhere in armor and weapons. `AncientSmithyHammer` and the `GlovesOfMining` family apply a flat, era-independent `SkillMod` (+Blacksmith / +Mining) — this is the item's own original Nov 2001 BOD-launch mechanic, not an AoS-gated system (`AosSkillBonuses`/`SkillCheck.IsSkillAvailable` don't apply to a hardcoded `SkillMod` and wouldn't block it anyway, since Blacksmith and Mining are both always-available skills). No violation found. |
+| I-5 | Smith BOD gold table can pay up to 222,222 gold on a single deed (200,000 base table cell × 10/9 large-BOD random upper bound, for a GM six-piece exceptional high-material deed). Stock formula, unmodified. | yes (stock) | owner call: accept as-is or scale down | 2026-09-28: accept as-is, unchanged. No shard scaling applied. |
+| I-6 | Weaponsmith Smith-BOD issuance under UOR: an earlier shard commit (`16f6189ae`) dropped `Core.AOS &&` from `Weaponsmith.SupportsBulkOrders` (stock gates it to AoS+, same as `Tailor`; `Blacksmith.SupportsBulkOrders` has never been AoS-gated in stock). The deed content itself is identical either way — same `SmallSmithBOD`/`LargeSmithBOD` pool, same 50/50 armor/weapon draw, same reward tables — only which NPC can issue one differs. | yes (shard deviation) | owner call: match stock or keep the deviation | 2026-09-28: match stock (revert). `Weaponsmith.SupportsBulkOrders` goes back to requiring `Core.AOS`; only Blacksmith vendors issue Smith BODs under UOR. |
 
 ## J. UOR player skills and approved deviations
 
@@ -109,8 +112,8 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 
 - ~~Whether the stock UOR creation armor counts as "stock gear" for G-6.~~ Resolved 2026-09-28: moot — G-6's ruling keeps whatever stock grants rather than deleting/replacing it, so there's no longer a boundary to classify.
 - Whether the `Nontransferable` branch in `PlayerMobile.CheckContentForTrade` and in `Scissors.cs:31` is upstream or a fork addition. Resolved 2026-09-28 for the trade branch: `PlayerMobile.CheckContentForTrade`'s `Nontransferable` check is a fork addition (commit `16f6189ae`, confirmed via `git log -S "item.Nontransferable" -- PlayerMobile.cs`). `Scissors.CanScissor`'s check is genuine stock (present since commit `8ec166bcd`, 2020, predates the fork) and exists to block scissoring `QuestItem`s, not shard "starter-bound" items.
-- Whether Weaponsmith BOD issuance under UOR is stock.
-- The era of the I-4 rewards.
+- ~~Whether Weaponsmith BOD issuance under UOR is stock.~~ Resolved 2026-09-28: no, it's a shard deviation (stock gates it to `Core.AOS`, same as Tailor). See I-6.
+- ~~The era of the I-4 rewards.~~ Resolved 2026-09-28: not chased further — the owner ruled to keep them regardless of era, conditioned on no UOR-rule violation, and none was found. See I-4.
 - Knocked Out's 90-second duration exists only in code; the contract gives no number.
 
 ## Stale contract text to fix when touched
