@@ -23,11 +23,14 @@ public static class OutdoorHotZoneBoundaryService
         EventSink.Disconnected += OnDisconnected;
     }
 
+    public static readonly TimeSpan LoginObservationDelay = TimeSpan.FromSeconds(3);
+
     private static void OnConnected(Mobile mobile)
     {
+        // The client drops system messages that arrive before it has entered the world.
         if (mobile is PlayerMobile player)
         {
-            ScheduleObservation(player);
+            ScheduleObservation(player, LoginObservationDelay);
         }
     }
 
@@ -39,7 +42,9 @@ public static class OutdoorHotZoneBoundaryService
         }
     }
 
-    private static void ScheduleObservation(PlayerMobile player)
+    private static void ScheduleObservation(PlayerMobile player) => ScheduleObservation(player, TimeSpan.Zero);
+
+    private static void ScheduleObservation(PlayerMobile player, TimeSpan delay)
     {
         if (player.Deleted || player.NetState is null || player.AccessLevel != AccessLevel.Player ||
             !Pending.Add(player.Serial))
@@ -49,7 +54,7 @@ public static class OutdoorHotZoneBoundaryService
 
         // Location and map callbacks can run during one teleport or house-design relocation.
         // Observe after those callbacks settle so only the final position produces a message.
-        Server.Timer.DelayCall(TimeSpan.Zero, () => Observe(player));
+        Server.Timer.DelayCall(delay, () => Observe(player));
     }
 
     private static void Observe(PlayerMobile player)

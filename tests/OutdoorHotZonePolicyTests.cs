@@ -52,6 +52,17 @@ public class OutdoorHotZonePolicyTests
         Assert.Equal("BuccaneersDenIsland", OutdoorHotZonePolicy.FindRegionName("Felucca", 2706, 2163, false, regions));
         Assert.Equal("BuccaneersDenIsland", OutdoorHotZonePolicy.FindRegionName("Felucca", 2840, 2260, false, regions));
 
+        // K1: the east dock (planks x 2749-2762, y 2154-2179) and moongate, teleporter and cellar edges are Hot.
+        foreach (var (x, y) in new[] { (2749, 2154), (2762, 2154), (2762, 2179), (2755, 2166), (2711, 2234), (2727, 2133) })
+        {
+            Assert.Equal("BuccaneersDenIsland", OutdoorHotZonePolicy.FindRegionName("Felucca", x, y, false, regions));
+        }
+
+        Assert.Equal("FireIsland", OutdoorHotZonePolicy.FindRegionName("Felucca", 4721, 3813, false, regions));
+        Assert.Equal("FireIsland", OutdoorHotZonePolicy.FindRegionName("Felucca", 4723, 3813, false, regions));
+        Assert.Null(OutdoorHotZonePolicy.FindRegionName("Felucca", 2775, 2166, false, regions));
+        Assert.Null(OutdoorHotZonePolicy.FindRegionName("Felucca", 2618, 977, false, regions));
+
         Assert.Null(OutdoorHotZonePolicy.FindRegionName("Felucca", 4900, 3800, false, regions));
         Assert.Null(OutdoorHotZonePolicy.FindRegionName("Felucca", 2900, 2200, false, regions));
         Assert.Null(OutdoorHotZonePolicy.FindRegionName("Trammel", 2706, 2163, false, regions));
@@ -79,6 +90,12 @@ public class OutdoorHotZonePolicyTests
         Assert.Equal(2, directTravel.Length);
         Assert.Contains("left Fire Island", directTravel[0]);
         Assert.Contains("entered Buccaneer's Den island", directTravel[1]);
+    }
+
+    [Fact]
+    public void LoginMessageWaitsForTheClientToEnterTheWorld()
+    {
+        Assert.True(OutdoorHotZoneBoundaryService.LoginObservationDelay >= TimeSpan.FromSeconds(1));
     }
 
     [Theory]

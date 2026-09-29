@@ -181,6 +181,35 @@ The remaining failed groups do not call the new later-era skill checks. Resolve 
 fixture/source issues before claiming a clean full UOContent suite; the familiar concerns an
 AoS-era skill unavailable to UOR players.
 
+## Pre-AoS family source survey (2026-09-28)
+
+**Method and limits.** Five read-only, agent-assisted source surveys covered the 48 pre-AoS skills (IDs 0–48) in five families: combat/magic, bard/animal, stealth/crime, craft/harvest, and medical/utility. I spot-checked the key claims (fishing table, stone-mining gate, harvest consumption, bard difficulty). They are **not exhaustive**, the April 2000 dating of stock behavior rests on recollection rather than dated sources, and **no live client evidence** was gathered. The inventory rows above stay `Pending` until a client or automated check backs them. This section only records what the source pass found.
+
+**Result.** No high-confidence unapproved era leak was found in the 48 pre-AoS skills. Under UOR `Core.AOS/SE/ML/SA` are false, so property math, AoS specials and most later-era craft entries are inert (AoS attribute `GetValue` returns 0, `AOS.Damage` falls back to plain damage, T2A menus use hard-coded whitelists). The remaining items are stock RunUO pre-AoS behavior of uncertain April 2000 accuracy. They are logged in [Alpha-3-Stock-Default-Audit.md](Alpha-3-Stock-Default-Audit.md) rows 10–16.
+
+**Owner rulings (2026-09-28).**
+- Fishing catch table (nets, treasure maps, messages in a bottle, rare fish): keep stock (SK-008).
+- Pet stock rules (Nightmare anger, owner-count difficulty, skill-based stable capacity, control slots): keep stock (SK-009).
+- Small items (Forensic corpse looter reveal, potion kegs, Runebook craft, "cannot cast in town" field/summon block, modern-client bandage-target packet): keep all stock (SK-010).
+- Bard difficulty add-ons and the Animal Lore 110 limit: the owner asked for a recommendation. Provisionally keep stock (SK-011).
+
+**Still open after the survey (need client or fixture evidence).**
+- Live checks: Cooking T2A menu reachability (the survey found no Cooking branch, unconfirmed by grep), Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining reachability.
+- Bandage formula and interruption against April 2000.
+- Old-version poisoned-weapon load fixture and normal-client behavior (SK-005).
+- Passive Detect Hidden and Young rulings (Stock-Default-Audit #1, #2; SK-007).
+- Resolved later 2026-09-28: Felucca doubled harvest is now single yield before AoS (SK-012, `HarvestSystem.cs`); treasure-map monster drops stay stock and level-0 maps are unreachable (SK-013).
+- Repair enabled for Blacksmithy and Tinkering only; Arms Lore's Swamp Dragon barding branch (Stock-Default-Audit #16).
+
+| ID | Finding | Required resolution | State |
+| --- | --- | --- | --- |
+| SK-008 | Fishing mutate table (special nets, big fish, treasure maps, SOS bottles, rare fish, serpent) is reachable with no era gate. | Owner ruling. | Resolved 2026-09-28: keep stock |
+| SK-009 | Stock pet rules (Nightmare 95% anger, per-owner taming difficulty, skill-based stable capacity, control slots) apply. | Owner ruling. | Resolved 2026-09-28: keep stock |
+| SK-010 | Small stock items (Forensic looter reveal, potion kegs, Runebook craft, town field/summon block, bandage-target packet) are reachable. | Owner ruling. | Resolved 2026-09-28: keep stock |
+| SK-011 | Bard difficulty add-ons (+10 each for Magery, fire-breathing, poison-immune targets; +2 per poison level) and Animal Lore's 110 limit on wild non-tameables apply on top of the pre-LBR fudge. | Owner ruling on whether a pure skill roll is wanted. | Provisionally keep stock (recommendation sent); revisit after live play |
+| SK-012 | Felucca harvests doubled stackable yield (ore 2, logs 20) under every expansion. | Owner ruling. | Resolved 2026-09-28: single yield; the bonus is gated on `Core.AOS` in `HarvestSystem.cs`. Compile-checked, no yield test |
+| SK-013 | Treasure-map monster drops (1% on Felucca) and level-0 Haven maps. | Owner ruling. | Resolved 2026-09-28: keep drops stock; level-0 maps unreachable on a Felucca-only shard, no action |
+
 ## Review order
 
 1. Resolve later-era reachability and the Discordance/Enticement ruling.
