@@ -105,7 +105,7 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 | K-6 | Wards and Loot Protection do nothing in Hot Zones. | yes | keep | |
 | K-7 | A theft-protected bank square at Buccaneer's Den (stealing only). | yes | owner call | **Remove (2026-09-29).** Buccaneer's Den has no theft-protected bank square. The Den bank envelope (2719,2180 to 2743,2204) is deleted from `bankProtectionPolygons`, leaving 17 bank envelopes. Stealing at the Den bank works as elsewhere in the Den. The other 17 town banks stay protected. |
 | K-8 | Entry and exit messages. | yes | keep | |
-| K-9 | Fire Island reward premium (+25% gold, +20% resources; DD 4675-4680). The plan says "no new surface premium". | contract only | owner call: remove from the doc or schedule it | |
+| K-9 | Fire Island reward premium (+25% gold, +20% resources; DD 4675-4680). The plan says "no new surface premium". | contract only | owner call: remove from the doc or schedule it | **Remove (2026-09-29).** No Fire Island surface premium; design doc §20.5 now says 100% baseline gold and resources. |
 | K-10 | Warning before Recall/Gate into a Hot Zone, a login summary, a Britain board (DD 4824-4839). | contract only | simplify: entry messages are enough | |
 
 ## Uncertain, to confirm during the letter

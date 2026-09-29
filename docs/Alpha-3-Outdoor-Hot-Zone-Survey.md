@@ -116,13 +116,13 @@ Live driver: `tests/scenarios/hot-zones/hot_consequences_live.py`. Disposable ho
 | KO2 | Lethal blow outside Hot after an H5 carryover | same, active encounter | Knocked Out | Live | Pass. Knocked Out audit, attacker recorded |
 | KO3 | Attacking a Knocked Out player | `AllowHarmful` first line | Refused, hits stay at 1 | Live | Pass. No second Knocked Out (client hits read 1 to 2 through regeneration, not damage) |
 | KO4 | Criminal or murderer victim at lethal damage | `IsQualifyingVictim` | Dies, not Knocked Out | Live (found while running L2) | Observed. A Criminal victim in Hot died outright. Matches the source predicate `Alive && !Criminal && !Murderer` |
-| L1 | Blue takes an item from a Knocked Out blue's pack in Hot | `Stealing.KnockedOutLoot`, then `KnockedOutService.OnKnockedOutLootResolved` | Allowed (K-4 follow-up ruling 2026-09-29); the blue becomes criminal | Unit (`hot-zone-blue-looting`); live driver updated, rerun in K3 | Originally passed live as "denied" under the old rule (`authorized` +0). That rule is superseded. Live rerun pending |
+| L1 | Blue takes an item from a Knocked Out blue's pack in Hot | `Stealing.KnockedOutLoot`, then `KnockedOutService.OnKnockedOutLootResolved` | Allowed (K-4 follow-up ruling 2026-09-29); the blue becomes criminal | Unit (`hot-zone-blue-looting`); live rerun in K3 | Originally passed live as "denied" under the old rule. Superseded. K3 rerun (L1) passes: `authorized` +1, looter Criminal, `blue-flagged-criminal` +1 |
 | L2 | Criminal looter, no recorded rights, in Hot | same | Allowed | Live | Pass on rerun. `knocked-out-loot authorized` +1 and "You take the item from the Knocked Out player." Needs a plain item (see limits) and the pack opened before the Knocked Out |
 | L2a | Snooping a Knocked Out victim's pack | stock `Snooping` (`CanBeHarmful`) | Observation only | Live observation | Refused ("You cannot perform negative acts on your target."). See limits |
 | L3 | Knocked Out victim moved outside Hot: blue bystander, then criminal non-attacker, then criminal recorded attacker | same | Bystander and non-attacker denied; recorded criminal attacker allowed | Live | Pass. Denied, denied, authorized. Asserts the authorization decision only (see limits) |
-| X1 | Blue bystander executes a Knocked Out blue in Hot | `[Execute` then `KnockedOutService.Execute` | Refused: K-4 ruling (2026-09-29) limits Execute to a grey or red actor with damage-record rights. Victim stays alive, no murder count | Unit (`ExecutionRequiresRedActorWithDamageRecordRights`); live driver updated, rerun in K3 | Originally passed live under the old "anyone may Execute" rule (executed, murder audit +1). That rule is superseded. Live rerun of the refusal is pending |
-| X2 | Red executor with damage-record rights kills a Knocked Out blue; executor loots the corpse | `KnockedOutService.Execute` → `RecordExecutorAsAggressor` | Corpse aggressor list contains the executor (Knocked Out cleared the victim's lists), so lifting an item raises no "criminal act" warning | Live in K3: read the corpse's aggressor membership (probe or absence of the warning); no unit test (engine state) | Added 2026-09-29; source-reviewed only |
-| X3 | K-5: red executes a Knocked Out blue who attacked the red first; and red executes a blue the red attacked first | `KnockedOutService.Execute` → `ExecutionCountsAsMurder` | Blue attacked first: no murder count, audit says "victim aggressed first". Red attacked first: murder count plus 24h red | Unit (`ExecutionCountsAsMurderOnlyForReportableAttackers`); live in K3 (both orders, since it depends on engine aggressor bookkeeping) | Added 2026-09-29; source-reviewed only |
+| X1 | Blue bystander executes a Knocked Out blue in Hot | `[Execute` then `KnockedOutService.Execute` | Refused: K-4 ruling (2026-09-29) limits Execute to a grey or red actor with damage-record rights. Victim stays alive, no murder count | Unit (`ExecutionRequiresRedActorWithDamageRecordRights`); live rerun in K3 | Originally passed live under the old "anyone may Execute" rule. Superseded. K3 rerun (X1) passes: refused, victim alive, murder +0 |
+| X4 | Red executor with damage-record rights kills a Knocked Out blue; executor loots the corpse | `KnockedOutService.Execute` → `RecordExecutorAsAggressor` | Corpse aggressor list contains the executor (Knocked Out cleared the victim's lists), so lifting an item raises no "criminal act" warning | Live in K3: corpse aggressor membership read through `[TestOnlyCorpseAggressors` | Pass in K3 (X4): the corpse's aggressors held the executor's serial |
+| X5 | K-5: red executes a Knocked Out blue who attacked the red first; and red executes a blue the red attacked first | `KnockedOutService.Execute` → `ExecutionCountsAsMurder` | Blue attacked first: no murder count, audit says "victim aggressed first". Red attacked first: murder count plus 24h red | Unit (`ExecutionCountsAsMurderOnlyForReportableAttackers`); live in K3 (both orders, since it depends on engine aggressor bookkeeping) | Pass in K3 (X5a, X5b): see the K3 section |
 | X2 | Blue bystander executes outside Hot | same | Refused | Live | Pass. "not eligible for encounter-authorized execution" |
 | X3 | Criminal recorded attacker executes outside Hot | same | Allowed | Live | Pass. Executed, automatic murder count |
 | T1 | Thieves-guild thief attempts a steal from a blue in Hot | `CanAttemptTheft` (Hot bypass) | Reaches the stock skill roll | Live | Pass. Roll message ("You fail to steal the item.") |
@@ -141,8 +141,41 @@ Live driver: `tests/scenarios/hot-zones/hot_consequences_live.py`. Disposable ho
 - **L3 asserts the authorization decision only.** The only thing a looter can target is the pack container, and stock Stealing refuses containers, so the audit line `knocked-out-loot authorized` is the observable result.
 - **Crossing by placement.** H5 moves players with staff placement rather than walking; both call the same `PositionChanged` path.
 - **A Backpack Ward is single-use.** A caught theft outside Hot consumes and deletes the victim's physical Ward (`ActivateProtection`), so a victim reused across theft runs has none left and T3a cannot seed protection. The theft stage uses a victim that still carries a Ward. This was first mistaken for a death-handling loss; the server log shows the `theft ward-consumed` audit for that character, and Newbied starter items (Ward included) are kept through non-murderer death.
-- **K-4 ruled 2026-09-29:** Execute needs a grey or red actor with rights on the victim's damage record (the KO's recorded attacker, or a live `DamageEntries` entry, pets credited to their master), in Hot and outside it. Blue bystanders can no longer Execute. Looting a Knocked Out player's pack in a Hot Zone is open to anyone, and a blue who takes an item becomes criminal (audit `knocked-out-loot blue-flagged-criminal`); outside Hot it still needs a grey or red with recorded rights. X3 (criminal recorded attacker outside Hot) still applies. A live check that a red damage-record holder executes in Hot is owed in K3.
-- **Open owner rulings K-5 and K-7** were not resolved here. The behavior above is the current implementation.
+- **K-4 ruled 2026-09-29:** Execute needs a grey or red actor with rights on the victim's damage record (the KO's recorded attacker, or a live `DamageEntries` entry, pets credited to their master), in Hot and outside it. Blue bystanders can no longer Execute. Looting a Knocked Out player's pack in a Hot Zone is open to anyone, and a blue who takes an item becomes criminal (audit `knocked-out-loot blue-flagged-criminal`); outside Hot it still needs a grey or red with recorded rights. X3 (criminal recorded attacker outside Hot) still applies. K3 confirmed live that a red damage-record holder executes in Hot (XR).
+- **K-5 and K-7 ruled 2026-09-29:** K-5 matches stock (an Execute on a victim who attacked first is no murder count; X5 covers both orders), and the Buccaneer's Den bank polygon is removed from theft protection (17 bank envelopes remain).
+
+## K3 login, save, restart and release-scope pass (2026-09-29)
+
+Scope: the live reruns of the cases K-4 and K-5 changed, login and restart behavior of Knocked Out and the Hot notices, dungeon exclusion, and spawn and reward scope. Live driver `tests/scenarios/hot-zones/hot_k3_live.py` on the disposable host `phase-k3` (`hotZones` and `alpha3EnablementAcknowledged` on in the host copy only; `TestOnlyProbe` loaded for `[TestOnlyCorpseAggressors`). Fresh ordinary players plus one staff session. Phase 1 seeds state and saves once, then restarts the host; phase 2 asserts after the restart.
+
+| ID | Behavior | Verification | Result |
+| --- | --- | --- | --- |
+| KO | Lethal blow to a blue in Hot | Live | Pass. Knocked Out audited, hits 1 |
+| X1 | Blue bystander Executes a Knocked Out blue in Hot | Live | Pass. Refused, murder +0, victim alive |
+| L1 | Blue looter takes a plain item from a Knocked Out blue's pack in Hot (pack opened before the Knock Out) | Live | Pass. `authorized` +1, looter Criminal, `blue-flagged-criminal` +1 |
+| XR | Red with damage-record rights Executes in Hot | Live | Pass. Executed, murder +1 (runs a and b). The final full rerun reused a victim who had attacked first, so K-5 correctly gave murder +0 there |
+| XR2 | Executor afterwards | Live | Pass. Murderer |
+| X4 | Executor is in the corpse's aggressor list | Live probe | Pass. Corpse aggressors contain the executor |
+| X5a | Blue attacks the red first, red Executes | Live | Pass. Damage lands, attacker stays Innocent; audit "victim aggressed first, no murder count", murder +0 |
+| X5b | Grey attacks a blue first, grey Executes the never-aggressor | Live | Pass. Murder +1, Murderer |
+| D1 | Blue attacks blue inside Hythloth | Live | Pass. Refused, denial audited, no damage |
+| D2 | `[HotZoneStatus` inside Hythloth | Live | Pass. "outdoor Hot region: none" |
+| D3 | Hot boundary message inside the dungeon | Live | Pass. None sent |
+| P1 | Fire Island entry message | Live | Pass |
+| P2 | Relog inside Fire Island | Live | Pass. Entry message again after login |
+| P3, P5 | Players Knocked Out in Hot before the save | Live | Pass. Knocked Out audited |
+| P4 | Relog inside the 90 s window | Live (functional) | Pass. Still damage-immune with hits at 1. The login-time message itself is not visible to Navrey |
+| R1 | Knocked Out player, 15 s old at the restart | Live after restart | Pass. Still Knocked Out (hits 2 of 72) |
+| R2 | Fire Island entry message after the restart | Live after restart | Pass |
+| R3 | Player whose Knocked Out expired during the restart | Live after restart | Pass. Cleared on login, hits 37 of 72 |
+| SP | Ordinary outdoor spawn cadence and rewards unchanged; no Hot hook in spawn or loot code | Source inspection | Pass. No `OutdoorHotZone` references in ModernUO spawn, creature loot or Bank/gold code |
+| DZ | No dungeon Hot or Cool activation, no surface premium | Source inspection | Pass. Only `FireIsland` and `BuccaneersDenIsland` regions exist; the validator rejects `coolZones`; the K-9 Fire Island reward premium was removed from the design |
+
+**Findings.**
+- **Setup order matters for looting.** The thief's client can only target items it has seen, and stock Snooping is refused once the victim is Knocked Out, so the looter opens the victim's pack before the Knock Out.
+- **Tooling.** The driver's Navrey client processes inherit stdout, so a `| tee` pipeline never returns. The driver now ends with `os._exit` and its output is redirected to a file.
+- **Restart behavior.** The Knocked Out deadline is an account tag, so it survives the save. A player still inside the 90 s window at the restart stays Knocked Out on login; one whose deadline passed during the restart is cleared and woken (hits about half of max) on login. The in-memory expiry timers are not persisted, so login does this reconciliation.
+
 ## Release checks still required
 
 The September 28 source-data check reproduced both hashes above in the workspace `UOData` directory. No separate `ModernUO/Distribution/UOData` copy was present, so this confirms the contour inputs have not changed in the workspace; it does not establish which map/tiledata files a running distribution loaded.

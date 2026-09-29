@@ -3,6 +3,7 @@ using System.Reflection;
 using BritanniaRenaissance.Content;
 using Server;
 using Server.Commands;
+using Server.Items;
 using Server.Mobiles;
 
 namespace Alpha3TestOnlyTools;
@@ -24,6 +25,40 @@ public static class TestOnlyProbe
     {
         CommandSystem.Register("TestOnlyFlagOverride", AccessLevel.Administrator, OnFlagCommand);
         CommandSystem.Register("TestOnlyInventoryInspect", AccessLevel.Administrator, OnInspectCommand);
+        CommandSystem.Register("TestOnlyCorpseAggressors", AccessLevel.Administrator, OnCorpseAggressorsCommand);
+    }
+
+    // Reports the private Corpse._aggressors list (built at death from the owner's aggressor lists) for the newest
+    // corpse owned by the given player serial, as "CorpseAggressors owner=<serial> corpse=<serial> aggressors=<serial,...|none>".
+    private static void OnCorpseAggressorsCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyCorpseAggressors <owner-player-serial>");
+            return;
+        }
+
+        var field = typeof(Corpse).GetField("_aggressors", BindingFlags.NonPublic | BindingFlags.Instance);
+        Corpse? newest = null;
+        foreach (var item in World.Items.Values)
+        {
+            if (item is Corpse { Owner: { } owner } corpse && owner.Serial.Value == serial &&
+                (newest is null || corpse.Serial.Value > newest.Serial.Value))
+            {
+                newest = corpse;
+            }
+        }
+
+        if (newest is null || field?.GetValue(newest) is not List<Mobile> list)
+        {
+            e.Mobile.SendMessage($"CorpseAggressors owner={serial:X} corpse=none");
+            return;
+        }
+
+        var names = list.Count == 0 ? "none" : string.Join(",", list.Select(m => m.Serial.Value.ToString(CultureInfo.InvariantCulture)));
+        e.Mobile.SendMessage($"CorpseAggressors owner={serial:X} corpse={newest.Serial.Value:X} aggressors={names}");
     }
 
     private static void OnFlagCommand(CommandEventArgs e)
