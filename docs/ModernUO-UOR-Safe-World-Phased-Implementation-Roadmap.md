@@ -340,11 +340,6 @@ Add optional repeatable goals—harder natural spawns, themed collections, sea a
 
 8. Mastery redesign (deferred from Alpha 3 J-2/J-3, owner ruling 2026-09-30).
    - Replace the as-built Alpha 1 Mastery mechanic (95.0+ gain suppression, 4-hour UTC pending accrual capped at 0.6, 0.1 spent per valid use) with the design doc's cycle/difficulty-allowance/bank version (DD 837-928), but with a **24-hour** cycle instead of the doc's 18-hour one. Delete the 18-hour description once this ships.
-9. Rekindled camping gimmick (proposed 2026-09-29; owner deferred it from Alpha 3 to Beta 2; not yet ruled or built).
-   - The shard is being renamed Rekindled. Give every new character newbied, loose-in-pack Kindling and a Bedroll under the existing starter-item rules.
-   - Make Kindling always ignite: skip the Camping skill check and grant no Camping gain. Campfire and Bedroll secure-camp logout stay stock. Camping becomes decorative; consider removing it from character-creation skill choices and check profession templates.
-   - Rejected alternative: exclude Camping from the 700-point cap and start it at 50. It needs a server cap hook and a ClassicUO `SumTotalSkills` patch.
-   - Needs an owner ruling before any build (stock-first rule). Keep it out of Alpha 3.
 
 ### Exit criteria
 
@@ -384,6 +379,9 @@ Complete the shard’s social identity and prove launch readiness: roleplay supp
    - Produce an owner-facing go/no-go checklist with known limitations, rollback paths, data migration plan, monitoring thresholds and staged feature-flag activation order.
 5. Pet combat restrictions (deferred from Alpha 3 J-5, owner ruling 2026-09-30).
    - No combat pets in dungeons; pets can't attack blues even inside Hot Zones (DD 1209-1250). Large impact on tamers, so build and test in isolation before folding it into launch-candidate validation.
+6. Rekindled camping (proposed 2026-09-29; owner moved it out of Alpha 3, then targeted Beta 3; not yet ruled or built).
+   - The shard is being renamed Rekindled. Camping gets a small flavor identity: starter Kindling and Bedroll, skill-scaled campfire burn time, rekindle, embers and a party-visible signal fire, with optional layered flavor and a gated persistent-fire/camp-stall economy feature.
+   - The full proposal, owner-ruling map, rejected ideas and open decisions live in [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md). Every part needs an owner ruling before any build (stock-first rule).
 
 ### Exit criteria
 
