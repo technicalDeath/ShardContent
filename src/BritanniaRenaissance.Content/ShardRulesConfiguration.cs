@@ -117,9 +117,9 @@ public static class ShardRulesConfiguration
             errors.Add("theftProtection requires safeWorld so crime protections share one law policy.");
         }
 
-        if (rules.FeatureFlags.KnockedOut && (!rules.FeatureFlags.SafeWorld || !rules.FeatureFlags.AutomaticMurderAdjudication))
+        if (rules.FeatureFlags.KnockedOut && !rules.FeatureFlags.SafeWorld)
         {
-            errors.Add("knockedOut requires safeWorld and automaticMurderAdjudication.");
+            errors.Add("knockedOut requires safeWorld.");
         }
 
         ValidatePolygons(

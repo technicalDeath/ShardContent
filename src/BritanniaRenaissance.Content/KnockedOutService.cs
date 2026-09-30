@@ -333,7 +333,7 @@ public static class KnockedOutService
 
     public static bool Execute(PlayerMobile executor, PlayerMobile victim)
     {
-        if (MurderAdjudicationService.Enabled == false || victim == executor || !IsKnockedOut(victim))
+        if (victim == executor || !IsKnockedOut(victim))
         {
             return false;
         }
@@ -353,6 +353,13 @@ public static class KnockedOutService
         ClearActiveState(victim);
         MurderAdjudicationService.RegisterExecution(executor, victim, countsAsMurder);
         RecordExecutorAsAggressor(executor, victim);
+        // Under stock murder reporting the victim's report gump decides the count, so an Execute that
+        // counts must be reportable.
+        if (countsAsMurder && !MurderAdjudicationService.Enabled)
+        {
+            MarkExecutionReportable(executor, victim);
+        }
+
         victim.Hits = 0;
         victim.Kill();
         if (victim.Alive)
@@ -415,6 +422,17 @@ public static class KnockedOutService
         while (executor.Aggressed.Exists(info => info.Defender == victim))
         {
             executor.RemoveAggressed(victim);
+        }
+    }
+
+    private static void MarkExecutionReportable(Mobile executor, Mobile victim)
+    {
+        foreach (var info in victim.Aggressors)
+        {
+            if (info.Attacker == executor)
+            {
+                info.CanReportMurder = true;
+            }
         }
     }
 

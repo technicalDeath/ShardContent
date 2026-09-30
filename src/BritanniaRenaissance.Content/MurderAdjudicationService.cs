@@ -103,6 +103,11 @@ public static class MurderAdjudicationService
 
     public static void RegisterExecution(PlayerMobile executor, PlayerMobile victim, bool countsAsMurder = true)
     {
+        if (!Enabled)
+        {
+            return;
+        }
+
         PendingExecutions[victim.Serial] = new(executor, Core.Now.Add(PendingExecutionLifetime), countsAsMurder);
     }
 

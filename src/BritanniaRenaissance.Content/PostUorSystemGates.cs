@@ -1,5 +1,6 @@
 using Server.Engines.ConPVP;
 using Server.Engines.Virtues;
+using Server.Gumps;
 using Server.Items;
 
 namespace BritanniaRenaissance.Content;
@@ -16,5 +17,7 @@ public static class PostUorSystemGates
         VirtueGump.Enabled = false;
         BaseWeapon.PoisonCorrosionEnabled = false;
         DuelContext.DuelingEnabled = false;
+        // Owner ruling 2026-09-30: stock murder counts return, but resurrection never costs stats.
+        ResurrectGump.StatLossEnabled = false;
     }
 }
