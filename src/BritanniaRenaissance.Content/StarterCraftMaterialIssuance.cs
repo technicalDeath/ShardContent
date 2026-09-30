@@ -144,6 +144,33 @@ public static class StarterCraftMaterialIssuance
                 TopUp<RawFishSteak>(pack, 20);
             });
         }
+
+        MergeStackableGrants(pack);
+    }
+
+    // DropItem does not merge same-type stacks, so a Blacksmith with Mining or Tinkering ends up with several
+    // ingot piles; fold each same-type, same-hue, same-loot-type pile into the first.
+    private static void MergeStackableGrants(Container pack)
+    {
+        var stackable = pack.Items.Where(item => item.Stackable).ToList();
+        foreach (var (target, source) in SelectStackMerges(
+                     stackable.Select(item => (item.GetType(), item.Hue, (int)item.LootType)).ToList()))
+        {
+            stackable[target].Amount += stackable[source].Amount;
+            stackable[source].Delete();
+        }
+    }
+
+    public static IReadOnlyList<(int Target, int Source)> SelectStackMerges(IReadOnlyList<(Type Type, int Hue, int LootType)> stacks)
+    {
+        var merges = new List<(int, int)>();
+        foreach (var group in stacks.Select((stack, index) => (stack, index)).GroupBy(pair => pair.stack))
+        {
+            var first = group.First().index;
+            merges.AddRange(group.Skip(1).Select(pair => (first, pair.index)));
+        }
+
+        return merges;
     }
 
     private static void ClaimOnce(Account account, StarterCraftPackage craft, Action grant)

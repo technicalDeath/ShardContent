@@ -92,7 +92,7 @@ public class ShardRulesConfigurationTests
     }
 
     [Fact]
-    public void IncompleteStarterCraftMaterialsCannotBeEnabled()
+    public void StarterCraftMaterialsRequireExplicitAlphaThreeAcknowledgment()
     {
         var rules = Baseline();
         rules.FeatureFlags.Alpha3StarterCraftMaterials = true;
@@ -103,10 +103,7 @@ public class ShardRulesConfigurationTests
         );
 
         rules.Alpha3EnablementAcknowledged = true;
-        Assert.Contains(
-            ShardRulesConfiguration.Validate(rules),
-            error => error.Contains("Alpha 3+", StringComparison.Ordinal)
-        );
+        Assert.Empty(ShardRulesConfiguration.Validate(rules));
     }
 
     [Fact]

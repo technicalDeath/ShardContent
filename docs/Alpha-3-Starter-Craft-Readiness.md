@@ -34,3 +34,9 @@ Source and deployed `alpha3StarterCraftMaterials` are both `false`. `ShardRulesC
 - No fresh live crafting-consumption pass for the redesigned plain stock types specifically; the existing bound-subclass evidence is reused as direction-confirming (see Reused accepted evidence) rather than re-run.
 
 **Phase L review (2026-09-30):** `StarterCraftMaterialIssuance.cs` and the shared vendor-sale guard are unchanged since this evidence through current HEAD. H issues no weapons, so today's `BaseWeapon.PoisonCorrosionEnabled` toggle has no overlap. CLEAN, no reopening.
+
+**Enabled 2026-09-30.** The validator no longer rejects `alpha3StarterCraftMaterials` outright; it requires `alpha3EnablementAcknowledged`. The flag is on in source and deployed. Same-day changes and live results (disposable host `gcraft`, flag on disk):
+- Same-type, same-hue, same-loot-type stacks in the pack are now merged after the grants (`MergeStackableGrants`; unit test `SameTypeHueAndLootTypeStacksFoldIntoTheFirst`). Blacksmith and Blacksmith+Tinkering each hold one 450-ingot stack, Bowyer+Carpenter one 260-board stack. This closes the "ingot stacks don't merge" limit above.
+- Tool charge confirmed live through the inspect probe (`usesRemaining`): Tongs, Pickaxe, TinkerTools, SewingKit, Saw, FletcherTools, MortarPestle and ScribesPen all 50.
+- Every issued material and tool is Newbied and not Nontransferable; only the Ward and scissors are bound. Characters: Blacksmith profession, Tinkering+Tailoring, Fletching+Carpentry, Inscribe+Alchemy, Cooking+Mining, Blacksmith+Tinkering.
+- Still not reproduced live: the H-2 second-character-on-one-account case (the tooling creates one account per character) and a fresh crafting-consumption pass. Inscribe+Alchemy yields two `BagOfReagents`, one per category claim; left as is.

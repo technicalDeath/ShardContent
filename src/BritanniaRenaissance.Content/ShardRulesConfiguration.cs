@@ -101,8 +101,7 @@ public static class ShardRulesConfiguration
             errors.Add("skillBank requires alpha3EnablementAcknowledged.");
         }
 
-        if (rules.FeatureFlags.Alpha3StarterCraftMaterials ||
-            rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
+        if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {
             errors.Add("Alpha 3+ shard feature flags must remain disabled until their phase is approved.");

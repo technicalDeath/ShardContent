@@ -81,7 +81,7 @@
     "alpha3StarterScissors": true,
     "alpha3StarterBag": true,
     "alpha3StarterGold": true,
-    "alpha3StarterCraftMaterials": false,
+    "alpha3StarterCraftMaterials": true,
     "alpha3StarterCombatGear": true,
     "skillBank": true,
     "expeditions": false,

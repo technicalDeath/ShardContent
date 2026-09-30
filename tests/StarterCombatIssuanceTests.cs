@@ -44,4 +44,19 @@ public class StarterCombatIssuanceTests
 
         Assert.Empty(StarterCombatIssuance.SelectDuplicateGear(gear));
     }
+
+    [Fact]
+    public void SameTypeHueAndLootTypeStacksFoldIntoTheFirst()
+    {
+        var stacks = new (Type Type, int Hue, int LootType)[]
+        {
+            (typeof(IronIngot), 0, 2),
+            (typeof(Cloth), 0, 2),
+            (typeof(IronIngot), 0, 2),
+            (typeof(IronIngot), 0, 0),
+            (typeof(IronIngot), 0, 2)
+        };
+
+        Assert.Equal([(0, 2), (0, 4)], StarterCraftMaterialIssuance.SelectStackMerges(stacks));
+    }
 }

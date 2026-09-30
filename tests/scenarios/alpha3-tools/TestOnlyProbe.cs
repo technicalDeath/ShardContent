@@ -161,6 +161,7 @@ public static class TestOnlyProbe
     private static void Report(Mobile to, string where, Item item) =>
         to.SendMessage(
             $"{where}: {item.GetType().Name} serial={item.Serial} amount={item.Amount} " +
-            $"lootType={item.LootType} nontransferable={item.Nontransferable}"
+            $"lootType={item.LootType} nontransferable={item.Nontransferable}" +
+            (item is IUsesRemaining uses ? $" usesRemaining={uses.UsesRemaining}" : "")
         );
 }
