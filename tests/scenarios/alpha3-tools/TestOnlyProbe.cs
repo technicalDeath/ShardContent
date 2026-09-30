@@ -26,6 +26,43 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyFlagOverride", AccessLevel.Administrator, OnFlagCommand);
         CommandSystem.Register("TestOnlyInventoryInspect", AccessLevel.Administrator, OnInspectCommand);
         CommandSystem.Register("TestOnlyCorpseAggressors", AccessLevel.Administrator, OnCorpseAggressorsCommand);
+        CommandSystem.Register("TestOnlyCorpseInventory", AccessLevel.Administrator, OnCorpseInventoryCommand);
+    }
+
+    // Reports the contents of the newest corpse owned by the given player serial, the same way
+    // OnInspectCommand reports a live backpack - for confirming kept-item-death-routing left the
+    // corpse without Newbied/Blessed/Nontransferable items after a K4 Execute-triggered death.
+    private static void OnCorpseInventoryCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyCorpseInventory <owner-player-serial>");
+            return;
+        }
+
+        Corpse? newest = null;
+        foreach (var item in World.Items.Values)
+        {
+            if (item is Corpse { Owner: { } owner } corpse && owner.Serial.Value == serial &&
+                (newest is null || corpse.Serial.Value > newest.Serial.Value))
+            {
+                newest = corpse;
+            }
+        }
+
+        if (newest is null)
+        {
+            e.Mobile.SendMessage($"CorpseInventory owner={serial:X} corpse=none");
+            return;
+        }
+
+        e.Mobile.SendMessage($"CorpseInventory owner={serial:X} corpse={newest.Serial.Value:X}; items follow.");
+        foreach (var item in newest.Items)
+        {
+            Report(e.Mobile, "corpse", item);
+        }
     }
 
     // Reports the private Corpse._aggressors list (built at death from the owner's aggressor lists) for the newest

@@ -29,11 +29,16 @@ public class KnockedOutTests
     [Fact]
     public void ExecutionLeavesNoLawfulFightRecordSoARepeatKillStillCountsAsMurder()
     {
+        Server.Timer.Init(Core.TickCount);
         Map.Maps[0x7F] ??= new Map(0x7F, 0x7F, 0x7F, Map.SectorSize, Map.SectorSize, 1, "Internal", MapRules.Internal);
 
         var executor = new Mobile((Serial)0x7A000001);
         var victim = new Mobile((Serial)0x7A000002);
 
+        // Combat leaves a criminal record first; Execute then adds a second, non-criminal one.
+        victim.Aggressors.Add(AggressorInfo.Create(executor, victim, true));
+        executor.Aggressed.Add(AggressorInfo.Create(executor, victim, true));
+        victim.Aggressors.Clear();
         KnockedOutService.RecordExecutorAsAggressor(executor, victim);
 
         // The record the execution needs for the corpse's aggressor list makes the victim a non-innocent

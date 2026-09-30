@@ -404,10 +404,18 @@ public static class KnockedOutService
     // The corpse has already copied the aggressors. A leftover non-criminal Aggressed entry would make the victim read as
     // an enemy to the executor (stock Notoriety.CheckAggressed), so a later kill of the same victim would not be a
     // reportable murder.
+    // Stock Remove* drops one match, and combat already left a criminal entry ahead of the one added here, so loop.
     public static void ClearExecutionAggression(Mobile executor, Mobile victim)
     {
-        victim.RemoveAggressor(executor);
-        executor.RemoveAggressed(victim);
+        while (victim.Aggressors.Exists(info => info.Attacker == executor))
+        {
+            victim.RemoveAggressor(executor);
+        }
+
+        while (executor.Aggressed.Exists(info => info.Defender == victim))
+        {
+            executor.RemoveAggressed(victim);
+        }
     }
 
     // Knocking out clears the victim's aggressor lists; the corpse copies them at death, so restore the executor.
