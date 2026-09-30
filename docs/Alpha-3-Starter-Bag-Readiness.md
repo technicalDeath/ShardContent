@@ -47,3 +47,5 @@
   - Save/restart; loot type is stock-serialized.
   - Blessed items inside bags; same code path as newbied.
 - **Other features that re-verify under the new rule:** scissors (D), combat gear (G) and craft materials and tools (H) inherit the rules; their death cases re-verify when those letters are worked. Scissors was covered by E-NOBAG and E-MURDERER here.
+
+**Phase L review (2026-09-30):** re-checked against the intervening Knocked Out corpse-style looting change (K4, `KnockedOutService.cs`/`Snooping.cs`/`Stealing.cs`/`PlayerMobile.cs`) and the post-UOR system gates (virtues/poison corrosion/duel gump). K4's new loot check is a separate, read-only mechanism gating loot from a still-alive Knocked Out victim's pack; it does not call or modify `KeptItemDeathRouting`, `Item.OnInventoryDeath` or `GetInventoryMoveResultFor`, which this evidence's E-ISSUE/E-NOBAG/E-DEATH/E-MURDERER cases depend on. CLEAN, no reopening.

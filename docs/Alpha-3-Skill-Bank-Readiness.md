@@ -28,3 +28,5 @@ Focused isolated source verification passed on 2026-09-28:
 ## Readiness limits
 
 This closes Phase A only. The existing rehearsal's explicit limitations remain, including no live-client capture for every recovery message branch and no time-driven Mastery award-period test here. Mastery period behavior and the wider UOR skill audit remain assigned to Phase J. Alpha 3 flags remain off pending Phase L.
+
+**Phase L review (2026-09-30):** `SkillBankService.cs` and the ModernUO `SkillDisplaced`/anti-macro gain path it depends on are unchanged since this evidence (`e40d0d1`) through current HEAD. Only unrelated areas (Hot Zones, Knocked Out looting, dueling/virtue/poison-corrosion gates, harvest yield, vendor/weapon fixes) changed since. CLEAN, no reopening.

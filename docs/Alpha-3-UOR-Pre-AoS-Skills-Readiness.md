@@ -24,6 +24,7 @@ Five read-only, agent-assisted source surveys covered IDs 0–48 by family (comb
 
 - Code change: `ModernUO/Projects/UOContent/Engines/Harvest/Core/HarvestSystem.cs` applies the Felucca yield bonus only when `Core.AOS`.
 - Isolated ModernUO build succeeded and the focused UOContent test `UorLaterEraItemGate` passed 7/7 (run `20260929T030851323Z-d5dd57`). No harvest-yield test was written.
+- **2026-09-30 (Phase L pass):** the "owner decisions outside this pass" noted below have since been ruled and, where applicable, built. See `Alpha-3-Contract-Review.md` J-1 through J-8 and `Alpha-3-Stock-Default-Audit.md` rows 2-9 for the rulings themselves. Implemented: virtue gameplay cut (`VirtueGump.Enabled`), poison-weapon corrosion gated off for Alpha 3 (`BaseWeapon.PoisonCorrosionEnabled`), the duel gump blocked (`DuelContext.DuelingEnabled`), and the insurance era-gate validator gap fixed (`EraGateConfiguration.ValidatePostBootFeatureFlags`) — all via `PostUorSystemGates.Configure()`. Deferred to Beta with the roadmap updated: Mastery redesign (Beta 2, 24-hour cycle), the sub-95 accelerated gain curve (Beta 1), pet combat restrictions (Beta 3), the "Forged in Danger" title (Beta). Kept as-is: the combat hybrid (J-1), Passive Detect Hidden, mount stamina, the one-house-per-account cap. Regression test `PostUorSystemGatesTests.ConfigureDisablesEveryGatedStockSystem`; full Shard suite passed 239/239, run `20260930T024402670Z-5e37cd`.
 
 ## Gate and validator
 
@@ -36,4 +37,4 @@ No feature-flag or `ShardRulesConfiguration` change. The harvest change is an er
 - The single-yield harvest change is compile-checked only.
 - Old-version poisoned-weapon load fixture and normal-client poison behavior (SK-005) are not tested.
 - Open live checks for later: Cooking menu reachability, Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining, bandage formula.
-- Passive Detect Hidden and Young rulings (Stock-Default-Audit #1, #2; SK-007) and rows 3–9 remain owner decisions outside this pass.
+- Young ruling (Stock-Default-Audit #1) closed 2026-09-28 (off shard-wide). Rows 2–9 closed 2026-09-30; see New verification above. None of this pass's own source-survey findings changed as a result — the closures only affect virtues, poison corrosion, duel gump, insurance validation, Detect Hidden, mount stamina and housing, none of which the five family surveys covered.

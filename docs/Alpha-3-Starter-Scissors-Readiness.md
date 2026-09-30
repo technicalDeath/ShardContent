@@ -28,3 +28,5 @@ The death test sets `PlayerMobile.GameTime` to the boundary values directly rath
 ## Readiness limits
 
 No Alpha 3 source or deployed runtime flag was enabled. The pair stays economically bound after death protection expires by design. The time boundary was tested through the real death pipeline using synthetic game-time values; this was not a four-hour wall-clock play session.
+
+**Phase L review (2026-09-30):** re-checked against the intervening Knocked Out corpse-style looting change (K4, `KnockedOutService.cs`) and the post-UOR system gates (virtues/poison corrosion/duel gump). Neither touches this feature's issuance, transfer or death-routing paths (`StarterScissors.cs` last changed in the same commit this evidence documents). CLEAN, no reopening.

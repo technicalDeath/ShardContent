@@ -33,3 +33,5 @@ Source and deployed `alpha3StarterCombatGear` are both `false` (confirmed via `G
 - G-5's live cases didn't reproduce "Archery selected as a genuinely secondary skill" (both orderings tried resolved Archery as the strongest selected combat skill); the fix is unconditional by source inspection regardless.
 - No live murderer-death case for G's own item instances (reused Phase E's identical-code-path evidence instead); no live vendor-sale packet click-through (relied on UOContent.Tests engine-level proof instead). Reasons and reused-evidence citations are in the audit's Limits section.
 - `StarterCombatIssuance.Issue()`'s full integration behavior has no shard-level xunit coverage, matching the prior implementation (no live `PlayerMobile`/`World`/`Account` environment in `BritanniaRenaissance.Content.Tests`).
+
+**Phase L review (2026-09-30):** `StarterCombatIssuance.cs` and the `GenericSell.cs`/`PlayerVendor.cs` vendor-sale guard are unchanged since this evidence through current HEAD. Today's new `BaseWeapon.PoisonCorrosionEnabled` toggle lands in `BaseWeapon.cs`, but G's issued weapons (Katana/Club/Kryss/Bow) carry no poison — no overlap. CLEAN, no reopening.

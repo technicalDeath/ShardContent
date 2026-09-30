@@ -37,3 +37,5 @@ Smith BODs have no dedicated `ShardRulesConfiguration` flag; they ride the stock
 - The gold-only reward tiers (I-2) are a known, named gap the owner wants revisited in **Beta 3** with a real reward addition — not tracked as an Alpha 3 blocker.
 - The 222,222-gold maximum payout (I-5) has not been tested against the shard's live economy in practice (e.g., how quickly a GM Blacksmith could reach it); accepted as a rare, GM-tier ceiling consistent with BODs already being an approved deviation, not economy-simulated.
 - No fresh live client pass for Weaponsmith's reverted (now-negative) UOR gate; covered by unit test only, per the reasoning in New verification above.
+
+**Phase L review (2026-09-30):** `Rewards.cs`, `BaseVendor.cs` and the smith/tailor/weaver vendor files are unchanged since this evidence through current HEAD. No BOD reward item carries a poison property, so today's `BaseWeapon.PoisonCorrosionEnabled` toggle has no overlap. CLEAN, no reopening.

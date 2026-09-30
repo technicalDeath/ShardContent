@@ -32,3 +32,5 @@ Source and deployed `alpha3StarterCraftMaterials` are both `false`. `ShardRulesC
 - Tool charge (fixed 50 uses, the owner's deliberate deviation from stock's own random 25-75) wasn't independently confirmed live - `TestOnlyInventoryInspect` doesn't report `UsesRemaining`. The mechanism is simple and build-verified (same `IUsesRemaining` interface `Pickaxe` itself already uses for its own stock-hardcoded 50).
 - H-2's fix (a second same-profession character on one account keeps its own ordinary stock grant rather than losing it) was verified by source inspection only, not a live second-character-same-account repro - the current test tooling creates a fresh account per character name.
 - No fresh live crafting-consumption pass for the redesigned plain stock types specifically; the existing bound-subclass evidence is reused as direction-confirming (see Reused accepted evidence) rather than re-run.
+
+**Phase L review (2026-09-30):** `StarterCraftMaterialIssuance.cs` and the shared vendor-sale guard are unchanged since this evidence through current HEAD. H issues no weapons, so today's `BaseWeapon.PoisonCorrosionEnabled` toggle has no overlap. CLEAN, no reopening.
