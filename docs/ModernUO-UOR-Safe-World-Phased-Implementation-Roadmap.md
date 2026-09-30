@@ -261,7 +261,7 @@ Beta was reorganized on 2026-09-30 by how much input each item needs from the ow
 
 | Phase | Theme | Owner input |
 | --- | --- | --- |
-| Beta 1 | Cosmetic Elf, pet combat restrictions, sub-95 gain curve, live 120-stat creation test, era-correct character templates | Approve the pet policy, the gain-curve numbers and the template list |
+| Beta 1 | Cosmetic Elf, pet combat restrictions, sub-95 gain curve, era-correct character templates, live 120-stat creation test | Approve the pet policy, the gain-curve numbers and the template list |
 | Beta 2a | Ward rulings, 24-hour Mastery redesign, permanent Hythloth | Rulings, Mastery parameters, Hythloth boundary rules |
 | Beta 2b | House zoning, rotating Hot Dungeon, Rekindled camping | District decisions, rotation pool and numbers, five camping decisions |
 | Beta 2c | Expeditions, cargo, Pilgrimage, road speed, Nemesis, Salvage, Wanted, small leftovers | Contract review, whitelist approval |
@@ -292,22 +292,22 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
 3. Accelerated skill-gain curve below 95 skill (deferred from Alpha 3 J-4). The owner approves the classes and factors.
    - Survey current gain behavior per skill, propose per-skill difficulty classes and factors (DD 770-835), then build. Alpha 3 keeps stock gain factors (1.0).
    - Check the result against Skill Bank restoration and Mastery, which share the gain path.
-4. Live-client test of the 120-point starting stats (Alpha 3 Phase B). No owner input.
-   - Alpha 3 verified the 120 total / 30 minimum allocation through Navrey's `createcharacter` command, which sends the creation packet directly. Repeat it in the actual ClassicUO client, driven through its character-creation screens.
-   - Cover Advanced creation and every offered template: confirm the stat sliders allow the intended allocations, the client cannot submit anything the server rejects, and each new character ends with exactly 120 points, at least 30 in each stat, and the 225 cap untouched.
-   - Record each template and any allocation the client blocks or the server silently adjusts.
-5. Show only era-appropriate character templates in ClassicUO. The owner approves the template list.
+4. Show only era-appropriate character templates in ClassicUO. The owner approves the template list.
    - The client lists every profession in its `prof.txt` for the client version, including later-era ones (for example Paladin, Necromancer, Samurai, Ninja); the server only defines Warrior, Mage and Blacksmith for UOR. Remove templates that do not make sense for the UOR era from the creation screen in the distributed ClassicUO fork, so players cannot pick one the shard cannot honor.
    - Keep Advanced creation and the approved templates working, including the cosmetic Elf path from item 1.
    - Verify in the real client that the removed templates are gone, the remaining ones create correctly, and a forged creation packet for a removed template is rejected or falls back safely on the server.
+5. Live-client test of the 120-point starting stats (Alpha 3 Phase B). No owner input.
+   - Alpha 3 verified the 120 total / 30 minimum allocation through Navrey's `createcharacter` command, which sends the creation packet directly. Repeat it in the actual ClassicUO client, driven through its character-creation screens, after the template list is trimmed.
+   - Cover Advanced creation and every offered template: confirm the stat sliders allow the intended allocations, the client cannot submit anything the server rejects, and each new character ends with exactly 120 points, at least 30 in each stat, and the 225 cap untouched.
+   - Record each template and any allocation the client blocks or the server silently adjusts.
 
 ### Exit criteria
 
 - Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests.
 - The pet policy is approved and covered by unit tests and live tamer cases, including every transport path.
 - The gain curve is approved, covered by automated tests and does not break Skill Bank or Mastery.
-- Live ClassicUO creation gives every offered template and Advanced creation exactly 120 starting stat points with at least 30 in each stat.
 - The ClassicUO creation screen lists only approved era-appropriate templates, and the server handles a removed template safely.
+- Live ClassicUO creation gives every remaining template and Advanced creation exactly 120 starting stat points with at least 30 in each stat.
 
 ### Explicitly deferred
 
