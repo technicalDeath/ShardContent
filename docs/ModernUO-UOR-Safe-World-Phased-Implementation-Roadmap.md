@@ -298,7 +298,7 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
    - Verify in the real client that the removed templates are gone, the remaining ones create correctly, and a forged creation packet for a removed template is rejected or falls back safely on the server.
 5. Live-client test of the 120-point starting stats (Alpha 3 Phase B). No owner input.
    - Alpha 3 verified the 120 total / 30 minimum allocation through Navrey's `createcharacter` command, which sends the creation packet directly. Repeat it in the actual ClassicUO client, driven through its character-creation screens, after the template list is trimmed.
-   - Cover Advanced creation and every offered template: confirm the stat sliders allow the intended allocations, the client cannot submit anything the server rejects, and each new character ends with exactly 120 points, at least 30 in each stat, and the 225 cap untouched.
+   - Cover Advanced creation and every template left after item 4: confirm the stat sliders allow the intended allocations, the client cannot submit anything the server rejects, and each new character ends with exactly 120 points, at least 30 in each stat, and the 225 cap untouched.
    - Record each template and any allocation the client blocks or the server silently adjusts.
 
 ### Exit criteria
