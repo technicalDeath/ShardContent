@@ -42,7 +42,7 @@ public static class KnockedOutService
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
         Mobile.ActionCheckHandler = CanPerformAction;
-        Stealing.KnockedOutLoot = CanLootKnockedOut;
+        RegisterLootHooks();
         EventSink.Connected += OnConnected;
     }
 
@@ -90,7 +90,7 @@ public static class KnockedOutService
         Mobile.HealHandler = BlockHeal;
         Mobile.CurePoisonHandler = BlockCurePoison;
         Mobile.ActionCheckHandler = CanPerformAction;
-        Stealing.KnockedOutLoot = CanLootKnockedOut;
+        RegisterLootHooks();
     }
 
     public static void OnPlayerLogin(PlayerMobile player)
@@ -215,27 +215,70 @@ public static class KnockedOutService
     public static bool IsQualifyingVictim(PlayerMobile player) =>
         player.Alive && !player.Criminal && !player.Murderer;
 
-    public static bool CanLootKnockedOut(Mobile thief, Item item, Mobile victim)
+    private static void RegisterLootHooks()
     {
-        if (thief is not PlayerMobile playerThief || victim is not PlayerMobile playerVictim ||
-            playerThief == playerVictim ||
-            item.RootParent != playerVictim || item.Nontransferable || !IsKnockedOut(playerVictim))
+        Snooping.KnockedOutOpen = CanOpenKnockedOutPack;
+        PlayerMobile.NonlocalLiftHandler = CanLiftFromKnockedOut;
+        PlayerMobile.ItemLiftedHandler = OnItemLiftedFromKnockedOut;
+    }
+
+    /// <summary>
+    /// An eligible looter opens a Knocked Out player's backpack and lifts items like a corpse: no
+    /// Snooping or Stealing roll. Equipped items stay on the player.
+    /// </summary>
+    public static bool CanOpenKnockedOutPack(Mobile looter, Container pack, Mobile victim) =>
+        victim is PlayerMobile playerVictim && playerVictim.Backpack is { } root &&
+        (pack == root || pack.IsChildOf(root)) && IsEligibleLooter(looter, playerVictim);
+
+    public static bool CanLiftFromKnockedOut(Mobile looter, PlayerMobile victim, Item item) =>
+        victim.Backpack is { } pack && item != pack && item.IsChildOf(pack) &&
+        !IsProtectedFromLooting(item) && IsEligibleLooter(looter, victim);
+
+    private static void OnItemLiftedFromKnockedOut(Mobile looter, PlayerMobile victim, Item item)
+    {
+        if (!IsKnockedOut(victim))
+        {
+            return;
+        }
+
+        ShardAuditLog.Record("knocked-out-loot", "authorized", looter, victim);
+        OnKnockedOutLootResolved(looter, victim, item);
+    }
+
+    private static bool IsEligibleLooter(Mobile looter, PlayerMobile victim)
+    {
+        if (looter is not PlayerMobile playerLooter || !playerLooter.Alive || playerLooter == victim ||
+            !IsKnockedOut(victim))
         {
             return false;
         }
 
-        var isRed = playerThief.Criminal || playerThief.Murderer;
-        var hotZone = OutdoorHotZonePolicy.IsHot(playerVictim);
-        var recordedAttacker = GetRecordedAttackerSerial(playerVictim);
-        var hasRights = recordedAttacker == playerThief.Serial;
-        var decision = ClassifyLoot(Enabled, hotZone, isRed, hasRights);
+        var hasRights = GetRecordedAttackerSerial(victim) == playerLooter.Serial;
+        return ClassifyLoot(
+            Enabled,
+            OutdoorHotZonePolicy.IsHot(victim),
+            playerLooter.Criminal || playerLooter.Murderer,
+            hasRights
+        ).Qualifies;
+    }
 
-        if (decision.Qualifies)
+    // A corpse never holds these, so a Knocked Out pack does not give them up either.
+    private static bool IsProtectedFromLooting(Item item)
+    {
+        if (item.Nontransferable || item.LootType is LootType.Newbied or LootType.Blessed)
         {
-            ShardAuditLog.Record("knocked-out-loot", "authorized", playerThief, playerVictim);
+            return true;
         }
 
-        return decision.Qualifies;
+        foreach (var child in item.Items)
+        {
+            if (IsProtectedFromLooting(child))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static KnockedOutLootDecision ClassifyLoot(
@@ -247,8 +290,8 @@ public static class KnockedOutService
         new(false, "missing-target-rights");
 
     /// <summary>
-    /// A blue who takes an item from a Knocked Out player in a Hot Zone becomes criminal. Stock
-    /// Stealing only flags a thief who is caught, and the Knocked Out bypass never rolls detection.
+    /// A blue who takes an item from a Knocked Out player in a Hot Zone becomes criminal. Looting
+    /// a Knocked Out pack never rolls detection, so nothing else would flag the looter.
     /// </summary>
     public static void OnKnockedOutLootResolved(Mobile thief, Mobile victim, Item? stolen)
     {
@@ -320,6 +363,8 @@ public static class KnockedOutService
             return false;
         }
 
+        ClearExecutionAggression(executor, victim);
+
         ShardAuditLog.Record(
             "knocked-out",
             "executed",
@@ -356,8 +401,17 @@ public static class KnockedOutService
         reportableAttackers is null ||
         reportableAttackers.Split(',').Contains(executorSerial.ToString(CultureInfo.InvariantCulture));
 
+    // The corpse has already copied the aggressors. A leftover non-criminal Aggressed entry would make the victim read as
+    // an enemy to the executor (stock Notoriety.CheckAggressed), so a later kill of the same victim would not be a
+    // reportable murder.
+    public static void ClearExecutionAggression(Mobile executor, Mobile victim)
+    {
+        victim.RemoveAggressor(executor);
+        executor.RemoveAggressed(victim);
+    }
+
     // Knocking out clears the victim's aggressor lists; the corpse copies them at death, so restore the executor.
-    private static void RecordExecutorAsAggressor(PlayerMobile executor, PlayerMobile victim)
+    public static void RecordExecutorAsAggressor(Mobile executor, Mobile victim)
     {
         foreach (var info in victim.Aggressors)
         {

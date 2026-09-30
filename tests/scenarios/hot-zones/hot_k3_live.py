@@ -39,7 +39,6 @@ FIRE_ISLAND = (4600, 3500, 0)
 adm = None
 C: dict = {}
 results: list = []
-last_steal: dict = {}
 SERVER_LOG = ""
 
 
@@ -168,24 +167,12 @@ def add_to_pack(victim: str, type_name: str) -> None:
     time.sleep(1.5)
 
 
-def open_pack(thief: str, victim: str) -> None:
-    """The thief's client only targets items it has seen, and stock Snooping is refused once the victim is Knocked Out, so open the pack before the Knock Out."""
-    pack = C[victim].state.get("backpackID")
-    C[thief].commands.send(f"use {pack}")
+def loot(thief: str, victim: str, item: str) -> None:
+    """Open the victim's pack and drag one item into the thief's own pack: corpse-style looting, no skill."""
+    C[thief].commands.send(f"use {C[victim].state.get('backpackID')}")
     time.sleep(2)
-
-
-def steal(thief: str, item: str, victim: str = "Vale") -> list:
-    wait = 31 - (time.time() - last_steal.get(thief, 0))
-    if wait > 0:
-        time.sleep(wait)
-    m = mark(thief)
-    C[thief].commands.send("useskill stealing")
-    time.sleep(1.5)
-    C[thief].commands.send(f"target {item}")
-    time.sleep(3)
-    last_steal[thief] = time.time()
-    return since(thief, m)
+    C[thief].commands.send(f"drop {item} {C[thief].state.get('backpackID')}")
+    time.sleep(2.5)
 
 
 def execute(name: str, victim: str) -> tuple:
@@ -217,13 +204,17 @@ def corpse_aggressors(victim: str) -> tuple:
     return ([] if hit[2] == "none" else [int(s) for s in hit[2].split(",")]), hit[1]
 
 
-def plain_item_serials(victim: str) -> list:
-    """Serials of the victim's plain backpack items (Stealing needs an item target, not the mobile or the pack)."""
+def pack_items(name: str) -> list:
+    """(type, serial, lootType) for each backpack item of the player, via the test-only inspect command."""
     m = mark("admin")
-    adm.say(f"[TestOnlyInventoryInspect {serial(victim)}")
+    adm.say(f"[TestOnlyInventoryInspect {serial(name)}")
     time.sleep(2.5)
     text = " ".join(since("admin", m))
-    return [hit[1] for hit in re.findall(r"backpack: (\w+) serial=(0x[0-9A-Fa-f]+) amount=\d+ lootType=Regular", text) if hit[0] in PLAIN_TYPES]
+    return re.findall(r"backpack: (\w+) serial=(0x[0-9A-Fa-f]+) amount=\d+ lootType=(\w+)", text)
+
+
+def plain_item_serials(victim: str) -> list:
+    return [serial_ for type_, serial_, loot_type in pack_items(victim) if type_ in PLAIN_TYPES and loot_type == "Regular"]
 
 
 def stage(label: str, body) -> None:
@@ -255,9 +246,8 @@ def setup() -> None:
         assert C[name].state.get("connected", True), f"{name} not connected"
         assert notoriety(name) == "Innocent", f"{name} is {notoriety(name)}"
     for name in ("Elin", "Tavi"):
-        sset(name, "[SetSkill Snooping 100")
-        sset(name, "[SetSkill Stealing 100")
-        sset(name, "[set NpcGuild ThievesGuild")
+        sset(name, "[SetSkill Snooping 0")
+        sset(name, "[SetSkill Stealing 0")
         unequip_weapon(name)
     sset("Tavi", "[set Criminal true")
     m = mark("admin")
@@ -278,7 +268,6 @@ def hot_group() -> None:
     time.sleep(3)
     for type_name in PLAIN_TYPES * 3:
         add_to_pack("Vale", type_name)
-    open_pack("Elin", "Vale")
     ko =knock_out("Tavi", "Vale")
     t0 = time.time()
     record("KO Tavi knocks out Vale in Hot", "Vale Knocked Out", f"KO audit {ko}, hits {hits('Vale')}", ko)
@@ -291,16 +280,39 @@ def hot_group() -> None:
            result == "refused" and not ghost("Vale") and gained == 0)
 
     before = audit("knocked-out-loot", "authorized", "Elin", "Vale")
-    loot = plain_item_serials("Vale")
-    for item in loot[:3]:
-        steal("Elin", item)
-        if audit("knocked-out-loot", "blue-flagged-criminal", "Elin", "Vale"):
-            break
+    taken = next(serial_ for type_, serial_, loot_type in pack_items("Vale") if type_ == "Torch" and loot_type == "Regular")
+    loot("Elin", "Vale", taken)
     gained = audit("knocked-out-loot", "authorized", "Elin", "Vale") - before
     flagged = audit("knocked-out-loot", "blue-flagged-criminal", "Elin", "Vale")
-    record("L1 blue looter of a Knocked Out blue in Hot", "authorized, looter becomes criminal",
-           f"authorized+{gained}; Elin {notoriety('Elin')}; flagged {flagged}; KO age {time.time() - t0:.0f}s",
-           gained >= 1 and flagged >= 1 and notoriety("Elin") == "Criminal")
+    moved = taken in [item[1] for item in pack_items("Elin")] and taken not in plain_item_serials("Vale")
+    record("L1 blue looter opens a Knocked Out blue's pack (no Snooping) and takes an item in Hot",
+           "authorized, item moved to Elin, Elin becomes criminal",
+           f"authorized+{gained}; moved {moved}; Elin {notoriety('Elin')}; flagged {flagged}; KO age {time.time() - t0:.0f}s",
+           gained >= 1 and moved and flagged >= 1 and notoriety("Elin") == "Criminal")
+
+    newbied = [item[1] for item in pack_items("Vale") if item[2] == "Newbied"]
+    before = audit("knocked-out-loot", "authorized", "Elin", "Vale")
+    if newbied:
+        loot("Elin", "Vale", newbied[0])
+    still = bool(newbied) and newbied[0] in [item[1] for item in pack_items("Vale")]
+    gained = audit("knocked-out-loot", "authorized", "Elin", "Vale") - before
+    record("L5 a Newbied starter item cannot be lifted from a Knocked Out pack", "item stays, no authorized audit",
+           f"newbied items {len(newbied)}; stayed {still}; authorized+{gained}", still and gained == 0)
+
+    before = audit("knocked-out-loot", "authorized", "Elin", "Vale")
+    second = next(serial_ for type_, serial_, loot_type in pack_items("Vale") if type_ == "Lantern" and loot_type == "Regular")
+    place("Vale", 2775, 2166, 0)
+    place("Elin", 2776, 2166, 0)
+    time.sleep(3)
+    loot("Elin", "Vale", second)
+    gained = audit("knocked-out-loot", "authorized", "Elin", "Vale") - before
+    kept = second in plain_item_serials("Vale")
+    record("L6 criminal without recorded rights cannot lift outside Hot", "item stays, no authorized audit",
+           f"stayed {kept}; authorized+{gained}", kept and gained == 0)
+    place("Vale", 2756, 2166, -2)
+    place("Elin", 2757, 2166, -2)
+    place("Tavi", 2755, 2166, -2)
+    time.sleep(3)
 
     age = time.time() - t0
     murders = audit("murder", "automatic-count", "Tavi", "Vale")

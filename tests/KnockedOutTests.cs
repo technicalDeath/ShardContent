@@ -1,3 +1,5 @@
+using Server;
+using Server.Misc;
 using Xunit;
 
 namespace BritanniaRenaissance.Content.Tests;
@@ -22,6 +24,27 @@ public class KnockedOutTests
 
         Assert.Equal(qualifies, decision.Qualifies);
         Assert.Equal(reason, decision.Reason);
+    }
+
+    [Fact]
+    public void ExecutionLeavesNoLawfulFightRecordSoARepeatKillStillCountsAsMurder()
+    {
+        Map.Maps[0x7F] ??= new Map(0x7F, 0x7F, 0x7F, Map.SectorSize, Map.SectorSize, 1, "Internal", MapRules.Internal);
+
+        var executor = new Mobile((Serial)0x7A000001);
+        var victim = new Mobile((Serial)0x7A000002);
+
+        KnockedOutService.RecordExecutorAsAggressor(executor, victim);
+
+        // The record the execution needs for the corpse's aggressor list makes the victim a non-innocent
+        // target for the executor (a lawful fight), which would make a later attack not a reportable murder.
+        Assert.True(NotorietyHandlers.CheckAggressed(executor.Aggressed, victim));
+
+        KnockedOutService.ClearExecutionAggression(executor, victim);
+
+        Assert.False(NotorietyHandlers.CheckAggressed(executor.Aggressed, victim));
+        Assert.Empty(executor.Aggressed);
+        Assert.Empty(victim.Aggressors);
     }
 
     [Fact]
