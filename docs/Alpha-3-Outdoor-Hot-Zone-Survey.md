@@ -94,7 +94,7 @@ Disposable host (`hotZones` on with acknowledgment, scratch only; the source fla
 
 **Source-only cases.** B7 (Recall and Gate Travel) and B8 (a ship crossing the margin) were not driven live. Recall, Gate Travel and boats all end in `Mobile.SetLocation` or the `Location` setter, which reach `OnLocationChange` and therefore `PlayerMobile.PositionChanged`, the same path the placement and teleporter cases used. B10 (death and resurrection placement) belongs to K2 and K3.
 
-Not covered by these checks: house multis (Beta 2 zoning), ship decks (dynamic, see B8), and any client asset changes after the hashes above.
+Not covered by these checks: house multis (Beta 2b zoning), ship decks (dynamic, see B8), and any client asset changes after the hashes above.
 
 ## K2 combat and consequence pass (2026-09-29)
 

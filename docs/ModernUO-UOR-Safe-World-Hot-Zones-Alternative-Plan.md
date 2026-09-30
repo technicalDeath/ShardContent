@@ -832,7 +832,7 @@ Anatomy and Healing all at 95 should not have to complete four sequential calend
 
 #### Character Mastery cycles, skill allowances and limited banking
 
-**Status (owner ruling, 2026-09-30):** deferred to Beta 2, replacing the as-built Alpha 1 mechanic
+**Status (owner ruling, 2026-09-30):** deferred to Beta 2a, replacing the as-built Alpha 1 mechanic
 (contract review J-2/J-3). Build with a **24-hour** cycle, not the 18-hour one described below.
 Alpha 3 keeps the as-built mechanic unchanged; see `Alpha-3-Contract-Review.md` J-2.
 
@@ -989,7 +989,7 @@ The design intentionally allows a mature character to preserve a limited archive
 
 ### 5.2 Hot-Zone Skill Veteran — approved optional title (#19)
 
-**Status (owner ruling, 2026-09-30):** deferred to Beta (contract review J-8). Cosmetic-only; not built
+**Status (owner ruling, 2026-09-30):** deferred to Beta 2c (contract review J-8). Cosmetic-only; not built
 for Alpha 3, no test matrix required yet.
 
 **Status: approved for launch.** A character earns the permanent, optional **`Forged in Danger`** title upon accumulating **160.0 qualifying skill points** above 60.0 while physically training in qualifying PvP Hot Zones. This is a character-specific achievement, never a skill/stat-cap increase, a skill-gain modifier, a combat bonus or a mandatory progression system. Since the shard has not launched, initialize tracking at character creation; no retroactive conversion or completed-character alternative route is required.
@@ -1200,7 +1200,7 @@ Explicitly disable or exclude later systems including:
 
 ### Dungeon pet restriction
 
-**Status (owner ruling, 2026-09-30):** deferred to Beta 3 (contract review J-5). Not built for Alpha 3;
+**Status (owner ruling, 2026-09-30):** deferred to Beta 1 (contract review J-5, re-planned 2026-09-30). Not built for Alpha 3;
 pets follow the same Hot Zone rules as their owner until then.
 
 Tamed or controlled creatures must not enter or remain in dungeon regions unless the creature is
@@ -1369,7 +1369,7 @@ Use the feature flag/configuration layer rather than deleting or deeply forking 
 
 ### 9.1 Artisan Signature Collections — approved horizontal crafting retention
 
-**Status: approved feature, slated for Beta 2.** Add a rare `ArtisanSignature` result to the existing craftsmanship system; this is **not** a ninth quality grade, a new recipe/skill, a magic property, or a new permanent combat-power tier. The dedicated [ModernUO-Crafting-and-Itemization-Design.md](ModernUO-Crafting-and-Itemization-Design.md) (still under iteration) remains authoritative for grade unlocks, probabilities, raw-power ceilings, maker marks, ordinary repairs and ordinary degradation unless this subsection explicitly overrides a signature-specific detail; do not redefine those mechanics here.
+**Status: approved feature, slated for Beta 2d.** Add a rare `ArtisanSignature` result to the existing craftsmanship system; this is **not** a ninth quality grade, a new recipe/skill, a magic property, or a new permanent combat-power tier. The dedicated [ModernUO-Crafting-and-Itemization-Design.md](ModernUO-Crafting-and-Itemization-Design.md) (still under iteration) remains authoritative for grade unlocks, probabilities, raw-power ceilings, maker marks, ordinary repairs and ordinary degradation unless this subsection explicitly overrides a signature-specific detail; do not redefine those mechanics here.
 
 **Creation and identity**
 
@@ -4813,7 +4813,7 @@ At deactivation:
 **Status (owner ruling, 2026-09-30) for the Alpha 3 outdoor Hot Zones only (contract review K-10):**
 simplified. K-1/K-8's entry/exit messages are enough for Fire Island and Buccaneer's Den; the
 Recall/Gate pre-warning, login summary and Britain board below are dropped for that feature. This
-section's requirements are unchanged for the Beta 2 dungeon rotation (Hythloth, the rotating Hot
+section's requirements are unchanged for the Beta 2a to Beta 3 dungeon work (Hythloth, the rotating Hot
 Dungeon, the Cool Dungeon), which has not been ruled on.
 
 No player should enter unrestricted PvP accidentally.

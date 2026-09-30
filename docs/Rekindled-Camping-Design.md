@@ -1,7 +1,7 @@
 # Rekindled Camping Design
 
 **Status:** Proposal for iteration. Nothing here is owner-ruled, built or flagged on. Numbers are provisional until an implementation audit and playtesting.
-**Milestone:** Beta 3 — Social layer, hardening and launch candidate. See the
+**Milestone:** Beta 2b — House zoning, rotating Hot Dungeon and Rekindled camping (the rename itself is Beta 3). See the
 [phased roadmap](ModernUO-UOR-Safe-World-Phased-Implementation-Roadmap.md#beta-3--social-layer-hardening-and-launch-candidate).
 Explicitly **out of Alpha 3**; see [Alpha 3 phase boundaries](Alpha-3-Feature-Enablement-Plan.md#phase-boundaries).
 **Opened:** 2026-09-29
@@ -114,18 +114,18 @@ Logging out through a Bedroll grants a short, small regen buff at next login.
 ### 5.6 Cosmetic and collectible
 
 - **Colored flames:** throw a reagent into the fire to change its color; a reagent sink; skill unlocks more colors.
-- **Ask the embers:** "gaze" for a lore line or hint; ties into Beta 2 collections as a Tales of Rekindling set (about 20 tales, one per character).
+- **Ask the embers:** "gaze" for a lore line or hint; ties into Beta 2d collections as a Tales of Rekindling set (about 20 tales, one per character).
 - **Cold ashes:** a burned-out fire leaves ash that Tracking can read as "a camp, recently used, by a small group". No names.
 - **Camp titles** for tending many fires; **named camps** shown to the party (needs a text filter).
 - **Harmless visitors:** birds and rabbits drift to a lit fire; capped, and separate from spawn caps.
 
 ### 5.7 Carry the flame
 
-A torch lit from a campfire holds a living flame for about 30 minutes; touching it to another fire lights it instantly. Overlaps Beta 1 Pilgrimage; coordinate before building.
+A torch lit from a campfire holds a living flame for about 30 minutes; touching it to another fire lights it instantly. Overlaps Beta 2c Pilgrimage; build it with or after Pilgrimage.
 
 ### 5.8 Housing hearth
 
-A decorative fire pit for player houses that can be lit any time and keeps a chosen flame color. Ships with Beta 2 house zoning.
+A decorative fire pit for player houses that can be lit any time and keeps a chosen flame color. Ships with Beta 2b house zoning.
 
 ### 5.9 Events
 
@@ -150,17 +150,17 @@ Kindling weighs 5 stone a unit, so a day-long fire costs a lot of it. That is th
 The idea: place a vendor at a campfire. It is an economy feature, not a hook.
 
 - As far as I recall, stock player vendors are tied to houses. **Unverified — audit before design.**
-- Interacts with house zoning and district policy (Beta 2), and with road, spawn and town clutter.
+- Interacts with house zoning and district policy (Beta 2b), and with road, spawn and town clutter.
 - Must answer: what happens to stock and gold when the fire dies (return safely to the owner's bank or pack); theft and killing of the vendor; duplication and item-loss risks; fees.
 - Proposed limits if it ships: one stall per fire, existing only while the fire burns, only in whitelisted outdoor areas, unsold goods returned to the owner.
-- Not before Beta 2 house zoning is complete.
+- Not before Beta 2b house zoning is complete.
 
 ---
 
 ## 7. Rejected
 
 - **Truce ring** (no PvP around a camp): a large rule change that cuts across Hot Zones.
-- **Friend summon** (teleport a party member to your camp): bypasses travel, Hot Zones and combat, and collides with Beta 1 travel systems. If ever revisited, it must be consent-based, out of combat, not criminal or Knocked Out, outside Hot Zones and dungeons, with a long cooldown that consumes the fire.
+- **Friend summon** (teleport a party member to your camp): bypasses travel, Hot Zones and combat, and collides with Beta 2c travel systems. If ever revisited, it must be consent-based, out of combat, not criminal or Knocked Out, outside Hot Zones and dungeons, with a long cooldown that consumes the fire.
 - **Kindling always ignites with Camping decorative:** kept only as the fallback if §4.2 is dropped.
 
 ---
@@ -180,8 +180,8 @@ The idea: place a vendor at a campfire. It is an economy feature, not a hook.
 
 - Skill cap accounting (`Projects/Server`) and ClassicUO `SumTotalSkills`: §4.2.
 - Theft system and the Cool Dungeon theft-immunity path: §5.1.
-- Beta 1 Pilgrimage and travel: §5.7.
-- Beta 2 house zoning and collections: §5.6, §5.8, §6.3.
+- Beta 2c Pilgrimage and travel: §5.7.
+- Beta 2b house zoning and Beta 2d collections: §5.6, §5.8, §6.3.
 
 ## 10. Open owner decisions
 

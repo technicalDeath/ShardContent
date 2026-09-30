@@ -1,7 +1,7 @@
 # ModernUO Classic+ Crafting and Itemization Design
 
 **Status:** Working design document for iteration. Numeric tuning remains provisional until implementation audit/playtesting.
-**Milestone:** Beta 2 — Horizontal endgame and world-content extensions. See the
+**Milestone:** Beta 2d — Crafting and itemization. See the
 [phased roadmap](ModernUO-UOR-Safe-World-Phased-Implementation-Roadmap.md#beta-2--horizontal-endgame-and-world-content-extensions).
 **Relationship to main shard plan:** Standalone subsystem design, referenced (not redefined) by the
 [alternative plan](ModernUO-UOR-Safe-World-Hot-Zones-Alternative-Plan.md), whose Section 9.1 (Artisan
