@@ -284,9 +284,7 @@ Create repeatable, synchronized reasons for players to leave Britain, travel roa
    - Set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true at activation while keeping `SupportedFeatures.ML` false and the UOR/Felucca ruleset intact; retain the SA-off Gargoyle restriction.
    - Preserve native Elf body, skin and hair while applying Human-equivalent starting rules and gameplay permissions. Keep Elf-only equipment, creature access and ML racial bonuses unavailable.
    - Verify character creation, starter entitlements, Human/Elf parity and appearance after death, resurrection and save/restart on a disposable server before activation.
-7. Address recall and gate rules in dungeons (owner request, 2026-09-29).
-   - Audit how Recall, Gate Travel, runes, runebooks and moongates behave into, out of and inside dungeons under the shard's current rules, then get an owner ruling on the intended behavior before building anything. Prefer stock UOR behavior.
-   - This is separate from the Beta 2 dungeon Hot/Cool rules; do not add Hot/Cool activation here.
+7. Recall and Gate in dungeons: **no change (owner ruling, 2026-09-30).** The audit found stock behavior sufficient: a Criminal-flagged player already cannot Recall, Gate or use a runebook charge ("Thou'rt a criminal and cannot escape so easily"), and murderers are only restricted to other facets, which do not exist here. The owner chose no new restriction for murderers, for Intent-mode grey players or inside Hot Zones, since the encounter model already governs PvP. Nothing to build.
 8. Accelerated skill-gain curve below 95 skill (deferred from Alpha 3 J-4, owner ruling 2026-09-30).
    - The design doc describes per-skill difficulty classes and faster sub-95 gain (DD 770-835); Alpha 3 keeps stock gain factors (1.0). Build this only after an owner ruling on the specific classes and factors.
 ### Exit criteria
@@ -296,7 +294,6 @@ Create repeatable, synchronized reasons for players to leave Britain, travel roa
 - Expedition and Pilgrimage rewards pass economy and anti-exploit validation; no system accelerates resource respawn, changes ordinary spawn caps or raises the character cap.
 - All Beta 1 user-facing text has passed a human editorial review for consistency with the base game's prose style, terminology and localization conventions.
 - Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests.
-- Dungeon recall and gate rules have an owner ruling and matching tests.
 
 ### Explicitly deferred
 
