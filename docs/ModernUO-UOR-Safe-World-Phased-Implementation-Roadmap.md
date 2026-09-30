@@ -247,6 +247,8 @@ For Alpha 3, UOR is the default historical baseline, not a mandate to roll back 
 - Skill Bank deposits, replacement, restoration, Mastery interaction, both skill caps, anti-macro eligibility and save/restart persistence pass focused automated and real-client tests. Full-bank behavior never removes Locked entries, silently changes balances, or exceeds the 300.0 bank cap.
 - The complete player-skill matrix is reviewed and approved: every exposed skill has a cited UOR baseline and effective shard-contract classification, traced implementation/configuration path, automated boundary coverage and proportionate live-client evidence; every intentional deviation is registered and covered; delivered custom behavior passes non-regression checks; and no unapproved reachable post-UOR behavior or unresolved stock default remains.
 
+**Status (2026-09-30):** all five exit criteria are met and Alpha 3 is enabled; see the closure section of [Alpha-3-Feature-Enablement-Plan.md](Alpha-3-Feature-Enablement-Plan.md).
+
 ### Explicitly deferred
 
 All Hot/Cool dungeon rules, including permanent Hythloth, weekly rotations and their reward premiums, and house zoning begin in Beta 2. Expeditions, trade cargo, Pilgrimage and road speed remain deferred to Beta 1. Nemesis, Wanted, Salvage and roleplay systems remain disabled.

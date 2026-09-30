@@ -25,7 +25,7 @@ All source Alpha 3 feature flags and `alpha3EnablementAcknowledged` are currentl
 | I | Blacksmith Bulk Order Deeds | UOR stock-content paths; no separate shard flag | Owner-approved retention, UOR vendor acceptance and reward exclusions; owner rulings 2026-09-28 closed the remaining reward classification, gold cap and Weaponsmith-issuance items | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Blacksmith-BOD-Readiness.md) |
 | J | UOR player skills and approved deviations | UOR era gates plus skill-specific paths | 58-ID inventory, initial deviation register and selected boundary fixes; skill-15 ruling and the 9 later-era skills' item-acquisition gaps closed 2026-09-28 | Ready for enablement (source-survey basis, 2026-09-28; see [pre-AoS record](Alpha-3-UOR-Pre-AoS-Skills-Readiness.md)); live-client evidence waived by the owner |
 | K | Permanent outdoor Hot Zones | `hotZones` | Two island polygons, dungeon exclusion, K1 boundary (18 live), K2 combat/Knocked Out/Execute/theft, K3 K-4/K-5 reruns, dungeon exclusion and login/save/restart cases; owner rulings K-4, K-5, K-7, K-9 | Ready for Alpha 3 enablement; see [readiness record](Alpha-3-Outdoor-Hot-Zone-Readiness.md) |
-| L | Integrated Alpha 3 release and activation | `alpha3EnablementAcknowledged` plus approved feature flags | Accepted Alpha 2b world and prior focused checks | Final source/deployed review, grouped regression, rollback and explicit owner acknowledgment remain |
+| L | Integrated Alpha 3 release and activation | `alpha3EnablementAcknowledged` plus approved feature flags | Accepted Alpha 2b world and prior focused checks | Complete 2026-09-30: flags acknowledged and enabled, source and deployed match; see [Alpha 3 closure](#alpha-3-closure) |
 
 Phases A–K are feature-readiness passes. Phase L is the combined release gate, not another gameplay feature. Earlier evidence may close a case without another run when the relevant source and configuration are unchanged. A newly discovered shared-path change reopens only affected evidence.
 
@@ -115,3 +115,21 @@ House zoning, residential districts and all dungeon Hot/Cool systems are Beta 2.
 The proposed Rekindled camping work (starter Kindling and Bedroll, campfire effects, Camping outside the skill cap) is not part of Alpha 3; it is tracked in [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md) under the Beta 3 roadmap.
 
 Feature F's remaining old-world Backpack Ward population/location classification is deferred to Beta 1 (owner decision, 2026-09-28); the Welcome/Ward evidence already accepted for Alpha 3 (Phase E) is unaffected.
+
+## Alpha 3 closure
+
+**Closed 2026-09-30.** The owner acknowledged the flag set; every Alpha 3 flag is on in source and deployed (`alpha3EnablementAcknowledged`, `skillBank`, `hotZones`, `alpha3StartingStats`, `alpha3StarterGold`, `alpha3StarterScissors`, `alpha3StarterBag`, `alpha3StarterCombatGear`, `alpha3StarterCraftMaterials`). Pin `0c4c785`, full Shard suite 243/243, and a boot check of the deployed distribution (copied with its saves) loads all flags with no validation errors. The dev server was not restarted; it loads the new DLL and rules on its next start.
+
+Roadmap Alpha 3 exit criteria, reconciled:
+
+| Exit criterion | Status and evidence |
+| --- | --- |
+| Hot-Zone boundaries give correct hostility, theft, loot and log-in behavior under client and restart tests | Met. K1 boundary (18 live), K2/K3 combat, Knocked Out, Execute, theft, login and save/restart cases; K4 corpse-style looting and the repeat-kill murder count re-run live in Phase L. [Hot Zone readiness](Alpha-3-Outdoor-Hot-Zone-Readiness.md) |
+| House zoning stays closed, `housingGeography` off, account and payment safeguards keep regression coverage | Met. `housingGeography` and `coolZones` are false in source and deployed; the one-house-per-account rule is kept for now (stock-default row 5). |
+| No PvE multiplier; ordinary spawn cadence, caps and reward tables | Met. No multiplier exists in code; K-9 removed the Fire Island reward premium. |
+| Skill Bank deposits, replacement, restoration, Mastery interaction, caps, anti-macro eligibility and save/restart pass automated and real-client tests | Met. Ledger and gain tests, three-save/reload matrix, and a live Phase L displacement and restoration with Mastery at 95.0. [Skill Bank readiness](Alpha-3-Skill-Bank-Readiness.md). Not covered: time-driven Mastery periods. |
+| Player-skill matrix reviewed and approved, deviations registered, no unapproved post-UOR behavior or unresolved stock default | Met on the owner's source-survey basis (live-client evidence for the 48 pre-AoS skills waived). Every stock default in the audit is ruled; virtues, poison-weapon corrosion and the duel gump are turned off; Mastery redesign, the sub-95 gain curve, pet restrictions and the veteran title are deferred to Beta 1, 2 and 3. [Stock-default audit](Alpha-3-Stock-Default-Audit.md), [Contract review](Alpha-3-Contract-Review.md) |
+
+**Starter gold account review.** The entitlement tag is consumed by any account that already has a second character or recorded game time, so the only exposure is an old account whose last character was deleted with no recorded game time, which could receive 500 gold once. The dev world holds only test accounts and no real player population exists; a launch world starts fresh (Beta 3 rehearsal). Accepted as a residual of at most 500 gold per such account; re-check if a populated world is ever migrated.
+
+**Carried forward, not Alpha 3 blockers.** F-1 to F-7 (Ward and Welcome) and the old-world Ward review go with Feature F to Beta 1. The H-2 same-account second-character case is verified by source only. Time-driven Mastery periods and a fresh crafting-consumption pass are untested. The dev server still needs a restart, and the README rules section was updated to match.
