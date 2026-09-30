@@ -28,10 +28,12 @@ Source and deployed `alpha3StarterCombatGear` are both `false` (confirmed via `G
 
 ## Readiness limits
 
-- Dropping the custom package-replacement system surfaced pre-existing stock duplicate grants (e.g. a Warrior gets two Katanas and two Bandage stacks, from Tactics' and Swords'/Healing's independent skill-item grants) that the old custom code silently deleted. Named, not fixed — the owner's G-1 ruling explicitly chose to accept stock behavior over reintroducing that cleanup.
+- **Fixed 2026-09-30 (owner request).** Stock creation grants items per skill, so a Warrior got two Katanas (Tactics and Swords) and separate Bandage stacks. `StarterCombatIssuance` now keeps one weapon or shield per type (the equipped copy) and merges bandage stacks, and only adds a Parry shield when stock did not. Live on disposable host `gcheck` (flag on disk): Warrior one Katana and one 53-bandage stack; Swords+Parry one Katana, one shield, one 50-bandage stack; Archery+Tactics one Katana, bow, 100 arrows, one 50-bandage stack. Unit tests `StarterCombatIssuanceTests`; suite 242/242.
 - The mage Spellbook stays stock `LootType.Blessed` (owner ruling) and is not covered by the vendor-sale guard; it remains vendor-sellable. A named, accepted residual, not a gap.
 - G-5's live cases didn't reproduce "Archery selected as a genuinely secondary skill" (both orderings tried resolved Archery as the strongest selected combat skill); the fix is unconditional by source inspection regardless.
 - No live murderer-death case for G's own item instances (reused Phase E's identical-code-path evidence instead); no live vendor-sale packet click-through (relied on UOContent.Tests engine-level proof instead). Reasons and reused-evidence citations are in the audit's Limits section.
 - `StarterCombatIssuance.Issue()`'s full integration behavior has no shard-level xunit coverage, matching the prior implementation (no live `PlayerMobile`/`World`/`Account` environment in `BritanniaRenaissance.Content.Tests`).
 
 **Phase L review (2026-09-30):** `StarterCombatIssuance.cs` and the `GenericSell.cs`/`PlayerVendor.cs` vendor-sale guard are unchanged since this evidence through current HEAD. Today's new `BaseWeapon.PoisonCorrosionEnabled` toggle lands in `BaseWeapon.cs`, but G's issued weapons (Katana/Club/Kryss/Bow) carry no poison — no overlap. CLEAN, no reopening.
+
+**Enabled 2026-09-30:** the validator no longer rejects `alpha3StarterCombatGear` outright; it requires `alpha3EnablementAcknowledged`, like the other Alpha 3 flags. The flag is on in source and deployed.

@@ -49,6 +49,7 @@ public static class StarterCombatIssuance
         }
 
         var pack = player.Backpack;
+        RemoveDuplicateStockGrants(player, pack);
         var selectedSkills = ProfessionInfo.GetProfession(args.Profession, out var profession)
             ? profession.Skills
             : args.Skills;
@@ -98,8 +99,8 @@ public static class StarterCombatIssuance
                 EquipOrPack(player, Newbied(new LeatherLegs()));
             }
 
-            // Stock never grants a shield to anyone, even with Parry selected.
-            if (selection.Shield)
+            // Stock grants a shield for Parry itself; only add one when it did not.
+            if (selection.Shield && !HasShield(player, pack))
             {
                 EquipOrPack(player, Newbied(new WoodenShield()));
             }
@@ -111,6 +112,69 @@ public static class StarterCombatIssuance
 
         account.SetTag(processedTag, "processed");
     }
+
+    // Stock creation grants items per skill, so Tactics and Swords each equip a Katana and Healing, Anatomy and
+    // Veterinary each pack a Bandage stack. Keep one of each weapon or shield type and one bandage stack.
+    private static void RemoveDuplicateStockGrants(PlayerMobile player, Container pack)
+    {
+        var gear = new List<Item>();
+        var types = new List<(Type Type, bool Equipped)>();
+        foreach (var item in player.Items)
+        {
+            if (item is BaseWeapon or BaseShield)
+            {
+                gear.Add(item);
+                types.Add((item.GetType(), true));
+            }
+        }
+
+        foreach (var item in pack.Items)
+        {
+            if (item is BaseWeapon or BaseShield)
+            {
+                gear.Add(item);
+                types.Add((item.GetType(), false));
+            }
+        }
+
+        foreach (var index in SelectDuplicateGear(types))
+        {
+            gear[index].Delete();
+        }
+
+        Bandage? first = null;
+        foreach (var bandage in pack.Items.OfType<Bandage>().ToList())
+        {
+            if (first is null)
+            {
+                first = bandage;
+                continue;
+            }
+
+            first.Amount += bandage.Amount;
+            bandage.Delete();
+        }
+    }
+
+    public static IReadOnlyList<int> SelectDuplicateGear(IReadOnlyList<(Type Type, bool Equipped)> gear)
+    {
+        var duplicates = new List<int>();
+        foreach (var group in gear.Select((entry, index) => (entry, index)).GroupBy(pair => pair.entry.Type))
+        {
+            var keep = group.FirstOrDefault(pair => pair.entry.Equipped);
+            if (keep == default)
+            {
+                keep = group.First();
+            }
+
+            duplicates.AddRange(group.Where(pair => pair.index != keep.index).Select(pair => pair.index));
+        }
+
+        return duplicates;
+    }
+
+    private static bool HasShield(PlayerMobile player, Container pack) =>
+        player.Items.Any(item => item is BaseShield) || pack.Items.Any(item => item is BaseShield);
 
     private static void TopUp<T>(Container container, int target) where T : Item
     {

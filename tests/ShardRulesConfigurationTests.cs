@@ -110,7 +110,7 @@ public class ShardRulesConfigurationTests
     }
 
     [Fact]
-    public void IncompleteStarterCombatGearCannotBeEnabled()
+    public void StarterCombatGearRequiresExplicitAlphaThreeAcknowledgment()
     {
         var rules = Baseline();
         rules.FeatureFlags.Alpha3StarterCombatGear = true;
@@ -121,10 +121,7 @@ public class ShardRulesConfigurationTests
         );
 
         rules.Alpha3EnablementAcknowledged = true;
-        Assert.Contains(
-            ShardRulesConfiguration.Validate(rules),
-            error => error.Contains("Alpha 3+", StringComparison.Ordinal)
-        );
+        Assert.Empty(ShardRulesConfiguration.Validate(rules));
     }
 
     [Fact]

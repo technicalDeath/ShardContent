@@ -102,7 +102,6 @@ public static class ShardRulesConfiguration
         }
 
         if (rules.FeatureFlags.Alpha3StarterCraftMaterials ||
-            rules.FeatureFlags.Alpha3StarterCombatGear ||
             rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {

@@ -82,7 +82,7 @@
     "alpha3StarterBag": true,
     "alpha3StarterGold": true,
     "alpha3StarterCraftMaterials": false,
-    "alpha3StarterCombatGear": false,
+    "alpha3StarterCombatGear": true,
     "skillBank": true,
     "expeditions": false,
     "pilgrimage": false,
