@@ -778,6 +778,9 @@ A player should not need GM merely to participate in normal PvE, crafting, gathe
 
 #### Preserve era-relative skill difficulty below 95
 
+**Status (owner ruling, 2026-09-30):** deferred to Beta 1 (contract review J-4). Alpha 3 keeps stock
+gain factors (1.0); build this only after a Beta 1 owner ruling on the specific difficulty classes.
+
 Do **not** flatten all skills into one universal gain rate from 0–95.
 
 The Second Age / UOR-era distinction between naturally easy, medium and hard skills remains part of the shard's progression identity.
@@ -828,6 +831,10 @@ Multiple skills at 95+ receive their own allowance concurrently. A character wit
 Anatomy and Healing all at 95 should not have to complete four sequential calendars.
 
 #### Character Mastery cycles, skill allowances and limited banking
+
+**Status (owner ruling, 2026-09-30):** deferred to Beta 2, replacing the as-built Alpha 1 mechanic
+(contract review J-2/J-3). Build with a **24-hour** cycle, not the 18-hour one described below.
+Alpha 3 keeps the as-built mechanic unchanged; see `Alpha-3-Contract-Review.md` J-2.
 
 At **95.0**, ordinary random gain stops and the skill enters Mastery. Mastery uses one
 server-authoritative **18-hour cycle per character**. The cycle is shared by all of that character's
@@ -981,6 +988,9 @@ Make these settings intentionally configurable. Anti-macro rules should prevent 
 The design intentionally allows a mature character to preserve a limited archive of alternate skills while retaining only a 700.0 active build. At 300.0 stored points, the bank can preserve roughly three additional Grandmaster skills; Locked/Down controls ensure the player, rather than an implicit eviction rule, decides which stored investment is expendable.
 
 ### 5.2 Hot-Zone Skill Veteran — approved optional title (#19)
+
+**Status (owner ruling, 2026-09-30):** deferred to Beta (contract review J-8). Cosmetic-only; not built
+for Alpha 3, no test matrix required yet.
 
 **Status: approved for launch.** A character earns the permanent, optional **`Forged in Danger`** title upon accumulating **160.0 qualifying skill points** above 60.0 while physically training in qualifying PvP Hot Zones. This is a character-specific achievement, never a skill/stat-cap increase, a skill-gain modifier, a combat bonus or a mandatory progression system. Since the shard has not launched, initialize tracking at character creation; no retroactive conversion or completed-character alternative route is required.
 
@@ -1189,6 +1199,9 @@ Explicitly disable or exclude later systems including:
 - post-UOR tameables
 
 ### Dungeon pet restriction
+
+**Status (owner ruling, 2026-09-30):** deferred to Beta 3 (contract review J-5). Not built for Alpha 3;
+pets follow the same Hot Zone rules as their owner until then.
 
 Tamed or controlled creatures must not enter or remain in dungeon regions unless the creature is
 currently being ridden.
@@ -4796,6 +4809,12 @@ At deactivation:
 - criminal/red status persists normally
 
 ### 20.11 Entry communication
+
+**Status (owner ruling, 2026-09-30) for the Alpha 3 outdoor Hot Zones only (contract review K-10):**
+simplified. K-1/K-8's entry/exit messages are enough for Fire Island and Buccaneer's Den; the
+Recall/Gate pre-warning, login summary and Britain board below are dropped for that feature. This
+section's requirements are unchanged for the Beta 2 dungeon rotation (Hythloth, the rotating Hot
+Dungeon, the Cool Dungeon), which has not been ruled on.
 
 No player should enter unrestricted PvP accidentally.
 

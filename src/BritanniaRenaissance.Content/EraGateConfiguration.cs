@@ -3,6 +3,7 @@ using Server;
 using Server.Json;
 using Server.Logging;
 using Server.Maps;
+using Server.Systems.FeatureFlags;
 
 namespace BritanniaRenaissance.Content;
 
@@ -95,6 +96,28 @@ public static class EraGateConfiguration
     {
         yield return $"Runtime era gates: {string.Join(", ", RequiredDisabledSettings)} disabled";
         yield return $"Runtime expansion/maps: {Core.Expansion} / {ExpansionInfo.CoreExpansion.MapSelectionFlags}";
+        yield return $"Insurance feature flag: {(FeatureFlagManager.IsEnabled("insurance") ? "ENABLED" : "disabled")}";
+    }
+
+    /// <summary>
+    /// The `insurance.enable` ModernUO setting checked in <see cref="Validate"/>/<see cref="ValidateRuntime"/>
+    /// only seeds the "insurance" feature flag's default the first time it is created; once persisted to
+    /// `Configuration/FeatureFlags/flags.json`, that flag overrides it independently (e.g. a GM toggle via
+    /// `[FF insurance true` or a leftover file from testing). <see cref="FeatureFlagManager"/> only finishes
+    /// loading during the ModernUO `Initialize` boot pass, which runs after this class's own `Load()`, so this
+    /// check must run separately once the server has actually started.
+    /// </summary>
+    public static void ValidatePostBootFeatureFlags()
+    {
+        if (FeatureFlagManager.IsEnabled("insurance"))
+        {
+            Logger.Error(
+                "ModernUO feature flag 'insurance' is enabled at runtime, but the UOR era gates require " +
+                "insurance to stay disabled. The insurance.enable setting only seeds this flag's first-boot " +
+                "default and does not override a persisted value; disable it with '[FF insurance false' or " +
+                "by editing Configuration/FeatureFlags/flags.json."
+            );
+        }
     }
 
     private static readonly string[] RequiredDisabledSettings =

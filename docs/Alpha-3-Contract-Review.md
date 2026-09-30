@@ -84,14 +84,14 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 
 | ID | Custom rule | Built? | Rec. | Ruling |
 | --- | --- | --- | --- | --- |
-| J-1 | Combat hybrid: instant-hit and precasting on; weapon specials and Wrestling Stun/Disarm off (validator-enforced). | yes | owner call: reconfirm; it shapes PvP feel most | |
-| J-2 | Mastery as built: at 95.0+ stock gain is suppressed. Each 4-hour UTC period adds +0.1 pending (only on login days, capped at 0.6), and each valid use spends 0.1. | yes (Alpha 1, live) | owner call: it directly sets time-to-GM | |
-| J-3 | The design doc describes a *different* Mastery: an 18-hour cycle, difficulty allowances and a 3-cycle bank (DD 837-928). It contradicts J-2. | contract only | owner call: pick one, delete the other | |
-| J-4 | Accelerated gain curve below 95 with per-skill difficulty classes (DD 770-835). Actual gain factors are stock (1.0). | contract only | owner call: stock is simplest | |
-| J-5 | No combat pets in dungeons; pets can't attack blues, even in Hot Zones (DD 1209-1250). | partial | owner call: large impact on tamers | |
-| J-6 | Poisoned-weapon corrosion: every `max(1, 6 − level)` hits, Poisoning thresholds at 50 and 99, a new saved weapon field (v12). The formula is invented; the Publish 5 source is only qualitative. | yes | owner call | |
-| J-7 | Passive Detect Hidden on movement (ModernUO default, Felucca only). | yes (stock default) | owner call; see the stock-default audit | |
-| J-8 | "Forged in Danger" Hot-Zone skill veteran title (DD 1003-1041). | contract only | cut or defer: heavy test matrix for a cosmetic title | |
+| J-1 | Combat hybrid: instant-hit and precasting on; weapon specials and Wrestling Stun/Disarm off (validator-enforced). | yes | owner call: reconfirm; it shapes PvP feel most | **Reconfirmed as-is (2026-09-30).** No change. |
+| J-2 | Mastery as built: at 95.0+ stock gain is suppressed. Each 4-hour UTC period adds +0.1 pending (only on login days, capped at 0.6), and each valid use spends 0.1. | yes (Alpha 1, live) | owner call: it directly sets time-to-GM | **Keep as-built for Alpha 3 (2026-09-30).** Stays live unchanged. The redesign in J-3 is a Beta 2 task, not a J ruling. |
+| J-3 | The design doc describes a *different* Mastery: an 18-hour cycle, difficulty allowances and a 3-cycle bank (DD 837-928). It contradicts J-2. | contract only | owner call: pick one, delete the other | **Deferred to Beta 2 (2026-09-30):** replace the as-built J-2 mechanic with this design, but with a **24-hour** cycle instead of 18. Not built for Alpha 3; J-2 is the record of truth until then. |
+| J-4 | Accelerated gain curve below 95 with per-skill difficulty classes (DD 770-835). Actual gain factors are stock (1.0). | contract only | owner call: stock is simplest | **Deferred to Beta 1 (2026-09-30).** Alpha 3 keeps stock gain factors (1.0); no code change now. |
+| J-5 | No combat pets in dungeons; pets can't attack blues, even in Hot Zones (DD 1209-1250). | partial | owner call: large impact on tamers | **Deferred to Beta 3 (2026-09-30).** Not built for Alpha 3; pets follow the same Hot Zone rules as their owner until then. |
+| J-6 | Poisoned-weapon corrosion: every `max(1, 6 − level)` hits, Poisoning thresholds at 50 and 99, a new saved weapon field (v12). The formula is invented; the Publish 5 source is only qualitative. | yes | owner call | **Deferred to Beta (2026-09-30). Implemented.** New `BaseWeapon.PoisonCorrosionEnabled` static bool (default true), checked first in `ApplyPoisonCorrosionOnHit` (`Items/Weapons/BaseWeapon.cs`), turns corrosion off for Alpha 3 without touching the serialized `_poisonCorrosionState` field (field #30, class version still 12) or the class version, so any save made while it was active keeps deserializing. ShardContent's `PostUorSystemGates.Configure()` sets it false. Revisit the formula in Beta. |
+| J-7 | Passive Detect Hidden on movement (ModernUO default, Felucca only). | yes (stock default) | owner call; see the stock-default audit | **Keep on (2026-09-30).** Stealth (its counterpart) predates UOR (Feb 1999), so the post-UOR claim doesn't hold; no confirmed evidence either way on passive detection specifically. No change. See stock-default audit item 2. |
+| J-8 | "Forged in Danger" Hot-Zone skill veteran title (DD 1003-1041). | contract only | cut or defer: heavy test matrix for a cosmetic title | **Deferred to Beta (2026-09-30).** Not built for Alpha 3; stays on the roadmap. |
 
 ## K. Permanent outdoor Hot Zones
 
@@ -106,7 +106,7 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 | K-7 | A theft-protected bank square at Buccaneer's Den (stealing only). | yes | owner call | **Remove (2026-09-29).** Buccaneer's Den has no theft-protected bank square. The Den bank envelope (2719,2180 to 2743,2204) is deleted from `bankProtectionPolygons`, leaving 17 bank envelopes. Stealing at the Den bank works as elsewhere in the Den. The other 17 town banks stay protected. |
 | K-8 | Entry and exit messages. | yes | keep | |
 | K-9 | Fire Island reward premium (+25% gold, +20% resources; DD 4675-4680). The plan says "no new surface premium". | contract only | owner call: remove from the doc or schedule it | **Remove (2026-09-29).** No Fire Island surface premium; design doc §20.5 now says 100% baseline gold and resources. |
-| K-10 | Warning before Recall/Gate into a Hot Zone, a login summary, a Britain board (DD 4824-4839). | contract only | simplify: entry messages are enough | |
+| K-10 | Warning before Recall/Gate into a Hot Zone, a login summary, a Britain board (DD 4824-4839). | contract only | simplify: entry messages are enough | **Simplify (2026-09-30).** K-1/K-8's entry/exit messages are enough; drop the Recall/Gate pre-warning, login summary and Britain board from the design doc. |
 
 ## Uncertain, to confirm during the letter
 

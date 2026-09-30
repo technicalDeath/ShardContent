@@ -32,6 +32,7 @@ public static class ShardBootstrap
         KnockedOutService.Configure();
         LocalAccountRequest.Configure();
         KeptItemDeathRouting.Configure();
+        PostUorSystemGates.Configure();
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
 
@@ -49,5 +50,6 @@ public static class ShardBootstrap
         Server.EventSink.ServerStarted -= RebindAlpha2AfterStockHandlers;
         PvpIntentService.RebindAfterStockHandlers();
         KnockedOutService.RebindAfterStockHandlers();
+        EraGateConfiguration.ValidatePostBootFeatureFlags();
     }
 }

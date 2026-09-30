@@ -285,6 +285,8 @@ Create repeatable, synchronized reasons for players to leave Britain, travel roa
 7. Address recall and gate rules in dungeons (owner request, 2026-09-29).
    - Audit how Recall, Gate Travel, runes, runebooks and moongates behave into, out of and inside dungeons under the shard's current rules, then get an owner ruling on the intended behavior before building anything. Prefer stock UOR behavior.
    - This is separate from the Beta 2 dungeon Hot/Cool rules; do not add Hot/Cool activation here.
+8. Accelerated skill-gain curve below 95 skill (deferred from Alpha 3 J-4, owner ruling 2026-09-30).
+   - The design doc describes per-skill difficulty classes and faster sub-95 gain (DD 770-835); Alpha 3 keeps stock gain factors (1.0). Build this only after an owner ruling on the specific classes and factors.
 ### Exit criteria
 
 - Expedition, cargo, Pilgrimage and road state are server-authoritative, feature-flagged, visible to players and recoverable by staff.
@@ -336,6 +338,14 @@ Add optional repeatable goals—harder natural spawns, themed collections, sea a
 7. Build content/economy operations.
    - Add reward-table validation, catalog checks, per-spawner opt-outs, analytics and crash/restart recovery tests.
 
+8. Mastery redesign (deferred from Alpha 3 J-2/J-3, owner ruling 2026-09-30).
+   - Replace the as-built Alpha 1 Mastery mechanic (95.0+ gain suppression, 4-hour UTC pending accrual capped at 0.6, 0.1 spent per valid use) with the design doc's cycle/difficulty-allowance/bank version (DD 837-928), but with a **24-hour** cycle instead of the doc's 18-hour one. Delete the 18-hour description once this ships.
+9. Rekindled camping gimmick (proposed 2026-09-29; owner deferred it from Alpha 3 to Beta 2; not yet ruled or built).
+   - The shard is being renamed Rekindled. Give every new character newbied, loose-in-pack Kindling and a Bedroll under the existing starter-item rules.
+   - Make Kindling always ignite: skip the Camping skill check and grant no Camping gain. Campfire and Bedroll secure-camp logout stay stock. Camping becomes decorative; consider removing it from character-creation skill choices and check profession templates.
+   - Rejected alternative: exclude Camping from the 700-point cap and start it at 50. It needs a server cap hook and a ClassicUO `SumTotalSkills` patch.
+   - Needs an owner ruling before any build (stock-first rule). Keep it out of Alpha 3.
+
 ### Exit criteria
 
 - Housing districts remain closed until land classification, protections, capacity, occupancy and placement/payment/recovery checks pass; keep `housingGeography` disabled until then.
@@ -372,6 +382,8 @@ Complete the shard’s social identity and prove launch readiness: roleplay supp
    - Freeze feature scope; resolve only launch blockers, correctness defects, security/exploit defects and documentation gaps.
 4. Prepare a release gate.
    - Produce an owner-facing go/no-go checklist with known limitations, rollback paths, data migration plan, monitoring thresholds and staged feature-flag activation order.
+5. Pet combat restrictions (deferred from Alpha 3 J-5, owner ruling 2026-09-30).
+   - No combat pets in dungeons; pets can't attack blues even inside Hot Zones (DD 1209-1250). Large impact on tamers, so build and test in isolation before folding it into launch-candidate validation.
 
 ### Exit criteria
 
