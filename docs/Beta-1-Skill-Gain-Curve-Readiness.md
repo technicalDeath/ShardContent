@@ -15,7 +15,7 @@ Full design, survey and numbers are in [the audit](Beta-1-Skill-Gain-Curve-Audit
 Source and deployed `shard-rules.json` match with `skillGainCurve` true. The validator requires every UOR skill assigned to a defined class, ascending bands from 0, and multipliers above 0 and at most 5.
 
 ## Readiness limits
-- **ModernUO change is uncommitted.** `Skills/SkillCheck.cs`, `Skills/SkillEvents.cs` and `SkillEventsTests.cs` are in the working tree; the pinned ModernUO commit in `shard-rules.json` still names the previous HEAD. When ModernUO is committed, bump `pinnedModernUoCommit` in the three places (see the `shard-server` skill) before the next deploy.
+- **Committed and pushed 2026-10-01** to the owner's forks: ModernUO 5463a9449 (gain hook) and 8867dda13 (profession-file setting), ShardContent e48fb68 (gain curve, pin bump) and 4cdbca1 (templates), ClassicUO 46f02eca9, Navrey e2a20335e. The ClassicUO `README.md` and `ROADMAP.md` edits are not part of this work and stay uncommitted. The pinned ModernUO commit is bumped to 8867dda13.
 - **Players only.** Staff, creatures and pets get stock gain. A pet's own gain keeps the stock doubling.
 - **The curve changes probability only.** It does not change range limits (training dummy and butte stop at 25, Magic Resist stops above the spell's circle cap, recipe ranges), anti-macro (off) or stat gain.
 - **Saturation.** A 1.5x multiplier caps at certainty. The measured early bands never reached it; very low totals with low skill could, which only makes those few checks always gain.
