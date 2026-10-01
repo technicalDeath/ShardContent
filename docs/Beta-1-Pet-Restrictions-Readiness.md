@@ -14,6 +14,9 @@ All hooks are described in [the audit](Beta-1-Pet-Restrictions-Audit.md). Modern
 ## Gate and validator
 Source and deployed `shard-rules.json` match with `petRestrictions` true; the validator needs no rule for it. The dev host boots with it on.
 
+## Update 2026-10-01 (release)
+Manual release of a restricted pet is refused inside a dungeon, and a loyalty-driven abandonment inside a dungeon moves the pet to the nearest real entrance outside first. The owner is told in both cases, at next login if offline. This closes the route of unshrinking or riding in nightmares and releasing them as wild monsters. Offline notices are held in memory, so one pending when the server restarts is lost.
+
 ## Update 2026-10-01 (later)
 Unshrinking a mount inside a dungeon is allowed when none is standing and the owner is on foot. Taming inside a dungeon follows the same rule and is refused up front if the shrunken pet would not fit in the pack. Both verified live, the second with real Animal Taming.
 

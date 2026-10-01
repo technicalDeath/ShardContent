@@ -38,7 +38,91 @@ public static class PetRestrictionService
         var previousRefusal = BaseCreature.AttackCommandRefusalHandler;
         BaseCreature.AttackCommandRefusalHandler = (pet, target) =>
             previousRefusal?.Invoke(pet, target) ?? AttackRefusal(pet, target);
+
+        var previousRelease = BaseCreature.ReleaseCommandRefusalHandler;
+        BaseCreature.ReleaseCommandRefusalHandler = (pet, from) =>
+            previousRelease?.Invoke(pet, from) ?? ReleaseRefusal(pet);
+        BaseCreature.LoyaltyReleaseHandler += OnLoyaltyRelease;
+
+        EventSink.Connected += DeliverPendingNotices;
         EventSink.ServerStarted += SweepDungeons;
+    }
+
+    private static readonly Dictionary<Serial, List<string>> PendingNotices = [];
+
+    /// <summary>Tells the owner now, or at their next login if they are offline, so a pet is never just gone.</summary>
+    public static void Notify(PlayerMobile? owner, string text)
+    {
+        if (owner is null)
+        {
+            return;
+        }
+
+        if (owner.NetState is not null)
+        {
+            owner.SendMessage(text);
+            return;
+        }
+
+        if (!PendingNotices.TryGetValue(owner.Serial, out var list))
+        {
+            PendingNotices[owner.Serial] = list = [];
+        }
+
+        list.Add(text);
+    }
+
+    private static void DeliverPendingNotices(Mobile mobile)
+    {
+        if (mobile is PlayerMobile player && PendingNotices.Remove(player.Serial, out var list))
+        {
+            // A moment after login, once the client is in the world; messages sent during login can be dropped.
+            Server.Timer.DelayCall(TimeSpan.FromSeconds(3), () =>
+            {
+                foreach (var text in list)
+                {
+                    player.SendMessage(text);
+                }
+            });
+        }
+    }
+
+    /// <summary>
+    /// A player may not release a restricted pet while it is inside a dungeon: a released pet turns wild and
+    /// aggressive, and dungeons have no guards. Releasing outside a dungeon is stock.
+    /// </summary>
+    public static string? ReleaseRefusal(BaseCreature pet) =>
+        Enabled && IsRestrictedPet(pet) && InDungeon(pet.Region)
+            ? "You cannot release a pet inside a dungeon. Take it outside first."
+            : null;
+
+    /// <summary>
+    /// A restricted pet whose loyalty ran out inside a dungeon abandons its owner, but is moved outside the
+    /// dungeon first so it never turns wild in there. The owner is told (at next login if offline).
+    /// </summary>
+    private static void OnLoyaltyRelease(BaseCreature pet)
+    {
+        if (!Enabled || !IsRestrictedPet(pet) || pet.Map is null || pet.Map == Map.Internal ||
+            !InDungeon(pet.Region))
+        {
+            return;
+        }
+
+        var owner = pet.ControlMaster as PlayerMobile;
+        var name = pet.Name;
+        var dungeon = pet.Region.GetRegion<DungeonRegion>()?.Name ?? "the dungeon";
+
+        if (DungeonEntrances.TryFindOutside(pet.Map, pet.Location, out var outside))
+        {
+            pet.MoveToWorld(outside, pet.Map);
+            Notify(owner, $"{name} has abandoned you and wandered out of {dungeon}.");
+        }
+        else if (owner is not null)
+        {
+            // No known way out of this dungeon: shrink it into the pack rather than let it turn wild inside.
+            ShrinkNow(pet, owner);
+            Notify(owner, $"{name} was about to abandon you in {dungeon}, so it has been shrunk into your pack.");
+        }
     }
 
     /// <summary>
@@ -132,7 +216,7 @@ public static class PetRestrictionService
             return true;
         }
 
-        pet.ControlMaster?.SendMessage($"{pet.Name} cannot follow you into a dungeon.");
+        Notify(pet.ControlMaster as PlayerMobile, $"{pet.Name} cannot follow you into a dungeon.");
         return false;
     }
 
@@ -190,6 +274,18 @@ public static class PetRestrictionService
         }
 
         var name = pet.Name;
+        ShrinkNow(pet, owner);
+        Notify(
+            owner,
+            pet is BaseMount
+                ? $"Only one mount may be left standing in a dungeon, so {name} has been shrunk into your pack."
+                : $"{name} cannot stay in a dungeon, so it has been shrunk into your pack."
+        );
+        return true;
+    }
+
+    private static void ShrinkNow(BaseCreature pet, PlayerMobile owner)
+    {
         var item = new ShrunkenPet();
         item.Shrink(pet, owner);
 
@@ -199,13 +295,6 @@ public static class PetRestrictionService
             // Only the owner can pick it up (ShrunkenPet.VerifyMove).
             item.MoveToWorld(owner.Location, owner.Map);
         }
-
-        owner.SendMessage(
-            pet is BaseMount
-                ? $"Only one mount may be left standing in a dungeon, so {name} has been shrunk into your pack."
-                : $"{name} cannot stay in a dungeon, so it has been shrunk into your pack."
-        );
-        return true;
     }
 
     public static bool AnotherMountInDungeon(PlayerMobile owner, BaseCreature pet)

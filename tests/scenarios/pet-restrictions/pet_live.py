@@ -7,6 +7,7 @@ PetProbe.dll and TestOnlyProbe.dll loaded, and characters PetOwner BlueVic Inten
     python pet_live.py mount      # one mount may be dismounted inside; it fights monsters; everything else is shrunk
     python pet_live.py tame       # real Animal Taming in a dungeon; refused up front when the pack is full
     python pet_live.py fallback   # pack full after the check: the shrunken pet lands at the owner's feet, not the bank
+    python pet_live.py release    # manual release refused in a dungeon; loyalty release moves the pet outside + notice
     python pet_live.py inside     # taming and unshrinking inside a dungeon follow the one-mount rule
     python pet_live.py mountsweep # after save + restart: the standing mount is untouched
     python pet_live.py dungeon    # follow filter, tame/dismount in a dungeon, exemptions, unshrink rules
@@ -18,6 +19,7 @@ Exits non-zero on any failure; results go to work/pet-live/results-<phase>.json.
 
 from __future__ import annotations
 
+import faulthandler
 import json
 import os
 import sys
@@ -570,6 +572,92 @@ def phase_fallback(staff) -> None:
     staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
 
 
+def phase_release(staff) -> None:
+    """Manual release is refused inside a dungeon (and works outside); a loyalty release inside moves the pet
+    outside first and the owner is told, now or at next login."""
+    owner = connect("PetOwner")
+    oserial = hexs(owner.state["charID"])
+    log = WORKSPACE / "work" / "navrey-sessions" / "PetOwner" / "cuolog"
+    refuse = "You cannot release a pet inside a dungeon"
+    reset_owner(staff)
+    go(staff, "PetOwner", DUNGEON_INSIDE)
+    time.sleep(1)
+    mount = tame(staff, "PetOwner", "Horse")           # a lone mount tamed inside stays standing
+    time.sleep(3)
+    check("release:setup-mount-standing", standing(report(staff, mount)))
+
+    # Release is only ever spoken to a named pet ("all release" is not a stock command).
+    mark = log.stat().st_size
+    owner.say(f"{report(staff, mount)['name']} release")
+    time.sleep(3)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    check("release:manual-refused-inside-with-a-message", refuse in new, new[-250:])
+    check("release:manual-pet-still-controlled", report(staff, mount)["controlled"])
+
+    # loyalty release inside, owner online
+    mark = log.stat().st_size
+    staff.say(f"[TestOnlyPetLoyaltyRelease {mount}")
+    time.sleep(3)
+    m = report(staff, mount)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    check("release:loyalty-pet-moved-outside-the-dungeon", not m["inDungeon"] and m["map"] == "Felucca", str(m))
+    check("release:loyalty-pet-released", not m["controlled"], str(m))
+    check("release:loyalty-owner-told", "has abandoned you and wandered out of" in new, new[-250:])
+    entrance_dist = abs(m["x"] - 4110) + abs(m["y"] - 430)
+    check("release:loyalty-pet-is-near-the-real-entrance", entrance_dist <= 8, f"{m['x']},{m['y']}")
+
+    # loyalty release inside, owner offline: told at next login
+    clear_followers(staff, "PetOwner")
+    go(staff, "PetOwner", DUNGEON_INSIDE)
+    mount2 = tame(staff, "PetOwner", "Horse")
+    time.sleep(3)
+    check("release:offline-setup-mount-standing", standing(report(staff, mount2)))
+    stop_session("PetOwner")
+    time.sleep(3)
+    staff.say(f"[TestOnlyPetLoyaltyRelease {mount2}")
+    time.sleep(3)
+    m2 = report(staff, mount2)
+    check("release:offline-pet-moved-outside", not m2["inDungeon"] and not m2["controlled"], str(m2))
+    mark = log.stat().st_size if log.exists() else 0
+    start_session("PetOwner")
+    time.sleep(6)
+    data = log.read_bytes()
+    new = (data if len(data) < mark else data[mark:]).decode("utf-8", "replace")   # a new session may recreate the log
+    check("release:offline-owner-told-at-next-login", "has abandoned you and wandered out of" in new, new[-250:])
+
+    # outside a dungeon, release is stock: no refusal, the confirm gump appears
+    owner = connect("PetOwner")
+    clear_followers(staff, "PetOwner")
+    go(staff, "PetOwner", DUNGEON_OUTSIDE)
+    dog = tame(staff, "PetOwner", "Dog")
+    time.sleep(2)
+    mark = log.stat().st_size
+    owner.say(f"{report(staff, dog)['name']} release")
+    time.sleep(3)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    gumps = " | ".join(owner.call("gumps"))
+    check("release:outside-is-not-refused", refuse not in new, new[-200:])
+    check("release:outside-shows-the-confirm-gump", bool(gumps.strip()) and "no gumps" not in gumps.lower(), gumps[:200])
+
+
+def _run_script(script: str, name: str, *extra: str, timeout: float = 150) -> None:
+    """Run a workspace script without capturing its pipes: Start-NavreySession leaves the Navrey client running
+    with inherited handles, so capturing output would block until that client exits. Always bounded by a timeout."""
+    import subprocess
+    subprocess.run(
+        ["pwsh", "-NoProfile", "-File", str(WORKSPACE / ".claude" / "scripts" / script), "-Name", name, *extra],
+        check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL, timeout=timeout,
+    )
+
+
+def stop_session(name: str) -> None:
+    _run_script("Stop-NavreySession.ps1", name, timeout=60)
+
+
+def start_session(name: str) -> None:
+    _run_script("Start-NavreySession.ps1", name, "-EnvFrom", str(WORKSPACE / "work" / "accounts" / f"{name}.env"))
+
+
 def phase_mountsweep(staff) -> None:
     """After save + restart: the lone standing mount is left alone by the boot sweep; the shrunken ones stay shrunk."""
     saved = json.loads((OUT / "mount-a.json").read_text())
@@ -611,11 +699,13 @@ def phase_sweep(staff) -> None:
 
 
 def main(argv: list) -> int:
-    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "inside": phase_inside, "fallback": phase_fallback, "tame": phase_tame, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
+    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "inside": phase_inside, "release": phase_release, "fallback": phase_fallback, "tame": phase_tame, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
     if len(argv) != 2 or argv[1] not in phases:
         print(__doc__)
         return 2
     OUT.mkdir(parents=True, exist_ok=True)
+    # Stall visibility: if the driver is quiet for 60 s, print where every thread is blocked, and keep doing so.
+    faulthandler.dump_traceback_later(60, repeat=True, file=sys.stderr)
     staff = connect("admin")
     phases[argv[1]](staff)
     (OUT / f"results-{argv[1]}.json").write_text(json.dumps(results, indent=2), encoding="utf-8")

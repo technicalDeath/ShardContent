@@ -28,7 +28,22 @@ public static class PetProbe
         CommandSystem.Register("TestOnlyPetSpawn", AccessLevel.Administrator, OnSpawn);
         CommandSystem.Register("TestOnlyPetDelete", AccessLevel.Administrator, OnDelete);
         CommandSystem.Register("TestOnlyPetSkill", AccessLevel.Administrator, OnSkill);
+        CommandSystem.Register("TestOnlyPetLoyaltyRelease", AccessLevel.Administrator, OnLoyaltyRelease);
         CommandSystem.Register("TestOnlyPetFillPack", AccessLevel.Administrator, OnFillPack);
+    }
+
+    // [TestOnlyPetLoyaltyRelease <pet-serial> runs the same routine the hourly loyalty sweep runs on a pet whose
+    // loyalty reached zero (shard hook first, then the stock release).
+    private static void OnLoyaltyRelease(CommandEventArgs e)
+    {
+        if (!TryMobile(e, 0, out var m) || m is not BaseCreature pet)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPetLoyaltyRelease <pet-serial>");
+            return;
+        }
+
+        pet.ReleaseOnLoyaltyLoss();
+        e.Mobile.SendMessage($"PetLoyaltyRelease {e.GetString(0)}");
     }
 
     // [TestOnlyPetSkill <player-serial> <SkillName> <value> sets a skill (to let a test character tame for real).

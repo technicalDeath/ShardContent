@@ -1,3 +1,4 @@
+using Server;
 using Server.Mobiles;
 using Xunit;
 
@@ -67,5 +68,20 @@ public class PetRestrictionTests
         bool enabled, bool inDungeon, bool isMount, bool ownerMounted, bool another, bool expected)
     {
         Assert.Equal(expected, PetRestrictionService.MayReleaseInDungeon(enabled, inDungeon, isMount, ownerMounted, another));
+    }
+
+    [Fact]
+    public void NearestEntranceIsChosenByTheInsideDestination()
+    {
+        var entries = new[]
+        {
+            (new Point3D(100, 100, 0), new Point3D(5000, 600, 0)),
+            (new Point3D(900, 900, 0), new Point3D(5500, 1900, 0)),
+            (new Point3D(300, 300, 0), new Point3D(5506, 1906, 0)),
+        };
+
+        Assert.True(DungeonEntrances.TryNearest(entries, new Point3D(5505, 1905, 0), out var outside));
+        Assert.Equal(new Point3D(300, 300, 0), outside);
+        Assert.False(DungeonEntrances.TryNearest([], new Point3D(0, 0, 0), out _));
     }
 }

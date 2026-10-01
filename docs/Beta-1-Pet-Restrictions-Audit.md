@@ -9,6 +9,7 @@ Plan presented and approved. Decisions:
 - **Pet PvP:** **no tamed pet ever attacks a player**, for any reason. This replaces the contract's lawful-target rule. Pets still fight monsters. Summons, familiars and hirelings are not covered (they remain ordinary owner-permission tools); flagged to the owner in the readiness record.
 - **When a tame or dismount puts a pet in a dungeon:** the pet is put in the owner's pack as a **shrunken pet** item. The owner said they had played shards with shrunken pets and asked if it would be hard; it is not, in its forced-only form. Scope kept narrow: shrinking happens only as this safety outcome, never at will. Item rules (mine, flagged for review): Blessed and Nontransferable (survives death, can't be looted, stolen, traded or sold), unshrunk by double-click from the owner's backpack only, refused in dungeons, refused if the owner has no free follower slots, deleting the item deletes the pet.
 - **Mount exception (2026-10-01, owner):** an owner may ride **one** mount into a dungeon, dismount, and keep it there. It fights monsters but never players. It stays only if the owner is not riding another mount and no other mount of theirs is already standing in a dungeon; any other pet, a second mount, or a mount tamed while the owner rides one is shrunk as above. Taming inside a dungeon is allowed (2026-10-01, owner): a lone mount tamed with none standing and the owner on foot stays standing; any other creature, or a mount when one stands or the owner rides, is tamed and then shrunk into the pack. **If a creature that would be shrunk cannot fit in the owner's pack, the taming attempt is refused before it starts** (new hook `BaseCreature.TameAttemptRefusalHandler` in `AnimalTaming`'s target, beside the follower-limit check); a mount that stays needs no room. A standing mount is left alone by the boot sweep. **Unshrinking inside a dungeon is allowed for a mount when none is standing and the owner is on foot**; it stays refused otherwise and for non-mounts.
+- **Release (2026-10-01, owner):** a player may not **manually release** a restricted pet inside a dungeon (a released pet turns wild and aggressive, and dungeons have no guards); releasing outside is stock. When a pet **abandons its owner because its loyalty ran out** while inside a dungeon, it is moved just outside the dungeon (the real entrance nearest where it was, found from the teleporter data) and then released as stock would; the owner is always told, and at their next login if offline. Closing the griefing route of unshrinking or riding in nightmares and releasing them as wild monsters.
 - **Activation:** turn `featureFlags.petRestrictions` on when verified (source and deployed config), as with Elf.
 - **Commits:** local only, no push (standing instruction from the Elf item).
 
@@ -29,6 +30,7 @@ Plan presented and approved. Decisions:
 | Restricted pet | ShardContent `PetRestrictionService.IsRestrictedPet` | `Controlled`, not `Summoned`, owner is a player, and not a `BaseHire`, `BaseFamiliar`, `BaseEscortable`, `PackLlama` or `PackHorse`. |
 | Pet PvP | `PvpIntentService.AllowHarmful`, first branch | Restricted pet and target is a `PlayerMobile`: harmful action refused. Independent of SafeWorld. |
 | Follow filter | New ModernUO delegate `BaseCreature.CanFollowOwnerHandler`, called in `TeleportPets` | A restricted pet is not carried to a destination inside a `DungeonRegion`; the owner is told. |
+| Release refusal / loyalty relocation | `PetRestrictionService.ReleaseRefusal`, `OnLoyaltyRelease`, `DungeonEntrances`, `PetNotices` via `ReleaseCommandRefusalHandler` and `LoyaltyReleaseHandler` | See sign-off. |
 | Tame refusal | `PetRestrictionService.TameRefusal` via `TameAttemptRefusalHandler` | See sign-off; the pack test uses `Container.CheckHold` with a probe item. |
 | Mount exception | `PetRestrictionService.MountMayStay`, checked on the next tick | See sign-off. |
 | Placement | New ModernUO delegate `BaseCreature.PetPlacementChangedHandler`, raised from `OnRegionChange` (controlled only) and `SetControlMaster` | A restricted pet found in a dungeon region is shrunk into the owner's pack on the next tick. Covers walking in, dismounting, taming and any other placement. |
@@ -69,7 +71,11 @@ Plan presented and approved. Decisions:
 | Tame inside with nothing standing: lone mount stays; second mount and non-mount tamed are shrunk; mount tamed while the owner rides is shrunk | live (`inside`) | pass |
 | Unshrink inside: refused while another mount stands or the owner rides, and for non-mounts; allowed for a mount when none stands | live (`inside`) | pass |
 | **Real Animal Taming** inside a dungeon with a completely full pack: a lone mount tames and stands; a second mount and a non-mount are refused before the attempt; with room, the non-mount is tamed then shrunk | live (`tame`) | pass (4/4) |
-| Release rule and mount-stay rule as pure functions | unit | pass |
+| Release rule and mount-stay rule as pure functions; nearest-entrance choice | unit | pass |
+| Release hooks: refusal blocks the confirm-gump release, no refusal releases, loyalty release calls the handler first | ModernUO unit | pass |
+| Naming the pet and saying "release" inside a dungeon is refused with a message and the pet stays controlled; outside a dungeon the confirm gump appears (positive control) | live (`release`) | pass |
+| Loyalty release inside a dungeon: the pet is moved to the real nearest entrance outside, then released as stock; the owner is told | live | pass |
+| Same with the owner offline: the notice is delivered 3 s after their next login | live | pass (12/12 for `release`) |
 | Pack full after the up-front check: shrunken pet lands at the owner's feet, not the bank or pack; only the owner can lift it (VerifyMove) | live (allback) | pass (4/4) |
 | Pet seeded inside a dungeon with the flag off, save, full restart with the flag on: shrunk by the boot sweep, item in the owner's pack, survived the save | live | pass |
 | Dev host boots with the flag on | live | pass |
@@ -80,6 +86,13 @@ Runs: ModernUO hook tests `20261001T014340883Z-5f139d` (4/4); full Shard `202610
 ## Bug found and fixed during the mount work
 
 Stock does not save `IsStabled` on a creature; it rebuilds it at load from the owner's stable list. Shrunken pets are not in that list, so after a restart they lost the flag, and stock would have started its 3-day abandoned-pet delete timer on them. The restart check caught it. `ShrunkenPet` now keeps a registry of bound items and re-flags their pets at server start (`RestoreStabledFlags`), independent of the feature flag. Verified across a restart.
+
+## Test-driver lessons (2026-10-01)
+
+- "all release" is not a stock command: release must name the pet ("<name> release"). The first release test never exercised the code and its "outside" case passed vacuously; both are now positive controls.
+- Notices sent during login can be dropped, so queued notices are delivered 3 s after the owner enters the world.
+- `subprocess.run(capture_output=True)` on `Start-NavreySession.ps1` hangs forever because the launched Navrey client keeps the captured pipes open. Drivers now discard output and use a timeout, and print a stack trace if quiet for 60 s (`faulthandler`).
+- A disposable host autosaves every 5 minutes, so "stop with no save" does not reset it: recreate the host to get fresh accounts.
 
 ## Observations and test-tooling notes
 

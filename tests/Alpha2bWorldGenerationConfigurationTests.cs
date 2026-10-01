@@ -6,7 +6,7 @@ namespace BritanniaRenaissance.Content.Tests;
 
 public class Alpha2bWorldGenerationConfigurationTests
 {
-    private const string Commit = "180ecb5775bf6afdc714d5ad23ef72928e790db2";
+    private const string Commit = "9477c06931bc62571af4af0759b7468b40df35f8";
 
     [Fact]
     public void AcceptsPinnedUorFeluccaManifest()
