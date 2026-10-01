@@ -46,7 +46,7 @@
     "AOS": false,
     "SixthCharacterSlot": false,
     "SE": false,
-    "ML": false,
+    "ML": true,
     "Unk2": false,
     "UO3DClientType": false,
     "Unk3": false,

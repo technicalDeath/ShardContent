@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- No sensible default: pass -p:ServerHostPath=<workspace>\work\hosts\<your-host> when building. -->
+    <ServerHostPath Condition="'$(ServerHostPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\..\work\hosts\REQUIRED-pass-p-ServerHostPath</ServerHostPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Server"><HintPath>$(ServerHostPath)\Server.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UOContent"><HintPath>$(ServerHostPath)\Assemblies\UOContent.dll</HintPath><Private>false</Private></Reference>
+    
+  </ItemGroup>
+</Project>

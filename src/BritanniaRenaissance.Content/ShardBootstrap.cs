@@ -21,7 +21,6 @@ public static class ShardBootstrap
         HousingGeographyPolicy.Configure();
         MurderAdjudicationService.Configure();
         TheftProtectionService.Configure();
-        CosmeticElfCreationService.Configure();
         Alpha3StartingStats.Configure();
         StarterScissorsIssuance.Configure();
         StarterBagIssuance.Configure();
@@ -33,6 +32,7 @@ public static class ShardBootstrap
         LocalAccountRequest.Configure();
         KeptItemDeathRouting.Configure();
         PostUorSystemGates.Configure();
+        CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
 

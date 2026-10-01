@@ -281,7 +281,7 @@ Each phase's new player text is reviewed by the owner with its release. Beta 4 d
 Finish the character-facing foundations that later systems depend on: a cosmetic Elf option, character creation that is proven in the real client and shows only era-appropriate templates, a clear pet policy, and the sub-95 skill-gain curve.
 
 ### Scope
-1. Enable cosmetic Elf character creation in the distributed Britannia Renaissance ClassicUO fork. No owner input.
+1. **Done 2026-09-30** ([audit](Beta-1-Cosmetic-Elf-Audit.md), [readiness](Beta-1-Cosmetic-Elf-Readiness.md)). Enable cosmetic Elf character creation in the distributed Britannia Renaissance ClassicUO fork. No owner input.
    - Set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true at activation while keeping `SupportedFeatures.ML` false and the UOR/Felucca ruleset intact; retain the SA-off Gargoyle restriction.
    - Preserve native Elf body, skin and hair while applying Human-equivalent starting rules and gameplay permissions. Keep Elf-only equipment, creature access and ML racial bonuses unavailable.
    - Verify character creation, starter entitlements, Human/Elf parity and appearance after death, resurrection and save/restart on a disposable server before activation.
@@ -303,7 +303,7 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
 
 ### Exit criteria
 
-- Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests.
+- Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests. **Met 2026-09-30.**
 - The pet policy is approved and covered by unit tests and live tamer cases, including every transport path.
 - The gain curve is approved, covered by automated tests and does not break Skill Bank or Mastery.
 - The ClassicUO creation screen lists only approved era-appropriate templates, and the server handles a removed template safely.
