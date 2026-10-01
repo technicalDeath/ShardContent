@@ -1200,8 +1200,11 @@ Explicitly disable or exclude later systems including:
 
 ### Dungeon pet restriction
 
-**Status (owner ruling, 2026-09-30):** deferred to Beta 1 (contract review J-5, re-planned 2026-09-30). Not built for Alpha 3;
-pets follow the same Hot Zone rules as their owner until then.
+**Status (owner ruling, 2026-09-30):** built in Beta 1 (contract review J-5), behind `featureFlags.petRestrictions`, with these
+owner decisions: the ban covers **tamed pets only** (spell summons, familiars, hirelings, pack llamas and pack horses are exempt);
+a restricted pet that would end up inside a dungeon region (taming there, dismounting there, a boot-time sweep) is **shrunk into
+its owner's pack** as a Blessed, Nontransferable item instead of being relocated; a pet that would follow its owner through a
+teleporter or gate into a dungeon simply stays outside. See [Beta-1-Pet-Restrictions-Audit.md](Beta-1-Pet-Restrictions-Audit.md).
 
 Tamed or controlled creatures must not enter or remain in dungeon regions unless the creature is
 currently being ridden.
@@ -1223,6 +1226,10 @@ is mounted and the animal cannot participate independently in dungeon combat.
 Document the exact creature/category test used to decide whether a controlled creature is prohibited.
 
 ### Player-vs-player pet aggression policy
+
+> **Owner ruling (2026-09-30), supersedes the lawful-target rule below for tamed pets:** a tamed pet never attacks a player, for any
+> reason (not criminals, murderers, aggressors, `[Intent]` targets, guild enemies or Faction enemies). Pets still fight monsters.
+> The lawful-target text below is kept as history of the earlier design.
 
 Controlled pets must not be usable as a general offensive PvP strategy.
 

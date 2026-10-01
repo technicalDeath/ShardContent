@@ -285,7 +285,7 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
    - Set `CharacterListFlags.ML` in the shard-owned `expansion.json` to true at activation while keeping `SupportedFeatures.ML` false and the UOR/Felucca ruleset intact; retain the SA-off Gargoyle restriction.
    - Preserve native Elf body, skin and hair while applying Human-equivalent starting rules and gameplay permissions. Keep Elf-only equipment, creature access and ML racial bonuses unavailable.
    - Verify character creation, starter entitlements, Human/Elf parity and appearance after death, resurrection and save/restart on a disposable server before activation.
-2. Pet combat restrictions (deferred from Alpha 3 J-5). The owner approves the exact pet policy before anything is built.
+2. **Done 2026-09-30** ([audit](Beta-1-Pet-Restrictions-Audit.md), [readiness](Beta-1-Pet-Restrictions-Readiness.md)). Pet combat restrictions (deferred from Alpha 3 J-5). The owner approved the policy: tamed pets never attack players, and a tamed pet is shrunk into its owner's pack rather than stay in a dungeon.
    - Already built in Alpha 3: controlled pets do not gain the Hot-only attack permission.
    - Build the dungeon restriction: no controlled pets in dungeon regions unless ridden, and no Recall, Gate, teleport, login, resurrection or restart path that places a combat pet in a dungeon (DD 1209-1250). Confirm pets cannot attack blues inside Hot Zones.
    - Large impact on tamers, so test live with tamer cases and build in isolation.
@@ -304,7 +304,7 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
 ### Exit criteria
 
 - Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests. **Met 2026-09-30.**
-- The pet policy is approved and covered by unit tests and live tamer cases, including every transport path.
+- The pet policy is approved and covered by unit tests and live tamer cases, including every transport path. **Met 2026-09-30.**
 - The gain curve is approved, covered by automated tests and does not break Skill Bank or Mastery.
 - The ClassicUO creation screen lists only approved era-appropriate templates, and the server handles a removed template safely.
 - Live ClassicUO creation gives every remaining template and Advanced creation exactly 120 starting stat points with at least 30 in each stat.

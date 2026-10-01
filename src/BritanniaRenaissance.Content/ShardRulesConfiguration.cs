@@ -518,6 +518,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("skillBank")]
     public bool SkillBank { get; set; }
 
+    [JsonPropertyName("petRestrictions")]
+    public bool PetRestrictions { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -546,11 +549,12 @@ public sealed class DeferredFeatureFlags
         if (Alpha3StarterCraftMaterials) yield return nameof(Alpha3StarterCraftMaterials);
         if (Alpha3StarterCombatGear) yield return nameof(Alpha3StarterCombatGear);
         if (SkillBank) yield return nameof(SkillBank);
+        if (PetRestrictions) yield return nameof(PetRestrictions);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

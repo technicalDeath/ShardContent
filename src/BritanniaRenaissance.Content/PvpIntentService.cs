@@ -296,6 +296,13 @@ public static class PvpIntentService
             return false;
         }
 
+        // Every pet attack route (Attack, All Kill, Guard, auto-acquire, retaliation, area attacks)
+        // reaches here through Mobile.CanBeHarmful, so this one check keeps tamed pets off players.
+        if (PetRestrictionService.BlocksAttack(from, target))
+        {
+            return false;
+        }
+
         if (!SafeWorldEnabled || target is not PlayerMobile defender)
         {
             return InvokeStock(from, target);

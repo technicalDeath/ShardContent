@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "f2fc6162bca2d62dc454e3e141aa2c61d42b15a6",
+  "pinnedModernUoCommit": "8083d3f9e27cbabedf0bd95b72c5002ae52fb874",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -84,6 +84,7 @@
     "alpha3StarterCraftMaterials": true,
     "alpha3StarterCombatGear": true,
     "skillBank": true,
+    "petRestrictions": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,
