@@ -289,14 +289,16 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
    - Already built in Alpha 3: controlled pets do not gain the Hot-only attack permission.
    - Build the dungeon restriction: no controlled pets in dungeon regions unless ridden, and no Recall, Gate, teleport, login, resurrection or restart path that places a combat pet in a dungeon (DD 1209-1250). Confirm pets cannot attack blues inside Hot Zones.
    - Large impact on tamers, so test live with tamer cases and build in isolation.
-3. Accelerated skill-gain curve below 95 skill (deferred from Alpha 3 J-4). The owner approves the classes and factors.
-   - Survey current gain behavior per skill, propose per-skill difficulty classes and factors (DD 770-835), then build. Alpha 3 keeps stock gain factors (1.0).
-   - Check the result against Skill Bank restoration and Mastery, which share the gain path.
-4. Show only era-appropriate character templates in ClassicUO. The owner approves the template list.
+3. **Done 2026-10-01** ([audit](Beta-1-Skill-Gain-Curve-Audit.md), [readiness](Beta-1-Skill-Gain-Curve-Readiness.md)). Accelerated skill-gain curve below 95 skill (deferred from Alpha 3 J-4). The owner approved the rule and the class table.
+   - The owner replaced the contract's hour targets with a stock-relative rule: the stock gain probability is multiplied per class and band. Easy 1.5x from 10 to 95; Standard 1.5x to 70 then stock; Hard 1.5x to 70, stock to 80, 0.75x from 80. Below 10 and from 95 (Mastery) are stock. Classes: Easy 19, Standard 26, Hard 4, VeryHard defined and empty.
+   - One narrow ModernUO hook (`SkillEvents.GainChanceMultiplier`) reached only on the stock roll, so Skill Bank restoration and Mastery are untouched. Config in `shard-rules.json` (`skillGain`, `featureFlags.skillGainCurve`); players see it with `[SkillClasses`.
+4. **Done 2026-10-01** ([audit](Beta-1-Character-Templates-Audit.md), [readiness](Beta-1-Character-Templates-Readiness.md)). Show only era-appropriate character templates in ClassicUO. Research showed the era (August 1999 publish, in force through Renaissance) used an Adventurer and Merchant folder tree of professions, not Warrior, Mage and Blacksmith. The owner chose that tree without Field Medic and Battle Mage: 16 professions (Archer, Bard, Ranger; Pure Mage, Warlock; Mace Fighter, Fencer, Swordsman; Blacksmith, Carpenter, Tailor, Tinker; Animal Tamer, Fisherman, Prospector, Sorcerer) plus Advanced.
+   - Finding: the server read the client's `Prof.txt` before its own UOR file, so it defined and granted Necromancer, Paladin, Samurai and Ninja. The shard now owns one profession file for server and client, chosen by the `characterCreation.professionFile` setting; the client hides later-era templates by an era rule and supports two folder levels; the server stops after startup if the shard file is not in use. The values come from a community reconstruction of the era file (caveat in the audit); the era's 100 skill points are scaled to 120 with no skill above 50, matching Advanced.
+   - The original task description follows.
    - The client lists every profession in its `prof.txt` for the client version, including later-era ones (for example Paladin, Necromancer, Samurai, Ninja); the server only defines Warrior, Mage and Blacksmith for UOR. Remove templates that do not make sense for the UOR era from the creation screen in the distributed ClassicUO fork, so players cannot pick one the shard cannot honor.
    - Keep Advanced creation and the approved templates working, including the cosmetic Elf path from item 1.
    - Verify in the real client that the removed templates are gone, the remaining ones create correctly, and a forged creation packet for a removed template is rejected or falls back safely on the server.
-5. Live-client test of the 120-point starting stats (Alpha 3 Phase B). No owner input.
+5. **Done 2026-10-01, trimmed by the owner to one profession template and Advanced** ([evidence](Beta-1-Live-Creation-Screens-Evidence.md)). Live-client test of the 120-point starting stats (Alpha 3 Phase B). No owner input. The original scope follows.
    - Alpha 3 verified the 120 total / 30 minimum allocation through Navrey's `createcharacter` command, which sends the creation packet directly. Repeat it in the actual ClassicUO client, driven through its character-creation screens, after the template list is trimmed.
    - Cover Advanced creation and every template left after item 4: confirm the stat sliders allow the intended allocations, the client cannot submit anything the server rejects, and each new character ends with exactly 120 points, at least 30 in each stat, and the 225 cap untouched.
    - Record each template and any allocation the client blocks or the server silently adjusts.
@@ -305,9 +307,9 @@ Finish the character-facing foundations that later systems depend on: a cosmetic
 
 - Elf creation works in the distributed ClassicUO fork and passes Human-equivalence, era-gate, Gargoyle-restriction and appearance-persistence tests. **Met 2026-09-30.**
 - The pet policy is approved and covered by unit tests and live tamer cases, including every transport path. **Met 2026-09-30.**
-- The gain curve is approved, covered by automated tests and does not break Skill Bank or Mastery.
-- The ClassicUO creation screen lists only approved era-appropriate templates, and the server handles a removed template safely.
-- Live ClassicUO creation gives every remaining template and Advanced creation exactly 120 starting stat points with at least 30 in each stat.
+- The gain curve is approved, covered by automated tests and does not break Skill Bank or Mastery. **Met 2026-10-01.**
+- The ClassicUO creation screen lists only approved era-appropriate templates, and the server handles a removed template safely. **Met 2026-10-01.**
+- Live ClassicUO creation gives every remaining template and Advanced creation exactly 120 starting stat points with at least 30 in each stat. **Met 2026-10-01 for one template (Ranger) and Advanced, driven through the real creation screens; the owner chose not to repeat it for every template.** The test found and fixed the Advanced screen's 90-point stat sliders.
 
 ### Explicitly deferred
 

@@ -53,5 +53,6 @@ public static class ShardBootstrap
         PvpIntentService.RebindAfterStockHandlers();
         KnockedOutService.RebindAfterStockHandlers();
         EraGateConfiguration.ValidatePostBootFeatureFlags();
+        EraGateConfiguration.ValidatePostBootProfessions();
     }
 }

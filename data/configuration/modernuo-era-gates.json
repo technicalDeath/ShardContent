@@ -7,6 +7,7 @@
     "questSystem.enableMLQuests": "False",
     "taming.enableBonding": "False",
     "taming.petsStandDownOnCommand": "False",
-    "melee.enableInstaHit": "True"
+    "melee.enableInstaHit": "True",
+    "characterCreation.professionFile": "Data/BritanniaRenaissance/Professions/Prof.txt"
   }
 }

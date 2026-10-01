@@ -92,6 +92,59 @@ public static class EraGateConfiguration
         return errors;
     }
 
+    /// <summary>
+    /// Runs once the server has started. ModernUO's <c>ProfessionInfo</c> loads its file in a static constructor, on first
+    /// use, and resolves skills by their profession names through the skill table. Touching it any earlier (the era gates
+    /// load during <c>Configure</c>, before the skill table exists) would freeze a table that silently lacks every
+    /// template using an aliased skill name, so this check must not run before startup completes. If the shard's
+    /// profession file is not the one in use the server is stopped: a silent fallback would hand out later-era gear.
+    /// </summary>
+    public static void ValidatePostBootProfessions()
+    {
+        var errors = ValidateProfessions();
+
+        if (errors.Count == 0)
+        {
+            Logger.Information("Validated shard character-creation templates: {Ids} defined; {Undefined} undefined.",
+                string.Join(", ", ShardProfessions.TemplateIds), string.Join(", ", ShardProfessions.UndefinedIds));
+            return;
+        }
+
+        Logger.Error(
+            "Character-creation templates are wrong, so the server is stopping: {Errors}",
+            string.Join(" ", errors)
+        );
+        Core.Kill();
+    }
+
+    /// <summary>
+    /// The shard's own profession file must be the one the server loaded: exactly the approved template IDs exist and
+    /// none of the later-era ones (4 to 7). Otherwise the server would grant a later-era profession's skills and gear
+    /// from whichever prof.txt the client data folder holds.
+    /// </summary>
+    public static List<string> ValidateProfessions()
+    {
+        var errors = new List<string>();
+
+        foreach (var id in ShardProfessions.TemplateIds)
+        {
+            if (!ProfessionInfo.GetProfession(id, out _))
+            {
+                errors.Add($"Profession {id} is not defined; the shard profession file ({ShardProfessions.SettingKey}) is not in use.");
+            }
+        }
+
+        foreach (var id in ShardProfessions.UndefinedIds)
+        {
+            if (ProfessionInfo.GetProfession(id, out var profession))
+            {
+                errors.Add($"Profession {id} ({profession.Name}) must not be defined on this shard.");
+            }
+        }
+
+        return errors;
+    }
+
     public static IEnumerable<string> Describe()
     {
         yield return $"Runtime era gates: {string.Join(", ", RequiredDisabledSettings)} disabled";

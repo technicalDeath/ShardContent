@@ -6,6 +6,10 @@ namespace BritanniaRenaissance.Content;
 
 public static class Alpha3StartingStats
 {
+    public const int StatTotal = 120;
+    public const int StatMinimum = 30;
+    public const int StatMaximum = 60;
+
     private static bool _configured;
 
     public static void Configure()
@@ -38,15 +42,21 @@ public static class Alpha3StartingStats
         ReadOnlySpan<byte> sourceStats
     )
     {
-        // The UOR profession file exposes these three templates. Advanced keeps the
-        // player's relative choices after the server's 30-point minimum is applied.
-        return professionName switch
+        // An Advanced choice that is already a valid 120-point spread (the client's Advanced screen lets the player
+        // assign exactly that) is kept exactly as chosen.
+        if (sourceStats.Length >= 3 &&
+            sourceStats[0] + sourceStats[1] + sourceStats[2] == StatTotal &&
+            sourceStats[0] is >= StatMinimum and <= StatMaximum &&
+            sourceStats[1] is >= StatMinimum and <= StatMaximum &&
+            sourceStats[2] is >= StatMinimum and <= StatMaximum)
         {
-            "Warrior" => (50, 40, 30),
-            "Mage" => (30, 30, 60),
-            "Blacksmith" => (60, 30, 30),
-            _ => AllocateFromPreferences(sourceStats)
-        };
+            return (sourceStats[0], sourceStats[1], sourceStats[2]);
+        }
+
+        // Otherwise (a profession's 80-point template, or an old-style 90-point Advanced packet) spread 120 points in
+        // proportion to the stat points above the minimum, ending at least 30 and at most 60 in each stat. The
+        // profession name is not needed; it is kept so callers need no change.
+        return AllocateFromPreferences(sourceStats);
     }
 
     private static (int Strength, int Dexterity, int Intelligence) AllocateFromPreferences(ReadOnlySpan<byte> stats)

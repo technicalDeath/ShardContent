@@ -1,0 +1,335 @@
+# Britannia Renaissance character-creation templates: the Ultima Online professions of August 1999 (Publish 8), in force
+# through Renaissance (April 2000). Adventurer and Merchant folders (two levels) and Advanced. Each profession is three skills and
+# 80 stat points. The era's 100 skill points are scaled proportionally to 120 (as Advanced gives 120), no skill above 50, by the owner's decision. One source of truth for the server and the distributed client.
+# Source of the values: the UO Second Age forum reconstruction of the era Prof.txt (not an Origin file); see Beta-1-Character-Templates-Audit.md.
+# Field Medic and Battle Mage are left out by the owner's decision.
+# Tab-separated. The server (ModernUO ProfessionInfo) reads TrueName, Desc (the profession ID sent in the creation packet), Skill and Stat
+# from blocks whose Type is Profession and ignores folders; the client also reads Name, DescText, Gump, Type Category, TopLevel and Children.
+# Profession IDs 8 to 23 are the shard's. IDs 1 to 7 are deliberately unused, so a client that sends one falls back to Advanced.
+# Folders list their parents before their children, and a folder's Type comes before any other server key (the server stops reading a block at a non-profession Type).
+
+Begin
+	Name			"Adventurer"
+	TrueName		"Adventurer"
+	Type			Category
+	DescText		"Adventurers fight, hunt and cast spells."
+	TopLevel		true
+	Gump			5547
+	Children		"ArcherCategory" "MagicianCategory" "WarriorCategory"
+End
+
+Begin
+	Name			"Merchant"
+	TrueName		"Merchant"
+	Type			Category
+	DescText		"Merchants make and gather what others need."
+	TopLevel		true
+	Gump			5571
+	Children		"CraftsmanCategory" "TradesmanCategory"
+End
+
+Begin
+	Name			"Archer"
+	TrueName		"ArcherCategory"
+	Type			Category
+	DescText		"Ranged fighters."
+	TopLevel		false
+	Gump			5551
+	Children		"Archer" "Bard" "Ranger"
+End
+
+Begin
+	Name			"Magician"
+	TrueName		"MagicianCategory"
+	Type			Category
+	DescText		"Spellcasters."
+	TopLevel		false
+	Gump			5569
+	Children		"Pure Mage" "Warlock"
+End
+
+Begin
+	Name			"Warrior"
+	TrueName		"WarriorCategory"
+	Type			Category
+	DescText		"Melee fighters."
+	TopLevel		false
+	Gump			5587
+	Children		"Mace Fighter" "Fencer" "Swordsman"
+End
+
+Begin
+	Name			"Craftsman"
+	TrueName		"CraftsmanCategory"
+	Type			Category
+	DescText		"Makers of goods."
+	TopLevel		false
+	Gump			5559
+	Children		"Blacksmith" "Carpenter" "Tailor" "Tinker"
+End
+
+Begin
+	Name			"Tradesman"
+	TrueName		"TradesmanCategory"
+	Type			Category
+	DescText		"Gatherers and specialists."
+	TopLevel		false
+	Gump			5583
+	Children		"Animal Tamer" "Fisherman" "Prospector" "Sorcerer"
+End
+
+Begin
+	Name			"Archer"
+	TrueName		"Archer"
+	DescText		"Archers fight at range with a bow and make their own arrows."
+	Desc			8
+	TopLevel		false
+	Gump			5551
+	Type			Profession
+	Skill			Archery		50
+	Skill			Bowcraft		35
+	Skill			Lumberjacking		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Bard"
+	TrueName		"Bard"
+	DescText		"Bards play music to provoke and inspire, with a bow for company."
+	Desc			9
+	TopLevel		false
+	Gump			5553
+	Type			Profession
+	Skill			Musicianship		50
+	Skill			Provocation		50
+	Skill			Archery		20
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Ranger"
+	TrueName		"Ranger"
+	DescText		"Rangers hunt with a bow, track their quarry and tame animals."
+	Desc			10
+	TopLevel		false
+	Gump			5575
+	Type			Profession
+	Skill			Archery		50
+	Skill			Tracking		35
+	Skill			AnimalTaming		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Pure Mage"
+	TrueName		"Pure Mage"
+	DescText		"Pure mages master magic and the knowledge that guards against it."
+	Desc			11
+	TopLevel		false
+	Gump			5569
+	Type			Profession
+	Skill			Magery		50
+	Skill			Evaluate Intelligence		35
+	Skill			ResistingSpells		35
+	Stat			Str			40
+	Stat			Dex			15
+	Stat			Int			25
+End
+
+Begin
+	Name			"Warlock"
+	TrueName		"Warlock"
+	DescText		"Warlocks blend swordplay with spellcasting."
+	Desc			12
+	TopLevel		false
+	Gump			5585
+	Type			Profession
+	Skill			Swordsmanship		48
+	Skill			Magery		48
+	Skill			ResistingSpells		24
+	Stat			Str			40
+	Stat			Dex			15
+	Stat			Int			25
+End
+
+Begin
+	Name			"Mace Fighter"
+	TrueName		"Mace Fighter"
+	DescText		"Mace fighters crush with maces and staves and hold a shield."
+	Desc			13
+	TopLevel		false
+	Gump			5567
+	Type			Profession
+	Skill			MaceFighting		50
+	Skill			Parrying		35
+	Skill			Anatomy		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Fencer"
+	TrueName		"Fencer"
+	DescText		"Fencers fight with quick piercing weapons and hold a shield."
+	Desc			14
+	TopLevel		false
+	Gump			5561
+	Type			Profession
+	Skill			Fencing		50
+	Skill			Parrying		35
+	Skill			Anatomy		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Swordsman"
+	TrueName		"Swordsman"
+	DescText		"Swordsmen fight with blades and hold a shield."
+	Desc			15
+	TopLevel		false
+	Gump			5577
+	Type			Profession
+	Skill			Swordsmanship		50
+	Skill			Parrying		35
+	Skill			Anatomy		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Blacksmith"
+	TrueName		"Blacksmith"
+	DescText		"Blacksmiths mine ore and forge weapons and armor."
+	Desc			16
+	TopLevel		false
+	Gump			5555
+	Type			Profession
+	Skill			Blacksmith		50
+	Skill			Mining		50
+	Skill			Tinkering		20
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Carpenter"
+	TrueName		"Carpenter"
+	DescText		"Carpenters cut wood and build furniture and chests."
+	Desc			17
+	TopLevel		false
+	Gump			5559
+	Type			Profession
+	Skill			Carpentry		50
+	Skill			Lumberjacking		50
+	Skill			Bowcraft		20
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Tailor"
+	TrueName		"Tailor"
+	DescText		"Tailors sew clothing and leather armor."
+	Desc			18
+	TopLevel		false
+	Gump			5579
+	Type			Profession
+	Skill			Tailoring		50
+	Skill			Tracking		50
+	Skill			Healing		20
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Tinker"
+	TrueName		"Tinker"
+	DescText		"Tinkers build tools, keys and gadgets."
+	Desc			19
+	TopLevel		false
+	Gump			5581
+	Type			Profession
+	Skill			Tinkering		50
+	Skill			Mining		35
+	Skill			Lumberjacking		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Animal Tamer"
+	TrueName		"Animal Tamer"
+	DescText		"Animal tamers train wild creatures as companions."
+	Desc			20
+	TopLevel		false
+	Gump			5549
+	Type			Profession
+	Skill			AnimalTaming		50
+	Skill			Tracking		35
+	Skill			AnimalLore		35
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Fisherman"
+	TrueName		"Fisherman"
+	DescText		"Fishermen catch fish and cook them."
+	Desc			21
+	TopLevel		false
+	Gump			5565
+	Type			Profession
+	Skill			Fishing		50
+	Skill			Cooking		50
+	Skill			Camping		20
+	Stat			Str			50
+	Stat			Dex			15
+	Stat			Int			15
+End
+
+Begin
+	Name			"Prospector"
+	TrueName		"Prospector"
+	DescText		"Prospectors gather ore and lumber."
+	Desc			22
+	TopLevel		false
+	Gump			5573
+	Type			Profession
+	Skill			Mining		48
+	Skill			Lumberjacking		48
+	Skill			Hiding		24
+	Stat			Str			55
+	Stat			Dex			15
+	Stat			Int			10
+End
+
+Begin
+	Name			"Sorcerer"
+	TrueName		"Sorcerer"
+	DescText		"Sorcerers brew potions, scribe scrolls and cast spells."
+	Desc			23
+	TopLevel		false
+	Gump			5569
+	Type			Profession
+	Skill			Alchemy		42
+	Skill			Inscription		42
+	Skill			Magery		36
+	Stat			Str			40
+	Stat			Dex			15
+	Stat			Int			25
+End
