@@ -37,6 +37,7 @@ Plan presented and approved. Decisions:
 | Repo | Change |
 | --- | --- |
 | ModernUO | `BaseCreature`: two optional delegates, `CanFollowMasterHandler` (called in `TeleportPets`) and `ControlledPlacementChangedHandler` (raised from `OnRegionChange` for controlled creatures and from `SetControlMaster` when a master is set). Both are null by default, so stock behavior is unchanged. Tests: `PetPlacementHookTests`. |
+| ModernUO (follow-up) | `BaseCreature.AttackCommandRefusalHandler`, called first in `BaseAI.CanAttackTarget`: non-null text is said to the commanding player and the order is dropped. Tests in `PetPlacementHookTests`. |
 | ShardContent | `PetRestrictionService`, `ShrunkenPet`, the pet branch in `PvpIntentService.AllowHarmful`, `featureFlags.petRestrictions` (validator-free; on at activation), `ShardBootstrap` registration. Tests: `PetRestrictionTests`. Live probe and driver in `tests/scenarios/pet-restrictions/`. |
 
 ## Acceptance matrix and results
@@ -60,6 +61,7 @@ Plan presented and approved. Decisions:
 | Ridden horse is not in the dungeon world; dismounting inside shrinks it into the pack | live | pass |
 | Pet seeded inside a dungeon with the flag off, save, full restart with the flag on: shrunk by the boot sweep, item in the owner's pack, survived the save | live | pass |
 | Dev host boots with the flag on | live | pass |
+| Attack order on a criminal player: each pet tells the owner it refuses and keeps its order; the same order on a monster produces no refusal and the pet attacks | live (`pet_live.py refusal`) | pass (5/5) |
 
 Runs: ModernUO hook tests `20261001T014340883Z-5f139d` (4/4); full Shard `20261001T021353003Z-3de324` (279/279); full UOContent `20261001T021417723Z-55475e` (1246 pass; the same two unrelated failures as in the Elf audit, `AdvancedSearchTypesTests.Poison_ReferenceTypeParsedViaTypes` and `FamiliarAITests.HiddenCaster_FamiliarRefusesRetaliation`). Live outputs under `work/pet-live/`; drivers `tests/scenarios/pet-restrictions/pet_live.py` (`pvp`, `pvpoff`, `dungeon`, `seed`, `sweep`).
 
@@ -76,4 +78,5 @@ Runs: ModernUO hook tests `20261001T014340883Z-5f139d` (4/4); full Shard `202610
 - "{pet} cannot follow you into a dungeon."
 - "{pet} cannot stay in a dungeon, so it has been shrunk into your pack."
 - "Your pet cannot be released inside a dungeon."
+- "Your pet refuses to attack other players."
 - Item name "a shrunken {pet}". README rules section gained a "Pets" line.

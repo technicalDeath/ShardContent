@@ -3,6 +3,7 @@ PetProbe.dll and TestOnlyProbe.dll loaded, and characters PetOwner BlueVic Inten
 
     python pet_live.py pvp        # no tamed pet attacks any player; pets still attack monsters
     python pet_live.py pvpoff     # control: flag forced off in memory, pets DO attack intent/criminal/red players
+    python pet_live.py refusal    # the owner is told when a pet refuses an Attack order against a player
     python pet_live.py dungeon    # follow filter, tame/dismount in a dungeon, exemptions, unshrink rules
     python pet_live.py seed       # (flag forced off in memory) put a pet in a dungeon so a restart can sweep it
     python pet_live.py sweep      # after save + restart with the flag on: the seeded pet was shrunk
@@ -225,6 +226,42 @@ def reset_owner(staff, owner_name: str = "PetOwner") -> None:
     go(staff, owner_name, DUNGEON_OUTSIDE)
 
 
+def phase_refusal(staff) -> None:
+    """Needs PetOwner and BlueVic only. The refusal text reaches the owner (it is in the owner's client log),
+    the pet's standing order is unchanged, and the same command on a monster produces no refusal."""
+    owner = connect("PetOwner")
+    log = WORKSPACE / "work" / "navrey-sessions" / "PetOwner" / "cuolog"
+    text = "Your pet refuses to attack other players."
+    clear_followers(staff, "PetOwner")
+    victim = connect("BlueVic")
+    go(staff, "BlueVic", tuple(owner.state[k] for k in ("charPosX", "charPosY", "charPosZ")))
+    pets = [tame(staff, "PetOwner", "Dog") for _ in range(2)]
+    time.sleep(1.0)
+    before_orders = [report(staff, p)["combatant"] for p in pets]
+
+    # The owner's own harm check stops a harmful cursor on an innocent before the pet is asked, so use a target
+    # the owner may attack: a criminal grey.
+    staff_target(staff, "[set Criminal true", victim.state["charID"])
+    mark = log.stat().st_size
+    order_attack(owner, victim.state["charID"])
+    time.sleep(3)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    check("refusal:owner-sees-the-message", text in new, new[-300:])
+    check("refusal:one-message-per-pet", new.count(text) == len(pets), f"{new.count(text)} for {len(pets)} pets")
+    check("refusal:no-pet-targets-the-player", not followers_on(staff, "PetOwner", hexs(victim.state["charID"])))
+
+    clear_followers(staff, "PetOwner")
+    rat = spawn_rat(staff, "PetOwner")
+    pet = tame(staff, "PetOwner", "Dog")
+    time.sleep(1.0)
+    mark = log.stat().st_size
+    order_attack(owner, rat)
+    time.sleep(3)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    check("refusal:control-no-message-for-a-monster", text not in new, new[-200:])
+    check("refusal:control-pet-attacks-the-monster", report(staff, pet)["combatant"] == hexs(rat))
+
+
 def phase_dungeon(staff) -> None:
     owner = connect("PetOwner")
     reset_owner(staff)
@@ -369,7 +406,7 @@ def phase_sweep(staff) -> None:
 
 
 def main(argv: list) -> int:
-    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
+    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
     if len(argv) != 2 or argv[1] not in phases:
         print(__doc__)
         return 2

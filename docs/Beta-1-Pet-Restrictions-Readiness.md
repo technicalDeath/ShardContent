@@ -16,7 +16,7 @@ Source and deployed `shard-rules.json` match with `petRestrictions` true; the va
 
 ## Readiness limits
 - **Summons, familiars and hirelings are exempt from both rules** by the owner's decision on the dungeon ban; the PvP rule was worded for "pets", so they remain ordinary owner-permission tools in PvP. Say so if you want them covered too.
-- A pet that refuses a player target does so silently (no message); stock `BaseAI.CanAttackTarget` is private, so a message needs another small hook.
+- Feedback: an Attack or All Kill order against a player the owner may attack (criminal, red, `[Intent]`) makes each pet say "Your pet refuses to attack other players." and keeps its standing order. Verified live. Against an innocent the owner's own harm check stops the cursor first, so the pet is never asked. Guard-mode and auto-acquire refusals are silent: there is no command to answer.
 - Gate Travel, public moongates, house teleporters and Recall use the same `TeleportPets` filter and are covered by the hook unit tests and the probe move, not walked live. Recall carries only bonded pets and bonding is disabled.
 - Taming was exercised through `SetControlMaster` (the single point real taming calls), not with a full skill-based tame.
 - Shrunken pets are only created as this safety outcome; there is no at-will shrinking. They are Blessed and Nontransferable, so they can't be traded; deleting the item deletes the pet.

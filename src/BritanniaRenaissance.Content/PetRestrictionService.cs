@@ -28,6 +28,10 @@ public static class PetRestrictionService
         BaseCreature.CanFollowMasterHandler = (pet, location, map) =>
             (previous?.Invoke(pet, location, map) ?? true) && CanFollow(pet, location, map);
         BaseCreature.ControlledPlacementChangedHandler += OnPlacementChanged;
+
+        var previousRefusal = BaseCreature.AttackCommandRefusalHandler;
+        BaseCreature.AttackCommandRefusalHandler = (pet, target) =>
+            previousRefusal?.Invoke(pet, target) ?? AttackRefusal(pet, target);
         EventSink.ServerStarted += SweepDungeons;
     }
 
@@ -51,6 +55,10 @@ public static class PetRestrictionService
     /// <summary>True when a restricted pet's attack on this target must be refused.</summary>
     public static bool BlocksAttack(Mobile from, Mobile target) =>
         Enabled && target is PlayerMobile && from is BaseCreature creature && IsRestrictedPet(creature);
+
+    /// <summary>What a pet says when its owner orders it onto a player; null when the order is fine.</summary>
+    public static string? AttackRefusal(BaseCreature pet, Mobile target) =>
+        BlocksAttack(pet, target) ? "Your pet refuses to attack other players." : null;
 
     private static bool InDungeon(Region? region) => region?.IsPartOf<DungeonRegion>() == true;
 
