@@ -31,6 +31,10 @@ public static class PetRestrictionService
             (previous?.Invoke(pet, location, map) ?? true) && CanFollow(pet, location, map);
         BaseCreature.ControlledPlacementChangedHandler += OnPlacementChanged;
 
+        var previousTame = BaseCreature.TameAttemptRefusalHandler;
+        BaseCreature.TameAttemptRefusalHandler = (tamer, creature) =>
+            previousTame?.Invoke(tamer, creature) ?? TameRefusal(tamer, creature);
+
         var previousRefusal = BaseCreature.AttackCommandRefusalHandler;
         BaseCreature.AttackCommandRefusalHandler = (pet, target) =>
             previousRefusal?.Invoke(pet, target) ?? AttackRefusal(pet, target);
@@ -60,6 +64,56 @@ public static class PetRestrictionService
     /// </summary>
     public static bool MountMayStay(bool isMount, bool ownerIsMounted, bool anotherMountInDungeon) =>
         isMount && !ownerIsMounted && !anotherMountInDungeon;
+
+    /// <summary>
+    /// Whether a shrunken pet may be released where its owner stands: anywhere outside a dungeon, and inside one only
+    /// for a mount that <see cref="MountMayStay"/> would let stand.
+    /// </summary>
+    public static bool MayReleaseInDungeon(
+        bool rulesEnabled, bool ownerInDungeon, bool isMount, bool ownerIsMounted, bool anotherMountInDungeon
+    ) => !rulesEnabled || !ownerInDungeon || MountMayStay(isMount, ownerIsMounted, anotherMountInDungeon);
+
+    public static bool MayRelease(PlayerMobile owner, BaseCreature pet) =>
+        MayReleaseInDungeon(
+            Enabled,
+            InDungeon(owner.Region),
+            pet is BaseMount,
+            owner.Mounted,
+            AnotherMountInDungeon(owner, pet)
+        );
+
+    /// <summary>
+    /// Taming inside a dungeon is allowed, but a creature that would then be shrunk needs room in the tamer's pack,
+    /// so the attempt is refused up front rather than failing after the tame. A mount that may stay needs no room.
+    /// </summary>
+    public static string? TameRefusal(Mobile tamer, BaseCreature creature)
+    {
+        if (!Enabled || tamer is not PlayerMobile { AccessLevel: AccessLevel.Player } player ||
+            !InDungeon(creature.Region) || !IsRestrictedKind(creature.GetType(), true, false))
+        {
+            return null;
+        }
+
+        if (creature is BaseMount && MountMayStay(true, player.Mounted, AnotherMountInDungeon(player, creature)))
+        {
+            return null;
+        }
+
+        var probe = new ShrunkenPet();
+        try
+        {
+            if (player.Backpack is { } pack && pack.CheckHold(player, probe, false))
+            {
+                return null;
+            }
+        }
+        finally
+        {
+            probe.Delete();
+        }
+
+        return "You need room in your backpack for a shrunken pet before you can tame that creature in a dungeon.";
+    }
 
     /// <summary>True when a restricted pet's attack on this target must be refused.</summary>
     public static bool BlocksAttack(Mobile from, Mobile target) =>
@@ -156,7 +210,7 @@ public static class PetRestrictionService
         return true;
     }
 
-    private static bool AnotherMountInDungeon(PlayerMobile owner, BaseCreature pet)
+    public static bool AnotherMountInDungeon(PlayerMobile owner, BaseCreature pet)
     {
         if (owner.AllFollowers is null)
         {

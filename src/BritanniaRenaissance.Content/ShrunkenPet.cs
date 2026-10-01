@@ -101,9 +101,13 @@ public sealed class ShrunkenPet : Item
             return;
         }
 
-        if (from.Region.IsPartOf<DungeonRegion>() && PetRestrictionService.Enabled)
+        if (from is PlayerMobile player && !PetRestrictionService.MayRelease(player, pet))
         {
-            from.SendMessage("Your pet cannot be released inside a dungeon.");
+            from.SendMessage(
+                pet is BaseMount
+                    ? "Only one mount may be out in a dungeon, and only while you are not riding."
+                    : "Your pet cannot be released inside a dungeon."
+            );
             return;
         }
 

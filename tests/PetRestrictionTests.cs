@@ -55,4 +55,17 @@ public class PetRestrictionTests
     {
         Assert.Equal(expected, PetRestrictionService.MountMayStay(isMount, ownerMounted, another));
     }
+
+    [Theory]
+    [InlineData(true, false, false, false, false, true)]   // outside a dungeon: always
+    [InlineData(false, true, false, false, false, true)]   // rules off: always
+    [InlineData(true, true, true, false, false, true)]     // inside: a lone mount, owner on foot
+    [InlineData(true, true, true, true, false, false)]     // inside: owner riding
+    [InlineData(true, true, true, false, true, false)]     // inside: another mount already standing
+    [InlineData(true, true, false, false, false, false)]   // inside: not a mount
+    public void ReleaseInsideADungeonFollowsTheMountRule(
+        bool enabled, bool inDungeon, bool isMount, bool ownerMounted, bool another, bool expected)
+    {
+        Assert.Equal(expected, PetRestrictionService.MayReleaseInDungeon(enabled, inDungeon, isMount, ownerMounted, another));
+    }
 }

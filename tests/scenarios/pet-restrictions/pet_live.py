@@ -5,6 +5,8 @@ PetProbe.dll and TestOnlyProbe.dll loaded, and characters PetOwner BlueVic Inten
     python pet_live.py pvpoff     # control: flag forced off in memory, pets DO attack intent/criminal/red players
     python pet_live.py refusal    # the owner is told when a pet refuses an Attack order against a player
     python pet_live.py mount      # one mount may be dismounted inside; it fights monsters; everything else is shrunk
+    python pet_live.py tame       # real Animal Taming in a dungeon; refused up front when the pack is full
+    python pet_live.py inside     # taming and unshrinking inside a dungeon follow the one-mount rule
     python pet_live.py mountsweep # after save + restart: the standing mount is untouched
     python pet_live.py dungeon    # follow filter, tame/dismount in a dungeon, exemptions, unshrink rules
     python pet_live.py seed       # (flag forced off in memory) put a pet in a dungeon so a restart can sweep it
@@ -424,6 +426,130 @@ def phase_mount(staff) -> None:
     (OUT / "mount-a.json").write_text(json.dumps({"mount": mount_a, "extra": [dog, mount_b, mount_c]}))
 
 
+def shrunken_item(staff, owner_hex: str, pet_hex: str):
+    for item in report(staff, owner_hex)["shrunken"]:
+        if item["pet"] and item["pet"]["serial"] == pet_hex:
+            return item["serial"]
+    return None
+
+
+def release(owner, item_serial: str) -> None:
+    owner.call("use 0x" + item_serial.rjust(8, "0"))
+    time.sleep(2.5)
+
+
+def phase_inside(staff) -> None:
+    """Taming and unshrinking INSIDE a dungeon follow the one-mount rule."""
+    owner = connect("PetOwner")
+    oserial = hexs(owner.state["charID"])
+    reset_owner(staff)
+    go(staff, "PetOwner", DUNGEON_INSIDE)
+    time.sleep(1)
+
+    mount_x = tame(staff, "PetOwner", "Horse")           # tamed inside, no mount standing: it stays
+    time.sleep(3)
+    check("inside:lone-mount-tamed-inside-stays", standing(report(staff, mount_x)), str(report(staff, mount_x)))
+    mount_y = tame(staff, "PetOwner", "Horse")           # a mount is already standing: shrunk
+    dog = tame(staff, "PetOwner", "Dog")                 # not a mount: shrunk
+    time.sleep(3)
+    check("inside:second-mount-tamed-shrunk", shrunk(report(staff, mount_y)))
+    check("inside:non-mount-tamed-shrunk", shrunk(report(staff, dog)))
+    check("inside:first-mount-still-standing", standing(report(staff, mount_x)))
+
+    item_y = shrunken_item(staff, oserial, mount_y)
+    item_dog = shrunken_item(staff, oserial, dog)
+    release(owner, item_y)
+    check("inside:unshrink-refused-while-another-mount-stands", shrunk(report(staff, mount_y)))
+
+    staff.say(f"[TestOnlyPetDelete {mount_x}")               # now no mount is standing
+    time.sleep(1.5)
+    release(owner, item_y)
+    y = report(staff, mount_y)
+    check("inside:unshrink-mount-allowed-when-none-stands", standing(y), str(y))
+    check("inside:unshrink-consumed-the-item", shrunken_item(staff, oserial, mount_y) is None)
+
+    release(owner, item_dog)
+    check("inside:unshrink-non-mount-still-refused", shrunk(report(staff, dog)))
+
+    # while the owner rides, a shrunken mount cannot be released in the dungeon
+    mount_z = tame(staff, "PetOwner", "Horse")           # mount_y stands, so z is shrunk
+    time.sleep(3)
+    item_z = shrunken_item(staff, oserial, mount_z)
+    owner.call(f"use 0x{mount_y.rjust(8, '0')}")          # ride y; it leaves the world
+    time.sleep(2)
+    release(owner, item_z)
+    check("inside:unshrink-refused-while-owner-rides", shrunk(report(staff, mount_z)))
+    staff.say(f"[TestOnlyPetDismount {owner.state['charID']}")
+    time.sleep(3)
+    check("inside:dismounted-mount-stays-again", standing(report(staff, mount_y)))
+
+
+def wild_spawn(staff, owner_name: str, type_name: str) -> str:
+    owner = connect(owner_name)
+    return probe_json(staff, f"[TestOnlyPetSpawn {owner.state['charID']} {type_name}",
+                      f"pet-spawn-{hexs(owner.state['charID'])}.json")["serial"]
+
+
+def real_tame(owner, staff, wild_hex: str, wait: float = 12.0) -> None:
+    owner.call("useskill animal taming")   # the call returns after the cursor is already open
+    time.sleep(0.5)
+    owner.target("0x" + wild_hex.rjust(8, "0"))
+    time.sleep(wait)
+
+
+def phase_tame(staff) -> None:
+    """Real Animal Taming inside a dungeon: refused up front when the shrunken pet would not fit in the pack."""
+    owner = connect("PetOwner")
+    oserial = hexs(owner.state["charID"])
+    log = WORKSPACE / "work" / "navrey-sessions" / "PetOwner" / "cuolog"
+    text = "You need room in your backpack for a shrunken pet"
+    reset_owner(staff)
+    staff.say(f"[TestOnlyPetSkill {owner.state['charID']} AnimalTaming 100")
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
+    go(staff, "PetOwner", DUNGEON_INSIDE)
+    time.sleep(1)
+
+    # 1. real tame of a lone mount, nothing standing: succeeds and stays standing (no pack room needed)
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']}")      # pack completely full
+    time.sleep(1)
+    horse = wild_spawn(staff, "PetOwner", "Horse")
+    time.sleep(1)
+    mark = log.stat().st_size
+    real_tame(owner, staff, horse)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    st = report(staff, horse)
+    check("tame:full-pack-lone-mount-tames-and-stands", standing(st) and text not in new, f"{st['controlled']} {st['map']} | {new[-200:]}")
+
+    # 2. a full pack and a mount that would be shrunk (one already stands): refused before the attempt
+    horse2 = wild_spawn(staff, "PetOwner", "Horse")
+    time.sleep(1)
+    mark = log.stat().st_size
+    real_tame(owner, staff, horse2, wait=4)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    st2 = report(staff, horse2)
+    check("tame:full-pack-second-mount-refused-up-front", text in new and not st2["controlled"], new[-200:])
+
+    # 3. a full pack and a non-mount: refused before the attempt
+    dog = wild_spawn(staff, "PetOwner", "Dog")
+    time.sleep(1)
+    mark = log.stat().st_size
+    real_tame(owner, staff, dog, wait=4)
+    new = log.read_bytes()[mark:].decode("utf-8", "replace")
+    check("tame:full-pack-non-mount-refused-up-front", text in new and not report(staff, dog)["controlled"], new[-200:])
+
+    # 4. with room in the pack the same non-mount is tamed and then shrunk
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
+    time.sleep(1)
+    dog = wild_spawn(staff, "PetOwner", "Dog")   # a fresh one: the first has wandered out of range
+    for _ in range(4):   # a tame attempt can fail on its roll
+        real_tame(owner, staff, dog)
+        st = report(staff, dog)
+        if st["controlled"] or shrunk(st):
+            break
+    check("tame:room-in-pack-non-mount-tamed-then-shrunk", shrunk(st) and shrunken_item(staff, oserial, dog) is not None, str(st))
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
+
+
 def phase_mountsweep(staff) -> None:
     """After save + restart: the lone standing mount is left alone by the boot sweep; the shrunken ones stay shrunk."""
     saved = json.loads((OUT / "mount-a.json").read_text())
@@ -465,7 +591,7 @@ def phase_sweep(staff) -> None:
 
 
 def main(argv: list) -> int:
-    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
+    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "inside": phase_inside, "tame": phase_tame, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
     if len(argv) != 2 or argv[1] not in phases:
         print(__doc__)
         return 2

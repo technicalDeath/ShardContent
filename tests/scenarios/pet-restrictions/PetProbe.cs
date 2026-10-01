@@ -26,6 +26,74 @@ public static class PetProbe
         CommandSystem.Register("TestOnlyPetDismount", AccessLevel.Administrator, OnDismount);
         CommandSystem.Register("TestOnlyPetClear", AccessLevel.Administrator, OnClear);
         CommandSystem.Register("TestOnlyPetSpawn", AccessLevel.Administrator, OnSpawn);
+        CommandSystem.Register("TestOnlyPetDelete", AccessLevel.Administrator, OnDelete);
+        CommandSystem.Register("TestOnlyPetSkill", AccessLevel.Administrator, OnSkill);
+        CommandSystem.Register("TestOnlyPetFillPack", AccessLevel.Administrator, OnFillPack);
+    }
+
+    // [TestOnlyPetSkill <player-serial> <SkillName> <value> sets a skill (to let a test character tame for real).
+    private static void OnSkill(CommandEventArgs e)
+    {
+        if (e.Length < 3 || !TryMobile(e, 0, out var m) || m is not PlayerMobile player ||
+            !Enum.TryParse<SkillName>(e.GetString(1), true, out var skill) ||
+            !double.TryParse(e.GetString(2), NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPetSkill <player-serial> <SkillName> <value>");
+            return;
+        }
+
+        player.Skills[skill].Base = value;
+        e.Mobile.SendMessage($"PetSkill {skill}={player.Skills[skill].Base}");
+    }
+
+    // [TestOnlyPetFillPack <player-serial> [clear] fills the backpack with Candles until nothing more fits,
+    // or removes them again.
+    private static void OnFillPack(CommandEventArgs e)
+    {
+        if (!TryMobile(e, 0, out var m) || m is not PlayerMobile { Backpack: { } pack } player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPetFillPack <player-serial> [clear]");
+            return;
+        }
+
+        if (e.Length > 1 && e.GetString(1) == "clear")
+        {
+            foreach (var candle in pack.Items.OfType<Candle>().ToList())
+            {
+                candle.Delete();
+            }
+
+            e.Mobile.SendMessage("PetFillPack cleared");
+            return;
+        }
+
+        var added = 0;
+        for (var i = 0; i < 500; i++)
+        {
+            var candle = new Candle();
+            if (!pack.CheckHold(player, candle, false) || !pack.TryDropItem(player, candle, false))
+            {
+                candle.Delete();
+                break;
+            }
+
+            added++;
+        }
+
+        e.Mobile.SendMessage($"PetFillPack added={added}");
+    }
+
+    // [TestOnlyPetDelete <pet-serial> deletes a creature (staff [remove does not remove tamed pets).
+    private static void OnDelete(CommandEventArgs e)
+    {
+        if (!TryMobile(e, 0, out var m) || m is not BaseCreature pet)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPetDelete <pet-serial>");
+            return;
+        }
+
+        pet.Delete();
+        e.Mobile.SendMessage($"PetDelete {e.GetString(0)}");
     }
 
     // [TestOnlyPetSpawn <player-serial> <TypeName> creates a wild creature beside the player and writes
