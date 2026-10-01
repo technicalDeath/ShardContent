@@ -101,6 +101,8 @@ public static class ShardRulesConfiguration
             errors.Add("skillBank requires alpha3EnablementAcknowledged.");
         }
 
+        SkillGainCurveService.Validate(rules.SkillGain, errors);
+
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
         {
@@ -350,6 +352,9 @@ public sealed class ShardRules
     [JsonPropertyName("skillBank")]
     public SkillBankRules SkillBank { get; set; } = new();
 
+    [JsonPropertyName("skillGain")]
+    public SkillGainRules SkillGain { get; set; } = new();
+
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
 }
@@ -468,6 +473,30 @@ public sealed class TheftPoint
     public int Y { get; set; }
 }
 
+/// <summary>
+/// The sub-95 skill-gain curve (Beta 1). Each class is a list of bands: from the band's <c>from</c> skill value
+/// (inclusive) until the next band, the stock gain probability is multiplied by <c>multiplier</c>. Below 10.0 the
+/// stock unconditional gain is untouched and at 95.0 Mastery takes over, so only 10.0 to 95.0 is ever consulted.
+/// </summary>
+public sealed class SkillGainRules
+{
+    [JsonPropertyName("classes")]
+    public Dictionary<string, List<SkillGainBand>> Classes { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>Every UOR skill (by <c>SkillName</c>) to exactly one class.</summary>
+    [JsonPropertyName("skills")]
+    public Dictionary<string, string> Skills { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+}
+
+public sealed class SkillGainBand
+{
+    [JsonPropertyName("from")]
+    public double From { get; set; }
+
+    [JsonPropertyName("multiplier")]
+    public double Multiplier { get; set; }
+}
+
 public sealed class SkillBankRules
 {
     [JsonPropertyName("capacityTenths")]
@@ -521,6 +550,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("petRestrictions")]
     public bool PetRestrictions { get; set; }
 
+    [JsonPropertyName("skillGainCurve")]
+    public bool SkillGainCurve { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -550,11 +582,12 @@ public sealed class DeferredFeatureFlags
         if (Alpha3StarterCombatGear) yield return nameof(Alpha3StarterCombatGear);
         if (SkillBank) yield return nameof(SkillBank);
         if (PetRestrictions) yield return nameof(PetRestrictions);
+        if (SkillGainCurve) yield return nameof(SkillGainCurve);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

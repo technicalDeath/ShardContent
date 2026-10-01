@@ -33,6 +33,7 @@ public static class ShardBootstrap
         KeptItemDeathRouting.Configure();
         PostUorSystemGates.Configure();
         PetRestrictionService.Configure();
+        SkillGainCurveService.Configure();
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }

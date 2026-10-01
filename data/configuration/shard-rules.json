@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "9477c06931bc62571af4af0759b7468b40df35f8",
+  "pinnedModernUoCommit": "8867dda1399d6a524ed1342d4bef923a6ee88ae3",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -19,6 +19,65 @@
   "alpha3EnablementAcknowledged": true,
   "skillBank": {
     "capacityTenths": 3000
+  },
+  "skillGain": {
+    "classes": {
+      "easy":     [ { "from": 0, "multiplier": 1.5 } ],
+      "standard": [ { "from": 0, "multiplier": 1.5 }, { "from": 70, "multiplier": 1.0 } ],
+      "hard":     [ { "from": 0, "multiplier": 1.5 }, { "from": 70, "multiplier": 1.0 }, { "from": 80, "multiplier": 0.75 } ],
+      "veryHard": [ { "from": 0, "multiplier": 1.5 }, { "from": 70, "multiplier": 1.0 }, { "from": 80, "multiplier": 0.75 } ]
+    },
+    "skills": {
+      "Anatomy": "easy",
+      "AnimalLore": "easy",
+      "Archery": "easy",
+      "ArmsLore": "easy",
+      "Begging": "easy",
+      "Camping": "easy",
+      "Cartography": "easy",
+      "Cooking": "easy",
+      "DetectHidden": "easy",
+      "EvalInt": "easy",
+      "Fishing": "easy",
+      "Forensics": "easy",
+      "Hiding": "easy",
+      "ItemID": "easy",
+      "Lumberjacking": "easy",
+      "Mining": "easy",
+      "SpiritSpeak": "easy",
+      "TasteID": "easy",
+      "Tracking": "easy",
+      "Carpentry": "standard",
+      "Discordance": "standard",
+      "Fencing": "standard",
+      "Fletching": "standard",
+      "Healing": "standard",
+      "Herding": "standard",
+      "Inscribe": "standard",
+      "Lockpicking": "standard",
+      "Macing": "standard",
+      "Magery": "standard",
+      "MagicResist": "standard",
+      "Meditation": "standard",
+      "Musicianship": "standard",
+      "Parry": "standard",
+      "Peacemaking": "standard",
+      "Provocation": "standard",
+      "RemoveTrap": "standard",
+      "Snooping": "standard",
+      "Stealing": "standard",
+      "Stealth": "standard",
+      "Swords": "standard",
+      "Tactics": "standard",
+      "Tailoring": "standard",
+      "Tinkering": "standard",
+      "Veterinary": "standard",
+      "Wrestling": "standard",
+      "Alchemy": "hard",
+      "AnimalTaming": "hard",
+      "Blacksmith": "hard",
+      "Poisoning": "hard"
+    }
   },
   "hotZones": {
     "permanentOutdoorRegions": [
@@ -85,6 +144,7 @@
     "alpha3StarterCombatGear": true,
     "skillBank": true,
     "petRestrictions": true,
+    "skillGainCurve": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

@@ -301,7 +301,8 @@ public class ShardRulesConfigurationTests
         PinnedModernUoCommit = new string('a', 40),
         World = new WorldRules { Era = "UOR", EnabledMaps = ["Felucca"] },
         Character = new CharacterRules { TotalSkillCap = 700, IndividualSkillCap = 100, StatCap = 225 },
-        Combat = new CombatRules()
+        Combat = new CombatRules(),
+        SkillGain = SkillGainCurveTests.ValidRules()
     };
 
     private static HousingDistrictDefinition District(string name, int sequence, bool open) => new()
