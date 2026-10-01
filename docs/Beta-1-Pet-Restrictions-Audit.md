@@ -70,6 +70,7 @@ Plan presented and approved. Decisions:
 | Unshrink inside: refused while another mount stands or the owner rides, and for non-mounts; allowed for a mount when none stands | live (`inside`) | pass |
 | **Real Animal Taming** inside a dungeon with a completely full pack: a lone mount tames and stands; a second mount and a non-mount are refused before the attempt; with room, the non-mount is tamed then shrunk | live (`tame`) | pass (4/4) |
 | Release rule and mount-stay rule as pure functions | unit | pass |
+| Pack full after the up-front check: shrunken pet lands at the owner's feet, not the bank or pack; only the owner can lift it (VerifyMove) | live (allback) | pass (4/4) |
 | Pet seeded inside a dungeon with the flag off, save, full restart with the flag on: shrunk by the boot sweep, item in the owner's pack, survived the save | live | pass |
 | Dev host boots with the flag on | live | pass |
 | Attack order on a criminal player: each pet tells the owner it refuses and keeps its order; the same order on a monster produces no refusal and the pet attacks | live (`pet_live.py refusal`) | pass (5/5) |

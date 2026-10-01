@@ -213,6 +213,17 @@ public static class PetProbe
         hits = pet.Hits,
     };
 
+    private static List<string> GroundShrunken(PlayerMobile player)
+    {
+        var found = new List<string>();
+        foreach (var item in player.GetItemsInRange<ShrunkenPet>(1))
+        {
+            found.Add(item.Serial.Value.ToString("X"));
+        }
+
+        return found;
+    }
+
     private static void OnReport(CommandEventArgs e)
     {
         if (!TryMobile(e, 0, out var m))
@@ -245,6 +256,8 @@ public static class PetProbe
                 followers,
                 followerCount = player.Followers,
                 shrunken = shrunken ?? [],
+                groundShrunken = GroundShrunken(player),
+                bankShrunken = player.BankBox?.Items.OfType<ShrunkenPet>().Count() ?? 0,
                 x = player.X,
                 y = player.Y,
                 z = player.Z,

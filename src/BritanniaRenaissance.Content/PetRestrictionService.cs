@@ -195,11 +195,9 @@ public static class PetRestrictionService
 
         if (owner.Backpack is not { } pack || !pack.TryDropItem(owner, item, false))
         {
-            // Pack missing or full: the owner's bank keeps it safe, else the feet of a living owner.
-            if (owner.BankBox is not { } bank || !bank.TryDropItem(owner, item, false))
-            {
-                item.MoveToWorld(owner.Location, owner.Map);
-            }
+            // Pack missing or full (it filled after the up-front check): at the owner's feet, never the bank.
+            // Only the owner can pick it up (ShrunkenPet.VerifyMove).
+            item.MoveToWorld(owner.Location, owner.Map);
         }
 
         owner.SendMessage(

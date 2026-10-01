@@ -25,7 +25,7 @@ Owner mount exception added (one mount may be dismounted in a dungeon and fights
 - Feedback: an Attack or All Kill order against a player the owner may attack (criminal, red, `[Intent]`) makes each pet say "Your pet refuses to attack other players." and keeps its standing order. Verified live. Against an innocent the owner's own harm check stops the cursor first, so the pet is never asked. Guard-mode and auto-acquire refusals are silent: there is no command to answer.
 - Gate Travel, public moongates, house teleporters and Recall use the same `TeleportPets` filter and are covered by the hook unit tests and the probe move, not walked live. Recall carries only bonded pets and bonding is disabled.
 - Taming was exercised through `SetControlMaster` (the single point real taming calls), not with a full skill-based tame.
-- The pack-room check happens when the taming target is chosen. The tame itself takes a few seconds, so if the pack fills or another mount appears in that window the shrink falls back to the bank, then the owner's feet, rather than failing.
+- The pack-room check happens when the taming target is chosen. The tame itself takes a few seconds, so if the pack fills or another mount appears in that window the shrunken pet is dropped at the owner's feet (never the bank) rather than the tame failing.
 - Shrunken pets are only created as this safety outcome; there is no at-will shrinking. They are Blessed and Nontransferable, so they can't be traded; deleting the item deletes the pet.
 - Staff-owned pets are exempt so staff can test.
 - Two UOContent tests fail on ModernUO HEAD independent of this item (see the Elf audit).

@@ -37,6 +37,10 @@ public sealed class ShrunkenPet : Item
 
     public override bool Nontransferable => true;
 
+    // A shrunken pet left on the ground (pack was full) may be lifted only by its owner or staff.
+    public override bool VerifyMove(Mobile from) =>
+        base.VerifyMove(from) && (from.AccessLevel > AccessLevel.Player || from.Serial == _ownerSerial);
+
     public override string DefaultName => Pet is { Deleted: false } pet ? $"a shrunken {pet.Name}" : "a shrunken pet";
 
     /// <summary>

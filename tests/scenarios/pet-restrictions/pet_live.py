@@ -6,6 +6,7 @@ PetProbe.dll and TestOnlyProbe.dll loaded, and characters PetOwner BlueVic Inten
     python pet_live.py refusal    # the owner is told when a pet refuses an Attack order against a player
     python pet_live.py mount      # one mount may be dismounted inside; it fights monsters; everything else is shrunk
     python pet_live.py tame       # real Animal Taming in a dungeon; refused up front when the pack is full
+    python pet_live.py fallback   # pack full after the check: the shrunken pet lands at the owner's feet, not the bank
     python pet_live.py inside     # taming and unshrinking inside a dungeon follow the one-mount rule
     python pet_live.py mountsweep # after save + restart: the standing mount is untouched
     python pet_live.py dungeon    # follow filter, tame/dismount in a dungeon, exemptions, unshrink rules
@@ -550,6 +551,25 @@ def phase_tame(staff) -> None:
     staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
 
 
+def phase_fallback(staff) -> None:
+    """The shrink fallback when the pack is full (the up-front check passed, then the pack filled): at the owner's
+    feet, never the bank, and only the owner can lift it. The probe tame skips the up-front check."""
+    owner = connect("PetOwner")
+    oserial = hexs(owner.state["charID"])
+    reset_owner(staff)
+    go(staff, "PetOwner", DUNGEON_INSIDE)
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']}")
+    time.sleep(1)
+    dog = tame(staff, "PetOwner", "Dog")
+    time.sleep(3)
+    rep = report(staff, oserial)
+    check("fallback:pet-shrunk", shrunk(report(staff, dog)))
+    check("fallback:item-at-the-feet", len(rep["groundShrunken"]) == 1, str(rep["groundShrunken"]))
+    check("fallback:nothing-in-the-bank", rep["bankShrunken"] == 0, str(rep["bankShrunken"]))
+    check("fallback:not-in-the-pack", not rep["shrunken"])
+    staff.say(f"[TestOnlyPetFillPack {owner.state['charID']} clear")
+
+
 def phase_mountsweep(staff) -> None:
     """After save + restart: the lone standing mount is left alone by the boot sweep; the shrunken ones stay shrunk."""
     saved = json.loads((OUT / "mount-a.json").read_text())
@@ -591,7 +611,7 @@ def phase_sweep(staff) -> None:
 
 
 def main(argv: list) -> int:
-    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "inside": phase_inside, "tame": phase_tame, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
+    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "inside": phase_inside, "fallback": phase_fallback, "tame": phase_tame, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
     if len(argv) != 2 or argv[1] not in phases:
         print(__doc__)
         return 2
