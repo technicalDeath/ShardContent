@@ -25,6 +25,35 @@ public static class PetProbe
         CommandSystem.Register("TestOnlyPetGo", AccessLevel.Administrator, OnGo);
         CommandSystem.Register("TestOnlyPetDismount", AccessLevel.Administrator, OnDismount);
         CommandSystem.Register("TestOnlyPetClear", AccessLevel.Administrator, OnClear);
+        CommandSystem.Register("TestOnlyPetSpawn", AccessLevel.Administrator, OnSpawn);
+    }
+
+    // [TestOnlyPetSpawn <player-serial> <TypeName> creates a wild creature beside the player and writes
+    // pet-spawn-<player-serial>.json with its serial (for PvE targets where staff [add does not work).
+    private static void OnSpawn(CommandEventArgs e)
+    {
+        if (e.Length < 2 || !TryMobile(e, 0, out var m) || m is not PlayerMobile player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPetSpawn <player-serial> <TypeName>");
+            return;
+        }
+
+        var type = AssemblyHandler.FindTypeByName(e.GetString(1));
+        if (type is null || Activator.CreateInstance(
+                type,
+                BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding,
+                null,
+                Array.Empty<object>(),
+                null
+            ) is not BaseCreature creature)
+        {
+            e.Mobile.SendMessage($"No creature type '{e.GetString(1)}'.");
+            return;
+        }
+
+        creature.MoveToWorld(new Point3D(player.X + 1, player.Y, player.Z), player.Map);
+        Write($"pet-spawn-{player.Serial.Value:X}.json", new { serial = creature.Serial.Value.ToString("X") });
+        e.Mobile.SendMessage($"PetSpawn {creature.Serial.Value:X}");
     }
 
     // [TestOnlyPetClear <player-serial> dismounts the player and deletes every follower and shrunken pet

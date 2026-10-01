@@ -8,6 +8,7 @@ Plan presented and approved. Decisions:
 - **Which pets:** tamed pets only. Spell summons, familiars, hirelings and pack animals (pack llama, pack horse) are exempt from the dungeon ban. Ridden mounts are always fine.
 - **Pet PvP:** **no tamed pet ever attacks a player**, for any reason. This replaces the contract's lawful-target rule. Pets still fight monsters. Summons, familiars and hirelings are not covered (they remain ordinary owner-permission tools); flagged to the owner in the readiness record.
 - **When a tame or dismount puts a pet in a dungeon:** the pet is put in the owner's pack as a **shrunken pet** item. The owner said they had played shards with shrunken pets and asked if it would be hard; it is not, in its forced-only form. Scope kept narrow: shrinking happens only as this safety outcome, never at will. Item rules (mine, flagged for review): Blessed and Nontransferable (survives death, can't be looted, stolen, traded or sold), unshrunk by double-click from the owner's backpack only, refused in dungeons, refused if the owner has no free follower slots, deleting the item deletes the pet.
+- **Mount exception (2026-10-01, owner):** an owner may ride **one** mount into a dungeon, dismount, and keep it there. It fights monsters but never players. It stays only if the owner is not riding another mount and no other mount of theirs is already standing in a dungeon; any other pet, a second mount, or a mount tamed while the owner rides one is shrunk as above. Taming a lone mount inside is allowed. A standing mount is left alone by the boot sweep. Unshrinking inside a dungeon stays refused.
 - **Activation:** turn `featureFlags.petRestrictions` on when verified (source and deployed config), as with Elf.
 - **Commits:** local only, no push (standing instruction from the Elf item).
 
@@ -28,6 +29,7 @@ Plan presented and approved. Decisions:
 | Restricted pet | ShardContent `PetRestrictionService.IsRestrictedPet` | `Controlled`, not `Summoned`, owner is a player, and not a `BaseHire`, `BaseFamiliar`, `BaseEscortable`, `PackLlama` or `PackHorse`. |
 | Pet PvP | `PvpIntentService.AllowHarmful`, first branch | Restricted pet and target is a `PlayerMobile`: harmful action refused. Independent of SafeWorld. |
 | Follow filter | New ModernUO delegate `BaseCreature.CanFollowOwnerHandler`, called in `TeleportPets` | A restricted pet is not carried to a destination inside a `DungeonRegion`; the owner is told. |
+| Mount exception | `PetRestrictionService.MountMayStay`, checked on the next tick | See sign-off. |
 | Placement | New ModernUO delegate `BaseCreature.PetPlacementChangedHandler`, raised from `OnRegionChange` (controlled only) and `SetControlMaster` | A restricted pet found in a dungeon region is shrunk into the owner's pack on the next tick. Covers walking in, dismounting, taming and any other placement. |
 | Boot sweep | Server start | Every restricted pet already inside a dungeon region is shrunk. |
 | Shrunken pet | ShardContent `ShrunkenPet` item | See sign-off item rules. |
@@ -58,12 +60,20 @@ Plan presented and approved. Decisions:
 | Unshrink refused inside a dungeon; owner killed and resurrected: item stays in the pack | live | pass |
 | Pack llama tamed inside a dungeon stays | live | pass |
 | Unshrink outside: pet back under control of the owner on Felucca, item consumed | live | pass |
-| Ridden horse is not in the dungeon world; dismounting inside shrinks it into the pack | live | pass |
+| Ridden horse is not in the dungeon world | live | pass |
+| Ride one mount in, dismount inside: it stays, nothing is shrunk; it attacks a monster; another pet and a second mount are shrunk while it stands; a mount tamed while the owner rides is shrunk; re-dismounting stays | live (`pet_live.py mount`) | pass (8/8) |
+| A standing mount told to attack a player refuses and says so (one mount stands, the second is shrunk, so one message) | live | pass |
+| Save and restart: the standing mount is untouched and the shrunken extras are still shrunk (their stabled flag is restored at boot) | live (`mountsweep`) | pass |
+| A shrunken pet can be released after a restart | live | pass |
 | Pet seeded inside a dungeon with the flag off, save, full restart with the flag on: shrunk by the boot sweep, item in the owner's pack, survived the save | live | pass |
 | Dev host boots with the flag on | live | pass |
 | Attack order on a criminal player: each pet tells the owner it refuses and keeps its order; the same order on a monster produces no refusal and the pet attacks | live (`pet_live.py refusal`) | pass (5/5) |
 
 Runs: ModernUO hook tests `20261001T014340883Z-5f139d` (4/4); full Shard `20261001T021353003Z-3de324` (279/279); full UOContent `20261001T021417723Z-55475e` (1246 pass; the same two unrelated failures as in the Elf audit, `AdvancedSearchTypesTests.Poison_ReferenceTypeParsedViaTypes` and `FamiliarAITests.HiddenCaster_FamiliarRefusesRetaliation`). Live outputs under `work/pet-live/`; drivers `tests/scenarios/pet-restrictions/pet_live.py` (`pvp`, `pvpoff`, `dungeon`, `seed`, `sweep`).
+
+## Bug found and fixed during the mount work
+
+Stock does not save `IsStabled` on a creature; it rebuilds it at load from the owner's stable list. Shrunken pets are not in that list, so after a restart they lost the flag, and stock would have started its 3-day abandoned-pet delete timer on them. The restart check caught it. `ShrunkenPet` now keeps a registry of bound items and re-flags their pets at server start (`RestoreStabledFlags`), independent of the feature flag. Verified across a restart.
 
 ## Observations and test-tooling notes
 

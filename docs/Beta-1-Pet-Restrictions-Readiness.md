@@ -14,11 +14,15 @@ All hooks are described in [the audit](Beta-1-Pet-Restrictions-Audit.md). Modern
 ## Gate and validator
 Source and deployed `shard-rules.json` match with `petRestrictions` true; the validator needs no rule for it. The dev host boots with it on.
 
+## Update 2026-10-01
+Owner mount exception added (one mount may be dismounted in a dungeon and fights monsters, never players; see the audit). A restart bug in shrunken pets (lost stabled flag, exposure to the 3-day delete timer) was found by the restart test and fixed before it could matter.
+
 ## Readiness limits
 - **Summons, familiars and hirelings are exempt from both rules** by the owner's decision on the dungeon ban; the PvP rule was worded for "pets", so they remain ordinary owner-permission tools in PvP. Say so if you want them covered too.
 - Feedback: an Attack or All Kill order against a player the owner may attack (criminal, red, `[Intent]`) makes each pet say "Your pet refuses to attack other players." and keeps its standing order. Verified live. Against an innocent the owner's own harm check stops the cursor first, so the pet is never asked. Guard-mode and auto-acquire refusals are silent: there is no command to answer.
 - Gate Travel, public moongates, house teleporters and Recall use the same `TeleportPets` filter and are covered by the hook unit tests and the probe move, not walked live. Recall carries only bonded pets and bonding is disabled.
 - Taming was exercised through `SetControlMaster` (the single point real taming calls), not with a full skill-based tame.
+- Unshrinking inside a dungeon is still refused, even for a mount that would be allowed to stand; say if you want it allowed when no mount is standing.
 - Shrunken pets are only created as this safety outcome; there is no at-will shrinking. They are Blessed and Nontransferable, so they can't be traded; deleting the item deletes the pet.
 - Staff-owned pets are exempt so staff can test.
 - Two UOContent tests fail on ModernUO HEAD independent of this item (see the Elf audit).

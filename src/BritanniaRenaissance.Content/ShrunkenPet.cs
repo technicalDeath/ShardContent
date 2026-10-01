@@ -12,6 +12,11 @@ namespace BritanniaRenaissance.Content;
 /// </summary>
 public sealed class ShrunkenPet : Item
 {
+    // Items currently bound to a pet. Stock does not save IsStabled on the creature (it rebuilds it from the
+    // owner's Stabled list at load), so without this a restart would leave a shrunken pet unflagged and
+    // start stock's 3-day abandoned-pet delete timer on it.
+    private static readonly HashSet<ShrunkenPet> Bound = [];
+
     private Serial _petSerial = Serial.MinusOne;
     private Serial _ownerSerial = Serial.MinusOne;
 
@@ -48,9 +53,25 @@ public sealed class ShrunkenPet : Item
 
         _petSerial = pet.Serial;
         _ownerSerial = owner.Serial;
+        Bound.Add(this);
         ItemID = ShrinkTable.Lookup(pet);
         Hue = pet.Hue;
         InvalidateProperties();
+    }
+
+    /// <summary>Re-flags every shrunken pet after a world load, which also cancels its pending delete timer.</summary>
+    public static void RestoreStabledFlags()
+    {
+        foreach (var item in Bound)
+        {
+            if (item.Deleted || item.Pet is not { Deleted: false } pet)
+            {
+                continue;
+            }
+
+            pet.IsStabled = true;
+            pet.StabledBy = item.Owner;
+        }
     }
 
     public override void OnDoubleClick(Mobile from)
@@ -107,6 +128,7 @@ public sealed class ShrunkenPet : Item
         pet.MoveToWorld(from.Location, from.Map);
 
         _petSerial = Serial.MinusOne;
+        Bound.Remove(this);
         Delete();
     }
 
@@ -118,6 +140,7 @@ public sealed class ShrunkenPet : Item
             pet.Delete();
         }
 
+        Bound.Remove(this);
         base.OnDelete();
     }
 
@@ -135,5 +158,10 @@ public sealed class ShrunkenPet : Item
         reader.ReadEncodedInt();
         _petSerial = reader.ReadSerial();
         _ownerSerial = reader.ReadSerial();
+
+        if (_petSerial != Serial.MinusOne)
+        {
+            Bound.Add(this);
+        }
     }
 }

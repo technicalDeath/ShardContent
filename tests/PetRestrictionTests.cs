@@ -45,4 +45,14 @@ public class PetRestrictionTests
         Assert.Contains(nameof(DeferredFeatureFlags.PetRestrictions), flags.EnabledNames());
         Assert.DoesNotContain("none", flags.EnabledNames());
     }
+
+    [Theory]
+    [InlineData(true, false, false, true)]    // a lone mount, owner on foot: stays
+    [InlineData(true, true, false, false)]    // owner riding another mount: no
+    [InlineData(true, false, true, false)]    // another mount already standing in the dungeon: no
+    [InlineData(false, false, false, false)]  // not a mount: never
+    public void OnlyOneMountMayStayAndOnlyWhileTheOwnerIsOnFoot(bool isMount, bool ownerMounted, bool another, bool expected)
+    {
+        Assert.Equal(expected, PetRestrictionService.MountMayStay(isMount, ownerMounted, another));
+    }
 }

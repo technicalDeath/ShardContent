@@ -1203,7 +1203,7 @@ Explicitly disable or exclude later systems including:
 **Status (owner ruling, 2026-09-30):** built in Beta 1 (contract review J-5), behind `featureFlags.petRestrictions`, with these
 owner decisions: the ban covers **tamed pets only** (spell summons, familiars, hirelings, pack llamas and pack horses are exempt);
 a restricted pet that would end up inside a dungeon region (taming there, dismounting there, a boot-time sweep) is **shrunk into
-its owner's pack** as a Blessed, Nontransferable item instead of being relocated; a pet that would follow its owner through a
+its owner's pack** as a Blessed, Nontransferable item instead of being relocated; one mount may be ridden in, dismounted and kept in a dungeon (it fights monsters, never players); a pet that would follow its owner through a
 teleporter or gate into a dungeon simply stays outside. See [Beta-1-Pet-Restrictions-Audit.md](Beta-1-Pet-Restrictions-Audit.md).
 
 Tamed or controlled creatures must not enter or remain in dungeon regions unless the creature is

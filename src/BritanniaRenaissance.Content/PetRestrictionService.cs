@@ -6,8 +6,10 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// Beta 1 pet rules, all behind <c>featureFlags.petRestrictions</c>:
-/// a tamed pet never attacks a player, and never stays inside a dungeon region (a ridden mount is on
-/// the Internal map, so it is never "inside"). The test for "tamed pet" is <see cref="IsRestrictedKind"/>.
+/// a tamed pet never attacks a player, and never stays inside a dungeon region, with one exception: an
+/// owner may ride one mount in, dismount, and keep it there (it fights monsters, never players; see
+/// <see cref="MountMayStay"/>). A ridden mount is on the Internal map, so it is never "inside".
+/// The test for "tamed pet" is <see cref="IsRestrictedKind"/>.
 /// </summary>
 public static class PetRestrictionService
 {
@@ -52,6 +54,13 @@ public static class PetRestrictionService
         IsRestrictedKind(creature.GetType(), creature.Controlled, creature.Summoned) &&
         creature.ControlMaster is PlayerMobile { AccessLevel: AccessLevel.Player };
 
+    /// <summary>
+    /// The one dungeon exception: a mount may stay when its owner is not riding another mount and no other
+    /// mount of the owner is already standing in a dungeon. Anything that is not a mount never stays.
+    /// </summary>
+    public static bool MountMayStay(bool isMount, bool ownerIsMounted, bool anotherMountInDungeon) =>
+        isMount && !ownerIsMounted && !anotherMountInDungeon;
+
     /// <summary>True when a restricted pet's attack on this target must be refused.</summary>
     public static bool BlocksAttack(Mobile from, Mobile target) =>
         Enabled && target is PlayerMobile && from is BaseCreature creature && IsRestrictedPet(creature);
@@ -87,6 +96,9 @@ public static class PetRestrictionService
 
     private static void SweepDungeons()
     {
+        // Independent of the flag: shrunken pets must stay protected even if the rules are switched off.
+        ShrunkenPet.RestoreStabledFlags();
+
         if (!Enabled)
         {
             return;
@@ -117,6 +129,12 @@ public static class PetRestrictionService
             return false;
         }
 
+        // Decided on the next tick, so a dismount in progress has finished and the owner is no longer mounted.
+        if (MountMayStay(pet is BaseMount, owner.Mounted, AnotherMountInDungeon(owner, pet)))
+        {
+            return false;
+        }
+
         var name = pet.Name;
         var item = new ShrunkenPet();
         item.Shrink(pet, owner);
@@ -130,7 +148,30 @@ public static class PetRestrictionService
             }
         }
 
-        owner.SendMessage($"{name} cannot stay in a dungeon, so it has been shrunk into your pack.");
+        owner.SendMessage(
+            pet is BaseMount
+                ? $"Only one mount may be left standing in a dungeon, so {name} has been shrunk into your pack."
+                : $"{name} cannot stay in a dungeon, so it has been shrunk into your pack."
+        );
         return true;
+    }
+
+    private static bool AnotherMountInDungeon(PlayerMobile owner, BaseCreature pet)
+    {
+        if (owner.AllFollowers is null)
+        {
+            return false;
+        }
+
+        foreach (var follower in owner.AllFollowers)
+        {
+            if (follower is BaseMount mount && mount != pet && !mount.Deleted && mount.Map is not null &&
+                mount.Map != Map.Internal && InDungeon(mount.Region))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

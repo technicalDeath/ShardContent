@@ -4,6 +4,8 @@ PetProbe.dll and TestOnlyProbe.dll loaded, and characters PetOwner BlueVic Inten
     python pet_live.py pvp        # no tamed pet attacks any player; pets still attack monsters
     python pet_live.py pvpoff     # control: flag forced off in memory, pets DO attack intent/criminal/red players
     python pet_live.py refusal    # the owner is told when a pet refuses an Attack order against a player
+    python pet_live.py mount      # one mount may be dismounted inside; it fights monsters; everything else is shrunk
+    python pet_live.py mountsweep # after save + restart: the standing mount is untouched
     python pet_live.py dungeon    # follow filter, tame/dismount in a dungeon, exemptions, unshrink rules
     python pet_live.py seed       # (flag forced off in memory) put a pet in a dungeon so a restart can sweep it
     python pet_live.py sweep      # after save + restart with the flag on: the seeded pet was shrunk
@@ -14,6 +16,7 @@ Exits non-zero on any failure; results go to work/pet-live/results-<phase>.json.
 from __future__ import annotations
 
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -235,7 +238,7 @@ def phase_refusal(staff) -> None:
     clear_followers(staff, "PetOwner")
     victim = connect("BlueVic")
     go(staff, "BlueVic", tuple(owner.state[k] for k in ("charPosX", "charPosY", "charPosZ")))
-    pets = [tame(staff, "PetOwner", "Dog") for _ in range(2)]
+    pets = [tame(staff, "PetOwner", os.environ.get("PET_TYPE", "Dog")) for _ in range(2)]
     time.sleep(1.0)
     before_orders = [report(staff, p)["combatant"] for p in pets]
 
@@ -252,7 +255,7 @@ def phase_refusal(staff) -> None:
 
     clear_followers(staff, "PetOwner")
     rat = spawn_rat(staff, "PetOwner")
-    pet = tame(staff, "PetOwner", "Dog")
+    pet = tame(staff, "PetOwner", os.environ.get("PET_TYPE", "Dog"))
     time.sleep(1.0)
     mark = log.stat().st_size
     order_attack(owner, rat)
@@ -356,7 +359,7 @@ def phase_dungeon(staff) -> None:
               back["controlled"] and back["master"] == oserial and back["map"] == "Felucca" and not back["stabled"],
               str(back))
 
-    # D8 a ridden mount is fine inside; dismounting inside shrinks it
+    # D8 a ridden mount is not in the dungeon world (the dismount rules are phase_mount)
     horse = tame(staff, "PetOwner", "Horse")
     owner.call(f"use 0x{horse.rjust(8, '0')}")
     time.sleep(2)
@@ -364,13 +367,69 @@ def phase_dungeon(staff) -> None:
     time.sleep(1.5)
     ridden = report(staff, horse)
     check("dungeon:mount:ridden-mount-not-in-dungeon-world", ridden["map"] == "Internal" and ridden["controlled"], str(ridden))
+
+
+def standing(r: dict) -> bool:
+    return r["inDungeon"] and r["controlled"] and not r["stabled"] and r["map"] == "Felucca"
+
+
+def shrunk(r: dict) -> bool:
+    return r["map"] == "Internal" and not r["controlled"] and r["stabled"]
+
+
+def phase_mount(staff) -> None:
+    """Owner rule: ride ONE mount in, dismount inside, and it stays; it fights monsters, never players. Any other
+    pet, a second mount, or a mount while the owner rides another is shrunk."""
+    owner = connect("PetOwner")
+    oserial = hexs(owner.state["charID"])
+    reset_owner(staff)
+    mount_a = tame(staff, "PetOwner", "Horse")
+    owner.call(f"use 0x{mount_a.rjust(8, '0')}")          # ride it
+    time.sleep(2)
+    go(staff, "PetOwner", DUNGEON_INSIDE)                    # a mounted rider moves; the mount is off the map
+    time.sleep(1.5)
     staff.say(f"[TestOnlyPetDismount {owner.state['charID']}")
     time.sleep(3)
-    dis = report(staff, horse)
-    check("dungeon:mount:dismount-inside-shrinks-it",
-          dis["map"] == "Internal" and not dis["controlled"] and dis["stabled"], str(dis))
-    pack = owner_report()
-    check("dungeon:mount:shrunken-item-in-pack", any(s["pet"] and s["pet"]["serial"] == horse for s in pack["shrunken"]))
+    a = report(staff, mount_a)
+    check("mount:lone-mount-dismounted-inside-stays", standing(a), str(a))
+    check("mount:nothing-shrunk", not report(staff, oserial)["shrunken"])
+
+    # PvE: the standing mount fights a monster inside the dungeon (a rat spawned beside the owner)
+    rat = probe_json(staff, f"[TestOnlyPetSpawn {owner.state['charID']} Rat", f"pet-spawn-{oserial}.json")["serial"]
+    time.sleep(2)
+    order_attack(owner, "0x" + rat.rjust(8, "0"))
+    time.sleep(3)
+    check("mount:attacks-monsters-in-the-dungeon", report(staff, mount_a)["combatant"] == rat,
+          str(report(staff, mount_a)["combatant"]))
+
+    # Any other pet, and a second mount, are shrunk while the first stands
+    dog = tame(staff, "PetOwner", "Dog")
+    mount_b = tame(staff, "PetOwner", "Horse")
+    time.sleep(3)
+    check("mount:another-pet-shrunk", shrunk(report(staff, dog)), str(report(staff, dog)))
+    check("mount:second-mount-shrunk", shrunk(report(staff, mount_b)), str(report(staff, mount_b)))
+    check("mount:first-mount-still-standing", standing(report(staff, mount_a)))
+
+    # Owner rides the standing mount again, then a mount is tamed while mounted: shrunk (already on a mount)
+    owner.call(f"use 0x{mount_a.rjust(8, '0')}")
+    time.sleep(2)
+    mount_c = tame(staff, "PetOwner", "Horse")
+    time.sleep(3)
+    check("mount:mount-tamed-while-owner-mounted-shrunk", shrunk(report(staff, mount_c)), str(report(staff, mount_c)))
+
+    # Dismount again and leave it standing for the restart check
+    staff.say(f"[TestOnlyPetDismount {owner.state['charID']}")
+    time.sleep(3)
+    check("mount:redismount-stays", standing(report(staff, mount_a)))
+    (OUT / "mount-a.json").write_text(json.dumps({"mount": mount_a, "extra": [dog, mount_b, mount_c]}))
+
+
+def phase_mountsweep(staff) -> None:
+    """After save + restart: the lone standing mount is left alone by the boot sweep; the shrunken ones stay shrunk."""
+    saved = json.loads((OUT / "mount-a.json").read_text())
+    check("mountsweep:standing-mount-survives-restart", standing(report(staff, saved["mount"])),
+          str(report(staff, saved["mount"])))
+    check("mountsweep:shrunken-extras-still-shrunk", all(shrunk(report(staff, p)) for p in saved["extra"]))
 
 
 def phase_seed(staff) -> None:
@@ -406,7 +465,7 @@ def phase_sweep(staff) -> None:
 
 
 def main(argv: list) -> int:
-    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
+    phases = {"pvp": phase_pvp, "pvpoff": phase_pvpoff, "mount": phase_mount, "mountsweep": phase_mountsweep, "refusal": phase_refusal, "dungeon": phase_dungeon, "seed": phase_seed, "sweep": phase_sweep}
     if len(argv) != 2 or argv[1] not in phases:
         print(__doc__)
         return 2
