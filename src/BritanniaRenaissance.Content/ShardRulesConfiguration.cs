@@ -102,6 +102,7 @@ public static class ShardRulesConfiguration
         }
 
         SkillGainCurveService.Validate(rules.SkillGain, errors);
+        MasteryRules.Validate(rules.Mastery, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
@@ -354,6 +355,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("skillGain")]
     public SkillGainRules SkillGain { get; set; } = new();
+
+    [JsonPropertyName("mastery")]
+    public MasteryRules Mastery { get; set; } = new();
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();

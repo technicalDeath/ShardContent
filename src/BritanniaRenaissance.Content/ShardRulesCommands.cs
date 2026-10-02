@@ -191,11 +191,24 @@ public static class ShardRulesCommands
         }
     }
 
-    [Usage("MasteryStatus")]
-    [Description("Displays the server-controlled Mastery schedule and your pending increments.")]
+    [Usage("MasteryStatus [serial]")]
+    [Description("Displays your Mastery cycle and each Mastery skill's allowance; staff may name a player.")]
     private static void OnMasteryStatus(CommandEventArgs e)
     {
-        foreach (var line in MasteryProgression.DescribeStatus(e.Mobile))
+        var subject = e.Mobile;
+
+        if (e.Length > 0 && e.Mobile.AccessLevel >= AccessLevel.Administrator)
+        {
+            subject = World.FindMobile((Serial)e.GetUInt32(0));
+
+            if (subject is null)
+            {
+                e.Mobile.SendMessage("No mobile has that serial.");
+                return;
+            }
+        }
+
+        foreach (var line in MasteryProgression.DescribeStatus(e.Mobile, subject))
         {
             e.Mobile.SendMessage(line);
         }
