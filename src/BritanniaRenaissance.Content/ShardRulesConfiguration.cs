@@ -159,6 +159,30 @@ public static class ShardRulesConfiguration
             errors.Add("hotZones requires surveyed FireIsland and BuccaneersDenIsland outdoor regions.");
         }
 
+        foreach (var dungeon in rules.HotZones.DungeonRegions)
+        {
+            if (string.IsNullOrWhiteSpace(dungeon.Name) || !hotRegionNames.Add(dungeon.Name))
+            {
+                errors.Add("hotZones.dungeonRegions must have non-empty names, unique among all Hot Zone regions.");
+            }
+
+            if (!rules.World.EnabledMaps.Any(map => string.Equals(map, dungeon.Map, StringComparison.OrdinalIgnoreCase)))
+            {
+                errors.Add($"hotZones.dungeonRegions '{dungeon.Name}' must be on an enabled map.");
+            }
+        }
+
+        if (rules.FeatureFlags.HythlothHotZone && !rules.FeatureFlags.HotZones)
+        {
+            errors.Add("hythlothHotZone requires hotZones.");
+        }
+
+        if (rules.FeatureFlags.HythlothHotZone &&
+            !rules.HotZones.DungeonRegions.Any(d => string.Equals(d.Name, "Hythloth", StringComparison.OrdinalIgnoreCase)))
+        {
+            errors.Add("hythlothHotZone requires a Hythloth entry in hotZones.dungeonRegions.");
+        }
+
         if (rules.FeatureFlags.HousingGeography && !hotRegionNames.Contains("BuccaneersDenIsland"))
         {
             errors.Add("housingGeography requires the surveyed BuccaneersDenIsland no-housing polygon.");
@@ -409,6 +433,23 @@ public sealed class OutdoorHotZoneRules
 {
     [JsonPropertyName("permanentOutdoorRegions")]
     public List<OutdoorHotRegionDefinition> PermanentOutdoorRegions { get; set; } = [];
+
+    /// <summary>
+    /// Stock dungeon regions that follow the ordinary Hot Zone rules as a whole (Beta 2a: Hythloth), behind
+    /// <c>featureFlags.hythlothHotZone</c>. They are Hot Zones, not "Hot Dungeons": no reward premium.
+    /// </summary>
+    [JsonPropertyName("dungeonRegions")]
+    public List<HotZoneDungeonRegion> DungeonRegions { get; set; } = [];
+}
+
+public sealed class HotZoneDungeonRegion
+{
+    /// <summary>The stock <c>DungeonRegion</c> name, as in Data/regions.json.</summary>
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("map")]
+    public string Map { get; set; } = string.Empty;
 }
 
 public sealed class OutdoorHotRegionDefinition
@@ -557,6 +598,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("skillGainCurve")]
     public bool SkillGainCurve { get; set; }
 
+    [JsonPropertyName("hythlothHotZone")]
+    public bool HythlothHotZone { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -587,11 +631,12 @@ public sealed class DeferredFeatureFlags
         if (SkillBank) yield return nameof(SkillBank);
         if (PetRestrictions) yield return nameof(PetRestrictions);
         if (SkillGainCurve) yield return nameof(SkillGainCurve);
+        if (HythlothHotZone) yield return nameof(HythlothHotZone);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

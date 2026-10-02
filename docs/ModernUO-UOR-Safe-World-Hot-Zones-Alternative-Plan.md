@@ -23,6 +23,10 @@ Keep the same core gameplay mechanics and Classic+ decisions unless this documen
 
 ### Shard identity and design thesis
 
+**Vision statement (owner, 2026-10-02).** The thesis and pillars below elaborate this; where they differ, this statement and the Contract Review rulings win:
+
+> **A classic Ultima Online experience that keeps Felucca's thieves, criminals and murderers, and the emergent encounters they create, but not the griefing: a single world where deliberate systems concentrate the population, build community and draw players into contact with one another, and where the classic UO:R power ceiling holds, because the experience lies in the adventures and interactions that unfold in the world, not in the grind of character progression. Custom content extends that world outward with new activities and reasons to travel, while the core of play stays recognizable and true to the classic experience.**
+
 This shard should occupy a deliberate space between three common UO freeshard directions:
 
 1. **Classic Felucca/Renaissance shards** that preserve UOR mechanics but expose ordinary PvE players to unsolicited open-world blue-on-blue PvP almost everywhere.
@@ -4388,6 +4392,8 @@ This distinction is intentional: not every permanent PvP zone should carry a maj
 
 ### 20.1 Permanent PvP Hot Dungeon — Hythloth
 
+**Status (owner ruling, 2026-10-02; Contract Review K-11):** Hythloth is a permanent **Hot Zone**, not a Hot Dungeon. It follows the outdoor Hot Zone rules as ruled in K-1 to K-6 and K-10 (Knocked Out replaces full-loot death; communication is entry and exit messages) and has **no reward premium**. Built in Beta 2a; see `Beta-2a-Hythloth-Hot-Zone-Audit.md`. Where this document gives Hythloth Hot-Dungeon rewards or a login summary, that text is superseded.
+
 Make **Hythloth** a permanent unrestricted PvP dungeon.
 
 It never rotates out of Hot status.
@@ -4655,6 +4661,7 @@ Initial tuning targets:
 - normal respawn cadence
 
 #### Hythloth permanent Hot Dungeon
+**Removed (owner ruling 2026-10-02, K-11):** Hythloth is an ordinary Hot Zone with 100% baseline rewards. The figures below are kept for history only.
 - **+35% monster gold**
 - **+25% relative magic-item generation chance**
 - **+50% chance multiplier for approved cosmetic/rare non-power drops**, if such drops exist

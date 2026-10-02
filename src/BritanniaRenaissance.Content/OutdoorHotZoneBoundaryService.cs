@@ -3,7 +3,7 @@ using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
-/// <summary>Notifies players when their settled position crosses an outdoor Hot boundary.</summary>
+/// <summary>Notifies players when their settled position crosses a Hot Zone boundary (outdoor or dungeon).</summary>
 public static class OutdoorHotZoneBoundaryService
 {
     private static readonly Dictionary<Serial, string?> ObservedRegions = new();
@@ -82,7 +82,10 @@ public static class OutdoorHotZoneBoundaryService
         ObservedRegions[player.Serial] = current;
     }
 
-    public static IEnumerable<string> DescribeTransition(string? previous, string? current)
+    public static IEnumerable<string> DescribeTransition(string? previous, string? current) =>
+        DescribeTransition(previous, current, OutdoorHotZonePolicy.IsDungeonRegion);
+
+    public static IEnumerable<string> DescribeTransition(string? previous, string? current, Func<string, bool> isDungeon)
     {
         if (string.Equals(previous, current, StringComparison.OrdinalIgnoreCase))
         {
@@ -91,12 +94,16 @@ public static class OutdoorHotZoneBoundaryService
 
         if (previous is not null)
         {
-            yield return $"You have left {DisplayName(previous)}. Hot Zone initiation no longer applies here; existing lawful fights continue.";
+            // Moving straight into another Hot Zone (Hythloth's entrance onto Fire Island) keeps Hot rules in force.
+            yield return current is null
+                ? $"You have left {DisplayName(previous)}. Hot Zone initiation no longer applies here; existing lawful fights continue."
+                : $"You have left {DisplayName(previous)}.";
         }
 
         if (current is not null)
         {
-            yield return $"You have entered {DisplayName(current)}, an outdoor PvP Hot Zone. Players may initiate combat freely here. Murdering an ordinary blue still adds a murder count and 24 hours of red time.";
+            var kind = isDungeon(current) ? "a PvP Hot Zone" : "an outdoor PvP Hot Zone";
+            yield return $"You have entered {DisplayName(current)}, {kind}. Players may initiate combat freely here. Murdering an ordinary blue still adds a murder count and 24 hours of red time.";
         }
     }
 

@@ -20,7 +20,7 @@
 Disposable host `phase-k3`, `hotZones` and `alpha3EnablementAcknowledged` on in the host copy only, `TestOnlyProbe` loaded, driver `tests/scenarios/hot-zones/hot_k3_live.py` (phase 1 seeds, one save, one restart, phase 2 asserts). Full table in the [K3 section of the survey](Alpha-3-Outdoor-Hot-Zone-Survey.md#k3-login-save-restart-and-release-scope-pass-2026-09-29).
 
 - **Reruns of K2 cases changed by rulings:** X1 (blue bystander refused), L1 (blue looter authorized and flagged criminal), XR (red with rights executes in Hot, murder +1), XR2, X4 (executor in the corpse's aggressor list), X5a (victim aggressed first: no murder count), X5b (never-aggressor: murder +1). All pass.
-- **Dungeon exclusion:** D1-D3 in Hythloth (blue-vs-blue refused, `[HotZoneStatus` reports no region, no boundary message). All pass.
+- **Dungeon exclusion:** D1-D3 in Hythloth (blue-vs-blue refused, `[HotZoneStatus` reports no region, no boundary message). All pass. **Superseded 2026-10-02 (Beta 2a):** Hythloth now follows the Hot Zone rules behind `hythlothHotZone`; other dungeons stay excluded. See `Beta-2a-Hythloth-Hot-Zone-Audit.md`.
 - **Login, save, restart:** P1-P5 seeded; R1 (Knocked Out 15 s before the restart stays Knocked Out), R2 (entry message after the restart), R3 (expired Knocked Out cleared and the player woken on login). All pass.
 - **Cleanup:** all client sessions stopped by recorded PID, server stopped with `-NoSave`, host removed. The dev world and `ModernUO/Distribution` were not touched.
 

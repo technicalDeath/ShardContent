@@ -207,7 +207,7 @@ public static class TheftProtectionService
     {
         yield return $"Backpack Ward protection enabled: {Enabled}.";
         yield return "Stock stealing success, criminality and snooping remain authoritative.";
-        yield return "A thief caught by your Ward on a successful theft cannot steal from you again until the Ward has run its course (30 quiet minutes). Wards do nothing in an outdoor Hot Zone.";
+        yield return "A thief caught by your Ward on a successful theft cannot steal from you again until the Ward has run its course (30 quiet minutes). Wards do nothing in a Hot Zone (Fire Island, Buccaneer's Den island, Hythloth).";
         foreach (var line in TheftRegionPolicy.Describe())
         {
             yield return line;

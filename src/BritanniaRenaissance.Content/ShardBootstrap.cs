@@ -54,5 +54,6 @@ public static class ShardBootstrap
         KnockedOutService.RebindAfterStockHandlers();
         EraGateConfiguration.ValidatePostBootFeatureFlags();
         EraGateConfiguration.ValidatePostBootProfessions();
+        OutdoorHotZonePolicy.ValidatePostBootDungeonRegions();
     }
 }

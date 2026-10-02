@@ -21,7 +21,7 @@ the encounter (Sections 10, 11, 13, 22, 23, 25). **Built 2026-10-02 (Beta 2a ite
 item, and `TheftProtectionService.cs` calls them through the stock `Stealing.TheftEligibility` and
 `Stealing.TheftResolved` hooks. Choices made while building:
 
-- **Outdoor Hot Zones:** a Ward does nothing there. No priming, no blocking, no timer refresh, as before.
+- **Hot Zones** (outdoor, and Hythloth since Beta 2a): a Ward does nothing there. No priming, no blocking, no timer refresh, as before.
 - **Ward-detected thefts** carry the ordinary detected-theft consequences: the thief turns criminal, is told
   "You have been caught stealing!", and bystanders within 8 tiles are told what they noticed.
 - **Old Wards:** a Ward saved under the earlier model (120-second immunity, account binding, per-thief counts) loads as
@@ -717,8 +717,8 @@ Attempts must be rejected before theft resolution inside:
 
 Snooping remains governed independently.
 
-**Outdoor Hot Zones.** A Ward has no effect while the protected character is inside an outdoor Hot Zone (Fire Island,
-Buccaneer's Den). There the Ward neither primes, activates, refreshes nor blocks, and a thief who was caught elsewhere
+**Hot Zones.** A Ward has no effect while the protected character is inside a Hot Zone (Fire Island, Buccaneer's Den
+island, and since Beta 2a the Hythloth dungeon). There the Ward neither primes, activates, refreshes nor blocks, and a thief who was caught elsewhere
 may steal from that character until they leave. The Ward's own clock keeps running meanwhile.
 
 If a valid theft begins outside such a region but either relevant participant crosses into a protected region before commit:

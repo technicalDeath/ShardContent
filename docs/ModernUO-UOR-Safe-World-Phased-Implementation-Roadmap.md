@@ -6,6 +6,10 @@
 
 ## Purpose
 
+**Vision (owner, 2026-10-02).** Every plan and feature is checked against this statement:
+
+> **A classic Ultima Online experience that keeps Felucca's thieves, criminals and murderers, and the emergent encounters they create, but not the griefing: a single world where deliberate systems concentrate the population, build community and draw players into contact with one another, and where the classic UO:R power ceiling holds, because the experience lies in the adventures and interactions that unfold in the world, not in the grind of character progression. Custom content extends that world outward with new activities and reasons to travel, while the core of play stays recognizable and true to the classic experience.**
+
 This roadmap turns the Safe-World / PvP Hot-Zones alternative plan into eleven coherent releases. It intentionally starts with the rules that every character, combat interaction and later system depends on, establishes a reproducible UOR/Felucca world population, then adds region rules and housing, then world-concentration systems, and only after that adds the larger retention and content feature sets.
 
 The shard's guiding theme is **Felucca, without the griefing.** Felucca remains the only world, and crime remains part of ordinary play. Thieves may pick pockets and snoop across most of the map. Reds, criminals, full loot, loss and emergent encounters remain real. Protections should stop repeated, targeted behavior from ruining another player's play without removing the first theft, the risk, or the thief profession.
@@ -330,15 +334,16 @@ Settle the remaining rule decisions that other systems build on, and open the fi
    - **Built 2026-10-02** (owner sign-off the same day): Mastery starts at **90.0** (owner revision; the gain curve now ends there); 24-hour per-character cycle; each 90+ skill claims its class allowance (Easy 2.0 / Standard 1.0 / Hard 0.6 / VeryHard 0.4, so 5 / 10 / 17 / 25 days minimum to 100) with its first valid successful use in a cycle, unclaimed cycles are lost, unspent allowance banks up to three cycles; +0.1 per valid use through stock gain, so the total cap displaces Down skills as stock does. No login-day rule and no feature flag. Evidence in `Beta-2a-Mastery-Audit.md` and `Beta-2a-Mastery-Readiness.md`. The bullets below are the original scope and are superseded where they differ.
    - Replace the as-built Alpha 1 Mastery mechanic (95.0+ gain suppression, 4-hour UTC pending accrual capped at 0.6, 0.1 spent per valid use) with the design doc's cycle/difficulty-allowance/bank version (DD 837-928), but with a **24-hour** cycle instead of the doc's 18-hour one. The owner approves the parameters. Delete the 18-hour description once this ships.
 3. Permanent Hythloth Hot Dungeon. The owner approves the boundary and dungeon rules before building.
+   - **Built and activated 2026-10-02** as *Hythloth joins the permanent Hot Zones* (owner ruling): Hythloth follows the outdoor Hot Zone rules K-1 to K-6 and K-10 unchanged and is not a "Hot Dungeon"; its reward premium is removed, not deferred. The whole stock `Hythloth` dungeon region on Felucca is Hot (`hotZones.dungeonRegions`, flag `featureFlags.hythlothHotZone`, on). No other dungeon is Hot. Travel stays stock (no Recall or Gate in or out of Felucca dungeons). Evidence in `Beta-2a-Hythloth-Hot-Zone-Audit.md` and `-Readiness.md`. The bullets below are the original scope.
    - Define Hythloth as a permanent Hot Dungeon without making other dungeon interiors Hot merely because their entrances are on Fire Island.
    - Apply dungeon-specific hostility, theft, Knocked Out, loot and Execute rules at the authoritative boundary; cover entry/exit messages, login placement, extraction, combat carryover and restart.
    - No reward premium in this phase.
 
 ### Exit criteria
 
-- Ward and Welcome rulings are recorded and their code matches.
-- Mastery runs on the approved 24-hour design with persistence and save/restart coverage.
-- Hythloth hostility, theft and loot rules pass client tests; no other dungeon becomes Hot.
+- Ward and Welcome rulings are recorded and their code matches. **Met 2026-10-02.**
+- Mastery runs on the approved 24-hour design with persistence and save/restart coverage. **Met 2026-10-02** (threshold 90 by owner revision).
+- Hythloth hostility, theft and loot rules pass client tests; no other dungeon becomes Hot. **Met 2026-10-02.** Beta 2a is complete.
 
 ### Explicitly deferred
 
