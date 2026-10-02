@@ -478,9 +478,9 @@ public sealed class TheftPoint
 }
 
 /// <summary>
-/// The sub-95 skill-gain curve (Beta 1). Each class is a list of bands: from the band's <c>from</c> skill value
+/// The skill-gain curve below Mastery (Beta 1). Each class is a list of bands: from the band's <c>from</c> skill value
 /// (inclusive) until the next band, the stock gain probability is multiplied by <c>multiplier</c>. Below 10.0 the
-/// stock unconditional gain is untouched and at 95.0 Mastery takes over, so only 10.0 to 95.0 is ever consulted.
+/// stock unconditional gain is untouched and at 90.0 Mastery takes over, so only 10.0 to 90.0 is ever consulted.
 /// </summary>
 public sealed class SkillGainRules
 {

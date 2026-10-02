@@ -6,8 +6,8 @@ Needs two fresh ordinary Warrior characters logged in as Navrey sessions named M
 staff session (New-TestCharacter.ps1 -HostName <host> -Name Mara,Mika -Profession 1), on a host that loaded
 MasteryProbe.dll. Stage `phase2` runs after a server restart (sessions restarted) and checks persistence.
 
-Valid uses are real Anatomy checks on the other test character: Anatomy is an Easy skill (1.0 allowance per cycle,
-10 tenths), and at 95.0 a check still has a 5% chance to fail, so it reaches the stock gain hook. Time passing is
+Valid uses are real Anatomy checks on the other test character: Anatomy is an Easy skill (2.0 allowance per cycle,
+20 tenths), and at 90.0 a check still has a 10% chance to fail, so it reaches the stock gain hook. Time passing is
 rehearsed with the probe, which moves the character's Mastery anchor into the past.
 """
 
@@ -114,56 +114,56 @@ def use_until(name: str, predicate, limit: int = 40) -> list:
 # ---------------------------------------------------------------- cases
 
 def entry_and_exhaust() -> None:
-    sset("Mara", "[SetSkill Anatomy 95")
+    sset("Mara", "[SetSkill Anatomy 90")
     time.sleep(1)
     first = use_until("Mara", lambda m: any("claims this cycle" in x for x in m), 6)
     text = " | ".join(first)
-    record("M1 first valid use at 95 begins Mastery, claims the cycle and gains 0.1",
-           "entry message, claim of 1.0, +0.1",
+    record("M1 first valid use at 90 begins Mastery, claims the cycle and gains 0.1",
+           "entry message, claim of 2.0, +0.1",
            text[:300],
-           any("has reached 95.0" in x for x in first) and any("allowance of 1.0" in x for x in first) and gains(first) >= 1)
+           any("has reached 90.0" in x for x in first) and any("allowance of 2.0" in x for x in first) and gains(first) >= 1)
 
-    out = use_until("Mara", lambda m: any("Allowance left: 0.0" in x for x in m), 45)
+    out = use_until("Mara", lambda m: any("Allowance left: 0.0" in x for x in m), 70)
     total = gains(first) + gains(out)
     line = skill_line("Mara", "Anatomy")
-    record("M2 the bank empties after ten gains", "Anatomy 96.0, 0.0 stored, claimed this cycle", f"{total} gains; {line}",
-           total == 10 and "96.0" in line and "0.0 stored (holds up to 3.0)" in line and "claimed this cycle" in line and "not claimed" not in line)
+    record("M2 the bank empties after twenty gains", "Anatomy 92.0, 0.0 stored, claimed this cycle", f"{total} gains; {line}",
+           total == 20 and "92.0" in line and "0.0 stored (holds up to 6.0)" in line and "claimed this cycle" in line and "not claimed" not in line)
 
     extra = use_anatomy("Mara", 5)
     line = skill_line("Mara", "Anatomy")
-    record("M3 with the allowance spent, further valid uses grant nothing", "no gain, still 96.0", f"{gains(extra)} gains; {line}",
-           gains(extra) == 0 and "96.0" in line)
+    record("M3 with the allowance spent, further valid uses grant nothing", "no gain, still 92.0", f"{gains(extra)} gains; {line}",
+           gains(extra) == 0 and "92.0" in line)
 
     lines = status("Mara")
     record("M4 [MasteryStatus text", "cycle length, next cycle, class and allowance per cycle",
            " / ".join(lines)[:400],
-           any("24 hours" in x for x in lines) and any("Your next cycle begins in" in x for x in lines) and not any("UTC" in x for x in lines) and any("real chance of failing" in x for x in lines) and any("(easy): 1.0 per cycle" in x for x in lines))
+           any("24 hours" in x for x in lines) and any("Your next cycle begins in" in x for x in lines) and not any("UTC" in x for x in lines) and any("real chance of failing" in x for x in lines) and any("(easy): 2.0 per cycle" in x for x in lines) and any("at 90.0 or above" in x for x in lines))
 
 
 def next_cycle_and_bank() -> None:
     admin(f"[TestOnlyMasteryAge {serial('Mara')} 24")
     out = use_until("Mara", lambda m: any("claims this cycle" in x for x in m), 8)
-    record("M5 a new cycle lets the skill claim again", "claim of 1.0 and a gain", " | ".join(out)[:260],
-           any("allowance of 1.0" in x for x in out) and gains(out) >= 1)
+    record("M5 a new cycle lets the skill claim again", "claim of 2.0 and a gain", " | ".join(out)[:260],
+           any("allowance of 2.0" in x for x in out) and gains(out) >= 1)
 
     for cycle in range(3):
         admin(f"[TestOnlyMasteryAge {serial('Mara')} 24")
         use_until("Mara", lambda m: any("claims this cycle" in x for x in m), 8)
     line = skill_line("Mara", "Anatomy")
     # After the claim cycle 0 and three more: allowance is capped at three cycles (3.0) at each claim.
-    record("M6 the bank never holds more than three cycles", "stored at most 3.0, about 2.9", line,
-           bool(re.search(r"\b(2\.[89]|3\.0) stored \(holds up to 3\.0\)", line)))
+    record("M6 the bank never holds more than three cycles", "stored at most 6.0, about 5.9", line,
+           bool(re.search(r"\b(5\.[89]|6\.0) stored \(holds up to 6\.0\)", line)))
 
 
-def below_95_and_back() -> None:
-    sset("Mara", "[SetSkill Anatomy 94")
+def below_threshold_and_back() -> None:
+    sset("Mara", "[SetSkill Anatomy 89")
     out = use_anatomy("Mara", 3)
-    record("M7 below 95 Mastery does not act", "no Mastery messages", " | ".join(out)[:200], not any("Mastery" in x for x in out))
-    sset("Mara", "[SetSkill Anatomy 95")
+    record("M7 below 90 Mastery does not act", "no Mastery messages", " | ".join(out)[:200], not any("Mastery" in x for x in out))
+    sset("Mara", "[SetSkill Anatomy 90")
     out = use_until("Mara", lambda m: gains(m) >= 1, 8)
-    record("M8 back at 95 in the same cycle: no second claim, no second entry message, a gain from the bank",
+    record("M8 back at 90 in the same cycle: no second claim, no second entry message, a gain from the bank",
            "gain only", " | ".join(out)[:260],
-           gains(out) >= 1 and not any("claims this cycle" in x for x in out) and not any("has reached 95.0" in x for x in out))
+           gains(out) >= 1 and not any("claims this cycle" in x for x in out) and not any("has reached 90.0" in x for x in out))
 
 
 def legacy_state() -> None:
@@ -173,13 +173,13 @@ def legacy_state() -> None:
            any("begins with your next valid use" in x for x in lines))
     out = use_until("Mara", lambda m: any("claims this cycle" in x for x in m), 8)
     record("M10 and Mastery starts fresh at the next use", "entry message and a new claim", " | ".join(out)[:240],
-           any("has reached 95.0" in x for x in out) and any("claims this cycle" in x for x in out))
+           any("has reached 90.0" in x for x in out) and any("claims this cycle" in x for x in out))
 
 
 def total_cap() -> None:
     """Mika at the 700-point total cap: no Down skill means nothing is granted; a Down skill is lowered as stock does."""
     admin(f"[TestOnlyMasteryLock {serial('Mika')} Fishing up")
-    sset("Mika", "[SetSkill Anatomy 95")
+    sset("Mika", "[SetSkill Anatomy 90")
     for skill in ("Swords", "Tactics", "Parry", "Healing", "Magery", "MagicResist"):
         sset("Mika", f"[SetSkill {skill} 100")
     sset("Mika", "[SetSkill Fishing 5")
@@ -219,13 +219,13 @@ def total_cap() -> None:
 
 
 def hard_class_labels() -> None:
-    sset("Mara", "[SetSkill Alchemy 95")
-    sset("Mara", "[SetSkill Magery 95")
+    sset("Mara", "[SetSkill Alchemy 90")
+    sset("Mara", "[SetSkill Magery 90")
     lines = status("Mara")
     alch = next((x for x in lines if x.startswith("Alchemy")), "")
     mag = next((x for x in lines if x.startswith("Magery")), "")
-    record("M11 each skill shows its class and allowance", "Alchemy hard 0.3, Magery standard 0.5", f"{alch} || {mag}",
-           "(hard): 0.3 per cycle" in alch and "(standard): 0.5 per cycle" in mag)
+    record("M11 each skill shows its class and allowance", "Alchemy hard 0.6, Magery standard 1.0", f"{alch} || {mag}",
+           "(hard): 0.6 per cycle" in alch and "(standard): 1.0 per cycle" in mag)
 
 
 def phase2() -> None:
@@ -241,7 +241,7 @@ def phase2() -> None:
 
 
 def main() -> int:
-    stages = [("entry", entry_and_exhaust), ("cycles", next_cycle_and_bank), ("below", below_95_and_back),
+    stages = [("entry", entry_and_exhaust), ("cycles", next_cycle_and_bank), ("below", below_threshold_and_back),
               ("labels", hard_class_labels), ("legacy", legacy_state), ("cap", total_cap), ("phase2", phase2)]
     default = ["entry", "cycles", "below", "labels", "legacy", "cap"]
     only = sys.argv[1:] or default

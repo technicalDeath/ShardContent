@@ -5,13 +5,17 @@ using System.Text.Json.Serialization;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// The rules of 95.0+ Mastery with no game types, so they can be tested directly. A character has one durable
+/// The rules of 90.0+ Mastery with no game types, so they can be tested directly. A character has one durable
 /// cycle anchor; each skill claims its allowance for a cycle with its first valid use in that cycle, banks at most
 /// a few cycles of it, and spends 0.1 per valid use. See docs/Beta-2a-Mastery-Audit.md.
 /// </summary>
 public static class MasteryEngine
 {
-    public const int ThresholdFixedPoint = 950;
+    /// <summary>Mastery begins at 90.0 (the "Master" title); owner ruling 2026-10-02. The gain curve ends here too.</summary>
+    public const int ThresholdFixedPoint = 900;
+
+    /// <summary>The threshold as players read it, e.g. "90.0".</summary>
+    public static string ThresholdText => (ThresholdFixedPoint / 10.0).ToString("0.0", CultureInfo.InvariantCulture);
     public const int GrandmasterFixedPoint = 1000;
     public const int AwardTenths = 1;
 
@@ -115,7 +119,7 @@ public sealed class MasteryCharacterState
     [JsonPropertyName("version")]
     public int Version { get; set; } = CurrentVersion;
 
-    /// <summary>When the character's Mastery cycles began (UTC); null until the character first holds a 95+ skill.</summary>
+    /// <summary>When the character's Mastery cycles began (UTC); null until the character first holds a skill at the Mastery threshold.</summary>
     [JsonPropertyName("anchor")]
     public DateTime? AnchorUtc { get; set; }
 

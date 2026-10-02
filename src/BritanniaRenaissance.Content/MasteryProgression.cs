@@ -7,7 +7,7 @@ using Server.Mobiles;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Runs 95.0+ Mastery in the game (docs/Beta-2a-Mastery-Audit.md). The rules are <see cref="MasteryEngine"/>. This
+/// Runs 90.0+ Mastery in the game (docs/Beta-2a-Mastery-Audit.md). The rules are <see cref="MasteryEngine"/>. This
 /// subscribes once to <see cref="SkillEvents.SkillGainOverride"/>, which stock calls after its eligibility checks
 /// and before its own gain roll, so a decision made here never reaches the gain-chance multiplier or any
 /// temporary gain bonus. Skill Bank restoration still acts first.
@@ -46,7 +46,7 @@ public static class MasteryProgression
 
         return rules.AllowanceTenths.TryGetValue(className ?? "standard", out var tenths)
             ? tenths
-            : rules.AllowanceTenths.GetValueOrDefault("standard", 5);
+            : rules.AllowanceTenths.GetValueOrDefault("standard", 10);
     }
 
     public static string ClassName(SkillName skill) =>
@@ -70,7 +70,7 @@ public static class MasteryProgression
             yield return $"Mastery for {pm.Name}:";
         }
 
-        yield return "Mastery: a skill at 95.0 or above gains +0.1 for each valid, successful use while it has allowance.";
+        yield return $"Mastery: a skill at {MasteryEngine.ThresholdText} or above gains +0.1 for each valid, successful use while it has allowance.";
         yield return "A use is valid only if it had a real chance of failing. Trivially easy actions and failed attempts count for nothing.";
         yield return $"Your Mastery cycle is {rules.CycleHours} hours. A skill claims its allowance for a cycle with its first valid use in that cycle; a cycle it does not use is lost. Unspent allowance carries up to {rules.BankCycles} cycles.";
 
@@ -84,8 +84,8 @@ public static class MasteryProgression
             }
 
             yield return waiting
-                ? "Your Mastery cycle begins with your next valid use of a skill at 95.0 or above."
-                : "No skill is in Mastery yet (Mastery begins at 95.0).";
+                ? $"Your Mastery cycle begins with your next valid use of a skill at {MasteryEngine.ThresholdText} or above."
+                : $"No skill is in Mastery yet (Mastery begins at {MasteryEngine.ThresholdText}).";
             yield break;
         }
 
@@ -122,7 +122,7 @@ public static class MasteryProgression
 
         if (!any)
         {
-            yield return "No skill is at 95.0 or above right now; state for skills that fell below 95 is kept.";
+            yield return $"No skill is at {MasteryEngine.ThresholdText} or above right now; Mastery state for skills that fell below it is kept.";
         }
     }
 
@@ -217,7 +217,7 @@ public static class MasteryProgression
 
     /// <summary>
     /// Called by the ModernUO skill engine after region and anti-macro eligibility checks. Returning true always
-    /// suppresses the stock gain path for player skills at 95+, including when nothing is awarded.
+    /// suppresses the stock gain path for player skills at the threshold and above, including when nothing is awarded.
     /// </summary>
     public static bool HandleSkillGain(Mobile mobile, Skill skill, bool success)
     {
@@ -257,7 +257,7 @@ public static class MasteryProgression
             state.Skills[skill.SkillID] = skillState;
             changed = true;
             pm.SendMessage(
-                $"{skill.Info.Name} has reached 95.0: ordinary gain has ended and Mastery begins. Use [MasteryStatus to see your allowance."
+                $"{skill.Info.Name} has reached {MasteryEngine.ThresholdText}: ordinary gain has ended and Mastery begins. Use [MasteryStatus to see your allowance."
             );
         }
 
@@ -387,10 +387,10 @@ public sealed class MasteryRules
     [System.Text.Json.Serialization.JsonPropertyName("allowanceTenths")]
     public Dictionary<string, int> AllowanceTenths { get; set; } = new(StringComparer.OrdinalIgnoreCase)
     {
-        ["easy"] = 10,
-        ["standard"] = 5,
-        ["hard"] = 3,
-        ["veryHard"] = 2
+        ["easy"] = 20,
+        ["standard"] = 10,
+        ["hard"] = 6,
+        ["veryHard"] = 4
     };
 
     private static readonly string[] ClassNames = ["easy", "standard", "hard", "veryHard"];

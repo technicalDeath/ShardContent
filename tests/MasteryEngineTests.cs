@@ -89,7 +89,7 @@ public class MasteryEngineTests
     [Fact]
     public void LoweringAndRestoringASkillWithinACycleCannotClaimItTwice()
     {
-        // The claim is recorded on the skill's state, which survives the skill dropping below 95.
+        // The claim is recorded on the skill's state, which survives the skill dropping below the threshold.
         var skill = new MasterySkillState();
         MasteryEngine.TryClaim(skill, 2, 10, 30);
 
@@ -111,22 +111,22 @@ public class MasteryEngineTests
     }
 
     [Theory]
-    [InlineData("easy", 10, 5)]
-    [InlineData("standard", 5, 10)]
-    [InlineData("hard", 3, 17)]
-    [InlineData("veryHard", 2, 25)]
-    public void FiftyValidUsesNeedTheDocumentedNumberOfClaimedCycles(string _, int allowanceTenths, int expectedCycles)
+    [InlineData("easy", 20, 5)]
+    [InlineData("standard", 10, 10)]
+    [InlineData("hard", 6, 17)]
+    [InlineData("veryHard", 4, 25)]
+    public void TheHundredValidUsesFromNinetyNeedTheDocumentedNumberOfClaimedCycles(string _, int allowanceTenths, int expectedCycles)
     {
         var skill = new MasterySkillState();
         var gains = 0;
         var cycles = 0;
 
-        while (gains < 50)
+        while (gains < 100)
         {
             MasteryEngine.TryClaim(skill, cycles, allowanceTenths, allowanceTenths * 3);
             cycles++;
 
-            while (gains < 50 && MasteryEngine.TrySpend(skill))
+            while (gains < 100 && MasteryEngine.TrySpend(skill))
             {
                 gains++;
             }
@@ -138,6 +138,7 @@ public class MasteryEngineTests
     [Fact]
     public void GainsLeftCountsTenthsToGrandmaster()
     {
+        Assert.Equal(100, MasteryEngine.GainsLeft(900));
         Assert.Equal(50, MasteryEngine.GainsLeft(950));
         Assert.Equal(1, MasteryEngine.GainsLeft(999));
         Assert.Equal(0, MasteryEngine.GainsLeft(1000));
@@ -226,10 +227,10 @@ public class MasteryEngineTests
 
         Assert.Equal(24, rules.Mastery.CycleHours);
         Assert.Equal(3, rules.Mastery.BankCycles);
-        Assert.Equal(10, rules.Mastery.AllowanceTenths["easy"]);
-        Assert.Equal(5, rules.Mastery.AllowanceTenths["standard"]);
-        Assert.Equal(3, rules.Mastery.AllowanceTenths["hard"]);
-        Assert.Equal(2, rules.Mastery.AllowanceTenths["veryHard"]);
+        Assert.Equal(20, rules.Mastery.AllowanceTenths["easy"]);
+        Assert.Equal(10, rules.Mastery.AllowanceTenths["standard"]);
+        Assert.Equal(6, rules.Mastery.AllowanceTenths["hard"]);
+        Assert.Equal(4, rules.Mastery.AllowanceTenths["veryHard"]);
         Assert.Empty(ShardRulesConfiguration.Validate(rules).Where(e => e.Contains("mastery", StringComparison.OrdinalIgnoreCase)));
     }
 

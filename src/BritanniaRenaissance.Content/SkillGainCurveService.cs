@@ -6,17 +6,17 @@ using Server.Mobiles;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Beta 1 sub-95 skill-gain curve, behind <c>featureFlags.skillGainCurve</c>. Every skill belongs to a class
+/// Beta 1 skill-gain curve below the Mastery threshold, behind <c>featureFlags.skillGainCurve</c>. Every skill belongs to a class
 /// (<c>skillGain.skills</c>); a class is a list of bands (<c>skillGain.classes</c>) that multiply the stock gain
 /// probability for a player's skill by the band's multiplier, so 1.0 is exactly stock ModernUO. The hook
 /// (<see cref="SkillEvents.GainChanceMultiplier"/>) is consulted only on the stock gain roll, after
 /// <see cref="SkillEvents.SkillGainOverride"/>, so Skill Bank restoration and Mastery are untouched, the stock
-/// unconditional gain below 10.0 is untouched, and Mastery owns 95.0 and above.
+/// unconditional gain below 10.0 is untouched, and Mastery owns the threshold (90.0) and above.
 /// </summary>
 public static class SkillGainCurveService
 {
     /// <summary>Ordinary gain ends here; Mastery owns the skill from this value up.</summary>
-    public const double MasteryThreshold = 95.0;
+    public const double MasteryThreshold = MasteryEngine.ThresholdFixedPoint / 10.0;
 
     /// <summary>Below this the stock gain is unconditional and never rolls, so no multiplier applies.</summary>
     public const double UnconditionalGainCeiling = 10.0;
@@ -60,7 +60,7 @@ public static class SkillGainCurveService
 
     /// <summary>
     /// The class multiplier for a skill at a given value, from the configured bands. 1.0 outside
-    /// 10.0 (inclusive) to 95.0 (exclusive), and 1.0 for a skill the configuration does not list.
+    /// 10.0 (inclusive) to the Mastery threshold (exclusive), and 1.0 for a skill the configuration does not list.
     /// </summary>
     public static double MultiplierFor(SkillGainRules rules, SkillName skill, double value)
     {
@@ -200,7 +200,7 @@ public static class SkillGainCurveService
             return;
         }
 
-        from.SendMessage("Skill gain speed, compared with stock, from skill 10 up to 95:");
+        from.SendMessage($"Skill gain speed, compared with stock, from skill 10 up to {MasteryThreshold:0}:");
 
         foreach (var name in ClassNames)
         {

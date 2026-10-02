@@ -82,7 +82,7 @@
   "mastery": {
     "cycleHours": 24,
     "bankCycles": 3,
-    "allowanceTenths": { "easy": 10, "standard": 5, "hard": 3, "veryHard": 2 }
+    "allowanceTenths": { "easy": 20, "standard": 10, "hard": 6, "veryHard": 4 }
   },
   "hotZones": {
     "permanentOutdoorRegions": [

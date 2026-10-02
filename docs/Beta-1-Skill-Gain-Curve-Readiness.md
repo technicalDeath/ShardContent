@@ -14,6 +14,9 @@ Full design, survey and numbers are in [the audit](Beta-1-Skill-Gain-Curve-Audit
 ## Gate and validator
 Source and deployed `shard-rules.json` match with `skillGainCurve` true. The validator requires every UOR skill assigned to a defined class, ascending bands from 0, and multipliers above 0 and at most 5.
 
+## Update 2026-10-02 (Beta 2a)
+Mastery now starts at 90.0 (owner ruling), so the curve applies from 10 to 90 and stock gain is suppressed from 90. The class multipliers are unchanged; Hard's 0.75x band is now 80 to 90. See `Beta-2a-Mastery-Audit.md`.
+
 ## Readiness limits
 - **Committed and pushed 2026-10-01** to the owner's forks: ModernUO 5463a9449 (gain hook) and 8867dda13 (profession-file setting), ShardContent e48fb68 (gain curve, pin bump) and 4cdbca1 (templates), ClassicUO 46f02eca9, Navrey e2a20335e. The ClassicUO `README.md` and `ROADMAP.md` edits are not part of this work and stay uncommitted. The pinned ModernUO commit is bumped to 8867dda13.
 - **Players only.** Staff, creatures and pets get stock gain. A pet's own gain keeps the stock doubling.

@@ -82,26 +82,27 @@ public class SkillGainCurveTests
     }
 
     [Theory]
-    // Easy: 1.5x from 10 to 95.
+    // Easy: 1.5x from 10 to 90 (where Mastery begins).
     [InlineData(SkillName.Archery, 10.0, 1.5)]
     [InlineData(SkillName.Archery, 69.9, 1.5)]
     [InlineData(SkillName.Archery, 70.0, 1.5)]
-    [InlineData(SkillName.Archery, 94.9, 1.5)]
+    [InlineData(SkillName.Archery, 89.9, 1.5)]
     // Standard: 1.5x to 70, then stock.
     [InlineData(SkillName.Swords, 10.0, 1.5)]
     [InlineData(SkillName.Swords, 69.9, 1.5)]
     [InlineData(SkillName.Swords, 70.0, 1.0)]
-    [InlineData(SkillName.Swords, 94.9, 1.0)]
+    [InlineData(SkillName.Swords, 89.9, 1.0)]
     // Hard: 1.5x to 70, stock 70 to 80, 0.75x from 80.
     [InlineData(SkillName.Blacksmith, 69.9, 1.5)]
     [InlineData(SkillName.Blacksmith, 70.0, 1.0)]
     [InlineData(SkillName.Blacksmith, 79.9, 1.0)]
     [InlineData(SkillName.Blacksmith, 80.0, 0.75)]
-    [InlineData(SkillName.Blacksmith, 94.9, 0.75)]
-    // Outside the curve range every skill is stock: below 10 gain is unconditional, 95+ is Mastery.
+    [InlineData(SkillName.Blacksmith, 89.9, 0.75)]
+    // Outside the curve range every skill is stock: below 10 gain is unconditional, 90+ is Mastery.
     [InlineData(SkillName.Archery, 9.9, 1.0)]
     [InlineData(SkillName.Swords, 0.0, 1.0)]
-    [InlineData(SkillName.Blacksmith, 95.0, 1.0)]
+    [InlineData(SkillName.Blacksmith, 90.0, 1.0)]
+    [InlineData(SkillName.Swords, 94.9, 1.0)]
     [InlineData(SkillName.Archery, 99.9, 1.0)]
     public void MultiplierFollowsTheClassBands(SkillName skill, double value, double expected)
     {
@@ -172,9 +173,9 @@ public class SkillGainCurveTests
     {
         var rules = ValidRules();
 
-        Assert.Equal("Easy: 1.5x from 10 to 95", SkillGainCurveService.Describe("easy", rules.Classes["easy"]));
+        Assert.Equal("Easy: 1.5x from 10 to 90", SkillGainCurveService.Describe("easy", rules.Classes["easy"]));
         Assert.Equal(
-            "Hard: 1.5x from 10 to 70, 1x from 70 to 80, 0.75x from 80 to 95",
+            "Hard: 1.5x from 10 to 70, 1x from 70 to 80, 0.75x from 80 to 90",
             SkillGainCurveService.Describe("hard", rules.Classes["hard"])
         );
     }
