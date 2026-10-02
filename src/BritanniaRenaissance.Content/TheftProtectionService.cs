@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Diagnostics;
 using Server;
 using Server.Accounting;
 using Server.Items;
@@ -15,20 +14,9 @@ namespace BritanniaRenaissance.Content;
 /// </summary>
 public static class TheftProtectionService
 {
-    private const string ProtectionTagPrefix = "BritanniaRenaissance.BackpackWard.ProtectedUntil.";
     private const string LootProtectionTagPrefix = "BritanniaRenaissance.LootWard.";
-    private const string LootEntitlementTagPrefix = "BritanniaRenaissance.LootWard.Entitlement.";
-    private const string LootEntitlementVersion = "1";
     private const string StarterWardTagPrefix = "BritanniaRenaissance.StarterWard.v1.";
-    private const int EntitlementMigrationBatchSize = 64;
     private static bool _configured;
-    private static Queue<PlayerMobile>? _entitlementMigration;
-    private static bool _entitlementMigrationScheduled;
-    private static int _entitlementMigrationTotal;
-    private static int _entitlementMigrationProcessed;
-    private static int _entitlementMigrationGranted;
-    private static DateTime? _entitlementMigrationStartedUtc;
-    private static DateTime? _entitlementMigrationCompletedUtc;
     private static readonly Dictionary<Serial, TheftRegionState> RegionStates = new();
 
     public static readonly TimeSpan LootProtectionDuration = TimeSpan.FromMinutes(10);
@@ -47,26 +35,11 @@ public static class TheftProtectionService
         Stealing.TheftResolved = ResolveTheft;
         Corpse.LootEligibility = CanLiftCorpseItem;
         Corpse.LootResolved = RecordCorpseTransfer;
-        EventSink.WorldLoad += BeginEntitlementMigration;
         EventSink.Connected += OnConnected;
         EventSink.Disconnected += OnDisconnected;
         EventSink.Movement += OnMovement;
         CharacterCreation.CharacterCreatedHandler += IssueStarterWard;
-    }
-
-    public static void OnPlayerLogin(PlayerMobile player)
-    {
-        // World-load migration can observe a persisted mobile before its account binding is
-        // attached. Reconcile once immediately and once on the next server tick so that login
-        // remains a durable fallback without blocking the login event or duplicating tags.
-        EnsureLootProtectionEntitlement(player, "login");
-        Server.Timer.DelayCall(TimeSpan.Zero, () =>
-        {
-            if (!player.Deleted)
-            {
-                EnsureLootProtectionEntitlement(player, "login-deferred");
-            }
-        });
+        BackpackWardService.Configure();
     }
 
     public static void IssueStarterWard(CharacterCreatedEventArgs args)
@@ -75,10 +48,6 @@ public static class TheftProtectionService
         {
             return;
         }
-
-        // The invisible entitlement is independent of the physical starter item and must not be
-        // skipped merely because the new character already has a backpack ward or a delayed bag.
-        EnsureLootProtectionEntitlement(player, "character-creation");
 
         if (player.Backpack is null || player.Account is not Account account)
         {
@@ -107,7 +76,6 @@ public static class TheftProtectionService
     {
         if (mobile is PlayerMobile player)
         {
-            OnPlayerLogin(player);
             ObserveTheftRegions(player, notify: false);
         }
     }
@@ -239,23 +207,18 @@ public static class TheftProtectionService
     {
         yield return $"Backpack Ward protection enabled: {Enabled}.";
         yield return "Stock stealing success, criminality and snooping remain authoritative.";
-        yield return Enabled
-            ? "Starter wards bind to the character account; configured bank/Cool polygon checks are active; corpse repeat protection is enabled outside Hot Zones."
-            : "Starter wards bind to the character account; bank polygons and Cool Dungeon restrictions remain deferred; corpse repeat protection is enabled with this gate outside Hot Zones.";
+        yield return "A thief caught by your Ward on a successful theft cannot steal from you again until the Ward has run its course (30 quiet minutes). Wards do nothing in an outdoor Hot Zone.";
         foreach (var line in TheftRegionPolicy.Describe())
         {
             yield return line;
         }
 
-        yield return $"Loot entitlement migration: processed={_entitlementMigrationProcessed}/{_entitlementMigrationTotal}; " +
-            $"granted={_entitlementMigrationGranted}; pending={_entitlementMigration?.Count ?? 0}; " +
-            $"scheduled={_entitlementMigrationScheduled}; started={_entitlementMigrationStartedUtc?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}; " +
-            $"completed={_entitlementMigrationCompletedUtc?.ToString("O", CultureInfo.InvariantCulture) ?? "pending"}.";
-
         if (mobile is PlayerMobile player)
         {
-            yield return $"Equipped-backpack wards present: {(FindEligibleWard(player) is not null ? "yes" : "no")}.";
-            yield return $"Loot Protection entitlement: {(HasLootProtectionEntitlement(player) ? "present" : Enabled ? "pending migration" : "not active")}.";
+            foreach (var line in BackpackWardService.Describe(player))
+            {
+                yield return line;
+            }
         }
     }
 
@@ -292,54 +255,30 @@ public static class TheftProtectionService
             return true;
         }
 
-        if (IsProtectionActive(playerVictim))
+        if (BackpackWardService.IsBlocked(playerVictim, thief))
         {
-            thief.SendMessage("That backpack is protected from stealing for a short time.");
-            ShardAuditLog.Record("theft", "protected-denied", thief, playerVictim, "120-second backpack ward");
+            thief.SendMessage("You cannot steal from that person right now.");
+            ShardAuditLog.Record("theft", "ward-blocked", thief, playerVictim, "caught by backpack ward");
             return false;
         }
 
         return true;
     }
 
-    private static void ResolveTheft(Mobile thief, Item item, Mobile victim, Item stolen, bool caught)
+    private static void ResolveTheft(Mobile thief, Item item, Mobile victim, Item stolen, bool caught, bool rolled)
     {
         KnockedOutService.OnKnockedOutLootResolved(thief, victim, stolen);
 
         if (!Enabled || victim is not PlayerMobile playerVictim || thief is not PlayerMobile playerThief ||
-            playerVictim == playerThief || OutdoorHotZonePolicy.IsHot(playerVictim))
+            playerVictim == playerThief || OutdoorHotZonePolicy.IsHot(playerVictim) || !rolled)
         {
             return;
         }
 
-        var ward = FindEligibleWard(playerVictim);
-        if (ward is null)
-        {
-            return;
-        }
-
-        // Ordinary victim detection, including a detected failure, consumes one physical ward
-        // after the stock outcome has resolved.
-        if (caught)
-        {
-            ActivateProtection(playerVictim, ward);
-            ShardAuditLog.Record("theft", "ward-consumed", playerThief, playerVictim, "stock detection");
-            return;
-        }
-
-        // Only an undetected successful transfer advances the per-thief account counter.
-        if (stolen is null || playerThief.Account is not Account account)
-        {
-            return;
-        }
-
-        var successes = ward.RecordSuccessfulTheft(account.Username);
-        if (AdditionalDetectionChance(successes) >= Utility.RandomDouble())
-        {
-            playerVictim.SendMessage("You detect a theft from your backpack.");
-            ActivateProtection(playerVictim, ward);
-            ShardAuditLog.Record("theft", "ward-triggered", playerThief, playerVictim, $"undetectedSuccesses={successes}");
-        }
+        // A genuine attempt: stock ran the skill check. Attempts it refused first (including ones this Ward blocked)
+        // arrive with rolled false and are ignored, so they cannot restart a Ward's window. A successful transfer
+        // leaves a stolen item; a detected one is "caught".
+        BackpackWardService.OnTheftResolved(playerThief, playerVictim, stolen is not null, caught);
     }
 
     private static bool CanLiftCorpseItem(Mobile looter, Corpse corpse, Item item)
@@ -349,11 +288,6 @@ public static class TheftProtectionService
             looter.Account is not Account account)
         {
             return true;
-        }
-
-        if (looter is PlayerMobile player)
-        {
-            EnsureLootProtectionEntitlement(player, "corpse-loot");
         }
 
         var criminalAction = corpse.IsCriminalAction(looter);
@@ -395,11 +329,6 @@ public static class TheftProtectionService
             return;
         }
 
-        if (looter is PlayerMobile player)
-        {
-            EnsureLootProtectionEntitlement(player, "corpse-transfer");
-        }
-
         var expiry = Core.Now.Add(LootProtectionDuration).ToString("O", CultureInfo.InvariantCulture);
         var protectedVictims = 0;
 
@@ -433,148 +362,6 @@ public static class TheftProtectionService
             }
         }
     }
-
-    private static BackpackWard? FindEligibleWard(PlayerMobile victim)
-    {
-        var backpack = victim.Backpack;
-        if (backpack is null)
-        {
-            return null;
-        }
-
-        var wards = new List<BackpackWard>();
-        CollectWards(backpack, wards, victim);
-        wards.Sort(static (left, right) => left.Serial.Value.CompareTo(right.Serial.Value));
-        return wards.Count == 0 ? null : wards[0];
-    }
-
-    private static void CollectWards(Container container, List<BackpackWard> wards, PlayerMobile owner)
-    {
-        foreach (var item in container.Items)
-        {
-            if (item is BackpackWard ward && !ward.Deleted && ward.TryBindTo(owner))
-            {
-                wards.Add(ward);
-            }
-
-            if (item is Container child)
-            {
-                CollectWards(child, wards, owner);
-            }
-        }
-    }
-
-    private static bool IsProtectionActive(PlayerMobile victim)
-    {
-        if (victim.Account is not Account account ||
-            !DateTime.TryParse(
-                account.GetTag(ProtectionTag(victim)),
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.RoundtripKind,
-                out var protectedUntil
-            ))
-        {
-            return false;
-        }
-
-        return IsProtectionWindowActive(Core.Now, protectedUntil);
-    }
-
-    private static void ActivateProtection(PlayerMobile victim, BackpackWard ward)
-    {
-        if (victim.Account is Account account)
-        {
-            account.SetTag(
-                ProtectionTag(victim),
-                Core.Now.AddSeconds(120).ToString("O", CultureInfo.InvariantCulture)
-            );
-        }
-
-        victim.SendMessage("Your backpack ward activates and protects you from stealing for two minutes.");
-        ward.Delete();
-    }
-
-    private static string ProtectionTag(PlayerMobile victim) =>
-        ProtectionTagPrefix + victim.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
-
-    public static bool IsLootProtectionEntitlementCurrent(string? value) =>
-        string.Equals(value, LootEntitlementVersion, StringComparison.Ordinal);
-
-    public static bool HasLootProtectionEntitlement(PlayerMobile player) =>
-        player.Account is Account account &&
-        IsLootProtectionEntitlementCurrent(account.GetTag(LootEntitlementTag(player)));
-
-    private static bool EnsureLootProtectionEntitlement(PlayerMobile player, string reason)
-    {
-        if (!Enabled || player.Account is not Account account || HasLootProtectionEntitlement(player))
-        {
-            return false;
-        }
-
-        account.SetTag(LootEntitlementTag(player), LootEntitlementVersion);
-        ShardAuditLog.Record("corpse-loot", "entitlement-migrated", player, details: reason);
-        return true;
-    }
-
-    private static void BeginEntitlementMigration()
-    {
-        if (!Enabled || _entitlementMigrationScheduled)
-        {
-            return;
-        }
-
-        var players = World.Mobiles.Values.OfType<PlayerMobile>().ToArray();
-        _entitlementMigration = new Queue<PlayerMobile>(players);
-        _entitlementMigrationTotal = players.Length;
-        _entitlementMigrationProcessed = 0;
-        _entitlementMigrationGranted = 0;
-        _entitlementMigrationStartedUtc = Core.Now;
-        _entitlementMigrationCompletedUtc = null;
-        _entitlementMigrationScheduled = true;
-        Server.Timer.DelayCall(TimeSpan.Zero, ProcessEntitlementMigration);
-    }
-
-    private static void ProcessEntitlementMigration()
-    {
-        _entitlementMigrationScheduled = false;
-
-        if (!Enabled || _entitlementMigration is null)
-        {
-            _entitlementMigration = null;
-            return;
-        }
-
-        var startedAt = Stopwatch.GetTimestamp();
-        var processed = 0;
-        while (_entitlementMigration.Count > 0 && processed < EntitlementMigrationBatchSize &&
-               (processed == 0 || Stopwatch.GetElapsedTime(startedAt).TotalMilliseconds < 2))
-        {
-            var player = _entitlementMigration.Dequeue();
-            processed++;
-            _entitlementMigrationProcessed++;
-            if (!player.Deleted)
-            {
-                if (EnsureLootProtectionEntitlement(player, "world-load-migration"))
-                {
-                    _entitlementMigrationGranted++;
-                }
-            }
-        }
-
-        if (_entitlementMigration.Count > 0)
-        {
-            _entitlementMigrationScheduled = true;
-            Server.Timer.DelayCall(TimeSpan.Zero, ProcessEntitlementMigration);
-        }
-        else
-        {
-            _entitlementMigration = null;
-            _entitlementMigrationCompletedUtc = Core.Now;
-        }
-    }
-
-    private static string LootEntitlementTag(PlayerMobile player) =>
-        LootEntitlementTagPrefix + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
 
     private static string LootProtectionTag(PlayerMobile victim, Account account) =>
         LootProtectionTagPrefix + victim.Serial.Value.ToString("X8", CultureInfo.InvariantCulture) + "." +

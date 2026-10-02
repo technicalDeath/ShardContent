@@ -20,13 +20,16 @@ public static class StarterOnboarding
         CharacterCreation.CharacterCreatedHandler += PromptNewCharacter;
     }
 
+    public const string CreationPrompt =
+        "Welcome to Britannia Renaissance. Type [Welcome to learn about your Backpack Ward and Loot Protection.";
+
     public static IEnumerable<string> DescribeRules()
     {
         yield return "Welcome to Britannia Renaissance. Use [IntentStatus to review player combat consent.";
-        yield return "Your physical Backpack Ward sits in your backpack. It primes when eligible theft activity begins; a detected theft consumes it and protects your backpack from further stealing for two minutes.";
-        yield return "A Backpack Ward does not prevent the theft that activates it, and it has no effect inside an outdoor Hot Zone.";
-        yield return "Your invisible Loot Protection entitlement is permanent. After one unlawful transfer from a monster corpse you have loot rights to, that offender is blocked from repeating it for ten minutes.";
-        yield return "Loot Protection does not guard your backpack, player corpses, public monster corpses or Hot-Zone loot. Use [TheftStatus for current Ward and entitlement status.";
+        yield return "Your Backpack Ward sits in your backpack and cannot be lost or traded. A thief whose successful theft you notice, or the Ward detects, is caught: that thief cannot steal from you again until the Ward has run its course, 30 minutes after the last theft attempt against you.";
+        yield return "A thief who steals from you unnoticed makes the Ward more alert to them: it detects their next successful theft 25% of the time, then 50%, then every time. A thief keeps the item that got them caught, and the Ward does not stop thieves it has not caught. It does nothing inside an outdoor Hot Zone.";
+        yield return "Loot Protection: after someone unlawfully loots a monster corpse you have loot rights to, they are blocked from doing it to you again for ten minutes. It does not guard your backpack, player corpses, public monster corpses or Hot-Zone loot.";
+        yield return "Use [TheftStatus to see the state of your Ward.";
     }
 
     private static void PromptNewCharacter(CharacterCreatedEventArgs args)
@@ -42,7 +45,7 @@ public static class StarterOnboarding
         {
             if (!player.Deleted && player.NetState is not null)
             {
-                player.SendMessage("Welcome to Britannia Renaissance. Type [Welcome to learn about your Backpack Ward and Loot Protection.");
+                player.SendMessage(CreationPrompt);
             }
         });
     }

@@ -1,17 +1,17 @@
 using Server;
-using Server.Accounting;
 using Server.Items;
 using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// A physical, single-use Backpack Ward. The theft service owns priming and consumption; the
-/// item only persists its identity, primed state, and per-thief-account counters.
+/// A physical Backpack Ward (see docs/BACKPACK-WARD-DESIGN.md). The rules live in <see cref="WardState"/> and
+/// <see cref="BackpackWardService"/>; the item persists that state, shows it in its name, and keeps the character
+/// blessing in step with it. A regular Ward is blessed to the character it protects while it is Primed or Activated; the
+/// starter Ward is newbied and bound to its owner from creation.
 /// </summary>
 public sealed class BackpackWard : Item
 {
-    private readonly Dictionary<string, int> _successfulThefts = new(StringComparer.OrdinalIgnoreCase);
     private bool _starterIssued;
     private Serial _starterOwnerSerial;
 
@@ -25,9 +25,7 @@ public sealed class BackpackWard : Item
     {
     }
 
-    public bool Primed { get; private set; }
-
-    public string? BoundAccount { get; private set; }
+    public WardState State { get; } = new();
 
     public bool IsStarterIssued => _starterIssued;
 
@@ -35,56 +33,17 @@ public sealed class BackpackWard : Item
 
     public override bool Nontransferable => _starterIssued || base.Nontransferable;
 
-    public override string DefaultName => Primed ? "a primed backpack ward" : "a backpack ward";
+    public override string DefaultName => $"a backpack ward ({State.Phase.ToString().ToLowerInvariant()})";
 
-    public int RecordSuccessfulTheft(string thiefAccount)
-    {
-        Primed = true;
-        _successfulThefts.TryGetValue(thiefAccount, out var count);
-        count++;
-        _successfulThefts[thiefAccount] = count;
-        InvalidateProperties();
-        return count;
-    }
-
-    public void Prime()
-    {
-        Primed = true;
-        InvalidateProperties();
-    }
-
-    public bool TryBindTo(PlayerMobile owner)
-    {
-        if (_starterIssued && owner.Serial != _starterOwnerSerial)
-        {
-            return false;
-        }
-
-        if (owner.Account is not Account account)
-        {
-            return false;
-        }
-
-        if (string.IsNullOrWhiteSpace(BoundAccount))
-        {
-            BoundAccount = account.Username;
-            InvalidateProperties();
-            return true;
-        }
-
-        return string.Equals(BoundAccount, account.Username, StringComparison.OrdinalIgnoreCase);
-    }
+    /// <summary>The character this Ward is protecting while it is Primed or Activated.</summary>
+    public Mobile? ProtectedCharacter =>
+        State.IsTracking ? World.FindMobile((Serial)State.ProtectedSerial) : null;
 
     public bool MarkStarterIssued(PlayerMobile owner)
     {
         if (_starterIssued)
         {
             return _starterOwnerSerial == owner.Serial;
-        }
-
-        if (!TryBindTo(owner))
-        {
-            return false;
         }
 
         _starterIssued = true;
@@ -98,20 +57,89 @@ public sealed class BackpackWard : Item
         base.VerifyMove(from) && (!_starterIssued || from.AccessLevel > AccessLevel.Player ||
             from.Serial == _starterOwnerSerial);
 
+    /// <summary>Primes this Ward for the character holding it.</summary>
+    public void Prime(PlayerMobile holder)
+    {
+        if (State.Prime(holder.Serial.Value, Core.Now))
+        {
+            SyncBlessing(holder);
+            InvalidateProperties();
+        }
+    }
+
+    public void Activate()
+    {
+        State.Activate(Core.Now);
+        InvalidateProperties();
+    }
+
+    /// <summary>Back to an ordinary Unprimed Ward: no history, no caught thieves, no blessing.</summary>
+    public void ResetAll()
+    {
+        State.Reset();
+        SyncBlessing(null);
+        InvalidateProperties();
+    }
+
+    /// <summary>
+    /// A Ward that is tracking thieves for one character resets completely when a different character comes to hold it.
+    /// Moving it between that character's own containers, or onto the ground, changes nothing.
+    /// </summary>
+    public void EnforceHolder()
+    {
+        if (State.IsTracking && RootParent is Mobile holder && holder.Serial.Value != State.ProtectedSerial)
+        {
+            ResetAll();
+        }
+    }
+
+    public override void OnAdded(IEntity parent)
+    {
+        base.OnAdded(parent);
+        EnforceHolder();
+    }
+
+    private void SyncBlessing(Mobile? protectedCharacter)
+    {
+        if (_starterIssued)
+        {
+            return;
+        }
+
+        if (State.IsTracking && protectedCharacter is not null)
+        {
+            LootType = LootType.Blessed;
+            BlessedFor = protectedCharacter;
+        }
+        else
+        {
+            LootType = LootType.Regular;
+            BlessedFor = null;
+        }
+    }
+
     public override void Serialize(IGenericWriter writer)
     {
         base.Serialize(writer);
-        writer.WriteEncodedInt(2);
-        writer.Write(Primed);
-        writer.Write(BoundAccount);
+        writer.WriteEncodedInt(3);
         writer.Write(_starterIssued);
         writer.Write(_starterOwnerSerial);
-        writer.WriteEncodedInt(_successfulThefts.Count);
+        writer.WriteEncodedInt((int)State.Phase);
+        writer.Write(State.ProtectedSerial);
+        writer.Write(State.LastActivityUtc);
+        writer.WriteEncodedInt(State.Successes.Count);
 
-        foreach (var (account, count) in _successfulThefts)
+        foreach (var (account, count) in State.Successes)
         {
             writer.Write(account);
             writer.WriteEncodedInt(count);
+        }
+
+        writer.WriteEncodedInt(State.Caught.Count);
+
+        foreach (var account in State.Caught)
+        {
+            writer.Write(account);
         }
     }
 
@@ -119,29 +147,52 @@ public sealed class BackpackWard : Item
     {
         base.Deserialize(reader);
         var version = reader.ReadEncodedInt();
-        Primed = reader.ReadBool();
-        BoundAccount = version >= 1 ? reader.ReadString() : null;
+
+        if (version >= 3)
+        {
+            _starterIssued = reader.ReadBool();
+            _starterOwnerSerial = reader.ReadSerial();
+            var phase = (WardPhase)reader.ReadEncodedInt();
+            var protectedSerial = reader.ReadUInt();
+            var lastActivity = reader.ReadDateTime();
+
+            var successes = new List<KeyValuePair<string, int>>();
+            var successCount = reader.ReadEncodedInt();
+            for (var i = 0; i < successCount; i++)
+            {
+                successes.Add(new KeyValuePair<string, int>(reader.ReadString(), reader.ReadEncodedInt()));
+            }
+
+            var caught = new List<string>();
+            var caughtCount = reader.ReadEncodedInt();
+            for (var i = 0; i < caughtCount; i++)
+            {
+                caught.Add(reader.ReadString());
+            }
+
+            State.Restore(phase, protectedSerial, lastActivity, successes, caught);
+            return;
+        }
+
+        // Saves from the earlier model: its primed flag, account binding and per-thief counts described a different
+        // mechanic, so a Ward loaded from one starts fresh. Only the starter marking carries over.
+        reader.ReadBool();
+        if (version >= 1)
+        {
+            reader.ReadString();
+        }
+
         if (version >= 2)
         {
             _starterIssued = reader.ReadBool();
             _starterOwnerSerial = reader.ReadSerial();
         }
 
-        // Starter Wards issued before the newbied ruling were destroyed on death instead.
-        if (_starterIssued && LootType == LootType.Regular)
+        var legacyCount = reader.ReadEncodedInt();
+        for (var i = 0; i < legacyCount; i++)
         {
-            LootType = LootType.Newbied;
-        }
-
-        var count = reader.ReadEncodedInt();
-        for (var i = 0; i < count; i++)
-        {
-            var account = reader.ReadString();
-            var successes = reader.ReadEncodedInt();
-            if (!string.IsNullOrWhiteSpace(account) && successes > 0)
-            {
-                _successfulThefts[account] = successes;
-            }
+            reader.ReadString();
+            reader.ReadEncodedInt();
         }
     }
 }

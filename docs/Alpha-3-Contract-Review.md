@@ -34,13 +34,13 @@ In the tables, *Rec.* is the reviewer's recommendation. Paths are relative to `S
 
 | ID | Custom rule | Built? | Rec. | Ruling |
 | --- | --- | --- | --- | --- |
-| F-1 | One free starter Backpack Ward per new character, bound to that character and never replaced. | yes | keep, if Wards stay | |
-| F-2 | Wards have no source except the starter grant (no vendor, recipe or loot). The contract's "purchased/crafted Wards" and all multi-Ward rules (choosing among spares, one primed Ward per character, reconciliation; DD 504-530) are dead weight. | partial | owner call: if Wards are never sold, collapse to one single-charge Ward and drop the multi-Ward rules and tests | |
-| F-3 | An ordinary (unmarked) Ward silently binds to the first account seen during a theft, and does nothing for anyone else afterward. | yes | simplify: remove, or make moot via F-2 (only 2 unmarked Wards exist) | |
-| F-4 | Ward mechanics: lazy priming, escalating 25/50/100% per-thief detection, consumed on detection, 120 s of victim theft immunity. | yes (Alpha 2) | owner call: a core pillar, never reviewed by the owner | |
-| F-5 | Invisible Loot Protection: after one unlawful monster-corpse transfer, that offender's account is blocked for 10 minutes on the victim's corpses. Needs a world-load migration. | yes (Alpha 2) | owner call | |
-| F-6 | `[Welcome` command and creation prompt. | yes | keep | |
-| F-7 | Pre-ruling marked Wards become newbied on load. | yes | keep | |
+| F-1 | One free starter Backpack Ward per new character, bound to that character and never replaced. | yes | keep, if Wards stay | 2026-10-02 (Beta 2a): keep. One starter Ward per new character, newbied and bound. |
+| F-2 | Wards have no source except the starter grant (no vendor, recipe or loot). The contract's "purchased/crafted Wards" and all multi-Ward rules (choosing among spares, one primed Ward per character, reconciliation; DD 504-530) are dead weight. | partial | owner call: if Wards are never sold, collapse to one single-charge Ward and drop the multi-Ward rules and tests | 2026-10-02: owner had no preference; recommendation applied. Design B (`BACKPACK-WARD-DESIGN.md`) keeps a small multi-Ward selector (Activated, then Primed, then lowest serial) so a spare Ward can exist, but there is no source for spares. |
+| F-3 | An ordinary (unmarked) Ward silently binds to the first account seen during a theft, and does nothing for anyone else afterward. | yes | simplify: remove, or make moot via F-2 (only 2 unmarked Wards exist) | 2026-10-02: removed. A Ward now tracks every thief account per Ward and protects the holder; there is no account binding. |
+| F-4 | Ward mechanics: lazy priming, escalating 25/50/100% per-thief detection, consumed on detection, 120 s of victim theft immunity. | yes (Alpha 2) | owner call: a core pillar, never reviewed by the owner | 2026-10-01/02: owner chose design B. No 120 s immunity. A thief caught on a successful theft is blocked from stealing from that character until the Ward ends (30 minutes after the last genuine attempt); each caught thief is blocked separately; 25/50/100% escalation per thief account stays. Built 2026-10-02. |
+| F-5 | Invisible Loot Protection: after one unlawful monster-corpse transfer, that offender's account is blocked for 10 minutes on the victim's corpses. Needs a world-load migration. | yes (Alpha 2) | owner call | 2026-10-02: owner had no preference; simplified. The 10-minute repeat-looting rule stays; the entitlement, its world-load migration and login hook are removed. |
+| F-6 | `[Welcome` command and creation prompt. | yes | keep | 2026-10-02: keep; text rewritten for design B. |
+| F-7 | Pre-ruling marked Wards become newbied on load. | yes | keep | 2026-10-02: removed (it served only an old world). |
 
 ## G. Starter combat gear and consumables
 

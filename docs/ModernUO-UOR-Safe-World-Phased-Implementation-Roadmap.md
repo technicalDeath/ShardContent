@@ -325,6 +325,7 @@ Settle the remaining rule decisions that other systems build on, and open the fi
 ### Scope
 1. Ward and Welcome rulings.
    - Rule F-1 to F-7 in [Alpha-3-Contract-Review.md](Alpha-3-Contract-Review.md), mostly keep. There is no old-world review. Propose removing F-3 and F-7 and their migration code, which only serve an old world, and ask the owner to keep or simplify F-5.
+   - **Built 2026-10-02:** owner chose Ward design B (`BACKPACK-WARD-DESIGN.md`, "a caught thief is blocked until the Ward ends"). F-3, F-7 and the Loot Protection entitlement are removed; the 10-minute repeat-looting rule stays; `[Welcome` is rewritten. Evidence in `Beta-2a-Ward-Readiness.md`. No flag changed.
 2. Mastery redesign (deferred from Alpha 3 J-2/J-3).
    - Replace the as-built Alpha 1 Mastery mechanic (95.0+ gain suppression, 4-hour UTC pending accrual capped at 0.6, 0.1 spent per valid use) with the design doc's cycle/difficulty-allowance/bank version (DD 837-928), but with a **24-hour** cycle instead of the doc's 18-hour one. The owner approves the parameters. Delete the 18-hour description once this ships.
 3. Permanent Hythloth Hot Dungeon. The owner approves the boundary and dungeon rules before building.

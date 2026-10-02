@@ -82,11 +82,19 @@ public static class ShardRulesCommands
         }
     }
 
-    [Usage("TheftStatus")]
-    [Description("Displays Backpack Ward, theft-region, and corpse-protection state.")]
+    [Usage("TheftStatus [serial]")]
+    [Description("Displays Backpack Ward, theft-region, and corpse-protection state, for you or the player with that serial.")]
     private static void OnTheftStatus(CommandEventArgs e)
     {
-        foreach (var line in TheftProtectionService.DescribeStatus(e.Mobile))
+        var subject = e.Length > 0 ? World.FindMobile((Serial)e.GetUInt32(0)) : e.Mobile;
+
+        if (subject is null)
+        {
+            e.Mobile.SendMessage("No mobile has that serial.");
+            return;
+        }
+
+        foreach (var line in TheftProtectionService.DescribeStatus(subject))
         {
             e.Mobile.SendMessage(line);
         }

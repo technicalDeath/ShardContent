@@ -9,13 +9,35 @@ reference this document instead. It does not cover the separate **Invisible Loot
 
 The most significant change from the prior design: the previous **120-second all-thief victim
 immunity** on Ward trigger is replaced by a **Primed / Activated** per-thief state machine (Sections
-2, 10) that keeps tracking known thieves without granting blanket protection against unrelated ones.
+2, 10). A thief the Ward has **caught** on a successful theft is **blocked from every theft attempt
+against the protected character for the Ward's 30-minute window**; thieves it has not caught are not
+blocked, and each caught thief is blocked separately. There is no blanket protection against unrelated
+thieves.
+
+**Revision 2026-10-01 (owner):** the earlier draft of this document only detected known thieves and
+never blocked them ("a Ward never stops a theft"). That was a mistake. A caught thief is blocked for
+the encounter (Sections 10, 11, 13, 22, 23, 25). **Built 2026-10-02 (Beta 2a item 1; evidence in `Beta-2a-Ward-Readiness.md`).**
+`BackpackWardState.cs` holds the rules, `BackpackWardService.cs` runs them in the game, `BackpackWard.cs` is the
+item, and `TheftProtectionService.cs` calls them through the stock `Stealing.TheftEligibility` and
+`Stealing.TheftResolved` hooks. Choices made while building:
+
+- **Outdoor Hot Zones:** a Ward does nothing there. No priming, no blocking, no timer refresh, as before.
+- **Ward-detected thefts** carry the ordinary detected-theft consequences: the thief turns criminal, is told
+  "You have been caught stealing!", and bystanders within 8 tiles are told what they noticed.
+- **Old Wards:** a Ward saved under the earlier model (120-second immunity, account binding, per-thief counts) loads as
+  a fresh Unprimed Ward. Only its starter marking carries over. Saves are now Ward version 3, which older builds cannot read.
+- **Only genuine attempts count.** Stock calls its theft hook even for attempts it refuses before the skill roll, so a
+  ModernUO hook now reports whether the roll ran (`Stealing.TheftResolved`, `rolled`). Refused and blocked attempts never
+  restart a Ward's window.
+- **Housekeeping (owner: no preference, recommendations applied):** F-3 account binding and F-7 loot-type fixup are
+  removed; the unused Loot Protection entitlement, its world-load migration and its login hook are removed, and the
+  10-minute repeat-looting rule stays (it never needed them).
 
 ## Consumable Backpack Wards — Theft Detection and Anti-Harassment
 
 ### Design intent
 
-Backpack Wards provide prepared players with escalating protection against repeated theft without weakening the underlying Stealing skill or creating blanket immunity from thieves.
+Backpack Wards provide prepared players with escalating detection of repeat thieves, and a block against every thief the Ward has caught, without weakening the underlying Stealing skill or creating blanket immunity from thieves.
 
 The system preserves ordinary era-appropriate:
 
@@ -28,7 +50,7 @@ The system preserves ordinary era-appropriate:
 - guard behavior;
 - snooping.
 
-A Ward does **not** reduce a thief's chance to successfully steal an item.
+A Ward does **not** reduce the chance that a thief who has not been caught succeeds at stealing an item. It does not undo the theft that catches a thief, but it stops that thief's later attempts (Section 10).
 
 The design does not include:
 
@@ -42,7 +64,7 @@ The design does not include:
 
 The central goal is:
 
-> **A Ward remembers and increasingly detects thieves involved in an ongoing theft episode. It does not make the victim globally immune to unrelated thieves.**
+> **A Ward remembers and increasingly detects thieves involved in an ongoing theft episode, and once it catches a thief on a successful theft it blocks that thief from stealing from the protected character for the rest of the episode. It does not make the victim globally immune to thieves it has not caught.**
 
 ---
 
@@ -117,7 +139,8 @@ An Activated Ward:
 - retains its thief histories;
 - continues applying the same per-thief detection mechanics as a Primed Ward;
 - continues accepting new thief histories;
-- does **not** create blanket immunity against all thieves.
+- **blocks every thief account it has caught** from attempting theft against the protected character (Section 10);
+- does **not** create blanket immunity against thieves it has not caught.
 
 An Activated Ward is consumed after **30 consecutive minutes without a qualifying theft attempt**.
 
@@ -214,7 +237,7 @@ A snooper may **not** see:
 
 ## 6. Ordinary theft resolves first
 
-A Ward never prevents or reverses the theft attempt that causes its detection effect to occur.
+A Ward never prevents or reverses the theft attempt that causes its detection effect to occur. It does block that thief's later attempts (Section 10).
 
 The order is:
 
@@ -227,7 +250,8 @@ Check ordinary:
 - item eligibility;
 - inventory state;
 - cooldown;
-- theft-permitting region.
+- theft-permitting region;
+- whether the thief's account has been **caught** by the target character's Activated Ward (Section 10). If it has, reject the attempt before resolution.
 
 Reject the attempt before resolution where stealing is prohibited, including:
 
@@ -260,14 +284,15 @@ If the victim detects the attempt through the normal theft system:
 1. resolve the theft attempt normally;
 2. acquire the existing Primed/Activated Ward or lazily prime one;
 3. record the thief account as Ward history if necessary;
-4. transition the Ward to **Activated**.
+4. transition the Ward to **Activated**;
+5. if the detected theft was a **success**, mark the thief account as **caught** (Section 10).
 
 This includes:
 
 - detected successful thefts;
 - detected failed thefts.
 
-A failed theft does not increment the thief's successful-theft count.
+A failed theft does not increment the thief's successful-theft count. A detected **failed** attempt activates the Ward but does **not** make the thief caught, so it does not block that thief.
 
 Bystander-only detection does not activate the Ward.
 
@@ -314,7 +339,8 @@ If the Ward detects the theft:
 - the thief keeps the transferred item;
 - the victim is notified;
 - ordinary detected-theft consequences apply;
-- the Ward transitions to **Activated**.
+- the Ward transitions to **Activated**;
+- the thief account is **caught** and blocked from further attempts against the protected character (Section 10).
 
 If the roll misses:
 
@@ -343,32 +369,37 @@ If A returns:
 
 - A's next successful undetected theft is the third and therefore guaranteed detected.
 
-The Ward therefore targets **repeat behavior by individual thief accounts**, not all thieves collectively.
+The Ward therefore targets **repeat behavior by individual thief accounts**, not all thieves collectively. Being caught is also per thief account: catching A blocks A only.
 
 ---
 
-## 10. Activated Wards do not create universal immunity
+## 10. Caught thieves are blocked; there is no universal immunity
+
+A thief account is **caught** by a Ward when one of its **successful** thefts against the protected character is detected, either by ordinary victim detection (Section 7) or by the Ward's extra detection (Section 8). A detected failed attempt does not make a thief caught.
+
+While the Ward is Activated:
+
+- every caught thief account is **blocked** from any theft attempt against the protected character, for **all characters on that account**;
+- a blocked attempt is rejected before resolution (Section 6, Step 1): no skill check, no skill gain, no criminality or other consequence, no change to the thief's counters, and it does **not** refresh the inactivity timer (Section 13). The thief is told the attempt is not possible right now;
+- the block lasts until the Ward is consumed, which happens after 30 consecutive minutes without a qualifying theft attempt (Section 12). If nothing else happens after the catch, the thief is blocked for 30 minutes from the catch;
+- if several thieves are caught, **each is blocked**; the Ward protects against every thief it has caught, not only the first.
+
+A thief the Ward has **not** caught is not blocked. A new thief encountering an Activated Ward starts with their own fresh history (Section 9).
 
 Activation does **not** grant:
 
-- two minutes of blanket immunity;
-- thirty minutes of blanket immunity;
-- automatic rejection of all new thieves.
+- blanket immunity against thieves the Ward has not caught;
+- two minutes or thirty minutes of automatic rejection of all new thieves.
 
 This explicitly replaces the previous 120-second all-thief protection mechanic.
 
-An Activated Ward handles subsequent theft attempts using the **same underlying rules as a Primed Ward**.
-
-That means an unrelated thief encountering an Activated Ward for the first time starts with their own fresh history.
-
 For example:
 
-- Friend A deliberately activates the Ward.
-- Stranger B attacks five minutes later.
-- Stranger B does **not** encounter universal theft immunity.
-- B begins their own Ward history normally.
+- Friend A deliberately gets caught to activate the Ward.
+- A is blocked for the window.
+- Stranger B attacks five minutes later. B is **not** blocked, because B has not been caught. B begins their own Ward history normally.
 
-This eliminates the incentive to intentionally trigger a Ward before transporting valuable goods.
+This keeps the incentive to trigger a Ward deliberately before transporting valuable goods small: it blocks only the friend who triggered it, not the thieves you are worried about.
 
 ---
 
@@ -376,14 +407,12 @@ This eliminates the incentive to intentionally trigger a Ward before transportin
 
 An Activated Ward retains existing thief histories.
 
-A thief already at:
+- A **caught** thief is blocked (Section 10). Their counter stays as it was.
+- A thief **not caught** keeps their counter:
+  - count 1 remains at the next 50% stage;
+  - count 2 remains at the next guaranteed-detection stage.
 
-- count 1 remains at the next 50% stage;
-- count 2 remains at the next guaranteed-detection stage.
-
-Activation does not reset these counters.
-
-The Ward therefore continues to provide escalating protection against thieves already involved in the encounter.
+Activation does not reset these counters. A thief who reaches a detected successful theft becomes caught and is blocked from then on.
 
 New thieves may also become tracked while the Ward is Activated.
 
@@ -442,6 +471,7 @@ It should **not** include:
 - attempts while out of range;
 - attempts blocked by protected-region rules;
 - attempting to steal the Ward itself;
+- an attempt rejected because the thief is blocked by this Ward (Section 10);
 - spammed invalid targets;
 - merely targeting the player;
 - login/logout;
@@ -687,6 +717,10 @@ Attempts must be rejected before theft resolution inside:
 
 Snooping remains governed independently.
 
+**Outdoor Hot Zones.** A Ward has no effect while the protected character is inside an outdoor Hot Zone (Fire Island,
+Buccaneer's Den). There the Ward neither primes, activates, refreshes nor blocks, and a thief who was caught elsewhere
+may steal from that character until they leave. The Ward's own clock keeps running meanwhile.
+
 If a valid theft begins outside such a region but either relevant participant crosses into a protected region before commit:
 
 - revalidate;
@@ -714,11 +748,14 @@ For each active Ward, persist:
 - current protected character identity;
 - temporary blessing association;
 - last qualifying Ward activity UTC timestamp;
-- per-thief-account successful-undetected-theft counts.
+- per-thief-account successful-undetected-theft counts;
+- which thief accounts the Ward has **caught** (so blocks survive logout and restart).
 
 Suggested conceptual key:
 
-`(WardId, VictimCharacterId, ThiefAccountId) -> SuccessfulUndetectedCount`
+`(WardId, VictimCharacterId, ThiefAccountId) -> (SuccessfulUndetectedCount, Caught)`
+
+A block ends only when the Ward is consumed, or reset by a transfer.
 
 Transfer to another character explicitly deletes/reset this state as described above.
 
@@ -730,14 +767,14 @@ Ward processing must be serialized per victim.
 
 The following operations should behave atomically:
 
-1. validate theft;
+1. validate theft, including the caught-thief block;
 2. choose existing Ward or prime one;
 3. perform ordinary Stealing;
 4. transfer item if successful;
 5. perform ordinary detection;
 6. update thief history;
 7. perform Ward detection;
-8. transition Primed → Activated when applicable;
+8. transition Primed → Activated when applicable, and mark the thief caught when a successful theft was detected;
 9. refresh inactivity timestamp.
 
 Two simultaneous thieves must not:
@@ -796,32 +833,31 @@ Then:
 - Alice detects Bob;
 - Bob keeps the third stolen item;
 - ordinary criminal rules apply;
-- Ward transitions to Activated.
+- Ward transitions to Activated;
+- Bob is **caught**: every later theft attempt by Bob (any character on his account) is rejected until the Ward is consumed.
 
 ### Example C — Activated Ward and a new thief
 
-Alice's Ward is Activated because of Bob.
+Alice's Ward is Activated because Bob was caught.
 
 Carol attempts theft.
 
-Carol has no history.
+Carol has no history and has not been caught, so her attempt is allowed and resolves normally.
 
 If Carol successfully steals undetected:
 
 - Carol = 1;
 - Carol receives the normal 25% Ward detection roll.
 
-Carol is **not automatically blocked** merely because Bob activated the Ward.
+If Carol is then detected, Carol is caught and blocked too. Carol is **not** blocked merely because Bob was caught.
 
 ### Example D — deliberate friend activation
 
 Alice is transporting valuable goods.
 
-Her friend Bob deliberately gets himself detected to activate the Ward.
+Her friend Bob deliberately gets himself detected on a successful theft to activate the Ward.
 
-This gives Alice no blanket protection.
-
-A real thief, Carol:
+This blocks Bob, and only Bob. A real thief, Carol:
 
 - can still steal;
 - begins with her own fresh history;
@@ -831,7 +867,7 @@ Therefore deliberate activation offers little exploitable transport advantage.
 
 ### Example E — Primed inactivity
 
-Bob steals once at 7:00 PM.
+Bob steals once at 7:00 PM and is not detected.
 
 No valid theft attempt occurs afterward.
 
@@ -847,31 +883,44 @@ His history starts from zero.
 
 ### Example F — Activated inactivity
 
-Bob triggers detection at 7:00 PM.
+Bob steals successfully at 7:00 PM and Alice detects it.
 
-Ward becomes Activated.
+The Ward becomes Activated and Bob is caught.
+
+Bob tries again at 7:10 PM. The attempt is rejected, and it does not move the Ward's deadline.
 
 No valid theft attempts occur after that.
 
 At 7:30 PM:
 
-- the Activated Ward is consumed.
+- the Activated Ward is consumed;
+- Bob's block ends with it.
 
 ### Example G — continuing theft episode
 
-Ward activates at 7:00 PM.
+The Ward activates at 7:00 PM when Bob is caught.
 
-A genuine theft attempt occurs at 7:20 PM.
+Carol makes a genuine theft attempt at 7:20 PM.
 
 The Activated Ward's inactivity deadline moves to 7:50 PM.
 
-Another genuine attempt happens at 7:45 PM.
+Bob tries again at 7:40 PM. He is blocked, and the deadline does not move.
+
+Carol makes another genuine attempt at 7:45 PM.
 
 Deadline moves to 8:15 PM.
 
-Once 30 uninterrupted minutes pass with no valid theft attempt:
+Bob stays blocked the whole time. Once 30 uninterrupted minutes pass with no valid theft attempt:
 
-- Ward is consumed.
+- Ward is consumed, and every block ends with it.
+
+### Example G2 — two thieves caught
+
+Bob is caught at 7:00 PM and Carol is caught at 7:12 PM.
+
+Both are blocked, each by their own catch.
+
+Dave, who has not been caught, can still attempt theft and starts at 25%.
 
 ### Example H — ownership transfer
 
@@ -898,6 +947,20 @@ Even if Carol later gives it back to Alice:
 ## 25. Required regression tests
 
 At minimum test:
+
+### Caught thieves
+
+- a thief caught on a detected successful theft (ordinary detection) is blocked.
+- a thief caught by the Ward's extra detection is blocked.
+- a detected failed attempt activates the Ward but does not block the thief.
+- a thief not caught is not blocked, even while the Ward is Activated.
+- two caught thieves are each blocked.
+- alternate characters on a caught thief account are blocked too.
+- a blocked attempt is rejected before resolution: no skill check, no skill gain, no criminality, no counter change.
+- a blocked attempt does not refresh the inactivity timer.
+- blocks survive logout, world save and restart.
+- consuming the Ward ends every block.
+- transfer of the Ward to another character resets the caught list.
 
 ### State transitions
 
@@ -975,11 +1038,11 @@ If theft activity ends for 30 minutes while merely Primed:
 
 > **The Ward forgets the encounter and becomes reusable.**
 
-If the Ward actually detects a thief:
+If the Ward actually detects a thief on a successful theft:
 
-> **It becomes Activated.**
+> **It becomes Activated, and that thief is caught.**
 
-An Activated Ward continues tracking thieves exactly as before. It does not provide universal immunity.
+An Activated Ward blocks every thief it has caught from stealing from the protected character, and continues tracking other thieves exactly as before. It does not provide universal immunity against thieves it has not caught.
 
 Once theft activity has been quiet for 30 minutes:
 
