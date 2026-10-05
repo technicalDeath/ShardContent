@@ -34,6 +34,7 @@ public static class ShardBootstrap
         PostUorSystemGates.Configure();
         PetRestrictionService.Configure();
         SkillGainCurveService.Configure();
+        HarvestRepeatService.Configure();
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }

@@ -618,6 +618,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("hythlothHotZone")]
     public bool HythlothHotZone { get; set; }
 
+    [JsonPropertyName("harvestAutoRepeat")]
+    public bool HarvestAutoRepeat { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -649,11 +652,12 @@ public sealed class DeferredFeatureFlags
         if (PetRestrictions) yield return nameof(PetRestrictions);
         if (SkillGainCurve) yield return nameof(SkillGainCurve);
         if (HythlothHotZone) yield return nameof(HythlothHotZone);
+        if (HarvestAutoRepeat) yield return nameof(HarvestAutoRepeat);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

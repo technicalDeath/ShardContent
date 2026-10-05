@@ -24,6 +24,17 @@ public static class ShardRulesCommands
         CommandSystem.Register("SkillBankRecover", AccessLevel.Administrator, OnSkillBankRecover);
         CommandSystem.Register("HotZoneStatus", AccessLevel.Administrator, OnHotZoneStatus);
         CommandSystem.Register("Welcome", AccessLevel.Player, OnWelcome);
+        CommandSystem.Register("HarvestRepeatStatus", AccessLevel.Administrator, OnHarvestRepeatStatus);
+    }
+
+    [Usage("HarvestRepeatStatus")]
+    [Description("Shows whether mining, lumberjacking and fishing auto-repeat, and the loops in flight.")]
+    private static void OnHarvestRepeatStatus(CommandEventArgs e)
+    {
+        foreach (var line in HarvestRepeatService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("Welcome")]

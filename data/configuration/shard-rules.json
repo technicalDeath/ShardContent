@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "afacbf0430f56237b7f5fe5380cf6a0ac889e2c0",
+  "pinnedModernUoCommit": "b5fae694846fd34e4255ce73684c24a676310566",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -156,6 +156,7 @@
     "petRestrictions": true,
     "skillGainCurve": true,
     "hythlothHotZone": true,
+    "harvestAutoRepeat": false,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,
