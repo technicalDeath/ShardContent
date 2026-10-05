@@ -36,5 +36,5 @@ No feature-flag or `ShardRulesConfiguration` change. The harvest change is an er
 - The surveys are not exhaustive, and their April 2000 dating rests on recollection rather than dated sources.
 - The single-yield harvest change is compile-checked only.
 - Old-version poisoned-weapon load fixture and normal-client poison behavior (SK-005) are not tested.
-- Open live checks for later: Cooking menu reachability, Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining, bandage formula.
+- Open live checks for later: ~~Cooking menu reachability~~ (resolved 2026-10-05, see [Cooking-Era-Restore-Readiness.md](Cooking-Era-Restore-Readiness.md)), Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining, bandage formula.
 - Young ruling (Stock-Default-Audit #1) closed 2026-09-28 (off shard-wide). Rows 2–9 closed 2026-09-30; see New verification above. None of this pass's own source-survey findings changed as a result — the closures only affect virtues, poison corrosion, duel gump, insurance validation, Detect Hidden, mount stamina and housing, none of which the five family surveys covered.

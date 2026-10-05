@@ -486,7 +486,7 @@ Prove launch readiness: complete observability and operations, closed test debt,
 
 ### Scope
 1. Close Alpha 3 test debt.
-   - Live Hot Zone cases for pets, delayed damage, boats and Recall crossings; time-driven Mastery periods (against the redesigned Mastery); the same-account second-character case; a crafting-consumption pass; the open live skill checks (Cooking menu reachability, Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining, bandage formula); an integration test for `StarterCombatIssuance.Issue()`.
+   - Live Hot Zone cases for pets, delayed damage, boats and Recall crossings; time-driven Mastery periods (against the redesigned Mastery); the same-account second-character case; a crafting-consumption pass; the open live skill checks (Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining, bandage formula); an integration test for `StarterCombatIssuance.Issue()`.
 2. Clearly label starter gear and other starter items when they have special restrictions or properties, such as being non-sellable or nontransferable, so players can distinguish them from ordinary items.
 3. Complete administrative and player-facing operations.
    - Finish inspection, force/advance/recovery and audit commands for zones, housing, Expeditions, Pilgrimage, road travel, Wards, content rewards and RP systems.

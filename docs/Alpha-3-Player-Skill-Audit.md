@@ -194,7 +194,7 @@ AoS-era skill unavailable to UOR players.
 - Bard difficulty add-ons and the Animal Lore 110 limit: the owner asked for a recommendation. Provisionally keep stock (SK-011).
 
 **Still open after the survey (need client or fixture evidence).**
-- Live checks: Cooking T2A menu reachability (the survey found no Cooking branch, unconfirmed by grep), Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining reachability.
+- Live checks: ~~Cooking T2A menu reachability~~ (resolved 2026-10-05: there is no Cooking branch and raw food had no handler, so nothing cooked; era cooking, raw food on a heat source, restored in [Cooking-Era-Restore-Readiness.md](Cooking-Era-Restore-Readiness.md)), Meditation and Resisting Spells numbers, Magery cast timing, Item Identification relabel, Tracking arrow, stone/sand mining reachability.
 - Bandage formula and interruption against April 2000.
 - Old-version poisoned-weapon load fixture and normal-client behavior (SK-005).
 - Passive Detect Hidden and Young rulings (Stock-Default-Audit #1, #2; SK-007).
