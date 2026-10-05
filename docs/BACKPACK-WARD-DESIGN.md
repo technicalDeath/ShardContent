@@ -29,6 +29,12 @@ item, and `TheftProtectionService.cs` calls them through the stock `Stealing.The
 - **Only genuine attempts count.** Stock calls its theft hook even for attempts it refuses before the skill roll, so a
   ModernUO hook now reports whether the roll ran (`Stealing.TheftResolved`, `rolled`). Refused and blocked attempts never
   restart a Ward's window.
+- **Double-click feedback (Section 5, built 2026-10-04):** double-clicking a Ward tells the player what it is (the starter
+  Ward says it is bound to them), its phase, and the whole minutes left before a Primed Ward resets or an Activated one is
+  used up. It adds a line when the Ward is outside the equipped backpack (not protecting; the timer keeps running) or the
+  player stands in a Hot Zone (Wards do nothing there). A Ward tracking for someone else says only that. Expired time is
+  applied first. No thief names or counts are shown. `WardDescription` holds the wording; `BackpackWardService.Inspect` runs it.
+  Snooping a Ward in another player's pack does not reach it (stock calls `OnSnoop` instead of `OnDoubleClick`).
 - **Housekeeping (owner: no preference, recommendations applied):** F-3 account binding and F-7 loot-type fixup are
   removed; the unused Loot Protection entitlement, its world-load migration and its login hook are removed, and the
   10-minute repeat-looting rule stays (it never needed them).

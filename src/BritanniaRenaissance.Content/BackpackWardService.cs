@@ -231,6 +231,42 @@ public static class BackpackWardService
         }
     }
 
+    /// <summary>
+    /// Double-click feedback: what the Ward is and where it stands. Time that has run out is applied first, so a Ward never
+    /// reports a window it no longer has.
+    /// </summary>
+    public static void Inspect(Mobile from, BackpackWard ward)
+    {
+        var protectedCharacter = ward.ProtectedCharacter;
+        ward.EnforceHolder();
+
+        if (ApplyExpiry(ward, Core.Now))
+        {
+            if (protectedCharacter != from)
+            {
+                from.SendMessage("The backpack ward has run its course and is spent.");
+            }
+
+            return;
+        }
+
+        var state = ward.State;
+        var lines = WardDescription.Lines(
+            Enabled,
+            ward.IsStarterIssued,
+            state.Phase,
+            state.ProtectedSerial == from.Serial.Value,
+            ward.IsChildOf(from.Backpack),
+            OutdoorHotZonePolicy.IsHot(from),
+            state.Remaining(Core.Now)
+        );
+
+        foreach (var line in lines)
+        {
+            from.SendMessage(line);
+        }
+    }
+
     /// <summary>Lines for [TheftStatus about the Wards in this player's backpack.</summary>
     public static IEnumerable<string> Describe(PlayerMobile player)
     {

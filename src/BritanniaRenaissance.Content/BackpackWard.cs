@@ -53,6 +53,8 @@ public sealed class BackpackWard : Item
         return true;
     }
 
+    public override void OnDoubleClick(Mobile from) => BackpackWardService.Inspect(from, this);
+
     public override bool VerifyMove(Mobile from) =>
         base.VerifyMove(from) && (!_starterIssued || from.AccessLevel > AccessLevel.Player ||
             from.Serial == _starterOwnerSerial);

@@ -334,4 +334,130 @@ public class BackpackWardStateTests
         Assert.Contains("[Welcome", StarterOnboarding.CreationPrompt);
         Assert.Equal(5, StarterOnboarding.DescribeRules().Count());
     }
+
+    // ---- double-click feedback
+
+    private static string[] Described(
+        WardPhase phase,
+        bool starter = false,
+        bool protectsViewer = true,
+        bool inBackpack = true,
+        bool inHotZone = false,
+        int minutes = 23,
+        bool enabled = true
+    ) => WardDescription.Lines(enabled, starter, phase, protectsViewer, inBackpack, inHotZone, TimeSpan.FromMinutes(minutes))
+        .ToArray();
+
+    [Fact]
+    public void AnUnprimedWardSaysWhatItIsAndThatItIsWaiting()
+    {
+        var lines = Described(WardPhase.Unprimed);
+
+        Assert.Equal(2, lines.Length);
+        Assert.Contains("backpack ward", lines[0]);
+        Assert.Contains("Unprimed", lines[1]);
+    }
+
+    [Fact]
+    public void APrimedWardReportsItsPhaseAndTheTimeBeforeItResets()
+    {
+        var lines = Described(WardPhase.Primed, minutes: 23);
+
+        Assert.Contains("Primed", lines[1]);
+        Assert.Contains("23 more quiet minutes", lines[1]);
+        Assert.Contains("resets", lines[1]);
+    }
+
+    [Fact]
+    public void AnActivatedWardReportsItsPhaseAndWarnsItWillBeUsedUp()
+    {
+        var lines = Described(WardPhase.Activated, minutes: 7);
+
+        Assert.Contains("Activated", lines[1]);
+        Assert.Contains("7 more quiet minutes", lines[1]);
+        Assert.Contains("used up", lines[1]);
+        Assert.Contains("cannot steal from you again", lines[1]);
+    }
+
+    [Theory]
+    [InlineData(0.2, "1 more quiet minute")]
+    [InlineData(1.0, "1 more quiet minute")]
+    [InlineData(1.01, "2 more quiet minutes")]
+    [InlineData(30.0, "30 more quiet minutes")]
+    public void TheTimeLeftRoundsUpAndNeverClaimsToBeSpent(double minutes, string expected)
+    {
+        var lines = WardDescription.Lines(
+            true, false, WardPhase.Primed, true, true, false, TimeSpan.FromMinutes(minutes)
+        ).ToArray();
+
+        Assert.Contains(expected, lines[1]);
+    }
+
+    [Fact]
+    public void TheStarterWardIsDescribedAsBoundToItsOwner()
+    {
+        var lines = Described(WardPhase.Unprimed, starter: true);
+
+        Assert.Contains("starter", lines[0]);
+        Assert.Contains("bound to you", lines[0]);
+        Assert.Contains("when you die", lines[0]);
+    }
+
+    [Theory]
+    [InlineData(WardPhase.Unprimed, false)]
+    [InlineData(WardPhase.Primed, true)]
+    [InlineData(WardPhase.Activated, true)]
+    public void AWardOutsideTheBackpackSaysItIsNotProtecting(WardPhase phase, bool timerKeepsRunning)
+    {
+        var lines = Described(phase, inBackpack: false);
+
+        Assert.Contains("not in your backpack", lines[^1]);
+        Assert.Equal(timerKeepsRunning, lines[^1].Contains("timer keeps running"));
+    }
+
+    [Fact]
+    public void AWardInAHotZoneSaysItDoesNothingThere()
+    {
+        var lines = Described(WardPhase.Primed, inHotZone: true);
+
+        Assert.Contains("Hot Zone", lines[^1]);
+        Assert.Contains("do nothing", lines[^1]);
+    }
+
+    [Fact]
+    public void AWardInTheBackpackOutsideAHotZoneHasNoExtraWarning()
+    {
+        Assert.Equal(2, Described(WardPhase.Activated).Length);
+    }
+
+    [Fact]
+    public void AWardProtectingSomeoneElseGivesNeitherTheTimerNorTheCharacter()
+    {
+        var lines = Described(WardPhase.Activated, protectsViewer: false);
+
+        Assert.Equal(2, lines.Length);
+        Assert.Contains("another character", lines[1]);
+        Assert.DoesNotContain("minute", lines[1]);
+    }
+
+    [Fact]
+    public void WhenTheftProtectionIsOffTheWardSaysItDoesNothing()
+    {
+        var lines = Described(WardPhase.Primed, enabled: false);
+
+        Assert.Equal(2, lines.Length);
+        Assert.Contains("switched off", lines[1]);
+    }
+
+    [Fact]
+    public void NoLineNamesAThiefAccountOrCountsThieves()
+    {
+        foreach (var phase in Enum.GetValues<WardPhase>())
+        {
+            var text = string.Join(" ", Described(phase));
+
+            Assert.DoesNotContain("account", text, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotMatch(@"\b\d+ thief", text);
+        }
+    }
 }

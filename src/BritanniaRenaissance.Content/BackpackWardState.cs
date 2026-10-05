@@ -173,3 +173,66 @@ public sealed class WardState
         }
     }
 }
+
+/// <summary>
+/// What a player is told when they double-click a Ward: what it is and where it stands. Engine-free so the wording can be
+/// tested. Thief identities and counters are never shown (design Section 5); only the phase and the time left.
+/// </summary>
+public static class WardDescription
+{
+    public static IEnumerable<string> Lines(
+        bool enabled,
+        bool starterIssued,
+        WardPhase phase,
+        bool protectsViewer,
+        bool inBackpack,
+        bool inHotZone,
+        TimeSpan remaining
+    )
+    {
+        yield return starterIssued
+            ? "Your starter backpack ward: it is bound to you, cannot be traded or stolen, and stays with you when you die. Carried in your backpack, it watches for thieves who steal from you."
+            : "A backpack ward: carried in your backpack, it watches for thieves who steal from you.";
+
+        if (!enabled)
+        {
+            yield return "Theft protection is switched off on this shard right now, so wards do nothing.";
+            yield break;
+        }
+
+        if (phase != WardPhase.Unprimed && !protectsViewer)
+        {
+            yield return $"Status: {phase}. It is protecting another character, not you.";
+            yield break;
+        }
+
+        var quiet = Quiet(remaining);
+
+        yield return phase switch
+        {
+            WardPhase.Primed =>
+                $"Status: Primed. It is tracking thieves who steal from you and grows more likely to catch each repeat thief. After {quiet} without a theft attempt it resets and can be used again.",
+            WardPhase.Activated =>
+                $"Status: Activated. It has detected a theft against you, and a thief it caught cannot steal from you again. After {quiet} without a theft attempt it is used up.",
+            _ => "Status: Unprimed. It is waiting for a thief and is not tracking anyone yet."
+        };
+
+        if (!inBackpack)
+        {
+            yield return phase == WardPhase.Unprimed
+                ? "It is not in your backpack, so it is not protecting you right now."
+                : "It is not in your backpack, so it is not protecting you right now, and its timer keeps running.";
+        }
+        else if (inHotZone)
+        {
+            yield return "You are in a Hot Zone, where wards do nothing. It works again when you leave.";
+        }
+    }
+
+    /// <summary>"23 more quiet minutes", rounded up so a Ward never claims to be spent while it still has time.</summary>
+    private static string Quiet(TimeSpan remaining)
+    {
+        var minutes = Math.Max(1, (int)Math.Ceiling(remaining.TotalMinutes));
+        return minutes == 1 ? "1 more quiet minute" : $"{minutes} more quiet minutes";
+    }
+}
