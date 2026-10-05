@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "b5fae694846fd34e4255ce73684c24a676310566",
+  "pinnedModernUoCommit": "fe40005718df1078cd52006c3a62a267fcb71239",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -22,7 +22,14 @@
   },
   "wardVendor": {
     "price": 2000,
-    "stockPerVendor": 20
+    "stockPerVendor": 20,
+    "buyBackPrice": 110
+  },
+  "wardCraft": {
+    "enabled": true,
+    "minSkill": 45.0,
+    "maxSkill": 95.0,
+    "ingots": 20
   },
   "skillGain": {
     "classes": {

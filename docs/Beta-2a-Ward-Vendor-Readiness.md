@@ -16,7 +16,7 @@ Plan presented 2026-10-05 and revised twice on the owner's economy concerns; the
 | Vendor | Tinkers only (plain `Tinker`; the Mondain's Legacy quest tinkers derive from it and are excluded). Recommended; the owner approved the plan as written. |
 | Price | 2,000 gp, a configuration value. A **ceiling**: wards have no power tiers, so crafters can only compete on price and availability, and the vendor must not be the cheapest source. (The first placeholder, 500 gp, was a new account's whole starter gold.) |
 | Stock | 20 per Tinker. Deep, not thin: thin stock is what makes sweeping a shelf and reselling profitable. The engine doubles a shelf that sells out (to 999) and halves one that sells under half (while above 20), so an unsold shelf of 20 stays at 20. Clearing one shelf costs 40,000 gp against 500 gp of starter gold per account. |
-| Sell-back | None. No stock sell list names the Ward, so vendors never buy one. |
+| Sell-back | None at the time: no stock sell list names the Ward, so vendors never bought one. **Superseded the same day** by the owner-approved Tinker buy-back of unused Wards at 110 gp, never re-listed; see [Beta-2d-Ward-Crafting-Readiness.md](Beta-2d-Ward-Crafting-Readiness.md). |
 | Audit | Every purchase writes a `theft ward-bought` audit line (buyer and account, vendor serial, count, unit price) so staff can spot hoarding. |
 | Hoarding lever held back | A per-account purchase cap needs a pre-purchase ModernUO hook and is not built. Add it only if the audit log shows real hoarding. |
 | Activation | No new flag. The sale follows `featureFlags.theftProtection` (already true); `wardVendor.stockPerVendor: 0` takes it off sale. |

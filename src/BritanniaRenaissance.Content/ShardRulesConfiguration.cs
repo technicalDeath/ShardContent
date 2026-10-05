@@ -104,6 +104,7 @@ public static class ShardRulesConfiguration
         SkillGainCurveService.Validate(rules.SkillGain, errors);
         MasteryRules.Validate(rules.Mastery, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
+        BackpackWardCraft.Validate(rules.WardCraft, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
@@ -381,6 +382,9 @@ public sealed class ShardRules
     [JsonPropertyName("wardVendor")]
     public WardVendorRules WardVendor { get; set; } = new();
 
+    [JsonPropertyName("wardCraft")]
+    public WardCraftRules WardCraft { get; set; } = new();
+
     [JsonPropertyName("skillGain")]
     public SkillGainRules SkillGain { get; set; } = new();
 
@@ -553,8 +557,8 @@ public sealed class SkillBankRules
 }
 
 /// <summary>
-/// What Tinker vendors charge for a Backpack Ward and how many each shelf holds (see <see cref="BackpackWardVendor"/>).
-/// A stock of zero takes the Ward off sale.
+/// What Tinker vendors charge for a Backpack Ward, how many each shelf holds, and what they pay for an unused one (see
+/// <see cref="BackpackWardVendor"/>). A stock of zero takes the Ward off sale; a buy-back price of zero stops the buy-back.
 /// </summary>
 public sealed class WardVendorRules
 {
@@ -563,6 +567,28 @@ public sealed class WardVendorRules
 
     [JsonPropertyName("stockPerVendor")]
     public int StockPerVendor { get; set; } = 20;
+
+    [JsonPropertyName("buyBackPrice")]
+    public int BuyBackPrice { get; set; } = 110;
+}
+
+/// <summary>
+/// The Tinkering recipe for a Backpack Ward (see <see cref="BackpackWardCraft"/>): the skill range it is made across and
+/// the iron ingots it costs. <c>enabled</c> false leaves the recipe out of the Tinkering menu.
+/// </summary>
+public sealed class WardCraftRules
+{
+    [JsonPropertyName("enabled")]
+    public bool Enabled { get; set; } = true;
+
+    [JsonPropertyName("minSkill")]
+    public double MinSkill { get; set; } = 45.0;
+
+    [JsonPropertyName("maxSkill")]
+    public double MaxSkill { get; set; } = 95.0;
+
+    [JsonPropertyName("ingots")]
+    public int Ingots { get; set; } = 20;
 }
 
 public sealed class DeferredFeatureFlags

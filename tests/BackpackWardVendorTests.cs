@@ -8,8 +8,8 @@ namespace BritanniaRenaissance.Content.Tests;
 
 public class BackpackWardVendorTests
 {
-    private static WardVendorRules Rules(int price = 2000, int stock = 20) =>
-        new() { Price = price, StockPerVendor = stock };
+    private static WardVendorRules Rules(int price = 2000, int stock = 20, int buyBack = 0) =>
+        new() { Price = price, StockPerVendor = stock, BuyBackPrice = buyBack };
 
     private static List<string> Errors(WardVendorRules rules)
     {
@@ -27,7 +27,38 @@ public class BackpackWardVendorTests
 
         Assert.Equal(2000, defaults.Price);
         Assert.Equal(20, defaults.StockPerVendor);
+        Assert.Equal(110, defaults.BuyBackPrice);
         Assert.Empty(Errors(defaults));
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(1999)]
+    public void ABuyBackPriceBelowTheSalePriceOrZeroIsAccepted(int buyBack)
+    {
+        Assert.Empty(Errors(Rules(price: 2000, buyBack: buyBack)));
+    }
+
+    [Theory]
+    [InlineData(2000)]
+    [InlineData(2500)]
+    public void ABuyBackAtOrAboveTheSalePriceIsRejectedBecauseItWouldPayGoldForNothing(int buyBack)
+    {
+        var error = Assert.Single(Errors(Rules(price: 2000, buyBack: buyBack)));
+
+        Assert.Contains("wardVendor.buyBackPrice", error);
+        Assert.Contains("below wardVendor.price", error);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(1_000_001)]
+    public void AnOutOfRangeBuyBackIsRejectedByName(int buyBack)
+    {
+        var error = Assert.Single(Errors(Rules(price: 1_000_000, buyBack: buyBack)));
+
+        Assert.Contains("wardVendor.buyBackPrice", error);
     }
 
     [Theory]
@@ -69,7 +100,22 @@ public class BackpackWardVendorTests
 
         Assert.Equal(2000, rules.WardVendor.Price);
         Assert.Equal(20, rules.WardVendor.StockPerVendor);
+        Assert.Equal(110, rules.WardVendor.BuyBackPrice);
         Assert.Empty(ShardRulesConfiguration.Validate(rules));
+    }
+
+    [Fact]
+    public void TheBuyBackSitsAboveWhatTheIngotsCostAndBelowTheStockLockpickRate()
+    {
+        var path = Path.Combine(
+            AppContext.BaseDirectory, "..", "..", "..", "..", "data", "configuration", "shard-rules.json"
+        );
+        var rules = JsonSerializer.Deserialize<ShardRules>(File.ReadAllText(path))!;
+
+        // NPCs sell iron ingots for 5 gp, so a Ward costs 5 gp per ingot. Stock pays 6 gp for a Lockpick that takes one
+        // ingot, so 6 gp per ingot is the most a tinker-made item earns from an NPC today. A buy-back inside that band is
+        // a small guaranteed profit that adds no faucet stock lacks; if the ingot count changes, this price moves with it.
+        Assert.InRange(rules.WardVendor.BuyBackPrice, rules.WardCraft.Ingots * 5 + 1, rules.WardCraft.Ingots * 6 - 1);
     }
 
     [Fact]
@@ -122,6 +168,39 @@ public class BackpackWardVendorTests
     public void AStockOfZeroTakesTheWardOffSale()
     {
         Assert.Null(BackpackWardVendor.CreateEntry(Rules(stock: 0), theftProtectionEnabled: true));
+    }
+
+    // ---- the buy-back
+
+    [Fact]
+    public void TheBuyBackPaysTheConfiguredPriceAndIsNeverRelisted()
+    {
+        var buyBack = BackpackWardVendor.CreateBuyBack(Rules(buyBack: 110), theftProtectionEnabled: true);
+
+        Assert.NotNull(buyBack);
+        Assert.Equal(110, buyBack!.GetSellPriceFor(null!));
+        Assert.False(buyBack.IsResellable(null!));
+        Assert.Equal(new[] { typeof(BackpackWard) }, buyBack.Types);
+        Assert.Equal("backpack ward", buyBack.GetNameFor(null!));
+    }
+
+    [Fact]
+    public void TheBuyBackIsOffWhenTheftProtectionIsOffOrThePriceIsZero()
+    {
+        Assert.Null(BackpackWardVendor.CreateBuyBack(Rules(buyBack: 110), theftProtectionEnabled: false));
+        Assert.Null(BackpackWardVendor.CreateBuyBack(Rules(buyBack: 0), theftProtectionEnabled: true));
+    }
+
+    [Fact]
+    public void TheBuyBackAndTheStockedWardAreSeparateSwitches()
+    {
+        var noStock = Rules(stock: 0, buyBack: 110);
+        var noBuyBack = Rules(stock: 20, buyBack: 0);
+
+        Assert.Null(BackpackWardVendor.CreateEntry(noStock, true));
+        Assert.NotNull(BackpackWardVendor.CreateBuyBack(noStock, true));
+        Assert.NotNull(BackpackWardVendor.CreateEntry(noBuyBack, true));
+        Assert.Null(BackpackWardVendor.CreateBuyBack(noBuyBack, true));
     }
 
     // ---- the engine's own shelf behavior, with this entry
@@ -185,7 +264,9 @@ public class BackpackWardVendorTests
         BackpackWardVendor.Configure();
 
         Assert.Equal(1, HandlersFrom("BuyInfoLoaded"));
+        Assert.Equal(1, HandlersFrom("SellInfoLoaded"));
         Assert.Equal(1, HandlersFrom("ItemsBought"));
+        Assert.Equal(1, HandlersFrom("ItemsSold"));
     }
 
     private static int HandlersFrom(string eventName)
