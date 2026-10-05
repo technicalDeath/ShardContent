@@ -156,7 +156,7 @@
     "petRestrictions": true,
     "skillGainCurve": true,
     "hythlothHotZone": true,
-    "harvestAutoRepeat": false,
+    "harvestAutoRepeat": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

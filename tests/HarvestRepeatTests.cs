@@ -85,12 +85,12 @@ public class HarvestRepeatTests
     }
 
     [Fact]
-    public void SourceConfigurationShipsTheFlagOff()
+    public void SourceConfigurationEnablesTheFlag()
     {
         var path = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "data", "configuration", "shard-rules.json");
         Assert.True(File.Exists(path), path);
 
         using var doc = System.Text.Json.JsonDocument.Parse(File.ReadAllText(path));
-        Assert.False(doc.RootElement.GetProperty("featureFlags").GetProperty("harvestAutoRepeat").GetBoolean());
+        Assert.True(doc.RootElement.GetProperty("featureFlags").GetProperty("harvestAutoRepeat").GetBoolean());
     }
 }
