@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "eba68d2be43ecc1c241d57fc12fde8af0f292893",
+  "pinnedModernUoCommit": "afacbf0430f56237b7f5fe5380cf6a0ac889e2c0",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -19,6 +19,10 @@
   "alpha3EnablementAcknowledged": true,
   "skillBank": {
     "capacityTenths": 3000
+  },
+  "wardVendor": {
+    "price": 2000,
+    "stockPerVendor": 20
   },
   "skillGain": {
     "classes": {

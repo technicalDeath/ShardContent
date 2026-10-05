@@ -175,8 +175,9 @@ public sealed class WardState
 }
 
 /// <summary>
-/// What a player is told when they double-click a Ward: what it is and where it stands. Engine-free so the wording can be
-/// tested. Thief identities and counters are never shown (design Section 5); only the phase and the time left.
+/// What a player is told when they double-click a Ward: what it is, where it stands, and how activation and the
+/// thirty-minute window work. Engine-free so the wording can be tested. Thief identities and counters are never shown
+/// (design Section 5); only the phase and the time left.
 /// </summary>
 public static class WardDescription
 {
@@ -216,6 +217,11 @@ public static class WardDescription
                 $"Status: Activated. It has detected a theft against you, and a thief it caught cannot steal from you again. After {quiet} without a theft attempt it is used up.",
             _ => "Status: Unprimed. It is waiting for a thief and is not tracking anyone yet."
         };
+
+        // Only a caught thief is blocked, so the lines say so rather than promise blanket protection (design Section 10).
+        var window = (int)WardState.InactivityWindow.TotalMinutes;
+        yield return "It activates when a theft against you is noticed, by you or by the ward, which catches a repeat thief more often each time.";
+        yield return $"Once activated, it blocks every thief it caught from stealing from you until {window} minutes pass with no theft attempt against you, then it is used up. Thieves it has not caught can still try.";
 
         if (!inBackpack)
         {

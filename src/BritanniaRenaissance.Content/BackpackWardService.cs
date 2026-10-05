@@ -25,6 +25,7 @@ public static class BackpackWardService
         _configured = true;
         EventSink.ServerStarted += Rebuild;
         Server.Timer.StartTimer(TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30), Sweep);
+        BackpackWardVendor.Configure();
     }
 
     private static bool Enabled => TheftProtectionService.Enabled;

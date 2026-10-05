@@ -353,9 +353,25 @@ public class BackpackWardStateTests
     {
         var lines = Described(WardPhase.Unprimed);
 
-        Assert.Equal(2, lines.Length);
+        Assert.Equal(4, lines.Length);
         Assert.Contains("backpack ward", lines[0]);
         Assert.Contains("Unprimed", lines[1]);
+    }
+
+    [Theory]
+    [InlineData(WardPhase.Unprimed)]
+    [InlineData(WardPhase.Primed)]
+    [InlineData(WardPhase.Activated)]
+    public void EveryWardExplainsHowItActivatesAndWhenItIsUsedUp(WardPhase phase)
+    {
+        var lines = Described(phase);
+
+        Assert.Contains("activates when a theft against you is noticed", lines[2]);
+        Assert.Contains("by you or by the ward", lines[2]);
+        Assert.Contains("blocks every thief it caught", lines[3]);
+        Assert.Contains("30 minutes pass with no theft attempt", lines[3]);
+        Assert.Contains("used up", lines[3]);
+        Assert.Contains("it has not caught can still try", lines[3]);
     }
 
     [Fact]
@@ -427,7 +443,11 @@ public class BackpackWardStateTests
     [Fact]
     public void AWardInTheBackpackOutsideAHotZoneHasNoExtraWarning()
     {
-        Assert.Equal(2, Described(WardPhase.Activated).Length);
+        var lines = Described(WardPhase.Activated);
+
+        Assert.Equal(4, lines.Length);
+        Assert.DoesNotContain("not in your backpack", lines[^1]);
+        Assert.DoesNotContain("Hot Zone", lines[^1]);
     }
 
     [Fact]

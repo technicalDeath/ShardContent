@@ -31,10 +31,15 @@ item, and `TheftProtectionService.cs` calls them through the stock `Stealing.The
   restart a Ward's window.
 - **Double-click feedback (Section 5, built 2026-10-04):** double-clicking a Ward tells the player what it is (the starter
   Ward says it is bound to them), its phase, and the whole minutes left before a Primed Ward resets or an Activated one is
-  used up. It adds a line when the Ward is outside the equipped backpack (not protecting; the timer keeps running) or the
+  used up. Two lines then explain how it works (changed 2026-10-05, not yet deployed): it activates when a theft against
+  the player is noticed, by the player or by the Ward; once activated it blocks every thief it caught until 30 minutes pass
+  with no theft attempt against the player, then it is used up; thieves it has not caught can still try. They state the
+  rolling window and the per-thief block of Sections 10 and 12 and promise no blanket protection. It adds a line when the
+  Ward is outside the equipped backpack (not protecting; the timer keeps running) or the
   player stands in a Hot Zone (Wards do nothing there). A Ward tracking for someone else says only that. Expired time is
   applied first. No thief names or counts are shown. `WardDescription` holds the wording; `BackpackWardService.Inspect` runs it.
   Snooping a Ward in another player's pack does not reach it (stock calls `OnSnoop` instead of `OnDoubleClick`).
+  Deployed 2026-10-05 and checked live (`tests/scenarios/ward/ward_inspect_live.py`: starter and regular Wards, Primed with 30 and then 20 minutes left, dropped on the ground, and a Primed Ward whose window ran out resetting when inspected). The Activated wording and the consumed-on-inspect path are covered by unit tests only.
 - **Housekeeping (owner: no preference, recommendations applied):** F-3 account binding and F-7 loot-type fixup are
   removed; the unused Loot Protection entitlement, its world-load migration and its login hook are removed, and the
   10-minute repeat-looting rule stays (it never needed them).
@@ -87,7 +92,10 @@ It requires:
 
 There are no Ward power tiers.
 
-Its crafting/purchase sources and price should be determined by the economy audit.
+Its sources (owner ruling, 2026-10-05, see [Beta-2a-Ward-Vendor-Readiness.md](Beta-2a-Ward-Vendor-Readiness.md)):
+
+- **Purchase (built):** plain Tinker vendors sell it for gold. The price (`wardVendor.price`, 2,000 gp) is a **ceiling** for the crafted Ward to undercut, because Wards have no power tiers and crafters can only compete on price and availability. Each Tinker's shelf is deep (`wardVendor.stockPerVendor`, 20) so sweeping it for resale or denial costs far more gold than a launch-week character has; the stock-vendor engine doubles a shelf that sells out and halves one that sells under half. Vendors never buy a Ward back. Every purchase is audit-logged (`theft ward-bought`). The sale follows `featureFlags.theftProtection`, and a stock of 0 takes it off sale.
+- **Crafting (planned, Beta 2d):** a Tinkering recipe. When it exists the vendor entry is cut to zero stock or priced further up, so the vendor only covers towns without a crafter.
 
 A Ward functions only while physically located within:
 

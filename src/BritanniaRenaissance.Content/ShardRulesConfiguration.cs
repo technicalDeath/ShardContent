@@ -103,6 +103,7 @@ public static class ShardRulesConfiguration
 
         SkillGainCurveService.Validate(rules.SkillGain, errors);
         MasteryRules.Validate(rules.Mastery, errors);
+        BackpackWardVendor.Validate(rules.WardVendor, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
@@ -377,6 +378,9 @@ public sealed class ShardRules
     [JsonPropertyName("skillBank")]
     public SkillBankRules SkillBank { get; set; } = new();
 
+    [JsonPropertyName("wardVendor")]
+    public WardVendorRules WardVendor { get; set; } = new();
+
     [JsonPropertyName("skillGain")]
     public SkillGainRules SkillGain { get; set; } = new();
 
@@ -546,6 +550,19 @@ public sealed class SkillBankRules
 {
     [JsonPropertyName("capacityTenths")]
     public int CapacityTenths { get; set; } = 3000;
+}
+
+/// <summary>
+/// What Tinker vendors charge for a Backpack Ward and how many each shelf holds (see <see cref="BackpackWardVendor"/>).
+/// A stock of zero takes the Ward off sale.
+/// </summary>
+public sealed class WardVendorRules
+{
+    [JsonPropertyName("price")]
+    public int Price { get; set; } = 2000;
+
+    [JsonPropertyName("stockPerVendor")]
+    public int StockPerVendor { get; set; } = 20;
 }
 
 public sealed class DeferredFeatureFlags

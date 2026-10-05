@@ -12,11 +12,13 @@ namespace BritanniaRenaissance.Content;
 /// </summary>
 public sealed class BackpackWard : Item
 {
+    public const int DefaultItemId = 0x1F14;
+
     private bool _starterIssued;
     private Serial _starterOwnerSerial;
 
     [Constructible]
-    public BackpackWard() : base(0x1F14)
+    public BackpackWard() : base(DefaultItemId)
     {
         Weight = 1.0;
     }
