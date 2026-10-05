@@ -1,6 +1,6 @@
 # Era cooking restore (Part A) readiness
 
-**Decision:** Built and verified live on a disposable host (2026-10-05). **Not committed, not pushed, not deployed.** No flag; deploying turns it on. Closes the Alpha 3 open live check "Cooking menu reachability". Research, sources and the owner's sign-off are in [Cooking-Era-Restore-Research.md](Cooking-Era-Restore-Research.md). Part B (flour, water, dough and baking) is a separate item.
+**Decision:** Built, verified live on a disposable host, committed and pushed (ModernUO `5079cd0d4`, ShardContent `afc5f16`), and **deployed to the dev distribution 2026-10-05** (first at about 11:26 with the Ward double-click and the upstream merge; it has been in every redeploy since, the latest at 17:00 with the Ward vendor work, pin `fe4000571`). No flag; the deploy turned it on. Closes the Alpha 3 open live check "Cooking menu reachability". Research, sources and the owner's sign-off are in [Cooking-Era-Restore-Research.md](Cooking-Era-Restore-Research.md). Part B (flour, water, dough and baking) is a separate item.
 
 ## What cooking does now
 Double-click raw food, then target a heat source within one tile. After five seconds the Cooking skill decides the result: success puts one cooked food in the pack, failure burns the food. Walking more than three tiles from the heat source (or changing map) in that time burns it. A second attempt during the five seconds is refused. One item is used per attempt, even from a stack. No tool is needed; the starter pack is unchanged.
@@ -45,7 +45,11 @@ Dev distribution, dev saves and the owner's accounts were not touched; the host 
 - **Runs against ModernUO `eba68d2be`.** The unit and full-suite runs used current HEAD `9006a252c` (the unpushed upstream merge); the cooking file is identical on both.
 
 ## Deploy and activation
-Nothing is deployed. To ship: commit the ModernUO change, bump `pinnedModernUoCommit` in the three places, snapshot `Distribution/Saves` (the rebuild also carries the upstream merge `9006a252c` and its `BaseCreature` v24 save bump), stop the server, rebuild `UOContent.csproj` into `Distribution`, run `Deploy-Alpha1Baseline.ps1`, add one line about cooking to the root `README.md` rules section, then start the server. No flag to acknowledge. No new player-facing strings (all stock messages).
+Deployed 2026-10-05 together with the Backpack Ward double-click and the upstream merge `9006a252c`. Steps: snapshot `work/save-snapshots/dist-20261005-112441-pre-merge-cooking-ward` (the rebuild carries the `BaseCreature` v23 to v24 save bump, one-way once the world saves), pin bumped to `5079cd0d4` in the three places, `UOContent.csproj` and `Application.csproj` rebuilt into `Distribution` (0 warnings, 0 errors), `Deploy-Alpha1Baseline.ps1`, root `README.md` lines added. `Get-ShardStatus` afterwards: pin and every flag the same in source and deployed.
+
+**Verified on the deployed build** (disposable host `deploy-check`, copy of the deployed distribution and the dev saves; removed afterwards): the world loaded cleanly through the v24 migration (56,206 items, 12,476 mobiles, no warnings or errors); `cooking_live.py` all cases passed again (E1: first success on attempt 1 this time); `ward_inspect_live.py` passed all six Ward double-click cases. The dev saves were not touched.
+
+No flag to acknowledge. No new player-facing strings (all stock messages). After that deploy the dev server was run again and has saved (latest world save 15:10 on 2026-10-05), so treat the dev saves as v24: the snapshot above restores the old format only together with the old DLLs.
 
 ## Next
 Part B: the era preparation chain (flour and water make dough; dough and a filler make unbaked food; baking Dough and SweetDough), which also gives the starter flour sack and pitcher a use. Needs its own plan and sign-off.
