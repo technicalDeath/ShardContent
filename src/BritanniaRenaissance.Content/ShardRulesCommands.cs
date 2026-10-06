@@ -25,6 +25,17 @@ public static class ShardRulesCommands
         CommandSystem.Register("HotZoneStatus", AccessLevel.Administrator, OnHotZoneStatus);
         CommandSystem.Register("Welcome", AccessLevel.Player, OnWelcome);
         CommandSystem.Register("HarvestRepeatStatus", AccessLevel.Administrator, OnHarvestRepeatStatus);
+        CommandSystem.Register("ActionRepeatStatus", AccessLevel.Administrator, OnActionRepeatStatus);
+    }
+
+    [Usage("ActionRepeatStatus")]
+    [Description("Shows whether taming, lockpicking, spinning, the loom and cooking auto-repeat, and the loops in flight.")]
+    private static void OnActionRepeatStatus(CommandEventArgs e)
+    {
+        foreach (var line in ActionRepeatService.DescribeStatus())
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("HarvestRepeatStatus")]
