@@ -141,6 +141,7 @@ public static class CampingService
         var embers = fire.Status == CampfireStatus.Off;
 
         fire.Feed(TimingFor(Rules, CampingOf(from)));
+        CampTravelService.NoteFed(fire, from);
         from.SendMessage(embers ? "The embers flare back to life." : "You feed the fire.");
         return KindlingFeed.Fed;
     }
@@ -227,6 +228,7 @@ public static class CampingService
                 $"{age.TotalSeconds:0} s since lit or fed; dims at {timing.Dim.TotalSeconds:0} s, embers at {timing.Out.TotalSeconds:0} s, " +
                 $"gone at {timing.Expire.TotalSeconds:0} s."
             );
+            lines.Add(CampTravelService.DescribeFire(fire));
         }
 
         lines.Add($"Fires within 40 tiles: {count}.");

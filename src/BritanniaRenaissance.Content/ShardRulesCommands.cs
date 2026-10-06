@@ -47,6 +47,11 @@ public static class ShardRulesCommands
         {
             e.Mobile.SendMessage(line);
         }
+
+        foreach (var line in CampTravelService.DescribeSettings(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("HarvestRepeatStatus")]

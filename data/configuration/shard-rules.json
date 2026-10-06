@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "e69d6fadbc50569f72b9ac2c05616a0402d4bac2",
+  "pinnedModernUoCommit": "ac1d0e2c8c6a7908773ae75bec0421f888bfc7a3",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -39,6 +39,16 @@
     "emberPerSkillSeconds": 1.2,
     "feedCooldownSeconds": 5.0,
     "starterKindling": 5
+  },
+  "campTravel": {
+    "channelSeconds": 5.0,
+    "cooldownMinutes": 30.0,
+    "kindlingCost": 2,
+    "capacityBaseSkill": 40.0,
+    "skillPerArrival": 10.0,
+    "maxArrivals": 6,
+    "secureSeconds": 30.0,
+    "arrivalRange": 2
   },
   "wardCraft": {
     "enabled": true,
@@ -182,6 +192,8 @@
     "actionAutoRepeat": false,
     "campingStarterKit": true,
     "campingFires": true,
+    "campingTravel": false,
+    "hotZoneTravelWarning": false,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

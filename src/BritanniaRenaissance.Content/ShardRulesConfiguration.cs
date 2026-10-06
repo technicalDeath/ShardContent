@@ -106,6 +106,17 @@ public static class ShardRulesConfiguration
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
+        CampTravelService.Validate(rules.CampTravel, errors);
+
+        if (rules.FeatureFlags.CampingTravel && !rules.FeatureFlags.CampingFires)
+        {
+            errors.Add("campingTravel requires campingFires.");
+        }
+
+        if (rules.FeatureFlags.HotZoneTravelWarning && !rules.FeatureFlags.HotZones)
+        {
+            errors.Add("hotZoneTravelWarning requires hotZones.");
+        }
         StarterWeightBudget.Validate(rules.StarterWeight, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
@@ -390,6 +401,9 @@ public sealed class ShardRules
     [JsonPropertyName("camping")]
     public CampingRules Camping { get; set; } = new();
 
+    [JsonPropertyName("campTravel")]
+    public CampTravelRules CampTravel { get; set; } = new();
+
     [JsonPropertyName("starterWeight")]
     public StarterWeightRules StarterWeight { get; set; } = new();
 
@@ -634,6 +648,40 @@ public sealed class CampingRules
 }
 
 /// <summary>
+/// The numbers behind camp travel (see <see cref="CampTravelService"/>). A party member waits <c>channelSeconds</c>, pays
+/// <c>kindlingCost</c> Kindling on arrival, and cannot travel again for <c>cooldownMinutes</c> (per account). A fire is
+/// secure after <c>secureSeconds</c>. It takes one traveler once its lighter's real Camping reaches
+/// <c>capacityBaseSkill + skillPerArrival</c>, one more for each further <c>skillPerArrival</c> points, at most
+/// <c>maxArrivals</c>. Travelers land within <c>arrivalRange</c> tiles of the fire.
+/// </summary>
+public sealed class CampTravelRules
+{
+    [JsonPropertyName("channelSeconds")]
+    public double ChannelSeconds { get; set; } = 5.0;
+
+    [JsonPropertyName("cooldownMinutes")]
+    public double CooldownMinutes { get; set; } = 30.0;
+
+    [JsonPropertyName("kindlingCost")]
+    public int KindlingCost { get; set; } = 2;
+
+    [JsonPropertyName("capacityBaseSkill")]
+    public double CapacityBaseSkill { get; set; } = 40.0;
+
+    [JsonPropertyName("skillPerArrival")]
+    public double SkillPerArrival { get; set; } = 10.0;
+
+    [JsonPropertyName("maxArrivals")]
+    public int MaxArrivals { get; set; } = 6;
+
+    [JsonPropertyName("secureSeconds")]
+    public double SecureSeconds { get; set; } = 30.0;
+
+    [JsonPropertyName("arrivalRange")]
+    public int ArrivalRange { get; set; } = 2;
+}
+
+/// <summary>
 /// The weight budget for new characters' starting supplies (see <see cref="StarterWeightBudget"/>). A character whose load is
 /// above <c>maxLoadPercent</c> of its carry limit has its bulk supply stacks scaled down together to fit, each keeping at
 /// least <c>minimumUnits</c>. <c>enabled</c> false leaves the supplies at the quantities the Phase H rulings listed.
@@ -715,6 +763,12 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("campingFires")]
     public bool CampingFires { get; set; }
 
+    [JsonPropertyName("campingTravel")]
+    public bool CampingTravel { get; set; }
+
+    [JsonPropertyName("hotZoneTravelWarning")]
+    public bool HotZoneTravelWarning { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -750,11 +804,13 @@ public sealed class DeferredFeatureFlags
         if (ActionAutoRepeat) yield return nameof(ActionAutoRepeat);
         if (CampingStarterKit) yield return nameof(CampingStarterKit);
         if (CampingFires) yield return nameof(CampingFires);
+        if (CampingTravel) yield return nameof(CampingTravel);
+        if (HotZoneTravelWarning) yield return nameof(HotZoneTravelWarning);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }
