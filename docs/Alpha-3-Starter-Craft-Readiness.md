@@ -33,6 +33,8 @@ Source and deployed `alpha3StarterCraftMaterials` are both `false`. `ShardRulesC
 - H-2's fix (a second same-profession character on one account keeps its own ordinary stock grant rather than losing it) was verified by source inspection only, not a live second-character-same-account repro - the current test tooling creates a fresh account per character name.
 - No fresh live crafting-consumption pass for the redesigned plain stock types specifically; the existing bound-subclass evidence is reused as direction-confirming (see Reused accepted evidence) rather than re-run.
 
+**Weight budget (2026-10-06):** the quantities above are ceilings, not promises. Several starts (Archer and Carpenter templates, Advanced Carpentry, Fletching, Alchemy with Cooking) began far over their carry limit and could barely move, so the bulk supplies are scaled down at creation to fit 85% of the limit; see [Starter-Weight-Budget.md](Starter-Weight-Budget.md).
+
 **Phase L review (2026-09-30):** `StarterCraftMaterialIssuance.cs` and the shared vendor-sale guard are unchanged since this evidence through current HEAD. H issues no weapons, so today's `BaseWeapon.PoisonCorrosionEnabled` toggle has no overlap. CLEAN, no reopening.
 
 **Enabled 2026-09-30.** The validator no longer rejects `alpha3StarterCraftMaterials` outright; it requires `alpha3EnablementAcknowledged`. The flag is on in source and deployed. Same-day changes and live results (disposable host `gcraft`, flag on disk):

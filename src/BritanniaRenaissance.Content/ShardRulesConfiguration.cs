@@ -106,6 +106,7 @@ public static class ShardRulesConfiguration
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
+        StarterWeightBudget.Validate(rules.StarterWeight, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
@@ -389,6 +390,9 @@ public sealed class ShardRules
     [JsonPropertyName("camping")]
     public CampingRules Camping { get; set; } = new();
 
+    [JsonPropertyName("starterWeight")]
+    public StarterWeightRules StarterWeight { get; set; } = new();
+
     [JsonPropertyName("skillGain")]
     public SkillGainRules SkillGain { get; set; } = new();
 
@@ -627,6 +631,23 @@ public sealed class CampingRules
 
     [JsonPropertyName("starterKindling")]
     public int StarterKindling { get; set; } = 3;
+}
+
+/// <summary>
+/// The weight budget for new characters' starting supplies (see <see cref="StarterWeightBudget"/>). A character whose load is
+/// above <c>maxLoadPercent</c> of its carry limit has its bulk supply stacks scaled down together to fit, each keeping at
+/// least <c>minimumUnits</c>. <c>enabled</c> false leaves the supplies at the quantities the Phase H rulings listed.
+/// </summary>
+public sealed class StarterWeightRules
+{
+    [JsonPropertyName("enabled")]
+    public bool Enabled { get; set; } = true;
+
+    [JsonPropertyName("maxLoadPercent")]
+    public int MaxLoadPercent { get; set; } = 85;
+
+    [JsonPropertyName("minimumUnits")]
+    public int MinimumUnits { get; set; } = 10;
 }
 
 public sealed class DeferredFeatureFlags

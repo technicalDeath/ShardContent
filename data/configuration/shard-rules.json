@@ -25,6 +25,11 @@
     "stockPerVendor": 20,
     "buyBackPrice": 110
   },
+  "starterWeight": {
+    "enabled": true,
+    "maxLoadPercent": 85,
+    "minimumUnits": 10
+  },
   "camping": {
     "skillFloor": 50.0,
     "litBaseSeconds": 100.0,
