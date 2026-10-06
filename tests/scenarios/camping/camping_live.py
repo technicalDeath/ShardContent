@@ -6,8 +6,8 @@
 
 `kit` and `fires` need a host with campingStarterKit and campingFires on and the camping numbers scaled down so a fire's
 whole life is a minute or so (litBaseSeconds 20, litPerSkillSeconds 0.3, emberBaseSeconds 15, emberPerSkillSeconds 0.2),
-the TestOnlyProbe loaded, a staff session `admin`, and fresh characters KitWar (profession 1: a forged-packet start with Alchemy and Anatomy, not a Warrior), KitMage (Pure Mage), KitSmith
-(Blacksmith), KitCook (Advanced: Cooking and Alchemy) and KitCamp (Advanced: Camping and Fishing). `off` needs a host with
+the TestOnlyProbe loaded, a staff session `admin`, and fresh characters KitWar (Mace Fighter, 13), KitMage (Pure Mage), KitSmith (Blacksmith), KitCook (Advanced: Cooking and
+Alchemy), KitCamp (Advanced: Camping and Fishing), KitArcher (8) and KitCarp (17). `off` needs a host with
 both flags off and fresh OffWar (profession 1, as above) and OffCamp (Advanced: Camping and Cooking).
 
 Fires are immovable, so the client cannot see them; the driver reads them from the staff command `[CampStatus`.
@@ -138,7 +138,7 @@ def give_kindling(rig: Rig, name: str, amount: int) -> None:
 
 
 def stage_kit() -> None:
-    names = ["KitWar", "KitMage", "KitSmith", "KitCook", "KitCamp"]
+    names = ["KitWar", "KitMage", "KitSmith", "KitCook", "KitCamp", "KitArcher", "KitCarp"]
     rig = Rig(names)
     for name in names:
         items = rig.inspect(name)
@@ -146,18 +146,15 @@ def stage_kit() -> None:
         kindling = [m for m in items if m.group(1) == "Kindling"]
         total = sum(int(m.group(3)) for m in kindling)
         check(len(bedrolls) == 1, f"L1 {name}: exactly one Bedroll", f"{len(bedrolls)}")
-        want = 5 if name == "KitCamp" else 3  # stock Camping already gives a camper five; the kit tops everyone else up to three
-        check(total == want, f"L1 {name}: {want} Kindling in all, none doubled", f"{total} in {len(kindling)} stack(s)")
+        # stock Camping already gives a camper five and Cooking two; the kit tops everyone up to five, never doubling
+        check(total == 5, f"L1 {name}: 5 Kindling in all, none doubled", f"{total} in {len(kindling)} stack(s)")
         check(all(m.group(4) == "Newbied" and m.group(5) == "False" for m in bedrolls + kindling),
               f"L1 {name}: Bedroll and Kindling are newbied and not bound")
         s = rig.p[name].state
         weight, limit = s.get("weight"), s.get("maxWeight")
         print(f" {name}: weight {weight}/{limit} stones", flush=True)
-        # KitCook's Alchemy and Cooking starter materials alone already weigh more than its limit; the kit is not the cause.
-        if name == "KitCook":
-            print(f"  (KitCook is over its limit before the kit: {weight - 10}/{limit}; not asserted)", flush=True)
-            continue
-        check(weight is not None and limit is not None and weight <= limit, f"L2 {name}: not overweight with the kit",
+        # the starter weight budget trims bulk supplies, so even the heavy crafter starts end inside the real limit (+4)
+        check(weight is not None and limit is not None and weight <= limit + 4, f"L2 {name}: not overloaded with the kit",
               f"{weight}/{limit}")
     print("KIT PASS", flush=True)
 

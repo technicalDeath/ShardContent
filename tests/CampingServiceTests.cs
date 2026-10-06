@@ -126,11 +126,11 @@ public class CampingServiceTests
     // ---- the starter kit
 
     [Theory]
-    [InlineData(0, 0, true, 3)]    // a new character with no camping grant
-    [InlineData(0, 2, true, 1)]    // a cook: stock Cooking gives two Kindling
+    [InlineData(0, 0, true, 5)]    // a new character with no camping grant
+    [InlineData(0, 2, true, 3)]    // a cook: stock Cooking gives two Kindling
     [InlineData(1, 5, false, 0)]   // a camper: stock Camping gives a Bedroll and five Kindling
     [InlineData(1, 7, false, 0)]   // a camper who is also a cook already has more than enough
-    [InlineData(2, 3, false, 0)]
+    [InlineData(2, 5, false, 0)]
     public void TheKitTopsUpWhatStockGrantedInsteadOfDoubling(int bedrolls, int kindling, bool addBedroll, int addKindling)
     {
         var plan = CampingService.PlanKit(Rules, bedrolls, kindling);
@@ -149,7 +149,7 @@ public class CampingServiceTests
         Assert.Equal(2.0, Rules.LitPerSkillSeconds);
         Assert.Equal(60.0, Rules.EmberBaseSeconds);
         Assert.Equal(1.2, Rules.EmberPerSkillSeconds);
-        Assert.Equal(3, Rules.StarterKindling);
+        Assert.Equal(5, Rules.StarterKindling);
         Assert.Equal(5.0, Rules.FeedCooldownSeconds);
         Assert.Empty(Errors(Rules));
     }

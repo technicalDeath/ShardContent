@@ -43,41 +43,81 @@ public static class StarterWeightBudget
     // ---- the planner, free of game objects so it can be tested directly
 
     /// <summary>
-    /// The amounts the stacks should hold. Unchanged when the budget is off or the load is within it; otherwise one factor
-    /// scales every stack, and each keeps at least <c>minimumUnits</c> (or what it had, if less).
+    /// The amounts the stacks should hold. Unchanged when the budget is off or the load is within it; otherwise every stack
+    /// is scaled by one factor (the largest that fits the budget), and each keeps at least <c>minimumUnits</c> (or what it
+    /// had, if less). The engine rounds each stack's weight up (<c>Item.PileWeight</c>), so 21 reagents at 0.1 stones weigh 3,
+    /// not 2.1; the planner weighs stacks the same way, which is why a plain proportional cut falls short.
     /// </summary>
     public static int[] Plan(StarterWeightRules rules, int maxWeight, int bodyWeight, double carried, IReadOnlyList<Stack> stacks)
+    {
+        var original = new int[stacks.Count];
+
+        for (var i = 0; i < stacks.Count; i++)
+        {
+            original[i] = stacks[i].Amount;
+        }
+
+        var budget = Math.Floor(maxWeight * rules.MaxLoadPercent / 100.0);
+        var over = bodyWeight + carried - budget;
+        var bulk = Weigh(stacks, original);
+
+        if (!rules.Enabled || over <= 0.0 || bulk <= 0.0)
+        {
+            return original;
+        }
+
+        var target = bulk - over;
+        var floored = AtFactor(stacks, original, rules.MinimumUnits, 0.0);
+
+        // Even every stack at its floor does not reach the budget: that is as light as the supplies can go.
+        if (Weigh(stacks, floored) >= target)
+        {
+            return floored;
+        }
+
+        var low = 0.0;
+        var high = 1.0;
+
+        for (var step = 0; step < 40; step++)
+        {
+            var mid = (low + high) / 2.0;
+
+            if (Weigh(stacks, AtFactor(stacks, original, rules.MinimumUnits, mid)) <= target)
+            {
+                low = mid;
+            }
+            else
+            {
+                high = mid;
+            }
+        }
+
+        return AtFactor(stacks, original, rules.MinimumUnits, low);
+    }
+
+    private static int[] AtFactor(IReadOnlyList<Stack> stacks, int[] original, int minimumUnits, double factor)
     {
         var amounts = new int[stacks.Count];
 
         for (var i = 0; i < stacks.Count; i++)
         {
-            amounts[i] = stacks[i].Amount;
-        }
-
-        var budget = Math.Floor(maxWeight * rules.MaxLoadPercent / 100.0);
-        var over = bodyWeight + carried - budget;
-        var bulk = 0.0;
-
-        foreach (var stack in stacks)
-        {
-            bulk += stack.UnitWeight * stack.Amount;
-        }
-
-        if (!rules.Enabled || over <= 0.0 || bulk <= 0.0)
-        {
-            return amounts;
-        }
-
-        var factor = Math.Clamp(1.0 - over / bulk, 0.0, 1.0);
-
-        for (var i = 0; i < stacks.Count; i++)
-        {
-            var floor = Math.Min(stacks[i].Amount, rules.MinimumUnits);
-            amounts[i] = Math.Max(floor, (int)Math.Floor(stacks[i].Amount * factor));
+            amounts[i] = Math.Max(Math.Min(original[i], minimumUnits), (int)Math.Floor(original[i] * factor));
         }
 
         return amounts;
+    }
+
+    /// <summary>What the engine counts for these stacks: each stack's weight rounded up on its own.</summary>
+    private static double Weigh(IReadOnlyList<Stack> stacks, int[] amounts)
+    {
+        var total = 0.0;
+
+        for (var i = 0; i < stacks.Count; i++)
+        {
+            total += Math.Ceiling(stacks[i].UnitWeight * amounts[i] - 1e-9);
+        }
+
+        return total;
     }
 
     public static void Validate(StarterWeightRules rules, List<string> errors)

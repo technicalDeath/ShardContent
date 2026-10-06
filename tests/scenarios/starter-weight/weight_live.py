@@ -55,11 +55,8 @@ def main() -> None:
         shown = {k: v for k, v in {"boards": have.get(BOARD), "feathers": have.get(FEATHER), "bottles": have.get(BOTTLE),
                                    "lamb": have.get(LAMB), "chicken": have.get(CHICKEN)}.items() if v}
         print(f" {name}: weight {weight}/{limit} (budget {budget})  {shown}", flush=True)
-        # Every stack keeps a floor of 10 units, so Alchemy with Cooking (meat floors) can end a few stones above the budget;
-        # it must still sit well inside the real limit.
-        slack = 6 if name == "HAlcCook" else 1
-        check(weight <= budget + slack, f"L1 {name}: starts within the 85% budget" + (" (floors may add a few stones)" if slack > 1 else ""),
-              f"{weight} vs {budget}")
+        # The planner weighs stacks as the engine does (each rounded up), so every start lands on the budget.
+        check(weight <= budget + 1, f"L1 {name}: starts within the 85% budget", f"{weight} vs {budget}")
         check(weight <= limit + 4, f"L1 {name}: not overloaded", f"{weight} vs {limit + 4}")
         check(have.get(BEDROLL) == 1 and have.get(KINDLING, 0) >= 3, f"L4 {name}: the camping kit is intact",
               f"bedroll {have.get(BEDROLL)}, kindling {have.get(KINDLING)}")

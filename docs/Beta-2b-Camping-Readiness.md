@@ -6,7 +6,7 @@
 Core only: everyone lights Kindling at a 50% floor; every new character gets a Bedroll and Kindling (newbied, not bound); signal fire dropped; power and PvP ideas and flavor ideas left out; persistent fire, camp stall and housing hearth after house zoning; camp travel its own later 2b item; **feeding the fire** added by the owner during the build. Full table in the evidence doc.
 
 ## What it does (behind the flags)
-- **Kit** (`campingStarterKit`): a Bedroll if the character has none, and Kindling topped up to 3 in all. Stock campers keep their Bedroll and 5; cooks get stock's 2 topped up. Five overloaded the test start used for the weight check (162 of 187 stones before the kit), hence three. Correction 2026-10-06: that start was stock profession 1, an alchemy-heavy forged-packet start the shard does not offer, not a Warrior; the real Warrior templates carry about 95 of 229, so 3 is cautious and the approved 5 can return.
+- **Kit** (`campingStarterKit`): a Bedroll if the character has none, and Kindling topped up to 5 in all (the approved number). Stock campers keep their Bedroll and 5; cooks get stock's 2 topped up. (For a day the default was 3 on a mistaken weight reading; see the evidence doc. The starter weight budget now trims bulk supplies to make room for the kit.)
 - **Fires** (`campingFires`):
   - Everyone lights at a chance of at least 50%; skill above 50 raises it.
   - A fire is lit for 100 s + 2 s per point of the lighter's real Camping (100 s at 0, 200 s at 50, 300 s at 100), the last third dim, then embers for 60 s + 1.2 s per point (60 to 180 s). The 50% floor applies to lighting only, so training Camping pays off from the first point. Stock is 90 s lit and 10 s embers.

@@ -630,7 +630,7 @@ public sealed class CampingRules
     public double FeedCooldownSeconds { get; set; } = 5.0;
 
     [JsonPropertyName("starterKindling")]
-    public int StarterKindling { get; set; } = 3;
+    public int StarterKindling { get; set; } = 5;
 }
 
 /// <summary>

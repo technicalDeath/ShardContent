@@ -38,7 +38,7 @@
     "emberBaseSeconds": 60.0,
     "emberPerSkillSeconds": 1.2,
     "feedCooldownSeconds": 5.0,
-    "starterKindling": 3
+    "starterKindling": 5
   },
   "wardCraft": {
     "enabled": true,

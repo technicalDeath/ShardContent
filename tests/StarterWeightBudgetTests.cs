@@ -95,9 +95,33 @@ public class StarterWeightBudgetTests
 
         var plan = StarterWeightBudget.Plan(Rules, 187, Body, 236.0, stacks);
 
-        Assert.Equal(37, plan[0]);                                  // Bottles
-        Assert.All(plan.Skip(1).Take(8), amount => Assert.Equal(24, amount));
+        Assert.Equal(33, plan[0]);                                  // Bottles
+        Assert.All(plan.Skip(1).Take(8), amount => Assert.Equal(22, amount));
         Assert.Equal([10, 10, 10], plan.Skip(9).ToArray());         // meats held at the floor of 10
+    }
+
+    [Fact]
+    public void ReagentStacksAreWeighedRoundedUpSoTheLoadReallyFits()
+    {
+        // 21 reagents at 0.1 stones weigh 3 in the engine, not 2.1. With the kit's extra 10 stones, Advanced Alchemy + Cooking
+        // is at carried 246; a plain proportional cut ends 8 stones above its budget, the rounding-aware plan does not.
+        var stacks = new List<StarterWeightBudget.Stack> { S(1.0, 75) };
+        for (var i = 0; i < 8; i++)
+        {
+            stacks.Add(S(0.1, 50));
+        }
+
+        stacks.AddRange([S(2.0, 20), S(1.0, 20), S(0.1, 20)]);
+
+        var plan = StarterWeightBudget.Plan(Rules, 187, Body, 246.0, stacks);
+
+        double Ceil(double unit, int amount) => Math.Ceiling(unit * amount - 1e-9);
+        var before = stacks.Sum(s => Ceil(s.UnitWeight, s.Amount));
+        var after = stacks.Select((s, i) => Ceil(s.UnitWeight, plan[i])).Sum();
+        var load = Body + 246.0 - (before - after);
+
+        Assert.True(load <= 158.0, $"load {load} should be within the 158 budget");
+        Assert.Equal([10, 10, 10], plan.Skip(9).ToArray());
     }
 
     // ---- invariants
@@ -116,7 +140,9 @@ public class StarterWeightBudgetTests
             Assert.InRange(plan[i], 0, stacks[i].Amount);
         }
 
-        var removed = stacks.Select((s, i) => s.UnitWeight * (s.Amount - plan[i])).Sum();
+        // the engine rounds each stack's weight up, so weigh them that way
+        double Ceil(double unit, int amount) => Math.Ceiling(unit * amount - 1e-9);
+        var removed = stacks.Select((s, i) => Ceil(s.UnitWeight, s.Amount) - Ceil(s.UnitWeight, plan[i])).Sum();
         var budget = Math.Floor(max * 0.85);
 
         Assert.True(Body + carried - removed <= budget + 0.0001, $"{Body + carried - removed} should fit {budget}");
