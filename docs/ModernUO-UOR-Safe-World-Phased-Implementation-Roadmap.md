@@ -368,10 +368,11 @@ Open housing districts, add the weekly Hot Dungeon, and give camping its flavor 
    - Reuse the Hythloth boundary rules from Beta 2a. Add a schedule, eligibility pool, announcements, offline transition handling, staff override and player-visible status.
    - First ship with reward multipliers disabled; enable the modest +10% ordinary reward/gold and relative magic-chance premium only after region and exploit tests pass. Do not change spawn rate, spawn cap or difficulty as a shortcut.
    - Add force/advance/disable controls, rotation audit reports and regression fixtures for boundary and transition cases.
-3. Rekindled camping. The owner decides the five open questions in [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md) before any build.
-   - Core package: starter Kindling and Bedroll, skill-scaled campfire burn time, rekindle, embers and a party-visible signal fire.
-   - After zoning: the decorative fire pit and the gated camp-stall economy feature.
+3. Rekindled camping. **Core built and verified 2026-10-05, flags off pending the owner's acknowledgment** ([Beta-2b-Camping-Readiness.md](Beta-2b-Camping-Readiness.md)). The owner ruled the five open questions in [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md) before the build.
+   - Core package, as built: starter Bedroll and Kindling for every new character, everyone lights Kindling at a 50% floor, skill-scaled campfire burn time, embers, and feeding the fire (Kindling within a tile resets a fire's duration, relights embers). The party-visible signal fire was dropped.
+   - After zoning: the decorative fire pit, the gated camp-stall economy feature and persistent fuelable fires.
    - The long-burning torch piece waits for Pilgrimage in Beta 2c.
+4. Camp travel (owner idea, 2026-10-05): party members can travel to a secure campfire. Its own item later in Beta 2b, needing its own plan and sign-off. Guardrails to design in: accepted by the traveler, party only, lit and secure fire, neither end in a dungeon or Hot Zone, no criminals, murderers, Knocked Out or combat, a long cooldown, a Kindling cost, no cargo, and the stock Recall and Gate checks reused.
 
 ### Exit criteria
 

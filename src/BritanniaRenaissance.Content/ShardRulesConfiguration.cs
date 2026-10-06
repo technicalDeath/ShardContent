@@ -105,6 +105,7 @@ public static class ShardRulesConfiguration
         MasteryRules.Validate(rules.Mastery, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
+        CampingService.Validate(rules.Camping, errors);
 
         if (rules.FeatureFlags.HousingGeography || rules.FeatureFlags.Expeditions || rules.FeatureFlags.Pilgrimage ||
             rules.FeatureFlags.RoadSpeed || rules.FeatureFlags.RetentionContent)
@@ -385,6 +386,9 @@ public sealed class ShardRules
     [JsonPropertyName("wardCraft")]
     public WardCraftRules WardCraft { get; set; } = new();
 
+    [JsonPropertyName("camping")]
+    public CampingRules Camping { get; set; } = new();
+
     [JsonPropertyName("skillGain")]
     public SkillGainRules SkillGain { get; set; } = new();
 
@@ -591,6 +595,40 @@ public sealed class WardCraftRules
     public int Ingots { get; set; } = 20;
 }
 
+/// <summary>
+/// The numbers behind Rekindled camping (see <see cref="CampingService"/>). Everyone lights Kindling at a chance of at
+/// least <c>skillFloor</c> percent (the floor affects lighting only), and a fire burns for <c>litBaseSeconds</c> plus
+/// <c>litPerSkillSeconds</c> per point of the lighter's real Camping skill (the last <c>dimShare</c> of it dim), then
+/// smoulders as embers for <c>emberBaseSeconds</c> plus <c>emberPerSkillSeconds</c> per point. Kindling used within a tile feeds a fire; a fire fed less than
+/// <c>feedCooldownSeconds</c> ago is not fed again.
+/// </summary>
+public sealed class CampingRules
+{
+    [JsonPropertyName("skillFloor")]
+    public double SkillFloor { get; set; } = 50.0;
+
+    [JsonPropertyName("litBaseSeconds")]
+    public double LitBaseSeconds { get; set; } = 100.0;
+
+    [JsonPropertyName("litPerSkillSeconds")]
+    public double LitPerSkillSeconds { get; set; } = 2.0;
+
+    [JsonPropertyName("dimShare")]
+    public double DimShare { get; set; } = 1.0 / 3.0;
+
+    [JsonPropertyName("emberBaseSeconds")]
+    public double EmberBaseSeconds { get; set; } = 60.0;
+
+    [JsonPropertyName("emberPerSkillSeconds")]
+    public double EmberPerSkillSeconds { get; set; } = 1.2;
+
+    [JsonPropertyName("feedCooldownSeconds")]
+    public double FeedCooldownSeconds { get; set; } = 5.0;
+
+    [JsonPropertyName("starterKindling")]
+    public int StarterKindling { get; set; } = 3;
+}
+
 public sealed class DeferredFeatureFlags
 {
     [JsonPropertyName("safeWorld")]
@@ -650,6 +688,12 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("actionAutoRepeat")]
     public bool ActionAutoRepeat { get; set; }
 
+    [JsonPropertyName("campingStarterKit")]
+    public bool CampingStarterKit { get; set; }
+
+    [JsonPropertyName("campingFires")]
+    public bool CampingFires { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -683,11 +727,13 @@ public sealed class DeferredFeatureFlags
         if (HythlothHotZone) yield return nameof(HythlothHotZone);
         if (HarvestAutoRepeat) yield return nameof(HarvestAutoRepeat);
         if (ActionAutoRepeat) yield return nameof(ActionAutoRepeat);
+        if (CampingStarterKit) yield return nameof(CampingStarterKit);
+        if (CampingFires) yield return nameof(CampingFires);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

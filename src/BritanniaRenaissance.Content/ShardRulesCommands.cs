@@ -25,6 +25,7 @@ public static class ShardRulesCommands
         CommandSystem.Register("HotZoneStatus", AccessLevel.Administrator, OnHotZoneStatus);
         CommandSystem.Register("Welcome", AccessLevel.Player, OnWelcome);
         CommandSystem.Register("HarvestRepeatStatus", AccessLevel.Administrator, OnHarvestRepeatStatus);
+        CommandSystem.Register("CampStatus", AccessLevel.Administrator, OnCampStatus);
         CommandSystem.Register("ActionRepeatStatus", AccessLevel.Administrator, OnActionRepeatStatus);
     }
 
@@ -33,6 +34,16 @@ public static class ShardRulesCommands
     private static void OnActionRepeatStatus(CommandEventArgs e)
     {
         foreach (var line in ActionRepeatService.DescribeStatus())
+        {
+            e.Mobile.SendMessage(line);
+        }
+    }
+
+    [Usage("CampStatus")]
+    [Description("Shows the camping flags and numbers, and the campfires near you with their state and timing.")]
+    private static void OnCampStatus(CommandEventArgs e)
+    {
+        foreach (var line in CampingService.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
         }

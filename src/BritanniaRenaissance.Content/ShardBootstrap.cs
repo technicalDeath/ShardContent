@@ -36,6 +36,7 @@ public static class ShardBootstrap
         SkillGainCurveService.Configure();
         HarvestRepeatService.Configure();
         ActionRepeatService.Configure();
+        CampingService.Configure();
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers
         Server.EventSink.ServerStarted += RebindAlpha2AfterStockHandlers;
     }
