@@ -1,6 +1,6 @@
 # Beta 2b item 3: Rekindled camping, readiness
 
-**Decision:** Core camping is built and verified live on disposable hosts with its flags on and off (2026-10-05). **Not committed, not pushed, not deployed.** `campingStarterKit` and `campingFires` are **off** in source and need your acknowledgment before they change. Closes the core package of Beta 2b item 3; camp travel (your idea) is a separate later 2b item. Evidence and the case table: [Beta-2b-Camping-Evidence.md](Beta-2b-Camping-Evidence.md). Design source: [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md).
+**Decision:** Core camping is built and verified live on disposable hosts with its flags on and off (2026-10-05), committed and pushed (ModernUO `e69d6fadb`, ShardContent `9a19e4a`) and deployed with the flags off (2026-10-06). **The owner acknowledged both flags on 2026-10-06 and approved the three new strings**; `campingStarterKit` and `campingFires` are now **on** in source and deployed (config redeploy, server stopped). Closes the core package of Beta 2b item 3; camp travel (your idea) is a separate later 2b item. Evidence and the case table: [Beta-2b-Camping-Evidence.md](Beta-2b-Camping-Evidence.md). Design source: [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md).
 
 ## Rulings
 Core only: everyone lights Kindling at a 50% floor; every new character gets a Bedroll and Kindling (newbied, not bound); signal fire dropped; power and PvP ideas and flavor ideas left out; persistent fire, camp stall and housing hearth after house zoning; camp travel its own later 2b item; **feeding the fire** added by the owner during the build. Full table in the evidence doc.
@@ -31,10 +31,10 @@ Unit: Shard suite 541/541, UOContent suite 1358 pass (2 skipped). Live (flags on
 - **Skill benefit is modest by design.** Skill buys a better chance to light (50% at the floor up to 100%) and fires about three times as long from 0 to 100, and a skilled camper's Kindling resets a fire to a longer burn than a novice's. No power, no PvP effect.
 - **The tweak was verified on the final build** (unit plus a fresh live `kit` and `fires` pass); the flags-off baseline was run before it and is unaffected.
 
-## Needs the owner
-1. **Flag acknowledgments**, each its own: `campingStarterKit` (every new character gets the kit) and `campingFires` (the floor, scaled fires, feeding). I propose enabling both together after you have seen this record. The README rules section gets a camping line when they are switched on.
-2. **Player text review** (all new strings): "You feed the fire.", "The embers flare back to life.", "The fire has only just been tended."
-3. **Existing starter overweight:** the Alchemy and Cooking starter is about 228 of 187 stones with no kit. Not this item; flagging it.
+## Owner actions
+1. **Flag acknowledgments (done 2026-10-06):** `campingStarterKit` and `campingFires`, each separately. The README rules section has the camping line.
+2. **Player text review (approved 2026-10-06):** "You feed the fire.", "The embers flare back to life.", "The fire has only just been tended."
+3. **Still open, existing starter overweight:** the Alchemy and Cooking starter is about 228 of 187 stones with no kit. Not this item; flagging it.
 
 ## Deploy
 The change needs the ModernUO hooks rebuilt into `Distribution` (server stopped), a commit and pin bump in ModernUO first, then `Deploy-Alpha1Baseline.ps1`, as for the cooking deploy. No save-format change, so no snapshot is required for this item. Nothing is deployed.

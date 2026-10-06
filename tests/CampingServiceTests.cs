@@ -179,7 +179,7 @@ public class CampingServiceTests
         Assert.Single(Errors(new CampingRules { StarterKindling = amount }));
 
     [Fact]
-    public void TheShippedFileCarriesTheDefaultsAndBothFlagsOffUntilTheOwnerAcknowledges()
+    public void TheShippedFileCarriesTheDefaultNumbersAndValidates()
     {
         var rules = Shipped();
 

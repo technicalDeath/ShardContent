@@ -1,6 +1,6 @@
 # Beta 2b item 3: Rekindled camping, evidence
 
-Status: **signed off 2026-10-05, built, unit- and live-tested (flags on and off). Not committed, not deployed; both flags off in source.** Readiness record: [Beta-2b-Camping-Readiness.md](Beta-2b-Camping-Readiness.md). Design source: [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md). Code: `ModernUO/Projects/UOContent/Items/Skill Items/Camping/{Campfire,Kindling}.cs` (two narrow hooks) and `ShardContent/src/BritanniaRenaissance.Content/CampingService.cs`.
+Status: **signed off 2026-10-05, built, unit- and live-tested (flags on and off), committed, pushed and deployed. Both flags acknowledged and switched on 2026-10-06.** Readiness record: [Beta-2b-Camping-Readiness.md](Beta-2b-Camping-Readiness.md). Design source: [Rekindled-Camping-Design.md](Rekindled-Camping-Design.md). Code: `ModernUO/Projects/UOContent/Items/Skill Items/Camping/{Campfire,Kindling}.cs` (two narrow hooks) and `ShardContent/src/BritanniaRenaissance.Content/CampingService.cs`.
 
 ## Owner rulings (2026-10-05)
 
