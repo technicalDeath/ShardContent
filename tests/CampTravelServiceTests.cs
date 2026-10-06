@@ -78,8 +78,6 @@ public class CampTravelServiceTests
         { nameof(TravelFacts.FireEmbers), Refusal.Embers },
         { nameof(TravelFacts.FireSecure), Refusal.NotSecure },
         { nameof(TravelFacts.AlreadyThere), Refusal.AlreadyThere },
-        { nameof(TravelFacts.Criminal), Refusal.Criminal },
-        { nameof(TravelFacts.Murderer), Refusal.Murderer },
         { nameof(TravelFacts.KnockedOut), Refusal.KnockedOut },
         { nameof(TravelFacts.InCombat), Refusal.Combat },
         { nameof(TravelFacts.Frozen), Refusal.Frozen },
@@ -132,7 +130,7 @@ public class CampTravelServiceTests
             Enabled = false,
             TravelerAlive = false,
             FireExists = false,
-            Criminal = true,
+            InCombat = true,
             InHotZone = true,
             Kindling = 0,
             CooldownRemaining = TimeSpan.FromMinutes(5)
@@ -142,13 +140,22 @@ public class CampTravelServiceTests
         Assert.Equal(Refusal.NotAlive, Plan(Rules, everything with { Enabled = true }));
         Assert.Equal(Refusal.FireGone, Plan(Rules, everything with { Enabled = true, TravelerAlive = true }));
         Assert.Equal(
-            Refusal.Criminal,
+            Refusal.Combat,
             Plan(Rules, everything with { Enabled = true, TravelerAlive = true, FireExists = true })
         );
         Assert.Equal(
             Refusal.FromHotZone,
-            Plan(Rules, everything with { Enabled = true, TravelerAlive = true, FireExists = true, Criminal = false })
+            Plan(Rules, everything with { Enabled = true, TravelerAlive = true, FireExists = true, InCombat = false })
         );
+    }
+
+    [Fact]
+    public void CriminalsAndMurderersAreNotRefusedForWhatTheyAre()
+    {
+        // Owner ruling (2026-10-06): they may use camp travel; recent player combat is what stops them, as for anyone.
+        Assert.DoesNotContain(Enum.GetNames<Refusal>(), name => name is "Criminal" or "Murderer");
+        Assert.Equal(Refusal.None, Plan(Rules, Clear));
+        Assert.Equal(Refusal.Combat, Plan(Rules, Clear with { InCombat = true }));
     }
 
     [Fact]
@@ -192,7 +199,7 @@ public class CampTravelServiceTests
         Assert.Equal("securing", ShortLabel(Refusal.NotSecure));
         Assert.Equal("full", ShortLabel(Refusal.Full));
         Assert.Equal("embers", ShortLabel(Refusal.Embers));
-        Assert.Equal("not now", ShortLabel(Refusal.Criminal));
+        Assert.Equal("not now", ShortLabel(Refusal.Combat));
     }
 
     [Theory]
@@ -429,15 +436,29 @@ public class CampTravelServiceTests
         var paragraphs = GuideParagraphs(Rules);
         var text = string.Join(" ", paragraphs);
 
-        Assert.Equal(3, paragraphs.Count);
+        Assert.Equal(4, paragraphs.Count);
         Assert.All(paragraphs, p => Assert.InRange(p.Length, 10, 600));
         Assert.Contains(Command, text);
         Assert.Contains("30 seconds", text);
         Assert.Contains("5 seconds", text);
+        Assert.Contains("Bonded pets next to you come with you.", text);
+        Assert.Contains("on your account", text);
+        Assert.Contains("counted over the fire's whole life", text);
+        Assert.Contains("leave a Hot Zone or a dungeon", text);
+        Assert.Contains("Knocked Out or overloaded", text);
         Assert.Contains("2 Kindling", text);
         Assert.Contains("30 minutes", text);
         Assert.Contains("1 at Camping 50", text);
         Assert.Contains("one more for each 10 points, up to 6", text);
+    }
+
+    [Fact]
+    public void TheGuidePageSaysCriminalsMayTravelButNotAfterCombat()
+    {
+        var text = string.Join(" ", GuideParagraphs(Rules));
+
+        Assert.Contains("Criminals and murderers may use it, but nobody who attacked a player in the last 30 seconds can.", text);
+        Assert.DoesNotContain("Criminals, murderers and", text);
     }
 
     [Fact]

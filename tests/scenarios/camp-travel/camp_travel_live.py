@@ -205,6 +205,7 @@ def stage_camp() -> None:
     camp_basic(rig)
     camp_pet(rig)
     camp_refusals(rig)
+    camp_criminal(rig)
     camp_cancels(rig)
 
 
@@ -286,10 +287,10 @@ def camp_refusals(rig: Rig) -> None:
     t, third = "CtTrav", "CtThird"
     rig.reset(skill=65.0)
     rig.fire()
-    for cond, text, case in (("criminal", "criminal", "criminal"), ("heavy", "too encumbered", "overloaded"), ("paralyze", "unable to move", "unable to move")):
+    for cond, text, case in (("heavy", "too encumbered", "overloaded"), ("paralyze", "unable to move", "unable to move")):
         rig.probe(t, "cond", cond)
         rig.refused(t, text, f"L3 {case} is refused")
-        rig.probe(t, "cond", {"criminal": "clear", "heavy": "light", "paralyze": "unparalyze"}[cond])
+        rig.probe(t, "cond", {"heavy": "light", "paralyze": "unparalyze"}[cond])
     rig.probe(t, "cond", "combat", rig.hexid(third))
     rig.refused(t, "heat of battle", "L3 recent player-versus-player combat is refused")
     rig.probe(t, "cond", "clear")
@@ -310,6 +311,24 @@ def camp_refusals(rig: Rig) -> None:
     time.sleep(9.5)
     rig.refused(t, "cannot travel to that camp", "L3 a camp inside a Felucca dungeon is refused")
     check(rig.rep(t)["kindling"] == 5, "L3 no refusal cost any Kindling")
+
+def camp_criminal(rig: Rig) -> None:
+    """L3 (owner ruling 2026-10-06): a criminal may use camp travel; recent player combat still stops them."""
+    t = "CtTrav"
+    rig.reset(skill=65.0)
+    rig.fire()
+    rig.probe(t, "cond", "criminal")
+    check(rig.rep(t)["criminal"], "L3 staged a criminal traveler")
+    rig.probe(t, "cond", "combat", rig.hexid("CtThird"))
+    rig.refused(t, "heat of battle", "L3 a criminal in recent player combat is refused")
+    rig.probe(t, "cond", "clear")
+    rig.probe(t, "cond", "criminal")
+    trip = rig.travel(t)
+    check(rig.said(t, trip["mark"], "You arrive at CtLight's camp.", timeout=8), "L3 a criminal outside combat travels to the camp")
+    r = rig.rep(t)
+    check(r["kindling"] == 3, "L3 the criminal paid 2 Kindling", str(r["kindling"]))
+    rig.probe(t, "cond", "clear")
+
 
 def camp_cancels(rig: Rig) -> None:
     """L4: the wait is cancelled by moving, by damage, by the party breaking up and by the fire going out; nothing is spent."""
@@ -557,7 +576,7 @@ def stage_off() -> None:
 
 
 STAGES = {"camp": stage_camp,
-          "pet": lambda: camp_pet(Rig()), "refusals": lambda: camp_refusals(Rig()), "cancels": lambda: camp_cancels(Rig()), "notices": stage_notices, "hot": stage_hot, "warn": stage_warn, "off": stage_off}
+          "pet": lambda: camp_pet(Rig()), "refusals": lambda: camp_refusals(Rig()), "criminal": lambda: camp_criminal(Rig()), "cancels": lambda: camp_cancels(Rig()), "notices": stage_notices, "hot": stage_hot, "warn": stage_warn, "off": stage_off}
 
 
 if __name__ == "__main__":

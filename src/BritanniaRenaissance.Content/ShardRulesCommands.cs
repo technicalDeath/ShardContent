@@ -209,7 +209,7 @@ public static class ShardRulesCommands
     }
 
     [Usage("ShardRulesStatus")]
-    [Description("Displays the validated Britannia Renaissance shard policy baseline.")]
+    [Description("Displays the validated UO Rekindled shard policy baseline.")]
     private static void OnStatus(CommandEventArgs e)
     {
         foreach (var line in ShardRulesConfiguration.Describe())

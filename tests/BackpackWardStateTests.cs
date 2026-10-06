@@ -312,27 +312,21 @@ public class BackpackWardStateTests
         Assert.Single(loaded.Caught);
     }
 
-    // ---- the Welcome text
+    // ---- the Welcome text (the full audit is in WelcomeGuideTests)
 
     [Fact]
-    public void TheWelcomeTextDescribesTheBlockAndNoLongerMentionsTheOldRules()
+    public void TheWelcomeWardPageDescribesTheBlockAndNoLongerMentionsTheOldRules()
     {
-        var text = string.Join(" ", StarterOnboarding.DescribeRules());
+        var ward = WelcomeGuide.Topics(new WelcomeGuide.Context(true, true, true, false, false), new CampTravelRules())
+            .Single(t => t.Key == "ward");
+        var text = string.Join(" ", ward.Paragraphs);
 
         Assert.Contains("cannot steal from you again", text);
         Assert.Contains("30 minutes", text);
         Assert.Contains("25%", text);
-        Assert.Contains("ten minutes", text);
         Assert.Contains("Hot Zone", text);
         Assert.DoesNotContain("two minutes", text);
         Assert.DoesNotContain("entitlement", text, StringComparison.OrdinalIgnoreCase);
-    }
-
-    [Fact]
-    public void TheCreationPromptPointsAtTheWelcomeCommand()
-    {
-        Assert.Contains("[Welcome", StarterOnboarding.CreationPrompt);
-        Assert.Equal(5, StarterOnboarding.DescribeRules().Count());
     }
 
     // ---- double-click feedback

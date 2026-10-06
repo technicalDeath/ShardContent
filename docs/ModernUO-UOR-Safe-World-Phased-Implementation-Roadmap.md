@@ -372,7 +372,7 @@ Open housing districts, add the weekly Hot Dungeon, and give camping its flavor 
    - Core package, as built: starter Bedroll and Kindling for every new character, everyone lights Kindling at a 50% floor, skill-scaled campfire burn time, embers, and feeding the fire (Kindling within a tile resets a fire's duration, relights embers). The party-visible signal fire was dropped.
    - After zoning: the decorative fire pit, the gated camp-stall economy feature and persistent fuelable fires.
    - The long-burning torch piece waits for Pilgrimage in Beta 2c.
-4. Camp travel (owner idea, 2026-10-05). **Built and verified on disposable hosts 2026-10-06 and committed locally; the flags `campingTravel` and `hotZoneTravelWarning` are off until the owner acknowledges them** ([Beta-2b-Camp-Travel-Readiness.md](Beta-2b-Camp-Travel-Readiness.md)). `[CampTravel` takes a party member to a secure fire lit by a party member: the traveler confirms, waits 5 s, pays 2 Kindling and cannot travel again for 30 minutes (per account); a fire takes as many travelers as its lighter's Camping allows (1 at 50, one more per 10, 6 at 100, none below 50); criminals, murderers, Knocked Out, combat and overload are refused, as are leaving a Hot Zone or a dungeon and camps inside a dungeon; the stock Recall region checks are reused and bonded pets come along. Added by the owner during the build: the lighter is told the fire's status (lit, secure, burning low, embers, relit, out) and the command, and a blue player is warned and must confirm, with a "do not show me this warning again" checkbox, before camp travel, Recall or a gate takes them into a Hot Zone.
+4. Camp travel (owner idea, 2026-10-05). **Built and verified on disposable hosts 2026-10-06 and committed locally; the flags `campingTravel` and `hotZoneTravelWarning` are off until the owner acknowledges them** ([Beta-2b-Camp-Travel-Readiness.md](Beta-2b-Camp-Travel-Readiness.md)). `[CampTravel` takes a party member to a secure fire lit by a party member: the traveler confirms, waits 5 s, pays 2 Kindling and cannot travel again for 30 minutes (per account); a fire takes as many travelers as its lighter's Camping allows (1 at 50, one more per 10, 6 at 100, none below 50); criminals, murderers, Knocked Out, recent player combat and overload are refused (criminals and murderers may use it: owner, 2026-10-06), as are leaving a Hot Zone or a dungeon and camps inside a dungeon; the stock Recall region checks are reused and bonded pets come along. Added by the owner during the build: the lighter is told the fire's status (lit, secure, burning low, embers, relit, out) and the command, and a blue player is warned and must confirm, with a "do not show me this warning again" checkbox, before camp travel, Recall or a gate takes them into a Hot Zone.
 
 ### Exit criteria
 
@@ -382,7 +382,7 @@ Open housing districts, add the weekly Hot Dungeon, and give camping its flavor 
 
 ### Explicitly deferred
 
-The Cool Dungeon and the shard rename (Beta 3).
+The Cool Dungeon and the rest of the shard rename (Beta 3); the player-facing name was changed early, on 2026-10-06.
 
 ---
 ## Beta 2c — Weekly living world and world-content extensions
@@ -464,7 +464,7 @@ Complete the shard's identity and remaining design-heavy content.
 ### Scope
 1. Cool Dungeon. The owner picks the dungeon and its rules.
    - One Cool Dungeon distinct from the rotating Hot Dungeon, retaining Safe-World hostility and disabling direct player stealing while retaining snooping, with theft immunity, entry/exit messages and rotation pairing. `coolZones` stays off until the owner approves.
-2. The shard rename to Rekindled, including names and assets. The owner decides.
+2. The shard rename, including names and assets. **Player-facing part done early (owner, 2026-10-06): the shard is UO Rekindled** (server list name, the `[Welcome` guide, README, player guide, website); identifiers, folders and repositories keep the old spelling. Still the owner's call: client branding and art, website art, any folder or repository renames. See [Shard-Name-UO-Rekindled.md](Shard-Name-UO-Rekindled.md).
 3. Deliver the narrow approved roleplay layer.
    - Implement the four launch RP POIs, issued RP Gear Chests, IC status toggle, character-bound/non-economic gear tracking, cooldowns, death/repair behavior, scene prop bags and role guides.
    - Add the four fixed RP POI Guestbooks only after the ordinary POI/issued-gear rules work: open reading, costume/proximity-gated writing, immediate append-only publication, archive rollover and report-only staff queue without automatic hiding.

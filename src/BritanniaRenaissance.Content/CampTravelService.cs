@@ -14,7 +14,8 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// Rekindled camp travel (Beta 2b item 4, behind <c>campingTravel</c>, off until the owner acknowledges it): a party member
-/// can travel to a secure campfire lit by a member of their party. Every rule is a refusal in <see cref="Plan"/>, a pure
+/// can travel to a secure campfire lit by a member of their party, criminals and murderers included (recent player combat
+/// stops them, as it stops anyone). Every rule is a refusal in <see cref="Plan"/>, a pure
 /// function of <see cref="TravelFacts"/>, and it runs when the player asks, when they confirm, on every tick of the wait,
 /// and again at the moment of arrival. How many people a fire takes comes from its lighter's real Camping skill, so travel
 /// is something a trained camper gives their party. The lighter is kept informed of the fire and of the command. Docs:
@@ -46,8 +47,6 @@ public static class CampTravelService
         LighterTooLow,
         Full,
         AlreadyThere,
-        Criminal,
-        Murderer,
         KnockedOut,
         Combat,
         Frozen,
@@ -75,8 +74,6 @@ public static class CampTravelService
         public int Capacity { get; init; } = 3;
         public int Arrivals { get; init; }
         public bool AlreadyThere { get; init; }
-        public bool Criminal { get; init; }
-        public bool Murderer { get; init; }
         public bool KnockedOut { get; init; }
         public bool InCombat { get; init; }
         public bool Frozen { get; init; }
@@ -120,9 +117,12 @@ public static class CampTravelService
         $"Use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
         $"{rules.SecureSeconds:0} seconds and is not down to embers.",
         $"It costs {rules.KindlingCost} Kindling, you wait {rules.ChannelSeconds:0} seconds without moving, and you can travel this way once every " +
-        $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))}.",
-        $"A fire takes as many travelers as its lighter's Camping skill allows: 1 at Camping {SkillForFirstPlace(rules):0}, one more for each {rules.SkillPerArrival:0} points, up to {rules.MaxArrivals}. " +
-        "Criminals, murderers and anyone in recent player combat cannot use it, and it cannot be used to leave a Hot Zone."
+        $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))} on your account. Bonded pets next to you come with you.",
+        $"A fire takes as many travelers as its lighter's Camping skill allows, counted over the fire's whole life: 1 at Camping {SkillForFirstPlace(rules):0}, " +
+        $"one more for each {rules.SkillPerArrival:0} points, up to {rules.MaxArrivals}.",
+        // 30 seconds is stock's window for "recent player combat" (SpellHelper.CheckCombat), the rule Recall and gates use.
+        "Criminals and murderers may use it, but nobody who attacked a player in the last 30 seconds can. It cannot be used to leave a Hot Zone or a dungeon, " +
+        "to reach a camp inside a dungeon, or while you are Knocked Out or overloaded."
     ];
 
     // ---- the rules, free of game objects so they can be tested directly
@@ -198,16 +198,6 @@ public static class CampTravelService
             return Refusal.AlreadyThere;
         }
 
-        if (f.Criminal)
-        {
-            return Refusal.Criminal;
-        }
-
-        if (f.Murderer)
-        {
-            return Refusal.Murderer;
-        }
-
         if (f.KnockedOut)
         {
             return Refusal.KnockedOut;
@@ -276,8 +266,6 @@ public static class CampTravelService
             Refusal.LighterTooLow      => $"The one who lit that fire needs Camping {SkillForFirstPlace(rules):0} or higher before party members can travel to it.",
             Refusal.Full               => $"That camp has no places left ({f.Arrivals} of {f.Capacity} used).",
             Refusal.AlreadyThere       => "You are already at that camp.",
-            Refusal.Criminal           => "Thou'rt a criminal and cannot escape so easily.",
-            Refusal.Murderer           => "Murderers cannot use camp travel.",
             Refusal.KnockedOut         => "You cannot travel while you are knocked out.",
             Refusal.Combat             => "Wouldst thou flee during the heat of battle??",
             Refusal.Frozen             => "You cannot travel while you are unable to move.",
@@ -692,8 +680,6 @@ public static class CampTravelService
             Capacity = CapacityOf(fire),
             Arrivals = _records.TryGetValue(fire, out var record) ? record.Arrivals : 0,
             AlreadyThere = sameMap && traveler.InRange(fire, Campfire.SecureRange),
-            Criminal = traveler.Criminal,
-            Murderer = traveler.Murderer,
             KnockedOut = KnockedOutService.IsKnockedOut(traveler),
             InCombat = SpellHelper.CheckCombat(traveler),
             Frozen = traveler.Frozen,

@@ -1,6 +1,6 @@
-# Britannia Renaissance Shard Content
+# UO Rekindled Shard Content
 
-Custom server content, data, and original assets for Britannia Renaissance. This is a standalone
+Custom server content, data, and original assets for UO Rekindled (formerly Britannia Renaissance; folder and assembly names keep the old spelling, see docs/Shard-Name-UO-Rekindled.md). This is a standalone
 repository and intentionally sits beside `../ModernUO`; it does not contain a copy or fork of the
 server engine.
 
