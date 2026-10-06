@@ -6,9 +6,9 @@
 
 `kit` and `fires` need a host with campingStarterKit and campingFires on and the camping numbers scaled down so a fire's
 whole life is a minute or so (litBaseSeconds 20, litPerSkillSeconds 0.3, emberBaseSeconds 15, emberPerSkillSeconds 0.2),
-the TestOnlyProbe loaded, a staff session `admin`, and fresh characters KitWar (Warrior), KitMage (Pure Mage), KitSmith
+the TestOnlyProbe loaded, a staff session `admin`, and fresh characters KitWar (profession 1: a forged-packet start with Alchemy and Anatomy, not a Warrior), KitMage (Pure Mage), KitSmith
 (Blacksmith), KitCook (Advanced: Cooking and Alchemy) and KitCamp (Advanced: Camping and Fishing). `off` needs a host with
-both flags off and fresh OffWar (Warrior) and OffCamp (Advanced: Camping and Cooking).
+both flags off and fresh OffWar (profession 1, as above) and OffCamp (Advanced: Camping and Cooking).
 
 Fires are immovable, so the client cannot see them; the driver reads them from the staff command `[CampStatus`.
 Prints one line per case, flushes as it goes, and exits non-zero on the first failed assertion.
@@ -392,7 +392,7 @@ def stage_fires() -> None:
 def stage_off() -> None:
     rig = Rig(["OffWar", "OffCamp"])
     war_items = rig.open_pack("OffWar")
-    check(not any(i.graphic in (BEDROLL, KINDLING) for i in war_items), "O1 flags off: a Warrior gets no camping kit")
+    check(not any(i.graphic in (BEDROLL, KINDLING) for i in war_items), "O1 flags off: a profession-1 start gets no camping kit")
     check(rig.count("OffCamp", BEDROLL) == 1 and rig.count("OffCamp", KINDLING) == 7,
           "O1 flags off: a camper-cook has exactly the stock Bedroll and 5 + 2 Kindling")
     staff_target(rig.admin, "[SetSkill Camping 100", rig.serial("OffCamp"))

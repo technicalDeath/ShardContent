@@ -14,7 +14,7 @@ Server-side probe on a disposable copy of the deployed build. Client-reported we
 | Advanced Fletching | 275 vs 187 | 200 Boards, 100 Feathers |
 | Advanced Alchemy + Cooking | 247 vs 187 | 75 Bottles, reagent bag 42, 20 lamb legs (2 stones each), 20 chicken legs |
 
-Under the limit and unaffected: Alchemy alone, Cooking alone, Scribe, Blacksmith, Tailor, Tinker, Fisherman, Ranger, Prospector, Warrior, Mage.
+Under the limit and unaffected: Alchemy alone, Cooking alone, Scribe, Blacksmith, Tailor, Tinker, Fisherman, Ranger, Prospector, Mage, and the Warrior-folder templates (Mace Fighter, Fencer, Swordsman: about 95 stones carried of 229).
 
 Consequence in this build (`StaminaSystem`): every step costs 5 + (stones over) / 25 stamina, doubled when running, and at zero stamina the character cannot move; Recall is refused while overloaded. These characters start close to immobile.
 
@@ -30,7 +30,7 @@ After every starter issuer has run, a new character whose load (body weight plus
 
 - **Bulk supply stacks** (anywhere in the pack tree, including inside the reagent bag): Boards, Bottles, Blank Scrolls, raw lamb and chicken legs and fish steaks, Cloth, Leather, Feathers, Iron Ingots and every reagent. Tools, the Ward, scissors, gold, the camping kit, armor and weapons are never touched.
 - **Rule:** let `over` = load - 85% of the limit, `bulk` = the weight of the bulk stacks, `f = clamp(1 - over / bulk, 0, 1)`. Each stack becomes `max(min(amount, minimumUnits), floor(amount x f))`. No stack grows, none is removed, and every stack keeps at least `minimumUnits` (10) so a crafter always has something to start with. If the floors keep the load above the budget, it stays above; nothing else is trimmed.
-- **Untouched cases:** characters already within the budget (Blacksmith, Tailor, Tinker, Scribe, Fisherman, Warrior, Mage and so on) get exactly what they got before. Only new characters are affected, at creation.
+- **Untouched cases:** characters already within the budget (Blacksmith, Tailor, Tinker, Scribe, Fisherman, the Mace Fighter, Fencer and Swordsman, Mage and so on) get exactly what they got before. Only new characters are affected, at creation.
 - **Order:** registered last among the creation observers (before `CosmeticElfCreationService`, which stays last) through a `Register()` method that ModernUO's `Configure` discovery cannot run early, so it sees every issuer's grants.
 - **Expected effect:** an Archer starts with about 90 Boards and 45 Feathers (not 200 and 100), a Carpenter about 115 Boards, Alchemy plus Cooking roughly half its stacks (Bottles about 37, lamb legs 10), all under the limit with room for the first haul.
 
@@ -55,7 +55,7 @@ No feature flag: this repairs the already-enabled `alpha3StarterCraftMaterials` 
 | U3 | Disabled, zero bulk, or the floors alone keep it over: no crash, sensible result | unit |
 | U4 | Config defaults, ranges and the shipped file | unit |
 | L1 | Archer, Carpenter, Advanced Carpentry+Fletching and Alchemy+Cooking now start at or under 85% of the limit (and so not overloaded) | live, disposable host |
-| L2 | Blacksmith, Tailor, Tinker, Warrior and Mage are byte-for-byte as before (same stack amounts) | live |
+| L2 | Blacksmith, Tailor and Tinker are byte-for-byte as before (same stack amounts) | live |
 | L3 | The Archer can walk a long way without stamina trouble | live |
 | L4 | The camping kit and Bedroll are intact on every one | live |
 
@@ -75,6 +75,6 @@ The audit log records each trim (`starter weight-budget`: stacks trimmed, load b
 ## Deferrals and risks
 
 - **Crafters start with fewer materials** than the Phase H rulings listed; they buy more from NPCs. This is the intended trade for being able to move.
-- **Warriors are heavy from armor alone** (about 183 of 187); the budget does not trim armor, so they stay as they are.
+- **Warriors need nothing.** The Warrior-folder templates carry about 95 stones of 229 (studded leather set 19, Bascinet 5, shield 5, a weapon 2 to 9, bandages 5, plus the usual kit). An earlier version of this plan called Warriors heavy at 183 of 187; that came from stock profession 1, a forged-packet test start (Alchemy and Anatomy at 50, 75 Bottles and a reagent bag) that the creation screen never offers.
 - **Bank delivery** (the third option) is not built and stays available if the owner wants the full quantities back.
 - Not pushed and not deployed; the owner decides when.

@@ -20,7 +20,7 @@ Status: **signed off 2026-10-05, built, unit- and live-tested (flags on and off)
 
 Behind `featureFlags.campingStarterKit` and `featureFlags.campingFires`, both **off** in source until acknowledged. With a flag off the stock behavior returns exactly.
 
-- **Kit:** a Bedroll if the character has none, and Kindling up to 3 in total (stock Camping gives a Bedroll and 5; stock Cooking gives 2; those are topped up, not doubled). Five Kindling weighed 25 stones and put a Warrior 5 stones over its limit (162 of 187 before the kit), so the default is 3; `camping.starterKindling` is the knob.
+- **Kit:** a Bedroll if the character has none, and Kindling up to 3 in total (stock Camping gives a Bedroll and 5; stock Cooking gives 2; those are topped up, not doubled). Five Kindling weighed 25 stones and put the test start used for the weight check 5 stones over its limit (162 of 187 before the kit), so the default is 3; `camping.starterKindling` is the knob. Correction 2026-10-06: the reference start was stock profession 1, which this shard does not offer players: it is a forged-packet test start with Alchemy and Anatomy at 50 (75 Bottles and a reagent bag), not a Warrior. The real Warrior templates (Mace Fighter, Fencer, Swordsman) carry about 95 stones of 229, so 5 Kindling would fit them; 3 is therefore cautious and 5 (the approved number) can return.
 - **Lighting:** chance = max(Camping, 50) percent, so everyone can light a fire. Skill gains follow the normal roll.
 - **Burn time** (real Camping skill, 0 to 100): lit for 100 s + 2 s per point (100 s at 0, 200 s at 50, 300 s at 100), the last third dim; then embers for 60 s + 1.2 s per point (60 to 180 s). Stock is 90 s lit and 10 s of embers. Embers are the stock "Off" fire graphic; they are not a secure camp. The 50% floor does not apply here, so a new character's fire is close to stock's and training Camping pays off from the first point.
 - **Feeding:** Kindling used within 1 tile of a campfire (instead of lighting a new one) restarts its burn from now for the feeder's timing, never shortening a longer one the fire already has; embers light again, no roll. One Kindling per feed. A fire lit or fed in the last 5 s is not fed again (no Kindling used). To light a second fire, stand 2 tiles away.
@@ -47,8 +47,8 @@ Live runs used disposable hosts built from a copy of the deployed distribution w
 | U3 | Kit top-up (none, cook, camper, both) | unit | pass |
 | U4 | Config defaults, ranges, shipped file, flags listed | unit | pass |
 | U5 | Campfire phases at stock ages, longer timing, feed keeps the longer timing and relights embers | unit (`UorCampfireTests`, UOContent) | pass |
-| L1 | Kit for a Warrior, Pure Mage, Blacksmith, a cook and a camper: one Bedroll, 3 Kindling in all (the camper keeps stock's 5), newbied, not bound, nothing doubled | live, flags on | pass (5 characters, server-side `TestOnlyInventoryInspect`) |
-| L2 | The kit does not push a character over its weight limit | live | pass: Warrior 183/187, Mage 120/208, Blacksmith 121/229, camper 76/187. The Cook-and-Alchemist test character is 238/187 before the kit (existing starter materials) and was not asserted. |
+| L1 | Kit for the profession-1 test start (`KitWar`, not a real Warrior), Pure Mage, Blacksmith, a cook and a camper: one Bedroll, 3 Kindling in all (the camper keeps stock's 5), newbied, not bound, nothing doubled | live, flags on | pass (5 characters, server-side `TestOnlyInventoryInspect`) |
+| L2 | The kit does not push a character over its weight limit | live | pass: profession-1 test start (`KitWar`) 183/187, Mage 120/208, Blacksmith 121/229, camper 76/187. The Cook-and-Alchemist test character is 238/187 before the kit (existing starter materials) and was not asserted. |
 | L3 | Camping at base 0 lights some fires and fails others | live | pass (1 lit, 1 failed in 2; earlier runs similar) |
 | L4 | Fire timeline at Camping 100 (dim 33 s, embers 50 s, gone 85 s), and for a base-0 camper (Camping 20.5 with the stat bonus) the formula's numbers (dim 17 s, embers 26 s, gone 45 s), shorter than the 60 s a skill-50 fire would have had: every observed (age, state) matches, embers seen, gone on time (the 1 s fire timer can leave a fire one second past its end) | live | pass (both) |
 | L5 | Feeding a burning fire resets its duration, uses one Kindling, lights no second fire | live | pass |
@@ -57,7 +57,7 @@ Live runs used disposable hosts built from a copy of the deployed distribution w
 | L8 | A weaker feeder (effective 50) resets the burn but the Grandmaster's longer timing is kept | live | pass |
 | L9 | "The camp is now secure." arrives at about 30 s (29.2 s); embers are not a secure camp (no logout gump) | live | pass |
 | L10 | The Bedroll offers the safe-logout gump at a secure camp and CONTINUE logs the character out | live | pass |
-| O1 | Flags off: a Warrior gets no kit; a camper-cook has exactly stock's Bedroll and 5 + 2 Kindling; stock timing (60, 90, 100 s); Kindling beside a fire lights a new fire instead of feeding it | live, flags-off host | pass |
+| O1 | Flags off: the profession-1 test start (`OffWar`) gets no kit; a camper-cook has exactly stock's Bedroll and 5 + 2 Kindling; stock timing (60, 90, 100 s); Kindling beside a fire lights a new fire instead of feeding it | live, flags-off host | pass |
 | O2 | No save-format change; fires still vanish on restart | by construction (fires are not serialized); no restart test | n/a |
 
 Suites: full Shard suite 541 pass (this item adds the camping tests); full UOContent suite 1358 pass, 2 skipped (this item adds 12 `UorCampfireTests`; no ModernUO change since that run).
@@ -66,6 +66,6 @@ The burn-time tweak (real Camping skill, ruled after the first full pass) was ve
 
 ## Findings
 
-- **Kit weight.** Kindling and the Bedroll weigh 5 stones each. Five Kindling put a Warrior (162 of 187 stones before the kit) 5 stones over its limit, so the default is 3 Kindling (`camping.starterKindling`).
+- **Kit weight.** Kindling and the Bedroll weigh 5 stones each. Five Kindling put the profession-1 test start (162 of 187 stones before the kit) 5 stones over its limit, so the default is 3 Kindling (`camping.starterKindling`). Correction 2026-10-06: the reference start was stock profession 1, which this shard does not offer players: it is a forged-packet test start with Alchemy and Anatomy at 50 (75 Bottles and a reagent bag), not a Warrior. The real Warrior templates (Mace Fighter, Fencer, Swordsman) carry about 95 stones of 229, so 5 Kindling would fit them.
 - **Existing overweight starter.** An Alchemy and Cooking character starts at about 228 of 187 stones with no camping kit at all (starter reagents, bottles, raw meat top-ups). Not caused by this item; reported for the owner.
 - **Effective skill.** A character's skill value includes a stat bonus (base 0 reads about 19 to 20), so below-floor ignition never reads as 0 in practice.
