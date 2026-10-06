@@ -57,11 +57,14 @@ public static class OutdoorHotZonePolicy
     public static bool IsHot(Item item) => item.Map is not null && IsHot(item.Map, item.GetWorldLocation());
 
     /// <summary>Whether a point on a map is Hot, for places nobody stands yet (a tile a traveler would arrive on).</summary>
-    public static bool IsHot(Map map, Point3D location)
+    public static bool IsHot(Map map, Point3D location) => GetRegionName(map, location) is not null;
+
+    /// <summary>The Hot region at a point on a map, or null.</summary>
+    public static string? GetRegionName(Map map, Point3D location)
     {
         if (!Enabled || map is null)
         {
-            return false;
+            return null;
         }
 
         return FindHotRegionName(
@@ -71,7 +74,7 @@ public static class OutdoorHotZonePolicy
             DungeonNameOf(Region.Find(location, map)),
             ShardRulesConfiguration.Settings.HotZones.PermanentOutdoorRegions,
             ActiveDungeonRegions
-        ) is not null;
+        );
     }
 
     /// <summary>

@@ -7,12 +7,13 @@ Trigger `[CampTravel` and a gump; destination any secure fire lit by a party mem
 
 ## What it does (behind the flags)
 - **Camp travel** (`campingTravel`, needs `campingFires`):
-  - `[CampTravel` lists the fires lit by your party members (name, distance, a one-word state, `[HOT ZONE]` where it applies). Picking one re-checks it and asks you to confirm (cost, cooldown, wait, pets, places left).
+  - `[CampTravel` lists the fires lit by your party members: whose, a one-word state, where it is (the town or dungeon name, else the Hot Zone's name, else sextant coordinates), how far, and `[HOT ZONE]` where it applies. Picking one re-checks it and asks you to confirm (cost, cooldown, wait, pets, places left).
   - After a 5 s wait you arrive within 2 tiles of the fire with the Recall sound. 2 Kindling, a 30-minute cooldown per account, and each fire takes as many arrivals as its lighter's Camping allows over the fire's life.
   - Everything is checked when asked, on confirming, every quarter second of the wait and at arrival. Refused: dead, not in the lighter's party, the fire gone, embers or not yet secure (8 s on test hosts, 30 s shipped), no places, the lighter under Camping 50, criminal, murderer, Knocked Out, combat within 30 s, overloaded, unable to move, carrying the sigil, leaving a Hot Zone, either end failing the stock Recall region checks (so Felucca dungeons both ways), no open ground, cooldown, too little Kindling. The wait is cancelled by moving, damage and casting.
   - Bonded pets within 3 tiles that are following or guarding come with you, as with Recall.
 - **The lighter is kept informed:** when the fire is lit (the command and how many places their Camping gives, or what it takes), when it is secure (places left), burning low, embers, relit (not echoed to the lighter who fed it themselves, except the travel news), burned out (with how many travelled), and on each arrival (count, and when full).
 - **Hot Zone warning:** a blue player (not criminal, not a murderer, not staff) about to enter a Hot Zone from outside one is told what the risk is and must confirm, for camp travel (inside its confirmation), Recall (scroll, spell, runebook, rune), Gate Travel gates, other moongates and public moongates (Buccaneer's Den). The checkbox saves the choice on the account; `[TravelWarning on|off` shows and changes it. Not asked: criminals, travel from one Hot Zone to another or out of one, a destination that is not Hot, flag off.
+- **Discoverability:** `[Welcome` explains camp travel (three short lines) and the Hot Zone warning, only for what is switched on. The README and website lines wait for activation (text below), because the README describes deployed behavior.
 - **Staff:** `[CampStatus` also shows each fire's travel state (secure, places used of capacity, Hot Zone), the settings and the caller's cooldown. Every arrival, and every trip refused during the wait, is written to the audit log.
 - **With the flags off:** `[CampTravel` says travel is not available, the lighter is told nothing, and Recall and gates behave as stock.
 
@@ -22,8 +23,9 @@ Trigger `[CampTravel` and a gump; destination any secure fire lit by a party mem
 - **Tests:** `CampTravelServiceTests`, `TravelWarningServiceTests`, `UorCampfireTests` additions, `UorTravelConfirmationTests`; live driver and probe in `tests/scenarios/camp-travel/`.
 
 ## Verification
-- **Unit:** full Shard suite 666/666 and UOContent suite 1362 pass (2 skipped), run `20261006T160239312Z-fd8f2d`, on the committed source.
-- **Live (disposable host `camp-travel`, flags on, secure 8 s, wait 3 s, fires about two minutes):** every case in the plan's matrix passes in one pass of five stages (`work/camp-travel/final-stages.log`), listed with results in the plan's Evidence section. The dev distribution and saves were not touched.
+- **Unit:** full Shard suite 672/672 and UOContent suite 1362 pass (2 skipped), run `20261006T180415199Z-9e1c96`, on the final source (the first commit was checked at 666/666 and 1362).
+- **Live (disposable host `camp-travel`, flags on, secure 8 s, wait 3 s, fires about two minutes):** every case in the plan's matrix passes in one pass of five stages, repeated on the final build after the region names and `[Welcome` text were added (`work/camp-travel/final2.log`); the results are in the plan's Evidence section. The dev distribution and saves were not touched.
+- **Real client (ClassicUO 1.1.0.0, owner's review item 1):** a real client logged in as a test character on the disposable host. The camp list (two camps, the Britain one and the Buccaneer's Den one marked `[HOT ZONE]`), the plain confirmation, the Hot Zone confirmation with its checkbox (ticked by a real click), the Recall and gate warning, and `[Welcome` all render and read cleanly; clicking Travel in the real client ran the wait and arrived. Screenshots: `work/camp-travel/shots/` (scratch).
 
 ## Named limits
 - **Knocked Out and murderer refusals are unit-tested only.** Staging a Knocked Out player needs a lethal player hit in a Hot Zone, and the murderer test depends on the adjudication hook; the facts feed the same planner the unit tests cover. Staff are never warned and are not restricted by travel rules.
@@ -32,6 +34,7 @@ Trigger `[CampTravel` and a gump; destination any secure fire lit by a party mem
 - **Live timings were scaled** (a fire lives about two minutes; the 30 s secure time was 8 s, the 5 s wait 3 s). The shipped numbers are covered by unit tests, not waited out live.
 - **Hot-to-Hot is not warned.** A blue player already in a Hot Zone who travels to another Hot Zone place is not asked; the owner can change this in `TravelWarningService.ShouldWarn`.
 - **A moongate confirmation replaces the stock leaving-town prompt for the warned player.** The player is asked once, with the stronger warning; criminals still see the stock prompt (verified live).
+- **Gump look.** The gump background renders as a translucent dark panel, not the solid parchment; the checkbox is a small grey square that shows a tick when ticked. Both read fine in the real client. If you want a solid backdrop it is a change of art ID.
 - **Not covered:** static dungeon teleporters, Sacred Journey (Chivalry is not in this era), the Bracelet of Binding (it casts the same Recall spell, so it is covered by the same hook but was not run), boats.
 - **A pending Recall confirmation expires after two minutes**, and confirming while casting something else answers "too busy" and spends nothing.
 
@@ -39,6 +42,12 @@ Trigger `[CampTravel` and a gump; destination any secure fire lit by a party mem
 1. **Flag acknowledgments, separately:** `campingTravel` (camp travel and its Hot Zone warning) and `hotZoneTravelWarning` (the warning for Recall and gates). The README rules section gets the lines when each goes on.
 2. **Rulings to confirm:** no warning for Hot-to-Hot travel; leaving a Hot Zone by camp travel is refused (signed off in the plan, restated because the new warning makes going *to* a Hot Zone camp allowed); the murderer rule (murderers cannot use camp travel).
 3. **Player text review:** the strings listed in the plan's Evidence section.
+4. **README and website lines** to add when each flag goes on (below).
+
+## Text to add when the flags go on
+- **README rules section, after the Camping line, when `campingTravel` is on:** "**Camp travel.** `[CampTravel` lists the secure campfires lit by members of your party and takes you to the one you pick: you confirm, wait 5 seconds without moving and arrive within two tiles of the fire. It costs 2 Kindling and can be used once every 30 minutes (per account). A fire takes as many travelers as its lighter's Camping allows: 1 at Camping 50, one more for each 10 points, 6 at 100, none below 50. Criminals, murderers, anyone Knocked Out, in recent player combat or overloaded cannot use it, and it cannot be used to leave a Hot Zone or a dungeon or to reach a camp inside a dungeon. Bonded pets beside you come too. Whoever lit the fire is told how it is doing and who has arrived."
+- **README rules section, in the Hot Zones line, when `hotZoneTravelWarning` is on (and the camp-travel half with `campingTravel`):** "If you are a blue player and Recall, a gate or camp travel is about to take you into a Hot Zone from outside one, you are asked to confirm first. Tick "Do not show me this warning again when traveling" to stop being asked (account-wide); `[TravelWarning on` brings it back."
+- **Website:** it has no camping or travel section today, so nothing needs to change; if the Hot Zone card should mention the confirmation, the sentence above is the one.
 
 ## Deploy
 The ModernUO hooks must be rebuilt into `Distribution` (server stopped), ModernUO `ac1d0e2c8` and the ShardContent commit pushed, then `Deploy-Alpha1Baseline.ps1`, as for the camping deploy. No save-format change, so no snapshot is required for this item. Nothing is deployed.

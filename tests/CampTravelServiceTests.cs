@@ -402,6 +402,73 @@ public class CampTravelServiceTests
         Assert.Contains("1 of 1 place used", ArrivalNoticeText("Sir Robin", 1, 1));
     }
 
+    // ---- where a camp is
+
+    [Fact]
+    public void ACampIsNamedByTownThenHotZoneThenSextantThenTheWilderness()
+    {
+        Assert.Equal("Britain", PlaceLabel("Britain", "Fire Island", "1\u00b0 2'N, 3\u00b0 4'E"));
+        Assert.Equal("Fire Island", PlaceLabel(null, "Fire Island", "1\u00b0 2'N, 3\u00b0 4'E"));
+        Assert.Equal("Fire Island", PlaceLabel("  ", "Fire Island", null));
+        Assert.Equal("1\u00b0 2'N, 3\u00b0 4'E", PlaceLabel("", null, "1\u00b0 2'N, 3\u00b0 4'E"));
+        Assert.Equal("the wilderness", PlaceLabel(null, null, null));
+    }
+
+    [Fact]
+    public void SextantTextReadsLatitudeThenLongitude()
+    {
+        Assert.Equal("12\u00b0 30'S, 45\u00b0 10'E", SextantText(12, 30, true, 45, 10, true));
+        Assert.Equal("0\u00b0 5'N, 100\u00b0 59'W", SextantText(0, 5, false, 100, 59, false));
+    }
+
+    // ---- what [Welcome tells a player
+
+    [Fact]
+    public void WelcomeSaysNothingAboutTravelWhileBothFlagsAreOff() =>
+        Assert.Empty(DescribeForPlayers(Rules, false, false));
+
+    [Fact]
+    public void WelcomeExplainsCampTravelWithTheConfiguredNumbers()
+    {
+        var lines = DescribeForPlayers(Rules, true, false).ToList();
+        var text = string.Join(" ", lines);
+
+        Assert.Equal(4, lines.Count);
+        Assert.All(lines, line => Assert.True(line.Length < 330, line));
+        Assert.Contains(Command, text);
+        Assert.Contains("30 seconds", text);
+        Assert.Contains("5 seconds", text);
+        Assert.Contains("2 Kindling", text);
+        Assert.Contains("30 minutes", text);
+        Assert.Contains("1 at Camping 50", text);
+        Assert.Contains("one more for each 10 points, up to 6", text);
+        Assert.Contains("[TravelWarning off", text);
+        Assert.Contains("[TravelWarning on", text);
+    }
+
+    [Fact]
+    public void WelcomeMentionsOnlyTheWarningWhenCampTravelIsOff()
+    {
+        var lines = DescribeForPlayers(Rules, false, true).ToList();
+
+        Assert.Single(lines);
+        Assert.DoesNotContain(Command, lines[0]);
+        Assert.Contains("[TravelWarning on", lines[0]);
+    }
+
+    [Fact]
+    public void WelcomeFollowsTheConfiguredNumbers()
+    {
+        var rules = new CampTravelRules { SecureSeconds = 45, KindlingCost = 3, CooldownMinutes = 60, CapacityBaseSkill = 30, SkillPerArrival = 20, MaxArrivals = 4 };
+        var text = string.Join(" ", DescribeForPlayers(rules, true, false));
+
+        Assert.Contains("45 seconds", text);
+        Assert.Contains("3 Kindling", text);
+        Assert.Contains("60 minutes", text);
+        Assert.Contains("1 at Camping 50", text);
+        Assert.Contains("one more for each 20 points, up to 4", text);
+    }
+
     // ---- config
 
     [Fact]

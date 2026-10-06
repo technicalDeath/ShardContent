@@ -1,10 +1,12 @@
 using System.Globalization;
+using System.Reflection;
 using System.Text.Json;
 using BritanniaRenaissance.Content;
 using Server;
 using Server.Accounting;
 using Server.Commands;
 using Server.Engines.PartySystem;
+using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Regions;
@@ -19,6 +21,9 @@ namespace CampTravelTools;
 //   [TestOnlyCamp <hex> gate <x> <y> [<z>]       a moongate one tile east of the player, to that Felucca spot
 //   [TestOnlyCamp <hex> move <x> <y> [<z>]       move the player there (Felucca, ground level unless z is given)
 //   [TestOnlyCamp <hex> fire                     a campfire lit by the player on their tile
+//   [TestOnlyCamp <hex> gump list|confirm|confirmhot|hotzone   open that gump on the player's client (to look at it)
+//   [TestOnlyCamp <hex> setpass <text>          set the account's password (disposable hosts only)
+//   [TestOnlyCamp <hex> cmd <text>              run a player command as that player (e.g. [Welcome)
 //   [TestOnlyCamp <hex> hurt <n>                 take n hits off the player (never below 1)
 //   [TestOnlyCamp <hex> firekill                 delete every campfire
 //   [TestOnlyCamp <hex> pgate                    a public moongate one tile east of the player
@@ -126,6 +131,18 @@ public static class CampTravelProbe
                     result = $"fire={fire.Serial} at {fire.X},{fire.Y},{fire.Z}";
                     break;
                 }
+            case "gump":
+                result = ShowGump(player, e.GetString(2));
+                break;
+            case "setpass":
+                // For driving the real client by hand on a disposable host: a short password it can type.
+                (player.Account as Account)?.SetPassword(e.GetString(2));
+                break;
+            case "cmd":
+                // Runs a player command as that player, as if they had typed it (the text after the verb, e.g. [Welcome).
+                CommandSystem.Handle(player, e.ArgString[(e.ArgString.IndexOf("cmd", StringComparison.Ordinal) + 4)..].Trim());
+                result = "ran";
+                break;
             case "hurt":
                 player.Hits = Math.Max(1, player.Hits - Int(e, 2));
                 break;
@@ -266,6 +283,45 @@ public static class CampTravelProbe
 
         Write(player);
         e.Mobile.SendMessage($"TestOnlyCamp {verb}: {result}");
+    }
+
+    // The gumps are private to the shard assembly; a test-only probe builds them by reflection so a real client can show them.
+    private static string ShowGump(PlayerMobile player, string which)
+    {
+        var flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
+
+        switch (which)
+        {
+            case "list":
+                CommandSystem.Handle(player, "[CampTravel");
+                return "list requested";
+            case "confirm":
+            case "confirmhot":
+                {
+                    var fire = Campfire.Active.FirstOrDefault(f => f.Lighter is not null && f.Lighter != player);
+
+                    if (fire is null)
+                    {
+                        return "no fire lit by someone else";
+                    }
+
+                    var type = typeof(CampTravelService).GetNestedType("CampTravelConfirmGump", BindingFlags.NonPublic)!;
+                    var gump = Activator.CreateInstance(type, flags, null, [fire, fire.Lighter!.Name ?? "someone", 1, 2, which == "confirmhot"], null)!;
+
+                    player.SendGump((BaseGump)gump);
+                    return which;
+                }
+            case "hotzone":
+                {
+                    var type = typeof(TravelWarningService).GetNestedType("HotZoneTravelGump", BindingFlags.NonPublic)!;
+                    var gump = Activator.CreateInstance(type, flags, null, [(Action)(() => { }), Core.Now + TimeSpan.FromMinutes(2)], null)!;
+
+                    player.SendGump((BaseGump)gump);
+                    return which;
+                }
+            default:
+                return "unknown gump";
+        }
     }
 
     private static bool TryHex(string text, out uint value) =>

@@ -108,6 +108,30 @@ public static class CampTravelService
         Server.Timer.StartTimer(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0), Poll);
     }
 
+    // ---- what [Welcome tells a player (only for what is switched on)
+
+    public static IEnumerable<string> DescribeForPlayers(CampTravelRules rules, bool campTravel, bool warning)
+    {
+        if (campTravel)
+        {
+            yield return $"Camp travel: use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
+                         $"{rules.SecureSeconds:0} seconds and is not down to embers.";
+            yield return $"Camp travel costs {rules.KindlingCost} Kindling, you wait {rules.ChannelSeconds:0} seconds without moving, and you can travel this way once every " +
+                         $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))}.";
+            yield return $"A fire takes as many travelers as its lighter's Camping skill allows: 1 at Camping {SkillForFirstPlace(rules):0}, one more for each {rules.SkillPerArrival:0} points, up to {rules.MaxArrivals}. " +
+                         "Criminals, murderers and anyone in recent player combat cannot use it, and it cannot be used to leave a Hot Zone.";
+        }
+
+        if (campTravel || warning)
+        {
+            yield return "Hot Zone warning: before Recall, a gate or camp travel takes you into a Hot Zone from outside one, you are asked to confirm. " +
+                         "Tick the box on the warning, or use [TravelWarning off, to stop being asked; [TravelWarning on brings the warning back.";
+        }
+    }
+
+    public static IEnumerable<string> DescribeForPlayers() =>
+        DescribeForPlayers(Rules, Enabled, TravelWarningService.Enabled);
+
     // ---- the rules, free of game objects so they can be tested directly
 
     /// <summary>
@@ -318,6 +342,47 @@ public static class CampTravelService
     /// <summary>A fire is secure once it has burned for <c>secureSeconds</c> and is not down to embers (a fed fire stays secure).</summary>
     public static bool IsSecure(CampTravelRules rules, TimeSpan age, bool embers) =>
         !embers && age >= TimeSpan.FromSeconds(rules.SecureSeconds);
+
+    // ---- where a camp is
+
+    /// <summary>The first name there is: a town or dungeon, then a Hot Zone, then sextant coordinates, so a camp always says where.</summary>
+    public static string PlaceLabel(string? regionName, string? hotZoneName, string? sextant) =>
+        !string.IsNullOrWhiteSpace(regionName) ? regionName :
+        !string.IsNullOrWhiteSpace(hotZoneName) ? hotZoneName :
+        !string.IsNullOrWhiteSpace(sextant) ? sextant : "the wilderness";
+
+    public static string SextantText(int latitude, int latMinutes, bool south, int longitude, int longMinutes, bool east) =>
+        $"{latitude}\u00b0 {latMinutes}'{(south ? 'S' : 'N')}, {longitude}\u00b0 {longMinutes}'{(east ? 'E' : 'W')}";
+
+    /// <summary>Where a point is, in words a player can use.</summary>
+    public static string PlaceName(Map? map, Point3D location)
+    {
+        if (map is null)
+        {
+            return PlaceLabel(null, null, null);
+        }
+
+        string? regionName = null;
+
+        for (var region = Region.Find(location, map); region is not null; region = region.Parent)
+        {
+            if (!string.IsNullOrWhiteSpace(region.Name))
+            {
+                regionName = region.Name;
+                break;
+            }
+        }
+
+        var hot = OutdoorHotZonePolicy.GetRegionName(map, location);
+        int lat = 0, latMinutes = 0, @long = 0, longMinutes = 0;
+        var south = false;
+        var east = false;
+        var sextant = Sextant.Format(location, map, ref @long, ref lat, ref longMinutes, ref latMinutes, ref east, ref south)
+            ? SextantText(lat, latMinutes, south, @long, longMinutes, east)
+            : null;
+
+        return PlaceLabel(regionName, hot is null ? null : OutdoorHotZoneBoundaryService.DisplayName(hot), sextant);
+    }
 
     // ---- keeping the lighter informed
 
@@ -752,7 +817,8 @@ public static class CampTravelService
                             lighter.Name ?? "someone",
                             traveler.GetDistanceToSqrt(fire),
                             ShortLabel(refusal),
-                            OutdoorHotZonePolicy.IsHot(fire)
+                            OutdoorHotZonePolicy.IsHot(fire),
+                            PlaceName(fire.Map, fire.Location)
                         )
                     );
                 }
@@ -779,7 +845,7 @@ public static class CampTravelService
         traveler.SendGump(new CampTravelListGump(entries));
     }
 
-    private readonly record struct ListEntry(Campfire Fire, string LighterName, double Distance, string Label, bool Hot);
+    private readonly record struct ListEntry(Campfire Fire, string LighterName, double Distance, string Label, bool Hot, string Place);
 
     /// <summary>A pick from the list: re-check, then ask for confirmation (with the Hot Zone warning when the camp is in one).</summary>
     private static void Select(PlayerMobile traveler, Campfire fire)
@@ -990,27 +1056,27 @@ public static class CampTravelService
 
         protected override void BuildLayout(ref DynamicGumpBuilder builder)
         {
-            var height = 90 + _entries.Count * 30;
+            var height = 90 + _entries.Count * 46;
 
             builder.AddPage();
-            builder.AddBackground(0, 0, 440, height, 9200);
-            builder.AddImageTiled(10, 10, 420, height - 20, 2624);
-            builder.AddAlphaRegion(10, 10, 420, height - 20);
-            builder.AddHtml(20, 18, 400, 20, "Travel to a party member's camp", "#FFD060", align: TextAlignment.Center);
-            builder.AddHtml(20, 40, 400, 20, "Pick a camp. You will be asked to confirm.", "#CCCCCC", align: TextAlignment.Center);
+            builder.AddBackground(0, 0, 480, height, 9200);
+            builder.AddImageTiled(10, 10, 460, height - 20, 2624);
+            builder.AddAlphaRegion(10, 10, 460, height - 20);
+            builder.AddHtml(20, 18, 440, 20, "Travel to a party member's camp", "#FFD060", align: TextAlignment.Center);
+            builder.AddHtml(20, 40, 440, 20, "Pick a camp. You will be asked to confirm.", "#CCCCCC", align: TextAlignment.Center);
 
             for (var i = 0; i < _entries.Count; i++)
             {
                 var entry = _entries[i];
-                var y = 70 + i * 30;
-                var label = $"{entry.LighterName}'s camp, {entry.Distance:0} tiles: {entry.Label}";
+                var y = 70 + i * 46;
 
-                builder.AddButton(20, y, 4005, 4007, i + 1);
-                builder.AddHtml(60, y + 2, entry.Hot ? 270 : 360, 22, label, entry.Label == "ready" ? "#FFFFFF" : "#999999");
+                builder.AddButton(20, y + 8, 4005, 4007, i + 1);
+                builder.AddHtml(60, y, 280, 22, $"{entry.LighterName}'s camp: {entry.Label}", entry.Label == "ready" ? "#FFFFFF" : "#999999");
+                builder.AddHtml(60, y + 22, 400, 20, $"{entry.Place}, {entry.Distance:0} tiles away", "#BBBBBB");
 
                 if (entry.Hot)
                 {
-                    builder.AddHtml(335, y + 2, 95, 22, "[HOT ZONE]", "#FF4040");
+                    builder.AddHtml(350, y, 110, 22, "[HOT ZONE]", "#FF4040");
                 }
             }
         }

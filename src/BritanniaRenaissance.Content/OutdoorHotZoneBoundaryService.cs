@@ -107,7 +107,7 @@ public static class OutdoorHotZoneBoundaryService
         }
     }
 
-    private static string DisplayName(string region) => region switch
+    public static string DisplayName(string region) => region switch
     {
         "FireIsland" => "Fire Island",
         "BuccaneersDenIsland" => "Buccaneer's Den island",

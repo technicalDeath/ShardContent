@@ -65,16 +65,24 @@ public static class ShardRulesCommands
     }
 
     [Usage("Welcome")]
-    [Description("Explains player combat consent and the two Ward systems.")]
+    [Description("Explains player combat consent, the two Ward systems and, when on, camp travel and the Hot Zone travel warning.")]
     private static void OnWelcome(CommandEventArgs e)
     {
+        var travel = CampTravelService.DescribeForPlayers().ToList();
+
         if (!TheftProtectionService.Enabled)
         {
             e.Mobile.SendMessage("Ward rules are not currently active.");
-            return;
+        }
+        else
+        {
+            foreach (var line in StarterOnboarding.DescribeRules())
+            {
+                e.Mobile.SendMessage(line);
+            }
         }
 
-        foreach (var line in StarterOnboarding.DescribeRules())
+        foreach (var line in travel)
         {
             e.Mobile.SendMessage(line);
         }
