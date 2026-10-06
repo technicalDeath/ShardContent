@@ -108,29 +108,22 @@ public static class CampTravelService
         Server.Timer.StartTimer(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0), Poll);
     }
 
-    // ---- what [Welcome tells a player (only for what is switched on)
+    // ---- what the [Welcome guide tells a player
 
-    public static IEnumerable<string> DescribeForPlayers(CampTravelRules rules, bool campTravel, bool warning)
-    {
-        if (campTravel)
-        {
-            yield return $"Camp travel: use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
-                         $"{rules.SecureSeconds:0} seconds and is not down to embers.";
-            yield return $"Camp travel costs {rules.KindlingCost} Kindling, you wait {rules.ChannelSeconds:0} seconds without moving, and you can travel this way once every " +
-                         $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))}.";
-            yield return $"A fire takes as many travelers as its lighter's Camping skill allows: 1 at Camping {SkillForFirstPlace(rules):0}, one more for each {rules.SkillPerArrival:0} points, up to {rules.MaxArrivals}. " +
-                         "Criminals, murderers and anyone in recent player combat cannot use it, and it cannot be used to leave a Hot Zone.";
-        }
+    public const string HotZoneWarningHelp =
+        "If Recall, a gate or camp travel is about to take you into a Hot Zone from outside one, you are asked to confirm first. " +
+        "Tick the box on the warning, or use [TravelWarning off, to stop being asked; [TravelWarning on brings the warning back.";
 
-        if (campTravel || warning)
-        {
-            yield return "Hot Zone warning: before Recall, a gate or camp travel takes you into a Hot Zone from outside one, you are asked to confirm. " +
-                         "Tick the box on the warning, or use [TravelWarning off, to stop being asked; [TravelWarning on brings the warning back.";
-        }
-    }
-
-    public static IEnumerable<string> DescribeForPlayers() =>
-        DescribeForPlayers(Rules, Enabled, TravelWarningService.Enabled);
+    /// <summary>The guide's Camp travel page, from the numbers in force.</summary>
+    public static IReadOnlyList<string> GuideParagraphs(CampTravelRules rules) =>
+    [
+        $"Use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
+        $"{rules.SecureSeconds:0} seconds and is not down to embers.",
+        $"It costs {rules.KindlingCost} Kindling, you wait {rules.ChannelSeconds:0} seconds without moving, and you can travel this way once every " +
+        $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))}.",
+        $"A fire takes as many travelers as its lighter's Camping skill allows: 1 at Camping {SkillForFirstPlace(rules):0}, one more for each {rules.SkillPerArrival:0} points, up to {rules.MaxArrivals}. " +
+        "Criminals, murderers and anyone in recent player combat cannot use it, and it cannot be used to leave a Hot Zone."
+    ];
 
     // ---- the rules, free of game objects so they can be tested directly
 
