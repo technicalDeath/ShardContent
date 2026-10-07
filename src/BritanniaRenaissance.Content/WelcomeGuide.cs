@@ -159,7 +159,7 @@ public static class WelcomeGuide
             paragraphs.Add(
                 (c.HotZones ? "Outside the Hot Zones, a" : "A") +
                 " player can attack you only if you have Criminal Intent on, you are a criminal or a murderer, or you are already fighting them. " +
-                "You can attack another player only by the same rules. Duels and guild wars also allow fighting between those involved."
+                "You can attack another player only by the same rules. Guild wars also allow fighting between the guilds involved."
             );
             paragraphs.Add(
                 "[Intent turns Criminal Intent on or off, and it stays as you leave it. While it is on you appear grey and other players may attack you. " +
@@ -169,20 +169,43 @@ public static class WelcomeGuide
 
         if (c.KnockedOut)
         {
+            // The purpose, in the owner's words (2026-10-06): a grey or red can walk away from a fight and not take a murder count.
             paragraphs.Add(
+                "Knocked Out is how a fight ends without a killing. " +
                 $"A player who is not a criminal or a murderer and is brought down by another player is Knocked Out for {knockedOutSeconds} seconds instead of dying. " +
-                "While Knocked Out you cannot act, be hurt or be healed, and when it ends you wake with half your health. Monsters and other causes still kill normally."
+                "While Knocked Out you cannot act, be hurt or be healed, and when it ends you wake with half your health. " +
+                "The winner, even a criminal or a murderer, can simply walk away and takes no murder count, because nobody died. " +
+                "Monsters and other causes still kill normally."
             );
             paragraphs.Add(
-                "While a player is Knocked Out, a criminal or murderer who knocked them out, or who has damaged them recently, may [Execute them. " +
-                "Nobody else can, including a player who is only grey because of Criminal Intent. " +
-                "An executed player can report the executioner as a murderer, unless the executed player attacked first."
+                "Killing is a choice. While a player is Knocked Out, a criminal or murderer who knocked them out, or who has damaged them recently, may [Execute them. " +
+                "Nobody else can, including a player who is only grey because of Criminal Intent."
+            );
+            // Owner ruling 2026-10-06 (K-5 amended): attacking and killing differ. A blue may attack a criminal, a murderer or a player
+            // with Intent on, who may fight back and Knock the blue out, but executing the blue is still murder.
+            var intentOr = c.SafeWorld ? "the victim had Criminal Intent on or " : string.Empty;
+            var targets = c.SafeWorld ? "a criminal, a murderer or a player with Criminal Intent on" : "a criminal or a murderer";
+            paragraphs.Add(
+                $"An Execute is murder, and the victim can report it, unless {intentOr}the two were at guild war. " +
+                $"That is true even if the victim attacked first: a blue may attack {targets}, who may fight back and Knock the blue out, " +
+                "but executing the blue still counts. Reporting gives the killer a murder count. " +
+                "Fighting back never costs you the report" + (c.HotZones ? ", and a Hot Zone does not make a killing lawful." : ".")
             );
         }
-
+        else
+        {
+            // Without Knocked Out a death is the stock one: the killer is reportable when they had no right to attack.
+            var rights = (c.SafeWorld ? "you have Criminal Intent on, " : string.Empty) +
+                         "you are a criminal or a murderer, you attacked them first, or you are at guild war with them";
+            paragraphs.Add(
+                "If another player kills you and had no right to attack you, you can report them as a murderer, which gives them a murder count. " +
+                $"A player has the right to attack you if {rights}. Fighting back does not cost you the report" +
+                (c.HotZones ? ", and a Hot Zone does not give the right." : ".")
+            );
+        }
         paragraphs.Add(
-            "When another player kills you unlawfully you can report them as a murderer, which gives them a murder count. " +
-            "Five counts make a player a murderer (red), and a guard pays any bounty posted on a murderer for their head."
+            "Five counts make a player a murderer (red), and a guard pays any bounty posted on a murderer for their head. " +
+            "Guards do not take a report from a Thieves' Guild member."
         );
 
         return new Topic("fighting", "Fighting other players", paragraphs);
@@ -194,7 +217,12 @@ public static class WelcomeGuide
         {
             "Fire Island, Buccaneer's Den island and the Hythloth dungeon (entered from Fire Island) are permanent player-versus-player zones. " +
             "Players in the same Hot Zone can attack each other freely, with or without Criminal Intent, and Wards and Loot Protection do not apply. " +
-            "Other dungeons are not Hot Zones, and Hot Zones carry no extra rewards."
+            "Other dungeons are not Hot Zones, and Hot Zones carry no extra rewards.",
+            c.KnockedOut
+                ? "Fighting in a Hot Zone is free, but it does not make a killing lawful: if someone executes you there, you can still report them as a murderer " +
+                  (c.SafeWorld ? "unless you had Criminal Intent on or were at guild war with them." : "unless you were at guild war with them.")
+                : "Fighting in a Hot Zone is free, but it does not make a killing lawful: if someone kills you there and had no other right to attack you, " +
+                  "you can still report them as a murderer."
         };
 
         if (c.KnockedOut)

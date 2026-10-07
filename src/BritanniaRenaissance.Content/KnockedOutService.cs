@@ -189,7 +189,7 @@ public static class KnockedOutService
 
         if (player.Account is Account reportableAccount)
         {
-            reportableAccount.SetTag(ReportablePrefix + SerialKey(player), DescribeReportableAttackers(player));
+            reportableAccount.SetTag(ReportablePrefix + SerialKey(player), ExecutionMurderRule.DescribeReportableAttackers(player, responsibleAttacker));
         }
 
         player.Hits = 1;
@@ -377,29 +377,12 @@ public static class KnockedOutService
             "executed",
             executor,
             victim,
-            countsAsMurder ? decision.Reason : $"{decision.Reason}; victim aggressed first, no murder count"
+            countsAsMurder ? decision.Reason : $"{decision.Reason}; victim had Criminal Intent on or was at guild war with the executor, no murder count"
         );
         return true;
     }
 
-    // Mirrors stock murder reporting: only a player whose aggression against the victim was reportable
-    // (they attacked an innocent first) can be a murderer. Captured before Knocked Out clears the lists.
-    private static string DescribeReportableAttackers(PlayerMobile victim)
-    {
-        var serials = new HashSet<uint>();
-        foreach (var info in victim.Aggressors)
-        {
-            if (info.CanReportMurder && ResolvePlayerAttacker(info.Attacker) is { } attacker)
-            {
-                serials.Add(attacker.Serial.Value);
-            }
-        }
-
-        return serials.Count == 0
-            ? "none"
-            : string.Join(',', serials.Select(s => s.ToString(CultureInfo.InvariantCulture)));
-    }
-
+    // Who an Execute counts against is decided when the victim is Knocked Out (ExecutionMurderRule), because Knocked Out clears the aggressor lists.
     private static string? GetReportableAttackers(PlayerMobile victim) =>
         victim.Account is Account account ? account.GetTag(ReportablePrefix + SerialKey(victim)) : null;
 

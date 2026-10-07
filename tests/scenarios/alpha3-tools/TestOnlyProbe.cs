@@ -27,6 +27,32 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyInventoryInspect", AccessLevel.Administrator, OnInspectCommand);
         CommandSystem.Register("TestOnlyCorpseAggressors", AccessLevel.Administrator, OnCorpseAggressorsCommand);
         CommandSystem.Register("TestOnlyCorpseInventory", AccessLevel.Administrator, OnCorpseInventoryCommand);
+        CommandSystem.Register("TestOnlyReportFlags", AccessLevel.Administrator, OnReportFlagsCommand);
+    }
+
+    // Reports a mobile's aggressor records, "ReportFlags target=<name> aggressors=<attacker>:can=<0|1>:crim=<0|1>:rep=<0|1>,...|none":
+    // can = the murder report would be offered for that attacker if the mobile died now, crim = the attacker's last hit was criminal,
+    // rep = already reported. For watching how a fight moves the stock report flag.
+    private static void OnReportFlagsCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyReportFlags <mobile-serial>");
+            return;
+        }
+
+        if (World.FindMobile((Serial)serial) is not { } target)
+        {
+            e.Mobile.SendMessage($"ReportFlags target={serial:X} aggressors=unknown");
+            return;
+        }
+
+        var rows = target.Aggressors
+            .Select(i => $"{i.Attacker.Name}:can={(i.CanReportMurder ? 1 : 0)}:crim={(i.CriminalAggression ? 1 : 0)}:rep={(i.Reported ? 1 : 0)}")
+            .ToArray();
+        e.Mobile.SendMessage($"ReportFlags target={target.Name} aggressors={(rows.Length == 0 ? "none" : string.Join(",", rows))}");
     }
 
     // Reports the contents of the newest corpse owned by the given player serial, the same way

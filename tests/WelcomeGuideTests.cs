@@ -101,7 +101,7 @@ public class WelcomeGuideTests
 
         Assert.Contains("Outside the Hot Zones, a player can attack you only if you have Criminal Intent on, you are a criminal or a murderer, or you are already fighting them.", text);
         Assert.Contains("You can attack another player only by the same rules.", text);
-        Assert.Contains("Duels and guild wars also allow fighting between those involved.", text);
+        Assert.Contains("Guild wars also allow fighting between the guilds involved.", text);
     }
 
     [Fact]
@@ -136,18 +136,65 @@ public class WelcomeGuideTests
 
         Assert.Contains("a criminal or murderer who knocked them out, or who has damaged them recently, may [Execute them", text);
         Assert.Contains("Nobody else can, including a player who is only grey because of Criminal Intent.", text);
-        Assert.Contains("can report the executioner as a murderer, unless the executed player attacked first", text);
+        Assert.Contains("An Execute is murder, and the victim can report it, unless the victim had Criminal Intent on or the two were at guild war.", text);
+        Assert.DoesNotContain("unless the executed player attacked first", text);
         Assert.DoesNotContain("blue players cannot", text);
     }
 
     [Fact]
-    public void TheMurderTextSaysWhatAReportDoesAndWhatMakesAPlayerRed()
+    public void ExecutingABlueWhoAttackedFirstIsStillMurder()
+    {
+        // Owner ruling 2026-10-06 (K-5 amended): a blue may attack a criminal, a murderer or a player with Intent on, who may
+        // fight back and Knock the blue out, but an Execute is murder (ExecutionMurderRule).
+        var text = Text("fighting", Context());
+
+        Assert.Contains("That is true even if the victim attacked first: a blue may attack a criminal, a murderer or a player with Criminal Intent on, who may fight back and Knock the blue out, but executing the blue still counts.", text);
+        Assert.Contains("Reporting gives the killer a murder count.", text);
+        Assert.Contains("Fighting back never costs you the report, and a Hot Zone does not make a killing lawful.", text);
+        Assert.DoesNotContain("you attacked them first", text);
+    }
+
+    [Fact]
+    public void TheMurderTextSaysWhatMakesAPlayerRed()
     {
         var text = Text("fighting");
 
-        Assert.Contains("you can report them as a murderer, which gives them a murder count", text);
         Assert.Contains("Five counts make a player a murderer (red)", text);
         Assert.Contains("a guard pays any bounty posted on a murderer for their head", text);
+        Assert.Contains("Guards do not take a report from a Thieves' Guild member.", text);
+    }
+
+    [Fact]
+    public void TheExecuteRuleLeavesOutIntentAndHotZonesWhenTheyAreOff()
+    {
+        var text = Text("fighting", Context(safeWorld: false, hotZones: false));
+
+        Assert.Contains("An Execute is murder, and the victim can report it, unless the two were at guild war.", text);
+        Assert.Contains("a blue may attack a criminal or a murderer, who may fight back", text);
+        Assert.DoesNotContain("Criminal Intent on", text);
+        Assert.DoesNotContain("Hot Zone", text);
+    }
+
+    [Fact]
+    public void WithoutKnockedOutTheStockRightToAttackRuleIsTold()
+    {
+        var text = Text("fighting", Context(knockedOut: false));
+
+        Assert.Contains("If another player kills you and had no right to attack you, you can report them as a murderer, which gives them a murder count.", text);
+        Assert.Contains("A player has the right to attack you if you have Criminal Intent on, you are a criminal or a murderer, you attacked them first, or you are at guild war with them.", text);
+        Assert.Contains("Fighting back does not cost you the report, and a Hot Zone does not give the right.", text);
+        Assert.DoesNotContain("An Execute is murder", text);
+    }
+
+    [Fact]
+    public void KnockedOutIsExplainedAsTheWayAFightEndsWithoutAMurderCount()
+    {
+        var text = Text("fighting", Context());
+
+        Assert.Contains("Knocked Out is how a fight ends without a killing.", text);
+        Assert.Contains("The winner, even a criminal or a murderer, can simply walk away and takes no murder count, because nobody died.", text);
+        Assert.Contains("Killing is a choice.", text);
+        Assert.DoesNotContain("Knocked Out is how a fight ends", Text("fighting", Context(knockedOut: false)));
     }
 
     [Fact]
@@ -176,6 +223,8 @@ public class WelcomeGuideTests
         Assert.Contains("Players in the same Hot Zone can attack each other freely, with or without Criminal Intent", text);
         Assert.Contains("Wards and Loot Protection do not apply", text);
         Assert.Contains("no extra rewards", text);
+        Assert.Contains("Fighting in a Hot Zone is free, but it does not make a killing lawful: if someone executes you there, you can still report them as a murderer unless you had Criminal Intent on or were at guild war with them.", text);
+        Assert.Contains("if someone kills you there and had no other right to attack you, you can still report them as a murderer", Text("hotzones", Context(knockedOut: false)));
     }
 
     [Fact]

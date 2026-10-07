@@ -144,6 +144,20 @@ public class KnockedOutTests
     }
 
     [Theory]
+    // unlawful first strike, victim had Intent on, at guild war, is it murder
+    [InlineData(true, false, false, true)]   // the executor struck an innocent first: stock's report flag
+    [InlineData(false, false, false, true)]  // the blue attacked first (a criminal, red or Intent target): still murder to Execute the blue
+    [InlineData(false, true, false, false)]  // the victim had Criminal Intent on: lawful
+    [InlineData(false, false, true, false)]  // a guild war: lawful
+    [InlineData(false, true, true, false)]
+    [InlineData(true, true, false, true)]    // an unlawful first strike stays murder whatever the victim switched on later
+    [InlineData(true, false, true, true)]
+    [InlineData(true, true, true, true)]
+    public void AnExecuteIsMurderUnlessTheVictimHadIntentOnOrItWasAGuildWar(
+        bool unlawfulFirstStrike, bool victimHadIntentOn, bool atGuildWar, bool murder
+    ) => Assert.Equal(murder, ExecutionMurderRule.IsMurder(unlawfulFirstStrike, victimHadIntentOn, atGuildWar));
+
+    [Theory]
     [InlineData(null, 5u, true)]
     [InlineData("none", 5u, false)]
     [InlineData("7", 5u, false)]

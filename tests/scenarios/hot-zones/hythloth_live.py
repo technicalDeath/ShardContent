@@ -362,7 +362,7 @@ def knocked_out() -> None:
     ok = result == "executed" and wait_until(lambda: ghost("Vona"), 5)
     record("Y10 the criminal recorded attacker may Execute (K-4)", "executed, Vona a ghost",
            f"{result}; {text}; {time.time() - t0:.0f}s into the 90s window", ok)
-    record("Y11 murder count for executing an ordinary blue (K-5, observation)", "counted unless Vona attacked first",
+    record("Y11 murder count for executing an ordinary blue (K-5, observation)", "counted unless Vona had Criminal Intent on or it was a guild war (K-5 amended 2026-10-06)",
            f"murder automatic-count +{audit('murder', 'automatic-count', 'Kara', 'Vona') - murders}", True, obs=True)
 
 

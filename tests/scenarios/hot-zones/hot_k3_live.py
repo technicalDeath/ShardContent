@@ -332,7 +332,10 @@ def hot_group() -> None:
 
 
 def k5_red_first() -> None:
-    """Blue Vex attacks red Tavi first, Tavi retaliates, Knocks Out and Executes Vex: stock self-defense, no murder count."""
+    """Blue Vex attacks red Tavi first, Tavi retaliates, Knocks Out and Executes Vex: still murder (owner ruling 2026-10-06 amending K-5).
+
+    The blue may lawfully attack a red and the red may fight back and Knock them out, but an Execute is murder unless the victim had
+    Criminal Intent on or the two were at guild war. Before that ruling this case counted no murder."""
     revive("Tavi")
     place("Tavi", 2760, 2166, 0)
     place("Vex", 2761, 2166, 0)
@@ -346,10 +349,10 @@ def k5_red_first() -> None:
     result, text = execute("Tavi", "Vex")
     gained = audit("murder", "automatic-count", "Tavi", "Vex") - murders
     lines = audit_lines("knocked-out", "executed", "Tavi", "Vex")
-    reason = "aggressed first" in " ".join(lines[-1:])
-    record("X5a red Executes a victim who attacked first", "executed, no murder count, audit says victim aggressed first",
+    exempt = "no murder count" in " ".join(lines[-1:])
+    record("X5a red Executes a blue who attacked the red first", "executed, murder +1 (the blue's right to attack the red does not make an Execute lawful)",
            f"KO {ko}; {result}; murder+{gained}; audit: {(lines[-1:] or ['none'])[0][-90:]}",
-           ko and result == "executed" and gained == 0 and reason)
+           ko and result == "executed" and gained == 1 and not exempt)
 
 
 def k5_grey_first() -> None:

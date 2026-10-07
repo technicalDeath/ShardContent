@@ -142,7 +142,7 @@ Live driver: `tests/scenarios/hot-zones/hot_consequences_live.py`. Disposable ho
 - **Crossing by placement.** H5 moves players with staff placement rather than walking; both call the same `PositionChanged` path.
 - **A Backpack Ward is single-use.** A caught theft outside Hot consumes and deletes the victim's physical Ward (`ActivateProtection`), so a victim reused across theft runs has none left and T3a cannot seed protection. The theft stage uses a victim that still carries a Ward. This was first mistaken for a death-handling loss; the server log shows the `theft ward-consumed` audit for that character, and Newbied starter items (Ward included) are kept through non-murderer death.
 - **K-4 ruled 2026-09-29:** Execute needs a grey or red actor with rights on the victim's damage record (the KO's recorded attacker, or a live `DamageEntries` entry, pets credited to their master), in Hot and outside it. Blue bystanders can no longer Execute. Looting a Knocked Out player's pack in a Hot Zone is open to anyone, and a blue who takes an item becomes criminal (audit `knocked-out-loot blue-flagged-criminal`); outside Hot it still needs a grey or red with recorded rights. X3 (criminal recorded attacker outside Hot) still applies. K3 confirmed live that a red damage-record holder executes in Hot (XR).
-- **K-5 and K-7 ruled 2026-09-29:** K-5 matches stock (an Execute on a victim who attacked first is no murder count; X5 covers both orders), and the Buccaneer's Den bank polygon is removed from theft protection (17 bank envelopes remain).
+- **K-5 and K-7 ruled 2026-09-29:** K-5 matched stock (an Execute on a victim who attacked first was no murder count; X5 covered both orders), **amended 2026-10-06: an Execute counts even then**, and the Buccaneer's Den bank polygon is removed from theft protection (17 bank envelopes remain).
 
 ## K3 login, save, restart and release-scope pass (2026-09-29)
 
@@ -156,7 +156,7 @@ Scope: the live reruns of the cases K-4 and K-5 changed, login and restart behav
 | XR | Red with damage-record rights Executes in Hot | Live | Pass. Executed, murder +1 (runs a and b). The final full rerun reused a victim who had attacked first, so K-5 correctly gave murder +0 there |
 | XR2 | Executor afterwards | Live | Pass. Murderer |
 | X4 | Executor is in the corpse's aggressor list | Live probe | Pass. Corpse aggressors contain the executor |
-| X5a | Blue attacks the red first, red Executes | Live | Pass. Damage lands, attacker stays Innocent; audit "victim aggressed first, no murder count", murder +0 |
+| X5a | Blue attacks the red first, red Executes | Live | **Superseded 2026-10-06 (K-5 amended): the Execute now counts, murder +1; see `Murder-Report-Right-To-Attack.md`.** Originally: Pass. Damage lands, attacker stays Innocent; audit "victim aggressed first, no murder count", murder +0 |
 | X5b | Grey attacks a blue first, grey Executes the never-aggressor | Live | Pass. Murder +1, Murderer |
 | D1 | Blue attacks blue inside Hythloth | Live | Pass. Refused, denial audited, no damage |
 | D2 | `[HotZoneStatus` inside Hythloth | Live | Pass. "outdoor Hot region: none" |
