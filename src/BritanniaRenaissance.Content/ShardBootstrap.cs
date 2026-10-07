@@ -17,6 +17,7 @@ public static class ShardBootstrap
         HousingStatusCommands.Register();
         MasteryProgression.Configure();
         SkillBankService.Configure();
+        FaintMemoriesService.Configure();
         OutdoorHotZoneBoundaryService.Configure();
         HousingGeographyPolicy.Configure();
         MurderAdjudicationService.Configure();

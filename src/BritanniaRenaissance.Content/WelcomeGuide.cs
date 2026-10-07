@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using Server;
 using Server.Gumps;
+using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
@@ -28,7 +29,10 @@ public static class WelcomeGuide
         bool TravelWarning,
         bool SafeWorld = true,
         bool KnockedOut = true,
-        bool HotZones = true
+        bool HotZones = true,
+        bool CampingKit = false,
+        bool CampingFires = false,
+        bool FaintMemories = false
     );
 
     public static Context Current =>
@@ -40,7 +44,10 @@ public static class WelcomeGuide
             TravelWarningService.Enabled,
             PvpIntentService.SafeWorldEnabled,
             KnockedOutService.Enabled,
-            OutdoorHotZonePolicy.Enabled
+            OutdoorHotZonePolicy.Enabled,
+            CampingService.KitEnabled,
+            CampingService.FiresEnabled,
+            FaintMemoriesService.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -55,7 +62,12 @@ public static class WelcomeGuide
         int WardPrice = 2000,
         int WardBuyBack = 110,
         int WardIngots = 20,
-        int WardCraftSkill = 45
+        int WardCraftSkill = 45,
+        int RestoreStepTenths = 2,
+        int FaintPointsTenths = 50,
+        int FaintHours = 24,
+        int FaintFloorTenths = 100,
+        int FaintCeilingTenths = 900
     )
     {
         public static Numbers Current
@@ -83,16 +95,21 @@ public static class WelcomeGuide
                     settings.WardVendor.StockPerVendor > 0 ? settings.WardVendor.Price : 0,
                     settings.WardVendor.BuyBackPrice,
                     settings.WardCraft.Enabled ? settings.WardCraft.Ingots : 0,
-                    (int)settings.WardCraft.MinSkill
+                    (int)settings.WardCraft.MinSkill,
+                    settings.SkillBank.RestoreStepTenths,
+                    FaintMemoriesPolicy.PointsTenths(settings.FaintMemories),
+                    (int)Math.Round(settings.FaintMemories.UnlockHours),
+                    FaintMemoriesPolicy.FloorTenths(settings.FaintMemories),
+                    FaintMemoriesPolicy.CeilingTenths(settings.FaintMemories)
                 );
             }
         }
     }
 
     private const string CommandColor = "#8FD3FF";
-    private const string HeadingMark = "# ";
+    public const string HeadingMark = "# ";
 
-    public static IReadOnlyList<Topic> Topics(Context c, CampTravelRules rules, Numbers? numbers = null)
+    public static IReadOnlyList<Topic> Topics(Context c, CampTravelRules rules, Numbers? numbers = null, CampingRules? camping = null)
     {
         var n = numbers ?? new Numbers();
         var topics = new List<Topic> { WelcomeTopic(c) };
@@ -117,7 +134,12 @@ public static class WelcomeGuide
 
         if (c.SkillBank)
         {
-            topics.Add(SkillBankTopic(n));
+            topics.Add(SkillBankTopic(c, n));
+        }
+
+        if (c.CampingKit || c.CampingFires)
+        {
+            topics.Add(CampingTopic(c, camping ?? new CampingRules()));
         }
 
         if (c.CampTravel)
@@ -133,8 +155,7 @@ public static class WelcomeGuide
     {
         var paragraphs = new List<string>
         {
-            $"Welcome to {ShardBranding.Name}: {ShardBranding.Tagline}.",
-            "The rules are Ultima Online's Renaissance rules (April 2000) on Felucca, with the changes described in this guide."
+            $"Welcome to {ShardBranding.Name}. The rules are Ultima Online's Renaissance rules (April 2000) on Felucca, with the changes described in this guide."
         };
 
         if (c.SafeWorld)
@@ -163,7 +184,8 @@ public static class WelcomeGuide
             );
             paragraphs.Add(
                 "[Intent turns Criminal Intent on or off, and it stays as you leave it. While it is on you appear grey and other players may attack you. " +
-                "Killing a player who has Intent on is not murder. You cannot change it while you are a criminal or a murderer. [IntentStatus shows whether it is on."
+                "Killing a player who has Intent on is not murder. " + PvpIntentService.NotACriminalNote + " " +
+                "You cannot change it while you are a criminal or a murderer. [IntentStatus shows whether it is on."
             );
         }
 
@@ -282,17 +304,17 @@ public static class WelcomeGuide
         paragraphs.Add(HeadingMark + "How it catches thieves");
         paragraphs.Add(
             "A Ward does not change a thief's chance to steal from you, and it never undoes a theft: the thief keeps what they took. " +
-            "A thief is caught when a theft from you succeeds and either you notice it in the usual way or the Ward notices it for you. " +
+            "A thief is caught when a theft from you succeeds and either you detect it in the usual way or the Ward detects it for you. " +
             "A caught thief turns criminal and cannot steal from you again, on any of their characters, until the Ward is used up."
         );
         paragraphs.Add(
-            "When a theft from you succeeds unnoticed, the Ward gets an extra chance to notice it: " +
+            "When a theft from you succeeds undetected, the Ward gets an extra chance to detect it: " +
             $"{Chance(1)} for that thief's first such theft, {Chance(2)} for the second and {Chance(3)} for the third. Each thief is counted separately."
         );
         paragraphs.Add(HeadingMark + "How long it lasts");
         paragraphs.Add(
-            $"The Ward watches until {window} minutes pass with no theft attempt against you. Until a theft attempt has been noticed, by you or by the Ward, " +
-            "it only watches, and then it resets and you keep it. Once one has been noticed the Ward is activated: caught thieves stay blocked, and when " +
+            $"The Ward watches until {window} minutes pass with no theft attempt against you. Until a theft attempt has been detected, by you or by the Ward, " +
+            "it only watches, and then it resets and you keep it. Once one has been detected the Ward is activated: caught thieves stay blocked, and when " +
             $"{window} quiet minutes pass the Ward is used up. A blocked thief's attempts do not restart the timer."
         );
         paragraphs.Add(HeadingMark + "Limits");
@@ -350,39 +372,132 @@ public static class WelcomeGuide
                 "trivially easy actions and failed attempts count for nothing. While the allowance lasts, each valid, successful use gives +0.1, up to Grandmaster (100.0).",
                 $"So going from {threshold} to 100.0 takes at least {MinimumCycles(n.EasyTenths)} {days} for an easy skill, {MinimumCycles(n.StandardTenths)} for a standard one " +
                 $"and {MinimumCycles(n.HardTenths)} for a hard one.",
-                $"A cycle in which a skill is not used is lost. Allowance you claimed but did not spend carries over, up to {n.StoredCycles} cycles' worth.",
+                "Nothing you have gained is ever taken away. A cycle in which a skill is not used simply gives that skill no allowance, and it is not made up later. " +
+                $"Allowance you claimed but did not spend carries over, up to {n.StoredCycles} cycles' worth.",
                 HeadingMark + "Good to know",
                 "The skill must be set to Up. If your skills are at the total cap, a skill set to Down gives up the 0.1 to make room; if none can, the use gives nothing and spends nothing." + bank,
-                "[MasteryStatus shows when your cycle ends and, for each Mastery skill, its allowance, what is stored and how far it is from 100. When you log in you are told if a skill has not claimed this cycle."
+                "[Mastery opens a window showing when your cycle ends and, for each Mastery skill, where it stands, its allowance, what is stored and how far it is from 100. When you log in you are told if a skill has not claimed this cycle."
             ]
         );
     }
 
-    private static Topic SkillBankTopic(Numbers n) =>
-        new(
-            "skillbank",
-            "Skill Bank",
-            [
-                HeadingMark + "How the bank fills",
-                $"Your skills can add up to {n.SkillCapPoints} points. As your total nears that, a skill that gains makes room by taking points from a skill you set to Down (the arrows in your skills window): " +
-                "sometimes just below the cap, and every time at it. Without the bank those points are simply lost.",
-                $"With the bank, they are saved instead. Each point a Down skill gives up goes into your bank under that skill's name. The bank holds up to {n.BankPoints} points in all, " +
-                "and never more for one skill than that skill could hold. Only points lost to ordinary skill gain are banked.",
-                HeadingMark + "Getting points back",
-                "Set the skill to Up and keep training it. Each time it would gain, 0.1 comes back from the bank instead of a normal gain, until its banked points are used up. " +
-                "If you are at the cap again, a skill set to Down gives up 0.1 to make room, and that point goes into the bank in turn.",
-                "Example: at the cap, Anatomy is Up and Hiding is Down. Anatomy gains 0.1, so Hiding loses 0.1 and the bank keeps it. " +
-                "Later you set Hiding to Up: each time Hiding would gain, 0.1 returns to it from the bank.",
-                HeadingMark + "When the bank is full",
-                "A full bank cannot take new points unless it can push out old ones. Each banked skill is either Locked (the default: its points are safe) or Down " +
-                "(its points may be replaced when the bank is full, the largest Down entry first, one point at a time). These two settings belong to the bank entry, not to the skill's arrow. " +
-                "With a full bank and nothing set to Down, the points a skill loses are not banked, and you are told so.",
-                HeadingMark + "Commands",
-                "[SkillBank shows how full your bank is and, for each banked skill, its current value, how much is banked and whether it is Locked or Down. It warns you when the bank is nearly full.",
-                "[SkillBank lock Anatomy keeps a skill's banked points safe. [SkillBank down Anatomy lets them be replaced when the bank is full. They work on skills that have points in the bank, " +
-                "and skill names have no spaces, for example AnimalTaming."
-            ]
+    private static Topic SkillBankTopic(Context c, Numbers n)
+    {
+        var step = Points(n.RestoreStepTenths);
+        var paragraphs = new List<string>
+        {
+            HeadingMark + "How the bank fills",
+            $"Your skills can add up to {n.SkillCapPoints} points. Each time a skill gains, a skill you have set to Down (the arrows in your skills window) may give up points to pay for it: " +
+            "more often the closer your total is to the cap, and every time at it. Without the bank those points are simply lost.",
+            $"With the bank, they are saved instead, whether or not you are at the cap. Each point a Down skill gives up goes into your bank under that skill's name. The bank holds up to {n.BankPoints} points in all, " +
+            "and never more for one skill than that skill could hold. Only points a Down skill loses to skill gain are banked.",
+            HeadingMark + "Getting points back",
+            $"Set the skill to Up and keep training it. Every use of it that counts toward skill gain brings back {step} from the bank instead of a normal gain, until its banked points are used up " +
+            "(0.1 if that is all that is left). If you are at the cap again, a skill set to Down gives up the same amount to make room, and that goes into the bank in turn.",
+            "Example: Anatomy is Up and Hiding is Down. Anatomy gains 0.1, so Hiding loses 0.1 and the bank keeps it, wherever your total stands. " +
+            $"Later you set Hiding to Up: each time you use Hiding, {step} returns to it from the bank.",
+            HeadingMark + "When the bank is full",
+            "A full bank cannot take new points unless it can push out old ones. Each banked skill is either Locked (the default: its points are safe) or Down " +
+            "(its points may be replaced when the bank is full, the largest Down entry first, one point at a time). These two settings belong to the bank entry, not to the skill's arrow. " +
+            "With a full bank and nothing set to Down, the points a skill loses are not banked, and you are told so.",
+            HeadingMark + "Discarding banked points",
+            "If you will never train a skill again, press Discard beside it to delete its banked points and free the room. " +
+            $"You are asked to type the word {SkillBankDiscardGump.ConfirmWord} to be sure. The points do not go back to the skill, and the skill stays as it is."
+        };
+
+        if (c.FaintMemories)
+        {
+            paragraphs.Add(HeadingMark + FaintMemoriesPolicy.Name);
+            paragraphs.Add(
+                FaintMemoriesPolicy.Theme + " " +
+                $"Every new character starts with {Points(n.FaintPointsTenths)} points of {FaintMemoriesPolicy.Name}, free, and they unlock {n.FaintHours} hours after the character was created."
+            );
+            paragraphs.Add(
+                $"Once unlocked they come back the way bank points do: train a skill you have set to Up and each use brings back {step} into it, until they are gone. " +
+                $"They never take a skill past {Points(n.FaintCeilingTenths)}, where Mastery begins, and a skill below {Points(n.FaintFloorTenths)} is left to ordinary gain. " +
+                "They do not use any room in the bank, and cannot be discarded. [SkillBank shows the countdown, then what is left; when they are gone the display goes with them."
+            );
+        }
+
+        paragraphs.Add(HeadingMark + "Commands");
+        paragraphs.Add(
+            "[SkillBank opens a window showing how full your bank is and, for each banked skill, its current value, how much is banked and whether it is Locked or Down. " +
+            "Press the box beside Locked or Down to change a skill's setting, or Discard to delete its banked points. The window tells you when the bank is nearly full."
         );
+
+        return new Topic("skillbank", "Skill Bank", paragraphs);
+    }
+
+    /// <summary>Stock: a player who stays beside a burning fire this long is in a secure camp (Campfire.cs).</summary>
+    public const int SecureCampSeconds = 30;
+
+    private static string Seconds(double seconds) => ((int)Math.Round(seconds)).ToString(CultureInfo.InvariantCulture);
+
+    /// <summary>
+    /// How camping works on this shard: the kit, lighting, how long a fire burns, feeding it and the secure camp with its Bedroll logout.
+    /// Every number comes from the camping rules and the stock fire, never from memory; the paragraphs for the fire rules are left out when
+    /// those are off, because the fire is then the stock one.
+    /// </summary>
+    private static Topic CampingTopic(Context c, CampingRules rules)
+    {
+        var paragraphs = new List<string>();
+
+        if (c.CampingKit)
+        {
+            paragraphs.Add(HeadingMark + "Your kit");
+            paragraphs.Add($"Every new character starts with a Bedroll and {rules.StarterKindling} Kindling.");
+        }
+
+        paragraphs.Add(HeadingMark + "Lighting a fire");
+
+        if (c.CampingFires)
+        {
+            var floor = Seconds(rules.SkillFloor);
+            paragraphs.Add(
+                "Double-click Kindling to light a campfire next to you. Anyone can: the chance is " + floor + "% for a Camping skill of " + floor +
+                " or less and rises with skill to 100%. A failed try costs nothing, a fire that lights uses one Kindling, and trying trains Camping. " +
+                "You cannot light a fire inside a dungeon."
+            );
+
+            var low = CampingService.TimingFor(rules, 0.0);
+            var high = CampingService.TimingFor(rules, 100.0);
+            var stock = CampfireTiming.Stock;
+
+            paragraphs.Add(HeadingMark + "How long it burns");
+            paragraphs.Add(
+                $"A fire burns for {Seconds(rules.LitBaseSeconds)} seconds plus {rules.LitPerSkillSeconds:0.##} for each point of the lighter's Camping skill: " +
+                $"{Seconds(low.Out.TotalSeconds)} seconds at skill 0 and {Seconds(high.Out.TotalSeconds)} at skill 100. The last third burns low. " +
+                $"Then it smoulders as embers for another {Seconds(rules.EmberBaseSeconds)} seconds plus {rules.EmberPerSkillSeconds:0.##} per point " +
+                $"({Seconds((low.Expire - low.Out).TotalSeconds)} to {Seconds((high.Expire - high.Out).TotalSeconds)}) and goes out. " +
+                $"A stock fire lasts {Seconds(stock.Out.TotalSeconds)} seconds and smoulders for {Seconds((stock.Expire - stock.Out).TotalSeconds)}."
+            );
+
+            paragraphs.Add(HeadingMark + "Feeding it");
+            paragraphs.Add(
+                "Use Kindling within one tile of a fire to feed it. Its burn time starts again as if you had lit it (a fire never gets shorter), and embers come back to life. " +
+                $"Each feed costs one Kindling, and a fire can be fed again {Seconds(rules.FeedCooldownSeconds)} seconds after it was lit or fed. " +
+                "To light a second fire, stand two tiles away."
+            );
+        }
+        else
+        {
+            paragraphs.Add("Double-click Kindling to light a campfire next to you, using your Camping skill. You cannot light a fire inside a dungeon.");
+        }
+
+        paragraphs.Add(HeadingMark + "A secure camp");
+        paragraphs.Add(
+            $"Stay within {Server.Items.Campfire.SecureRange} tiles of a burning fire for {SecureCampSeconds} seconds and you are in a secure camp. Embers do not count. " +
+            "In a secure camp, double-click your Bedroll to unroll it and double-click it again to roll it up, then choose Continue: " +
+            "you log out at once and safely. Fires are not saved when the server restarts."
+        );
+
+        if (c.CampTravel)
+        {
+            paragraphs.Add("A secure fire is also where party members can travel to you with [CampTravel; the Camp travel page has the details.");
+        }
+
+        return new Topic("camping", "Camping", paragraphs);
+    }
 
     /// <summary>One line per command a player can use, only for the features that are on.</summary>
     public static IReadOnlyList<string> Commands(Context c)
@@ -392,7 +507,7 @@ public static class WelcomeGuide
         if (c.SafeWorld)
         {
             lines.Add("[Intent - Turn Criminal Intent on or off.");
-            lines.Add("[IntentStatus - See whether it is on.");
+            lines.Add("[IntentStatus - Open a window showing whether it is on, with a button to switch it.");
         }
 
         if (c.KnockedOut)
@@ -400,16 +515,16 @@ public static class WelcomeGuide
             lines.Add("[Execute - Execute a Knocked Out player you are allowed to.");
         }
 
-        lines.Add("[MasteryStatus - Your Mastery cycle and what each Mastery skill can still gain.");
+        lines.Add("[Mastery - Your Mastery cycle and what each Mastery skill can still gain.");
 
         if (c.SkillBank)
         {
-            lines.Add("[SkillBank - See your banked skill points and whether each is Locked or Down.");
+            lines.Add("[SkillBank - Your banked skill points: whether each is Locked or Down, or discard them" + (c.FaintMemories ? ", and your Faint Memories." : "."));
         }
 
         if (c.SkillClasses)
         {
-            lines.Add("[SkillClasses - How fast each skill trains.");
+            lines.Add("[SkillClasses - How fast each skill trains, and which skills are in which class.");
         }
 
         if (c.CampTravel)
@@ -419,7 +534,7 @@ public static class WelcomeGuide
 
         if (c.CampTravel || c.TravelWarning)
         {
-            lines.Add("[TravelWarning - Turn the Hot Zone travel warning on or off.");
+            lines.Add("[TravelWarning - Open a window to turn the Hot Zone travel warning on or off.");
         }
 
         return lines;
@@ -427,11 +542,7 @@ public static class WelcomeGuide
 
     private const int CharactersPerLine = 58;
     private const int LineHeight = 18;
-    private const int Width = 640;
-    private const int Height = 500;
-    private const int NavWidth = 190;
-    private const int ContentTop = 108;
-    private const int ContentHeight = Height - 178;
+    private const int ContentHeight = GumpStyle.Height - 178;
 
     private static bool IsHeading(string paragraph) => paragraph.StartsWith(HeadingMark, StringComparison.Ordinal);
 
@@ -505,71 +616,26 @@ public static class WelcomeGuide
         return CommandPattern.Replace(text, m => $"<BASEFONT COLOR={CommandColor}>{m.Value}</BASEFONT>");
     }
 
-    public static void Open(PlayerMobile player)
+    /// <summary>Opens the guide, on the topic with this key when it is given and the shard has that topic.</summary>
+    public static void Open(PlayerMobile player, string? topicKey = null)
     {
         if (player.NetState is null)
         {
             return;
         }
 
+        var settings = ShardRulesConfiguration.Settings;
+        var topics = Topics(Current, settings?.CampTravel ?? new CampTravelRules(), Numbers.Current, settings?.Camping);
+        var first = topicKey is null ? -1 : topics.ToList().FindIndex(t => t.Key == topicKey);
+
         player.SendGump(
-            new WelcomeGump(Topics(Current, ShardRulesConfiguration.Settings?.CampTravel ?? new CampTravelRules(), Numbers.Current))
+            new GuideWindow(
+                ShardBranding.Name,
+                ShardBranding.Tagline,
+                "Type [Welcome to open this guide again.",
+                topics,
+                Math.Max(0, first)
+            )
         );
-    }
-
-    private sealed class WelcomeGump : DynamicGump
-    {
-        private readonly IReadOnlyList<Topic> _topics;
-
-        public override bool Singleton => true;
-
-        public WelcomeGump(IReadOnlyList<Topic> topics) : base(40, 30) => _topics = topics;
-
-        protected override void BuildLayout(ref DynamicGumpBuilder builder)
-        {
-            builder.AddPage();
-            builder.AddBackground(0, 0, Width, Height, 9200);
-            builder.AddImageTiled(10, 10, Width - 20, Height - 20, 2624);
-            builder.AddHtml(20, 18, Width - 40, 24, ShardBranding.Name, "#FFD060", size: 5, align: TextAlignment.Center);
-            builder.AddHtml(20, 44, Width - 40, 20, ShardBranding.Tagline, "#BBBBBB", align: TextAlignment.Center);
-            builder.AddImageTiled(NavWidth + 14, 72, 2, Height - 130, 2701);
-
-            builder.AddButton(Width - 120, Height - 44, 4005, 4007, 0);
-            builder.AddHtml(Width - 80, Height - 42, 60, 20, "Close", "#FFFFFF");
-            builder.AddHtml(24, Height - 42, 300, 20, "Type [Welcome to open this guide again.", "#999999");
-
-            // 44 pixels between topics, squeezed when there are many so the last one stays above the footer.
-            var step = Math.Min(44, (Height - 170) / _topics.Count);
-
-            for (var page = 0; page < _topics.Count; page++)
-            {
-                builder.AddPage(page + 1);
-
-                for (var i = 0; i < _topics.Count; i++)
-                {
-                    var y = 80 + i * step;
-                    var selected = i == page;
-                    var art = selected ? 4007 : 4005;
-
-                    builder.AddButton(22, y, art, 4007, 0, GumpButtonType.Page, i + 1);
-                    builder.AddHtml(62, y + 2, NavWidth - 52, 24, _topics[i].Title, selected ? "#FFD060" : "#FFFFFF", fontStyle: (byte)(selected ? 1 : 0));
-                }
-
-                var topic = _topics[page];
-
-                builder.AddHtml(NavWidth + 30, 76, Width - NavWidth - 50, 26, topic.Title, "#FFD060", size: 4);
-                builder.AddHtml(NavWidth + 30, ContentTop, Width - NavWidth - 50, ContentHeight, Body(topic), "#FFFFFF", scrollbar: NeedsScroll(topic));
-
-                if (page + 1 < _topics.Count)
-                {
-                    builder.AddButton(Width - 290, Height - 44, 4005, 4007, 0, GumpButtonType.Page, page + 2);
-                    builder.AddHtml(Width - 250, Height - 42, 110, 20, "Next topic", "#FFFFFF");
-                }
-            }
-        }
-
-        public override void OnResponse(NetState sender, in RelayInfo info)
-        {
-        }
     }
 }

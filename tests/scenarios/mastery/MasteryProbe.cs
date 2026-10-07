@@ -20,6 +20,55 @@ public static class MasteryProbe
         CommandSystem.Register("TestOnlyMasteryTotals", AccessLevel.Administrator, OnTotals);
         CommandSystem.Register("TestOnlyMasteryLock", AccessLevel.Administrator, OnLock);
         CommandSystem.Register("TestOnlyMasteryPoison", AccessLevel.Administrator, OnPoison);
+        CommandSystem.Register("TestOnlyMasterySeed", AccessLevel.Administrator, OnSeed);
+    }
+
+    // [TestOnlyMasterySeed <player-serial> <hours-into-cycle> [+] Anatomy=stored:claimed ...] ("+" keeps the skills already seeded; a typed line is
+    // short, so many skills are seeded in pieces) starts the character's Mastery cycles that many
+    // hours ago and gives each named skill that stored allowance (tenths) and claimed (1) or unclaimed (0) state for the current cycle, so the
+    // [Mastery window can be looked at. The skills themselves are set separately with [SetSkill. Reports "MasterySeed player=<name> skills=<n>".
+    private static void OnSeed(CommandEventArgs e)
+    {
+        if (!TryPlayer(e, 0, out var player) || e.Length < 2 ||
+            !double.TryParse(e.GetString(1), NumberStyles.Float, CultureInfo.InvariantCulture, out var hours))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyMasterySeed <player-serial> <hours-into-cycle> Skill=stored:claimed ...");
+            return;
+        }
+
+        var type = typeof(MasteryProgression);
+        var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+        var getState = type.GetMethod("GetState", flags)!;
+        var saveState = type.GetMethod("SaveState", flags)!;
+        var state = (MasteryCharacterState)getState.Invoke(null, [player])!;
+
+        var add = e.Length > 2 && e.GetString(2) == "+";
+        state.AnchorUtc = Core.Now.AddHours(-hours);
+
+        if (!add)
+        {
+            state.Skills.Clear();
+        }
+
+        var seeded = 0;
+
+        for (var i = add ? 3 : 2; i < e.Length; i++)
+        {
+            var parts = e.GetString(i).Split('=', 2);
+            var values = parts.Length == 2 ? parts[1].Split(':') : [];
+
+            if (values.Length != 2 || !Enum.TryParse<SkillName>(parts[0], true, out var name) || !int.TryParse(values[0], out var stored))
+            {
+                e.Mobile.SendMessage($"Skipped '{e.GetString(i)}'.");
+                continue;
+            }
+
+            state.Skills[(int)name] = new MasterySkillState { AllowanceTenths = stored, LastClaimedCycle = values[1] == "1" ? 0 : -1 };
+            seeded++;
+        }
+
+        saveState.Invoke(null, [player, state]);
+        e.Mobile.SendMessage($"MasterySeed player={player.Name} skills={seeded}");
     }
 
     private static void OnAge(CommandEventArgs e)

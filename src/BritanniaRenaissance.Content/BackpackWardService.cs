@@ -263,6 +263,12 @@ public static class BackpackWardService
             state.Remaining(Core.Now)
         );
 
+        if (from is PlayerMobile { NetState: not null } player)
+        {
+            StatusWindows.OpenWard(player, Enabled, state.Phase, lines);
+            return;
+        }
+
         foreach (var line in lines)
         {
             from.SendMessage(line);

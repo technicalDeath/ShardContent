@@ -132,16 +132,17 @@ def journal(owner_name: str) -> Path:
 def phase_command(staff, serial: str) -> None:
     player = connect("GainPlayer")
     log = journal("GainPlayer")
-    mark = log.stat().st_size
     player.say("[SkillClasses")
     time.sleep(3)
-    text = log.read_bytes()[mark:].decode("utf-8", "replace")
-    for line in ("Easy: 1.5x from 10 to 95", "Standard: 1.5x from 10 to 70, 1x from 70 to 95",
-                 "Hard: 1.5x from 10 to 70, 1x from 70 to 80, 0.75x from 80 to 95"):
-        check(f"command:lists:{line[:12]}", line in text, text[-300:])
+    text = " ".join(line.strip() for line in player.call("gumps"))
+    # The window is the guide's: an overview with each class's speeds, then a page per class with its skills.
+    for line in ("Easy skills (19)", "1.5x stock speed from 10 to 90",
+                 "Standard skills (26)", "1.5x stock speed from 10 to 70, stock speed from 70 to 90",
+                 "Hard skills (4)", "1.5x stock speed from 10 to 70, stock speed from 70 to 80, 0.75x stock speed from 80 to 90"):
+        check(f"command:lists:{line[:14]}", line in text, text[-300:])
     for name in ("Animal Taming", "Blacksmithy", "Alchemy", "Poisoning", "Archery", "Magery", "Swords"):
         check(f"command:names:{name}", name in text)
-    check("command:no-veryhard-line", "Veryhard" not in text and "VeryHard" not in text, text[-200:])
+    check("command:no-veryhard-page", "Very hard" not in text and "VeryHard" not in text, text[-200:])
 
 
 def phase_off(staff, serial: str) -> None:

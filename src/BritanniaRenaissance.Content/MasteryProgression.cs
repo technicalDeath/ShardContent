@@ -53,26 +53,39 @@ public static class MasteryProgression
         (ShardRulesConfiguration.Settings is { } settings ? SkillGainCurveService.ClassOf(settings.SkillGain, skill) : null) ??
         "standard";
 
-    public static IEnumerable<string> DescribeStatus(Mobile viewer, Mobile subject)
+    public enum MasteryPhase
+    {
+        /// <summary>No skill is at the Mastery threshold, and no cycle has begun.</summary>
+        NoSkills,
+
+        /// <summary>A skill is in Mastery range but no cycle has begun: the first valid use starts it.</summary>
+        Waiting,
+
+        /// <summary>The character's cycles are running.</summary>
+        Active
+    }
+
+    /// <summary>One Mastery skill as the [Mastery window shows it. Tenths are tenths of a skill point.</summary>
+    public sealed record MasterySkillRow(
+        string Name, string ClassName, int ValueTenths, int AllowanceTenths, int StoredTenths, int StoredMaxTenths, bool Claimed, int LeftTenths
+    );
+
+    public sealed record MasteryView(
+        string? OwnerName, MasteryPhase Phase, TimeSpan NextCycleIn, int CycleHours, int BankCycles, IReadOnlyList<MasterySkillRow> Rows
+    );
+
+    /// <summary>The Mastery cycle and skills of <paramref name="subject"/> for <paramref name="viewer"/>; null for anything but a player.</summary>
+    public static MasteryView? BuildView(Mobile viewer, Mobile subject)
     {
         if (subject is not PlayerMobile pm)
         {
-            yield return "Mastery applies to player characters.";
-            yield break;
+            return null;
         }
 
         var rules = Rules;
         var now = Core.Now;
         var state = GetState(pm);
-
-        if (!ReferenceEquals(viewer, subject))
-        {
-            yield return $"Mastery for {pm.Name}:";
-        }
-
-        yield return $"Mastery: a skill at {MasteryEngine.ThresholdText} or above gains +0.1 for each valid, successful use while it has allowance.";
-        yield return "A use is valid only if it had a real chance of failing. Trivially easy actions and failed attempts count for nothing.";
-        yield return $"Your Mastery cycle is {rules.CycleHours} hours. A skill claims its allowance for a cycle with its first valid use in that cycle; a cycle it does not use is lost. Unspent allowance carries up to {rules.BankCycles} cycles.";
+        var owner = ReferenceEquals(viewer, subject) ? null : pm.Name;
 
         if (state.AnchorUtc is not { } anchor)
         {
@@ -83,47 +96,50 @@ public static class MasteryProgression
                            s.BaseFixedPoint < GrandmasterFixedPoint;
             }
 
-            yield return waiting
-                ? $"Your Mastery cycle begins with your next valid use of a skill at {MasteryEngine.ThresholdText} or above."
-                : $"No skill is in Mastery yet (Mastery begins at {MasteryEngine.ThresholdText}).";
-            yield break;
+            return new MasteryView(
+                owner, waiting ? MasteryPhase.Waiting : MasteryPhase.NoSkills, TimeSpan.Zero, rules.CycleHours, rules.BankCycles, []
+            );
         }
 
         var cycle = MasteryEngine.CycleId(anchor, now, CycleLength);
         var next = MasteryEngine.NextRefresh(anchor, now, CycleLength);
-        yield return $"Your next cycle begins in {MasteryEngine.FormatDuration(next - now)}.";
+        var rows = new List<MasterySkillRow>();
 
-        var any = false;
         for (var i = 0; i < pm.Skills.Length; i++)
         {
             var skill = pm.Skills[i];
-            if (skill is null || skill.BaseFixedPoint < ThresholdFixedPoint)
+
+            // A skill at 100.0 has finished Mastery.
+            if (skill is null || skill.BaseFixedPoint < ThresholdFixedPoint || skill.BaseFixedPoint >= GrandmasterFixedPoint)
             {
                 continue;
             }
 
-            any = true;
             var allowance = AllowanceTenths(skill.SkillName);
             state.Skills.TryGetValue(skill.SkillID, out var skillState);
-            var claimed = skillState is not null && MasteryEngine.HasClaimed(skillState, cycle);
-            yield return string.Format(
-                CultureInfo.InvariantCulture,
-                "{0} {1:0.0} ({2}): {3:0.0} per cycle, {4:0.0} stored (holds up to {5:0.0}), {6}, {7:0.0} points to reach 100.0.",
-                skill.Info.Name,
-                skill.Base,
-                ClassName(skill.SkillName),
-                allowance / 10.0,
-                (skillState?.AllowanceTenths ?? 0) / 10.0,
-                allowance * rules.BankCycles / 10.0,
-                claimed ? "claimed this cycle" : "not claimed this cycle",
-                MasteryEngine.GainsLeft(skill.BaseFixedPoint) / 10.0
+
+            rows.Add(
+                new MasterySkillRow(
+                    skill.Info.Name,
+                    ClassName(skill.SkillName),
+                    skill.BaseFixedPoint,
+                    allowance,
+                    skillState?.AllowanceTenths ?? 0,
+                    allowance * rules.BankCycles,
+                    skillState is not null && MasteryEngine.HasClaimed(skillState, cycle),
+                    MasteryEngine.GainsLeft(skill.BaseFixedPoint)
+                )
             );
         }
 
-        if (!any)
-        {
-            yield return $"No skill is at {MasteryEngine.ThresholdText} or above right now; Mastery state for skills that fell below it is kept.";
-        }
+        return new MasteryView(owner, MasteryPhase.Active, next - now, rules.CycleHours, rules.BankCycles, rows);
+    }
+
+    /// <summary>"easy" as "Easy", "veryHard" as "Very hard".</summary>
+    public static string ClassLabel(string className)
+    {
+        var spaced = System.Text.RegularExpressions.Regex.Replace(className, "([a-z])([A-Z])", "$1 $2");
+        return char.ToUpperInvariant(spaced[0]) + spaced[1..].ToLowerInvariant();
     }
 
     private static void OnConnected(Mobile mobile)
@@ -179,7 +195,7 @@ public static class MasteryProgression
                 if (!pm.Deleted && pm.NetState?.Running == true)
                 {
                     pm.SendMessage(
-                        $"Mastery: {unclaimed} of your Mastery skills can claim this cycle's allowance with a valid use. Use [MasteryStatus for details."
+                        $"Mastery: {unclaimed} of your Mastery skills can claim this cycle's allowance with a valid use. Use [Mastery for details."
                     );
                 }
             });
@@ -257,7 +273,7 @@ public static class MasteryProgression
             state.Skills[skill.SkillID] = skillState;
             changed = true;
             pm.SendMessage(
-                $"{skill.Info.Name} has reached {MasteryEngine.ThresholdText}: ordinary gain has ended and Mastery begins. Use [MasteryStatus to see your allowance."
+                $"{skill.Info.Name} has reached {MasteryEngine.ThresholdText}: ordinary gain has ended and Mastery begins. Use [Mastery to see your allowance."
             );
         }
 

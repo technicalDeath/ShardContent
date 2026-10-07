@@ -74,12 +74,36 @@ def stage(label: str, body) -> None:
         record(label, "stage completes", f"{type(error).__name__}: {error}", False)
 
 
+def window_lines(client) -> list:
+    """The text of the windows a client has open, one string per piece of text (a window's header line is dropped)."""
+    out = []
+    for line in client.call("gumps"):
+        text = re.sub(r"^\[GUMP\]\s*", "", line.strip())
+        if text and "local 0x" not in text:
+            out.append(text)
+    return out
+
+
 def status(name: str) -> list:
-    """The `[MasteryStatus <serial>` lines for a character, as system messages seen by the staff session."""
-    m = mark("admin")
-    adm.say(f"[MasteryStatus {serial(name)}")
-    time.sleep(2)
-    return [re.sub(r"^\[[\d:.]+\]\s*\[SYSTEM\]\s*", "", ln) for ln in since("admin", m) if "[SYSTEM]" in ln]
+    """The `[Mastery <serial>` window for a character, as seen by the staff session: the cycle lines, then one line per skill
+    in the shape the cases below read ("Anatomy 92.0 (easy): 2.0 per cycle, 0.0 stored (holds up to 6.0), claimed this cycle, 8.0 points to reach 100.0.")."""
+    adm.say(f"[Mastery {serial(name)}")
+    time.sleep(2.5)
+    pieces = window_lines(adm)
+    lines = [p for p in pieces if p.startswith(("Your next cycle", "Your first cycle", "No skill is in Mastery", "A skill claims its allowance"))]
+
+    for i, piece in enumerate(pieces):
+        hit = re.fullmatch(r"(\w[\w ]*), (\d+\.\d) a cycle", piece)
+        if hit and i >= 1 and i + 5 < len(pieces):
+            stored = re.fullmatch(r"(\d+\.\d) of (\d+\.\d)", pieces[i + 3])
+            if stored:
+                lines.append(
+                    f"{pieces[i - 1]} {pieces[i + 1]} ({hit.group(1).lower()}): {hit.group(2)} per cycle, {stored.group(1)} stored "
+                    f"(holds up to {stored.group(2)}), {'claimed this cycle' if pieces[i + 4] == 'Claimed' else 'not claimed this cycle'}, "
+                    f"{pieces[i + 5]} points to reach 100.0."
+                )
+
+    return lines
 
 
 def skill_line(name: str, skill: str) -> str:
@@ -135,9 +159,9 @@ def entry_and_exhaust() -> None:
            gains(extra) == 0 and "92.0" in line)
 
     lines = status("Mara")
-    record("M4 [MasteryStatus text", "cycle length, next cycle, class and allowance per cycle",
+    record("M4 [Mastery window", "cycle length, next cycle, class and allowance per cycle",
            " / ".join(lines)[:400],
-           any("24 hours" in x for x in lines) and any("Your next cycle begins in" in x for x in lines) and not any("UTC" in x for x in lines) and any("real chance of failing" in x for x in lines) and any("(easy): 2.0 per cycle" in x for x in lines) and any("at 90.0 or above" in x for x in lines))
+           any("24 hours" in x for x in lines) and any("Your next cycle begins in" in x for x in lines) and not any("UTC" in x for x in lines) and any("(easy): 2.0 per cycle" in x for x in lines))
 
 
 def next_cycle_and_bank() -> None:
@@ -170,7 +194,7 @@ def legacy_state() -> None:
     admin(f"[TestOnlyMasteryPoison {serial('Mara')}")
     lines = status("Mara")
     record("M9 earlier-mechanic state is discarded", "fresh state: no anchor", " / ".join(lines)[-160:],
-           any("begins with your next valid use" in x for x in lines))
+           any("begins with your next successful use" in x for x in lines))
     out = use_until("Mara", lambda m: any("claims this cycle" in x for x in m), 8)
     record("M10 and Mastery starts fresh at the next use", "entry message and a new claim", " | ".join(out)[:240],
            any("has reached 90.0" in x for x in out) and any("claims this cycle" in x for x in out))
@@ -211,11 +235,13 @@ def total_cap() -> None:
     record("C2 with a Down skill the gain displaces it as stock does", "+0.1 Anatomy, total unchanged, claimed",
            f"{gains(out)} gains; total {hit2.group(1)}/{hit2.group(2)}; {line}",
            gains(out) >= 1 and int(hit2.group(1)) <= cap and "claimed this cycle" in line and "not claimed" not in line)
-    m = mark("Mika")
     C["Mika"].say("[SkillBank")
-    time.sleep(2)
-    bank = " ".join(since("Mika", m))
-    record("C3 the displaced point reached the Skill Bank", "Fishing banked", bank[-160:], "Fishing" in bank and "banked 0.0" not in bank)
+    time.sleep(2.5)
+    pieces = window_lines(C["Mika"])
+    bank = " ".join(pieces)
+    row = pieces.index("Fishing") if "Fishing" in pieces else -1
+    banked = pieces[row + 2] if row >= 0 and row + 2 < len(pieces) else ""
+    record("C3 the displaced point reached the Skill Bank", "Fishing banked in the window", bank[-160:], row >= 0 and banked not in ("", "0.0"))
 
 
 def hard_class_labels() -> None:

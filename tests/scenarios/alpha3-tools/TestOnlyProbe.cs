@@ -4,7 +4,9 @@ using BritanniaRenaissance.Content;
 using Server;
 using Server.Commands;
 using Server.Items;
+using Server.Misc;
 using Server.Mobiles;
+using Server.Accounting;
 
 namespace Alpha3TestOnlyTools;
 
@@ -28,6 +30,159 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyCorpseAggressors", AccessLevel.Administrator, OnCorpseAggressorsCommand);
         CommandSystem.Register("TestOnlyCorpseInventory", AccessLevel.Administrator, OnCorpseInventoryCommand);
         CommandSystem.Register("TestOnlyReportFlags", AccessLevel.Administrator, OnReportFlagsCommand);
+        CommandSystem.Register("TestOnlySkillBankSeed", AccessLevel.Administrator, OnSkillBankSeedCommand);
+        CommandSystem.Register("TestOnlyDoubleClick", AccessLevel.Administrator, OnDoubleClickCommand);
+        CommandSystem.Register("TestOnlySkillUse", AccessLevel.Administrator, OnSkillUseCommand);
+        CommandSystem.Register("TestOnlyFaintAge", AccessLevel.Administrator, OnFaintAgeCommand);
+        CommandSystem.Register("TestOnlySkillCap", AccessLevel.Administrator, OnSkillCapCommand);
+    }
+
+    // [TestOnlySkillUse <player-serial> <Skill> <count>] makes that many skill checks that always succeed, each at a place the anti-macro
+    // check has not seen, so every one reaches the gain hook (Skill Bank, Faint Memories, Mastery, then the stock roll) the way a real use
+    // does. Count 0 only reports. Reports "SkillUse <Skill> before=<tenths> after=<tenths> lock=<Up|Down|Locked> total=<tenths>/<cap>".
+    private static void OnSkillUseCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player ||
+            e.Length < 3 || !Enum.TryParse<SkillName>(e.GetString(1), true, out var name) || !int.TryParse(e.GetString(2), out var count))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlySkillUse <player-serial> <Skill> <count>");
+            return;
+        }
+
+        var skill = player.Skills[name];
+        var before = skill.BaseFixedPoint;
+
+        for (var i = 0; i < count; i++)
+        {
+            SkillCheck.CheckSkill(player, skill, new object(), 1.0);
+        }
+
+        e.Mobile.SendMessage($"SkillUse {name} before={before} after={skill.BaseFixedPoint} lock={skill.Lock} total={player.Skills.Total}/{player.Skills.Cap}");
+    }
+
+    // [TestOnlySkillCap <player-serial> <tenths>] sets the character's total skill cap, so the "at the cap" cases need no 700 points of skills.
+    // Reports "SkillCap <tenths> total=<tenths>".
+    private static void OnSkillCapCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player ||
+            e.Length < 2 || !int.TryParse(e.GetString(1), out var cap) || cap <= 0)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlySkillCap <player-serial> <tenths>");
+            return;
+        }
+
+        player.Skills.Cap = cap;
+        e.Mobile.SendMessage($"SkillCap {player.Skills.Cap} total={player.Skills.Total}");
+    }
+
+    // [TestOnlyFaintAge <player-serial> <hours>] moves the character's Faint Memories grant that far into the past, so the wait can be
+    // rehearsed without waiting. Reports "FaintAge remaining=<tenths> granted=<UTC>".
+    private static void OnFaintAgeCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player ||
+            player.Account is not Account account || e.Length < 2 ||
+            !double.TryParse(e.GetString(1), NumberStyles.Float, CultureInfo.InvariantCulture, out var hours) ||
+            !FaintMemoriesService.TryLoad(player, out var state))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyFaintAge <player-serial> <hours> (the character must have Faint Memories)");
+            return;
+        }
+
+        state = state with { GrantedUtc = state.GrantedUtc.AddHours(-hours) };
+        account.SetTag("BritanniaRenaissance.FaintMemories.v1." + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture), FaintMemoriesPolicy.Serialize(state));
+        e.Mobile.SendMessage($"FaintAge remaining={state.RemainingTenths} granted={state.GrantedUtc:u}");
+    }
+
+    // [TestOnlyDoubleClick <player-serial> <ItemTypeName>] double-clicks the first item of that type in the player's backpack for them (a
+    // player's client does the same when they double-click it), so what that opens can be checked without finding the item on screen.
+    private static void OnDoubleClickCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (e.Length < 2 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyDoubleClick <player-serial> <ItemTypeName>");
+            return;
+        }
+
+        Item? item = null;
+
+        if (player.Backpack is { } pack)
+        {
+            foreach (var held in pack.FindItemsByType<Item>(true))
+            {
+                if (held.GetType().Name == e.GetString(1))
+                {
+                    item = held;
+                    break;
+                }
+            }
+        }
+
+        if (item is null)
+        {
+            e.Mobile.SendMessage($"DoubleClick {e.GetString(1)} none");
+            return;
+        }
+
+        item.OnDoubleClick(player);
+        e.Mobile.SendMessage($"DoubleClick {e.GetString(1)} done");
+    }
+
+    // [TestOnlySkillBankSeed <player-serial> [+] Anatomy=35 Hiding=12:down ...] replaces the player's Skill Bank with these entries (tenths of
+    // a point, optionally set Down), or with "+" adds to what is there (a typed line is short, so a long bank is seeded in pieces), so the
+    // [SkillBank window can be looked at with something in it. Reports "SkillBankSeed player=<name> total=<tenths> entries=<n>".
+    private static void OnSkillBankSeedCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlySkillBankSeed <player-serial> Skill=tenths[:down] ...");
+            return;
+        }
+
+        var capacity = ShardRulesConfiguration.Settings!.SkillBank.CapacityTenths;
+        var add = e.Length > 1 && e.GetString(1) == "+";
+        var ledger = new SkillBankLedger(capacity);
+
+        if (add && !SkillBankLedger.TryDeserialize(player.SkillBankData, capacity, id => (player.Skills[id].Info.Name, player.Skills[id].CapFixedPoint), out ledger))
+        {
+            ledger = new SkillBankLedger(capacity);
+        }
+
+        var entries = 0;
+
+        for (var i = add ? 2 : 1; i < e.Length; i++)
+        {
+            var parts = e.GetString(i).Split('=', 2);
+            var amount = parts.Length == 2 ? parts[1].Split(':') : [];
+
+            if (amount.Length == 0 || !Enum.TryParse<SkillName>(parts[0], true, out var name) || !int.TryParse(amount[0], out var tenths))
+            {
+                e.Mobile.SendMessage($"Skipped '{e.GetString(i)}'.");
+                continue;
+            }
+
+            var skill = player.Skills[(int)name];
+            ledger.Deposit((int)name, skill.Info.Name, tenths, skill.CapFixedPoint);
+
+            if (amount.Length > 1 && amount[1].Equals("down", StringComparison.OrdinalIgnoreCase))
+            {
+                ledger.SetRetention((int)name, BankRetention.Down);
+            }
+
+            entries++;
+        }
+
+        player.SkillBankData = ledger.Serialize();
+        e.Mobile.SendMessage($"SkillBankSeed player={player.Name} total={ledger.TotalTenths} entries={entries}");
     }
 
     // Reports a mobile's aggressor records, "ReportFlags target=<name> aggressors=<attacker>:can=<0|1>:crim=<0|1>:rep=<0|1>,...|none":

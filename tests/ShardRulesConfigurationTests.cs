@@ -137,6 +137,54 @@ public class ShardRulesConfigurationTests
     }
 
     [Fact]
+    public void SkillBankRestoresInStepsOfOneToTenTenths()
+    {
+        var rules = Baseline();
+        Assert.Equal(2, rules.SkillBank.RestoreStepTenths);
+
+        foreach (var bad in new[] { 0, 11, -1 })
+        {
+            rules.SkillBank.RestoreStepTenths = bad;
+            Assert.Contains(
+                ShardRulesConfiguration.Validate(rules),
+                error => error.Contains("skillBank.restoreStepTenths", StringComparison.Ordinal)
+            );
+        }
+
+        rules.SkillBank.RestoreStepTenths = 1;
+        Assert.Empty(ShardRulesConfiguration.Validate(rules));
+    }
+
+    [Fact]
+    public void FaintMemoriesIsOffByDefaultAndNeedsTheSkillBank()
+    {
+        var rules = Baseline();
+        Assert.False(rules.FeatureFlags.FaintMemories);
+
+        rules.FeatureFlags.FaintMemories = true;
+        Assert.Contains(
+            ShardRulesConfiguration.Validate(rules),
+            error => error.Contains("faintMemories requires skillBank", StringComparison.Ordinal)
+        );
+
+        rules.Alpha3EnablementAcknowledged = true;
+        rules.FeatureFlags.SkillBank = true;
+        Assert.Empty(ShardRulesConfiguration.Validate(rules));
+    }
+
+    [Fact]
+    public void FaintMemoriesNumbersAreValidatedWithTheRestOfTheConfiguration()
+    {
+        var rules = Baseline();
+        rules.FaintMemories.Ceiling = 95.0;
+
+        Assert.Contains(
+            ShardRulesConfiguration.Validate(rules),
+            error => error.Contains("faintMemories.ceiling", StringComparison.Ordinal)
+        );
+    }
+
+    [Fact]
     public void SkillBankRequiresAlphaThreeAcknowledgment()
     {
         var rules = Baseline();

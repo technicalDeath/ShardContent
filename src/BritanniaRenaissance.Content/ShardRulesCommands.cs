@@ -18,10 +18,11 @@ public static class ShardRulesCommands
         CommandSystem.Register("KnockedOutStatus", AccessLevel.Administrator, OnKnockedOutStatus);
         CommandSystem.Register("KnockedOutRecover", AccessLevel.Administrator, OnKnockedOutRecover);
         CommandSystem.Register("Execute", AccessLevel.Player, OnExecute);
-        CommandSystem.Register("MasteryStatus", AccessLevel.Player, OnMasteryStatus);
+        CommandSystem.Register("Mastery", AccessLevel.Player, OnMastery);
         CommandSystem.Register("SkillBank", AccessLevel.Player, OnSkillBank);
         CommandSystem.Register("SkillBankStatus", AccessLevel.Administrator, OnSkillBankStatus);
         CommandSystem.Register("SkillBankRecover", AccessLevel.Administrator, OnSkillBankRecover);
+        CommandSystem.Register("GrantFaintMemories", AccessLevel.Administrator, OnGrantFaintMemories);
         CommandSystem.Register("HotZoneStatus", AccessLevel.Administrator, OnHotZoneStatus);
         CommandSystem.Register("Welcome", AccessLevel.Player, OnWelcome);
         CommandSystem.Register("HarvestRepeatStatus", AccessLevel.Administrator, OnHarvestRepeatStatus);
@@ -85,9 +86,15 @@ public static class ShardRulesCommands
     }
 
     [Usage("IntentStatus")]
-    [Description("Displays the safe-world PvP Intent status.")]
+    [Description("Opens a window showing whether your Criminal Intent is on, with a button to change it. Staff see the policy diagnostics.")]
     private static void OnIntentStatus(CommandEventArgs e)
     {
+        if (e.Mobile is PlayerMobile { AccessLevel: AccessLevel.Player } player)
+        {
+            StatusWindows.OpenIntent(player);
+            return;
+        }
+
         foreach (var line in PvpIntentService.DescribeStatus(e.Mobile))
         {
             e.Mobile.SendMessage(line);
@@ -223,9 +230,9 @@ public static class ShardRulesCommands
         }
     }
 
-    [Usage("MasteryStatus [serial]")]
-    [Description("Displays your Mastery cycle and each Mastery skill's allowance; staff may name a player.")]
-    private static void OnMasteryStatus(CommandEventArgs e)
+    [Usage("Mastery [serial]")]
+    [Description("Opens a window with your Mastery cycle and each Mastery skill's allowance; staff may name a player.")]
+    private static void OnMastery(CommandEventArgs e)
     {
         var subject = e.Mobile;
 
@@ -240,14 +247,11 @@ public static class ShardRulesCommands
             }
         }
 
-        foreach (var line in MasteryProgression.DescribeStatus(e.Mobile, subject))
-        {
-            e.Mobile.SendMessage(line);
-        }
+        MasteryGump.Open(e.Mobile, subject);
     }
 
     [Usage("SkillBank [lock|down <skill>]")]
-    [Description("Displays stored skills or changes a banked skill's retention setting.")]
+    [Description("Opens your Skill Bank window; the window's buttons set a banked skill to Locked or Down.")]
     private static void OnSkillBank(CommandEventArgs e)
     {
         if (e.Length > 0)
@@ -266,15 +270,26 @@ public static class ShardRulesCommands
                 "down" => BankRetention.Down,
                 _ => (BankRetention?)null
             };
-            e.Mobile.SendMessage(retention is null
-                ? "Use lock or down for bank retention."
-                : SkillBankService.SetRetention(player, (int)skillName, retention.Value));
+            if (retention is null)
+            {
+                e.Mobile.SendMessage("Use lock or down for bank retention.");
+                return;
+            }
+
+            var message = SkillBankService.SetRetention(player, (int)skillName, retention.Value);
+            var done = message.EndsWith($"set to {retention}.", StringComparison.Ordinal);
+            SkillBankGump.Open(
+                player,
+                0,
+                done ? SkillBankGump.DescribeChange(player.Skills[(int)skillName].Info.Name, retention.Value) : message,
+                done ? GumpStyle.Good : GumpStyle.Warning
+            );
             return;
         }
 
-        foreach (var line in SkillBankService.Describe(e.Mobile))
+        if (e.Mobile is PlayerMobile self)
         {
-            e.Mobile.SendMessage(line);
+            SkillBankGump.Open(self);
         }
     }
 
@@ -298,6 +313,20 @@ public static class ShardRulesCommands
         {
             e.Mobile.SendMessage(line);
         }
+    }
+
+    [Usage("GrantFaintMemories <serial>")]
+    [Description("Gives a player character the standard Faint Memories pool if it has none. Never grants twice.")]
+    private static void OnGrantFaintMemories(CommandEventArgs e)
+    {
+        if (e.Length < 1 || World.FindMobile((Serial)e.GetUInt32(0)) is not PlayerMobile { AccessLevel: AccessLevel.Player } target)
+        {
+            e.Mobile.SendMessage("Specify the serial of a player character.");
+            return;
+        }
+
+        FaintMemoriesService.TryGrant(target, out var message);
+        e.Mobile.SendMessage(message);
     }
 
     [Usage("SkillBankRecover <serial>")]

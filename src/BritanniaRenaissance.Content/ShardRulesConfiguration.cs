@@ -292,6 +292,18 @@ public static class ShardRulesConfiguration
             errors.Add("skillBank.capacityTenths must be between 1 and 60000.");
         }
 
+        if (rules.SkillBank.RestoreStepTenths is < 1 or > 10)
+        {
+            errors.Add("skillBank.restoreStepTenths must be between 1 and 10.");
+        }
+
+        FaintMemoriesPolicy.Validate(rules.FaintMemories, errors);
+
+        if (rules.FeatureFlags.FaintMemories && !rules.FeatureFlags.SkillBank)
+        {
+            errors.Add("faintMemories requires skillBank.");
+        }
+
         if (rules.Housing.RuralCostMultiplier is < 2m or > 5m)
         {
             errors.Add("housing.ruralCostMultiplier must be between 2.0 and 5.0.");
@@ -391,6 +403,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("skillBank")]
     public SkillBankRules SkillBank { get; set; } = new();
+
+    [JsonPropertyName("faintMemories")]
+    public FaintMemoriesRules FaintMemories { get; set; } = new();
 
     [JsonPropertyName("wardVendor")]
     public WardVendorRules WardVendor { get; set; } = new();
@@ -576,6 +591,31 @@ public sealed class SkillBankRules
 {
     [JsonPropertyName("capacityTenths")]
     public int CapacityTenths { get; set; } = 3000;
+
+    /// <summary>How much one restoration returns, in tenths (owner ruling 2026-10-07: 0.2, to make retraining faster). One tenth is returned when that is all that is left.</summary>
+    [JsonPropertyName("restoreStepTenths")]
+    public int RestoreStepTenths { get; set; } = 2;
+}
+
+/// <summary>
+/// Faint Memories (owner request 2026-10-07): free skill points every new character starts with, held beside the Skill Bank and
+/// returned the same way, from <see cref="UnlockHours"/> after the character was created. See <see cref="FaintMemoriesPolicy"/>.
+/// </summary>
+public sealed class FaintMemoriesRules
+{
+    [JsonPropertyName("points")]
+    public double Points { get; set; } = 5.0;
+
+    [JsonPropertyName("unlockHours")]
+    public double UnlockHours { get; set; } = 24.0;
+
+    /// <summary>A skill below this is left to the stock gain, which is already faster there (0.1 to 0.4 on every use).</summary>
+    [JsonPropertyName("floor")]
+    public double Floor { get; set; } = 10.0;
+
+    /// <summary>Free points stop here: from Mastery's threshold up, the allowance is earned.</summary>
+    [JsonPropertyName("ceiling")]
+    public double Ceiling { get; set; } = 90.0;
 }
 
 /// <summary>
@@ -742,6 +782,9 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("skillBank")]
     public bool SkillBank { get; set; }
 
+    [JsonPropertyName("faintMemories")]
+    public bool FaintMemories { get; set; }
+
     [JsonPropertyName("petRestrictions")]
     public bool PetRestrictions { get; set; }
 
@@ -797,6 +840,7 @@ public sealed class DeferredFeatureFlags
         if (Alpha3StarterCraftMaterials) yield return nameof(Alpha3StarterCraftMaterials);
         if (Alpha3StarterCombatGear) yield return nameof(Alpha3StarterCombatGear);
         if (SkillBank) yield return nameof(SkillBank);
+        if (FaintMemories) yield return nameof(FaintMemories);
         if (PetRestrictions) yield return nameof(PetRestrictions);
         if (SkillGainCurve) yield return nameof(SkillGainCurve);
         if (HythlothHotZone) yield return nameof(HythlothHotZone);
@@ -810,7 +854,7 @@ public sealed class DeferredFeatureFlags
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

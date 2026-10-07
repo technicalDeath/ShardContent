@@ -360,7 +360,7 @@ public class BackpackWardStateTests
     {
         var lines = Described(phase);
 
-        Assert.Contains("activates when a theft against you is noticed", lines[2]);
+        Assert.Contains("activates when a theft against you is detected", lines[2]);
         Assert.Contains("by you or by the ward", lines[2]);
         Assert.Contains("blocks every thief it caught", lines[3]);
         Assert.Contains("30 minutes pass with no theft attempt", lines[3]);

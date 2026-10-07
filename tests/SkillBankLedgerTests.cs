@@ -296,18 +296,19 @@ public class SkillBankLedgerTests
     }
 
     [Fact]
-    public void CapacityStatusWarnsBeforeLossAndExplainsFullBankReplacement()
+    public void FullnessIsSilentUntilTheBankIsNearlyFullThenSaysWhatToDo()
     {
-        var bank = new SkillBankLedger(10);
-        bank.Deposit(1, "Anatomy", 9, 1000);
+        Assert.Equal(string.Empty, SkillBankService.DescribeFullness(0, 3000, false));
+        Assert.Equal(string.Empty, SkillBankService.DescribeFullness(2699, 3000, false));
 
-        Assert.Contains("0.1 points remain", Assert.Single(SkillBankService.DescribeCapacityRisk(bank)));
+        var near = SkillBankService.DescribeFullness(2995, 3000, false);
+        Assert.Contains("nearly full: room for 0.5 more points", near);
+        Assert.Contains("Set a banked skill to Down", near);
+        Assert.Contains("Points from a skill set to Down can be replaced", SkillBankService.DescribeFullness(2995, 3000, true));
 
-        bank.Deposit(1, "Anatomy", 1, 1000);
-        Assert.Contains("cannot be banked", Assert.Single(SkillBankService.DescribeCapacityRisk(bank)));
-
-        Assert.True(bank.SetRetention(1, BankRetention.Down));
-        Assert.Contains("may replace", Assert.Single(SkillBankService.DescribeCapacityRisk(bank)));
+        var full = SkillBankService.DescribeFullness(3000, 3000, false);
+        Assert.Contains("so new points cannot be saved", full);
+        Assert.Contains("replacing points from a skill set to Down", SkillBankService.DescribeFullness(3000, 3000, true));
     }
 
 }

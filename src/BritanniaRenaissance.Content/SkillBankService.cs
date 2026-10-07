@@ -19,6 +19,9 @@ public static class SkillBankService
 
     public static bool Enabled => ShardRulesConfiguration.Settings?.FeatureFlags.SkillBank == true;
 
+    /// <summary>How much one restoration returns, in tenths: 0.2 (owner ruling 2026-10-07), or 0.1 when that is all there is.</summary>
+    public static int RestoreStepTenths => ShardRulesConfiguration.Settings?.SkillBank.RestoreStepTenths ?? 2;
+
     public static void Configure()
     {
         if (_configured)
@@ -30,60 +33,100 @@ public static class SkillBankService
         SkillEvents.SkillDisplaced += OnSkillDisplaced;
     }
 
-    public static IEnumerable<string> Describe(Mobile mobile)
+    /// <summary>One banked skill as the Skill Bank window shows it: the skill now, what is banked, and how the bank may treat it.</summary>
+    public sealed record SkillBankRow(int SkillId, string Name, int ActiveTenths, int BankedTenths, BankRetention Retention);
+
+    public sealed record SkillBankView(
+        int TotalTenths,
+        int CapacityTenths,
+        IReadOnlyList<SkillBankRow> Rows,
+        FaintMemoriesView? FaintMemories = null
+    )
+    {
+        public bool HasDown => Rows.Any(row => row.Retention == BankRetention.Down);
+    }
+
+    public readonly record struct SkillBankDiscardResult(bool Discarded, int Tenths, string Message);
+
+    /// <summary>What the player's Skill Bank holds, or null when the bank is off or its data needs staff review.</summary>
+    public static SkillBankView? GetView(PlayerMobile player)
+    {
+        if (!Enabled || !TryLoad(player, out var ledger))
+        {
+            return null;
+        }
+
+        return new SkillBankView(
+            ledger.TotalTenths,
+            ledger.CapacityTenths,
+            ledger.Balances
+                .Select(balance => new SkillBankRow(
+                    balance.SkillId,
+                    player.Skills[balance.SkillId].Info.Name,
+                    player.Skills[balance.SkillId].BaseFixedPoint,
+                    balance.Tenths,
+                    balance.Retention
+                ))
+                .ToArray(),
+            FaintMemoriesService.GetView(player)
+        );
+    }
+
+    /// <summary>
+    /// Throws away every banked point of one skill, at the player's own request (the window asks them to type the word first).
+    /// The skill itself is untouched and the freed room can be used at once.
+    /// </summary>
+    public static SkillBankDiscardResult Discard(PlayerMobile player, int skillId)
     {
         if (!Enabled)
         {
-            yield return "The Skill Bank is not enabled.";
-            yield break;
+            return new SkillBankDiscardResult(false, 0, "The Skill Bank is not enabled.");
         }
 
-        if (mobile is not PlayerMobile player)
+        if (skillId < 0 || skillId >= player.Skills.Length || player.Skills[skillId] is not { } skill)
         {
-            yield break;
+            return new SkillBankDiscardResult(false, 0, "That is not a skill.");
         }
 
         if (!TryLoad(player, out var ledger))
         {
-            yield return "Skill Bank data requires staff review.";
-            yield break;
+            return new SkillBankDiscardResult(false, 0, "Skill Bank data requires staff review.");
         }
 
-        yield return $"Skill Bank: {ledger.TotalTenths / 10.0:0.0}/{ledger.CapacityTenths / 10.0:0.0} points.";
-        yield return $"Free bank capacity: {(ledger.CapacityTenths - ledger.TotalTenths) / 10.0:0.0} points.";
-        foreach (var warning in DescribeCapacityRisk(ledger))
+        var name = skill.Info.Name;
+        var tenths = ledger.Discard(skillId);
+        if (tenths == 0)
         {
-            yield return warning;
+            return new SkillBankDiscardResult(false, 0, $"Nothing is banked for {name}.");
         }
 
-        yield return "Use [SkillBank lock <skill> or [SkillBank down <skill> to set bank retention.";
-        foreach (var balance in ledger.Balances)
-        {
-            var active = player.Skills[balance.SkillId].Base;
-            yield return $"{balance.SkillName} ({balance.SkillId}): active {active:0.0}, banked {balance.Tenths / 10.0:0.0}, {balance.Retention}.";
-        }
+        player.SkillBankData = ledger.Serialize();
+        ShardAuditLog.Record("skillbank", "discarded", player, null, $"skill={name}; tenths={tenths}");
+        return new SkillBankDiscardResult(true, tenths, $"Discarded {GumpStyle.Points(tenths)} banked points of {name}.");
     }
 
-    public static IEnumerable<string> DescribeCapacityRisk(SkillBankLedger ledger)
+    /// <summary>
+    /// A line about how full the bank is, in a player's words, or nothing while there is plenty of room. "Down" is the setting that
+    /// lets a banked skill's points be replaced when the bank has no room for new ones.
+    /// </summary>
+    public static string DescribeFullness(int totalTenths, int capacityTenths, bool hasDown)
     {
-        var freeTenths = ledger.CapacityTenths - ledger.TotalTenths;
-        if (freeTenths > ledger.CapacityTenths / 10)
+        var freeTenths = capacityTenths - totalTenths;
+        if (freeTenths > capacityTenths / 10)
         {
-            yield break;
+            return string.Empty;
         }
 
-        var hasDownBalance = ledger.Balances.Any(balance => balance.Retention == BankRetention.Down);
-        if (freeTenths == 0)
+        if (freeTenths <= 0)
         {
-            yield return hasDownBalance
-                ? "Skill Bank full: a new eligible loss may replace points from the largest banked Down entry."
-                : "The next displaced skill point cannot be banked until capacity is freed or a banked entry is set Down.";
-            yield break;
+            return hasDown
+                ? "The bank is full. New points can still be saved by replacing points from a skill set to Down."
+                : "The bank is full, so new points cannot be saved. Set a banked skill to Down to let its points be replaced.";
         }
 
-        yield return hasDownBalance
-            ? $"Skill Bank nearing capacity: {freeTenths / 10.0:0.0} points remain; later eligible losses may replace banked Down entries."
-            : $"Skill Bank nearing capacity: {freeTenths / 10.0:0.0} points remain; eligible losses beyond that amount will not be banked unless an entry is set Down.";
+        return hasDown
+            ? $"The bank is nearly full: room for {GumpStyle.Points(freeTenths)} more points. Points from a skill set to Down can be replaced."
+            : $"The bank is nearly full: room for {GumpStyle.Points(freeTenths)} more points. Set a banked skill to Down if you want its points to be replaceable.";
     }
 
     public static IEnumerable<string> DescribeForStaff(PlayerMobile player)
@@ -105,7 +148,12 @@ public static class SkillBankService
             yield break;
         }
 
-        yield return $"Saved Skill Bank payload is valid; {ledger.TotalTenths / 10.0:0.0}/{ledger.CapacityTenths / 10.0:0.0} points across {ledger.Balances.Count} entries.";
+        yield return $"Saved Skill Bank payload is valid; {ledger.TotalTenths / 10.0:0.0}/{ledger.CapacityTenths / 10.0:0.0} points across {ledger.Balances.Count} entries; restores {RestoreStepTenths / 10.0:0.0} at a time.";
+        foreach (var line in FaintMemoriesService.DescribeForStaff(player))
+        {
+            yield return line;
+        }
+
         foreach (var balance in ledger.Balances)
         {
             yield return $"{balance.SkillName} ({balance.SkillId}): active {player.Skills[balance.SkillId].Base:0.0}, banked {balance.Tenths / 10.0:0.0}, {balance.Retention}.";
@@ -170,19 +218,24 @@ public static class SkillBankService
             return SkillBankRestoreOutcome.Blocked;
         }
 
-        return RestoreFromValidatedLedger(
+        var outcome = RestoreFromValidatedLedger(
             player,
             skill,
             ledger,
-            ShardRulesConfiguration.Settings.Character.IndividualSkillCap * 10
+            ShardRulesConfiguration.Settings.Character.IndividualSkillCap * 10,
+            RestoreStepTenths
         );
+
+        // A skill with no banked points of its own may draw on Faint Memories, which comes back the same way.
+        return outcome == SkillBankRestoreOutcome.NotApplicable ? FaintMemoriesService.TryRestore(player, skill) : outcome;
     }
 
     public static SkillBankRestoreOutcome RestoreFromValidatedLedger(
         PlayerMobile player,
         Skill skill,
         SkillBankLedger ledger,
-        int configuredIndividualCapTenths
+        int configuredIndividualCapTenths,
+        int stepTenths = 1
     )
     {
         if (skill.Owner.Owner != player || configuredIndividualCapTenths <= 0)
@@ -223,7 +276,9 @@ public static class SkillBankService
                 player.Skills.Total,
                 player.Skills.Cap,
                 downSkills,
-                out var plan
+                out var plan,
+                stepTenths,
+                individualCap - skill.BaseFixedPoint
             ))
         {
             return SkillBankRestoreOutcome.Blocked;
@@ -233,10 +288,10 @@ public static class SkillBankService
         var downSkill = plan.DownSkillId is int downId ? player.Skills[downId] : null;
         if (downSkill is not null)
         {
-            downSkill.BaseFixedPoint--;
+            downSkill.BaseFixedPoint -= plan.DownTenths;
         }
 
-        skill.BaseFixedPoint++;
+        skill.BaseFixedPoint += plan.RestoredTenths;
         player.SkillBankData = payload;
         return SkillBankRestoreOutcome.Restored;
     }

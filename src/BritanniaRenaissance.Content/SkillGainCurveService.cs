@@ -23,7 +23,8 @@ public static class SkillGainCurveService
 
     public const int LastUorSkillId = (int)SkillName.RemoveTrap;
 
-    private static readonly string[] ClassNames = ["easy", "standard", "hard", "veryHard"];
+    /// <summary>The classes in the order players are shown them, quickest first.</summary>
+    public static readonly string[] ClassNames = ["easy", "standard", "hard", "veryHard"];
 
     private static bool _configured;
     private static ShardRules? _cacheKey;
@@ -188,39 +189,12 @@ public static class SkillGainCurveService
     }
 
     [Usage("SkillClasses")]
-    [Description("Lists each skill's training class and how fast it gains.")]
+    [Description("Opens a window showing each skill's training class and how fast it gains.")]
     private static void OnSkillClasses(CommandEventArgs e)
     {
-        var from = e.Mobile;
-        var rules = ShardRulesConfiguration.Settings?.SkillGain;
-
-        if (rules is null || !Enabled)
+        if (e.Mobile is PlayerMobile player)
         {
-            from.SendMessage("Skills gain at the stock rate on this shard.");
-            return;
-        }
-
-        from.SendMessage($"Skill gain speed, compared with stock, from skill 10 up to {MasteryThreshold:0}:");
-
-        foreach (var name in ClassNames)
-        {
-            var members = rules.Skills
-                .Where(kv => string.Equals(kv.Value, name, StringComparison.OrdinalIgnoreCase) &&
-                             Enum.TryParse<SkillName>(kv.Key, false, out _))
-                .Select(kv => SkillInfo.Table[(int)Enum.Parse<SkillName>(kv.Key)].Name)
-                .OrderBy(n => n, StringComparer.OrdinalIgnoreCase)
-                .ToArray();
-
-            if (members.Length == 0 || !rules.Classes.TryGetValue(name, out var bands))
-            {
-                continue;
-            }
-
-            from.SendMessage(Describe(name, bands));
-            foreach (var line in Wrap(members, 70))
-            {
-                from.SendMessage(line);
-            }
+            SkillClassesGump.Open(player);
         }
     }
 
@@ -246,23 +220,49 @@ public static class SkillGainCurveService
         return $"{char.ToUpperInvariant(className[0])}{className[1..]}: {string.Join(", ", parts)}";
     }
 
-    private static IEnumerable<string> Wrap(IEnumerable<string> names, int width)
+    /// <summary>"stock speed" for 1.0, otherwise "1.5x stock speed".</summary>
+    public static string SpeedText(double multiplier) =>
+        Math.Abs(multiplier - 1.0) < 1e-9
+            ? "stock speed"
+            : string.Create(CultureInfo.InvariantCulture, $"{multiplier:0.##}x stock speed");
+
+    /// <summary>One line per band, between the unconditional-gain ceiling and the Mastery threshold: "Skill 10 to 70: 1.5x stock speed".</summary>
+    public static IReadOnlyList<string> SpeedLines(IReadOnlyList<SkillGainBand> bands)
     {
-        var line = "  ";
-        foreach (var name in names)
+        var ordered = bands.OrderBy(b => b.From).ToArray();
+        var lines = new List<string>();
+
+        for (var i = 0; i < ordered.Length; i++)
         {
-            if (line.Length + name.Length + 2 > width && line.Trim().Length > 0)
+            var upper = i + 1 < ordered.Length ? ordered[i + 1].From : MasteryThreshold;
+            var lower = Math.Max(ordered[i].From, UnconditionalGainCeiling);
+
+            if (upper > lower)
             {
-                yield return line.TrimEnd(',', ' ');
-                line = "  ";
+                lines.Add(string.Create(CultureInfo.InvariantCulture, $"Skill {lower:0} to {upper:0}: {SpeedText(ordered[i].Multiplier)}"));
             }
-
-            line += name + ", ";
         }
 
-        if (line.Trim().Length > 0)
+        return lines;
+    }
+
+    /// <summary>The bands on one line: "1.5x stock speed from 10 to 70, stock speed from 70 to 90".</summary>
+    public static string SpeedSummary(IReadOnlyList<SkillGainBand> bands)
+    {
+        var ordered = bands.OrderBy(b => b.From).ToArray();
+        var parts = new List<string>();
+
+        for (var i = 0; i < ordered.Length; i++)
         {
-            yield return line.TrimEnd(',', ' ');
+            var upper = i + 1 < ordered.Length ? ordered[i + 1].From : MasteryThreshold;
+            var lower = Math.Max(ordered[i].From, UnconditionalGainCeiling);
+
+            if (upper > lower)
+            {
+                parts.Add(string.Create(CultureInfo.InvariantCulture, $"{SpeedText(ordered[i].Multiplier)} from {lower:0} to {upper:0}"));
+            }
         }
+
+        return string.Join(", ", parts);
     }
 }

@@ -220,7 +220,7 @@ public static class WardDescription
 
         // Only a caught thief is blocked, so the lines say so rather than promise blanket protection (design Section 10).
         var window = (int)WardState.InactivityWindow.TotalMinutes;
-        yield return "It activates when a theft against you is noticed, by you or by the ward, which catches a repeat thief more often each time.";
+        yield return "It activates when a theft against you is detected, by you or by the ward, which catches a repeat thief more often each time.";
         yield return $"Once activated, it blocks every thief it caught from stealing from you until {window} minutes pass with no theft attempt against you, then it is used up. Thieves it has not caught can still try.";
 
         if (!inBackpack)

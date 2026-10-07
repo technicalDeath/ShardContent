@@ -17,7 +17,11 @@ public readonly record struct SkillBankActiveSkill(
     int SkillId, string SkillName, int BaseTenths, int IndividualCapTenths, bool IsDown
 );
 
-public readonly record struct SkillBankRestorationPlan(SkillBankLedger BankAfter, int? DownSkillId);
+/// <summary>
+/// One restoration: the bank afterwards, how many tenths the target skill gains, and (at the total cap) which Down skill
+/// gives up <paramref name="DownTenths"/> tenths to make room, which the bank then holds for that skill.
+/// </summary>
+public readonly record struct SkillBankRestorationPlan(SkillBankLedger BankAfter, int? DownSkillId, int RestoredTenths = 1, int DownTenths = 0);
 public readonly record struct SkillBankRecoveryResult(bool Changed, string? ArchivedPayload, string? ActivePayload, string Message);
 
 public static class SkillBankRecovery
@@ -149,58 +153,90 @@ public sealed class SkillBankLedger
         return new SkillBankDeposit(banked, tenths - banked, replaced);
     }
 
-    public bool TryConsume(int skillId)
+    public bool TryConsume(int skillId, int tenths = 1)
     {
-        if (!_balances.ContainsKey(skillId))
+        if (tenths < 1 || GetBalance(skillId) < tenths)
         {
             return false;
         }
 
-        RemoveOne(skillId);
+        for (var i = 0; i < tenths; i++)
+        {
+            RemoveOne(skillId);
+        }
+
         return true;
     }
 
+    /// <summary>Throws away everything banked for a skill (the player's own choice) and returns how many tenths that was; 0 if nothing was banked.</summary>
+    public int Discard(int skillId)
+    {
+        if (!_balances.Remove(skillId, out var balance))
+        {
+            return 0;
+        }
+
+        TotalTenths -= balance.Tenths;
+        return balance.Tenths;
+    }
+
+    /// <summary>
+    /// Plans one restoration of up to <paramref name="stepTenths"/> tenths into <paramref name="targetSkillId"/>, never more than
+    /// the skill's balance or <paramref name="roomTenths"/> (the room left under its own cap). Anything that would not fit under
+    /// the total cap has to come out of a single Down skill, and the bank keeps it for that skill. When the full step cannot be
+    /// made, the next smaller one is tried, down to one tenth.
+    /// </summary>
     public bool TryPlanRestoration(
         int targetSkillId,
         int activeTotalTenths,
         int activeCapTenths,
         IEnumerable<SkillBankActiveSkill> downSkills,
-        out SkillBankRestorationPlan plan
+        out SkillBankRestorationPlan plan,
+        int stepTenths = 1,
+        int roomTenths = int.MaxValue
     )
     {
         plan = default;
-        if (GetBalance(targetSkillId) == 0 || activeTotalTenths > activeCapTenths)
+        var balance = GetBalance(targetSkillId);
+        if (balance == 0 || activeTotalTenths > activeCapTenths || stepTenths < 1)
         {
             return false;
         }
 
-        var afterConsumption = Clone();
-        afterConsumption.TryConsume(targetSkillId);
-        if (activeTotalTenths < activeCapTenths)
-        {
-            plan = new SkillBankRestorationPlan(afterConsumption, null);
-            return true;
-        }
+        var candidates = downSkills as IReadOnlyList<SkillBankActiveSkill> ?? downSkills.ToArray();
 
-        foreach (var candidate in downSkills)
+        for (var amount = Math.Min(Math.Min(stepTenths, balance), roomTenths); amount >= 1; amount--)
         {
-            if (!candidate.IsDown || candidate.SkillId == targetSkillId ||
-                candidate.BaseTenths < 1 || candidate.IndividualCapTenths <= 0)
+            var afterConsumption = Clone();
+            afterConsumption.TryConsume(targetSkillId, amount);
+
+            var overflow = Math.Max(0, activeTotalTenths + amount - activeCapTenths);
+            if (overflow == 0)
             {
-                continue;
+                plan = new SkillBankRestorationPlan(afterConsumption, null, amount);
+                return true;
             }
 
-            var candidatePlan = afterConsumption.Clone();
-            var deposit = candidatePlan.Deposit(
-                candidate.SkillId,
-                candidate.SkillName,
-                1,
-                candidate.IndividualCapTenths
-            );
-            if (deposit.BankedTenths == 1 && deposit.ReplacedTenths == 0)
+            foreach (var candidate in candidates)
             {
-                plan = new SkillBankRestorationPlan(candidatePlan, candidate.SkillId);
-                return true;
+                if (!candidate.IsDown || candidate.SkillId == targetSkillId ||
+                    candidate.BaseTenths < overflow || candidate.IndividualCapTenths <= 0)
+                {
+                    continue;
+                }
+
+                var candidatePlan = afterConsumption.Clone();
+                var deposit = candidatePlan.Deposit(
+                    candidate.SkillId,
+                    candidate.SkillName,
+                    overflow,
+                    candidate.IndividualCapTenths
+                );
+                if (deposit.BankedTenths == overflow && deposit.ReplacedTenths == 0)
+                {
+                    plan = new SkillBankRestorationPlan(candidatePlan, candidate.SkillId, amount, overflow);
+                    return true;
+                }
             }
         }
 

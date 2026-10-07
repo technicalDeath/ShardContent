@@ -25,7 +25,9 @@ public class ShardBrandingTests
         var welcome = WelcomeGuide.Topics(new WelcomeGuide.Context(true, true, true, true, true), new CampTravelRules())
             .Single(t => t.Key == "welcome");
 
-        Assert.Contains("UO Rekindled: Felucca, without the griefing.", welcome.Paragraphs[0]);
+        // The window's header already shows the name and the tagline, so the first page greets without repeating the tagline.
+        Assert.Contains("Welcome to UO Rekindled.", welcome.Paragraphs[0]);
+        Assert.DoesNotContain(ShardBranding.Tagline, welcome.Paragraphs[0]);
     }
 
     [Fact]

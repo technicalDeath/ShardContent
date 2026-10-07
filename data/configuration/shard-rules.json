@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "ac1d0e2c8c6a7908773ae75bec0421f888bfc7a3",
+  "pinnedModernUoCommit": "ee7ccd518e99d272ffa8754b3b2f8d7f122dfea1",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -18,7 +18,14 @@
   "alpha2EnablementAcknowledged": true,
   "alpha3EnablementAcknowledged": true,
   "skillBank": {
-    "capacityTenths": 3000
+    "capacityTenths": 3000,
+    "restoreStepTenths": 2
+  },
+  "faintMemories": {
+    "points": 5.0,
+    "unlockHours": 24.0,
+    "floor": 10.0,
+    "ceiling": 90.0
   },
   "wardVendor": {
     "price": 2000,
@@ -185,6 +192,7 @@
     "alpha3StarterCraftMaterials": true,
     "alpha3StarterCombatGear": true,
     "skillBank": true,
+    "faintMemories": true,
     "petRestrictions": true,
     "skillGainCurve": true,
     "hythlothHotZone": true,

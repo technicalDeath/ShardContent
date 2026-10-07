@@ -13,8 +13,9 @@ public class WelcomeGuideTests
 
     private static WelcomeGuide.Context Context(
         bool theft = true, bool skillBank = true, bool skillClasses = true, bool camp = false, bool warning = false,
-        bool safeWorld = true, bool knockedOut = true, bool hotZones = true
-    ) => new(theft, skillBank, skillClasses, camp, warning, safeWorld, knockedOut, hotZones);
+        bool safeWorld = true, bool knockedOut = true, bool hotZones = true, bool campingKit = false, bool campingFires = false,
+        bool faintMemories = false
+    ) => new(theft, skillBank, skillClasses, camp, warning, safeWorld, knockedOut, hotZones, campingKit, campingFires, faintMemories);
 
     private static string[] Keys(WelcomeGuide.Context c) => WelcomeGuide.Topics(c, Rules).Select(t => t.Key).ToArray();
 
@@ -112,6 +113,7 @@ public class WelcomeGuideTests
         Assert.Contains("[Intent turns Criminal Intent on or off, and it stays as you leave it.", text);
         Assert.Contains("you appear grey and other players may attack you", text);
         Assert.Contains("Killing a player who has Intent on is not murder.", text);
+        Assert.Contains(PvpIntentService.NotACriminalNote, text);
         Assert.Contains("You cannot change it while you are a criminal or a murderer.", text);
         Assert.Contains("[IntentStatus shows whether it is on.", text);
     }
@@ -288,7 +290,7 @@ public class WelcomeGuideTests
         var text = Text("ward");
 
         Assert.Contains("A Ward does not change a thief's chance to steal from you, and it never undoes a theft: the thief keeps what they took.", text);
-        Assert.Contains("A thief is caught when a theft from you succeeds and either you notice it in the usual way or the Ward notices it for you.", text);
+        Assert.Contains("A thief is caught when a theft from you succeeds and either you detect it in the usual way or the Ward detects it for you.", text);
         Assert.Contains("A caught thief turns criminal and cannot steal from you again, on any of their characters, until the Ward is used up.", text);
         Assert.Contains("It does not stop thieves it has not caught, and it does nothing inside a Hot Zone.", text);
         Assert.Contains("Double-click a Ward to see what it is, where it stands (Unprimed, Primed or Activated) and how many quiet minutes are left.", text);
@@ -316,8 +318,8 @@ public class WelcomeGuideTests
     {
         var text = Text("ward");
 
-        Assert.Contains("Until a theft attempt has been noticed, by you or by the Ward, it only watches, and then it resets and you keep it.", text);
-        Assert.Contains("Once one has been noticed the Ward is activated: caught thieves stay blocked", text);
+        Assert.Contains("Until a theft attempt has been detected, by you or by the Ward, it only watches, and then it resets and you keep it.", text);
+        Assert.Contains("Once one has been detected the Ward is activated: caught thieves stay blocked", text);
         Assert.Contains("A blocked thief's attempts do not restart the timer.", text);
     }
 
@@ -359,7 +361,8 @@ public class WelcomeGuideTests
         Assert.Contains("2.0 for easy skills, 1.0 for standard ones and 0.6 for hard ones", text);
         Assert.Contains("at least 5 days for an easy skill, 10 for a standard one and 17 for a hard one", text);
         Assert.Contains("up to 3 cycles' worth", text);
-        Assert.Contains("[MasteryStatus", text);
+        Assert.Contains("[Mastery opens a window", text);
+        Assert.DoesNotContain("MasteryStatus", text);
         Assert.Contains("[SkillClasses", text);
         Assert.Contains("Points held in your Skill Bank come back before Mastery applies.", text);
         Assert.Contains("the use gives nothing and spends nothing", text);
@@ -399,15 +402,72 @@ public class WelcomeGuideTests
         Assert.Contains("# When the bank is full", topic.Paragraphs);
         Assert.Contains("# Commands", topic.Paragraphs);
         Assert.Contains("up to 700 points", text);
-        Assert.Contains("sometimes just below the cap, and every time at it", text);
+        Assert.Contains("more often the closer your total is to the cap, and every time at it", text);
+        Assert.Contains("whether or not you are at the cap", text);
         Assert.Contains("holds up to 300 points", text);
-        Assert.Contains("Only points lost to ordinary skill gain are banked.", text);
-        Assert.Contains("0.1 comes back from the bank instead of a normal gain", text);
+        Assert.Contains("Only points a Down skill loses to skill gain are banked.", text);
+        Assert.Contains("brings back 0.2 from the bank instead of a normal gain", text);
+        Assert.Contains("(0.1 if that is all that is left)", text);
+        Assert.DoesNotContain("each time it would gain", text);
         Assert.Contains("These two settings belong to the bank entry, not to the skill's arrow.", text);
         Assert.Contains("the points a skill loses are not banked, and you are told so", text);
-        Assert.Contains("[SkillBank lock Anatomy", text);
-        Assert.Contains("[SkillBank down Anatomy", text);
-        Assert.Contains("They work on skills that have points in the bank", text);
+        Assert.Contains("[SkillBank opens a window", text);
+        Assert.Contains("Press the box beside Locked or Down to change a skill's setting, or Discard to delete its banked points.", text);
+        Assert.DoesNotContain("[SkillBank lock", text);
+    }
+
+    [Fact]
+    public void TheSkillBankPageTellsPlayersTheyCanDiscardAndWhatToTypeToConfirm()
+    {
+        var text = Text("skillbank", Context());
+
+        Assert.Contains("# Discarding banked points", WelcomeGuide.Topics(Context(), Rules).Single(t => t.Key == "skillbank").Paragraphs);
+        Assert.Contains("press Discard beside it to delete its banked points and free the room", text);
+        Assert.Contains("type the word discard to be sure", text);
+        Assert.Contains("The points do not go back to the skill, and the skill stays as it is.", text);
+        Assert.Contains("or Discard to delete its banked points", text);
+    }
+
+    [Fact]
+    public void FaintMemoriesGetsItsOwnParagraphsOnlyWhileItIsSwitchedOn()
+    {
+        var off = Text("skillbank", Context());
+        var on = Text("skillbank", Context(faintMemories: true));
+        var paragraphs = WelcomeGuide.Topics(Context(faintMemories: true), Rules).Single(t => t.Key == "skillbank").Paragraphs;
+
+        Assert.DoesNotContain("Faint Memories", off);
+        Assert.Contains("# Faint Memories", paragraphs);
+        Assert.Contains("Faint memories of a past in Britannia linger, and skills of the past come back to you.", on);
+        Assert.Contains("Every new character starts with 5.0 points of Faint Memories, free, and they unlock 24 hours after the character was created.", on);
+        Assert.Contains("each use brings back 0.2 into it", on);
+        Assert.Contains("They never take a skill past 90.0, where Mastery begins, and a skill below 10.0 is left to ordinary gain.", on);
+        Assert.Contains("They do not use any room in the bank, and cannot be discarded.", on);
+        Assert.Contains("when they are gone the display goes with them", on);
+    }
+
+    [Fact]
+    public void TheFaintMemoriesParagraphsFollowTheConfiguredNumbers()
+    {
+        var text = Text(
+            "skillbank", Context(faintMemories: true),
+            new WelcomeGuide.Numbers(RestoreStepTenths: 3, FaintPointsTenths: 80, FaintHours: 12, FaintFloorTenths: 200, FaintCeilingTenths: 800)
+        );
+
+        Assert.Contains("starts with 8.0 points", text);
+        Assert.Contains("unlock 12 hours after", text);
+        Assert.Contains("each use brings back 0.3 into it", text);
+        Assert.Contains("past 80.0", text);
+        Assert.Contains("below 20.0", text);
+    }
+
+    [Fact]
+    public void TheCommandsListMentionsDiscardingAndFaintMemoriesOnlyWhenTheyExist()
+    {
+        var lines = WelcomeGuide.Topics(Context(), Rules).Single(t => t.Key == "commands").Paragraphs;
+        var withFaint = WelcomeGuide.Topics(Context(faintMemories: true), Rules).Single(t => t.Key == "commands").Paragraphs;
+
+        Assert.Contains("[SkillBank - Your banked skill points: whether each is Locked or Down, or discard them.", lines);
+        Assert.Contains("[SkillBank - Your banked skill points: whether each is Locked or Down, or discard them, and your Faint Memories.", withFaint);
     }
 
     [Fact]
@@ -417,6 +477,123 @@ public class WelcomeGuideTests
 
         Assert.Contains("up to 600 points", text);
         Assert.Contains("holds up to 150 points", text);
+    }
+
+    [Fact]
+    public void TheFirstPageDoesNotRepeatTheTaglineTheHeaderShows()
+    {
+        var text = Text("welcome");
+
+        Assert.Contains("Welcome to UO Rekindled.", text);
+        Assert.DoesNotContain(ShardBranding.Tagline, text);
+        Assert.DoesNotContain("without the griefing", text);
+    }
+
+    [Fact]
+    public void TheWardPageSaysDetectedNeverNoticed()
+    {
+        var text = Text("ward");
+
+        Assert.DoesNotContain("notice", text, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("the Ward gets an extra chance to detect it", text);
+        Assert.Contains("succeeds undetected", text);
+    }
+
+    [Fact]
+    public void AMissedMasteryCycleIsNotPresentedAsLostProgress()
+    {
+        var text = Text("mastery");
+
+        Assert.Contains("Nothing you have gained is ever taken away.", text);
+        Assert.Contains("A cycle in which a skill is not used simply gives that skill no allowance, and it is not made up later.", text);
+        Assert.DoesNotContain("is lost", text);
+    }
+
+    // ---- camping
+
+    [Fact]
+    public void CampingGetsAPageWhenEitherCampingSwitchIsOnBeforeCampTravel()
+    {
+        Assert.DoesNotContain("camping", Keys(Context()));
+        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "commands"], Keys(Context(campingFires: true)));
+        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "commands"], Keys(Context(campingKit: true)));
+        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "camp", "commands"], Keys(Context(campingKit: true, campingFires: true, camp: true)));
+    }
+
+    [Fact]
+    public void TheCampingPageQuotesTheShippedNumbersFromTheCode()
+    {
+        var text = Text("camping", Context(campingKit: true, campingFires: true));
+        var rules = new CampingRules();
+        var low = CampingService.TimingFor(rules, 0.0);
+        var high = CampingService.TimingFor(rules, 100.0);
+
+        Assert.Contains("Every new character starts with a Bedroll and 5 Kindling.", text);
+        Assert.Equal(5, rules.StarterKindling);
+        Assert.Contains("the chance is 50% for a Camping skill of 50 or less and rises with skill to 100%", text);
+        Assert.Contains("A failed try costs nothing, a fire that lights uses one Kindling, and trying trains Camping.", text);
+        Assert.Contains("You cannot light a fire inside a dungeon.", text);
+        Assert.Contains($"A fire burns for 100 seconds plus 2 for each point of the lighter's Camping skill: {low.Out.TotalSeconds:0} seconds at skill 0 and {high.Out.TotalSeconds:0} at skill 100.", text);
+        Assert.Equal(100, (int)low.Out.TotalSeconds);
+        Assert.Equal(300, (int)high.Out.TotalSeconds);
+        Assert.Contains("The last third burns low.", text);
+        Assert.Contains($"another 60 seconds plus 1.2 per point ({(low.Expire - low.Out).TotalSeconds:0} to {(high.Expire - high.Out).TotalSeconds:0})", text);
+        Assert.Contains("A stock fire lasts 90 seconds and smoulders for 10.", text);
+        Assert.Contains("Use Kindling within one tile of a fire to feed it.", text);
+        Assert.Contains("(a fire never gets shorter)", text);
+        Assert.Contains("a fire can be fed again 5 seconds after it was lit or fed", text);
+        Assert.Contains("To light a second fire, stand two tiles away.", text);
+        Assert.Contains("Stay within 7 tiles of a burning fire for 30 seconds and you are in a secure camp. Embers do not count.", text);
+        Assert.Contains("double-click your Bedroll to unroll it and double-click it again to roll it up, then choose Continue", text);
+        Assert.Contains("you log out at once and safely", text);
+        Assert.Contains("Fires are not saved when the server restarts.", text);
+    }
+
+    [Fact]
+    public void TheCampingPageFollowsTheConfiguredNumbers()
+    {
+        var rules = new CampingRules { SkillFloor = 40, LitBaseSeconds = 50, LitPerSkillSeconds = 1.5, StarterKindling = 3, FeedCooldownSeconds = 8 };
+        var text = string.Join(" ", WelcomeGuide.Topics(Context(campingKit: true, campingFires: true), Rules, null, rules).Single(t => t.Key == "camping").Paragraphs);
+
+        Assert.Contains("a Bedroll and 3 Kindling", text);
+        Assert.Contains("the chance is 40% for a Camping skill of 40 or less", text);
+        Assert.Contains("A fire burns for 50 seconds plus 1.5 for each point", text);
+        Assert.Contains("50 seconds at skill 0 and 200 at skill 100", text);
+        Assert.Contains("fed again 8 seconds after", text);
+    }
+
+    [Fact]
+    public void TheCampingPageLeavesOutWhatIsSwitchedOff()
+    {
+        var noKit = Text("camping", Context(campingFires: true));
+        var noFires = Text("camping", Context(campingKit: true));
+
+        Assert.DoesNotContain("starts with a Bedroll", noKit);
+        Assert.Contains("A fire burns for", noKit);
+
+        Assert.Contains("starts with a Bedroll", noFires);
+        Assert.DoesNotContain("A fire burns for", noFires);
+        Assert.DoesNotContain("Feeding it", noFires);
+        Assert.Contains("using your Camping skill", noFires);
+        Assert.Contains("secure camp", noFires);
+    }
+
+    [Fact]
+    public void TheCampingPageSendsPartiesToCampTravelOnlyWhenItIsOn()
+    {
+        Assert.DoesNotContain("[CampTravel", Text("camping", Context(campingFires: true)));
+        Assert.Contains("[CampTravel", Text("camping", Context(campingFires: true, camp: true)));
+    }
+
+    [Fact]
+    public void TheGuideCanOpenOnAnyTopicAndNavigateTheRestInOrder()
+    {
+        // The window opens on page 1, so the topic asked for takes it and the others follow in a ring.
+        Assert.Equal(1, GuideWindow.PageOf(3, 3, 8));
+        Assert.Equal(2, GuideWindow.PageOf(4, 3, 8));
+        Assert.Equal(8, GuideWindow.PageOf(2, 3, 8));
+        Assert.Equal(1, GuideWindow.PageOf(0, 0, 8));
+        Assert.Equal(8, GuideWindow.PageOf(7, 0, 8));
     }
 
     // ---- the command list
@@ -438,6 +615,8 @@ public class WelcomeGuideTests
 
         Assert.Contains("[SkillBank", all);
         Assert.Contains("[SkillClasses", all);
+        Assert.Contains("[Mastery - ", all);
+        Assert.DoesNotContain("MasteryStatus", all);
         Assert.Contains("[CampTravel", all);
         Assert.Contains("[TravelWarning", all);
 

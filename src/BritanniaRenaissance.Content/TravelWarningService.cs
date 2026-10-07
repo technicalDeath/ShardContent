@@ -115,7 +115,7 @@ public static class TravelWarningService
     }
 
     [Usage("TravelWarning [on|off]")]
-    [Description("Shows, or turns on or off, the warning before you travel into a Hot Zone.")]
+    [Description("Opens a window for the warning before you travel into a Hot Zone; [TravelWarning on or off sets it.")]
     private static void OnCommand(CommandEventArgs e)
     {
         var mobile = e.Mobile;
@@ -134,6 +134,12 @@ public static class TravelWarningService
                     mobile.SendMessage("Use [TravelWarning on or [TravelWarning off.");
                     return;
             }
+        }
+
+        if (mobile is PlayerMobile { NetState: not null } player)
+        {
+            StatusWindows.OpenTravelWarning(player);
+            return;
         }
 
         mobile.SendMessage(StatusText(IsSuppressed(mobile)));

@@ -108,8 +108,56 @@ public static class PvpIntentService
         return enabled;
     }
 
+    /// <summary>
+    /// What Criminal Intent does not do (owner request 2026-10-06). Intent only changes how other players see and may treat you; the
+    /// Criminal flag that guards act on, and that stops Recall and gates, is set by a criminal act, not by Intent.
+    /// </summary>
+    public const string NotACriminalNote =
+        "Criminal Intent does not make you a criminal: guards will not attack you, and you can still use Recall and gates, " +
+        "until you commit a criminal act such as stealing.";
+
+    /// <summary>
+    /// What a player is told by [IntentStatus: whether their Intent is on, what that means, that it is not a crime (unless they are
+    /// already a criminal or a murderer, when the note would not be true), and whether they can change it. The second line is always
+    /// the one the window shows under the state.
+    /// </summary>
+    public static IEnumerable<string> DescribeForPlayer(bool safeWorld, bool hotZones, bool intentOn, bool criminalOrMurderer)
+    {
+        if (!safeWorld)
+        {
+            yield return "Criminal Intent is not used on this shard.";
+            yield break;
+        }
+
+        yield return intentOn
+            ? "Criminal Intent is on: you appear grey and other players may attack you. Killing you is not murder."
+            : "Criminal Intent is off: other players cannot attack you unless you break the law or are already fighting them" +
+              (hotZones ? ", except in a Hot Zone." : ".");
+
+        if (criminalOrMurderer)
+        {
+            yield return "You cannot change it while you are a criminal or a murderer.";
+            yield break;
+        }
+
+        yield return NotACriminalNote;
+        yield return $"Type [Intent to turn it {(intentOn ? "off" : "on")}.";
+    }
+
+    /// <summary>[IntentStatus: the player's own state for a player; the policy and handler diagnostics, with the notoriety of nearby players, for staff.</summary>
     public static IEnumerable<string> DescribeStatus(Mobile mobile)
     {
+        if (mobile is PlayerMobile self && mobile.AccessLevel == AccessLevel.Player)
+        {
+            foreach (var line in DescribeForPlayer(
+                         SafeWorldEnabled, OutdoorHotZonePolicy.Enabled, IsIntentEnabled(self), self.Criminal || self.Murderer))
+            {
+                yield return line;
+            }
+
+            yield break;
+        }
+
         yield return $"Safe-world PvP policy enabled: {SafeWorldEnabled}.";
 
         if (mobile is PlayerMobile player)
