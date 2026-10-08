@@ -12,12 +12,14 @@ $sourceRules = Join-Path $contentRoot 'data\configuration\shard-rules.json'
 $sourceExpansion = Join-Path $contentRoot 'data\configuration\expansion.json'
 $sourceEraGates = Join-Path $contentRoot 'data\configuration\modernuo-era-gates.json'
 $sourceAntiMacro = Join-Path $contentRoot 'data\configuration\antimacro.json'
+$sourceBuffIcons = Join-Path $contentRoot 'data\configuration\buff-icons.json'
 $sourceProfessions = Join-Path $contentRoot 'data\professions\Prof.txt'
 $targetRules = Join-Path $modernUOPath 'Distribution\Configuration\shard-rules.json'
 $targetExpansion = Join-Path $modernUOPath 'Distribution\Configuration\expansion.json'
 $modernUOConfiguration = Join-Path $modernUOPath 'Distribution\Configuration\modernuo.json'
 $targetEraGates = Join-Path $modernUOPath 'Distribution\Configuration\modernuo-era-gates.json'
 $targetAntiMacro = Join-Path $modernUOPath 'Distribution\Configuration\antimacro.json'
+$targetBuffIcons = Join-Path $modernUOPath 'Distribution\Configuration\buff-icons.json'
 $targetProfessions = Join-Path $modernUOPath 'Distribution\Data\BritanniaRenaissance\Professions\Prof.txt'
 $assemblyRegistry = Join-Path $modernUOPath 'Distribution\Data\assemblies.json'
 $contentAssembly = 'BritanniaRenaissance.Content.dll'
@@ -65,6 +67,7 @@ Copy-Item -LiteralPath $sourceRules -Destination $targetRules -Force
 Copy-Item -LiteralPath $sourceExpansion -Destination $targetExpansion -Force
 Copy-Item -LiteralPath $sourceEraGates -Destination $targetEraGates -Force
 Copy-Item -LiteralPath $sourceAntiMacro -Destination $targetAntiMacro -Force
+Copy-Item -LiteralPath $sourceBuffIcons -Destination $targetBuffIcons -Force
 New-Item -ItemType Directory -Force -Path (Split-Path $targetProfessions -Parent) | Out-Null
 Copy-Item -LiteralPath $sourceProfessions -Destination $targetProfessions -Force
 

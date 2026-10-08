@@ -8,6 +8,7 @@
     "taming.enableBonding": "False",
     "taming.petsStandDownOnCommand": "False",
     "melee.enableInstaHit": "True",
-    "characterCreation.professionFile": "Data/BritanniaRenaissance/Professions/Prof.txt"
+    "characterCreation.professionFile": "Data/BritanniaRenaissance/Professions/Prof.txt",
+    "buffIcons.enable": "True"
   }
 }

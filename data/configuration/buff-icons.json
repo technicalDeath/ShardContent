@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "unlistedStockIcons": "hide",
+  "customIcons": [
+    { "name": "CriminalIntent", "slot": 0, "art": 50000 },
+    { "name": "BackpackWard", "slot": 1, "art": 50001 },
+    { "name": "FaintMemories", "slot": 2, "art": 50002 }
+  ],
+  "stock": {
+    "Clumsy": { "title": "Clumsy", "lines": ["-{curse.Dex} Dexterity."] },
+    "FeebleMind": { "title": "Feeblemind", "lines": ["-{curse.Int} Intelligence."] },
+    "Weaken": { "title": "Weaken", "lines": ["-{curse.Str} Strength."] },
+    "Agility": { "title": "Agility", "lines": ["+{buff.Dex} Dexterity."] },
+    "Cunning": { "title": "Cunning", "lines": ["+{buff.Int} Intelligence."] },
+    "Strength": { "title": "Strength", "lines": ["+{buff.Str} Strength."] },
+    "Bless": { "title": "Bless", "lines": ["+{buff.Str} Strength.", "+{buff.Dex} Dexterity.", "+{buff.Int} Intelligence."] },
+    "Curse": { "title": "Curse", "lines": ["-{curse.Str} Strength.", "-{curse.Dex} Dexterity.", "-{curse.Int} Intelligence."] },
+    "NightSight": { "title": "Night Sight", "lines": ["You can see in the dark."] },
+    "HidingAndOrStealth": { "title": "Hidden", "lines": ["You are hidden."] },
+    "ActiveMeditation": { "title": "Meditating", "lines": ["Your mana regenerates twice as fast."] },
+    "Invisibility": { "title": "Invisible", "lines": ["You are invisible."] },
+    "Incognito": { "title": "Incognito", "lines": ["You are disguised."] },
+    "Paralyze": { "title": "Paralyzed", "lines": ["You are frozen and cannot move."] }
+  },
+  "states": {
+    "protection": {
+      "icon": "Protection",
+      "title": "Protection",
+      "countdown": true,
+      "lines": ["Each hit has a {chance}% chance of not interrupting your spell."]
+    },
+    "archProtection": {
+      "icon": "ArchProtection",
+      "title": "Arch Protection",
+      "countdown": true,
+      "lines": ["Your armor rating is raised by {bonus}."]
+    },
+    "reactiveArmor": {
+      "icon": "ReactiveArmor",
+      "title": "Reactive Armor",
+      "lines": ["Absorbs melee hits and sends a fifth of the damage back.", "{points} points left; a hit of that size or more ends it."]
+    },
+    "magicReflect": {
+      "icon": "MagicReflection",
+      "title": "Magic Reflection",
+      "lines": ["Reflects spells cast at you.", "{points} points left; each spell uses its circle plus one."]
+    },
+    "poison": {
+      "icon": "Poison",
+      "title": "Poisoned",
+      "lines": ["{level} poison.", "You lose health until it wears off or you are cured."]
+    },
+    "polymorph": {
+      "icon": "Polymorph",
+      "title": "Polymorph",
+      "countdown": true,
+      "lines": ["You have taken another form."]
+    },
+    "knockedOut": {
+      "icon": "Knockout",
+      "title": "Knocked Out",
+      "countdown": true,
+      "lines": ["You cannot act until you recover."]
+    },
+    "criminal": {
+      "icon": "CriminalStatus",
+      "title": "Criminal",
+      "lines": ["Guards will attack you, and anyone may attack you."]
+    },
+    "intent": {
+      "icon": "CriminalIntent",
+      "title": "Criminal Intent",
+      "lines": [
+        "While it is on you appear grey and other players may attack you.",
+        "Killing a player who has it on is not murder.",
+        "Type [Intent to turn it off."
+      ]
+    },
+    "wardPrimed": {
+      "icon": "BackpackWard",
+      "title": "Backpack Ward: Primed",
+      "countdown": true,
+      "lines": ["It is tracking thieves who steal from you.", "After {minutes} minutes without a theft attempt it resets."]
+    },
+    "wardActivated": {
+      "icon": "BackpackWard",
+      "title": "Backpack Ward: Activated",
+      "countdown": true,
+      "lines": [
+        "A thief it caught cannot steal from you again.",
+        "Thieves caught: {caught}.",
+        "After {minutes} minutes without a theft attempt it is used up."
+      ]
+    },
+    "faintMemoriesLocked": {
+      "icon": "FaintMemories",
+      "title": "Faint Memories",
+      "countdown": true,
+      "lines": ["{points} free skill points unlock in about {unlock}.", "Type [SkillBank to see them."]
+    },
+    "faintMemoriesReady": {
+      "icon": "FaintMemories",
+      "title": "Faint Memories",
+      "lines": ["{points} free skill points are ready.", "Train a skill set to Up and they come back to you.", "Type [SkillBank to see them."]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Extra buff icon art, one gump id per line: line k is server-side icon 0x4A6 + k. Written by tools/buff-icon-art/make_buff_icons.py.
+50000
+50001
+50002
