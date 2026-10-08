@@ -1,0 +1,52 @@
+# Guide: chapter tabs and the getting-started pages
+
+Status: **built and checked 2026-10-07; local only, not committed or deployed.** No flag: the pages ship with the next deploy of the shard DLL, and each page shows only what is switched on. Owner sign-off 2026-10-07: chapter tabs, plus the Pets and Dying pages. The same request added a larger default game view (section 4) and authorized the buff-icon spike (`Buff-Icon-Spike.md`).
+
+## 1. What changed
+
+- **Tabs.** The guide groups its pages into chapters shown as stone tabs (the frame's own stone; the open chapter's tab is tinted gold; `GuideWindow.TabArtOff/On/OnHue`): **Start here** (Welcome, Your first hour, Skill locks 101), **Rules** (Fighting other players, Hot Zones, Backpack Ward, Loot Protection, Pets, Dying), **Skills** (Training, Mastery, Skill Bank), **Work** (Gathering and repeats, Crafting, Money and shops), **Travel** (Camping, Camp travel), **Commands**. A chapter with no pages is hidden. Under the tabs the list holds only the chapter being read (never more than six), so the list no longer crowds. `[SkillClasses` keeps its flat list. Code: `GuideWindow.cs`, `WelcomeGuide.GettingStarted.cs` (`Chapters`, the page builders).
+- **Eight new pages**: Your first hour, Skill locks 101, Training, Money and shops, Crafting, Gathering and repeats, Pets, Dying. The Welcome page now points a newcomer to Your first hour and to the tabs, and the Commands list and README are updated.
+- **Gating.** `Context` gained `HarvestRepeat`, `ActionRepeat`, `PetRestrictions`, `StarterPackage` and `StarterGold`. Gathering and repeats appears only when a repeat flag is on; Pets sentences about the restrictions only with `petRestrictions`.
+
+## 2. How accuracy was checked
+
+Every factual sentence was read against the code behind it when written, and then an independent read-only audit (a separate agent, hostile reviewer, whole workspace) checked each sentence again. The audit found errors in the first draft, all fixed and now pinned in `GuideGettingStartedTests` (the unit tests pin the wording and the gating; the audit tied each sentence to its source).
+
+| Page | Found in the first draft | Now |
+| --- | --- | --- |
+| Your first hour | Said everything in the starter pack is newbied (the Bag is an ordinary bag); said 500 gold for every character (only the first on an account); said the Ward "protects you from thieves"; "three skills" for every character (Advanced picks its own) | Corrected; Faint Memories line adds the 10.0 to 90.0 range |
+| Skill locks 101 | Said points a Down skill gives up are always saved in the bank (a trainer's lesson takes them and they are lost); "no skill set to Down" at the cap (it must have points left) | Corrected; the arrow cycles Up, Down and Locked (padlock) |
+| Training | Said right-click the NPC (the client opens the menu on a single click); said saying the NPC's name and "train" gives the price (it only lists skills; the price comes from the menu); a made-up example NPC name; "never more than 42.0" (a lesson raises your skill to a third of the NPC's, about 20.0 to 33.0); Tinkers always teach Remove Trap (it needs 50.0 Lockpicking and Detecting Hidden); "Down is a safe place for points" (lesson points taken from Down skills are lost) | Corrected; added that gold dropped on an NPC you have not asked is kept as a gift |
+| Money and shops | Right-click for Buy and Sell; a check you "can carry or trade" (it stays in the bank box); pet stable limit described per trainer (it is yours, across all trainers); no mention that stabling needs a target and pack animals must be unloaded | Corrected |
+| Crafting | "A menu lists the items you can make" (a Blacksmith first sees Repair, Smelt and build lists, a Tinker categories); the Ward at "about 45" (hidden at exactly 45.0); no anvil and forge requirement | Corrected |
+| Gathering and repeats | "Opening a new target cursor ends it" (for gathering only another gathering cursor ends it; for the repeated actions any cursor) | Corrected here and in the root `README.md` |
+| Pets | "They only fight monsters" (the block covers players only); "release" used for set-free and for unshrink; loyalty loss always moves the pet outside (only when there is a way out) | Corrected |
+| Dying | "Walk back to your corpse and open it" (a ghost cannot take anything); "a corpse lasts about seven minutes" (it becomes bones after seven, gone after about seven more); healers refuse criminals only (murderers too); "blue player" Knocked Out (any non-criminal, non-murderer); **"in a Hot Zone anyone may loot your corpse, and Wards and Loot Protection do not apply" (anyone can loot a player corpse anywhere on Felucca; the Hot Zone exception is a Knocked Out player's pack)** | Corrected |
+
+Verified as written by the audit: the 700-point cap, the Up, Down and Locked behaviour and the Total/Cap displacement chance (also below the cap), the 90.0 hand-off to Mastery, the NPC teaching rule (at least 60.0, a third of its skill, 1 gold per 0.1 point, paying less teaches less, overpaying is lost), every trade-to-skills pairing except the Tinker note above, the banker commands and limits (5,000 a withdrawal, checks 5,000 to 1,000,000, no deposit command, criminals refused), vendor range and payment order, 30 gold to stable, Make Last by targeting the tool, Smelt and Repair in the Blacksmith menu, the pet-restriction rules, newbied items kept (except a murderer's), Knocked Out 90 seconds and half health.
+
+Omissions the audit named, now covered or deliberately left out: gold given to the wrong NPC (covered); stabling needs a target and unloaded pack animals (covered); anvil and forge within two tiles (covered for Blacksmithing); a Knocked Out player can still be Executed and looted (covered on the Dying page by a pointer to Fighting other players); the Bag goes to the corpse and trainer lessons lose Down points (covered).
+
+Not covered, by decision: per-skill training advice (a later "what can I train at my skill?" window could be derived from the code), a bestiary and a world atlas.
+
+## 3. Verification
+
+- **Unit:** Shard suite 916 pass (after the stone tabs; the client fork's new `StartGameWindowSizeTests` pass 7 of 7) (`GuideGettingStartedTests` and the updated `WelcomeGuideTests`): chapter coverage, order and size, tab width, gating for every optional page, and the wording of every page.
+- **Real ClassicUO client** (disposable host `qol`, new character, 1296 x 839 window): the tabs, Your first hour, Skill locks 101, Training, Pets, Dying, Crafting, Money and shops and Gathering and repeats were each opened and read; scrollbars appear where a page needs one, headings and commands are coloured, the six-topic Rules list fits. The Welcome page's stale "The next page has the details" was found here and fixed. Screenshots: `work/player-client/Vista/shots/` (scratch).
+- **Note:** the audit read the code; it did not run anything in game. The claim that a single click opens an NPC's menu comes from the client source (`DelayedObjectClickManager.cs`), not a live click on an NPC.
+
+## 4. Larger default game view, and the stone tabs
+
+**Game view (owner request 2026-10-07, 70% by a second ruling).** The client opened a fixed 600 x 480 game window in the corner of a much larger window. A file `Data/Profiles/default.json` is read for any profile that does not exist yet (source copy `ShardContent/data/client/default-profile.json`, placed at `ClassicUO/bin/dist/Data/Profiles/default.json`). It now holds `{"game_window_start_fraction": 0.7}`. The stock option `game_window_full_size` was tried first (it fills the whole window, which the owner did not want), and a plain size cannot be written in a file because the window size differs per player.
+
+That needed a **client change** (ClassicUO fork, uncommitted, built into `cuo.dll` and copied to `bin/dist` 2026-10-07; the previous DLL is backed up in `work/client-dist-backups/2026-10-07-before-start-fraction/`; the rebuild also carries client commit `46f02eca9` of 2026-10-01, which the old DLL predated): `Profile.GameWindowStartFraction`, `ProfileManager.StartGameWindowSize` and `GameScene.ApplyStartGameWindowShare`. A profile is created at login, when the window is still its small login size, and a new install then maximizes the window, so the share is applied in the world: once the client window has kept one size for half a second, the game window becomes that share of each side (never below 640 x 480, the smallest the client allows, and never above the window), the profile's size is saved, and the share is cleared. It reaches **new profiles only**; a player with a saved profile can drag the corner grip or use Options. The shard rename already reset every player's profile (profiles are keyed by server name), so most players get it at their next login. `bin/` is not in git; the source copy of the file is.
+
+Checked in the real client on a brand-new profile (account and character `Aldric`, 1296 x 839 window): the first login opens a game view of about 905 x 545, 70% of the window. The first attempt applied the share when the profile was created and gave 600 x 480 (window not yet its real size), which is why it moved into the scene.
+
+**Stone tabs.** The first tabs were round checkboxes. The stock art that fits six tabs across the 640-pixel window is the stone tab pair 5007 (a chapter you can open) and 5006 (the open one, on its ledge), 88 pixels wide, the same stone as the frame. The open tab is tinted with hue 47 (amber, matching the guide's gold text) with a black bold label; the others carry a dark label. Wider art (jewel buttons 10800/10820, steel buttons 40019/40020, parchment 1588/1589) looked better but is 109 to 126 pixels wide and does not fit six tabs; the client fork can also load art of its own from a `Gumps` folder, but that would depend on every player having the files, so it was not used. A click on a tab's label reaches the tab under it (checked). Pinned by `TheSixTabsFitAcrossTheWindow` and `EveryChapterTitleFitsItsStoneTab`.
+
+## 5. Named limits
+
+- The pages describe stock behaviour that the shard does not change; if a later change alters training, banks, stables or healers, the unit tests only catch the wording, so the audit table above is the place to re-check.
+- The trainer list shows what a trade always teaches; an NPC may know more.
+- Nothing here is deployed; the guide changes with the next shard DLL deploy.

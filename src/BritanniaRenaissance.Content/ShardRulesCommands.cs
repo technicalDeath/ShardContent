@@ -28,6 +28,17 @@ public static class ShardRulesCommands
         CommandSystem.Register("HarvestRepeatStatus", AccessLevel.Administrator, OnHarvestRepeatStatus);
         CommandSystem.Register("CampStatus", AccessLevel.Administrator, OnCampStatus);
         CommandSystem.Register("ActionRepeatStatus", AccessLevel.Administrator, OnActionRepeatStatus);
+        CommandSystem.Register("BuffIconStatus", AccessLevel.Administrator, OnBuffIconStatus);
+    }
+
+    [Usage("BuffIconStatus")]
+    [Description("Shows whether the buff bar is on, what the table lists, and the shard-added icons you have right now.")]
+    private static void OnBuffIconStatus(CommandEventArgs e)
+    {
+        foreach (var line in BuffIconService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("ActionRepeatStatus")]
@@ -174,7 +185,7 @@ public static class ShardRulesCommands
     }
 
     [Usage("Execute")]
-    [Description("Execute an encounter-authorized Knocked Out player.")]
+    [Description("Execute a Knocked Out player you fought: stand next to them for five seconds. Also in the menu you get by clicking them.")]
     private static void OnExecute(CommandEventArgs e)
     {
         if (e.Mobile is not PlayerMobile executor)
@@ -183,7 +194,7 @@ public static class ShardRulesCommands
         }
 
         executor.Target = new ExecuteTarget(executor);
-        executor.SendMessage("Select the Knocked Out player to execute.");
+        executor.SendMessage("Select the Knocked Out player to execute. You must stand next to them.");
     }
 
     private sealed class ExecuteTarget(PlayerMobile executor) : Target(-1, false, TargetFlags.None)
@@ -205,13 +216,14 @@ public static class ShardRulesCommands
 
         protected override void OnTarget(Mobile from, object targeted)
         {
-            if (targeted is not PlayerMobile victim || !KnockedOutService.Execute(executor, victim))
+            if (targeted is not PlayerMobile victim)
             {
-                from.SendMessage("That target is not eligible for encounter-authorized execution.");
+                from.SendMessage("Select a Knocked Out player.");
                 return;
             }
 
-            from.SendMessage("The Knocked Out player has been executed.");
+            // Every check is made now, and a refusal is told at once; the countdown only starts when they all pass.
+            KnockedOutService.BeginExecution(executor, victim);
         }
     }
 
@@ -282,7 +294,7 @@ public static class ShardRulesCommands
                 player,
                 0,
                 done ? SkillBankGump.DescribeChange(player.Skills[(int)skillName].Info.Name, retention.Value) : message,
-                done ? GumpStyle.Good : GumpStyle.Warning
+                done ? BannerKind.Done : BannerKind.Danger
             );
             return;
         }

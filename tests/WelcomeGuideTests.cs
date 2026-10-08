@@ -14,8 +14,12 @@ public class WelcomeGuideTests
     private static WelcomeGuide.Context Context(
         bool theft = true, bool skillBank = true, bool skillClasses = true, bool camp = false, bool warning = false,
         bool safeWorld = true, bool knockedOut = true, bool hotZones = true, bool campingKit = false, bool campingFires = false,
-        bool faintMemories = false
-    ) => new(theft, skillBank, skillClasses, camp, warning, safeWorld, knockedOut, hotZones, campingKit, campingFires, faintMemories);
+        bool faintMemories = false, bool harvestRepeat = false, bool actionRepeat = false, bool petRestrictions = false,
+        bool starterPackage = false, bool starterGold = false
+    ) => new(
+        theft, skillBank, skillClasses, camp, warning, safeWorld, knockedOut, hotZones, campingKit, campingFires, faintMemories,
+        harvestRepeat, actionRepeat, petRestrictions, starterPackage, starterGold
+    );
 
     private static string[] Keys(WelcomeGuide.Context c) => WelcomeGuide.Topics(c, Rules).Select(t => t.Key).ToArray();
 
@@ -26,15 +30,24 @@ public class WelcomeGuideTests
 
     [Fact]
     public void TheDeployedShardGetsTheCoreTopicsInReadingOrder() =>
-        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "commands"], Keys(Context()));
+        Assert.Equal(
+            ["welcome", "firsthour", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
+            Keys(Context())
+        );
 
     [Fact]
     public void CampTravelAddsItsOwnTopicBeforeTheCommands() =>
-        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camp", "commands"], Keys(Context(camp: true)));
+        Assert.Equal(
+            ["welcome", "firsthour", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "camp", "commands"],
+            Keys(Context(camp: true))
+        );
 
     [Fact]
     public void WithoutTheWardsTheWardTopicsAreLeftOut() =>
-        Assert.Equal(["welcome", "fighting", "hotzones", "mastery", "skillbank", "commands"], Keys(Context(theft: false)));
+        Assert.Equal(
+            ["welcome", "firsthour", "locks", "fighting", "hotzones", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
+            Keys(Context(theft: false))
+        );
 
     [Fact]
     public void WithoutTheSkillBankItsTabAndItsMentionsAreLeftOut()
@@ -57,8 +70,16 @@ public class WelcomeGuideTests
     }
 
     [Fact]
-    public void TheNavigationStaysShortEnoughToFitTheWindow() =>
-        Assert.True(Keys(Context(camp: true, warning: true)).Length <= 9);
+    public void NoChapterHasMoreTopicsThanTheListUnderTheTabsCanHold()
+    {
+        var everything = Context(
+            theft: true, skillBank: true, skillClasses: true, camp: true, warning: true, campingKit: true, campingFires: true,
+            faintMemories: true, harvestRepeat: true, actionRepeat: true, petRestrictions: true, starterPackage: true, starterGold: true
+        );
+        var topics = WelcomeGuide.Topics(everything, Rules);
+
+        Assert.All(WelcomeGuide.Chapters(topics), c => Assert.InRange(c.TopicKeys.Count, 1, WelcomeGuide.MaximumTopicsPerChapter));
+    }
 
     // ---- every page is readable and cannot be mistaken for markup
 
@@ -119,12 +140,24 @@ public class WelcomeGuideTests
     }
 
     [Fact]
+    public void TheFightingPageTellsAboutTheIntentTagTheGuardCallTheCountdownsAndTheFiveSecondExecute()
+    {
+        var text = Text("fighting");
+
+        Assert.Contains("An [Intent] tag also shows after your name when someone clicks you.", text);
+        Assert.Contains("Calling guards on such a player does nothing: the caller is told that the player has not yet performed a criminal act.", text);
+        Assert.Contains("A countdown over you shows everyone nearby when that will be.", text);
+        Assert.Contains("or choose Execute from the menu you get by clicking them. It takes 5 seconds with a countdown over the victim, and the executor must stay next to them: walking away cancels it.", text);
+        Assert.Contains("[Execute - Execute a Knocked Out player you are allowed to, next to them, in five seconds.", Text("commands"));
+    }
+
+    [Fact]
     public void TheKnockedOutTextSaysWhoIsKnockedOutForHowLongAndWhatItDoes()
     {
         var text = Text("fighting");
         var seconds = (int)KnockedOutService.Duration.TotalSeconds;
 
-        Assert.Equal(90, seconds);
+        Assert.Equal(30, seconds);
         Assert.Contains($"is brought down by another player is Knocked Out for {seconds} seconds instead of dying", text);
         Assert.Contains("A player who is not a criminal or a murderer", text);
         Assert.Contains("you cannot act, be hurt or be healed, and when it ends you wake with half your health", text);
@@ -515,9 +548,13 @@ public class WelcomeGuideTests
     public void CampingGetsAPageWhenEitherCampingSwitchIsOnBeforeCampTravel()
     {
         Assert.DoesNotContain("camping", Keys(Context()));
-        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "commands"], Keys(Context(campingFires: true)));
-        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "commands"], Keys(Context(campingKit: true)));
-        Assert.Equal(["welcome", "fighting", "hotzones", "ward", "loot", "mastery", "skillbank", "camping", "camp", "commands"], Keys(Context(campingKit: true, campingFires: true, camp: true)));
+        Assert.Contains("camping", Keys(Context(campingFires: true)));
+        Assert.Contains("camping", Keys(Context(campingKit: true)));
+        Assert.DoesNotContain("camp", Keys(Context(campingKit: true)));
+
+        var both = Keys(Context(campingKit: true, campingFires: true, camp: true));
+        Assert.True(Array.IndexOf(both, "camping") < Array.IndexOf(both, "camp"));
+        Assert.True(Array.IndexOf(both, "camp") < Array.IndexOf(both, "commands"));
     }
 
     [Fact]

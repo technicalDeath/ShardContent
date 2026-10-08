@@ -16,7 +16,7 @@ namespace BritanniaRenaissance.Content;
 /// MasteryEngine, SkillBankLedger, CampTravelService) and the owner's rulings; docs/Beta-2b-Camp-Travel-Plan.md records
 /// the audit. Numbers come from the configuration, never from memory.
 /// </summary>
-public static class WelcomeGuide
+public static partial class WelcomeGuide
 {
     public sealed record Topic(string Key, string Title, IReadOnlyList<string> Paragraphs);
 
@@ -32,7 +32,12 @@ public static class WelcomeGuide
         bool HotZones = true,
         bool CampingKit = false,
         bool CampingFires = false,
-        bool FaintMemories = false
+        bool FaintMemories = false,
+        bool HarvestRepeat = false,
+        bool ActionRepeat = false,
+        bool PetRestrictions = false,
+        bool StarterPackage = false,
+        bool StarterGold = false
     );
 
     public static Context Current =>
@@ -47,7 +52,12 @@ public static class WelcomeGuide
             OutdoorHotZonePolicy.Enabled,
             CampingService.KitEnabled,
             CampingService.FiresEnabled,
-            FaintMemoriesService.Enabled
+            FaintMemoriesService.Enabled,
+            HarvestRepeatService.Enabled,
+            ActionRepeatService.Enabled,
+            PetRestrictionService.Enabled,
+            ShardRulesConfiguration.Settings?.FeatureFlags is { Alpha3StarterBag: true, Alpha3StarterScissors: true },
+            ShardRulesConfiguration.Settings?.FeatureFlags.Alpha3StarterGold == true
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -106,13 +116,12 @@ public static class WelcomeGuide
         }
     }
 
-    private const string CommandColor = "#8FD3FF";
     public const string HeadingMark = "# ";
 
     public static IReadOnlyList<Topic> Topics(Context c, CampTravelRules rules, Numbers? numbers = null, CampingRules? camping = null)
     {
         var n = numbers ?? new Numbers();
-        var topics = new List<Topic> { WelcomeTopic(c) };
+        var topics = new List<Topic> { WelcomeTopic(c), FirstHourTopic(c, n), SkillLocksTopic(c, n) };
 
         if (c.SafeWorld || c.KnockedOut)
         {
@@ -130,12 +139,23 @@ public static class WelcomeGuide
             topics.Add(LootProtectionTopic());
         }
 
+        topics.Add(PetsTopic(c));
+        topics.Add(DyingTopic(c));
+        topics.Add(TrainingTopic(c, n));
         topics.Add(MasteryTopic(c, n));
 
         if (c.SkillBank)
         {
             topics.Add(SkillBankTopic(c, n));
         }
+
+        if (c.HarvestRepeat || c.ActionRepeat)
+        {
+            topics.Add(GatheringTopic(c));
+        }
+
+        topics.Add(CraftingTopic(c, n));
+        topics.Add(ShopsTopic());
 
         if (c.CampingKit || c.CampingFires)
         {
@@ -148,7 +168,7 @@ public static class WelcomeGuide
         }
 
         topics.Add(new Topic("commands", "Commands", Commands(c)));
-        return topics;
+        return InChapterOrder(topics);
     }
 
     private static Topic WelcomeTopic(Context c)
@@ -162,11 +182,11 @@ public static class WelcomeGuide
         {
             paragraphs.Add(
                 (c.HotZones ? "Outside the Hot Zones, other" : "Other") +
-                " players cannot attack you unless you opt in to fighting with [Intent or break the law. The next page has the details."
+                " players cannot attack you unless you opt in to fighting with [Intent or break the law. The Rules tab has the details."
             );
         }
 
-        paragraphs.Add("Choose a topic on the left to read how it works, and type [Welcome any time to open this guide again.");
+        paragraphs.Add("New here? Start with Your first hour. Choose a topic on the left, or another tab above, to read how it works, and type [Welcome any time to open this guide again.");
         return new Topic("welcome", "Welcome", paragraphs);
     }
 
@@ -184,7 +204,11 @@ public static class WelcomeGuide
             );
             paragraphs.Add(
                 "[Intent turns Criminal Intent on or off, and it stays as you leave it. While it is on you appear grey and other players may attack you. " +
-                "Killing a player who has Intent on is not murder. " + PvpIntentService.NotACriminalNote + " " +
+                "An [Intent] tag also shows after your name when someone clicks you. " +
+                "Killing a player who has Intent on is not murder. " + PvpIntentService.NotACriminalNote
+            );
+            paragraphs.Add(
+                "Calling guards on such a player does nothing: the caller is told that the player has not yet performed a criminal act. " +
                 "You cannot change it while you are a criminal or a murderer. [IntentStatus shows whether it is on."
             );
         }
@@ -195,13 +219,14 @@ public static class WelcomeGuide
             paragraphs.Add(
                 "Knocked Out is how a fight ends without a killing. " +
                 $"A player who is not a criminal or a murderer and is brought down by another player is Knocked Out for {knockedOutSeconds} seconds instead of dying. " +
-                "While Knocked Out you cannot act, be hurt or be healed, and when it ends you wake with half your health. " +
+                "While Knocked Out you cannot act, be hurt or be healed, and when it ends you wake with half your health. A countdown over you shows everyone nearby when that will be. " +
                 "The winner, even a criminal or a murderer, can simply walk away and takes no murder count, because nobody died. " +
                 "Monsters and other causes still kill normally."
             );
             paragraphs.Add(
-                "Killing is a choice. While a player is Knocked Out, a criminal or murderer who knocked them out, or who has damaged them recently, may [Execute them. " +
-                "Nobody else can, including a player who is only grey because of Criminal Intent."
+                "Killing is a choice. While a player is Knocked Out, a criminal or murderer who knocked them out, or who has damaged them recently, may [Execute them, " +
+                $"or choose Execute from the menu you get by clicking them. It takes {(int)KnockedOutExecution.ChannelTime.TotalSeconds} seconds with a countdown over the victim, and the executor must stay next to them: " +
+                "walking away cancels it. Nobody else can, including a player who is only grey because of Criminal Intent."
             );
             // Owner ruling 2026-10-06 (K-5 amended): attacking and killing differ. A blue may attack a criminal, a murderer or a player
             // with Intent on, who may fight back and Knock the blue out, but executing the blue is still murder.
@@ -512,7 +537,7 @@ public static class WelcomeGuide
 
         if (c.KnockedOut)
         {
-            lines.Add("[Execute - Execute a Knocked Out player you are allowed to.");
+            lines.Add("[Execute - Execute a Knocked Out player you are allowed to, next to them, in five seconds.");
         }
 
         lines.Add("[Mastery - Your Mastery cycle and what each Mastery skill can still gain.");
@@ -542,7 +567,7 @@ public static class WelcomeGuide
 
     private const int CharactersPerLine = 58;
     private const int LineHeight = 18;
-    private const int ContentHeight = GumpStyle.Height - 178;
+    private const int ContentHeight = GuideWindow.ContentHeight;
 
     private static bool IsHeading(string paragraph) => paragraph.StartsWith(HeadingMark, StringComparison.Ordinal);
 
@@ -566,7 +591,7 @@ public static class WelcomeGuide
 
             body.Append(
                 IsHeading(paragraph)
-                    ? $"<BASEFONT COLOR=#FFD060>{paragraph[HeadingMark.Length..]}</BASEFONT>"
+                    ? GumpStyle.Colored(paragraph[HeadingMark.Length..], GumpStyle.Gold)
                     : Highlight(paragraph, commands)
             );
         }
@@ -596,7 +621,7 @@ public static class WelcomeGuide
     }
 
     /// <summary>A scrollbar only when the text will not fit, so short pages are not dressed up with one.</summary>
-    public static bool NeedsScroll(Topic topic) => EstimateLines(topic) > ContentHeight / LineHeight;
+    public static bool NeedsScroll(Topic topic, int contentHeight = ContentHeight) => EstimateLines(topic) > contentHeight / LineHeight;
 
     private static readonly Regex CommandPattern = new(@"\[[A-Z][A-Za-z]*", RegexOptions.Compiled);
 
@@ -609,11 +634,11 @@ public static class WelcomeGuide
 
             if (gap > 0)
             {
-                return $"<BASEFONT COLOR={CommandColor}>{text[..gap]}</BASEFONT>{text[gap..]}";
+                return $"<BASEFONT COLOR={GumpStyle.Command}>{text[..gap]}</BASEFONT>{text[gap..]}";
             }
         }
 
-        return CommandPattern.Replace(text, m => $"<BASEFONT COLOR={CommandColor}>{m.Value}</BASEFONT>");
+        return CommandPattern.Replace(text, m => $"<BASEFONT COLOR={GumpStyle.Command}>{m.Value}</BASEFONT>");
     }
 
     /// <summary>Opens the guide, on the topic with this key when it is given and the shard has that topic.</summary>
@@ -634,7 +659,8 @@ public static class WelcomeGuide
                 ShardBranding.Tagline,
                 "Type [Welcome to open this guide again.",
                 topics,
-                Math.Max(0, first)
+                Math.Max(0, first),
+                chapters: Chapters(topics)
             )
         );
     }
