@@ -38,7 +38,8 @@ public static partial class WelcomeGuide
         bool PetRestrictions = false,
         bool StarterPackage = false,
         bool StarterGold = false,
-        bool CampTravelBlueFire = false
+        bool CampTravelBlueFire = false,
+        bool GuildChat = false
     );
 
     public static Context Current =>
@@ -59,7 +60,8 @@ public static partial class WelcomeGuide
             PetRestrictionService.Enabled,
             ShardRulesConfiguration.Settings?.FeatureFlags is { Alpha3StarterBag: true, Alpha3StarterScissors: true },
             ShardRulesConfiguration.Settings?.FeatureFlags.Alpha3StarterGold == true,
-            CampTravelService.BlueFireEnabled
+            CampTravelService.BlueFireEnabled,
+            GuildChatService.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -562,6 +564,12 @@ public static partial class WelcomeGuide
         if (c.CampTravel || c.TravelWarning)
         {
             lines.Add("[TravelWarning - Open a window to turn the Hot Zone travel warning on or off.");
+        }
+
+        if (c.GuildChat)
+        {
+            // No angle brackets here: the window draws HTML and would swallow them as a tag.
+            lines.Add($"[g - Talk to your guild wherever its members are: type [g and then your message (the \\ key does the same). {GuildChatService.LoggedNotice}");
         }
 
         return lines;

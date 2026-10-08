@@ -45,6 +45,43 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyCast", AccessLevel.Administrator, OnCastCommand);
         CommandSystem.Register("TestOnlyState", AccessLevel.Administrator, OnStateCommand);
         CommandSystem.Register("TestOnlyFires", AccessLevel.Administrator, OnFiresCommand);
+        CommandSystem.Register("TestOnlyGuild", AccessLevel.Administrator, OnGuildCommand);
+    }
+
+    // [TestOnlyGuild <leader-serial> <name> [member-serial ...]] founds an old-system guild (no guildstone) with that leader and members, for the guild
+    // chat live checks; [TestOnlyGuild <serial> none] takes that player out of their guild. Reports "Guild <name> members=<n>" or "Guild none".
+    private static void OnGuildCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyGuild <leader-serial> <name> [member-serial ...]  or  [TestOnlyGuild <serial> none");
+            return;
+        }
+
+        if (e.GetString(1).Equals("none", StringComparison.OrdinalIgnoreCase))
+        {
+            (player.Guild as Server.Guilds.Guild)?.RemoveMember(player);
+            e.Mobile.SendMessage("Guild none");
+            return;
+        }
+
+        var name = e.GetString(1);
+        var guild = new Server.Guilds.Guild(player, name, name.Length > 3 ? name[..3] : name);
+
+        player.Guild = guild;
+
+        for (var i = 2; i < e.Length; i++)
+        {
+            var raw = e.GetString(i);
+            var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+            if (uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) && World.FindMobile((Serial)serial) is { } member)
+            {
+                guild.AddMember(member);
+            }
+        }
+
+        e.Mobile.SendMessage($"Guild {name} members={guild.Members.Count}");
     }
 
     // [TestOnlyFires <player-serial> <hue> [hue ...]] lights one campfire per hue in a grid around the player, four to a row and three tiles apart
