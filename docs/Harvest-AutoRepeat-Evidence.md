@@ -6,7 +6,7 @@ roadmap item (no phase); it is a quality-of-life change that departs from UOR, w
 double-click and target and players used UOAssist or Razor macros for the same effect (checked 2026-10-05 against
 UO Renaissance and forum threads; no built-in repeat in 2000).
 
-Flag: `featureFlags.harvestAutoRepeat`, **false in source**. Activation is the owner's explicit acknowledgment.
+Flag: `featureFlags.harvestAutoRepeat`, **enabled 2026-10-05 on the owner's explicit "Activate"** (it shipped false). The README "Gathering" line below is in the root `README.md`.
 
 ## Sign-off (2026-10-05)
 

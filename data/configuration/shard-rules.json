@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "ee7ccd518e99d272ffa8754b3b2f8d7f122dfea1",
+  "pinnedModernUoCommit": "067802c3ceab4097dedf3af3925cba58d1323181",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -197,11 +197,11 @@
     "skillGainCurve": true,
     "hythlothHotZone": true,
     "harvestAutoRepeat": true,
-    "actionAutoRepeat": false,
+    "actionAutoRepeat": true,
     "campingStarterKit": true,
     "campingFires": true,
-    "campingTravel": false,
-    "hotZoneTravelWarning": false,
+    "campingTravel": true,
+    "hotZoneTravelWarning": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

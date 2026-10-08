@@ -4,7 +4,7 @@ Owner request 2026-10-05, after the gathering repeat (`Harvest-AutoRepeat-Eviden
 rule. The owner chose these four from a researched list and declined bandages, loot-all and snooping; crafting
 ("make this many") is a separate item. Not a roadmap phase item.
 
-Flag: `featureFlags.actionAutoRepeat`, **false in source**. Activation is the owner's explicit acknowledgment.
+Flag: `featureFlags.actionAutoRepeat`, **enabled 2026-10-07 on the owner's explicit "activate"** (it shipped false). The README "Repeated actions" line below is now in the root `README.md`.
 
 ## Sign-off (2026-10-05)
 
