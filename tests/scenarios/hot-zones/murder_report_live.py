@@ -143,9 +143,10 @@ def execute(name: str, victim: str) -> str:
     if c.wait_for(Event.TARGET_REQUEST, timeout=5) is None:
         return "no-cursor"
     c.target(serial(victim))
-    time.sleep(3)
+    time.sleep(8)  # an Execute takes 5 seconds next to the victim (2026-10-07)
     text = " ".join(since(name, m))
-    return "executed" if "has been executed" in text else ("refused" if "not eligible" in text else "other")
+    refused = any(w in text for w in ("not eligible", "Only a criminal or a murderer", "You can only execute", "You must stand next", "They will get up", "They are not Knocked Out"))
+    return "executed" if "has been executed" in text else ("refused" if refused else "other")
 
 
 def flags(victim: str) -> str:

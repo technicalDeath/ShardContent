@@ -227,11 +227,11 @@ def execute(name: str, victim: str) -> tuple:
     if c.wait_for(Event.TARGET_REQUEST, timeout=5) is None:
         return "no-cursor", ""
     c.target(serial(victim))
-    time.sleep(3)
+    time.sleep(8)  # an Execute takes 5 seconds next to the victim (2026-10-07), so the result is not there at once
     text = " ".join(since(name, m))
     if "has been executed" in text:
         return "executed", messages(since(name, m))
-    if "not eligible" in text:
+    if any(w in text for w in ("not eligible", "Only a criminal or a murderer", "You can only execute", "You must stand next", "They will get up", "They are not Knocked Out")):
         return "refused", messages(since(name, m))
     return "other", messages(since(name, m))
 

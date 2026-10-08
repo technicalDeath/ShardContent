@@ -1,0 +1,3 @@
+# Text the shard adds to the client, one number and its text per line (see ClilocLoader.ReadOurs in the client fork).
+# 3050001 is the Execute entry in the menu you get by clicking a Knocked Out player (KnockedOutExecution.ContextEntryNumber).
+3050001	Execute

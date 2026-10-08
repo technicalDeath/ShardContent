@@ -40,6 +40,9 @@ public static class PvpIntentService
         Notoriety.Handler = ComputeNotoriety;
         EventSink.AggressiveAction += CaptureEncounter;
         EventSink.Disconnected += OnDisconnected;
+
+        var previousSuffix = PlayerMobile.NameSuffixHandler;
+        PlayerMobile.NameSuffixHandler = previousSuffix is null ? ApplyNameTag : (p, s) => ApplyNameTag(p, previousSuffix(p, s));
         Server.Timer.StartTimer(EncounterCleanupInterval, EncounterCleanupInterval, CleanupExpiredEncounters);
     }
 
@@ -64,6 +67,17 @@ public static class PvpIntentService
             Mobile.AllowHarmfulHandler = AllowHarmful;
         }
     }
+
+    /// <summary>The tag shown after the name of a player whose Intent counts.</summary>
+    public const string NameTag = "[Intent]";
+
+    /// <summary>Whether others should see this player as having Intent on: it is on, and they are not already a criminal or a murderer (the same rule as the grey).</summary>
+    public static bool ShowsIntent(PlayerMobile player) =>
+        SafeWorldEnabled && !player.Criminal && !player.Murderer && IsIntentEnabled(player);
+
+    public static string AddNameTag(string suffix) => suffix.Length == 0 ? NameTag : $"{suffix} {NameTag}";
+
+    private static string ApplyNameTag(PlayerMobile player, string suffix) => ShowsIntent(player) ? AddNameTag(suffix) : suffix;
 
     public static bool IsIntentEnabled(PlayerMobile player)
     {
@@ -102,6 +116,7 @@ public static class PvpIntentService
         // target's hue/notoriety immediately instead of retaining a stale Innocent flag
         // until the next movement or relog.
         player.SendIncomingPacket();
+        player.InvalidateProperties();
 
         player.SendMessage(enabled ? "PvP Intent enabled: other players may challenge you." :
             "PvP Intent disabled for new opponents.");

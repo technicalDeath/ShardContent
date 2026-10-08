@@ -13,9 +13,9 @@ namespace BritanniaRenaissance.Content;
 /// Safe-world Knocked Out state boundary. The feature is deliberately gated until the complete
 /// encounter-rights, looting, execution, and Hot/Cool region policy is ready for live enablement.
 /// </summary>
-public static class KnockedOutService
+public static partial class KnockedOutService
 {
-    public static readonly TimeSpan Duration = TimeSpan.FromSeconds(90);
+    public static readonly TimeSpan Duration = TimeSpan.FromSeconds(30);
 
     private const string UntilPrefix = "BritanniaRenaissance.KnockedOut.UntilUtc.";
     private const string AttackerPrefix = "BritanniaRenaissance.KnockedOut.Attacker.";
@@ -44,6 +44,9 @@ public static class KnockedOutService
         Mobile.ActionCheckHandler = CanPerformAction;
         RegisterLootHooks();
         EventSink.Connected += OnConnected;
+        Server.Timer.StartTimer(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0), TickCountdowns);
+        ConfigureExecution();
+        ConfigureLying();
     }
 
     public static void Initialize()
@@ -200,13 +203,15 @@ public static class KnockedOutService
         player.Combatant = null;
         player.Target = null;
         ClearAggression(player);
-        player.SendMessage("You have been Knocked Out for 90 seconds.");
+        player.SendMessage($"You have been Knocked Out for {(int)Duration.TotalSeconds} seconds.");
         ShardAuditLog.Record(
             "knocked-out",
             "entered",
             player,
             responsibleAttacker ?? from,
-            responsibleAttacker is null ? "90-second damage-immune state" : "90-second state; attacker resolved to player master"
+            responsibleAttacker is null
+                ? $"{(int)Duration.TotalSeconds}-second damage-immune state"
+                : $"{(int)Duration.TotalSeconds}-second state; attacker resolved to player master"
         );
         ScheduleRecovery(player);
         return true;
@@ -313,7 +318,7 @@ public static class KnockedOutService
         damageRecordRights ? new(true, "damage-record-rights") :
         new(false, "missing-damage-record-rights");
 
-    private static bool HasDamageRecordRights(PlayerMobile victim, PlayerMobile actor)
+    internal static bool HasDamageRecordRights(PlayerMobile victim, PlayerMobile actor)
     {
         if (GetRecordedAttackerSerial(victim) == actor.Serial)
         {
@@ -508,9 +513,15 @@ public static class KnockedOutService
     {
         yield return $"Knocked Out enabled: {Enabled}.";
 
+        foreach (var line in DescribeExecutions())
+        {
+            yield return line;
+        }
+
         if (mobile is PlayerMobile player)
         {
             yield return $"Knocked Out until UTC: {GetUntilUtc(player)?.ToString("O", CultureInfo.InvariantCulture) ?? "none"}.";
+            yield return $"Drawn lying down (flag 0x{LyingFlag:X2}): {IsLyingDown(player)}.";
             yield return $"Completed encounter record: {GetCompletedEncounter(player) ?? "none"}.";
             yield return Enabled
                 ? "Outside Hot Zones, only a criminal/red with recorded encounter rights may loot a Knocked Out player. In Hot Zones anyone may, and a blue who does becomes criminal. Execution needs a criminal/red actor with damage-record rights everywhere."
@@ -548,9 +559,12 @@ public static class KnockedOutService
             return;
         }
 
+        Watching.Add(player);
+        StartLying(player);
+
         Server.Timer.DelayCall(expiry - Core.Now, static pm =>
         {
-            if (pm.Deleted || pm.Account is not Account)
+            if (pm.Deleted || pm.Account is not Account || SupersededRecovery(GetUntilUtc(pm), Core.Now.ToUniversalTime()))
             {
                 return;
             }
@@ -560,6 +574,13 @@ public static class KnockedOutService
             ShardAuditLog.Record("knocked-out", "recovered", pm);
         }, player);
     }
+
+    /// <summary>
+    /// A staff recovery followed by a new Knocked Out leaves the first one's timer running. It must not end the newer state early: the
+    /// newer state has a later end of its own and its own timer.
+    /// </summary>
+    public static bool SupersededRecovery(DateTime? untilUtc, DateTime nowUtc) =>
+        untilUtc is { } until && until > nowUtc.AddSeconds(0.5);
 
     private static void ClearAggression(PlayerMobile player)
     {
@@ -637,6 +658,8 @@ public static class KnockedOutService
 
     private static void ClearActiveState(PlayerMobile player)
     {
+        StopLying(player);
+
         if (player.Account is Account account)
         {
             account.RemoveTag(UntilPrefix + SerialKey(player));

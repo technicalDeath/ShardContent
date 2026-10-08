@@ -83,7 +83,7 @@ def main() -> int:
         print("no execute cursor", flush=True)
         return 1
     killer.target(victim_serial)
-    time.sleep(3)
+    time.sleep(8)  # an Execute takes 5 seconds next to the victim (2026-10-07)
     print(f"{attacker} executed {victim}; the report gump follows in about four seconds", flush=True)
     return 0
 

@@ -53,9 +53,11 @@ public class KnockedOutTests
     }
 
     [Fact]
-    public void DurationMatchesAlphaTwoPolicy()
+    public void DurationIsThirtySeconds()
     {
-        Assert.Equal(TimeSpan.FromSeconds(90), KnockedOutService.Duration);
+        // Owner ruling 2026-10-07: it was 90 seconds. The Execute (five seconds, next to the victim) has to fit inside it.
+        Assert.Equal(TimeSpan.FromSeconds(30), KnockedOutService.Duration);
+        Assert.True(KnockedOutService.Duration > KnockedOutExecution.ChannelTime * 2);
     }
 
     [Theory]

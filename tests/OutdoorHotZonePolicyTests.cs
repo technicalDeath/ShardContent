@@ -76,7 +76,9 @@ public class OutdoorHotZonePolicyTests
         Assert.Single(login);
         Assert.Contains("Fire Island", login[0]);
         Assert.Contains("initiate combat freely", login[0]);
-        Assert.Contains("murder count and 24 hours", login[0]);
+        // Stock murder reports are in force (no automatic 24-hour red timer), so the text must not promise one.
+        Assert.Contains("Killing an ordinary blue is still murder: the victim can report you for a murder count.", login[0]);
+        Assert.DoesNotContain("24 hours", login[0]);
 
         Assert.Empty(OutdoorHotZoneBoundaryService.DescribeTransition("FireIsland", "FireIsland"));
 

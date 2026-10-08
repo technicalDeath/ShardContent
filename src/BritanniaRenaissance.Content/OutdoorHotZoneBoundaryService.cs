@@ -103,7 +103,7 @@ public static class OutdoorHotZoneBoundaryService
         if (current is not null)
         {
             var kind = isDungeon(current) ? "a PvP Hot Zone" : "an outdoor PvP Hot Zone";
-            yield return $"You have entered {DisplayName(current)}, {kind}. Players may initiate combat freely here. Murdering an ordinary blue still adds a murder count and 24 hours of red time.";
+            yield return $"You have entered {DisplayName(current)}, {kind}. Players may initiate combat freely here. Killing an ordinary blue is still murder: the victim can report you for a murder count.";
         }
     }
 
