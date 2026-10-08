@@ -40,7 +40,7 @@ public static class StatusWindows
 
         return new View(
             intentOn ? "Criminal Intent is ON" : "Criminal Intent is OFF",
-            intentOn ? GumpStyle.Warning : GumpStyle.Good,
+            intentOn ? GumpStyle.Danger : GumpStyle.Good,
             paragraphs,
             criminalOrMurderer ? null : intentOn ? "Turn Criminal Intent off" : "Turn Criminal Intent on"
         );
@@ -84,7 +84,7 @@ public static class StatusWindows
 
         return new View(
             warningOff ? "The warning is OFF" : "The warning is ON",
-            warningOff ? GumpStyle.Warning : GumpStyle.Good,
+            warningOff ? GumpStyle.Danger : GumpStyle.Good,
             [
                 "When Recall, a gate or camp travel is about to take you into a Hot Zone from outside one, you are asked to confirm first. " +
                 "Only blue players are asked.",
@@ -137,7 +137,7 @@ public static class StatusWindows
 
         return new View(
             phase.ToString(),
-            phase switch { WardPhase.Activated => GumpStyle.Good, WardPhase.Primed => GumpStyle.Gold, _ => GumpStyle.Muted },
+            phase switch { WardPhase.Activated => GumpStyle.Good, WardPhase.Primed => GumpStyle.Command, _ => GumpStyle.Muted },
             paragraphs,
             null
         );

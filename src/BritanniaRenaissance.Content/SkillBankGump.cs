@@ -6,11 +6,11 @@ using Server.Network;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// [SkillBank: the player's Skill Bank as a window in the guide's style. Shows Faint Memories while a new character still has some,
-/// how full the bank is, each banked skill with the skill now, what is banked and its setting, a pair of tick-boxes per skill to
-/// switch it between Locked (safe) and Down (may be replaced when the bank is full), and a Discard button that opens
+/// [SkillBank: the player's Skill Bank as a window in the shard's style. Shows Faint Memories while a new character still has some,
+/// how full the bank is, each banked skill with the skill now, what is banked and its setting (a pick-one: Locked, which keeps the points
+/// safe, or Down, which lets them be replaced when the bank is full), and a purple Discard button that opens
 /// <see cref="SkillBankDiscardGump"/>. Pages of six (four while Faint Memories shows); each press saves at once and reopens the
-/// window with a line saying what changed.
+/// window with a banner saying what changed.
 /// </summary>
 public sealed class SkillBankGump : DynamicGump
 {
@@ -25,19 +25,20 @@ public sealed class SkillBankGump : DynamicGump
     private const int DiscardBase = 3000;
 
     private const int BannerShift = 58;
-    private const int RowHeight = 34;
+    private const int RowHeight = 30;
+    private const int InnerWidth = GumpStyle.Width - 2 * GumpStyle.Margin;
 
     private readonly SkillBankService.SkillBankView _view;
     private readonly int _page;
     private readonly string? _notice;
-    private readonly string _noticeColor;
+    private readonly BannerKind _noticeKind;
 
-    private SkillBankGump(SkillBankService.SkillBankView view, int page, string? notice, string noticeColor) : base(40, 30)
+    private SkillBankGump(SkillBankService.SkillBankView view, int page, string? notice, BannerKind noticeKind) : base(GumpStyle.LargeX, GumpStyle.LargeY)
     {
         _view = view;
         _page = page;
         _notice = notice;
-        _noticeColor = noticeColor;
+        _noticeKind = noticeKind;
     }
 
     public override bool Singleton => true;
@@ -65,7 +66,7 @@ public sealed class SkillBankGump : DynamicGump
     public static int? ParseDiscardButton(int buttonId) =>
         buttonId is >= DiscardBase and < DiscardBase + 1000 ? buttonId - DiscardBase : null;
 
-    public static void Open(PlayerMobile player, int page = 0, string? notice = null, string noticeColor = GumpStyle.Good)
+    public static void Open(PlayerMobile player, int page = 0, string? notice = null, BannerKind noticeKind = BannerKind.Done)
     {
         if (player.NetState is null)
         {
@@ -85,11 +86,11 @@ public sealed class SkillBankGump : DynamicGump
         if (notice is null && fullness.Length > 0)
         {
             notice = fullness;
-            noticeColor = GumpStyle.Warning;
+            noticeKind = BannerKind.Note;
         }
 
         var pages = PageCount(view.Rows.Count, view.FaintMemories is not null);
-        player.SendGump(new SkillBankGump(view, Math.Clamp(page, 0, pages - 1), notice, noticeColor));
+        player.SendGump(new SkillBankGump(view, Math.Clamp(page, 0, pages - 1), notice, noticeKind));
     }
 
     /// <summary>What the Faint Memories banner says, worked out apart from the drawing so it can be tested.</summary>
@@ -122,34 +123,34 @@ public sealed class SkillBankGump : DynamicGump
         var total = _view.TotalTenths;
         var capacity = _view.CapacityTenths;
 
-        if (_view.FaintMemories is { } memories)
+        // The banner line is always at the same place, so the window does not jump when a result comes back.
+        if (_notice is not null)
         {
-            BuildBanner(ref builder, memories);
+            GumpStyle.Banner(ref builder, _noticeKind, _notice, width: InnerWidth - 38, height: 36);
         }
 
-        builder.AddHtml(30, 76 + o, 330, 22, $"Banked: {GumpStyle.Colored(GumpStyle.Points(total), GumpStyle.Gold)} of {GumpStyle.Points(capacity)} points", GumpStyle.Text);
-        GumpStyle.Bar(ref builder, 30, 100 + o, capacity == 0 ? 0 : (double)total / capacity, GumpStyle.Gold, 100);
+        if (_view.FaintMemories is { } memories)
+        {
+            BuildMemories(ref builder, memories);
+        }
+
+        builder.AddHtml(GumpStyle.Margin, 124 + o, 230, 20, $"Banked: {GumpStyle.Colored(GumpStyle.Points(total), GumpStyle.Gold)} of {GumpStyle.Points(capacity)} points", GumpStyle.Text);
+        GumpStyle.Bar(ref builder, 270, 124 + o, capacity == 0 ? 0 : (double)total / capacity, GumpStyle.Gold, 80);
 
         builder.AddHtml(
-            372, 74 + o, 250, 74,
+            GumpStyle.Margin, 148 + o, InnerWidth, 36,
             $"Set a skill to Up and train it: every use brings back {GumpStyle.Points(SkillBankService.RestoreStepTenths)} from the bank. " +
             "Discard throws a skill's banked points away for good.",
             GumpStyle.Muted
         );
 
-        if (_notice is not null)
-        {
-            builder.AddHtml(30, 128 + o, 580, 38, _notice, _noticeColor);
-        }
-
         if (_view.Rows.Count == 0)
         {
-            builder.AddHtml(
-                60, 200 + o, 520, 110,
+            GumpStyle.EmptyState(
+                ref builder, 60, 220 + o, GumpStyle.Width - 120, 110,
                 $"{GumpStyle.Colored("Nothing is banked yet.", GumpStyle.Gold)}<BR><BR>" +
                 "Whenever a skill you have set to Down loses points because another skill gained, those points are saved here, " +
-                "and you earn them back by training that skill again. You do not need to be at the skill cap for that.",
-                GumpStyle.Text
+                "and you earn them back by training that skill again. You do not need to be at the skill cap for that."
             );
         }
         else
@@ -160,27 +161,32 @@ public sealed class SkillBankGump : DynamicGump
         BuildFooter(ref builder);
     }
 
-    private static void BuildBanner(ref DynamicGumpBuilder builder, FaintMemoriesView memories)
+    private static void BuildMemories(ref DynamicGumpBuilder builder, FaintMemoriesView memories)
     {
         var banner = DescribeBanner(memories, SkillBankService.RestoreStepTenths);
 
-        builder.AddHtml(30, 72, 330, 22, FaintMemoriesPolicy.Name, GumpStyle.Gold, size: 4);
-        builder.AddHtml(380, 74, 230, 22, banner.Points, GumpStyle.Gold, align: TextAlignment.Right);
-        builder.AddHtml(30, 92, 580, 20, banner.Theme, GumpStyle.Muted);
-        GumpStyle.Bar(ref builder, 30, 112, banner.Fraction, banner.FillColor, 100);
-        builder.AddHtml(348, 112, 262, 20, banner.Label, memories.Phase == FaintMemoriesPhase.Locked ? GumpStyle.Warning : GumpStyle.Good);
+        builder.AddHtml(GumpStyle.Margin, 124, 330, 20, FaintMemoriesPolicy.Name, GumpStyle.Gold);
+        builder.AddHtml(380, 124, 226, 20, banner.Points, GumpStyle.Gold, align: TextAlignment.Right);
+        builder.AddHtml(GumpStyle.Margin, 144, InnerWidth, 20, banner.Theme, GumpStyle.Muted);
+        GumpStyle.Bar(ref builder, GumpStyle.Margin, 164, banner.Fraction, banner.FillColor, 80);
+        builder.AddHtml(
+            370, 164, 236, 20, banner.Label, memories.Phase == FaintMemoriesPhase.Locked ? GumpStyle.Command : GumpStyle.Good, align: TextAlignment.Right
+        );
     }
 
     private void BuildTable(ref DynamicGumpBuilder builder)
     {
         var o = Shift;
-        var headerY = 166 + o;
-        var rowsTop = 190 + o;
+        var headerY = 188 + o;
+        var rowsTop = 212 + o;
 
-        builder.AddHtml(36, headerY, 150, 20, "Skill", GumpStyle.Dim);
-        builder.AddHtml(186, headerY, 60, 20, "Now", GumpStyle.Dim, align: TextAlignment.Right);
-        builder.AddHtml(256, headerY, 60, 20, "Banked", GumpStyle.Dim, align: TextAlignment.Right);
-        builder.AddHtml(334, headerY, 180, 20, "Setting", GumpStyle.Dim);
+        GumpStyle.TableHeader(
+            ref builder, headerY, GumpStyle.Width,
+            (GumpStyle.Margin, 156, "Skill", TextAlignment.Left),
+            (190, 60, "Now", TextAlignment.Right),
+            (256, 60, "Banked", TextAlignment.Right),
+            (330, 100, "Setting", TextAlignment.Left)
+        );
 
         var rows = _view.Rows.Skip(_page * RowsHere).Take(RowsHere).ToArray();
 
@@ -190,63 +196,33 @@ public sealed class SkillBankGump : DynamicGump
             var y = rowsTop + i * RowHeight;
             var locked = row.Retention == BankRetention.Locked;
 
-            builder.AddHtml(36, y + 8, 150, 20, row.Name, GumpStyle.Text);
-            builder.AddHtml(186, y + 8, 60, 20, GumpStyle.Points(row.ActiveTenths), GumpStyle.Muted, align: TextAlignment.Right);
-            builder.AddHtml(256, y + 8, 60, 20, GumpStyle.Points(row.BankedTenths), GumpStyle.Gold, align: TextAlignment.Right);
+            GumpStyle.Cell(ref builder, GumpStyle.Margin, y + 5, 156, row.Name, GumpStyle.Text);
+            GumpStyle.Cell(ref builder, 190, y + 5, 60, GumpStyle.Points(row.ActiveTenths), GumpStyle.Muted, TextAlignment.Right);
+            GumpStyle.Cell(ref builder, 256, y + 5, 60, GumpStyle.Points(row.BankedTenths), GumpStyle.Gold, TextAlignment.Right);
 
-            AddChoice(ref builder, 334, y, "Locked", GumpStyle.Good, locked, LockedBase + row.SkillId);
-            AddChoice(ref builder, 430, y, "Down", GumpStyle.Warning, !locked, DownBase + row.SkillId);
+            GumpStyle.RadioChoice(ref builder, 330, y + 3, "Locked", locked, LockedBase + row.SkillId, 60);
+            GumpStyle.RadioChoice(ref builder, 426, y + 3, "Down", !locked, DownBase + row.SkillId, 50);
 
-            builder.AddButton(528, y + 3, GumpStyle.ArrowNormal, GumpStyle.ArrowPressed, DiscardBase + row.SkillId);
-            builder.AddHtml(564, y + 8, 60, 20, "Discard", GumpStyle.Text);
+            GumpStyle.GameAction(ref builder, GumpStyle.Width - GumpStyle.Margin - GumpStyle.OvalWidths[1], y + 3, "Discard", DiscardBase + row.SkillId);
+            GumpStyle.RowRule(ref builder, GumpStyle.RuleInset, y + RowHeight - 3, GumpStyle.Width - 2 * GumpStyle.RuleInset);
         }
 
-        var legendY = rowsTop + RowsHere * RowHeight + 8;
+        var legendY = rowsTop + RowsHere * RowHeight + 6;
         builder.AddHtml(
-            30, legendY, 580, 40,
-            $"{GumpStyle.Colored("Locked", GumpStyle.Good)}: the banked points are safe (the default).  " +
-            $"{GumpStyle.Colored("Down", GumpStyle.Warning)}: they can be replaced when the bank has no room for new points.",
+            GumpStyle.Margin, legendY, InnerWidth, 36,
+            $"{GumpStyle.Colored("Locked", GumpStyle.Text)}: the banked points are safe (the default).  " +
+            $"{GumpStyle.Colored("Down", GumpStyle.Text)}: they can be replaced when the bank has no room for new points.",
             GumpStyle.Muted
         );
-    }
-
-    private static void AddChoice(ref DynamicGumpBuilder builder, int x, int rowY, string label, string color, bool selected, int buttonId)
-    {
-        if (selected)
-        {
-            builder.AddImage(x, rowY + 7, GumpStyle.ChoiceOn);
-        }
-        else
-        {
-            builder.AddButton(x, rowY + 7, GumpStyle.ChoiceOff, GumpStyle.ChoiceOn, buttonId);
-        }
-
-        builder.AddHtml(x + 28, rowY + 8, 66, 20, label, selected ? color : GumpStyle.Muted, fontStyle: (byte)(selected ? 1 : 0));
     }
 
     private void BuildFooter(ref DynamicGumpBuilder builder)
     {
         var pages = PageCount(_view.Rows.Count, HasBanner);
 
-        builder.AddButton(24, GumpStyle.Height - 44, GumpStyle.ArrowNormal, GumpStyle.ArrowPressed, ButtonGuide);
-        builder.AddHtml(64, GumpStyle.Height - 42, 110, 20, "How it works", GumpStyle.Text);
-
-        if (pages > 1)
-        {
-            if (_page > 0)
-            {
-                builder.AddButton(196, GumpStyle.Height - 44, 4014, 4016, ButtonPrevious);
-            }
-
-            builder.AddHtml(232, GumpStyle.Height - 42, 120, 20, $"Page {_page + 1} of {pages}", GumpStyle.Muted, align: TextAlignment.Center);
-
-            if (_page + 1 < pages)
-            {
-                builder.AddButton(362, GumpStyle.Height - 44, GumpStyle.ArrowNormal, GumpStyle.ArrowPressed, ButtonNext);
-            }
-        }
-
-        GumpStyle.FooterButton(ref builder, GumpStyle.Width - 120, "Close", 0, 60);
+        GumpStyle.Footer(ref builder, string.Empty, GumpStyle.Width, GumpStyle.Height);
+        GumpStyle.MenuAction(ref builder, GumpStyle.Margin, GumpStyle.FooterButtonsY(GumpStyle.Height), "How it works", ButtonGuide);
+        GumpStyle.Pager(ref builder, GumpStyle.Width, GumpStyle.Height, _page, pages, ButtonPrevious, ButtonNext);
     }
 
     public override void OnResponse(NetState sender, in RelayInfo info)
@@ -273,7 +249,7 @@ public sealed class SkillBankGump : DynamicGump
                 player,
                 _page,
                 done ? DescribeChange(name, change.Retention) : message,
-                done ? GumpStyle.Good : GumpStyle.Warning
+                done ? BannerKind.Done : BannerKind.Danger
             );
             return;
         }

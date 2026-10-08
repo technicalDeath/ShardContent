@@ -52,13 +52,12 @@ public class TravelWarningServiceTests
     }
 
     [Fact]
-    public void TheFlagIsOffInTheShippedFileAndNeedsHotZones()
+    public void TheFlagIsOnInTheShippedFileAndNeedsHotZones()
     {
         var rules = Shipped();
 
-        Assert.False(rules.FeatureFlags.HotZoneTravelWarning);
+        Assert.True(rules.FeatureFlags.HotZoneTravelWarning);
 
-        rules.FeatureFlags.HotZoneTravelWarning = true;
         rules.FeatureFlags.HotZones = false;
 
         Assert.Contains("hotZoneTravelWarning requires hotZones.", ShardRulesConfiguration.Validate(rules));

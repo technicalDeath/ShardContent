@@ -534,7 +534,7 @@ public class CampTravelServiceTests
     }
 
     [Fact]
-    public void TheShippedFileCarriesTheDefaultsAndLeavesTheFlagOff()
+    public void TheShippedFileCarriesTheDefaultsAndTurnsTheFlagOn()
     {
         var rules = Shipped();
 
@@ -546,7 +546,7 @@ public class CampTravelServiceTests
         Assert.Equal(Rules.MaxArrivals, rules.CampTravel.MaxArrivals);
         Assert.Equal(Rules.SecureSeconds, rules.CampTravel.SecureSeconds);
         Assert.Equal(Rules.ArrivalRange, rules.CampTravel.ArrivalRange);
-        Assert.False(rules.FeatureFlags.CampingTravel);
+        Assert.True(rules.FeatureFlags.CampingTravel);
         Assert.Empty(ShardRulesConfiguration.Validate(rules));
     }
 

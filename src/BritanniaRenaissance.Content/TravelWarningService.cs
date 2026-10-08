@@ -147,12 +147,15 @@ public static class TravelWarningService
 
     private sealed class HotZoneTravelGump : DynamicGump
     {
+        private const int Height = 270;
+        private const int TextWidth = GumpStyle.DialogWidth - 2 * GumpStyle.Margin;
+
         private readonly Action _proceed;
         private readonly DateTime _expires;
 
         public override bool Singleton => true;
 
-        public HotZoneTravelGump(Action proceed, DateTime expires) : base(80, 80)
+        public HotZoneTravelGump(Action proceed, DateTime expires) : base(GumpStyle.DialogX, GumpStyle.DialogY)
         {
             _proceed = proceed;
             _expires = expires;
@@ -161,18 +164,13 @@ public static class TravelWarningService
         protected override void BuildLayout(ref DynamicGumpBuilder builder)
         {
             builder.AddPage();
-            builder.AddBackground(0, 0, 440, 240, 9200);
-            builder.AddImageTiled(10, 10, 420, 220, 2624);
-            builder.AddAlphaRegion(10, 10, 420, 220);
-            builder.AddHtml(20, 18, 400, 20, "Hot Zone Warning", "#FF4040", align: TextAlignment.Center);
-            builder.AddHtml(25, 48, 390, 24, Headline, "#FFFFFF");
-            builder.AddHtml(25, 76, 390, 50, Risk, "#FFFFFF");
-            builder.AddCheckbox(25, 138, 210, 211, false, 1);
-            builder.AddHtml(60, 140, 360, 40, CheckboxLabel, "#FFFFFF");
-            builder.AddButton(30, 190, 4005, 4007, 1);
-            builder.AddHtml(70, 192, 140, 22, "Travel", "#FFFFFF");
-            builder.AddButton(230, 190, 4005, 4007, 0);
-            builder.AddHtml(270, 192, 140, 22, "Cancel", "#FFFFFF");
+            GumpStyle.Frame(ref builder, "Hot Zone Warning", Headline, GumpStyle.DialogWidth, Height);
+            GumpStyle.Banner(ref builder, BannerKind.Danger, Risk, width: TextWidth - 38, height: 54);
+            GumpStyle.Tick(ref builder, GumpStyle.Margin, GumpStyle.ContentTop + 70, CheckboxLabel, 1, TextWidth - 32);
+            GumpStyle.Rule(ref builder, GumpStyle.RuleInset, Height - GumpStyle.FooterRoom, GumpStyle.DialogWidth - 2 * GumpStyle.RuleInset);
+            GumpStyle.OkayCancel(
+                ref builder, GumpStyle.Margin, GumpStyle.DialogWidth - GumpStyle.Margin - GumpStyle.OvalWidths[0], GumpStyle.FooterButtonsY(Height), 1, 0
+            );
         }
 
         public override void OnResponse(NetState sender, in RelayInfo info)
@@ -184,7 +182,8 @@ public static class TravelWarningService
 
             if (info.ButtonID != 1)
             {
-                traveler.SendMessage("You decide not to travel.");
+                // CANCEL or a right-click.
+                traveler.SendMessage(WarningHue, "You decide not to travel.");
                 return;
             }
 

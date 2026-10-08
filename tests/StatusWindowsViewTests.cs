@@ -30,7 +30,7 @@ public class StatusWindowsViewTests
         var view = StatusWindows.DescribeIntent(true, true, true, false);
 
         Assert.Equal("Criminal Intent is ON", view.Headline);
-        Assert.Equal(GumpStyle.Warning, view.HeadlineColor);
+        Assert.Equal(GumpStyle.Danger, view.HeadlineColor);
         Assert.Equal("Turn Criminal Intent off", view.ButtonLabel);
         Assert.Equal(
             ["You appear grey and other players may attack you. Killing you is not murder.", PvpIntentService.NotACriminalNote],
@@ -85,7 +85,7 @@ public class StatusWindowsViewTests
         Assert.Contains("Do not show me this warning again when traveling", on.Paragraphs[1]);
 
         Assert.Equal("The warning is OFF", off.Headline);
-        Assert.Equal(GumpStyle.Warning, off.HeadlineColor);
+        Assert.Equal(GumpStyle.Danger, off.HeadlineColor);
         Assert.Equal("Turn the warning on", off.ButtonLabel);
         Assert.Contains("You will not be asked.", off.Paragraphs[1]);
     }
@@ -108,7 +108,7 @@ public class StatusWindowsViewTests
         var view = StatusWindows.DescribeWard(true, WardPhase.Primed, lines);
 
         Assert.Equal("Primed", view.Headline);
-        Assert.Equal(GumpStyle.Gold, view.HeadlineColor);
+        Assert.Equal(GumpStyle.Command, view.HeadlineColor);
         Assert.DoesNotContain(view.Paragraphs, p => p.StartsWith("Status:", StringComparison.Ordinal));
         Assert.Contains(view.Paragraphs, p => p.StartsWith("It is tracking thieves who steal from you", StringComparison.Ordinal));
         Assert.Contains("23 more quiet minutes", string.Join(" ", view.Paragraphs));
@@ -117,7 +117,7 @@ public class StatusWindowsViewTests
 
     [Theory]
     [InlineData(WardPhase.Unprimed, GumpStyle.Muted)]
-    [InlineData(WardPhase.Primed, GumpStyle.Gold)]
+    [InlineData(WardPhase.Primed, GumpStyle.Command)]
     [InlineData(WardPhase.Activated, GumpStyle.Good)]
     public void EachWardPhaseHasItsOwnColor(WardPhase phase, string color) =>
         Assert.Equal(color, StatusWindows.DescribeWard(true, phase, ["A Ward."]).HeadlineColor);
@@ -141,7 +141,7 @@ public class StatusWindowsViewTests
         var long1 = StatusWindow.HeightFor([new string('x', 400), new string('y', 400)], 1);
         var huge = StatusWindow.HeightFor([new string('z', 5000)], 2);
 
-        Assert.Equal(260, short1);
+        Assert.Equal(280, short1);  // the banner, a button and the footer need this much even for one line
         Assert.True(long1 > short1);
         Assert.Equal(GumpStyle.Height, huge);
     }

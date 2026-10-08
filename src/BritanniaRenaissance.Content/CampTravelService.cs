@@ -1025,39 +1025,46 @@ public static class CampTravelService
 
     // ---- the gumps
 
+    /// <summary>The height of the camp list for <paramref name="entries"/> camps (at most the list limit of 8): header, a row of 44 pixels each, footer.</summary>
+    public static int ListHeight(int entries) => 78 + entries * 44 + GumpStyle.FooterRoom;
+
+    /// <summary>The height of the travel confirmation, taller when it carries the Hot Zone banner and its tick box.</summary>
+    public static int ConfirmHeight(bool hot) => hot ? 312 : 240;
+
     private sealed class CampTravelListGump : DynamicGump
     {
         private readonly List<ListEntry> _entries;
 
         public override bool Singleton => true;
 
-        public CampTravelListGump(List<ListEntry> entries) : base(60, 60) => _entries = entries;
+        public CampTravelListGump(List<ListEntry> entries) : base(GumpStyle.MediumX, GumpStyle.MediumY) => _entries = entries;
 
         protected override void BuildLayout(ref DynamicGumpBuilder builder)
         {
-            var height = 90 + _entries.Count * 46;
+            var height = ListHeight(_entries.Count);
 
             builder.AddPage();
-            builder.AddBackground(0, 0, 480, height, 9200);
-            builder.AddImageTiled(10, 10, 460, height - 20, 2624);
-            builder.AddAlphaRegion(10, 10, 460, height - 20);
-            builder.AddHtml(20, 18, 440, 20, "Travel to a party member's camp", "#FFD060", align: TextAlignment.Center);
-            builder.AddHtml(20, 40, 440, 20, "Pick a camp. You will be asked to confirm.", "#CCCCCC", align: TextAlignment.Center);
+            GumpStyle.Frame(ref builder, "Travel to a party member's camp", "Pick a camp. You will be asked to confirm.", GumpStyle.MediumWidth, height);
 
             for (var i = 0; i < _entries.Count; i++)
             {
                 var entry = _entries[i];
-                var y = 70 + i * 46;
+                var y = 84 + i * 44;
 
-                builder.AddButton(20, y + 8, 4005, 4007, i + 1);
-                builder.AddHtml(60, y, 280, 22, $"{entry.LighterName}'s camp: {entry.Label}", entry.Label == "ready" ? "#FFFFFF" : "#999999");
-                builder.AddHtml(60, y + 22, 400, 20, $"{entry.Place}, {entry.Distance:0} tiles away", "#BBBBBB");
+                builder.AddHtml(GumpStyle.Margin, y, 214, 20, $"{entry.LighterName}'s camp: {entry.Label}", entry.Label == "ready" ? GumpStyle.Text : GumpStyle.Dim);
+                builder.AddHtml(GumpStyle.Margin, y + 20, 300, 20, $"{entry.Place}, {entry.Distance:0} tiles away", GumpStyle.Muted);
 
                 if (entry.Hot)
                 {
-                    builder.AddHtml(350, y, 110, 22, "[HOT ZONE]", "#FF4040");
+                    builder.AddHtml(252, y, 100, 20, "[HOT ZONE]", GumpStyle.Danger);
                 }
+
+                // Choosing a camp only opens the confirmation, so it is a menu action; the buttons count from 1 (0 is Close).
+                GumpStyle.MenuAction(ref builder, GumpStyle.MediumWidth - GumpStyle.Margin - GumpStyle.OvalWidths[1], y + 4, "Select", i + 1, width: GumpStyle.OvalWidths[1]);
+                GumpStyle.RowRule(ref builder, GumpStyle.RuleInset, y + 40, GumpStyle.MediumWidth - 2 * GumpStyle.RuleInset);
             }
+
+            GumpStyle.Footer(ref builder, string.Empty, GumpStyle.MediumWidth, height);
         }
 
         public override void OnResponse(NetState sender, in RelayInfo info)
@@ -1081,7 +1088,7 @@ public static class CampTravelService
 
         public override bool Singleton => true;
 
-        public CampTravelConfirmGump(Campfire fire, string name, int left, int capacity, bool warn) : base(80, 80)
+        public CampTravelConfirmGump(Campfire fire, string name, int left, int capacity, bool warn) : base(GumpStyle.DialogX, GumpStyle.DialogY)
         {
             _fire = fire;
             _name = name;
@@ -1093,55 +1100,61 @@ public static class CampTravelService
         protected override void BuildLayout(ref DynamicGumpBuilder builder)
         {
             var rules = Rules;
-            var height = _warn ? 290 : 200;
+            var height = ConfirmHeight(_warn);
+            var textWidth = GumpStyle.DialogWidth - 2 * GumpStyle.Margin;
 
             builder.AddPage();
-            builder.AddBackground(0, 0, 420, height, 9200);
-            builder.AddImageTiled(10, 10, 400, height - 20, 2624);
-            builder.AddAlphaRegion(10, 10, 400, height - 20);
-            builder.AddHtml(20, 18, 380, 20, $"Travel to {_name}'s camp?", "#FFD060", align: TextAlignment.Center);
+            GumpStyle.Frame(ref builder, $"Travel to {_name}'s camp?", "Camp travel", GumpStyle.DialogWidth, height);
 
-            var y = 46;
+            var y = GumpStyle.ContentTop + 8;
 
             if (_warn)
             {
-                builder.AddHtml(20, y, 380, 66, $"WARNING: {HotZoneWarning}", "#FF4040");
-                y += 72;
+                GumpStyle.Banner(ref builder, BannerKind.Danger, HotZoneWarning, width: textWidth - 38, height: 54);
+                y += 54;
             }
 
             builder.AddHtml(
-                20,
+                GumpStyle.Margin,
                 y,
-                380,
-                70,
+                textWidth,
+                72,
                 $"It costs {rules.KindlingCost} Kindling, and you cannot use camp travel again for {Span(TimeSpan.FromMinutes(rules.CooldownMinutes))}. " +
                 $"Stand still for {rules.ChannelSeconds:0} seconds. Bonded pets beside you come too. {_left} of {_capacity} {Places(_capacity)} left at this camp.",
-                "#FFFFFF"
+                GumpStyle.Text
             );
 
             if (_warn)
             {
-                builder.AddCheckbox(20, height - 82, 210, 211, false, 1);
-                builder.AddHtml(55, height - 80, 350, 36, TravelWarningService.CheckboxLabel, "#FFFFFF");
+                GumpStyle.Tick(ref builder, GumpStyle.Margin, y + 80, TravelWarningService.CheckboxLabel, 1, textWidth - 32);
             }
 
-            builder.AddButton(30, height - 45, 4005, 4007, 1);
-            builder.AddHtml(70, height - 43, 120, 22, "Travel", "#FFFFFF");
-            builder.AddButton(230, height - 45, 4005, 4007, 0);
-            builder.AddHtml(270, height - 43, 120, 22, "Cancel", "#FFFFFF");
+            GumpStyle.Rule(ref builder, GumpStyle.RuleInset, height - GumpStyle.FooterRoom, GumpStyle.DialogWidth - 2 * GumpStyle.RuleInset);
+            GumpStyle.OkayCancel(
+                ref builder, GumpStyle.Margin, GumpStyle.DialogWidth - GumpStyle.Margin - GumpStyle.OvalWidths[0], GumpStyle.FooterButtonsY(height), 1, 0
+            );
         }
 
         public override void OnResponse(NetState sender, in RelayInfo info)
         {
-            if (info.ButtonID == 1 && sender.Mobile is PlayerMobile traveler)
+            if (sender.Mobile is not PlayerMobile traveler)
             {
-                if (_warn)
-                {
-                    TravelWarningService.ApplyChoice(traveler, info.IsSwitched(1));
-                }
-
-                Begin(traveler, _fire);
+                return;
             }
+
+            if (info.ButtonID != 1)
+            {
+                // CANCEL or a right-click: the same words as the Hot Zone warning, in the journal's refusal red.
+                traveler.SendMessage(RefusalHue, "You decide not to travel.");
+                return;
+            }
+
+            if (_warn)
+            {
+                TravelWarningService.ApplyChoice(traveler, info.IsSwitched(1));
+            }
+
+            Begin(traveler, _fire);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Reflection;
 using BritanniaRenaissance.Content;
 using Server;
 using Server.Commands;
+using Server.Gumps;
 using Server.Items;
 using Server.Misc;
 using Server.Mobiles;
@@ -35,6 +36,337 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlySkillUse", AccessLevel.Administrator, OnSkillUseCommand);
         CommandSystem.Register("TestOnlyFaintAge", AccessLevel.Administrator, OnFaintAgeCommand);
         CommandSystem.Register("TestOnlySkillCap", AccessLevel.Administrator, OnSkillCapCommand);
+        CommandSystem.Register("TestOnlyBuff", AccessLevel.Administrator, OnBuffCommand);
+        CommandSystem.Register("TestOnlyBuffOff", AccessLevel.Administrator, OnBuffOffCommand);
+        CommandSystem.Register("TestOnlyTabs", AccessLevel.Administrator, e => FindPlayer(e)?.SendGump(new TabArtProbe()));
+        CommandSystem.Register("TestOnlyGump", AccessLevel.Administrator, OnGumpCommand);
+        CommandSystem.Register("TestOnlyShow", AccessLevel.Administrator, OnShowCommand);
+        CommandSystem.Register("TestOnlyMage", AccessLevel.Administrator, OnMageCommand);
+        CommandSystem.Register("TestOnlyCast", AccessLevel.Administrator, OnCastCommand);
+        CommandSystem.Register("TestOnlyState", AccessLevel.Administrator, OnStateCommand);
+    }
+
+    // [TestOnlyBuff <player-serial> <BuffIcon> <titleCliloc> <secondaryCliloc> <seconds> [text ...]] adds a buff icon to the player, for the
+    // buff-icon spike: which stock art stands for which shard state, and whether a generic argument cliloc shows custom text in the client.
+    // Needs buffIcons.enable true on the host. Reports "Buff <icon> title=<n> secondary=<n> seconds=<n> text=<text>".
+    private static void OnBuffCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player ||
+            e.Length < 5 || !Enum.TryParse<Server.Engines.BuffIcons.BuffIcon>(e.GetString(1), true, out var icon) ||
+            !int.TryParse(e.GetString(2), out var title) || !int.TryParse(e.GetString(3), out var secondary) ||
+            !int.TryParse(e.GetString(4), out var seconds))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyBuff <player-serial> <BuffIcon> <titleCliloc> <secondaryCliloc> <seconds> [text ...]");
+            return;
+        }
+
+        var text = e.Length > 5 ? string.Join(' ', Enumerable.Range(5, e.Length - 5).Select(e.GetString)) : null;
+        player.AddBuff(new Server.Engines.BuffIcons.BuffInfo(icon, title, secondary, TimeSpan.FromSeconds(seconds), text));
+        e.Mobile.SendMessage($"Buff {icon} title={title} secondary={secondary} seconds={seconds} text={text}");
+    }
+
+    // [TestOnlyShow <player-serial> <window> [argument]] opens one of the shard's real windows on that player's client, including the ones a
+    // normal play-through reaches only with a party, a campfire or a Recall into a Hot Zone, so a window can be photographed before and after
+    // a restyle with the same command. Windows: welcome [topic-key], skillclasses, intent, travelwarning, ward, skillbank, discard [skill-id],
+    // mastery, camplist, campconfirm, campconfirmhot, hotzone.
+    private static void OnShowCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyShow <player-serial> <window> [argument]");
+            return;
+        }
+
+        const System.Reflection.BindingFlags Hidden = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public;
+        var arg = e.Length > 2 ? e.GetString(2) : null;
+        var camp = typeof(CampTravelService);
+
+        switch (e.GetString(1).ToLowerInvariant())
+        {
+            case "welcome":
+                WelcomeGuide.Open(player, arg);
+                break;
+            case "skillclasses":
+                SkillClassesGump.Open(player);
+                break;
+            case "intent":
+                StatusWindows.OpenIntent(player);
+                break;
+            case "travelwarning":
+                StatusWindows.OpenTravelWarning(player);
+                break;
+            case "ward":
+                StatusWindows.OpenWard(
+                    player, true, WardPhase.Primed,
+                    ["Status: Primed. Your Ward is watching your backpack.", "A thief it detects cannot steal from you again until it has run its course."]
+                );
+                break;
+            case "skillbank":
+                SkillBankGump.Open(player, 0, arg);
+                break;
+            case "discard":
+                SkillBankDiscardGump.Open(player, int.TryParse(arg, out var skillId) ? skillId : 0, 0);
+                break;
+            case "mastery":
+                MasteryGump.Open(player, player);
+                break;
+            case "camplist":
+            {
+                var entryType = camp.GetNestedType("ListEntry", Hidden)!;
+                var list = Activator.CreateInstance(typeof(List<>).MakeGenericType(entryType))!;
+                var add = list.GetType().GetMethod("Add")!;
+
+                foreach (var (name, distance, label, hot, place) in new[]
+                         {
+                             ("Rowan", 9.0, "ready", false, "Britain"), ("Tessa", 41.0, "ready", true, "Buccaneer's Den island"),
+                             ("Bram", 17.0, "securing", false, "Yew"), ("Ilsa", 63.0, "full", false, "Minoc")
+                         })
+                {
+                    add.Invoke(list, [Activator.CreateInstance(entryType, [null, name, distance, label, hot, place])]);
+                }
+
+                player.SendGump((BaseGump)Activator.CreateInstance(camp.GetNestedType("CampTravelListGump", Hidden)!, list)!);
+                break;
+            }
+            case "campconfirm":
+            case "campconfirmhot":
+                player.SendGump(
+                    (BaseGump)Activator.CreateInstance(
+                        camp.GetNestedType("CampTravelConfirmGump", Hidden)!, [null, "Rowan", 3, 4, e.GetString(1).EndsWith("hot", StringComparison.OrdinalIgnoreCase)]
+                    )!
+                );
+                break;
+            case "hotzone":
+                player.SendGump(
+                    (BaseGump)Activator.CreateInstance(
+                        typeof(TravelWarningService).GetNestedType("HotZoneTravelGump", Hidden)!, [new Action(static () => { }), Core.Now.AddMinutes(2)]
+                    )!
+                );
+                break;
+            default:
+                e.Mobile.SendMessage("Unknown window.");
+                return;
+        }
+
+        e.Mobile.SendMessage($"Window {e.GetString(1)} shown to {player.Name}");
+    }
+
+    // [TestOnlyGump <player-serial> <script-name>] draws the gump described by <script-name>.gs (see GumpScriptProbe) on that player's client.
+    private static void OnGumpCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyGump <player-serial> <script-name>");
+            return;
+        }
+
+        var gump = GumpScriptProbe.Load(e.GetString(1), out var error);
+
+        if (gump is null)
+        {
+            e.Mobile.SendMessage(error);
+            return;
+        }
+
+        player.SendGump(gump);
+        e.Mobile.SendMessage($"Gump {e.GetString(1)} sent to {player.Name}");
+    }
+
+    private static PlayerMobile? FindPlayer(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        return uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) ? World.FindMobile((Serial)serial) as PlayerMobile : null;
+    }
+
+    // [TestOnlyMage <player-serial>] makes the player a caster for the buff-bar check: Magery and Evaluating Intelligence 100, full mana, a
+    // spellbook with every Magery spell and a stack of every reagent in the backpack. Nothing here ships.
+    private static void OnMageCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyMage <player-serial>");
+            return;
+        }
+
+        player.Skills[SkillName.Magery].Base = 100.0;
+        player.Skills[SkillName.EvalInt].Base = 100.0;
+        player.RawInt = 100;
+        player.Mana = player.ManaMax;
+        player.AddToBackpack(new Spellbook(ulong.MaxValue));
+        player.AddToBackpack(new BlackPearl(50));
+        player.AddToBackpack(new Bloodmoss(50));
+        player.AddToBackpack(new Garlic(50));
+        player.AddToBackpack(new Ginseng(50));
+        player.AddToBackpack(new MandrakeRoot(50));
+        player.AddToBackpack(new Nightshade(50));
+        player.AddToBackpack(new SulfurousAsh(50));
+        player.AddToBackpack(new SpidersSilk(50));
+        e.Mobile.SendMessage($"Mage {player.Name}: Magery {player.Skills[SkillName.Magery].Base}, mana {player.Mana}/{player.ManaMax}");
+    }
+
+    // [TestOnlyCast <player-serial> <SpellName>] starts a stock spell for the player through the engine's normal path (cast delay, then the
+    // target cursor goes to their client). Reports whether the cast started.
+    private static void OnCastCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyCast <player-serial> <SpellName>");
+            return;
+        }
+
+        var spell = Server.Spells.SpellRegistry.NewSpell(e.GetString(1), player, null);
+        e.Mobile.SendMessage(spell is null ? $"Cast {e.GetString(1)}: no such spell" : $"Cast {e.GetString(1)}: started={spell.Cast()}");
+    }
+
+    // [TestOnlyState <player-serial> <what> [argument]] puts a test character into a state the buff bar shows, for the buff-icon check:
+    // poison <Lesser|Regular|Greater|Deadly|Lethal> | curepoison | body <id> | criminal <on|off> | ward <primed|activated|reset> |
+    // ko <on|off> | koattacker <serial> | kofrom <serial> | polymorph <body> | endpolymorph | kill | resurrect | cleardefense (ends Protection, Reactive Armor, Magic Reflect and Arch Protection) | describe (lists what the watch shows).
+    private static void OnStateCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyState <player-serial> <what> [argument]");
+            return;
+        }
+
+        var what = e.GetString(1).ToLowerInvariant();
+        var arg = e.Length > 2 ? e.GetString(2).ToLowerInvariant() : "";
+
+        switch (what)
+        {
+            case "poison":
+                var level = arg switch
+                {
+                    "regular" => Poison.Regular,
+                    "greater" => Poison.Greater,
+                    "deadly" => Poison.Deadly,
+                    "lethal" => Poison.Lethal,
+                    _ => Poison.Lesser
+                };
+                player.ApplyPoison(player, level);
+                break;
+            case "curepoison":
+                player.Poison = null;
+                break;
+            case "body":
+                player.BodyMod = int.TryParse(arg, out var body) ? body : 0;
+                break;
+            case "criminal":
+                player.Criminal = arg != "off";
+                break;
+            case "ward":
+                var ward = BackpackWardService.FindWard(player);
+                if (ward is null)
+                {
+                    e.Mobile.SendMessage("No Backpack Ward in that pack.");
+                    return;
+                }
+
+                if (arg == "reset")
+                {
+                    ward.State.Reset();
+                }
+                else
+                {
+                    ward.State.Prime(player.Serial.Value, Core.Now);
+
+                    if (arg == "activated")
+                    {
+                        ward.State.Activate(Core.Now);
+                        ward.State.MarkCaught("test-thief");
+                    }
+                }
+
+                break;
+            case "ko":
+                if (player.Account is Account account)
+                {
+                    var key = "BritanniaRenaissance.KnockedOut.UntilUtc." + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture);
+
+                    if (arg == "off")
+                    {
+                        account.RemoveTag(key);
+                    }
+                    else
+                    {
+                        account.SetTag(key, Core.Now.AddSeconds(90).ToUniversalTime().ToString("O", CultureInfo.InvariantCulture));
+                    }
+                }
+
+                break;
+            case "koattacker":
+                // Records who knocked the player out (arg: that character's serial, hex), so that character has the right to execute them.
+                if (player.Account is Account koAccount && uint.TryParse(arg.Replace("0x", ""), NumberStyles.HexNumber, null, out var attackerSerial))
+                {
+                    koAccount.SetTag(
+                        "BritanniaRenaissance.KnockedOut.Attacker." + player.Serial.Value.ToString("X8", CultureInfo.InvariantCulture),
+                        attackerSerial.ToString(CultureInfo.InvariantCulture)
+                    );
+                }
+
+                break;
+            case "kofrom":
+                // The real Knocked Out entry (timers, countdown labels, recorded attacker), as a lethal blow from that character (arg: serial, hex)
+                // would cause it; for real-client checks where the attacker is a person at a keyboard and cannot land the blow on cue.
+                if (uint.TryParse(arg.Replace("0x", ""), NumberStyles.HexNumber, null, out var koFrom) && World.FindMobile((Serial)koFrom) is { } koAttacker)
+                {
+                    e.Mobile.SendMessage($"KnockedOut entered={KnockedOutService.TryInterceptLethalDamage(player, koAttacker, 1000)}");
+                }
+
+                break;
+            case "cleardefense":
+                player.MeleeDamageAbsorb = 0;
+                player.MagicDamageAbsorb = 0;
+                Server.Spells.Second.ProtectionSpell.Registry.Remove(player);
+                Server.Spells.Fourth.ArchProtectionSpell.RemoveEntry(player);
+                player.EndAction<DefensiveSpell>();
+                break;
+            case "polymorph":
+                e.Mobile.SendMessage(
+                    $"Polymorph started={new Server.Spells.Seventh.PolymorphSpell(player, null, int.TryParse(arg, out var form) ? form : 5).Cast()}"
+                );
+                return;
+            case "endpolymorph":
+                Server.Spells.Seventh.PolymorphSpell.EndPolymorph(player);
+                break;
+            case "kill":
+                player.Kill();
+                break;
+            case "resurrect":
+                player.Resurrect();
+                break;
+            case "describe":
+                foreach (var line in BuffIconService.Describe(player))
+                {
+                    e.Mobile.SendMessage(line);
+                }
+
+                return;
+            default:
+                e.Mobile.SendMessage($"Unknown state '{what}'.");
+                return;
+        }
+
+        e.Mobile.SendMessage($"State {what} {arg}: done.");
+    }
+
+    // [TestOnlyBuffOff <player-serial> <BuffIcon>] removes one buff icon.
+    private static void OnBuffOffCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player ||
+            e.Length < 2 || !Enum.TryParse<Server.Engines.BuffIcons.BuffIcon>(e.GetString(1), true, out var icon))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyBuffOff <player-serial> <BuffIcon>");
+            return;
+        }
+
+        player.RemoveBuff(icon);
+        e.Mobile.SendMessage($"BuffOff {icon}");
     }
 
     // [TestOnlySkillUse <player-serial> <Skill> <count>] makes that many skill checks that always succeed, each at a place the anti-macro

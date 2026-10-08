@@ -7,19 +7,21 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// The confirmation before a player throws a skill's banked points away (owner request 2026-10-07): it says exactly what will go and
-/// asks them to type the word <see cref="ConfirmWord"/> in a box. Anything else, Keep them, or closing the window leaves the bank alone.
-/// Faint Memories has no Discard: it is not in the bank.
+/// asks them to type the word <see cref="ConfirmWord"/> in a box. Anything else, Cancel, a right-click, or closing the window leaves the bank
+/// alone. Faint Memories has no Discard: it is not in the bank. A dialog in the shard's style (Gump-Style-Guide.md 3.4): a Danger banner
+/// naming the action, the consequence, the typed confirmation, a purple verb button and a red CANCEL at opposite ends.
 /// </summary>
 public sealed class SkillBankDiscardGump : DynamicGump
 {
     /// <summary>The word that has to be typed to confirm.</summary>
     public const string ConfirmWord = "discard";
 
-    private const int Width = 480;
-    private const int Height = 330;
+    private const int Width = GumpStyle.DialogWidth;
+    private const int Height = 320;
     private const int ButtonDiscard = 1;
     private const int ButtonKeep = 2;
     private const int EntryWord = 1;
+    private const int TextWidth = Width - 2 * GumpStyle.Margin;
 
     private readonly int _skillId;
     private readonly int _page;
@@ -27,7 +29,7 @@ public sealed class SkillBankDiscardGump : DynamicGump
     private readonly int _bankedTenths;
     private readonly int _skillTenths;
 
-    private SkillBankDiscardGump(int skillId, int page, string skillName, int bankedTenths, int skillTenths) : base(80, 60)
+    private SkillBankDiscardGump(int skillId, int page, string skillName, int bankedTenths, int skillTenths) : base(GumpStyle.DialogX, GumpStyle.DialogY)
     {
         _skillId = skillId;
         _page = page;
@@ -62,7 +64,7 @@ public sealed class SkillBankDiscardGump : DynamicGump
 
         if (row is null)
         {
-            SkillBankGump.Open(player, page, "Nothing is banked for that skill.", GumpStyle.Warning);
+            SkillBankGump.Open(player, page, "Nothing is banked for that skill.", BannerKind.Note);
             return;
         }
 
@@ -74,18 +76,26 @@ public sealed class SkillBankDiscardGump : DynamicGump
         builder.AddPage();
         GumpStyle.Frame(ref builder, "Discard banked points", "This cannot be undone", Width, Height);
 
-        builder.AddHtml(30, 80, Width - 60, 28, DescribeQuestion(_skillName), GumpStyle.Warning, size: 4);
-        builder.AddHtml(30, 118, Width - 60, 60, DescribeConsequence(_skillName, _bankedTenths, _skillTenths), GumpStyle.Text);
+        // The question is the Danger line; the consequence says exactly what goes.
+        var question = DescribeQuestion(_skillName);
+        var questionHeight = GumpStyle.LinesFor("Danger: " + question, TextWidth - 38) * 18 + 6;
+        GumpStyle.Banner(ref builder, BannerKind.Danger, question, width: TextWidth - 38, height: questionHeight);
 
-        builder.AddHtml(30, 190, Width - 60, 20, DescribePrompt(), GumpStyle.Gold);
-        builder.AddImageTiled(30, 214, 200, 26, 2524);
-        builder.AddTextEntryLimited(34, 217, 192, 20, 0, EntryWord, "", ConfirmWord.Length + 4);
+        var consequence = DescribeConsequence(_skillName, _bankedTenths, _skillTenths);
+        var consequenceY = GumpStyle.ContentTop + Math.Max(24, questionHeight) + 8;
+        builder.AddHtml(GumpStyle.Margin, consequenceY, TextWidth, 58, consequence, GumpStyle.Text);
 
-        builder.AddButton(30, 252, GumpStyle.ArrowNormal, GumpStyle.ArrowPressed, ButtonDiscard);
-        builder.AddHtml(72, 256, 180, 22, "Discard the points", GumpStyle.Warning, fontStyle: 1);
+        var promptY = consequenceY + 62;
+        builder.AddHtml(GumpStyle.Margin, promptY, TextWidth, 20, DescribePrompt(), GumpStyle.Muted);
+        builder.AddImageTiled(GumpStyle.Margin, promptY + 24, 200, 26, GumpStyle.WellArt);
+        builder.AddTextEntryLimited(GumpStyle.Margin + 4, promptY + 27, 192, 20, 0, EntryWord, "", ConfirmWord.Length + 4);
 
-        builder.AddButton(260, 252, GumpStyle.ArrowNormal, GumpStyle.ArrowPressed, ButtonKeep);
-        builder.AddHtml(302, 256, 150, 22, "Keep them", GumpStyle.Good, fontStyle: 1);
+        GumpStyle.Rule(ref builder, GumpStyle.RuleInset, Height - GumpStyle.FooterRoom, Width - 2 * GumpStyle.RuleInset);
+
+        // The verb is a game action (it changes the bank), purple; CANCEL is the red oval at the other end.
+        var y = GumpStyle.FooterButtonsY(Height);
+        GumpStyle.GameAction(ref builder, GumpStyle.Margin, y, "Discard points", ButtonDiscard);
+        builder.AddButton(Width - GumpStyle.Margin - GumpStyle.OvalWidths[0], y, GumpStyle.CancelArt, GumpStyle.CancelArt + 1, ButtonKeep);
     }
 
     public override void OnResponse(NetState sender, in RelayInfo info)
@@ -100,14 +110,18 @@ public sealed class SkillBankDiscardGump : DynamicGump
             case ButtonDiscard when IsConfirmed(info.GetTextEntry(EntryWord)):
                 {
                     var result = SkillBankService.Discard(player, _skillId);
-                    SkillBankGump.Open(player, _page, result.Message, result.Discarded ? GumpStyle.Good : GumpStyle.Warning);
+                    SkillBankGump.Open(player, _page, result.Message, result.Discarded ? BannerKind.Done : BannerKind.Danger);
                     break;
                 }
             case ButtonDiscard:
-                SkillBankGump.Open(player, _page, $"Nothing was discarded: {ConfirmWord} was not typed.", GumpStyle.Warning);
+                SkillBankGump.Open(player, _page, $"Nothing was discarded: {ConfirmWord} was not typed.", BannerKind.Danger);
                 break;
             case ButtonKeep:
-                SkillBankGump.Open(player, _page, $"Nothing was discarded. {_skillName} keeps its {GumpStyle.Points(_bankedTenths)} banked points.", GumpStyle.Good);
+                SkillBankGump.Open(player, _page, $"Nothing was discarded. {_skillName} keeps its {GumpStyle.Points(_bankedTenths)} banked points.", BannerKind.Note);
+                break;
+            default:
+                // A right-click: the same as Cancel, without a word, so closing the dialog takes the player back to the bank.
+                SkillBankGump.Open(player, _page);
                 break;
         }
     }
