@@ -21,7 +21,7 @@ namespace BritanniaRenaissance.Content;
 /// is something a trained camper gives their party. The lighter is kept informed of the fire and of the command. Docs:
 /// docs/Beta-2b-Camp-Travel-Plan.md.
 /// </summary>
-public static class CampTravelService
+public static partial class CampTravelService
 {
     public const string Command = "[CampTravel";
 
@@ -43,6 +43,7 @@ public static class CampTravelService
         NotInParty,
         WrongMap,
         Embers,
+        NotTravelFire,
         NotSecure,
         LighterTooLow,
         Full,
@@ -70,6 +71,10 @@ public static class CampTravelService
         public bool LighterInParty { get; init; } = true;
         public bool SameMap { get; init; } = true;
         public bool FireEmbers { get; init; }
+
+        /// <summary>False for a fire that is not its lighter's blue travel fire (only when <c>campTravelBlueFire</c> is on).</summary>
+        public bool FireIsTravel { get; init; } = true;
+
         public bool FireSecure { get; init; } = true;
         public int Capacity { get; init; } = 3;
         public int Arrivals { get; init; }
@@ -112,10 +117,14 @@ public static class CampTravelService
         "Tick the box on the warning, or use [TravelWarning off, to stop being asked; [TravelWarning on brings the warning back.";
 
     /// <summary>The guide's Camp travel page, from the numbers in force.</summary>
-    public static IReadOnlyList<string> GuideParagraphs(CampTravelRules rules) =>
+    public static IReadOnlyList<string> GuideParagraphs(CampTravelRules rules, bool blueFire = false) =>
     [
-        $"Use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
-        $"{rules.SecureSeconds:0} seconds and is not down to embers.",
+        blueFire
+            ? $"Use {Command} to travel to a campfire that burns blue, lit by a member of your party. A fire burns blue when its lighter has Camping " +
+              $"{SkillForFirstPlace(rules):0} or more, and each player can have one blue fire at a time: the first fire they light keeps it until it burns " +
+              $"down to embers. A blue fire is secure once it has burned for {rules.SecureSeconds:0} seconds and is not down to embers."
+            : $"Use {Command} to travel to a secure campfire lit by a member of your party. A fire is secure once it has burned for " +
+              $"{rules.SecureSeconds:0} seconds and is not down to embers.",
         $"It costs {rules.KindlingCost} Kindling, you wait {rules.ChannelSeconds:0} seconds without moving, and you can travel this way once every " +
         $"{Span(TimeSpan.FromMinutes(rules.CooldownMinutes))} on your account. Bonded pets next to you come with you.",
         $"A fire takes as many travelers as its lighter's Camping skill allows, counted over the fire's whole life: 1 at Camping {SkillForFirstPlace(rules):0}, " +
@@ -176,6 +185,11 @@ public static class CampTravelService
         if (f.FireEmbers)
         {
             return Refusal.Embers;
+        }
+
+        if (!f.FireIsTravel)
+        {
+            return Refusal.NotTravelFire;
         }
 
         if (!f.FireSecure)
@@ -262,7 +276,8 @@ public static class CampTravelService
             Refusal.NotInParty         => "The one who lit that campfire is no longer in your party.",
             Refusal.WrongMap           => "You cannot travel to a camp in another land.",
             Refusal.Embers             => "That campfire is down to embers. Camp travel needs a burning fire.",
-            Refusal.NotSecure          => $"That camp is not secure yet. Its fire must have burned for {rules.SecureSeconds:0} seconds.",
+            Refusal.NotTravelFire      => "That is an ordinary campfire. Only a blue travel fire can be travelled to.",
+            Refusal.NotSecure         => $"That camp is not secure yet. Its fire must have burned for {rules.SecureSeconds:0} seconds.",
             Refusal.LighterTooLow      => $"The one who lit that fire needs Camping {SkillForFirstPlace(rules):0} or higher before party members can travel to it.",
             Refusal.Full               => $"That camp has no places left ({f.Arrivals} of {f.Capacity} used).",
             Refusal.AlreadyThere       => "You are already at that camp.",
@@ -287,7 +302,8 @@ public static class CampTravelService
             Refusal.None          => "ready",
             Refusal.NotSecure     => "securing",
             Refusal.Embers        => "embers",
-            Refusal.Full          => "full",
+            Refusal.NotTravelFire => "ordinary fire",
+            Refusal.Full        => "full",
             Refusal.LighterTooLow => "needs more Camping",
             Refusal.Cooldown      => "cooldown",
             Refusal.NoKindling    => "no Kindling",
@@ -432,19 +448,42 @@ public static class CampTravelService
         }
     }
 
-    public readonly record struct NoticeContext(int Capacity, int Arrivals, bool FedByLighter);
+    /// <summary>
+    /// What the notice text depends on. <c>Class</c> is <see cref="FireClass.Stock"/> unless the blue fire is on, then what the fire is
+    /// to travel; <c>WasTravel</c> is whether it ever held the travel claim; <c>OtherPlace</c> is where the lighter's travel fire burns.
+    /// </summary>
+    public readonly record struct NoticeContext(
+        int Capacity,
+        int Arrivals,
+        bool FedByLighter,
+        FireClass Class = FireClass.Stock,
+        bool WasTravel = false,
+        string? OtherPlace = null
+    );
 
     /// <summary>The words for a notice, or null when the lighter has nothing to learn from it.</summary>
     public static string? NoticeText(CampTravelRules rules, FireNotice notice, NoticeContext c)
     {
         var left = Math.Max(0, c.Capacity - c.Arrivals);
-        var travel = c.Capacity > 0 && left > 0
+        var ordinary = c.Class is FireClass.AlreadyHave or FireClass.Embers || (c.Class == FireClass.LowCamping && c.WasTravel);
+        var travel = c.Capacity > 0 && left > 0 && !ordinary
             ? $"Party members can travel to it with {Command} ({left} of {c.Capacity} {Places(c.Capacity)} left)."
             : string.Empty;
 
         switch (notice)
         {
             case FireNotice.Lit:
+                if (c.Class == FireClass.AlreadyHave)
+                {
+                    return $"This is an ordinary campfire. Your travel fire is still burning near {c.OtherPlace ?? "here"}.";
+                }
+
+                if (c.Class == FireClass.Travel)
+                {
+                    return $"Your campfire burns blue. Once it has burned for {rules.SecureSeconds:0} seconds, party members can travel to it with {Command} " +
+                           $"(your Camping skill gives {c.Capacity} {Places(c.Capacity)}). You can have one travel fire at a time.";
+                }
+
                 return c.Capacity > 0
                     ? $"Your campfire is lit. Once it has burned for {rules.SecureSeconds:0} seconds, party members can travel to it with {Command} " +
                       $"(your Camping skill gives {c.Capacity} {Places(c.Capacity)})."
@@ -454,6 +493,13 @@ public static class CampTravelService
             case FireNotice.Dimming:
                 return "Your campfire is burning low. Use Kindling beside it to keep it burning.";
             case FireNotice.Embers:
+                if (c.Class != FireClass.Stock)
+                {
+                    return c.WasTravel
+                        ? "Your travel fire is down to embers. Feed it with Kindling to relight it, or the next fire you light will burn blue."
+                        : "Your campfire is down to embers. Use Kindling beside it to relight it.";
+                }
+
                 return c.Capacity > 0
                     ? "Your campfire is down to embers. Party members cannot travel to it until you feed it with Kindling."
                     : "Your campfire is down to embers. Use Kindling beside it to relight it.";
@@ -462,9 +508,11 @@ public static class CampTravelService
                 var both = (relit + " " + travel).Trim();
                 return both.Length == 0 ? null : both;
             case FireNotice.Out:
-                return c.Arrivals > 0
+                var summary = c.Arrivals > 0
                     ? $"Your campfire has burned out. {c.Arrivals} {(c.Arrivals == 1 ? "party member" : "party members")} travelled to it."
                     : "Your campfire has burned out.";
+
+                return c.Class == FireClass.Travel ? $"{summary} The next fire you light will burn blue." : summary;
             default:
                 return null;
         }
@@ -518,6 +566,11 @@ public static class CampTravelService
         {
             errors.Add($"campTravel.arrivalRange must be between 1 and 5, but was {rules.ArrivalRange}.");
         }
+
+        if (rules.FireHue is < 1 or > 3000)
+        {
+            errors.Add($"campTravel.fireHue must be a client hue between 1 and 3000, but was {rules.FireHue}.");
+        }
     }
 
     // ---- what is known about each fire
@@ -528,6 +581,15 @@ public static class CampTravelService
         public Mobile? Lighter;
         public Mobile? LastFeeder;
         public int Arrivals;
+
+        /// <summary>What the fire is to travel (<see cref="FireClass.Stock"/> while <c>campTravelBlueFire</c> is off).</summary>
+        public FireClass Class;
+
+        /// <summary>The class the lighter was last told about; null until the "lit" notice has gone out.</summary>
+        public FireClass? Told;
+
+        /// <summary>Whether the fire has ever held its lighter's travel claim.</summary>
+        public bool EverTravel;
     }
 
     private static readonly Dictionary<Campfire, FireRecord> _records = [];
@@ -572,12 +634,19 @@ public static class CampTravelService
                 _records.Clear();
             }
 
+            ClearBlueFire();
             return;
         }
 
         var rules = Rules;
         var now = Core.Now;
+        var blue = BlueFireEnabled;
         List<Campfire>? gone = null;
+
+        if (blue)
+        {
+            ClassifyFires();
+        }
 
         foreach (var fire in _records.Keys)
         {
@@ -598,7 +667,13 @@ public static class CampTravelService
                     record.Lighter,
                     rules,
                     record.Tracker.Advance(new FireView(true, CampfireStatus.Off, false)),
-                    new NoticeContext(record.Lighter is { Deleted: false } l ? Capacity(rules, l.Skills[SkillName.Camping].Value) : 0, record.Arrivals, false)
+                    new NoticeContext(
+                        record.Lighter is { Deleted: false } l ? Capacity(rules, l.Skills[SkillName.Camping].Value) : 0,
+                        record.Arrivals,
+                        false,
+                        record.Class,
+                        record.EverTravel
+                    )
                 );
             }
         }
@@ -615,13 +690,25 @@ public static class CampTravelService
             var view = new FireView(false, fire.Status, IsSecure(rules, now - fire.CreatedAt, embers));
             var notices = record.Tracker.Advance(view);
 
+            if (blue)
+            {
+                TellClassChange(fire, record, rules);
+            }
+
             if (notices.Count > 0)
             {
                 Tell(
                     fire.Lighter,
                     rules,
                     notices,
-                    new NoticeContext(CapacityOf(fire), record.Arrivals, record.LastFeeder == fire.Lighter)
+                    new NoticeContext(
+                        CapacityOf(fire),
+                        record.Arrivals,
+                        record.LastFeeder == fire.Lighter,
+                        blue ? record.Class : FireClass.Stock,
+                        record.EverTravel,
+                        blue && record.Class == FireClass.AlreadyHave && TravelFireOf(fire.Lighter) is { } other ? PlaceName(other.Map, other.Location) : null
+                    )
                 );
             }
         }
@@ -676,6 +763,7 @@ public static class CampTravelService
             LighterInParty = lighter is not null && party?.Contains(lighter) == true,
             SameMap = sameMap,
             FireEmbers = embers,
+            FireIsTravel = IsTravelFire(fire),
             FireSecure = IsSecure(rules, now - fire.CreatedAt, embers),
             Capacity = CapacityOf(fire),
             Arrivals = _records.TryGetValue(fire, out var record) ? record.Arrivals : 0,
@@ -785,7 +873,7 @@ public static class CampTravelService
             foreach (var fire in Campfire.Active)
             {
                 if (fire.Lighter is { Deleted: false } lighter && lighter != traveler && party.Contains(lighter) &&
-                    fire.Map == traveler.Map)
+                    fire.Map == traveler.Map && IsTravelFire(fire))
                 {
                     var facts = Gather(traveler, fire, out _);
                     var refusal = Plan(rules, facts);
@@ -1168,8 +1256,12 @@ public static class CampTravelService
         var arrivals = _records.TryGetValue(fire, out var record) ? record.Arrivals : 0;
         var secure = IsSecure(rules, Core.Now - fire.CreatedAt, fire.Status == CampfireStatus.Off);
 
+        var kind = !BlueFireEnabled
+            ? string.Empty
+            : IsTravelFire(fire) ? ", blue travel fire" : $", ordinary ({(_records.TryGetValue(fire, out var r) ? r.Class : FireClass.Stock)})";
+
         return $"  travel: {(secure ? "secure" : "not secure")}, {arrivals} of {capacity} {Places(capacity)} used" +
-               $"{(OutdoorHotZonePolicy.IsHot(fire) ? ", HOT ZONE" : string.Empty)}.";
+               $"{kind}{(OutdoorHotZonePolicy.IsHot(fire) ? ", HOT ZONE" : string.Empty)}.";
     }
 
     public static IEnumerable<string> DescribeSettings(Mobile viewer)

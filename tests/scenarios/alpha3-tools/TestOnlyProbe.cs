@@ -44,6 +44,130 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyMage", AccessLevel.Administrator, OnMageCommand);
         CommandSystem.Register("TestOnlyCast", AccessLevel.Administrator, OnCastCommand);
         CommandSystem.Register("TestOnlyState", AccessLevel.Administrator, OnStateCommand);
+        CommandSystem.Register("TestOnlyFires", AccessLevel.Administrator, OnFiresCommand);
+    }
+
+    // [TestOnlyFires <player-serial> <hue> [hue ...]] lights one campfire per hue in a grid around the player, four to a row and three tiles apart
+    // (so the grid reads as straight rows on the screen), with the hue number labelled over each; [TestOnlyFires <player-serial> clear] puts every
+    // fire out. For choosing the blue of a travel fire in the real client (Camp-Travel-Blue-Fire-Proposal.md section 4).
+    private static void OnFiresCommand(CommandEventArgs e)
+    {
+        if (FindPlayer(e) is not { Map: { } map } player || e.Length < 2)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyFires <player-serial> <hue> [hue ...]  or  [TestOnlyFires <player-serial> clear");
+            return;
+        }
+
+        if (e.GetString(1).Equals("clear", StringComparison.OrdinalIgnoreCase))
+        {
+            foreach (var fire in Campfire.Active.ToArray())
+            {
+                fire.Delete();
+            }
+
+            e.Mobile.SendMessage("Fires put out.");
+            return;
+        }
+
+        // [TestOnlyFires <player-serial> flat] moves the player to the middle of the nearest bare, level, dry 25 x 25 patch of open ground.
+        if (e.GetString(1).Equals("flat", StringComparison.OrdinalIgnoreCase))
+        {
+            const int Half = 12;
+            var candidates = new List<(int X, int Y)>();
+
+            for (var dx = -150; dx <= 150; dx += 5)
+            {
+                for (var dy = -150; dy <= 150; dy += 5)
+                {
+                    candidates.Add((player.X + dx, player.Y + dy));
+                }
+            }
+
+            candidates.Sort((a, b) => (Math.Abs(a.X - player.X) + Math.Abs(a.Y - player.Y)).CompareTo(Math.Abs(b.X - player.X) + Math.Abs(b.Y - player.Y)));
+
+            foreach (var (cx, cy) in candidates)
+            {
+                if (cx - Half < 0 || cy - Half < 0 || cx + Half >= map.Width || cy + Half >= map.Height)
+                {
+                    continue;
+                }
+
+                var z = map.Tiles.GetLandTile(cx, cy).Z;
+                var clear = true;
+
+                for (var x = cx - Half; x <= cx + Half && clear; x++)
+                {
+                    for (var y = cy - Half; y <= cy + Half && clear; y++)
+                    {
+                        var land = map.Tiles.GetLandTile(x, y);
+                        var flags = TileData.LandTable[land.ID & TileData.MaxLandValue].Flags;
+
+                        clear = land.Z == z && (flags & (TileFlag.Impassable | TileFlag.Wet)) == 0;
+
+                        // Decoration (leaves, bones, small plants) does not count; walls, floors, doors, trees and roofs do.
+                        foreach (var stat in map.Tiles.GetStaticTiles(x, y))
+                        {
+                            const TileFlag Blocking = TileFlag.Impassable | TileFlag.Surface | TileFlag.Wall | TileFlag.Window | TileFlag.Roof | TileFlag.Foliage |
+                                                      TileFlag.Door | TileFlag.Bridge | TileFlag.Wet;
+
+                            if ((TileData.ItemTable[stat.ID & TileData.MaxItemValue].Flags & Blocking) != 0)
+                            {
+                                clear = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (clear)
+                {
+                    player.MoveToWorld(new Point3D(cx, cy, z), map);
+                    e.Mobile.SendMessage($"Level open ground at {cx},{cy},{z}.");
+                    return;
+                }
+            }
+
+            e.Mobile.SendMessage("No level open ground within 150 tiles.");
+            return;
+        }
+
+        // [TestOnlyFires <player-serial> step <n> <hue> ...] sets the tiles between fires (three if not given).
+        const int Columns = 4;
+        var step = 3;
+        var first = 1;
+
+        if (e.GetString(1).Equals("step", StringComparison.OrdinalIgnoreCase) && e.Length > 3 && int.TryParse(e.GetString(2), out var tiles) && tiles > 0)
+        {
+            step = tiles;
+            first = 3;
+        }
+
+        var hues = new List<int>();
+
+        for (var i = first; i < e.Length; i++)
+        {
+            if (int.TryParse(e.GetString(i), out var hue))
+            {
+                hues.Add(hue);
+            }
+        }
+
+        var centre = (Columns - 1) * step / 2;
+
+        for (var k = 0; k < hues.Count; k++)
+        {
+            // On screen, (+x, -y) runs right and (+x, +y) runs down.
+            var across = k % Columns * step - centre;
+            var down = k / Columns * step - centre;
+            var x = player.X + across + down;
+            var y = player.Y - across + down;
+            var fire = new Campfire(player) { Hue = hues[k] };
+
+            fire.MoveToWorld(new Point3D(x, y, map.GetAverageZ(x, y)), map);
+            fire.LabelTo(player, hues[k].ToString(CultureInfo.InvariantCulture));
+        }
+
+        e.Mobile.SendMessage($"Lit {hues.Count} fires.");
     }
 
     // [TestOnlyBuff <player-serial> <BuffIcon> <titleCliloc> <secondaryCliloc> <seconds> [text ...]] adds a buff icon to the player, for the

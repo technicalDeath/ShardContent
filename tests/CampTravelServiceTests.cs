@@ -76,6 +76,7 @@ public class CampTravelServiceTests
         { nameof(TravelFacts.LighterInParty), Refusal.NotInParty },
         { nameof(TravelFacts.SameMap), Refusal.WrongMap },
         { nameof(TravelFacts.FireEmbers), Refusal.Embers },
+        { nameof(TravelFacts.FireIsTravel), Refusal.NotTravelFire },
         { nameof(TravelFacts.FireSecure), Refusal.NotSecure },
         { nameof(TravelFacts.AlreadyThere), Refusal.AlreadyThere },
         { nameof(TravelFacts.KnockedOut), Refusal.KnockedOut },

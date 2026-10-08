@@ -146,6 +146,25 @@ public static class CampTravelProbe
             case "hurt":
                 player.Hits = Math.Max(1, player.Hits - Int(e, 2));
                 break;
+            case "age":
+                {
+                    // Makes every fire within a tile of the player that old (its next tick reads the new age): a fire sets its own state from
+                    // its age each second, so burning one down to embers by hand is not possible any other way.
+                    var seconds = double.Parse(e.GetString(2), CultureInfo.InvariantCulture);
+                    var aged = 0;
+
+                    foreach (var fire in Campfire.Active)
+                    {
+                        if (fire.Map == player.Map && fire.InRange(player.Location, 1))
+                        {
+                            typeof(Campfire).GetProperty(nameof(Campfire.LitAt))!.GetSetMethod(true)!.Invoke(fire, [Core.Now - TimeSpan.FromSeconds(seconds)]);
+                            aged++;
+                        }
+                    }
+
+                    result = $"aged {aged} fires to {seconds:0} s";
+                    break;
+                }
             case "firekill":
                 {
                     var count = 0;
@@ -436,7 +455,10 @@ public static class CampTravelProbe
                     status = fire.Status.ToString(),
                     arrivals = CampTravelService.ArrivalsOf(fire),
                     secure = CampTravelService.IsSecure(fire),
-                    hot = OutdoorHotZonePolicy.IsHot(fire)
+                    hot = OutdoorHotZonePolicy.IsHot(fire),
+                    hue = fire.Hue,
+                    name = fire.Name,
+                    travelFire = CampTravelService.IsTravelFire(fire)
                 }
             );
         }
@@ -464,7 +486,8 @@ public static class CampTravelProbe
             flags = new
             {
                 campingTravel = rules?.FeatureFlags.CampingTravel,
-                hotZoneTravelWarning = rules?.FeatureFlags.HotZoneTravelWarning
+                hotZoneTravelWarning = rules?.FeatureFlags.HotZoneTravelWarning,
+                campTravelBlueFire = rules?.FeatureFlags.CampTravelBlueFire
             },
             pets,
             fires

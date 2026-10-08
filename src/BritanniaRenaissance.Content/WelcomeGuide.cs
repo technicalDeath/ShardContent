@@ -37,7 +37,8 @@ public static partial class WelcomeGuide
         bool ActionRepeat = false,
         bool PetRestrictions = false,
         bool StarterPackage = false,
-        bool StarterGold = false
+        bool StarterGold = false,
+        bool CampTravelBlueFire = false
     );
 
     public static Context Current =>
@@ -57,7 +58,8 @@ public static partial class WelcomeGuide
             ActionRepeatService.Enabled,
             PetRestrictionService.Enabled,
             ShardRulesConfiguration.Settings?.FeatureFlags is { Alpha3StarterBag: true, Alpha3StarterScissors: true },
-            ShardRulesConfiguration.Settings?.FeatureFlags.Alpha3StarterGold == true
+            ShardRulesConfiguration.Settings?.FeatureFlags.Alpha3StarterGold == true,
+            CampTravelService.BlueFireEnabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -164,7 +166,7 @@ public static partial class WelcomeGuide
 
         if (c.CampTravel)
         {
-            topics.Add(new Topic("camp", "Camp travel", CampTravelService.GuideParagraphs(rules)));
+            topics.Add(new Topic("camp", "Camp travel", CampTravelService.GuideParagraphs(rules, c.CampTravelBlueFire)));
         }
 
         topics.Add(new Topic("commands", "Commands", Commands(c)));

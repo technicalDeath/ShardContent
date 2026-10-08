@@ -55,7 +55,8 @@
     "skillPerArrival": 10.0,
     "maxArrivals": 6,
     "secureSeconds": 30.0,
-    "arrivalRange": 2
+    "arrivalRange": 2,
+    "fireHue": 2796
   },
   "wardCraft": {
     "enabled": true,
@@ -202,6 +203,7 @@
     "campingFires": true,
     "campingTravel": true,
     "hotZoneTravelWarning": true,
+    "campTravelBlueFire": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,
