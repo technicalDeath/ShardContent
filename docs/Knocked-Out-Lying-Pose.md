@@ -1,6 +1,6 @@
 # Knocked Out players lie on the ground
 
-Status: **built, checked in the real client and DEPLOYED to the dev host 2026-10-07 18:00** on the owner's "Yes" (saves snapshot `work/save-snapshots/saves-20261007-175940-pre-lying-pose-deploy`; `UOContent` rebuilt into `Distribution` first; startup clean; `[KnockedOutStatus` shows "Drawn lying down"; README clause added; dev server left stopped; nothing committed). The client `cuo.dll` with the pose is in `ClassicUO/bin/dist`. No feature flag: it rides on `knockedOut`, already on. Owner request 2026-10-07: "Can we have a knocked out player appear on the ground like a corpse (just visually) instead of standing?"
+Status: **built, checked in the real client and DEPLOYED to the dev host 2026-10-07 18:00** on the owner's "Yes" (saves snapshot `work/save-snapshots/saves-20261007-175940-pre-lying-pose-deploy`; `UOContent` rebuilt into `Distribution` first; startup clean; `[KnockedOutStatus` shows "Drawn lying down"; README clause added; dev server left stopped; committed and pushed later the same day). The client `cuo.dll` with the pose is in `ClassicUO/bin/dist`. No feature flag: it rides on `knockedOut`, already on. Owner request 2026-10-07: "Can we have a knocked out player appear on the ground like a corpse (just visually) instead of standing?"
 
 **Sign-off 2026-10-07:** option B (a lying flag our client fork draws, rather than a server-only animation trick) and dismount a Knocked Out rider. The design contract already said the player "lies on the ground with dead-like presentation" (Hot Zones plan, Knocked Out section).
 
@@ -20,9 +20,9 @@ Status: **built, checked in the real client and DEPLOYED to the dev host 2026-10
 
 ## 3. Changed files
 
-- ModernUO (uncommitted): `Projects/UOContent/Mobiles/PlayerMobile.cs`; test `PlayerMobileShardHookTests.cs`.
-- ShardContent (uncommitted): `KnockedOutService.Lying.cs` (new), `KnockedOutService.cs`, `KnockedOutService.Execution.cs`; tests `KnockedOutLyingTests.cs`; probe verb `kofrom` in `tests/scenarios/alpha3-tools/TestOnlyProbe.cs`; evidence driver `tests/scenarios/hot-zones/knocked_out_lying_realclient.py`.
-- ClassicUO (uncommitted): `Game/GameObjects/LyingPose.cs` (new), `Mobile.cs`, `PlayerMobile.cs`, `Network/PacketHandlers.cs`; test `tests/ClassicUO.UnitTests/GameObjects/LyingPoseTests.cs`. NativeAOT build `work/client-publish-2026-10-07d` (previous `cuo.dll` kept in `work/client-dist-backups/2026-10-07-before-lying`).
+- ModernUO (committed in `067802c3c`): `Projects/UOContent/Mobiles/PlayerMobile.cs`; test `PlayerMobileShardHookTests.cs`.
+- ShardContent (committed in `2fca57b`): `KnockedOutService.Lying.cs` (new), `KnockedOutService.cs`, `KnockedOutService.Execution.cs`; tests `KnockedOutLyingTests.cs`; probe verb `kofrom` in `tests/scenarios/alpha3-tools/TestOnlyProbe.cs`; evidence driver `tests/scenarios/hot-zones/knocked_out_lying_realclient.py`.
+- ClassicUO (committed in `41a1ddccb`): `Game/GameObjects/LyingPose.cs` (new), `Mobile.cs`, `PlayerMobile.cs`, `Network/PacketHandlers.cs`; test `tests/ClassicUO.UnitTests/GameObjects/LyingPoseTests.cs`. NativeAOT build `work/client-publish-2026-10-07d` (previous `cuo.dll` kept in `work/client-dist-backups/2026-10-07-before-lying`).
 
 ## 4. Verification (disposable host `qol`, real ClassicUO clients for the executor and a bystander)
 

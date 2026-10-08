@@ -1,6 +1,6 @@
 # Intent, guards, Knocked Out and Execute: the 2026-10-07 changes
 
-Status: **built 2026-10-07; local only, not committed or deployed.** No flag: Intent (`safeWorld`) and Knocked Out (`knockedOut`) are already on, so everything below takes effect at the next deploy. Owner sign-off 2026-10-07 on the plan, with these answers: the guard-call text is shown to the caller only; walking out of adjacency cancels an Execute and a hit does not; the Execute countdown is public; plus three additions (a recovery countdown everyone can read, every Execute check made before the countdown starts, and Execute in the context menu as well as the command).
+Status: **built 2026-10-07; committed (`2fca57b`), pushed and deployed 2026-10-07.** No flag: Intent (`safeWorld`) and Knocked Out (`knockedOut`) are already on, so everything below takes effect at the next deploy. Owner sign-off 2026-10-07 on the plan, with these answers: the guard-call text is shown to the caller only; walking out of adjacency cancels an Execute and a hit does not; the Execute countdown is public; plus three additions (a recovery countdown everyone can read, every Execute check made before the countdown starts, and Execute in the context menu as well as the command).
 
 ## 1. The five asks and what was done
 
@@ -24,8 +24,8 @@ Status: **built 2026-10-07; local only, not committed or deployed.** No flag: In
 
 ## 3. Engine and client changes
 
-- **ModernUO** (`UOContent`, `PlayerMobile`, uncommitted): `NameSuffixHandler` (added to the existing `ApplyNameSuffix`) and `ContextMenuEntriesHandler` (called at the end of `GetContextMenuEntries`). Both are optional shard-owned hooks in the style of `NonlocalLiftHandler`. Tests: `PlayerMobileShardHookTests`.
-- **Client fork** (uncommitted): `ClilocLoader` also reads the shard's own text from the client's `Data/Client/Clilocs.txt` (it only looked in the Ultima Online folder, the player's own install). The shard's file is `ShardContent/data/client/Clilocs.txt` (`3050001 Execute`); copy it to the player dist with `cuo.dll`.
+- **ModernUO** (`UOContent`, `PlayerMobile`, committed in `067802c3c`): `NameSuffixHandler` (added to the existing `ApplyNameSuffix`) and `ContextMenuEntriesHandler` (called at the end of `GetContextMenuEntries`). Both are optional shard-owned hooks in the style of `NonlocalLiftHandler`. Tests: `PlayerMobileShardHookTests`.
+- **Client fork** (committed in `15f914288`): `ClilocLoader` also reads the shard's own text from the client's `Data/Client/Clilocs.txt` (it only looked in the Ultima Online folder, the player's own install). The shard's file is `ShardContent/data/client/Clilocs.txt` (`3050001 Execute`); copy it to the player dist with `cuo.dll`.
 - The context entry's number, 3,050,001, is above every number the stock client has and inside what the older menu packet can carry.
 
 ## 4. Player-facing text for review

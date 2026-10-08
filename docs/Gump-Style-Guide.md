@@ -1,6 +1,6 @@
 # UO Rekindled window style guide
 
-Status: **approved by the owner on 2026-10-07 ("Approved, style pass can proceed") and applied to every shard window the same day (section 9, evidence in `Gump-Style-Pass.md`). `GumpStyle` is the one place that implements it, and `StyleGuideTests` fails the build when a window goes back on a rule below. The pass ships at the next deploy (the button art is already in the client dist).** Every picture in this guide was drawn in the real ClassicUO client (the fork the players use) from the test windows in `tests/scenarios/gump-style/`. Where the finished windows differ from a number in the first draft of the guide, the numbers below are the ones the code uses (section 12, last entry).
+Status: **approved by the owner on 2026-10-07 ("Approved, style pass can proceed") and applied to every shard window the same day (section 9, evidence in `Gump-Style-Pass.md`). `GumpStyle` is the one place that implements it, and `StyleGuideTests` fails the build when a window goes back on a rule below. The pass was committed, pushed and deployed on 2026-10-07 (the button art is already in the client dist).** Every picture in this guide was drawn in the real ClassicUO client (the fork the players use) from the test windows in `tests/scenarios/gump-style/`. Where the finished windows differ from a number in the first draft of the guide, the numbers below are the ones the code uses (section 12, last entry).
 
 The owner's ask (2026-10-07): "a style guide for making gumps so that there is a consistent look for the shard. Look for the best gump elements and good UX."
 
@@ -206,7 +206,7 @@ Anything in the sampler that did not render (frames 2560, 2610, 5040; 2603 lacks
 
 **Step 3, keep it consistent:** a test that fails the build on `fontStyle:`, `<B>` outside the bar, `<I>`, `AddAlphaRegion`, the retired arrow art `4005/4007`, the retired plates `2443/2444`, the retired banner art `62000`-`62007`, a hex colour outside `GumpStyle`, and a window taller than 500 or wider than 640; layout tests for the estimator and fit; and a real-client screenshot of every window, before and after, sent to the owner.
 
-No flag is involved (it is the look of windows the shard already has). It ships at the next deploy. The root `README.md` does not change; the guide's in-game text does not change except the footer hint wording.
+No flag is involved (it is the look of windows the shard already has). It was deployed on 2026-10-07. The root `README.md` does not change; the guide's in-game text does not change except the footer hint wording.
 
 ## 10. Open decisions for the owner
 

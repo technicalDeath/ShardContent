@@ -1,6 +1,6 @@
 # Buff bar: era-correct text, the missing UOR effects, and the shard's own icons
 
-Status: **built and checked 2026-10-07; local only, not committed or deployed.** Owner rulings 2026-10-07: the text must be era-accurate and **driven by data**; generate any icons that are needed; make Protection, Reactive Armor and the like show buffs properly; **turn it on at deploy**; include the two small client fixes (the buff window opens by itself, the debug "ID:" line goes). This closes the question raised in `Buff-Icon-Spike.md` (stock tooltips are AoS wording) and delivers the buff-bar half of Tier 1 items F and C (`Tier-1-QoL-Plan.md`).
+Status: **built and checked 2026-10-07; committed (`067e3c1`), pushed and deployed 2026-10-07.** Owner rulings 2026-10-07: the text must be era-accurate and **driven by data**; generate any icons that are needed; make Protection, Reactive Armor and the like show buffs properly; **turn it on at deploy**; include the two small client fixes (the buff window opens by itself, the debug "ID:" line goes). This closes the question raised in `Buff-Icon-Spike.md` (stock tooltips are AoS wording) and delivers the buff-bar half of Tier 1 items F and C (`Tier-1-QoL-Plan.md`).
 
 ## 1. What was wrong, and what is true on this shard
 
@@ -46,7 +46,7 @@ Not covered: Hot Zone presence, Skill Bank balance, Mastery (not timed effects; 
 
 New art: `ShardContent/tools/buff-icon-art/make_buff_icons.py` draws them in the stock icons' look (28 x 28, colour glowing to the middle, white halo, dark outline; green a help, red a harm, blue neither) and writes `data/client/gumps/<art>.gump` and `data/client/buff-extra.txt` from the `customIcons` in the data file. `BuffIconClientFilesTests` checks the table and the picture files.
 
-## 4. Client changes (ClassicUO fork, uncommitted; new `cuo.dll` built and in `bin/dist`, the previous one backed up in `work/client-dist-backups/2026-10-07-before-buff-icons/`)
+## 4. Client changes (ClassicUO fork, committed in `15f914288`; new `cuo.dll` built and in `bin/dist`, the previous one backed up in `work/client-dist-backups/2026-10-07-before-buff-icons/`)
 
 - `Data/Client/buff-extra.txt` is appended to the icon table (`BuffTable.cs`); server icon `0x4A6 + k` is line k.
 - Custom picture files are now read from the client's own `Data/Gumps` as well as `<UO folder>/Gumps` (`GumpsLoader.LoadOurs`). The fork only looked in the UO folder, the player's own install, which the shard cannot ship files into; found when the new icons drew as gaps.

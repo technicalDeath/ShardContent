@@ -1,6 +1,6 @@
 # Gump style pass: evidence (2026-10-07)
 
-The owner approved `Gump-Style-Guide.md` on 2026-10-07 ("Approved, style pass can proceed") and asked for every shard window to be restyled to it, a test that keeps them that way, and before and after pictures from the real client. No flag is involved: it is the look of windows the shard already has. It ships at the next deploy. Nothing is committed.
+The owner approved `Gump-Style-Guide.md` on 2026-10-07 ("Approved, style pass can proceed") and asked for every shard window to be restyled to it, a test that keeps them that way, and before and after pictures from the real client. No flag is involved: it is the look of windows the shard already has. It was committed (`859c31c`), pushed and deployed to the dev host on 2026-10-07, on the owner's "Commit, push, deploy".
 
 ## What changed
 
@@ -32,6 +32,6 @@ The owner approved `Gump-Style-Guide.md` on 2026-10-07 ("Approved, style pass ca
 
 ## Shipping
 
-- No flag. The server code ships with the next deploy (`Deploy-Alpha1Baseline.ps1`).
+- No flag. Deployed to the dev host 2026-10-07 (`Deploy-Alpha1Baseline.ps1`; the deployed DLL is the one the tests ran against, and the ModernUO pin moved to `067802c3c`). The server started clean and was stopped again.
 - The client art is already in place: `ClassicUO/bin/dist/Data/Gumps/` holds all 27 `.gump` files (`50000-50002` buff icons, `62010-62029` blue and purple ovals, `62030/62031` chosen radio, `62040/62041` stone radio), copied from `ShardContent/data/client/gumps/`, and `cuo.dll` is the build with the lying pose. A player on an older client dist would see missing buttons, so the art goes with the client whenever players are given a new dist.
-- Before the next commit, `data/client/`, `tools/gump-art/`, `tests/scenarios/gump-style/` and the style guide are still untracked.
+- Everything is committed and pushed: ShardContent `859c31c` (the pass), with the guide, the art in `data/client/`, `tools/gump-art/` and `tests/scenarios/gump-style/`.
