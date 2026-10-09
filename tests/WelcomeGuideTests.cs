@@ -378,8 +378,10 @@ public class WelcomeGuideTests
 
         Assert.Equal("# Why Mastery exists", topic.Paragraphs[0]);
         Assert.Contains("grind", topic.Paragraphs[1]);
-        Assert.Contains("rewards you for playing", topic.Paragraphs[1]);
+        Assert.Contains("a daily allowance of gains that is guaranteed", topic.Paragraphs[1]);
+        Assert.Contains("Playing more is not wasted", topic.Paragraphs[2]);
         Assert.DoesNotContain("macro", string.Join(" ", topic.Paragraphs));
+        Assert.DoesNotContain("Playing more in one day does not make it faster", string.Join(" ", topic.Paragraphs));
         Assert.Contains("# How it works", topic.Paragraphs);
     }
 
@@ -388,11 +390,19 @@ public class WelcomeGuideTests
     {
         var text = Text("mastery", Context());
 
-        Assert.Contains("A day's allowance takes about 20 successful uses for an easy skill, 10 for a standard one and 6 for a hard one.", text);
-        Assert.Contains("Below 90.0 a skill gains by chance, as in Ultima Online. From 90.0 it no longer does.", text);
+        Assert.Contains("A day's allowance is about 20 valid, successful uses for an easy skill, 14 for a standard one, 10 for a hard one and 8 for a very hard one.", text);
+        Assert.Contains("Mastery begins at 80.0 (Adept).", text);
         Assert.Contains("24-hour cycle", text);
-        Assert.Contains("2.0 for easy skills, 1.0 for standard ones and 0.6 for hard ones", text);
-        Assert.Contains("at least 5 days for an easy skill, 10 for a standard one and 17 for a hard one", text);
+        Assert.Contains("2.0 for easy skills, 1.4 for standard ones, 1.0 for hard ones and 0.8 for very hard ones", text);
+        Assert.Contains("each valid, successful use is a guaranteed +0.1, up to Grandmaster (100.0)", text);
+        Assert.Contains("When it is spent, further uses still gain by chance, though slowly.", text);
+        Assert.Contains("at least 10 active days for an easy skill, 15 for a standard one, 20 for a hard one and 25 for a very hard one. Playing more shortens that.", text);
+        Assert.Contains("A failed attempt neither claims nor spends the allowance, though it can still gain by chance.", text);
+        Assert.Contains("so trivially easy actions never count", text);
+        Assert.DoesNotContain("count for nothing", text);
+        Assert.DoesNotContain("no longer does", text);
+        Assert.DoesNotContain("Below 90", text);
+        Assert.DoesNotContain("90.0", text);
         Assert.Contains("up to 3 cycles' worth", text);
         Assert.Contains("[Mastery opens a window", text);
         Assert.DoesNotContain("MasteryStatus", text);
@@ -404,23 +414,60 @@ public class WelcomeGuideTests
     [Fact]
     public void TheMasteryPageFollowsTheConfiguredNumbers()
     {
-        var numbers = new WelcomeGuide.Numbers(EasyTenths: 40, StandardTenths: 20, HardTenths: 12, CycleHours: 12, StoredCycles: 2);
+        var numbers = new WelcomeGuide.Numbers(EasyTenths: 40, StandardTenths: 20, HardTenths: 12, VeryHardTenths: 10, CycleHours: 12, StoredCycles: 2);
         var text = Text("mastery", Context(), numbers);
 
         Assert.Contains("12-hour cycle", text);
-        Assert.Contains("4.0 for easy skills, 2.0 for standard ones and 1.2 for hard ones", text);
-        Assert.Contains("at least 3 cycles for an easy skill, 5 for a standard one and 9 for a hard one", text);
+        Assert.Contains("4.0 for easy skills, 2.0 for standard ones, 1.2 for hard ones and 1.0 for very hard ones", text);
+        Assert.Contains("at least 5 cycles for an easy skill, 10 for a standard one, 17 for a hard one and 20 for a very hard one", text);
         Assert.Contains("up to 2 cycles' worth", text);
-        Assert.Contains("about 40 successful uses for an easy skill, 20 for a standard one and 12 for a hard one", text);
+        Assert.Contains("about 40 valid, successful uses for an easy skill, 20 for a standard one, 12 for a hard one and 10 for a very hard one", text);
     }
 
     [Theory]
-    [InlineData(20, 5)]
-    [InlineData(10, 10)]
-    [InlineData(6, 17)]
-    [InlineData(4, 25)]
-    public void TheFewestDaysFromNinetyToAHundredFollowTheAllowance(int tenths, int days) =>
+    [InlineData(20, 10)]
+    [InlineData(14, 15)]
+    [InlineData(10, 20)]
+    [InlineData(8, 25)]
+    public void TheFewestDaysFromEightyToAHundredFollowTheAllowance(int tenths, int days) =>
         Assert.Equal(days, WelcomeGuide.MinimumCycles(tenths));
+
+    [Fact]
+    public void TheMasteryPageSaysChanceIsSlowOnlyWhileTheSlowerSpeedsAreSwitchedOn()
+    {
+        var withSpeeds = Text("mastery", Context(skillClasses: true));
+        var without = Text("mastery", Context(skillClasses: false));
+
+        Assert.Contains("further uses still gain by chance, though slowly. [SkillClasses shows how slowly, for each class.", withSpeeds);
+        Assert.Contains("further uses still gain by chance.", without);
+        Assert.DoesNotContain("slowly", without);
+        Assert.DoesNotContain("[SkillClasses", without);
+    }
+
+    [Fact]
+    public void AClassWithNoSkillsInItIsNotNamedOnTheMasteryPage()
+    {
+        var text = Text("mastery", Context(), new WelcomeGuide.Numbers(VeryHardTenths: 0));
+
+        Assert.DoesNotContain("very hard", text);
+        Assert.Contains("14 for a standard one and 10 for a hard one.", text);
+        Assert.Contains("1.4 for standard ones and 1.0 for hard ones.", text);
+        Assert.Contains("15 for a standard one and 20 for a hard one. Playing more shortens that.", text);
+    }
+
+    [Fact]
+    public void TheVeryHardClassIsNamedOnlyWhenASkillIsInIt()
+    {
+        var rules = SkillGainCurveTests.ValidRules();
+        Assert.False(WelcomeGuide.VeryHardInUse(rules));
+
+        rules.Skills["Poisoning"] = "veryHard";
+        Assert.True(WelcomeGuide.VeryHardInUse(rules));
+    }
+
+    [Fact]
+    public void TheCommandsPageDescribesMasteryAsTheAllowance() =>
+        Assert.Contains("[Mastery - Your Mastery cycle and each Mastery skill's allowance.", Text("commands"));
 
     // ---- Skill Bank
 
@@ -473,7 +520,7 @@ public class WelcomeGuideTests
         Assert.Contains("Faint memories of a past in Britannia linger, and skills of the past come back to you.", on);
         Assert.Contains("Every new character starts with 5.0 points of Faint Memories, free, and they unlock 24 hours after the character was created.", on);
         Assert.Contains("each use brings back 0.2 into it", on);
-        Assert.Contains("They never take a skill past 90.0, where Mastery begins, and a skill below 10.0 is left to ordinary gain.", on);
+        Assert.Contains("They never take a skill past 80.0, where Mastery begins, and a skill below 10.0 is left to ordinary gain.", on);
         Assert.Contains("They do not use any room in the bank, and cannot be discarded.", on);
         Assert.Contains("when they are gone the display goes with them", on);
     }

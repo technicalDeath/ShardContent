@@ -111,33 +111,169 @@ public class MasteryEngineTests
     }
 
     [Theory]
-    [InlineData("easy", 20, 5)]
-    [InlineData("standard", 10, 10)]
-    [InlineData("hard", 6, 17)]
-    [InlineData("veryHard", 4, 25)]
-    public void TheHundredValidUsesFromNinetyNeedTheDocumentedNumberOfClaimedCycles(string _, int allowanceTenths, int expectedCycles)
+    [InlineData("easy", 20, 10)]
+    [InlineData("standard", 14, 15)]
+    [InlineData("hard", 10, 20)]
+    [InlineData("veryHard", 8, 25)]
+    public void TheTwoHundredValidUsesFromEightyNeedTheApprovedNumberOfClaimedCycles(string _, int allowanceTenths, int expectedCycles)
     {
         var skill = new MasterySkillState();
         var gains = 0;
         var cycles = 0;
 
-        while (gains < 100)
+        while (gains < 200)
         {
             MasteryEngine.TryClaim(skill, cycles, allowanceTenths, allowanceTenths * 3);
             cycles++;
 
-            while (gains < 100 && MasteryEngine.TrySpend(skill))
+            while (gains < 200 && MasteryEngine.TrySpend(skill))
             {
                 gains++;
             }
         }
 
         Assert.Equal(expectedCycles, cycles);
+        Assert.Equal(expectedCycles, MasteryEngine.MinimumCycles(allowanceTenths));
+    }
+
+    [Theory]
+    [InlineData(20, 10)]
+    [InlineData(14, 15)]
+    [InlineData(13, 16)]
+    [InlineData(10, 20)]
+    [InlineData(8, 25)]
+    [InlineData(200, 1)]
+    [InlineData(0, 0)]
+    public void TheFewestCyclesFromEightyToAHundredFollowTheAllowance(int tenths, int cycles) =>
+        Assert.Equal(cycles, MasteryEngine.MinimumCycles(tenths));
+
+    [Fact]
+    public void MasteryBeginsAtEightyAndRunsToAHundred()
+    {
+        Assert.Equal(800, MasteryEngine.ThresholdFixedPoint);
+        Assert.Equal("80.0", MasteryEngine.ThresholdText);
+        Assert.Equal(1000, MasteryEngine.GrandmasterFixedPoint);
+    }
+
+    // ---- the layered rule: a guaranteed gain, or a handed-back roll
+
+    private static MasteryEngine.UseOutcome Decide(
+        int value = 850, bool valid = true, bool claimed = true, int stored = 0, int allowance = 14, int bankCap = 42
+    ) => MasteryEngine.Decide(value, valid, claimed, stored, allowance, bankCap);
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(500)]
+    [InlineData(799)]
+    public void BelowEightyOrdinaryGainIsAllThereIs(int value) =>
+        Assert.Equal(MasteryEngine.UseOutcome.NotMastery, Decide(value: value, stored: 99, claimed: false));
+
+    [Theory]
+    [InlineData(1000)]
+    [InlineData(1100)]
+    public void AtAHundredThereIsNothingLeftToGain(int value) =>
+        Assert.Equal(MasteryEngine.UseOutcome.Finished, Decide(value: value, stored: 99));
+
+    [Fact]
+    public void AValidUseWithAllowanceInHandIsAGuaranteedGain()
+    {
+        Assert.Equal(MasteryEngine.UseOutcome.Guaranteed, Decide(value: 800, stored: 5));
+        Assert.Equal(MasteryEngine.UseOutcome.Guaranteed, Decide(value: 999, stored: 1));
+    }
+
+    [Fact]
+    public void TheFirstValidUseInACycleClaimsAndThenGainsForCertain() =>
+        Assert.Equal(MasteryEngine.UseOutcome.Guaranteed, Decide(claimed: false, stored: 0));
+
+    [Fact]
+    public void AValidUseWithTheStoreEmptyAfterClaimingGainsByChanceInstead() =>
+        Assert.Equal(MasteryEngine.UseOutcome.ChanceRoll, Decide(claimed: true, stored: 0));
+
+    [Fact]
+    public void AnInvalidUseSpendsNothingAndGainsByChanceEvenWithAllowanceStored()
+    {
+        Assert.Equal(MasteryEngine.UseOutcome.ChanceRoll, Decide(valid: false, claimed: false, stored: 14));
+        Assert.Equal(MasteryEngine.UseOutcome.ChanceRoll, Decide(valid: false, claimed: true, stored: 14));
+    }
+
+    [Fact]
+    public void ABankAlreadyFullStillGainsOnAClaimAndAZeroAllowanceNeverGuaranteesAnything()
+    {
+        Assert.Equal(MasteryEngine.UseOutcome.Guaranteed, Decide(claimed: false, stored: 42, allowance: 14, bankCap: 42));
+        Assert.Equal(MasteryEngine.UseOutcome.ChanceRoll, Decide(claimed: false, stored: 0, allowance: 0, bankCap: 0));
+    }
+
+    [Theory]
+    [InlineData(20, 10)]
+    [InlineData(14, 15)]
+    [InlineData(10, 20)]
+    [InlineData(8, 25)]
+    public void DrivenOneDayAtATimeOnlyTheAllowanceGainsWhenChanceGivesNothing(int allowanceTenths, int expectedDays)
+    {
+        // Sixty valid, successful uses a day (more than any allowance), chance gain switched off: only guaranteed gains count.
+        var skill = new MasterySkillState();
+        var value = MasteryEngine.ThresholdFixedPoint;
+        var days = 0;
+
+        while (value < MasteryEngine.GrandmasterFixedPoint && days < 1000)
+        {
+            for (var use = 0; use < 60 && value < MasteryEngine.GrandmasterFixedPoint; use++)
+            {
+                var outcome = MasteryEngine.Decide(
+                    value, true, MasteryEngine.HasClaimed(skill, days), skill.AllowanceTenths, allowanceTenths, allowanceTenths * 3
+                );
+
+                if (outcome != MasteryEngine.UseOutcome.Guaranteed)
+                {
+                    continue;
+                }
+
+                MasteryEngine.TryClaim(skill, days, allowanceTenths, allowanceTenths * 3);
+                Assert.True(MasteryEngine.TrySpend(skill));
+                value += MasteryEngine.AwardTenths;
+            }
+
+            days++;
+        }
+
+        Assert.Equal(expectedDays, days);
+        Assert.Equal(MasteryEngine.GrandmasterFixedPoint, value);
+    }
+
+    [Fact]
+    public void AMissedDayIsNeverMadeUpSoTheScheduleStretchesByExactlyTheDaysSkipped()
+    {
+        // Standard (1.4) with two days skipped (a skipped day gives no allowance) still needs fifteen played days.
+        var skill = new MasterySkillState();
+        var value = MasteryEngine.ThresholdFixedPoint;
+        var played = 0;
+
+        for (var day = 0; value < MasteryEngine.GrandmasterFixedPoint; day++)
+        {
+            if (day is 3 or 9)
+            {
+                continue;
+            }
+
+            played++;
+
+            while (value < MasteryEngine.GrandmasterFixedPoint &&
+                   MasteryEngine.Decide(value, true, MasteryEngine.HasClaimed(skill, day), skill.AllowanceTenths, 14, 42) ==
+                   MasteryEngine.UseOutcome.Guaranteed)
+            {
+                MasteryEngine.TryClaim(skill, day, 14, 42);
+                MasteryEngine.TrySpend(skill);
+                value++;
+            }
+        }
+
+        Assert.Equal(15, played);
     }
 
     [Fact]
     public void GainsLeftCountsTenthsToGrandmaster()
     {
+        Assert.Equal(200, MasteryEngine.GainsLeft(800));
         Assert.Equal(100, MasteryEngine.GainsLeft(900));
         Assert.Equal(50, MasteryEngine.GainsLeft(950));
         Assert.Equal(1, MasteryEngine.GainsLeft(999));
@@ -228,9 +364,16 @@ public class MasteryEngineTests
         Assert.Equal(24, rules.Mastery.CycleHours);
         Assert.Equal(3, rules.Mastery.BankCycles);
         Assert.Equal(20, rules.Mastery.AllowanceTenths["easy"]);
-        Assert.Equal(10, rules.Mastery.AllowanceTenths["standard"]);
-        Assert.Equal(6, rules.Mastery.AllowanceTenths["hard"]);
-        Assert.Equal(4, rules.Mastery.AllowanceTenths["veryHard"]);
+        Assert.Equal(14, rules.Mastery.AllowanceTenths["standard"]);
+        Assert.Equal(10, rules.Mastery.AllowanceTenths["hard"]);
+        Assert.Equal(8, rules.Mastery.AllowanceTenths["veryHard"]);
+
+        // The owner's schedule: casual Grandmaster in 10 / 15 / 20 / 25 days from 80.
+        Assert.Equal(10, MasteryEngine.MinimumCycles(rules.Mastery.AllowanceTenths["easy"]));
+        Assert.Equal(15, MasteryEngine.MinimumCycles(rules.Mastery.AllowanceTenths["standard"]));
+        Assert.Equal(20, MasteryEngine.MinimumCycles(rules.Mastery.AllowanceTenths["hard"]));
+        Assert.Equal(25, MasteryEngine.MinimumCycles(rules.Mastery.AllowanceTenths["veryHard"]));
+        Assert.Equal(80.0, rules.FaintMemories.Ceiling);
         Assert.Empty(ShardRulesConfiguration.Validate(rules).Where(e => e.Contains("mastery", StringComparison.OrdinalIgnoreCase)));
     }
 

@@ -13,11 +13,12 @@ public class FaintMemoriesTests
     // ---- the configuration
 
     [Fact]
-    public void TheShippedNumbersAreFivePointsTwentyFourHoursAndTenToNinety()
+    public void TheShippedNumbersAreFivePointsTwentyFourHoursAndTenToEighty()
     {
         Assert.Equal(50, FaintMemoriesPolicy.PointsTenths(Rules));
         Assert.Equal(24.0, Rules.UnlockHours);
         Assert.Equal(100, FaintMemoriesPolicy.FloorTenths(Rules));
+        Assert.Equal(800, FaintMemoriesPolicy.CeilingTenths(Rules));
         Assert.Equal(MasteryEngine.ThresholdFixedPoint, FaintMemoriesPolicy.CeilingTenths(Rules));
     }
 
@@ -53,6 +54,7 @@ public class FaintMemoriesTests
     public void TheCeilingCannotPassWhereMasteryBeginsOrFallBelowTheFloor()
     {
         Assert.Contains(Errors(r => r.Ceiling = 95.0), e => e.Contains("faintMemories.ceiling"));
+        Assert.Contains(Errors(r => r.Ceiling = 80.1), e => e.Contains("no higher than 80.0"));
         Assert.Contains(Errors(r => r.Ceiling = 10.0), e => e.Contains("faintMemories.ceiling"));
         Assert.Empty(Errors(r => r.Ceiling = 80.0));
     }
@@ -138,9 +140,9 @@ public class FaintMemoriesTests
     [Fact]
     public void TheLastTenthBeforeTheCeilingComesAloneAndTheCeilingIsNeverPassed()
     {
-        Assert.Equal(1, Plan(skill: 899));
-        Assert.Equal(2, Plan(skill: 898));
-        Assert.Equal(0, Plan(skill: 900));
+        Assert.Equal(1, Plan(skill: 799));
+        Assert.Equal(2, Plan(skill: 798));
+        Assert.Equal(0, Plan(skill: 800));
         Assert.Equal(0, Plan(skill: 950));
     }
 

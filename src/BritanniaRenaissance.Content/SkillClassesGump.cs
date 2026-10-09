@@ -6,7 +6,7 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// [SkillClasses: how fast each skill trains, in the guide's window. An overview page (the classes and their speeds in one place), then
-/// a page per class with its speeds between skill 10 and 90, its Mastery allowance and the skills in it. A button opens [Mastery.
+/// a page per class with its speeds between skill 10 and 100, its Mastery allowance and the skills in it. A button opens [Mastery.
 /// </summary>
 public static class SkillClassesGump
 {
@@ -49,8 +49,8 @@ public static class SkillClassesGump
                     $"{MasteryProgression.ClassLabel(key)} skills",
                     SkillGainCurveService.SpeedLines(bands),
                     SkillGainCurveService.SpeedSummary(bands),
-                    $"From {MasteryEngine.ThresholdText} a skill in this class has an allowance of {GumpStyle.Points(allowance)} each cycle, " +
-                    $"about {allowance} successful uses.",
+                    $"From {MasteryEngine.ThresholdText} a skill in this class is guaranteed {GumpStyle.Points(allowance)} each cycle, " +
+                    $"about {allowance} valid, successful uses; beyond that it gains by chance, at the speed above.",
                     skills
                 )
             );
@@ -64,8 +64,8 @@ public static class SkillClassesGump
     {
         var overview = new List<string>
         {
-            $"Every skill trains in one of these classes. From skill 10 to {MasteryEngine.ThresholdText} your skills gain faster than in stock Ultima Online, " +
-            $"as each class's page shows. From {MasteryEngine.ThresholdText} a skill is in Mastery and grows by a daily allowance instead: [Mastery shows yours."
+            "Every skill trains in one of these classes. Your skills gain faster than in stock Ultima Online at first, and slower from " +
+            $"{MasteryEngine.ThresholdText}, as each class's page shows. From {MasteryEngine.ThresholdText} a skill also has a daily Mastery allowance of guaranteed gains: [Mastery shows yours."
         };
 
         foreach (var view in views)

@@ -64,22 +64,29 @@ public class StatusWindowTests
     [InlineData(1.0, "stock speed")]
     [InlineData(1.5, "1.5x stock speed")]
     [InlineData(0.75, "0.75x stock speed")]
+    [InlineData(0.075, "0.075x stock speed")]
     [InlineData(2.0, "2x stock speed")]
     public void ASpeedIsStockSpeedOrAMultipleOfIt(double multiplier, string text) =>
         Assert.Equal(text, SkillGainCurveService.SpeedText(multiplier));
 
     [Fact]
-    public void TheSpeedsRunFromSkillTenToTheMasteryThreshold()
+    public void TheSpeedsRunFromSkillTenToGrandmaster()
     {
         var views = Views();
 
-        Assert.Equal(["Skill 10 to 90: 1.5x stock speed"], views.Single(v => v.Key == "easy").Speeds);
-        Assert.Equal(["Skill 10 to 70: 1.5x stock speed", "Skill 70 to 90: stock speed"], views.Single(v => v.Key == "standard").Speeds);
+        Assert.Equal(["Skill 10 to 80: 1.5x stock speed", "Skill 80 to 100: 0.15x stock speed"], views.Single(v => v.Key == "easy").Speeds);
         Assert.Equal(
-            ["Skill 10 to 70: 1.5x stock speed", "Skill 70 to 80: stock speed", "Skill 80 to 90: 0.75x stock speed"],
+            ["Skill 10 to 70: 1.5x stock speed", "Skill 70 to 80: stock speed", "Skill 80 to 100: 0.1x stock speed"],
+            views.Single(v => v.Key == "standard").Speeds
+        );
+        Assert.Equal(
+            ["Skill 10 to 70: 1.5x stock speed", "Skill 70 to 80: stock speed", "Skill 80 to 100: 0.075x stock speed"],
             views.Single(v => v.Key == "hard").Speeds
         );
-        Assert.Equal("1.5x stock speed from 10 to 70, stock speed from 70 to 90", views.Single(v => v.Key == "standard").Summary);
+        Assert.Equal(
+            "1.5x stock speed from 10 to 70, stock speed from 70 to 80, 0.1x stock speed from 80 to 100",
+            views.Single(v => v.Key == "standard").Summary
+        );
     }
 
     [Fact]
@@ -87,9 +94,11 @@ public class StatusWindowTests
     {
         var views = Views();
 
-        Assert.Contains("an allowance of 2.0 each cycle, about 20 successful uses", views.Single(v => v.Key == "easy").Mastery);
-        Assert.Contains("an allowance of 1.0 each cycle, about 10 successful uses", views.Single(v => v.Key == "standard").Mastery);
-        Assert.Contains("an allowance of 0.6 each cycle, about 6 successful uses", views.Single(v => v.Key == "hard").Mastery);
+        Assert.Contains("guaranteed 2.0 each cycle, about 20 valid, successful uses", views.Single(v => v.Key == "easy").Mastery);
+        Assert.Contains("guaranteed 1.4 each cycle, about 14 valid, successful uses", views.Single(v => v.Key == "standard").Mastery);
+        Assert.Contains("guaranteed 1.0 each cycle, about 10 valid, successful uses", views.Single(v => v.Key == "hard").Mastery);
+        Assert.All(views, v => Assert.StartsWith("From 80.0 a skill in this class", v.Mastery));
+        Assert.All(views, v => Assert.Contains("beyond that it gains by chance", v.Mastery));
     }
 
     [Fact]
@@ -101,13 +110,16 @@ public class StatusWindowTests
 
         var overview = string.Join(" ", topics[0].Paragraphs);
         Assert.Contains("[Mastery shows yours.", overview);
+        Assert.Contains("slower from 80.0", overview);
+        Assert.Contains("a daily Mastery allowance of guaranteed gains", overview);
+        Assert.DoesNotContain("90", overview);
         Assert.Contains("Easy skills (19)", overview);
         Assert.Contains("Standard skills (26)", overview);
         Assert.Contains("Hard skills (4)", overview);
 
         var standard = string.Join(" ", topics[2].Paragraphs);
         Assert.Contains("# Training speed", topics[2].Paragraphs);
-        Assert.Contains("Skill 10 to 70: 1.5x stock speed<BR>Skill 70 to 90: stock speed", standard);
+        Assert.Contains("Skill 10 to 70: 1.5x stock speed<BR>Skill 70 to 80: stock speed<BR>Skill 80 to 100: 0.1x stock speed", standard);
         Assert.Contains("# The 26 skills", topics[2].Paragraphs);
     }
 
@@ -167,13 +179,46 @@ public class StatusWindowTests
         );
         Assert.Contains("5h 30m", MasteryGump.DescribeCycle(View(MasteryProgression.MasteryPhase.Active, TimeSpan.FromHours(5.5))));
         Assert.Equal(
-            "Your first cycle begins with your next successful use of a skill at 90.0 or above.",
+            "Your first cycle begins with your next successful use of a skill at 80.0 or above.",
             MasteryGump.DescribeCycle(View(MasteryProgression.MasteryPhase.Waiting))
         );
         Assert.Equal(
-            "No skill is in Mastery yet. Mastery begins at 90.0.",
+            "No skill is in Mastery yet. Mastery begins at 80.0.",
             MasteryGump.DescribeCycle(View(MasteryProgression.MasteryPhase.NoSkills))
         );
+    }
+
+    [Fact]
+    public void TheMasteryWindowSaysAllowanceIsGuaranteedAndTheRestIsChanceNotThatChanceHasEnded()
+    {
+        var all = string.Join(
+            " ", MasteryGump.Subtitle(), MasteryGump.Explanation(24), MasteryGump.Footnote(3),
+            MasteryGump.DescribeCycle(View(MasteryProgression.MasteryPhase.NoSkills)), MasteryGump.DescribeEmpty()
+        );
+
+        Assert.Equal("From 80.0 a skill has guaranteed daily gains, and still gains by chance", MasteryGump.Subtitle());
+        Assert.StartsWith("A skill's first valid, successful use in a cycle (24 hours) claims its allowance.", MasteryGump.Explanation(24));
+        Assert.Contains("a guaranteed +0.1", MasteryGump.Explanation(24));
+        Assert.Contains("after it, by chance", MasteryGump.Explanation(24));
+        Assert.Contains("(24 hours)", MasteryGump.Explanation(24));
+        Assert.Contains("still guaranteed to gain; it keeps up to 3 cycles' worth", MasteryGump.Footnote(3));
+        Assert.Contains("takes nothing away", MasteryGump.Footnote(3));
+        Assert.DoesNotContain("90", all);
+        Assert.DoesNotContain("not by chance", all);
+        Assert.DoesNotContain("ordinary gain has ended", all);
+    }
+
+    [Fact]
+    public void TheMasteryWindowsTwoExplanatoryBlocksFitTheirTwoLines()
+    {
+        // Each block is 36 pixels high (two lines) and the text is 572 wide; a block must leave room for word wrap.
+        const int width = GumpStyle.Width - 2 * GumpStyle.Margin;
+        var limit = GumpStyle.CharsPerLine(width) * 2 - 8;
+
+        Assert.True(MasteryGump.Explanation(24).Length <= limit, $"explanation is {MasteryGump.Explanation(24).Length} characters, limit {limit}");
+        Assert.True(MasteryGump.Explanation(168).Length <= limit, "even the longest cycle length fits");
+        Assert.True(MasteryGump.Footnote(10).Length <= limit, $"footnote is {MasteryGump.Footnote(10).Length} characters, limit {limit}");
+        Assert.True(GumpStyle.LinesFor(MasteryGump.Subtitle(), GumpStyle.Width - 40) == 1, "the subtitle is one line");
     }
 
     // ---- [IntentStatus

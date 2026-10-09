@@ -267,17 +267,17 @@ def phase1() -> None:
     stage("windows", windows)
 
     def ceiling_floor_locks() -> None:
-        setskill("Gus", "Hiding", 89.8)
+        setskill("Gus", "Hiding", 79.8)
         before, after, _, _, _ = use("Gus", "Hiding", 1)
-        record("G1 the last 0.2 before 90.0", "898 -> 900, 4.8 left", f"{before}->{after}; {pool('Gus')}", (before, after) == (898, 900) and pool("Gus")[0] == 4.8)
+        record("G1 the last 0.2 before 80.0", "798 -> 800, 4.8 left", f"{before}->{after}; {pool('Gus')}", (before, after) == (798, 800) and pool("Gus")[0] == 4.8)
 
         left = pool("Gus")[0]
         use("Gus", "Hiding", 3)
-        record("G2 at 90.0 the pool is left alone (Mastery's)", f"still {left}", str(pool("Gus")), pool("Gus")[0] == left)
+        record("G2 at 80.0 the pool is left alone (Mastery's)", f"still {left}", str(pool("Gus")), pool("Gus")[0] == left)
 
-        setskill("Gus", "Hiding", 89.9)
+        setskill("Gus", "Hiding", 79.9)
         before, after, _, _, _ = use("Gus", "Hiding", 1)
-        record("G3 0.1 below 90.0 only 0.1 comes back", "899 -> 900", f"{before}->{after}; {pool('Gus')}", (before, after) == (899, 900) and pool("Gus")[0] == 4.7)
+        record("G3 0.1 below 80.0 only 0.1 comes back", "799 -> 800", f"{before}->{after}; {pool('Gus')}", (before, after) == (799, 800) and pool("Gus")[0] == 4.7)
 
         setskill("Gus", "Cooking", 9.9)
         before, after, _, _, _ = use("Gus", "Cooking", 1)

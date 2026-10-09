@@ -100,6 +100,10 @@ public static partial class WelcomeGuide
             p.Add("[SkillClasses shows how fast each skill trains.");
         }
 
+        p.Add(
+            $"Once a skill reaches {MasteryEngine.ThresholdText}, use it a little every day: Mastery guarantees it gains, and it is the sure way to Grandmaster (see the Mastery page)."
+        );
+
         p.Add(HeadingMark + "Training");
         p.Add(
             "Town trainers teach the basics of many skills for gold (see Training). Otherwise use the skill. A use that cannot fail, or is far too hard, does not train it."
@@ -138,7 +142,6 @@ public static partial class WelcomeGuide
             "It is set to Down or Locked: set it to Up.",
             $"You are at the {n.SkillCapPoints}-point cap and no skill set to Down has points left.",
             "Uses that cannot fail, or are far too hard, do not train a skill.",
-            $"It has reached {MasteryEngine.ThresholdText}: from there Mastery takes over (see the Mastery page).",
             "It has reached its cap."
         };
 
@@ -154,7 +157,7 @@ public static partial class WelcomeGuide
             needUp.Add($"{FaintMemoriesPolicy.Name} go into a skill set to Up");
         }
 
-        needUp.Add("Mastery allowance is spent only by a skill set to Up");
+        needUp.Add("Mastery's daily allowance is spent only by a skill set to Up");
 
         p.Add(HeadingMark + "Other systems that need Up");
         p.Add(string.Join(". ", needUp) + ".");
@@ -179,7 +182,7 @@ public static partial class WelcomeGuide
             HeadingMark + "How skills grow",
             "You train a skill by using it, within the limits on the Skill locks 101 page. " +
             (c.SkillClasses ? "How fast depends on the skill's class: [SkillClasses lists them. " : string.Empty) +
-            $"From {MasteryEngine.ThresholdText} a skill grows through Mastery instead.",
+            $"From {MasteryEngine.ThresholdText} a skill also gains through Mastery: a daily allowance of guaranteed gains on top of ordinary gain (see the Mastery page).",
             HeadingMark + "Trainers",
             "Town NPCs will teach you a skill they know well, for gold. An NPC teaches a skill only if it has at least " +
             $"{Points(StockTraining.MinimumTrainerSkillTenths)} in it, and raises yours to a third of its own, never past your own skill cap: about 20.0 to 33.0 for most trainers. " +

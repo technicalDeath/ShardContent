@@ -4,6 +4,8 @@ The owner's running list of things to plan and build. Nothing here is signed off
 
 ## In progress
 
+- **Mastery from 80, layered on ordinary gain** (owner's idea, 2026-10-08; signed off and built 2026-10-09). Plan `Mastery-Layered-Plan.md`, evidence `Mastery-Layered-Evidence.md`. Guaranteed daily gains from Adept (80) on top of ordinary chance gain: casual Grandmaster in 10 / 15 / 20 / 25 days (Easy / Standard / Hard / VeryHard; allowances 2.0 / 1.4 / 1.0 / 0.8), chance gain from 80 at 0.1 of each class's rate, Faint Memories stops at 80. Unit tests, a live run on a disposable host, real-client pictures and a text audit are done. **Not committed, not deployed** (no flag; it takes effect at the next deploy, which is the owner's call, and the README lines change with it). Open for the owner: no skill is in the VeryHard class today, so the 25-day tier is empty; the website's Mastery copy is changed only when asked.
+
 - **Guild chat** (Tier 1 G). Signed off, built and verified 2026-10-08 (unit tests, 38 live checks, six real-client pictures), flag `guildChat` ON. Committed, pushed, deployed and activated 2026-10-08 (the engine hook went in with it). `Guild-Chat-Plan.md`, `Guild-Chat-Evidence.md`.
 
 ## Added by the owner

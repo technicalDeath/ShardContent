@@ -149,7 +149,7 @@ public static class FaintMemoriesPolicy
 
     /// <summary>
     /// How many tenths one skill use brings back, or 0 when it does not apply. A step, but never more than is left, never past the
-    /// ceiling (where Mastery takes over) or the skill's own cap, never below the floor (stock already gains faster there), and
+    /// ceiling (where Mastery begins) or the skill's own cap, never below the floor (stock already gains faster there), and
     /// never past the total skill cap: free points cannot make room by taking from another skill.
     /// </summary>
     public static int PlanRestore(

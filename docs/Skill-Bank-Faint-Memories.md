@@ -13,7 +13,7 @@ Owner requests (2026-10-07, off the roadmap like `harvestAutoRepeat`):
 
 | Date | Decision |
 | --- | --- |
-| 2026-10-07 | Pool of **5.0** points (the owner dropped it from 20). Unlocks **24 hours from character creation** (not account age). "Used just like the skill bank": it comes back through the same hook, on training, not through a picker. Free points **stop at 90.0** (Mastery's threshold) |
+| 2026-10-07 | Pool of **5.0** points (the owner dropped it from 20). Unlocks **24 hours from character creation** (not account age). "Used just like the skill bank": it comes back through the same hook, on training, not through a picker. Free points **stop at 80.0** (Mastery's threshold; 90.0 until 2026-10-09, when Mastery moved down to 80.0, `Mastery-Layered-Plan.md`) |
 | 2026-10-07 | Restores come back **0.2 at a time**, or 0.1 when only 0.1 is left, for the bank and for Faint Memories |
 | 2026-10-07 | The category is called **Faint Memories** |
 | 2026-10-07 | Banking: owner chose option **C**, bank the points a Down skill loses even to a sub-10 gain the anti-macro check refused (a ModernUO hook) |
@@ -24,7 +24,7 @@ Owner requests (2026-10-07, off the roadmap like `harvestAutoRepeat`):
 
 **Faint Memories.** At creation a player-level character gets 5.0 points (`FaintMemoriesService.Grant`, registered once on `CharacterCreatedHandler`). State is one account tag per character, `BritanniaRenaissance.FaintMemories.v1.<serial>` = `1|<granted UTC ticks>|<tenths left>`, like Mastery and Intent: no ModernUO save format change. A used-up pool keeps its tag (0 left), so it is never granted twice. Existing characters and staff get nothing.
 
-From 24 hours after creation, `SkillBankService.TryRestore` falls through to Faint Memories for a skill with no banked points of its own. On a skill use the anti-macro check allows, in a skill set to **Up**, a step of 0.2 comes back instead of the gain roll. It does not apply: below 10.0 (stock already gains 0.1 to 0.4 on every use there, faster than 0.2), from 90.0 up (Mastery), when the character is at the total cap (free points cannot make room), or while it is still locked. At 0.0 the display disappears and the player gets one line.
+From 24 hours after creation, `SkillBankService.TryRestore` falls through to Faint Memories for a skill with no banked points of its own. On a skill use the anti-macro check allows, in a skill set to **Up**, a step of 0.2 comes back instead of the gain roll. It does not apply: below 10.0 (stock already gains 0.1 to 0.4 on every use there, faster than 0.2), from 80.0 up (Mastery), when the character is at the total cap (free points cannot make room), or while it is still locked. At 0.0 the display disappears and the player gets one line.
 
 **The 0.2 step.** `skillBank.restoreStepTenths` (default 2, valid 1 to 10). `SkillBankLedger.TryPlanRestoration` plans up to the step, never more than the balance or the room under the skill's cap. At the total cap, whatever does not fit comes out of **one** Down skill and the bank keeps it for that skill; if no Down skill can give that much, the next smaller step is tried, down to 0.1.
 
@@ -71,7 +71,7 @@ From 24 hours after creation, `SkillBankService.TryRestore` falls through to Fai
 | F5, F5b | `[TestOnlyFaintAge` +24.5 h unlocks it; one use is exactly 500 to 502, 4.8 left | pass |
 | F6 to F6c | 24 more uses empty it (502 to 550, 0.0 left); the player is told the last of it came back; afterwards a use is the ordinary gain and the pool stays 0.0 | pass |
 | W1 to W3 | The window shows the ready banner (4.5 of 5.0 left), the countdown while locked, and no Faint Memories once used up | pass |
-| G1 to G3 | 89.8 to 90.0 in one step; at 90.0 the pool is left to Mastery; 89.9 returns 0.1 | pass |
+| G1 to G3 | 79.8 to 80.0 in one step; at 80.0 the pool is left to Mastery; 79.9 returns 0.1 (89.8 / 90.0 / 89.9 before 2026-10-09; the live run for the new ceiling is in `Mastery-Layered-Evidence.md`) | pass |
 | G4, G5 | 9.9 is left to the stock gain (pool untouched); 10.0 applies (100 to 102) | pass |
 | G6 | A skill set to Down, and one set to Locked, get nothing | pass |
 | G7 | At the total cap (cap set equal to the total) the pool waits | pass |

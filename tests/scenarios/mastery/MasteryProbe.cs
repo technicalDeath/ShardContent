@@ -3,6 +3,7 @@ using BritanniaRenaissance.Content;
 using Server;
 using Server.Accounting;
 using Server.Commands;
+using Server.Misc;
 using Server.Mobiles;
 
 namespace MasteryTools;
@@ -12,6 +13,7 @@ namespace MasteryTools;
 //   [TestOnlyMasteryTotals <player-serial>           the character's total skill and cap, in tenths
 //   [TestOnlyMasteryLock <player-serial> <skill> <up|down|locked>   sets a skill's lock
 //   [TestOnlyMasteryPoison <player-serial>           overwrites the saved state with the earlier (version 1) form
+//   [TestOnlyMasteryRolls <player-serial> <skill> <value-tenths> <chance> <count>   count real skill checks with the skill held at that value
 public static class MasteryProbe
 {
     public static void Configure()
@@ -21,6 +23,59 @@ public static class MasteryProbe
         CommandSystem.Register("TestOnlyMasteryLock", AccessLevel.Administrator, OnLock);
         CommandSystem.Register("TestOnlyMasteryPoison", AccessLevel.Administrator, OnPoison);
         CommandSystem.Register("TestOnlyMasterySeed", AccessLevel.Administrator, OnSeed);
+        CommandSystem.Register("TestOnlyMasteryRolls", AccessLevel.Administrator, OnRolls);
+    }
+
+    // [TestOnlyMasteryRolls <player-serial> <Skill> <value-tenths> <chance> <count>] makes that many real skill checks (SkillCheck.CheckSkill at a
+    // place the anti-macro check has not seen, so each reaches the gain hook the way a real use does) at the given chance of success, putting the
+    // skill back to the same value before every check so the rate being measured does not drift. Seed the skill's Mastery state first
+    // ([TestOnlyMasterySeed ... Skill=0:1] is claimed with nothing stored) to measure the chance path alone. Reports
+    // "MasteryRolls <Skill> n=<count> successes=<n> gains=<checks that raised the skill> over=<gains of more than 0.1> factor=<GainFactor>
+    // multiplier=<the curve's multiplier at that value> total=<tenths>/<cap> bank=<the skill's stored allowance, in tenths>".
+    private static void OnRolls(CommandEventArgs e)
+    {
+        if (!TryPlayer(e, 0, out var player) || e.Length < 5 || !Enum.TryParse<SkillName>(e.GetString(1), true, out var name) ||
+            !int.TryParse(e.GetString(2), out var value) ||
+            !double.TryParse(e.GetString(3), NumberStyles.Float, CultureInfo.InvariantCulture, out var chance) ||
+            !int.TryParse(e.GetString(4), out var count))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyMasteryRolls <player-serial> <skill> <value-tenths> <chance> <count>");
+            return;
+        }
+
+        var skill = player.Skills[name];
+        var successes = 0;
+        var gains = 0;
+        var over = 0;
+
+        for (var i = 0; i < count; i++)
+        {
+            skill.BaseFixedPoint = value;
+
+            if (SkillCheck.CheckSkill(player, skill, new object(), chance))
+            {
+                successes++;
+            }
+
+            var delta = skill.BaseFixedPoint - value;
+            gains += delta > 0 ? 1 : 0;
+            over += delta > 1 ? 1 : 0;
+        }
+
+        skill.BaseFixedPoint = value;
+
+        var type = typeof(MasteryProgression);
+        var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+        var state = (MasteryCharacterState)type.GetMethod("GetState", flags)!.Invoke(null, [player])!;
+        var bank = state.Skills.TryGetValue(skill.SkillID, out var skillState) ? skillState.AllowanceTenths : 0;
+
+        e.Mobile.SendMessage(
+            string.Create(
+                CultureInfo.InvariantCulture,
+                $"MasteryRolls {name} n={count} successes={successes} gains={gains} over={over} factor={skill.Info.GainFactor} " +
+                $"multiplier={SkillGainCurveService.GetMultiplier(player, skill)} total={player.Skills.Total}/{player.Skills.Cap} bank={bank}"
+            )
+        );
     }
 
     // [TestOnlyMasterySeed <player-serial> <hours-into-cycle> [+] Anatomy=stored:claimed ...] ("+" keeps the skills already seeded; a typed line is

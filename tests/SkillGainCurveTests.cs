@@ -19,10 +19,10 @@ public class SkillGainCurveTests
     public static SkillGainRules ValidRules()
     {
         var rules = new SkillGainRules();
-        rules.Classes["easy"] = [Band(0, 1.5)];
-        rules.Classes["standard"] = [Band(0, 1.5), Band(70, 1.0)];
-        rules.Classes["hard"] = [Band(0, 1.5), Band(70, 1.0), Band(80, 0.75)];
-        rules.Classes["veryHard"] = [Band(0, 1.5), Band(70, 1.0), Band(80, 0.75)];
+        rules.Classes["easy"] = [Band(0, 1.5), Band(80, 0.15)];
+        rules.Classes["standard"] = [Band(0, 1.5), Band(70, 1.0), Band(80, 0.1)];
+        rules.Classes["hard"] = [Band(0, 1.5), Band(70, 1.0), Band(80, 0.075)];
+        rules.Classes["veryHard"] = [Band(0, 1.5), Band(70, 1.0), Band(80, 0.075)];
 
         for (var i = 0; i <= SkillGainCurveService.LastUorSkillId; i++)
         {
@@ -82,28 +82,31 @@ public class SkillGainCurveTests
     }
 
     [Theory]
-    // Easy: 1.5x from 10 to 90 (where Mastery begins).
+    // Easy: 1.5x from 10 to 80, then 0.15x (the chance rate beyond Mastery's allowance) to 100.
     [InlineData(SkillName.Archery, 10.0, 1.5)]
     [InlineData(SkillName.Archery, 69.9, 1.5)]
     [InlineData(SkillName.Archery, 70.0, 1.5)]
-    [InlineData(SkillName.Archery, 89.9, 1.5)]
-    // Standard: 1.5x to 70, then stock.
+    [InlineData(SkillName.Archery, 79.9, 1.5)]
+    [InlineData(SkillName.Archery, 80.0, 0.15)]
+    [InlineData(SkillName.Archery, 99.9, 0.15)]
+    // Standard: 1.5x to 70, stock 70 to 80, 0.1x from 80.
     [InlineData(SkillName.Swords, 10.0, 1.5)]
     [InlineData(SkillName.Swords, 69.9, 1.5)]
     [InlineData(SkillName.Swords, 70.0, 1.0)]
-    [InlineData(SkillName.Swords, 89.9, 1.0)]
-    // Hard: 1.5x to 70, stock 70 to 80, 0.75x from 80.
+    [InlineData(SkillName.Swords, 79.9, 1.0)]
+    [InlineData(SkillName.Swords, 80.0, 0.1)]
+    [InlineData(SkillName.Swords, 94.9, 0.1)]
+    // Hard: 1.5x to 70, stock 70 to 80, 0.075x from 80.
     [InlineData(SkillName.Blacksmith, 69.9, 1.5)]
     [InlineData(SkillName.Blacksmith, 70.0, 1.0)]
     [InlineData(SkillName.Blacksmith, 79.9, 1.0)]
-    [InlineData(SkillName.Blacksmith, 80.0, 0.75)]
-    [InlineData(SkillName.Blacksmith, 89.9, 0.75)]
-    // Outside the curve range every skill is stock: below 10 gain is unconditional, 90+ is Mastery.
+    [InlineData(SkillName.Blacksmith, 80.0, 0.075)]
+    [InlineData(SkillName.Blacksmith, 89.9, 0.075)]
+    [InlineData(SkillName.Blacksmith, 90.0, 0.075)]
+    // Outside the curve range every skill is stock: below 10 gain is unconditional, and at 100 there is nothing to gain.
     [InlineData(SkillName.Archery, 9.9, 1.0)]
     [InlineData(SkillName.Swords, 0.0, 1.0)]
-    [InlineData(SkillName.Blacksmith, 90.0, 1.0)]
-    [InlineData(SkillName.Swords, 94.9, 1.0)]
-    [InlineData(SkillName.Archery, 99.9, 1.0)]
+    [InlineData(SkillName.Blacksmith, 100.0, 1.0)]
     public void MultiplierFollowsTheClassBands(SkillName skill, double value, double expected)
     {
         Assert.Equal(expected, SkillGainCurveService.MultiplierFor(ValidRules(), skill, value));
@@ -131,9 +134,41 @@ public class SkillGainCurveTests
     }
 
     [Fact]
-    public void CurveRangeEndsExactlyWhereMasteryBegins()
+    public void TheCurveRunsToGrandmasterAndMasteryBeginsAtEighty()
     {
+        Assert.Equal(80.0, SkillGainCurveService.MasteryThreshold);
         Assert.Equal(MasteryProgression.ThresholdFixedPoint / 10.0, SkillGainCurveService.MasteryThreshold);
+        Assert.Equal(100.0, SkillGainCurveService.CurveCeiling);
+    }
+
+    [Fact]
+    public void FromMasteryTheClassBandsAreSlowerThanStockSoTheAllowanceIsTheRoadAndChanceIsTheBonus()
+    {
+        var rules = Shipped().SkillGain;
+
+        foreach (var (name, bands) in rules.Classes)
+        {
+            var atMastery = bands.Single(b => b.From == SkillGainCurveService.MasteryThreshold);
+            var before = bands.Where(b => b.From < SkillGainCurveService.MasteryThreshold).OrderBy(b => b.From).Last();
+
+            Assert.True(atMastery.Multiplier < 0.2, $"{name} must be slow from the threshold");
+            Assert.True(atMastery.Multiplier < before.Multiplier, $"{name} must slow down at the threshold");
+        }
+    }
+
+    [Fact]
+    public void ABandMayStartAnywhereBelowGrandmasterButNotAtIt()
+    {
+        var rules = ValidRules();
+        rules.Classes["easy"] = [Band(0, 1.5), Band(99.9, 0.1)];
+        var errors = new List<string>();
+        SkillGainCurveService.Validate(rules, errors);
+        Assert.Empty(errors);
+
+        rules.Classes["easy"] = [Band(0, 1.5), Band(100, 0.1)];
+        errors.Clear();
+        SkillGainCurveService.Validate(rules, errors);
+        Assert.Contains(errors, e => e.Contains("start below 100", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -173,9 +208,9 @@ public class SkillGainCurveTests
     {
         var rules = ValidRules();
 
-        Assert.Equal("Easy: 1.5x from 10 to 90", SkillGainCurveService.Describe("easy", rules.Classes["easy"]));
+        Assert.Equal("Easy: 1.5x from 10 to 80, 0.15x from 80 to 100", SkillGainCurveService.Describe("easy", rules.Classes["easy"]));
         Assert.Equal(
-            "Hard: 1.5x from 10 to 70, 1x from 70 to 80, 0.75x from 80 to 90",
+            "Hard: 1.5x from 10 to 70, 1x from 70 to 80, 0.075x from 80 to 100",
             SkillGainCurveService.Describe("hard", rules.Classes["hard"])
         );
     }

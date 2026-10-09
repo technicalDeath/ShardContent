@@ -1,5 +1,7 @@
 # Beta 2a item 2: Mastery redesign audit
 
+> **Superseded 2026-10-09 by [`Mastery-Layered-Plan.md`](Mastery-Layered-Plan.md)** (owner sign-off): Mastery now begins at 80.0, its daily allowance is layered on ordinary gain instead of replacing it (allowances 2.0 / 1.4 / 1.0 / 0.8, so 10 / 15 / 20 / 25 days from 80), and Faint Memories stops at 80.0. The cycle, claim, bank and Up-lock rules below still stand. Evidence for the change: `Mastery-Layered-Evidence.md`.
+
 Roadmap: [Beta 2a](ModernUO-UOR-Safe-World-Phased-Implementation-Roadmap.md), scope item 2 (deferred from Alpha 3 J-2/J-3). Design contract: Hot Zones plan, "Character Mastery cycles, skill allowances and limited banking" (DD 837-928), as ruled below.
 
 ## Sign-off (owner, 2026-10-02)

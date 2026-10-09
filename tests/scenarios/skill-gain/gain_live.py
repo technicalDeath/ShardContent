@@ -4,10 +4,11 @@ GainProbe.dll loaded, and one Player-level character named GainPlayer (plus the 
     python gain_live.py all
 
 Cases:
-  rates     measured gain rate with the curve vs the same server with the curve switched off, per class and band:
-            the ratio must equal the approved multiplier (1.5, 1.0, 0.75) within sampling error
+  rates     measured gain rate with the curve vs the same server with the curve switched off, per class and band below
+            Mastery's 80.0: the ratio must equal the approved multiplier (1.5, 1.0) within sampling error. From 80.0 the rate is
+            Mastery's chance path beside its guaranteed gains, measured by tests/scenarios/mastery/mastery_live.py stage `chance`
   sub10     below 10.0 gain stays unconditional and identical
-  mastery   at 95.0 and above the curve never produces a stock-roll gain (Mastery owns it)
+  mastery   (retired: Mastery no longer suppresses the stock roll from its threshold; see mastery_live.py stage `chance`)
   staff     a staff character gets stock gain (ratio 1.0)
   bank      Skill Bank restoration is exact and identical with the curve on and off
   off       with the flag off, the multiplier is 1.0 and [SkillClasses says gain is stock
@@ -77,11 +78,10 @@ def ratio(staff, serial: str, skill: str, base: float) -> tuple[float, dict, dic
 
 def phase_rates(staff, serial: str) -> None:
     cases = [
-        ("Archery", "easy", 30.0, 1.5), ("Archery", "easy", 85.0, 1.5),
+        ("Archery", "easy", 30.0, 1.5), ("Archery", "easy", 79.0, 1.5),
         ("Swords", "standard", 30.0, 1.5), ("Swords", "standard", 65.0, 1.5),
-        ("Swords", "standard", 75.0, 1.0), ("Swords", "standard", 90.0, 1.0),
+        ("Swords", "standard", 75.0, 1.0), ("Swords", "standard", 79.5, 1.0),
         ("Blacksmith", "hard", 30.0, 1.5), ("Blacksmith", "hard", 75.0, 1.0),
-        ("Blacksmith", "hard", 85.0, 0.75), ("Blacksmith", "hard", 94.9, 0.75),
     ]
     for skill, cls, base, mult in cases:
         r, curve, stock = ratio(staff, serial, skill, base)
@@ -97,12 +97,9 @@ def phase_sub10(staff, serial: str) -> None:
 
 
 def phase_mastery(staff, serial: str) -> None:
-    for skill in ("Swords", "Archery"):
-        for mode in ("curve", "stock"):
-            out = run(staff, serial, skill, 95.0, mode, n=3000)
-            # Mastery's pending increments (cap 6 tenths) are the only way to gain at 95.0; a stock roll over 3000
-            # checks would gain hundreds of times.
-            check(f"mastery:{skill}:{mode}:no-stock-gain", out["gainedTenths"] <= 6, str(out))
+    # Retired: from 80.0 Mastery hands every use that is not a guaranteed gain back to the stock roll, so the rate there is measured
+    # (against the formula, with the allowance spent) by mastery_live.py stage `chance`.
+    return
 
 
 def phase_staff(staff, admin_serial: str) -> None:
@@ -136,9 +133,9 @@ def phase_command(staff, serial: str) -> None:
     time.sleep(3)
     text = " ".join(line.strip() for line in player.call("gumps"))
     # The window is the guide's: an overview with each class's speeds, then a page per class with its skills.
-    for line in ("Easy skills (19)", "1.5x stock speed from 10 to 90",
-                 "Standard skills (26)", "1.5x stock speed from 10 to 70, stock speed from 70 to 90",
-                 "Hard skills (4)", "1.5x stock speed from 10 to 70, stock speed from 70 to 80, 0.75x stock speed from 80 to 90"):
+    for line in ("Easy skills (19)", "1.5x stock speed from 10 to 80, 0.15x stock speed from 80 to 100",
+                 "Standard skills (26)", "1.5x stock speed from 10 to 70, stock speed from 70 to 80, 0.1x stock speed from 80 to 100",
+                 "Hard skills (4)", "1.5x stock speed from 10 to 70, stock speed from 70 to 80, 0.075x stock speed from 80 to 100"):
         check(f"command:lists:{line[:14]}", line in text, text[-300:])
     for name in ("Animal Taming", "Blacksmithy", "Alchemy", "Poisoning", "Archery", "Magery", "Swords"):
         check(f"command:names:{name}", name in text)

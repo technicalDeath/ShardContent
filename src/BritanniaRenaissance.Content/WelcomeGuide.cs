@@ -69,8 +69,8 @@ public static partial class WelcomeGuide
         int SkillCapPoints = 700,
         int BankPoints = 300,
         int EasyTenths = 20,
-        int StandardTenths = 10,
-        int HardTenths = 6,
+        int StandardTenths = 14,
+        int HardTenths = 10,
         int CycleHours = 24,
         int StoredCycles = 3,
         int WardPrice = 2000,
@@ -81,7 +81,8 @@ public static partial class WelcomeGuide
         int FaintPointsTenths = 50,
         int FaintHours = 24,
         int FaintFloorTenths = 100,
-        int FaintCeilingTenths = 900
+        int FaintCeilingTenths = 800,
+        int VeryHardTenths = 8
     )
     {
         public static Numbers Current
@@ -102,8 +103,8 @@ public static partial class WelcomeGuide
                     settings.Character.TotalSkillCap,
                     settings.SkillBank.CapacityTenths / 10,
                     Allowance("easy", 20),
-                    Allowance("standard", 10),
-                    Allowance("hard", 6),
+                    Allowance("standard", 14),
+                    Allowance("hard", 10),
                     settings.Mastery.CycleHours,
                     settings.Mastery.BankCycles,
                     settings.WardVendor.StockPerVendor > 0 ? settings.WardVendor.Price : 0,
@@ -114,11 +115,16 @@ public static partial class WelcomeGuide
                     FaintMemoriesPolicy.PointsTenths(settings.FaintMemories),
                     (int)Math.Round(settings.FaintMemories.UnlockHours),
                     FaintMemoriesPolicy.FloorTenths(settings.FaintMemories),
-                    FaintMemoriesPolicy.CeilingTenths(settings.FaintMemories)
+                    FaintMemoriesPolicy.CeilingTenths(settings.FaintMemories),
+                    VeryHardInUse(settings.SkillGain) ? Allowance("veryHard", 8) : 0
                 );
             }
         }
     }
+
+    /// <summary>True when some skill is in the very hard class; the guide names a class only if it has skills.</summary>
+    public static bool VeryHardInUse(SkillGainRules rules) =>
+        rules.Skills.Values.Any(name => string.Equals(name, "veryHard", StringComparison.OrdinalIgnoreCase));
 
     public const string HeadingMark = "# ";
 
@@ -373,16 +379,22 @@ public static partial class WelcomeGuide
 
     private static string Points(int tenths) => (tenths / 10.0).ToString("0.0", CultureInfo.InvariantCulture);
 
-    /// <summary>The fewest cycles to climb from 90.0 to 100.0 at an allowance of this many tenths per cycle.</summary>
-    public static int MinimumCycles(int allowanceTenths) =>
-        (MasteryEngine.GrandmasterFixedPoint - MasteryEngine.ThresholdFixedPoint + allowanceTenths - 1) / allowanceTenths;
+    /// <summary>The fewest cycles to climb from Mastery's threshold to 100.0 at an allowance of this many tenths per cycle.</summary>
+    public static int MinimumCycles(int allowanceTenths) => MasteryEngine.MinimumCycles(allowanceTenths);
 
     private static Topic MasteryTopic(Context c, Numbers n)
     {
         var threshold = MasteryEngine.ThresholdText;
         var classes = c.SkillClasses ? " [SkillClasses lists every skill's class." : string.Empty;
         var bank = c.SkillBank ? " Points held in your Skill Bank come back before Mastery applies." : string.Empty;
-        var days = n.CycleHours == 24 ? "days" : "cycles";
+        var days = n.CycleHours == 24 ? "active days" : "cycles";
+
+        var slowly = c.SkillClasses ? ", though slowly" : string.Empty;
+        var speeds = c.SkillClasses ? " [SkillClasses shows how slowly, for each class." : string.Empty;
+
+        // A class with no skills in it is not named (none of the shipped skills is very hard).
+        string ByClass(string easy, string standard, string hard, string veryHard) =>
+            n.VeryHardTenths > 0 ? $"{easy}, {standard}, {hard} and {veryHard}" : $"{easy}, {standard} and {hard}";
 
         return new Topic(
             "mastery",
@@ -390,22 +402,30 @@ public static partial class WelcomeGuide
             [
                 HeadingMark + "Why Mastery exists",
                 "In stock Ultima Online the last points of a skill are a grind: each one takes the most checks, and for crafters the most ingots or reagents. " +
-                "Mastery replaces that grind with a steady daily pace that rewards you for playing. Use a skill each day and it grows, with no marathon sessions and no piles of resources.",
-                "Playing more in one day does not make it faster; playing on more days does. A day's allowance takes about " +
-                $"{n.EasyTenths} successful uses for an easy skill, {n.StandardTenths} for a standard one and {n.HardTenths} for a hard one.",
+                "Mastery gives you a surer road: a daily allowance of gains that is guaranteed, so a little play each day takes a skill to Grandmaster, with no marathon sessions and no piles of resources.",
+                $"Playing more is not wasted: once the day's allowance is spent your uses still gain by chance{slowly}, so a dedicated player does finish sooner. The sure road is playing on more days. A day's allowance is about " +
+                ByClass(
+                    $"{n.EasyTenths} valid, successful uses for an easy skill", $"{n.StandardTenths} for a standard one", $"{n.HardTenths} for a hard one",
+                    $"{n.VeryHardTenths} for a very hard one"
+                ) + ".",
                 HeadingMark + "How it works",
-                $"Below {threshold} a skill gains by chance, as in Ultima Online. From {threshold} it no longer does. Your character has a {n.CycleHours}-hour cycle, " +
-                $"which starts the first time you hold a skill at {threshold} or higher, and in each cycle a skill has an allowance: " +
-                $"{Points(n.EasyTenths)} for easy skills, {Points(n.StandardTenths)} for standard ones and {Points(n.HardTenths)} for hard ones.{classes}",
-                "A skill claims its allowance with its first valid, successful use in the cycle. A valid use is a success that had a real chance of failing: " +
-                "trivially easy actions and failed attempts count for nothing. While the allowance lasts, each valid, successful use gives +0.1, up to Grandmaster (100.0).",
-                $"So going from {threshold} to 100.0 takes at least {MinimumCycles(n.EasyTenths)} {days} for an easy skill, {MinimumCycles(n.StandardTenths)} for a standard one " +
-                $"and {MinimumCycles(n.HardTenths)} for a hard one.",
+                $"Mastery begins at {threshold} (Adept). Your character has a {n.CycleHours}-hour cycle, which starts the first time you hold a skill at {threshold} or higher, " +
+                "and in each cycle a skill has an allowance: " +
+                ByClass($"{Points(n.EasyTenths)} for easy skills", $"{Points(n.StandardTenths)} for standard ones", $"{Points(n.HardTenths)} for hard ones", $"{Points(n.VeryHardTenths)} for very hard ones") +
+                $".{classes}",
+                "A skill claims its allowance with its first valid, successful use in the cycle. A valid use is a success that had a real chance of failing, so trivially easy actions never count. " +
+                "A failed attempt neither claims nor spends the allowance, though it can still gain by chance. While the allowance lasts, each valid, successful use is a guaranteed +0.1, up to Grandmaster (100.0). " +
+                $"When it is spent, further uses still gain by chance{slowly}.{speeds}",
+                $"So going from {threshold} to 100.0 on the allowance alone takes at least " +
+                ByClass(
+                    $"{MinimumCycles(n.EasyTenths)} {days} for an easy skill", $"{MinimumCycles(n.StandardTenths)} for a standard one", $"{MinimumCycles(n.HardTenths)} for a hard one",
+                    $"{MinimumCycles(n.VeryHardTenths)} for a very hard one"
+                ) + ". Playing more shortens that.",
                 "Nothing you have gained is ever taken away. A cycle in which a skill is not used simply gives that skill no allowance, and it is not made up later. " +
                 $"Allowance you claimed but did not spend carries over, up to {n.StoredCycles} cycles' worth.",
                 HeadingMark + "Good to know",
                 "The skill must be set to Up. If your skills are at the total cap, a skill set to Down gives up the 0.1 to make room; if none can, the use gives nothing and spends nothing." + bank,
-                "[Mastery opens a window showing when your cycle ends and, for each Mastery skill, where it stands, its allowance, what is stored and how far it is from 100. When you log in you are told if a skill has not claimed this cycle."
+                "[Mastery opens a window showing when your cycle ends and, for each Mastery skill, where it stands, its allowance, what is left and how far it is from 100. When you log in you are told if a skill has not claimed this cycle."
             ]
         );
     }
@@ -544,7 +564,7 @@ public static partial class WelcomeGuide
             lines.Add("[Execute - Execute a Knocked Out player you are allowed to, next to them, in five seconds.");
         }
 
-        lines.Add("[Mastery - Your Mastery cycle and what each Mastery skill can still gain.");
+        lines.Add("[Mastery - Your Mastery cycle and each Mastery skill's allowance.");
 
         if (c.SkillBank)
         {

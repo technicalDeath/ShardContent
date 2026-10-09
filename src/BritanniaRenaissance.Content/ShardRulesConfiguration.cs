@@ -569,9 +569,9 @@ public sealed class TheftPoint
 }
 
 /// <summary>
-/// The skill-gain curve below Mastery (Beta 1). Each class is a list of bands: from the band's <c>from</c> skill value
+/// The skill-gain curve (Beta 1). Each class is a list of bands: from the band's <c>from</c> skill value
 /// (inclusive) until the next band, the stock gain probability is multiplied by <c>multiplier</c>. Below 10.0 the
-/// stock unconditional gain is untouched and at 90.0 Mastery takes over, so only 10.0 to 90.0 is ever consulted.
+/// stock unconditional gain is untouched and the bands run to 100.0; from 80.0 they are the rate of gain by chance beyond Mastery's allowance.
 /// </summary>
 public sealed class SkillGainRules
 {
@@ -620,7 +620,7 @@ public sealed class FaintMemoriesRules
 
     /// <summary>Free points stop here: from Mastery's threshold up, the allowance is earned.</summary>
     [JsonPropertyName("ceiling")]
-    public double Ceiling { get; set; } = 90.0;
+    public double Ceiling { get; set; } = 80.0;
 }
 
 /// <summary>

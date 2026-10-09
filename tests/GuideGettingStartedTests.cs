@@ -107,7 +107,9 @@ public class GuideGettingStartedTests
         Assert.Contains("A Backpack Ward watches for thieves: one it catches turns criminal and cannot steal from you again until the Ward runs out.", all);
         Assert.Contains("A Bedroll and Kindling let you make a camp", all);
         Assert.Contains("Faint Memories: 5.0 free points unlock 24 hours after you create your character", all);
-        Assert.Contains("between 10.0 and 90.0", all);
+        Assert.Contains("between 10.0 and 80.0", all);
+        Assert.Contains("Once a skill reaches 80.0, use it a little every day: Mastery guarantees it gains, and it is the sure way to Grandmaster (see the Mastery page).", all);
+        Assert.Contains("Once a skill reaches 80.0", bare);
         Assert.Contains("You start with the three skills of your template (an Advanced character picks its own)", all);
         Assert.DoesNotContain("protects you from thieves", all);
         Assert.Contains("[SkillClasses shows how fast each skill trains.", all);
@@ -157,7 +159,9 @@ public class GuideGettingStartedTests
         Assert.Contains("It is set to Down or Locked: set it to Up.", text);
         Assert.Contains("Uses that cannot fail, or are far too hard, do not train a skill.", text);
         Assert.Contains("it cycles Up, Down and Locked, and Locked shows a padlock", text);
-        Assert.Contains("It has reached 90.0: from there Mastery takes over", text);
+        Assert.DoesNotContain("It has reached 80.0", text);
+        Assert.DoesNotContain("Mastery takes over", text);
+        Assert.Contains("It has reached its cap.", text);
     }
 
     [Fact]
@@ -172,7 +176,7 @@ public class GuideGettingStartedTests
         Assert.Contains("Points taken for a trainer's lesson are not saved.", all);
         Assert.DoesNotContain("Skill Bank", bare);
         Assert.DoesNotContain("Faint Memories", bare);
-        Assert.Contains("Mastery allowance is spent only by a skill set to Up", bare);
+        Assert.Contains("Mastery's daily allowance is spent only by a skill set to Up", bare);
     }
 
     [Fact]

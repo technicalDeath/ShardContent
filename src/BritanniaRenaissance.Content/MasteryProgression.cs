@@ -7,10 +7,10 @@ using Server.Mobiles;
 namespace BritanniaRenaissance.Content;
 
 /// <summary>
-/// Runs 90.0+ Mastery in the game (docs/Beta-2a-Mastery-Audit.md). The rules are <see cref="MasteryEngine"/>. This
+/// Runs 80.0+ Mastery in the game (docs/Mastery-Layered-Plan.md). The rules are <see cref="MasteryEngine"/>. This
 /// subscribes once to <see cref="SkillEvents.SkillGainOverride"/>, which stock calls after its eligibility checks
-/// and before its own gain roll, so a decision made here never reaches the gain-chance multiplier or any
-/// temporary gain bonus. Skill Bank restoration still acts first.
+/// and before its own gain roll. A guaranteed gain made here never reaches the gain-chance multiplier; every other
+/// use is handed back to stock. Skill Bank restoration still acts first.
 /// </summary>
 public static class MasteryProgression
 {
@@ -46,7 +46,7 @@ public static class MasteryProgression
 
         return rules.AllowanceTenths.TryGetValue(className ?? "standard", out var tenths)
             ? tenths
-            : rules.AllowanceTenths.GetValueOrDefault("standard", 10);
+            : rules.AllowanceTenths.GetValueOrDefault("standard", 14);
     }
 
     public static string ClassName(SkillName skill) =>
@@ -179,7 +179,7 @@ public static class MasteryProgression
 
         for (var i = 0; i < pm.Skills.Length; i++)
         {
-            if (pm.Skills[i] is { } skill && skill.BaseFixedPoint >= ThresholdFixedPoint &&
+            if (pm.Skills[i] is { Lock: SkillLock.Up } skill && skill.BaseFixedPoint >= ThresholdFixedPoint &&
                 skill.BaseFixedPoint < GrandmasterFixedPoint &&
                 (!state.Skills.TryGetValue(skill.SkillID, out var s) || !MasteryEngine.HasClaimed(s, cycle)))
             {
@@ -232,8 +232,9 @@ public static class MasteryProgression
     }
 
     /// <summary>
-    /// Called by the ModernUO skill engine after region and anti-macro eligibility checks. Returning true always
-    /// suppresses the stock gain path for player skills at the threshold and above, including when nothing is awarded.
+    /// Called by the ModernUO skill engine after region and anti-macro eligibility checks. Returns true only when this
+    /// use was spent (a guaranteed gain, Skill Bank restoration, or a skill already at 100.0); false lets the stock roll
+    /// run, which applies the class multiplier from <see cref="SkillGainCurveService"/>.
     /// </summary>
     public static bool HandleSkillGain(Mobile mobile, Skill skill, bool success)
     {
@@ -260,6 +261,8 @@ public static class MasteryProgression
         var now = Core.Now;
         var state = GetState(pm);
         var changed = false;
+        var rules = Rules;
+        var allowance = AllowanceTenths(skill.SkillName);
 
         if (state.AnchorUtc is null)
         {
@@ -272,25 +275,29 @@ public static class MasteryProgression
             skillState = new MasterySkillState();
             state.Skills[skill.SkillID] = skillState;
             changed = true;
+            var slowly = SkillGainCurveService.Enabled ? ", slowly" : string.Empty;
             pm.SendMessage(
-                $"{skill.Info.Name} has reached {MasteryEngine.ThresholdText}: ordinary gain has ended and Mastery begins. Use [Mastery to see your allowance."
+                $"{skill.Info.Name} has reached {MasteryEngine.ThresholdText}: Mastery begins. Your first {allowance} valid, successful uses each day are guaranteed gains, and after that gains come by chance{slowly}. Use [Mastery to see your allowance."
             );
         }
 
         // A valid use: the check succeeded and a gain is actually possible. Anything else claims and spends nothing.
-        if (!success || !CanGain(pm, skill))
+        var cycle = MasteryEngine.CycleId(state.AnchorUtc.Value, now, CycleLength);
+        var outcome = MasteryEngine.Decide(
+            skill.BaseFixedPoint, success && CanGain(pm, skill), MasteryEngine.HasClaimed(skillState, cycle),
+            skillState.AllowanceTenths, allowance, allowance * rules.BankCycles
+        );
+
+        if (outcome != MasteryEngine.UseOutcome.Guaranteed)
         {
             if (changed)
             {
                 SaveState(pm, state);
             }
 
-            return true;
+            // Not a guaranteed gain: stock rolls for it, at the class rate for this value.
+            return false;
         }
-
-        var rules = Rules;
-        var allowance = AllowanceTenths(skill.SkillName);
-        var cycle = MasteryEngine.CycleId(state.AnchorUtc.Value, now, CycleLength);
 
         if (MasteryEngine.TryClaim(skillState, cycle, allowance, allowance * rules.BankCycles))
         {
@@ -338,6 +345,7 @@ public static class MasteryProgression
             SaveState(pm, state);
         }
 
+        // The gain was made (or stock declined it): this use is spent either way, so stock does not roll again.
         return true;
     }
 
@@ -404,9 +412,9 @@ public sealed class MasteryRules
     public Dictionary<string, int> AllowanceTenths { get; set; } = new(StringComparer.OrdinalIgnoreCase)
     {
         ["easy"] = 20,
-        ["standard"] = 10,
-        ["hard"] = 6,
-        ["veryHard"] = 4
+        ["standard"] = 14,
+        ["hard"] = 10,
+        ["veryHard"] = 8
     };
 
     private static readonly string[] ClassNames = ["easy", "standard", "hard", "veryHard"];

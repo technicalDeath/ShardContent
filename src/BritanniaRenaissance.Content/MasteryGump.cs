@@ -7,7 +7,7 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// [Mastery: the Mastery cycle and every skill in Mastery range, in the shard's style. One row per skill with where it stands between
-/// 90.0 and 100.0, the allowance it has stored, whether it has claimed this cycle's allowance, and how far it has to go. Pages of
+/// 80.0 and 100.0, the guaranteed allowance it has left, whether it has claimed this cycle's allowance, and how far it has to go. Pages of
 /// six. Staff may open it for another player by serial; it then says whose it is.
 /// </summary>
 public sealed class MasteryGump : DynamicGump
@@ -24,7 +24,7 @@ public sealed class MasteryGump : DynamicGump
     private const int RowHeight = 34;
     private const int InnerWidth = GumpStyle.Width - 2 * GumpStyle.Margin;
 
-    // The columns, left to right, none overlapping: skill, now, the bar from 90 to 100, allowance, this cycle, to go.
+    // The columns, left to right, none overlapping: skill, now, the bar from 80 to 100, allowance, this cycle, to go.
     private const int ColSkill = GumpStyle.Margin;
     private const int ColNow = 184;
     private const int ColBar = 258;
@@ -77,22 +77,30 @@ public sealed class MasteryGump : DynamicGump
     public static string DescribeEmpty() =>
         $"No skill is in Mastery yet.<BR>A skill at {MasteryEngine.ThresholdText} or above is listed here with its allowance, once you have used it.";
 
+    /// <summary>The line under the title.</summary>
+    public static string Subtitle() => $"From {MasteryEngine.ThresholdText} a skill has guaranteed daily gains, and still gains by chance";
+
+    /// <summary>The two lines under the cycle line: what claims the allowance and what it buys.</summary>
+    public static string Explanation(int cycleHours) =>
+        $"A skill's first valid, successful use in a cycle ({cycleHours} hours) claims its allowance. " +
+        "While it lasts, each valid use is a guaranteed +0.1; after it, by chance.";
+
+    /// <summary>The two lines under the table.</summary>
+    public static string Footnote(int bankCycles) =>
+        $"Allowance is what a skill is still guaranteed to gain; it keeps up to {bankCycles} cycles' worth. " +
+        "A cycle you miss gives no allowance but takes nothing away.";
+
     protected override void BuildLayout(ref DynamicGumpBuilder builder)
     {
         builder.AddPage();
         GumpStyle.Frame(
             ref builder,
             _view.OwnerName is null ? "Mastery" : $"Mastery: {_view.OwnerName}",
-            $"From {MasteryEngine.ThresholdText} a skill grows by a daily allowance, not by chance"
+            Subtitle()
         );
 
         builder.AddHtml(GumpStyle.Margin, 84, InnerWidth, 20, DescribeCycle(_view), GumpStyle.Text);
-        builder.AddHtml(
-            GumpStyle.Margin, 108, InnerWidth, 36,
-            $"A skill claims its allowance with its first valid, successful use in a cycle ({_view.CycleHours} hours). " +
-            "While it has allowance, each valid use gives +0.1, up to 100.0.",
-            GumpStyle.Muted
-        );
+        builder.AddHtml(GumpStyle.Margin, 108, InnerWidth, 36, Explanation(_view.CycleHours), GumpStyle.Muted);
 
         if (_view.Rows.Count > 0)
         {
@@ -140,12 +148,7 @@ public sealed class MasteryGump : DynamicGump
             GumpStyle.RowRule(ref builder, GumpStyle.RuleInset, y + RowHeight - 3, GumpStyle.Width - 2 * GumpStyle.RuleInset);
         }
 
-        builder.AddHtml(
-            GumpStyle.Margin, RowsTop + RowsPerPage * RowHeight + 6, InnerWidth, 36,
-            $"Allowance is what a skill can still gain; it holds up to {_view.BankCycles} cycles' worth. " +
-            "Missing a cycle never takes anything away: that cycle simply gives no allowance.",
-            GumpStyle.Dim
-        );
+        builder.AddHtml(GumpStyle.Margin, RowsTop + RowsPerPage * RowHeight + 6, InnerWidth, 36, Footnote(_view.BankCycles), GumpStyle.Dim);
     }
 
     private void BuildFooter(ref DynamicGumpBuilder builder)
