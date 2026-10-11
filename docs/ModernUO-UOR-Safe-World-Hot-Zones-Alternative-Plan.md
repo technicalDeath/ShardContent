@@ -1595,6 +1595,8 @@ Changing the multiplier requires owner approval and should affect **future place
 
 ### 11.4 Phased Greater Britain district unlocks
 
+> **Under review (owner idea, 2026-10-09, not signed off).** Sections 11.4 to 11.6 below say normal-cost housing stays in Greater Britain forever and rural housing is the permanent overflow valve. The owner has proposed that the other towns become ordered, proof-gated housing settlements instead, or that a roadside ribbon and a distance-scaled rural fee do that job (2026-10-10); see [Beta-2b-Settlement-Housing-Notes.md](Beta-2b-Settlement-Housing-Notes.md). Until the owner signs that off, the text below stands as written.
+
 Define multiple **Greater Britain** residential districts, but open only enough at launch to support approximately **125–150% of expected initial normal-cost housing demand**.
 
 Example conceptual structure:
