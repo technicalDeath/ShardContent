@@ -90,7 +90,7 @@ public static class BuffIconCatalog
         ["archProtection"] = ["bonus"],
         ["reactiveArmor"] = ["points"],
         ["magicReflect"] = ["points"],
-        ["poison"] = ["level"],
+        ["poison"] = ["level", "relief"],
         ["polymorph"] = [],
         ["knockedOut"] = [],
         ["criminal"] = [],

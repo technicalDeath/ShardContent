@@ -104,6 +104,7 @@ public static class ShardRulesConfiguration
         SkillGainCurveService.Validate(rules.SkillGain, errors);
         MasteryRules.Validate(rules.Mastery, errors);
         NoviceCombatService.Validate(rules.NoviceCombat, errors);
+        PoisonReliefService.Validate(rules.PoisonRelief, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
@@ -436,6 +437,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("noviceCombat")]
     public NoviceCombatRules NoviceCombat { get; set; } = new();
+
+    [JsonPropertyName("poisonRelief")]
+    public PoisonReliefRules PoisonRelief { get; set; } = new();
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
@@ -835,6 +839,10 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("noviceCombat")]
     public bool NoviceCombat { get; set; }
 
+    /// <summary>Poison relief for new characters (docs/Poison-Relief-Plan.md): starter Lesser Cure potions, a first-poisoning explanation and a grace window after a poison ends; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("poisonRelief")]
+    public bool PoisonRelief { get; set; }
+
     /// <summary>The Furnisher vendor and the showroom hall in Britain (docs/Design-Proposal-3-House-Decoration-Gold-Sink.md); off until the owner acknowledges it.</summary>
     [JsonPropertyName("furnishers")]
     public bool Furnishers { get; set; }
@@ -880,12 +888,13 @@ public sealed class DeferredFeatureFlags
         if (CampTravelBlueFire) yield return nameof(CampTravelBlueFire);
         if (GuildChat) yield return nameof(GuildChat);
         if (NoviceCombat) yield return nameof(NoviceCombat);
+        if (PoisonRelief) yield return nameof(PoisonRelief);
         if (Furnishers) yield return nameof(Furnishers);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

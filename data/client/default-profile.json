@@ -1,3 +1,12 @@
 {
-  "game_window_start_fraction": 0.7
+  "game_window_start_fraction": 0.7,
+  "use_circle_of_transparency": true,
+  "circle_of_transparency_type": 0,
+  "auto_open_corpses": true,
+  "corpse_open_options": 3,
+  "show_mobiles_h_p": true,
+  "mobile_h_p_type": 1,
+  "mobile_h_p_show_when": 0,
+  "hold_down_key_alt_to_close_anchored": false,
+  "close_health_bar_type": 2
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "6cc334a63f0a787b60e7eb83fcc7ba8a5d7e834f",
+  "pinnedModernUoCommit": "435d1c081280c4d050c395c6daf57ed274fb8ff0",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -133,6 +133,11 @@
     "tacticsFloor": 30.0,
     "staminaFloor": 60
   },
+  "poisonRelief": {
+    "curePotions": 5,
+    "graceSeconds": 30.0,
+    "graceMaxLevel": 0
+  },
   "hotZones": {
     "dungeonRegions": [ { "name": "Hythloth", "map": "Felucca" } ],
     "permanentOutdoorRegions": [
@@ -211,6 +216,7 @@
     "campTravelBlueFire": true,
     "guildChat": true,
     "noviceCombat": true,
+    "poisonRelief": false,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

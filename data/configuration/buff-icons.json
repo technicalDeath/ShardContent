@@ -48,7 +48,7 @@
     "poison": {
       "icon": "Poison",
       "title": "Poisoned",
-      "lines": ["{level} poison.", "You lose health until it wears off or you are cured."]
+      "lines": ["{level} poison.", "You lose health until it wears off or you are cured.", "A bandage only tries to cure you, and that needs Healing and Anatomy 60.{relief}"]
     },
     "polymorph": {
       "icon": "Polymorph",

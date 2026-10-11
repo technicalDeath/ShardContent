@@ -278,7 +278,7 @@ public static class BuffStateProbes
         "archProtection" => ArchProtection(player),
         "reactiveArmor" => Points(player.MeleeDamageAbsorb),
         "magicReflect" => Points(player.MagicDamageAbsorb),
-        "poison" => player.Poison is { } poison ? new BuffStateReading(Values(("level", poison.Name))) : null,
+        "poison" => player.Poison is { } poison ? new BuffStateReading(PoisonValues(poison)) : null,
         "polymorph" => PolymorphSpell.UnderEffect(player)
             ? new BuffStateReading(None, PolymorphSpell.TryGetEnd(player, out var ends) ? ends : null)
             : null,
@@ -291,6 +291,10 @@ public static class BuffStateProbes
         "faintMemoriesReady" => FaintMemories(player, FaintMemoriesPhase.Ready, now),
         _ => null
     };
+
+    // The relief line is empty text with a name: it is shown only while poison relief is on, so the tooltip never promises what is not there.
+    private static Dictionary<string, string> PoisonValues(Poison poison) =>
+        PoisonReliefService.Enabled ? Values(("level", poison.Name), ("relief", "")) : Values(("level", poison.Name));
 
     private static Dictionary<string, string> Values(params (string Name, string Value)[] values) =>
         values.ToDictionary(static v => v.Name, static v => v.Value);
