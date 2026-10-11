@@ -1,6 +1,6 @@
 # Poison relief: evidence
 
-Plan: `Poison-Relief-Plan.md`. Readiness: `Poison-Relief-Readiness.md`. Built and verified 2026-10-11. **Committed (ModernUO `435d1c081`, ShardContent `e337c7e`) and deployed to the dev host on 2026-10-11 with the flag off; after the deploy `[PoisonReliefStatus` reads off and the pin matches.**
+Plan: `Poison-Relief-Plan.md`. Readiness: `Poison-Relief-Readiness.md`. Built and verified 2026-10-11. **Committed (ModernUO `435d1c081`, ShardContent `e337c7e`) and deployed to the dev host on 2026-10-11 with the flag off; **activated the same day** on the owner's "activate poison relief" (`featureFlags.poisonRelief` true, redeployed, `[PoisonReliefStatus` reads ON).**
 
 ## Decisions (owner, 2026-10-11)
 

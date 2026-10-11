@@ -216,7 +216,7 @@
     "campTravelBlueFire": true,
     "guildChat": true,
     "noviceCombat": true,
-    "poisonRelief": false,
+    "poisonRelief": true,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

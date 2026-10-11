@@ -190,16 +190,16 @@ public class PoisonReliefTests
     }
 
     [Fact]
-    public void TheShippedConfigurationHasTheFlagOffAndTheOwnersNumbers()
+    public void TheShippedConfigurationHasTheFlagOnSinceTheOwnerActivatedItAndTheOwnersNumbers()
     {
         var rules = ShippedConfiguration();
 
-        Assert.False(rules.FeatureFlags.PoisonRelief);
+        Assert.True(rules.FeatureFlags.PoisonRelief);
         Assert.Equal(5, rules.PoisonRelief.CurePotions);
         Assert.Equal(30.0, rules.PoisonRelief.GraceSeconds);
         Assert.Equal(0, rules.PoisonRelief.GraceMaxLevel);
         Assert.Empty(ShardRulesConfiguration.Validate(rules).Where(e => e.Contains("poisonRelief", StringComparison.OrdinalIgnoreCase)));
-        Assert.DoesNotContain(nameof(DeferredFeatureFlags.PoisonRelief), rules.FeatureFlags.EnabledNames());
+        Assert.Contains(nameof(DeferredFeatureFlags.PoisonRelief), rules.FeatureFlags.EnabledNames());
     }
 
     [Fact]
