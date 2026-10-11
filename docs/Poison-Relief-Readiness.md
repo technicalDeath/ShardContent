@@ -1,6 +1,6 @@
 # Poison relief: readiness
 
-**Decision:** Built and verified (unit, engine, live on a disposable host, real client) on 2026-10-11. **Nothing is committed, pushed or deployed, and `featureFlags.poisonRelief` is off.** Plan `Poison-Relief-Plan.md`, evidence `Poison-Relief-Evidence.md`.
+**Decision:** Built and verified (unit, engine, live on a disposable host, real client) on 2026-10-11. **Committed, pushed and deployed on 2026-10-11 (ModernUO `435d1c081`, ShardContent `e337c7e`); `featureFlags.poisonRelief` is off until the owner says "activate".** Plan `Poison-Relief-Plan.md`, evidence `Poison-Relief-Evidence.md`.
 
 ## What it does (behind the flag)
 
@@ -12,7 +12,7 @@
 
 Engine 13/13 (4 new), Shard suite 1198/1198 (39 new), live host 18/18, real-client pictures of the message and the tooltip shown to the owner. Details in the evidence.
 
-## To ship it
+## To ship it (steps 1 to 3 done 2026-10-11)
 
 1. **Commit ModernUO** (`PlayerMobile.cs` and `PlayerMobileShardHookTests.cs` only), rebuild `UOContent` into `Distribution` with the server stopped, **bump the pin** to the new ModernUO hash in `shard-rules.json`, `world-generation.json` and `Alpha2bWorldGenerationConfigurationTests.cs`.
 2. **Commit ShardContent** selectively (the repo also holds the Furnisher files and the owner's housing notes): `PoisonReliefService.cs`, `PoisonReliefTests.cs`, `tests/scenarios/poison-relief/`, the `poisonRelief` and `noviceCombat`-style edits in `ShardRulesConfiguration.cs`, `ShardBootstrap.cs`, `shard-rules.json`, the buff icon edits (`BuffIconRules.cs`, `BuffIconService.cs`, `buff-icons.json`) and the three Poison-Relief docs.

@@ -26,7 +26,7 @@ The owner's running list of what the player client should do out of the box (sta
 
 ## Not in a new profile's reach: the owner's own settings
 
-His profile (`Data/Profiles/Administrator/...`) keeps the old values, so none of items 1 to 5 apply to it until he sets them in Options (health bars: "Show mobiles' HP" and type bar; Alt-to-close: untick "Hold ALT key to close anchored gumps"; close dead health bars: the "Close health bars when" drop-down). I did not edit his profile. Say the word and I will, with the client closed.
+Items 1 to 5 reach only new profiles, so on 2026-10-11, on his "yes", his own profiles were edited with the client closed: `Administrator`, `bris` and `bris2` (health bars as bars, circle of transparency, auto-open corpses, a plain right-click closes anchored windows, close the health bar of a dead mobile; `bris2` already had the first three on). The originals are in `work/client-defaults/profiles-backup-20261011/`. His other test profiles (`qwer`, `zxc` and so on) were left alone. To change one by hand: "Show mobiles' HP" and the bar type, "Hold ALT key to close anchored gumps" and the "Close health bars when" drop-down in Options.
 
 ## Client changes made with these (uncommitted in the ClassicUO repo, installed in `ClassicUO/bin/dist`)
 

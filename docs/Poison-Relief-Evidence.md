@@ -1,6 +1,6 @@
 # Poison relief: evidence
 
-Plan: `Poison-Relief-Plan.md`. Readiness: `Poison-Relief-Readiness.md`. Built and verified 2026-10-11. **Not committed, not deployed, flag off.**
+Plan: `Poison-Relief-Plan.md`. Readiness: `Poison-Relief-Readiness.md`. Built and verified 2026-10-11. **Committed (ModernUO `435d1c081`, ShardContent `e337c7e`) and deployed to the dev host on 2026-10-11 with the flag off; after the deploy `[PoisonReliefStatus` reads off and the pin matches.**
 
 ## Decisions (owner, 2026-10-11)
 
@@ -10,8 +10,8 @@ Plan: `Poison-Relief-Plan.md`. Readiness: `Poison-Relief-Readiness.md`. Built an
 
 ## Build
 
-- **ModernUO (uncommitted):** `PlayerMobile.PoisonImmunityHandler` and its use in `PlayerMobile.CheckPoisonImmunity`; four tests added to `PlayerMobileShardHookTests`.
-- **ShardContent (uncommitted):** `PoisonReliefService.cs` (rules, starter potions, the watch, the hook, `[PoisonReliefStatus`), `poisonRelief` settings and the flag in `ShardRulesConfiguration.cs`, registration in `ShardBootstrap.cs` before `StarterWeightBudget.Register`, the shipped settings and flag in `shard-rules.json`, the poison tooltip line (`buff-icons.json`, a `relief` value in `BuffIconRules.cs` and `BuffIconService.cs`), `tests/PoisonReliefTests.cs`, the live probe and driver in `tests/scenarios/poison-relief/`.
+- **ModernUO:** `PlayerMobile.PoisonImmunityHandler` and its use in `PlayerMobile.CheckPoisonImmunity`; four tests added to `PlayerMobileShardHookTests`.
+- **ShardContent:** `PoisonReliefService.cs` (rules, starter potions, the watch, the hook, `[PoisonReliefStatus`), `poisonRelief` settings and the flag in `ShardRulesConfiguration.cs`, registration in `ShardBootstrap.cs` before `StarterWeightBudget.Register`, the shipped settings and flag in `shard-rules.json`, the poison tooltip line (`buff-icons.json`, a `relief` value in `BuffIconRules.cs` and `BuffIconService.cs`), `tests/PoisonReliefTests.cs`, the live probe and driver in `tests/scenarios/poison-relief/`.
 
 ## Verification
 

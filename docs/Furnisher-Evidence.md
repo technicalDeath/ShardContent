@@ -1,6 +1,6 @@
 # The Furnisher (evidence and readiness)
 
-Status: **built and verified on disposable hosts 2026-10-09; deployed and ACTIVATED on the dev host 2026-10-11 on the owner's "Activate both this and furnisher" (flag `furnishers` true; the first start placed the vendor and 229 display items, a restart found them in place; a real-client check of the hall and the buy window was shown to the owner); the Furnisher code is still NOT committed.** The design is `Design-Proposal-3-House-Decoration-Gold-Sink.md`; the owner approved the build on 2026-10-09 ("Everything is approved. Check in with me for commit and deploy authorization."). The `furnishers` flag is `true` in `shard-rules.json` since 2026-10-11; the README line below was added the same day.
+Status: **built and verified on disposable hosts 2026-10-09; deployed and ACTIVATED on the dev host 2026-10-11 on the owner's "Activate both this and furnisher" (flag `furnishers` true; the first start placed the vendor and 229 display items, a restart found them in place; a real-client check of the hall and the buy window was shown to the owner); the Furnisher was committed and pushed the same day (ShardContent `400ea01`).** The design is `Design-Proposal-3-House-Decoration-Gold-Sink.md`; the owner approved the build on 2026-10-09 ("Everything is approved. Check in with me for commit and deploy authorization."). The `furnishers` flag is `true` in `shard-rules.json` since 2026-10-11; the README line below was added the same day.
 
 ## 1. What was built
 
