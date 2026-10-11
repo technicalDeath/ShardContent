@@ -1,0 +1,402 @@
+{
+"site": "../sites/counselor-guild-east.json",
+"name": "site4-v8",
+"pieces": [
+[
+"Gray Brick Fireplace",
+"east",
+1624,
+1664,
+{
+"against": "W",
+"group": "Hearth lounge",
+"role": "anchor"
+}
+],
+[
+"Fieldstone Home Hearth",
+"east",
+1624,
+1666,
+{
+"against": "W",
+"group": "Hearth lounge",
+"role": "anchor"
+}
+],
+[
+"Slate-Roofed Hearth",
+"east",
+1624,
+1668,
+{
+"against": "W",
+"group": "Hearth lounge",
+"role": "anchor"
+}
+],
+[
+"Gilded Marble Hearth",
+"east",
+1624,
+1669,
+{
+"against": "W",
+"group": "Hearth lounge",
+"role": "anchor"
+}
+],
+[
+"Oak Longcase Clock",
+"south",
+1624,
+1670,
+{
+"against": "W",
+"group": "Hearth lounge",
+"role": "accent"
+}
+],
+[
+"Slate Dragon Rug",
+"east",
+1625,
+1665,
+{
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"Four-Seat Settle",
+"east",
+1625,
+1664,
+{
+"against": "N",
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"High-Backed Oak Settle",
+"east",
+1629,
+1664,
+{
+"against": "N",
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"Gold-and-Green Floral Tapestry",
+"north",
+1626,
+1664,
+{
+"against": "N",
+"group": "Hearth lounge",
+"role": "accent"
+}
+],
+[
+"Paneled Oak Armchair",
+"east",
+1627,
+1666,
+{
+"serves": "Cider and Ale Table",
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"Cider and Ale Table",
+"south",
+1626,
+1667,
+{
+"on": "Slate Dragon Rug",
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"Rustic Plank Table",
+"east",
+1626,
+1670,
+{
+"against": "S",
+"group": "Hearth lounge",
+"role": "support"
+}
+],
+[
+"Silk-Shaded Floor Lamp",
+"south",
+1630,
+1665,
+{
+"group": "Hearth lounge",
+"role": "accent"
+}
+],
+[
+"Wrought Taper Stand",
+"none",
+1630,
+1670,
+{
+"group": "Hearth lounge",
+"role": "accent"
+}
+],
+[
+"Great Hall Carpet",
+"none",
+1631,
+1665,
+{
+"group": "Great Hall",
+"role": "support"
+}
+],
+[
+"Great Hall Table",
+"east",
+1633,
+1667,
+{
+"on": "Great Hall Carpet",
+"group": "Great Hall",
+"role": "anchor"
+}
+],
+[
+"Long Banquet Table",
+"south",
+1638,
+1666,
+{
+"against": "E",
+"group": "Great Hall",
+"role": "support"
+}
+],
+[
+"Curtained Portrait",
+"north",
+1636,
+1656,
+{
+"group": "Dining nook east",
+"role": "accent"
+}
+],
+[
+"Blue Velvet Drape",
+"north",
+1635,
+1656,
+{
+"group": "Dining nook east",
+"role": "accent"
+}
+],
+[
+"Plain Olive Rug",
+"none",
+1631,
+1657,
+{
+"group": "Dining nook west",
+"role": "support"
+}
+],
+[
+"Plank-Top Dining Table",
+"east",
+1631,
+1657,
+{
+"on": "Plain Olive Rug",
+"group": "Dining nook west",
+"role": "anchor"
+}
+],
+[
+"Pale Pine Chair",
+"east",
+1632,
+1656,
+{
+"serves": "Plank-Top Dining Table",
+"against": "N",
+"group": "Dining nook west",
+"role": "support"
+}
+],
+[
+"Golden Arabesque Carpet",
+"none",
+1635,
+1657,
+{
+"group": "Dining nook east",
+"role": "support"
+}
+],
+[
+"Marble Banquet Table",
+"east",
+1635,
+1658,
+{
+"on": "Golden Arabesque Carpet",
+"group": "Dining nook east",
+"role": "anchor"
+}
+],
+[
+"Scholar's Bookshelf and Mortar",
+"east",
+1638,
+1662,
+{
+"against": "E",
+"group": "Study corner",
+"role": "anchor"
+}
+],
+[
+"Pale Pine Shelves",
+"east",
+1638,
+1663,
+{
+"against": "E",
+"group": "Study corner",
+"role": "support"
+}
+],
+[
+"Tall Stack of Books",
+"none",
+1637,
+1663,
+{
+"group": "Study corner",
+"role": "accent"
+}
+],
+[
+"Brass Telescope on Tripod",
+"south",
+1636,
+1662,
+{
+"group": "Study corner",
+"role": "accent"
+}
+],
+[
+"Grey Patterned Vase",
+"none",
+1631,
+1663,
+{
+"group": "Study corner",
+"role": "accent"
+}
+],
+[
+"Blue Floral Carpet",
+"none",
+1624,
+1658,
+{
+"group": "Bedchamber",
+"role": "support"
+}
+],
+[
+"Linen Four-Poster Bed",
+"south",
+1624,
+1656,
+{
+"against": "N",
+"group": "Bedchamber",
+"role": "anchor"
+}
+],
+[
+"Feather-Down Four-Poster",
+"south",
+1626,
+1656,
+{
+"against": "N",
+"group": "Bedchamber",
+"role": "anchor"
+}
+],
+[
+"Carved Rosewood Bed",
+"south",
+1628,
+1656,
+{
+"against": "N",
+"group": "Bedchamber",
+"role": "anchor"
+}
+],
+[
+"Midnight Carved Bed",
+"south",
+1629,
+1656,
+{
+"against": "N",
+"group": "Bedchamber",
+"role": "anchor"
+}
+],
+[
+"Plank Bed",
+"south",
+1629,
+1660,
+{
+"against": "E",
+"group": "Bedchamber",
+"role": "anchor"
+}
+],
+[
+"Walnut Longcase Clock",
+"south",
+1624,
+1662,
+{
+"against": "W",
+"group": "Bedchamber",
+"role": "accent"
+}
+],
+[
+"Crimson Runner",
+"none",
+1629,
+1672,
+{
+"group": "Entrance",
+"role": "anchor"
+}
+]
+],
+"note": "Owner-approved Furnisher showroom (2026-10-08), one of each of the Britain selection's 37 pieces. The fifth element of each piece is its semantic intent: what it stands against, serves, sits on, and its group and role."
+}

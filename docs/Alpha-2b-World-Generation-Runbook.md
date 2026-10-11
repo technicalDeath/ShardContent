@@ -80,6 +80,13 @@ The command writes an execution report and saves only after the complete audit p
 failure, do not save: stop the server, correct the reviewed source/configuration, and repeat from
 the clean save.
 
+**Furnisher hall (flag `furnishers`).** The Furnisher vendor and the showroom hall in the Counselor's
+Guild (east), Britain, are not part of generation. With the flag on, `FurnishersService` places them
+from `Configuration/furnishers.json` on every server start, but leaves an empty Felucca alone so that
+`apply` still sees a fresh world. After generation, **restart once** (or run `[FurnisherRefresh`) and
+the vendor and the 229 display items appear; check `[FurnisherStatus`. They do not change any
+audited count, and the `rerun` leaves them alone (`Furnisher-Evidence.md`, case 21).
+
 ## Convergence and restart acceptance
 
 1. Without restarting, run

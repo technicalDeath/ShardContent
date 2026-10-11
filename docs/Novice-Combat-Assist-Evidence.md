@@ -53,5 +53,5 @@ Earlier runs of the same stage (`run3`, `run7`) timed the kill by watching for t
 
 ## Not done / needs the owner
 
-- **Activation.** The flag ships OFF. Saying "activate" turns it on in `shard-rules.json` (a README rules line is added then).
+- **Activation: done 2026-10-11** on the owner's "Activate both this and furnisher": `featureFlags.noviceCombat` is true in `shard-rules.json`, deployed (saves snapshotted first, `work/save-snapshots/saves-20261011-084938-before-furnishers-and-novice-activation`), the server restarted and `[NoviceCombatStatus` reads ON; the README rules line was added. Full Shard suite 1159/1159 on the final config (run `20261011T124851615Z-59e0b1`).
 - The deployed shard DLL also contains the uncommitted Furnishers code from another session (its flag is OFF, and with the flag off its startup check only removes a vendor and hall that do not exist in the dev world).

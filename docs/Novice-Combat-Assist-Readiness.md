@@ -1,6 +1,6 @@
 # Novice combat assist: readiness
 
-**Decision:** Built, verified live and committed (ModernUO `6cc334a63`, then ShardContent on top of it) and deployed to the dev host on 2026-10-10 on the owner's "commit push deploy". **Switched OFF:** `featureFlags.noviceCombat` is false until the owner says "activate". Evidence: `Novice-Combat-Assist-Evidence.md`. Plan: `Novice-Combat-Assist-Plan.md`.
+**Decision:** Built, verified live and committed (ModernUO `6cc334a63`, then ShardContent on top of it) and deployed to the dev host on 2026-10-10 on the owner's "commit push deploy". **Activated 2026-10-11** on the owner's "Activate both this and furnisher": `featureFlags.noviceCombat` is true, redeployed and live on the dev host (it shipped OFF on 2026-10-10). Evidence: `Novice-Combat-Assist-Evidence.md`. Plan: `Novice-Combat-Assist-Plan.md`.
 
 ## What it does (behind the flag)
 
@@ -31,5 +31,5 @@ See the evidence: the Orc's real hit points (my first tables used a Lizardman's)
 
 ## Owner actions
 
-1. **Activate** `noviceCombat` when ready (one flag; the strength 0.66 and the two floors are in `shard-rules.json` and need no engine rebuild to change). A README rules line goes in at that point.
+1. ~~Activate~~ done. The strength 0.66 and the two floors are in `shard-rules.json` and need no engine rebuild to change; commit the flag change when committing the Furnisher work.
 2. Optional: once the flag is on, watch how a new archer and a new swordsman feel; the three numbers are the knobs.

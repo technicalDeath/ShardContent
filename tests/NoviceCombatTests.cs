@@ -267,16 +267,16 @@ public class NoviceCombatTests
     }
 
     [Fact]
-    public void TheShippedConfigurationHasTheFlagOffAndTheOwnersNumbers()
+    public void TheShippedConfigurationHasTheFlagOnSinceTheOwnerActivatedItAndTheOwnersNumbers()
     {
         var rules = ShippedConfiguration();
 
-        Assert.False(rules.FeatureFlags.NoviceCombat);
+        Assert.True(rules.FeatureFlags.NoviceCombat);
         Assert.Equal(0.66, rules.NoviceCombat.HitLiftStrength);
         Assert.Equal(30.0, rules.NoviceCombat.TacticsFloor);
         Assert.Equal(60, rules.NoviceCombat.StaminaFloor);
         Assert.Empty(ShardRulesConfiguration.Validate(rules).Where(e => e.Contains("noviceCombat", StringComparison.OrdinalIgnoreCase)));
-        Assert.DoesNotContain(nameof(DeferredFeatureFlags.NoviceCombat), rules.FeatureFlags.EnabledNames());
+        Assert.Contains(nameof(DeferredFeatureFlags.NoviceCombat), rules.FeatureFlags.EnabledNames());
     }
 
     [Fact]
