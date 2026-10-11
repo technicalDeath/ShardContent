@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "674e0c2ed9238f554a5ce58d3db5f08e6af50e29",
+  "pinnedModernUoCommit": "6cc334a63f0a787b60e7eb83fcc7ba8a5d7e834f",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -128,6 +128,11 @@
     "bankCycles": 3,
     "allowanceTenths": { "easy": 20, "standard": 14, "hard": 10, "veryHard": 8 }
   },
+  "noviceCombat": {
+    "hitLiftStrength": 0.66,
+    "tacticsFloor": 30.0,
+    "staminaFloor": 60
+  },
   "hotZones": {
     "dungeonRegions": [ { "name": "Hythloth", "map": "Felucca" } ],
     "permanentOutdoorRegions": [
@@ -205,6 +210,7 @@
     "hotZoneTravelWarning": true,
     "campTravelBlueFire": true,
     "guildChat": true,
+    "noviceCombat": false,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

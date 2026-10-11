@@ -103,6 +103,7 @@ public static class ShardRulesConfiguration
 
         SkillGainCurveService.Validate(rules.SkillGain, errors);
         MasteryRules.Validate(rules.Mastery, errors);
+        NoviceCombatService.Validate(rules.NoviceCombat, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
@@ -432,6 +433,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("mastery")]
     public MasteryRules Mastery { get; set; } = new();
+
+    [JsonPropertyName("noviceCombat")]
+    public NoviceCombatRules NoviceCombat { get; set; } = new();
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
@@ -827,6 +831,10 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("guildChat")]
     public bool GuildChat { get; set; }
 
+    /// <summary>The novice combat assist (docs/Novice-Combat-Assist-Plan.md): a hit-chance lift, a Tactics floor and a stamina floor for low-skill players; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("noviceCombat")]
+    public bool NoviceCombat { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -867,11 +875,12 @@ public sealed class DeferredFeatureFlags
         if (HotZoneTravelWarning) yield return nameof(HotZoneTravelWarning);
         if (CampTravelBlueFire) yield return nameof(CampTravelBlueFire);
         if (GuildChat) yield return nameof(GuildChat);
+        if (NoviceCombat) yield return nameof(NoviceCombat);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }
