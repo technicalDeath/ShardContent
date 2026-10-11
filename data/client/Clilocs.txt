@@ -2,5 +2,5 @@
 # 3050001 is the Execute entry in the menu you get by clicking a Knocked Out player (KnockedOutExecution.ContextEntryNumber).
 3050001	Execute
 # 500621 is the stock "The camp is now secure." (Campfire.cs), shown to each player standing within 7 tiles of a fire when their own 30 seconds are up.
-# The shard adds how to log off safely there: the safe logout is the Bedroll's, and nothing else at a camp skips the normal logout wait.
-500621	The camp is now secure. To log off safely, put your Bedroll down by the fire and double-click it.
+# The shard adds how to log off safely there: the safe logout is the Bedroll's (first double-click unrolls it, the second asks to log out), and nothing else at a camp skips the normal logout wait.
+500621	The camp is now secure. To log off safely, put your Bedroll down by the fire, double-click it to unroll it, double-click it again and choose Continue.
