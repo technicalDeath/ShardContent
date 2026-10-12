@@ -843,6 +843,22 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("poisonRelief")]
     public bool PoisonRelief { get; set; }
 
+    /// <summary>Item help (Help in an item's context menu) and the skill guide (docs/Help-Gumps-Plan.md); off until the owner acknowledges it.</summary>
+    [JsonPropertyName("helpGumps")]
+    public bool HelpGumps { get; set; }
+
+    /// <summary>A single click on a spell scroll shows the viewer's chance of casting it after the scroll's name (docs/Scroll-Success-Chance-Evidence.md); off until the owner acknowledges it.</summary>
+    [JsonPropertyName("scrollSuccessChance")]
+    public bool ScrollSuccessChance { get; set; }
+
+    /// <summary>The potion bar's server half (docs/Potion-Bar-Evidence.md): the answer to the client's question about potion strengths, and three Lesser Heal and three Refresh potions for every new character; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("potionBar")]
+    public bool PotionBar { get; set; }
+
+    /// <summary>The client's shard top bar (docs/Menu-Bar-Evidence.md): the server tells the client which shard buttons to show; without it the client keeps the stock bar; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("menuBar")]
+    public bool MenuBar { get; set; }
+
     /// <summary>The Furnisher vendor and the showroom hall in Britain (docs/Design-Proposal-3-House-Decoration-Gold-Sink.md); off until the owner acknowledges it.</summary>
     [JsonPropertyName("furnishers")]
     public bool Furnishers { get; set; }
@@ -889,12 +905,16 @@ public sealed class DeferredFeatureFlags
         if (GuildChat) yield return nameof(GuildChat);
         if (NoviceCombat) yield return nameof(NoviceCombat);
         if (PoisonRelief) yield return nameof(PoisonRelief);
+        if (HelpGumps) yield return nameof(HelpGumps);
+        if (ScrollSuccessChance) yield return nameof(ScrollSuccessChance);
+        if (PotionBar) yield return nameof(PotionBar);
+        if (MenuBar) yield return nameof(MenuBar);
         if (Furnishers) yield return nameof(Furnishers);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

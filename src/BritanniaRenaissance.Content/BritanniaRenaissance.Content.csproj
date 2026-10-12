@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>BritanniaRenaissance.Content</AssemblyName>
     <RootNamespace>BritanniaRenaissance.Content</RootNamespace>
     <ModernUOPath Condition="'$(ModernUOPath)' == ''">$(MSBuildThisFileDirectory)..\..\..\ModernUO</ModernUOPath>

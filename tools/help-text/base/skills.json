@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "key": "fighting",
+      "title": "Fighting",
+      "skills": [
+        "Wrestling",
+        "Swords",
+        "Macing",
+        "Fencing",
+        "Archery",
+        "Parry",
+        "Tactics",
+        "Anatomy",
+        "Healing"
+      ]
+    },
+    {
+      "key": "magic",
+      "title": "Magic",
+      "skills": [
+        "Magery",
+        "EvalInt",
+        "Meditation",
+        "MagicResist",
+        "SpiritSpeak"
+      ]
+    },
+    {
+      "key": "crafting",
+      "title": "Crafting",
+      "skills": [
+        "Alchemy",
+        "Blacksmith",
+        "Fletching",
+        "Carpentry",
+        "Cartography",
+        "Cooking",
+        "Inscribe",
+        "Tailoring",
+        "Tinkering",
+        "Poisoning"
+      ]
+    },
+    {
+      "key": "outdoors",
+      "title": "Outdoors",
+      "skills": [
+        "Mining",
+        "Lumberjacking",
+        "Fishing",
+        "Camping",
+        "Tracking",
+        "Herding",
+        "AnimalTaming",
+        "AnimalLore",
+        "Veterinary"
+      ]
+    },
+    {
+      "key": "lore",
+      "title": "Lore",
+      "skills": [
+        "ItemID",
+        "ArmsLore",
+        "TasteID",
+        "Forensics",
+        "Musicianship",
+        "Peacemaking",
+        "Provocation",
+        "Discordance"
+      ]
+    },
+    {
+      "key": "thieves",
+      "title": "Thieves",
+      "skills": [
+        "Hiding",
+        "Stealth",
+        "Stealing",
+        "Snooping",
+        "Lockpicking",
+        "RemoveTrap",
+        "DetectHidden",
+        "Begging"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "skill": "Alchemy",
+      "items": [
+        "mortar-pestle",
+        "empty-bottle",
+        "reagents",
+        "potion-keg",
+        "potion-heal",
+        "potion-cure",
+        "potion-refresh",
+        "potion-agility",
+        "potion-strength",
+        "potion-poison",
+        "potion-explosion",
+        "potion-nightsight"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Alchemy is the skill of making potions. You grind a reagent into an empty bottle with a Mortar and Pestle and the bottle becomes a potion: healing, curing, refreshing, strength, agility, night sight, poison or explosion.",
+        "# How to make a potion",
+        "Double-click a Mortar and Pestle in your pack. A cursor appears: click a reagent or an empty bottle in your pack and a menu opens (click the Mortar and Pestle itself instead to make the last potion again). The menu asks what kind of potion, then which one. It lists only what you have the skill and the materials to make, so a beginner sees a short list that grows as the skill rises.",
+        "Each potion uses one empty bottle and the reagent for its kind (some use several, see the table below), all in your pack. If you fail you lose half of the reagents, rounded up (all of them when the potion uses only one), but you keep the bottle. Every attempt, good or bad, wears the Mortar and Pestle a little, and a worn-out one has to be replaced.",
+        "# Training it",
+        "Every potion has a skill range, the two numbers in the table. Below the first number you cannot make it. From there your chance of success rises evenly to certain at the second number; a potion whose second number is above 100 is never quite certain, even for a Grandmaster. A number below 0 is a head start: with Alchemy at 0 you already succeed part of the time. You only learn from a potion while your skill is between its two numbers, so keep making the best potion you can; once you are past a potion's second number it no longer teaches you.",
+        {
+          "generate": "craft:Alchemy"
+        },
+        {
+          "generate": "stats"
+        },
+        {
+          "generate": "gain"
+        },
+        "# Good to know",
+        "A Mortar and Pestle costs about 8 gold from an alchemist, or anyone with the Tinkering skill can make one from 3 iron ingots (Tinkering 20 to 70). Alchemists also sell the reagents and empty bottles.",
+        "Reagents are what Magery spells burn too, so a few of each are worth carrying. A heal potion will not heal you while you are poisoned, and you must wait 10 seconds between heal potions: cure the poison first."
+      ]
+    }
+  ]
+}

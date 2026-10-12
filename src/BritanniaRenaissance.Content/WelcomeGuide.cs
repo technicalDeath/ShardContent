@@ -639,7 +639,8 @@ public static partial class WelcomeGuide
         {
             var paragraph = topic.Paragraphs[i];
 
-            lines += IsHeading(paragraph) ? 1 : (paragraph.Length + CharactersPerLine - 1) / CharactersPerLine;
+            // A line break inside a paragraph (the generated recipe lists) starts a new line of its own.
+            lines += IsHeading(paragraph) ? 1 : paragraph.Split("<BR>").Sum(static part => Math.Max(1, (part.Length + CharactersPerLine - 1) / CharactersPerLine));
 
             if (i > 0 && !commands && !IsHeading(topic.Paragraphs[i - 1]))
             {

@@ -15,6 +15,15 @@ public sealed class GuideWindow : DynamicGump
 {
     public sealed record WindowAction(string Label, int ButtonId);
 
+    /// <summary>
+    /// Chapter tabs the server switches: the window holds only the topics of the open tab and a tab is a button that answers <see cref="ButtonBase"/> plus
+    /// its position, so a guide with many pages does not put them all in one packet.
+    /// </summary>
+    public sealed record ServerTabs(IReadOnlyList<string> Titles, int Current, int ButtonBase);
+
+    /// <summary>An item drawn at the top of the left column, for a window about one item. The list of topics is left out.</summary>
+    public sealed record ItemArt(int ItemId, int Hue);
+
     private const int NavWidth = 190;
     private const int ListX = 16;
 
@@ -42,13 +51,17 @@ public sealed class GuideWindow : DynamicGump
     private readonly IReadOnlyList<WindowAction> _actions;
     private readonly Action<PlayerMobile, int>? _onAction;
     private readonly IReadOnlyList<WelcomeGuide.Chapter>? _chapters;
+    private readonly ServerTabs? _serverTabs;
+    private readonly ItemArt? _art;
 
     public GuideWindow(
         string title, string subtitle, string footerHint, IReadOnlyList<WelcomeGuide.Topic> topics, int firstTopic = 0,
         IReadOnlyList<WindowAction>? actions = null, Action<PlayerMobile, int>? onAction = null,
-        IReadOnlyList<WelcomeGuide.Chapter>? chapters = null
+        IReadOnlyList<WelcomeGuide.Chapter>? chapters = null, ServerTabs? serverTabs = null, ItemArt? art = null
     ) : base(GumpStyle.LargeX, GumpStyle.LargeY)
     {
+        _serverTabs = serverTabs;
+        _art = art;
         _title = title;
         _subtitle = subtitle;
         _footerHint = footerHint;
@@ -94,7 +107,7 @@ public sealed class GuideWindow : DynamicGump
         builder.AddPage();
         GumpStyle.Frame(ref builder, _title, _subtitle);
 
-        var tabbed = _chapters is { Count: > 1 };
+        var tabbed = _chapters is { Count: > 1 } || _serverTabs is not null;
         var dividerTop = tabbed ? TabListTop - 6 : PlainListTop - 6;
         builder.AddImageTiled(NavWidth + 14, dividerTop, 2, FooterRule - dividerTop - 8, 2701);
 
@@ -108,9 +121,9 @@ public sealed class GuideWindow : DynamicGump
             builder.AddPage(PageOf(topic, _first, count));
 
             // The topics shown in the list: all of them, or only those of this topic's chapter.
-            var chapter = tabbed ? _chapters!.First(c => c.TopicKeys.Contains(_topics[topic].Key)) : null;
+            var chapter = _chapters is { Count: > 1 } ? _chapters.First(c => c.TopicKeys.Contains(_topics[topic].Key)) : null;
             var shown = chapter is null
-                ? Enumerable.Range(0, count).ToArray()
+                ? _art is not null ? [] : Enumerable.Range(0, count).ToArray()
                 : chapter.TopicKeys.Select(k => keyIndex[k]).ToArray();
 
             if (chapter is not null)
@@ -138,6 +151,34 @@ public sealed class GuideWindow : DynamicGump
 
                 // The tabs' ledge: the open tab joins it, the others sit above it.
                 builder.AddImageTiled(GumpStyle.RuleInset, TabsY + 23, GumpStyle.Width - 2 * GumpStyle.RuleInset, 4, GumpStyle.RuleArt);
+            }
+            else if (_serverTabs is not null)
+            {
+                var x = 24;
+
+                for (var i = 0; i < _serverTabs.Titles.Count; i++)
+                {
+                    var here = i == _serverTabs.Current;
+
+                    if (here)
+                    {
+                        builder.AddImage(x, TabsY, TabArtOn, TabOnHue);
+                    }
+                    else
+                    {
+                        builder.AddButton(x, TabsY, TabArtOff, TabArtOff, _serverTabs.ButtonBase + i);
+                    }
+
+                    builder.AddHtml(x, TabsY + (here ? 0 : 2), TabWidth, 18, _serverTabs.Titles[i], here ? TabInkOn : TabInk, align: TextAlignment.Center);
+                    x += TabWidth + TabGap;
+                }
+
+                builder.AddImageTiled(GumpStyle.RuleInset, TabsY + 23, GumpStyle.Width - 2 * GumpStyle.RuleInset, 4, GumpStyle.RuleArt);
+            }
+
+            if (_art is not null)
+            {
+                builder.AddItem(ListX + 64, (tabbed ? TabListTop : PlainListTop) + 14, _art.ItemId, _art.Hue);
             }
 
             // The topics are blue ovals 40 pixels apart, squeezed when there are many so the last one stays above the buttons under the list.
@@ -172,9 +213,10 @@ public sealed class GuideWindow : DynamicGump
             var textWidth = GumpStyle.Width - NavWidth - 50;
 
             builder.AddHtml(NavWidth + 30, titleY, textWidth, 26, current.Title, GumpStyle.Gold);
+            // The client keeps room for the scrollbar only when it draws one, so a page that does not scroll wraps a scrollbar's width narrower or its last letters meet the frame.
+            var scrolls = WelcomeGuide.NeedsScroll(current, textHeight);
             builder.AddHtml(
-                NavWidth + 30, textTop, textWidth, textHeight, WelcomeGuide.Body(current), GumpStyle.Text,
-                scrollbar: WelcomeGuide.NeedsScroll(current, textHeight)
+                NavWidth + 30, textTop, scrolls ? textWidth : textWidth - ScrollbarWidth, textHeight, WelcomeGuide.Body(current), GumpStyle.Text, scrollbar: scrolls
             );
 
             if (topic + 1 < count)
@@ -186,6 +228,11 @@ public sealed class GuideWindow : DynamicGump
             }
         }
     }
+
+    private const int ScrollbarWidth = 20;
+
+    /// <summary>The first response number of a server-switched tab; actions must stay below it.</summary>
+    public const int DefaultServerTabButtonBase = 5000;
 
     public override void OnResponse(NetState sender, in RelayInfo info)
     {

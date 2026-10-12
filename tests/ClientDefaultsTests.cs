@@ -18,6 +18,9 @@ public class ClientDefaultsTests
     [InlineData("show_mobiles_h_p", true)]
     [InlineData("use_circle_of_transparency", true)]
     [InlineData("auto_open_corpses", true)]
+    [InlineData("counter_bar_enabled", true)]     // the blank hotbar (CounterBarGump), opened once by GameScene.OfferBlankHotbar
+    [InlineData("combat_bar_enabled", true)]      // the combat bar under the potion bar (CombatBarGump)
+    [InlineData("potion_bar_enabled", true)]      // the potion bar under the game window (PotionBarGump)
     [InlineData("hold_down_key_alt_to_close_anchored", false)]
     public void TheSwitchedDefaultsAreSpelledTheWayTheClientWritesThem(string key, bool expected)
     {

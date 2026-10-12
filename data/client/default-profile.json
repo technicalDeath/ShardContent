@@ -1,5 +1,8 @@
 {
   "game_window_start_fraction": 0.7,
+  "potion_bar_enabled": true,
+  "combat_bar_enabled": true,
+  "counter_bar_enabled": true,
   "use_circle_of_transparency": true,
   "circle_of_transparency_type": 0,
   "auto_open_corpses": true,

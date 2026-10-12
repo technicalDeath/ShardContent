@@ -14,6 +14,7 @@ $sourceEraGates = Join-Path $contentRoot 'data\configuration\modernuo-era-gates.
 $sourceAntiMacro = Join-Path $contentRoot 'data\configuration\antimacro.json'
 $sourceBuffIcons = Join-Path $contentRoot 'data\configuration\buff-icons.json'
 $sourceFurnishers = Join-Path $contentRoot 'data\configuration\furnishers.json'
+$sourceHelp = Join-Path $contentRoot 'data\help'
 $sourceProfessions = Join-Path $contentRoot 'data\professions\Prof.txt'
 $targetRules = Join-Path $modernUOPath 'Distribution\Configuration\shard-rules.json'
 $targetExpansion = Join-Path $modernUOPath 'Distribution\Configuration\expansion.json'
@@ -22,6 +23,7 @@ $targetEraGates = Join-Path $modernUOPath 'Distribution\Configuration\modernuo-e
 $targetAntiMacro = Join-Path $modernUOPath 'Distribution\Configuration\antimacro.json'
 $targetBuffIcons = Join-Path $modernUOPath 'Distribution\Configuration\buff-icons.json'
 $targetFurnishers = Join-Path $modernUOPath 'Distribution\Configuration\furnishers.json'
+$targetHelp = Join-Path $modernUOPath 'Distribution\Configuration\help'
 $targetProfessions = Join-Path $modernUOPath 'Distribution\Data\BritanniaRenaissance\Professions\Prof.txt'
 $assemblyRegistry = Join-Path $modernUOPath 'Distribution\Data\assemblies.json'
 $contentAssembly = 'BritanniaRenaissance.Content.dll'
@@ -71,6 +73,8 @@ Copy-Item -LiteralPath $sourceEraGates -Destination $targetEraGates -Force
 Copy-Item -LiteralPath $sourceAntiMacro -Destination $targetAntiMacro -Force
 Copy-Item -LiteralPath $sourceBuffIcons -Destination $targetBuffIcons -Force
 Copy-Item -LiteralPath $sourceFurnishers -Destination $targetFurnishers -Force
+New-Item -ItemType Directory -Force -Path $targetHelp | Out-Null
+Copy-Item -Path (Join-Path $sourceHelp '*.json') -Destination $targetHelp -Force
 New-Item -ItemType Directory -Force -Path (Split-Path $targetProfessions -Parent) | Out-Null
 Copy-Item -LiteralPath $sourceProfessions -Destination $targetProfessions -Force
 
@@ -100,6 +104,7 @@ if ($assemblies -notcontains $contentAssembly) {
 Write-Host "Deployed shard rules to $targetRules"
 Write-Host "Deployed UOR expansion and era gates to $targetExpansion and $modernUOConfiguration"
 Write-Host "Deployed the Furnisher shop and showroom data to $targetFurnishers"
+Write-Host "Deployed the help text to $targetHelp"
 Write-Host "Deployed the shard profession file to $targetProfessions"
 Write-Host "Registered $contentAssembly in $assemblyRegistry"
 Write-Host 'Prepared the era-reviewed Alpha 2b world-generation inputs.'

@@ -42,9 +42,20 @@ The owner's running list of things to plan and build. Nothing here is signed off
 - Anti-macro decision (now that the repeats are on); pet auto-release outside dungeons; party corpse default; death information.
 - Moved up by the owner's 2026-10-07 ruling: tooltips, a BOD book, a Salvage Bag, refuse-trades, craft-window usability.
 
+- **Item Help and Skill Guide (owner request 2026-10-11, signed off, paused 2026-10-11):** content written and mostly audited, six audits still running; remaining work, deploy steps and the activation gate are in `Help-Gumps-Status.md`. The flag `helpGumps` stays off until the owner says "activate".
+
+- **DONE 2026-10-11 (uncommitted, flag `scrollSuccessChance` OFF): scroll success chance in the single-click name.** Built and checked in the real client; evidence `Scroll-Success-Chance-Evidence.md`. Needs the engine hook committed and deployed, the owner's "activate", and a gated help sentence at activation.
+
+- **DONE 2026-10-11 (client, uncommitted): bigger main backpack window.** A brass-diamond icon button (plus: larger, minus: smaller; art ids 62050 and 62051 from `tools/gump-art/make_pack_icons.py`, installed in the client's `Data/Gumps`, with a tooltip) on the pack's flap switches the main pack between normal and 1.5x; the art is nine-sliced (flap loop, seam, handles and buckle keep their size, the leather stretches) and every item's position is scaled by the same factor (the client already converted drops back by the scale). Main pack only, default art only (the suede, polar bear and ghoul styles scale evenly, not sliced); the choice is saved in the profile (`BigBackpack`, default off). Code: `ContainerGump.cs`, `Profile.cs`; the NativeAOT `cuo.dll` was rebuilt and installed in `ClassicUO/bin/dist` (backup in `work/help-gumps/backup/cuo`). Checked in the real client (both sizes, toggling back); not yet checked: dragging an item inside the big pack, reopening after a relog, bags and bank boxes (unchanged by design).
+
+- **DONE 2026-10-12 (client + shard, uncommitted, flag `potionBar` ON and deployed to dev): the potion bar.** Evidence `Potion-Bar-Evidence.md`. Needs: ModernUO is NOT changed (the shard registers the extended command itself), the shard DLL (needs `AllowUnsafeBlocks`), the rebuilt `cuo.dll` and `Data/Profiles/default.json` in the player dist (done in `ClassicUO/bin/dist`), and the owner's "activate" for the starter potions and the server answer. Open: a gated help sentence; an options checkbox. Potions in bags were fixed the same day.
+
 ## Rulings still wanted
 
 - Same-guild members can attack each other under Safe World (`IsGuildWarOrDuel` counts the same guild as allowed).
 - **Bola balls** (owner, 2026-10-11: "we should make a ruling"): keep, remove the drop and craft, or restrict the Bola. My recommendation: keep; the era date could not be found online (see the entry under Added by the owner).
 - **Colored leather and its armor bonus** (spined +10, horned +13, barbed +16 armor rating over regular leather, Tailoring 65, 80 and 99; the code comment says the bonus starts at UOR): era not verified online either (same dead end as the bola); say if you want it checked another way.
 - Whether the camp-travel blue fire's Frostbite colour is acceptable at night (it reads pale green-yellow); the hue is one number, `campTravel.fireHue`.
+- **Britain has no Tinker, Miner, Farmer, Rancher, Ranger, Vagabond or Thieves' Guildmaster** (found 2026-10-11 by the help writers, checked in code and data, not live; `Help-Gumps-Findings.md` items 1 and 2): Tinker's tools, shovels and the Backpack Ward vendor sale have no seller, and nobody can join the Thieves' Guild (stock Stealing needs it to steal from a player; the guildmaster is at Buccaneer's Den, which world generation does not populate). Spawn them, or change the README, the Welcome guide and the Ward vendor text.
+- The other 32 findings in `Help-Gumps-Findings.md` (a failed Tailoring attempt with cloth takes all the cloth, Mass Curse ignores Safe World, the Welcome Camp travel text says bonded pets come along, and so on) are collected there for rulings.
+

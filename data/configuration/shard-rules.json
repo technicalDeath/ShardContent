@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "435d1c081280c4d050c395c6daf57ed274fb8ff0",
+  "pinnedModernUoCommit": "e296fbd516a4bac157e4323cb50b9e02401a65fe",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -217,6 +217,10 @@
     "guildChat": true,
     "noviceCombat": true,
     "poisonRelief": true,
+    "helpGumps": false,
+    "scrollSuccessChance": false,
+    "potionBar": true,
+    "menuBar": true,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

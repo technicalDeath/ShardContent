@@ -1,0 +1,3513 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "key": "other-item",
+      "title": "An item",
+      "art": 3702,
+      "inherits": [
+        "Item"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Something you can carry. It has no help page of its own.",
+        "# What you can do with it",
+        "Drag it to move it, put it in a pack or drop it on the ground. Double-click it to use it: a tool, a potion, a book or a key does something, and a decoration usually does nothing. Items that stack, such as coins or reagents, join when you drag one pile onto another of the same kind.",
+        "# Good to know",
+        "Most things you carry have weight, and your Strength sets how much you can carry. If you slow down or stop running, look at your weight and drop or bank what you do not need."
+      ]
+    },
+    {
+      "key": "empty-bottle",
+      "title": "Empty bottle",
+      "art": 3854,
+      "types": [
+        "Bottle"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "reagents",
+        "mortar-pestle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "An empty bottle. An alchemist uses it to hold the potions they make.",
+        "# What it is for",
+        "Grinding a reagent into an empty bottle with a Mortar and Pestle makes a potion; read the Alchemy skill page for how. You get an empty bottle back when you drink or use a potion (but not when you throw an explosion potion) and when a potion fails, so keep them. Bottles stack: keep a pile in your pack, but each one weighs a stone.",
+        "# Where to get it",
+        "Alchemists sell empty bottles for about 5 gold each."
+      ]
+    },
+    {
+      "key": "reagents",
+      "title": "Reagents",
+      "art": 3962,
+      "types": [
+        "BlackPearl",
+        "Bloodmoss",
+        "Garlic",
+        "Ginseng",
+        "MandrakeRoot",
+        "Nightshade",
+        "SpidersSilk",
+        "SulfurousAsh"
+      ],
+      "skills": [
+        "Alchemy",
+        "Magery"
+      ],
+      "related": [
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The eight reagents of magic: Black Pearl, Bloodmoss, Garlic, Ginseng, Mandrake Root, Nightshade, Sulfurous Ash and Spider's Silk.",
+        "# What they are for",
+        "A Magery spell burns the reagents it needs each time you cast it. Alchemy grinds one kind into each potion: Black Pearl for refresh, Bloodmoss for agility, Garlic for cure, Ginseng for heal, Mandrake Root for strength, Nightshade for poison, Sulfurous Ash for explosion and Spider's Silk for night sight.",
+        "# Where to get them",
+        "Alchemists and mages sell all eight, for about 3 gold each (5 for Black Pearl and Bloodmoss). Some monsters carry them too. Each one weighs a tenth of a stone, but a big stack adds up."
+      ]
+    },
+    {
+      "key": "mortar-pestle",
+      "title": "Mortar and pestle",
+      "art": 3739,
+      "types": [
+        "MortarPestle"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "potion-keg",
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The alchemist's tool. It has to be in your pack to be used.",
+        "# What it is for",
+        "Double-click it to make a potion. A cursor appears: click a reagent or an empty bottle in your pack and a menu asks what kind of potion and then which one (click the Mortar and Pestle itself instead to make the last potion again). Every attempt wears it a little, and a worn-out one has to be replaced.",
+        "# Where to get it",
+        "Alchemists sell them for about 8 gold. Anyone with the Tinkering skill can make one from 3 iron ingots (Tinkering 20 to 70)."
+      ]
+    },
+    {
+      "key": "potion-keg",
+      "title": "Potion keg",
+      "art": 6464,
+      "types": [
+        "PotionKeg"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "mortar-pestle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A keg that holds up to 100 potions of one kind, so a big supply takes one place in your pack instead of a hundred.",
+        "# How to use it",
+        "Drag potions onto the keg to fill it (you get the empty bottles back). Double-click it to pour one potion into an empty bottle from your pack. It will not hold anything that is not a potion, or a different kind once it has one. It is heavy: 20 stones and 0.8 more for each potion in it.",
+        "# Where to get it",
+        "Anyone with the Tinkering skill can make one from a keg, a barrel lid, a barrel tap and 10 empty bottles (Tinkering 75 to 100): use tinker's tools and target the keg."
+      ]
+    },
+    {
+      "key": "potion-heal",
+      "title": "Heal potions",
+      "art": 3852,
+      "types": [
+        "LesserHealPotion",
+        "HealPotion",
+        "GreaterHealPotion"
+      ],
+      "skills": [
+        "Alchemy",
+        "Healing"
+      ],
+      "related": [
+        "potion-cure"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A healing potion: lesser, plain or greater, each stronger than the last.",
+        "# What it does",
+        "Double-click it to drink it and heal at once. A Lesser Heal Potion restores 3 to 10 hit points, a Heal Potion 6 to 20 and a Greater Heal Potion 9 to 30. You must wait 10 seconds before you can drink another healing potion.",
+        "# Good to know",
+        "It will not work at full health, and it will not work while you are poisoned: cure the poison first, with a Cure potion or the Cure spell. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-cure",
+      "title": "Cure potions",
+      "art": 3847,
+      "types": [
+        "LesserCurePotion",
+        "CurePotion",
+        "GreaterCurePotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "potion-heal"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A cure potion: lesser, plain or greater. It only works while you are poisoned.",
+        "# What it does",
+        "Double-click it to drink it. It has a chance to cure the poison, and the chance depends on the potion and on how strong the poison is. A Lesser Cure Potion cures Lesser poison 75 times in 100, Regular poison 50 and Greater poison 15. A Cure Potion cures Lesser poison always, Regular 75, Greater 50 and Deadly 15. A Greater Cure Potion cures Lesser, Regular and Greater poison always, Deadly 75 and Lethal 25.",
+        "# Good to know",
+        "If it fails you are told the potion was not strong enough; drink another. You cannot drink one when you are not poisoned. While you are poisoned a heal potion will not work, and a bandage only tries to cure (it needs Healing and Anatomy 60). You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-refresh",
+      "title": "Refresh potions",
+      "art": 3851,
+      "types": [
+        "RefreshPotion",
+        "TotalRefreshPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that gives back stamina.",
+        "# What it does",
+        "Double-click it to drink it. A Refresh Potion restores a quarter of your full stamina and a Total Refresh Potion all of it. It will not work if your stamina is already full.",
+        "# Good to know",
+        "Stamina is what you run on and what your swings and shots depend on, so a refresh potion is for the middle of a fight or a long run. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-agility",
+      "title": "Agility potions",
+      "art": 3848,
+      "types": [
+        "AgilityPotion",
+        "GreaterAgilityPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that makes you quicker for a while.",
+        "# What it does",
+        "Double-click it to drink it. An Agility Potion adds 10 to your Dexterity and a Greater Agility Potion adds 20, for 2 minutes. Dexterity is what your stamina is made of: the more you have, the longer you can run and fight.",
+        "# Good to know",
+        "It wears off when the time is up. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-strength",
+      "title": "Strength potions",
+      "art": 3849,
+      "types": [
+        "StrengthPotion",
+        "GreaterStrengthPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that makes you stronger for a while.",
+        "# What it does",
+        "Double-click it to drink it. A Strength Potion adds 10 to your Strength and a Greater Strength Potion adds 20, for 2 minutes. Strength sets your hit points, how much you can carry and how hard you hit.",
+        "# Good to know",
+        "It wears off when the time is up. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-poison",
+      "title": "Poison potions",
+      "art": 3850,
+      "types": [
+        "LesserPoisonPotion",
+        "PoisonPotion",
+        "GreaterPoisonPotion",
+        "DeadlyPoisonPotion"
+      ],
+      "skills": [
+        "Poisoning",
+        "Alchemy"
+      ],
+      "related": [
+        "potion-cure"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A poison potion: Lesser, Regular, Greater or Deadly, by strength. Do not drink it.",
+        "# What it is for",
+        "Drinking it poisons you. It is meant for the Poisoning skill: use the skill, choose the potion, then choose a one-handed weapon with a blade or a point, or some food. A poisoned weapon has 12 to 18 charges (fewer for a stronger poison); each hit uses one and has a 50 percent chance to poison what it hits. Poisoned food poisons whoever eats it.",
+        "# Good to know",
+        "A stronger potion needs more Poisoning skill to use. If you do drink one, a Cure potion may cure it, but the stronger the poison, the harder it is to cure."
+      ]
+    },
+    {
+      "key": "potion-explosion",
+      "title": "Explosion potions",
+      "art": 3853,
+      "types": [
+        "LesserExplosionPotion",
+        "ExplosionPotion",
+        "GreaterExplosionPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A bomb in a bottle. Handle it with care.",
+        "# What it does",
+        "Double-click it to light it, then choose where to throw it (up to 10 tiles away). After a few seconds it blows up and hurts whoever is within 2 tiles of it: a Lesser Explosion Potion for 5 to 10, an Explosion Potion for 10 to 20 and a Greater Explosion Potion for 15 to 30, plus a tenth of your Alchemy skill, and never more than 40.",
+        "# Good to know",
+        "The blast hurts you too if you stand in it. It does not hurt your party, your guild and its allies or your own pets, and it does not hurt innocent (blue) players unless you are a murderer. Lighting one starts the countdown, so throw it before it goes off in your hand."
+      ]
+    },
+    {
+      "key": "potion-nightsight",
+      "title": "Night sight potion",
+      "art": 3846,
+      "types": [
+        "NightSightPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that lets you see in the dark.",
+        "# What it does",
+        "Double-click it to drink it. For 15 to 39 minutes (the length is random) the night and dungeon darkness are much lighter around you.",
+        "# Good to know",
+        "It helps at night and underground. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion",
+      "title": "A potion",
+      "art": 3852,
+      "inherits": [
+        "BasePotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion in a bottle. An alchemist does not make this kind here, and it has no help page of its own.",
+        "# What it does",
+        "Double-click it to use it. The kinds an alchemist makes are healing, curing, refreshing, strength, agility, night sight, poison and explosion, each with its own help page."
+      ]
+    },
+    {
+      "key": "a-armor",
+      "title": "Armor",
+      "art": 5141,
+      "inherits": [
+        "BaseArmor"
+      ],
+      "skills": [
+        "ArmsLore",
+        "Blacksmith",
+        "Tailoring"
+      ],
+      "related": [
+        "a-shields"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Armor lowers the damage you take from weapon blows (swords, maces, arrows), but not from spells. Each piece guards one part of the body and has an armor rating. Your total armor rating adds up the pieces you wear, each counted by its share: chest 35, legs 22, arms 15, helm 14, gorget (neck) 7, gloves 7, out of 100. A shield adds its rating in full.",
+        "# How it protects you",
+        "A blow lands on one place: the chest 35 times in 100, legs 22, head 15, arms 14, hands 7, neck 7. The piece worn there soaks up between half and all of its own rating from the damage (a plate chest, rating 40, takes off about 20 to 40), but a hit always does at least 1. A shield gets the first chance to block.",
+        "# Slots",
+        "Leg armor uses the pants slot, so you cannot wear pants with it (a kilt is a different slot). A helmet shares the head slot with hats, a gorget the neck slot with necklaces, and a shield the hand slot that two-handed weapons need.",
+        "# Strength, Dexterity and mana",
+        "Most pieces need a minimum Strength (shields need none). Most metal and bone pieces (not the helmets except the plate helm) also take points off your Dexterity while worn, and your stamina equals your Dexterity. Metal armor, bone armor and shields slow your mana regeneration (a plate chest alone adds about 3.5 seconds to each point); studded leather counts only half, leather and clothing not at all. Armor never stops you casting, but casting puts your shield and weapon back in your pack. At a total armor rating of 26 or more you cannot use Stealth. The female chests, the bustiers, leather shorts and leather skirt are for female characters only.",
+        "# Wear and repair",
+        "A blow that lands can wear a piece down; bashing weapons such as maces wear it fastest. A worn piece protects less (half its rating at 0 durability), and one worn all the way through is destroyed. A blacksmith repairs metal armor and shields with a smith's hammer or tongs near an anvil and a forge, with the piece in the pack; a repair can lower its maximum durability. Leather, studded leather and bone armor and the wooden shield cannot be repaired by anyone. A successful use of Arms Lore shows how worn a piece is.",
+        "# Better armor",
+        "Colored ingots add to a piece's rating when a smith builds with them: +2 for dull copper, rising by 2 for each ore up to +16 for valorite (Blacksmithing 65 up to 99). An exceptional piece gets +8 and 20 percent more durability. Armor that monsters drop can be magical: it shows as unidentified until a successful use of the Item Identification skill reveals it, 'of defense' up to 'of invulnerability' adds 15, 20, 25, 30 or 35 to its rating, and 'durable' up to 'indestructible' adds 20 to 120 percent durability.",
+        {
+          "text": "# Your starting gear",
+          "requires": "Alpha3StarterCombatGear"
+        },
+        {
+          "text": "The clothes, armor and shield your new character starts with are newbied, which means you keep them when you die (a murderer does not) and shopkeepers will not buy them.",
+          "requires": "Alpha3StarterCombatGear"
+        }
+      ]
+    },
+    {
+      "key": "a-plate",
+      "title": "Plate armor",
+      "art": 5141,
+      "types": [
+        "PlateChest",
+        "PlateLegs",
+        "PlateArms",
+        "PlateGloves",
+        "PlateGorget",
+        "FemalePlateChest"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "a-armor",
+        "a-helms",
+        "a-chain"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The best armor on sale: gorget, gloves, arms, legs and chest of plate, every piece rated 40. Add a plate helm (see Helmets) and all six places are covered.",
+        "# What it needs",
+        "Strength to wear, Dexterity lost while worn, weight in stones:<BR>Chest: 60, 8, 10<BR>Legs: 60, 6, 7<BR>Arms: 40, 2, 5<BR>Gloves: 30, 2, 2<BR>Gorget: 30, 1, 2<BR>A whole plate suit with the helm weighs 31 stones and takes 20 off your Dexterity. A smith can also make a female plate chest (rated 30, Strength 45, Dexterity 5, 4 stones), for female characters only.",
+        "# Where to get it",
+        "Blacksmiths always sell the ordinary pieces and armorers sometimes: gorget about 104 gold, chest 243, legs 218, arms 188, gloves 155. Tanners sell the female plate chest for about 207. A blacksmith makes it from iron ingots (Blacksmithing skill; its page lists what each piece takes). A new ordinary piece has 50 to 65 durability."
+      ]
+    },
+    {
+      "key": "a-chain",
+      "title": "Chainmail armor",
+      "art": 5055,
+      "types": [
+        "ChainChest",
+        "ChainLegs",
+        "ChainCoif"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "a-armor",
+        "a-ring",
+        "a-plate"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Chainmail: a coif for the head, a chest and legs, each rated 28. There are no chain arms, gloves or gorget, so take those from ringmail, studded leather, leather or plate.",
+        "# What it needs",
+        "Strength 20 for every piece. Dexterity lost while worn: chest 5, legs 3, coif none. Weight in stones: chest 7, legs 7, coif 1, so the set weighs 15. A new ordinary piece has 45 to 60 durability (coif 35 to 60).",
+        "# Where to get it",
+        "Blacksmiths always sell the ordinary pieces and armorers sometimes: coif about 17 gold, chest 143, legs 149. A blacksmith makes it from iron ingots (Blacksmithing skill)."
+      ]
+    },
+    {
+      "key": "a-ring",
+      "title": "Ringmail armor",
+      "art": 5100,
+      "types": [
+        "RingmailChest",
+        "RingmailLegs",
+        "RingmailArms",
+        "RingmailGloves"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "a-armor",
+        "a-chain",
+        "a-plate"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Ringmail: chest, legs, arms and gloves, each rated 22. There is no ringmail helm or gorget.",
+        "# What it needs",
+        "Strength 20 for every piece. Dexterity lost while worn: chest 2, legs 1, arms 1, gloves 1. Weight in stones: chest 15, legs 15, arms 15, gloves 2. A new ordinary piece has 40 to 50 durability.",
+        "# Good to know",
+        "Ringmail chest, legs and arms weigh more than their plate versions (a plate chest is 10 stones) and protect less. Its appeal is that it is cheaper and needs little Strength.",
+        "# Where to get it",
+        "Blacksmiths always sell the ordinary pieces and armorers sometimes: chest about 121 gold, legs 90, arms 85, gloves 93. A blacksmith makes it from iron ingots (Blacksmithing skill)."
+      ]
+    },
+    {
+      "key": "a-helms",
+      "title": "Helmets",
+      "art": 5138,
+      "types": [
+        "Bascinet",
+        "CloseHelm",
+        "Helmet",
+        "NorseHelm",
+        "PlateHelm",
+        "OrcHelm"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "a-armor",
+        "a-plate",
+        "a-chain"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Helmets for the head slot, which hats and caps also use. Ratings: plate helm 40; close helm, helmet and Norse helm 30; orc helm 20; bascinet 18.",
+        "# What it needs",
+        "Strength to wear: 40 for the plate helm, close helm, helmet and Norse helm; 10 for the bascinet and orc helm. Every helmet weighs 5 stones. Only the plate helm costs Dexterity (1). A new ordinary helmet has 45 to 60 durability (plate helm 50 to 65, bascinet 40 to 50, orc helm 30 to 50).",
+        "# Good to know",
+        "The orc helm is not metal, yet it slows your mana regeneration as metal armor does. The plain orc helm is not sold: monsters can drop it.",
+        "# Where to get it",
+        "Blacksmiths and armorers sell the five metal helmets for about 18 to 31 gold. A blacksmith makes the five metal helmets from iron ingots (Blacksmithing skill)."
+      ]
+    },
+    {
+      "key": "a-studded",
+      "title": "Studded leather",
+      "art": 5083,
+      "types": [
+        "StuddedChest",
+        "StuddedLegs",
+        "StuddedArms",
+        "StuddedGloves",
+        "StuddedGorget",
+        "FemaleStuddedChest",
+        "StuddedBustierArms"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-armor",
+        "a-leather",
+        "a-shields"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Studded leather: gorget, gloves, arms, legs and chest, each rated 16. There is no helm, so wear a leather cap or a metal helmet. The female studded chest and the studded bustier are for female characters only.",
+        "# What it needs",
+        "Strength to wear: chest 35, legs 35, arms 25, gloves 25, gorget 25. It costs no Dexterity. Weight in stones: chest 8, legs 5, arms 4, gloves 1, gorget 1. Only half of its rating counts against your mana regeneration (a studded chest alone adds under a second per point). A new ordinary piece has 35 to 45 durability.",
+        "# Where to get it",
+        "Some armorers sell it: arms about 87 gold, chest 128, gloves 79, gorget 73, legs 103, female chest 142, bustier 120. Tanners sell it for less (chest about 75, arms 57). A tailor sews it from leather (Tailoring skill). Leather cannot be repaired, but scissors turn a piece back into leather (half of what it took, if you sewed it yourself)."
+      ]
+    },
+    {
+      "key": "a-leather",
+      "title": "Leather armor",
+      "art": 5068,
+      "types": [
+        "LeatherChest",
+        "LeatherLegs",
+        "LeatherArms",
+        "LeatherGloves",
+        "LeatherGorget",
+        "LeatherCap",
+        "FemaleLeatherChest",
+        "LeatherBustierArms",
+        "LeatherShorts",
+        "LeatherSkirt"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-armor",
+        "a-studded",
+        "a-bone"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Leather armor: gorget, gloves, arms, legs, chest and a cap, each rated 13. It is light and never slows your mana regeneration. The female leather chest, bustier, shorts and skirt are for female characters only.",
+        "# What it needs",
+        "Strength to wear: chest 15, arms 15, cap 15, legs 10, gloves 10, gorget 10. It costs no Dexterity. Weight in stones: chest 6, legs 4, arms 2, cap 2, gloves 1, gorget 1. A new ordinary piece has 30 to 40 durability.",
+        "# Where to get it",
+        "Tanners and some armorers sell it: arms about 80 gold, chest 101, gloves 60, gorget 74, legs 80, female pieces 86 to 116. Tailors and provisioners sell the cap for about 10. A tailor sews it from leather (Tailoring skill). Leather cannot be repaired, but scissors turn a piece back into leather (half of what it took, if you sewed it yourself).",
+        {
+          "text": "# Your starting gear",
+          "requires": "Alpha3StarterCombatGear"
+        },
+        {
+          "text": "If Archery is your highest skill among Swordsmanship, Mace Fighting, Fencing, Archery and Magery, your new character starts with a leather chest and leather legs.",
+          "requires": "Alpha3StarterCombatGear"
+        }
+      ]
+    },
+    {
+      "key": "a-bone",
+      "title": "Bone armor",
+      "art": 5199,
+      "types": [
+        "BoneChest",
+        "BoneLegs",
+        "BoneArms",
+        "BoneGloves",
+        "BoneHelm"
+      ],
+      "related": [
+        "a-armor",
+        "a-leather",
+        "a-helms"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Bone armor: helm, gloves, arms, legs and chest, each rated 30. It is not sold; skeletons carry it.",
+        "# What it needs",
+        "Strength 40 for every piece. Dexterity lost while worn: chest 6, legs 4, arms 2, gloves 1, helm none. Weight in stones: chest 6, legs 3, arms 2, gloves 2, helm 3. It slows your mana regeneration as metal armor does. A new ordinary piece has only 25 to 30 durability, and bone cannot be repaired.",
+        "# Where to get it",
+        "Each skeleton, in graveyards, dungeons such as Covetous and Deceit, and the wilds, carries one random piece of bone armor, so a set takes many skeletons."
+      ]
+    },
+    {
+      "key": "a-shields",
+      "title": "Shields",
+      "art": 7030,
+      "types": [
+        "WoodenShield",
+        "Buckler",
+        "BronzeShield",
+        "WoodenKiteShield",
+        "MetalShield",
+        "MetalKiteShield",
+        "HeaterShield"
+      ],
+      "inherits": [
+        "BaseShield"
+      ],
+      "skills": [
+        "Parry",
+        "Blacksmith",
+        "Carpentry"
+      ],
+      "related": [
+        "a-armor"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A shield, used with the Parrying skill. You cannot hold one together with a two-handed weapon such as a bow, and casting a spell puts it back in your pack.",
+        "# What it does",
+        "Each time a weapon hits you, your shield gets the first chance to block. The chance is your Parrying skill (as a percent) minus twice the shield's rating, never under 1 percent. The shield's rating is your Parrying skill times its base rating, divided by 200, plus 1, so it grows as you train. A block takes half the shield's rating off the damage, all of it against arrows and bolts, and every roll can raise your Parrying. The rating also adds to your total armor rating. Example: Parrying 100 with a heater shield gives a rating of 12.5 and a 75 percent chance to block. Bigger shields block a little less often but take off more.",
+        "# The shields",
+        "No Strength is needed. Base rating, weight in stones, new durability, price:<BR>Buckler: 7, 5, 40-50, about 50 gold<BR>Wooden shield: 8, 5, 20-25, 30<BR>Bronze shield: 10, 6, 25-30, 66<BR>Metal shield: 11, 6, 50-65, 121<BR>Wooden kite shield: 12, 5, 50-65, 70<BR>Metal kite shield: 16, 7, 45-60, 123<BR>Heater shield: 23, 8, 50-65, 231",
+        "# Good to know",
+        "A shield slows your mana regeneration by a quarter of its base rating in seconds per point (a heater shield nearly 6, a buckler under 2). Blacksmiths sell all seven, armorers all but the wooden shield. A blacksmith makes the metal shields and the wooden kite shield from iron ingots; a carpenter makes the wooden shield from logs. A blacksmith repairs every shield but the wooden one.",
+        {
+          "text": "# Your starting gear",
+          "requires": "Alpha3StarterCombatGear"
+        },
+        {
+          "text": "If you start with Parrying, your new character starts with a wooden shield.",
+          "requires": "Alpha3StarterCombatGear"
+        }
+      ]
+    },
+    {
+      "key": "a-clothes",
+      "title": "Clothing",
+      "art": 5399,
+      "inherits": [
+        "BaseClothing"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-hats",
+        "a-shirts",
+        "a-robes"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Clothing: hats, shirts, dresses, robes, cloaks, pants, shoes and more. It gives no armor rating and needs no Strength.",
+        "# Color",
+        "To change the color of most clothing, double-click Dyes and target a dye tub to choose the color, then double-click the tub and target the clothing. The clothing must not be worn, and you must stand within one step of the tub. Tailors and weavers sell dyes and dye tubs for about 8 gold each.",
+        "# Sewing and cutting",
+        "A tailor sews clothing from cloth (Tailoring skill), and it comes out in the color of the cloth used. Scissors turn most clothing in your pack back into cloth (leather, for shoes and boots): half of what it took if you sewed it, otherwise 1."
+      ]
+    },
+    {
+      "key": "a-hats",
+      "title": "Hats and caps",
+      "art": 5907,
+      "types": [
+        "SkullCap",
+        "Bandana",
+        "FloppyHat",
+        "Cap",
+        "WideBrimHat",
+        "StrawHat",
+        "TallStrawHat",
+        "WizardsHat",
+        "Bonnet",
+        "FeatheredHat",
+        "TricorneHat",
+        "JesterHat"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-magic-hat",
+        "a-helms"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Hats and caps: skull cap, bandana, floppy hat, cap, wide-brim hat, straw hat, tall straw hat, wizard's hat, bonnet, feathered hat, tricorne hat and jester hat. They give no armor rating and each weighs 1 stone. A hat uses the head slot, so you wear it instead of a helmet.",
+        "# Where to get it",
+        "Tailors sell every plain hat but the bonnet, and provisioners sell most of them, for about 6 to 12 gold, mostly in a random color. A tailor sews them from cloth (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-magic-hat",
+      "title": "Magic wizard's hat",
+      "art": 5912,
+      "types": [
+        "MagicWizardsHat"
+      ],
+      "skills": [
+        "Magery"
+      ],
+      "related": [
+        "a-hats"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A wizard's hat with a little magic in it. While you wear it you gain 5 Intelligence and lose 5 Strength and 5 Dexterity. It gives no armor rating.",
+        "# What it does",
+        "Intelligence sets your maximum mana, so you hold 5 more and regain it a little faster. The Strength you lose costs 5 hit points and about 17 stones of carrying capacity, and the Dexterity costs 5 stamina. Take the hat off and it all returns.",
+        "# Where to get it",
+        "Mages sell it for about 11 gold, in a random color."
+      ]
+    },
+    {
+      "key": "a-shirts",
+      "title": "Shirts and dresses",
+      "art": 5399,
+      "types": [
+        "Shirt",
+        "FancyShirt",
+        "Doublet",
+        "Tunic",
+        "Surcoat",
+        "PlainDress",
+        "FancyDress",
+        "JesterSuit"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-robes",
+        "a-pants"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Shirts, doublets, tunics, surcoats, jester suits and dresses. They give no armor rating and need no Strength. Weight in stones: shirt 1, fancy shirt 2, doublet 2, plain dress 2, fancy dress 3, jester suit 4, tunic 5, surcoat 6.",
+        "# Good to know",
+        "The doublet, tunic, surcoat and jester suit share one body slot with the body sash and the full apron, so wear only one of them at a time. Dresses use the same slot as robes.",
+        "# Where to get it",
+        "Tailors sell them: shirt about 12 gold, fancy shirt 21, doublet 13, plain dress 13, tunic 18, fancy dress 26, jester suit 26. The surcoat is not sold. A tailor sews all of them from cloth (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-robes",
+      "title": "Robes and cloaks",
+      "art": 7939,
+      "types": [
+        "Robe",
+        "Cloak"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-shirts"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A plain robe or cloak. Both are just clothing: no armor rating, no Strength needed. The robe uses the outer body slot, shared with dresses, and the cloak a slot of its own. A robe weighs 3 stones and a cloak 5.",
+        "# Where to get it",
+        "Tailors sell plain robes for about 18 gold and cloaks for about 8. A tailor sews both from cloth (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-pants",
+      "title": "Pants and skirts",
+      "art": 5433,
+      "types": [
+        "ShortPants",
+        "LongPants",
+        "Kilt",
+        "Skirt"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-shirts",
+        "a-shoes"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Short pants, long pants, a kilt or a skirt. They give no armor rating and need no Strength. Pants use the pants slot, which leg armor also uses; the kilt and skirt use the outer legs slot. Weight in stones: short pants 2, long pants 2, kilt 2, skirt 4.",
+        "# Where to get it",
+        "Tailors sell short pants for about 7 gold, long pants 10 and kilts 11. Skirts are not sold. A tailor sews all four from cloth (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-shoes",
+      "title": "Shoes and boots",
+      "art": 5899,
+      "types": [
+        "Sandals",
+        "Shoes",
+        "Boots",
+        "ThighBoots"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-pants"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Sandals, shoes, boots and thigh boots. They give no armor rating and need no Strength. Weight in stones: sandals 1, shoes 2, boots 3, thigh boots 4.",
+        "# Where to get it",
+        "Cobblers sell them in a random plain color: sandals about 5 gold, shoes 8, boots 10, thigh boots 15. A tailor sews them from leather (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-aprons",
+      "title": "Aprons and sashes",
+      "art": 5437,
+      "types": [
+        "BodySash",
+        "HalfApron",
+        "FullApron"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "a-clothes",
+        "a-shirts"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A body sash, a half apron or a full apron. They give no armor rating and need no Strength. Weight in stones: sash 1, half apron 2, full apron 4. The sash and the full apron share the body slot with doublets and tunics; the half apron uses the waist.",
+        "# Where to get it",
+        "Tailors sell the plain half apron for about 10 gold. The sash and the full apron are not sold: a tailor sews them from cloth (Tailoring skill)."
+      ]
+    },
+    {
+      "key": "a-jewelry",
+      "title": "Jewelry",
+      "art": 4234,
+      "types": [
+        "GoldRing",
+        "SilverRing",
+        "WeddingRing",
+        "GoldBracelet",
+        "SilverBracelet",
+        "Necklace",
+        "GoldNecklace",
+        "SilverNecklace",
+        "GoldBeadNecklace",
+        "SilverBeadNecklace",
+        "GoldEarrings",
+        "SilverEarrings"
+      ],
+      "inherits": [
+        "BaseJewel"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "a-armor"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Rings, bracelets, necklaces and earrings of gold or silver, some set with a gem. In this era the ordinary ones are ornaments: they add no stats, no protection and no skill. Each weighs a tenth of a stone. A necklace uses the neck slot, which a gorget also uses, so you wear one or the other.",
+        "# Where to get it",
+        "Jewelers sell gold rings, bracelets, necklaces and earrings for about 26 to 27 gold each. A tinker makes necklaces, earrings and rings, of gold or silver, from iron ingots (Tinkering skill); you then target a gem, and the whole stack you point at goes into the piece, which is named for it. Split off just the gems you want first."
+      ]
+    },
+    {
+      "key": "m-house-deed",
+      "title": "House deeds",
+      "art": 5360,
+      "inherits": [
+        "HouseDeed"
+      ],
+      "related": [
+        "m-house-sizes",
+        "m-addon-deed",
+        "m-decorator",
+        "m-vendor-contract"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed to a house. Place it on a good plot of land and it turns into the house. You can own only one house per account, counting all your characters.",
+        "# How to place it",
+        "Keep the deed in your pack, double-click it and click the ground where the house should stand. If the spot will not do, you are told and keep the deed. If it will, the house appears, the deed is used up and you get two house keys, one in your pack and one in your bank box.",
+        "# Where a house will not fit",
+        "Not in towns, in dungeons, on roads or in the Lost Lands (the far south-east of the map), and not over water, rocks, trees or uneven ground. A house also needs room: no other house within one tile of it, and the 5 tiles south of a house stay clear of other houses.",
+        "# Living in it",
+        "Double-click the house sign for the house window. INFO shows who owns the house and how many items are locked down, out of how many it allows; FRIENDS handles co-owners, friends and bans; OPTIONS lets you transfer the house, change the locks, make it public or private, or demolish it and get the deed back. The deed goes to your bank box, and what you left inside stays on the ground for anyone to take.",
+        "Inside your house, say I wish to lock this down and click an item to keep it where it is; I wish to release this lets it go.",
+        "# Keep it up",
+        "A house falls down if 5 days pass and neither its owner nor a friend has refreshed it, and you do not get the deed back. They refresh it by double-clicking the house sign or by opening one of its doors. Click the sign to read how worn the house is.",
+        "# Where to get it",
+        "The architect in Britain sells house deeds; House sizes lists them with their prices. A real estate broker in Britain pays you about 80 gold for every 100 of a deed's price if you hand him the deed. Ordinary shopkeepers will not buy one."
+      ]
+    },
+    {
+      "key": "m-house-sizes",
+      "title": "House sizes",
+      "art": 5360,
+      "related": [
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What the architect sells",
+        "These are the house deeds the architect in Britain sells. Size is the ground the house covers, in tiles. Lock-downs are how many items you can lock down inside (what is in a container counts too); secures are how many containers you can secure. Each container you secure also uses up 125 of the lock-downs.",
+        "Small house, 7 x 7: 43,800 gold, 425 lock-downs, 3 secures. It comes as a stone-and-plaster house, a field stone house, a small brick house, a wooden house, a wood-and-plaster house or a thatched-roof cottage.<BR>Small stone workshop, 7 x 7: 60,600 gold, 425 and 3<BR>Small marble workshop, 7 x 7: 63,000 gold, 425 and 3<BR>Small stone tower, 8 x 7: 88,500 gold, 580 and 4<BR>Sandstone house with patio, 12 x 8: 90,900 gold, 850 and 6<BR>Two-story log cabin, 8 x 13: 97,800 gold, 1,100 and 8<BR>Two-story villa, 11 x 11: 136,500 gold, 1,100 and 8<BR>Brick house, 14 x 14: 144,500 gold, 1,100 and 8<BR>Large house with patio, 15 x 14: 152,800 gold, 1,100 and 8<BR>Marble house with patio, 15 x 14: 192,000 gold, 1,370 and 10<BR>Two-story wood-and-plaster house, 14 x 14: 192,400 gold, 1,370 and 10<BR>Tower, 16 x 14 with a wing on each side: 433,200 gold, 2,119 and 15<BR>Small stone keep, about 24 x 24: 665,200 gold, 2,625 and 18<BR>Castle, 31 x 31: 1,022,800 gold, 4,076 and 28",
+        "# Good to know",
+        "A real estate broker takes a deed back for about 80 percent of its price, so check the plot before you buy. You can own only one house per account."
+      ]
+    },
+    {
+      "key": "m-addon-deed",
+      "title": "Add-on deeds",
+      "art": 5360,
+      "inherits": [
+        "BaseAddonDeed",
+        "BaseAddonContainerDeed"
+      ],
+      "skills": [
+        "Carpentry"
+      ],
+      "related": [
+        "m-decorator",
+        "m-forge-anvil-deed",
+        "m-furniture"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed for something that stands in a house: a bed, a forge, an anvil, a training dummy, a spinning wheel and the like. The deed turns into the fixture when you place it.",
+        "# How to place it",
+        "Keep it in your pack, double-click it and click the spot inside your own house. Only the owner of the house can place one. You are told if you are not in a house you own, if the piece does not fit there, if it is right next to a door, or if it needs a wall behind it and has none. The deed is used up.",
+        "# Getting the deed back",
+        "Use an axe on the placed fixture, as you would to chop a tree: double-click the axe and click the fixture, standing within 3 tiles. If you own the house, the fixture goes and the deed comes back to your pack. A fixture that holds items must be released from secure first.",
+        "# Making and buying",
+        "A carpenter makes many of these (beds, forges, anvils, training dummies, spinning wheels, looms and more) from logs, in the Add-Ons part of the carpenter's menu; the Carpentry page lists them. Shopkeepers will not buy a carpenter-made deed, but you can trade it.",
+        {
+          "text": "The Furnisher, a shopkeeper in the Counselor's Guild hall in Britain, sells furnishings from 1,850 to 80,000 gold. The big pieces come as deeds like these; you can trade them, and they can be looted.",
+          "requires": "Furnishers"
+        }
+      ]
+    },
+    {
+      "key": "m-forge-anvil-deed",
+      "title": "Forge and anvil",
+      "art": 5360,
+      "types": [
+        "AnvilEastDeed",
+        "AnvilSouthDeed",
+        "SmallForgeDeed",
+        "LargeForgeEastDeed",
+        "LargeForgeSouthDeed"
+      ],
+      "skills": [
+        "Blacksmith",
+        "Carpentry"
+      ],
+      "related": [
+        "m-addon-deed",
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed for a forge or an anvil to set up in your own house, so you can smith at home. East and South say which way the piece faces.",
+        "# What it does",
+        "A smith must stand within 2 tiles of both an anvil and a forge to make anything. Put one of each close together and the spot becomes a smithy. Place them like any add-on deed: double-click, then click the floor of your house.",
+        "# Where to get it",
+        "A carpenter makes them in the Add-Ons part of the menu, from 5 wood and iron ingots: a small forge (75 ingots) from Carpentry 73.6, a large forge (100 ingots) from 78.9 and an anvil (150 ingots) from 73.6. Each also asks for Blacksmith skill: 75 for the small forge and the anvil, 80 for the large forge.",
+        "# Good to know",
+        "Chop a placed piece with an axe to get its deed back. Shopkeepers will not buy the deed, but you can trade it."
+      ]
+    },
+    {
+      "key": "m-training-dummy",
+      "title": "Training dummies",
+      "art": 5360,
+      "types": [
+        "TrainingDummyEastDeed",
+        "TrainingDummySouthDeed"
+      ],
+      "skills": [
+        "Swords",
+        "Macing",
+        "Fencing",
+        "Wrestling"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed for a practice dummy to set up in your own house.",
+        "# How to use it",
+        "Once it is placed, stand within reach of it with a melee weapon in hand and double-click it. You swing at it and can learn the skill of the weapon you hold, bare hands included (they train Wrestling), but only while that skill is below 25.",
+        "It takes a few seconds to stop swinging between tries. You cannot use it on a mount, and a bow or crossbow will not work on it.",
+        "# Where to get it",
+        "A carpenter makes it in the Add-Ons part of the menu: Carpentry 68.4 or more, 55 wood and 60 cloth, and Tailoring 50. Shopkeepers will not buy the deed, but you can trade it."
+      ]
+    },
+    {
+      "key": "m-pickpocket-dip",
+      "title": "Pickpocket dips",
+      "art": 5360,
+      "types": [
+        "PickpocketDipEastDeed",
+        "PickpocketDipSouthDeed"
+      ],
+      "skills": [
+        "Stealing",
+        "Carpentry"
+      ],
+      "related": [
+        "m-addon-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed for a pickpocket dip, a practice target for would-be thieves, to set up in your own house.",
+        "# How to use it",
+        "Once it is placed, stand next to it and double-click it to search it. Each search can teach you Stealing, but only while your Stealing is below 25. If you bump it, it swings for about 3 seconds and you must wait. You cannot use it on a mount.",
+        "# Where to get it",
+        "A carpenter makes it in the Add-Ons part of the menu: Carpentry 73.6 or more, 65 wood and 60 cloth, and Tailoring 50. Shopkeepers will not buy the deed, but you can trade it."
+      ]
+    },
+    {
+      "key": "m-decorator",
+      "title": "Decorator tool",
+      "art": 4033,
+      "types": [
+        "InteriorDecorator"
+      ],
+      "related": [
+        "m-furniture",
+        "m-addon-deed",
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A tool for arranging the inside of a house. Stand inside a house where you are an owner or co-owner and double-click it.",
+        "# How to use it",
+        "A small window offers Turn, Up and Down. Pick one, then click an item in the house; the tool stays ready for the next click until you press Esc. Turn spins a piece that has another facing, such as most chairs and tables. Up and Down move it one step in height each time, up to 15 steps above the floor.",
+        "A loose item must be locked down or secured first. Any item must be inside the house and weigh no more than 100 stones.",
+        "# Where to get it",
+        "The architect in Britain sells it for 10,001 gold and buys it back for 5,000. It is blessed, so you keep it if you die."
+      ]
+    },
+    {
+      "key": "m-furniture",
+      "title": "Furniture",
+      "art": 2903,
+      "types": [
+        "Stool",
+        "FootStool",
+        "WoodenChair",
+        "BambooChair",
+        "FancyWoodenChairCushion",
+        "WoodenChairCushion",
+        "WoodenBench",
+        "WoodenThrone",
+        "Throne",
+        "Nightstand",
+        "WritingTable",
+        "YewWoodTable",
+        "LargeTable"
+      ],
+      "skills": [
+        "Carpentry"
+      ],
+      "related": [
+        "m-decorator",
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A stool, chair, bench, throne or table. It is decoration for a house.",
+        "# What to do with it",
+        "Carry it to your house and drop it where you want it, then say I wish to lock this down and click it, so it stays put. The Interior Decorator can turn a locked-down piece around (every piece but the stools).",
+        "Furniture is heavy to carry: a chair weighs 20 stones, a wooden throne 15, a stool 10 and a bench or footstool 6. The throne, the tables and the nightstand weigh 1.",
+        "# Where to get it",
+        "A carpenter makes it from wood, in the Furniture part of the carpenter's menu. Carpentry needed: footstool and stool 11, chairs 21, cushioned chairs and nightstand 42.1, bench and wooden throne 52.6, writing table and yew-wood table 63.1, throne 73.6, large table 84.2.",
+        "A carpenter buys most pieces for 6 to 24 gold each.",
+        {
+          "text": "The Furnisher in Britain also sells furnishings for gold, 1,850 to 80,000 each. A one-piece furnishing is locked down like any furniture.",
+          "requires": "Furnishers"
+        }
+      ]
+    },
+    {
+      "key": "m-decoration",
+      "title": "Statues and busts",
+      "art": 5018,
+      "types": [
+        "StatueSouth",
+        "StatueSouth2",
+        "StatueNorth",
+        "StatueWest",
+        "StatueEast",
+        "StatueEast2",
+        "StatueSouthEast",
+        "BustSouth",
+        "BustEast"
+      ],
+      "related": [
+        "m-furniture",
+        "m-decorator"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A small statue or a bust. It is decoration and does nothing. Each weighs 10 stones.",
+        "# What to do with it",
+        "Put it in your house and lock it down: say I wish to lock this down and click it. Shopkeepers will not buy it.",
+        "# Where it comes from",
+        "A ratman mage in the Ice dungeon sometimes carries one, about 2 times in 100."
+      ]
+    },
+    {
+      "key": "m-boat-deed",
+      "title": "Ship deeds",
+      "art": 5362,
+      "inherits": [
+        "BaseBoatDeed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed for a ship, small, medium or large. Double-click it and click open water to launch the ship.",
+        "# Launching it",
+        "The ship needs open water with room for its whole length, and you cannot launch one from a house, from another ship's deck or in a dungeon. The deed is used up and the ship appears with its anchor down. You get two ship keys, one in your pack and one in your bank box; they lock and unlock the ship's planks.",
+        "# Sailing",
+        "Stand on the ship and say what you want. Say raise anchor first, or the tiller man (the ship's helmsman) refuses to move. Then say forward, back, left or right (back, left and right slide the ship without turning it), turn left, turn right or turn around, and stop to halt. One forward moves it a single step. Say drop anchor when you stop. Anyone aboard can give orders.",
+        "# Planks, hold and docking",
+        "Double-click a plank, the gangway on the ship's side, to open it and walk aboard; it closes by itself after a few seconds, and a locked plank needs the key first (double-click the key, then the plank). The hold, the ship's cargo space, keeps your goods and opens only from on board while the ship is still.",
+        "To put the ship away, drop anchor, empty the hold and the deck of goods and people, keep the key in your pack, stand off the ship and double-click the tiller man: the ship becomes an item you can launch again. A ship that sits for about 9 days without a plank being opened or closed sinks.",
+        "# Where to get it",
+        "The shipwright in Britain sells ship deeds: small for 10,177 gold, medium for 11,552 and large for 12,927. The provisioner sells the small one too. Shopkeepers will not buy the deed."
+      ]
+    },
+    {
+      "key": "m-guild-deed",
+      "title": "Guild deed",
+      "art": 5360,
+      "types": [
+        "GuildDeed"
+      ],
+      "related": [
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed to found a guild. Stand inside a house you own, with the deed in your pack and no guild of your own, and double-click it.",
+        "# Founding a guild",
+        "You are asked for the guild's name, 40 letters at most. The deed is used up, you become the Guildmaster and a guildstone appears where you stand. A house can hold only one guildstone, and you cannot demolish a house that has one.",
+        "# Running it",
+        "Double-click the guildstone for the guild window. Choose Recruit someone into the guild and click a player: when the Guildmaster recruits, the player joins by double-clicking the guildstone. A member's recruit waits in the candidate list until the Guildmaster accepts. The window also has the roster, the charter and a way to resign.",
+        {
+          "text": "Guild members can talk wherever they are: type [g and then your message, or use the \\ key. Every guildmate who is online reads it. Guild chat is logged for moderation.",
+          "requires": "GuildChat"
+        },
+        "# Where to get it",
+        "The provisioner in Britain sells the deed for 12,450 gold."
+      ]
+    },
+    {
+      "key": "m-vendor-contract",
+      "title": "Vendor contract",
+      "art": 5360,
+      "types": [
+        "ContractOfEmployment",
+        "BarkeepContract"
+      ],
+      "related": [
+        "m-house-deed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A contract of employment hires a merchant who sells your goods in a house for you, day and night. A barkeep contract hires a barkeeper instead.",
+        "# Hiring a merchant",
+        "Stand in a public house where you are a friend of the household (an owner or co-owner counts) and double-click the contract. The merchant appears where you stand, with 1,000 gold for his wages.",
+        "# Selling through him",
+        "Drop an item on him, one at a time; only you can, and he refuses newbied or bound items such as your starting gear. He asks you for a price and a description. A customer says vendor buy near him and clicks the item, or says vendor browse to look at his goods. The gold from a sale is kept for you: say vendor collect to take it into your bank box, vendor status to see his window, and vendor dismiss to let him go once his pack is empty.",
+        "# His pay",
+        "Every game day, 2 hours of real time, he is paid 20 gold, plus 1 more for every 500 gold of prices you have set above 500. The pay comes from his wage fund first, then from the sales gold. Drop gold on him to top up the fund. If he cannot be paid he quits, and he leaves a pack with everything he held on the floor where he stood.",
+        "# Barkeeper",
+        "Only the owner of a house can place a barkeeper, and a house can have 2. He sells drinks and answers the keywords you set for him. Drop up to 50 gold on him and he gives the tip you set; a larger tip is refused.",
+        "# Where to get it",
+        "Bankers, innkeepers and tavern keepers in Britain sell the contract of employment for 1,252 gold; innkeepers and tavern keepers sell the barkeep contract for the same."
+      ]
+    },
+    {
+      "key": "m-commodity-deed",
+      "title": "Commodity deed",
+      "art": 5360,
+      "types": [
+        "CommodityDeed"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A deed that stands for one stack of a resource, so you can hand over a big pile as a single light piece of paper. A blank one is unfilled; a filled one shows what it holds and how many.",
+        "# How to use it",
+        "Both the deed and the resource must be in your bank box. Double-click the blank deed and click the stack: it goes into the deed. To cash a filled deed, put it in your bank box and double-click it: the resource comes back into the box and the deed is used up.",
+        "# What it holds",
+        "Logs, boards, ingots, hides, leather, scales, cloth, bolts of cloth, bones, arrows, bolts, feathers, shafts and reagents. A deed holds one stack of one kind. Potions, scrolls and bottles do not go in.",
+        "# Where to get it",
+        "A banker sells a blank deed for 5 gold."
+      ]
+    },
+    {
+      "key": "m-ward",
+      "title": "Backpack ward",
+      "art": 7956,
+      "types": [
+        "BackpackWard"
+      ],
+      "skills": [
+        "Tinkering",
+        "Stealing"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A backpack ward: carried in your backpack, it watches for thieves who steal from you.",
+        {
+          "text": "# How it catches thieves",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "Carry it in your backpack or in a bag inside it. It does nothing in a bank, a house, on the ground or in a pet's pack. It needs no skill and no switching on. A thief is caught when a theft from you succeeds and either you notice it in the usual way or the ward notices it for you. A caught thief turns criminal and cannot steal from you again, on any of their characters, until the ward is used up. The thief keeps what was taken.",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "When a theft from you succeeds unnoticed, the ward gets an extra chance to notice it: 25 in 100 for that thief's first such theft, 50 in 100 for the second and always for the third. Each thief is counted on their own.",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "# How long it lasts",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "The ward watches until 30 minutes pass with no theft attempt against you. If no theft has been noticed by then, it starts over and you keep it. Once a theft has been noticed, it is used up when the 30 quiet minutes pass. Double-click it to see where it stands and how many quiet minutes are left.",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "In a Hot Zone, where players may fight freely, a ward does nothing.",
+          "requires": "HotZones"
+        },
+        {
+          "text": "# Where to get more",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "Every new character starts with one ward, bound to that character: it cannot be traded, sold or stolen, and it stays with you when you die. A tinker can make more from 20 iron ingots (Tinkering 45 or more, in the Miscellaneous list). A ward you make can be traded until it starts watching a thief.",
+          "requires": "TheftProtection"
+        }
+      ]
+    },
+    {
+      "key": "m-shrunken-pet",
+      "title": "Shrunken pet",
+      "art": 6256,
+      "types": [
+        "ShrunkenPet"
+      ],
+      "skills": [
+        "AnimalTaming"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A tamed pet held out of the world as a small figure in your pack. Its name tells you which pet.",
+        {
+          "text": "# Why you have one",
+          "requires": "PetRestrictions"
+        },
+        {
+          "text": "A tamed pet cannot stay in a dungeon (pack llamas and pack horses are not affected). When one would be left inside, it is shrunk into your pack and you are told. The other exception is a single mount: ride it in and step off, and it stays and fights monsters, though never players.",
+          "requires": "PetRestrictions"
+        },
+        {
+          "text": "# Getting it back",
+          "requires": "PetRestrictions"
+        },
+        {
+          "text": "Go outside the dungeon, make sure you have a free follower slot, and double-click the figure. The pet appears next to you and follows you. Inside a dungeon only a mount can be let out, and only while you are not riding and no other mount is standing there.",
+          "requires": "PetRestrictions"
+        },
+        {
+          "text": "# Good to know",
+          "requires": "PetRestrictions"
+        },
+        {
+          "text": "The figure is yours alone: it cannot be traded, sold or stolen, and only you can pick it up if it lies on the floor, which happens when your pack is full. Do not destroy it: the pet goes with it.",
+          "requires": "PetRestrictions"
+        }
+      ]
+    },
+    {
+      "key": "m-fire-horn",
+      "title": "Fire horn",
+      "art": 4039,
+      "types": [
+        "FireHorn"
+      ],
+      "skills": [
+        "Provocation",
+        "Musicianship",
+        "Peacemaking",
+        "Discordance"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A rare horn that blows fire. It is not for sale; you find it.",
+        "# How to use it",
+        "Double-click it and click a spot up to 2 tiles away. You need 15 sulfurous ash in your pack for each blast. Your Musicianship decides whether the horn plays: about 50 times in 100 at 77.5, and 95 in 100 at 100. A failed try only squeaks and costs no ash. After each try you must wait 12 seconds.",
+        "# What it does",
+        "Everyone within 2 tiles of the spot whom you may attack takes fire damage, shared out between them. A target that resists (a Magic Resist check) takes half. Provocation counts five times as much as Discordance or Peacemaking. At 100 in all three, a single monster takes 65 to 93, and a player 21 to 31.",
+        "Each blast has a 16 in 100 chance of burning the horn up.",
+        "# Where it comes from",
+        "Monsters drop it now and then: about 1 in 100 of the weapons a monster's loot would hold turns out to be a fire horn."
+      ]
+    },
+    {
+      "key": "m-crystals",
+      "title": "Message crystals",
+      "art": 7888,
+      "types": [
+        "BroadcastCrystal",
+        "ReceiverCrystal"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A pair of linked crystals that carry what someone says to somewhere else. A broadcast crystal listens; each receiver crystal repeats what it hears.",
+        "# How to use them",
+        "Set the broadcast crystal where people will talk, and carry or place each receiver where you want to hear. Within 2 tiles of the broadcast crystal, double-click it and click a receiver to link them. One broadcast crystal links up to 10 receivers, and a receiver follows one broadcast crystal. New crystals are switched off, and each one, receiver as well as broadcast, must be on to work. Double-click a crystal and click it again to switch it on or off; click yourself to unlink.",
+        "The broadcast crystal listens only while it is on, and while it lies on the ground or is carried by someone, not inside a container on the floor.",
+        "# Charges",
+        "Each line the broadcast crystal passes on uses one charge for every receiver, and the crystal switches itself off when it runs dry. To recharge it, double-click it and click a gem: citrine or amber adds 500, tourmaline 750, emerald, sapphire or amethyst 1,000, star sapphire 1,250 and diamond 2,000. The gem is used up. A crystal holds 2,000 charges at most.",
+        "# Where to get them",
+        "Jewelers in Britain sell a broadcast crystal with 500 charges for 68 gold, with 1,000 for 131 and with 2,000 for 256. A receiver costs 6 gold."
+      ]
+    },
+    {
+      "key": "r-ore",
+      "title": "Ore",
+      "art": 6585,
+      "inherits": [
+        "BaseOre"
+      ],
+      "skills": [
+        "Mining",
+        "Blacksmith"
+      ],
+      "related": [
+        "r-ingots"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Raw metal from mountains and caves. Plain iron ore is the common kind; eight rarer metals lie in some patches: dull copper, shadow iron, copper, bronze, gold, agapite, verite and valorite. Ore has to be smelted into ingots before a smith or tinker can use it.",
+        "# Where to get it",
+        "Double-click a pickaxe or shovel and target a mountain or cave floor; you cannot mine on a mount. The ground is split into 8 by 8 tile patches. A patch holds 10 to 34 diggings, refills 10 to 20 minutes after the first one, and always has the same metal. Each good dig gives one piece, and three pieces in four are big piles.",
+        "A rare-metal patch still gives plain iron about half the time, and every time your Mining skill is below the metal's number: dull copper 65, shadow iron 70, copper 75, bronze 80, gold 85, agapite 90, verite 95, valorite 99.",
+        "# Smelting",
+        "Double-click the ore (it must be within 2 tiles) and target a forge, a small or large one such as stands in a smithy. The whole pile is smelted at once. Smelting is a Mining skill check: no chance 25 points below the ore's number, an even chance at the number and a sure thing 25 points above it (iron counts as 50). A rare ore will not smelt at all below its number, and a miss burns away half the pile.",
+        "A big pile weighs 12 stones and makes 2 ingots, a medium pile weighs 7 and makes 1, and a small pile weighs 2 and takes a second small pile to make 1. Smelt before you carry it far: an ingot weighs a tenth of a stone."
+      ]
+    },
+    {
+      "key": "r-ingots",
+      "title": "Ingots",
+      "art": 7154,
+      "inherits": [
+        "BaseIngot"
+      ],
+      "skills": [
+        "Blacksmith",
+        "Tinkering",
+        "Mining"
+      ],
+      "related": [
+        "r-ore"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Smelted metal in bars. Iron ingots are the common kind; each rare ore makes its own colored ingot: dull copper, shadow iron, copper, bronze, gold, agapite, verite and valorite. Ingots stack and weigh a tenth of a stone each.",
+        "# What it is for",
+        "Smiths and tinkers make almost everything from ingots. Double-click the tool, then target the ingots you want to use; the menu shows what your skill and your ingots allow. Blacksmithing also needs an anvil and a forge within 2 tiles of you.",
+        "Working a rare metal needs the skill, in Blacksmithing or Tinkering: 65 for dull copper, 70 shadow iron, 75 copper, 80 bronze, 85 gold, 90 agapite, 95 verite, 99 valorite. Armor made of rare metal protects better: its armor rating is higher by 2 (dull copper), 4, 6, 8, 10, 12, 14 and 16 (valorite).",
+        "# Where to get it",
+        "Smelt ore at a forge. A blacksmith sells iron ingots for about 5 gold each and buys them back for about 4.",
+        "# Good to know",
+        "Choose Smelt in the smith's menu and target a weapon or armor to melt it back into ingots: a piece you made returns half of its ingots, a bought one only 1. Rare metals need Mining skill to smelt."
+      ]
+    },
+    {
+      "key": "r-logs",
+      "title": "Logs",
+      "art": 7133,
+      "inherits": [
+        "Log"
+      ],
+      "skills": [
+        "Lumberjacking",
+        "Carpentry",
+        "Fletching"
+      ],
+      "related": [
+        "r-boards"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Rough logs cut from a tree. Carpenters, bowyers and tinkers build from them. A log weighs 2 stones and logs stack.",
+        "# Where to get it",
+        "Equip an axe, double-click it and target a tree. A good chop gives 10 logs, and your Lumberjacking skill in percent is the chance. A grove of trees holds 20 to 45 wood and grows back 20 to 30 minutes after the first chop. Carpenters buy ordinary logs for about 1 gold each.",
+        "A knife or sword used on a tree cuts only a Kindling bundle.",
+        "# What it is for",
+        "Carpentry, Fletching and Tinkering recipes take logs. A recipe that asks for logs takes boards too, so double-click the tool and target either. To carry less weight, double-click an equipped axe and target a pile of logs in your pack: every log becomes a board, which weighs 1 stone.",
+        "# Good to know",
+        "Only ordinary logs can be cut from trees here."
+      ]
+    },
+    {
+      "key": "r-boards",
+      "title": "Boards",
+      "art": 7127,
+      "inherits": [
+        "Board"
+      ],
+      "skills": [
+        "Carpentry",
+        "Fletching"
+      ],
+      "related": [
+        "r-logs"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Planks of wood sawn from logs, the same building wood in a lighter form: a board weighs 1 stone and a log weighs 2.",
+        "# Where to get it",
+        "Double-click an equipped axe and target logs in your pack: each log becomes one board. Carpenters sell ordinary boards for about 3 gold each and buy them back for about 2.",
+        "# What it is for",
+        "Every recipe that takes logs takes boards as well. Double-click a Carpentry, Fletching or Tinkering tool and target your boards."
+      ]
+    },
+    {
+      "key": "r-kindling",
+      "title": "Kindling",
+      "art": 3553,
+      "types": [
+        "Kindling"
+      ],
+      "skills": [
+        "Camping",
+        "Cooking"
+      ],
+      "related": [
+        "r-logs"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A bundle of sticks for a campfire. It weighs 5 stones and stacks.",
+        "# What it is for",
+        "Double-click it to try to light a campfire on a free spot next to you; your Camping skill decides whether it catches. Fires cannot be lit in a dungeon. A campfire is also a heat source for cooking raw food.",
+        {
+          "text": "Everyone has at least a 50 percent chance to light a fire, and more with Camping above 50. A lit fire burns 100 seconds plus 2 seconds for each point of Camping, then glows as embers for 60 seconds plus 1.2 per point. Use Kindling within 1 tile of a fire to feed it: that restarts its burn and relights embers.",
+          "requires": "CampingFires"
+        },
+        {
+          "text": "A new character starts with a Bedroll and Kindling, up to 5 in all.",
+          "requires": "CampingStarterKit"
+        },
+        {
+          "text": "Camp travel costs 2 Kindling each time.",
+          "requires": "CampingTravel"
+        },
+        "# Where to get it",
+        "Provisioners sell Kindling for about 2 gold and buy it back for 1. A Fletching tool turns a log into Kindling, and a knife or sword used on a tree cuts a bundle."
+      ]
+    },
+    {
+      "key": "r-barrel-parts",
+      "title": "Barrel parts",
+      "art": 7857,
+      "types": [
+        "BarrelStaves",
+        "BarrelLid",
+        "BarrelHoops",
+        "BarrelTap"
+      ],
+      "skills": [
+        "Carpentry",
+        "Tinkering"
+      ],
+      "related": [
+        "r-parts"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The pieces of a keg: staves, a lid, hoops and a tap.",
+        "# What they are for",
+        "A carpenter makes staves and lids from logs, and builds a keg from staves, a hoop and a lid. A tinker makes hoops and taps from iron ingots. A tinker then builds a potion keg from a keg, 10 empty bottles, a lid and a tap.",
+        "# Good to know",
+        "Staves weigh 1 stone, a lid 2, hoops 5 and a tap 1. The Carpentry and Tinkering skill pages list the recipes."
+      ]
+    },
+    {
+      "key": "r-hides",
+      "title": "Hides",
+      "art": 4217,
+      "inherits": [
+        "BaseHides"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-leather"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Raw skins from animals and some monsters. Each hide weighs 5 stones.",
+        "# Where to get it",
+        "Double-click a knife, dagger or sword and target a corpse, or use an equipped axe on it. The hides, meat and feathers it holds appear on the corpse, and you take them from there. In Felucca you get double the hides. Fur traders sell plain hides for about 3 gold and buy them for about 2.",
+        "The rarer kinds come from tougher creatures: spined hides from lizardmen, ratmen and some serpents, horned hides from drakes and wyverns, barbed hides from dragons and wyrms.",
+        "# What it is for",
+        "Scissors cut each hide into one piece of leather, which weighs 1 stone instead of 5. A tailor can also sew with plain hides directly: double-click a sewing kit and target them. The tailor's menu here takes only plain hides and plain leather, not the rarer kinds."
+      ]
+    },
+    {
+      "key": "r-leather",
+      "title": "Leather",
+      "art": 4225,
+      "inherits": [
+        "BaseLeather"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-hides"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Hides cut into pieces a tailor can sew. A piece of leather weighs 1 stone and pieces stack.",
+        "# What it is for",
+        "Tailors sew sandals, shoes and boots, leather armor, studded armor and women's leather armor from it. Double-click a sewing kit and target the leather; the menus show only what your skill and your leather allow. Only plain leather works in the tailor's menu here.",
+        "# Where to get it",
+        "Cut hides with scissors, one piece of leather per hide. Tanners sell plain leather for about 6 gold each and buy it for about 5."
+      ]
+    },
+    {
+      "key": "r-cloth",
+      "title": "Cloth",
+      "art": 5990,
+      "types": [
+        "Cloth",
+        "UncutCloth"
+      ],
+      "skills": [
+        "Tailoring",
+        "Healing"
+      ],
+      "related": [
+        "r-bolt",
+        "r-thread"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Pieces of cloth, cut or uncut: to a tailor they are the same thing. They stack and weigh a tenth of a stone each.",
+        "# What it is for",
+        "Tailors sew hats, shirts, pants, cloaks, robes and dresses from cloth. Double-click a sewing kit and target the cloth; the clothes come out in the color of the cloth you target. A dye tub colors cloth first. Scissors cut a piece of cloth into a bandage for the Healing skill.",
+        "# Where to get it",
+        "Tailors sell cloth and uncut cloth for about 2 gold a piece, and weavers sell uncut cloth for about 3. Scissors turn a bolt of cloth into 50 pieces, and a loom weaves thread or yarn into bolts."
+      ]
+    },
+    {
+      "key": "r-bolt",
+      "title": "Bolt of cloth",
+      "art": 3989,
+      "types": [
+        "BoltOfCloth"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-cloth",
+        "r-thread"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A roll of cloth. It weighs 5 stones.",
+        "# What it is for",
+        "Use scissors on a bolt to cut it into 50 pieces of cloth. A dye tub colors a bolt, and the cloth you cut keeps its color.",
+        "# Where to get it",
+        "Weave it on a loom from thread or yarn. Tailors and weavers sell bolts for about 100 gold and buy them back for about 50."
+      ]
+    },
+    {
+      "key": "r-cotton",
+      "title": "Cotton and flax",
+      "art": 3577,
+      "types": [
+        "Cotton",
+        "Flax"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-thread",
+        "r-crops"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Plant fibers that a spinning wheel turns into thread. A bale of cotton weighs 4 stones and a flax bundle 1.",
+        "# How to use them",
+        "Keep the fiber in your pack, double-click it and target a spinning wheel within 3 tiles. After 3 seconds you have 6 spools of thread, and a loom weaves thread into cloth. Britain's tailor shops have spinning wheels and looms.",
+        {
+          "text": "With repeat on, one click spins the whole stack, one fiber every 3 seconds, until you walk, cast, fight or open another target cursor.",
+          "requires": "ActionAutoRepeat"
+        },
+        "# Where to get them",
+        "Cotton plants grow in only a few fields, far from Britain: double-click a plant within 2 tiles and the cotton lies where it stood. Tailors sell both for about 100 gold and buy them for about 50."
+      ]
+    },
+    {
+      "key": "r-wool",
+      "title": "Wool",
+      "art": 3576,
+      "inherits": [
+        "Wool"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-thread"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Wool from sheep, to be spun into yarn. Each bundle weighs 4 stones and wool stacks.",
+        "# Where to get it",
+        "Use a knife, dagger or sword on a living sheep that still has its wool: you get 2 wool, and that sheep grows more after 3 hours. Carving a dead sheep leaves tainted wool on the corpse. Tailors sell wool for about 60 gold and buy it for about 30.",
+        "# How to use it",
+        "Double-click wool in your pack and target a spinning wheel within 3 tiles. After 3 seconds one wool becomes 3 balls of yarn, while one tainted wool gives just 1. A loom weaves yarn into cloth.",
+        {
+          "text": "With repeat on, one click spins the whole stack until you walk, cast, fight or open another target cursor.",
+          "requires": "ActionAutoRepeat"
+        }
+      ]
+    },
+    {
+      "key": "r-thread",
+      "title": "Thread and yarn",
+      "art": 4000,
+      "inherits": [
+        "BaseClothMaterial"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "r-cotton",
+        "r-wool",
+        "r-bolt"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Spools of thread and balls of yarn, spun from cotton, flax or wool. Each weighs 1 stone, they stack, and a dye tub can color them.",
+        "# What it is for",
+        "Double-click it in your pack and target a loom within 3 tiles: each piece moves the loom one step, and every fifth piece finishes a bolt of cloth, which keeps the thread's color. Britain's tailor shops have looms.",
+        {
+          "text": "With repeat on, one click feeds the whole stack into the loom at once.",
+          "requires": "ActionAutoRepeat"
+        },
+        "# Where to get it",
+        "Spin cotton, flax or wool at a spinning wheel. Tailors sell thread and weavers sell yarn, for about 18 gold each, and buy the same back for about 9."
+      ]
+    },
+    {
+      "key": "r-feather",
+      "title": "Feathers, shafts",
+      "art": 7121,
+      "types": [
+        "Feather",
+        "Shaft"
+      ],
+      "skills": [
+        "Fletching",
+        "Archery"
+      ],
+      "related": [
+        "r-logs"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The two parts of an arrow or bolt besides the head. A shaft is a straight stick, a feather steadies it. Each weighs a tenth of a stone and both stack.",
+        "# What they are for",
+        "A bowyer makes arrows and bolts from one shaft and one feather each. Double-click a Fletching tool and target the shafts or feathers. A shaft is cut from a log with the same tool.",
+        "# Where to get them",
+        "Carve birds with a blade or an axe: a chicken or bird gives 50 feathers in Felucca, an eagle 72 and a harpy 100. Orcs sometimes carry shafts. A bowyer sells feathers for about 2 gold and shafts for about 3, and buys either for 1."
+      ]
+    },
+    {
+      "key": "r-parts",
+      "title": "Tinker parts",
+      "art": 4179,
+      "types": [
+        "Gears",
+        "Springs",
+        "Hinge",
+        "Axle",
+        "AxleGears"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "r-clock-parts",
+        "r-barrel-parts"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Small parts a tinker makes: gears, springs, hinges, axles, and axle gears, which are an axle fitted with gears. Each weighs 1 stone and they stack.",
+        "# Where to get them",
+        "A tinker makes gears, springs and hinges from iron ingots, an axle from logs, and axle gears from an axle and gears. Open the tinker's tools and look under Parts and Wooden Items. Carpenters sell axles for about 2 gold and buy them back for about 1. Golems sometimes carry gears.",
+        "# Good to know",
+        "The Tinkering skill page lists the recipes and the skill each one needs."
+      ]
+    },
+    {
+      "key": "r-clock-parts",
+      "title": "Clock parts",
+      "art": 4175,
+      "types": [
+        "ClockParts",
+        "ClockFrame",
+        "SextantParts"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "r-parts"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The pieces of a clock and a sextant: clock parts and a clock frame for the clock, sextant parts for the sextant.",
+        "# Where to get them",
+        "A tinker makes clock parts and sextant parts from iron ingots and a clock frame from logs. A tinker then builds a clock from a frame and clock parts, or a sextant from sextant parts, under Miscellaneous in the tinker's menu.",
+        "# Good to know",
+        "Clock parts weigh 1 stone, a clock frame and sextant parts 2 each."
+      ]
+    },
+    {
+      "key": "r-body-parts",
+      "title": "Body parts",
+      "art": 7584,
+      "types": [
+        "Head",
+        "Torso",
+        "LeftArm",
+        "RightArm",
+        "LeftLeg",
+        "RightLeg"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "What is left when you carve a human corpse with a blade or an axe: a torso, two arms, two legs and a head, with blood on the ground. Carving costs karma. If the corpse belongs to an innocent who is not you or your party, it also makes you a criminal and costs more karma.",
+        "# The head",
+        "A head carries the dead player's name. When a victim reports a murderer, they may also post a bounty on that murderer's head. Carve the murderer's corpse and give the head to a guard within 24 hours of carving it, and the guard credits the bounty to your bank. The guard takes any head either way.",
+        "# Good to know",
+        "A torso weighs 2 stones."
+      ]
+    },
+    {
+      "key": "r-gems",
+      "title": "Gems",
+      "art": 3859,
+      "types": [
+        "Amber",
+        "Amethyst",
+        "Citrine",
+        "Diamond",
+        "Emerald",
+        "Ruby",
+        "Sapphire",
+        "StarSapphire",
+        "Tourmaline"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Cut gemstones: amber, amethyst, citrine, diamond, emerald, ruby, sapphire, star sapphire and tourmaline. They stack and each weighs a tenth of a stone.",
+        "# What they are for",
+        "They are valuables to sell, and a tinker can set one in a gold or silver ring, necklace or pair of earrings: choose the jewelry in the tinker's menu and target the gem when asked.",
+        "# Where to get them",
+        "Many tougher monsters carry gems. Jewelers and provisioners buy them: about 25 gold for amber and citrine, 37 for ruby, 47 for tourmaline, 50 for amethyst, emerald and sapphire, 62 for star sapphire and 100 for diamond. A jeweler sells them for more, from 50 gold for amber to 200 for a diamond."
+      ]
+    },
+    {
+      "key": "r-gold",
+      "title": "Gold",
+      "art": 3821,
+      "types": [
+        "Gold"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The coin of the land. Gold stacks, and each coin weighs 0.02 of a stone, so 50 coins weigh 1 stone.",
+        "# How to use it",
+        "A vendor takes payment from the gold in your pack. A purchase of 2,000 gold or more that your pack cannot cover is paid from your bank box instead. Keep spare gold in the bank so a heavy purse does not slow you.",
+        "A banker answers to a few words when you are within 12 tiles: say bank to open your bank box, balance to hear how much you have, withdraw followed by an amount (up to 5,000 at a time) to take gold out, and check followed by an amount of 5,000 or more to turn gold from your bank box into a bank check. A criminal gets no service."
+      ]
+    },
+    {
+      "key": "r-fish",
+      "title": "Fish",
+      "art": 2508,
+      "types": [
+        "Fish",
+        "BigFish"
+      ],
+      "skills": [
+        "Fishing",
+        "Cooking"
+      ],
+      "related": [
+        "r-raw-food"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A fish from the water. A fish weighs 1 stone and fish stack. A big fish is a rare, heavy catch.",
+        "# How to use them",
+        "Use a knife, dagger or sword (or an axe) on fish in your pack to cut the whole pile into raw fish steaks, 4 steaks for each fish. Cook the steaks on a fire or a forge to eat them.",
+        "A big fish weighs anywhere from 3 to 200 stones, and gives one fourth of its weight in steaks, at least 4. Only deep water gives them, and only to an angler with Fishing 80 or more, and very rarely.",
+        "# Where to get them",
+        "Double-click a fishing pole and target water. Fishermen sell fish for about 6 gold each and buy them for 1, and sell raw fish steaks for about 3."
+      ]
+    },
+    {
+      "key": "r-magic-fish",
+      "title": "Magic fish",
+      "art": 3542,
+      "inherits": [
+        "BaseMagicFish"
+      ],
+      "skills": [
+        "Fishing"
+      ],
+      "related": [
+        "r-fish"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Four strange fish that an angler sometimes pulls from the water: prized fish, wondrous fish, truly rare fish and highly peculiar fish. Each weighs 1 stone.",
+        "# What they do",
+        "Keep the fish in your pack and double-click it to swallow it whole. A prized fish adds 5 to your Intelligence for a minute, a wondrous fish 5 to your Dexterity and a truly rare fish 5 to your Strength. A peculiar fish gives back 10 stamina at once. You cannot swallow a stat fish while a similar boost still runs.",
+        "# Good to know",
+        "They are a rare catch of Fishing at any skill, a little less rare when your skill is low."
+      ]
+    },
+    {
+      "key": "r-food",
+      "title": "Food",
+      "art": 4155,
+      "inherits": [
+        "Food"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-raw-food",
+        "r-cooked-meat",
+        "r-drinks"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Something you can eat. Ordinary food fills your hunger by a different amount for each kind; the other food topics give the numbers.",
+        "# How to eat",
+        "Double-click food in your pack, or choose Eat in its menu, to eat one piece. Your hunger level runs from 0 to 20, and a new character starts at 20. It drops by 1 every 5 minutes you are logged in. Eating adds the food's fill value: at 20 you are stuffed and cannot eat more, and the food stays where it is.",
+        "Eating also gives back about 6 to 8 stamina when yours is not full, a few more for a very big meal. Being hungry costs you nothing here: the hunger level only limits how much you can eat.",
+        "# Good to know",
+        "Food that a poisoner has tainted poisons whoever eats it. Drop food on a tamed pet to feed it: it eats only the kinds its breed likes, and a fed pet looks happier. A few rare novelty foods do not follow these rules."
+      ]
+    },
+    {
+      "key": "r-raw-food",
+      "title": "Raw food",
+      "art": 2545,
+      "inherits": [
+        "CookableFood"
+      ],
+      "skills": [
+        "Cooking",
+        "Camping"
+      ],
+      "related": [
+        "r-cooked-meat",
+        "r-kindling"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Food that has to be cooked first, such as raw ribs, lamb legs, chicken legs, birds and fish steaks. You cannot eat it raw.",
+        "# How to cook it",
+        "Double-click the raw food, then target a fire: a campfire, an oven or fireplace, a fire pit, a heating stand, a field of fire or a forge. The fire must be within 1 tile of you and the food within 2. No tool is needed.",
+        "After 5 seconds your Cooking skill decides the result. Your chance is about your skill in percent, and you can try at skill 0. One piece is cooked at a time, and a second try during the 5 seconds is refused. A miss burns the food to a crisp, and so does walking more than 3 tiles from the fire.",
+        {
+          "text": "With repeat on, one click cooks the whole stack, piece after piece, until you walk, cast, fight or open another target cursor.",
+          "requires": "ActionAutoRepeat"
+        },
+        "# What it becomes",
+        "Raw ribs, lamb legs, chicken legs and birds become the same cooked food, and a raw fish steak becomes a fish steak. Any other raw food cooks into its finished form the same way.",
+        "# Where to get it",
+        "Butchers sell raw ribs for about 16 gold, lamb legs and birds 9, chicken legs 6; fishermen sell raw fish steaks for about 3. Carve animal corpses for more."
+      ]
+    },
+    {
+      "key": "r-cooked-meat",
+      "title": "Cooked meat",
+      "art": 2546,
+      "types": [
+        "Ribs",
+        "LambLeg",
+        "ChickenLeg",
+        "CookedBird",
+        "FishSteak",
+        "Bacon",
+        "SlabOfBacon",
+        "Ham",
+        "Sausage",
+        "RoastPig",
+        "FriedEggs"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-raw-food",
+        "r-food"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Meat and fish ready to eat: ribs, lamb and chicken legs, cooked birds, fish steaks, bacon, ham, sausages, fried eggs and a whole roast pig.",
+        "# What it does",
+        "Eat it to fill your hunger. Fill values: bacon 1, a slab of bacon 3, fish steak 3, chicken leg 4, sausage 4, fried eggs 4, ribs 5, lamb leg 5, cooked bird 5, ham 5, roast pig 20. At a hunger level of 20 you are stuffed.",
+        "# Where to get it",
+        "Cook raw meat on a fire. Provisioners, innkeepers and tavern keepers sell lamb legs for about 8 gold, chicken legs 5 and cooked birds 17; taverns and inns also sell ribs for 7. Butchers sell bacon for 7, sausages 18 and ham 26. A cook sells a whole roast pig for about 106 gold.",
+        "# Good to know",
+        "A roast pig weighs 45 stones, a lamb leg 2 and most others 1; a fish steak weighs a tenth."
+      ]
+    },
+    {
+      "key": "r-baked",
+      "title": "Bread and pies",
+      "art": 4155,
+      "types": [
+        "BreadLoaf",
+        "FrenchBread",
+        "Muffins",
+        "Cookies",
+        "Cake",
+        "ApplePie",
+        "FruitPie",
+        "MeatPie",
+        "PumpkinPie",
+        "PeachCobbler",
+        "Quiche",
+        "CheesePizza",
+        "SausagePizza"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-food",
+        "r-flour"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Baked food: loaves of bread, French bread, muffins, cookies, cakes, pies, a peach cobbler, quiche and pizza.",
+        "# What it does",
+        "Eat it to fill your hunger. Fill values: bread 3, French bread 3, muffins 4, cookies 4, pies, cobbler and quiche 5, pizza 6, cake 10. At a hunger level of 20 you are stuffed.",
+        "# Where to get it",
+        "Bakers sell bread for about 5 or 6 gold, French bread 5, muffins and cookies 3, an apple pie 7, a cheese pizza 8 and a cake 13. Cooks, innkeepers and provisioners sell some of these too.",
+        "# Good to know",
+        "Each piece weighs 1 stone, a French bread 2."
+      ]
+    },
+    {
+      "key": "r-cheese",
+      "title": "Cheese",
+      "art": 2430,
+      "types": [
+        "CheeseWheel",
+        "CheeseWedge",
+        "CheeseSlice"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-food"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A wheel of cheese, a wedge or a slice. Each weighs a tenth of a stone.",
+        "# What it does",
+        "Eat it to fill your hunger: a wheel or a wedge fills 3, a slice 1.",
+        "# Where to get it",
+        "Cooks, innkeepers and tavern keepers sell a wheel for about 21 gold and buy one back for about 12."
+      ]
+    },
+    {
+      "key": "r-fruit-veg",
+      "title": "Fruit, vegetables",
+      "art": 2512,
+      "types": [
+        "Apple",
+        "Banana",
+        "Bananas",
+        "Dates",
+        "Grapes",
+        "Lemon",
+        "Lemons",
+        "Lime",
+        "Limes",
+        "Peach",
+        "Pear",
+        "Watermelon",
+        "SmallWatermelon",
+        "Cantaloupe",
+        "HoneydewMelon",
+        "Coconut",
+        "OpenCoconut",
+        "SplitCoconut",
+        "FruitBasket",
+        "Carrot",
+        "Cabbage",
+        "Lettuce",
+        "Onion",
+        "Turnip",
+        "Pumpkin",
+        "SmallPumpkin",
+        "GreenGourd",
+        "YellowGourd",
+        "Squash",
+        "EarOfCorn"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-food",
+        "r-crops"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Fruit and vegetables: apples, pears, peaches, grapes, bananas, dates, melons, coconuts, lemons and limes; carrots, cabbages, onions, lettuce, turnips, corn, gourds and pumpkins.",
+        "# What it does",
+        "Eat one to fill your hunger. Most fill only 1. Watermelons and a fruit basket fill 5, a pumpkin 8. At a hunger level of 20 you are stuffed. Each weighs 1 stone, a watermelon 5 and a fruit basket 2; the basket is left behind when you eat the fruit.",
+        "# Where to get it",
+        "Innkeepers sell peaches, pears, grapes and apples for about 3 gold and bananas for 2; provisioners sell pears and apples for 3. Pick carrots, cabbages, onions and turnips from the plants in the fields."
+      ]
+    },
+    {
+      "key": "r-crops",
+      "title": "Crops",
+      "art": 3157,
+      "inherits": [
+        "FarmableCrop"
+      ],
+      "related": [
+        "r-cotton",
+        "r-fruit-veg"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Plants growing in the fields: wheat, cotton, carrots, cabbages, onions and turnips. They are part of the land and cannot be picked up.",
+        "# How to pick them",
+        "Double-click a plant that is within 2 tiles of you and in sight. Its crop drops where it stood: a wheat sheaf, a bale of cotton or a vegetable. Each plant gives one crop and is gone 5 minutes later. The fields grow plants back.",
+        "# Good to know",
+        "Fields lie in the countryside, many of them west of Britain."
+      ]
+    },
+    {
+      "key": "r-bowls",
+      "title": "Bowls of food",
+      "art": 5625,
+      "types": [
+        "WoodenBowlOfCarrots",
+        "WoodenBowlOfCorn",
+        "WoodenBowlOfLettuce",
+        "WoodenBowlOfPeas",
+        "WoodenBowlOfStew",
+        "WoodenBowlOfTomatoSoup",
+        "PewterBowlOfCarrots",
+        "PewterBowlOfCorn",
+        "PewterBowlOfLettuce",
+        "PewterBowlOfPeas",
+        "PewterBowlOfPotatos",
+        "EmptyWoodenBowl",
+        "EmptyPewterBowl",
+        "EmptyWoodenTub",
+        "EmptyPewterTub",
+        "WoodenBowl"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-food"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Vegetables, stew and tomato soup served in a wooden or pewter bowl, and the empty bowls and tubs they come in.",
+        "# What it does",
+        "Eat it to fill 2 of your hunger; you are left with the empty bowl (an empty tub after stew or soup). A bowl weighs 1 stone, stew and soup 2.",
+        "# Where to get it",
+        "Cooks, innkeepers and tavern keepers sell the filled bowls and the soups for about 3 gold each, and an empty pewter bowl for 2. They buy them back for 1."
+      ]
+    },
+    {
+      "key": "r-drinks",
+      "title": "Drinks",
+      "art": 4086,
+      "inherits": [
+        "BaseBeverage"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "r-food"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Water, milk, ale, cider, wine and liquor, in a pitcher, glass mug, bottle, jug, ceramic or pewter mug or goblet. A pitcher, glass mug or bottle holds 5 drinks, a jug 10, a single mug or goblet 1.",
+        "# How to use it",
+        "Double-click a drink and target yourself to drink one measure. Target another empty container to pour into it. To fill an empty pitcher or mug, double-click it and target a water trough for water, or a full drink to pour from. A poisoned drink poisons you.",
+        "Ale, wine, cider and liquor make you drunk, a little for ale and more for wine, cider and liquor in that order. A drunk character staggers, says hic and loses 1 stamina and 1 mana every 5 seconds until the drink wears off, which takes a few minutes for one strong drink. Water and milk have no effect.",
+        "# Where to get it",
+        "Provisioners, innkeepers, tavern keepers and waiters sell bottles of ale, wine and liquor for about 7 gold and jugs of cider for 13. Innkeepers, tavern keepers and waiters also sell pitchers: milk for 7, ale, cider, liquor, wine and water for 11. A tinker makes goblets and pewter mugs from iron ingots."
+      ]
+    },
+    {
+      "key": "r-flour",
+      "title": "Flour and honey",
+      "art": 4153,
+      "types": [
+        "SackFlour",
+        "WheatSheaf",
+        "JarHoney",
+        "Dough",
+        "SweetDough"
+      ],
+      "skills": [
+        "Cooking"
+      ],
+      "related": [
+        "r-baked",
+        "r-crops"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Baking ingredients: a sack of flour, a wheat sheaf, a jar of honey, dough and sweet dough.",
+        "# Where to get them",
+        "Bakers and cooks sell a sack of flour for about 3 gold and a jar of honey for 3, and buy them back for 1. Wheat sheaves are picked from wheat plants in the fields. A sack of flour weighs 5 stones.",
+        "# Good to know",
+        "Cooking on this shard means cooking raw food on a fire. The baking recipes that turn flour, honey and dough into bread and pies are not available."
+      ]
+    },
+    {
+      "key": "t-shovel",
+      "title": "Shovel",
+      "art": 3897,
+      "types": [
+        "Shovel"
+      ],
+      "skills": [
+        "Mining"
+      ],
+      "related": [
+        "t-tinker-tools"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A digging tool for the Mining skill. It weighs 5 stones and a new one has 50 uses.",
+        "# What it is for",
+        "Double-click it in your pack (or hold it), then pick a mountain or cave tile within 2 tiles to dig ore from it. Every time you dig something up it uses up one use; a miss costs nothing, and a worn-out shovel is gone. Iron ore needs no minimum Mining skill, though your chance to find it rises with your skill; the rarer ores need more Mining (the first, dull copper, from 65). You cannot dig while riding.",
+        {
+          "text": "Pick a spot and the shovel keeps digging there at the usual pace until the ore is gone. Walking, casting, using another skill, war mode, fighting or being hurt ends it, and so does a full pack or a worn-out shovel. Target something new while it runs and it moves on to that once the current try finishes.",
+          "requires": "HarvestAutoRepeat"
+        },
+        "# Where to get it",
+        "No shopkeeper in this world sells shovels. A Tinker makes one from 4 iron ingots (Tinkering 40 to 90)."
+      ]
+    },
+    {
+      "key": "t-smith-tools",
+      "title": "Smith's tools",
+      "art": 5091,
+      "types": [
+        "SmithHammer",
+        "Tongs",
+        "SledgeHammer"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "t-tinker-tools",
+        "t-bod"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The tools of a Blacksmith: a smith's hammer, a pair of tongs or a sledge hammer. Any one of them will do. A smith's hammer weighs 8 stones and tongs 2.",
+        "# How to use them",
+        "Stand within 2 tiles of an anvil and a forge and double-click the tool (keep it in your pack). A cursor appears: click the iron ingots in your pack to open a menu of what you can make, repair or smelt, or click the tool itself to make the last thing again. If you hold a tool in your hand, that is the one you must use. Every attempt, good or bad, uses up one use, and a worn-out tool is gone. A new tool has 25 to 75 uses; an exceptional one you make yourself has 100.",
+        "# Where to get them",
+        "Blacksmiths sell tongs for about 13 gold and smith's hammers for about 21 (Weaponsmiths sell hammers too). A Tinker makes tongs from 1 iron ingot (Tinkering 35 to 85), and a smith's hammer or a sledge hammer from 4 (Tinkering 40 to 90)."
+      ]
+    },
+    {
+      "key": "t-tinker-tools",
+      "title": "Tinker's tools",
+      "art": 7864,
+      "types": [
+        "TinkerTools",
+        "TinkersTools"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "t-key",
+        "t-lockpick"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The tools of a Tinker. They weigh 1 stone.",
+        "# How to use them",
+        "Keep them in your pack and double-click them: a cursor appears. Click iron ingots to open a menu with categories: Wooden Items, Tools, Parts, Utensils, Traps, Miscellaneous and Jewelry. It lists only what your skill and materials allow. (Click logs instead and you get only the wooden items; click a keg to turn it into a potion keg.) Tinkers make the tools other crafts need, such as hammers, saws, scissors, sewing kits and shovels, and also keys, lockpicks, clocks, lanterns and sextants. To make the same thing again, double-click the tools and click the tools themselves.",
+        "# Where to get them",
+        "No shopkeeper in this world sells them. A Tinker makes a set from 2 iron ingots (Tinkering 10 to 60) but needs a set to do it, so make a spare before the first runs out. Each attempt uses up one of their 25 to 75 uses."
+      ]
+    },
+    {
+      "key": "t-carpenter-tools",
+      "title": "Carpenter's tools",
+      "art": 4148,
+      "types": [
+        "Saw",
+        "DovetailSaw",
+        "Hammer",
+        "Nails",
+        "DrawKnife",
+        "Froe",
+        "Inshave",
+        "Scorp",
+        "JointingPlane",
+        "MouldingPlane",
+        "SmoothingPlane"
+      ],
+      "skills": [
+        "Carpentry"
+      ],
+      "related": [
+        "t-tinker-tools",
+        "t-chest"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The tools of a Carpenter: a saw, a dovetail saw, a hammer, nails, a draw knife, a froe, an inshave, a scorp, and the jointing, moulding and smoothing planes. Any one of them works for Carpentry; you need only one.",
+        "# How to use them",
+        "Keep one in your pack and double-click it: a cursor appears. Click the logs or boards in your pack to open a menu of what your skill allows (furniture, containers, staves and a shield, instruments, other items and house add-ons such as beds), or click the tool itself to make the last thing again. Every attempt uses up one use, and a worn-out tool is gone.",
+        "# Where to get them",
+        "A Carpenter sells them: a saw for about 15 gold, a hammer 17, a dovetail saw 12, nails 3, the draw knife, froe, inshave and scorp about 10 each and the planes 10 or 11. A Tinker makes a saw, dovetail saw, hammer, draw knife, froe, inshave or scorp from iron ingots (Tinkering 30 to 80) and a plane from 4 logs (Tinkering 0 to 50)."
+      ]
+    },
+    {
+      "key": "t-fletcher-tools",
+      "title": "Fletcher's tools",
+      "art": 4130,
+      "types": [
+        "FletcherTools"
+      ],
+      "skills": [
+        "Fletching"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The tools for Bowcraft and Fletching. They weigh 2 stones.",
+        "# How to use them",
+        "Keep them in your pack and double-click them: a cursor appears. Click the logs, boards, feathers or shafts you want to use to open a menu of what your skill allows (kindling, shafts, arrows, bolts, a bow, a crossbow and a heavy crossbow), or click the tools themselves to make the last thing again. Every attempt uses up one use, and a worn-out set is gone.",
+        "# Where to get them",
+        "A Bowyer sells them for about 2 gold. They are not on a Tinker's menu, so a Bowyer is where you buy them."
+      ]
+    },
+    {
+      "key": "t-sewing-kit",
+      "title": "Sewing kit",
+      "art": 3997,
+      "types": [
+        "SewingKit"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "t-scissors",
+        "t-dyes"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The tool of a Tailor. It weighs 2 stones.",
+        "# How to use it",
+        "Keep it in your pack and double-click it: a cursor appears. Click the cloth, leather or hides you want to use to open a menu of what your Tailoring skill and your materials allow, or click the kit itself to make the last thing again. A bolt of cloth must be cut into cloth with scissors first. Every attempt uses up one use, and a worn-out kit is gone.",
+        "# Where to get it",
+        "Tailors sell sewing kits for about 3 gold. A Tinker makes one from 2 iron ingots (Tinkering 10 to 70)."
+      ]
+    },
+    {
+      "key": "t-scissors",
+      "title": "Scissors",
+      "art": 3999,
+      "types": [
+        "Scissors"
+      ],
+      "skills": [
+        "Tailoring",
+        "Healing"
+      ],
+      "related": [
+        "t-bandage"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A pair of scissors weighs 1 stone.",
+        "# What they are for",
+        "Double-click them, then click what to cut (it must be within 2 tiles). Cloth is cut into bandages, one for each piece, the whole stack at once. A bolt of cloth is cut into 50 pieces of cloth, hides into leather, and most clothing in your pack back into cloth.",
+        {
+          "text": "Every new character starts with one pair. It stays with you when you die, and it cannot be traded or sold.",
+          "requires": "Alpha3StarterScissors"
+        },
+        "# Where to get them",
+        "Tailors and Weavers sell scissors for about 11 gold. A Tinker makes a pair from 2 iron ingots (Tinkering 5 to 55)."
+      ]
+    },
+    {
+      "key": "t-mapmakers-pen",
+      "title": "Mapmaker's pen",
+      "art": 4031,
+      "types": [
+        "MapmakersPen"
+      ],
+      "skills": [
+        "Cartography"
+      ],
+      "related": [
+        "t-maps"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The pen of a Cartographer. It weighs 1 stone.",
+        "# How to use it",
+        "Keep it in your pack and double-click it: a cursor appears. Click a blank map in your pack to open a menu of the maps your Cartography skill allows, or click the pen itself to make the last map again. You do not need the pen here: using the Cartography skill on its own opens the same menu, and then the pen is not worn.",
+        "# Where to get it",
+        "Mapmakers sell the pen for about 8 gold and blank maps for about 5. It is not on a Tinker's menu."
+      ]
+    },
+    {
+      "key": "t-scribes-pen",
+      "title": "Scribe's pen",
+      "art": 4031,
+      "types": [
+        "ScribesPen"
+      ],
+      "skills": [
+        "Inscribe"
+      ],
+      "related": [
+        "t-blank-scroll",
+        "t-scroll"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The pen of a Scribe. It weighs 1 stone.",
+        "# How to use it",
+        "Keep it in your pack and double-click it: a cursor appears. Click a blank scroll in your pack to open a menu of the circles of spells you can inscribe right now (and the runebook, if you hold what it needs), or click the pen itself to make the last scroll again. You can only inscribe a spell that is in your own spellbook, and each scroll costs a blank scroll, the spell's reagents and some mana. You do not need the pen here: using the Inscription skill on its own asks you to click a blank scroll or a book to copy, and then the pen is not worn.",
+        "# Where to get it",
+        "Scribes and Mages sell the pen for about 8 gold and blank scrolls for about 5. It is not on a Tinker's menu."
+      ]
+    },
+    {
+      "key": "t-fishing-pole",
+      "title": "Fishing pole",
+      "art": 3520,
+      "types": [
+        "FishingPole"
+      ],
+      "skills": [
+        "Fishing"
+      ],
+      "related": [
+        "t-carpenter-tools"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The tool for Fishing. It weighs 8 stones and does not wear out.",
+        "# How to use it",
+        "Double-click it, then click water within 4 tiles. Most catches are fish, and now and then a pair of shoes or boots. Very rarely a skilled fisher (Fishing 90 or more) out in deep water hooks a treasure map, but then a sea serpent rises from the water carrying it, and you must kill the serpent to get it.",
+        {
+          "text": "Pick a spot and the pole keeps fishing there at the usual pace until the fish stop biting. Walking, casting, using another skill, war mode, fighting or being hurt ends it, and so does a full pack. Target something new while it runs and it moves on to that once the current try finishes.",
+          "requires": "HarvestAutoRepeat"
+        },
+        "# Where to get it",
+        "Fishermen sell poles for about 15 gold. A Carpenter makes one from 5 logs and 5 cloth (Carpentry 68.4 to 93.4, and Tailoring 40)."
+      ]
+    },
+    {
+      "key": "t-lockpick",
+      "title": "Lockpicks",
+      "art": 5372,
+      "types": [
+        "Lockpick"
+      ],
+      "skills": [
+        "Lockpicking"
+      ],
+      "related": [
+        "t-chest",
+        "t-key"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A stack of lockpicks for the Lockpicking skill.",
+        "# What they are for",
+        "Double-click a lockpick, then click a locked chest or door right next to you. After 3 seconds you get one try. If your Lockpicking is lower than the lock needs, you are told you do not see how that lock can be manipulated; a lock set by Magic Lock cannot be picked at all. When a try fails there is a 1 in 4 chance the pick breaks. Some chests are trapped, and the trap may go off when you pick the lock or when you open the chest.",
+        {
+          "text": "Pick a lock and the game keeps trying the same lock for you while you have picks, until it opens, the last pick breaks, or you step away, fight, cast or do something else.",
+          "requires": "ActionAutoRepeat"
+        },
+        "# Where to get them",
+        "Provisioners sell lockpicks for about 12 gold each. A Tinker makes one from 1 iron ingot (Tinkering 45 to 95)."
+      ]
+    },
+    {
+      "key": "t-sextant",
+      "title": "Sextant, spyglass",
+      "art": 4184,
+      "types": [
+        "Sextant",
+        "Spyglass"
+      ],
+      "skills": [
+        "Cartography"
+      ],
+      "related": [
+        "t-clock",
+        "t-tinker-tools"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Two sky-watching tools. A sextant weighs 2 stones and a spyglass 3.",
+        "# What they do",
+        "Double-click a sextant to read your position as degrees of latitude and longitude, shown over your head. Double-click a spyglass to look at the sky; it tells you the phase of the moons.",
+        "# Where to get them",
+        "No shopkeeper in this world sells them. A Tinker makes a spyglass from 4 iron ingots (Tinkering 60 to 110) and a sextant from sextant parts, which are made from iron ingots too (Tinkering 30 to 80)."
+      ]
+    },
+    {
+      "key": "t-clock",
+      "title": "Clocks",
+      "art": 4171,
+      "types": [
+        "Clock"
+      ],
+      "related": [
+        "t-sextant"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A clock tells the time. An ordinary clock weighs 3 stones.",
+        "# How to use it",
+        "Double-click it: you are told the time of day in words (late at night, early in the morning, around noon and so on) and then the exact time. A day in Britannia lasts 2 hours of real time.",
+        "# Where to get it",
+        "No shopkeeper in this world sells clocks. A Tinker builds an ordinary clock from a clock frame (6 logs, Tinkering 0 to 50) and clock parts (1 iron ingot, Tinkering 25 to 75)."
+      ]
+    },
+    {
+      "key": "t-bandage",
+      "title": "Bandages",
+      "art": 3617,
+      "types": [
+        "Bandage"
+      ],
+      "skills": [
+        "Healing",
+        "Veterinary",
+        "Anatomy"
+      ],
+      "related": [
+        "t-scissors"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A stack of strips of clean cloth for the Healing skill. Each bandage weighs a tenth of a stone.",
+        "# How to use them",
+        "Double-click a bandage, then click the person to heal (yourself too). Stand next to them until it is done. One bandage is used up each time you start, and starting a new one cancels the old one. On yourself it takes about 9 to 16 seconds (less with more Dexterity); on someone else 3 to 5.",
+        "# What they do",
+        "Your chance to bandage well is your Healing plus 10 percent, certain at 90. Each hit you take while the bandage is on makes your fingers slip: 2 percent less chance and 4 less hit points healed. A good bandage heals a fifth of your Anatomy plus a fifth to a half of your Healing, plus 3 to 10: from 3 to 10 hit points at skill 0 to 43 to 80 at Healing and Anatomy 100. A bad one heals nothing. A poisoned patient is only cured, which needs Healing and Anatomy of at least 60 and can fail; with both at 80 or more a bandage can also try to resurrect a ghost. On a pet or other animal it uses your Veterinary and Animal Lore instead.",
+        "# Where to get them",
+        "Healers sell bandages for about 5 gold each, and Scissors cut cloth into bandages."
+      ]
+    },
+    {
+      "key": "t-instrument",
+      "title": "Instruments",
+      "art": 3762,
+      "inherits": [
+        "BaseInstrument"
+      ],
+      "skills": [
+        "Musicianship",
+        "Peacemaking",
+        "Provocation",
+        "Discordance"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Harps, lutes, drums and tambourines. A Bard needs one for Peacemaking, Provocation and Discordance, and playing one trains Musicianship. A lap harp weighs 10 stones, a harp 35, a lute 5, a drum 4 and a tambourine 1.",
+        "# How to use one",
+        "Double-click it while you are right next to it. You hear a good tune with a chance equal to your Musicianship percent, a poor one otherwise, and can play again after 6 seconds. The instrument you played last is the one the Bard skills use; if you have not played one, the skill asks you to click one. Each time you play it for Peacemaking, Provocation or Discordance it wears by a use. A new ordinary one has 350 to 450 uses; when the last is gone, so is the instrument.",
+        "# Where to get them",
+        "Bards and Carpenters sell drums, tambourines, lap harps and lutes for about 21 gold. A Carpenter also makes them from logs and cloth, and needs Musicianship 45: tambourine 15 logs and 10 cloth (Carpentry 57.8 to 82.8), drum 20 logs and 10 cloth (57.8 to 82.8), lap harp 20 logs and 10 cloth (63.1 to 88.1), lute 25 logs and 10 cloth (68.4 to 93.4), harp 35 logs and 15 cloth (78.9 to 103.9)."
+      ]
+    },
+    {
+      "key": "t-torch",
+      "title": "Torch, lantern",
+      "art": 3947,
+      "inherits": [
+        "BaseEquipableLight"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Torches, candles and lanterns light the dark around you when lit and held. A torch or a lantern lights a wide circle, a candle a smaller one. A torch and a candle weigh 1 stone and stack; a lantern weighs 2.",
+        "# How to use them",
+        "Double-click one to light it: it goes into your off hand, the place a shield or a two-handed weapon uses, so you cannot carry those at the same time; if that hand is taken, the lit light is put on the ground at your feet instead. Double-click it again to put it out. A lit one put away in a bag or pack goes out. They never burn out here, so there is no fuel to buy.",
+        "# Where to get them",
+        "Provisioners sell torches for about 8 gold, candles about 6 and lanterns about 2; Innkeepers sell torches for about 7 and candles for about 6. A Tinker makes a lantern from 2 iron ingots (Tinkering 30 to 80)."
+      ]
+    },
+    {
+      "key": "t-lamps",
+      "title": "Lamps and braziers",
+      "art": 2599,
+      "inherits": [
+        "BaseLight"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Braziers, candelabra, lamp posts, wall torches, sconces and hanging lanterns. They light up a room, a street or a dungeon corridor, and many are fixed in place.",
+        "# How to use them",
+        "Double-click one within 2 tiles to light it, and again to put it out (some burn all the time and cannot be put out).",
+        "# Where to get them",
+        "A Tinker makes a candelabra from 4 iron ingots (Tinkering 55 to 105) and a heating stand from 4 (Tinkering 60 to 110). Alchemists also sell a heating stand for about 2 gold."
+      ]
+    },
+    {
+      "key": "t-backpack",
+      "title": "Backpack",
+      "art": 3701,
+      "types": [
+        "Backpack"
+      ],
+      "related": [
+        "t-bags"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Your pack, where you keep what you carry. Double-click it to open it. An empty pack weighs 3 stones and it holds up to 125 items and 400 stones; everything inside the bags in it counts too.",
+        "# How much you can carry",
+        "Your Strength sets the total you can carry: 40 stones plus 3.5 for each point of Strength, with your own body counting for 11 and a leeway of 4. Go over that and every step costs extra stamina, double when you run, until you are too tired to move. Recall also refuses you while you are overloaded.",
+        "# Where to get one",
+        "You start with one. Provisioners, Innkeepers and Tanners sell spare backpacks for about 15 gold."
+      ]
+    },
+    {
+      "key": "t-bags",
+      "title": "Bags and pouches",
+      "art": 3702,
+      "types": [
+        "Bag",
+        "Pouch",
+        "Basket",
+        "PicnicBasket"
+      ],
+      "related": [
+        "t-backpack",
+        "t-dyes"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Containers you keep inside your pack to sort what you carry. An empty bag weighs 2 stones, a pouch 1, a basket 1 and a picnic basket 2. Each holds up to 125 items and 400 stones, and no more than the pack it sits in can hold.",
+        "# Good to know",
+        "A pouch can be trapped (the Magic Trap spell works on it). A bag can be painted with a dye tub, though not a pouch. Everything inside counts towards your weight.",
+        {
+          "text": "Every new character starts with a bag in the pack.",
+          "requires": "Alpha3StarterBag"
+        },
+        "# Where to get them",
+        "Provisioners and Tanners sell bags and pouches for about 6 gold each."
+      ]
+    },
+    {
+      "key": "t-chest",
+      "title": "Boxes and chests",
+      "art": 2474,
+      "types": [
+        "WoodenBox",
+        "SmallCrate",
+        "MediumCrate",
+        "LargeCrate",
+        "WoodenChest",
+        "MetalBox",
+        "MetalChest",
+        "MetalGoldenChest"
+      ],
+      "skills": [
+        "Carpentry",
+        "Lockpicking"
+      ],
+      "related": [
+        "t-key",
+        "t-lockpick"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Wooden boxes, crates and chests, and metal boxes and chests. Ones that were made lockable can be locked and trapped. Each holds up to 125 items and 400 stones. A wooden box weighs 4 stones, a small or medium crate 2, a large crate 1 and a wooden chest 2.",
+        "# Locks",
+        "A box a Carpenter makes may be lockable: when it is finished the game checks your Tinkering skill (a sure thing from Tinkering 15), and if that is enough the box is lockable and its key is inside. Double-click the key and click the box to lock or unlock it. A locked box cannot be opened or filled. Lockpicks open it if your Lockpicking is high enough. The Magic Lock spell can lock a box that was made lockable; then lockpicks cannot open it, only its key or the Unlock spell. A box that was not made lockable cannot be locked at all.",
+        "# Traps",
+        "The Magic Trap spell, or a Tinker (Traps in the Tinkering menu, keyed boxes only), can trap a box. A Tinker's trap sleeps until the box is locked, then hurts whoever picks the lock. Remove Trap disarms a trap and needs Lockpicking and Detect Hidden of at least 50.",
+        "# Where to get them",
+        "A Carpenter makes a wooden box from 10 logs (Carpentry 21 to 46), a small crate from 8 (10 to 35), a medium crate from 15 (31 to 56), a large crate from 18 (47.3 to 72.3) and a wooden chest from 20 (73.6 to 98.6). Provisioners sell a wooden box for about 14 gold; it has no key and no lock."
+      ]
+    },
+    {
+      "key": "t-barrel",
+      "title": "Barrel and keg",
+      "art": 3703,
+      "types": [
+        "Barrel",
+        "Keg"
+      ],
+      "skills": [
+        "Carpentry"
+      ],
+      "related": [
+        "potion-keg"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Casks that hold goods. A barrel weighs 25 stones and a keg 15. Each holds up to 125 items and 400 stones.",
+        "# Where to get them",
+        "A Carpenter builds a keg from 3 barrel staves, a barrel hoops and a barrel lid (Carpentry 57.8 to 82.8). The staves (5 logs each, Carpentry 0 to 25) and the lid (4 logs, Carpentry 11 to 36) are Carpenter's work; the hoops (5 iron ingots) are a Tinker's. A Tinker can turn a keg into a potion keg: read the Potion keg topic. Barrels are found as decoration, mostly in dungeons."
+      ]
+    },
+    {
+      "key": "t-armoire",
+      "title": "Armoire, bookcase",
+      "art": 2639,
+      "types": [
+        "Armoire",
+        "FancyArmoire",
+        "EmptyBookcase",
+        "FullBookcase",
+        "Drawer",
+        "FancyDrawer"
+      ],
+      "skills": [
+        "Carpentry"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Furniture that holds things. A piece fixed in place in a shop, street or dungeon (one you cannot pick up) cannot be filled: the game tells you it is not your container. One you carry in your pack, or have locked down in your own house, can be.",
+        "# Where to get them",
+        "A Carpenter builds an empty bookcase from 25 logs (Carpentry 31.5 to 56.5), an armoire or a fancy armoire from 35 logs each (Carpentry 84.2 to 109.2). Full bookcases, drawers and fancy drawers are only found as decoration."
+      ]
+    },
+    {
+      "key": "t-key",
+      "title": "Keys",
+      "art": 4110,
+      "types": [
+        "Key"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "t-keyring",
+        "t-chest"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A key opens one lock and no other: every lockable box, chest or door has its own number, and a key carries a number too. A key weighs 1 stone. A blank key has no number yet.",
+        "# How to use it",
+        "Keep it in your pack, double-click it, then click the box or door (within 3 tiles). If the numbers match, it locks what is unlocked and unlocks what is locked. To name a key, double-click it and click the key itself. A blank key asks which key to copy: copying uses your Tinkering skill and can fail, with a 1 in 10 chance of ruining the blank.",
+        "# Where to get one",
+        "Provisioners sell blank keys for about 2 gold. A Tinker makes a blank from 3 iron ingots (Tinkering 20 to 70). A lockable box a Carpenter made for you has its key inside it."
+      ]
+    },
+    {
+      "key": "t-keyring",
+      "title": "Key ring",
+      "art": 4113,
+      "types": [
+        "KeyRing"
+      ],
+      "skills": [
+        "Tinkering"
+      ],
+      "related": [
+        "t-key"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A ring that holds up to 20 keys in one item that weighs 1 stone. Blank keys do not go on it.",
+        "# How to use it",
+        "Drag a key onto the ring while the ring is in your pack. Double-click the ring, then click a box or door: it tries each key until one fits, and tells you if you have none for it. Click the ring itself to take all the keys off again.",
+        "# Where to get it",
+        "No shopkeeper in this world sells key rings. A Tinker makes one from 2 iron ingots (Tinkering 10 to 60)."
+      ]
+    },
+    {
+      "key": "t-dyes",
+      "title": "Dye tubs and dyes",
+      "art": 4011,
+      "inherits": [
+        "DyeTub"
+      ],
+      "types": [
+        "Dyes"
+      ],
+      "skills": [
+        "Tailoring"
+      ],
+      "related": [
+        "t-hair-dye"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "An ordinary dye tub paints things; the dyes set the color of the tub. A tub weighs 10 stones and a set of dyes 3.",
+        "# How to use them",
+        "First set the color: double-click the dyes and click the tub, then pick a color from the chart. Then double-click the tub and click what to paint. You and the tub must be within 1 tile of each other and of the thing. You can paint clothing, bags and backpacks, bandages, cloth, wool, cotton, yarn and thread, but not clothes you are wearing.",
+        "# Where to get them",
+        "Tailors and Weavers sell dye tubs and dyes for about 8 gold each."
+      ]
+    },
+    {
+      "key": "t-hair-dye",
+      "title": "Hair dye",
+      "art": 3839,
+      "types": [
+        "HairDye"
+      ],
+      "related": [
+        "t-dyes"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A dye for your hair and beard. It weighs 1 stone and is used up when you use it.",
+        "# How to use it",
+        "Keep it in your pack and double-click it, then choose a color from the chart. Your hair and your beard both take the color. You need some hair or a beard to use it.",
+        "# Where to get it",
+        "Alchemists sell hair dye for about 37 gold and Provisioners for about 60."
+      ]
+    },
+    {
+      "key": "t-dice",
+      "title": "Dice and boards",
+      "art": 4007,
+      "types": [
+        "Dices",
+        "Chessboard",
+        "CheckerBoard",
+        "Backgammon"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Dice and game boards for passing the time. Dice weigh 1 stone. A board weighs 5 stones and keeps its own pieces in it.",
+        "# How to use them",
+        "Double-click the dice, standing within 2 tiles: everyone nearby sees you roll two dice, each from 1 to 6. A board opens like a container; drag its pieces about on it to play.",
+        "# Where to get them",
+        "Provisioners, Innkeepers and Tavern Keepers sell dice, chessboards, checkerboards and backgammon boards for about 2 gold each."
+      ]
+    },
+    {
+      "key": "t-bedroll",
+      "title": "Bedroll",
+      "art": 2647,
+      "types": [
+        "Bedroll"
+      ],
+      "skills": [
+        "Camping"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A rolled-up bed for camping. It weighs 5 stones.",
+        "# What it is for",
+        "Put it on the ground near you and double-click it to unroll it, and again to roll it up. Rolling it up in a secure camp opens a window: choose Continue within 10 seconds and you log out at once, safely, with the bedroll back in your pack. A camp is secure when you have stayed within 7 tiles of a burning campfire for 30 seconds; embers do not count. A bedroll in your pack does nothing until you put it down.",
+        {
+          "text": "Every new character starts with a bedroll and some Kindling, kept loose in the pack and kept through death (a murderer loses them).",
+          "requires": "CampingStarterKit"
+        },
+        "# Where to get it",
+        "Provisioners sell bedrolls for about 5 gold."
+      ]
+    },
+    {
+      "key": "t-utensils",
+      "title": "Table utensils",
+      "art": 2548,
+      "types": [
+        "Fork",
+        "ForkLeft",
+        "ForkRight",
+        "Knife",
+        "KnifeLeft",
+        "KnifeRight",
+        "Spoon",
+        "SpoonLeft",
+        "SpoonRight"
+      ],
+      "related": [
+        "t-tinker-tools"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Forks, knives and spoons for a table. They are decoration and do nothing when used. Each weighs 1 stone.",
+        "# Where to get them",
+        "No shopkeeper in this world sells them. A Tinker makes each from 1 iron ingot (Tinkering 0 to 50), left or right facing."
+      ]
+    },
+    {
+      "key": "t-books",
+      "title": "Books",
+      "art": 4082,
+      "inherits": [
+        "BaseBook"
+      ],
+      "skills": [
+        "Inscribe"
+      ],
+      "related": [
+        "t-blank-scroll"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Books to read, and some to write in. Lore books (histories, journals and tales) are set out as decoration in Britain, a few other towns and some dungeons; you can read them but not change them. A blank book is writable: a red, brown or tan one has 20 pages and a blue one 40.",
+        "# How to use them",
+        "Double-click a book to open it. A blank book gets the title \"a book\" and your name as its author the first time you open it; then you can write in it. Click a book once to see its title, author and number of pages. A Scribe can copy a book into a blank one: use the Inscription skill, click the book to copy, then the blank book. It can fail; at Inscription 50 it never does.",
+        "# Where to get them",
+        "Scribes sell blank brown, tan and blue books for about 15 gold each, and Provisioners sell red, tan and blue ones for the same."
+      ]
+    },
+    {
+      "key": "t-spellbook",
+      "title": "Spellbook",
+      "art": 3834,
+      "types": [
+        "Spellbook"
+      ],
+      "skills": [
+        "Magery",
+        "Inscribe"
+      ],
+      "related": [
+        "t-scroll"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The ordinary spellbook, the book of Magery. It holds the 64 spells of the eight circles, each one either in the book or not, and it weighs 3 stones. It is blessed, so it stays with you when you die. You can hold it in your hand as well as carry it.",
+        "# How to use it",
+        "Double-click it to open it; it must be in your pack (not inside a bag) or in your hand. A spell can be cast only if it is in a book you carry. To add a spell, drag a spell scroll onto the book (or open the scroll's menu, choose Add To Spellbook and click the book): one scroll of the stack is used up. A book that already has the spell refuses the scroll.",
+        "# Where to get it",
+        "Mages sell a spellbook for about 18 gold. One you buy is empty, so buy scrolls (Mages sell those of the first three circles) and drag them in."
+      ]
+    },
+    {
+      "key": "t-scroll",
+      "title": "Spell scrolls",
+      "art": 7982,
+      "types": [
+        "ReactiveArmorScroll",
+        "ClumsyScroll",
+        "CreateFoodScroll",
+        "FeeblemindScroll",
+        "HealScroll",
+        "MagicArrowScroll",
+        "NightSightScroll",
+        "WeakenScroll",
+        "AgilityScroll",
+        "CunningScroll",
+        "CureScroll",
+        "HarmScroll",
+        "MagicTrapScroll",
+        "MagicUnTrapScroll",
+        "ProtectionScroll",
+        "StrengthScroll",
+        "BlessScroll",
+        "FireballScroll",
+        "MagicLockScroll",
+        "PoisonScroll",
+        "TelekinesisScroll",
+        "TeleportScroll",
+        "UnlockScroll",
+        "WallOfStoneScroll",
+        "ArchCureScroll",
+        "ArchProtectionScroll",
+        "CurseScroll",
+        "FireFieldScroll",
+        "GreaterHealScroll",
+        "LightningScroll",
+        "ManaDrainScroll",
+        "RecallScroll",
+        "BladeSpiritsScroll",
+        "DispelFieldScroll",
+        "IncognitoScroll",
+        "MagicReflectScroll",
+        "MindBlastScroll",
+        "ParalyzeScroll",
+        "PoisonFieldScroll",
+        "SummonCreatureScroll",
+        "DispelScroll",
+        "EnergyBoltScroll",
+        "ExplosionScroll",
+        "InvisibilityScroll",
+        "MarkScroll",
+        "MassCurseScroll",
+        "ParalyzeFieldScroll",
+        "RevealScroll",
+        "ChainLightningScroll",
+        "EnergyFieldScroll",
+        "FlamestrikeScroll",
+        "GateTravelScroll",
+        "ManaVampireScroll",
+        "MassDispelScroll",
+        "MeteorSwarmScroll",
+        "PolymorphScroll",
+        "EarthquakeScroll",
+        "EnergyVortexScroll",
+        "ResurrectionScroll",
+        "SummonAirElementalScroll",
+        "SummonDaemonScroll",
+        "SummonEarthElementalScroll",
+        "SummonFireElementalScroll",
+        "SummonWaterElementalScroll"
+      ],
+      "skills": [
+        "Magery",
+        "Inscribe"
+      ],
+      "related": [
+        "t-spellbook",
+        "t-blank-scroll"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A scroll holds one spell to cast once. There are 64 spells in eight circles, and each is its own kind of scroll. Each scroll weighs 1 stone, and scrolls of one kind stack.",
+        "# How to use them",
+        "Double-click a scroll in your pack, then choose the target if the spell needs one. A scroll needs no reagents but costs the spell's mana, and it takes less Magery to cast a spell from a scroll than from a book. The scroll is used up when the spell goes off; if the cast fizzles you keep it. To keep the spell for good, drag the scroll onto your spellbook instead (or open the scroll's menu, choose Add To Spellbook and click the book).",
+        {
+          "text": "A Recall scroll that would take a blue player into a Hot Zone from outside one asks first; if you cancel, nothing is used up. A gate, including one opened by Gate Travel, asks as you step in.",
+          "requires": "HotZoneTravelWarning"
+        },
+        "# Where to get them",
+        "Mages sell scrolls of the first three circles: about 12 gold for the first circle, 22 for the second and 32 for the third. Higher circles come as loot from monsters and in treasure chests. A character with the Inscription skill can make a scroll of any spell in their own spellbook, from a blank scroll, the spell's reagents and some mana."
+      ]
+    },
+    {
+      "key": "t-blank-scroll",
+      "title": "Blank scroll",
+      "art": 3827,
+      "types": [
+        "BlankScroll"
+      ],
+      "skills": [
+        "Inscribe"
+      ],
+      "related": [
+        "t-scribes-pen",
+        "t-scroll"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A sheet ready to be written on. It weighs 1 stone, and blank scrolls stack.",
+        "# What it is for",
+        "Inscription turns one blank scroll into one spell scroll. A runebook takes 8 blank scrolls, a Recall scroll and a Gate Travel scroll.",
+        "# Where to get it",
+        "Scribes and Mages sell blank scrolls for about 5 gold each; a Mapmaker sells them for about 12."
+      ]
+    },
+    {
+      "key": "t-recall-rune",
+      "title": "Recall rune",
+      "art": 7956,
+      "types": [
+        "RecallRune"
+      ],
+      "skills": [
+        "Magery"
+      ],
+      "related": [
+        "t-runebook"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A stone that remembers a place. A new rune is blank (\"unmarked\"). It weighs 1 stone.",
+        "# How to use it",
+        "Cast the Mark spell (sixth circle) and click a blank rune in your pack: it remembers the spot where you stand. Double-click a marked rune to give it a name. Cast Recall (fourth circle) and click the rune, and you are taken to its place. Recall refuses you while you are a criminal, in a fight or overloaded, and some places refuse marking and recall.",
+        {
+          "text": "If the trip would take a blue player into a Hot Zone from outside, the game asks first; cancelling costs nothing.",
+          "requires": "HotZoneTravelWarning"
+        },
+        "# Where to get it",
+        "Mages sell blank recall runes for about 15 gold."
+      ]
+    },
+    {
+      "key": "t-runebook",
+      "title": "Runebook",
+      "art": 3834,
+      "types": [
+        "Runebook"
+      ],
+      "skills": [
+        "Magery",
+        "Inscribe"
+      ],
+      "related": [
+        "t-recall-rune"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A book of up to 16 recall runes, with a few charges for casting Recall from it. It weighs 3 stones, is blessed (it stays with you when you die) and can be held in your hand.",
+        "# How to use it",
+        "Drag marked runes onto it. Drag Recall scrolls onto it to charge it: each adds a charge, up to the book's limit. Double-click it to open it. In the open book, the button next to a rune's name recalls you to that place with one charge: no reagents and no Recall spell needed, though it still costs mana. A rune's own page also has Recall and Gate buttons, which cast those spells from your own spellbook instead, and Drop rune and Set default. Casting Recall and clicking the book takes you to its default place. After a trip the book needs 7 seconds to recover.",
+        "# Where to get it",
+        "A Scribe makes one by Inscription (45 to 95) from 8 blank scrolls, a Recall scroll and a Gate Travel scroll. Its charge limit is 7 to 10, higher with more Inscription skill and for exceptional quality."
+      ]
+    },
+    {
+      "key": "t-maps",
+      "title": "Maps",
+      "art": 5356,
+      "types": [
+        "BlankMap",
+        "LocalMap",
+        "CityMap",
+        "SeaChart",
+        "WorldMap"
+      ],
+      "skills": [
+        "Cartography"
+      ],
+      "related": [
+        "t-mapmakers-pen"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A blank map is an empty sheet. A Cartographer draws it into a local map, a city map, a sea chart or a world map. Each weighs 1 stone.",
+        "# How to use them",
+        "Double-click a drawn map, standing within 2 tiles, to open it. A local map, city map or sea chart shows the land around the place where it was drawn, and a map drawn with more Cartography skill shows a wider area. A world map is always centred on Britain and also grows with your skill. A blank map only tells you it is blank.",
+        "# How to make one",
+        "Use the Cartography skill (or double-click a mapmaker's pen) and choose a map; each takes one blank map. A local map needs Cartography 10 to 70, a city map 25 to 85, a sea chart 35 to 95 and a world map 39.5 to 99.5. Mapmakers sell blank maps for about 5 gold."
+      ]
+    },
+    {
+      "key": "t-bod",
+      "title": "Bulk order deeds",
+      "art": 5359,
+      "types": [
+        "SmallSmithBOD",
+        "LargeSmithBOD"
+      ],
+      "skills": [
+        "Blacksmith"
+      ],
+      "related": [
+        "t-smith-tools"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A Blacksmith's bulk order: a request for a number of one kind of armor or weapon. A small deed asks for 10, 15 or 20 of one item; a large deed asks for several different items. Some deeds demand exceptional quality or a certain metal.",
+        "# How to use it",
+        "Double-click the deed to read what it needs. Choose the button that combines the deed with the item requested, then click an item in your pack that fits. A large deed is filled by combining the small deeds that match its entries. When it is complete, drag it onto a Blacksmith to be paid in gold (a bank check when it is over 1,000) and fame, and sometimes an item.",
+        "# Where to get one",
+        "A Blacksmith offers an order to a character with some Blacksmithing skill: click the Blacksmith and choose Bulk Order Info, or you may be offered one after you sell him goods. You can be offered a new one every hour below Blacksmithing 50.1, every 2 hours from 50.1 and every 6 hours from 70.1; large deeds come only from 70.1."
+      ]
+    },
+    {
+      "key": "w-weapon",
+      "title": "A weapon",
+      "art": 3937,
+      "inherits": [
+        "BaseWeapon"
+      ],
+      "skills": [
+        "Tactics",
+        "Anatomy",
+        "ArmsLore",
+        "Blacksmith"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A weapon. Equip it to fight with it. Each kind uses one combat skill (Swordsmanship, Fencing, Mace Fighting or Archery); with empty hands you fight with Wrestling. The help pages for swords, axes, maces, bows and the other common weapons give their numbers. This page is what all weapons share.",
+        "# Using it",
+        "You need at least the weapon's Strength requirement to equip it; if you do not, the game says You are not strong enough to equip that. A two-handed weapon cannot be used with a shield. A one-handed weapon can.",
+        "Each hit rolls between the weapon's lowest and highest damage. Tactics, Strength and Anatomy then change it, a worn weapon does less (down to half with no durability left), and the target's armor and shield take some away. A hit on another player does half damage. A swing takes 15000 / ((stamina + 100) x speed) seconds, which is 75 / speed at 100 stamina, so a higher speed swings faster. Your stamina can never be higher than your Dexterity. The Skill Guide ([SkillGuide) explains your weapon skill, Tactics and Anatomy in full.",
+        {
+          "text": "New fighter help: when your swing time is worked out, a stamina below 60 counts as 60, and when your damage is worked out, a Tactics below 30 counts as 30.",
+          "requires": "NoviceCombat"
+        },
+        "# Durability and repair",
+        "About one hit in 25 costs a weapon a point of durability, and slimes and acid elementals cost a melee weapon a point on every hit. With none left it starts to lose its maximum, and when that is used up it breaks and is gone. Arms Lore tells you a weapon's condition and how hard it hits. A Blacksmith can repair the weapons a Blacksmith can forge, and the Pitchfork: choose Repair in the Blacksmith menu, near a forge and anvil, with the weapon in your backpack and no poison on it. A repair can lower its maximum a little.",
+        "# Magic and quality",
+        "Some weapons from monsters or treasure chests are magical, and read as unidentified until you use Item Identification on them. Accurate, surpassingly accurate, eminently accurate, exceedingly accurate and supremely accurate add 5, 10, 15, 20 and 25 to your Tactics (to your Archery with a bow or crossbow). Ruin, might, force, power and vanquishing add 1, 3, 5, 7 and 9 to each damage roll. Durable, substantial, massive, fortified and indestructible add 20%, 50%, 70%, 100% and 120% to durability. An exceptional weapon from a skilled maker does 20% more damage and has 20% more durability.",
+        "# Buying and selling",
+        "Shopkeepers pay about half of what they charge for ordinary weapons, plus 100 gold for each step of ruin or durability. They will not buy newbied gear such as your starting weapon, which you keep when you die (a murderer loses it)."
+      ]
+    },
+    {
+      "key": "w-sword",
+      "title": "Swords",
+      "art": 3937,
+      "types": [
+        "Broadsword",
+        "Cutlass",
+        "Katana",
+        "Longsword",
+        "Scimitar",
+        "ThinLongsword",
+        "VikingSword"
+      ],
+      "skills": [
+        "Swords",
+        "Parry",
+        "Blacksmith"
+      ],
+      "related": [
+        "w-weapon"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Swords are one-handed blades that use the Swordsmanship skill, so you can carry a shield with one. The Kryss is a Fencing weapon and has its own page. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Katana: Str 10, damage 5 to 26, speed 58, 6 stones, durability 31 to 90<BR>Cutlass: Str 10, damage 6 to 28, speed 45, 8 stones, durability 31 to 70<BR>Scimitar: Str 10, damage 4 to 30, speed 43, 5 stones, durability 31 to 90<BR>Broadsword: Str 25, damage 5 to 29, speed 45, 6 stones, durability 31 to 100<BR>Longsword: Str 25, damage 5 to 33, speed 35, 7 stones, durability 31 to 110<BR>Thin longsword (named long sword in the game): Str 25, damage 5 to 33, speed 35, 1 stone, durability 31 to 110<BR>Viking sword: Str 40, damage 6 to 34, speed 30, 6 stones, durability 31 to 100",
+        "# Good to know",
+        "Speed counts as much as damage: at 100 stamina a Katana swings every 1.3 seconds and a Longsword every 2.1. Slimes and acid elementals scar a sword on every hit. Double-click a sword and click a corpse to carve it, or a tree to cut Kindling. With the Poisoning skill you can coat a sword with a poison potion: each hit then uses one of 12 to 18 charges and poisons about half the time.",
+        "A new Swordsmanship or Tactics character starts with a Katana. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it.",
+        "# Where to get them",
+        "Blacksmiths sell them for about: Cutlass 24 gold, Thin longsword 27, Katana 33, Broadsword 35, Scimitar 36, Longsword 55, Viking sword 55. Only about one weaponsmith in three stocks swords, so a Blacksmith is the sure place. A Blacksmith forges all but the Thin longsword from iron ingots; the Blacksmithy page lists the skill and ingots each needs. Monsters also drop swords."
+      ]
+    },
+    {
+      "key": "w-fencing",
+      "title": "Dagger and kryss",
+      "art": 5121,
+      "types": [
+        "Dagger",
+        "Kryss"
+      ],
+      "skills": [
+        "Fencing",
+        "Parry",
+        "Blacksmith"
+      ],
+      "related": [
+        "w-weapon"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The Dagger and the Kryss are one-handed piercing blades that use the Fencing skill, not Swordsmanship. You can carry a shield with them. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Dagger: Str 1, damage 3 to 15, speed 55, 1 stone, durability 31 to 40<BR>Kryss: Str 10, damage 3 to 28, speed 53, 2 stones, durability 31 to 90",
+        "# Good to know",
+        "Both swing fast: at 100 stamina about every 1.4 seconds. A new Fencing character starts with a Kryss. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it.",
+        "Double-click one and click a corpse to carve it, or a tree to cut Kindling. With the Poisoning skill you can coat either with a poison potion: each hit then uses one of 12 to 18 charges and poisons about half the time. See A weapon for how damage, speed and durability work.",
+        "# Where to get them",
+        "Blacksmiths sell the Dagger for about 21 gold and the Kryss for 32. A Blacksmith forges both from iron ingots. The Dagger needs only 3 and is the first weapon you can try to forge, even at Blacksmithy 0, though it rarely works until the skill has grown a little."
+      ]
+    },
+    {
+      "key": "w-knife",
+      "title": "Knives",
+      "art": 5110,
+      "types": [
+        "ButcherKnife",
+        "Cleaver",
+        "SkinningKnife"
+      ],
+      "skills": [
+        "Swords",
+        "Tinkering"
+      ],
+      "related": [
+        "w-sword",
+        "w-fencing"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Small one-handed knives that use the Swordsmanship skill. They are poor weapons but handy tools: double-click one and click a corpse to carve it (meat, hides, feathers or wool, when the creature has any), or click a tree to cut Kindling. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Butcher knife: Str 5, damage 2 to 14, speed 40, 1 stone, durability 31 to 40<BR>Cleaver: Str 10, damage 2 to 13, speed 40, 2 stones, durability 31 to 50<BR>Skinning knife: Str 5, damage 1 to 10, speed 40, 1 stone, durability 31 to 40",
+        "# Where to get them",
+        "Blacksmiths sell the Butcher knife for about 14 gold, the Cleaver for 15 and the Skinning knife for 14. A tinker makes all three from 2 or 3 iron ingots; a Blacksmith does not forge them. See A weapon for how damage, speed and durability work."
+      ]
+    },
+    {
+      "key": "w-spear",
+      "title": "Spears and forks",
+      "art": 3938,
+      "types": [
+        "Spear",
+        "ShortSpear",
+        "Pitchfork",
+        "WarFork"
+      ],
+      "skills": [
+        "Fencing",
+        "Blacksmith"
+      ],
+      "related": [
+        "w-fencing",
+        "w-weapon"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Spears and forks are piercing weapons that use the Fencing skill. The Spear, Short spear and Pitchfork are two-handed, so no shield; the War fork is one-handed. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Spear: Str 30, damage 2 to 36, speed 46, 7 stones, durability 31 to 80<BR>Short spear: Str 15, damage 4 to 32, speed 50, 4 stones, durability 31 to 70<BR>War fork: Str 35, damage 4 to 32, speed 45, 9 stones, durability 31 to 110<BR>Pitchfork: Str 15, damage 4 to 16, speed 45, 11 stones, durability 31 to 60",
+        "# Good to know",
+        "The Short spear is the quick one: at 100 stamina it swings about every 1.5 seconds. Only the one-handed War fork can be coated with poison (Poisoning skill). The Pitchfork is a farm tool and does the least damage.",
+        "# Where to get them",
+        "Blacksmiths sell the Short spear for about 23 gold, the Spear for 31 and the Pitchfork for 19; weaponsmiths sell the War fork for 32. A Blacksmith forges the Short spear, Spear and War fork under Build Pole Arms; the Pitchfork cannot be forged."
+      ]
+    },
+    {
+      "key": "w-axe",
+      "title": "Axes",
+      "art": 3913,
+      "types": [
+        "Axe",
+        "BattleAxe",
+        "DoubleAxe",
+        "ExecutionersAxe",
+        "LargeBattleAxe",
+        "TwoHandedAxe",
+        "WarAxe"
+      ],
+      "skills": [
+        "Swords",
+        "Lumberjacking",
+        "Blacksmith"
+      ],
+      "related": [
+        "w-hatchet"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Axes hit hard and swing slowly. Six are two-handed and use the Swordsmanship skill. The War axe is the exception: it is one-handed, trains Mace Fighting and cannot chop wood. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Axe: Str 35, damage 6 to 33, speed 37, 4 stones, durability 31 to 110<BR>Battle axe: Str 40, damage 6 to 38, speed 30, 4 stones, durability 31 to 70<BR>Double axe: Str 45, damage 5 to 35, speed 37, 8 stones, durability 31 to 110<BR>Executioner's axe: Str 35, damage 6 to 33, speed 37, 8 stones, durability 31 to 70<BR>Large battle axe: Str 40, damage 6 to 38, speed 30, 6 stones, durability 31 to 70<BR>Two handed axe: Str 35, damage 5 to 39, speed 30, 8 stones, durability 31 to 90<BR>War axe: Str 35, damage 9 to 27, speed 40, 8 stones, durability 31 to 80",
+        "# Good to know",
+        "For every axe but the War axe, each 5 points of Lumberjacking add 1% to its damage, and fighting with one slowly trains Lumberjacking. To chop a tree, equip the axe (the game will not chop with one that is only in your pack), double-click it and click the tree. Chopping does not wear an axe out; fighting does.",
+        "# Where to get them",
+        "Blacksmiths sell them for about: Battle axe 26 gold, War axe 29, Executioner's axe 30, Two handed axe 32, Large battle axe 33, Axe 40, Double axe 52. A Blacksmith forges all seven from iron ingots under Build Axes; the Blacksmithy page lists the skill and ingots each needs. Monsters also drop axes."
+      ]
+    },
+    {
+      "key": "w-hatchet",
+      "title": "Hatchet",
+      "art": 3907,
+      "types": [
+        "Hatchet"
+      ],
+      "skills": [
+        "Lumberjacking",
+        "Tinkering"
+      ],
+      "related": [
+        "w-axe"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The lumberjack's tool, and a light two-handed axe: Str 15, damage 2 to 17, speed 40, 4 stones, durability 31 to 80. In a fight it uses the Swordsmanship skill.",
+        "# What it is for",
+        "Equip it, double-click it and click a tree to chop logs; the game will not chop with a hatchet that is only in your pack. Chopping does not wear it out.",
+        {
+          "text": "Once you start on a tree you keep chopping it until the wood runs out or you do something else, such as walk, fight, cast a spell or use another skill.",
+          "requires": "HarvestAutoRepeat"
+        },
+        "# Where to get it",
+        "Weaponsmiths sell hatchets for about 25 to 27 gold. A tinker can make one from 4 iron ingots (Tinkering 30 and up). A new Lumberjacking character starts with one. Every axe on the Axes page except the War axe chops too."
+      ]
+    },
+    {
+      "key": "w-pickaxe",
+      "title": "Pickaxes",
+      "art": 3718,
+      "types": [
+        "Pickaxe",
+        "GargoylesPickaxe"
+      ],
+      "skills": [
+        "Mining",
+        "Tinkering"
+      ],
+      "related": [
+        "w-axe"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The miner's tool, and a weak one-handed axe in a fight: Str 25, damage 1 to 15, speed 35, 11 stones, Swordsmanship skill.",
+        "# What it is for",
+        "Double-click it and click a mountainside or cave floor to dig ore. You cannot dig while riding. Each successful dig uses one of its uses (a new pickaxe has 50, more if it was made exceptional); when they are gone the pickaxe is worn out and destroyed.",
+        {
+          "text": "Once you start on a spot you keep digging it until the ore runs out or you do something else, such as walk, fight, cast a spell or use another skill.",
+          "requires": "HarvestAutoRepeat"
+        },
+        "# Where to get them",
+        "Blacksmiths sell pickaxes for about 22 gold. A tinker can make one from 4 iron ingots (Tinkering 40 and up). Some gargoyles carry a gargoyle's pickaxe, which has 101 to 125 uses."
+      ]
+    },
+    {
+      "key": "w-mace",
+      "title": "Maces and clubs",
+      "art": 3932,
+      "types": [
+        "Club",
+        "Mace",
+        "Maul",
+        "WarMace",
+        "WarHammer",
+        "HammerPick"
+      ],
+      "skills": [
+        "Macing",
+        "Parry",
+        "Blacksmith"
+      ],
+      "related": [
+        "w-staff"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Clubs, maces and hammers use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target, which slows its swings. All are one-handed, so you can carry a shield, except the War hammer. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Club: Str 10, damage 8 to 24, speed 40, 9 stones, durability 31 to 40<BR>Mace: Str 20, damage 8 to 32, speed 30, 14 stones, durability 31 to 70<BR>Maul: Str 20, damage 10 to 30, speed 30, 10 stones, durability 31 to 70<BR>War mace: Str 30, damage 10 to 30, speed 32, 17 stones, durability 31 to 110<BR>Hammer pick: Str 35, damage 6 to 33, speed 30, 9 stones, durability 31 to 70<BR>War hammer (two-handed): Str 40, damage 8 to 36, speed 31, 10 stones, durability 31 to 110",
+        "# Good to know",
+        "They are heavy, so watch your load: a War mace weighs 17 stones. A new Mace Fighting character starts with a Club. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it. See A weapon for how damage, speed and durability work.",
+        "# Where to get them",
+        "Blacksmiths sell them for about: Club 16 gold, Maul 21, War hammer 25, Hammer pick 26, Mace 28, War mace 31. A Blacksmith forges all but the Club from iron ingots under Build Bludgeoning Weapons. Monsters also drop them."
+      ]
+    },
+    {
+      "key": "w-staff",
+      "title": "Staves",
+      "art": 3721,
+      "types": [
+        "BlackStaff",
+        "GnarledStaff",
+        "QuarterStaff"
+      ],
+      "skills": [
+        "Macing",
+        "Carpentry"
+      ],
+      "related": [
+        "w-mace",
+        "w-crook"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Staves are two-handed, so no shield, and use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Quarter staff: Str 30, damage 8 to 28, speed 48, 4 stones, durability 31 to 60<BR>Gnarled staff: Str 20, damage 10 to 30, speed 33, 3 stones, durability 31 to 50<BR>Black staff: Str 35, damage 8 to 33, speed 35, 6 stones, durability 31 to 70",
+        "# Good to know",
+        "The Quarter staff is the quick one: at 100 stamina it swings about every 1.6 seconds. See A weapon for how damage, speed and durability work.",
+        "# Where to get them",
+        "Weaponsmiths, blacksmiths and carpenters sell them for about: Gnarled staff 16 gold, Quarter staff 19, Black staff 22. A carpenter can make the Quarter staff and the Gnarled staff from logs, but only at high Carpentry skill (about 74 and about 79); the Black staff cannot be made."
+      ]
+    },
+    {
+      "key": "w-crook",
+      "title": "Shepherd's crook",
+      "art": 3713,
+      "types": [
+        "ShepherdsCrook"
+      ],
+      "skills": [
+        "Herding",
+        "AnimalTaming"
+      ],
+      "related": [
+        "w-staff"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The herder's tool, and a light two-handed staff: Str 10, damage 3 to 12, speed 30, 4 stones, durability 31 to 50. In a fight it uses the Mace Fighting skill, and each hit takes 3 to 5 points of stamina from the target.",
+        "# What it is for",
+        "Double-click it, click an animal that is wild but could be tamed, then click where you want it to go. Whether it goes depends on your Herding skill; a pet already looks tame and will not be herded.",
+        "# Where to get it",
+        "Weaponsmiths, blacksmiths and carpenters sell it for about 20 gold. A carpenter can make one at high Carpentry skill (about 79). A new character who starts with Herding, Animal Lore or Animal Taming carries one."
+      ]
+    },
+    {
+      "key": "w-polearm",
+      "title": "Pole arms",
+      "art": 5182,
+      "types": [
+        "Bardiche",
+        "Halberd"
+      ],
+      "skills": [
+        "Swords",
+        "Blacksmith",
+        "Lumberjacking"
+      ],
+      "related": [
+        "w-hatchet"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The Bardiche and the Halberd are two-handed pole arms that use the Swordsmanship skill. Their damage ranges are the biggest of the melee weapons, and they swing slowly. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Bardiche: Str 40, damage 5 to 43, speed 26, 7 stones, durability 31 to 100<BR>Halberd: Str 45, damage 5 to 49, speed 25, 16 stones, durability 31 to 80",
+        "# Good to know",
+        "At 100 stamina a Halberd swings every 3 seconds and a Bardiche every 2.9. A pole arm will chop trees like an axe when it is equipped, but each successful chop uses up one of its 150 uses and the last one destroys it, so keep a hatchet for wood.",
+        "# Where to get them",
+        "Blacksmiths sell the Halberd for about 42 gold and the Bardiche for 60. A Blacksmith forges both from iron ingots under Build Pole Arms. Monsters also drop them."
+      ]
+    },
+    {
+      "key": "w-bow",
+      "title": "Bow",
+      "art": 5042,
+      "types": [
+        "Bow"
+      ],
+      "skills": [
+        "Archery",
+        "Fletching"
+      ],
+      "related": [
+        "w-ammo",
+        "w-crossbow"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A two-handed ranged weapon that shoots arrows and uses the Archery skill: Str 20, damage 9 to 41, speed 20, range 10 tiles, 6 stones, durability 31 to 60. Being two-handed, it cannot be used with a shield. A Juka bow, which Juka lords carry, is a Bow that needs 80 Strength and 80 Dexterity.",
+        "# Shooting",
+        "Each shot uses one arrow from your backpack, hit or miss (see Arrows and bolts); with none left the bow simply stops shooting. You need a clear line to the target within 10 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100. At 100 stamina a bow shoots every 3.75 seconds. See A weapon for how damage and speed work.",
+        "# Where to get it",
+        "Blacksmiths sell bows for about 35 gold and bowyers for 40. A character with Bowcraft/Fletching can make one from 7 logs (skill 30 and up). A new Archery character starts with a Bow, which is newbied: you keep it when you die (a murderer loses it) and shops will not buy it."
+      ]
+    },
+    {
+      "key": "w-crossbow",
+      "title": "Crossbows",
+      "art": 3920,
+      "types": [
+        "Crossbow",
+        "HeavyCrossbow"
+      ],
+      "skills": [
+        "Archery",
+        "Fletching"
+      ],
+      "related": [
+        "w-ammo",
+        "w-bow"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Two-handed ranged weapons that shoot bolts, not arrows, and use the Archery skill. Being two-handed, they cannot be used with a shield. Both reach 8 tiles, less than a bow, and shoot slowly. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
+        "Crossbow: Str 30, damage 8 to 43, speed 18, 7 stones, durability 31 to 80<BR>Heavy crossbow: Str 40, damage 11 to 56, speed 10, 9 stones, durability 31 to 100",
+        "# Shooting",
+        "Each shot uses one bolt from your backpack, hit or miss (see Arrows and bolts); with none left the weapon simply stops shooting. You need a clear line to the target within 8 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100. At 100 stamina a Crossbow shoots every 4.2 seconds and a Heavy crossbow every 7.5.",
+        "# Where to get them",
+        "Blacksmiths sell the Crossbow for about 46 gold and the Heavy crossbow for 55; bowyers sell both for 55. With Bowcraft/Fletching you can make a Crossbow from 7 logs (skill 60 and up) and a Heavy crossbow from 10 logs (skill 80 and up)."
+      ]
+    },
+    {
+      "key": "w-ammo",
+      "title": "Arrows and bolts",
+      "art": 3903,
+      "types": [
+        "Arrow",
+        "Bolt"
+      ],
+      "skills": [
+        "Archery",
+        "Fletching"
+      ],
+      "related": [
+        "w-bow",
+        "w-crossbow"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "Arrows are for bows; bolts are for crossbows and heavy crossbows. A shot uses one up, hit or miss, and a bow or crossbow with none in your backpack does not shoot. Each weighs a tenth of a stone, so 100 weigh 10 stones.",
+        "# Getting them back",
+        "Some are not lost. About 4 misses in 10 leave the arrow or bolt on the ground near the target. About 4 hits in 10 on an animal or a monster put it in the creature's pack, if it has one, so check its corpse. Shots at other players and at human enemies are not saved when they hit.",
+        {
+          "text": "A new character who starts with Archery is given 100 arrows.",
+          "requires": "Alpha3StarterCombatGear"
+        },
+        "# Where to get them",
+        "Provisioners sell arrows for about 2 gold and bolts for 5; bowyers sell arrows for 2 and bolts for 3. A provisioner starts with only 20 of each and a bowyer with 30 to 89. You can also make your own with Bowcraft/Fletching from shafts and feathers (skill 0 and up)."
+      ]
+    },
+    {
+      "key": "w-wand",
+      "title": "Wands",
+      "art": 3570,
+      "inherits": [
+        "BaseWand"
+      ],
+      "skills": [
+        "ItemID"
+      ],
+      "related": [
+        "w-weapon"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "A wand holds charges of one magical effect. The kinds you can find are clumsiness, feeblemindedness, weakness, mana draining, magic arrow, harming, fireball, lightning, healing, greater healing and identification. A wand with charges reads as unidentified until you use Item Identification on it.",
+        "# How to use one",
+        "Equip the wand, double-click it and choose a target. It costs no mana and no reagents, never fizzles, has no casting delay and spends one charge. Wait about 4 seconds between uses (an identification wand has no wait). When the charges are gone the game tells you. In a fight a wand, with charges or without, is only a weak one-handed club (Mace Fighting, damage 2 to 6).",
+        "# Where to get them",
+        "Shops do not sell wands. They turn up in the better locked treasure chests in dungeons."
+      ]
+    }
+  ]
+}

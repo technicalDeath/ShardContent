@@ -45,6 +45,10 @@ public static class ShardBootstrap
         GuildChatService.Configure();
         NoviceCombatService.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
+        HelpService.Configure();
+        ScrollChanceService.Configure();
+        PotionBarService.Configure();
+        MenuBarService.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers

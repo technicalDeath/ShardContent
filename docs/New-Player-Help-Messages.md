@@ -45,7 +45,7 @@ Each needs a trigger the shard can already see (a once-a-second watch over onlin
 
 | # | Situation | Why it is not Tier B | What to do |
 | --- | --- | --- | --- |
-| C1 | **Skill stops rising from the same spot** | The stock anti-macro limiter refuses repeat gains at one location or target and says nothing, so a new player thinks the skill broke. The engine returns false silently. | A small engine hook that reports the refusal, then "You are not learning anything new here. Move to another spot, or try a different target." Needs the settings (location size, allowance) checked first. |
+| C1 | ~~Skill stops rising from the same spot~~ | **Not applicable here.** The stock anti-macro limiter would refuse repeat gains at one spot silently, but it is **disabled** on this shard (`antimacro.json` `Enabled: false`), so there is no refusal to explain. A skill that stops rising is the normal gain curve (the Skill Guide page for the skill explains it). | Nothing to build. Recheck only if anti-macro is ever turned on. |
 | C2 | **Becoming a criminal** | The planned Tier 1 item B ("You are a criminal for 2 minutes") is not built. | Build it with B's confirm prompts for helping a grey or looting a blue's corpse. |
 | C3 | **House lockdown reminder** | On the list already (owner, 2026-10-08), with its own once-a-day shape. | Fold into the registry as one more entry once the registry exists. |
 | C4 | **Hot Zone entry on foot** | There is a "you have left" line (`OutdoorHotZoneBoundaryService`) and the travel warning for Recall, gates and camp travel. Walking in is only the boundary service's entry line, if any. | Check what an entering player reads, and add a one-time "you are in a Hot Zone: blue players can attack each other here" if it is missing. |

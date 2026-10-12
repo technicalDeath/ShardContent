@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "key": "other-item",
+      "title": "An item",
+      "art": 3702,
+      "inherits": [
+        "Item"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Something you can carry. It has no help page of its own.",
+        "# What you can do with it",
+        "Drag it to move it, put it in a pack or drop it on the ground. Double-click it to use it: a tool, a potion, a book or a key does something, and a decoration usually does nothing. Items that stack, such as coins or reagents, join when you drag one pile onto another of the same kind.",
+        "# Good to know",
+        "Most things you carry have weight, and your Strength sets how much you can carry. If you slow down or stop running, look at your weight and drop or bank what you do not need."
+      ]
+    },
+    {
+      "key": "empty-bottle",
+      "title": "Empty bottle",
+      "art": 3854,
+      "types": [
+        "Bottle"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "reagents",
+        "mortar-pestle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "An empty bottle. An alchemist uses it to hold the potions they make.",
+        "# What it is for",
+        "Grinding a reagent into an empty bottle with a Mortar and Pestle makes a potion; read the Alchemy skill page for how. You get an empty bottle back when you drink or use a potion (but not when you throw an explosion potion) and when a potion fails, so keep them. Bottles stack: keep a pile in your pack, but each one weighs a stone.",
+        "# Where to get it",
+        "Alchemists sell empty bottles for about 5 gold each."
+      ]
+    },
+    {
+      "key": "reagents",
+      "title": "Reagents",
+      "art": 3962,
+      "types": [
+        "BlackPearl",
+        "Bloodmoss",
+        "Garlic",
+        "Ginseng",
+        "MandrakeRoot",
+        "Nightshade",
+        "SpidersSilk",
+        "SulfurousAsh"
+      ],
+      "skills": [
+        "Alchemy",
+        "Magery"
+      ],
+      "related": [
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What they are",
+        "The eight reagents of magic: Black Pearl, Bloodmoss, Garlic, Ginseng, Mandrake Root, Nightshade, Sulfurous Ash and Spider's Silk.",
+        "# What they are for",
+        "A Magery spell burns the reagents it needs each time you cast it. Alchemy grinds one kind into each potion: Black Pearl for refresh, Bloodmoss for agility, Garlic for cure, Ginseng for heal, Mandrake Root for strength, Nightshade for poison, Sulfurous Ash for explosion and Spider's Silk for night sight.",
+        "# Where to get them",
+        "Alchemists and mages sell all eight, for about 3 gold each (5 for Black Pearl and Bloodmoss). Some monsters carry them too. Each one weighs a tenth of a stone, but a big stack adds up."
+      ]
+    },
+    {
+      "key": "mortar-pestle",
+      "title": "Mortar and pestle",
+      "art": 3739,
+      "types": [
+        "MortarPestle"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "potion-keg",
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "The alchemist's tool. It has to be in your pack to be used.",
+        "# What it is for",
+        "Double-click it to make a potion. A cursor appears: click a reagent or an empty bottle in your pack and a menu asks what kind of potion and then which one (click the Mortar and Pestle itself instead to make the last potion again). Every attempt wears it a little, and a worn-out one has to be replaced.",
+        "# Where to get it",
+        "Alchemists sell them for about 8 gold. Anyone with the Tinkering skill can make one from 3 iron ingots (Tinkering 20 to 70)."
+      ]
+    },
+    {
+      "key": "potion-keg",
+      "title": "Potion keg",
+      "art": 6464,
+      "types": [
+        "PotionKeg"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "mortar-pestle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A keg that holds up to 100 potions of one kind, so a big supply takes one place in your pack instead of a hundred.",
+        "# How to use it",
+        "Drag potions onto the keg to fill it (you get the empty bottles back). Double-click it to pour one potion into an empty bottle from your pack. It will not hold anything that is not a potion, or a different kind once it has one. It is heavy: 20 stones and 0.8 more for each potion in it.",
+        "# Where to get it",
+        "Anyone with the Tinkering skill can make one from a keg, a barrel lid, a barrel tap and 10 empty bottles (Tinkering 75 to 100): use tinker's tools and target the keg."
+      ]
+    },
+    {
+      "key": "potion-heal",
+      "title": "Heal potions",
+      "art": 3852,
+      "types": [
+        "LesserHealPotion",
+        "HealPotion",
+        "GreaterHealPotion"
+      ],
+      "skills": [
+        "Alchemy",
+        "Healing"
+      ],
+      "related": [
+        "potion-cure"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A healing potion: lesser, plain or greater, each stronger than the last.",
+        "# What it does",
+        "Double-click it to drink it and heal at once. A Lesser Heal Potion restores 3 to 10 hit points, a Heal Potion 6 to 20 and a Greater Heal Potion 9 to 30. You must wait 10 seconds before you can drink another healing potion.",
+        "# Good to know",
+        "It will not work at full health, and it will not work while you are poisoned: cure the poison first, with a Cure potion or the Cure spell. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-cure",
+      "title": "Cure potions",
+      "art": 3847,
+      "types": [
+        "LesserCurePotion",
+        "CurePotion",
+        "GreaterCurePotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "potion-heal"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A cure potion: lesser, plain or greater. It only works while you are poisoned.",
+        "# What it does",
+        "Double-click it to drink it. It has a chance to cure the poison, and the chance depends on the potion and on how strong the poison is. A Lesser Cure Potion cures Lesser poison 75 times in 100, Regular poison 50 and Greater poison 15. A Cure Potion cures Lesser poison always, Regular 75, Greater 50 and Deadly 15. A Greater Cure Potion cures Lesser, Regular and Greater poison always, Deadly 75 and Lethal 25.",
+        "# Good to know",
+        "If it fails you are told the potion was not strong enough; drink another. You cannot drink one when you are not poisoned. While you are poisoned a heal potion will not work, and a bandage only tries to cure (it needs Healing and Anatomy 60). You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-refresh",
+      "title": "Refresh potions",
+      "art": 3851,
+      "types": [
+        "RefreshPotion",
+        "TotalRefreshPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that gives back stamina.",
+        "# What it does",
+        "Double-click it to drink it. A Refresh Potion restores a quarter of your full stamina and a Total Refresh Potion all of it. It will not work if your stamina is already full.",
+        "# Good to know",
+        "Stamina is what you run on and what your swings and shots depend on, so a refresh potion is for the middle of a fight or a long run. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-agility",
+      "title": "Agility potions",
+      "art": 3848,
+      "types": [
+        "AgilityPotion",
+        "GreaterAgilityPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that makes you quicker for a while.",
+        "# What it does",
+        "Double-click it to drink it. An Agility Potion adds 10 to your Dexterity and a Greater Agility Potion adds 20, for 2 minutes. Dexterity is what your stamina is made of: the more you have, the longer you can run and fight.",
+        "# Good to know",
+        "It wears off when the time is up. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-strength",
+      "title": "Strength potions",
+      "art": 3849,
+      "types": [
+        "StrengthPotion",
+        "GreaterStrengthPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that makes you stronger for a while.",
+        "# What it does",
+        "Double-click it to drink it. A Strength Potion adds 10 to your Strength and a Greater Strength Potion adds 20, for 2 minutes. Strength sets your hit points, how much you can carry and how hard you hit.",
+        "# Good to know",
+        "It wears off when the time is up. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion-poison",
+      "title": "Poison potions",
+      "art": 3850,
+      "types": [
+        "LesserPoisonPotion",
+        "PoisonPotion",
+        "GreaterPoisonPotion",
+        "DeadlyPoisonPotion"
+      ],
+      "skills": [
+        "Poisoning",
+        "Alchemy"
+      ],
+      "related": [
+        "potion-cure"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A poison potion: Lesser, Regular, Greater or Deadly, by strength. Do not drink it.",
+        "# What it is for",
+        "Drinking it poisons you. It is meant for the Poisoning skill: use the skill, choose the potion, then choose a one-handed weapon with a blade or a point, or some food. A poisoned weapon has 12 to 18 charges (fewer for a stronger poison); each hit uses one and has a 50 percent chance to poison what it hits. Poisoned food poisons whoever eats it.",
+        "# Good to know",
+        "A stronger potion needs more Poisoning skill to use. If you do drink one, a Cure potion may cure it, but the stronger the poison, the harder it is to cure."
+      ]
+    },
+    {
+      "key": "potion-explosion",
+      "title": "Explosion potions",
+      "art": 3853,
+      "types": [
+        "LesserExplosionPotion",
+        "ExplosionPotion",
+        "GreaterExplosionPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A bomb in a bottle. Handle it with care.",
+        "# What it does",
+        "Double-click it to light it, then choose where to throw it (up to 10 tiles away). After a few seconds it blows up and hurts whoever is within 2 tiles of it: a Lesser Explosion Potion for 5 to 10, an Explosion Potion for 10 to 20 and a Greater Explosion Potion for 15 to 30, plus a tenth of your Alchemy skill, and never more than 40.",
+        "# Good to know",
+        "The blast hurts you too if you stand in it. It does not hurt your party, your guild and its allies or your own pets, and it does not hurt innocent (blue) players unless you are a murderer. Lighting one starts the countdown, so throw it before it goes off in your hand."
+      ]
+    },
+    {
+      "key": "potion-nightsight",
+      "title": "Night sight potion",
+      "art": 3846,
+      "types": [
+        "NightSightPotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion that lets you see in the dark.",
+        "# What it does",
+        "Double-click it to drink it. For 15 to 39 minutes (the length is random) the night and dungeon darkness are much lighter around you.",
+        "# Good to know",
+        "It helps at night and underground. You need a free hand: not while you hold a two-handed weapon, or a weapon and a shield together. Drinking it leaves you an empty bottle."
+      ]
+    },
+    {
+      "key": "potion",
+      "title": "A potion",
+      "art": 3852,
+      "inherits": [
+        "BasePotion"
+      ],
+      "skills": [
+        "Alchemy"
+      ],
+      "related": [
+        "empty-bottle"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "A potion in a bottle. An alchemist does not make this kind here, and it has no help page of its own.",
+        "# What it does",
+        "Double-click it to use it. The kinds an alchemist makes are healing, curing, refreshing, strength, agility, night sight, poison and explosion, each with its own help page."
+      ]
+    }
+  ]
+}

@@ -46,6 +46,93 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyState", AccessLevel.Administrator, OnStateCommand);
         CommandSystem.Register("TestOnlyFires", AccessLevel.Administrator, OnFiresCommand);
         CommandSystem.Register("TestOnlyGuild", AccessLevel.Administrator, OnGuildCommand);
+        CommandSystem.Register("TestOnlyGive", AccessLevel.Administrator, OnGiveCommand);
+        CommandSystem.Register("TestOnlyHold", AccessLevel.Administrator, OnHoldCommand);
+    }
+
+    // [TestOnlyHold <player-serial> <ItemTypeName>] puts the first backpack item of that type in the player's hand, first moving what is in the way into the backpack,
+    // for the combat bar checks (the client sees the paperdoll change as if the player had equipped it).
+    private static void OnHoldCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 2 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile { Backpack: { } pack } player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyHold <player-serial> <ItemTypeName>");
+            return;
+        }
+
+        Item? item = null;
+
+        foreach (var held in pack.FindItemsByType<Item>(true))
+        {
+            if (held.GetType().Name == e.GetString(1))
+            {
+                item = held;
+                break;
+            }
+        }
+
+        if (item == null)
+        {
+            e.Mobile.SendMessage($"No {e.GetString(1)} in the pack");
+            return;
+        }
+
+        var layer = item.Layer;
+
+        foreach (var layerToClear in layer == Layer.TwoHanded ? new[] { Layer.OneHanded, Layer.TwoHanded } : new[] { Layer.OneHanded })
+        {
+            if (player.FindItemOnLayer(layerToClear) is { } blocker)
+            {
+                pack.DropItem(blocker);
+            }
+        }
+
+        e.Mobile.SendMessage(player.EquipItem(item) ? $"Holding {item.GetType().Name}" : $"Could not equip {item.GetType().Name}");
+    }
+
+    // [TestOnlyGive <player-serial> <ItemTypeName> [amount]] puts a new item (a stack of that amount when it stacks) in the player's backpack, for the combat bar checks.
+    private static void OnGiveCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 2 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile { Backpack: { } pack })
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyGive <player-serial> <ItemTypeName> [amount]");
+            return;
+        }
+
+        Type? type = null;
+
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            if (assembly.GetName().Name is "UOContent" or "BritanniaRenaissance.Content")
+            {
+                type = assembly.GetTypes().FirstOrDefault(t => t.Name == e.GetString(1) && typeof(Item).IsAssignableFrom(t) && !t.IsAbstract);
+
+                if (type != null)
+                {
+                    break;
+                }
+            }
+        }
+
+        if (type == null || Activator.CreateInstance(type, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, null, null) is not Item item)
+        {
+            e.Mobile.SendMessage($"No item type {e.GetString(1)}");
+            return;
+        }
+
+        if (e.Length > 2 && item.Stackable)
+        {
+            item.Amount = e.GetInt32(2);
+        }
+
+        pack.DropItem(item);
+        e.Mobile.SendMessage($"Gave {item.GetType().Name} x{item.Amount}");
     }
 
     // [TestOnlyGuild <leader-serial> <name> [member-serial ...]] founds an old-system guild (no guildstone) with that leader and members, for the guild
