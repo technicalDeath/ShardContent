@@ -21,7 +21,7 @@ public static class StarterOnboarding
     }
 
     /// <summary>Said in chat once the guide has opened for a new character, so the way back to it stays on screen.</summary>
-    public const string CreationPrompt = $"Welcome to {ShardBranding.Name}. Type [Welcome any time to read the guide again.";
+    public const string CreationPrompt = $"Welcome to {ShardBranding.Name}. Click About at the top of the screen, or type [Welcome, any time to read the guide again.";
 
     private static void PromptNewCharacter(CharacterCreatedEventArgs args)
     {

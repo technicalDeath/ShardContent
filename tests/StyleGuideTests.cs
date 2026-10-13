@@ -121,6 +121,7 @@ public sealed class StyleGuideTests
         Assert.True(GumpStyle.MediumWidth < GumpStyle.Width);
         Assert.True(GumpStyle.DialogWidth <= GumpStyle.MediumWidth);
         Assert.True(CampTravelService.ListHeight(8) <= GumpStyle.Height, "the camp list at its limit of eight camps");
+        Assert.True(CampTravelService.ListHeight(0) <= GumpStyle.Height, "the camp list with no camp to list");
         Assert.True(CampTravelService.ConfirmHeight(true) <= GumpStyle.Height);
         Assert.True(StatusWindow.HeightFor([new string('x', 20000)], 3) <= GumpStyle.Height);
     }

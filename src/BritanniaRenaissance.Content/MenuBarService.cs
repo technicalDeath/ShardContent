@@ -18,6 +18,7 @@ public static class MenuBarService
     public const ushort Camp = 1 << 1;
     public const ushort GuildChat = 1 << 2;
     public const ushort About = 1 << 3;
+    public const ushort AutoUse = 1 << 4;
 
     private static bool _configured;
 
@@ -58,10 +59,13 @@ public static class MenuBarService
             mask |= GuildChat;
         }
 
-        if (flags.HelpGumps)
+        if (flags.AutoUse)
         {
-            mask |= About;
+            mask |= AutoUse;
         }
+
+        // About is always there: it opens the [Welcome guide, which is not behind a flag
+        mask |= About;
 
         return mask;
     }

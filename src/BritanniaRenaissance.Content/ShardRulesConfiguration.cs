@@ -859,6 +859,10 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("combatBar")]
     public bool CombatBar { get; set; }
 
+    /// <summary>The bars' auto-use options (docs/Auto-Use-Evidence.md): the client's gear panels that bandage, heal, refresh and cure for the player at set levels; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("autoUse")]
+    public bool AutoUse { get; set; }
+
     /// <summary>A one-line notice when a worn weapon, shield or armor piece first drops to a quarter of its durability (docs/To-Do-List.md); off until the owner acknowledges it.</summary>
     [JsonPropertyName("wearNotice")]
     public bool WearNotice { get; set; }
@@ -919,12 +923,13 @@ public sealed class DeferredFeatureFlags
         if (MenuBar) yield return nameof(MenuBar);
         if (CombatBar) yield return nameof(CombatBar);
         if (WearNotice) yield return nameof(WearNotice);
+        if (AutoUse) yield return nameof(AutoUse);
         if (Furnishers) yield return nameof(Furnishers);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

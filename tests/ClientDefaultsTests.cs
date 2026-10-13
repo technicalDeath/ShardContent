@@ -19,6 +19,7 @@ public class ClientDefaultsTests
     [InlineData("use_circle_of_transparency", true)]
     [InlineData("auto_open_corpses", true)]
     [InlineData("counter_bar_enabled", true)]     // the blank hotbar (CounterBarGump), opened once by GameScene.OfferBlankHotbar
+    [InlineData("use_old_status_gump", true)]     // the labeled STR/DEX/INT/HITS/MANA/STAM/GOLD/AR/WGHT status window, not the icon grid of resistances and bonuses that mean nothing in 2000
     [InlineData("always_run", true)]              // walking is running (client defaults item 7)
     [InlineData("always_run_unless_hidden", true)] // but not while hidden, which would give a sneaking player away
     [InlineData("auto_open_doors", true)]         // walking into a door opens it

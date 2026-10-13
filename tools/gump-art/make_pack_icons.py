@@ -4,7 +4,7 @@ A small brass diamond like the one the pack art carries to minimise it, with a g
 
   python make_pack_icons.py [out folder]        (default: ShardContent/data/client/gumps; a preview PNG goes beside this script)
 
-Art ids: 62050 plus, 62051 minus (62010-62041 are the window buttons, 50000-50999 the buff icons).
+Art ids: 62050 plus, 62051 minus, 62052 options gear (62010-62041 are the window buttons, 50000-50999 the buff icons).
 """
 import os
 import struct
@@ -72,6 +72,37 @@ def diamond(glyph):
     return rows
 
 
+def gear():
+    """The options button of the potion and combat bars: a small brass gear (a cog with eight teeth and a hole), lit from the upper left like the diamonds."""
+    import math
+
+    rows = [[None] * SIZE for _ in range(SIZE)]
+    teeth, body, hole = 8, 6.4, 2.6
+
+    for y in range(SIZE):
+        for x in range(SIZE):
+            dx, dy = x - C, y - C
+            r = math.hypot(dx, dy)
+            angle = math.atan2(dy, dx)
+            tooth = abs(math.sin(angle * teeth / 2.0)) > 0.62
+            edge = body + (3.6 if tooth else 0.0)
+
+            if r > edge + 0.6 or r < hole - 0.6:
+                continue
+
+            lit = (dx + dy) / (2.0 * max(r, 1.0)) if r else 0.0
+            shade = (lit + 1.0) / 2.0
+
+            if r >= edge - 0.5 or r <= hole + 0.5:
+                rows[y][x] = OUTLINE
+            elif r > body - 1.4 and not tooth:
+                rows[y][x] = lerp(GOLD_LIGHT, GOLD_DARK, shade)
+            else:
+                rows[y][x] = lerp(GOLD_LIGHT, GOLD, 0.4 + 0.5 * shade) if not tooth else lerp(GOLD_LIGHT, GOLD_DARK, shade)
+
+    return rows
+
+
 def gump_bytes(pixels):
     h, w = len(pixels), len(pixels[0])
     out = []
@@ -131,8 +162,13 @@ def main():
         with open(os.path.join(OUT, "%d.gump" % art), "wb") as f:
             f.write(gump_bytes(pixels))
 
-    png(os.path.join(HERE, "pack-icons-preview.png"), [plus, minus])
-    print("62050 plus and 62051 minus written to", os.path.abspath(OUT))
+    cog = gear()
+
+    with open(os.path.join(OUT, "62052.gump"), "wb") as f:
+        f.write(gump_bytes(cog))
+
+    png(os.path.join(HERE, "pack-icons-preview.png"), [plus, minus, cog])
+    print("62050 plus, 62051 minus and 62052 gear written to", os.path.abspath(OUT))
 
 
 if __name__ == "__main__":

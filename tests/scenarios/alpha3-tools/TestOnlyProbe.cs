@@ -50,6 +50,56 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyHold", AccessLevel.Administrator, OnHoldCommand);
         CommandSystem.Register("TestOnlyHurt", AccessLevel.Administrator, OnHurtCommand);
         CommandSystem.Register("TestOnlyWear", AccessLevel.Administrator, OnWearCommand);
+        CommandSystem.Register("TestOnlySkillSet", AccessLevel.Administrator, OnSkillSetCommand);
+        CommandSystem.Register("TestOnlyPoison", AccessLevel.Administrator, OnPoisonCommand);
+    }
+
+    // [TestOnlySkillSet <player-serial> <SkillName> <value>] sets a skill's base value (and raises the cap if needed), for the auto-use checks.
+    private static void OnSkillSetCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 3 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player
+            || !Enum.TryParse<SkillName>(e.GetString(1), true, out var skill))
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlySkillSet <player-serial> <SkillName> <value>");
+            return;
+        }
+
+        player.Skills[skill].Base = double.Parse(e.GetString(2), CultureInfo.InvariantCulture);
+        e.Mobile.SendMessage($"{player.Name} {skill} now {player.Skills[skill].Base}");
+    }
+
+    // [TestOnlyPoison <player-serial> <Lesser|Regular|Greater|Deadly|Lethal|none>] poisons (or cures) the player, for the auto-cure checks.
+    private static void OnPoisonCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 2 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPoison <player-serial> <Lesser|Regular|Greater|Deadly|Lethal|none>");
+            return;
+        }
+
+        var name = e.GetString(1);
+
+        if (name.Equals("none", StringComparison.OrdinalIgnoreCase))
+        {
+            player.CurePoison(player);
+        }
+        else if (Poison.GetPoison(name) is { } poison)
+        {
+            player.ApplyPoison(player, poison);
+        }
+        else
+        {
+            e.Mobile.SendMessage($"No poison called {name}");
+            return;
+        }
+
+        e.Mobile.SendMessage($"{player.Name} poisoned={player.Poisoned} level={(player.Poison?.Level.ToString() ?? "-")}");
     }
 
     // [TestOnlyWear <player-serial> <ItemTypeName> <hits>] sets the hit points of the player's first weapon, armor or shield of that type (worn or in the pack), for the durability gauge checks.

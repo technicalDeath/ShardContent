@@ -13,7 +13,7 @@ public static partial class WelcomeGuide
 
     private static readonly (string Key, string Title, string[] Topics)[] ChapterTable =
     [
-        ("start", "Start here", ["welcome", "firsthour", "locks"]),
+        ("start", "Start here", ["welcome", "firsthour", "screen", "locks"]),
         ("rules", "Rules", ["fighting", "hotzones", "ward", "loot", "pets", "dying"]),
         ("skills", "Skills", ["training", "mastery", "skillbank"]),
         ("work", "Work", ["gather", "crafting", "shops"]),
@@ -123,6 +123,118 @@ public static partial class WelcomeGuide
         p.Add("Use the tabs above to read how things work, and type [Welcome any time to open this guide again.");
 
         return new Topic("firsthour", "Your first hour", p);
+    }
+
+    // ---- Your screen
+
+    /// <summary>
+    /// What the bars and buttons on the screen do, each only when the shard has that feature switched on (the client draws them from the same flags). Written 2026-10-13 from the
+    /// client's own behavior, checked in the real client (docs/New-Player-Pass-2026-10-13.md).
+    /// </summary>
+    private static Topic ScreenTopic(Context c)
+    {
+        var p = new List<string>();
+
+        if (c.MenuBar)
+        {
+            p.Add(HeadingMark + "The top bar");
+
+            var buttons = "Character opens your paperdoll, Backpack your pack, Skills your skills window, Journal your messages and Map the small map (click it again for the big map)";
+
+            if (c.CampTravel)
+            {
+                buttons += ". Camp is camp travel";
+            }
+
+            if (c.GuildChat)
+            {
+                buttons += ". Guild chat lets you type to everyone in your guild who is online";
+            }
+
+            buttons += ". About opens this guide, and Options opens the settings.";
+            p.Add(buttons);
+        }
+
+        p.Add(HeadingMark + "Fighting");
+        p.Add(
+            "Your paperdoll's Peace button, and the sword at the left of the bar under the game window, switch war mode. In war mode you attack what you target: double-click a monster to start. " +
+            "The sword shows peace or WAR. Click it again to stop fighting."
+        );
+
+        if (c.PotionBar)
+        {
+            p.Add(HeadingMark + "The potion bar");
+            p.Add(
+                "The first bar under the game window shows every potion you can use and how many you carry; a bigger bottle is a stronger potion. Click one to drink it. If both your hands are " +
+                "full, your weapon is put away first and taken up again afterwards. The small diamonds show only the potions you have, fold the bar into one small icon, or show them all again."
+            );
+        }
+
+        var bar = new List<string>
+        {
+            "The second bar under the game window holds what you reach for in a fight. Bandages: click to bandage yourself, or hold Shift and click to choose who. The count turns red when you are running low. " +
+            "Arrows and bolts follow, dimmed when the weapon in your hand does not use them. If you have trained Magery, Alchemy or Inscription it also shows your reagents.",
+            "Then come three slots for your weapon, shield and tool. They remember the last one you held: click one marked equip to put it on (whatever is in the way comes off first) or one marked held to put it away. " +
+            "Hold the button down for a moment to open a strip of the others in your pack and click one to choose it. Escape or a click elsewhere closes the strip."
+        };
+
+        if (c.CombatBar)
+        {
+            bar.Add("The thin bar beside a weapon or shield shows how worn it is: all green when new, with red filling from the top as it wears.");
+        }
+
+        if (c.WearNotice)
+        {
+            bar.Add("You are also told once when a weapon, shield or armor piece you wear drops to about a quarter of its durability.");
+        }
+
+        bar.Add("The number at the end of the bar is how many stones you carry against how many you can. It turns red when you are overloaded.");
+
+        p.Add(HeadingMark + "The combat bar");
+        p.AddRange(bar);
+
+        if (c.AutoUse)
+        {
+            p.Add(HeadingMark + "Auto options");
+            p.Add(
+                "The potion bar and the combat bar each have a small gear button at the end. It opens a panel with options that do for you what you could do with the bar: the combat bar can bandage you when your health " +
+                "falls below 75%, and the potion bar can drink a Heal potion at 25% health, a Refresh potion at 25% stamina, and the Cure potion that fits the poison you have. Potions are drunk strongest first, " +
+                "one at a time, and only when you could drink them yourself. All of them start switched off."
+            );
+        }
+
+        p.Add(HeadingMark + "The spell bar");
+        p.Add(
+            "Once you have trained Magery, a bar shows one circle of spells at a time as icons, with the mana each one costs under it, starting with the highest circle your Magery can cast. The small arrows beside the circle's name change circle. " +
+            "Click an icon to cast that spell; an icon is dim while your mana, or your Magery, is short for it. Hover over one for the spell's words, reagents and the Magery it needs. The spell must be in your spellbook. " +
+            "The small diamonds work as on the other bars, and the Item shortcuts page of Options switches any of these bars off or on."
+        );
+
+        p.Add(HeadingMark + "If you die");
+        p.Add(
+            "A small strip beside the game window tells you what to do as a ghost and shows the direction and distance to your body, updated as you walk, until you open it. " +
+            "Right-click the strip to hide it. See the Dying page for how to come back."
+        );
+
+        p.Add(HeadingMark + "Keys");
+        p.Add(
+            "A new profile starts with a few hotkeys: Alt+S opens your skills, Alt+C your status, Alt+P your paperdoll, Alt+I your backpack and Alt+J your journal, Alt+R the small map and Alt+O the settings. " +
+            "Alt+B bandages yourself and Alt+Shift+B bandages the person you targeted last. Tab holds war mode while you press it. The Macros page of Options changes any of them."
+        );
+
+        p.Add(HeadingMark + "Windows");
+        p.Add(
+            "If your screen is wide enough, the journal, skills window and small map open in the dark column to the right of the game window, one under the other, so they do not cover your paperdoll or each other. " +
+            "Drag any window where you like. The window Alt+C opens shows your strength, dexterity, intelligence, hits, mana, stamina, gold, armor rating and weight."
+        );
+
+        p.Add(HeadingMark + "Item shortcuts");
+        p.Add(
+            "The box beside the game window is empty to start with. Drop any item into it to make a shortcut: it counts how many of that item you carry and double-clicking it uses one. " +
+            "Hold Alt and right-click a shortcut to remove it."
+        );
+
+        return new Topic("screen", "Your screen", p);
     }
 
     // ---- Skill locks 101

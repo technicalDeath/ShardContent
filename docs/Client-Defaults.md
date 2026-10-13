@@ -28,6 +28,10 @@ The owner's running list of what the player client should do out of the box (sta
 
 8. **Walking into a door opens it** (same pass). `auto_open_doors` true (`smooth_doors` is left as the client has it). Done in the defaults.
 
+9. **The classic labeled Status window** (2026-10-13 new-player pass). `use_old_status_gump` true: STR/DEX/INT/SEX/AR and HITS/MANA/STAM/GOLD/WGHT instead of the modern grid of resistances and bonuses that mean nothing in 2000. Done in the defaults; `docs/New-Player-Pass-2026-10-13.md`.
+
+10. **Default hotkeys and window placement** are in the client, not the profile file: new profiles get the macros Alt+S, Alt+C, Alt+B, Alt+Shift+B (`MacroManager.CreateDefaultMacros`), and the journal, skills, small map and status windows open in the black column beside the game window (`ShardLayout`). The skills window opens its trained groups for a character with little training.
+
 Looked at and not changed: font and window scale by resolution. The client has no profile option for a whole-UI scale (only the container scale and the tooltip zoom), so it cannot be a default without a client change; the same pass saw nothing else worth changing.
 
 ## Not in a new profile's reach: the owner's own settings

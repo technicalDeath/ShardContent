@@ -223,6 +223,7 @@
     "menuBar": true,
     "combatBar": true,
     "wearNotice": true,
+    "autoUse": true,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

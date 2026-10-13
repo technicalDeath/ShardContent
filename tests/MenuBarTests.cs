@@ -12,14 +12,15 @@ public class MenuBarTests
 
     [Fact]
     public void ShardBarAloneShowsOnlyTheAlwaysButtons() =>
-        Assert.Equal(MenuBarService.ShardBar, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true }));
+        Assert.Equal(MenuBarService.ShardBar | MenuBarService.About, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true }));
 
     [Fact]
     public void EachFeatureAddsItsOwnBit()
     {
-        Assert.Equal(MenuBarService.ShardBar, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, SkillBank = true }));   // no Skill Bank button
-        Assert.Equal(MenuBarService.ShardBar | MenuBarService.Camp, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, CampingTravel = true }));
-        Assert.Equal(MenuBarService.ShardBar | MenuBarService.GuildChat, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, GuildChat = true }));
+        Assert.Equal(MenuBarService.ShardBar | MenuBarService.About, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, SkillBank = true }));   // no Skill Bank button
+        Assert.Equal(MenuBarService.ShardBar | MenuBarService.About | MenuBarService.Camp, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, CampingTravel = true }));
+        Assert.Equal(MenuBarService.ShardBar | MenuBarService.About | MenuBarService.GuildChat, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, GuildChat = true }));
+        // About opens the Welcome guide, which is not behind a flag, so the skill guide flag changes nothing here
         Assert.Equal(MenuBarService.ShardBar | MenuBarService.About, MenuBarService.MaskFor(new DeferredFeatureFlags { MenuBar = true, HelpGumps = true }));
     }
 

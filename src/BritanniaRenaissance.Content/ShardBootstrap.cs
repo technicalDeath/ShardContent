@@ -51,6 +51,7 @@ public static class ShardBootstrap
         MenuBarService.Configure();
         CombatBarService.Configure();
         WearNoticeService.Configure();
+        AutoUseService.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers

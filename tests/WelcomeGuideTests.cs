@@ -31,21 +31,21 @@ public class WelcomeGuideTests
     [Fact]
     public void TheDeployedShardGetsTheCoreTopicsInReadingOrder() =>
         Assert.Equal(
-            ["welcome", "firsthour", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
+            ["welcome", "firsthour", "screen", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
             Keys(Context())
         );
 
     [Fact]
     public void CampTravelAddsItsOwnTopicBeforeTheCommands() =>
         Assert.Equal(
-            ["welcome", "firsthour", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "camp", "commands"],
+            ["welcome", "firsthour", "screen", "locks", "fighting", "hotzones", "ward", "loot", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "camp", "commands"],
             Keys(Context(camp: true))
         );
 
     [Fact]
     public void WithoutTheWardsTheWardTopicsAreLeftOut() =>
         Assert.Equal(
-            ["welcome", "firsthour", "locks", "fighting", "hotzones", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
+            ["welcome", "firsthour", "screen", "locks", "fighting", "hotzones", "pets", "dying", "training", "mastery", "skillbank", "crafting", "shops", "commands"],
             Keys(Context(theft: false))
         );
 

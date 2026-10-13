@@ -894,11 +894,8 @@ public static partial class CampTravelService
 
         if (entries.Count == 0)
         {
-            traveler.SendMessage(
-                RefusalHue,
-                "None of your party has a campfire burning. Party members light one with Kindling, and you can travel to it with " +
-                $"{Command} once it is secure."
-            );
+            // Show the window anyway, with the reason in it, so a player who has nobody to travel to still sees what camp travel looks like.
+            traveler.SendGump(new CampTravelListGump(entries, NoCampText(party is not null)));
             return;
         }
 
@@ -909,8 +906,15 @@ public static partial class CampTravelService
             entries.RemoveRange(MaxListed, entries.Count - MaxListed);
         }
 
-        traveler.SendGump(new CampTravelListGump(entries));
+        traveler.SendGump(new CampTravelListGump(entries, string.Empty));
     }
+
+    /// <summary>What the camp list says when it has no camp to list: no party, or no one in it with a burning camp.</summary>
+    public static string NoCampText(bool inParty) =>
+        inParty
+            ? "None of your party has a campfire burning. Party members light one with Kindling, and you can travel to it with " +
+              $"{Command} once it is secure."
+            : $"You are not in a party. Join one: when a party member lights a campfire with Kindling and it is secure, {Command} lets you travel to it.";
 
     private readonly record struct ListEntry(Campfire Fire, string LighterName, double Distance, string Label, bool Hot, string Place);
 
@@ -1114,7 +1118,10 @@ public static partial class CampTravelService
     // ---- the gumps
 
     /// <summary>The height of the camp list for <paramref name="entries"/> camps (at most the list limit of 8): header, a row of 44 pixels each, footer.</summary>
-    public static int ListHeight(int entries) => 78 + entries * 44 + GumpStyle.FooterRoom;
+    public static int ListHeight(int entries) => 78 + Math.Max(entries, EmptyRows) * 44 + GumpStyle.FooterRoom;
+
+    /// <summary>An empty list is as tall as a list of this many camps, which is room for its message.</summary>
+    private const int EmptyRows = 2;
 
     /// <summary>The height of the travel confirmation, taller when it carries the Hot Zone banner and its tick box.</summary>
     public static int ConfirmHeight(bool hot) => hot ? 312 : 240;
@@ -1122,17 +1129,29 @@ public static partial class CampTravelService
     private sealed class CampTravelListGump : DynamicGump
     {
         private readonly List<ListEntry> _entries;
+        private readonly string _emptyText;
 
         public override bool Singleton => true;
 
-        public CampTravelListGump(List<ListEntry> entries) : base(GumpStyle.MediumX, GumpStyle.MediumY) => _entries = entries;
+        public CampTravelListGump(List<ListEntry> entries, string emptyText) : base(GumpStyle.MediumX, GumpStyle.MediumY)
+        {
+            _entries = entries;
+            _emptyText = emptyText;
+        }
 
         protected override void BuildLayout(ref DynamicGumpBuilder builder)
         {
             var height = ListHeight(_entries.Count);
 
             builder.AddPage();
-            GumpStyle.Frame(ref builder, "Travel to a party member's camp", "Pick a camp. You will be asked to confirm.", GumpStyle.MediumWidth, height);
+            GumpStyle.Frame(
+                ref builder, "Travel to a party member's camp", _entries.Count == 0 ? "No camps to travel to." : "Pick a camp. You will be asked to confirm.", GumpStyle.MediumWidth, height
+            );
+
+            if (_entries.Count == 0)
+            {
+                builder.AddHtml(GumpStyle.Margin, 90, GumpStyle.MediumWidth - 2 * GumpStyle.Margin, 90, _emptyText, GumpStyle.Dim);
+            }
 
             for (var i = 0; i < _entries.Count; i++)
             {

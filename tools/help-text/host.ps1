@@ -22,6 +22,7 @@ $rules = Get-Content ShardContent\data\configuration\shard-rules.json -Raw | Con
 $rules.featureFlags.helpGumps = $true
 $rules.featureFlags.combatBar = $true
 $rules.featureFlags.wearNotice = $true
+$rules.featureFlags.autoUse = $true
 [IO.File]::WriteAllText($rulesPath, ($rules | ConvertTo-Json -Depth 30), (New-Object Text.UTF8Encoding($false)))
 & $BRPython work\help-gumps\make_host_data.py ShardContent\data\help "$hostDir\Configuration\help"
 

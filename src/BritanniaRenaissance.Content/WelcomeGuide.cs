@@ -39,7 +39,12 @@ public static partial class WelcomeGuide
         bool StarterPackage = false,
         bool StarterGold = false,
         bool CampTravelBlueFire = false,
-        bool GuildChat = false
+        bool GuildChat = false,
+        bool MenuBar = false,
+        bool PotionBar = false,
+        bool CombatBar = false,
+        bool WearNotice = false,
+        bool AutoUse = false
     );
 
     public static Context Current =>
@@ -61,7 +66,12 @@ public static partial class WelcomeGuide
             ShardRulesConfiguration.Settings?.FeatureFlags is { Alpha3StarterBag: true, Alpha3StarterScissors: true },
             ShardRulesConfiguration.Settings?.FeatureFlags.Alpha3StarterGold == true,
             CampTravelService.BlueFireEnabled,
-            GuildChatService.Enabled
+            GuildChatService.Enabled,
+            MenuBarService.Enabled,
+            PotionBarService.Enabled,
+            CombatBarService.Enabled,
+            WearNoticeService.Enabled,
+            AutoUseService.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -131,7 +141,7 @@ public static partial class WelcomeGuide
     public static IReadOnlyList<Topic> Topics(Context c, CampTravelRules rules, Numbers? numbers = null, CampingRules? camping = null)
     {
         var n = numbers ?? new Numbers();
-        var topics = new List<Topic> { WelcomeTopic(c), FirstHourTopic(c, n), SkillLocksTopic(c, n) };
+        var topics = new List<Topic> { WelcomeTopic(c), FirstHourTopic(c, n), ScreenTopic(c), SkillLocksTopic(c, n) };
 
         if (c.SafeWorld || c.KnockedOut)
         {
@@ -684,6 +694,15 @@ public static partial class WelcomeGuide
         var topics = Topics(Current, settings?.CampTravel ?? new CampTravelRules(), Numbers.Current, settings?.Camping);
         var first = topicKey is null ? -1 : topics.ToList().FindIndex(t => t.Key == topicKey);
 
+        var actions = new List<GuideWindow.WindowAction>();
+
+        if (HelpService.Enabled)
+        {
+            actions.Add(new GuideWindow.WindowAction("Skill Guide", SkillGuideAction));
+        }
+
+        actions.Add(new GuideWindow.WindowAction("Page staff", PageStaffAction));
+
         player.SendGump(
             new GuideWindow(
                 ShardBranding.Name,
@@ -691,8 +710,26 @@ public static partial class WelcomeGuide
                 "Type [Welcome to open this guide again.",
                 topics,
                 Math.Max(0, first),
-                chapters: Chapters(topics)
+                actions,
+                OnAction,
+                Chapters(topics)
             )
         );
+    }
+
+    private const int SkillGuideAction = 1;
+    private const int PageStaffAction = 2;
+
+    /// <summary>The two buttons under the guide's topic list: the skill guide (when it is on) and the stock request for a staff member.</summary>
+    private static void OnAction(PlayerMobile player, int id)
+    {
+        if (id == SkillGuideAction && HelpService.Enabled)
+        {
+            HelpService.OpenSkills(player);
+        }
+        else if (id == PageStaffAction)
+        {
+            Server.Engines.Help.HelpGump.HelpRequest(player);
+        }
     }
 }
