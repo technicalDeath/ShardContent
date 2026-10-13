@@ -855,6 +855,14 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("potionBar")]
     public bool PotionBar { get; set; }
 
+    /// <summary>The combat bar's durability gauge, server half (docs/Combat-Bar-Evidence.md): the answer to the client's question about how worn its equipped items are; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("combatBar")]
+    public bool CombatBar { get; set; }
+
+    /// <summary>A one-line notice when a worn weapon, shield or armor piece first drops to a quarter of its durability (docs/To-Do-List.md); off until the owner acknowledges it.</summary>
+    [JsonPropertyName("wearNotice")]
+    public bool WearNotice { get; set; }
+
     /// <summary>The client's shard top bar (docs/Menu-Bar-Evidence.md): the server tells the client which shard buttons to show; without it the client keeps the stock bar; off until the owner acknowledges it.</summary>
     [JsonPropertyName("menuBar")]
     public bool MenuBar { get; set; }
@@ -909,12 +917,14 @@ public sealed class DeferredFeatureFlags
         if (ScrollSuccessChance) yield return nameof(ScrollSuccessChance);
         if (PotionBar) yield return nameof(PotionBar);
         if (MenuBar) yield return nameof(MenuBar);
+        if (CombatBar) yield return nameof(CombatBar);
+        if (WearNotice) yield return nameof(WearNotice);
         if (Furnishers) yield return nameof(Furnishers);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

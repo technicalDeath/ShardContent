@@ -221,6 +221,8 @@
     "scrollSuccessChance": false,
     "potionBar": true,
     "menuBar": true,
+    "combatBar": true,
+    "wearNotice": true,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

@@ -19,6 +19,9 @@ public class ClientDefaultsTests
     [InlineData("use_circle_of_transparency", true)]
     [InlineData("auto_open_corpses", true)]
     [InlineData("counter_bar_enabled", true)]     // the blank hotbar (CounterBarGump), opened once by GameScene.OfferBlankHotbar
+    [InlineData("always_run", true)]              // walking is running (client defaults item 7)
+    [InlineData("always_run_unless_hidden", true)] // but not while hidden, which would give a sneaking player away
+    [InlineData("auto_open_doors", true)]         // walking into a door opens it
     [InlineData("combat_bar_enabled", true)]      // the combat bar under the potion bar (CombatBarGump)
     [InlineData("potion_bar_enabled", true)]      // the potion bar under the game window (PotionBarGump)
     [InlineData("hold_down_key_alt_to_close_anchored", false)]

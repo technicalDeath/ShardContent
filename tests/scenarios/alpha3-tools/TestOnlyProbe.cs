@@ -48,6 +48,68 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyGuild", AccessLevel.Administrator, OnGuildCommand);
         CommandSystem.Register("TestOnlyGive", AccessLevel.Administrator, OnGiveCommand);
         CommandSystem.Register("TestOnlyHold", AccessLevel.Administrator, OnHoldCommand);
+        CommandSystem.Register("TestOnlyHurt", AccessLevel.Administrator, OnHurtCommand);
+        CommandSystem.Register("TestOnlyWear", AccessLevel.Administrator, OnWearCommand);
+    }
+
+    // [TestOnlyWear <player-serial> <ItemTypeName> <hits>] sets the hit points of the player's first weapon, armor or shield of that type (worn or in the pack), for the durability gauge checks.
+    private static void OnWearCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 3 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile { Backpack: { } pack } player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyWear <player-serial> <ItemTypeName> <hits>");
+            return;
+        }
+
+        var all = new List<Item>(player.Items);
+        foreach (var packed in pack.FindItemsByType<Item>(true))
+        {
+            all.Add(packed);
+        }
+
+        foreach (var item in all)
+        {
+            if (item.GetType().Name != e.GetString(1))
+            {
+                continue;
+            }
+
+            switch (item)
+            {
+                case BaseWeapon weapon:
+                    weapon.HitPoints = Math.Min(e.GetInt32(2), weapon.MaxHitPoints);
+                    break;
+                case BaseArmor armor:
+                    armor.HitPoints = Math.Min(e.GetInt32(2), armor.MaxHitPoints);
+                    break;
+                default:
+                    continue;
+            }
+
+            e.Mobile.SendMessage($"{item.GetType().Name} {item.Serial} now {CombatBarService.DurabilityOf(item)}");
+            return;
+        }
+
+        e.Mobile.SendMessage($"No {e.GetString(1)} with durability");
+    }
+
+    // [TestOnlyHurt <player-serial> <hits>] takes that many hit points off the player (at least 1 is left), for the bandage checks.
+    private static void OnHurtCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (e.Length < 2 || !uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile player)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyHurt <player-serial> <hits>");
+            return;
+        }
+
+        player.Hits = Math.Max(1, player.Hits - e.GetInt32(1));
+        e.Mobile.SendMessage($"{player.Name} now has {player.Hits} hits");
     }
 
     // [TestOnlyHold <player-serial> <ItemTypeName>] puts the first backpack item of that type in the player's hand, first moving what is in the way into the backpack,
@@ -131,7 +193,18 @@ public static class TestOnlyProbe
             item.Amount = e.GetInt32(2);
         }
 
-        pack.DropItem(item);
+        Container target = pack;
+
+        if (e.Length > 3 && e.GetString(3) == "bag")
+        {
+            foreach (var held in pack.FindItemsByType<Bag>(false))
+            {
+                target = held;
+                break;
+            }
+        }
+
+        target.DropItem(item);
         e.Mobile.SendMessage($"Gave {item.GetType().Name} x{item.Amount}");
     }
 

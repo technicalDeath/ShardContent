@@ -24,6 +24,12 @@ The owner's running list of what the player client should do out of the box (sta
 
 6. **The buff tooltip no longer flickers** (client fix, not a default; see below).
 
+7. **Walking is running, but not while hidden** (owner, 2026-10-12, "client defaults pass"). `always_run` true, `always_run_unless_hidden` true. A new player no longer has to hold Shift to cross a town; a hidden player still walks, so a run does not give them away. Done in the defaults; checked in a new profile's `profile.json` and the Options window.
+
+8. **Walking into a door opens it** (same pass). `auto_open_doors` true (`smooth_doors` is left as the client has it). Done in the defaults.
+
+Looked at and not changed: font and window scale by resolution. The client has no profile option for a whole-UI scale (only the container scale and the tooltip zoom), so it cannot be a default without a client change; the same pass saw nothing else worth changing.
+
 ## Not in a new profile's reach: the owner's own settings
 
 Items 1 to 5 reach only new profiles, so on 2026-10-11, on his "yes", his own profiles were edited with the client closed: `Administrator`, `bris` and `bris2` (health bars as bars, circle of transparency, auto-open corpses, a plain right-click closes anchored windows, close the health bar of a dead mobile; `bris2` already had the first three on). The originals are in `work/client-defaults/profiles-backup-20261011/`. His other test profiles (`qwer`, `zxc` and so on) were left alone. To change one by hand: "Show mobiles' HP" and the bar type, "Hold ALT key to close anchored gumps" and the "Close health bars when" drop-down in Options.

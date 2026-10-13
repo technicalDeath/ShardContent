@@ -49,6 +49,8 @@ public static class ShardBootstrap
         ScrollChanceService.Configure();
         PotionBarService.Configure();
         MenuBarService.Configure();
+        CombatBarService.Configure();
+        WearNoticeService.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers
