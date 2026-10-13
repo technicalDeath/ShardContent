@@ -29,6 +29,14 @@ public class ClientDefaultsTests
     [InlineData("auto_heal_potion", true)]
     [InlineData("auto_refresh_potion", true)]
     [InlineData("auto_cure", true)]
+    [InlineData("show_d_p_s_with_damage_numbers", false)] // damage numbers without the "(DPS: n)" suffix, which is combat analytics and clutter for a new player
+    [InlineData("enabled_beneficial_criminal_action_query", true)] // "This may flag you criminal!" before a bandage or spell helps a grey, criminal or red player (stock ModernUO flags the helper)
+    [InlineData("party_invite_gump", true)]       // an invitation to a party opens an Accept / Decline window, not only a chat line (camp travel needs a party)
+    [InlineData("buff_bar_time", true)]           // a countdown on each buff icon
+    [InlineData("cast_spells_by_one_click", true)] // spell, skill and macro buttons act on one click, as the spell bar does
+    [InlineData("counter_bar_highlight_on_amount", true)] // an item shortcut turns red when it runs low
+    [InlineData("hold_down_key_tab", false)]      // Tab switches war mode on and off instead of holding it
+    [InlineData("show_info_bar", true)]           // the info bar (hits, mana, stamina) is offered once at first login (GameScene.OfferInfoBar)
     [InlineData("hold_down_key_alt_to_close_anchored", false)]
     public void TheSwitchedDefaultsAreSpelledTheWayTheClientWritesThem(string key, bool expected)
     {
@@ -42,6 +50,7 @@ public class ClientDefaultsTests
     [InlineData("circle_of_transparency_type", 0)] // 0 the normal circle, 1 like the original client
     [InlineData("corpse_open_options", 3)]        // 3 skips while a target cursor is up and while hidden
     [InlineData("close_health_bar_type", 2)]      // 2 closes the bar of a mobile that dies
+    [InlineData("name_overhead_type_allowed", 510)] // names for every mobile and corpse, not for items on the ground (1 items, 2 corpses, 4 to 256 the mobile kinds)
     public void TheNumberedDefaultsAreTheOwnersChoices(string key, int expected)
     {
         Assert.True(Defaults().TryGetProperty(key, out var value), $"{key} is missing");

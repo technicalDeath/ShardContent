@@ -11,6 +11,8 @@ Write-Host "=== host $(Get-Date -Format T)"
 & .\.claude\scripts\New-DisposableHost.ps1 -Name $HostName 2>&1 | Select-Object -Last 1
 $hostDir = (Resolve-Path "work\hosts\$HostName").Path
 Copy-Item work\agent-verification\modernuo-output\UOContent.dll "$hostDir\Assemblies\UOContent.dll" -Force
+Copy-Item work\agent-verification\modernuo-output\Server.dll "$hostDir\Server.dll" -Force   # engine hooks live in Server.dll (Mobile.HealApplied)
+Copy-Item work\agent-verification\modernuo-output\Server.pdb "$hostDir\Server.pdb" -Force -ErrorAction SilentlyContinue
 Copy-Item work\agent-verification\modernuo-output\UOContent.pdb "$hostDir\Assemblies\UOContent.pdb" -Force
 $shardBin = "ShardContent\src\BritanniaRenaissance.Content\bin\Release\net10.0"
 Copy-Item "$shardBin\BritanniaRenaissance.Content.dll" "$hostDir\Assemblies\BritanniaRenaissance.Content.dll" -Force
@@ -23,7 +25,10 @@ $rules.featureFlags.helpGumps = $true
 $rules.featureFlags.combatBar = $true
 $rules.featureFlags.wearNotice = $true
 $rules.featureFlags.autoUse = $true
+$rules.featureFlags.damageNumbers = $true
+$rules.featureFlags.healNumbers = $true
 [IO.File]::WriteAllText($rulesPath, ($rules | ConvertTo-Json -Depth 30), (New-Object Text.UTF8Encoding($false)))
+Copy-Item ShardContent\data\configuration\buff-icons.json "$hostDir\Configuration\buff-icons.json" -Force   # the source buff table (new states), not the deployed one
 & $BRPython work\help-gumps\make_host_data.py ShardContent\data\help "$hostDir\Configuration\help"
 
 $aj = "$hostDir\Data\assemblies.json"

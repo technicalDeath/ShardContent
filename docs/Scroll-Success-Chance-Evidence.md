@@ -1,6 +1,6 @@
 # Scroll success chance in the name (evidence)
 
-Owner request 2026-10-11 ("for later", then "we can do it now"): a single click on a spell scroll shows the viewer's chance of casting it after the scroll's name. Flag `featureFlags.scrollSuccessChance`, **off** until the owner says "activate".
+Owner request 2026-10-11 ("for later", then "we can do it now"): a single click on a spell scroll shows the viewer's chance of casting it after the scroll's name. Flag `featureFlags.scrollSuccessChance`: **activated 2026-10-13** on the owner's "activate anything that hasn't been yet" (on in the source, deployed to dev).
 
 ## Built
 - **Engine hook** (ModernUO, uncommitted): `SpellScroll.SingleClickPostfixHandler` and a `SpellScroll.OnSingleClick` override that appends the handler's text to the stock label (`Items/Skill Items/Magical/Scrolls/SpellScroll.cs`). A scroll with its own name, or no handler text, keeps the stock label. Same engine cycle as the Help hook: commit, rebuild `UOContent.csproj` into Distribution, bump the pin in three places, deploy.

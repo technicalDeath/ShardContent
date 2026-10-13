@@ -98,7 +98,9 @@ public static class BuffIconCatalog
         ["wardPrimed"] = ["minutes", "caught"],
         ["wardActivated"] = ["minutes", "caught"],
         ["faintMemoriesLocked"] = ["points", "unlock"],
-        ["faintMemoriesReady"] = ["points"]
+        ["faintMemoriesReady"] = ["points"],
+        ["hotZone"] = ["zone"],
+        ["secureCamp"] = []
     };
 }
 

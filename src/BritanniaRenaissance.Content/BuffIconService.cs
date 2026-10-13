@@ -1,6 +1,7 @@
 using System.Globalization;
 using Server;
 using Server.Engines.BuffIcons;
+using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Spells.Fourth;
@@ -289,6 +290,8 @@ public static class BuffStateProbes
         "wardActivated" => Ward(player, now, WardPhase.Activated),
         "faintMemoriesLocked" => FaintMemories(player, FaintMemoriesPhase.Locked, now),
         "faintMemoriesReady" => FaintMemories(player, FaintMemoriesPhase.Ready, now),
+        "hotZone" => HotZone(player),
+        "secureCamp" => SecureCamp(player),
         _ => null
     };
 
@@ -354,6 +357,18 @@ public static class BuffStateProbes
             state.DeadlineUtc
         );
     }
+
+    /// <summary>In a Hot Zone (the one check every Hot rule asks): the zone's name for the text.</summary>
+    private static BuffStateReading? HotZone(PlayerMobile player) =>
+        OutdoorHotZonePolicy.GetRegionName(player) is { } region
+            ? new BuffStateReading(Values(("zone", OutdoorHotZoneBoundaryService.DisplayName(region))))
+            : null;
+
+    /// <summary>In a secure camp (stock: within the range of a burning fire for 30 seconds, embers do not count): it ends when that fire burns out.</summary>
+    private static BuffStateReading? SecureCamp(PlayerMobile player) =>
+        Campfire.GetEntry(player) is { Safe: true } entry
+            ? new BuffStateReading(None, entry.Fire.LitAt + entry.Fire.Timing.Out)
+            : null;
 
     private static BuffStateReading? FaintMemories(PlayerMobile player, FaintMemoriesPhase phase, DateTime now)
     {

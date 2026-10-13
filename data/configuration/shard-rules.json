@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "e296fbd516a4bac157e4323cb50b9e02401a65fe",
+  "pinnedModernUoCommit": "136e573c863cb8a45e1bad2dfebb11dd3c6ae885",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -217,13 +217,15 @@
     "guildChat": true,
     "noviceCombat": true,
     "poisonRelief": true,
-    "helpGumps": false,
-    "scrollSuccessChance": false,
+    "helpGumps": true,
+    "scrollSuccessChance": true,
     "potionBar": true,
     "menuBar": true,
     "combatBar": true,
     "wearNotice": true,
     "autoUse": true,
+    "damageNumbers": true,
+    "healNumbers": true,
     "furnishers": true,
     "expeditions": false,
     "pilgrimage": false,

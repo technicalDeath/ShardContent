@@ -4,7 +4,9 @@
   "customIcons": [
     { "name": "CriminalIntent", "slot": 0, "art": 50000 },
     { "name": "BackpackWard", "slot": 1, "art": 50001 },
-    { "name": "FaintMemories", "slot": 2, "art": 50002 }
+    { "name": "FaintMemories", "slot": 2, "art": 50002 },
+    { "name": "HotZone", "slot": 3, "art": 50003 },
+    { "name": "SecureCamp", "slot": 4, "art": 50004 }
   ],
   "stock": {
     "Clumsy": { "title": "Clumsy", "lines": ["-{curse.Dex} Dexterity."] },
@@ -102,6 +104,24 @@
       "icon": "FaintMemories",
       "title": "Faint Memories",
       "lines": ["{points} free skill points are ready.", "Train a skill set to Up and they come back to you.", "Type [SkillBank to see them."]
+    },
+    "hotZone": {
+      "icon": "HotZone",
+      "title": "Hot Zone",
+      "lines": [
+        "You are in {zone}.",
+        "Players may start fights freely here. Killing an ordinary blue is still murder: the victim can report you.",
+        "Wards and Loot Protection do not apply here."
+      ]
+    },
+    "secureCamp": {
+      "icon": "SecureCamp",
+      "title": "Secure Camp",
+      "countdown": true,
+      "lines": [
+        "You are in a secure camp. Double-click your Bedroll, then again, and choose Continue to log out safely.",
+        "The camp ends when the fire burns out."
+      ]
     }
   }
 }

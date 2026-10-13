@@ -136,6 +136,21 @@ public sealed class BuffIconRulesTests
     }
 
     [Fact]
+    public void TheHotZoneIconNamesTheZoneAndTheSecureCampIconCountsDownToTheFire()
+    {
+        var rules = Shipped();
+
+        Assert.Equal(
+            "Hot Zone<br>You are in Fire Island.<br>Players may start fights freely here. Killing an ordinary blue is still murder: the victim can report you.<br>Wards and Loot Protection do not apply here.",
+            BuffIconRulesLoader.Render(rules.States["hotZone"], name => name == "zone" ? "Fire Island" : null)
+        );
+        Assert.False(rules.States["hotZone"].Countdown);
+        Assert.True(rules.States["secureCamp"].Countdown);
+        Assert.Contains(rules.CustomIcons, i => i.Name == "HotZone" && i.Art == 50003 && i.Slot == 3);
+        Assert.Contains(rules.CustomIcons, i => i.Name == "SecureCamp" && i.Art == 50004 && i.Slot == 4);
+    }
+
+    [Fact]
     public void ProtectionStatesItsChanceAsAPercentage() =>
         Assert.Equal(
             "Protection<br>Each hit has a 75% chance of not interrupting your spell.",

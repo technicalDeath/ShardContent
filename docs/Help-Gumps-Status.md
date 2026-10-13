@@ -1,6 +1,6 @@
 # Item Help and Skill Guide: where it stands
 
-**Written 2026-10-11 (paused at the owner's request).** Plan and sign-off: `Help-Gumps-Plan.md`. Writing brief: `Help-Content-Spec.md`. Evidence so far: `Help-Gumps-Evidence.md`. Owner-level findings from the writers and auditors: `Help-Gumps-Findings.md` (53 numbered items). Flag `featureFlags.helpGumps` is **off**; nothing is committed, pushed, deployed or activated.
+**Written 2026-10-11 (paused at the owner's request).** Plan and sign-off: `Help-Gumps-Plan.md`. Writing brief: `Help-Content-Spec.md`. Evidence so far: `Help-Gumps-Evidence.md`. Owner-level findings from the writers and auditors: `Help-Gumps-Findings.md` (53 numbered items). **Activated 2026-10-13** on the owner's "activate anything that hasn't been yet": `featureFlags.helpGumps` is on in the source and deployed to dev, with the pages as audited on 2026-10-11 (the owner-level findings in `Help-Gumps-Findings.md` stay open, notably that no Tinker, Miner or Thieves' Guildmaster spawns in the generated world, which several pages and the Ward vendor text assume).
 
 ## What the feature is
 

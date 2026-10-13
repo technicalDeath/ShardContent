@@ -27,12 +27,13 @@ public class ScrollChanceTests
     }
 
     [Fact]
-    public void ThePageFlagIsOffInTheShippedRules()
+    public void ThePageFlagIsOnSinceTheOwnerActivatedIt()
     {
         var rules = System.Text.Json.JsonSerializer.Deserialize<ShardRules>(
             File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "data", "configuration", "shard-rules.json"))
         )!;
 
-        Assert.False(rules.FeatureFlags.ScrollSuccessChance);
+        // activated 2026-10-13 on the owner's "activate anything that hasn't been yet"
+        Assert.True(rules.FeatureFlags.ScrollSuccessChance);
     }
 }

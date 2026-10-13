@@ -139,7 +139,8 @@ public static partial class WelcomeGuide
         {
             p.Add(HeadingMark + "The top bar");
 
-            var buttons = "Character opens your paperdoll, Backpack your pack, Skills your skills window, Journal your messages and Map the small map (click it again for the big map)";
+            var buttons = "Character opens your paperdoll, Backpack your pack, Skills your skills window, Journal your messages and Map the small map (click it again for the big map). " +
+                          "Names shows everyone's name, and every corpse's, and turns green while on; click it again to hide them (Alt+N, or holding Ctrl+Shift, does the same)";
 
             if (c.CampTravel)
             {
@@ -158,7 +159,7 @@ public static partial class WelcomeGuide
         p.Add(HeadingMark + "Fighting");
         p.Add(
             "Your paperdoll's Peace button, and the sword at the left of the bar under the game window, switch war mode. In war mode you attack what you target: double-click a monster to start. " +
-            "The sword shows peace or WAR. Click it again to stop fighting."
+            "The sword shows peace or WAR. Click it again to stop fighting. A box asks before you help a grey, criminal or red player, since that can make you a criminal too."
         );
 
         if (c.PotionBar)
@@ -169,6 +170,11 @@ public static partial class WelcomeGuide
                 "full, your weapon is put away first and taken up again afterwards. The small diamonds show only the potions you have, fold the bar into one small icon, or show them all again."
             );
         }
+
+        p.Add(HeadingMark + "The info bar");
+        p.Add(
+            "A thin bar beside the potion bar shows your hits, mana and stamina as numbers. The Info Bar page of Options changes it or puts it away."
+        );
 
         var bar = new List<string>
         {
@@ -199,7 +205,7 @@ public static partial class WelcomeGuide
             p.Add(
                 "The potion bar and the combat bar each have a small gear button at the end. It opens a panel with options that do for you what you could do with the bar: the combat bar can bandage you when your health " +
                 "falls below 75%, and the potion bar can drink a Heal potion at 25% health, a Refresh potion at 25% stamina, and the Cure potion that fits the poison you have. Potions are drunk strongest first, " +
-                "one at a time, and only when you could drink them yourself. A new character starts with all of them switched on; tick or untick each one in that panel, or on the Item shortcuts page of Options."
+                "one at a time, and only when you could drink them yourself. A new character starts with them on; change them in that panel or on the Item shortcuts page of Options."
             );
         }
 
@@ -219,13 +225,16 @@ public static partial class WelcomeGuide
         p.Add(HeadingMark + "Keys");
         p.Add(
             "A new profile starts with a few hotkeys: Alt+S opens your skills, Alt+C your status, Alt+P your paperdoll, Alt+I your backpack and Alt+J your journal, Alt+R the small map and Alt+O the settings. " +
-            "Alt+B bandages yourself and Alt+Shift+B bandages the person you targeted last. Tab holds war mode while you press it. The Macros page of Options changes any of them."
+            "Alt+B bandages yourself and Alt+Shift+B bandages the person you targeted last. Alt+N shows or hides names. Tab switches war mode on and off. The Macros page of Options changes any of them. " +
+            "Type [HelpInfo to see every command you can type."
         );
 
         p.Add(HeadingMark + "Windows");
         p.Add(
             "If your screen is wide enough, the journal, skills window and small map open in the dark column to the right of the game window, one under the other, so they do not cover your paperdoll or each other. " +
-            "Drag any window where you like. The window Alt+C opens shows your strength, dexterity, intelligence, hits, mana, stamina, gold, armor rating and weight."
+            "Your backpack and other containers go there too while there is room. " +
+            "The window Alt+C opens shows your strength, dexterity, intelligence, hits, mana, stamina, gold, armor rating and weight. " +
+            "In a shop window, hover over an item for sale to read it. If a player bothers you, Options has an Ignore List and this guide has a Page staff button."
         );
 
         p.Add(HeadingMark + "Item shortcuts");

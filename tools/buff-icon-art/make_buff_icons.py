@@ -77,7 +77,7 @@ def part(shape, top, bottom=None):
     return (shape, top, bottom or top)
 
 
-# ---- the three drawings
+# ---- the drawings
 
 STEEL = ((222, 228, 238), (150, 158, 172))
 GOLD = ((255, 222, 110), (200, 150, 40))
@@ -145,10 +145,35 @@ def draw_faint_memories():
     return "blue", parts
 
 
+def draw_hot_zone():
+    """A flame: this is a place where fighting is free."""
+    flame = [(14.0, 2.0), (17.6, 7.4), (20.8, 12.6), (21.6, 18.0), (19.0, 23.4), (14.0, 26.0), (9.0, 23.4), (6.4, 18.0), (7.4, 13.0), (10.4, 9.6), (11.0, 5.6)]
+    core = [(14.0, 12.4), (17.0, 16.4), (17.6, 20.4), (14.0, 24.0), (10.4, 20.4), (11.0, 16.4)]
+    parts = [
+        part(poly(flame), (255, 190, 70), (214, 92, 24)),
+        part(poly(core), (255, 248, 190), (255, 214, 96)),
+    ]
+    return "red", parts
+
+
+def draw_secure_camp():
+    """A tent with its door open: a camp where you can log out safely."""
+    parts = [
+        part(capsule(3.0, 24.6, 25.0, 24.6, 0.9), *DARKLEATHER),
+        part(poly([(14.0, 3.6), (26.0, 24.0), (2.0, 24.0)]), *LEATHER),
+        part(poly([(14.0, 11.0), (19.0, 24.0), (9.0, 24.0)]), *DARKLEATHER),
+        part(capsule(14.0, 2.4, 14.0, 6.0, 0.5), *DARKLEATHER),
+        part(circle(14.0, 2.6, 1.1), *GOLD),
+    ]
+    return "green", parts
+
+
 DRAWINGS = {
     "CriminalIntent": draw_criminal_intent,
     "BackpackWard": draw_backpack_ward,
     "FaintMemories": draw_faint_memories,
+    "HotZone": draw_hot_zone,
+    "SecureCamp": draw_secure_camp,
 }
 
 # the corner colour and the centre colour of each background (read off the stock icons)
