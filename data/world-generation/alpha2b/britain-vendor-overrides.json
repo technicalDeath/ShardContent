@@ -34,5 +34,85 @@
       { "name": "Alchemist", "maxCount": 1, "probability": 100 },
       { "name": "MageGuildmaster", "maxCount": 1, "probability": 100 }
     ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ce8c3dc1-88bf-51f0-ad00-3a68ad52bf6a",
+    "name": "Thieves' Guildmaster, Bay Side Road warehouse",
+    "location": [1571, 1746, 15],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "ThiefGuildmaster", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "57166063-0fc6-52dd-b728-cfc04aed5057",
+    "name": "Rangers' Guildmaster, Cavalry Guild",
+    "location": [1584, 1565, 20],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "RangerGuildmaster", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0423429c-5cf0-53a7-acb2-2c5f0c1787ba",
+    "name": "Fishermen's Guildmaster, Britain docks",
+    "location": [1441, 1760, -2],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "FisherGuildmaster", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f3863ca2-bbf3-5525-9458-b68cd2da2e4c",
+    "name": "Tinker, The Tinkers' Guild",
+    "location": [1427, 1650, 10],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "Tinker", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "44995891-53ae-5bd0-9b55-bdd703ee9462",
+    "name": "Miner, beside the Miners' Guildmaster",
+    "location": [1420, 1580, 30],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 0,
+    "walkingRange": 5,
+    "entries": [
+      { "name": "Miner", "maxCount": 1, "probability": 100 }
+    ]
   }
 ]

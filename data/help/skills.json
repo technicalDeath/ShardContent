@@ -1707,7 +1707,7 @@
       "skill": "Stealing",
       "paragraphs": [
         "# What it is",
-        "Stealing takes an item out of a pack or a container, and sometimes you are noticed doing it. Stealing from another player is not possible in this world; see the section on it below.",
+        "Stealing takes an item out of a pack or a container, and sometimes you are noticed doing it. Stealing from another player has strict rules here, set out below.",
         "# How to use it",
         "Empty your hands, weapon and shield too, or you are told \"Both hands must be free to steal.\" Stand next to your target, click the button beside Stealing in your skills window and choose it. Choose an item in an open container to take that item. Choose a person or creature and a random item from its backpack is picked for you; to pick the item yourself, open the pack first with Snooping. You can use the skill again 10 seconds after you used it.",
         "# What you can take",
@@ -1719,7 +1719,28 @@
         "If you are noticed stealing from someone who was innocent to you, you become a criminal for 2 minutes, and everyone within 8 tiles is told what they saw. A criminal is chased by guards in a guarded town, refused by bankers and healers, and cannot cast Recall or Gate Travel. Being noticed stealing from someone who is already a criminal or murderer to you does not make you one.",
         "Every try costs about 50 karma (more if your karma is high), whether it works or not. A stolen item that is not a stack or a container is marked for 2 minutes: you cannot trade it, and if you die carrying it, it goes back to the person or creature you took it from.",
         "# Stealing from other players",
-        "The skill lets only a member of the Thieves' Guild steal from another player, and this world has no Thieves' Guildmaster, so players have no way to join. You cannot steal from other players here.",
+        "You can steal from another player only if you belong to the Thieves' Guild. A guild member who has murder counts is suspended and cannot. Guards also take no murder report against a Thieves' Guild member.",
+        "To join, find the Thieves' Guildmaster in the warehouse on Bay Side Road, in the south-east of Britain (click the guildmaster to read the name), say the name and \"join\", and give 500 gold. You need a character at least 7 days old that has played at least 2 days, is not Young, has no murder counts and has trained Stealing to at least 60.0.",
+        {
+          "text": "You also need a victim you are allowed to attack: a player who has Criminal Intent on, a criminal, a murderer, someone already fighting you, or someone at guild war with you. A player who has not turned Intent on (see [Intent) cannot be robbed: the try is refused.",
+          "requires": "SafeWorld"
+        },
+        {
+          "text": "In a Hot Zone (Fire Island, Buccaneer's Den island and Hythloth) players can attack one another freely, and the same goes for stealing between two players who are both in the same Hot Zone. A Backpack Ward does nothing there.",
+          "requires": "HotZones"
+        },
+        {
+          "text": "Banks are off limits. If you or your victim stand in the square of 24 by 24 tiles around one of 17 town banks, you cannot steal from a player: \"You cannot steal from players in this bank protection area.\" A Backpack Ward cannot be stolen either, nor can anything bound to its owner: \"That protected item cannot be stolen.\"",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "Many players carry a Backpack Ward, which watches for thieves (see the Backpack Ward page of the Welcome guide, [Welcome). It does not change your chance to steal. But after a theft from its carrier that nobody noticed, the Ward rolls on its own to expose you: 25 in 100 after your first such theft from that player, 50 in 100 after the second, certain after the third. If it exposes you, you become a criminal, are told \"You have been caught stealing!\", and cannot steal from that player again, with any of your characters, while the Ward lasts: about 30 quiet minutes.",
+          "requires": "TheftProtection"
+        },
+        {
+          "text": "A Knocked Out player cannot be robbed with Stealing. The Snooping page explains how a Knocked Out player's pack can be opened instead.",
+          "requires": "KnockedOut"
+        },
         "# Training it",
         "A roll teaches only while your skill is between an item's two numbers in the list above (the skill that gives you any chance and the skill that makes it certain): below the first you cannot succeed and learn nothing, above the second you always succeed and learn nothing. Inside that window a roll teaches whether you get the item or not, and below 10.0 every one does. After that you learn most from things a little too heavy for you: choose items that weigh about one stone more than a tenth of your skill (1 stone at skill 0, 3 at skill 20, 6 at 50, 9 at 80), which gives roughly a 1 in 4 chance. Even a 10-stone item gives only 45 in 100 at skill 100.",
         "The only tries that cannot get you noticed are items in a container that nobody carries, such as a chest or crate. If it is locked, pick the lock first. Every try still costs karma. Do not practise on shopkeepers or townspeople: a noticed thief is a criminal, and in a guarded town the guards come.",
@@ -1779,7 +1800,7 @@
         "# What you need",
         "Nothing to buy. Hiding helps a little, because a hidden snooper is revealed less often after a failed try.",
         "# Good to know",
-        "Snooping only looks. To take an item from a pack you have opened you need Stealing too (see that page; from another player it also takes the Thieves' Guild, which has no guildmaster in this world). Snooping a staff member is always refused."
+        "Snooping only looks. To take an item from a pack you have opened you need Stealing too (see that page; from another player it also takes the Thieves' Guild). Snooping a staff member is always refused."
       ]
     },
     {

@@ -8,6 +8,7 @@ using Server.Items;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Accounting;
+using Server.Engines.PartySystem;
 
 namespace Alpha3TestOnlyTools;
 
@@ -52,6 +53,28 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyWear", AccessLevel.Administrator, OnWearCommand);
         CommandSystem.Register("TestOnlySkillSet", AccessLevel.Administrator, OnSkillSetCommand);
         CommandSystem.Register("TestOnlyPoison", AccessLevel.Administrator, OnPoisonCommand);
+        CommandSystem.Register("TestOnlyPartyInvite", AccessLevel.Administrator, OnPartyInviteCommand);
+    }
+
+    // [TestOnlyPartyInvite <inviter-serial> <invitee-serial>] has the inviter invite the invitee to a party, as the client's party Add does after its target cursor, so the
+    // invitee's client shows its party invitation window (or the stock chat line).
+    private static void OnPartyInviteCommand(CommandEventArgs e)
+    {
+        static Mobile? Find(string raw)
+        {
+            var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+            return uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) ? World.FindMobile((Serial)serial) : null;
+        }
+
+        if (e.Length < 2 || Find(e.GetString(0)) is not { } from || Find(e.GetString(1)) is not { } target)
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyPartyInvite <inviter-serial> <invitee-serial>");
+            return;
+        }
+
+        Party.Invite(from, target);
+        e.Mobile.SendMessage($"PartyInvite {from.Name} -> {target.Name}");
     }
 
     // [TestOnlySkillSet <player-serial> <SkillName> <value>] sets a skill's base value (and raises the cap if needed), for the auto-use checks.

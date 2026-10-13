@@ -40,7 +40,7 @@ Deployment must verify the ModernUO pin and prepare:
 - 28 allowlisted decoration files;
 - 410 Felucca signs;
 - 353 teleporter definitions / 385 canonical placements;
-- 1,546 canonical spawners;
+- 1,551 canonical spawners (1,546 stock-derived plus the five Britain guildmasters and vendors added 2026-10-13, `Britain-Guildmasters-Evidence.md`);
 - the pinned `DoorGenerator.cs` source hash, 16 Felucca scan rectangles, four stock Britannia
   exclusions, and 1,345 exact door-frame placements.
 
@@ -86,6 +86,8 @@ from `Configuration/furnishers.json` on every server start, but leaves an empty 
 `apply` still sees a fresh world. After generation, **restart once** (or run `[FurnisherRefresh`) and
 the vendor and the 229 display items appear; check `[FurnisherStatus`. They do not change any
 audited count, and the `rerun` leaves them alone (`Furnisher-Evidence.md`, case 21).
+
+**Adding spawners to a world in use.** A world that was generated earlier and has players in it cannot be regenerated (`apply` refuses a non-fresh world). `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` adds just the canonical spawners it lacks (by GUID and place), through the same spawner pass, saves only when every canonical spawner is then exact, and prints the full audit; with nothing missing it does nothing. Snapshot `Saves` first, as for any change to the shared dev world. It is how the five Britain additions reached the dev world.
 
 ## Convergence and restart acceptance
 

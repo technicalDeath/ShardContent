@@ -22,8 +22,8 @@ public static class Alpha2bWorldGenerationCommands
         CommandSystem.Register("Alpha2bWorldGen", AccessLevel.Owner, OnCommand);
     }
 
-    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit")]
-    [Description("Previews, generates, or audits the era-reviewed Alpha 2b UOR/Felucca world baseline.")]
+    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit|addspawners CONFIRM-UOR-FELUCCA")]
+    [Description("Previews, generates, or audits the era-reviewed Alpha 2b UOR/Felucca world baseline, or adds the canonical spawners an existing world lacks.")]
     private static void OnCommand(CommandEventArgs e)
     {
         var operation = e.GetString(0).ToLowerInvariant();
@@ -39,9 +39,12 @@ public static class Alpha2bWorldGenerationCommands
             case "audit":
                 Audit(e.Mobile, true, null, "audit");
                 break;
+            case "addspawners":
+                AddMissingSpawners(e);
+                break;
             default:
                 e.Mobile.SendMessage(
-                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit"
+                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit|addspawners {Confirmation}"
                 );
                 break;
         }
@@ -187,6 +190,93 @@ public static class Alpha2bWorldGenerationCommands
             from.SendMessage($"Alpha 2b generation failed: {ex.GetType().Name}: {ex.Message}");
             from.SendMessage("The world was not saved; stop the server and repeat from a clean reset.");
         }
+    }
+
+    /// <summary>
+    /// The canonical spawners (exactly as the audit counts them: the definition's GUID once, at the definition's place) that an existing world does not have. Everything already right is left
+    /// alone, which is the whole point: a world with players in it is not regenerated to gain a few spawners.
+    /// </summary>
+    private static List<SpawnerDto> MissingSpawners(IEnumerable<SpawnerDto> definitions, IReadOnlyDictionary<Guid, List<BaseSpawner>> existingByGuid) =>
+        definitions
+            .Where(
+                definition => !(existingByGuid.TryGetValue(definition.Guid, out var matches) && matches.Count == 1 &&
+                                matches[0].Location == definition.Location)
+            )
+            .ToList();
+
+    /// <summary>
+    /// <c>[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA</c>: for a world that was generated earlier and is in use, adds the canonical spawners it lacks (for example ones added to the
+    /// shard's override file since), through the same spawner pass that generation uses, so a stale spawner of the same GUID or at the same place and type is replaced and nothing else is touched.
+    /// It saves only when every canonical spawner is then in the world exactly, and then prints the full audit.
+    /// </summary>
+    private static void AddMissingSpawners(CommandEventArgs e)
+    {
+        var from = e.Mobile;
+
+        if (e.GetString(1) != Confirmation)
+        {
+            from.SendMessage($"Refusing without the exact confirmation token: {Confirmation}");
+            return;
+        }
+
+        if (e.Length > 2)
+        {
+            from.SendMessage("addspawners takes no further argument.");
+            return;
+        }
+
+        if (World.Saving)
+        {
+            from.SendMessage("Refusing while a world save is active.");
+            return;
+        }
+
+        if (!TryLoadInputs(from, out var inputs))
+        {
+            return;
+        }
+
+        if (!InactiveFacetsAreEmpty(out var inactiveError))
+        {
+            from.SendMessage($"Refusing: {inactiveError}");
+            return;
+        }
+
+        var missing = MissingSpawners(inputs.Spawners, CountSpawnersByGuid());
+
+        if (missing.Count == 0)
+        {
+            from.SendMessage($"Alpha 2b: all {inputs.Spawners.Count} canonical spawners are already in the world; nothing to add.");
+            return;
+        }
+
+        foreach (var definition in missing)
+        {
+            from.SendMessage($"Alpha 2b: adding {string.Join(", ", definition.EntryView.Select(entry => entry.SpawnedName))} at {definition.Location}.");
+        }
+
+        try
+        {
+            var report = GenerateSpawners(missing);
+            from.SendMessage($"Alpha 2b added {report.Created} spawners and replaced {report.Replaced} stale ones.");
+        }
+        catch (Exception ex)
+        {
+            from.SendMessage($"Alpha 2b adding spawners failed: {ex.GetType().Name}: {ex.Message}. The world was not saved; stop the server without saving.");
+            return;
+        }
+
+        var stillMissing = MissingSpawners(inputs.Spawners, CountSpawnersByGuid()).Count;
+
+        if (stillMissing != 0)
+        {
+            from.SendMessage($"Alpha 2b: {stillMissing} canonical spawners are still not exact. The world was not saved; stop the server without saving.");
+            return;
+        }
+
+        AutoSave.Save();
+        from.SendMessage("Alpha 2b: every canonical spawner is now in the world. Saved. The full audit follows.");
+        Audit(from, true, null, "addspawners");
     }
 
     private static List<GenerationOperationReport> GenerateDecorations(IEnumerable<string> files)
