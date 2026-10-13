@@ -32,6 +32,8 @@ The owner's running list of what the player client should do out of the box (sta
 
 10. **Default hotkeys and window placement** are in the client, not the profile file: new profiles get the macros Alt+S, Alt+C, Alt+B, Alt+Shift+B (`MacroManager.CreateDefaultMacros`), and the journal, skills, small map and status windows open in the black column beside the game window (`ShardLayout`). The skills window opens its trained groups for a character with little training.
 
+11. **The auto-use switches start on** (owner, 2026-10-13). `auto_bandage`, `auto_heal_potion`, `auto_refresh_potion` and `auto_cure` true: bandage below 75% health, Heal potion at 25% health, Refresh potion at 25% stamina, the right Cure potion when poisoned (`AutoUse`, `docs/Auto-Use-Evidence.md`). They do nothing while the shard's `autoUse` flag is off and show nowhere; an existing profile keeps what it has (off). The same four switches are on the Item shortcuts page of Options and on the gear panels of the potion and combat bars, and follow each other.
+
 Looked at and not changed: font and window scale by resolution. The client has no profile option for a whole-UI scale (only the container scale and the tooltip zoom), so it cannot be a default without a client change; the same pass saw nothing else worth changing.
 
 ## Not in a new profile's reach: the owner's own settings

@@ -25,6 +25,10 @@ public class ClientDefaultsTests
     [InlineData("auto_open_doors", true)]         // walking into a door opens it
     [InlineData("combat_bar_enabled", true)]      // the combat bar under the potion bar (CombatBarGump)
     [InlineData("potion_bar_enabled", true)]      // the potion bar under the game window (PotionBarGump)
+    [InlineData("auto_bandage", true)]            // the four auto-use switches (AutoUse) start on for a new profile (owner, 2026-10-13); they only act while the shard allows them
+    [InlineData("auto_heal_potion", true)]
+    [InlineData("auto_refresh_potion", true)]
+    [InlineData("auto_cure", true)]
     [InlineData("hold_down_key_alt_to_close_anchored", false)]
     public void TheSwitchedDefaultsAreSpelledTheWayTheClientWritesThem(string key, bool expected)
     {

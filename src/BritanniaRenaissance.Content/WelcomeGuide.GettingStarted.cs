@@ -199,7 +199,7 @@ public static partial class WelcomeGuide
             p.Add(
                 "The potion bar and the combat bar each have a small gear button at the end. It opens a panel with options that do for you what you could do with the bar: the combat bar can bandage you when your health " +
                 "falls below 75%, and the potion bar can drink a Heal potion at 25% health, a Refresh potion at 25% stamina, and the Cure potion that fits the poison you have. Potions are drunk strongest first, " +
-                "one at a time, and only when you could drink them yourself. All of them start switched off."
+                "one at a time, and only when you could drink them yourself. A new character starts with all of them switched on; tick or untick each one in that panel, or on the Item shortcuts page of Options."
             );
         }
 

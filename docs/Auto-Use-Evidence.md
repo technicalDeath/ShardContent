@@ -23,7 +23,9 @@ A small brass gear at the end of the **potion bar** and of the **combat bar**, s
 | Potion | Drink a Refresh potion when my stamina falls to 25% | Total Refresh first, then Refresh. |
 | Potion | Cure me when I am poisoned | The client asks the server (extended command 0xAA); the server answers with the cure to drink (next section). |
 
-All four are off until ticked, and the choice is kept in the character's profile (`auto_bandage`, `auto_heal_potion`, `auto_refresh_potion`, `auto_cure`).
+A **new profile starts with all four ticked** (`data/client/default-profile.json`, owner 2026-10-13); a profile that already exists keeps them off until ticked. The choice is kept in the character's profile (`auto_bandage`, `auto_heal_potion`, `auto_refresh_potion`, `auto_cure`).
+
+The same four tick boxes are also on the **Item shortcuts page of Options** (under "Automatic help", shown only while the shard allows auto-use), so a player can switch them without the bar. There is one value, in the profile, and `AutoUse.Changed` tells every window that shows it: a tick on a gear panel shows on the Options page at once, and Apply on the Options page updates an open gear panel. The Options page follows the page's own Apply/OK rule (Cancel discards), and its Default button ticks all four.
 
 Common rules (`AutoUse.Tick`, four looks a second): never while dead, while an item is held on the cursor or a target cursor is up (so it cannot hijack a spell's target); at most one automatic action every 1.6 s; a potion goes through the potion bar's own drink steps (the weapon comes off first when both hands are busy, as for a click). Order: cure when poisoned, then a Heal potion at the low line, then a bandage, then a Refresh potion.
 
@@ -70,6 +72,10 @@ Real client (ClassicUO from `ClassicUO/bin/dist`, rebuilt after each fix), dispo
 | 8 | Cure unticked, Healing and Anatomy 100, Greater poison | One bandage: slips as the poison ticks, "You finish applying the bandages. You have been cured of all poisons!"; then, still hurt, a second bandage to heal. No restart in the middle (before the fixes: a new bandage every few seconds, the count fell 25 to 22 in 11 s) | `g-15`, `g-20`; before: `bandage-cure-11s`; after the first fix only: `fix-13s` |
 | 9 | The gear panels | Readable, opaque, above the bar, closes on an outside press; the tick boxes persist (unticked Cure stayed unticked after a client restart) | `panel-potion-final`, `panel-combat-final`, `cure-unticked` |
 | 10 | Vendor shop window default height (new-player pass item 23) | Opens about 490 px tall below the top bar, five full rows visible, the Bill of Sale beside it | `shop-default` |
+| 11 | A brand-new profile (new character, `default.json` copied to the client) | The potion bar panel opens with Heal, Refresh and Cure all ticked; the saved `profile.json` carries `auto_bandage`, `auto_heal_potion`, `auto_refresh_potion`, `auto_cure` | `n1-potion-panel` |
+| 12 | Default-on, nothing ticked by hand: that profile wounded by 30 | "Who will you use the bandages on? You begin applying the bandages." without any click | `n9-auto-bandage-default` |
+| 13 | The Options window, Item shortcuts page | A new "Automatic help" section with the same four tick boxes and the same words, below the shard bars; shown only while the shard allows auto-use. Three labels on that page were clipped at the right edge (one of them mine, two from the earlier bars work) and are shortened | `n3-itemshortcuts` (before), `n10-options-fixed` (after) |
+| 14 | The two stay in sync | With the Options page open, a gear panel over it: unticking Heal in the panel unticks it on the Options page at once. Unticking Cure on the Options page and pressing Apply: the gear panel then shows Cure off and keeps Heal off (Apply does not put back a value the panel changed). Default on the page ticks all four. The values survive a client restart and are in the profile file | `n6-after-untick-in-panel`, `n7-options-to-panel`, `n8-default-pressed`, `n10-options-fixed` |
 
 Note on case 7 and the 60 line: the server compares `Skill.Value`, which includes a stat bonus (up to 10 points at 50 for Healing), not the base. The client sends and reads the same `Value`, so the rule matches; a test at base 50 can therefore still cure, which is why case 7 uses 20.
 
