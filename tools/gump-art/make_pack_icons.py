@@ -4,7 +4,7 @@ A small brass diamond like the one the pack art carries to minimise it, with a g
 
   python make_pack_icons.py [out folder]        (default: ShardContent/data/client/gumps; a preview PNG goes beside this script)
 
-Art ids: 62050 plus, 62051 minus, 62052 options gear (62010-62041 are the window buttons, 50000-50999 the buff icons).
+Art ids: 62050 plus, 62051 minus, 62052 options gear, 62053 grid view (62010-62041 are the window buttons, 50000-50999 the buff icons).
 """
 import os
 import struct
@@ -60,6 +60,9 @@ def diamond(glyph):
             marks.append((k, t))                               # the horizontal bar
             if glyph == "plus":
                 marks.append((t, k))                           # and the vertical one
+
+    if glyph == "grid":
+        marks = [(x, y) for x in (-3, -2, -1, 1, 2, 3) for y in (-3, -2, -1, 1, 2, 3)]   # four small squares: a grid of cells
 
     for dx, dy in marks:                                       # a shadow one pixel down and right, then the gold
         x, y = C + dx + 1, C + dy + 1
@@ -162,12 +165,17 @@ def main():
         with open(os.path.join(OUT, "%d.gump" % art), "wb") as f:
             f.write(gump_bytes(pixels))
 
+    cell_grid = diamond("grid")
+
+    with open(os.path.join(OUT, "62053.gump"), "wb") as f:
+        f.write(gump_bytes(cell_grid))
+
     cog = gear()
 
     with open(os.path.join(OUT, "62052.gump"), "wb") as f:
         f.write(gump_bytes(cog))
 
-    png(os.path.join(HERE, "pack-icons-preview.png"), [plus, minus, cog])
+    png(os.path.join(HERE, "pack-icons-preview.png"), [plus, minus, cog, cell_grid])
     print("62050 plus, 62051 minus and 62052 gear written to", os.path.abspath(OUT))
 
 
