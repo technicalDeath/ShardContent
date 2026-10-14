@@ -55,6 +55,7 @@ public class ClientDefaultsTests
     [InlineData("circle_of_transparency_type", 0)] // 0 the normal circle, 1 like the original client
     [InlineData("corpse_open_options", 3)]        // 3 skips while a target cursor is up and while hidden
     [InlineData("close_health_bar_type", 2)]      // 2 closes the bar of a mobile that dies
+    [InlineData("container_style", 1)]            // 0 the classic container window, 1 the shard grid of cells (ContainerGump.Grid.cs); a new profile gets the grid, an existing one keeps the classic look until Options > Containers is changed
     [InlineData("name_overhead_type_allowed", 510)] // names for every mobile and corpse, not for items on the ground (1 items, 2 corpses, 4 to 256 the mobile kinds)
     public void TheNumberedDefaultsAreTheOwnersChoices(string key, int expected)
     {

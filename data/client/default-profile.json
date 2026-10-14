@@ -33,5 +33,6 @@
   "show_target_range_indicator": true,
   "auto_pickup_arrows": true,
   "auto_pickup_bolts": true,
-  "auto_pickup_reagents": true
+  "auto_pickup_reagents": true,
+  "container_style": 1
 }
