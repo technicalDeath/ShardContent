@@ -21,7 +21,7 @@
   "auto_open_doors": true,
   "counter_bar_enabled": true,
   "use_circle_of_transparency": true,
-  "circle_of_transparency_type": 0,
+  "circle_of_transparency_type": 1,
   "auto_open_corpses": true,
   "corpse_open_options": 3,
   "show_mobiles_h_p": true,

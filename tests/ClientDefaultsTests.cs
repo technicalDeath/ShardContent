@@ -52,7 +52,7 @@ public class ClientDefaultsTests
     [Theory]
     [InlineData("mobile_h_p_type", 1)]            // 0 a percentage, 1 a bar, 2 both
     [InlineData("mobile_h_p_show_when", 0)]       // 0 always, 1 only below full health
-    [InlineData("circle_of_transparency_type", 0)] // 0 the normal circle, 1 like the original client
+    [InlineData("circle_of_transparency_type", 1)] // 0 the full circle, 1 the gradient (owner, 2026-10-14)
     [InlineData("corpse_open_options", 3)]        // 3 skips while a target cursor is up and while hidden
     [InlineData("close_health_bar_type", 2)]      // 2 closes the bar of a mobile that dies
     [InlineData("container_style", 1)]            // 0 the classic container window, 1 the shard grid of cells (ContainerGump.Grid.cs); a new profile gets the grid, an existing one keeps the classic look until Options > Containers is changed

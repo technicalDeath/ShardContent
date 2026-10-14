@@ -28,6 +28,7 @@ public static class ShardBootstrap
         StarterGoldPolicy.Configure();
         StarterCraftMaterialIssuance.Configure();
         StarterCombatIssuance.Configure();
+        StarterGearEquip.Configure(); // after Alpha3StartingStats (the real Strength) and StarterCombatIssuance (the archer leather, the shield)
         StarterOnboarding.Configure();
         KnockedOutService.Configure();
         LocalAccountRequest.Configure();
