@@ -41,7 +41,8 @@ A decision-tree bot that plays a brand-new Pure Mage through Navrey so the shard
 | `r_avoid` | A monster the numbers say is too strong: fight it from range if cornered, otherwise move away from it. |
 | `r_heal` | Heal below 55 percent (45 with enemies near). |
 | `r_fight` | The best attack spell at prey (weak prey is a lesson); skips when out of reagents. |
-| `r_loot` | Opens a nearby corpse once and notes whether it was empty. |
+| `r_loot` | A corpse in reach, no danger near: stands on it, opens it, takes gold, reagents, potions, scrolls and gems (retrying while the server says it must wait), leaves equipment and parts, gives up on a corpse it cannot reach. |
+| `r_bank` | When rich (450 gold or more), heavy with leftovers, or too poor to shop: walks to the nearest bank, says "bank", drags junk and the gold above a 200 reserve into the box, reads the balance, and says "withdraw N" when it needs gold. |
 | `r_resupply` | Out of reagents, or low on the plan (Black Pearl, ash, the heal set, mandrake): to the Mage shop, tries each person with "<name> buy", buys what the plan lacks within the gold it has, reads the sell list when broke. |
 | `r_train` | Once: asks each person at the Mage shop what they will train. |
 | `r_hunt` | Walks up to prey that is in view but out of range, never near a place that killed it. |

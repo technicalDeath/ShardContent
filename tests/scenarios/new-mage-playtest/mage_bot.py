@@ -46,6 +46,7 @@ SAFE_PREY = ("rat", "cat", "magpie", "nightingale", "crow", "rabbit", "hind", "s
 DANGEROUS = ("bear", "wolf", "orc", "ettin", "lizardman", "troll", "mongbat", "skeleton", "zombie", "gazer", "scorpion", "spider", "ogre", "harpy")
 
 PLAN = {"BlackPearl": 24, "SulfurousAsh": 16, "Garlic": 14, "Ginseng": 14, "SpidersSilk": 14, "MandrakeRoot": 8}
+WORTH_CARRYING = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire", "emerald", "diamond", "amber", "citrine", "tourmaline", "star ", "jewel", "ring", "necklace", "bracelet")
 HEALER = (1472, 1611)      # data/client/UORekindled-Britain.csv: "Healer (resurrects you)"
 TOWN = (1470, 1620)        # inside the walls, near the healer
 
@@ -56,6 +57,7 @@ FAIL_PATTERNS = [
     ("overloaded", re.compile(r"too heavy|overload|weigh", re.I)),
     ("cannot_see", re.compile(r"cannot see|can't see|line of sight", re.I)),
     ("wait", re.compile(r"must wait", re.I)),
+    ("criminal", re.compile(r"criminal act", re.I)),
 ]
 
 
@@ -346,19 +348,62 @@ class Bot:
         return True
 
     def r_loot(self):
-        for it in list(self.c.containers(within=2)) + list(self.c.items(within=2)):
-            if "corpse" in it.name.lower() and it.serial not in self.facts["looted"]:
-                self.facts["looted"].add(it.serial)
-                try:
-                    contents = self.c.container(it.serial, timeout=4)
-                except Exception:
-                    contents = []
-                self.log(f"corpse {it.name}: {[str(x) for x in contents]}")
-                if not contents:
-                    self.notes.add("loot", "An empty corpse still opens by itself; nothing says it was worthless before it opens.", key="emptycorpse")
-                return True
-        return False
-
+        """A kill's corpse in reach: walk up to it, open it, take what is worth carrying, note what came out."""
+        if self.dangers(8):
+            return False                       # not with something hostile at the mage's back
+        corpses = [i for i in self.c.containers(within=10) if "corpse" in i.name.lower() and i.serial not in self.facts["looted"]]
+        if not corpses:
+            return False
+        corpse = corpses[0]
+        if max(abs(self.c.x - corpse.x), abs(self.c.y - corpse.y)) > 1:
+            # the server only lets a character take from a corpse it can see from a tile or two away: stand on it (a corpse can be walked over)
+            res = self.c.gotoexact(corpse.x, corpse.y).wait(timeout=6)
+            if max(abs(self.c.x - corpse.x), abs(self.c.y - corpse.y)) > 1:
+                tries = self.facts.setdefault("loot_tries", {})
+                tries[corpse.serial] = tries.get(corpse.serial, 0) + 1
+                if tries[corpse.serial] >= 3 or (res and str(res).startswith("nopath")):
+                    self.facts["looted"].add(corpse.serial)
+                    self.log(f"cannot reach {corpse.name} ({res}); leaving it")
+                return True                    # still walking there; try again next tick
+        self.facts["looted"].add(corpse.serial)
+        # a corpse, like a bag, has to be opened (from a tile next to it) before its contents are known
+        self.c.events.drain()
+        self.c.use(corpse.serial)
+        self.c.wait_for(Event.CONTAINER_CONTENTS, timeout=4)
+        self.read_journal()
+        try:
+            contents = self.c.container(corpse.serial, timeout=5)
+        except Exception:
+            contents = []
+        self.log(f"corpse {corpse.name}: {[str(x) for x in contents]}")
+        if not contents:
+            self.notes.add("loot", "An empty corpse still opens by itself; nothing says it was worthless before it opens.", key="emptycorpse")
+            return True
+        loot = self.stats.setdefault("loot", {})
+        for it in contents:
+            low = it.name.lower()
+            worth = any(w in low for w in WORTH_CARRYING)
+            if not worth:
+                self.log(f"  leaving {it.name} (not worth the weight for a mage)")
+                self.notes.add("loot", f"Corpses of orcs, lizardmen and the like hold mostly equipment and parts a mage has no use for ({it.name}); only gold, reagents, potions, scrolls and gems are worth taking.", key=f"junk:{low[:20]}")
+                continue
+            before = self.c.gold
+            for attempt in range(4):
+                # the server refuses a pick-up while the last action's delay runs ("You must wait to perform another action."): wait, try, look at the answer
+                time.sleep(0.9 if attempt == 0 else 1.2)
+                self.c.events.drain()
+                self.c.get_item(it.serial, it.amount if (it.amount or 0) > 1 else None)
+                time.sleep(1.0)
+                answer = self.read_journal()
+                if not any("must wait" in line.lower() for line in answer):
+                    break
+                self.notes.add("loot", "Picking up loot right after opening the corpse is refused with 'You must wait to perform another action.'; the player has to pause between grabs.", key="lootwait")
+            took = self.c.gold - before if "gold" in low else (it.amount or 1)
+            loot[it.name] = loot.get(it.name, 0) + max(took, 1)
+            self.log(f"  took {it.name}" + (f" (gold {before} -> {self.c.gold})" if "gold" in low else ""))
+        self.save_stats()
+        self.notes.add("loot", f"A {corpse.name} held: {[str(x) for x in contents]}", key=f"loot:{corpse.name}")
+        return True
     def r_hunt(self):
         spots = self.facts.get("death_spots", [])
         ps = [m for m in self.prey(16) if m.distance > 8 and not any(abs(m.x - dx) < 70 and abs(m.y - dy) < 70 for dx, dy in spots)]
@@ -427,6 +472,10 @@ class Bot:
                 return False          # the starter kit is still mostly there: no trip needed
         if self.dangers(10) or self.hp_pct() < 60:
             return False
+        if self.c.gold < 60:
+            self.facts["need_gold"] = True         # too poor to buy: the bank may hold some (r_bank takes it out)
+            if self.facts.get("bank_balance", 0) >= 60:
+                return False
         self.facts["shopped"] = True
         if out_of_regs:
             self.facts["last_fail"] = None
@@ -510,6 +559,77 @@ class Bot:
                 self.notes.add("training", f"Asking {m.name} to 'train' answered: {(lines or gumps)[-1][:110]}", key=f"train:{m.name}")
         return True
 
+    # ---- banking ------------------------------------------------------------------------------------------------
+
+    KEEP = ("book", "gold", "dagger", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "pearl", "moss", "garlic", "ginseng",
+            "mandrake", "nightshade", "ash", "silk", "bandage", "gem", "ruby", "sapphire", "emerald", "diamond", "amber", "citrine", "tourmaline", "star ", "check")
+
+    def visit_bank(self, why, withdraw=0):
+        """Walk to the nearest bank, open the box ("bank"), put the junk and the gold above the reserve into it, and take gold out if asked.
+        A new player works all of this out alone: the word "bank", dragging gold in, saying "withdraw N" to take it back."""
+        banks = sorted([(1425, 1690), (1650, 1608)], key=lambda p: abs(p[0] - self.c.x) + abs(p[1] - self.c.y))
+        self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
+        res = self.c.goto(*banks[0]).wait(timeout=90)
+        if not str(res).startswith("arrived"):
+            self.log(f"could not reach the bank: {res}")
+            self.facts["bank_fail"] = time.time()
+            return False
+        self.c.events.drain()
+        self.c.say("bank")
+        ev = self.c.wait_for(Event.CONTAINER_OPENED, timeout=5)
+        m = re.search(r"Opened (0x[0-9A-Fa-f]+)", ev.text) if ev else None
+        if not m:
+            self.notes.add("bank", "Saying 'bank' next to the banker did not open the bank box.", key="nobox")
+            self.facts["bank_fail"] = time.time()
+            return False
+        box = m.group(1)
+        self.notes.add("bank", "The bank box opens when the player says 'bank' near a banker; gold goes in by dragging it onto the box, and comes out by saying 'withdraw <amount>'. Nothing in the game says so (only the Welcome guide's Money and shops page).", key="howbank")
+        self.c.open_backpack()
+        deposited = []
+        # junk first (loot leftovers that are not a mage's kit), then gold above the reserve
+        for it in list(self.c.backpack):
+            low = it.name.lower()
+            if any(w in low for w in self.KEEP) or it.name.lower() in ("backpack",):
+                continue
+            self.c.drop(it.serial, box)
+            time.sleep(1.4)
+            deposited.append(it.name)
+        gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
+        reserve = 200
+        if gold and self.c.gold > reserve + 50:
+            amount = self.c.gold - reserve
+            self.c.drop(gold[0].serial, box, amount)
+            time.sleep(1.6)
+            deposited.append(f"{amount} gold")
+        self.c.events.drain()
+        self.c.say("balance")
+        time.sleep(1.5)
+        for line in self.read_journal():
+            mb = re.search(r"balance is (\d+) gold", line)
+            if mb:
+                self.facts["bank_balance"] = int(mb.group(1))
+        if withdraw and self.facts.get("bank_balance", 0) > 0:
+            take = min(withdraw, self.facts["bank_balance"])
+            self.c.say(f"withdraw {take}")
+            time.sleep(2.5)
+            self.facts["bank_balance"] -= take
+            self.log(f"withdrew {take} gold")
+        self.log(f"bank done: put in {deposited}; balance now {self.facts.get('bank_balance')}; gold {self.c.gold}")
+        self.facts["banked_at"] = time.time()
+        return True
+
+    def r_bank(self):
+        """Use the bank when it is needed: too much gold carried (a ghost's corpse can be looted), too heavy with loot leftovers, or too poor to shop."""
+        if self.dangers(10) or self.hp_pct() < 60 or time.time() - self.facts.get("bank_fail", 0) < 120 or time.time() - self.facts.get("banked_at", 0) < 90:
+            return False
+        junk = [i for i in self.c.backpack if not any(w in i.name.lower() for w in self.KEEP) and i.name.lower() != "backpack"]
+        heavy = self.c.weight > self.c.max_weight * 0.65 and junk
+        rich = self.c.gold >= 450
+        poor_needs_gold = self.c.gold < 60 and self.facts.get("bank_balance", 0) >= 60 and self.facts.get("need_gold")
+        if not (heavy or rich or poor_needs_gold):
+            return False
+        why = "heavy" if heavy else ("rich" if rich else "poor")
+        return self.visit_bank(why, withdraw=300 if poor_needs_gold else 0) or True
     def r_explore(self):
         # a place that has killed the mage once is not walked to again (the tree learns the map)
         for _ in range(len(self.spots)):
@@ -529,7 +649,7 @@ class Bot:
             self.spots.rotate(-1)
         return True
 
-    RULES = ["r_dead", "r_flee", "r_avoid", "r_heal", "r_fight", "r_loot", "r_resupply", "r_train", "r_hunt", "r_rest", "r_explore"]
+    RULES = ["r_dead", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_resupply", "r_train", "r_bank", "r_hunt", "r_rest", "r_explore"]
 
     # ---- actions ----------------------------------------------------------------------------------------------
 
