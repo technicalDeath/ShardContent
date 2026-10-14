@@ -336,7 +336,7 @@ class Bot:
         out_of_regs = bool(fail and fail[0] == "reagents" and time.time() - fail[2] < 60)
         if not out_of_regs and (self.facts.get("shopped") or self.kills < 3):
             return False
-        if self.mobs(10) or self.hp_pct() < 60:
+        if self.dangers(10) or self.hp_pct() < 60:
             return False
         self.facts["shopped"] = True
         if out_of_regs:
@@ -359,6 +359,25 @@ class Bot:
             self.notes.add("shop", "Saying '<name> buy' to each person at the Mage shop opened no shop list: a new player has to know the vendor-name-plus-buy trick (or double-click the vendor).", key="noshop")
             return True
         self.notes.add("shop", "The mage shop sells: " + "; ".join(l.strip()[11:60] for l in stock[1:]), key="shopstock")
+        if self.c.gold < 40 and not self.facts.get("sold_once"):
+            # broke: what will the shop pay for? (a new mage has no income: vermin drop nothing)
+            self.facts["sold_once"] = True
+            self.c.events.drain()
+            self.c.say(f"{vendor.name.split()[0]} sell")
+            time.sleep(2.5)
+            offers = self.cmd("selllist", timeout=10)
+            self.log(f"sell list: {offers[:14]}")
+            self.notes.add("money", f"A mage that has spent its 500 starting gold has no income: vermin drop nothing. The shop's sell list for the starting pack: {[o.strip()[:50] for o in offers[:10]]}", key="broke")
+            cart = []
+            for line in offers:
+                m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
+                if m and any(w in m.group(4).lower() for w in ("potion", "scroll", "candle", "bedroll", "scissors")) and int(m.group(2)) > 0:
+                    cart += [m.group(1), m.group(3)]
+            if cart:
+                self.cmd("sell " + " ".join(cart), timeout=10)
+                time.sleep(2)
+                self.log(f"sold starter items; gold now {self.c.gold}")
+                self.notes.add("money", f"Selling potions, scrolls and camp items brought gold to {self.c.gold}.", key="soldstarter")
         cart = []
         spent_plan = 0
         for line in stock:
@@ -380,7 +399,7 @@ class Bot:
         return True
     def r_train(self):
         """Once after shopping: ask the Mages' Guildmaster (the other person at the Mage shop) what he can teach."""
-        if self.facts.get("trained") or not self.facts.get("shopped") or self.mobs(10) or self.hp_pct() < 60:
+        if self.facts.get("trained") or not self.facts.get("shopped") or self.dangers(10) or self.hp_pct() < 60:
             return False
         self.facts["trained"] = True
         res = self.c.goto(1485, 1553).wait(timeout=90)

@@ -46,3 +46,7 @@ When a run ends in `stuck`, an `EXCEPTION` note or a death the bot could have av
 ## Limits
 
 The bot sees what Navrey sees: names, positions, the journal, gump text. It cannot judge the look of a screen (use `player-client-shots` for that), and its travel runs, so its stamina says nothing about a walking player.
+
+## Result of the first three hours
+
+About 26 kills, 13 deaths (all recovered through the healer, one staff rescue early on), Meditation 14 to 32, Evaluating Intelligence 35 to 42, Magery stuck at 50, gold 500 to 9. The list it produced is in docs/New-Mage-Playtest-QoL.md.
