@@ -205,4 +205,16 @@ public class PoisonReliefTests
     [Fact]
     public void TheFlagIsListedWhenOn() =>
         Assert.Contains(nameof(DeferredFeatureFlags.PoisonRelief), new DeferredFeatureFlags { PoisonRelief = true }.EnabledNames());
+
+    [Theory]
+    [InlineData(1, "1 Cure potion in")]
+    [InlineData(5, "5 Cure potions in")]
+    public void TheHintNamesThePotionsThePlayerAlreadyHolds(int count, string expected)
+    {
+        var text = HintWithPotions(count);
+
+        Assert.Contains(expected, text);
+        Assert.Contains("can fail", text);
+        Assert.DoesNotContain("Britannia Renaissance", text, StringComparison.OrdinalIgnoreCase);
+    }
 }

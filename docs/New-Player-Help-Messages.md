@@ -64,3 +64,22 @@ Each needs a trigger the shard can already see (a once-a-second watch over onlin
 2. Should the tips show for a veteran's new alternate character too, or only the account's first? (A per-account tag would show them once per account.)
 3. Wording: any change to the voice, and whether to name skills and numbers ("Healing 60") or keep them plain.
 4. Is B6's text acceptable (it tells new players their sleeping character can be attacked, which is true and unlike a safe-logout world)?
+
+# New-player tips (built 2026-10-14, flag `newPlayerTips` OFF, nothing deployed or committed)
+
+Tier B of `New-Player-Help-Messages.md`, first four tips: out of ammunition (ranged weapon in hand, war mode, none in pack or quiver), badly hurt (under a third of hits, in a fight, a bandage in the pack), first death, first resurrection. Each is said once per character (an account tag), as a yellow system line; `[Tips off` / `[Tips on` / `[Tips` switch them per character. Code `NewPlayerTipsService.cs`, tests `NewPlayerTipsTests.cs` (18 pass, decisions only). Live on a disposable host with the flag on: death and resurrection lines checked in the real client (pictures sent). Not exercised live: out of ammunition and badly hurt (decision rules are unit-tested; both read plain engine state). Stock already prints "You are dead: walk to a healer..." in the box beside the paperdoll, so the death tip adds the corpse and starting-gear sentence. Remaining Tier B tips (B3, B5 to B10) are not built. Era note: the engine's `AmmoRecovery` (auto-gather of missed ammunition) is SE only and inactive here, relevant to the auto-pickup to-do.
+
+Update 2026-10-14: two more tips added to the service, same flag: tired (stamina under a quarter in a fight, B10) and gold in the pack (2,000 or more, B7). 24 unit tests pass; decision rules only, not run live.
+Update 2026-10-14: first-pet tip (B8) added: a new tamed follower, once.
+Update 2026-10-14: B9 added: one extra line after the first tip of any kind ('Messages fade quickly. The Journal button at the top keeps them.').
+Update 2026-10-14: B3 built into the existing poison hint (flag poisonRelief, already on): if the pack holds cure potions the first-poisoning hint names how many and says a cure can fail. Source only, not deployed; 69 tests (poison relief + tips) pass.
+
+C4 checked 2026-10-14: walking into a Hot Zone already prints 'You have entered X, an outdoor PvP Hot Zone. Players may initiate combat freely here...' (OutdoorHotZoneBoundaryService), so nothing to add.
+
+Live check 2026-10-14 (disposable host, Navrey journal lines, flag on): gold at 2,500 gave the bank tip followed once by the Journal note; a bow in hand in war mode with no arrows gave the out-of-ammunition tip; hurt to under a third in a fight with a bandage in the pack gave the bandage tip; death and resurrection were checked earlier in the real client. Not exercised live: the tired tip and the first-pet tip (rules unit-tested).
+
+Live check 2026-10-14 (second run): the first-pet tip (a dog made the player's) and the tired tip (stamina 3 in a fight) both fired. Every tip in the service has now been seen live.
+
+Update 2026-10-14: a badly-hurt variant for characters with no bandages but a Heal potion (tip badlyHurtPotion: 'You are badly hurt and have no bandages. Double-click a Heal potion...'). Unit-tested (29 tip tests pass); not run live.
+
+**Activated 2026-10-14** with the deploy, on the owner's "commit deploy and activate all work" (flag `newPlayerTips` ON). Also in that flag since: tired, gold in the pack, first pet, overloaded, a badly-hurt variant for a character with a Heal potion and no bandages.

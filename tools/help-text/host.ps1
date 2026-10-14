@@ -27,6 +27,9 @@ $rules.featureFlags.wearNotice = $true
 $rules.featureFlags.autoUse = $true
 $rules.featureFlags.damageNumbers = $true
 $rules.featureFlags.healNumbers = $true
+$rules.featureFlags.newPlayerTips = $true
+$rules.featureFlags.autoPickup = $true
+$rules.featureFlags.houseReminder = $true
 [IO.File]::WriteAllText($rulesPath, ($rules | ConvertTo-Json -Depth 30), (New-Object Text.UTF8Encoding($false)))
 Copy-Item ShardContent\data\configuration\buff-icons.json "$hostDir\Configuration\buff-icons.json" -Force   # the source buff table (new states), not the deployed one
 & $BRPython work\help-gumps\make_host_data.py ShardContent\data\help "$hostDir\Configuration\help"

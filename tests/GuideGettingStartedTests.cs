@@ -25,6 +25,86 @@ public class GuideGettingStartedTests
     private static string Text(string key, WelcomeGuide.Context? c = null, WelcomeGuide.Numbers? n = null) =>
         string.Join(" ", WelcomeGuide.Topics(c ?? Everything(), Rules, n, new CampingRules()).Single(t => t.Key == key).Paragraphs);
 
+    // ---- the Furnisher
+
+    [Fact]
+    public void TheShopsPageNamesTheFurnisherAndItsPriceRangeOnlyWhileTheShopIsOn()
+    {
+        var on = Everything() with { Furnishers = true };
+        var numbers = new WelcomeGuide.Numbers(FurnisherLowGold: 1850, FurnisherHighGold: 80000);
+
+        var text = Text("shops", on, numbers);
+
+        Assert.Contains("The Furnisher stands in a showroom hall in the Counselor's Guild in Britain", text);
+        Assert.Contains("from 1,850 to 80,000 gold a piece", text);
+        Assert.Contains("buys nothing back", text);
+        Assert.DoesNotContain("Furnisher", Text("shops"));
+    }
+
+    // ---- moongates
+
+    [Fact]
+    public void TheMoongatesPageSaysBritainHasTheShopsAndHowToGetThereFromAnotherTown()
+    {
+        var text = Text("gates");
+
+        Assert.Contains("Britain is the only town with shopkeepers, bankers, healers, trainers and guildmasters", text);
+        Assert.Contains("south of the town, outside the walls", text);
+        Assert.Contains("Vesper has none; Minoc's is the nearest.", text);
+        Assert.Contains("will not work while you are a criminal, in a fight or casting a spell", text);
+        Assert.Contains("a window warns you and asks you to confirm first", text);
+    }
+
+    [Fact]
+    public void TheMoongatesPageNamesEveryTownOnTheStockFeluccaGateList()
+    {
+        var text = Text("gates");
+
+        // PMList.Felucca: Moonglow, Britain, Jhelom, Yew, Minoc, Trinsic, Skara Brae, (New) Magincia, Buccaneer's Den. World generation places one gate for each and expects 9; a change
+        // to that count must change the page.
+        var manifest = System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "data", "world-generation", "alpha2b", "world-generation.json")));
+        Assert.Equal(9, manifest.RootElement.GetProperty("expectedPublicMoongates").GetInt32());
+
+        foreach (var town in new[] { "Moonglow", "Britain", "Jhelom", "Yew", "Minoc", "Trinsic", "Skara Brae", "New Magincia", "Buccaneer's Den" })
+        {
+            Assert.Contains(town, text);
+        }
+    }
+
+    [Fact]
+    public void TheMoongatesPageWarnsAboutBuccaneersDenOnlyAsFarAsTheHotZoneRulesGo()
+    {
+        var noWarning = Text("gates", Everything() with { TravelWarning = false });
+        var noZones = Text("gates", Everything() with { HotZones = false });
+
+        Assert.Contains("Buccaneer's Den is a Hot Zone (see the Hot Zones page).", noWarning);
+        Assert.DoesNotContain("asks you to confirm", noWarning);
+        Assert.DoesNotContain("Hot Zone", noZones);
+    }
+
+    [Fact]
+    public void TheFirstHourPagePointsAtMoongatesBecauseTheOtherTownsHaveNoShops() =>
+        Assert.Contains("the Moongates page tells you how to get there", Text("firsthour"));
+
+    [Fact]
+    public void TheWelcomePageTellsAPlayerWhoBeganElsewhereToTakeAMoongateToBritain() =>
+        Assert.Contains("If you began in another town, take its moongate to Britain", Text("welcome"));
+
+    [Fact]
+    public void WhenEveryNewCharacterStartsInBritainThePagesSaySoAndDropTheAdviceForOtherTowns()
+    {
+        var on = Everything() with { StartInBritainOnly = true };
+
+        Assert.Contains("Every new character starts in Britain", Text("welcome", on));
+        Assert.DoesNotContain("began in another town", Text("welcome", on));
+        Assert.Contains("You begin in Britain", Text("firsthour", on));
+        Assert.Contains("marks them with coloured dots", Text("firsthour", on));
+        Assert.DoesNotContain("began in another town", Text("firsthour", on));
+        Assert.Contains("Every new character starts in Britain, inside the town.", Text("gates", on));
+        Assert.DoesNotContain("began in another town", Text("gates", on));
+        Assert.Contains("The Britain gate stands in open country south of the town", Text("gates", on));
+    }
+
     // ---- chapters
 
     [Fact]
@@ -46,13 +126,14 @@ public class GuideGettingStartedTests
     }
 
     [Fact]
-    public void TheChaptersAreStartRulesSkillsWorkTravelCommandsAndALonelyChapterIsLeftOut()
+    public void TheChaptersAreStartRulesSkillsWorkTravelCommandsAndTravelHoldsTheGatesAlone()
     {
         Assert.Equal(["Start here", "Rules", "Skills", "Work", "Travel", "Commands"], WelcomeGuide.Chapters(All()).Select(c => c.Title));
 
         var noCamp = Everything() with { CampingKit = false, CampingFires = false, CampTravel = false };
 
-        Assert.DoesNotContain("Travel", WelcomeGuide.Chapters(All(noCamp)).Select(c => c.Title));
+        // the Moongates page is always there, so Travel is never empty: without camps it holds that page alone
+        Assert.Equal(["gates"], WelcomeGuide.Chapters(All(noCamp)).Single(c => c.Title == "Travel").TopicKeys);
     }
 
     [Fact]
@@ -82,7 +163,7 @@ public class GuideGettingStartedTests
     {
         var bare = All(Bare()).Select(t => t.Key).ToArray();
 
-        foreach (var key in new[] { "welcome", "firsthour", "locks", "pets", "dying", "training", "mastery", "crafting", "shops", "commands" })
+        foreach (var key in new[] { "welcome", "firsthour", "locks", "pets", "dying", "training", "trainers", "mastery", "crafting", "shops", "commands" })
         {
             Assert.Contains(key, bare);
         }
@@ -207,9 +288,9 @@ public class GuideGettingStartedTests
     }
 
     [Fact]
-    public void TrainingNamesTheSkillsByTheirGameNamesAndTheTrainersThatAlwaysTeachThem()
+    public void TrainersNamesTheSkillsByTheirGameNamesAndTheTrainersThatAlwaysTeachThem()
     {
-        var text = Text("training");
+        var text = Text("trainers");
 
         // Names as the skills window shows them (Distribution/Data/skills.json), not code identifiers.
         foreach (var name in new[]
@@ -226,6 +307,13 @@ public class GuideGettingStartedTests
         Assert.Contains("Tinker: Tinkering, Lockpicking, and Remove Trap (which needs 50.0 in Lockpicking and in Detecting Hidden).", text);
         Assert.DoesNotContain("Detect Hidden", text);
         Assert.DoesNotContain("Mace Fighting,Macing", text);
+
+        // No trainer the world does not spawn: a plain Ranger and a Veterinarian are not in Britain (docs/Britain-Guildmasters-Evidence.md); the guildmasters are
+        Assert.DoesNotContain("Ranger: ", text);
+        Assert.DoesNotContain("Veterinarian: ", text);
+        Assert.Contains("Rangers': Animal Lore, Archery, Camping, Hiding, Resisting Spells, Stealth, Tactics, Tracking.", text);
+        Assert.Contains("Thieves': Detecting Hidden, Fencing, Hiding, Lockpicking, Poisoning, Remove Trap, Snooping, Stealing, Stealth.", text);
+        Assert.Contains("Stealth is taught only to someone with 80.0 in Hiding.", text);
     }
 
     [Fact]

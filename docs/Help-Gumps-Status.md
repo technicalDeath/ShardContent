@@ -58,6 +58,7 @@ No audit is running. If a text fix is needed now, edit `data/help` directly (the
 ## Things to know before touching it
 
 - **`data/help/*.json` is now the only source**: edit it directly. Do not run `merge_parts.py --write` again unless you first copy any hand edits back into the parts, because it rebuilds `data/help` from the parts and would overwrite them.
+- **No per-weapon stat tables** in item topics or skill pages (owner, 2026-10-13: too much for an About page; a weapon's numbers belong on its tooltip). Say one-handed or two-handed, the skill, where to buy and the price.
 - Skill pages must carry `{"generate":"stats"}` and `{"generate":"gain"}` (and their craft table); gated text must name a real flag; a type name belongs to one topic only; titles at most about 18 characters; at most four links on an item topic (`Help-Content-Spec.md`).
 - The shard has **no tooltips** in this era (`opl.enable` is not set), so the Help pages are the only place a player reads a weapon's numbers: every number must be exact.
 - `HelpDumpTemp.cs` (a throwaway test that wrote files to `work/`) was deleted; `tests/HelpCatalogTests.cs` is the only test file of the feature.

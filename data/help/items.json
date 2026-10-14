@@ -318,16 +318,20 @@
         "BaseArmor"
       ],
       "skills": [
-        "ArmsLore",
         "Blacksmith",
         "Tailoring"
       ],
       "related": [
-        "a-shields"
+        "a-shields",
+        "a-wear"
       ],
       "paragraphs": [
         "# What it is",
         "Armor lowers the damage you take from weapon blows (swords, maces, arrows), but not from spells. Each piece guards one part of the body and has an armor rating. Your total armor rating adds up the pieces you wear, each counted by its share: chest 35, legs 22, arms 15, helm 14, gorget (neck) 7, gloves 7, out of 100. A shield adds its rating in full.",
+        {
+          "text": "Hover the pointer over a piece of armor to see its armor rating and the Strength it needs.",
+          "requires": "ItemTooltips"
+        },
         "# How it protects you",
         "A blow lands on one place: the chest 35 times in 100, legs 22, head 15, arms 14, hands 7, neck 7. The piece worn there soaks up between half and all of its own rating from the damage (a plate chest, rating 40, takes off about 20 to 40), but a hit always does at least 1. A shield gets the first chance to block.",
         "# Slots",
@@ -372,7 +376,7 @@
         "# What it is",
         "The best armor on sale: gorget, gloves, arms, legs and chest of plate, every piece rated 40. Add a plate helm (see Helmets) and all six places are covered.",
         "# What it needs",
-        "Strength to wear, Dexterity lost while worn, weight in stones:<BR>Chest: 60, 8, 10<BR>Legs: 60, 6, 7<BR>Arms: 40, 2, 5<BR>Gloves: 30, 2, 2<BR>Gorget: 30, 1, 2<BR>A whole plate suit with the helm weighs 31 stones and takes 20 off your Dexterity. A smith can also make a female plate chest (rated 30, Strength 45, Dexterity 5, 4 stones), for female characters only.",
+        "Plate costs Dexterity while worn: the chest 8, legs 6, arms and gloves 2 each, gorget 1 and helm 1, so a whole suit takes about 20 off your Dexterity and weighs 31 stones. Hover over a piece for its Strength and weight. A smith can also make a female plate chest (rated 30), for female characters only.",
         "# Where to get it",
         "Blacksmiths always sell the ordinary pieces and armorers sometimes: gorget about 104 gold, chest 243, legs 218, arms 188, gloves 155. Tanners sell the female plate chest for about 207. A blacksmith makes it from iron ingots (Blacksmithing skill; its page lists what each piece takes). A new ordinary piece has 50 to 65 durability."
       ]
@@ -398,7 +402,7 @@
         "# What it is",
         "Chainmail: a coif for the head, a chest and legs, each rated 28. There are no chain arms, gloves or gorget, so take those from ringmail, studded leather, leather or plate.",
         "# What it needs",
-        "Strength 20 for every piece. Dexterity lost while worn: chest 5, legs 3, coif none. Weight in stones: chest 7, legs 7, coif 1, so the set weighs 15. A new ordinary piece has 45 to 60 durability (coif 35 to 60).",
+        "Strength 20 for every piece. Dexterity lost while worn: chest 5, legs 3, coif none. The set weighs 15 stones.",
         "# Where to get it",
         "Blacksmiths always sell the ordinary pieces and armorers sometimes: coif about 17 gold, chest 143, legs 149. A blacksmith makes it from iron ingots (Blacksmithing skill)."
       ]
@@ -425,7 +429,7 @@
         "# What it is",
         "Ringmail: chest, legs, arms and gloves, each rated 22. There is no ringmail helm or gorget.",
         "# What it needs",
-        "Strength 20 for every piece. Dexterity lost while worn: chest 2, legs 1, arms 1, gloves 1. Weight in stones: chest 15, legs 15, arms 15, gloves 2. A new ordinary piece has 40 to 50 durability.",
+        "Strength 20 for every piece. Dexterity lost while worn: chest 2, legs, arms and gloves 1 each.",
         "# Good to know",
         "Ringmail chest, legs and arms weigh more than their plate versions (a plate chest is 10 stones) and protect less. Its appeal is that it is cheaper and needs little Strength.",
         "# Where to get it",
@@ -456,7 +460,7 @@
         "# What it is",
         "Helmets for the head slot, which hats and caps also use. Ratings: plate helm 40; close helm, helmet and Norse helm 30; orc helm 20; bascinet 18.",
         "# What it needs",
-        "Strength to wear: 40 for the plate helm, close helm, helmet and Norse helm; 10 for the bascinet and orc helm. Every helmet weighs 5 stones. Only the plate helm costs Dexterity (1). A new ordinary helmet has 45 to 60 durability (plate helm 50 to 65, bascinet 40 to 50, orc helm 30 to 50).",
+        "Hover over a helmet for its Strength and weight. Only the plate helm costs Dexterity (1).",
         "# Good to know",
         "The orc helm is not metal, yet it slows your mana regeneration as metal armor does. The plain orc helm is not sold: monsters can drop it.",
         "# Where to get it",
@@ -488,7 +492,7 @@
         "# What it is",
         "Studded leather: gorget, gloves, arms, legs and chest, each rated 16. There is no helm, so wear a leather cap or a metal helmet. The female studded chest and the studded bustier are for female characters only.",
         "# What it needs",
-        "Strength to wear: chest 35, legs 35, arms 25, gloves 25, gorget 25. It costs no Dexterity. Weight in stones: chest 8, legs 5, arms 4, gloves 1, gorget 1. Only half of its rating counts against your mana regeneration (a studded chest alone adds under a second per point). A new ordinary piece has 35 to 45 durability.",
+        "It costs no Dexterity. Only half of its rating counts against your mana regeneration (a studded chest alone adds under a second per point).",
         "# Where to get it",
         "Some armorers sell it: arms about 87 gold, chest 128, gloves 79, gorget 73, legs 103, female chest 142, bustier 120. Tanners sell it for less (chest about 75, arms 57). A tailor sews it from leather (Tailoring skill). Leather cannot be repaired, but scissors turn a piece back into leather (half of what it took, if you sewed it yourself)."
       ]
@@ -521,7 +525,7 @@
         "# What it is",
         "Leather armor: gorget, gloves, arms, legs, chest and a cap, each rated 13. It is light and never slows your mana regeneration. The female leather chest, bustier, shorts and skirt are for female characters only.",
         "# What it needs",
-        "Strength to wear: chest 15, arms 15, cap 15, legs 10, gloves 10, gorget 10. It costs no Dexterity. Weight in stones: chest 6, legs 4, arms 2, cap 2, gloves 1, gorget 1. A new ordinary piece has 30 to 40 durability.",
+        "It costs no Dexterity.",
         "# Where to get it",
         "Tanners and some armorers sell it: arms about 80 gold, chest 101, gloves 60, gorget 74, legs 80, female pieces 86 to 116. Tailors and provisioners sell the cap for about 10. A tailor sews it from leather (Tailoring skill). Leather cannot be repaired, but scissors turn a piece back into leather (half of what it took, if you sewed it yourself).",
         {
@@ -554,7 +558,7 @@
         "# What it is",
         "Bone armor: helm, gloves, arms, legs and chest, each rated 30. It is not sold; skeletons carry it.",
         "# What it needs",
-        "Strength 40 for every piece. Dexterity lost while worn: chest 6, legs 4, arms 2, gloves 1, helm none. Weight in stones: chest 6, legs 3, arms 2, gloves 2, helm 3. It slows your mana regeneration as metal armor does. A new ordinary piece has only 25 to 30 durability, and bone cannot be repaired.",
+        "Strength 40 for every piece. Dexterity lost while worn: chest 6, legs 4, arms 2, gloves 1, helm none. It slows your mana regeneration as metal armor does, and bone cannot be repaired.",
         "# Where to get it",
         "Each skeleton, in graveyards, dungeons such as Covetous and Deceit, and the wilds, carries one random piece of bone armor, so a set takes many skeletons."
       ]
@@ -577,11 +581,11 @@
       ],
       "skills": [
         "Parry",
-        "Blacksmith",
-        "Carpentry"
+        "Blacksmith"
       ],
       "related": [
-        "a-armor"
+        "a-armor",
+        "a-wear"
       ],
       "paragraphs": [
         "# What it is",
@@ -589,7 +593,7 @@
         "# What it does",
         "Each time a weapon hits you, your shield gets the first chance to block. The chance is your Parrying skill (as a percent) minus twice the shield's rating, never under 1 percent. The shield's rating is your Parrying skill times its base rating, divided by 200, plus 1, so it grows as you train. A block takes half the shield's rating off the damage, all of it against arrows and bolts, and every roll can raise your Parrying. The rating also adds to your total armor rating. Example: Parrying 100 with a heater shield gives a rating of 12.5 and a 75 percent chance to block. Bigger shields block a little less often but take off more.",
         "# The shields",
-        "No Strength is needed. Base rating, weight in stones, new durability, price:<BR>Buckler: 7, 5, 40-50, about 50 gold<BR>Wooden shield: 8, 5, 20-25, 30<BR>Bronze shield: 10, 6, 25-30, 66<BR>Metal shield: 11, 6, 50-65, 121<BR>Wooden kite shield: 12, 5, 50-65, 70<BR>Metal kite shield: 16, 7, 45-60, 123<BR>Heater shield: 23, 8, 50-65, 231",
+        "No Strength is needed. Prices at a Blacksmith: buckler about 50 gold, wooden shield 30, bronze shield 66, metal shield 121, wooden kite shield 70, metal kite shield 123, heater shield 231. A heavier, dearer shield blocks better. Hover over one for its rating.",
         "# Good to know",
         "A shield slows your mana regeneration by a quarter of its base rating in seconds per point (a heater shield nearly 6, a buckler under 2). Blacksmiths sell all seven, armorers all but the wooden shield. A blacksmith makes the metal shields and the wooden kite shield from iron ingots; a carpenter makes the wooden shield from logs. A blacksmith repairs every shield but the wooden one.",
         {
@@ -2163,7 +2167,7 @@
           "requires": "HarvestAutoRepeat"
         },
         "# Where to get it",
-        "No shopkeeper in this world sells shovels. A Tinker makes one from 4 iron ingots (Tinkering 40 to 90)."
+        "The Miner and the Tinker in Britain sell a shovel for about 12 gold. Anyone with Tinkering can also make one from 4 iron ingots (Tinkering 40 to 90)."
       ]
     },
     {
@@ -2212,7 +2216,7 @@
         "# How to use them",
         "Keep them in your pack and double-click them: a cursor appears. Click iron ingots to open a menu with categories: Wooden Items, Tools, Parts, Utensils, Traps, Miscellaneous and Jewelry. It lists only what your skill and materials allow. (Click logs instead and you get only the wooden items; click a keg to turn it into a potion keg.) Tinkers make the tools other crafts need, such as hammers, saws, scissors, sewing kits and shovels, and also keys, lockpicks, clocks, lanterns and sextants. To make the same thing again, double-click the tools and click the tools themselves.",
         "# Where to get them",
-        "No shopkeeper in this world sells them. A Tinker makes a set from 2 iron ingots (Tinkering 10 to 60) but needs a set to do it, so make a spare before the first runs out. Each attempt uses up one of their 25 to 75 uses."
+        "The Tinker in Britain sells a set for about 7 gold. Anyone with Tinkering can also make a set from 2 iron ingots (Tinkering 10 to 60), but needs a set to do it, so make a spare before the first runs out. Each attempt uses up one of their 25 to 75 uses."
       ]
     },
     {
@@ -3083,12 +3087,15 @@
       "skills": [
         "Tactics",
         "Anatomy",
-        "ArmsLore",
         "Blacksmith"
       ],
       "paragraphs": [
         "# What it is",
-        "A weapon. Equip it to fight with it. Each kind uses one combat skill (Swordsmanship, Fencing, Mace Fighting or Archery); with empty hands you fight with Wrestling. The help pages for swords, axes, maces, bows and the other common weapons give their numbers. This page is what all weapons share.",
+        "A weapon. Equip it to fight with it. Each kind uses one combat skill (Swordsmanship, Fencing, Mace Fighting or Archery); with empty hands you fight with Wrestling. The help pages for swords, axes, maces, bows and the other common weapons say what each is for and where to get it. This page is what all weapons share.",
+        {
+          "text": "Hover the pointer over any weapon to see its damage, speed, Strength needed, whether it takes one hand or two, and the skill it uses.",
+          "requires": "ItemTooltips"
+        },
         "# Using it",
         "You need at least the weapon's Strength requirement to equip it; if you do not, the game says You are not strong enough to equip that. A two-handed weapon cannot be used with a shield. A one-handed weapon can.",
         "Each hit rolls between the weapon's lowest and highest damage. Tactics, Strength and Anatomy then change it, a worn weapon does less (down to half with no durability left), and the target's armor and shield take some away. A hit on another player does half damage. A swing takes 15000 / ((stamina + 100) x speed) seconds, which is 75 / speed at 100 stamina, so a higher speed swings faster. Your stamina can never be higher than your Dexterity. The Skill Guide ([SkillGuide) explains your weapon skill, Tactics and Anatomy in full.",
@@ -3102,6 +3109,9 @@
         "Some weapons from monsters or treasure chests are magical, and read as unidentified until you use Item Identification on them. Accurate, surpassingly accurate, eminently accurate, exceedingly accurate and supremely accurate add 5, 10, 15, 20 and 25 to your Tactics (to your Archery with a bow or crossbow). Ruin, might, force, power and vanquishing add 1, 3, 5, 7 and 9 to each damage roll. Durable, substantial, massive, fortified and indestructible add 20%, 50%, 70%, 100% and 120% to durability. An exceptional weapon from a skilled maker does 20% more damage and has 20% more durability.",
         "# Buying and selling",
         "Shopkeepers pay about half of what they charge for ordinary weapons, plus 100 gold for each step of ruin or durability. They will not buy newbied gear such as your starting weapon, which you keep when you die (a murderer loses it)."
+      ],
+      "related": [
+        "a-wear"
       ]
     },
     {
@@ -3127,10 +3137,9 @@
       ],
       "paragraphs": [
         "# What they are",
-        "Swords are one-handed blades that use the Swordsmanship skill, so you can carry a shield with one. The Kryss is a Fencing weapon and has its own page. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Katana: Str 10, damage 5 to 26, speed 58, 6 stones, durability 31 to 90<BR>Cutlass: Str 10, damage 6 to 28, speed 45, 8 stones, durability 31 to 70<BR>Scimitar: Str 10, damage 4 to 30, speed 43, 5 stones, durability 31 to 90<BR>Broadsword: Str 25, damage 5 to 29, speed 45, 6 stones, durability 31 to 100<BR>Longsword: Str 25, damage 5 to 33, speed 35, 7 stones, durability 31 to 110<BR>Thin longsword (named long sword in the game): Str 25, damage 5 to 33, speed 35, 1 stone, durability 31 to 110<BR>Viking sword: Str 40, damage 6 to 34, speed 30, 6 stones, durability 31 to 100",
+        "Swords are one-handed blades that use the Swordsmanship skill, so you can carry a shield with one. The Kryss is a Fencing weapon and has its own page.",
         "# Good to know",
-        "Speed counts as much as damage: at 100 stamina a Katana swings every 1.3 seconds and a Longsword every 2.1. Slimes and acid elementals scar a sword on every hit. Double-click a sword and click a corpse to carve it, or a tree to cut Kindling. With the Poisoning skill you can coat a sword with a poison potion: each hit then uses one of 12 to 18 charges and poisons about half the time.",
+        "Speed counts as much as damage: a Katana swings a good deal faster than a Longsword. Slimes and acid elementals scar a sword on every hit. Double-click a sword and click a corpse to carve it, or a tree to cut Kindling. With the Poisoning skill you can coat a sword with a poison potion: each hit then uses one of 12 to 18 charges and poisons about half the time.",
         "A new Swordsmanship or Tactics character starts with a Katana. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it.",
         "# Where to get them",
         "Blacksmiths sell them for about: Cutlass 24 gold, Thin longsword 27, Katana 33, Broadsword 35, Scimitar 36, Longsword 55, Viking sword 55. Only about one weaponsmith in three stocks swords, so a Blacksmith is the sure place. A Blacksmith forges all but the Thin longsword from iron ingots; the Blacksmithy page lists the skill and ingots each needs. Monsters also drop swords."
@@ -3154,10 +3163,9 @@
       ],
       "paragraphs": [
         "# What they are",
-        "The Dagger and the Kryss are one-handed piercing blades that use the Fencing skill, not Swordsmanship. You can carry a shield with them. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Dagger: Str 1, damage 3 to 15, speed 55, 1 stone, durability 31 to 40<BR>Kryss: Str 10, damage 3 to 28, speed 53, 2 stones, durability 31 to 90",
+        "The Dagger and the Kryss are one-handed piercing blades that use the Fencing skill, not Swordsmanship. You can carry a shield with them.",
         "# Good to know",
-        "Both swing fast: at 100 stamina about every 1.4 seconds. A new Fencing character starts with a Kryss. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it.",
+        "Both swing fast. A new Fencing character starts with a Kryss. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it.",
         "Double-click one and click a corpse to carve it, or a tree to cut Kindling. With the Poisoning skill you can coat either with a poison potion: each hit then uses one of 12 to 18 charges and poisons about half the time. See A weapon for how damage, speed and durability work.",
         "# Where to get them",
         "Blacksmiths sell the Dagger for about 21 gold and the Kryss for 32. A Blacksmith forges both from iron ingots. The Dagger needs only 3 and is the first weapon you can try to forge, even at Blacksmithy 0, though it rarely works until the skill has grown a little."
@@ -3177,13 +3185,12 @@
         "Tinkering"
       ],
       "related": [
-        "w-sword",
+        "w-weapon",
         "w-fencing"
       ],
       "paragraphs": [
         "# What they are",
-        "Small one-handed knives that use the Swordsmanship skill. They are poor weapons but handy tools: double-click one and click a corpse to carve it (meat, hides, feathers or wool, when the creature has any), or click a tree to cut Kindling. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Butcher knife: Str 5, damage 2 to 14, speed 40, 1 stone, durability 31 to 40<BR>Cleaver: Str 10, damage 2 to 13, speed 40, 2 stones, durability 31 to 50<BR>Skinning knife: Str 5, damage 1 to 10, speed 40, 1 stone, durability 31 to 40",
+        "Small one-handed knives that use the Swordsmanship skill. They are poor weapons but handy tools: double-click one and click a corpse to carve it (meat, hides, feathers or wool, when the creature has any), or click a tree to cut Kindling.",
         "# Where to get them",
         "Blacksmiths sell the Butcher knife for about 14 gold, the Cleaver for 15 and the Skinning knife for 14. A tinker makes all three from 2 or 3 iron ingots; a Blacksmith does not forge them. See A weapon for how damage, speed and durability work."
       ]
@@ -3208,10 +3215,9 @@
       ],
       "paragraphs": [
         "# What they are",
-        "Spears and forks are piercing weapons that use the Fencing skill. The Spear, Short spear and Pitchfork are two-handed, so no shield; the War fork is one-handed. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Spear: Str 30, damage 2 to 36, speed 46, 7 stones, durability 31 to 80<BR>Short spear: Str 15, damage 4 to 32, speed 50, 4 stones, durability 31 to 70<BR>War fork: Str 35, damage 4 to 32, speed 45, 9 stones, durability 31 to 110<BR>Pitchfork: Str 15, damage 4 to 16, speed 45, 11 stones, durability 31 to 60",
+        "Spears and forks are piercing weapons that use the Fencing skill. The Spear, Short spear and Pitchfork are two-handed, so no shield; the War fork is one-handed.",
         "# Good to know",
-        "The Short spear is the quick one: at 100 stamina it swings about every 1.5 seconds. Only the one-handed War fork can be coated with poison (Poisoning skill). The Pitchfork is a farm tool and does the least damage.",
+        "The Short spear is the quick one. Only the one-handed War fork can be coated with poison (Poisoning skill). The Pitchfork is a farm tool and does the least damage.",
         "# Where to get them",
         "Blacksmiths sell the Short spear for about 23 gold, the Spear for 31 and the Pitchfork for 19; weaponsmiths sell the War fork for 32. A Blacksmith forges the Short spear, Spear and War fork under Build Pole Arms; the Pitchfork cannot be forged."
       ]
@@ -3239,8 +3245,7 @@
       ],
       "paragraphs": [
         "# What they are",
-        "Axes hit hard and swing slowly. Six are two-handed and use the Swordsmanship skill. The War axe is the exception: it is one-handed, trains Mace Fighting and cannot chop wood. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Axe: Str 35, damage 6 to 33, speed 37, 4 stones, durability 31 to 110<BR>Battle axe: Str 40, damage 6 to 38, speed 30, 4 stones, durability 31 to 70<BR>Double axe: Str 45, damage 5 to 35, speed 37, 8 stones, durability 31 to 110<BR>Executioner's axe: Str 35, damage 6 to 33, speed 37, 8 stones, durability 31 to 70<BR>Large battle axe: Str 40, damage 6 to 38, speed 30, 6 stones, durability 31 to 70<BR>Two handed axe: Str 35, damage 5 to 39, speed 30, 8 stones, durability 31 to 90<BR>War axe: Str 35, damage 9 to 27, speed 40, 8 stones, durability 31 to 80",
+        "Axes hit hard and swing slowly. Six are two-handed and use the Swordsmanship skill. The War axe is the exception: it is one-handed, trains Mace Fighting and cannot chop wood.",
         "# Good to know",
         "For every axe but the War axe, each 5 points of Lumberjacking add 1% to its damage, and fighting with one slowly trains Lumberjacking. To chop a tree, equip the axe (the game will not chop with one that is only in your pack), double-click it and click the tree. Chopping does not wear an axe out; fighting does.",
         "# Where to get them",
@@ -3263,7 +3268,7 @@
       ],
       "paragraphs": [
         "# What it is",
-        "The lumberjack's tool, and a light two-handed axe: Str 15, damage 2 to 17, speed 40, 4 stones, durability 31 to 80. In a fight it uses the Swordsmanship skill.",
+        "The lumberjack's tool, and a light two-handed axe. In a fight it uses the Swordsmanship skill.",
         "# What it is for",
         "Equip it, double-click it and click a tree to chop logs; the game will not chop with a hatchet that is only in your pack. Chopping does not wear it out.",
         {
@@ -3291,7 +3296,7 @@
       ],
       "paragraphs": [
         "# What they are",
-        "The miner's tool, and a weak one-handed axe in a fight: Str 25, damage 1 to 15, speed 35, 11 stones, Swordsmanship skill.",
+        "The miner's tool, and a weak one-handed axe in a fight (Swordsmanship skill).",
         "# What it is for",
         "Double-click it and click a mountainside or cave floor to dig ore. You cannot dig while riding. Each successful dig uses one of its uses (a new pickaxe has 50, more if it was made exceptional); when they are gone the pickaxe is worn out and destroyed.",
         {
@@ -3299,7 +3304,7 @@
           "requires": "HarvestAutoRepeat"
         },
         "# Where to get them",
-        "Blacksmiths sell pickaxes for about 22 gold. A tinker can make one from 4 iron ingots (Tinkering 40 and up). Some gargoyles carry a gargoyle's pickaxe, which has 101 to 125 uses."
+        "Blacksmiths sell pickaxes for about 22 gold, and the Miner and the Tinker for about 25. A tinker can make one from 4 iron ingots (Tinkering 40 and up). Some gargoyles carry a gargoyle's pickaxe, which has 101 to 125 uses."
       ]
     },
     {
@@ -3320,14 +3325,13 @@
         "Blacksmith"
       ],
       "related": [
-        "w-staff"
+        "w-weapon"
       ],
       "paragraphs": [
         "# What they are",
-        "Clubs, maces and hammers use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target, which slows its swings. All are one-handed, so you can carry a shield, except the War hammer. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Club: Str 10, damage 8 to 24, speed 40, 9 stones, durability 31 to 40<BR>Mace: Str 20, damage 8 to 32, speed 30, 14 stones, durability 31 to 70<BR>Maul: Str 20, damage 10 to 30, speed 30, 10 stones, durability 31 to 70<BR>War mace: Str 30, damage 10 to 30, speed 32, 17 stones, durability 31 to 110<BR>Hammer pick: Str 35, damage 6 to 33, speed 30, 9 stones, durability 31 to 70<BR>War hammer (two-handed): Str 40, damage 8 to 36, speed 31, 10 stones, durability 31 to 110",
+        "Clubs, maces and hammers use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target, which slows its swings. All are one-handed, so you can carry a shield, except the War hammer.",
         "# Good to know",
-        "They are heavy, so watch your load: a War mace weighs 17 stones. A new Mace Fighting character starts with a Club. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it. See A weapon for how damage, speed and durability work.",
+        "They are heavy, so watch your load. A new Mace Fighting character starts with a Club. It is newbied: you keep it when you die (a murderer loses it) and shops will not buy it. See A weapon for how damage, speed and durability work.",
         "# Where to get them",
         "Blacksmiths sell them for about: Club 16 gold, Maul 21, War hammer 25, Hammer pick 26, Mace 28, War mace 31. A Blacksmith forges all but the Club from iron ingots under Build Bludgeoning Weapons. Monsters also drop them."
       ]
@@ -3347,14 +3351,13 @@
       ],
       "related": [
         "w-mace",
-        "w-crook"
+        "w-weapon"
       ],
       "paragraphs": [
         "# What they are",
-        "Staves are two-handed, so no shield, and use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Quarter staff: Str 30, damage 8 to 28, speed 48, 4 stones, durability 31 to 60<BR>Gnarled staff: Str 20, damage 10 to 30, speed 33, 3 stones, durability 31 to 50<BR>Black staff: Str 35, damage 8 to 33, speed 35, 6 stones, durability 31 to 70",
+        "Staves are two-handed, so no shield, and use the Mace Fighting skill. Every hit also takes 3 to 5 points of stamina from the target.",
         "# Good to know",
-        "The Quarter staff is the quick one: at 100 stamina it swings about every 1.6 seconds. See A weapon for how damage, speed and durability work.",
+        "The Quarter staff is the quick one. See A weapon for how damage, speed and durability work.",
         "# Where to get them",
         "Weaponsmiths, blacksmiths and carpenters sell them for about: Gnarled staff 16 gold, Quarter staff 19, Black staff 22. A carpenter can make the Quarter staff and the Gnarled staff from logs, but only at high Carpentry skill (about 74 and about 79); the Black staff cannot be made."
       ]
@@ -3375,7 +3378,7 @@
       ],
       "paragraphs": [
         "# What it is",
-        "The herder's tool, and a light two-handed staff: Str 10, damage 3 to 12, speed 30, 4 stones, durability 31 to 50. In a fight it uses the Mace Fighting skill, and each hit takes 3 to 5 points of stamina from the target.",
+        "The herder's tool, and a light two-handed staff. In a fight it uses the Mace Fighting skill, and each hit takes 3 to 5 points of stamina from the target.",
         "# What it is for",
         "Double-click it, click an animal that is wild but could be tamed, then click where you want it to go. Whether it goes depends on your Herding skill; a pet already looks tame and will not be herded.",
         "# Where to get it",
@@ -3400,10 +3403,9 @@
       ],
       "paragraphs": [
         "# What they are",
-        "The Bardiche and the Halberd are two-handed pole arms that use the Swordsmanship skill. Their damage ranges are the biggest of the melee weapons, and they swing slowly. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Bardiche: Str 40, damage 5 to 43, speed 26, 7 stones, durability 31 to 100<BR>Halberd: Str 45, damage 5 to 49, speed 25, 16 stones, durability 31 to 80",
+        "The Bardiche and the Halberd are two-handed pole arms that use the Swordsmanship skill. Their damage ranges are the biggest of the melee weapons, and they swing slowly.",
         "# Good to know",
-        "At 100 stamina a Halberd swings every 3 seconds and a Bardiche every 2.9. A pole arm will chop trees like an axe when it is equipped, but each successful chop uses up one of its 150 uses and the last one destroys it, so keep a hatchet for wood.",
+        "A pole arm will chop trees like an axe when it is equipped, but each successful chop uses up one of its 150 uses and the last one destroys it, so keep a hatchet for wood.",
         "# Where to get them",
         "Blacksmiths sell the Halberd for about 42 gold and the Bardiche for 60. A Blacksmith forges both from iron ingots under Build Pole Arms. Monsters also drop them."
       ]
@@ -3421,13 +3423,13 @@
       ],
       "related": [
         "w-ammo",
-        "w-crossbow"
+        "w-weapon"
       ],
       "paragraphs": [
         "# What it is",
-        "A two-handed ranged weapon that shoots arrows and uses the Archery skill: Str 20, damage 9 to 41, speed 20, range 10 tiles, 6 stones, durability 31 to 60. Being two-handed, it cannot be used with a shield. A Juka bow, which Juka lords carry, is a Bow that needs 80 Strength and 80 Dexterity.",
+        "A two-handed ranged weapon that shoots arrows up to 10 tiles and uses the Archery skill. Being two-handed, it cannot be used with a shield. A Juka bow, which Juka lords carry, is a Bow that needs 80 Strength and 80 Dexterity.",
         "# Shooting",
-        "Each shot uses one arrow from your backpack, hit or miss (see Arrows and bolts); with none left the bow simply stops shooting. You need a clear line to the target within 10 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100. At 100 stamina a bow shoots every 3.75 seconds. See A weapon for how damage and speed work.",
+        "Each shot uses one arrow from your backpack, hit or miss (see Arrows and bolts); with none left the bow simply stops shooting. You need a clear line to the target within 10 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100. See A weapon for how damage and speed work.",
         "# Where to get it",
         "Blacksmiths sell bows for about 35 gold and bowyers for 40. A character with Bowcraft/Fletching can make one from 7 logs (skill 30 and up). A new Archery character starts with a Bow, which is newbied: you keep it when you die (a murderer loses it) and shops will not buy it."
       ]
@@ -3450,10 +3452,9 @@
       ],
       "paragraphs": [
         "# What they are",
-        "Two-handed ranged weapons that shoot bolts, not arrows, and use the Archery skill. Being two-handed, they cannot be used with a shield. Both reach 8 tiles, less than a bow, and shoot slowly. Each line gives the Strength you need (Str), the damage, the speed (higher is faster), the weight and the durability a new one starts with:",
-        "Crossbow: Str 30, damage 8 to 43, speed 18, 7 stones, durability 31 to 80<BR>Heavy crossbow: Str 40, damage 11 to 56, speed 10, 9 stones, durability 31 to 100",
+        "Two-handed ranged weapons that shoot bolts, not arrows, and use the Archery skill. Being two-handed, they cannot be used with a shield. Both reach 8 tiles, less than a bow, and shoot slowly.",
         "# Shooting",
-        "Each shot uses one bolt from your backpack, hit or miss (see Arrows and bolts); with none left the weapon simply stops shooting. You need a clear line to the target within 8 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100. At 100 stamina a Crossbow shoots every 4.2 seconds and a Heavy crossbow every 7.5.",
+        "Each shot uses one bolt from your backpack, hit or miss (see Arrows and bolts); with none left the weapon simply stops shooting. You need a clear line to the target within 8 tiles, and you must be standing still: after your last step there is a pause before you can shoot, 1 second at 25 Dexterity or less, shorter as Dexterity rises, and 0.5 second at 100.",
         "# Where to get them",
         "Blacksmiths sell the Crossbow for about 46 gold and the Heavy crossbow for 55; bowyers sell both for 55. With Bowcraft/Fletching you can make a Crossbow from 7 logs (skill 60 and up) and a Heavy crossbow from 10 logs (skill 80 and up)."
       ]
@@ -3507,6 +3508,41 @@
         "Equip the wand, double-click it and choose a target. It costs no mana and no reagents, never fizzles, has no casting delay and spends one charge. Wait about 4 seconds between uses (an identification wand has no wait). When the charges are gone the game tells you. In a fight a wand, with charges or without, is only a weak one-handed club (Mace Fighting, damage 2 to 6).",
         "# Where to get them",
         "Shops do not sell wands. They turn up in the better locked treasure chests in dungeons."
+      ]
+    },
+    {
+      "key": "a-wear",
+      "title": "Wear and repair",
+      "art": 5091,
+      "skills": [
+        "ArmsLore",
+        "Blacksmith"
+      ],
+      "paragraphs": [
+        "# What it is",
+        "Weapons, armor and shields wear out. Each has a durability: how much it has left now, and the most it can ever hold. A new ordinary piece starts full. A successful use of Arms Lore tells you how worn a piece is.",
+        {
+          "text": "On the combat bar a thin gauge beside the weapon and shield slots, and beside each piece in the strip that opens when you hold a slot, shows it at a glance: all green when new, with red filling from the top as it wears out.",
+          "requires": "CombatBar"
+        },
+        {
+          "text": "You are told once when a piece you wear or wield drops to about a quarter of its durability.",
+          "requires": "WearNotice"
+        },
+        "# How it wears",
+        "A weapon loses a point of durability on about one hit in 25 that you land with it. Against slimes and acid elementals a melee weapon loses a point on every hit.",
+        "Armor wears when you are hit. A blow that lands on a piece has a 1 in 4 chance of wearing it, by 1 point or by none. A bashing weapon such as a mace wears it faster: by half of what the piece soaked up, and at least 1.",
+        "A shield wears only when it blocks a blow, and then only 1 time in 4, by 1 point or by none.",
+        "# When it runs out",
+        "A worn piece does less. A weapon's damage and an armor piece's rating shrink as the durability falls, down to half of their full value at 0.",
+        "At 0 the wear starts to lower the most the piece can hold instead, and you are told \"Your equipment is severely damaged.\" A piece whose maximum is used up is destroyed and is gone.",
+        "# Repair",
+        "Only a Blacksmith can repair, and only what a Blacksmith can make: metal armor, helmets, every shield but the plain wooden shield, the weapons a Blacksmith forges, and the Pitchfork. Leather, studded leather and bone armor and clothing cannot be repaired by anyone: when they wear out you buy or make new ones.",
+        "Stand near an anvil and a forge with the piece in your backpack (not worn), use a smith's hammer or tongs, choose Repair in the Blacksmith menu and then the piece. A weapon with poison on it cannot be repaired.",
+        "A repair is a Blacksmithing check, and it gets harder the more worn the piece is, so repair early: a piece worn right down is hard even for a Grandmaster. On success the piece is full again.",
+        "A repair also costs the piece some of its maximum, though not every time. The chance is 40 in 100, plus 1 for each point of durability it is missing, minus 1 for each 10 points of your Blacksmithing. When it happens the maximum falls by 3 below Blacksmithing 70, by 2 from 70, and by 1 from 90. A piece whose maximum is no more than that refuses: \"That item has been repaired many times, and will break if repairs are attempted again.\"",
+        "# Good to know",
+        "An exceptional piece from a skilled maker has 20 percent more durability, and a magical piece called durable, substantial, massive, fortified or indestructible has 20, 50, 70, 100 or 120 percent more. Magical pieces read as unidentified until Item Identification reveals them."
       ]
     }
   ]

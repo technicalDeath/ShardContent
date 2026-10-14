@@ -31,7 +31,7 @@ Collected 2026-10-11 while writing and auditing the item Help topics and the Ski
 19. **Orc and savage `BolaBall` drops are dead** (the era tinker menu has no Bola recipe): your pending bola ball ruling.
 20. **The spyglass prints "Trammel : <phase>"** to the player.
 21. **`Runebook`** is ungated (owner ruling SK-010) though it did not exist in April 2000.
-22. **No tooltips in this era** (`opl.enable` is not set): players cannot see a weapon's numbers except in the Help pages and through Arms Lore.
+22. **No tooltips in this era** (`opl.enable` is not set): players cannot see a weapon's numbers except in the Help pages and through Arms Lore. *Superseded 2026-10-13: item tooltips are on (`Item-Tooltips-Evidence.md`); the weapon stat tables left the Help pages.*
 
 ## Added by the audits (each line was checked in the code)
 

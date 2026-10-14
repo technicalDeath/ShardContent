@@ -875,6 +875,14 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("wearNotice")]
     public bool WearNotice { get; set; }
 
+    /// <summary>Hover tooltips on items (docs/Item-Tooltips-Evidence.md): the stock property lists, filtered to what the shard allows (name, weight, a weapon's or armor's base numbers); off until the owner acknowledges it.</summary>
+    [JsonPropertyName("itemTooltips")]
+    public bool ItemTooltips { get; set; }
+
+    /// <summary>New characters can start only in Britain, the one town with shops, a bank, healers, trainers and guildmasters (docs/Britain-Start-Evidence.md); off until the owner acknowledges it.</summary>
+    [JsonPropertyName("startInBritainOnly")]
+    public bool StartInBritainOnly { get; set; }
+
     /// <summary>The client's shard top bar (docs/Menu-Bar-Evidence.md): the server tells the client which shard buttons to show; without it the client keeps the stock bar; off until the owner acknowledges it.</summary>
     [JsonPropertyName("menuBar")]
     public bool MenuBar { get; set; }
@@ -882,6 +890,18 @@ public sealed class DeferredFeatureFlags
     /// <summary>The Furnisher vendor and the showroom hall in Britain (docs/Design-Proposal-3-House-Decoration-Gold-Sink.md); off until the owner acknowledges it.</summary>
     [JsonPropertyName("furnishers")]
     public bool Furnishers { get; set; }
+
+    /// <summary>One-time tips for new players (docs/New-Player-Help-Messages.md): out of ammunition, badly hurt with bandages, first death and resurrection; a player can switch them off with [Tips off; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("newPlayerTips")]
+    public bool NewPlayerTips { get; set; }
+
+    /// <summary>Arrows, bolts and reagents a character's skills use are picked up as they walk over them (docs/Ammo-Reagent-Auto-Pickup-Plan.md); [Pickup off switches it; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("autoPickup")]
+    public bool AutoPickup { get; set; }
+
+    /// <summary>A house owner who leaves an item loose on the floor is reminded, once a day, how to lock it down (docs/House-Lockdown-Reminder-Plan.md); [HouseReminder off switches it; off until the owner acknowledges it.</summary>
+    [JsonPropertyName("houseReminder")]
+    public bool HouseReminder { get; set; }
 
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
@@ -934,12 +954,17 @@ public sealed class DeferredFeatureFlags
         if (AutoUse) yield return nameof(AutoUse);
         if (DamageNumbers) yield return nameof(DamageNumbers);
         if (HealNumbers) yield return nameof(HealNumbers);
+        if (ItemTooltips) yield return nameof(ItemTooltips);
+        if (StartInBritainOnly) yield return nameof(StartInBritainOnly);
         if (Furnishers) yield return nameof(Furnishers);
+        if (NewPlayerTips) yield return nameof(NewPlayerTips);
+        if (AutoPickup) yield return nameof(AutoPickup);
+        if (HouseReminder) yield return nameof(HouseReminder);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !Furnishers && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

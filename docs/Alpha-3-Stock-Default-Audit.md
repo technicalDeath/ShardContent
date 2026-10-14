@@ -32,6 +32,10 @@ Paths are in `ModernUO/Projects/UOContent` unless noted.
 | 15 | **Treasure map monster drops and level-0 Haven maps** | 1% of `TreasureMapLevel` monsters drop a map; level-0 maps target Young players (the Young system is now off shard-wide) | `BaseCreature.cs:3196-3225`; `TreasureMap.cs:301, 349-369` | Level-0 maps follow the Young ruling; drop rate era unsure | Gate drops; drop level 0 | **Keep stock drops; no action on level 0** (owner, 2026-09-28). Level-0 maps are created only by the Uzeraan Young quest and one Trammel-hard-coded chest reward, so none are reachable on a Felucca-only shard |
 | 16 | **Other low-confidence survey notes** | Herding accepts champion-spawn creatures; Arms Lore reads Swamp Dragon barding; Blacksmith/Tailoring dragon, bone and orc armor and colored ingots stay off the classic T2A menus; Repair enabled for Blacksmithy and Tinkering only | `ShepherdsCrook.cs:99-115`; `ArmsLore.cs:~104`; `DefBlacksmithy.cs:600, 655-704`; `DefTailoring.cs:262, 639-665` | Mostly unreachable (no champion spawns, whitelist menus); colored resources were kept by design doc §3.3 | None needed unless a client check contradicts this | Noted, no action |
 
+## Resolved since: monster slayer weapons (2026-10-13)
+
+Stock pre-AoS loot also gives monster-dropped weapons the slayer of the dropping monster's group (Orc Slaying, Repond, and so on); the owner does not remember them from UO:R, so only Silver is kept (`Slayer-Loot-Evidence.md`).
+
 ## Already handled (no action)
 
 - **Era-gates file** (validated false): insurance setting, veteran rewards and skill-cap rewards, ML quests, pet bonding, pets stand down on command.

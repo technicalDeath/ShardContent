@@ -13,11 +13,11 @@ public static partial class WelcomeGuide
 
     private static readonly (string Key, string Title, string[] Topics)[] ChapterTable =
     [
-        ("start", "Start here", ["welcome", "firsthour", "screen", "locks"]),
+        ("start", "Start here", ["welcome", "firsthour", "screen", "seen", "locks"]),
         ("rules", "Rules", ["fighting", "hotzones", "ward", "loot", "pets", "dying"]),
-        ("skills", "Skills", ["training", "mastery", "skillbank"]),
+        ("skills", "Skills", ["training", "trainers", "mastery", "skillbank"]),
         ("work", "Work", ["gather", "crafting", "shops"]),
-        ("travel", "Travel", ["camping", "camp"]),
+        ("travel", "Travel", ["gates", "camping", "camp"]),
         ("commands", "Commands", ["commands"])
     ];
 
@@ -80,6 +80,13 @@ public static partial class WelcomeGuide
         {
             p.Add("A Bedroll and Kindling let you make a camp. See the Camping page.");
         }
+
+        p.Add(HeadingMark + "Where to go");
+        p.Add(
+            c.StartInBritainOnly
+                ? "You begin in Britain, the only town with shops, a bank, healers and trainers. The big map (the Map button, clicked twice) marks them with coloured dots: hover over a dot, or zoom in, to read its name. The Moongates page tells you how the gates reach the other towns, which have none of them."
+                : "Britain is the only town with shops, a bank, healers and trainers. If you began in another town, the Moongates page tells you how to get there."
+        );
 
         p.Add(HeadingMark + "Your skills");
         p.Add(
@@ -171,11 +178,6 @@ public static partial class WelcomeGuide
             );
         }
 
-        p.Add(HeadingMark + "The info bar");
-        p.Add(
-            "A thin bar beside the potion bar shows your hits, mana and stamina as numbers. The Info Bar page of Options changes it or puts it away."
-        );
-
         var bar = new List<string>
         {
             "The second bar under the game window holds what you reach for in a fight. Bandages: click to bandage yourself, or hold Shift and click to choose who. The count turns red when you are running low. " +
@@ -194,7 +196,7 @@ public static partial class WelcomeGuide
             bar.Add("You are also told once when a weapon, shield or armor piece you wear drops to about a quarter of its durability.");
         }
 
-        bar.Add("The number at the end of the bar is how many stones you carry against how many you can. It turns red when you are overloaded.");
+        bar.Add("The number at the end of the bar is how many stones you carry against how many you can. It turns red when you are overloaded. Your own small health bar, opened beside the potion bar when you first log in, shows your hits, mana and stamina.");
 
         p.Add(HeadingMark + "The combat bar");
         p.AddRange(bar);
@@ -206,6 +208,15 @@ public static partial class WelcomeGuide
                 "The potion bar and the combat bar each have a small gear button at the end. It opens a panel with options that do for you what you could do with the bar: the combat bar can bandage you when your health " +
                 "falls below 75%, and the potion bar can drink a Heal potion at 25% health, a Refresh potion at 25% stamina, and the Cure potion that fits the poison you have. Potions are drunk strongest first, " +
                 "one at a time, and only when you could drink them yourself. A new character starts with them on; change them in that panel or on the Item shortcuts page of Options."
+            );
+        }
+
+        if (c.AutoPickup)
+        {
+            p.Add(HeadingMark + "Picking up arrows and reagents");
+            p.Add(
+                "As you walk, the shard picks up arrows and bolts lying within one step of you if your Archery is 30 or more, and reagents if your Magery, Alchemy or Inscription is 30 or more. " +
+                "The combat bar's gear button and the Auto pickup page of Options have a switch each for arrows, bolts and reagents."
             );
         }
 
@@ -225,7 +236,7 @@ public static partial class WelcomeGuide
         p.Add(HeadingMark + "Keys");
         p.Add(
             "A new profile starts with a few hotkeys: Alt+S opens your skills, Alt+C your status, Alt+P your paperdoll, Alt+I your backpack and Alt+J your journal, Alt+R the small map and Alt+O the settings. " +
-            "Alt+B bandages yourself and Alt+Shift+B bandages the person you targeted last. Alt+N shows or hides names. Tab switches war mode on and off. The Macros page of Options changes any of them. " +
+            "Alt+B bandages yourself and Alt+Shift+B bandages the person you targeted last. Alt+H drinks your strongest Heal potion, Alt+F your strongest Refresh potion and Alt+U the Cure potion that fits your poison (with the potion bar open). Alt+N shows or hides names. Tab switches war mode on and off. The Macros page of Options changes any of them. " +
             "Type [HelpInfo to see every command you can type."
         );
 
@@ -244,6 +255,89 @@ public static partial class WelcomeGuide
         );
 
         return new Topic("screen", "Your screen", p);
+    }
+
+    // ---- Bars and numbers
+
+    /// <summary>
+    /// What the game draws over and around characters and items, apart from the shard's own bars: health bars (a missing one means full health), damage and heal numbers, buff icons and item tooltips.
+    /// Split from the Your screen page, which was at the line limit.
+    /// </summary>
+    private static Topic SeenTopic(Context c)
+    {
+        var p = new List<string>();
+
+        p.Add(HeadingMark + "Health bars");
+        p.Add(
+            "The small bar under a character shows how hurt it is. Yours, your friends', the townspeople's and the animals' bars show only while they are hurt, and go about five seconds after they are full again: " +
+            "no bar means full health. Anything that could attack you (a grey or red character, or a monster that is after you) keeps a wider bar with an amber fill. " +
+            "The Mobiles part of the Options window turns this off."
+        );
+
+
+        if (c.DamageNumbers || c.HealNumbers)
+        {
+            var numbers = c.DamageNumbers
+                ? "When you hurt something, or something hurts you, the damage floats up over the one hit: yellow over you, red over anything else. Nobody else's fights show numbers. "
+                : "";
+
+            if (c.HealNumbers)
+            {
+                numbers += "A heal floats up as a green plus sign and a number over the one healed, when you heal or are healed, by bandage, potion or spell. ";
+            }
+
+            p.Add(HeadingMark + "Numbers over heads");
+            p.Add(numbers + "The Combat-Spells page of Options turns the numbers off.");
+        }
+
+        if (c.BuffBar)
+        {
+            var states = new List<string>();
+
+            if (c.SafeWorld)
+            {
+                states.Add("Criminal Intent");
+            }
+
+            if (c.Theft)
+            {
+                states.Add("a Backpack Ward");
+            }
+
+            if (c.FaintMemories)
+            {
+                states.Add("Faint Memories");
+            }
+
+            if (c.HotZones)
+            {
+                states.Add("a Hot Zone");
+            }
+
+            if (c.CampingFires)
+            {
+                states.Add("a secure camp");
+            }
+
+            var shard = states.Count == 0 ? "" : $" and this shard's own states: {string.Join(", ", states.Take(states.Count - 1))}{(states.Count > 1 ? " and " : "")}{states[^1]}";
+
+            p.Add(HeadingMark + "The buff icons");
+            p.Add(
+                "Small icons at the top left of the game window show what is affecting you: a spell on you, poison, being hidden" + shard + ". " +
+                "Hover over one to read what it means and, if it runs out, how long is left."
+            );
+        }
+
+        if (c.ItemTooltips)
+        {
+            p.Add(HeadingMark + "Item tooltips");
+            p.Add(
+                "Hover the pointer over an item, in your pack, on your paperdoll, on the ground or in a shop, to read its name and its weight. A weapon also shows its damage, speed, Strength needed and skill, " +
+                "and armor its armor rating and Strength needed. A tooltip tells what is magical about an item only after Item Identification has been used on it. Click an item once for its name over its head, as before."
+            );
+        }
+
+        return new Topic("seen", "Bars and numbers", p);
     }
 
     // ---- Skill locks 101
@@ -313,15 +407,8 @@ public static partial class WelcomeGuide
             "Paying less teaches you less; paying more is lost.",
             "You can also stand within three tiles and say the NPC's name followed by train: a town NPC lists the skills it can teach you, but only the menu gives a price.",
             $"The skill must be set to Up, and you need room under the {n.SkillCapPoints}-point cap. At the cap a lesson takes its points from skills you have set to Down, and those points are lost.",
-            HeadingMark + "Who teaches what",
-            "A trainer teaches the skills listed here whenever you know less than a third of what it knows:",
-            "Alchemist: Alchemy, Taste Identification. Animal Trainer: Animal Lore, Animal Taming, Veterinary. Armorer and Weaponsmith: Arms Lore, Blacksmithy. " +
-            "Bard: Discordance, Musicianship, Peacemaking, Provocation. Blacksmith: Blacksmithy, Fencing, Mace Fighting, Swordsmanship, Tactics, Parrying.",
-            "Bowyer: Bowcraft/Fletching, Archery. Carpenter: Carpentry, Lumberjacking. Cook: Cooking, Taste Identification. Fisherman: Fishing. " +
-            "Healer: Healing, Forensic Evaluation, Spirit Speak, Swordsmanship. Herbalist: Alchemy, Cooking, Taste Identification.",
-            "Mage: Magery, Evaluating Intelligence, Inscription, Meditation, Resisting Spells. Mapmaker: Cartography. Miner: Mining. " +
-            "Ranger: Detecting Hidden, Archery, Tracking, Veterinary. Scribe: Inscription, Evaluating Intelligence. Tailor: Tailoring. " +
-            "Tinker: Tinkering, Lockpicking, and Remove Trap (which needs 50.0 in Lockpicking and in Detecting Hidden). Veterinarian: Animal Lore, Veterinary."
+            HeadingMark + "Finding a trainer",
+            "The Who teaches what page lists the trainers in Britain, shopkeepers and guildmasters both, and the skills each one teaches."
         };
 
         if (c.FaintMemories)
@@ -333,26 +420,107 @@ public static partial class WelcomeGuide
         return new Topic("training", "Training", p);
     }
 
+    // ---- Trainers
+
+    /// <summary>
+    /// Who teaches what in Britain, read from the NPCs' constructors (docs/Britain-Guildmasters-Evidence.md): a town NPC's menu offers a skill it has at 60.0 or more, and only a Healer
+    /// limits itself (to four skills). Only NPCs the world spawns are listed: there is no plain Ranger or Veterinarian in Britain.
+    /// </summary>
+    private static Topic TrainersTopic()
+    {
+        var p = new List<string>
+        {
+            HeadingMark + "How to learn from one",
+            "A trainer teaches a skill whenever you know less than a third of what it knows. The Training page has the rules and the price: click the NPC, pick the skill, pay what it names.",
+            HeadingMark + "Shops and workshops",
+            "Alchemist: Alchemy, Taste Identification. Animal Trainer: Animal Lore, Animal Taming, Veterinary. Armorer and Weaponsmith: Arms Lore, Blacksmithy. " +
+            "Baker: Cooking. Bard: Discordance, Musicianship, Peacemaking, Provocation. Blacksmith: Blacksmithy, Fencing, Mace Fighting, Swordsmanship, Tactics, Parrying.",
+            "Bowyer: Bowcraft/Fletching, Archery. Carpenter: Carpentry, Lumberjacking. Cobbler, Tailor and Weaver: Tailoring. Cook: Cooking, Taste Identification. " +
+            "Fisherman: Fishing. Furtrader: Alchemy, Animal Lore. Healer: Healing, Forensic Evaluation, Spirit Speak, Swordsmanship. Herbalist: Alchemy, Cooking, Taste Identification.",
+            "Jeweler: Item Identification. Mage: Magery, Evaluating Intelligence, Inscription, Meditation, Resisting Spells. Mapmaker: Cartography. Miner: Mining. " +
+            "Scribe: Inscription, Evaluating Intelligence. Shipwright: Carpentry. " +
+            "Tinker: Tinkering, Lockpicking, and Remove Trap (which needs 50.0 in Lockpicking and in Detecting Hidden).",
+            HeadingMark + "Guildmasters",
+            "The guildmasters know more. Blacksmiths': Arms Lore, Blacksmithy. Fishermen's: Fishing. Healers': Anatomy, Forensic Evaluation, Healing, Resisting Spells, Spirit Speak. " +
+            "Mages': the Mage's list and Wrestling. Merchants': Arms Lore, Item Identification. Miners': Item Identification, Mining. Tailors': Tailoring. " +
+            "Tinkers': Tinkering, Lockpicking, Remove Trap.",
+            "Rangers': Animal Lore, Archery, Camping, Hiding, Resisting Spells, Stealth, Tactics, Tracking. " +
+            "Thieves': Detecting Hidden, Fencing, Hiding, Lockpicking, Poisoning, Remove Trap, Snooping, Stealing, Stealth. " +
+            "Warriors': Arms Lore, Fencing, Mace Fighting, Parrying, Resisting Spells, Swordsmanship, Tactics. Bards': Archery, Swordsmanship and the Bard's list.",
+            "Stealth is taught only to someone with 80.0 in Hiding. A few trainers also know some other skill only part of the time, and teach it only while it is at 60.0 or more: " +
+            "the trainer's menu shows what it teaches today."
+        };
+
+        return new Topic("trainers", "Who teaches what", p);
+    }
+
+    // ---- Moongates
+
+    /// <summary>
+    /// How to get to Britain from the town a character began in. World generation keeps the shopkeepers, bankers, healers, trainers and guildmasters in Britain only (the manifest's
+    /// <c>britainOnlySpawnerFiles</c>), yet the stock character-creation list offers nine starting towns, so a new character can begin in one with none of them. The gate list is the
+    /// stock Felucca list (<c>PMList.Felucca</c>: no Vesper); the Britain gate stands outside the town (docs/Moongates-Evidence.md).
+    /// </summary>
+    private static Topic GatesTopic(Context c)
+    {
+        var p = new List<string>
+        {
+            HeadingMark + "Britain is the town",
+            "Britain is the only town with shopkeepers, bankers, healers, trainers and guildmasters: the other towns have none of them. " +
+            (c.StartInBritainOnly ? "Every new character starts in Britain, inside the town. " : "If your character began in another town, take its moongate to Britain. ") +
+            "The Britain gate stands in open country south of the town, outside the walls: walk north from it to reach the town.",
+            HeadingMark + "Using a moongate",
+            "Stand next to a moongate, a blue shimmering gate, and double-click it. Choose a town from the list and press Okay. There are gates at Moonglow, Britain, Jhelom, Yew, Minoc, " +
+            "Trinsic, Skara Brae, New Magincia and Buccaneer's Den. Vesper has none; Minoc's is the nearest.",
+            "A gate will not work while you are a criminal, in a fight or casting a spell. It puts you at peace and hides you, and your pets that are following you and within three steps of you come with you."
+        };
+
+        if (c.HotZones && c.TravelWarning)
+        {
+            p.Add("Buccaneer's Den is a Hot Zone. If you go there from outside one, a window warns you and asks you to confirm first (see the Hot Zones page).");
+        }
+        else if (c.HotZones)
+        {
+            p.Add("Buccaneer's Den is a Hot Zone (see the Hot Zones page).");
+        }
+
+        p.Add(HeadingMark + "Other ways");
+        p.Add(
+            (c.MenuBar ? "The Map button on the top bar opens a map that shows where you are; click it again for the big map. " : "") +
+            (c.CampTravel ? "A camp you have made can carry you across the land too: see the Camp travel page." : "On foot, follow the roads between the towns.")
+        );
+
+        return new Topic("gates", "Moongates", p);
+    }
+
     // ---- Money and shops
 
-    private static Topic ShopsTopic()
+    private static Topic ShopsTopic(Context c, Numbers n)
     {
-        return new Topic(
-            "shops",
-            "Money and shops",
-            [
-                HeadingMark + "Banks",
-                "Say bank near a banker to open your bank box. Other things to say to a banker: balance (how much gold you have in the bank), " +
-                "withdraw 500 (take gold out, at most 5,000 at a time) and check 10000 (turns 5,000 to 1,000,000 gold from your bank box into a check that stays in the box).",
-                "There is no deposit command: drag gold into your bank box. A banker will not do business with a criminal.",
-                HeadingMark + "Shops",
-                "Stand within four tiles of a shopkeeper and say vendor buy or vendor sell, or click the shopkeeper once for a menu with Buy and Sell.",
-                "A purchase is paid from your pack. If your pack is short and the purchase costs 2,000 gold or more, it is paid from your bank instead.",
-                "Shopkeepers do not buy newbied items. In a guarded town a murderer is refused service.",
-                HeadingMark + "Your pets",
-                "Say stable to an animal trainer, then click the pet to leave there, and say claim to get your pets back. Stabling costs 30 gold for each pet; claiming is free. Unload a pack animal first."
-            ]
-        );
+        var p = new List<string>
+        {
+            HeadingMark + "Banks",
+            "Say bank near a banker to open your bank box. Other things to say to a banker: balance (how much gold you have in the bank), " +
+            "withdraw 500 (take gold out, at most 5,000 at a time) and check 10000 (turns 5,000 to 1,000,000 gold from your bank box into a check that stays in the box).",
+            "There is no deposit command: drag gold into your bank box. A banker will not do business with a criminal.",
+            HeadingMark + "Shops",
+            "Stand within four tiles of a shopkeeper and say vendor buy or vendor sell, or click the shopkeeper once for a menu with Buy and Sell.",
+            "A purchase is paid from your pack. If your pack is short and the purchase costs 2,000 gold or more, it is paid from your bank instead.",
+            "Shopkeepers do not buy newbied items. In a guarded town a murderer is refused service.",
+            HeadingMark + "Your pets",
+            "Say stable to an animal trainer, then click the pet to leave there, and say claim to get your pets back. Stabling costs 30 gold for each pet; claiming is free. Unload a pack animal first."
+        };
+
+        if (c.Furnishers)
+        {
+            p.Add(HeadingMark + "The Furnisher");
+            p.Add(
+                "The Furnisher stands in a showroom hall in the Counselor's Guild in Britain, where every piece is on show, and sells decorations for a house" +
+                (n.FurnisherHighGold > 0 ? $", from {n.FurnisherLowGold:N0} to {n.FurnisherHighGold:N0} gold a piece" : "") + ". The Furnisher buys nothing back."
+            );
+        }
+
+        return new Topic("shops", "Money and shops", p);
     }
 
     // ---- Crafting

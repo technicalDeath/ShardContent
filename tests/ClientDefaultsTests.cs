@@ -22,6 +22,10 @@ public class ClientDefaultsTests
     [InlineData("use_old_status_gump", true)]     // the labeled STR/DEX/INT/HITS/MANA/STAM/GOLD/AR/WGHT status window, not the icon grid of resistances and bonuses that mean nothing in 2000
     [InlineData("always_run", true)]              // walking is running (client defaults item 7)
     [InlineData("always_run_unless_hidden", true)] // but not while hidden, which would give a sneaking player away
+    [InlineData("auto_pickup_arrows", true)]      // the shard picks up the kinds a player's skills use; the switches are on the combat bar and in Options
+    [InlineData("auto_pickup_bolts", true)]
+    [InlineData("auto_pickup_reagents", true)]
+    [InlineData("show_target_range_indicator", true)] // a target cursor shows how far away the target is, for bows and spells
     [InlineData("auto_open_doors", true)]         // walking into a door opens it
     [InlineData("combat_bar_enabled", true)]      // the combat bar under the potion bar (CombatBarGump)
     [InlineData("potion_bar_enabled", true)]      // the potion bar under the game window (PotionBarGump)
@@ -36,7 +40,8 @@ public class ClientDefaultsTests
     [InlineData("cast_spells_by_one_click", true)] // spell, skill and macro buttons act on one click, as the spell bar does
     [InlineData("counter_bar_highlight_on_amount", true)] // an item shortcut turns red when it runs low
     [InlineData("hold_down_key_tab", false)]      // Tab switches war mode on and off instead of holding it
-    [InlineData("show_info_bar", true)]           // the info bar (hits, mana, stamina) is offered once at first login (GameScene.OfferInfoBar)
+    [InlineData("show_info_bar", false)]          // the separate info bar is not offered: hits, mana and stamina are numbers on the player's own minimal health bar
+    [InlineData("custom_bars_toggled", true)]     // health bars are the minimal bars (the player's own bar carries the numbers)
     [InlineData("hold_down_key_alt_to_close_anchored", false)]
     public void TheSwitchedDefaultsAreSpelledTheWayTheClientWritesThem(string key, bool expected)
     {
@@ -71,5 +76,17 @@ public class ClientDefaultsTests
         Assert.Contains("log off safely", line);
         Assert.Contains("Bedroll", line);
         Assert.DoesNotContain("Britannia Renaissance", line, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Theory]
+    [InlineData("500955", "Bandages need someone hurt")]
+    [InlineData("500961", "makes the bandage heal less")]
+    [InlineData("500968", "Healing skill decides")]
+    public void TheClientTextExplainsTheBandageMessages(string id, string expected)
+    {
+        var lines = File.ReadAllLines(Path.Combine(ClientData, "Clilocs.txt")).Where(static l => l.Length > 0 && l[0] != '#').ToArray();
+        var line = Assert.Single(lines, l => l.StartsWith(id + "\t", StringComparison.Ordinal));
+
+        Assert.Contains(expected, line);
     }
 }

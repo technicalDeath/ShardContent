@@ -44,6 +44,9 @@ public static class ShardBootstrap
         GuardCallNotice.Configure();
         GuildChatService.Configure();
         NoviceCombatService.Configure();
+        NewPlayerTipsService.Configure();
+        AutoPickupService.Configure();
+        HouseReminderService.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
         HelpService.Configure();
         ScrollChanceService.Configure();
@@ -53,6 +56,9 @@ public static class ShardBootstrap
         WearNoticeService.Configure();
         AutoUseService.Configure();
         CombatNumbersService.Configure();
+        ItemTooltipService.Configure();
+        BritainStartService.Configure();
+        SilverOnlyWeaponLoot.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
         CosmeticElfCreationService.Register(); // keep last among CharacterCreatedHandler observers

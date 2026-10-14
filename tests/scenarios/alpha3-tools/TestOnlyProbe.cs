@@ -48,6 +48,8 @@ public static class TestOnlyProbe
         CommandSystem.Register("TestOnlyFires", AccessLevel.Administrator, OnFiresCommand);
         CommandSystem.Register("TestOnlyGuild", AccessLevel.Administrator, OnGuildCommand);
         CommandSystem.Register("TestOnlyGive", AccessLevel.Administrator, OnGiveCommand);
+        CommandSystem.Register("TestOnlyMagic", AccessLevel.Administrator, OnMagicCommand);
+        CommandSystem.Register("TestOnlySlayerLoot", AccessLevel.Administrator, OnSlayerLootCommand);
         CommandSystem.Register("TestOnlyHold", AccessLevel.Administrator, OnHoldCommand);
         CommandSystem.Register("TestOnlyHurt", AccessLevel.Administrator, OnHurtCommand);
         CommandSystem.Register("TestOnlyWear", AccessLevel.Administrator, OnWearCommand);
@@ -226,6 +228,108 @@ public static class TestOnlyProbe
         }
 
         e.Mobile.SendMessage(player.EquipItem(item) ? $"Holding {item.GetType().Name}" : $"Could not equip {item.GetType().Name}");
+    }
+
+    // [TestOnlySlayerLoot <rolls> [stock]] (with 'stock' the shard's silver-only filter is lifted for the run, to show what the stock loot would give) rolls the Average and Meager loot packs <rolls> times for a Bone Knight (a monster whose own slayers are the humanoid ones, so without the shard's filter
+    // it drops Orc Slaying, Repond and the rest) and reports how many weapons dropped and which slayers they carry.
+    private static void OnSlayerLootCommand(CommandEventArgs e)
+    {
+        var rolls = e.Length > 0 ? e.GetInt32(0) : 2000;
+        var knight = new BoneKnight();
+        var counts = new Dictionary<SlayerName, int>();
+        var weapons = 0;
+        var filter = LootPackEntry.WeaponLootSlayerAllowed;
+
+        try
+        {
+            if (e.Length > 1 && e.GetString(1).Equals("stock", StringComparison.OrdinalIgnoreCase))
+            {
+                LootPackEntry.WeaponLootSlayerAllowed = null;
+            }
+
+            for (var i = 0; i < rolls; i++)
+            {
+                var box = new Backpack();
+
+                foreach (var pack in new[] { LootPack.Average, LootPack.Meager })
+                {
+                    pack.Generate(knight, box, false, 0);
+                }
+
+                foreach (var item in box.FindItemsByType<BaseWeapon>(true))
+                {
+                    weapons++;
+                    counts[item.Slayer] = counts.GetValueOrDefault(item.Slayer) + 1;
+                }
+
+                box.Delete();
+            }
+        }
+        finally
+        {
+            LootPackEntry.WeaponLootSlayerAllowed = filter;
+            knight.Delete();
+        }
+
+        e.Mobile.SendMessage($"SlayerLoot rolls={rolls} weapons={weapons} " + string.Join(", ", counts.OrderBy(c => c.Key.ToString()).Select(c => $"{c.Key}={c.Value}")));
+    }
+
+    // [TestOnlyMagic <player-serial> [identified]] puts heavily magical gear (unidentified unless the second word is given) in the player's backpack (a Katana with Vanquishing, Supremely accurate, Indestructible, an Orc slayer, deadly
+    // poison and exceptional quality; a Plate Chest with Invulnerability and Indestructible; a Fireball wand), to check that an item tooltip says nothing about the magic.
+    private static void OnMagicCommand(CommandEventArgs e)
+    {
+        var raw = e.Length < 1 ? "" : e.GetString(0);
+        var hex = raw.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? raw[2..] : raw;
+
+        if (!uint.TryParse(hex, NumberStyles.HexNumber, null, out var serial) || World.FindMobile((Serial)serial) is not PlayerMobile { Backpack: { } pack })
+        {
+            e.Mobile.SendMessage("Usage: [TestOnlyMagic <player-serial>");
+            return;
+        }
+
+        static void Set(object target, string name, string value)
+        {
+            var property = target.GetType().GetProperty(name);
+
+            if (property is null)
+            {
+                return;
+            }
+
+            object converted = property.PropertyType.IsEnum
+                ? Enum.Parse(property.PropertyType, value, true)
+                : property.PropertyType == typeof(Poison) ? Poison.GetPoison(value) : Convert.ChangeType(value, property.PropertyType);
+
+            property.SetValue(target, converted);
+        }
+
+        var sword = new Katana();
+        Set(sword, "DamageLevel", "Vanq");
+        Set(sword, "AccuracyLevel", "Supremely");
+        Set(sword, "DurabilityLevel", "Indestructible");
+        Set(sword, "Slayer", "OrcSlaying");
+        Set(sword, "Quality", "Exceptional");
+        Set(sword, "Poison", "Deadly");
+        Set(sword, "PoisonCharges", "18");
+
+        var chest = new PlateChest();
+        Set(chest, "ProtectionLevel", "Invulnerability");
+        Set(chest, "Durability", "Indestructible");
+        Set(chest, "Quality", "Exceptional");
+
+        var wand = new FireballWand();
+
+        if (e.Length > 1 && e.GetString(1).Equals("identified", StringComparison.OrdinalIgnoreCase))
+        {
+            Set(sword, "Identified", "true");
+            Set(chest, "Identified", "true");
+            Set(wand, "Identified", "true");
+        }
+
+        pack.DropItem(sword);
+        pack.DropItem(chest);
+        pack.DropItem(wand);
+        e.Mobile.SendMessage("Magic gear given");
     }
 
     // [TestOnlyGive <player-serial> <ItemTypeName> [amount]] puts a new item (a stack of that amount when it stacks) in the player's backpack, for the combat bar checks.

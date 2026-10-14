@@ -28,6 +28,11 @@ public static class PoisonReliefService
         "You are poisoned. While you are poisoned a bandage only tries to cure you, and that takes Healing and Anatomy of 60 or more, so it will not heal you. " +
         "A Cure potion (alchemists sell Lesser Cure for 15 gold), the Cure spell, or waiting it out will end the poison.";
 
+    /// <summary>The hint when the pack already holds cure potions: say so, and that a cure can fail.</summary>
+    public static string HintWithPotions(int potions) =>
+        $"You are poisoned, and you have {potions} Cure {(potions == 1 ? "potion" : "potions")} in your pack: double-click one to drink it. A cure can fail, so drink another if the poison stays. " +
+        "A bandage will not heal you while you are poisoned.";
+
     public const string GraceText = "You are still shaking off the last poison, and this one finds no hold.";
 
     private static readonly Dictionary<Serial, TrackedPlayer> Tracked = [];
@@ -193,7 +198,8 @@ public static class PoisonReliefService
         }
 
         account.SetTag(tag, "shown");
-        player.SendMessage(0x35, HintText);
+        var potions = player.Backpack?.GetAmount(typeof(BaseCurePotion), true) ?? 0;
+        player.SendMessage(0x35, potions > 0 ? HintWithPotions(potions) : HintText);
     }
 
     private static void Forget(DateTime now)

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "136e573c863cb8a45e1bad2dfebb11dd3c6ae885",
+  "pinnedModernUoCommit": "4fbc58cfb0a4f242968f51b63685ab20505860f4",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -226,7 +226,12 @@
     "autoUse": true,
     "damageNumbers": true,
     "healNumbers": true,
+    "itemTooltips": true,
+    "startInBritainOnly": true,
     "furnishers": true,
+    "newPlayerTips": true,
+    "autoPickup": true,
+    "houseReminder": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

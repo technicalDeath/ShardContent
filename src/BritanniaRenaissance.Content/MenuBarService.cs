@@ -19,6 +19,8 @@ public static class MenuBarService
     public const ushort GuildChat = 1 << 2;
     public const ushort About = 1 << 3;
     public const ushort AutoUse = 1 << 4;
+    public const ushort Tooltips = 1 << 5;
+    public const ushort AutoPickup = 1 << 6;
 
     private static bool _configured;
 
@@ -42,12 +44,21 @@ public static class MenuBarService
     /// <summary>The mask for a set of flags: 0 when the bar is off (nothing is sent), else the shard bar bit plus one bit per live feature.</summary>
     public static ushort MaskFor(DeferredFeatureFlags flags)
     {
-        if (!flags.MenuBar)
+        // item tooltips stand on their own: they work with the stock bar, so the mask carries them without the shard bar bit
+        ushort mask = flags.ItemTooltips ? Tooltips : (ushort)0;
+
+        // so does automatic pickup: the client's switches for it work with the stock bar too
+        if (flags.AutoPickup)
         {
-            return 0;
+            mask |= AutoPickup;
         }
 
-        ushort mask = ShardBar;
+        if (!flags.MenuBar)
+        {
+            return mask;
+        }
+
+        mask |= ShardBar;
 
         if (flags.CampingTravel)
         {
@@ -80,11 +91,16 @@ public static class MenuBarService
 
     private static void Send(Mobile mobile)
     {
-        if (!Enabled || mobile is not PlayerMobile { NetState: { } state } || ShardRulesConfiguration.Settings is not { } rules)
+        if (mobile is not PlayerMobile { NetState: { } state } || ShardRulesConfiguration.Settings is not { } rules)
         {
             return;
         }
 
-        state.Send(Packet(MaskFor(rules.FeatureFlags)));
+        var mask = MaskFor(rules.FeatureFlags);
+
+        if (mask != 0)
+        {
+            state.Send(Packet(mask));
+        }
     }
 }

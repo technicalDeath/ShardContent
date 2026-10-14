@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Server;
+using Server.Engines.BuffIcons;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -44,7 +45,15 @@ public static partial class WelcomeGuide
         bool PotionBar = false,
         bool CombatBar = false,
         bool WearNotice = false,
-        bool AutoUse = false
+        bool AutoUse = false,
+        bool DamageNumbers = false,
+        bool HealNumbers = false,
+        bool BuffBar = false,
+        bool Furnishers = false,
+        bool ItemTooltips = false,
+        bool StartInBritainOnly = false,
+        bool NewPlayerTips = false,
+        bool AutoPickup = false
     );
 
     public static Context Current =>
@@ -71,7 +80,15 @@ public static partial class WelcomeGuide
             PotionBarService.Enabled,
             CombatBarService.Enabled,
             WearNoticeService.Enabled,
-            AutoUseService.Enabled
+            AutoUseService.Enabled,
+            CombatNumbersService.DamageEnabled,
+            CombatNumbersService.HealEnabled,
+            BuffInfo.Enabled,
+            FurnishersService.Enabled,
+            ItemTooltipService.Enabled,
+            BritainStartService.Enabled,
+            NewPlayerTipsService.Enabled,
+            AutoPickupService.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -92,7 +109,9 @@ public static partial class WelcomeGuide
         int FaintHours = 24,
         int FaintFloorTenths = 100,
         int FaintCeilingTenths = 800,
-        int VeryHardTenths = 8
+        int VeryHardTenths = 8,
+        int FurnisherLowGold = 0,
+        int FurnisherHighGold = 0
     )
     {
         public static Numbers Current
@@ -126,7 +145,9 @@ public static partial class WelcomeGuide
                     (int)Math.Round(settings.FaintMemories.UnlockHours),
                     FaintMemoriesPolicy.FloorTenths(settings.FaintMemories),
                     FaintMemoriesPolicy.CeilingTenths(settings.FaintMemories),
-                    VeryHardInUse(settings.SkillGain) ? Allowance("veryHard", 8) : 0
+                    VeryHardInUse(settings.SkillGain) ? Allowance("veryHard", 8) : 0,
+                    FurnishersConfiguration.Settings?.Pieces.Select(p => p.Price).DefaultIfEmpty(0).Min() ?? 0,
+                    FurnishersConfiguration.Settings?.Pieces.Select(p => p.Price).DefaultIfEmpty(0).Max() ?? 0
                 );
             }
         }
@@ -141,7 +162,7 @@ public static partial class WelcomeGuide
     public static IReadOnlyList<Topic> Topics(Context c, CampTravelRules rules, Numbers? numbers = null, CampingRules? camping = null)
     {
         var n = numbers ?? new Numbers();
-        var topics = new List<Topic> { WelcomeTopic(c), FirstHourTopic(c, n), ScreenTopic(c), SkillLocksTopic(c, n) };
+        var topics = new List<Topic> { WelcomeTopic(c), FirstHourTopic(c, n), ScreenTopic(c), SeenTopic(c), SkillLocksTopic(c, n) };
 
         if (c.SafeWorld || c.KnockedOut)
         {
@@ -162,6 +183,8 @@ public static partial class WelcomeGuide
         topics.Add(PetsTopic(c));
         topics.Add(DyingTopic(c));
         topics.Add(TrainingTopic(c, n));
+        topics.Add(TrainersTopic());
+        topics.Add(GatesTopic(c));
         topics.Add(MasteryTopic(c, n));
 
         if (c.SkillBank)
@@ -175,7 +198,7 @@ public static partial class WelcomeGuide
         }
 
         topics.Add(CraftingTopic(c, n));
-        topics.Add(ShopsTopic());
+        topics.Add(ShopsTopic(c, n));
 
         if (c.CampingKit || c.CampingFires)
         {
@@ -206,6 +229,11 @@ public static partial class WelcomeGuide
             );
         }
 
+        paragraphs.Add(
+            c.StartInBritainOnly
+                ? "Every new character starts in Britain, the only town with shops, a bank, healers and trainers. The moongates (see the Travel tab) lead to the other towns, which have none of them."
+                : "Britain is the only town with shops, a bank, healers and trainers. If you began in another town, take its moongate to Britain: see Moongates on the Travel tab."
+        );
         paragraphs.Add("New here? Start with Your first hour. Choose a topic on the left, or another tab above, to read how it works, and type [Welcome any time to open this guide again.");
         return new Topic("welcome", "Welcome", paragraphs);
     }
@@ -600,6 +628,11 @@ public static partial class WelcomeGuide
         {
             // No angle brackets here: the window draws HTML and would swallow them as a tag.
             lines.Add($"[g - Talk to your guild wherever its members are: type [g and then your message (the \\ key does the same). {GuildChatService.LoggedNotice}");
+        }
+
+        if (c.NewPlayerTips)
+        {
+            lines.Add("[Tips - Turn the one-time tips on or off for this character: type [Tips off or [Tips on.");
         }
 
         return lines;

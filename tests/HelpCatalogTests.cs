@@ -109,6 +109,52 @@ public class HelpCatalogTests
     }
 
     [Fact]
+    public void TheWearAndRepairPageIsReachableFromWeaponsArmorShieldsAndTheTwoSkillsItIsAbout()
+    {
+        var (catalog, _) = Shipped();
+        var wear = catalog.Items.Single(t => t.Key == "a-wear");
+
+        Assert.Equal("Wear and repair", wear.Title);
+        Assert.Contains(SkillName.ArmsLore, wear.Skills);
+        Assert.Contains(SkillName.Blacksmith, wear.Skills);
+
+        // the general weapon, armor and shield pages link to it (the buttons are limited to four, so each gave up one other link for it)
+        foreach (var key in new[] { "w-weapon", "a-armor", "a-shields" })
+        {
+            Assert.Contains("a-wear", catalog.Items.Single(t => t.Key == key).Related);
+        }
+
+        // the combat bar's gauge and the quarter-durability notice are described only while those features are on
+        var gated = wear.Paragraphs.Where(p => p.Requires is not null).Select(p => p.Requires).ToArray();
+        Assert.Contains("CombatBar", gated);
+        Assert.Contains("WearNotice", gated);
+    }
+
+    [Fact]
+    public void EveryPageThatSaysSeeAnotherPageHasAButtonToIt()
+    {
+        var (catalog, _) = Shipped();
+        var missing = new List<string>();
+
+        foreach (var topic in catalog.Items)
+        {
+            foreach (var paragraph in topic.Paragraphs.Where(p => p.Text is not null))
+            {
+                foreach (var target in catalog.Items.Where(t => t.Key != topic.Key))
+                {
+                    var named = paragraph.Text!.Contains($"See {target.Title} ", StringComparison.Ordinal) || paragraph.Text.Contains($"See {target.Title}.", StringComparison.Ordinal);
+                    if (named && !topic.Related.Contains(target.Key))
+                    {
+                        missing.Add($"{topic.Key} says \"See {target.Title}\" but has no button to {target.Key}");
+                    }
+                }
+            }
+        }
+
+        Assert.Empty(missing);
+    }
+
+    [Fact]
     public void AllEightReagentsShareOneTopic()
     {
         var (catalog, _) = Shipped();

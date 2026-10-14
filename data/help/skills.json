@@ -145,7 +145,7 @@
         "Swordsmanship is the skill of every weapon with a cutting edge: swords, knives such as the cleaver, axes, and polearms such as the halberd. While you hold one you hit with Swordsmanship and you are defended by it too, so it decides how often you land blows and how often you are hit. Daggers, spears and forks use Fencing instead, and maces and staves use Mace Fighting.",
         "# How it works",
         "After every swing you wait 15000 divided by ((your stamina + 100) times the weapon's speed) seconds: 75 divided by the speed at 100 stamina. Your stamina can never be higher than your Dexterity, so a low Dexterity means slow swings.",
-        "Damage, speed (seconds a swing at 100 stamina), Strength needed and the price at the Blacksmith in Britain:<BR>Katana 5-26, speed 58 (1.3 s), Strength 10, 33 gold<BR>Cutlass 6-28, 45 (1.7 s), 10, 24 gold<BR>Scimitar 4-30, 43 (1.7 s), 10, 36 gold<BR>Broadsword 5-29, 45 (1.7 s), 25, 35 gold<BR>Longsword 5-33, 35 (2.1 s), 25, 55 gold<BR>Viking Sword 6-34, 30 (2.5 s), 40, 55 gold<BR>Those are one-handed, so your other hand can hold a shield. These are two-handed and rule out a shield: Axe 6-33, 37 (2.0 s), 35, 40 gold; Battle Axe 6-38, 30 (2.5 s), 40, 26 gold; Halberd 5-49, 25 (3.0 s), 45, 42 gold. You cannot equip a weapon if your Strength is below its number.",
+        "Swords of every kind and the knives are one-handed, so your other hand can hold a shield. Axes (except the War Axe), the Halberd and the Bardiche are two-handed and rule out a shield. A heavier weapon needs more Strength, and you cannot equip a weapon if your Strength is below what it needs.",
         "Your chance to hit is (your skill + 50) divided by twice (their skill + 50): equal skills hit half the time, skill 100 against 50 three times in four, skill 50 against 100 one time in three. Once your skill reaches twice theirs plus 50 you hit every time, and a swing that cannot miss teaches you nothing.",
         "Damage is the weapon's range changed by your Tactics (half at Tactics 0, unchanged at 50, one and a half times at 100), plus 1% for every 5 points of Strength and 1% for every 5 points of Anatomy. Armor and tough hides take points off, a hit never does less than 1, and against another player damage is halved. Axes also add 1% for every 5 points of Lumberjacking, and a weapon made exceptional by a smith hits 20% harder.",
         "Against a monster, before its armor, a Katana in the hands of a swordsman with Strength 54, Anatomy 35 and Tactics 50 hits for about 18. A Grandmaster with Strength 100, Anatomy 100 and Tactics 100 hits for about 33.",
@@ -201,7 +201,7 @@
         "Mace Fighting is the skill of clubs, maces, hammers, staves and the war axe. While you hold one you hit with it and you are defended by it, so it decides how often you land blows and how often you are hit. Swords and other axes use Swordsmanship, and daggers and spears use Fencing.",
         "# How it works",
         "After every swing you wait 15000 divided by ((your stamina + 100) times the weapon's speed) seconds: 75 divided by the speed at 100 stamina. Your stamina can never be higher than your Dexterity, so a low Dexterity means slow swings.",
-        "Damage, speed (seconds a swing at 100 stamina), Strength needed and the price at the Blacksmith in Britain:<BR>Club 8-24, speed 40 (1.9 s), Strength 10, 16 gold<BR>Mace 8-32, 30 (2.5 s), 20, 28 gold<BR>War Mace 10-30, 32 (2.3 s), 30, 31 gold<BR>Maul 10-30, 30 (2.5 s), 20, 21 gold<BR>Hammer Pick 6-33, 30 (2.5 s), 35, 26 gold<BR>War Axe 9-27, 40 (1.9 s), 35, 29 gold<BR>Those are one-handed, so your other hand can hold a shield. These are two-handed and rule out a shield: War Hammer 8-36, 31 (2.4 s), 40, 25 gold; Quarter Staff 8-28, 48 (1.6 s), 30, 19 gold; Black Staff 8-33, 35 (2.1 s), 35, 22 gold; Gnarled Staff 10-30, 33 (2.3 s), 20, 16 gold. You cannot equip a weapon if your Strength is below its number.",
+        "Clubs, maces, mauls, war maces, hammer picks and the War Axe are one-handed, so your other hand can hold a shield. The War Hammer and the staves are two-handed and rule out a shield. A heavier weapon needs more Strength, and you cannot equip a weapon if your Strength is below what it needs.",
         "Every hit from a mace, hammer or staff also drains 3 to 5 points of stamina from whoever it hits (the War Axe does not). A target with less stamina swings more slowly.",
         "Your chance to hit is (your skill + 50) divided by twice (their skill + 50): equal skills hit half the time, skill 100 against 50 three times in four, skill 50 against 100 one time in three. Once your skill reaches twice theirs plus 50 you hit every time, and a swing that cannot miss teaches you nothing.",
         "Damage is the weapon's range changed by your Tactics (half at Tactics 0, unchanged at 50, one and a half times at 100), plus 1% for every 5 points of Strength and 1% for every 5 points of Anatomy. Armor and tough hides take points off, a hit never does less than 1, and against another player damage is halved. A weapon made exceptional by a smith hits 20% harder.",
@@ -257,7 +257,7 @@
         "Fencing is the skill of daggers, the kryss, spears and forks: the quick, piercing weapons. While you hold one you hit with Fencing and you are defended by it, so it decides how often you land blows and how often you are hit. Swords and axes use Swordsmanship, and maces and staves use Mace Fighting.",
         "# How it works",
         "After every swing you wait 15000 divided by ((your stamina + 100) times the weapon's speed) seconds: 75 divided by the speed at 100 stamina. Your stamina can never be higher than your Dexterity, so a low Dexterity means slow swings.",
-        "Damage, speed (seconds a swing at 100 stamina), Strength needed and the price at the Blacksmith in Britain:<BR>Dagger 3-15, speed 55 (1.4 s), Strength 1, 21 gold<BR>Kryss 3-28, 53 (1.4 s), 10, 32 gold<BR>War Fork 4-32, 45 (1.7 s), 35, 32 gold<BR>Those are one-handed, so your other hand can hold a shield. These are two-handed and rule out a shield: Short Spear 4-32, 50 (1.5 s), 15, 23 gold; Spear 2-36, 46 (1.6 s), 30, 31 gold; Pitchfork 4-16, 45 (1.7 s), 15, 19 gold. You cannot equip a weapon if your Strength is below its number.",
+        "The Dagger, the Kryss and the War Fork are one-handed, so your other hand can hold a shield. The Short Spear, the Spear and the Pitchfork are two-handed and rule out a shield. A heavier weapon needs more Strength, and you cannot equip a weapon if your Strength is below what it needs.",
         "Your chance to hit is (your skill + 50) divided by twice (their skill + 50): equal skills hit half the time, skill 100 against 50 three times in four, skill 50 against 100 one time in three. Once your skill reaches twice theirs plus 50 you hit every time, and a swing that cannot miss teaches you nothing.",
         "Damage is the weapon's range changed by your Tactics (half at Tactics 0, unchanged at 50, one and a half times at 100), plus 1% for every 5 points of Strength and 1% for every 5 points of Anatomy. Armor and tough hides take points off, a hit never does less than 1, and against another player damage is halved.",
         "The old Paralyzing Blow of two-handed spears is switched off here, and no weapon has an automatic special blow.",
@@ -266,7 +266,7 @@
         "From 0 to 25: stand next to a training dummy in Britain with your weapon in hand and double-click it. A dummy allows one practice swing about every 3 seconds, not from a mount, and it refuses once the skill reaches 25.0.",
         "After the dummy, fight creatures. A monster that carries no weapon defends with its own Wrestling skill: the harder it is to hit, the more a swing can teach, and you stop learning from it once your skill reaches about twice its Wrestling plus 50. Wrestling skill and hit points of some monsters:<BR>Rat: 4; 6 hit points. It stops teaching at about 60.<BR>Headless One: 25 to 40; 16 to 30 hit points<BR>Zombie: 35 to 50; 28 to 42<BR>Skeleton: 45 to 55; 34 to 48<BR>Orc, Lizardman and Ratman: 50 to 75; 58 to 72<BR>Ettin: 50 to 60; 82 to 99<BR>Troll: 50 to 70; 106 to 123<BR>Ogre: 70 to 80; 100 to 117<BR>None of the others stops teaching before 100.",
         "Snakes, giant spiders, scorpions, wraiths and spectres can poison you: see the Healing page for curing.",
-        "The Blacksmith and the Warrior Guildmaster in Britain teach Fencing for gold, up to a third of their own skill (about 20 to 28). See Training in [Welcome.",
+        "The Blacksmith, the Warrior Guildmaster and the Thieves' Guildmaster in Britain teach Fencing for gold, up to a third of their own skill (about 20 to 33). See Training in [Welcome.",
         {
           "generate": "stats"
         },
@@ -313,7 +313,7 @@
         "# How it works",
         "A bow takes arrows and a crossbow takes bolts, one for every shot, from your pack. You must see your target, and you must stand still to shoot: after you move you cannot shoot until you have been still for 1 second at Dexterity 25 or less, down to half a second at Dexterity 100 (about 0.95 seconds at Dexterity 33). Moving starts the wait again.",
         "After every swing you wait 15000 divided by ((your stamina + 100) times the weapon's speed) seconds: 75 divided by the speed at 100 stamina. Your stamina can never be higher than your Dexterity, so a low Dexterity means slow swings. That is 3.75 seconds for a Bow, 4.2 for a Crossbow and 7.5 for a Heavy Crossbow at 100 stamina.",
-        "Damage, speed, range, Strength needed and the price at the Blacksmith in Britain:<BR>Bow 9-41, speed 20, range 10, Strength 20, 35 gold (40 at the Bowyer)<BR>Crossbow 8-43, speed 18, range 8, Strength 30, 46 gold (55 at the Bowyer)<BR>Heavy Crossbow 11-56, speed 10, range 8, Strength 40, 55 gold<BR>All three are two-handed, so you cannot hold a shield.",
+        "A bow and both crossbows are two-handed, so you cannot hold a shield. A heavier weapon needs more Strength, and you cannot equip a weapon if your Strength is below what it needs.",
         "Your chance to hit is (your skill + 50) divided by twice (their skill + 50): equal skills hit half the time, skill 100 against 50 three times in four, skill 50 against 100 one time in three. Once your skill reaches twice theirs plus 50 you hit every time, and a swing that cannot miss teaches you nothing.",
         "Damage is the weapon's range changed by your Tactics (half at Tactics 0, unchanged at 50, one and a half times at 100), plus 1% for every 5 points of Strength and 1% for every 5 points of Anatomy. Armor and tough hides take points off, a hit never does less than 1, and against another player damage is halved. An archer with Strength 54, Anatomy 0 and Tactics 50 hits for about 28 with a Bow.",
         "A shot that misses leaves its arrow on the ground near the target 4 times in 10, and a shot that hits a monster or animal puts the arrow in its pack 4 times in 10: look in the corpse. Other ammunition is gone.",
@@ -322,7 +322,7 @@
         "From 0 to about 25: practise on an archery butte. Two stand near the Bowyer in Britain. Stand in front of the butte in a straight line, 5 or 6 tiles away (closer or farther and it complains), and double-click it to shoot. Double-click it from next to it to gather your arrows. You can shoot once every 2 seconds, each shot uses a piece of ammunition, and it stops teaching when your skill reaches about 25.",
         "After the butte, shoot at creatures. A monster that carries no weapon defends with its own Wrestling skill: the harder it is to hit, the more a swing can teach, and you stop learning from it once your skill reaches about twice its Wrestling plus 50. Wrestling skill and hit points of some monsters:<BR>Rat: 4; 6 hit points. It stops teaching at about 60.<BR>Headless One: 25 to 40; 16 to 30 hit points<BR>Zombie: 35 to 50; 28 to 42<BR>Skeleton: 45 to 55; 34 to 48<BR>Orc, Lizardman and Ratman: 50 to 75; 58 to 72<BR>Ettin: 50 to 60; 82 to 99<BR>Troll: 50 to 70; 106 to 123<BR>Ogre: 70 to 80; 100 to 117<BR>None of the others stops teaching before 100.",
         "You must stand still to shoot, so a creature that reaches you can hit you meanwhile. Snakes, giant spiders, scorpions, wraiths and spectres can poison you: see the Healing page for curing.",
-        "The Bowyer and the Bard Guildmaster in Britain teach Archery for gold, up to a third of their own skill (about 27 to 33). See Training in [Welcome.",
+        "The Bowyer, the Bard Guildmaster and the Rangers' Guildmaster in Britain teach Archery for gold, up to a third of their own skill (about 27 to 33). See Training in [Welcome.",
         {
           "generate": "stats"
         },
@@ -411,7 +411,7 @@
         "# Training it",
         "Training only works while the skill is set to Up in your skills window (see Skill locks 101 in [Welcome).",
         "There is no button. Tactics is checked each time you land a hit on something, and nothing else trains it: not misses, not being hit, not spells. The check does not depend on your chance to hit, so it keeps teaching even against creatures that are too easy to teach your weapon skill. A fast weapon lands more hits and so trains it faster. It does not stop before 100.",
-        "So any fight in which you land blows trains it. The Blacksmith and the Warrior Guildmaster in Britain teach Tactics for gold, up to a third of their own skill (about 20 to 33). See Training in [Welcome.",
+        "So any fight in which you land blows trains it. The Blacksmith, the Warrior Guildmaster and the Rangers' Guildmaster in Britain teach Tactics for gold, up to a third of their own skill (about 20 to 33). See Training in [Welcome.",
         {
           "generate": "stats"
         },
@@ -672,7 +672,7 @@
           "text": "Another player may cast a harmful spell at you only if you have Criminal Intent on, you are a criminal or a murderer, you are already fighting that player, or you are at guild war with them (see Fighting other players in the Welcome guide, [Welcome).",
           "requires": "SafeWorld"
         },
-        "A mage or the mage guildmaster in Britain teaches it for 1 gold per 0.1 point, up to a third of its own skill: about 21 to 33 (see Training in the Welcome guide, [Welcome). A Pure Mage starts with 35.0 and a Warlock with 24.0.",
+        "A mage, the mage guildmaster or the Rangers' Guildmaster in Britain teaches it for 1 gold per 0.1 point, up to a third of its own skill: about 21 to 33 (see Training in the Welcome guide, [Welcome). A Pure Mage starts with 35.0 and a Warlock with 24.0.",
         {
           "generate": "stats"
         },
@@ -1018,6 +1018,7 @@
         "Every recipe has two numbers in the table below. At the first your chance of success is 0% (the potion keg starts at 50%), rising evenly to 100% at the second, and you learn only in between, and only while the skill is set to Up (see Skill locks 101 in [Welcome).",
         "The cheapest teachers take one ingot: forks, spoons and table knives teach from 0 to about 50 (Utensils), Hammers from about 30, Tongs from about 35 and Lockpicks from about 45 up to 95. Gears, springs, hinges, scissors, Tinker's Tools and Sewing Kits take two ingots and teach between 5 and 70. Past 55 make Candelabras, Globes, Scales, Spyglasses and Heating Stands (4 ingots each), and from 75 potion kegs (a keg, 10 empty bottles, a barrel lid and a barrel tap).",
         "Hammers sell best: a Carpenter pays about 14 gold for one that cost a single ingot (about 5 gold). Tongs sell for about 7 gold to a Blacksmith, a Smith's Hammer for 10, a saw for 9 to a Carpenter, scissors for 6 to a Tailor.",
+        "A Tinker or the Tinkers' Guildmaster in Britain teaches Tinkering for 1 gold per 0.1 point, up to a third of their own skill: about 21 to 33 (see Training in [Welcome).",
         {
           "generate": "craft:Tinkering"
         },
@@ -1028,7 +1029,7 @@
           "generate": "gain"
         },
         "# What you need",
-        "Tinker's Tools; no shop in Britain sells them, and a worn-out set has to be replaced by making another, so keep a spare. Each attempt, good or bad, uses one charge: a set has between 25 and 75 when made or bought, and 100 if it was made exceptional. Ingots cost about 5 gold at a Blacksmith (only 16 on the shelf to start with) or come from your own ore (see Mining and Blacksmithing). Logs are for the wooden items.",
+        "Tinker's Tools: the Tinker in Britain sells them for about 7 gold (20 on the shelf), and you can make another set yourself, so keep a spare. Each attempt, good or bad, uses one charge: a set has between 25 and 75 when made or bought, and 100 if it was made exceptional. Ingots cost about 5 gold at a Blacksmith (only 16 on the shelf to start with) or come from your own ore (see Mining and Blacksmithing). Logs are for the wooden items.",
         "# Tools for other crafts",
         "The Tools list holds the tools of the other crafts: Tongs, Smith's Hammer and Sledge Hammer for Blacksmithing, the Sewing Kit for Tailoring, saws, Hammer, Draw Knife, Froe, Inshave and Scorp (and the planes, in the wooden items) for Carpentry, the Mortar and Pestle for Alchemy, Pickaxe, Shovel and Hatchet for gathering, plus Scissors and Lockpicks.",
         "# Traps and jewelry",
@@ -1060,6 +1061,7 @@
         "A poisoned weapon carries charges: 18 for a Lesser poison, 16 for Regular, 14 for Greater and 12 for Deadly. Each hit with a poisoned sword, dagger or spear uses one charge and has a 50% chance to poison the target. Poison on food stays until someone eats it.",
         "# Training it",
         "Each potion has its own skill range: Lesser 0 to 60, Regular 30 to 70, Greater 60 to 100, Deadly 95 to 100. Your chance is 0% at the first number and rises evenly to 100% at the second, and you learn only in between, and only while the skill is set to Up (see Skill locks 101 in [Welcome). Below the first number a potion always fails. Use the strongest potion you can still sometimes get on: a harder try is more likely to teach you something.",
+        "The Thieves' Guildmaster in Britain teaches Poisoning for 1 gold per 0.1 point, up to a third of its own skill: about 20 to 28 (see Training in [Welcome).",
         "Every try spends a potion. Apply the poison to a single piece of cheap food or to a dagger you do not mind (a whole stack of food is poisoned together). Below 80 Poisoning, a failed try has a 1 in 20 chance of poisoning you, so keep Cure potions.",
         "Brew your own potions with Alchemy (a Lesser poison potion is one nightshade and an empty bottle, and nightshade costs about 3 gold) or buy Lesser potions from an Alchemist or a Mage for about 15 gold. The empty bottles come back to you, so keep them.",
         {
@@ -1100,7 +1102,7 @@
         "Smelting is a Mining skill check, made once for the whole pile. For iron your chance is nil at about Mining 25, even at about 50 and certain at about 75, and a failed smelt burns away half of the pile. Colored ore needs the Mining of its metal (65 and up, as listed above) just to try; with less you are told you have no idea how to smelt it. At that skill the chance is even, and it is certain 25 points higher.",
         "# Training it",
         "Dig iron anywhere to start, and leave the ore unsmelted until Mining is about 25, because a failed smelt halves the pile. From about 25 to 75 smelt your iron as well: smelting trains Mining too. Iron is never certain until Mining 100, so it teaches you the whole way. From 65 on, work patches that give colored ore: the better metal is harder to find, and a harder try teaches more. If you only ever dig iron at 65 or more, move to another patch.",
-        "A trainer saves time at the start: the miner guildmaster in Britain teaches Mining up to about 30 to 33, for 1 gold per 0.1 point (see Training in [Welcome). Make sure the arrow beside the skill in your skills window is set to Up, or it will not gain (see Skill locks 101 in [Welcome).",
+        "A trainer saves time at the start: the miner or the miner guildmaster in Britain teaches Mining up to about 22 to 33, for 1 gold per 0.1 point (see Training in [Welcome). Make sure the arrow beside the skill in your skills window is set to Up, or it will not gain (see Skill locks 101 in [Welcome).",
         {
           "generate": "stats"
         },
@@ -1108,7 +1110,7 @@
           "generate": "gain"
         },
         "# What you need",
-        "A Pickaxe costs about 22 gold from a blacksmith, and a character created with Mining skill starts with one. The town shops do not sell a Shovel. You can also make a Pickaxe or a Shovel yourself with Tinker's Tools, from 4 iron ingots (Tinkering 40 to 90). A blacksmith pays 4 gold for each iron ingot. Ore is heavy, and your Strength sets how much you can carry: 40 stones plus 3.5 for each point of Strength.",
+        "A Pickaxe costs about 22 gold from a blacksmith, and a character created with Mining skill starts with one. The Miner and the Tinker in Britain sell a Shovel for about 12 gold (and a Pickaxe for 25). You can also make a Pickaxe or a Shovel yourself with Tinker's Tools, from 4 iron ingots (Tinkering 40 to 90). A blacksmith pays 4 gold for each iron ingot. Ore is heavy, and your Strength sets how much you can carry: 40 stones plus 3.5 for each point of Strength.",
         "# Good to know",
         "To dig up the chest on a treasure map you need a Shovel in your pack. A Pickaxe does not count for that.",
         {
@@ -1241,6 +1243,7 @@
         },
         "# Training it",
         "Light Kindling again and again. Each fire that lights costs one Kindling (2 gold at a Provisioner), and a failed try costs none. Stand in the open so there is a free tile beside you. Make sure the arrow beside the skill in your skills window is set to Up, or it will not gain (see Skill locks 101 in [Welcome).",
+        "The Rangers' Guildmaster in Britain teaches Camping for 1 gold per 0.1 point, up to a third of its own skill: about 25 to 33 (see Training in [Welcome).",
         {
           "text": "With the 50 percent floor you light about every second try even at Camping 0. Above 50 the chance rises, and an easier try teaches less. Because a fire's length follows your real skill, every point pays at once.",
           "requires": "CampingFires"
@@ -1272,6 +1275,7 @@
         "Hiding and Stealth do not hide a player from Tracking here, but a hidden staff member never shows. Tracking tells you where something is, not how dangerous it is.",
         "# Training it",
         "Use it, wait 10 seconds, use it again. It trains with nobody around: once the first check passes, the skill is checked again over the range from 21.1 to 100 before the search starts, so a lone tracker trains as fast as one in a crowd. Below 21.1 the first check is the one that trains you. The 10 seconds between uses make it slow, so do something else while you wait. Make sure the arrow beside the skill in your skills window is set to Up, or it will not gain (see Skill locks 101 in [Welcome).",
+        "The Rangers' Guildmaster in Britain teaches Tracking for 1 gold per 0.1 point, up to a third of its own skill: about 30 to 33 (see Training in [Welcome).",
         {
           "generate": "stats"
         },
@@ -1665,6 +1669,7 @@
         "# Training it",
         "Each try succeeds with a chance equal to your Hiding out of 100: 30 in 100 at skill 30. The lower your chance, the more often a try teaches. At skill 0 you cannot succeed yet, but every try still teaches until 10.0, so just keep trying. With 10 seconds between tries you get about six a minute.",
         "Train somewhere quiet where nothing is fighting you, such as a town street. Do not train inside a house you own or are a friend of: Hiding always works there, so it teaches nothing. Beside or inside any other house you get a bonus of 50 on the roll, which makes it easier, but then it stops teaching at skill 50.",
+        "The Rangers' Guildmaster and the Thieves' Guildmaster in Britain teach Hiding for 1 gold per 0.1 point, up to a third of their own skill: about 22 to 33 (see Training in [Welcome).",
         {
           "generate": "stats"
         },
@@ -1688,6 +1693,7 @@
         "Armor counts. At an armor rating of 26 or more you are told \"You could not hope to move quietly wearing this much armor.\" and you are revealed. Below that, armor makes the roll harder (see Training). A full set of ordinary new leather armor has an armor rating of 13.",
         "# Training it",
         "Stealth cannot be used, and so cannot be trained, until your Hiding is 80.0. Train Hiding first.",
+        "The Rangers' Guildmaster (about 20 to 28) and the Thieves' Guildmaster (about 28 to 33) in Britain teach Stealth for 1 gold per 0.1 point, once your Hiding is 80.0 (see Training in [Welcome).",
         "On each try your chance is your Stealth plus 20, minus twice your armor rating, out of 100. With no armor that is 20 in 100 at Stealth 0, and certain at 80. A roll that cannot fail teaches nothing, so with no armor you stop learning at 80. Each point of armor rating moves both ends of that range up by 2. In a full set of leather armor the range is 6 to 106, so if you wear it from Stealth 80 you keep learning all the way to 100. Below Stealth 6 leather is too much: you cannot succeed and you learn nothing.",
         "You do not have to walk to learn. Hide in a quiet place, then use Stealth. When it works you are still hidden, so you can use it again every 10 seconds, and each use is a new roll. After a failed roll you are revealed: hide again first, and remember that Hiding and Stealth each need their 10 seconds, so a fail costs you about 20.",
         {
@@ -1743,6 +1749,7 @@
         },
         "# Training it",
         "A roll teaches only while your skill is between an item's two numbers in the list above (the skill that gives you any chance and the skill that makes it certain): below the first you cannot succeed and learn nothing, above the second you always succeed and learn nothing. Inside that window a roll teaches whether you get the item or not, and below 10.0 every one does. After that you learn most from things a little too heavy for you: choose items that weigh about one stone more than a tenth of your skill (1 stone at skill 0, 3 at skill 20, 6 at 50, 9 at 80), which gives roughly a 1 in 4 chance. Even a 10-stone item gives only 45 in 100 at skill 100.",
+        "The Thieves' Guildmaster in Britain teaches Stealing for 1 gold per 0.1 point, up to a third of its own skill: about 30 to 33, whether or not you belong to the guild (see Training in [Welcome).",
         "The only tries that cannot get you noticed are items in a container that nobody carries, such as a chest or crate. If it is locked, pick the lock first. Every try still costs karma. Do not practise on shopkeepers or townspeople: a noticed thief is a criminal, and in a guarded town the guards come.",
         {
           "generate": "stats"
@@ -1791,6 +1798,7 @@
         "# Training it",
         "The safe way to train is on non-players: stand beside a shopkeeper or townsperson and double-click their backpack, again and again. There is no skill wait between tries and no guard reacts. The costs are about 4 karma a try and, at low skill, almost always a notice to anyone nearby.",
         "Your chance is your skill out of 100. Each try below 10.0 still teaches. Past that, the lower your chance, the more often a try teaches.",
+        "The Thieves' Guildmaster in Britain teaches Snooping for 1 gold per 0.1 point, up to a third of its own skill: about 30 to 33 (see Training in [Welcome).",
         {
           "generate": "stats"
         },
@@ -1821,7 +1829,7 @@
         "# Training it",
         "Your chance is how far your skill lies between the lock's low and high numbers. A roll can teach you, whether it works or not, as long as your skill is inside the lock's range, and a lock that is hard for you teaches more often. While your skill is below 10.0 every roll teaches. So aim for locks a little above you.",
         "Roughly: from 0 to 30 pick the weakest locks, which you can try from the start. From 30 to 60 pick the middle ones, from 60 to 90 the strongest ordinary ones, and past 90 chests from treasure maps of level 3 or more.",
-        "A lesson from the Tinkers' Guildmaster in Britain is a shortcut: it raises you to between about 22 and 29, for 1 gold for each 0.1 point (see Training in the Welcome guide, [Welcome).",
+        "A lesson from a Tinker, the Tinkers' Guildmaster or the Thieves' Guildmaster in Britain is a shortcut: it raises you to between about 20 and 33, for 1 gold for each 0.1 point (see Training in the Welcome guide, [Welcome).",
         {
           "generate": "stats"
         },
@@ -1848,7 +1856,7 @@
         "The strength of a trap decides how hard it is to disarm:<BR>A chest from a treasure map: 25 times its level, so 25 to 125.<BR>A chest that refills itself: 10 to 30 times its level (1 to 3), new each time it refills.<BR>A trap a tinker sets: 9 times a tenth of the tinker's Tinkering, rounded down, so 27 at Tinkering 30 to 39, 54 at 60 to 69 and 90 at 100.<BR>The Magic Trap spell (second circle Magery): 1.",
         "A trap has a level: 1 to 3 on a chest that refills itself, 1 to 5 on a treasure chest, and a tenth of the tinker's Tinkering on a tinker's trap, so up to 10. An explosion burns for 10 to 30 times the level, a dart hits for 5 to 15 times the level, and a poison trap poisons at a strength that rises with the level, from Lesser at level 1 to Lethal at level 5. The Magic Trap spell does 1 damage. You are hurt only if you stand within 3 tiles (1 tile for the Magic Trap).",
         "# Training it",
-        "You learn only from a trap whose strength is no higher than your skill and less than 30 below it, and no trap is weaker than 1. So Remove Trap cannot be learned from nothing: at skill 0 no trap can teach you. Begin with a lesson from the Tinkers' Guildmaster in Britain, once your Lockpicking and Detecting Hidden are 50 each. It raises you to about 28 to 33, for 1 gold for each 0.1 point (see Training in the Welcome guide, [Welcome).",
+        "You learn only from a trap whose strength is no higher than your skill and less than 30 below it, and no trap is weaker than 1. So Remove Trap cannot be learned from nothing: at skill 0 no trap can teach you. Begin with a lesson from a Tinker, the Tinkers' Guildmaster or the Thieves' Guildmaster in Britain, once your Lockpicking and Detecting Hidden are 50 each. It raises you to about 25 to 33, for 1 gold for each 0.1 point (see Training in the Welcome guide, [Welcome).",
         "From there you need traps of the right strength. A trap set by a tinker (a character with the Tinkering skill) teaches from its strength to 30 above it:<BR>Tinkering 30 to 39: 27 to 57<BR>Tinkering 40 to 49: 36 to 66<BR>Tinkering 50 to 59: 45 to 75<BR>Tinkering 60 to 69: 54 to 84<BR>Tinkering 70 to 79: 63 to 93<BR>Tinkering 80 to 89: 72 to 102<BR>Tinkering 90 to 99: 81 to 111<BR>Tinkering 100: 90 to 120",
         "So to reach 100 you need a tinker with Tinkering 80 or more. To set a trap a tinker double-clicks Tinker's Tools and chooses Traps: a dart trap (Tinkering 30 to 80, one iron ingot and one crossbow bolt), a poison trap (30 to 80, an iron ingot and a poison potion) or an explosion trap (55 to 105, an iron ingot and an explosion potion). Then point at an unlocked box or crate that has a key and is not locked down. The trap is live only while the box is locked, and it goes off on whoever picks the lock: lock the box with its key to arm it, and unlocking it with its key switches it off for the moment. Remove Trap can disarm it at any time.",
         {
@@ -1875,6 +1883,7 @@
         "Without the button you still get a free roll against a hidden player you are allowed to attack, whenever either of you moves within 4 tiles of the other (see the Hiding page). Party members and guild allies are skipped.",
         "# Training it",
         "Every search is a roll against your skill out of 100, and it teaches whether or not anyone is hiding, so you can train alone: point at yourself again and again. Every try below 10.0 teaches, even though the radius is nothing yet. Past that, the lower your chance, the more often a try teaches.",
+        "The Thieves' Guildmaster in Britain teaches Detecting Hidden for 1 gold per 0.1 point, up to a third of its own skill: about 25 to 33 (see Training in [Welcome).",
         "A friend who hides and stays put lets you practise the real thing: stand a few tiles off, inside your search radius, and search. A searcher whose skill is 20 or more above your Hiding always finds you, and one more than 20 below never does. In between it is a roll.",
         "The radius grows with your skill: 1 tile at skill 10, 5 tiles at 50, 10 tiles at 100.",
         {

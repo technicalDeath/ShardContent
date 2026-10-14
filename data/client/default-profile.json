@@ -13,7 +13,7 @@
   "cast_spells_by_one_click": true,
   "counter_bar_highlight_on_amount": true,
   "hold_down_key_tab": false,
-  "show_info_bar": true,
+  "show_info_bar": false,
   "name_overhead_type_allowed": 510,
   "use_old_status_gump": true,
   "always_run": true,
@@ -28,5 +28,10 @@
   "mobile_h_p_type": 1,
   "mobile_h_p_show_when": 0,
   "hold_down_key_alt_to_close_anchored": false,
-  "close_health_bar_type": 2
+  "close_health_bar_type": 2,
+  "custom_bars_toggled": true,
+  "show_target_range_indicator": true,
+  "auto_pickup_arrows": true,
+  "auto_pickup_bolts": true,
+  "auto_pickup_reagents": true
 }
