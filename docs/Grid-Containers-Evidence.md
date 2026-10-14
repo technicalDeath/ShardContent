@@ -74,3 +74,7 @@ Screenshots are in `docs/grid-containers/`; all the others are under `work/playe
 ## Rebuilding the client
 
 As in `CLAUDE.md`: `dotnet publish ClassicUO\src\ClassicUO.Client -c Release -p:NativeLib=Shared -p:OutputType=Library -r win-x64 -o <scratch>`, back up and copy `cuo.dll` and `cuo.pdb` into `ClassicUO/bin/dist` (the previous pair is in `work/client-dist-backups/20261014-before-grid`), and copy `default-profile.json` to `Data/Profiles/default.json`.
+
+## Potions do not stack (owner ruling, 2026-10-14)
+
+Potions are one item each, as in UOR: the engine stacks them only when `Core.ML` is on (`BasePotion.cs:53`). A keg weighs 20 + 0.8 per potion (100 stones full, the same as 100 loose or stacked potions), so stacking would not make kegs lighter. Asked whether to stack to 20 or to group identical items in the grid, the owner chose to leave potions as they are. Nothing is planned or built for either idea.
