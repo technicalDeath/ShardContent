@@ -21,6 +21,7 @@ Idea and feature list follow TazUO's grid containers (reviewed on GitHub first);
 | Lock | Ctrl-click an item: gold padlock and frame; Sort and Auto leave it in its cell. |
 | Search | Name and tooltip text. Mark (default): matches get a gold frame, the rest dim. Hide: only matches, packed to the top. |
 | Corpse | Own size, and opens where the last corpse window was closed; the docking beside the game window is the stock `ShardLayout.Dock`. |
+| Switch buttons | A **Classic** button in the grid's header and a **Grid** button beside the size diamond on the classic backpack (classic-with-grid-button.png). Either one sets the style, saves the profile and reopens that container in the new style in the same place. |
 | Option | Options > Containers > Container style (Original / Grid). Default Grid for a **new** profile (`default-profile.json` `container_style` 1); an existing profile keeps the classic look. |
 
 ## Calls the assistant made (owner away)
@@ -50,6 +51,8 @@ Screenshots are in `docs/grid-containers/`; all the others are under `work/playe
 | 10 | Original style: the classic pack with the shard's size switch | pass, no regression |
 | 11 | A brand-new profile (profile.json removed, client restarted) gets `container_style` 1 and a grid | pass |
 | 12 | Unit tests: `ClientDefaultsTests` pins `container_style` | see the commit |
+
+| 13 | Classic button on the grid, Grid button on the classic pack: both ways, window stays in place | pass (a first build crashed on the Classic click, a null state in the grid's update; fixed and retested) |
 
 ## Bugs found and fixed during the playtest
 
