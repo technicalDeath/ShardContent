@@ -27,6 +27,9 @@ from collections import deque
 from navrey_session import connect
 from uo import Event
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from knowledge import REAGENT_KEYS, Knowledge, norm  # noqa: E402
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
 OUT = os.path.join(ROOT, "work", "mage-playtest")
 os.makedirs(OUT, exist_ok=True)
@@ -42,6 +45,7 @@ SPELLS = {
 SAFE_PREY = ("rat", "cat", "magpie", "nightingale", "crow", "rabbit", "hind", "sheep", "chicken", "pig", "goat", "cow", "gull", "bird", "dog", "lizard", "toad", "frog", "squirrel", "snake")
 DANGEROUS = ("bear", "wolf", "orc", "ettin", "lizardman", "troll", "mongbat", "skeleton", "zombie", "gazer", "scorpion", "spider", "ogre", "harpy")
 
+PLAN = {"BlackPearl": 24, "SulfurousAsh": 16, "Garlic": 14, "Ginseng": 14, "SpidersSilk": 14, "MandrakeRoot": 8}
 HEALER = (1472, 1611)      # data/client/UORekindled-Britain.csv: "Healer (resurrects you)"
 TOWN = (1470, 1620)        # inside the walls, near the healer
 
@@ -93,8 +97,65 @@ class Bot:
         except (OSError, ValueError):
             self.facts["death_spots"] = []
         self.spots = deque([(1380, 1560), (1300, 1520), (1260, 1495), (1450, 1450), (1600, 1500), (1650, 1700), (1450, 1850)])
+        # what the bot knows from the server's code, and what it has measured itself
+        self.k = Knowledge()
+        self.stats_path = os.path.join(OUT, "stats.json")
+        self.stats = {"casts": {}, "gains": {}, "skill_gains": {}, "damage": {}}
+        try:
+            with open(self.stats_path, encoding="utf-8") as f:
+                self.stats.update(json.load(f))
+            for name, rec in self.stats.get("damage", {}).items():
+                self.k.damage_seen[name] = list(rec)
+        except (OSError, ValueError):
+            pass
+        self.skill = 50.0                  # Magery's displayed value
+        self.regs = {}                     # reagent key -> count
+        self.state_at = 0.0
+        self.last_spell = (None, 0.0)      # (spell name, when) of the cast whose result the journal is about to show
+        self.ra_until = 0.0                # Reactive Armor is assumed to last a couple of minutes
 
     # ---- plumbing --------------------------------------------------------------------------------------------
+
+    def save_stats(self):
+        self.stats["damage"] = {n: list(v) for n, v in self.k.damage_seen.items()}
+        with open(self.stats_path, "w", encoding="utf-8") as f:
+            json.dump(self.stats, f, indent=1, sort_keys=True)
+
+    def refresh_state(self, force=False):
+        """Magery's value and the reagent counts, at most every 25 seconds (reading the bags costs a round trip each)."""
+        if not force and time.time() - self.state_at < 60:
+            return
+        self.state_at = time.time()
+        self.c.open_backpack()
+        for line in self.c.call("skills", timeout=8):
+            m = re.match(r"\[SKILL\]\s+Magery\s+([\d.]+)", line)
+            if m:
+                self.skill = float(m.group(1))
+        regs = {}
+        for name, n in self.reagent_counts().items():
+            key = REAGENT_KEYS.get(norm(name))
+            if key:
+                regs[key] = regs.get(key, 0) + n
+        self.regs = regs
+
+    def note_journal_numbers(self, t):
+        """Damage and skill-gain lines, tied to the spell that was just cast: this is how the bot learns what each action really does."""
+        spell, at = self.last_spell
+        m = re.match(r"Damage: (.+?) takes (\d+)", t)
+        if m and spell and time.time() - at < 6 and not m.group(1).startswith(self.name):
+            self.k.record_damage(spell, int(m.group(2)))
+            self.save_stats()
+        g = re.search(r"Your skill in (.+?) has increased by (\d+(?:\.\d+)?)\.\s+It is now (\d+(?:\.\d+)?)", t)
+        if g:
+            skill, value = g.group(1), float(g.group(3))
+            what = spell if spell and time.time() - at < 12 else "other"
+            if skill == "Magery":
+                self.skill = value
+            key = f"{skill}:{what}"
+            self.stats["gains"][key] = self.stats["gains"].get(key, 0) + 1
+            self.stats["skill_gains"][skill] = value
+            self.save_stats()
+            self.log(f"GAIN {skill} +{g.group(2)} -> {value} (from {what})")
 
     def log(self, msg):
         line = f"[{time.strftime('%H:%M:%S')}] {msg}"
@@ -113,6 +174,7 @@ class Bot:
                 continue
             self.journal.append(t)
             out.append(t)
+            self.note_journal_numbers(t)
             for tag, pat in FAIL_PATTERNS:
                 if pat.search(t):
                     self.facts["last_fail"] = (tag, t, time.time())
@@ -141,13 +203,28 @@ class Bot:
         """Hostile-looking mobiles. An orc with a personal name ("Dilug") only shows as Criminal-colored, so notoriety is what counts."""
         return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer")]
 
-    @staticmethod
-    def is_prey(m):
-        n = m.name.lower()
-        # animals are called "a rat"; a monster with a personal name ("Dilug", an orc) is never prey
-        if not n.startswith(("a ", "an ")):
+    def assess(self, m):
+        """The server's numbers for this monster against what the mage can do right now (cached for a few seconds)."""
+        cached = self.facts.setdefault("assess", {}).get(m.serial)
+        if cached and time.time() - cached[0] < 6:
+            return cached[1]
+        self.refresh_state()
+        a = self.k.assess(m, self.c.hp, self.c.mana, self.skill, self.regs)
+        self.facts["assess"][m.serial] = (time.time(), a)
+        key = f"mon:{norm(m.name)}"
+        if a.get("known") and key not in self.notes.seen:
+            self.log(f"assess {m.name} ({(a['monster'] or {}).get('class')}): fight={a['fight']} {a.get('reason', '')}")
+        return a
+
+    def is_prey(self, m):
+        """Worth fighting: the server's own hit points and damage say the mage kills it with mana to spare and survives. An unknown monster falls back to the old name list."""
+        if m.notoriety not in ("Gray", "Criminal", "Enemy", "Murderer"):
             return False
-        return m.notoriety == "Gray" and any(w in n for w in SAFE_PREY) and not any(w in n for w in DANGEROUS)
+        a = self.assess(m)
+        if a.get("known"):
+            return bool(a["fight"])
+        n = m.name.lower()
+        return n.startswith(("a ", "an ")) and any(w in n for w in SAFE_PREY) and not any(w in n for w in DANGEROUS)
 
     def prey(self, within=9):
         return [m for m in self.mobs(within) if self.is_prey(m)]
@@ -226,7 +303,9 @@ class Bot:
                 self.c.war(True)
             self.log(f"cornered by {d.name}; magic arrow at {d.distance} tiles, hp {self.c.hp} mana {self.c.mana}")
             self.notes.add("combat", f"A {d.name} that follows a new mage into Britain is not stopped by the town: the mage must fight it with its starting mana.", key="followed", name=d.name)
-            self.cast("magic arrow", d.serial)
+            if not self.attack(d):
+                time.sleep(1.0)
+                self.step_away(d, 5)
             return True
         self.log(f"avoiding {d.name} ({d.notoriety}) {d.distance} tiles away")
         self.notes.add("danger", f"Hostile {d.name!r} within {d.distance} tiles of a new mage in town: nothing warns the player or deals with it.", key=f"danger:{d.name}", dist=d.distance)
@@ -258,8 +337,12 @@ class Bot:
         if t.distance <= 1:
             self.step_away(t)
             return True
-        self.log(f"magic arrow at {t.name} ({t.distance} tiles) mana {self.c.mana}")
-        self.cast("magic arrow", t.serial)
+        a = self.assess(t)
+        weak = a.get("known") and (a["monster"]["hits"][1] <= 30)
+        # an easy target is a free lesson: cast the highest circle that can still teach Magery (at 50: Fireball or Lightning), not the cheapest spell
+        if not self.attack(t, train=bool(weak)):
+            self.log("no spell the mage can cast now (mana or reagents); backing off")
+            self.go_town()
         return True
 
     def r_loot(self):
@@ -323,7 +406,9 @@ class Bot:
                 counts[it.name] = counts.get(it.name, 0) + (it.amount or 1)
             elif it.name.lower() in ("bag", "backpack", "pouch"):
                 try:
-                    for sub in self.c.container(it.serial, timeout=3):
+                    self.c.use(it.serial)          # a bag has to be opened before its contents are known
+                    time.sleep(1.2)
+                    for sub in self.c.container(it.serial, timeout=4):
                         if any(n in sub.name.lower() for n in names):
                             counts[sub.name] = counts.get(sub.name, 0) + (sub.amount or 1)
                 except Exception:
@@ -334,8 +419,12 @@ class Bot:
         """Out of reagents (or once after the first hunt): walk to the mage shop, open the vendor's list and buy what casting uses."""
         fail = self.facts.get("last_fail")
         out_of_regs = bool(fail and fail[0] == "reagents" and time.time() - fail[2] < 60)
-        if not out_of_regs and (self.facts.get("shopped") or self.kills < 3):
-            return False
+        if not out_of_regs:
+            if self.facts.get("shopped") or self.kills < 3:
+                return False
+            self.refresh_state()
+            if not any(self.regs.get(k, 0) < PLAN[k] * 0.3 for k in PLAN):
+                return False          # the starter kit is still mostly there: no trip needed
         if self.dangers(10) or self.hp_pct() < 60:
             return False
         self.facts["shopped"] = True
@@ -378,20 +467,25 @@ class Bot:
                 time.sleep(2)
                 self.log(f"sold starter items; gold now {self.c.gold}")
                 self.notes.add("money", f"Selling potions, scrolls and camp items brought gold to {self.c.gold}.", key="soldstarter")
+        self.refresh_state(force=True)
         cart = []
         spent_plan = 0
+        # what a hunt uses, from the server numbers: Fireball (black pearl) is the cheapest damage per gold the mage can cast reliably at Magery 50 to 60,
+        # Magic Arrow (ash) the fallback, Heal (garlic, ginseng, spider silk) the upkeep, Lightning (mandrake + ash) the stretch spell
         for line in stock:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
             if not m:
                 continue
             serial, price, avail, name = m.group(1), int(m.group(2)), int(m.group(3)), m.group(4).strip()
-            if any(w in name.lower() for w in ("pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "sulfur", "spider")):
-                budget = self.c.gold if self.c.gold < 200 else self.c.gold // 3
-                want = min(avail, 30, max(0, (budget - spent_plan) // max(price, 1) // 4))
+            key = REAGENT_KEYS.get(norm(name))
+            if key and key in PLAN:
+                have = self.regs.get(key, 0)
+                budget = self.c.gold - spent_plan
+                want = min(avail, max(0, PLAN[key] - have), max(0, budget // max(price, 1)))
                 if want > 0:
                     cart += [serial, str(want)]
                     spent_plan += want * price
-                    self.log(f"  buying {want} {name} at {price}gp")
+                    self.log(f"  buying {want} {name} at {price}gp (have {have}, plan {PLAN[key]})")
         if cart:
             self.cmd("buy " + " ".join(cart), timeout=10)
             time.sleep(3)
@@ -440,19 +534,44 @@ class Bot:
     # ---- actions ----------------------------------------------------------------------------------------------
 
     def cast(self, spell, target):
-        command, _ = SPELLS[spell]
+        """Cast any Magery spell by name ("heal", "fireball"): the command, the target cursor if the spell has one, and bookkeeping (casts, reagents, what it did)."""
+        info = self.k.spell(spell)
         self.c.events.drain()
-        self.cmd(command)
-        if self.c.wait_for(Event.TARGET_REQUEST, timeout=3.0) is None:
-            self.notes.add("cast", f"Casting {spell} raised no target cursor.", key=f"nocursor:{spell}")
-            return False
-        if target == "self":
-            self.c.target_self()
-        else:
-            self.c.target(target)
-        time.sleep(2.0)
+        self.cmd(f"cast {spell}")
+        self.last_spell = (spell, time.time())
+        self.stats["casts"][spell] = self.stats["casts"].get(spell, 0) + 1
+        if info:
+            for r in info["reagents"]:
+                if self.regs.get(r, 0) > 0:
+                    self.regs[r] -= 1
+        needs_target = target is not None
+        if needs_target:
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=3.0) is None:
+                self.notes.add("cast", f"Casting {spell} raised no target cursor.", key=f"nocursor:{spell}")
+                return False
+            if target == "self":
+                self.c.target_self()
+            else:
+                self.c.target(target)
+        time.sleep(0.5 + 0.25 * (info["circle"] if info else 1) + 0.9)
         self.read_journal()
         return True
+
+    def attack(self, m, train=False):
+        """Cast the best attack spell the numbers allow at a monster; True if something was cast."""
+        self.refresh_state()
+        pick = self.k.best_attack(self.skill, self.c.mana, self.regs, train=train)
+        if pick is None:
+            return False
+        a = self.assess(m)
+        # a hard fight begins with Reactive Armor (a first-circle spell, no challenge, cheap), once every couple of minutes
+        if a.get("expected_damage", 0) > 12 and time.time() > self.ra_until and self.regs.get("SulfurousAsh", 0) > 0 and self.c.mana >= pick["spell"]["mana"] + 4 and self.regs.get("Garlic", 0) > 0 and self.regs.get("SpidersSilk", 0) > 0:
+            self.log("reactive armor before a hard fight")
+            self.ra_until = time.time() + 150
+            self.cast("reactive armor", None)
+        sp = pick["spell"]
+        self.log(f"{sp['name']} at {m.name} ({m.distance} tiles): success {pick['success']:.0%}, ~{pick['dmg']:.0f} damage, mana {self.c.mana}" + (" [training]" if train else ""))
+        return self.cast(sp["name"].lower(), m.serial)
 
     def drink_unknown_potion(self):
         """Starter potions are three unnamed colors: try one, see what it does, remember."""

@@ -1,0 +1,5859 @@
+{
+ "monsters": {
+  "abysmalhorror": {
+   "armor": 54,
+   "casts": true,
+   "class": "AbysmalHorror",
+   "damage": [
+    13,
+    17
+   ],
+   "fame": 26000,
+   "folder": "Monsters",
+   "hits": [
+    6000,
+    6000
+   ],
+   "karma": -26000,
+   "name": "an abysmal horror"
+  },
+  "acidelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "AcidElemental",
+   "damage": [
+    9,
+    15
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    196,
+    213
+   ],
+   "karma": -10000,
+   "name": "an acid elemental"
+  },
+  "agapiteelemental": {
+   "armor": 32,
+   "casts": false,
+   "class": "AgapiteElemental",
+   "damage": [
+    28,
+    28
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -3500,
+   "name": "an agapite elemental"
+  },
+  "airelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "AirElemental",
+   "damage": [
+    8,
+    10
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": -4500,
+   "name": "an air elemental"
+  },
+  "alligator": {
+   "armor": 30,
+   "casts": false,
+   "class": "Alligator",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 600,
+   "folder": "Animals",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -600,
+   "name": "an alligator"
+  },
+  "ancientlich": {
+   "armor": 60,
+   "casts": true,
+   "class": "AncientLich",
+   "damage": [
+    15,
+    27
+   ],
+   "fame": 23000,
+   "folder": "Monsters",
+   "hits": [
+    560,
+    595
+   ],
+   "karma": -23000,
+   "name": null
+  },
+  "ancientwyrm": {
+   "armor": 70,
+   "casts": true,
+   "class": "AncientWyrm",
+   "damage": [
+    29,
+    35
+   ],
+   "fame": 22500,
+   "folder": "Monsters",
+   "hits": [
+    658,
+    711
+   ],
+   "karma": -22500,
+   "name": "an ancient wyrm"
+  },
+  "antlion": {
+   "armor": 45,
+   "casts": false,
+   "class": "AntLion",
+   "damage": [
+    7,
+    21
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    162
+   ],
+   "karma": -4500,
+   "name": "an ant lion"
+  },
+  "arcanedaemon": {
+   "armor": 55,
+   "casts": true,
+   "class": "ArcaneDaemon",
+   "damage": [
+    12,
+    16
+   ],
+   "fame": 7000,
+   "folder": "Monsters",
+   "hits": [
+    101,
+    115
+   ],
+   "karma": -10000,
+   "name": "an arcane daemon"
+  },
+  "arcticogrelord": {
+   "armor": 50,
+   "casts": false,
+   "class": "ArcticOgreLord",
+   "damage": [
+    20,
+    25
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    476,
+    552
+   ],
+   "karma": -15000,
+   "name": "an arctic ogre lord"
+  },
+  "bakekitsune": {
+   "armor": 0,
+   "casts": true,
+   "class": "BakeKitsune",
+   "damage": [
+    15,
+    22
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    301,
+    350
+   ],
+   "karma": -8000,
+   "name": "a bake kitsune"
+  },
+  "balron": {
+   "armor": 90,
+   "casts": true,
+   "class": "Balron",
+   "damage": [
+    22,
+    29
+   ],
+   "fame": 24000,
+   "folder": "Monsters",
+   "hits": [
+    592,
+    711
+   ],
+   "karma": -24000,
+   "name": null
+  },
+  "betrayer": {
+   "armor": 65,
+   "casts": true,
+   "class": "Betrayer",
+   "damage": [
+    16,
+    22
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    241,
+    300
+   ],
+   "karma": -15000,
+   "name": "a betrayer"
+  },
+  "blackbear": {
+   "armor": 24,
+   "casts": false,
+   "class": "BlackBear",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": 0,
+   "name": "a black bear"
+  },
+  "blacksoleninfiltratorqueen": {
+   "armor": 50,
+   "casts": false,
+   "class": "BlackSolenInfiltratorQueen",
+   "damage": [
+    10,
+    15
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    162
+   ],
+   "karma": -6500,
+   "name": "a black solen infiltrator"
+  },
+  "blacksoleninfiltratorwarrior": {
+   "armor": 40,
+   "casts": false,
+   "class": "BlackSolenInfiltratorWarrior",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    96,
+    107
+   ],
+   "karma": -3000,
+   "name": "a black solen infiltrator"
+  },
+  "blacksolenqueen": {
+   "armor": 45,
+   "casts": false,
+   "class": "BlackSolenQueen",
+   "damage": [
+    10,
+    15
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    162
+   ],
+   "karma": -4500,
+   "name": "a black solen queen"
+  },
+  "blacksolenwarrior": {
+   "armor": 35,
+   "casts": false,
+   "class": "BlackSolenWarrior",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    96,
+    107
+   ],
+   "karma": -3000,
+   "name": "a black solen warrior"
+  },
+  "blacksolenworker": {
+   "armor": 28,
+   "casts": false,
+   "class": "BlackSolenWorker",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -1500,
+   "name": "a black solen worker"
+  },
+  "bloodelemental": {
+   "armor": 60,
+   "casts": true,
+   "class": "BloodElemental",
+   "damage": [
+    17,
+    27
+   ],
+   "fame": 12500,
+   "folder": "Monsters",
+   "hits": [
+    316,
+    369
+   ],
+   "karma": -12500,
+   "name": "a blood elemental"
+  },
+  "boar": {
+   "armor": 10,
+   "casts": false,
+   "class": "Boar",
+   "damage": [
+    3,
+    6
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    15,
+    15
+   ],
+   "karma": 0,
+   "name": "a boar"
+  },
+  "bogle": {
+   "armor": 28,
+   "casts": true,
+   "class": "Bogle",
+   "damage": [
+    7,
+    11
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -4000,
+   "name": "a bogle"
+  },
+  "bogling": {
+   "armor": 28,
+   "casts": false,
+   "class": "Bogling",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 450,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -450,
+   "name": "a bogling"
+  },
+  "bogthing": {
+   "armor": 28,
+   "casts": false,
+   "class": "BogThing",
+   "damage": [
+    10,
+    23
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    481,
+    540
+   ],
+   "karma": -8000,
+   "name": "a bog thing"
+  },
+  "bonedemon": {
+   "armor": 44,
+   "casts": true,
+   "class": "BoneDemon",
+   "damage": [
+    34,
+    36
+   ],
+   "fame": 20000,
+   "folder": "Monsters",
+   "hits": [
+    3600,
+    3600
+   ],
+   "karma": -20000,
+   "name": "a bone demon"
+  },
+  "boneknight": {
+   "armor": 40,
+   "casts": false,
+   "class": "BoneKnight",
+   "damage": [
+    8,
+    18
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    150
+   ],
+   "karma": -3000,
+   "name": "a bone knight"
+  },
+  "bonemagi": {
+   "armor": 38,
+   "casts": true,
+   "class": "BoneMagi",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -3000,
+   "name": "a bone mage"
+  },
+  "bronzeelemental": {
+   "armor": 29,
+   "casts": false,
+   "class": "BronzeElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -5000,
+   "name": "a bronze elemental"
+  },
+  "brownbear": {
+   "armor": 24,
+   "casts": false,
+   "class": "BrownBear",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": 0,
+   "name": "a brown bear"
+  },
+  "bull": {
+   "armor": 28,
+   "casts": false,
+   "class": "Bull",
+   "damage": [
+    4,
+    9
+   ],
+   "fame": 600,
+   "folder": "Animals",
+   "hits": [
+    50,
+    64
+   ],
+   "karma": 0,
+   "name": "a bull"
+  },
+  "bullfrog": {
+   "armor": 6,
+   "casts": false,
+   "class": "BullFrog",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 350,
+   "folder": "Animals",
+   "hits": [
+    28,
+    42
+   ],
+   "karma": 0,
+   "name": "a bull frog"
+  },
+  "cat": {
+   "armor": 8,
+   "casts": false,
+   "class": "Cat",
+   "damage": [
+    1,
+    1
+   ],
+   "fame": 0,
+   "folder": "Animals",
+   "hits": [
+    6,
+    6
+   ],
+   "karma": 150,
+   "name": "a cat"
+  },
+  "centaur": {
+   "armor": 50,
+   "casts": false,
+   "class": "Centaur",
+   "damage": [
+    13,
+    24
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    130,
+    172
+   ],
+   "karma": 0,
+   "name": null
+  },
+  "changeling": {
+   "armor": 0,
+   "casts": true,
+   "class": "Changeling",
+   "damage": [
+    9,
+    15
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    201,
+    211
+   ],
+   "karma": -15000,
+   "name": "a changeling"
+  },
+  "chaosdaemon": {
+   "armor": 15,
+   "casts": false,
+   "class": "ChaosDaemon",
+   "damage": [
+    12,
+    17
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    91,
+    110
+   ],
+   "karma": -4000,
+   "name": "a chaos daemon"
+  },
+  "chaosdragoon": {
+   "armor": 0,
+   "casts": false,
+   "class": "ChaosDragoon",
+   "damage": [
+    24,
+    26
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    176,
+    225
+   ],
+   "karma": -5000,
+   "name": "a chaos dragoon"
+  },
+  "chaosdragoonelite": {
+   "armor": 0,
+   "casts": true,
+   "class": "ChaosDragoonElite",
+   "damage": [
+    29,
+    34
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    276,
+    350
+   ],
+   "karma": -8000,
+   "name": "a chaos dragoon elite"
+  },
+  "chicken": {
+   "armor": 2,
+   "casts": false,
+   "class": "Chicken",
+   "damage": [
+    1,
+    1
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    3,
+    3
+   ],
+   "karma": 0,
+   "name": "a chicken"
+  },
+  "copperelemental": {
+   "armor": 26,
+   "casts": false,
+   "class": "CopperElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 4800,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -4800,
+   "name": "a copper elemental"
+  },
+  "corporealbrume": {
+   "armor": 0,
+   "casts": false,
+   "class": "CorporealBrume",
+   "damage": [
+    21,
+    25
+   ],
+   "fame": 12000,
+   "folder": "Monsters",
+   "hits": [
+    1150,
+    1250
+   ],
+   "karma": -12000,
+   "name": "a corporeal brume"
+  },
+  "corpser": {
+   "armor": 18,
+   "casts": false,
+   "class": "Corpser",
+   "damage": [
+    10,
+    23
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    94,
+    108
+   ],
+   "karma": -1000,
+   "name": "a corpser"
+  },
+  "corrosiveslime": {
+   "armor": 8,
+   "casts": false,
+   "class": "CorrosiveSlime",
+   "damage": [
+    1,
+    5
+   ],
+   "fame": 300,
+   "folder": "Monsters",
+   "hits": [
+    15,
+    19
+   ],
+   "karma": -300,
+   "name": "a corrosive slime"
+  },
+  "corruptedsoul": {
+   "armor": 6,
+   "casts": false,
+   "class": "CorruptedSoul",
+   "damage": [
+    4,
+    40
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    61,
+    69
+   ],
+   "karma": -5000,
+   "name": "a corrupted soul"
+  },
+  "cougar": {
+   "armor": 16,
+   "casts": false,
+   "class": "Cougar",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": 0,
+   "name": "a cougar"
+  },
+  "cow": {
+   "armor": 10,
+   "casts": false,
+   "class": "Cow",
+   "damage": [
+    1,
+    4
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    18,
+    18
+   ],
+   "karma": 0,
+   "name": "a cow"
+  },
+  "crane": {
+   "armor": 5,
+   "casts": false,
+   "class": "Crane",
+   "damage": [
+    1,
+    1
+   ],
+   "fame": 0,
+   "folder": "Animals",
+   "hits": [
+    26,
+    35
+   ],
+   "karma": 200,
+   "name": "a crane"
+  },
+  "crystaldaemon": {
+   "armor": 0,
+   "casts": true,
+   "class": "CrystalDaemon",
+   "damage": [
+    16,
+    20
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    200,
+    220
+   ],
+   "karma": -15000,
+   "name": "a crystal daemon"
+  },
+  "crystalelemental": {
+   "armor": 54,
+   "casts": true,
+   "class": "CrystalElemental",
+   "damage": [
+    10,
+    15
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    150,
+    150
+   ],
+   "karma": -6500,
+   "name": "a crystal elemental"
+  },
+  "crystallatticeseeker": {
+   "armor": 0,
+   "casts": true,
+   "class": "CrystalLatticeSeeker",
+   "damage": [
+    13,
+    19
+   ],
+   "fame": 17000,
+   "folder": "Monsters",
+   "hits": [
+    350,
+    550
+   ],
+   "karma": -17000,
+   "name": "Crystal Lattice Seeker"
+  },
+  "crystalvortex": {
+   "armor": 0,
+   "casts": false,
+   "class": "CrystalVortex",
+   "damage": [
+    15,
+    20
+   ],
+   "fame": 17000,
+   "folder": "Monsters",
+   "hits": [
+    350,
+    400
+   ],
+   "karma": -17000,
+   "name": "a crystal vortex"
+  },
+  "cursed": {
+   "armor": 0,
+   "casts": false,
+   "class": "Cursed",
+   "damage": [
+    5,
+    13
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    91,
+    120
+   ],
+   "karma": -2000,
+   "name": null
+  },
+  "cyclops": {
+   "armor": 48,
+   "casts": false,
+   "class": "Cyclops",
+   "damage": [
+    7,
+    23
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    202,
+    231
+   ],
+   "karma": -4500,
+   "name": "a cyclopean warrior"
+  },
+  "daemon": {
+   "armor": 58,
+   "casts": true,
+   "class": "Daemon",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    286,
+    303
+   ],
+   "karma": -15000,
+   "name": null
+  },
+  "darkguardian": {
+   "armor": 50,
+   "casts": true,
+   "class": "DarkGuardian",
+   "damage": [
+    43,
+    48
+   ],
+   "fame": 5000,
+   "folder": "Special",
+   "hits": [
+    150,
+    180
+   ],
+   "karma": -5000,
+   "name": "a dark guardian"
+  },
+  "darknightcreeper": {
+   "armor": 34,
+   "casts": true,
+   "class": "DarknightCreeper",
+   "damage": [
+    22,
+    26
+   ],
+   "fame": 22000,
+   "folder": "Monsters",
+   "hits": [
+    4000,
+    4000
+   ],
+   "karma": -22000,
+   "name": null
+  },
+  "darkwisp": {
+   "armor": 40,
+   "casts": true,
+   "class": "DarkWisp",
+   "damage": [
+    17,
+    18
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    135
+   ],
+   "karma": -4000,
+   "name": "a wisp"
+  },
+  "deathwatchbeetle": {
+   "armor": 0,
+   "casts": false,
+   "class": "DeathwatchBeetle",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 1400,
+   "folder": "Monsters",
+   "hits": [
+    121,
+    145
+   ],
+   "karma": -1400,
+   "name": "a deathwatch beetle"
+  },
+  "deathwatchbeetlehatchling": {
+   "armor": 0,
+   "casts": false,
+   "class": "DeathwatchBeetleHatchling",
+   "damage": [
+    2,
+    8
+   ],
+   "fame": 700,
+   "folder": "Monsters",
+   "hits": [
+    51,
+    60
+   ],
+   "karma": -700,
+   "name": "a deathwatch beetle hatchling"
+  },
+  "deepseaserpent": {
+   "armor": 60,
+   "casts": false,
+   "class": "DeepSeaSerpent",
+   "damage": [
+    6,
+    14
+   ],
+   "fame": 6000,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    255
+   ],
+   "karma": -6000,
+   "name": "a deep sea serpent"
+  },
+  "demonknight": {
+   "armor": 64,
+   "casts": true,
+   "class": "DemonKnight",
+   "damage": [
+    17,
+    21
+   ],
+   "fame": 28000,
+   "folder": "Monsters",
+   "hits": [
+    30000,
+    30000
+   ],
+   "karma": -28000,
+   "name": "unholy bones"
+  },
+  "devourer": {
+   "armor": 44,
+   "casts": true,
+   "class": "Devourer",
+   "damage": [
+    22,
+    26
+   ],
+   "fame": 9500,
+   "folder": "Monsters",
+   "hits": [
+    650,
+    650
+   ],
+   "karma": -9500,
+   "name": "a devourer of souls"
+  },
+  "direwolf": {
+   "armor": 22,
+   "casts": false,
+   "class": "DireWolf",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 2500,
+   "folder": "Animals",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -2500,
+   "name": "a dire wolf"
+  },
+  "dog": {
+   "armor": 12,
+   "casts": false,
+   "class": "Dog",
+   "damage": [
+    4,
+    7
+   ],
+   "fame": 0,
+   "folder": "Animals",
+   "hits": [
+    17,
+    22
+   ],
+   "karma": 300,
+   "name": "a dog"
+  },
+  "dolphin": {
+   "armor": 16,
+   "casts": false,
+   "class": "Dolphin",
+   "damage": [
+    3,
+    6
+   ],
+   "fame": 500,
+   "folder": "Animals",
+   "hits": [
+    15,
+    27
+   ],
+   "karma": 2000,
+   "name": "a dolphin"
+  },
+  "doppleganger": {
+   "armor": 55,
+   "casts": false,
+   "class": "Doppleganger",
+   "damage": [
+    8,
+    12
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    101,
+    120
+   ],
+   "karma": -1000,
+   "name": "a doppleganger"
+  },
+  "dragon": {
+   "armor": 60,
+   "casts": true,
+   "class": "Dragon",
+   "damage": [
+    16,
+    22
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    478,
+    495
+   ],
+   "karma": -15000,
+   "name": "a dragon"
+  },
+  "drake": {
+   "armor": 46,
+   "casts": false,
+   "class": "Drake",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 5500,
+   "folder": "Monsters",
+   "hits": [
+    241,
+    258
+   ],
+   "karma": -5500,
+   "name": "a drake"
+  },
+  "dreadspider": {
+   "armor": 36,
+   "casts": true,
+   "class": "DreadSpider",
+   "damage": [
+    5,
+    17
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    132
+   ],
+   "karma": -5000,
+   "name": "a dread spider"
+  },
+  "dullcopperelemental": {
+   "armor": 20,
+   "casts": false,
+   "class": "DullCopperElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -3500,
+   "name": "a dull copper elemental"
+  },
+  "eagle": {
+   "armor": 22,
+   "casts": false,
+   "class": "Eagle",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    20,
+    27
+   ],
+   "karma": 0,
+   "name": "an eagle"
+  },
+  "earthelemental": {
+   "armor": 34,
+   "casts": false,
+   "class": "EarthElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": -3500,
+   "name": "an earth elemental"
+  },
+  "efreet": {
+   "armor": 56,
+   "casts": true,
+   "class": "Efreet",
+   "damage": [
+    11,
+    13
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    196,
+    213
+   ],
+   "karma": -10000,
+   "name": "an efreet"
+  },
+  "eldergazer": {
+   "armor": 50,
+   "casts": true,
+   "class": "ElderGazer",
+   "damage": [
+    8,
+    19
+   ],
+   "fame": 12500,
+   "folder": "Monsters",
+   "hits": [
+    178,
+    195
+   ],
+   "karma": -12500,
+   "name": "an elder gazer"
+  },
+  "eliteninja": {
+   "armor": 0,
+   "casts": false,
+   "class": "EliteNinja",
+   "damage": [
+    12,
+    20
+   ],
+   "fame": 8500,
+   "folder": "Monsters",
+   "hits": [
+    251,
+    350
+   ],
+   "karma": -8500,
+   "name": "an elite ninja"
+  },
+  "enslavedgargoyle": {
+   "armor": 35,
+   "casts": false,
+   "class": "EnslavedGargoyle",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    186,
+    212
+   ],
+   "karma": 0,
+   "name": "an enslaved gargoyle"
+  },
+  "etherealwarrior": {
+   "armor": 120,
+   "casts": true,
+   "class": "EtherealWarrior",
+   "damage": [
+    13,
+    19
+   ],
+   "fame": 7000,
+   "folder": "Monsters",
+   "hits": [
+    352,
+    471
+   ],
+   "karma": 7000,
+   "name": null
+  },
+  "ettin": {
+   "armor": 38,
+   "casts": false,
+   "class": "Ettin",
+   "damage": [
+    7,
+    17
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    82,
+    99
+   ],
+   "karma": -3000,
+   "name": "an ettin"
+  },
+  "evilmage": {
+   "armor": 16,
+   "casts": true,
+   "class": "EvilMage",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    49,
+    63
+   ],
+   "karma": -2500,
+   "name": null
+  },
+  "evilmagelord": {
+   "armor": 16,
+   "casts": true,
+   "class": "EvilMageLord",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 10500,
+   "folder": "Monsters",
+   "hits": [
+    49,
+    63
+   ],
+   "karma": -10500,
+   "name": null
+  },
+  "exodusminion": {
+   "armor": 65,
+   "casts": false,
+   "class": "ExodusMinion",
+   "damage": [
+    16,
+    22
+   ],
+   "fame": 18000,
+   "folder": "Monsters",
+   "hits": [
+    511,
+    570
+   ],
+   "karma": -18000,
+   "name": "an exodus minion"
+  },
+  "exodusoverseer": {
+   "armor": 50,
+   "casts": false,
+   "class": "ExodusOverseer",
+   "damage": [
+    13,
+    19
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    331,
+    390
+   ],
+   "karma": -10000,
+   "name": "an exodus overseer"
+  },
+  "fandancer": {
+   "armor": 0,
+   "casts": false,
+   "class": "FanDancer",
+   "damage": [
+    12,
+    17
+   ],
+   "fame": 9000,
+   "folder": "Monsters",
+   "hits": [
+    351,
+    430
+   ],
+   "karma": -9000,
+   "name": "a fan dancer"
+  },
+  "feraltreefellow": {
+   "armor": 24,
+   "casts": false,
+   "class": "FeralTreefellow",
+   "damage": [
+    26,
+    35
+   ],
+   "fame": 12500,
+   "folder": "Monsters",
+   "hits": [
+    1170,
+    1320
+   ],
+   "karma": 12500,
+   "name": "a feral treefellow"
+  },
+  "ferret": {
+   "armor": 0,
+   "casts": false,
+   "class": "Ferret",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    45,
+    50
+   ],
+   "karma": 0,
+   "name": "a ferret"
+  },
+  "fetidessence": {
+   "armor": 0,
+   "casts": true,
+   "class": "FetidEssence",
+   "damage": [
+    21,
+    25
+   ],
+   "fame": 3700,
+   "folder": "Monsters",
+   "hits": [
+    551,
+    650
+   ],
+   "karma": -3700,
+   "name": "a fetid essence"
+  },
+  "fireelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "FireElemental",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": -4500,
+   "name": "a fire elemental"
+  },
+  "firegargoyle": {
+   "armor": 32,
+   "casts": true,
+   "class": "FireGargoyle",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    211,
+    240
+   ],
+   "karma": -3500,
+   "name": null
+  },
+  "fleshgolem": {
+   "armor": 34,
+   "casts": false,
+   "class": "FleshGolem",
+   "damage": [
+    18,
+    22
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    106,
+    120
+   ],
+   "karma": -1800,
+   "name": "a flesh golem"
+  },
+  "fleshrenderer": {
+   "armor": 24,
+   "casts": false,
+   "class": "FleshRenderer",
+   "damage": [
+    16,
+    20
+   ],
+   "fame": 23000,
+   "folder": "Monsters",
+   "hits": [
+    4500,
+    4500
+   ],
+   "karma": -23000,
+   "name": "a fleshrenderer"
+  },
+  "frostooze": {
+   "armor": 38,
+   "casts": false,
+   "class": "FrostOoze",
+   "damage": [
+    3,
+    9
+   ],
+   "fame": 450,
+   "folder": "Monsters",
+   "hits": [
+    13,
+    17
+   ],
+   "karma": -450,
+   "name": "a frost ooze"
+  },
+  "frostspider": {
+   "armor": 28,
+   "casts": false,
+   "class": "FrostSpider",
+   "damage": [
+    6,
+    16
+   ],
+   "fame": 775,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -775,
+   "name": "a frost spider"
+  },
+  "frosttroll": {
+   "armor": 50,
+   "casts": false,
+   "class": "FrostTroll",
+   "damage": [
+    14,
+    20
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    140,
+    156
+   ],
+   "karma": -4000,
+   "name": "a frost troll"
+  },
+  "gaman": {
+   "armor": 0,
+   "casts": false,
+   "class": "Gaman",
+   "damage": [
+    6,
+    11
+   ],
+   "fame": 2000,
+   "folder": "Animals",
+   "hits": [
+    131,
+    160
+   ],
+   "karma": -2000,
+   "name": "a gaman"
+  },
+  "gargoyle": {
+   "armor": 32,
+   "casts": true,
+   "class": "Gargoyle",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    88,
+    105
+   ],
+   "karma": -3500,
+   "name": "a gargoyle"
+  },
+  "gargoyledestroyer": {
+   "armor": 50,
+   "casts": true,
+   "class": "GargoyleDestroyer",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    482,
+    485
+   ],
+   "karma": -10000,
+   "name": "a gargoyle destroyer"
+  },
+  "gargoyleenforcer": {
+   "armor": 50,
+   "casts": true,
+   "class": "GargoyleEnforcer",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    482,
+    485
+   ],
+   "karma": -5000,
+   "name": "a gargoyle enforcer"
+  },
+  "gazer": {
+   "armor": 36,
+   "casts": true,
+   "class": "Gazer",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    75
+   ],
+   "karma": -3500,
+   "name": "a gazer"
+  },
+  "gazerlarva": {
+   "armor": 25,
+   "casts": false,
+   "class": "GazerLarva",
+   "damage": [
+    2,
+    9
+   ],
+   "fame": 900,
+   "folder": "Monsters",
+   "hits": [
+    36,
+    47
+   ],
+   "karma": -900,
+   "name": "a gazer larva"
+  },
+  "ghoul": {
+   "armor": 28,
+   "casts": false,
+   "class": "Ghoul",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -2500,
+   "name": "a ghoul"
+  },
+  "giantblackwidow": {
+   "armor": 24,
+   "casts": false,
+   "class": "GiantBlackWidow",
+   "damage": [
+    5,
+    17
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -3500,
+   "name": "a giant black wide"
+  },
+  "giantrat": {
+   "armor": 18,
+   "casts": false,
+   "class": "GiantRat",
+   "damage": [
+    4,
+    8
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    26,
+    39
+   ],
+   "karma": -300,
+   "name": "a giant rat"
+  },
+  "giantserpent": {
+   "armor": 32,
+   "casts": false,
+   "class": "GiantSerpent",
+   "damage": [
+    7,
+    17
+   ],
+   "fame": 2500,
+   "folder": "Animals",
+   "hits": [
+    112,
+    129
+   ],
+   "karma": -2500,
+   "name": "a giant snake"
+  },
+  "giantspider": {
+   "armor": 16,
+   "casts": false,
+   "class": "GiantSpider",
+   "damage": [
+    5,
+    13
+   ],
+   "fame": 600,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -600,
+   "name": "a giant spider"
+  },
+  "gianttoad": {
+   "armor": 24,
+   "casts": false,
+   "class": "GiantToad",
+   "damage": [
+    5,
+    17
+   ],
+   "fame": 750,
+   "folder": "Animals",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -750,
+   "name": "a giant toad"
+  },
+  "gibberling": {
+   "armor": 27,
+   "casts": false,
+   "class": "Gibberling",
+   "damage": [
+    12,
+    17
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    85,
+    99
+   ],
+   "karma": -1500,
+   "name": "a gibberling"
+  },
+  "goat": {
+   "armor": 10,
+   "casts": false,
+   "class": "Goat",
+   "damage": [
+    3,
+    4
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    12,
+    12
+   ],
+   "karma": 0,
+   "name": "a goat"
+  },
+  "goldenelemental": {
+   "armor": 60,
+   "casts": false,
+   "class": "GoldenElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -3500,
+   "name": "a golden elemental"
+  },
+  "golemcontroller": {
+   "armor": 16,
+   "casts": true,
+   "class": "GolemController",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    90
+   ],
+   "karma": -4000,
+   "name": null
+  },
+  "gorefiend": {
+   "armor": 24,
+   "casts": false,
+   "class": "GoreFiend",
+   "damage": [
+    15,
+    21
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    97,
+    111
+   ],
+   "karma": -1500,
+   "name": "a gore fiend"
+  },
+  "gorilla": {
+   "armor": 20,
+   "casts": false,
+   "class": "Gorilla",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    38,
+    51
+   ],
+   "karma": 0,
+   "name": "a gorilla"
+  },
+  "greaterdragon": {
+   "armor": 60,
+   "casts": true,
+   "class": "GreaterDragon",
+   "damage": [
+    24,
+    33
+   ],
+   "fame": 22000,
+   "folder": "Monsters",
+   "hits": [
+    1000,
+    2000
+   ],
+   "karma": -15000,
+   "name": "a greater dragon"
+  },
+  "greatermongbat": {
+   "armor": 10,
+   "casts": false,
+   "class": "GreaterMongbat",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 450,
+   "folder": "Monsters",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": -450,
+   "name": "a greater mongbat"
+  },
+  "greathart": {
+   "armor": 24,
+   "casts": false,
+   "class": "GreatHart",
+   "damage": [
+    5,
+    9
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    27,
+    41
+   ],
+   "karma": 0,
+   "name": "a great hart"
+  },
+  "greywolf": {
+   "armor": 16,
+   "casts": false,
+   "class": "GreyWolf",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": 0,
+   "name": "a grey wolf"
+  },
+  "grizzlybear": {
+   "armor": 24,
+   "casts": false,
+   "class": "GrizzlyBear",
+   "damage": [
+    8,
+    13
+   ],
+   "fame": 1000,
+   "folder": "Animals",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": 0,
+   "name": "a grizzly bear"
+  },
+  "harpy": {
+   "armor": 28,
+   "casts": false,
+   "class": "Harpy",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -2500,
+   "name": "a harpy"
+  },
+  "harrowertentacles": {
+   "armor": 60,
+   "casts": false,
+   "class": "HarrowerTentacles",
+   "damage": [
+    13,
+    20
+   ],
+   "fame": 15000,
+   "folder": "Special",
+   "hits": [
+    541,
+    600
+   ],
+   "karma": -15000,
+   "name": "tentacles of the harrower"
+  },
+  "headlessone": {
+   "armor": 18,
+   "casts": false,
+   "class": "HeadlessOne",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 450,
+   "folder": "Monsters",
+   "hits": [
+    16,
+    30
+   ],
+   "karma": -450,
+   "name": "a headless one"
+  },
+  "hellcat": {
+   "armor": 30,
+   "casts": false,
+   "class": "HellCat",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 1000,
+   "folder": "Animals",
+   "hits": [
+    48,
+    67
+   ],
+   "karma": -1000,
+   "name": "a hell cat"
+  },
+  "hellhound": {
+   "armor": 30,
+   "casts": false,
+   "class": "HellHound",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 3400,
+   "folder": "Monsters",
+   "hits": [
+    66,
+    125
+   ],
+   "karma": -3400,
+   "name": "a hell hound"
+  },
+  "hind": {
+   "armor": 8,
+   "casts": false,
+   "class": "Hind",
+   "damage": [
+    4,
+    4
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    15,
+    29
+   ],
+   "karma": 0,
+   "name": "a hind"
+  },
+  "hordeminion": {
+   "armor": 18,
+   "casts": false,
+   "class": "HordeMinion",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 500,
+   "folder": "Monsters",
+   "hits": [
+    10,
+    24
+   ],
+   "karma": -500,
+   "name": "a horde minion"
+  },
+  "hydra": {
+   "armor": 0,
+   "casts": false,
+   "class": "Hydra",
+   "damage": [
+    21,
+    26
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    1480,
+    1500
+   ],
+   "karma": 0,
+   "name": "a hydra"
+  },
+  "iceelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "IceElemental",
+   "damage": [
+    10,
+    21
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    94,
+    111
+   ],
+   "karma": -4000,
+   "name": "an ice elemental"
+  },
+  "icefiend": {
+   "armor": 60,
+   "casts": true,
+   "class": "IceFiend",
+   "damage": [
+    8,
+    19
+   ],
+   "fame": 18000,
+   "folder": "Monsters",
+   "hits": [
+    226,
+    243
+   ],
+   "karma": -18000,
+   "name": "an ice fiend"
+  },
+  "iceserpent": {
+   "armor": 32,
+   "casts": false,
+   "class": "IceSerpent",
+   "damage": [
+    7,
+    17
+   ],
+   "fame": 3500,
+   "folder": "Animals",
+   "hits": [
+    130,
+    147
+   ],
+   "karma": -3500,
+   "name": "a giant ice serpent"
+  },
+  "imp": {
+   "armor": 30,
+   "casts": true,
+   "class": "Imp",
+   "damage": [
+    10,
+    14
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    55,
+    70
+   ],
+   "karma": -2500,
+   "name": "an imp"
+  },
+  "impaler": {
+   "armor": 49,
+   "casts": false,
+   "class": "Impaler",
+   "damage": [
+    31,
+    35
+   ],
+   "fame": 24000,
+   "folder": "Monsters",
+   "hits": [
+    5000,
+    5000
+   ],
+   "karma": -24000,
+   "name": null
+  },
+  "interredgrizzle": {
+   "armor": 0,
+   "casts": true,
+   "class": "InterredGrizzle",
+   "damage": [
+    16,
+    19
+   ],
+   "fame": 3700,
+   "folder": "Monsters",
+   "hits": [
+    1500,
+    1500
+   ],
+   "karma": -3700,
+   "name": "a interred grizzle"
+  },
+  "jackrabbit": {
+   "armor": 4,
+   "casts": false,
+   "class": "JackRabbit",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    9,
+    9
+   ],
+   "karma": 0,
+   "name": "a jack rabbit"
+  },
+  "juggernaut": {
+   "armor": 70,
+   "casts": false,
+   "class": "Juggernaut",
+   "damage": [
+    12,
+    19
+   ],
+   "fame": 12000,
+   "folder": "Monsters",
+   "hits": [
+    181,
+    240
+   ],
+   "karma": -12000,
+   "name": "a blackthorn juggernaut"
+  },
+  "jukalord": {
+   "armor": 28,
+   "casts": false,
+   "class": "JukaLord",
+   "damage": [
+    10,
+    12
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    241,
+    300
+   ],
+   "karma": -15000,
+   "name": "a juka lord"
+  },
+  "jukamage": {
+   "armor": 16,
+   "casts": true,
+   "class": "JukaMage",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    121,
+    180
+   ],
+   "karma": -15000,
+   "name": "a juka mage"
+  },
+  "jukawarrior": {
+   "armor": 22,
+   "casts": false,
+   "class": "JukaWarrior",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    210
+   ],
+   "karma": -10000,
+   "name": "a juka warrior"
+  },
+  "kappa": {
+   "armor": 0,
+   "casts": false,
+   "class": "Kappa",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 1700,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    180
+   ],
+   "karma": -1700,
+   "name": "a kappa"
+  },
+  "kazekemono": {
+   "armor": 0,
+   "casts": true,
+   "class": "KazeKemono",
+   "damage": [
+    15,
+    20
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    251,
+    330
+   ],
+   "karma": -8000,
+   "name": "a kaze kemono"
+  },
+  "khaldunrevenant": {
+   "armor": 60,
+   "casts": false,
+   "class": "KhaldunRevenant",
+   "damage": [
+    20,
+    30
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    241,
+    300
+   ],
+   "karma": 0,
+   "name": "a revenant"
+  },
+  "khaldunsummoner": {
+   "armor": 36,
+   "casts": true,
+   "class": "KhaldunSummoner",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    421,
+    480
+   ],
+   "karma": -10000,
+   "name": "Zealot of Khaldun"
+  },
+  "khaldunzealot": {
+   "armor": 40,
+   "casts": false,
+   "class": "KhaldunZealot",
+   "damage": [
+    15,
+    25
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    448,
+    470
+   ],
+   "karma": -10000,
+   "name": "Zealot of Khaldun"
+  },
+  "kraken": {
+   "armor": 50,
+   "casts": false,
+   "class": "Kraken",
+   "damage": [
+    19,
+    33
+   ],
+   "fame": 11000,
+   "folder": "Monsters",
+   "hits": [
+    454,
+    468
+   ],
+   "karma": -11000,
+   "name": "a kraken"
+  },
+  "ladyofthesnow": {
+   "armor": 0,
+   "casts": true,
+   "class": "LadyOfTheSnow",
+   "damage": [
+    13,
+    20
+   ],
+   "fame": 15200,
+   "folder": "Monsters",
+   "hits": [
+    596,
+    625
+   ],
+   "karma": -15200,
+   "name": "a lady of the snow"
+  },
+  "lavalizard": {
+   "armor": 40,
+   "casts": false,
+   "class": "LavaLizard",
+   "damage": [
+    6,
+    24
+   ],
+   "fame": 3000,
+   "folder": "Animals",
+   "hits": [
+    76,
+    90
+   ],
+   "karma": -3000,
+   "name": "a lava lizard"
+  },
+  "lavaserpent": {
+   "armor": 40,
+   "casts": false,
+   "class": "LavaSerpent",
+   "damage": [
+    10,
+    22
+   ],
+   "fame": 4500,
+   "folder": "Animals",
+   "hits": [
+    232,
+    249
+   ],
+   "karma": -4500,
+   "name": "a lava serpent"
+  },
+  "lavasnake": {
+   "armor": 24,
+   "casts": false,
+   "class": "LavaSnake",
+   "damage": [
+    1,
+    8
+   ],
+   "fame": 600,
+   "folder": "Animals",
+   "hits": [
+    28,
+    32
+   ],
+   "karma": -600,
+   "name": "a lava snake"
+  },
+  "leviathan": {
+   "armor": 50,
+   "casts": true,
+   "class": "Leviathan",
+   "damage": [
+    25,
+    33
+   ],
+   "fame": 24000,
+   "folder": "Monsters",
+   "hits": [
+    1500,
+    1500
+   ],
+   "karma": -24000,
+   "name": "a leviathan"
+  },
+  "lich": {
+   "armor": 50,
+   "casts": true,
+   "class": "Lich",
+   "damage": [
+    24,
+    26
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    103,
+    120
+   ],
+   "karma": -8000,
+   "name": "a lich"
+  },
+  "lichlord": {
+   "armor": 50,
+   "casts": true,
+   "class": "LichLord",
+   "damage": [
+    11,
+    13
+   ],
+   "fame": 18000,
+   "folder": "Monsters",
+   "hits": [
+    250,
+    303
+   ],
+   "karma": -18000,
+   "name": "a lich lord"
+  },
+  "lizardman": {
+   "armor": 28,
+   "casts": false,
+   "class": "Lizardman",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -1500,
+   "name": null
+  },
+  "llama": {
+   "armor": 16,
+   "casts": false,
+   "class": "Llama",
+   "damage": [
+    3,
+    5
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    15,
+    27
+   ],
+   "karma": 0,
+   "name": "a llama"
+  },
+  "mantraeffervescence": {
+   "armor": 0,
+   "casts": true,
+   "class": "MantraEffervescence",
+   "damage": [
+    21,
+    25
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    150,
+    250
+   ],
+   "karma": -6500,
+   "name": "a mantra effervescence"
+  },
+  "meercaptain": {
+   "armor": 28,
+   "casts": false,
+   "class": "MeerCaptain",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 2000,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    66
+   ],
+   "karma": 5000,
+   "name": "a meer captain"
+  },
+  "meereternal": {
+   "armor": 34,
+   "casts": true,
+   "class": "MeerEternal",
+   "damage": [
+    11,
+    13
+   ],
+   "fame": 18000,
+   "folder": "Monsters",
+   "hits": [
+    250,
+    303
+   ],
+   "karma": 18000,
+   "name": "a meer eternal"
+  },
+  "meermage": {
+   "armor": 16,
+   "casts": true,
+   "class": "MeerMage",
+   "damage": [
+    24,
+    26
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    103,
+    120
+   ],
+   "karma": 8000,
+   "name": "a meer mage"
+  },
+  "meerwarrior": {
+   "armor": 22,
+   "casts": false,
+   "class": "MeerWarrior",
+   "damage": [
+    12,
+    19
+   ],
+   "fame": 2000,
+   "folder": "Monsters",
+   "hits": [
+    52,
+    60
+   ],
+   "karma": 5000,
+   "name": "a meer warrior"
+  },
+  "minotaur": {
+   "armor": 28,
+   "casts": true,
+   "class": "Minotaur",
+   "damage": [
+    11,
+    20
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    301,
+    340
+   ],
+   "karma": -5000,
+   "name": "a minotaur"
+  },
+  "minotaurcaptain": {
+   "armor": 28,
+   "casts": true,
+   "class": "MinotaurCaptain",
+   "damage": [
+    11,
+    20
+   ],
+   "fame": 7000,
+   "folder": "Monsters",
+   "hits": [
+    401,
+    440
+   ],
+   "karma": -7000,
+   "name": "a minotaur captain"
+  },
+  "minotaurscout": {
+   "armor": 28,
+   "casts": false,
+   "class": "MinotaurScout",
+   "damage": [
+    11,
+    20
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    354,
+    383
+   ],
+   "karma": -5000,
+   "name": "a minotaur scout"
+  },
+  "mldryad": {
+   "armor": 28,
+   "casts": true,
+   "class": "MLDryad",
+   "damage": [
+    11,
+    20
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    304,
+    321
+   ],
+   "karma": 5000,
+   "name": "a dryad"
+  },
+  "moloch": {
+   "armor": 32,
+   "casts": false,
+   "class": "Moloch",
+   "damage": [
+    15,
+    23
+   ],
+   "fame": 7500,
+   "folder": "Monsters",
+   "hits": [
+    171,
+    200
+   ],
+   "karma": -7500,
+   "name": "a moloch"
+  },
+  "mongbat": {
+   "armor": 10,
+   "casts": false,
+   "class": "Mongbat",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 150,
+   "folder": "Monsters",
+   "hits": [
+    4,
+    6
+   ],
+   "karma": -150,
+   "name": "a mongbat"
+  },
+  "mountaingoat": {
+   "armor": 10,
+   "casts": false,
+   "class": "MountainGoat",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    20,
+    33
+   ],
+   "karma": 0,
+   "name": "a mountain goat"
+  },
+  "mummy": {
+   "armor": 50,
+   "casts": false,
+   "class": "Mummy",
+   "damage": [
+    13,
+    23
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    208,
+    222
+   ],
+   "karma": -4000,
+   "name": "a mummy"
+  },
+  "ogre": {
+   "armor": 32,
+   "casts": false,
+   "class": "Ogre",
+   "damage": [
+    9,
+    11
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    100,
+    117
+   ],
+   "karma": -3000,
+   "name": "an ogre"
+  },
+  "ogrelord": {
+   "armor": 50,
+   "casts": false,
+   "class": "OgreLord",
+   "damage": [
+    20,
+    25
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    476,
+    552
+   ],
+   "karma": -15000,
+   "name": "an ogre lord"
+  },
+  "oni": {
+   "armor": 0,
+   "casts": true,
+   "class": "Oni",
+   "damage": [
+    14,
+    20
+   ],
+   "fame": 12000,
+   "folder": "Monsters",
+   "hits": [
+    401,
+    530
+   ],
+   "karma": -12000,
+   "name": "an oni"
+  },
+  "ophidianarchmage": {
+   "armor": 44,
+   "casts": true,
+   "class": "OphidianArchmage",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 11500,
+   "folder": "Monsters",
+   "hits": [
+    169,
+    183
+   ],
+   "karma": -11500,
+   "name": null
+  },
+  "ophidianknight": {
+   "armor": 40,
+   "casts": false,
+   "class": "OphidianKnight",
+   "damage": [
+    16,
+    19
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    266,
+    342
+   ],
+   "karma": -10000,
+   "name": null
+  },
+  "ophidianmage": {
+   "armor": 30,
+   "casts": true,
+   "class": "OphidianMage",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    109,
+    123
+   ],
+   "karma": -4000,
+   "name": null
+  },
+  "ophidianmatriarch": {
+   "armor": 50,
+   "casts": true,
+   "class": "OphidianMatriarch",
+   "damage": [
+    11,
+    13
+   ],
+   "fame": 16000,
+   "folder": "Monsters",
+   "hits": [
+    250,
+    303
+   ],
+   "karma": -16000,
+   "name": "an ophidian matriarch"
+  },
+  "ophidianwarrior": {
+   "armor": 36,
+   "casts": false,
+   "class": "OphidianWarrior",
+   "damage": [
+    5,
+    11
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    128,
+    155
+   ],
+   "karma": -4500,
+   "name": null
+  },
+  "orc": {
+   "armor": 28,
+   "casts": false,
+   "class": "Orc",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -1500,
+   "name": null
+  },
+  "orcbomber": {
+   "armor": 30,
+   "casts": false,
+   "class": "OrcBomber",
+   "damage": [
+    1,
+    8
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    95,
+    123
+   ],
+   "karma": -2500,
+   "name": "an orc bomber"
+  },
+  "orcbrute": {
+   "armor": 50,
+   "casts": false,
+   "class": "OrcBrute",
+   "damage": [
+    20,
+    25
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    476,
+    552
+   ],
+   "karma": -15000,
+   "name": "an orc brute"
+  },
+  "orccaptain": {
+   "armor": 34,
+   "casts": false,
+   "class": "OrcCaptain",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    67,
+    87
+   ],
+   "karma": -2500,
+   "name": null
+  },
+  "orcishlord": {
+   "armor": 0,
+   "casts": false,
+   "class": "OrcishLord",
+   "damage": [
+    4,
+    14
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    95,
+    123
+   ],
+   "karma": -2500,
+   "name": "an orcish lord"
+  },
+  "orcishmage": {
+   "armor": 30,
+   "casts": true,
+   "class": "OrcishMage",
+   "damage": [
+    4,
+    14
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    70,
+    90
+   ],
+   "karma": -3000,
+   "name": "an orcish mage"
+  },
+  "packhorse": {
+   "armor": 16,
+   "casts": false,
+   "class": "PackHorse",
+   "damage": [
+    5,
+    11
+   ],
+   "fame": 0,
+   "folder": "Animals",
+   "hits": [
+    61,
+    80
+   ],
+   "karma": 200,
+   "name": "a pack horse"
+  },
+  "packllama": {
+   "armor": 16,
+   "casts": false,
+   "class": "PackLlama",
+   "damage": [
+    2,
+    6
+   ],
+   "fame": 0,
+   "folder": "Animals",
+   "hits": [
+    50,
+    50
+   ],
+   "karma": 200,
+   "name": "a pack llama"
+  },
+  "panther": {
+   "armor": 16,
+   "casts": false,
+   "class": "Panther",
+   "damage": [
+    4,
+    12
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    37,
+    51
+   ],
+   "karma": 0,
+   "name": "a panther"
+  },
+  "patchworkskeleton": {
+   "armor": 54,
+   "casts": false,
+   "class": "PatchworkSkeleton",
+   "damage": [
+    18,
+    22
+   ],
+   "fame": 500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -500,
+   "name": "a patchwork skeleton"
+  },
+  "pestilentbandage": {
+   "armor": 28,
+   "casts": false,
+   "class": "PestilentBandage",
+   "damage": [
+    13,
+    23
+   ],
+   "fame": 20000,
+   "folder": "Monsters",
+   "hits": [
+    415,
+    445
+   ],
+   "karma": -20000,
+   "name": "a pestilent bandage"
+  },
+  "phoenix": {
+   "armor": 60,
+   "casts": true,
+   "class": "Phoenix",
+   "damage": [
+    25,
+    25
+   ],
+   "fame": 15000,
+   "folder": "Animals",
+   "hits": [
+    340,
+    383
+   ],
+   "karma": 0,
+   "name": "a phoenix"
+  },
+  "pig": {
+   "armor": 12,
+   "casts": false,
+   "class": "Pig",
+   "damage": [
+    2,
+    4
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    12,
+    12
+   ],
+   "karma": 0,
+   "name": "a pig"
+  },
+  "pixie": {
+   "armor": 100,
+   "casts": true,
+   "class": "Pixie",
+   "damage": [
+    9,
+    15
+   ],
+   "fame": 7000,
+   "folder": "Monsters",
+   "hits": [
+    13,
+    18
+   ],
+   "karma": 7000,
+   "name": null
+  },
+  "plaguebeast": {
+   "armor": 30,
+   "casts": false,
+   "class": "PlagueBeast",
+   "damage": [
+    20,
+    24
+   ],
+   "fame": 13000,
+   "folder": "Monsters",
+   "hits": [
+    318,
+    404
+   ],
+   "karma": -13000,
+   "name": "a plague beast"
+  },
+  "plaguebeastlord": {
+   "armor": 50,
+   "casts": false,
+   "class": "PlagueBeastLord",
+   "damage": [
+    20,
+    25
+   ],
+   "fame": 2000,
+   "folder": "Monsters",
+   "hits": [
+    1800,
+    1800
+   ],
+   "karma": -2000,
+   "name": "a plague beast lord"
+  },
+  "plaguespawn": {
+   "armor": 20,
+   "casts": false,
+   "class": "PlagueSpawn",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    121,
+    180
+   ],
+   "karma": -1000,
+   "name": "a plague spawn"
+  },
+  "poisonelemental": {
+   "armor": 70,
+   "casts": true,
+   "class": "PoisonElemental",
+   "damage": [
+    12,
+    18
+   ],
+   "fame": 12500,
+   "folder": "Monsters",
+   "hits": [
+    256,
+    309
+   ],
+   "karma": -12500,
+   "name": "a poison elemental"
+  },
+  "polarbear": {
+   "armor": 18,
+   "casts": false,
+   "class": "PolarBear",
+   "damage": [
+    7,
+    12
+   ],
+   "fame": 1500,
+   "folder": "Animals",
+   "hits": [
+    70,
+    84
+   ],
+   "karma": 0,
+   "name": "a polar bear"
+  },
+  "predatorhellcat": {
+   "armor": 30,
+   "casts": false,
+   "class": "PredatorHellCat",
+   "damage": [
+    5,
+    17
+   ],
+   "fame": 2500,
+   "folder": "Animals",
+   "hits": [
+    97,
+    131
+   ],
+   "karma": -2500,
+   "name": "a hell cat"
+  },
+  "protector": {
+   "armor": 0,
+   "casts": false,
+   "class": "Protector",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    350,
+    450
+   ],
+   "karma": -10000,
+   "name": "a Protector"
+  },
+  "quagmire": {
+   "armor": 32,
+   "casts": false,
+   "class": "Quagmire",
+   "damage": [
+    10,
+    14
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    91,
+    105
+   ],
+   "karma": -1500,
+   "name": "a quagmire"
+  },
+  "rabbit": {
+   "armor": 6,
+   "casts": false,
+   "class": "Rabbit",
+   "damage": [
+    1,
+    1
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    4,
+    6
+   ],
+   "karma": 0,
+   "name": "a rabbit"
+  },
+  "raginggrizzlybear": {
+   "armor": 24,
+   "casts": false,
+   "class": "RagingGrizzlyBear",
+   "damage": [
+    18,
+    23
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    751,
+    930
+   ],
+   "karma": 10000,
+   "name": "a raging grizzly bear"
+  },
+  "raiju": {
+   "armor": 0,
+   "casts": false,
+   "class": "RaiJu",
+   "damage": [
+    12,
+    15
+   ],
+   "fame": 8000,
+   "folder": "Monsters",
+   "hits": [
+    201,
+    280
+   ],
+   "karma": -8000,
+   "name": "a Rai-Ju"
+  },
+  "raptor": {
+   "armor": 0,
+   "casts": false,
+   "class": "Raptor",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 7500,
+   "folder": "Monsters",
+   "hits": [
+    343,
+    400
+   ],
+   "karma": -7500,
+   "name": "a raptor"
+  },
+  "rat": {
+   "armor": 6,
+   "casts": false,
+   "class": "Rat",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    6,
+    6
+   ],
+   "karma": -150,
+   "name": "a rat"
+  },
+  "ratman": {
+   "armor": 28,
+   "casts": false,
+   "class": "Ratman",
+   "damage": [
+    4,
+    5
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -1500,
+   "name": null
+  },
+  "ratmanarcher": {
+   "armor": 56,
+   "casts": false,
+   "class": "RatmanArcher",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    88,
+    108
+   ],
+   "karma": -6500,
+   "name": null
+  },
+  "ratmanmage": {
+   "armor": 44,
+   "casts": true,
+   "class": "RatmanMage",
+   "damage": [
+    7,
+    14
+   ],
+   "fame": 7500,
+   "folder": "Monsters",
+   "hits": [
+    88,
+    108
+   ],
+   "karma": -7500,
+   "name": null
+  },
+  "ravager": {
+   "armor": 54,
+   "casts": false,
+   "class": "Ravager",
+   "damage": [
+    15,
+    20
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    161,
+    175
+   ],
+   "karma": -3500,
+   "name": "a ravager"
+  },
+  "reaper": {
+   "armor": 40,
+   "casts": true,
+   "class": "Reaper",
+   "damage": [
+    9,
+    11
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    40,
+    129
+   ],
+   "karma": -3500,
+   "name": "a reaper"
+  },
+  "redsoleninfiltratorqueen": {
+   "armor": 50,
+   "casts": false,
+   "class": "RedSolenInfiltratorQueen",
+   "damage": [
+    10,
+    15
+   ],
+   "fame": 6500,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    162
+   ],
+   "karma": -6500,
+   "name": "a red solen infiltrator"
+  },
+  "redsoleninfiltratorwarrior": {
+   "armor": 40,
+   "casts": false,
+   "class": "RedSolenInfiltratorWarrior",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    96,
+    107
+   ],
+   "karma": -3000,
+   "name": "a red solen infiltrator"
+  },
+  "redsolenqueen": {
+   "armor": 45,
+   "casts": false,
+   "class": "RedSolenQueen",
+   "damage": [
+    10,
+    15
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    151,
+    162
+   ],
+   "karma": -4500,
+   "name": "a red solen queen"
+  },
+  "redsolenwarrior": {
+   "armor": 35,
+   "casts": false,
+   "class": "RedSolenWarrior",
+   "damage": [
+    5,
+    15
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    96,
+    107
+   ],
+   "karma": -3000,
+   "name": "a red solen warrior"
+  },
+  "redsolenworker": {
+   "armor": 28,
+   "casts": false,
+   "class": "RedSolenWorker",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -1500,
+   "name": "a red solen worker"
+  },
+  "restlesssoul": {
+   "armor": 6,
+   "casts": false,
+   "class": "RestlessSoul",
+   "damage": [
+    1,
+    10
+   ],
+   "fame": 500,
+   "folder": "Monsters",
+   "hits": [
+    16,
+    24
+   ],
+   "karma": -500,
+   "name": "a restless soul"
+  },
+  "revenantlion": {
+   "armor": 0,
+   "casts": true,
+   "class": "RevenantLion",
+   "damage": [
+    18,
+    24
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    251,
+    280
+   ],
+   "karma": -4000,
+   "name": "a Revenant Lion"
+  },
+  "ronin": {
+   "armor": 0,
+   "casts": false,
+   "class": "Ronin",
+   "damage": [
+    17,
+    25
+   ],
+   "fame": 8500,
+   "folder": "Monsters",
+   "hits": [
+    301,
+    400
+   ],
+   "karma": -8500,
+   "name": "a ronin"
+  },
+  "rottingcorpse": {
+   "armor": 40,
+   "casts": false,
+   "class": "RottingCorpse",
+   "damage": [
+    8,
+    10
+   ],
+   "fame": 6000,
+   "folder": "Monsters",
+   "hits": [
+    1200,
+    1200
+   ],
+   "karma": -6000,
+   "name": "a rotting corpse"
+  },
+  "runebeetle": {
+   "armor": 0,
+   "casts": true,
+   "class": "RuneBeetle",
+   "damage": [
+    15,
+    22
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    301,
+    360
+   ],
+   "karma": -15000,
+   "name": "a rune beetle"
+  },
+  "sandvortex": {
+   "armor": 28,
+   "casts": false,
+   "class": "SandVortex",
+   "damage": [
+    3,
+    16
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    51,
+    62
+   ],
+   "karma": -4500,
+   "name": "a sand vortex"
+  },
+  "satyr": {
+   "armor": 28,
+   "casts": false,
+   "class": "Satyr",
+   "damage": [
+    13,
+    24
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    350,
+    400
+   ],
+   "karma": 0,
+   "name": "a satyr"
+  },
+  "scorpion": {
+   "armor": 28,
+   "casts": false,
+   "class": "Scorpion",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 2000,
+   "folder": "Monsters",
+   "hits": [
+    50,
+    63
+   ],
+   "karma": -2000,
+   "name": "a scorpion"
+  },
+  "seaserpent": {
+   "armor": 30,
+   "casts": false,
+   "class": "SeaSerpent",
+   "damage": [
+    7,
+    13
+   ],
+   "fame": 6000,
+   "folder": "Monsters",
+   "hits": [
+    110,
+    127
+   ],
+   "karma": -6000,
+   "name": "a sea serpent"
+  },
+  "serpentinedragon": {
+   "armor": 36,
+   "casts": true,
+   "class": "SerpentineDragon",
+   "damage": [
+    5,
+    12
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    480,
+    480
+   ],
+   "karma": 15000,
+   "name": "a serpentine dragon"
+  },
+  "sewerrat": {
+   "armor": 6,
+   "casts": false,
+   "class": "SewerRat",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    6,
+    6
+   ],
+   "karma": -300,
+   "name": "a sewer rat"
+  },
+  "shade": {
+   "armor": 28,
+   "casts": true,
+   "class": "Shade",
+   "damage": [
+    7,
+    11
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -4000,
+   "name": "a shade"
+  },
+  "shadowfiend": {
+   "armor": 0,
+   "casts": false,
+   "class": "ShadowFiend",
+   "damage": [
+    10,
+    22
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    28,
+    33
+   ],
+   "karma": -1000,
+   "name": "a shadow fiend"
+  },
+  "shadowironelemental": {
+   "armor": 23,
+   "casts": false,
+   "class": "ShadowIronElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -4500,
+   "name": "a shadow iron elemental"
+  },
+  "shadowknight": {
+   "armor": 54,
+   "casts": true,
+   "class": "ShadowKnight",
+   "damage": [
+    20,
+    30
+   ],
+   "fame": 25000,
+   "folder": "Monsters",
+   "hits": [
+    2000,
+    2000
+   ],
+   "karma": -25000,
+   "name": null
+  },
+  "shadowwisp": {
+   "armor": 18,
+   "casts": true,
+   "class": "ShadowWisp",
+   "damage": [
+    5,
+    10
+   ],
+   "fame": 500,
+   "folder": "Monsters",
+   "hits": [
+    10,
+    24
+   ],
+   "karma": 0,
+   "name": "a shadow wisp"
+  },
+  "shadowwyrm": {
+   "armor": 70,
+   "casts": true,
+   "class": "ShadowWyrm",
+   "damage": [
+    29,
+    35
+   ],
+   "fame": 22500,
+   "folder": "Monsters",
+   "hits": [
+    558,
+    599
+   ],
+   "karma": -22500,
+   "name": "a shadow wyrm"
+  },
+  "sheep": {
+   "armor": 6,
+   "casts": false,
+   "class": "Sheep",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    12,
+    12
+   ],
+   "karma": 0,
+   "name": "a sheep"
+  },
+  "silvani": {
+   "armor": 50,
+   "casts": true,
+   "class": "Silvani",
+   "damage": [
+    27,
+    38
+   ],
+   "fame": 20000,
+   "folder": "Special",
+   "hits": [
+    600,
+    600
+   ],
+   "karma": 20000,
+   "name": "Silvani"
+  },
+  "silverserpent": {
+   "armor": 40,
+   "casts": false,
+   "class": "SilverSerpent",
+   "damage": [
+    5,
+    21
+   ],
+   "fame": 7000,
+   "folder": "Animals",
+   "hits": [
+    97,
+    216
+   ],
+   "karma": -7000,
+   "name": "a silver serpent"
+  },
+  "skeletaldragon": {
+   "armor": 80,
+   "casts": true,
+   "class": "SkeletalDragon",
+   "damage": [
+    29,
+    35
+   ],
+   "fame": 22500,
+   "folder": "Monsters",
+   "hits": [
+    558,
+    599
+   ],
+   "karma": -22500,
+   "name": "a skeletal dragon"
+  },
+  "skeletalknight": {
+   "armor": 40,
+   "casts": false,
+   "class": "SkeletalKnight",
+   "damage": [
+    8,
+    18
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    150
+   ],
+   "karma": -3000,
+   "name": "a skeletal knight"
+  },
+  "skeletalmage": {
+   "armor": 38,
+   "casts": true,
+   "class": "SkeletalMage",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -3000,
+   "name": "a skeletal mage"
+  },
+  "skeleton": {
+   "armor": 16,
+   "casts": false,
+   "class": "Skeleton",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 450,
+   "folder": "Monsters",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": -450,
+   "name": "a skeleton"
+  },
+  "skitteringhopper": {
+   "armor": 12,
+   "casts": false,
+   "class": "SkitteringHopper",
+   "damage": [
+    3,
+    5
+   ],
+   "fame": 300,
+   "folder": "Monsters",
+   "hits": [
+    31,
+    45
+   ],
+   "karma": 0,
+   "name": "a skittering hopper"
+  },
+  "slime": {
+   "armor": 8,
+   "casts": false,
+   "class": "Slime",
+   "damage": [
+    1,
+    5
+   ],
+   "fame": 300,
+   "folder": "Monsters",
+   "hits": [
+    15,
+    19
+   ],
+   "karma": -300,
+   "name": "a slime"
+  },
+  "slith": {
+   "armor": 0,
+   "casts": false,
+   "class": "Slith",
+   "damage": [
+    6,
+    24
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    84,
+    85
+   ],
+   "karma": 0,
+   "name": "a slith"
+  },
+  "snake": {
+   "armor": 16,
+   "casts": false,
+   "class": "Snake",
+   "damage": [
+    1,
+    4
+   ],
+   "fame": 300,
+   "folder": "Animals",
+   "hits": [
+    15,
+    19
+   ],
+   "karma": -300,
+   "name": "a snake"
+  },
+  "snowelemental": {
+   "armor": 50,
+   "casts": false,
+   "class": "SnowElemental",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    196,
+    213
+   ],
+   "karma": -5000,
+   "name": "a snow elemental"
+  },
+  "snowleopard": {
+   "armor": 24,
+   "casts": false,
+   "class": "SnowLeopard",
+   "damage": [
+    3,
+    9
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": 0,
+   "name": "a snow leopard"
+  },
+  "spectralarmour": {
+   "armor": 40,
+   "casts": false,
+   "class": "SpectralArmour",
+   "damage": [
+    10,
+    22
+   ],
+   "fame": 7000,
+   "folder": "Monsters",
+   "hits": [
+    178,
+    201
+   ],
+   "karma": -7000,
+   "name": "a spectral armour"
+  },
+  "spectre": {
+   "armor": 28,
+   "casts": true,
+   "class": "Spectre",
+   "damage": [
+    7,
+    11
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -4000,
+   "name": "a spectre"
+  },
+  "spellbinder": {
+   "armor": 28,
+   "casts": false,
+   "class": "Spellbinder",
+   "damage": [
+    3,
+    6
+   ],
+   "fame": 2500,
+   "folder": "Monsters",
+   "hits": [
+    36,
+    50
+   ],
+   "karma": -2500,
+   "name": "a spectral spellbinder"
+  },
+  "squirrel": {
+   "armor": 0,
+   "casts": false,
+   "class": "Squirrel",
+   "damage": [
+    1,
+    2
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    42,
+    50
+   ],
+   "karma": 0,
+   "name": "a squirrell"
+  },
+  "stonegargoyle": {
+   "armor": 50,
+   "casts": false,
+   "class": "StoneGargoyle",
+   "damage": [
+    11,
+    17
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    148,
+    165
+   ],
+   "karma": -4000,
+   "name": "a stone gargoyle"
+  },
+  "stoneharpy": {
+   "armor": 50,
+   "casts": false,
+   "class": "StoneHarpy",
+   "damage": [
+    8,
+    16
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    178,
+    192
+   ],
+   "karma": -4500,
+   "name": "a stone harpy"
+  },
+  "stoneslith": {
+   "armor": 0,
+   "casts": false,
+   "class": "StoneSlith",
+   "damage": [
+    6,
+    24
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    154,
+    166
+   ],
+   "karma": 0,
+   "name": "a stone slith"
+  },
+  "strongmongbat": {
+   "armor": 10,
+   "casts": false,
+   "class": "StrongMongbat",
+   "damage": [
+    5,
+    7
+   ],
+   "fame": 150,
+   "folder": "Monsters",
+   "hits": [
+    4,
+    6
+   ],
+   "karma": -150,
+   "name": "a mongbat"
+  },
+  "succubus": {
+   "armor": 80,
+   "casts": true,
+   "class": "Succubus",
+   "damage": [
+    18,
+    28
+   ],
+   "fame": 24000,
+   "folder": "Monsters",
+   "hits": [
+    312,
+    353
+   ],
+   "karma": -24000,
+   "name": "a succubus"
+  },
+  "summonedairelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "SummonedAirElemental",
+   "damage": [
+    6,
+    9
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    150,
+    150
+   ],
+   "karma": 0,
+   "name": "an air elemental"
+  },
+  "summoneddaemon": {
+   "armor": 58,
+   "casts": true,
+   "class": "SummonedDaemon",
+   "damage": [
+    14,
+    21
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    286,
+    303
+   ],
+   "karma": 0,
+   "name": null
+  },
+  "summonedearthelemental": {
+   "armor": 34,
+   "casts": false,
+   "class": "SummonedEarthElemental",
+   "damage": [
+    14,
+    21
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    180,
+    180
+   ],
+   "karma": 0,
+   "name": "an earth elemental"
+  },
+  "summonedfireelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "SummonedFireElemental",
+   "damage": [
+    9,
+    14
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": 0,
+   "name": "a fire elemental"
+  },
+  "summonedwaterelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "SummonedWaterElemental",
+   "damage": [
+    12,
+    16
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    165,
+    165
+   ],
+   "karma": 0,
+   "name": "a water elemental"
+  },
+  "swamptentacle": {
+   "armor": 28,
+   "casts": false,
+   "class": "SwampTentacle",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 3000,
+   "folder": "Monsters",
+   "hits": [
+    58,
+    72
+   ],
+   "karma": -3000,
+   "name": "a swamp tentacle"
+  },
+  "terathanavenger": {
+   "armor": 50,
+   "casts": true,
+   "class": "TerathanAvenger",
+   "damage": [
+    18,
+    22
+   ],
+   "fame": 15000,
+   "folder": "Monsters",
+   "hits": [
+    296,
+    372
+   ],
+   "karma": -15000,
+   "name": "a terathan avenger"
+  },
+  "terathandrone": {
+   "armor": 24,
+   "casts": false,
+   "class": "TerathanDrone",
+   "damage": [
+    6,
+    12
+   ],
+   "fame": 2000,
+   "folder": "Monsters",
+   "hits": [
+    22,
+    39
+   ],
+   "karma": -2000,
+   "name": "a terathan drone"
+  },
+  "terathanmatriarch": {
+   "armor": 0,
+   "casts": true,
+   "class": "TerathanMatriarch",
+   "damage": [
+    11,
+    14
+   ],
+   "fame": 10000,
+   "folder": "Monsters",
+   "hits": [
+    190,
+    243
+   ],
+   "karma": -10000,
+   "name": "a terathan matriarch"
+  },
+  "terathanwarrior": {
+   "armor": 30,
+   "casts": false,
+   "class": "TerathanWarrior",
+   "damage": [
+    7,
+    17
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    100,
+    129
+   ],
+   "karma": -4000,
+   "name": "a terathan warrior"
+  },
+  "timberwolf": {
+   "armor": 16,
+   "casts": false,
+   "class": "TimberWolf",
+   "damage": [
+    5,
+    9
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": 0,
+   "name": "a timber wolf"
+  },
+  "titan": {
+   "armor": 40,
+   "casts": true,
+   "class": "Titan",
+   "damage": [
+    13,
+    16
+   ],
+   "fame": 11500,
+   "folder": "Monsters",
+   "hits": [
+    322,
+    351
+   ],
+   "karma": -11500,
+   "name": "a titan"
+  },
+  "tormentedminotaur": {
+   "armor": 0,
+   "casts": false,
+   "class": "TormentedMinotaur",
+   "damage": [
+    16,
+    30
+   ],
+   "fame": 20000,
+   "folder": "Monsters",
+   "hits": [
+    4000,
+    4200
+   ],
+   "karma": -20000,
+   "name": "Tormented Minotaur"
+  },
+  "toxicslith": {
+   "armor": 0,
+   "casts": false,
+   "class": "ToxicSlith",
+   "damage": [
+    6,
+    24
+   ],
+   "fame": 0,
+   "folder": "Monsters",
+   "hits": [
+    197,
+    215
+   ],
+   "karma": 0,
+   "name": "a toxic slith"
+  },
+  "treefellow": {
+   "armor": 24,
+   "casts": false,
+   "class": "Treefellow",
+   "damage": [
+    12,
+    16
+   ],
+   "fame": 500,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    132
+   ],
+   "karma": 1500,
+   "name": "a treefellow"
+  },
+  "troglodyte": {
+   "armor": 28,
+   "casts": false,
+   "class": "Troglodyte",
+   "damage": [
+    11,
+    14
+   ],
+   "fame": 5000,
+   "folder": "Monsters",
+   "hits": [
+    302,
+    340
+   ],
+   "karma": -5000,
+   "name": "a troglodyte"
+  },
+  "troll": {
+   "armor": 40,
+   "casts": false,
+   "class": "Troll",
+   "damage": [
+    8,
+    14
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    106,
+    123
+   ],
+   "karma": -3500,
+   "name": "a troll"
+  },
+  "tsukiwolf": {
+   "armor": 0,
+   "casts": false,
+   "class": "TsukiWolf",
+   "damage": [
+    14,
+    18
+   ],
+   "fame": 8500,
+   "folder": "Monsters",
+   "hits": [
+    376,
+    450
+   ],
+   "karma": -8500,
+   "name": "a tsuki wolf"
+  },
+  "unfrozenmummy": {
+   "armor": 0,
+   "casts": true,
+   "class": "UnfrozenMummy",
+   "damage": [
+    16,
+    20
+   ],
+   "fame": 25000,
+   "folder": "Monsters",
+   "hits": [
+    1500,
+    1500
+   ],
+   "karma": -25000,
+   "name": "an unfrozen mummy"
+  },
+  "valoriteelemental": {
+   "armor": 38,
+   "casts": false,
+   "class": "ValoriteElemental",
+   "damage": [
+    28,
+    28
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -3500,
+   "name": "a valorite elemental"
+  },
+  "vampirebat": {
+   "armor": 14,
+   "casts": false,
+   "class": "VampireBat",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    55,
+    66
+   ],
+   "karma": -1000,
+   "name": "a vampire bat"
+  },
+  "veriteelemental": {
+   "armor": 35,
+   "casts": false,
+   "class": "VeriteElemental",
+   "damage": [
+    9,
+    16
+   ],
+   "fame": 3500,
+   "folder": "Monsters",
+   "hits": [
+    136,
+    153
+   ],
+   "karma": -3500,
+   "name": "a verite elemental"
+  },
+  "vorpalbunny": {
+   "armor": 4,
+   "casts": false,
+   "class": "VorpalBunny",
+   "damage": [
+    1,
+    1
+   ],
+   "fame": 1000,
+   "folder": "Monsters",
+   "hits": [
+    2000,
+    2000
+   ],
+   "karma": 0,
+   "name": "a vorpal bunny"
+  },
+  "wailingbanshee": {
+   "armor": 19,
+   "casts": false,
+   "class": "WailingBanshee",
+   "damage": [
+    10,
+    14
+   ],
+   "fame": 1500,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    90
+   ],
+   "karma": -1500,
+   "name": "a wailing banshee"
+  },
+  "walrus": {
+   "armor": 18,
+   "casts": false,
+   "class": "Walrus",
+   "damage": [
+    4,
+    10
+   ],
+   "fame": 150,
+   "folder": "Animals",
+   "hits": [
+    14,
+    17
+   ],
+   "karma": 0,
+   "name": "a walrus"
+  },
+  "wandererofthevoid": {
+   "armor": 44,
+   "casts": true,
+   "class": "WandererOfTheVoid",
+   "damage": [
+    11,
+    13
+   ],
+   "fame": 20000,
+   "folder": "Monsters",
+   "hits": [
+    351,
+    400
+   ],
+   "karma": -20000,
+   "name": "a wanderer of the void"
+  },
+  "waterelemental": {
+   "armor": 40,
+   "casts": true,
+   "class": "WaterElemental",
+   "damage": [
+    7,
+    9
+   ],
+   "fame": 4500,
+   "folder": "Monsters",
+   "hits": [
+    76,
+    93
+   ],
+   "karma": -4500,
+   "name": "a water elemental"
+  },
+  "whitewolf": {
+   "armor": 16,
+   "casts": false,
+   "class": "WhiteWolf",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 450,
+   "folder": "Animals",
+   "hits": [
+    34,
+    48
+   ],
+   "karma": 0,
+   "name": "a white wolf"
+  },
+  "whitewyrm": {
+   "armor": 64,
+   "casts": true,
+   "class": "WhiteWyrm",
+   "damage": [
+    17,
+    25
+   ],
+   "fame": 18000,
+   "folder": "Monsters",
+   "hits": [
+    433,
+    456
+   ],
+   "karma": -18000,
+   "name": "a white wyrm"
+  },
+  "wisp": {
+   "armor": 40,
+   "casts": true,
+   "class": "Wisp",
+   "damage": [
+    17,
+    18
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    118,
+    135
+   ],
+   "karma": 0,
+   "name": "a wisp"
+  },
+  "wraith": {
+   "armor": 28,
+   "casts": true,
+   "class": "Wraith",
+   "damage": [
+    7,
+    11
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    46,
+    60
+   ],
+   "karma": -4000,
+   "name": "a wraith"
+  },
+  "wyvern": {
+   "armor": 40,
+   "casts": false,
+   "class": "Wyvern",
+   "damage": [
+    8,
+    19
+   ],
+   "fame": 4000,
+   "folder": "Monsters",
+   "hits": [
+    125,
+    141
+   ],
+   "karma": -4000,
+   "name": "a wyvern"
+  },
+  "yamandon": {
+   "armor": 0,
+   "casts": false,
+   "class": "Yamandon",
+   "damage": [
+    19,
+    35
+   ],
+   "fame": 22000,
+   "folder": "Monsters",
+   "hits": [
+    1601,
+    1800
+   ],
+   "karma": -22000,
+   "name": "a yamandon"
+  },
+  "yomotsuelder": {
+   "armor": 0,
+   "casts": false,
+   "class": "YomotsuElder",
+   "damage": [
+    19,
+    27
+   ],
+   "fame": 12000,
+   "folder": "Monsters",
+   "hits": [
+    801,
+    900
+   ],
+   "karma": -12000,
+   "name": "a yomotsu elder"
+  },
+  "yomotsupriest": {
+   "armor": 0,
+   "casts": true,
+   "class": "YomotsuPriest",
+   "damage": [
+    8,
+    10
+   ],
+   "fame": 9000,
+   "folder": "Monsters",
+   "hits": [
+    486,
+    530
+   ],
+   "karma": -9000,
+   "name": "a yomotsu priest"
+  },
+  "yomotsuwarrior": {
+   "armor": 0,
+   "casts": false,
+   "class": "YomotsuWarrior",
+   "damage": [
+    8,
+    10
+   ],
+   "fame": 4200,
+   "folder": "Monsters",
+   "hits": [
+    486,
+    530
+   ],
+   "karma": -4200,
+   "name": "a yomotsu warrior"
+  },
+  "zombie": {
+   "armor": 18,
+   "casts": false,
+   "class": "Zombie",
+   "damage": [
+    3,
+    7
+   ],
+   "fame": 600,
+   "folder": "Monsters",
+   "hits": [
+    28,
+    42
+   ],
+   "karma": -600,
+   "name": "a zombie"
+  }
+ },
+ "reagent_gold": {
+  "BlackPearl": 5,
+  "Bloodmoss": 5,
+  "Garlic": 3,
+  "Ginseng": 3,
+  "MandrakeRoot": 3,
+  "Nightshade": 3,
+  "SpidersSilk": 3,
+  "SulfurousAsh": 3
+ },
+ "spells": {
+  "agility": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/Agility.cs",
+   "mana": 6,
+   "mantra": "Ex Uus",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Agility",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "air elemental": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/AirElemental.cs",
+   "mana": 50,
+   "mantra": "Kal Vas Xen Hur",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Air Elemental",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "arch cure": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/ArchCure.cs",
+   "mana": 11,
+   "mantra": "Vas An Nox",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Arch Cure",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "MandrakeRoot"
+   ]
+  },
+  "arch protection": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/ArchProtection.cs",
+   "mana": 11,
+   "mantra": "Vas Uus Sanct",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Arch Protection",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "blade spirits": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/BladeSpirits.cs",
+   "mana": 14,
+   "mantra": "In Jux Hur Ylem",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Blade Spirits",
+   "reagents": [
+    "BlackPearl",
+    "MandrakeRoot",
+    "Nightshade"
+   ]
+  },
+  "bless": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/Bless.cs",
+   "mana": 9,
+   "mantra": "Rel Sanct",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Bless",
+   "reagents": [
+    "Garlic",
+    "MandrakeRoot"
+   ]
+  },
+  "chain lightning": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/ChainLightning.cs",
+   "mana": 40,
+   "mantra": "Vas Ort Grav",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Chain Lightning",
+   "reagents": [
+    "BlackPearl",
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "clumsy": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/Clumsy.cs",
+   "mana": 4,
+   "mantra": "Uus Jux",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Clumsy",
+   "reagents": [
+    "Bloodmoss",
+    "Nightshade"
+   ]
+  },
+  "create food": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/CreateFood.cs",
+   "mana": 4,
+   "mantra": "In Mani Ylem",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Create Food",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "MandrakeRoot"
+   ]
+  },
+  "cunning": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/Cunning.cs",
+   "mana": 6,
+   "mantra": "Uus Wis",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Cunning",
+   "reagents": [
+    "MandrakeRoot",
+    "Nightshade"
+   ]
+  },
+  "cure": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/Cure.cs",
+   "mana": 6,
+   "mantra": "An Nox",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Cure",
+   "reagents": [
+    "Garlic",
+    "Ginseng"
+   ]
+  },
+  "curse": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/Curse.cs",
+   "mana": 11,
+   "mantra": "Des Sanct",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Curse",
+   "reagents": [
+    "Nightshade",
+    "Garlic",
+    "SulfurousAsh"
+   ]
+  },
+  "dispel": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/Dispel.cs",
+   "mana": 20,
+   "mantra": "An Ort",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Dispel",
+   "reagents": [
+    "Garlic",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "dispel field": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/DispelField.cs",
+   "mana": 14,
+   "mantra": "An Grav",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Dispel Field",
+   "reagents": [
+    "BlackPearl",
+    "SpidersSilk",
+    "SulfurousAsh",
+    "Garlic"
+   ]
+  },
+  "earth elemental": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/EarthElemental.cs",
+   "mana": 50,
+   "mantra": "Kal Vas Xen Ylem",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Earth Elemental",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "earthquake": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/Earthquake.cs",
+   "mana": 50,
+   "mantra": "In Vas Por",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Earthquake",
+   "reagents": [
+    "Bloodmoss",
+    "Ginseng",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "energy bolt": {
+   "circle": 6,
+   "damage": [
+    24,
+    41
+   ],
+   "damage_formula": null,
+   "file": "Spells/Sixth/EnergyBolt.cs",
+   "mana": 20,
+   "mantra": "Corp Por",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Energy Bolt",
+   "reagents": [
+    "BlackPearl",
+    "Nightshade"
+   ]
+  },
+  "energy field": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/EnergyField.cs",
+   "mana": 40,
+   "mantra": "In Sanct Grav",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Energy Field",
+   "reagents": [
+    "BlackPearl",
+    "MandrakeRoot",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "energy vortex": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/EnergyVortex.cs",
+   "mana": 50,
+   "mantra": "Vas Corp Por",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Energy Vortex",
+   "reagents": [
+    "Bloodmoss",
+    "BlackPearl",
+    "MandrakeRoot",
+    "Nightshade"
+   ]
+  },
+  "explosion": {
+   "circle": 6,
+   "damage": [
+    23,
+    44
+   ],
+   "damage_formula": null,
+   "file": "Spells/Sixth/Explosion.cs",
+   "mana": 20,
+   "mantra": "Vas Ort Flam",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Explosion",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "feeblemind": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/Feeblemind.cs",
+   "mana": 4,
+   "mantra": "Rel Wis",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Feeblemind",
+   "reagents": [
+    "Ginseng",
+    "Nightshade"
+   ]
+  },
+  "fire elemental": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/FireElemental.cs",
+   "mana": 50,
+   "mantra": "Kal Vas Xen Flam",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Fire Elemental",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "fire field": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/FireField.cs",
+   "mana": 11,
+   "mantra": "In Flam Grav",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Fire Field",
+   "reagents": [
+    "BlackPearl",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "fireball": {
+   "circle": 3,
+   "damage": [
+    10,
+    16
+   ],
+   "damage_formula": null,
+   "file": "Spells/Third/Fireball.cs",
+   "mana": 9,
+   "mantra": "Vas Flam",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Fireball",
+   "reagents": [
+    "BlackPearl"
+   ]
+  },
+  "flame strike": {
+   "circle": 7,
+   "damage": [
+    27,
+    48
+   ],
+   "damage_formula": null,
+   "file": "Spells/Seventh/FlameStrike.cs",
+   "mana": 40,
+   "mantra": "Kal Vas Flam",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Flame Strike",
+   "reagents": [
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "gate travel": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/GateTravel.cs",
+   "mana": 40,
+   "mantra": "Vas Rel Por",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Gate Travel",
+   "reagents": [
+    "BlackPearl",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "greater heal": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/GreaterHeal.cs",
+   "mana": 11,
+   "mantra": "In Vas Mani",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Greater Heal",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "harm": {
+   "circle": 2,
+   "damage": [
+    1,
+    15
+   ],
+   "damage_formula": null,
+   "file": "Spells/Second/Harm.cs",
+   "mana": 6,
+   "mantra": "An Mani",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Harm",
+   "reagents": [
+    "Nightshade",
+    "SpidersSilk"
+   ]
+  },
+  "heal": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/Heal.cs",
+   "mana": 4,
+   "mantra": "In Mani",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Heal",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "SpidersSilk"
+   ]
+  },
+  "incognito": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/Incognito.cs",
+   "mana": 14,
+   "mantra": "Kal In Ex",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Incognito",
+   "reagents": [
+    "Bloodmoss",
+    "Garlic",
+    "Nightshade"
+   ]
+  },
+  "invisibility": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/Invisibility.cs",
+   "mana": 20,
+   "mantra": "An Lor Xen",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Invisibility",
+   "reagents": [
+    "Bloodmoss",
+    "Nightshade"
+   ]
+  },
+  "lightning": {
+   "circle": 4,
+   "damage": [
+    12,
+    20
+   ],
+   "damage_formula": null,
+   "file": "Spells/Fourth/Lightning.cs",
+   "mana": 11,
+   "mantra": "Por Ort Grav",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Lightning",
+   "reagents": [
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "magic arrow": {
+   "circle": 1,
+   "damage": [
+    4,
+    7
+   ],
+   "damage_formula": null,
+   "file": "Spells/First/MagicArrow.cs",
+   "mana": 4,
+   "mantra": "In Por Ylem",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Magic Arrow",
+   "reagents": [
+    "SulfurousAsh"
+   ]
+  },
+  "magic lock": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/MagicLock.cs",
+   "mana": 9,
+   "mantra": "An Por",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Magic Lock",
+   "reagents": [
+    "Garlic",
+    "Bloodmoss",
+    "SulfurousAsh"
+   ]
+  },
+  "magic reflection": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/MagicReflect.cs",
+   "mana": 14,
+   "mantra": "In Jux Sanct",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Magic Reflection",
+   "reagents": [
+    "Garlic",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "magic trap": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/MagicTrap.cs",
+   "mana": 6,
+   "mantra": "In Jux",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Magic Trap",
+   "reagents": [
+    "Garlic",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "mana drain": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/ManaDrain.cs",
+   "mana": 11,
+   "mantra": "Ort Rel",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Mana Drain",
+   "reagents": [
+    "BlackPearl",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "mana vampire": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/ManaVampire.cs",
+   "mana": 40,
+   "mantra": "Ort Sanct",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Mana Vampire",
+   "reagents": [
+    "BlackPearl",
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "mark": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/Mark.cs",
+   "mana": 20,
+   "mantra": "Kal Por Ylem",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Mark",
+   "reagents": [
+    "BlackPearl",
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "mass curse": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/MassCurse.cs",
+   "mana": 20,
+   "mantra": "Vas Des Sanct",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Mass Curse",
+   "reagents": [
+    "Garlic",
+    "Nightshade",
+    "MandrakeRoot",
+    "SulfurousAsh"
+   ]
+  },
+  "mass dispel": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/MassDispel.cs",
+   "mana": 40,
+   "mantra": "Vas An Ort",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Mass Dispel",
+   "reagents": [
+    "Garlic",
+    "MandrakeRoot",
+    "BlackPearl",
+    "SulfurousAsh"
+   ]
+  },
+  "meteor swarm": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/MeteorSwarm.cs",
+   "mana": 40,
+   "mantra": "Flam Kal Des Ylem",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Meteor Swarm",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SulfurousAsh",
+    "SpidersSilk"
+   ]
+  },
+  "mind blast": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": "(Magery + Int) / 5, +0..4",
+   "file": "Spells/Fifth/MindBlast.cs",
+   "mana": 14,
+   "mantra": "Por Corp Wis",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Mind Blast",
+   "reagents": [
+    "BlackPearl",
+    "MandrakeRoot",
+    "Nightshade",
+    "SulfurousAsh"
+   ]
+  },
+  "night sight": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/NightSight.cs",
+   "mana": 4,
+   "mantra": "In Lor",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Night Sight",
+   "reagents": [
+    "SulfurousAsh",
+    "SpidersSilk"
+   ]
+  },
+  "paralyze": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/Paralyze.cs",
+   "mana": 14,
+   "mantra": "An Ex Por",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Paralyze",
+   "reagents": [
+    "Garlic",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "paralyze field": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/ParalyzeField.cs",
+   "mana": 20,
+   "mantra": "In Ex Grav",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Paralyze Field",
+   "reagents": [
+    "BlackPearl",
+    "Ginseng",
+    "SpidersSilk"
+   ]
+  },
+  "poison": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/Poison.cs",
+   "mana": 9,
+   "mantra": "In Nox",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Poison",
+   "reagents": [
+    "Nightshade"
+   ]
+  },
+  "poison field": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/PoisonField.cs",
+   "mana": 14,
+   "mantra": "In Nox Grav",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Poison Field",
+   "reagents": [
+    "BlackPearl",
+    "Nightshade",
+    "SpidersSilk"
+   ]
+  },
+  "polymorph": {
+   "circle": 7,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Seventh/Polymorph.cs",
+   "mana": 40,
+   "mantra": "Vas Ylem Rel",
+   "max_skill": 100.0,
+   "min_skill": 60.0,
+   "name": "Polymorph",
+   "reagents": [
+    "Bloodmoss",
+    "SpidersSilk",
+    "MandrakeRoot"
+   ]
+  },
+  "protection": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/Protection.cs",
+   "mana": 6,
+   "mantra": "Uus Sanct",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Protection",
+   "reagents": [
+    "Garlic",
+    "Ginseng",
+    "SulfurousAsh"
+   ]
+  },
+  "reactive armor": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/ReactiveArmor.cs",
+   "mana": 4,
+   "mantra": "Flam Sanct",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Reactive Armor",
+   "reagents": [
+    "Garlic",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "recall": {
+   "circle": 4,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fourth/Recall.cs",
+   "mana": 11,
+   "mantra": "Kal Ort Por",
+   "max_skill": 70.0,
+   "min_skill": 30.0,
+   "name": "Recall",
+   "reagents": [
+    "BlackPearl",
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "remove trap": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/RemoveTrap.cs",
+   "mana": 6,
+   "mantra": "An Jux",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Remove Trap",
+   "reagents": [
+    "Bloodmoss",
+    "SulfurousAsh"
+   ]
+  },
+  "resurrection": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/Resurrection.cs",
+   "mana": 50,
+   "mantra": "An Corp",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Resurrection",
+   "reagents": [
+    "Bloodmoss",
+    "Garlic",
+    "Ginseng"
+   ]
+  },
+  "reveal": {
+   "circle": 6,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Sixth/Reveal.cs",
+   "mana": 20,
+   "mantra": "Wis Quas",
+   "max_skill": 90.0,
+   "min_skill": 50.0,
+   "name": "Reveal",
+   "reagents": [
+    "Bloodmoss",
+    "SulfurousAsh"
+   ]
+  },
+  "strength": {
+   "circle": 2,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Second/Strength.cs",
+   "mana": 6,
+   "mantra": "Uus Mani",
+   "max_skill": 50.0,
+   "min_skill": 10.0,
+   "name": "Strength",
+   "reagents": [
+    "MandrakeRoot",
+    "Nightshade"
+   ]
+  },
+  "summon creature": {
+   "circle": 5,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Fifth/SummonCreature.cs",
+   "mana": 14,
+   "mantra": "Kal Xen",
+   "max_skill": 80.0,
+   "min_skill": 40.0,
+   "name": "Summon Creature",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "summon daemon": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/SummonDaemon.cs",
+   "mana": 50,
+   "mantra": "Kal Vas Xen Corp",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Summon Daemon",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk",
+    "SulfurousAsh"
+   ]
+  },
+  "telekinesis": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/Telekinesis.cs",
+   "mana": 9,
+   "mantra": "Ort Por Ylem",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Telekinesis",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "teleport": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/Teleport.cs",
+   "mana": 9,
+   "mantra": "Rel Por",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Teleport",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot"
+   ]
+  },
+  "unlock spell": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/Unlock.cs",
+   "mana": 9,
+   "mantra": "Ex Por",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Unlock Spell",
+   "reagents": [
+    "Bloodmoss",
+    "SulfurousAsh"
+   ]
+  },
+  "wall of stone": {
+   "circle": 3,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Third/WallOfStone.cs",
+   "mana": 9,
+   "mantra": "In Sanct Ylem",
+   "max_skill": 60.0,
+   "min_skill": 20.0,
+   "name": "Wall of Stone",
+   "reagents": [
+    "Bloodmoss",
+    "Garlic"
+   ]
+  },
+  "water elemental": {
+   "circle": 8,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/Eighth/WaterElemental.cs",
+   "mana": 50,
+   "mantra": "Kal Vas Xen An Flam",
+   "max_skill": 110.0,
+   "min_skill": 70.0,
+   "name": "Water Elemental",
+   "reagents": [
+    "Bloodmoss",
+    "MandrakeRoot",
+    "SpidersSilk"
+   ]
+  },
+  "weaken": {
+   "circle": 1,
+   "damage": null,
+   "damage_formula": null,
+   "file": "Spells/First/Weaken.cs",
+   "mana": 4,
+   "mantra": "Des Mani",
+   "max_skill": 40.0,
+   "min_skill": 0.0,
+   "name": "Weaken",
+   "reagents": [
+    "Garlic",
+    "Nightshade"
+   ]
+  }
+ }
+}
