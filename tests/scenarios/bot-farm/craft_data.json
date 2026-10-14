@@ -1,0 +1,3300 @@
+{
+ "Blacksmith": {
+  "adventurers machete": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "AdventurersMachete"
+  },
+  "assassin spike": {
+   "amount": 9,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "AssassinSpike"
+  },
+  "axe": {
+   "amount": 14,
+   "max": 84.2,
+   "min": 34.2,
+   "resource": "IronIngot",
+   "type": "Axe"
+  },
+  "bardiche": {
+   "amount": 18,
+   "max": 81.7,
+   "min": 31.7,
+   "resource": "IronIngot",
+   "type": "Bardiche"
+  },
+  "bascinet": {
+   "amount": 15,
+   "max": 58.3,
+   "min": 8.3,
+   "resource": "IronIngot",
+   "type": "Bascinet"
+  },
+  "battle axe": {
+   "amount": 14,
+   "max": 80.5,
+   "min": 30.5,
+   "resource": "IronIngot",
+   "type": "BattleAxe"
+  },
+  "bladed staff": {
+   "amount": 12,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "BladedStaff"
+  },
+  "bone harvester": {
+   "amount": 10,
+   "max": 83.0,
+   "min": 33.0,
+   "resource": "IronIngot",
+   "type": "BoneHarvester"
+  },
+  "bone machete": {
+   "amount": 20,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "BoneMachete"
+  },
+  "boomerang": {
+   "amount": 5,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "Boomerang"
+  },
+  "broadsword": {
+   "amount": 10,
+   "max": 85.4,
+   "min": 35.4,
+   "resource": "IronIngot",
+   "type": "Broadsword"
+  },
+  "bronze shield": {
+   "amount": 12,
+   "max": 34.8,
+   "min": -15.2,
+   "resource": "IronIngot",
+   "type": "BronzeShield"
+  },
+  "buckler": {
+   "amount": 10,
+   "max": 25.0,
+   "min": -25.0,
+   "resource": "IronIngot",
+   "type": "Buckler"
+  },
+  "butchers war cleaver": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "ButchersWarCleaver"
+  },
+  "chain chest": {
+   "amount": 20,
+   "max": 89.1,
+   "min": 39.1,
+   "resource": "IronIngot",
+   "type": "ChainChest"
+  },
+  "chain coif": {
+   "amount": 10,
+   "max": 64.5,
+   "min": 14.5,
+   "resource": "IronIngot",
+   "type": "ChainCoif"
+  },
+  "chain hatsuburi": {
+   "amount": 20,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "ChainHatsuburi"
+  },
+  "chain legs": {
+   "amount": 18,
+   "max": 86.7,
+   "min": 36.7,
+   "resource": "IronIngot",
+   "type": "ChainLegs"
+  },
+  "chaos shield": {
+   "amount": 25,
+   "max": 135.0,
+   "min": 85.0,
+   "resource": "IronIngot",
+   "type": "ChaosShield"
+  },
+  "charged assassin spike": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "ChargedAssassinSpike"
+  },
+  "circlet": {
+   "amount": 6,
+   "max": 112.1,
+   "min": 62.1,
+   "resource": "IronIngot",
+   "type": "Circlet"
+  },
+  "close helm": {
+   "amount": 15,
+   "max": 87.9,
+   "min": 37.9,
+   "resource": "IronIngot",
+   "type": "CloseHelm"
+  },
+  "cold forged blade": {
+   "amount": 18,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "ColdForgedBlade"
+  },
+  "corrupted rune blade": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "CorruptedRuneBlade"
+  },
+  "crescent blade": {
+   "amount": 14,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "CrescentBlade"
+  },
+  "cutlass": {
+   "amount": 8,
+   "max": 74.3,
+   "min": 24.3,
+   "resource": "IronIngot",
+   "type": "Cutlass"
+  },
+  "cyclone": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "Cyclone"
+  },
+  "dagger": {
+   "amount": 3,
+   "max": 49.6,
+   "min": -0.4,
+   "resource": "IronIngot",
+   "type": "Dagger"
+  },
+  "daisho": {
+   "amount": 15,
+   "max": 110.0,
+   "min": 60.0,
+   "resource": "IronIngot",
+   "type": "Daisho"
+  },
+  "darkglow scimitar": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "DarkglowScimitar"
+  },
+  "decorative plate kabuto": {
+   "amount": 25,
+   "max": 140.0,
+   "min": 90.0,
+   "resource": "IronIngot",
+   "type": "DecorativePlateKabuto"
+  },
+  "diamond mace": {
+   "amount": 20,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "DiamondMace"
+  },
+  "diseased machete": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "DiseasedMachete"
+  },
+  "double axe": {
+   "amount": 12,
+   "max": 79.3,
+   "min": 29.3,
+   "resource": "IronIngot",
+   "type": "DoubleAxe"
+  },
+  "double bladed staff": {
+   "amount": 16,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "DoubleBladedStaff"
+  },
+  "dragon arms": {
+   "amount": 24,
+   "max": 126.3,
+   "min": 76.3,
+   "resource": "RedScales",
+   "type": "DragonArms"
+  },
+  "dragon barding deed": {
+   "amount": 750,
+   "max": 122.5,
+   "min": 72.5,
+   "resource": "IronIngot",
+   "type": "DragonBardingDeed"
+  },
+  "dragon chest": {
+   "amount": 36,
+   "max": 135.0,
+   "min": 85.0,
+   "resource": "RedScales",
+   "type": "DragonChest"
+  },
+  "dragon gloves": {
+   "amount": 16,
+   "max": 118.9,
+   "min": 68.9,
+   "resource": "RedScales",
+   "type": "DragonGloves"
+  },
+  "dragon helm": {
+   "amount": 20,
+   "max": 122.6,
+   "min": 72.6,
+   "resource": "RedScales",
+   "type": "DragonHelm"
+  },
+  "dragon legs": {
+   "amount": 28,
+   "max": 128.8,
+   "min": 78.8,
+   "resource": "RedScales",
+   "type": "DragonLegs"
+  },
+  "elven machete": {
+   "amount": 14,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "ElvenMachete"
+  },
+  "elven spellblade": {
+   "amount": 14,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "ElvenSpellblade"
+  },
+  "emerald mace": {
+   "amount": 20,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "EmeraldMace"
+  },
+  "executioners axe": {
+   "amount": 14,
+   "max": 84.2,
+   "min": 34.2,
+   "resource": "IronIngot",
+   "type": "ExecutionersAxe"
+  },
+  "female plate chest": {
+   "amount": 20,
+   "max": 94.1,
+   "min": 44.1,
+   "resource": "IronIngot",
+   "type": "FemalePlateChest"
+  },
+  "fiery spellblade": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "FierySpellblade"
+  },
+  "gemmed circlet": {
+   "amount": 6,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "GemmedCirclet"
+  },
+  "guardian axe": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "GuardianAxe"
+  },
+  "halberd": {
+   "amount": 20,
+   "max": 89.1,
+   "min": 39.1,
+   "resource": "IronIngot",
+   "type": "Halberd"
+  },
+  "hammer pick": {
+   "amount": 16,
+   "max": 84.2,
+   "min": 34.2,
+   "resource": "IronIngot",
+   "type": "HammerPick"
+  },
+  "heater shield": {
+   "amount": 18,
+   "max": 74.3,
+   "min": 24.3,
+   "resource": "IronIngot",
+   "type": "HeaterShield"
+  },
+  "heavy ornate axe": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "HeavyOrnateAxe"
+  },
+  "heavy plate jingasa": {
+   "amount": 20,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "HeavyPlateJingasa"
+  },
+  "helmet": {
+   "amount": 15,
+   "max": 87.9,
+   "min": 37.9,
+   "resource": "IronIngot",
+   "type": "Helmet"
+  },
+  "icy scimitar": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "IcyScimitar"
+  },
+  "icy spellblade": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "IcySpellblade"
+  },
+  "kama": {
+   "amount": 14,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "Kama"
+  },
+  "katana": {
+   "amount": 8,
+   "max": 94.1,
+   "min": 44.1,
+   "resource": "IronIngot",
+   "type": "Katana"
+  },
+  "knights war cleaver": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "KnightsWarCleaver"
+  },
+  "kryss": {
+   "amount": 8,
+   "max": 86.7,
+   "min": 36.7,
+   "resource": "IronIngot",
+   "type": "Kryss"
+  },
+  "lajatang": {
+   "amount": 25,
+   "max": 130.0,
+   "min": 80.0,
+   "resource": "IronIngot",
+   "type": "Lajatang"
+  },
+  "lance": {
+   "amount": 20,
+   "max": 98.0,
+   "min": 48.0,
+   "resource": "IronIngot",
+   "type": "Lance"
+  },
+  "large battle axe": {
+   "amount": 12,
+   "max": 78.0,
+   "min": 28.0,
+   "resource": "IronIngot",
+   "type": "LargeBattleAxe"
+  },
+  "leafblade": {
+   "amount": 12,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "Leafblade"
+  },
+  "leafblade of ease": {
+   "amount": 12,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "LeafbladeOfEase"
+  },
+  "light plate jingasa": {
+   "amount": 20,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "LightPlateJingasa"
+  },
+  "longsword": {
+   "amount": 12,
+   "max": 78.0,
+   "min": 28.0,
+   "resource": "IronIngot",
+   "type": "Longsword"
+  },
+  "luckblade": {
+   "amount": 12,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "Luckblade"
+  },
+  "luminous rune blade": {
+   "amount": 15,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "LuminousRuneBlade"
+  },
+  "mace": {
+   "amount": 6,
+   "max": 64.5,
+   "min": 14.5,
+   "resource": "IronIngot",
+   "type": "Mace"
+  },
+  "machete of defense": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "MacheteOfDefense"
+  },
+  "magekiller assassin spike": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "MagekillerAssassinSpike"
+  },
+  "magekiller leafblade": {
+   "amount": 12,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "MagekillerLeafblade"
+  },
+  "mages rune blade": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "MagesRuneBlade"
+  },
+  "maul": {
+   "amount": 10,
+   "max": 69.4,
+   "min": 19.4,
+   "resource": "IronIngot",
+   "type": "Maul"
+  },
+  "metal kite shield": {
+   "amount": 16,
+   "max": 54.6,
+   "min": 4.6,
+   "resource": "IronIngot",
+   "type": "MetalKiteShield"
+  },
+  "metal shield": {
+   "amount": 14,
+   "max": 39.8,
+   "min": -10.2,
+   "resource": "IronIngot",
+   "type": "MetalShield"
+  },
+  "no dachi": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "NoDachi"
+  },
+  "norse helm": {
+   "amount": 15,
+   "max": 87.9,
+   "min": 37.9,
+   "resource": "IronIngot",
+   "type": "NorseHelm"
+  },
+  "orcish machete": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "OrcishMachete"
+  },
+  "order shield": {
+   "amount": 25,
+   "max": 135.0,
+   "min": 85.0,
+   "resource": "IronIngot",
+   "type": "OrderShield"
+  },
+  "ornate axe": {
+   "amount": 18,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "OrnateAxe"
+  },
+  "overseer sundered blade": {
+   "amount": 15,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "OverseerSunderedBlade"
+  },
+  "pike": {
+   "amount": 12,
+   "max": 97.0,
+   "min": 47.0,
+   "resource": "IronIngot",
+   "type": "Pike"
+  },
+  "plate arms": {
+   "amount": 18,
+   "max": 116.3,
+   "min": 66.3,
+   "resource": "IronIngot",
+   "type": "PlateArms"
+  },
+  "plate battle kabuto": {
+   "amount": 25,
+   "max": 140.0,
+   "min": 90.0,
+   "resource": "IronIngot",
+   "type": "PlateBattleKabuto"
+  },
+  "plate chest": {
+   "amount": 25,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "PlateChest"
+  },
+  "plate do": {
+   "amount": 28,
+   "max": 137.0,
+   "min": 87.0,
+   "resource": "IronIngot",
+   "type": "PlateDo"
+  },
+  "plate gloves": {
+   "amount": 12,
+   "max": 108.9,
+   "min": 58.9,
+   "resource": "IronIngot",
+   "type": "PlateGloves"
+  },
+  "plate gorget": {
+   "amount": 10,
+   "max": 106.4,
+   "min": 56.4,
+   "resource": "IronIngot",
+   "type": "PlateGorget"
+  },
+  "plate haidate": {
+   "amount": 20,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "IronIngot",
+   "type": "PlateHaidate"
+  },
+  "plate hatsuburi": {
+   "amount": 20,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "PlateHatsuburi"
+  },
+  "plate helm": {
+   "amount": 15,
+   "max": 112.6,
+   "min": 62.6,
+   "resource": "IronIngot",
+   "type": "PlateHelm"
+  },
+  "plate hiro sode": {
+   "amount": 16,
+   "max": 130.0,
+   "min": 80.0,
+   "resource": "IronIngot",
+   "type": "PlateHiroSode"
+  },
+  "plate legs": {
+   "amount": 20,
+   "max": 118.8,
+   "min": 68.8,
+   "resource": "IronIngot",
+   "type": "PlateLegs"
+  },
+  "plate mempo": {
+   "amount": 18,
+   "max": 130.0,
+   "min": 80.0,
+   "resource": "IronIngot",
+   "type": "PlateMempo"
+  },
+  "plate suneate": {
+   "amount": 20,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "IronIngot",
+   "type": "PlateSuneate"
+  },
+  "radiant scimitar": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "RadiantScimitar"
+  },
+  "ringmail arms": {
+   "amount": 14,
+   "max": 66.9,
+   "min": 16.9,
+   "resource": "IronIngot",
+   "type": "RingmailArms"
+  },
+  "ringmail chest": {
+   "amount": 18,
+   "max": 71.9,
+   "min": 21.9,
+   "resource": "IronIngot",
+   "type": "RingmailChest"
+  },
+  "ringmail gloves": {
+   "amount": 10,
+   "max": 62.0,
+   "min": 12.0,
+   "resource": "IronIngot",
+   "type": "RingmailGloves"
+  },
+  "ringmail legs": {
+   "amount": 16,
+   "max": 69.4,
+   "min": 19.4,
+   "resource": "IronIngot",
+   "type": "RingmailLegs"
+  },
+  "royal circlet": {
+   "amount": 6,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "RoyalCirclet"
+  },
+  "ruby mace": {
+   "amount": 20,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "RubyMace"
+  },
+  "rune blade": {
+   "amount": 15,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "RuneBlade"
+  },
+  "rune blade of knowledge": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "RuneBladeOfKnowledge"
+  },
+  "rune carving knife": {
+   "amount": 9,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "RuneCarvingKnife"
+  },
+  "runesabre": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "Runesabre"
+  },
+  "sai": {
+   "amount": 12,
+   "max": 100.0,
+   "min": 50.0,
+   "resource": "IronIngot",
+   "type": "Sai"
+  },
+  "sapphire mace": {
+   "amount": 20,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SapphireMace"
+  },
+  "scepter": {
+   "amount": 10,
+   "max": 71.4,
+   "min": 21.4,
+   "resource": "IronIngot",
+   "type": "Scepter"
+  },
+  "scimitar": {
+   "amount": 10,
+   "max": 81.7,
+   "min": 31.7,
+   "resource": "IronIngot",
+   "type": "Scimitar"
+  },
+  "scythe": {
+   "amount": 14,
+   "max": 89.0,
+   "min": 39.0,
+   "resource": "IronIngot",
+   "type": "Scythe"
+  },
+  "serrated war cleaver": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SerratedWarCleaver"
+  },
+  "shard thrasher": {
+   "amount": 20,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "ShardThrasher"
+  },
+  "short spear": {
+   "amount": 6,
+   "max": 95.3,
+   "min": 45.3,
+   "resource": "IronIngot",
+   "type": "ShortSpear"
+  },
+  "shuriken": {
+   "amount": 5,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "Shuriken"
+  },
+  "silver etched mace": {
+   "amount": 20,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SilverEtchedMace"
+  },
+  "singing axe": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SingingAxe"
+  },
+  "small plate jingasa": {
+   "amount": 20,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "SmallPlateJingasa"
+  },
+  "soul glaive": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SoulGlaive"
+  },
+  "spear": {
+   "amount": 12,
+   "max": 99.0,
+   "min": 49.0,
+   "resource": "IronIngot",
+   "type": "Spear"
+  },
+  "spellblade of defense": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "SpellbladeOfDefense"
+  },
+  "standard plate kabuto": {
+   "amount": 25,
+   "max": 140.0,
+   "min": 90.0,
+   "resource": "IronIngot",
+   "type": "StandardPlateKabuto"
+  },
+  "tekagi": {
+   "amount": 12,
+   "max": 105.0,
+   "min": 55.0,
+   "resource": "IronIngot",
+   "type": "Tekagi"
+  },
+  "tessen": {
+   "amount": 16,
+   "max": 135.0,
+   "min": 85.0,
+   "resource": "IronIngot",
+   "type": "Tessen"
+  },
+  "thundering axe": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "ThunderingAxe"
+  },
+  "true assassin spike": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TrueAssassinSpike"
+  },
+  "true leafblade": {
+   "amount": 12,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TrueLeafblade"
+  },
+  "true radiant scimitar": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TrueRadiantScimitar"
+  },
+  "true spellblade": {
+   "amount": 14,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TrueSpellblade"
+  },
+  "true war cleaver": {
+   "amount": 18,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TrueWarCleaver"
+  },
+  "twinkling scimitar": {
+   "amount": 15,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "TwinklingScimitar"
+  },
+  "two handed axe": {
+   "amount": 16,
+   "max": 83.0,
+   "min": 33.0,
+   "resource": "IronIngot",
+   "type": "TwoHandedAxe"
+  },
+  "viking sword": {
+   "amount": 14,
+   "max": 74.3,
+   "min": 24.3,
+   "resource": "IronIngot",
+   "type": "VikingSword"
+  },
+  "wakizashi": {
+   "amount": 8,
+   "max": 100.0,
+   "min": 50.0,
+   "resource": "IronIngot",
+   "type": "Wakizashi"
+  },
+  "war axe": {
+   "amount": 16,
+   "max": 89.1,
+   "min": 39.1,
+   "resource": "IronIngot",
+   "type": "WarAxe"
+  },
+  "war cleaver": {
+   "amount": 18,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "WarCleaver"
+  },
+  "war fork": {
+   "amount": 12,
+   "max": 92.9,
+   "min": 42.9,
+   "resource": "IronIngot",
+   "type": "WarFork"
+  },
+  "war hammer": {
+   "amount": 16,
+   "max": 84.2,
+   "min": 34.2,
+   "resource": "IronIngot",
+   "type": "WarHammer"
+  },
+  "war mace": {
+   "amount": 14,
+   "max": 78.0,
+   "min": 28.0,
+   "resource": "IronIngot",
+   "type": "WarMace"
+  },
+  "wooden kite shield": {
+   "amount": 8,
+   "max": 34.8,
+   "min": -15.2,
+   "resource": "IronIngot",
+   "type": "WoodenKiteShield"
+  },
+  "wounding assassin spike": {
+   "amount": 9,
+   "max": 125.0,
+   "min": 75.0,
+   "resource": "IronIngot",
+   "type": "WoundingAssassinSpike"
+  }
+ },
+ "Carpentry": {
+  "abbatoir deed": {
+   "amount": 100,
+   "max": 125.0,
+   "min": 100.0,
+   "resource": "Log",
+   "type": "AbbatoirDeed"
+  },
+  "acid proof rope": {
+   "amount": 2,
+   "max": 130.0,
+   "min": 80.0,
+   "resource": "GreaterStrengthPotion",
+   "type": "AcidProofRope"
+  },
+  "alchemist table east deed": {
+   "amount": 70,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "AlchemistTableEastDeed"
+  },
+  "alchemist table south deed": {
+   "amount": 70,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "AlchemistTableSouthDeed"
+  },
+  "ancient wild staff": {
+   "amount": 16,
+   "max": 113.8,
+   "min": 63.8,
+   "resource": "Log",
+   "type": "AncientWildStaff"
+  },
+  "anvil east deed": {
+   "amount": 5,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "AnvilEastDeed"
+  },
+  "anvil south deed": {
+   "amount": 5,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "AnvilSouthDeed"
+  },
+  "arcane bookshelf east deed": {
+   "amount": 80,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ArcaneBookshelfEastDeed"
+  },
+  "arcane bookshelf south deed": {
+   "amount": 80,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ArcaneBookshelfSouthDeed"
+  },
+  "arcane circle deed": {
+   "amount": 100,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ArcaneCircleDeed"
+  },
+  "arcanist statue east deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "ArcanistStatueEastDeed"
+  },
+  "arcanist statue south deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "ArcanistStatueSouthDeed"
+  },
+  "arcanists wild staff": {
+   "amount": 16,
+   "max": 113.8,
+   "min": 63.8,
+   "resource": "Log",
+   "type": "ArcanistsWildStaff"
+  },
+  "armoire": {
+   "amount": 35,
+   "max": 109.2,
+   "min": 84.2,
+   "resource": "Log",
+   "type": "Armoire"
+  },
+  "ballot box deed": {
+   "amount": 5,
+   "max": 72.3,
+   "min": 47.3,
+   "resource": "Log",
+   "type": "BallotBoxDeed"
+  },
+  "bamboo chair": {
+   "amount": 13,
+   "max": 46.0,
+   "min": 21.0,
+   "resource": "Log",
+   "type": "BambooChair"
+  },
+  "bamboo flute": {
+   "amount": 15,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "BambooFlute"
+  },
+  "bamboo screen": {
+   "amount": 75,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "BambooScreen"
+  },
+  "barrel lid": {
+   "amount": 4,
+   "max": 36.0,
+   "min": 11.0,
+   "resource": "Log",
+   "type": "BarrelLid"
+  },
+  "barrel staves": {
+   "amount": 5,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "BarrelStaves"
+  },
+  "big elven chair": {
+   "amount": 40,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "BigElvenChair"
+  },
+  "board": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "Board"
+  },
+  "bokuto": {
+   "amount": 6,
+   "max": 95.0,
+   "min": 70.0,
+   "resource": "Log",
+   "type": "Bokuto"
+  },
+  "bramble coat": {
+   "amount": 10,
+   "max": 120.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "BrambleCoat"
+  },
+  "cherry armoire": {
+   "amount": 40,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "CherryArmoire"
+  },
+  "dart board east deed": {
+   "amount": 5,
+   "max": 40.7,
+   "min": 15.7,
+   "resource": "Log",
+   "type": "DartBoardEastDeed"
+  },
+  "dart board south deed": {
+   "amount": 5,
+   "max": 40.7,
+   "min": 15.7,
+   "resource": "Log",
+   "type": "DartBoardSouthDeed"
+  },
+  "decorative box": {
+   "amount": 25,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "DecorativeBox"
+  },
+  "dressform": {
+   "amount": 25,
+   "max": 88.1,
+   "min": 63.1,
+   "resource": "Log",
+   "type": "Dressform"
+  },
+  "drums": {
+   "amount": 20,
+   "max": 82.8,
+   "min": 57.8,
+   "resource": "Log",
+   "type": "Drums"
+  },
+  "easel": {
+   "amount": 20,
+   "max": 111.8,
+   "min": 86.8,
+   "resource": "Log",
+   "type": "Easel"
+  },
+  "elegant armoire": {
+   "amount": 40,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "ElegantArmoire"
+  },
+  "elegant low table": {
+   "amount": 35,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ElegantLowTable"
+  },
+  "elven bed east deed": {
+   "amount": 100,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ElvenBedEastDeed"
+  },
+  "elven bed south deed": {
+   "amount": 100,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ElvenBedSouthDeed"
+  },
+  "elven dresser east deed": {
+   "amount": 45,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Log",
+   "type": "ElvenDresserEastDeed"
+  },
+  "elven dresser south deed": {
+   "amount": 45,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Log",
+   "type": "ElvenDresserSouthDeed"
+  },
+  "elven forge deed": {
+   "amount": 200,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "ElvenForgeDeed"
+  },
+  "elven loveseat east deed": {
+   "amount": 50,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ElvenLoveseatEastDeed"
+  },
+  "elven loveseat south deed": {
+   "amount": 50,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ElvenLoveseatSouthDeed"
+  },
+  "elven podium": {
+   "amount": 20,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ElvenPodium"
+  },
+  "elven reading chair": {
+   "amount": 30,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ElvenReadingChair"
+  },
+  "elven spinning wheel east deed": {
+   "amount": 60,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Log",
+   "type": "ElvenSpinningWheelEastDeed"
+  },
+  "elven spinning wheel south deed": {
+   "amount": 60,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Log",
+   "type": "ElvenSpinningWheelSouthDeed"
+  },
+  "elven stove east deed": {
+   "amount": 80,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "ElvenStoveEastDeed"
+  },
+  "elven stove south deed": {
+   "amount": 80,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "ElvenStoveSouthDeed"
+  },
+  "elven wash basin east deed": {
+   "amount": 40,
+   "max": 95.0,
+   "min": 70.0,
+   "resource": "Log",
+   "type": "ElvenWashBasinEastDeed"
+  },
+  "elven wash basin south deed": {
+   "amount": 40,
+   "max": 95.0,
+   "min": 70.0,
+   "resource": "Log",
+   "type": "ElvenWashBasinSouthDeed"
+  },
+  "empty bookcase": {
+   "amount": 25,
+   "max": 56.5,
+   "min": 31.5,
+   "resource": "Log",
+   "type": "EmptyBookcase"
+  },
+  "fancy armoire": {
+   "amount": 35,
+   "max": 109.2,
+   "min": 84.2,
+   "resource": "Log",
+   "type": "FancyArmoire"
+  },
+  "fancy elven table east deed": {
+   "amount": 50,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "FancyElvenTableEastDeed"
+  },
+  "fancy elven table south deed": {
+   "amount": 50,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "FancyElvenTableSouthDeed"
+  },
+  "fancy wooden chair cushion": {
+   "amount": 15,
+   "max": 67.1,
+   "min": 42.1,
+   "resource": "Log",
+   "type": "FancyWoodenChairCushion"
+  },
+  "finished wooden chest": {
+   "amount": 30,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "FinishedWoodenChest"
+  },
+  "fishing pole": {
+   "amount": 5,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "FishingPole"
+  },
+  "flour mill east deed": {
+   "amount": 100,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "FlourMillEastDeed"
+  },
+  "flour mill south deed": {
+   "amount": 100,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "FlourMillSouthDeed"
+  },
+  "foot stool": {
+   "amount": 9,
+   "max": 36.0,
+   "min": 11.0,
+   "resource": "Log",
+   "type": "FootStool"
+  },
+  "fukiya": {
+   "amount": 6,
+   "max": 85.0,
+   "min": 60.0,
+   "resource": "Log",
+   "type": "Fukiya"
+  },
+  "full bookcase": {
+   "amount": 25,
+   "max": 85.0,
+   "min": 60.0,
+   "resource": "Log",
+   "type": "FullBookcase"
+  },
+  "giant replica acorn": {
+   "amount": 35,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "GiantReplicaAcorn"
+  },
+  "gilded wooden chest": {
+   "amount": 30,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "GildedWoodenChest"
+  },
+  "gnarled staff": {
+   "amount": 7,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "GnarledStaff"
+  },
+  "hardened wild staff": {
+   "amount": 16,
+   "max": 113.8,
+   "min": 63.8,
+   "resource": "Log",
+   "type": "HardenedWildStaff"
+  },
+  "harp": {
+   "amount": 35,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "Harp"
+  },
+  "ironwood crown": {
+   "amount": 10,
+   "max": 120.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "IronwoodCrown"
+  },
+  "keg": {
+   "amount": 3,
+   "max": 82.8,
+   "min": 57.8,
+   "resource": "BarrelStaves",
+   "type": "Keg"
+  },
+  "lap harp": {
+   "amount": 20,
+   "max": 88.1,
+   "min": 63.1,
+   "resource": "Log",
+   "type": "LapHarp"
+  },
+  "large bed east deed": {
+   "amount": 150,
+   "max": 119.8,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "LargeBedEastDeed"
+  },
+  "large bed south deed": {
+   "amount": 150,
+   "max": 119.8,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "LargeBedSouthDeed"
+  },
+  "large crate": {
+   "amount": 18,
+   "max": 72.3,
+   "min": 47.3,
+   "resource": "Log",
+   "type": "LargeCrate"
+  },
+  "large forge east deed": {
+   "amount": 5,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "LargeForgeEastDeed"
+  },
+  "large forge south deed": {
+   "amount": 5,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "LargeForgeSouthDeed"
+  },
+  "large table": {
+   "amount": 27,
+   "max": 109.2,
+   "min": 84.2,
+   "resource": "Log",
+   "type": "LargeTable"
+  },
+  "loom east deed": {
+   "amount": 85,
+   "max": 109.2,
+   "min": 84.2,
+   "resource": "Log",
+   "type": "LoomEastDeed"
+  },
+  "loom south deed": {
+   "amount": 85,
+   "max": 109.2,
+   "min": 84.2,
+   "resource": "Log",
+   "type": "LoomSouthDeed"
+  },
+  "lute": {
+   "amount": 25,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "Lute"
+  },
+  "maple armoire": {
+   "amount": 40,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "MapleArmoire"
+  },
+  "medium crate": {
+   "amount": 15,
+   "max": 56.0,
+   "min": 31.0,
+   "resource": "Log",
+   "type": "MediumCrate"
+  },
+  "mounted dread horn": {
+   "amount": 50,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "MountedDreadHorn"
+  },
+  "nightstand": {
+   "amount": 17,
+   "max": 67.1,
+   "min": 42.1,
+   "resource": "Log",
+   "type": "Nightstand"
+  },
+  "ornate elven chair": {
+   "amount": 30,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "OrnateElvenChair"
+  },
+  "ornate elven table east deed": {
+   "amount": 60,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "OrnateElvenTableEastDeed"
+  },
+  "ornate elven table south deed": {
+   "amount": 60,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "OrnateElvenTableSouthDeed"
+  },
+  "ornate wooden chest": {
+   "amount": 30,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "OrnateWoodenChest"
+  },
+  "parrot perch deed": {
+   "amount": 100,
+   "max": 85.0,
+   "min": 50.0,
+   "resource": "Log",
+   "type": "ParrotPerchDeed"
+  },
+  "pentagram deed": {
+   "amount": 100,
+   "max": 125.0,
+   "min": 100.0,
+   "resource": "Log",
+   "type": "PentagramDeed"
+  },
+  "phantom staff": {
+   "amount": 16,
+   "max": 130.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "PhantomStaff"
+  },
+  "pickpocket dip east deed": {
+   "amount": 65,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "PickpocketDipEastDeed"
+  },
+  "pickpocket dip south deed": {
+   "amount": 65,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "PickpocketDipSouthDeed"
+  },
+  "plain low table": {
+   "amount": 35,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "PlainLowTable"
+  },
+  "plain wooden chest": {
+   "amount": 30,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "PlainWoodenChest"
+  },
+  "player b b east": {
+   "amount": 50,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "PlayerBBEast"
+  },
+  "player b b south": {
+   "amount": 50,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "PlayerBBSouth"
+  },
+  "quarter staff": {
+   "amount": 6,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "QuarterStaff"
+  },
+  "rarewood chest": {
+   "amount": 30,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "RarewoodChest"
+  },
+  "raven helm": {
+   "amount": 10,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "Log",
+   "type": "RavenHelm"
+  },
+  "red armoire": {
+   "amount": 40,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "RedArmoire"
+  },
+  "red hanging lantern": {
+   "amount": 5,
+   "max": 90.0,
+   "min": 65.0,
+   "resource": "Log",
+   "type": "RedHangingLantern"
+  },
+  "runed switch": {
+   "amount": 2,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "Log",
+   "type": "RunedSwitch"
+  },
+  "shepherds crook": {
+   "amount": 7,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "ShepherdsCrook"
+  },
+  "shoji screen": {
+   "amount": 75,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "ShojiScreen"
+  },
+  "short cabinet": {
+   "amount": 35,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "ShortCabinet"
+  },
+  "short music stand": {
+   "amount": 15,
+   "max": 103.9,
+   "min": 78.9,
+   "resource": "Log",
+   "type": "ShortMusicStand"
+  },
+  "simple elven armoire": {
+   "amount": 60,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "SimpleElvenArmoire"
+  },
+  "small bed east deed": {
+   "amount": 100,
+   "max": 119.8,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "SmallBedEastDeed"
+  },
+  "small bed south deed": {
+   "amount": 100,
+   "max": 119.8,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "SmallBedSouthDeed"
+  },
+  "small crate": {
+   "amount": 8,
+   "max": 35.0,
+   "min": 10.0,
+   "resource": "Log",
+   "type": "SmallCrate"
+  },
+  "small forge deed": {
+   "amount": 5,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "SmallForgeDeed"
+  },
+  "spinning wheel east deed": {
+   "amount": 75,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "SpinningWheelEastDeed"
+  },
+  "spinning wheel south deed": {
+   "amount": 75,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "SpinningWheelSouthDeed"
+  },
+  "squirrel statue east deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "SquirrelStatueEastDeed"
+  },
+  "squirrel statue south deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "SquirrelStatueSouthDeed"
+  },
+  "stone oven east deed": {
+   "amount": 85,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "StoneOvenEastDeed"
+  },
+  "stone oven south deed": {
+   "amount": 85,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "StoneOvenSouthDeed"
+  },
+  "stool": {
+   "amount": 9,
+   "max": 36.0,
+   "min": 11.0,
+   "resource": "Log",
+   "type": "Stool"
+  },
+  "tall cabinet": {
+   "amount": 35,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "TallCabinet"
+  },
+  "tall elven bed east deed": {
+   "amount": 200,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "TallElvenBedEastDeed"
+  },
+  "tall elven bed south deed": {
+   "amount": 200,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "TallElvenBedSouthDeed"
+  },
+  "tall music stand": {
+   "amount": 20,
+   "max": 106.5,
+   "min": 81.5,
+   "resource": "Log",
+   "type": "TallMusicStand"
+  },
+  "tambourine": {
+   "amount": 15,
+   "max": 82.8,
+   "min": 57.8,
+   "resource": "Log",
+   "type": "Tambourine"
+  },
+  "tambourine tassel": {
+   "amount": 15,
+   "max": 82.8,
+   "min": 57.8,
+   "resource": "Log",
+   "type": "TambourineTassel"
+  },
+  "tetsubo": {
+   "amount": 10,
+   "max": 140.3,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "Tetsubo"
+  },
+  "thorned wild staff": {
+   "amount": 16,
+   "max": 113.8,
+   "min": 63.8,
+   "resource": "Log",
+   "type": "ThornedWildStaff"
+  },
+  "throne": {
+   "amount": 19,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "Throne"
+  },
+  "training dummy east deed": {
+   "amount": 55,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "TrainingDummyEastDeed"
+  },
+  "training dummy south deed": {
+   "amount": 55,
+   "max": 93.4,
+   "min": 68.4,
+   "resource": "Log",
+   "type": "TrainingDummySouthDeed"
+  },
+  "vulture helm": {
+   "amount": 10,
+   "max": 113.9,
+   "min": 63.9,
+   "resource": "Log",
+   "type": "VultureHelm"
+  },
+  "warrior statue east deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "WarriorStatueEastDeed"
+  },
+  "warrior statue south deed": {
+   "amount": 250,
+   "max": 35.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "WarriorStatueSouthDeed"
+  },
+  "water trough east deed": {
+   "amount": 150,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "WaterTroughEastDeed"
+  },
+  "water trough south deed": {
+   "amount": 150,
+   "max": 119.7,
+   "min": 94.7,
+   "resource": "Log",
+   "type": "WaterTroughSouthDeed"
+  },
+  "white hanging lantern": {
+   "amount": 5,
+   "max": 90.0,
+   "min": 65.0,
+   "resource": "Log",
+   "type": "WhiteHangingLantern"
+  },
+  "wild staff": {
+   "amount": 16,
+   "max": 113.8,
+   "min": 63.8,
+   "resource": "Log",
+   "type": "WildStaff"
+  },
+  "winged helm": {
+   "amount": 10,
+   "max": 108.4,
+   "min": 58.4,
+   "resource": "Log",
+   "type": "WingedHelm"
+  },
+  "wooden bench": {
+   "amount": 17,
+   "max": 77.6,
+   "min": 52.6,
+   "resource": "Log",
+   "type": "WoodenBench"
+  },
+  "wooden box": {
+   "amount": 10,
+   "max": 46.0,
+   "min": 21.0,
+   "resource": "Log",
+   "type": "WoodenBox"
+  },
+  "wooden chair": {
+   "amount": 13,
+   "max": 46.0,
+   "min": 21.0,
+   "resource": "Log",
+   "type": "WoodenChair"
+  },
+  "wooden chair cushion": {
+   "amount": 13,
+   "max": 67.1,
+   "min": 42.1,
+   "resource": "Log",
+   "type": "WoodenChairCushion"
+  },
+  "wooden chest": {
+   "amount": 20,
+   "max": 98.6,
+   "min": 73.6,
+   "resource": "Log",
+   "type": "WoodenChest"
+  },
+  "wooden foot locker": {
+   "amount": 30,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "WoodenFootLocker"
+  },
+  "wooden shield": {
+   "amount": 9,
+   "max": 77.6,
+   "min": 52.6,
+   "resource": "Log",
+   "type": "WoodenShield"
+  },
+  "wooden throne": {
+   "amount": 17,
+   "max": 77.6,
+   "min": 52.6,
+   "resource": "Log",
+   "type": "WoodenThrone"
+  },
+  "woodland arms": {
+   "amount": 15,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Log",
+   "type": "WoodlandArms"
+  },
+  "woodland chest": {
+   "amount": 20,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Log",
+   "type": "WoodlandChest"
+  },
+  "woodland gloves": {
+   "amount": 15,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "WoodlandGloves"
+  },
+  "woodland gorget": {
+   "amount": 15,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "WoodlandGorget"
+  },
+  "woodland legs": {
+   "amount": 15,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Log",
+   "type": "WoodlandLegs"
+  },
+  "writing table": {
+   "amount": 17,
+   "max": 88.1,
+   "min": 63.1,
+   "resource": "Log",
+   "type": "WritingTable"
+  },
+  "yew wood table": {
+   "amount": 23,
+   "max": 88.1,
+   "min": 63.1,
+   "resource": "Log",
+   "type": "YewWoodTable"
+  }
+ },
+ "Tailoring": {
+  "bandana": {
+   "amount": 2,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Cloth",
+   "type": "Bandana"
+  },
+  "body sash": {
+   "amount": 4,
+   "max": 29.1,
+   "min": 4.1,
+   "resource": "Cloth",
+   "type": "BodySash"
+  },
+  "bolt of cloth": {
+   "amount": 50,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Cloth",
+   "type": "BoltOfCloth"
+  },
+  "bone arms": {
+   "amount": 8,
+   "max": 117.0,
+   "min": 92.0,
+   "resource": "Leather",
+   "type": "BoneArms"
+  },
+  "bone chest": {
+   "amount": 12,
+   "max": 121.0,
+   "min": 96.0,
+   "resource": "Leather",
+   "type": "BoneChest"
+  },
+  "bone gloves": {
+   "amount": 6,
+   "max": 114.0,
+   "min": 89.0,
+   "resource": "Leather",
+   "type": "BoneGloves"
+  },
+  "bone helm": {
+   "amount": 4,
+   "max": 110.0,
+   "min": 85.0,
+   "resource": "Leather",
+   "type": "BoneHelm"
+  },
+  "bone legs": {
+   "amount": 10,
+   "max": 120.0,
+   "min": 95.0,
+   "resource": "Leather",
+   "type": "BoneLegs"
+  },
+  "bonnet": {
+   "amount": 11,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "Bonnet"
+  },
+  "boots": {
+   "amount": 8,
+   "max": 58.1,
+   "min": 33.1,
+   "resource": "Leather",
+   "type": "Boots"
+  },
+  "cap": {
+   "amount": 11,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "Cap"
+  },
+  "cloak": {
+   "amount": 14,
+   "max": 66.4,
+   "min": 41.4,
+   "resource": "Cloth",
+   "type": "Cloak"
+  },
+  "cloth ninja hood": {
+   "amount": 13,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Cloth",
+   "type": "ClothNinjaHood"
+  },
+  "doublet": {
+   "amount": 8,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Cloth",
+   "type": "Doublet"
+  },
+  "elven quiver": {
+   "amount": 28,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "Leather",
+   "type": "ElvenQuiver"
+  },
+  "fancy dress": {
+   "amount": 12,
+   "max": 58.1,
+   "min": 33.1,
+   "resource": "Cloth",
+   "type": "FancyDress"
+  },
+  "fancy shirt": {
+   "amount": 8,
+   "max": 49.8,
+   "min": 24.8,
+   "resource": "Cloth",
+   "type": "FancyShirt"
+  },
+  "feathered hat": {
+   "amount": 12,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "FeatheredHat"
+  },
+  "female kimono": {
+   "amount": 16,
+   "max": 75.0,
+   "min": 50.0,
+   "resource": "Cloth",
+   "type": "FemaleKimono"
+  },
+  "female leather chest": {
+   "amount": 8,
+   "max": 87.2,
+   "min": 62.2,
+   "resource": "Leather",
+   "type": "FemaleLeatherChest"
+  },
+  "female studded chest": {
+   "amount": 10,
+   "max": 112.1,
+   "min": 87.1,
+   "resource": "Leather",
+   "type": "FemaleStuddedChest"
+  },
+  "floppy hat": {
+   "amount": 11,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "FloppyHat"
+  },
+  "flower garland": {
+   "amount": 5,
+   "max": 35.0,
+   "min": 10.0,
+   "resource": "Cloth",
+   "type": "FlowerGarland"
+  },
+  "formal shirt": {
+   "amount": 16,
+   "max": 51.0,
+   "min": 26.0,
+   "resource": "Cloth",
+   "type": "FormalShirt"
+  },
+  "full apron": {
+   "amount": 10,
+   "max": 54.0,
+   "min": 29.0,
+   "resource": "Cloth",
+   "type": "FullApron"
+  },
+  "fur boots": {
+   "amount": 12,
+   "max": 75.0,
+   "min": 50.0,
+   "resource": "Cloth",
+   "type": "FurBoots"
+  },
+  "fur cape": {
+   "amount": 13,
+   "max": 60.0,
+   "min": 35.0,
+   "resource": "Cloth",
+   "type": "FurCape"
+  },
+  "fur sarong": {
+   "amount": 12,
+   "max": 60.0,
+   "min": 35.0,
+   "resource": "Cloth",
+   "type": "FurSarong"
+  },
+  "gargish leather arms type1": {
+   "amount": 8,
+   "max": 78.9,
+   "min": 53.9,
+   "resource": "Leather",
+   "type": "GargishLeatherArmsType1"
+  },
+  "gargish leather arms type2": {
+   "amount": 8,
+   "max": 78.9,
+   "min": 53.9,
+   "resource": "Leather",
+   "type": "GargishLeatherArmsType2"
+  },
+  "gargish leather chest type1": {
+   "amount": 12,
+   "max": 95.5,
+   "min": 70.5,
+   "resource": "Leather",
+   "type": "GargishLeatherChestType1"
+  },
+  "gargish leather chest type2": {
+   "amount": 12,
+   "max": 95.5,
+   "min": 70.5,
+   "resource": "Leather",
+   "type": "GargishLeatherChestType2"
+  },
+  "gargish leather kilt type1": {
+   "amount": 8,
+   "max": 83.0,
+   "min": 58.0,
+   "resource": "Leather",
+   "type": "GargishLeatherKiltType1"
+  },
+  "gargish leather kilt type2": {
+   "amount": 8,
+   "max": 83.0,
+   "min": 58.0,
+   "resource": "Leather",
+   "type": "GargishLeatherKiltType2"
+  },
+  "gargish leather legs type1": {
+   "amount": 8,
+   "max": 91.3,
+   "min": 66.3,
+   "resource": "Leather",
+   "type": "GargishLeatherLegsType1"
+  },
+  "gargish leather legs type2": {
+   "amount": 8,
+   "max": 91.3,
+   "min": 66.3,
+   "resource": "Leather",
+   "type": "GargishLeatherLegsType2"
+  },
+  "gargish leather wing armor": {
+   "amount": 8,
+   "max": 90.3,
+   "min": 65.3,
+   "resource": "Leather",
+   "type": "GargishLeatherWingArmor"
+  },
+  "gargish studded arms type1": {
+   "amount": 8,
+   "max": 112.1,
+   "min": 87.1,
+   "resource": "Leather",
+   "type": "GargishStuddedArmsType1"
+  },
+  "gargish studded arms type2": {
+   "amount": 8,
+   "max": 112.1,
+   "min": 87.1,
+   "resource": "Leather",
+   "type": "GargishStuddedArmsType2"
+  },
+  "gargish studded chest type1": {
+   "amount": 14,
+   "max": 119.0,
+   "min": 94.0,
+   "resource": "Leather",
+   "type": "GargishStuddedChestType1"
+  },
+  "gargish studded chest type2": {
+   "amount": 14,
+   "max": 119.0,
+   "min": 94.0,
+   "resource": "Leather",
+   "type": "GargishStuddedChestType2"
+  },
+  "gargish studded kilt type1": {
+   "amount": 10,
+   "max": 114.5,
+   "min": 89.5,
+   "resource": "Leather",
+   "type": "GargishStuddedKiltType1"
+  },
+  "gargish studded kilt type2": {
+   "amount": 10,
+   "max": 114.5,
+   "min": 89.5,
+   "resource": "Leather",
+   "type": "GargishStuddedKiltType2"
+  },
+  "gargish studded legs type1": {
+   "amount": 12,
+   "max": 116.2,
+   "min": 91.2,
+   "resource": "Leather",
+   "type": "GargishStuddedLegsType1"
+  },
+  "gargish studded legs type2": {
+   "amount": 12,
+   "max": 116.2,
+   "min": 91.2,
+   "resource": "Leather",
+   "type": "GargishStuddedLegsType2"
+  },
+  "gilded dress": {
+   "amount": 16,
+   "max": 62.5,
+   "min": 37.5,
+   "resource": "Cloth",
+   "type": "GildedDress"
+  },
+  "goza mat east deed": {
+   "amount": 25,
+   "max": 80.0,
+   "min": 55.0,
+   "resource": "Cloth",
+   "type": "GozaMatEastDeed"
+  },
+  "hakama": {
+   "amount": 16,
+   "max": 75.0,
+   "min": 50.0,
+   "resource": "Cloth",
+   "type": "Hakama"
+  },
+  "hakama shita": {
+   "amount": 14,
+   "max": 65.0,
+   "min": 40.0,
+   "resource": "Cloth",
+   "type": "HakamaShita"
+  },
+  "half apron": {
+   "amount": 6,
+   "max": 45.7,
+   "min": 20.7,
+   "resource": "Cloth",
+   "type": "HalfApron"
+  },
+  "jester hat": {
+   "amount": 15,
+   "max": 32.2,
+   "min": 7.2,
+   "resource": "Cloth",
+   "type": "JesterHat"
+  },
+  "jester suit": {
+   "amount": 24,
+   "max": 33.2,
+   "min": 8.2,
+   "resource": "Cloth",
+   "type": "JesterSuit"
+  },
+  "jin baori": {
+   "amount": 12,
+   "max": 55.0,
+   "min": 30.0,
+   "resource": "Cloth",
+   "type": "JinBaori"
+  },
+  "kamishimo": {
+   "amount": 15,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Cloth",
+   "type": "Kamishimo"
+  },
+  "kasa": {
+   "amount": 12,
+   "max": 85.0,
+   "min": 60.0,
+   "resource": "Cloth",
+   "type": "Kasa"
+  },
+  "kilt": {
+   "amount": 8,
+   "max": 45.7,
+   "min": 20.7,
+   "resource": "Cloth",
+   "type": "Kilt"
+  },
+  "leather arms": {
+   "amount": 4,
+   "max": 78.9,
+   "min": 53.9,
+   "resource": "Leather",
+   "type": "LeatherArms"
+  },
+  "leather bustier arms": {
+   "amount": 6,
+   "max": 83.0,
+   "min": 58.0,
+   "resource": "Leather",
+   "type": "LeatherBustierArms"
+  },
+  "leather cap": {
+   "amount": 2,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Leather",
+   "type": "LeatherCap"
+  },
+  "leather chest": {
+   "amount": 12,
+   "max": 95.5,
+   "min": 70.5,
+   "resource": "Leather",
+   "type": "LeatherChest"
+  },
+  "leather do": {
+   "amount": 12,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Leather",
+   "type": "LeatherDo"
+  },
+  "leather gloves": {
+   "amount": 3,
+   "max": 76.8,
+   "min": 51.8,
+   "resource": "Leather",
+   "type": "LeatherGloves"
+  },
+  "leather gorget": {
+   "amount": 4,
+   "max": 78.9,
+   "min": 53.9,
+   "resource": "Leather",
+   "type": "LeatherGorget"
+  },
+  "leather jingasa": {
+   "amount": 4,
+   "max": 70.0,
+   "min": 45.0,
+   "resource": "Leather",
+   "type": "LeatherJingasa"
+  },
+  "leather legs": {
+   "amount": 10,
+   "max": 91.3,
+   "min": 66.3,
+   "resource": "Leather",
+   "type": "LeatherLegs"
+  },
+  "leather mempo": {
+   "amount": 8,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Leather",
+   "type": "LeatherMempo"
+  },
+  "leather shorts": {
+   "amount": 8,
+   "max": 87.2,
+   "min": 62.2,
+   "resource": "Leather",
+   "type": "LeatherShorts"
+  },
+  "leather skirt": {
+   "amount": 6,
+   "max": 83.0,
+   "min": 58.0,
+   "resource": "Leather",
+   "type": "LeatherSkirt"
+  },
+  "long pants": {
+   "amount": 8,
+   "max": 49.8,
+   "min": 24.8,
+   "resource": "Cloth",
+   "type": "LongPants"
+  },
+  "male kimono": {
+   "amount": 16,
+   "max": 75.0,
+   "min": 50.0,
+   "resource": "Cloth",
+   "type": "MaleKimono"
+  },
+  "ninja tabi": {
+   "amount": 10,
+   "max": 95.0,
+   "min": 70.0,
+   "resource": "Cloth",
+   "type": "NinjaTabi"
+  },
+  "obi": {
+   "amount": 6,
+   "max": 45.0,
+   "min": 20.0,
+   "resource": "Cloth",
+   "type": "Obi"
+  },
+  "oil cloth": {
+   "amount": 1,
+   "max": 99.6,
+   "min": 74.6,
+   "resource": "Cloth",
+   "type": "OilCloth"
+  },
+  "orc helm": {
+   "amount": 6,
+   "max": 115.0,
+   "min": 90.0,
+   "resource": "Leather",
+   "type": "OrcHelm"
+  },
+  "plain dress": {
+   "amount": 10,
+   "max": 37.4,
+   "min": 12.4,
+   "resource": "Cloth",
+   "type": "PlainDress"
+  },
+  "quiver of fire": {
+   "amount": 28,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "Leather",
+   "type": "QuiverOfFire"
+  },
+  "quiver of ice": {
+   "amount": 28,
+   "max": 115.0,
+   "min": 65.0,
+   "resource": "Leather",
+   "type": "QuiverOfIce"
+  },
+  "robe": {
+   "amount": 16,
+   "max": 78.9,
+   "min": 53.9,
+   "resource": "Cloth",
+   "type": "Robe"
+  },
+  "samurai tabi": {
+   "amount": 6,
+   "max": 45.0,
+   "min": 20.0,
+   "resource": "Cloth",
+   "type": "SamuraiTabi"
+  },
+  "sandals": {
+   "amount": 4,
+   "max": 37.4,
+   "min": 12.4,
+   "resource": "Leather",
+   "type": "Sandals"
+  },
+  "shirt": {
+   "amount": 8,
+   "max": 45.7,
+   "min": 20.7,
+   "resource": "Cloth",
+   "type": "Shirt"
+  },
+  "shoes": {
+   "amount": 6,
+   "max": 41.5,
+   "min": 16.5,
+   "resource": "Leather",
+   "type": "Shoes"
+  },
+  "short pants": {
+   "amount": 6,
+   "max": 49.8,
+   "min": 24.8,
+   "resource": "Cloth",
+   "type": "ShortPants"
+  },
+  "skirt": {
+   "amount": 10,
+   "max": 54.0,
+   "min": 29.0,
+   "resource": "Cloth",
+   "type": "Skirt"
+  },
+  "skull cap": {
+   "amount": 2,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Cloth",
+   "type": "SkullCap"
+  },
+  "straw hat": {
+   "amount": 10,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "StrawHat"
+  },
+  "studded arms": {
+   "amount": 10,
+   "max": 112.1,
+   "min": 87.1,
+   "resource": "Leather",
+   "type": "StuddedArms"
+  },
+  "studded bustier arms": {
+   "amount": 8,
+   "max": 107.9,
+   "min": 82.9,
+   "resource": "Leather",
+   "type": "StuddedBustierArms"
+  },
+  "studded chest": {
+   "amount": 14,
+   "max": 119.0,
+   "min": 94.0,
+   "resource": "Leather",
+   "type": "StuddedChest"
+  },
+  "studded do": {
+   "amount": 14,
+   "max": 120.0,
+   "min": 95.0,
+   "resource": "Leather",
+   "type": "StuddedDo"
+  },
+  "studded gloves": {
+   "amount": 8,
+   "max": 107.9,
+   "min": 82.9,
+   "resource": "Leather",
+   "type": "StuddedGloves"
+  },
+  "studded gorget": {
+   "amount": 6,
+   "max": 103.8,
+   "min": 78.8,
+   "resource": "Leather",
+   "type": "StuddedGorget"
+  },
+  "studded legs": {
+   "amount": 12,
+   "max": 116.2,
+   "min": 91.2,
+   "resource": "Leather",
+   "type": "StuddedLegs"
+  },
+  "studded mempo": {
+   "amount": 8,
+   "max": 105.0,
+   "min": 80.0,
+   "resource": "Leather",
+   "type": "StuddedMempo"
+  },
+  "surcoat": {
+   "amount": 14,
+   "max": 33.2,
+   "min": 8.2,
+   "resource": "Cloth",
+   "type": "Surcoat"
+  },
+  "tall straw hat": {
+   "amount": 13,
+   "max": 31.7,
+   "min": 6.7,
+   "resource": "Cloth",
+   "type": "TallStrawHat"
+  },
+  "tattsuke hakama": {
+   "amount": 16,
+   "max": 75.0,
+   "min": 50.0,
+   "resource": "Cloth",
+   "type": "TattsukeHakama"
+  },
+  "thigh boots": {
+   "amount": 10,
+   "max": 66.4,
+   "min": 41.4,
+   "resource": "Leather",
+   "type": "ThighBoots"
+  },
+  "tricorne hat": {
+   "amount": 12,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "TricorneHat"
+  },
+  "tunic": {
+   "amount": 12,
+   "max": 25.0,
+   "min": 0.0,
+   "resource": "Cloth",
+   "type": "Tunic"
+  },
+  "wide brim hat": {
+   "amount": 12,
+   "max": 31.2,
+   "min": 6.2,
+   "resource": "Cloth",
+   "type": "WideBrimHat"
+  },
+  "wizards hat": {
+   "amount": 15,
+   "max": 32.2,
+   "min": 7.2,
+   "resource": "Cloth",
+   "type": "WizardsHat"
+  }
+ },
+ "Tinkering": {
+  "axle": {
+   "amount": 2,
+   "max": 25.0,
+   "min": -25.0,
+   "resource": "Log",
+   "type": "Axle"
+  },
+  "axle gears": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "Axle",
+   "type": "AxleGears"
+  },
+  "barrel hoops": {
+   "amount": 5,
+   "max": 35.0,
+   "min": -15.0,
+   "resource": "IronIngot",
+   "type": "BarrelHoops"
+  },
+  "barrel tap": {
+   "amount": 2,
+   "max": 85.0,
+   "min": 35.0,
+   "resource": "IronIngot",
+   "type": "BarrelTap"
+  },
+  "bola": {
+   "amount": 4,
+   "max": 80.0,
+   "min": 60.0,
+   "resource": "BolaBall",
+   "type": "Bola"
+  },
+  "bola ball": {
+   "amount": 10,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "BolaBall"
+  },
+  "butcher knife": {
+   "amount": 2,
+   "max": 75.0,
+   "min": 25.0,
+   "resource": "IronIngot",
+   "type": "ButcherKnife"
+  },
+  "candelabra": {
+   "amount": 4,
+   "max": 105.0,
+   "min": 55.0,
+   "resource": "IronIngot",
+   "type": "Candelabra"
+  },
+  "cleaver": {
+   "amount": 3,
+   "max": 70.0,
+   "min": 20.0,
+   "resource": "IronIngot",
+   "type": "Cleaver"
+  },
+  "clock frame": {
+   "amount": 6,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "ClockFrame"
+  },
+  "clock left": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "ClockFrame",
+   "type": "ClockLeft"
+  },
+  "clock parts": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "AxleGears",
+   "type": "ClockParts"
+  },
+  "clock right": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "ClockFrame",
+   "type": "ClockRight"
+  },
+  "dart trap craft": {
+   "amount": 1,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "DartTrapCraft"
+  },
+  "dovetail saw": {
+   "amount": 4,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "DovetailSaw"
+  },
+  "draw knife": {
+   "amount": 2,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "DrawKnife"
+  },
+  "fletcher tools": {
+   "amount": 3,
+   "max": 85.0,
+   "min": 35.0,
+   "resource": "IronIngot",
+   "type": "FletcherTools"
+  },
+  "flour sifter": {
+   "amount": 3,
+   "max": 100.0,
+   "min": 50.0,
+   "resource": "IronIngot",
+   "type": "FlourSifter"
+  },
+  "fork left": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "ForkLeft"
+  },
+  "fork right": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "ForkRight"
+  },
+  "froe": {
+   "amount": 2,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Froe"
+  },
+  "gears": {
+   "amount": 2,
+   "max": 55.0,
+   "min": 5.0,
+   "resource": "IronIngot",
+   "type": "Gears"
+  },
+  "globe": {
+   "amount": 4,
+   "max": 105.0,
+   "min": 55.0,
+   "resource": "IronIngot",
+   "type": "Globe"
+  },
+  "goblet": {
+   "amount": 2,
+   "max": 60.0,
+   "min": 10.0,
+   "resource": "IronIngot",
+   "type": "Goblet"
+  },
+  "gold earrings": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "GoldEarrings"
+  },
+  "gold necklace": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "GoldNecklace"
+  },
+  "gold ring": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "GoldRing"
+  },
+  "hammer": {
+   "amount": 1,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Hammer"
+  },
+  "hatchet": {
+   "amount": 4,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Hatchet"
+  },
+  "heating stand": {
+   "amount": 4,
+   "max": 110.0,
+   "min": 60.0,
+   "resource": "IronIngot",
+   "type": "HeatingStand"
+  },
+  "hinge": {
+   "amount": 2,
+   "max": 55.0,
+   "min": 5.0,
+   "resource": "IronIngot",
+   "type": "Hinge"
+  },
+  "inshave": {
+   "amount": 2,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Inshave"
+  },
+  "jointing plane": {
+   "amount": 4,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "JointingPlane"
+  },
+  "key": {
+   "amount": 3,
+   "max": 70.0,
+   "min": 20.0,
+   "resource": "IronIngot",
+   "type": "Key"
+  },
+  "key ring": {
+   "amount": 2,
+   "max": 60.0,
+   "min": 10.0,
+   "resource": "IronIngot",
+   "type": "KeyRing"
+  },
+  "knife left": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "KnifeLeft"
+  },
+  "knife right": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "KnifeRight"
+  },
+  "lantern": {
+   "amount": 2,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Lantern"
+  },
+  "lockpick": {
+   "amount": 1,
+   "max": 95.0,
+   "min": 45.0,
+   "resource": "IronIngot",
+   "type": "Lockpick"
+  },
+  "mapmakers pen": {
+   "amount": 1,
+   "max": 75.0,
+   "min": 25.0,
+   "resource": "IronIngot",
+   "type": "MapmakersPen"
+  },
+  "mortar pestle": {
+   "amount": 3,
+   "max": 70.0,
+   "min": 20.0,
+   "resource": "IronIngot",
+   "type": "MortarPestle"
+  },
+  "moulding plane": {
+   "amount": 4,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "MouldingPlane"
+  },
+  "nunchaku": {
+   "amount": 3,
+   "max": 120.0,
+   "min": 70.0,
+   "resource": "IronIngot",
+   "type": "Nunchaku"
+  },
+  "pewter mug": {
+   "amount": 2,
+   "max": 60.0,
+   "min": 10.0,
+   "resource": "IronIngot",
+   "type": "PewterMug"
+  },
+  "pickaxe": {
+   "amount": 4,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "Pickaxe"
+  },
+  "plate": {
+   "amount": 2,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "Plate"
+  },
+  "poison trap craft": {
+   "amount": 1,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "PoisonTrapCraft"
+  },
+  "potion keg": {
+   "amount": 1,
+   "max": 100.0,
+   "min": 75.0,
+   "resource": "Keg",
+   "type": "PotionKeg"
+  },
+  "rolling pin": {
+   "amount": 5,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "RollingPin"
+  },
+  "saw": {
+   "amount": 4,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Saw"
+  },
+  "scales": {
+   "amount": 4,
+   "max": 110.0,
+   "min": 60.0,
+   "resource": "IronIngot",
+   "type": "Scales"
+  },
+  "scissors": {
+   "amount": 2,
+   "max": 55.0,
+   "min": 5.0,
+   "resource": "IronIngot",
+   "type": "Scissors"
+  },
+  "scorp": {
+   "amount": 2,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Scorp"
+  },
+  "scribes pen": {
+   "amount": 1,
+   "max": 75.0,
+   "min": 25.0,
+   "resource": "IronIngot",
+   "type": "ScribesPen"
+  },
+  "sewing kit": {
+   "amount": 2,
+   "max": 70.0,
+   "min": 10.0,
+   "resource": "IronIngot",
+   "type": "SewingKit"
+  },
+  "sextant": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "SextantParts",
+   "type": "Sextant"
+  },
+  "sextant parts": {
+   "amount": 1,
+   "max": 0.0,
+   "min": 0.0,
+   "resource": "AxleGears",
+   "type": "SextantParts"
+  },
+  "shovel": {
+   "amount": 4,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "Shovel"
+  },
+  "silver earrings": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "SilverEarrings"
+  },
+  "silver necklace": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "SilverNecklace"
+  },
+  "silver ring": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "SilverRing"
+  },
+  "skillet": {
+   "amount": 4,
+   "max": 80.0,
+   "min": 30.0,
+   "resource": "IronIngot",
+   "type": "Skillet"
+  },
+  "skinning knife": {
+   "amount": 2,
+   "max": 75.0,
+   "min": 25.0,
+   "resource": "IronIngot",
+   "type": "SkinningKnife"
+  },
+  "sledge hammer": {
+   "amount": 4,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "SledgeHammer"
+  },
+  "smith hammer": {
+   "amount": 4,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "SmithHammer"
+  },
+  "smoothing plane": {
+   "amount": 4,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "Log",
+   "type": "SmoothingPlane"
+  },
+  "spoon left": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "SpoonLeft"
+  },
+  "spoon right": {
+   "amount": 1,
+   "max": 50.0,
+   "min": 0.0,
+   "resource": "IronIngot",
+   "type": "SpoonRight"
+  },
+  "springs": {
+   "amount": 2,
+   "max": 55.0,
+   "min": 5.0,
+   "resource": "IronIngot",
+   "type": "Springs"
+  },
+  "spyglass": {
+   "amount": 4,
+   "max": 110.0,
+   "min": 60.0,
+   "resource": "IronIngot",
+   "type": "Spyglass"
+  },
+  "tinker tools": {
+   "amount": 2,
+   "max": 60.0,
+   "min": 10.0,
+   "resource": "IronIngot",
+   "type": "TinkerTools"
+  },
+  "tongs": {
+   "amount": 1,
+   "max": 85.0,
+   "min": 35.0,
+   "resource": "IronIngot",
+   "type": "Tongs"
+  },
+  "wedding ring": {
+   "amount": 2,
+   "max": 90.0,
+   "min": 40.0,
+   "resource": "IronIngot",
+   "type": "WeddingRing"
+  },
+  "wind chimes": {
+   "amount": 15,
+   "max": 130.0,
+   "min": 80.0,
+   "resource": "IronIngot",
+   "type": "WindChimes"
+  }
+ }
+}

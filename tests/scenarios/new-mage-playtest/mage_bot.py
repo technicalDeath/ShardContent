@@ -262,6 +262,13 @@ class Bot:
             if not self.facts.get("waiting_noted"):
                 self.facts["waiting_noted"] = True
                 self.log("near the healer, waiting for the offer")
+            since = self.facts.setdefault("near_since", time.time())
+            if time.time() - since > 25:
+                # the healer offers when a ghost walks INTO range, not while it stands there: step out and back in
+                self.facts["near_since"] = time.time()
+                self.notes.add("death", "A ghost that stands next to the healer is never offered a resurrection; it has to walk away and come back (nothing tells the player).", key="ghostwalk")
+                self.c.goto(HEALER[0], HEALER[1] + 9).wait(timeout=15)
+                self.c.goto(*HEALER).wait(timeout=15)
             time.sleep(2)
         elif waited < 240:
             res = self.c.goto(*HEALER).wait(timeout=5)
@@ -310,7 +317,7 @@ class Bot:
                 self.step_away(d, 5)
             return True
         self.log(f"avoiding {d.name} ({d.notoriety}) {d.distance} tiles away")
-        self.notes.add("danger", f"Hostile {d.name!r} within {d.distance} tiles of a new mage in town: nothing warns the player or deals with it.", key=f"danger:{d.name}", dist=d.distance)
+        self.notes.add("danger", f"Hostile {d.name!r} within {d.distance} tiles of a new mage at {self.c.x},{self.c.y}: nothing warns the player or deals with it.", key=f"danger:{d.name}", dist=d.distance)
         self.step_away(d, 7)
         return True
 
@@ -370,7 +377,9 @@ class Bot:
         self.c.events.drain()
         self.c.use(corpse.serial)
         self.c.wait_for(Event.CONTAINER_CONTENTS, timeout=4)
-        self.read_journal()
+        if any("criminal act" in line for line in self.read_journal()):
+            self.notes.add("loot", "Opening a corpse the player did not kill says 'Looting this monster corpse will be a criminal act!'; the bot left it (taking from another fighter's kill would flag it).", key="criminalloot")
+            return True
         try:
             contents = self.c.container(corpse.serial, timeout=5)
         except Exception:
@@ -624,7 +633,7 @@ class Bot:
             return False
         junk = [i for i in self.c.backpack if not any(w in i.name.lower() for w in self.KEEP) and i.name.lower() != "backpack"]
         heavy = self.c.weight > self.c.max_weight * 0.65 and junk
-        rich = self.c.gold >= 450
+        rich = self.c.gold >= getattr(self, "RICH_GOLD", 450)
         poor_needs_gold = self.c.gold < 60 and self.facts.get("bank_balance", 0) >= 60 and self.facts.get("need_gold")
         if not (heavy or rich or poor_needs_gold):
             return False

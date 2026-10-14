@@ -1,0 +1,779 @@
+{
+ "blackbear": {
+  "class": "BlackBear",
+  "min": 35.1,
+  "hits": 46,
+  "dmg": [
+   4,
+   10
+  ]
+ },
+ "brownbear": {
+  "class": "BrownBear",
+  "min": 41.1,
+  "hits": 46,
+  "dmg": [
+   6,
+   12
+  ]
+ },
+ "grizzlybear": {
+  "class": "GrizzlyBear",
+  "min": 59.1,
+  "hits": 76,
+  "dmg": [
+   8,
+   13
+  ]
+ },
+ "polarbear": {
+  "class": "PolarBear",
+  "min": 35.1,
+  "hits": 70,
+  "dmg": [
+   7,
+   12
+  ]
+ },
+ "chicken": {
+  "class": "Chicken",
+  "min": -0.9,
+  "hits": 3,
+  "dmg": [
+   1,
+   1
+  ]
+ },
+ "eagle": {
+  "class": "Eagle",
+  "min": 17.1,
+  "hits": 20,
+  "dmg": [
+   5,
+   10
+  ]
+ },
+ "direwolf": {
+  "class": "DireWolf",
+  "min": 83.1,
+  "hits": 58,
+  "dmg": [
+   11,
+   17
+  ]
+ },
+ "greywolf": {
+  "class": "GreyWolf",
+  "min": 53.1,
+  "hits": 34,
+  "dmg": [
+   3,
+   7
+  ]
+ },
+ "timberwolf": {
+  "class": "TimberWolf",
+  "min": 23.1,
+  "hits": 34,
+  "dmg": [
+   5,
+   9
+  ]
+ },
+ "whitewolf": {
+  "class": "WhiteWolf",
+  "min": 65.1,
+  "hits": 34,
+  "dmg": [
+   3,
+   7
+  ]
+ },
+ "bull": {
+  "class": "Bull",
+  "min": 71.1,
+  "hits": 50,
+  "dmg": [
+   4,
+   9
+  ]
+ },
+ "cow": {
+  "class": "Cow",
+  "min": 11.1,
+  "hits": 18,
+  "dmg": [
+   1,
+   4
+  ]
+ },
+ "cougar": {
+  "class": "Cougar",
+  "min": 41.1,
+  "hits": 34,
+  "dmg": [
+   4,
+   10
+  ]
+ },
+ "hellcat": {
+  "class": "HellCat",
+  "min": 71.1,
+  "hits": 48,
+  "dmg": [
+   6,
+   12
+  ]
+ },
+ "panther": {
+  "class": "Panther",
+  "min": 53.1,
+  "hits": 37,
+  "dmg": [
+   4,
+   12
+  ]
+ },
+ "predatorhellcat": {
+  "class": "PredatorHellCat",
+  "min": 89.1,
+  "hits": 97,
+  "dmg": [
+   5,
+   17
+  ]
+ },
+ "snowleopard": {
+  "class": "SnowLeopard",
+  "min": 53.1,
+  "hits": 34,
+  "dmg": [
+   3,
+   9
+  ]
+ },
+ "boar": {
+  "class": "Boar",
+  "min": 29.1,
+  "hits": 15,
+  "dmg": [
+   3,
+   6
+  ]
+ },
+ "bullfrog": {
+  "class": "BullFrog",
+  "min": 23.1,
+  "hits": 28,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "gaman": {
+  "class": "Gaman",
+  "min": 68.7,
+  "hits": 131,
+  "dmg": [
+   6,
+   11
+  ]
+ },
+ "gianttoad": {
+  "class": "GiantToad",
+  "min": 77.1,
+  "hits": 46,
+  "dmg": [
+   5,
+   17
+  ]
+ },
+ "goat": {
+  "class": "Goat",
+  "min": 11.1,
+  "hits": 12,
+  "dmg": [
+   3,
+   4
+  ]
+ },
+ "gorilla": {
+  "class": "Gorilla",
+  "min": -18.9,
+  "hits": 38,
+  "dmg": [
+   4,
+   10
+  ]
+ },
+ "greathart": {
+  "class": "GreatHart",
+  "min": 59.1,
+  "hits": 27,
+  "dmg": [
+   5,
+   9
+  ]
+ },
+ "hind": {
+  "class": "Hind",
+  "min": 23.1,
+  "hits": 15,
+  "dmg": [
+   4,
+   4
+  ]
+ },
+ "llama": {
+  "class": "Llama",
+  "min": 35.1,
+  "hits": 15,
+  "dmg": [
+   3,
+   5
+  ]
+ },
+ "mountaingoat": {
+  "class": "MountainGoat",
+  "min": -0.9,
+  "hits": 20,
+  "dmg": [
+   3,
+   7
+  ]
+ },
+ "packhorse": {
+  "class": "PackHorse",
+  "min": 11.1,
+  "hits": 61,
+  "dmg": [
+   5,
+   11
+  ]
+ },
+ "packllama": {
+  "class": "PackLlama",
+  "min": 11.1,
+  "hits": 50,
+  "dmg": [
+   2,
+   6
+  ]
+ },
+ "pig": {
+  "class": "Pig",
+  "min": 11.1,
+  "hits": 12,
+  "dmg": [
+   2,
+   4
+  ]
+ },
+ "sheep": {
+  "class": "Sheep",
+  "min": 11.1,
+  "hits": 12,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "walrus": {
+  "class": "Walrus",
+  "min": 35.1,
+  "hits": 14,
+  "dmg": [
+   4,
+   10
+  ]
+ },
+ "beetle": {
+  "class": "Beetle",
+  "min": 29.1,
+  "hits": 200,
+  "dmg": [
+   7,
+   20
+  ]
+ },
+ "desertostard": {
+  "class": "DesertOstard",
+  "min": 29.1,
+  "hits": 71,
+  "dmg": [
+   5,
+   11
+  ]
+ },
+ "firesteed": {
+  "class": "FireSteed",
+  "min": 106.0,
+  "hits": 226,
+  "dmg": [
+   11,
+   30
+  ]
+ },
+ "forestostard": {
+  "class": "ForestOstard",
+  "min": 29.1,
+  "hits": 71,
+  "dmg": [
+   8,
+   14
+  ]
+ },
+ "frenziedostard": {
+  "class": "FrenziedOstard",
+  "min": 77.1,
+  "hits": 71,
+  "dmg": [
+   11,
+   17
+  ]
+ },
+ "hiryu": {
+  "class": "Hiryu",
+  "min": 98.7,
+  "hits": 901,
+  "dmg": [
+   20,
+   30
+  ]
+ },
+ "horse": {
+  "class": "Horse",
+  "min": 29.1,
+  "hits": 28,
+  "dmg": [
+   3,
+   4
+  ]
+ },
+ "kirin": {
+  "class": "Kirin",
+  "min": 95.1,
+  "hits": 191,
+  "dmg": [
+   16,
+   22
+  ]
+ },
+ "lesserhiryu": {
+  "class": "LesserHiryu",
+  "min": 98.7,
+  "hits": 401,
+  "dmg": [
+   18,
+   23
+  ]
+ },
+ "nightmare": {
+  "class": "Nightmare",
+  "min": 95.1,
+  "hits": 298,
+  "dmg": [
+   16,
+   22
+  ]
+ },
+ "ridablellama": {
+  "class": "RidableLlama",
+  "min": 29.1,
+  "hits": 15,
+  "dmg": [
+   3,
+   5
+  ]
+ },
+ "ridgeback": {
+  "class": "Ridgeback",
+  "min": 83.1,
+  "hits": 41,
+  "dmg": [
+   3,
+   5
+  ]
+ },
+ "savageridgeback": {
+  "class": "SavageRidgeback",
+  "min": 83.1,
+  "hits": 41,
+  "dmg": [
+   3,
+   5
+  ]
+ },
+ "scaledswampdragon": {
+  "class": "ScaledSwampDragon",
+  "min": 93.9,
+  "hits": 121,
+  "dmg": [
+   3,
+   4
+  ]
+ },
+ "silversteed": {
+  "class": "SilverSteed",
+  "min": 103.1,
+  "hits": null,
+  "dmg": null
+ },
+ "swampdragon": {
+  "class": "SwampDragon",
+  "min": 93.9,
+  "hits": 121,
+  "dmg": [
+   3,
+   4
+  ]
+ },
+ "unicorn": {
+  "class": "Unicorn",
+  "min": 95.1,
+  "hits": 191,
+  "dmg": [
+   16,
+   22
+  ]
+ },
+ "alligator": {
+  "class": "Alligator",
+  "min": 47.1,
+  "hits": 46,
+  "dmg": [
+   5,
+   15
+  ]
+ },
+ "lavalizard": {
+  "class": "LavaLizard",
+  "min": 80.7,
+  "hits": 76,
+  "dmg": [
+   6,
+   24
+  ]
+ },
+ "snake": {
+  "class": "Snake",
+  "min": 59.1,
+  "hits": 15,
+  "dmg": [
+   1,
+   4
+  ]
+ },
+ "giantrat": {
+  "class": "GiantRat",
+  "min": 29.1,
+  "hits": 26,
+  "dmg": [
+   4,
+   8
+  ]
+ },
+ "jackrabbit": {
+  "class": "JackRabbit",
+  "min": -18.9,
+  "hits": 9,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "rabbit": {
+  "class": "Rabbit",
+  "min": -18.9,
+  "hits": 4,
+  "dmg": [
+   1,
+   1
+  ]
+ },
+ "sewerrat": {
+  "class": "SewerRat",
+  "min": -0.9,
+  "hits": 6,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "parrot": {
+  "class": "Parrot",
+  "min": 0.0,
+  "hits": null,
+  "dmg": null
+ },
+ "bird": {
+  "class": "Bird",
+  "min": -6.9,
+  "hits": null,
+  "dmg": [
+   0,
+   0
+  ]
+ },
+ "cat": {
+  "class": "Cat",
+  "min": -0.9,
+  "hits": 6,
+  "dmg": [
+   1,
+   1
+  ]
+ },
+ "dog": {
+  "class": "Dog",
+  "min": -15.3,
+  "hits": 17,
+  "dmg": [
+   4,
+   7
+  ]
+ },
+ "rat": {
+  "class": "Rat",
+  "min": -0.9,
+  "hits": 6,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "skitteringhopper": {
+  "class": "SkitteringHopper",
+  "min": -12.9,
+  "hits": 31,
+  "dmg": [
+   3,
+   5
+  ]
+ },
+ "frostspider": {
+  "class": "FrostSpider",
+  "min": 74.7,
+  "hits": 46,
+  "dmg": [
+   6,
+   16
+  ]
+ },
+ "giantspider": {
+  "class": "GiantSpider",
+  "min": 59.1,
+  "hits": 46,
+  "dmg": [
+   5,
+   13
+  ]
+ },
+ "imp": {
+  "class": "Imp",
+  "min": 83.1,
+  "hits": 55,
+  "dmg": [
+   10,
+   14
+  ]
+ },
+ "greatermongbat": {
+  "class": "GreaterMongbat",
+  "min": 71.1,
+  "hits": 34,
+  "dmg": [
+   5,
+   7
+  ]
+ },
+ "mongbat": {
+  "class": "Mongbat",
+  "min": -18.9,
+  "hits": 4,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "strongmongbat": {
+  "class": "StrongMongbat",
+  "min": 71.1,
+  "hits": 4,
+  "dmg": [
+   5,
+   7
+  ]
+ },
+ "hellhound": {
+  "class": "HellHound",
+  "min": 85.5,
+  "hits": 66,
+  "dmg": [
+   11,
+   17
+  ]
+ },
+ "slime": {
+  "class": "Slime",
+  "min": 23.1,
+  "hits": 15,
+  "dmg": [
+   1,
+   5
+  ]
+ },
+ "cusidhe": {
+  "class": "CuSidhe",
+  "min": 101.1,
+  "hits": 1010,
+  "dmg": [
+   21,
+   28
+  ]
+ },
+ "ferret": {
+  "class": "Ferret",
+  "min": -21.3,
+  "hits": 45,
+  "dmg": [
+   7,
+   9
+  ]
+ },
+ "squirrel": {
+  "class": "Squirrel",
+  "min": -21.3,
+  "hits": 42,
+  "dmg": [
+   1,
+   2
+  ]
+ },
+ "greaterdragon": {
+  "class": "GreaterDragon",
+  "min": 104.7,
+  "hits": 1000,
+  "dmg": [
+   24,
+   33
+  ]
+ },
+ "corrosiveslime": {
+  "class": "CorrosiveSlime",
+  "min": 23.1,
+  "hits": 15,
+  "dmg": [
+   1,
+   5
+  ]
+ },
+ "reptalon": {
+  "class": "Reptalon",
+  "min": 101.1,
+  "hits": 833,
+  "dmg": [
+   21,
+   28
+  ]
+ },
+ "raptor": {
+  "class": "Raptor",
+  "min": 107.1,
+  "hits": 343,
+  "dmg": [
+   11,
+   17
+  ]
+ },
+ "slith": {
+  "class": "Slith",
+  "min": 80.7,
+  "hits": 84,
+  "dmg": [
+   6,
+   24
+  ]
+ },
+ "stoneslith": {
+  "class": "StoneSlith",
+  "min": 65.1,
+  "hits": 154,
+  "dmg": [
+   6,
+   24
+  ]
+ },
+ "dragon": {
+  "class": "Dragon",
+  "min": 93.9,
+  "hits": 478,
+  "dmg": [
+   16,
+   22
+  ]
+ },
+ "whitewyrm": {
+  "class": "WhiteWyrm",
+  "min": 96.3,
+  "hits": 433,
+  "dmg": [
+   17,
+   25
+  ]
+ },
+ "drake": {
+  "class": "Drake",
+  "min": 84.3,
+  "hits": 241,
+  "dmg": [
+   11,
+   17
+  ]
+ },
+ "scorpion": {
+  "class": "Scorpion",
+  "min": 47.1,
+  "hits": 50,
+  "dmg": [
+   5,
+   10
+  ]
+ },
+ "bakekitsune": {
+  "class": "BakeKitsune",
+  "min": 80.7,
+  "hits": 301,
+  "dmg": [
+   15,
+   22
+  ]
+ },
+ "deathwatchbeetle": {
+  "class": "DeathwatchBeetle",
+  "min": 41.1,
+  "hits": 121,
+  "dmg": [
+   5,
+   10
+  ]
+ },
+ "firebeetle": {
+  "class": "FireBeetle",
+  "min": 93.9,
+  "hits": 200,
+  "dmg": [
+   7,
+   20
+  ]
+ },
+ "runebeetle": {
+  "class": "RuneBeetle",
+  "min": 93.9,
+  "hits": 301,
+  "dmg": [
+   15,
+   22
+  ]
+ }
+}
