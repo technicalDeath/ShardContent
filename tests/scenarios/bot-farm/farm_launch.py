@@ -29,11 +29,12 @@ NAVREY = os.path.join(ROOT, "Navrey")
 CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # The lean client: a Release build that allocates no texture atlases (NAVREY_LEAN, ClassicUO.Renderer/TextureAtlas.cs) on the lighter D3D11 driver.
 # Measured 2026-10-14: 294 MB private bytes against 620 for the Debug client, which is what limits how many bots one PC can hold.
-# bin/Lean3: the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
+# bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
-LEAN_CUO = os.path.join(NAVREY, "bin", "Lean3", "cuo.dll")
-LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11"}
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean4", "cuo.dll")
+# NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
+LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11", "NAVREY_RUN": "auto"}
 DEFAULT_CLIENT = "lean"     # the client a bot gets unless its plan entry says "client": "full"
 DOTNET = os.path.join(ROOT, "dotnet", "dotnet.exe")
 SETTINGS = os.path.join(NAVREY, "settings.json")

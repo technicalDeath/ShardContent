@@ -22,6 +22,6 @@ for p in ("plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json", "p
         if fl.is_client(pid, b["name"], t):
             n += 1
             ingame += bool(fl.in_game(os.path.join(fl.SESSIONS, b["name"], "cuostate.json")))
-            build = next((d for d in ("Lean3", "Lean2", "Release", "Debug") if f"\\{d}\\" in t[pid]), "?")
+            build = next((d for d in ("Lean4", "Lean3", "Lean2", "Release", "Debug") if f"\\{d}\\" in t[pid]), "?")
             builds[build] = builds.get(build, 0) + 1
 print(f"clients {n} ({ingame} in game) {builds}; free RAM {fl.free_mb()} MB, free commit {fl.commit_free_mb()} MB")
