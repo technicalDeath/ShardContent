@@ -774,6 +774,10 @@ class Bot:
 
     def run(self, seconds):
         end = time.time() + seconds
+        try:
+            self.c.open_backpack()            # a client that has just logged in knows nothing of the pack (reagents included) until it is opened
+        except Exception:
+            pass
         while time.time() < end:
             self.tick_no += 1
             try:

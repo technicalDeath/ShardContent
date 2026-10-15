@@ -32,6 +32,11 @@ from memory import MEMDIR, SharedMemory, cell_of  # noqa: E402
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
 BANKS = [(1425, 1690), (1650, 1608)]
+# Places in Britain to run to. Everyone used to run to TOWN, beside the healer, and a gazer that followed a fleeing bot in killed it (and the next
+# ghost to be resurrected) on the healer's doorstep: guards act only on criminals and murderers, not on an ordinary monster.
+REFUGES = [(1470, 1620), (1425, 1690), (1650, 1608), (1430, 1600), (1481, 1584), (1469, 1668)]
+# the Britain TownRegion's rectangles (x0, y0, x1, y1) from the server's Data/regions.json
+BRITAIN = [(1416, 1498, 1740, 1777), (1500, 1408, 1546, 1498), (1385, 1538, 1416, 1777), (1416, 1777, 1740, 1837), (1385, 1777, 1416, 1907), (1093, 1538, 1385, 1907)]
 MAGE_SHOP = (1485, 1553)
 
 PROFESSIONS = {
@@ -359,11 +364,36 @@ class BotBase:
         if self.skill_values.get("Healing", 0) >= 30 and self.bandage_self():
             return True
         self.log(f"fleeing from {threats[0].name} at hp {self.c.hp}")
-        self.c.goto(*TOWN).wait(timeout=4)
+        self.call_guards(threats[0])
+        self.c.goto(*self.refuge_from(threats[0])).wait(timeout=4)
         return True
 
     def on_flee(self):
         pass
+
+    def in_britain(self):
+        return any(x0 <= self.c.x < x1 and y0 <= self.c.y < y1 for x0, y0, x1, y1 in BRITAIN)
+
+    def refuge_from(self, threat):
+        """The town refuge farthest from the threat among the nearer ones: away from it, and not always to the healer."""
+        near = sorted(REFUGES, key=lambda p: abs(p[0] - self.c.x) + abs(p[1] - self.c.y))[:4]
+        if threat is None:
+            return near[0]
+        return max(near, key=lambda p: max(abs(p[0] - threat.x), abs(p[1] - threat.y)) - 0.3 * max(abs(p[0] - self.c.x), abs(p[1] - self.c.y)))
+
+    def call_guards(self, threat):
+        """A player chased into town shouts for the guards. Whether they come for a monster is exactly what is worth finding out."""
+        if threat is None or not self.in_britain() or time.time() - self.facts.get("guards_at", 0) < 30:
+            return
+        self.facts["guards_at"] = time.time()
+        self.c.say("guards")
+        time.sleep(2.5)
+        guard = any("guard" in (m.name or "").lower() for m in self.c.mobiles(within=14))
+        still = any(m.serial == threat.serial and not m.is_dead for m in self.c.mobiles(within=16))
+        self.log(f"called the guards on {threat.name} at {self.c.x},{self.c.y}: guard in sight {guard}, the {threat.name} still here {still}")
+        self.mem.record("res", kind="guards", key=self.mkey(threat), ok=guard)
+        self.note("guards", f"Chased into Britain by {threat.name}, the bot shouted 'guards': {'a guard came' if guard else 'no guard came'}"
+                            f"{'' if guard else ', and the monster kept on (guards act only on criminals and murderers)'}.", key=f"guards:{self.mkey(threat)}:{guard}")
 
     def r_cure(self):
         """Poisoned: cure before anything else. The Orange potion is the Cure potion (five come in the starting kit, from the shard's poison relief); a
@@ -602,11 +632,20 @@ class BotBase:
         self.log(f"to the shop at {xy}: {res}")
         stock = []
         vendor_name = ""
+        # A shop often has two vendors (the Tailor and a Weaver, the Armorer and the Weaponsmith) who sell different things: ask each until one
+        # stocks something wanted. Taking the first list that came back sent a carpenter home without a hatchet and a tailor without a sewing kit.
+        first = ([], "")
         for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
             stock = self.vendor_list(v, "buy")
-            if len(stock) >= 2:
+            if len(stock) < 2:
+                continue
+            if not first[0]:
+                first = (stock, v.name)
+            if any(sub in l.lower() for sub in wanted for l in stock[1:]):
                 vendor_name = v.name
                 break
+        else:
+            stock, vendor_name = first
         if len(stock) < 2:
             self.note("shop", "Saying '<name> buy' to each person at the shop opened no list: a new player has to know the vendor-name-plus-buy words (or double-click the vendor).", key="noshop")
             return {}
@@ -915,6 +954,10 @@ class BotBase:
     def run(self, seconds):
         end = time.time() + seconds
         self.log(f"start: {self.pname}")
+        try:
+            self.c.open_backpack()            # a client that has just logged in knows nothing of the pack until it is opened
+        except Exception:
+            pass
         pause = os.path.join(self.dir, "pause")
         hang_file = open(os.path.join(self.dir, "hang.txt"), "w")
         while time.time() < end:

@@ -35,7 +35,7 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 FARM = os.path.join(ROOT, "work", "botfarm")
 SESSIONS = os.path.join(ROOT, "work", "navrey-sessions")
 PY = sys.executable
-PLANS = ["plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json"]
+PLANS = ["plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json", "plan-fair.json"]
 
 
 def cmdline(pid):

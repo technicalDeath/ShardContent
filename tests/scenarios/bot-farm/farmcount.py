@@ -9,7 +9,7 @@ import farm_launch as fl  # noqa: E402
 
 t = fl.process_table()
 builds, n, ingame = {}, 0, 0
-for p in ("plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json"):
+for p in ("plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json", "plan-fair.json"):
     try:
         plan = json.load(open(os.path.join(fl.ROOT, "work", "botfarm", p), encoding="utf-8"))
     except OSError:

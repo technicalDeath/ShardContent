@@ -45,17 +45,26 @@ class HunterBot(BotBase):
     def r_lighten(self):
         """A fighter over three quarters of its weight with crafting material in the pack (hides from the cows it killed, mostly) leaves the heaviest of
         it on the ground: no Britain shop buys hides, and weight slows it, drains its stamina and finally stops it."""
-        if self.c.weight < self.c.max_weight * 0.75 or self.mobs(6):
-            return False
+        if self.c.weight < self.c.max_weight * 0.75 or self.mobs(6) or time.time() < self.facts.get("drop_refused_until", 0):
+            return False                                  # drops refused a moment ago (overloaded): r_bank takes it from here
         mats = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.MATERIALS)),
                       key=lambda i: next(k for k, w in enumerate(self.MATERIALS) if w in i.name.lower()))
         if not mats:
             return False
         self.activity = "dropping dead weight"
+        refused = 0
         for it in mats[:3]:
             self.c.call(f"dropground {it.serial} {it.amount or 1}", timeout=8)
-            self.log(f"left {it.amount or 1} {it.name} on the ground (weight {self.c.weight}/{self.c.max_weight})")
             time.sleep(1.2)
+            if any(i.serial == it.serial for i in self.c.backpack):
+                refused += 1
+                continue
+            self.log(f"left {it.amount or 1} {it.name} on the ground (weight {self.c.weight}/{self.c.max_weight})")
+        if refused == len(mats[:3]):
+            self.facts["drop_refused_until"] = time.time() + 600
+            self.facts["bank_heavy"] = True
+            self.log(f"the ground refused every drop (weight {self.c.weight}/{self.c.max_weight}): off to the bank")
+            return False
         self.note("weight", f"A {self.pname} filled its pack with hides and other crafting material that no shop in Britain buys; nothing tells a new player which loot is worth carrying.",
                   key="deadweight")
         return True
@@ -272,7 +281,8 @@ class HunterBot(BotBase):
             self.activity = f"running from {d.name}"
             self.end_fight("flee")
             self.dlog("choice", what="run to town", why=f"{d.name}: {a.get('reason', '')}"[:120])
-            self.c.goto(*TOWN).wait(timeout=6)
+            self.call_guards(d)
+            self.c.goto(*self.refuge_from(d)).wait(timeout=6)
             return True
         if d.distance <= 3 and self.hp_pct() > 40:
             if not self.c.war_mode:
@@ -474,8 +484,13 @@ class BardBot(HunterBot):
         """Use an instrument skill and answer its prompts in order: the instrument, then each creature (or self)."""
         inst = self.instrument()
         if not inst:
-            self.note("music", "The bard has no instrument in the pack.", key="noinstrument")
-            return ""
+            # a client that has just logged in knows nothing of the pack until it is opened (after the client rollout every bard "had no
+            # instrument" and played nothing for an hour); the server picks the instrument by itself anyway, so play on when the pack still says none
+            self.c.open_backpack()
+            time.sleep(1.2)
+            inst = self.instrument()
+            if not inst:
+                self.note("music", "The bard's pack shows no instrument; it plays anyway, and the server picks one if there is one.", key="noinstrument")
         # measured 2026-10-14: the server picks the instrument from the pack itself and raises the "Whom do you wish to ..." cursor in the same
         # instant, so the cursor event is gone before a wait could see it; answer the prompts in order after a short pause instead
         self.c.events.drain()
@@ -486,13 +501,17 @@ class BardBot(HunterBot):
             lines = self.read_journal()
             seen += " | ".join(lines)
             if any("instrument" in l.lower() for l in lines):
+                if not inst:
+                    self.c.call("canceltarget", timeout=4)
+                    return seen[-200:]
                 self.c.target(inst.serial)
                 time.sleep(0.7)
             self.c.target_self() if t == "self" else self.c.target(t)
         time.sleep(4)
         lines = self.read_journal()
         seen += " | ".join(lines)
-        if any(w in seen.lower() for w in ("you play", "calm", "incite", "discord", "succeed", "attack")) and "fail" not in seen.lower():
+        # the prompts themselves say "calm" and "incite" ("Whom do you wish to calm?"), so only the outcome lines count as work
+        if any(w in seen.lower() for w in ("you play", "stopping the battle", "succeed", "you begin")) and "fail" not in seen.lower():
             self.work += 1
         return seen[-200:]
 

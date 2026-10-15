@@ -19,7 +19,7 @@ FARM = os.path.join(fl.ROOT, "work", "botfarm")
 
 def bots():
     out = []
-    for p in ("plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json"):
+    for p in ("plan-all.json", "plan-more.json", "plan-adv.json", "plan-50.json", "plan-fair.json"):
         try:
             out += json.load(open(os.path.join(FARM, p), encoding="utf-8"))
         except OSError:

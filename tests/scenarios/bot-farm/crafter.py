@@ -441,7 +441,8 @@ class CrafterBot(HunterBot):
 
     def r_cut(self):
         """Tailors: cloth is sold in bolts; scissors turn a bolt into cut cloth."""
-        bolts = [i for i in self.c.backpack if i.name.lower() in ("bolt of cloth", "cloth")]
+        # the Weaver's "Folded Cloth" is uncut cloth too: scissors make it cut cloth, as they do a bolt
+        bolts = [i for i in self.c.backpack if i.name.lower() in ("bolt of cloth", "cloth", "folded cloth")]
         if not bolts or self.cfg["craft"] != "Tailoring" or self.threats(10):
             return False
         sc = self.c.find("scissors")
