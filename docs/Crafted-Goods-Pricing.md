@@ -59,7 +59,7 @@ Measured by the watching session from the bots' sale lines. Bot faults and sold-
 
 ## Open questions for the owner
 
-1. **Dev world:** deploy to the dev world? It needs the engine hook (UOContent rebuild) and the shard DLL, through the usual deploy path, and a `README.md` line on vendor prices.
+1. **Dev world:** *deployed 2026-10-15 on the owner's "Deploy to dev"*: UOContent rebuilt into `Distribution` with the hooks (ModernUO `3c7023f65`, pin bumped in the three places), the shard deployed with `Deploy-Alpha1Baseline.ps1`, saves snapshotted first (`work/save-snapshots/saves-20261015-030750-pre-crafted-pricing-deploy`), and a `README.md` line added. The dev server was not started afterwards (the bot farm's server holds port 2593), so the first start of the dev server loads it.
 2. **Margin and spread:**
    - Margin 1.25 covers the material lost on failed crafts only at success rates above about 60%. At 50% the crafter roughly breaks even.
    - Spread 1.5 makes NPC-bought finished goods 3 to 7 times dearer than before (a shirt 12 → 30, a cloak 8 → 53). Players who buy clothing or weapons from NPCs pay more. That is the intended shift to crafters, but it is a visible change.
