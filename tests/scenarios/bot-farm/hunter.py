@@ -284,7 +284,7 @@ class HunterBot(BotBase):
             self.end_fight("flee")
             self.dlog("choice", what="run to town", why=f"{d.name}: {a.get('reason', '')}"[:120])
             self.call_guards(d)
-            self.c.goto(*self.refuge_from(d)).wait(timeout=6)
+            self.c.goto(*self.flee_point(d)).wait(timeout=6)
             return True
         if d.distance <= 3 and self.hp_pct() > 40:
             if not self.c.war_mode:

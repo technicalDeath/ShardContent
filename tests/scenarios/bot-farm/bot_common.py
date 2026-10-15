@@ -80,6 +80,7 @@ class BotBase:
         self.profession = profession
         self.pname = PROFESSIONS.get(profession, str(profession))
         self.c = connect(name)
+        self._wrap_goto()
         self.dir = os.path.join(FARM, name)
         os.makedirs(self.dir, exist_ok=True)
         self.notes = Notes(name, self.pname)
@@ -187,6 +188,47 @@ class BotBase:
 
     def near_death_spot(self, x, y, r=60):
         return any(abs(x - dx) < r and abs(y - dy) < r for dx, dy in self.death_spots)
+
+    def _wrap_goto(self):
+        """Every walk that ends in "nopath" gets one more try after a single step to a free neighbouring tile. From two tiles at the dig spot north
+        of Britain (1456,1526 and 1457,1526) the planner could not expand at all, though the bot had walked in; a player would just take a step."""
+        orig = self.c.goto
+        bot = self
+
+        def goto(x, y, z=None):
+            walk = orig(x, y, z)
+            first_wait = walk.wait
+
+            def wait(timeout=300.0, poll=0.1):
+                res = first_wait(timeout=timeout, poll=poll)
+                if str(res).startswith("nopath") and bot.step_out():
+                    res = orig(x, y, z).wait(timeout=timeout, poll=poll)
+                    bot.log(f"after a step out, the walk to {x},{y}: {res}")
+                return res
+
+            walk.wait = wait
+            return walk
+
+        self.c.goto = goto
+
+    def step_out(self):
+        """One step in the first direction that moves the character; at most once every 20 seconds."""
+        if time.time() - self.facts.get("stepped_out_at", 0) < 20:
+            return False
+        self.facts["stepped_out_at"] = time.time()
+        x0, y0 = self.c.x, self.c.y
+        for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw"):
+            try:
+                self.c.call(f"walk {d}", timeout=4)
+            except Exception:
+                continue
+            time.sleep(0.7)
+            if (self.c.x, self.c.y) != (x0, y0):
+                self.log(f"no path from {x0},{y0}: stepped {d} to {self.c.x},{self.c.y} and tried again")
+                self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
+                return True
+        self.log(f"no path from {x0},{y0}, and no step in any direction moved the character")
+        return False
 
     def ground_items(self, rng=8):
         """Every item near, immovable ones too (a campfire, a forge, a training dummy): the `items` command, because Client.items() leaves scenery out."""
@@ -371,7 +413,7 @@ class BotBase:
             return True
         self.log(f"fleeing from {threats[0].name} at hp {self.c.hp}")
         self.call_guards(threats[0])
-        self.c.goto(*self.refuge_from(threats[0])).wait(timeout=4)
+        self.c.goto(*self.flee_point(threats[0])).wait(timeout=4)
         return True
 
     def on_flee(self):
@@ -386,6 +428,16 @@ class BotBase:
         if threat is None:
             return near[0]
         return max(near, key=lambda p: max(abs(p[0] - threat.x), abs(p[1] - threat.y)) - 0.3 * max(abs(p[0] - self.c.x), abs(p[1] - self.c.y)))
+
+    def flee_point(self, threat):
+        """Where to run: a town refuge when one is close, otherwise straight away from the threat. Far out (a veteran archer 300 tiles west of
+        town) the walk to a town refuge planned "nopath" every tick, and the bot stood still and died fleeing."""
+        dest = self.refuge_from(threat)
+        if threat is None or max(abs(dest[0] - self.c.x), abs(dest[1] - self.c.y)) <= 60:
+            return dest
+        dx, dy = self.c.x - threat.x, self.c.y - threat.y
+        n = max(abs(dx), abs(dy), 1)
+        return self.c.x + round(12 * dx / n), self.c.y + round(12 * dy / n)
 
     def call_guards(self, threat):
         """A player chased into town shouts for the guards. Whether they come for a monster is exactly what is worth finding out."""
@@ -757,7 +809,7 @@ class BotBase:
         return earned
 
     # heaviest per piece first; never ammunition (arrows weigh a tenth of a stone, and an overloaded archer used to drop its own arrows first)
-    HEAVY_THINGS = ("ore", "log", "hide", "leather", "board", "fish", "raw ", "cloth", "ingot")
+    HEAVY_THINGS = ("ore", "log", "hide", "leather", "board", "fish", "raw ", "cloth", "ingot", "fletching")   # "arrow fletching": fletcher's tools, 2 stones each
     MATERIALS = ("ore", "log", "hide", "leather", "board", "ingot")
     LOOT_MATERIALS = True                                 # gatherers and crafters; fighters set it False
 

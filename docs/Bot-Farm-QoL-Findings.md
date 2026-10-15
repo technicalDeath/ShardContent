@@ -39,7 +39,7 @@ Counts are distinct bots that logged the matching line. Brains restarted many ti
 
 15. **Mining repeats until the pack is overloaded.** The shard's harvest repeat keeps digging while the pack gets heavier, with nothing to stop it short of the weight limit. *Seen,* 7 bots. Lever: stop the repeat near the weight limit, with a line saying why.
 16. **Fishing spots run out, and the message does not say how far to move.** "The fish don't seem to be biting here" after a few minutes on one patch. *Seen,* probably intended.
-17. **Looting goes past the weight limit.** An archer picked up loot (boards, mostly) until it carried 200 of 180 stones. *Seen.* Overloaded, it then could not drop anything, but that part is **not** confirmed: the engine's `Mobile.Lift` has no weight check, so it may be only how the bot drops. Needs a real-client test (tuning note 17).
+17. **Looting goes past the weight limit.** An archer picked up loot (boards, mostly) until it carried 200 of 180 stones. *Seen.* Overloaded, it could not drop one board, but at 199 of 180 stones it later dropped fletcher's tools without trouble. So dropping works while overloaded (the engine's `Mobile.Lift` has no weight check either), and the board was a one-off.
 
 ## 5. Candidates (worth a check, not yet findings)
 
