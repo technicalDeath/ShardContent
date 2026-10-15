@@ -38,7 +38,27 @@ FACILITIES = {"melee": ("dummy", [(1589, 1554), (1528, 1431)]), "ranged": ("butt
 
 
 class HunterBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_lighten", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest",
+             "r_explore"]
+    LOOT_MATERIALS = False
+
+    def r_lighten(self):
+        """A fighter over three quarters of its weight with crafting material in the pack (hides from the cows it killed, mostly) leaves the heaviest of
+        it on the ground: no Britain shop buys hides, and weight slows it, drains its stamina and finally stops it."""
+        if self.c.weight < self.c.max_weight * 0.75 or self.mobs(6):
+            return False
+        mats = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.MATERIALS)),
+                      key=lambda i: next(k for k, w in enumerate(self.MATERIALS) if w in i.name.lower()))
+        if not mats:
+            return False
+        self.activity = "dropping dead weight"
+        for it in mats[:3]:
+            self.c.call(f"dropground {it.serial} {it.amount or 1}", timeout=8)
+            self.log(f"left {it.amount or 1} {it.name} on the ground (weight {self.c.weight}/{self.c.max_weight})")
+            time.sleep(1.2)
+        self.note("weight", f"A {self.pname} filled its pack with hides and other crafting material that no shop in Britain buys; nothing tells a new player which loot is worth carrying.",
+                  key="deadweight")
+        return True
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -76,7 +96,21 @@ class HunterBot(BotBase):
             return max(0.8, measured)               # what bots of this profession have actually dealt, from their own kills
         return (2.0 if self.ranged else 2.6) + 0.03 * (skill - 50)
 
+    NEWBIE_HARMLESS = ("rat", "rabbit", "bird", "cat", "dog", "chicken", "cow", "sheep", "pig", "goat", "hind", "deer", "crow", "magpie", "sparrow", "toad", "frog")
+
+    def _assess_naive(self, m):
+        """What a new player goes by: the name, and what has happened to newbies before. Anything called 'a something' is worth a try until it kills one."""
+        n = m.name.lower()
+        key = self.mkey(m)
+        if key in self.avoid_types:
+            return {"known": False, "fight": False, "reason": "newbie: it killed me before"}
+        if any(w in n for w in self.NEWBIE_HARMLESS):
+            return {"known": False, "fight": True, "reason": "newbie: looks harmless"}
+        return {"known": False, "fight": n.startswith(("a ", "an ")), "reason": "newbie: never met one, worth a try" if n.startswith(("a ", "an ")) else "newbie: a person, leave it"}
+
     def _assess_table(self, m):
+        if self.mode == "newbie":
+            return self._assess_naive(m)
         mon = self.k.monster(m)
         if mon is None:
             n = m.name.lower()
@@ -124,15 +158,26 @@ class HunterBot(BotBase):
         if f and f["serial"] == t.serial:
             return
         if f:
-            self.end_fight("kill" if self.kills > f["kills0"] else "lost")
+            self.end_fight("kill" if self.target_died(f) else "lost")
         mon = self.k.monster(t)
         self.fight = {"serial": t.serial, "key": self.mkey(t), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
-                      "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(t.x, t.y)}
+                      "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(t.x, t.y), "xy": (t.x, t.y), "pct": 100,
+                      "corpses0": {c.serial for c in self.c.containers(within=14)}}
+
+    def target_died(self, f):
+        """The fight's own target died, not just any corpse in view: a new corpse where the target last stood, or the target gone when last seen badly hurt."""
+        x, y = f.get("xy", (None, None))
+        for c in self.c.containers(within=16):
+            if "corpse" in c.name.lower() and c.serial not in f.get("corpses0", set()) and x is not None and abs(c.x - x) <= 2 and abs(c.y - y) <= 2:
+                return True
+        return f.get("pct", 100) <= 25
 
     def end_fight(self, outcome):
         f, self.fight = self.fight, None
         if not f:
             return
+        if outcome == "kill":
+            self.kills += 1
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
             return
@@ -185,9 +230,14 @@ class HunterBot(BotBase):
         f = self.fight
         if f:
             f["hpmin"] = min(f["hpmin"], self.c.hp)
-            if not any(m.serial == f["serial"] and not m.is_dead for m in self.c.mobiles(within=16)):
-                self.end_fight("kill" if self.kills > f["kills0"] or f.get("seen_dead") else "lost")
-            elif time.time() - f["t0"] > 90:
+            target = next((m for m in self.c.mobiles(within=16) if m.serial == f["serial"]), None)
+            if target and not target.is_dead:
+                f["xy"] = (target.x, target.y)
+                if target.max_hits:
+                    f["pct"] = target.hp_pct
+            else:
+                self.end_fight("kill" if self.target_died(f) else "lost")
+            if self.fight is f and time.time() - f["t0"] > 90:
                 self.end_fight("lost")
 
     def r_dead(self):
@@ -199,8 +249,10 @@ class HunterBot(BotBase):
                 self.mem.record("fight", scope="world", m=self.recent_threats[0][2], grp=self.mem.grp, outcome="death", ttk=0, dmg=self.c.max_hp, hp=self.c.max_hp, cell=cell_of(self.c.x, self.c.y))
         r = super().r_dead()
         if r and was is None:
-            for dist, name, key, avg in self.recent_threats:
-                if name.lower().startswith(("a ", "an ")) and (dist <= 4 or avg >= 10):
+            for i, (dist, name, key, avg) in enumerate(self.recent_threats):
+                # the nearest threat at death is the killer, named or not ("Tekchichak" is a ratman); a newbie has no damage table to blame others by
+                killer = i == 0 and dist <= 6
+                if killer or (name.lower().startswith(("a ", "an ")) and (dist <= 4 or (avg >= 10 and self.mode != "newbie"))):
                     self.avoid_types.add(key)
             self.save_knowledge()
             self.log(f"learned: avoid {sorted(self.avoid_types)} (threats were {self.recent_threats[:3]})")
@@ -213,6 +265,7 @@ class HunterBot(BotBase):
         d = ds[0]
         a = self.assess(d)
         hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
+        hopeless = hopeless or self.mkey(d) in self.avoid_types or self.near_death_spot(self.c.x, self.c.y, 15)
         if hopeless and d.distance <= 6:
             # learned from a Mace Fighter killed by a wraith while "cornered": against a caster or something that out-damages us, standing to fight is death;
             # run for the town guards at once, before the health is gone
@@ -242,6 +295,8 @@ class HunterBot(BotBase):
         if pct >= want:
             return False
         healing = self.skill_values.get("Healing", 0)
+        if self.c.poisoned and healing < 60:
+            return False                      # r_cure handles poison; a bandage only cures from Healing 60
         if pct < 45 and (healing < 30 or threats) and time.time() - self.facts.get("drank", 0) > 12:
             pot = next((i for i in self.c.backpack if i.name == "Yellow Potion"), None)
             if pot:
@@ -401,13 +456,16 @@ class HunterBot(BotBase):
         res = self.c.goto(x, y).wait(timeout=5)
         if abs(self.c.x - x) < 5 and abs(self.c.y - y) < 5 or (res and str(res).startswith(("nopath", "blocked"))):
             self.facts.setdefault("spots_reached", []).append((x, y))
+            if str(res).startswith("nopath"):
+                self.mem.record("blocked", kind="spot", key=cell_of(x, y), ttl=6 * 3600)   # sea or rock: no bot need try it again tonight
             self.cur_spot = None
         return True
 
 
 class BardBot(HunterBot):
     """A bard also practises its instrument skills: Peacemaking at its own feet, Discordance and Provocation on monsters when some are near."""
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_music", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_music", "r_lighten", "r_resupply", "r_bank", "r_facility", "r_hunt",
+             "r_rest", "r_explore"]
 
     def instrument(self):
         return next((i for i in self.c.backpack if any(w in i.name.lower() for w in ("harp", "drum", "lute", "tambourine", "flute"))), None)

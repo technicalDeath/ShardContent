@@ -70,7 +70,7 @@ def _empty():
         "fights": defaultdict(lambda: defaultdict(lambda: {"n": 0.0, "kill": 0.0, "death": 0.0, "flee": 0.0, "lost": 0.0, "ttk": 0.0, "dmg": 0.0, "dmgpct": 0.0, "t": 0.0})),
         "cells": defaultdict(lambda: {"kills": 0.0, "deaths": 0.0, "gold": 0.0, "sights": defaultdict(int), "fights": 0.0, "t": 0.0, "pres": []}),
         "vendors": {},
-        "crafts": defaultdict(lambda: defaultdict(lambda: {"n": 0, "ok": 0, "gain": 0})),
+        "crafts": defaultdict(lambda: defaultdict(lambda: {"n": 0, "ok": 0, "gain": 0, "exc": 0})),
         "res": defaultdict(lambda: defaultdict(lambda: {"ok": 0, "fail": 0, "reason": "", "blocked_until": 0.0, "claim_until": 0.0, "claim_by": ""})),
         "gains": defaultdict(lambda: defaultdict(int)),
         "dps": {"hits": 0.0, "ttk": 0.0, "n": 0},
@@ -201,6 +201,7 @@ class SharedMemory:
             c["n"] += 1
             c["ok"] += 1 if ev.get("ok") else 0
             c["gain"] += 1 if ev.get("gain") else 0
+            c["exc"] = c.get("exc", 0) + (1 if ev.get("exc") else 0)
         elif k == "res":
             r = st["res"][ev["kind"]][ev["key"]]
             if ev.get("ok"):
@@ -365,6 +366,9 @@ class SharedMemory:
         return "\n".join(lines)
 
 
+FRONTIER_CENTER = (1470, 1620)      # Britain
+
+
 def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
     """Pick the next hunting spot: the fixed ring plus the best-known cells in the shared memory; spots for which is_bad(x, y) is true and cells that have killed
     bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried. A spot within 20 tiles of
@@ -375,11 +379,19 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
     def near(a, b, r=20):
         return a is not None and b is not None and abs(a[0] - b[0]) <= r and abs(a[1] - b[1]) <= r
 
+    import math
+
     cands = [tuple(sp) for sp in fixed]
     for score, cell in mem.hunting_cells(radius=300, n=10):
         if score > 0.25:
             cands.append(cell_center(cell))
-    cands = [p for p in cands if not near(p, here) and not any(near(p, r) for r in recent)]
+    # The frontier: a few untried points 140 to 320 tiles out from Britain. Forty bots empty the town's own spawn within minutes, and a player whose
+    # usual ground is bare goes further afield. Unknown cells score neutral (0.5), so a frontier point beats a hunted-out spot; a point the walk
+    # cannot reach (sea, mountain) is marked unusable for everyone by the explore rule.
+    for _ in range(6):
+        ang, r = random.random() * 2 * math.pi, random.uniform(140, 320)
+        cands.append((int(FRONTIER_CENTER[0] + r * math.cos(ang)), int(FRONTIER_CENTER[1] + r * math.sin(ang))))
+    cands = [p for p in cands if not near(p, here) and not any(near(p, r) for r in recent) and mem.usable("spot", cell_of(*p))]
     scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y))]
     if not scored:
         return random.choice(list(fixed))

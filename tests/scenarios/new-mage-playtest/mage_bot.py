@@ -169,9 +169,7 @@ class Bot:
         out = []
         for e in self.c.events.poll():
             t = e.text
-            if t.startswith("[LABEL]") and t.rstrip().endswith("corpse"):
-                self.kills += 1
-                self.log(f"kill #{self.kills}: {t.split(": ",1)[-1]}")
+            # (corpse labels are any corpse in view, other players' kills too: the farm's caster counts kills from its own fights instead)
             if t.startswith(("[GUMP]", "[CMD", "[CONTAINER]", "[PERF]", "[NAV]", "[LABEL]", "[WARN", " ")):
                 continue
             self.journal.append(t)
@@ -454,7 +452,12 @@ class Bot:
         if self.mobs(10):
             return False
         mana_max = self.c.state.get("maxMana", 39)
-        if self.c.mana >= mana_max * 0.85 and self.hp_pct() >= 85:
+        stam_max = self.c.state.get("maxStam") or 0
+        if stam_max and self.c.stamina < 0.2 * stam_max:
+            self.facts["catching_breath"] = True             # running everywhere drains stamina to 1; rest until it is back to 70%
+        elif not stam_max or self.c.stamina >= 0.7 * stam_max:
+            self.facts["catching_breath"] = False
+        if self.c.mana >= mana_max * 0.85 and self.hp_pct() >= 85 and not self.facts.get("catching_breath"):
             return False
         if self.c.war_mode:
             self.c.war(False)
@@ -732,6 +735,8 @@ class Bot:
         """Starter potions are three unnamed colors: try one, see what it does, remember."""
         tried = self.facts["potion_effects"]
         for item in self.c.backpack:
+            if item.name == "Orange Potion" and not self.c.poisoned:
+                continue                          # the Cure potion: keep it for poison
             if "potion" in item.name.lower() and item.name not in tried:
                 before = self.c.hp
                 self.c.use(item.serial)

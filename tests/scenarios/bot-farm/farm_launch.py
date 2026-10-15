@@ -27,6 +27,14 @@ SESSIONS = os.path.join(ROOT, "work", "navrey-sessions")
 ACCOUNTS = os.path.join(ROOT, "work", "accounts")
 NAVREY = os.path.join(ROOT, "Navrey")
 CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
+# The lean client: a Release build that allocates no texture atlases (NAVREY_LEAN, ClassicUO.Renderer/TextureAtlas.cs) on the lighter D3D11 driver.
+# Measured 2026-10-14: 294 MB private bytes against 620 for the Debug client, which is what limits how many bots one PC can hold.
+# bin/Lean3: the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
+# block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
+# into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean3", "cuo.dll")
+LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11"}
+DEFAULT_CLIENT = "lean"     # the client a bot gets unless its plan entry says "client": "full"
 DOTNET = os.path.join(ROOT, "dotnet", "dotnet.exe")
 SETTINGS = os.path.join(NAVREY, "settings.json")
 
@@ -42,6 +50,15 @@ def free_mb() -> int:
     s.dwLength = ctypes.sizeof(s)
     ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(s))
     return int(s.ullAvailPhys / 1048576)
+
+
+def commit_free_mb() -> int:
+    """Commit charge still free (RAM plus pagefile minus what is committed). Past the limit, allocations fail and processes crash, so this, not
+    free RAM, is the hard ceiling on how many clients one PC can hold."""
+    s = MEMORYSTATUSEX()
+    s.dwLength = ctypes.sizeof(s)
+    ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(s))
+    return int(s.ullAvailPageFile / 1048576)
 
 
 def alive(pid: int) -> bool:
@@ -109,7 +126,8 @@ def password_for(name: str) -> str:
     return pw
 
 
-def start(name: str, profession: int, create: str | None = None, timeout_login=25, timeout_create=70) -> dict:
+def start(name: str, profession: int, create: str | None = None, timeout_login=25, timeout_create=70, extra_env: dict | None = None, settings: dict | None = None,
+          client: str | None = None) -> dict:
     d = os.path.join(SESSIONS, name)
     rec_path = os.path.join(d, "session.json")
     if os.path.exists(rec_path):
@@ -121,7 +139,8 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
     with open(os.path.join(d, ".env"), "w", encoding="utf-8") as f:
         f.write(f"UO_USER={name}\nUO_PASS={pw}\n")
     lean = json.load(open(SETTINGS, encoding="utf-8"))
-    lean.update(fps=8, login_music=False, window_size={"X": 320, "Y": 240})   # a headless bot needs no frame rate or window: saves memory and CPU
+    lean.update(fps=8, login_music=False, window_size={"X": 320, "Y": 240})
+    lean.update(settings or {})   # a headless bot needs no frame rate or window: saves memory and CPU
     with open(os.path.join(d, "settings.json"), "w", encoding="utf-8") as dst:
         json.dump(lean, dst, indent=2)
     files = {k: os.path.join(d, v) for k, v in dict(cmd="cuocmd", log="cuolog", state="cuostate.json", world="cuoworld.json").items()}
@@ -130,10 +149,14 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
         # and a live stale PID would make the new client refuse to read its command file
         if os.path.exists(p):
             os.remove(p)
+    lean = (client or DEFAULT_CLIENT) == "lean" and os.path.exists(LEAN_CUO)
+    cuo = LEAN_CUO if lean else CUO
     env = dict(os.environ, DOTNET_ROOT=os.path.dirname(DOTNET), DOTNET_GCConserveMemory="9", DOTNET_TieredPGO="0")
+    env.update(LEAN_ENV if lean else {})
+    env.update(extra_env or {})
     out = open(os.path.join(d, "stdout.log"), "wb")
     err = open(os.path.join(d, "stderr.log"), "wb")
-    proc = subprocess.Popen([DOTNET, CUO, "-cmdfile", files["cmd"], "-logfile", files["log"], "-statefile", files["state"], "-worldfile", files["world"], "-headless"],
+    proc = subprocess.Popen([DOTNET, cuo, "-cmdfile", files["cmd"], "-logfile", files["log"], "-statefile", files["state"], "-worldfile", files["world"], "-headless"],
                             cwd=d, stdout=out, stderr=err, env=env, creationflags=0x08000000)  # CREATE_NO_WINDOW
     rec = dict(name=name, pid=proc.pid, dir=d, cmd=files["cmd"], log=files["log"], state=files["state"], world=files["world"], startedAt=time.strftime("%Y-%m-%dT%H:%M:%S"))
     with open(rec_path, "w", encoding="utf-8") as f:

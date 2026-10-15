@@ -19,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bot_common import BotBase  # noqa: E402
 from hunter import HunterBot  # noqa: E402
+from miner import MinerBot  # noqa: E402
 from uo import Event  # noqa: E402
 
 DATA = json.load(open(os.path.join(HERE, "craft_data.json"), encoding="utf-8"))
@@ -27,9 +28,10 @@ DATA = json.load(open(os.path.join(HERE, "craft_data.json"), encoding="utf-8"))
 CRAFTS = {
     16: dict(craft="Blacksmith", skill="Blacksmithy", tool="tongs", mat="iron ingot", res="IronIngot", station=(1423, 1557), shop=(1427, 1652), wanted={"ingot": 60},
              sell_to=(1418, 1550), maxcost=14),
-    18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station=None, shop=(1467, 1688), wanted={"cut cloth": 120},
+    18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station=None, shop=(1467, 1688), wanted={"cloth": 120},
              sell_to=(1467, 1688), maxcost=20),
-    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station=None, shop=(1427, 1652), wanted={"board": 60}, sell_to=(1430, 1599), maxcost=15),
+    # the Carpenter at 1430,1597 sells boards (3 gp) and buys the work; the Tinker the carpenters used to go to sells none
+    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station=None, shop=(1430, 1599), wanted={"board": 60}, sell_to=(1430, 1599), maxcost=15),
     19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 50},
              sell_to=(1427, 1652), maxcost=10),
 }
@@ -38,7 +40,11 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 
 
 class CrafterBot(HunterBot):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_earn", "r_wander"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
+             "r_wander"]
+    LOOT_MATERIALS = True
+    pickaxe = MinerBot.pick                               # a smith or tinker who has Mining digs its own ore when the shops are sold out (pick() answers menus)
+    stand_near = MinerBot.stand_near
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
@@ -61,6 +67,21 @@ class CrafterBot(HunterBot):
         self.skill = 0.0
         self.last_made = None
         self.bad_items = set()
+        # what the crafts really produce, by the name the item has in the pack: the menu's "wooden chair" is a plain "chair" once made, and a
+        # Carpenter walked away from a vendor paying 38 gp a chair because the craft list had no "chair"
+        self.made_names_path = os.path.join(self.dir, "made_names.json")
+        try:
+            self.made_names = set(json.load(open(self.made_names_path, encoding="utf-8")))
+        except (OSError, ValueError):
+            self.made_names = set()
+        self.i = 0                                        # MinerBot's mountain rotation, for r_dig
+        self.blocked = {}
+        self.dug = 0
+        self.bad_buyers_path = os.path.join(self.dir, "bad_buyers.json")
+        try:
+            self.facts["bad_buyers"] = json.load(open(self.bad_buyers_path, encoding="utf-8"))
+        except (OSError, ValueError):
+            self.facts["bad_buyers"] = {}
 
     # ---- the menu -------------------------------------------------------------------------------------------
 
@@ -202,7 +223,42 @@ class CrafterBot(HunterBot):
         lo, hi = it["min"], it["max"]
         return 1.0 if skill >= hi else 0.0 if skill < lo else (skill - lo) / (hi - lo)
 
+    def choose_naive(self):
+        """A new crafter does not know the skill windows. It sees the menu and each item's cost, and learns from its own tries (shared among newbie
+        crafters of its trade): an item that keeps coming out exceptional, or has taught nothing in eight tries, is too easy now; one never made in six
+        tries is too hard. Untried items are guessed at optimistically, dearer ones more so (they are usually the harder pieces), so it climbs the menu
+        the way a player does instead of working through the cheap end one item at a time (it used to rank by gain per cloth, which favoured caps)."""
+        have = self.count(self.cfg["mat"])
+        options = []
+        for name, path in self.menu_map.items():
+            m = re.search(r"\((\d+) ", path[-1])
+            cost = int(m.group(1)) if m else 1
+            if cost <= have and cost <= self.cfg["maxcost"] and name not in self.bad_items:
+                options.append((cost, name))
+        if not options:
+            return None
+        top = max(c for c, _ in options)
+        best = fallback = None
+        for cost, name in options:
+            seen = self.mem.craft_stats(self.cfg["craft"], name) or {"n": 0, "ok": 0, "gain": 0, "exc": 0}
+            pick = (name, {"min": 0, "max": 100, "amount": cost, "resource": self.cfg["res"]}, (seen["ok"] + 1) / (seen["n"] + 2))
+            if seen["n"] >= 6 and seen["ok"] == 0:
+                continue                                  # never made one in six tries: too hard for now
+            if fallback is None or cost > fallback[0]:
+                fallback = (cost, *pick)
+            if seen.get("exc", 0) >= 2 or (seen["n"] >= 8 and seen["gain"] == 0):
+                continue                                  # comes out exceptional, or teaches nothing: too easy now
+            prior = 0.3 + 0.7 * cost / top
+            value = (seen["gain"] + prior) / (seen["n"] + 1) / cost ** 0.3
+            if best is None or value > best[0]:
+                best = (value, *pick)
+        if best is None and fallback is not None:
+            return (0.0, *fallback[1:])                   # everything looks too easy: the dearest piece it can still make
+        return best
+
     def choose(self):
+        if self.mode == "newbie":
+            return self.choose_naive()
         have = self.count(self.cfg["mat"])
         best = None
         for name, path in self.menu_map.items():
@@ -273,27 +329,46 @@ class CrafterBot(HunterBot):
 
     def observe(self):
         super().observe()
-        if self.tick_no % 8 == 1:
+        if time.time() - self.facts.get("skills_at", 0) > 300:          # gains keep skill_values current; a full list every five minutes is plenty
+            self.facts["skills_at"] = time.time()
             self.refresh_skills()
             self.skill = self.skill_values.get(self.cfg["skill"], self.skill)
 
     def r_flee(self):
-        if self.hp_pct() >= 50 or not self.mobs(6):
+        if self.hp_pct() >= 50 or not self.threats(6):
             return False
         self.activity = "fleeing"
         self.c.goto(*self.facts.setdefault("home", (1470, 1620))).wait(timeout=4)
         return True
 
+    def is_product(self, name):
+        n = name.lower()
+        if n == self.cfg["mat"]:
+            return False
+        if n in self.items or n in self.made_names:
+            return True
+        # made before the names were learned: "chair" is the tail of the menu's "wooden chair" (never a kit word: the starter bag stays)
+        return not any(w in n for w in self.KEEP) and any(it.endswith(" " + n) for it in self.items)
+
     def products(self):
-        names = set(self.items)
-        return [i for i in self.c.backpack if i.name.lower() in names and i.name.lower() != self.cfg["mat"]]
+        return [i for i in self.c.backpack if self.is_product(i.name)]
+
+    def learn_made(self, before):
+        """Names of what appeared in the pack since `before` (a set of serials) that are not material, tools or kit: the crafted item's real name."""
+        new = {i.name.lower() for i in self.c.backpack if i.serial not in before and i.name and not any(w in i.name.lower() for w in self.KEEP)}
+        if new - self.made_names:
+            self.made_names |= new
+            self.log(f"learned product names: {sorted(new)}")
+            json.dump(sorted(self.made_names), open(self.made_names_path, "w", encoding="utf-8"))
 
     def r_sell(self):
         stock = self.products()
         heavy = self.c.weight > self.c.max_weight * 0.7
+        if not stock:
+            return False                                 # nothing made: a trip to the buyer would sell nothing
         if len(stock) < 12 and not heavy and not (stock and self.count(self.cfg["mat"]) < 30 and time.time() - self.facts.get("sold_at", 0) > 300):
             return False
-        if self.mobs(10) or time.time() - self.facts.get("sold_at", 0) < 150:
+        if self.threats(10) or time.time() - self.facts.get("sold_at", 0) < 150:
             return False
         self.facts["sold_at"] = time.time()
         self.activity = "selling what I made"
@@ -304,10 +379,11 @@ class CrafterBot(HunterBot):
         kinds = {it.name.lower() for it in stock}
         offers_known = {}
         for xy, v in self.mem.state["world"]["vendors"].items():
-            if self.facts.get(("bad_buyer", xy), 0) > time.time():
+            if self.facts["bad_buyers"].get(xy, 0) > time.time():
                 continue
-            paid = [v["buys"][k] for k in kinds if k in v["buys"]]
-            if kinds and len(paid) >= max(1, len(kinds) // 2):
+            paid = [v["buys"][k] for k in kinds if k in v["buys"] and v["buys"][k] > 0]
+            # (a) it must buy most of what is carried, counted against the products, not just one kind of them
+            if kinds and len(paid) >= max(1, -(-len(kinds) * 3 // 5)):
                 offers_known[xy] = sum(paid)
         if offers_known:
             best_xy = max(offers_known, key=offers_known.get)
@@ -315,29 +391,33 @@ class CrafterBot(HunterBot):
         res = self.c.goto(*buyer).wait(timeout=100)
         self.log(f"to the buyer {buyer}: {res}; carrying {len(stock)} products")
         opened = False
+        offers = []
         for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
-            self.c.events.drain()
-            self.c.say(f"{v.name.split()[0]} sell")
-            time.sleep(2.5)
-            offers = self.cmd("selllist", timeout=10)
-            if len(offers) >= 1 and any("gp" in l for l in offers):
+            offers = self.vendor_list(v, "sell")
+            if any("gp" in l for l in offers):
                 opened = True
                 break
         if not opened:
             self.note("sell", "Saying '<vendor> sell' near the vendor opened no list of what the vendor buys; a new crafter has to discover how to sell.", key="nosell")
             return True
         cart = []
+        buys = {}
         for line in offers:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
-            if m and m.group(4).strip().lower() in self.items and int(m.group(2)) > 0:
+            if m:
+                buys[m.group(4).strip().lower()] = int(m.group(2))
+            if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0:
                 cart += [m.group(1), m.group(3)]
+        if buys:
+            self.mem.record("vendor", xy=f"{buyer[0]},{buyer[1]}", name=v.name, buys=[[k, p] for k, p in buys.items()])   # (a) the others learn what this shop buys
         if cart:
             self.cmd("sell " + " ".join(cart), timeout=10)
             time.sleep(3)
         time.sleep(2)
         gained = self.c.gold - gold0
         if gained <= 0 and buyer != self.cfg["sell_to"]:
-            self.facts[("bad_buyer", f"{buyer[0]},{buyer[1]}")] = time.time() + 1800
+            self.facts["bad_buyers"][f"{buyer[0]},{buyer[1]}"] = time.time() + 3600
+            json.dump(self.facts["bad_buyers"], open(self.bad_buyers_path, "w", encoding="utf-8"))
         if cart and gained <= 0:
             self.note("sell", f"Selling {len(cart) // 2} stacks of crafted goods to {v.name} paid nothing and printed no message: the sell request was accepted silently and the items stayed in the pack.", key="silentsell")
         self.sold_for += max(gained, 0)
@@ -347,7 +427,7 @@ class CrafterBot(HunterBot):
 
     def r_retool(self):
         """The tool wore out (they do): buy another where the material is sold."""
-        if self.tool() or self.mobs(10) or time.time() - self.facts.get("retool_at", 0) < 120:
+        if self.tool() or self.threats(10) or time.time() - self.facts.get("retool_at", 0) < 120:
             return False
         self.facts["retool_at"] = time.time()
         self.activity = "buying a new tool"
@@ -362,7 +442,7 @@ class CrafterBot(HunterBot):
     def r_cut(self):
         """Tailors: cloth is sold in bolts; scissors turn a bolt into cut cloth."""
         bolts = [i for i in self.c.backpack if i.name.lower() in ("bolt of cloth", "cloth")]
-        if not bolts or self.cfg["craft"] != "Tailoring" or self.mobs(10):
+        if not bolts or self.cfg["craft"] != "Tailoring" or self.threats(10):
             return False
         sc = self.c.find("scissors")
         if not sc:
@@ -383,15 +463,20 @@ class CrafterBot(HunterBot):
 
     def r_chop(self):
         """Carpenters cut their own wood when they cannot afford boards: stand by a tree, double-click the hatchet, target the tree."""
-        if self.cfg["craft"] != "Carpentry" or self.count(self.cfg["mat"]) >= 30 or self.mobs(10) or self.hp_pct() < 50:
+        # a fresh look at the menu needs 40 boards in the pack (r_craft), so 30-39 boards with no menu would otherwise leave the carpenter waiting
+        if self.cfg["craft"] != "Carpentry" or self.count(self.cfg["mat"]) >= (30 if self.menu_map else 45) or self.threats(10) or self.hp_pct() < 50:
             return False
-        if self.c.gold >= 150 or time.time() < self.facts.get("chop_fail", 0):
-            return False                                  # still has money: the shop goes first
+        if (self.c.gold >= 150 and self.facts.get("soldout_until", 0) < time.time()) or time.time() < self.facts.get("chop_fail", 0):
+            return False                                  # still has money and the shop has boards: the shop goes first
         hat = self.c.find("hatchet") or next((i for i in self.c.equipped if "hatchet" in i.name.lower() or "axe" in i.name.lower()), None)
         if not hat:
             if self.c.gold >= 30:
-                got = self.shop_at((1427, 1652), {"hatchet": 1}, budget=self.c.gold - 5)
-                self.note("chop", f"The hatchet is gone (put in the bank as a loose tool); bought another: {got}", key="hatchetbuy")
+                got = {}
+                for shop in ((1481, 1584), (1418, 1550)):     # the Weaponsmith sells hatchets (the Tinker does not); the Blacksmith next
+                    got = self.shop_at(shop, {"hatchet": 1}, budget=self.c.gold - 5)
+                    if got:
+                        break
+                self.note("chop", f"The carpenter has no hatchet to cut its own wood; tried the Weaponsmith and the Blacksmith: {got}", key="hatchetbuy")
             self.facts["chop_fail"] = time.time() + 600
             return bool(self.c.gold >= 30)
         for tx, ty, tz, g in self.TREES:
@@ -400,11 +485,14 @@ class CrafterBot(HunterBot):
             self.mem.record("claim", kind="tree", key=f"{tx},{ty}", ttl=300)
             self.activity = f"chopping at {tx},{ty}"
             ok = False
+            self.c.goto(tx, ty).wait(timeout=60)
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1)):
-                self.c.gotoexact(tx + dx, ty + dy).wait(timeout=60)
                 if max(abs(self.c.x - tx), abs(self.c.y - ty)) <= 2:
                     ok = True
                     break
+                if str(self.c.gotoexact(tx + dx, ty + dy).wait(timeout=15)).startswith("nopath") and max(abs(self.c.x - tx), abs(self.c.y - ty)) > 6:
+                    break                                  # no way into that stand of trees: the next tree, not five more tries here
+            ok = ok or max(abs(self.c.x - tx), abs(self.c.y - ty)) <= 2
             if not ok:
                 self.facts[("tree", tx, ty)] = time.time() + 900
                 continue
@@ -435,8 +523,10 @@ class CrafterBot(HunterBot):
 
     def r_restock(self):
         need = 40 if self.cfg["craft"] != "Tailoring" else 60
-        if self.count(self.cfg["mat"]) >= need or self.mobs(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
+        if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
             return False
+        if self.facts.get("soldout_until", 0) > time.time() and self.can_gather():
+            return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look
         self.facts["stocked_at"] = time.time()
         self.activity = "buying material"
         if self.c.gold < 60 and self.facts["bank_balance"] >= 60:
@@ -459,12 +549,13 @@ class CrafterBot(HunterBot):
                 break
             self.mem.record("vendor", xy=f"{shop[0]},{shop[1]}", name="", stock=[[word, 0, 0]])   # sold out: tell the others
         if not got:
+            self.facts["soldout_until"] = time.time() + 1200
             self.note("shop", f"No shop had {word} left: the {self.pname}s and other crafters empty the shelves faster than they refill.", key=f"soldout:{word}")
         self.note("shop", f"Material bought for the {self.pname}: {got}", key="bought")
         return True
 
     def r_craft(self):
-        if self.mobs(10) or self.hp_pct() < 50:
+        if self.threats(10) or self.hp_pct() < 50:
             return False
         if not self.tool():
             self.note("craft", f"The {self.pname}'s tool ({self.cfg['tool']}) is gone or worn out; no warning came before the last use.", key="notool")
@@ -474,8 +565,8 @@ class CrafterBot(HunterBot):
         if self.menu_map and getattr(self, "explored_at", None) and (self.skill - self.explored_at[1] >= 4 or time.time() - self.explored_at[0] > 1500):
             self.menu_map_backup = self.menu_map
             self.menu_map = {}
-        if not self.menu_map and self.count(self.cfg["mat"]) < 40:
-            return False                                # the menu only lists what the material in the pack allows: restock first
+        if not self.menu_map and self.count(self.cfg["mat"]) < (40 if self.menu_map_backup else 8):
+            return False                                # the menu only lists what the material in the pack allows: restock first (any amount will do for a first look)
         if not self.menu_map:
             st = self.cfg["station"]
             if st:
@@ -496,6 +587,7 @@ class CrafterBot(HunterBot):
         self.activity = f"making {name}"
         self.log(f"making {name}: skill {self.skill:.1f} window {it['min']}-{it['max']} chance {ch:.0%} cost {it['amount']}")
         result = None
+        before = {i.serial for i in self.c.backpack}
         for n in range(12):
             if self.count(self.cfg["mat"]) < it["amount"]:
                 break
@@ -505,7 +597,10 @@ class CrafterBot(HunterBot):
             self.made += ok
             self.work += ok
             self.fails += not ok
-            self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)))
+            if ok and n < 3:
+                self.learn_made(before)
+            self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)),
+                            exc=bool(re.search(r"exceptional", result or "", re.I)))
             if re.search(r"fail", result or "", re.I):
                 self.note("craft", f"A failed craft says: {result[-110:]}", key="failmsg")
             if (result or "").startswith(("nomenu", "menu refused")):
@@ -522,6 +617,51 @@ class CrafterBot(HunterBot):
                 self.note("craft", f"A successful craft says: {result[-110:]}", key="okmsg")
         self.log(f"made {self.made} ok, {self.fails} failed; last: {result}")
         return True
+
+    def can_gather(self):
+        """Can this crafter make its own material? A carpenter chops logs; a smith or tinker with some Mining digs ore and smelts it (iron smelts from 25 Mining)."""
+        if self.cfg["craft"] == "Carpentry":
+            return True
+        return self.cfg["res"] == "IronIngot" and self.skill_values.get("Mining", 0) >= 30
+
+    def r_smelt(self):
+        """Ore in the pack and the craft wants ingots: carry it to the forge and smelt it (double-click the ore, target the forge)."""
+        if self.cfg["res"] != "IronIngot" or self.threats(10) or self.hp_pct() < 50:
+            return False
+        piles = self.ore_piles(smeltable=True)
+        ore = sum((i.amount or 1) for i in piles)
+        heavy = self.c.weight > self.c.max_weight * 0.7
+        if not piles or (ore < 24 and not heavy and time.time() - self.facts.get("dig_started", time.time()) < 900):
+            return False
+        done = self.smelt()
+        if done is None:
+            self.facts["dig_started"] = time.time()
+            return False
+        self.facts.pop("dig_started", None)
+        return bool(done[1] or done[2])                  # no ingots and nothing burned: let the other rules have the tick
+
+    def r_dig(self):
+        """The shops are out of ingots: a smith or tinker with Mining goes to the hills and digs (the miner's own rule), then r_smelt takes it to the forge."""
+        if self.cfg["res"] != "IronIngot" or not self.can_gather() or self.count(self.cfg["mat"]) >= (20 if self.menu_map else 40) or self.threats(10) or self.hp_pct() < 50:
+            return False
+        if self.facts.get("soldout_until", 0) < time.time() and self.c.gold >= 40:
+            return False                                  # the shop may have ingots again: r_restock looks first
+        if not self.pickaxe():
+            if time.time() < self.facts.get("pick_fail", 0):
+                return False
+            self.facts["pick_fail"] = time.time() + 600
+            if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
+                self.visit_bank("pickaxe", withdraw=100)
+            got = self.shop_at((1427, 1652), {"pickaxe": 1}, budget=max(self.c.gold - 5, 0)) if self.c.gold >= 30 else {}
+            self.note("dig", f"The {self.pname} needs a pickaxe to dig its own ore while the shops are sold out; bought: {got}", key="crafterpick")
+            return bool(got)
+        self.facts.setdefault("dig_started", time.time())
+        self.note("dig", f"The {self.pname} goes to dig and smelt its own ore because no shop has ingots.", key="digown")
+        self.pick = self.pickaxe                           # MinerBot.r_mine asks self.pick() for the pickaxe; for one call it shadows the menu pick
+        try:
+            return MinerBot.r_mine(self)
+        finally:
+            del self.pick
 
     def r_earn(self):
         """Broke, with nothing to make and nothing in the bank: do what a new player does and hunt vermin for coins (the hunter's own rules, limited to what is prey)."""

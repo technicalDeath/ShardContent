@@ -41,7 +41,10 @@ def load(minutes):
                 continue
             if e["t"] < since:
                 continue
-            (eps if e["type"] == "ep" else mems).append(e)
+            if e["type"] == "ep":
+                eps.append(e)
+            elif e["type"] == "mem" and "m" in e:      # "choice" records (run to town, and so on) carry what/why, not a monster
+                mems.append(e)
     return eps, mems
 
 
@@ -97,7 +100,7 @@ def main():
         r["n"] += 1
         for k in ("dur", "gold", "kills", "gains", "hp", "died", "moved", "work"):
             r[k] += e.get(k, 0) or 0
-        prof_of[e["bot"]] = e["prof"]
+        prof_of[e["bot"]] = e["prof"] + ("/newbie" if e.get("mode") == "newbie" else "")
         seq[e["bot"]].append(e)
 
     fixes = []          # (minutes lost, text)

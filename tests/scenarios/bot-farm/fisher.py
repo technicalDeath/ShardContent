@@ -19,7 +19,7 @@ WATER_LAND = (0xA8, 0xA9, 0xAA, 0xAB)
 
 
 class FisherBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_evade", "r_bank", "r_cut", "r_cook", "r_fish", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_bank", "r_cut", "r_cook", "r_fish", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pole", "dagger", "flour", "water", "pitcher", "cooked", "fish steak",
             "leg of lamb", "chicken leg", "bread", "pie")
 
@@ -57,7 +57,7 @@ class FisherBot(BotBase):
     def r_cut(self):
         """Whole fish are cut into steaks with a knife before they can be cooked."""
         fish = [i for i in self.c.backpack if i.name.lower() in ("fish", "big fish", "small fish")]
-        if len(fish) < 4 or self.mobs(8):
+        if len(fish) < 4 or self.threats(8):
             return False
         knife = self.c.find("dagger") or self.c.find("knife")
         if not knife:
@@ -80,7 +80,7 @@ class FisherBot(BotBase):
         heavy = self.c.weight > self.c.max_weight * 0.75
         if total < 8 and not (heavy and total):
             return False
-        if self.mobs(8):
+        if self.threats(8):
             return False
         self.activity = "cooking"
         fires = [i for i in self.ground_items(6) if "campfire" in i.name.lower()]
@@ -98,11 +98,11 @@ class FisherBot(BotBase):
             if not fires:
                 return False
         fire = fires[0]
-        for item in raw[:4]:
+        for item in raw[:2]:                                 # at most about 20 cooks a tick, so a tick stays well under the 150 s hang watchdog
             self.c.events.drain()
             self.c.use(item.serial)
             n = 0
-            while n < 25 and self.c.wait_for(Event.TARGET_REQUEST, timeout=5) is not None:
+            while n < 10 and self.c.wait_for(Event.TARGET_REQUEST, timeout=5) is not None:
                 self.c.target(fire.serial)
                 n += 1
                 time.sleep(2.2)
@@ -116,7 +116,7 @@ class FisherBot(BotBase):
         return True
 
     def r_fish(self):
-        if self.mobs(8) or self.hp_pct() < 50:
+        if self.threats(8) or self.hp_pct() < 50:
             return False
         if self.c.weight > self.c.max_weight * 0.9:
             return False

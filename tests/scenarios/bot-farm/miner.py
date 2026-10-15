@@ -20,7 +20,7 @@ RING = [(0, 1), (1, 0), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1), (0
 
 
 class MinerBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_evade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
             "diamond", "amber", "citrine", "tourmaline", "star ")
 
@@ -37,10 +37,12 @@ class MinerBot(BotBase):
     def pick(self):
         return next((i for i in self.c.backpack if i.name.lower() in ("pickaxe", "shovel")), None) or next((i for i in self.c.equipped if "pickaxe" in i.name.lower()), None)
 
+    INGOT_BUYER = (1418, 1550)                            # a Britain blacksmith (buys iron ingots at 4 gp)
+
     def r_retool(self):
         """The pickaxe wore out (it does, silently): buy another from the Tinker."""
         self.c.open_backpack()
-        if self.pick() or self.mobs(10) or time.time() - self.facts.get("retool_at", 0) < 120:
+        if self.pick() or self.threats(10) or time.time() - self.facts.get("retool_at", 0) < 120:
             return False
         self.facts["retool_at"] = time.time()
         self.activity = "buying a pickaxe"
@@ -53,12 +55,18 @@ class MinerBot(BotBase):
 
     def r_sell(self):
         heavy = self.c.weight > self.c.max_weight * 0.8
-        if not heavy or self.mobs(8) or time.time() - self.facts.get("sold_at", 0) < 240:
+        if not heavy or self.threats(8) or time.time() - self.facts.get("sold_at", 0) < 240:
             return False
         self.facts["sold_at"] = time.time()
-        self.activity = "selling ore"
-        earned = self.sell_items((1420, 1582), ("ore", "ingot"))
-        self.note("sell", f"The Miner buys ore: {earned} gold for a full load ({self.ore()} left).", key="oresell")
+        if self.ore_piles(smeltable=True):
+            done = self.smelt()
+            if done is None:
+                self.note("sell", "A miner with a full load of ore could not reach the forge; no NPC buys raw ore, so the load is worth nothing until smelted.", key="noforgeload")
+        self.activity = "selling ingots"
+        earned = self.sell_items(self.INGOT_BUYER, ("ingot",))
+        self.note("sell", f"A Blacksmith buys the smelted ingots: {earned} gold for a load ({self.ore()} ore and ingots left).", key="ingotsell")
+        if not earned:
+            self.note("sell", "Raw ore sells to no NPC (the Miner buys none), and a full pack of ore brings nothing until the miner learns to smelt it at a forge.", key="orenosale")
         return True
 
     def stand_near(self, tx, ty):
@@ -71,7 +79,7 @@ class MinerBot(BotBase):
         return False
 
     def r_mine(self):
-        if self.mobs(8) or self.hp_pct() < 50 or self.c.weight > self.c.max_weight * 0.88:
+        if self.threats(8) or self.hp_pct() < 50 or self.c.weight > self.c.max_weight * 0.88:
             return False
         tool = self.pick()
         if not tool:
@@ -119,7 +127,7 @@ class MinerBot(BotBase):
                     self.blocked[(tx, ty)] = time.time() + 900
                     self.i += 1
                     return True
-            if self.mobs(8) or self.c.weight > self.c.max_weight * 0.85:
+            if self.threats(8) or self.c.weight > self.c.max_weight * 0.85:
                 self.cancel_repeat()
                 self.note("mine", "Mining keeps repeating while the pack gets heavier; nothing stops it before the weight limit, so the miner must step away to end the loop.", key="heavyrepeat")
                 break

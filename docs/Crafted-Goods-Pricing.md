@@ -37,6 +37,16 @@ Exceptional and low quality still scale the price (×1.25 and ×0.6, stock rule)
 
 The vendor's stock lists ("Shop Inventory") for the Tailor were photographed in the real client on the farm host: `work/player-client/BotTailorA/shots/20261014-215458-tailor-buy-final.png` (tools at stock, shirt raised) and `...-215510-tailor-buy-final-2.png` (robe 60, cloak 53). Both were sent to the owner. What the Blacksmith pays (mace 38, cutlass 50, tongs 7 in the first build) was read through Navrey's sell list.
 
+## First measurement on the farm (2026-10-14, 21:56 to about 23:10)
+
+Measured by the watching session from the bots' sale lines. Bot faults and sold-out material shelves dominate both windows, so read it as "crafting now pays when a crafter can craft", not a clean price study.
+
+- **Gross income:** about 1,130 gold across 7 crafters in about 70 minutes, roughly 140 gold per crafter-hour.
+- **Before and after:** the Tinker went from −292 to +177 gold an hour and the Blacksmith from −681 to +168. Much of the "before" loss was bot faults (wrong buyer, a hoarding bug), not prices.
+- **Finished goods:** a chair sold for 38, a cutlass 50, a mace 38, a cloak 53, ordinary clothing about 20 each.
+- **Tools stay at stock**, as chosen: an inshave or scorp sells for 5 gold and a tool kit for 3, each about 2 ingots (about 10 gold). A Tinker who trains on tools loses about half its material on each one, so its profit has to come from other items (keys, clocks, sextants).
+- **Still open:** a clean read needs an hour with material in stock and no restarts. Newly created veteran and newbie crafters run side by side would give it.
+
 ## How it is built
 
 - **Engine hooks (ModernUO, narrow):**
@@ -54,4 +64,4 @@ The vendor's stock lists ("Shop Inventory") for the Tailor were photographed in 
    - Margin 1.25 covers the material lost on failed crafts only at success rates above about 60%. At 50% the crafter roughly breaks even.
    - Spread 1.5 makes NPC-bought finished goods 3 to 7 times dearer than before (a shirt 12 → 30, a cloak 8 → 53). Players who buy clothing or weapons from NPCs pay more. That is the intended shift to crafters, but it is a visible change.
 3. **Not covered:** alchemy, inscription, cooking and cartography are left out for now (potions and scrolls are sensitive economy items). Should they follow the same rule?
-4. **Ore** still has no NPC buyer (tuning note 4). This change does not address gatherers.
+4. **Ore** still has no NPC buyer (tuning note 4). That is the era's rule: a Blacksmith buys iron ingots at 4 gold, so a miner smelts first. This change does not address gatherers.

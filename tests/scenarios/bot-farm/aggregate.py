@@ -24,7 +24,7 @@ FARM = os.path.join(ROOT, "work", "botfarm")
 ORDER = ["death", "danger", "combat", "healing", "potions", "bank", "shop", "sell", "money", "loot", "craft", "cook", "fish", "mine", "tame", "training", "weight", "stuck", "bot", "message"]
 
 
-NOISE = re.compile(r"world is saving|World save|Your skill in|has increased|begins to rain|stops raining|Thy current bank balance|Bot\w+: (bank|balance|withdraw)|has changed by|You have (gained|lost) a little|Opening door|"
+NOISE = re.compile(r"world is saving|World save|Your skill in|has increased|begins to rain|stops raining|Thy current bank balance|\bBot\w+: (bank|balance|withdraw)|has changed by|You have (gained|lost) a little|Opening door|"
                    r"protection of the town guards|bank guard protection|protected from theft|You begin applying|You finish applying|You create the item|You failed to create", re.I)
 
 

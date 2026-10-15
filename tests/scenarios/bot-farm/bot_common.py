@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(ROOT, ".claude", "scripts"))
 
 from navrey_session import connect  # noqa: E402
 from uo import Event  # noqa: E402
-from memory import SharedMemory, cell_of  # noqa: E402
+from memory import MEMDIR, SharedMemory, cell_of  # noqa: E402
 
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
@@ -78,7 +78,11 @@ class BotBase:
         self.dir = os.path.join(FARM, name)
         os.makedirs(self.dir, exist_ok=True)
         self.notes = Notes(name, self.pname)
-        self.mem = SharedMemory(self.pname, name)
+        # "newbie" bots play only on what a new player can see: no monster table, no craft skill windows, no taming table. They learn from what
+        # happens to them and share that among newbies only (their own memory folder). The gap between newbie and veteran bots of one profession
+        # (deaths, gold, skill gain per hour) measures what the game does not tell its players.
+        self.mode = os.environ.get("BOT_MODE", "veteran")
+        self.mem = SharedMemory(self.pname, name, root=MEMDIR + ("-newbie" if self.mode == "newbie" else ""))
         self.journal = deque(maxlen=300)
         self.tick_no = 0
         self.last_rule = ""
@@ -130,8 +134,7 @@ class BotBase:
         out = []
         for e in self.c.events.poll():
             t = e.text
-            if t.startswith("[LABEL]") and t.rstrip().endswith("corpse"):
-                self.kills += 1
+            # (a "[LABEL] ... corpse" line is any corpse that comes into view, other bots' kills included: kills are counted by the fight that made them)
             m = re.search(r"Your skill in (.+?) has increased by (\d+(?:\.\d+)?)\.\s+It is now (\d+(?:\.\d+)?)", t)
             if m:
                 self.stats["gains"][m.group(1)] = self.stats["gains"].get(m.group(1), 0) + 1
@@ -220,7 +223,7 @@ class BotBase:
             "hp": self.c.hp, "max_hp": self.c.max_hp, "mana": self.c.mana, "stam": self.c.stamina, "pos": [self.c.x, self.c.y], "gold": self.c.gold,
             "weight": [self.c.weight, self.c.max_weight], "ghost": self.c.ghost, "kills": self.base["kills"] + self.kills, "deaths": self.base["deaths"] + self.deaths, "gains": gains,
             "skills": dict(sorted(self.skill_values.items(), key=lambda kv: -kv[1])[:6]), "tick": self.tick_no,
-            "all_skills": {k: v for k, v in sorted(self.skill_values.items()) if v > 0},
+            "all_skills": {k: v for k, v in sorted(self.skill_values.items()) if v > 0}, "mode": self.mode,
             **getattr(self, "status_extra", {}),
         }
         with open(os.path.join(self.dir, "status.json"), "w", encoding="utf-8") as f:
@@ -238,6 +241,10 @@ class BotBase:
 
     def r_dead(self):
         if not self.c.ghost:
+            if self.facts["ghost_since"] is not None:
+                self.facts["just_resurrected"] = True
+                if self.c.war_mode:
+                    self.c.war(False)
             self.facts["ghost_since"] = None
             return False
         if self.facts["ghost_since"] is None:
@@ -247,7 +254,11 @@ class BotBase:
             self.log(f"ghost at {self.c.x},{self.c.y}; war mode at death = {self.c.war_mode}")
             self.death_spots.append((self.c.x, self.c.y))
             self.mem.record("death", cell=cell_of(self.c.x, self.c.y), killers=[t[2] for t in getattr(self, "recent_threats", [])[:3]])
-            self.facts["corpse"] = {"xy": (self.c.x, self.c.y), "t": time.time(), "gold": self.last_gold, "tries": 0}
+            on_run = time.time() - self.facts.get("corpse_run_at", 0) < 400
+            # killed again while fetching the corpse: whatever killed it is still there, so this corpse is not worth a second walk
+            self.facts["corpse"] = {"xy": (self.c.x, self.c.y), "t": time.time(), "gold": self.last_gold, "tries": 1 if on_run else 0}
+            if on_run:
+                self.note("death", f"Going back for its corpse got the {self.pname} killed again; the killer was still there and nothing warned it.", key="corpsetrap")
             json.dump({"death_spots": self.death_spots}, open(self.know_path, "w", encoding="utf-8"))
             self.note("death", f"A {self.pname} died.", key=f"death:{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
             threats = getattr(self, "recent_threats", [])
@@ -287,14 +298,19 @@ class BotBase:
         if time.time() - info["t"] > 420:
             self.facts.pop("corpse")
             return False
-        if self.hp_pct() < 70 or self.mobs(8):
+        if self.hp_pct() < 70 or self.threats(8):
             return False
         if info["gold"] < 60:
             self.facts.pop("corpse")
             return False
         info["tries"] += 1
-        self.activity = "going back for my corpse"
         x, y = info["xy"]
+        if self.mem.dangerous_cell(cell_of(x, y)):
+            self.log(f"not going back to the corpse at {x},{y}: the shared memory says bots die there")
+            self.facts.pop("corpse")
+            return False
+        self.facts["corpse_run_at"] = time.time()
+        self.activity = "going back for my corpse"
         self.log(f"going back to the corpse at {x},{y} ({info['gold']} gold lost)")
         self.travel(x, y, near=1, tries=12)
         corpses = [i for i in self.c.containers(within=6) if ("corpse" in i.name.lower() or "remains" in i.name.lower()) and not i.name.lower().startswith(("a ", "an "))]
@@ -332,8 +348,9 @@ class BotBase:
             return False
         self.activity = "fleeing"
         self.on_flee()
-        for item in self.c.backpack:
+        for item in self.c.backpack if time.time() - self.facts.get("drank", 0) > 12 else ():
             if item.name == "Yellow Potion":      # a lesser heal potion: yellow, as in the era
+                self.facts["drank"] = time.time()
                 self.c.use(item.serial)
                 self.log("drank a yellow potion at low health")
                 self.note("combat", "At low health the only way to tell the Heal potion is by its color (yellow); nothing in the pack says so.", key="potioncolor")
@@ -347,6 +364,84 @@ class BotBase:
 
     def on_flee(self):
         pass
+
+    def r_cure(self):
+        """Poisoned: cure before anything else. The Orange potion is the Cure potion (five come in the starting kit, from the shard's poison relief); a
+        bandage cures only at Healing 60 or more in this era; a heal spell or a Yellow potion does not stop poison. Never drink Orange for hit points."""
+        if self.c.ghost or not self.c.poisoned or time.time() - self.facts.get("cured_at", 0) < 8:
+            return False
+        self.facts["cured_at"] = time.time()
+        self.activity = "curing poison"
+        pot = next((i for i in self.c.backpack if i.name == "Orange Potion"), None)
+        if pot:
+            self.c.use(pot.serial)
+            time.sleep(1.5)
+            self.note("poison", f"Poisoned, the {self.pname} drank an Orange potion (Cure); still poisoned: {self.c.poisoned}. Nothing in the pack names it a Cure potion.", key="cure:orange")
+            return True
+        if self.skill_values.get("Healing", 0) >= 60 and self.c.find("bandage"):
+            return self.bandage_self()
+        self.note("poison", f"A poisoned {self.pname} with no Cure potion left and too little Healing can only run to a healer or wait it out.", key="cure:none")
+        return False
+
+    # ---- dressing: after a resurrection the starting gear is back in the pack, not on the body ----------------------------------------------
+    WEAPONS = {"Archer": ("bow", "crossbow"), "Ranger": ("bow", "crossbow"), "Bard": ("bow", "crossbow"), "MaceFighter": ("club", "mace", "hammer", "staff"),
+               "Fencer": ("kryss", "spear", "fork", "dagger"), "Swordsman": ("katana", "sword", "scimitar", "cutlass", "axe"), "Warlock": ("katana", "sword", "scimitar")}
+    ARMOR = ("tunic", "leggings", "sleeves", "gloves", "gorget", "helm", "cap", "coif", "shield", "chest", "arms", "legs")
+    CLOTHES = ("shirt", "pants", "shoes", "boots", "doublet", "skirt", "kilt")
+
+    def r_gear(self):
+        """Put the gear in the pack back on: a resurrected character comes back in a death robe with its weapon and armour in the backpack, and fights
+        barehanded until the player notices (bots did, for hours). Checked once a minute and right after a resurrection."""
+        if self.c.ghost or time.time() - self.facts.get("gear_at", 0) < 60 and not self.facts.pop("just_resurrected", False):
+            return False
+        self.facts["gear_at"] = time.time()
+        self.c.open_backpack()
+        worn = {(i.layer or "").lower() for i in self.c.equipped}
+        names = [i.name.lower() for i in self.c.equipped]
+        todo = []
+        wanted = self.WEAPONS.get(self.pname, ())
+        has_weapon = any(any(w in n for w in wanted) for n in names) if wanted else True
+        if not has_weapon:
+            weapon = next((i for i in self.c.backpack if any(w in i.name.lower() for w in wanted)), None)
+            if weapon:
+                todo.append(weapon)
+        for it in self.c.backpack:
+            low = it.name.lower()
+            if any(a in low for a in self.ARMOR) and low not in names:
+                todo.append(it)
+            elif any(c in low for c in self.CLOTHES) and low not in names and not any(c in n for n in names for c in self.CLOTHES if c in low):
+                todo.append(it)
+        if not todo:
+            return False
+        if "robe" in names and any(any(a in i.name.lower() for a in self.ARMOR) for i in todo):
+            robe = next((i for i in self.c.equipped if i.name.lower() == "robe"), None)
+            if robe:
+                self.c.unequip(robe.serial)                 # the death robe covers the chest armour's layer
+                time.sleep(0.8)
+        failed = self.facts.setdefault("gear_failed", {})
+        todo = [it for it in todo if failed.get(it.serial, 0) < time.time()]
+        if not todo:
+            return False
+        self.activity = "getting dressed"
+        put_on = []
+        for it in todo[:10]:
+            try:
+                self.c.call(f"equip {it.serial}", timeout=6)
+            except Exception:
+                pass
+            time.sleep(0.8)
+        self.c.open_backpack()
+        still = {i.serial for i in self.c.backpack}
+        for it in todo[:10]:
+            if it.serial in still:
+                failed[it.serial] = time.time() + 1800          # something else holds that layer: do not keep trying every minute
+            else:
+                put_on.append(it.name)
+        if not put_on:
+            return False
+        self.log(f"put back on: {put_on}")
+        self.note("death", "After a resurrection the starting weapon and armour are in the backpack, not worn; nothing reminds the player to put them back on, and a character that forgets fights barehanded.", key="regear", items=put_on)
+        return True
 
     def r_evade(self):
         """For bots that do not fight for a living: a hostile within seven tiles means walk away from it, towards town, before it gets to them (waiting beside it achieves nothing)."""
@@ -409,7 +504,7 @@ class BotBase:
             self.log(f"{corpse.name} has hair or a beard in it: a person's corpse, left alone")
             return True
         worth = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire",
-                 "emerald", "diamond", "amber", "citrine", "tourmaline", "arrow", "bolt", "hide", "leather", "feather", "ingot", "ore", "board", "log")
+                 "emerald", "diamond", "amber", "citrine", "tourmaline", "arrow", "bolt", "feather") + (self.MATERIALS if self.LOOT_MATERIALS else ())
         gold0 = self.c.gold
         for it in contents:
             if not any(w in it.name.lower() for w in worth):
@@ -442,16 +537,22 @@ class BotBase:
 
     def r_bank(self):
         """Rich (450+ gold) or too heavy with leftovers: bank the gold above a reserve."""
-        if self.mobs(10) or self.hp_pct() < 60 or time.time() - self.facts.get("bank_fail", 0) < 180 or time.time() - self.facts.get("banked_at", 0) < 240:
+        if self.threats(10) or self.hp_pct() < 60 or time.time() - self.facts.get("bank_fail", 0) < 180 or time.time() - self.facts.get("banked_at", 0) < 240:
             return False
         rich = self.c.gold >= self.RICH_GOLD
         heavy = self.c.weight > self.c.max_weight * 0.8 and bool(self.junk_in_pack())
-        if not (rich or heavy):
+        overloaded = self.facts.get("bank_heavy") and self.c.weight > self.c.max_weight * 0.9
+        if not (rich or heavy or overloaded):
             return False
         self.activity = "banking"
+        if overloaded:
+            done = self.visit_bank("overloaded", extra=self.HEAVY_THINGS)
+            if done:
+                self.facts["bank_heavy"] = False
+            return True
         return self.visit_bank("rich" if rich else "heavy") or True
 
-    def visit_bank(self, why, withdraw=0, reserve=200):
+    def visit_bank(self, why, withdraw=0, reserve=200, extra=()):
         banks = sorted(BANKS, key=lambda p: abs(p[0] - self.c.x) + abs(p[1] - self.c.y))
         self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
         res = self.c.goto(*banks[0]).wait(timeout=90)
@@ -472,7 +573,7 @@ class BotBase:
         self.c.open_backpack()
         for it in list(self.c.backpack):
             low = it.name.lower()
-            if any(w in low for w in self.KEEP) or low == "backpack":
+            if (any(w in low for w in self.KEEP) and not any(w in low for w in extra)) or low == "backpack" or "bandage" in low:
                 continue
             self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
             time.sleep(1.4)
@@ -501,11 +602,8 @@ class BotBase:
         self.log(f"to the shop at {xy}: {res}")
         stock = []
         vendor_name = ""
-        for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name]:
-            self.c.events.drain()
-            self.c.say(f"{v.name.split()[0]} buy")
-            time.sleep(2.5)
-            stock = self.cmd("shop", timeout=10)
+        for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
+            stock = self.vendor_list(v, "buy")
             if len(stock) >= 2:
                 vendor_name = v.name
                 break
@@ -529,7 +627,7 @@ class BotBase:
         have = {}
         for it in self.c.backpack:
             have[it.name.lower()] = have.get(it.name.lower(), 0) + (it.amount or 1)
-        cart, spent, bought = [], 0, {}
+        cart, spent, bought, got = [], 0, {}, {}
         gold = self.c.gold if budget is None else min(budget, self.c.gold)
         for line in stock:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
@@ -538,18 +636,39 @@ class BotBase:
             serial, price, avail, name = m.group(1), int(m.group(2)), int(m.group(3)), m.group(4).strip()
             for sub, target in wanted.items():
                 if sub in name.lower():
-                    owned = sum(v for k, v in have.items() if sub in k)
-                    n = min(avail, max(0, target - owned), max(0, (gold - spent) // max(price, 1)))
+                    units = 50 if name.lower().startswith("bolt of") else 1     # a bolt cuts into 50 cloth
+                    owned = sum(v for k, v in have.items() if sub in k) + got.get(sub, 0)
+                    n = min(avail, max(0, -(-(target - owned) // units)), max(0, (gold - spent) // max(price, 1)))
                     if n > 0:
                         cart += [serial, str(n)]
                         spent += n * price
                         bought[name] = n
+                        got[sub] = got.get(sub, 0) + n * units
                     break
         if cart:
             self.cmd("buy " + " ".join(cart), timeout=10)
             time.sleep(3)
             self.log(f"bought {bought} for {spent} gold")
         return bought
+
+    def vendor_list(self, vendor, kind):
+        """Ask one vendor for its buy ("buy") or sell ("sell") list and return the lines, or [] when the list that came back is not this vendor's:
+        Navrey's shop/selllist return the last list received, so a vendor that does not answer in time would hand back the previous vendor's list
+        (a Tinker once tried to sell Neoma's goods by serial to Constance, who paid nothing)."""
+        self.c.events.drain()
+        self.c.say(f"{vendor.name.split()[0]} {kind}")
+        deadline = time.time() + 4
+        got = False
+        while time.time() < deadline and not got:
+            time.sleep(0.5)
+            for e in self.c.events.poll():
+                if "[SHOP]" in e.text and vendor.serial.lower() in e.text.lower():
+                    got = True
+        if not got:
+            return []
+        lines = self.cmd("selllist" if kind == "sell" else "shop", timeout=10)
+        head = next((l for l in lines if l.startswith("[SHOP]")), "")
+        return lines if vendor.serial.lower() in head.lower() else []
 
     def sell_items(self, xy, words):
         """Walk to a buyer, find the vendor that opens a sell list, sell every pack item whose name has one of `words`. Returns gold earned (0 if it could not sell)."""
@@ -559,10 +678,7 @@ class BotBase:
             return 0
         offers = []
         for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
-            self.c.events.drain()
-            self.c.say(f"{v.name.split()[0]} sell")
-            time.sleep(2.5)
-            offers = self.cmd("selllist", timeout=10)
+            offers = self.vendor_list(v, "sell")
             if any("gp" in l for l in offers):
                 break
             offers = []
@@ -589,7 +705,74 @@ class BotBase:
         self.log(f"sold {len(cart) // 2} stacks for {earned} gold")
         return earned
 
-    HEAVY_THINGS = ("ore", "ingot", "board", "log", "fish", "raw ", "hide", "leather", "cloth", "arrow", "bolt", "feather", "shaft")
+    # heaviest per piece first; never ammunition (arrows weigh a tenth of a stone, and an overloaded archer used to drop its own arrows first)
+    HEAVY_THINGS = ("ore", "log", "hide", "leather", "board", "fish", "raw ", "cloth", "ingot")
+    MATERIALS = ("ore", "log", "hide", "leather", "board", "ingot")
+    LOOT_MATERIALS = True                                 # gatherers and crafters; fighters set it False
+
+    FORGE = (1424, 1558)                                  # the Britain smithy's small forge: an item from the decoration data, not a map static
+
+    def ore_piles(self, smeltable=False):
+        """Ore in the pack; with smeltable, without piles that gave nothing at the forge lately (a single small ore, or a colour this Mining cannot smelt)."""
+        bad = self.facts.setdefault("unsmeltable", {})
+        return [i for i in self.c.backpack if re.search(r"\bore\b", i.name.lower()) and not (smeltable and bad.get(i.serial, 0) > time.time())]
+
+    def ingots(self):
+        return sum((i.amount or 1) for i in self.c.backpack if "ingot" in i.name.lower())
+
+    def smelt(self):
+        """Carry the ore to the Britain forge and smelt every pile: double-click the ore, target the forge (Mining 25-75 for iron; a failure burns half
+        the pile away). Returns (ore, ingots made, piles burned), or None when the forge could not be reached."""
+        piles = self.ore_piles(smeltable=True)
+        ore = sum((i.amount or 1) for i in piles)
+        fx, fy = self.FORGE
+        self.activity = "smelting ore at the forge"
+        if max(abs(self.c.x - fx), abs(self.c.y - fy)) > 2:
+            self.c.goto(fx, fy).wait(timeout=120)
+            for dx, dy in ((-1, -1), (0, -1), (-1, 0), (1, -1), (-1, 1), (1, 0), (0, 1)):
+                if max(abs(self.c.x - fx), abs(self.c.y - fy)) <= 1:
+                    break
+                self.c.gotoexact(fx + dx, fy + dy).wait(timeout=20)
+        forges = [g for g in self.ground_items(4) if re.search(r"\bforge$", g.name.lower())]
+        forge = min(forges, key=lambda g: (g.x, g.y) != (fx, fy), default=None)
+        if forge is None or max(abs(self.c.x - forge.x), abs(self.c.y - forge.y)) > 2:
+            self.note("smelt", f"Could not get within two steps of the forge (at {self.c.x},{self.c.y}; forge seen: {bool(forge)}).", key="noforge")
+            return None
+        before = self.ingots()
+        said = []
+        for p in piles:
+            self.c.events.drain()
+            self.c.use(p.serial)
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+                said += self.read_journal()
+                self.log(f"no target cursor from {p.name} x{p.amount} ({p.serial}); journal: {said[-2:]}")
+                continue
+            self.c.target(forge.serial)
+            end = time.time() + 5
+            got = []
+            while time.time() < end and not got:            # wait for the server's answer (or the pile to go), not a fixed beat
+                time.sleep(0.7)
+                got = [l for l in self.read_journal() if re.search(r"smelt|burn away|ore|too far|no idea|metal|cannot|can't", l, re.I)]
+                if not any(i.serial == p.serial for i in self.c.backpack):
+                    break
+            said += got
+            if not got:
+                self.log(f"no answer to smelting {p.name} x{p.amount} at forge {forge.serial} ({forge.name}, {forge.x},{forge.y}); I am at {self.c.x},{self.c.y}")
+        self.c.open_backpack()
+        time.sleep(1)
+        made = self.ingots() - before
+        burned = sum(1 for l in said if "burn away" in l.lower())       # success also says "removing the impurities"
+        left = {i.serial: (i.amount or 1) for i in self.ore_piles()}
+        for p in piles:
+            if left.get(p.serial) == (p.amount or 1):
+                self.facts["unsmeltable"][p.serial] = time.time() + 1800   # unchanged after a try: do not walk back to the forge for it
+        self.mem.record("res", kind="smelt", key=f"{fx},{fy}", ok=made > 0, ingots=made, burned=burned)
+        self.work += made > 0
+        self.log(f"smelted {ore} ore into {made} ingots ({burned} piles burned down); lines: {said[-3:]}")
+        self.note("smelt", f"Smelting ore at the Britain forge: {ore} ore gave {made} ingots, {burned} piles lost half to impurities.", key=f"smeltresult:{self.pname}")
+        if made <= 0 and not burned:
+            self.note("smelt", f"Smelting gave nothing and said: {said[-2:]}", key="smeltnothing")
+        return ore, made, burned
 
     def cancel_repeat(self):
         """Any step ends the shard's gather/craft repeat loop (docs/Harvest-AutoRepeat-Evidence.md); step to a free tile and back."""
@@ -605,20 +788,51 @@ class BotBase:
         if over <= 0:
             return False
         self.note("weight", f"Overloaded to {self.c.weight}/{self.c.max_weight}: the character stands still; the only way out is to drop things on the ground, and nothing says which weigh most.", key="overloaded_stuck")
-        stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=lambda i: -(i.amount or 1))
+        def rank(i):
+            n = i.name.lower()
+            return next((k for k, w in enumerate(self.HEAVY_THINGS) if w in n), 99), -(i.amount or 1)
+        if time.time() < self.facts.get("drop_refused_until", 0):
+            return False                                  # dropping was refused a moment ago: let r_bank walk to the bank box instead
+        stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=rank)
+        left = 0
         for it in stacks[:3]:
             amt = it.amount or 1
-            self.c.call(f"dropground {it.serial} {max(amt // 2, 1)}", timeout=8)
-            self.log(f"dropped {max(amt // 2, 1)} of {it.name} to get under the weight limit")
+            self.c.call(f"dropground {it.serial} {amt}", timeout=8)
             time.sleep(1.5)
+            still = any(i.serial == it.serial for i in self.c.backpack)
+            left += still
+            self.log(f"{'tried to drop' if still else 'dropped'} {amt} {it.name} to get under the weight limit")
             if self.c.weight <= self.c.max_weight - 5:
                 break
+        if stacks and left == len(stacks[:3]):
+            self.facts["drop_refused_until"] = time.time() + 600
+            self.facts["bank_heavy"] = True
+            self.note("weight", "An overloaded character cannot drop anything: the server puts each item straight back (\"You are overloaded\") and says nothing else. The only way out is to stagger to a bank or a vendor.",
+                      key="cantdrop")
+            return False
         return True
 
+    def tired(self):
+        """Out of breath: running costs stamina (StaminaSystem: a point every few steps, more below a third, and no running at all at 0) and the
+        frontier walks are long, so bots arrived everywhere at stamina 1 and crawled. A player stops to get their breath back."""
+        mx = self.c.state.get("maxStam") or 0
+        if mx and self.c.stamina < 0.2 * mx:
+            self.facts["catching_breath"] = True
+        elif not mx or self.c.stamina >= 0.7 * mx:
+            self.facts["catching_breath"] = False
+        return bool(self.facts.get("catching_breath"))
+
     def r_rest(self):
-        """Hurt and nothing around: stand still (a mage meditates, handled by the brain)."""
-        if self.mobs(10) or self.hp_pct() >= 85:
+        """Hurt or out of breath, and nothing around: stand still (a mage meditates, handled by the brain)."""
+        if self.mobs(10) or (self.hp_pct() >= 85 and not self.tired()):
             return False
+        if self.tired():
+            self.activity = f"catching breath (stamina {self.c.stamina})"
+            if not self.facts.get("tired_noted"):
+                self.facts["tired_noted"] = True
+                self.note("stamina", f"Running across the map leaves a {self.pname} at stamina {self.c.stamina}: it can hardly move until it stops to rest, and nothing but the stamina bar says why.", key="tired")
+            time.sleep(4)
+            return True
         self.activity = "resting"
         if self.bandage_self():
             return True
@@ -636,7 +850,7 @@ class BotBase:
         """One line in this bot's decisions.jsonl (episodes of a rule, and the moments the shared memory changed a decision); evaluate.py reads them all."""
         try:
             with open(self.decisions_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps({"type": typ, "t": round(time.time()), "bot": self.name, "prof": self.pname, **kw}, ensure_ascii=False, separators=(",", ":")) + "\n")
+                f.write(json.dumps({"type": typ, "t": round(time.time()), "bot": self.name, "prof": self.pname, "mode": getattr(self, "mode", "veteran"), **kw}, ensure_ascii=False, separators=(",", ":")) + "\n")
         except OSError:
             pass
 
@@ -662,6 +876,20 @@ class BotBase:
             return
         self.dlog("ep", rule=ep["rule"], act=(ep["act"] or "")[:40], dur=round(dur, 1), gold=self.c.gold - ep["gold0"], kills=self.kills - ep["kills0"], gains=self.total_gains() - ep["gains0"],
                   hp=self.c.hp - ep["hp0"], died=self.deaths - ep["deaths0"], work=self.work - ep.get("work0", self.work), moved=round(math.hypot(self.c.x - ep["x0"], self.c.y - ep["y0"])))
+
+    HARMLESS = ("rat", "cat", "dog", "bird", "chicken", "rabbit", "sheep", "cow", "pig", "goat", "hind", "deer", "crow", "magpie", "sparrow", "swallow",
+                "nightingale", "plover", "thrush", "tern", "warbler", "squirrel", "toad", "frog", "lizard", "gull", "raven", "finch", "towhee", "starling")
+
+    def threats(self, within):
+        """Hostiles that can hurt a working character: mobs() without the town animals (a rat beside the forge is no reason to stop working; the
+        Fisherman once stood idle for twenty minutes because two rats were near)."""
+        out = []
+        for m in self.mobs(within):
+            n = m.name.lower()
+            if n.startswith(("a ", "an ")) and any(re.search(r"\b" + re.escape(w) + r"\b", n) for w in self.HARMLESS) and not any(w in n for w in ("giant", "dire", "plague", "rat man", "ratman")):
+                continue
+            out.append(m)
+        return out
 
     @staticmethod
     def mkey(m):

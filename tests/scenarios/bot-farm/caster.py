@@ -81,16 +81,27 @@ class CasterBot(mage_bot.Bot):
     def attack(self, m, train=False):
         if not (self.fight and self.fight["serial"] == m.serial):
             if self.fight:
-                self.end_fight("kill" if self.kills > self.fight["kills0"] else "lost")
+                self.end_fight("kill" if self.target_died(self.fight) else "lost")
             mon = self.k.monster(m)
             self.fight = {"serial": m.serial, "key": BotBase.mkey(m), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
-                          "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(m.x, m.y)}
+                          "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(m.x, m.y), "xy": (m.x, m.y), "pct": 100,
+                          "corpses0": {c.serial for c in self.c.containers(within=14)}}
         return super().attack(m, train)
+
+    def target_died(self, f):
+        x, y = f.get("xy", (None, None))
+        for c in self.c.containers(within=16):
+            if "corpse" in c.name.lower() and c.serial not in f.get("corpses0", set()) and x is not None and abs(c.x - x) <= 2 and abs(c.y - y) <= 2:
+                return True
+        return f.get("pct", 100) <= 25
 
     def end_fight(self, outcome):
         f, self.fight = self.fight, None
         if not f:
             return
+        if outcome == "kill":
+            self.kills += 1
+            self.log(f"kill #{self.kills}: {f['key']}")
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
             return
@@ -100,10 +111,41 @@ class CasterBot(mage_bot.Bot):
     def r_dead(self):
         first = self.c.ghost and self.facts["ghost_since"] is None
         if first:
-            self.log(f"DEAD at {self.c.x},{self.c.y} (killed by {self.fight['key'] if self.fight else 'nothing seen'})")
-            self.end_fight("death")
-            self.mem.record("death", cell=cell_of(self.c.x, self.c.y), killers=[self.fight["key"]] if self.fight else [])
+            # the killer: the fight's target, or else the nearest hostile seen in the last ticks (casters often die before a spell lands)
+            threats = getattr(self, "recent_threats", [])
+            killer = self.fight["key"] if self.fight else (threats[0][2] if threats else None)
+            self.log(f"DEAD at {self.c.x},{self.c.y} (killed by {killer or 'nothing seen'}; threats near: {[t[1] for t in threats[:3]]})")
+            if self.fight:
+                self.end_fight("death")
+            elif killer:
+                for scope in ("world", "prof"):
+                    self.mem.record("fight", scope=scope, m=killer, grp=self.mem.grp, outcome="death", ttk=0, dmg=self.c.max_hp, hp=self.c.max_hp, cell=cell_of(self.c.x, self.c.y))
+            self.mem.record("death", cell=cell_of(self.c.x, self.c.y), killers=[killer] if killer else [])
         return super().r_dead()
+
+    RULES = ["r_dead", "r_cure"] + [r for r in mage_bot.Bot.RULES if r != "r_dead"]
+
+    def r_cure(self):
+        """Poisoned: cast Cure if there is mana, else drink the Orange potion. A Heal spell fails on a poisoned character ("You cannot heal yourself in your
+        current state."), which is how three casters died in four minutes."""
+        if self.c.ghost or not self.c.poisoned or time.time() - self.facts.get("cured_at", 0) < 6:
+            return False
+        self.facts["cured_at"] = time.time()
+        if self.c.mana >= 6:
+            self.cast("cure", "self")
+            self.notes.add("poison", "A poisoned caster cures itself first: a Heal spell does not work while poisoned, and the message does not say to cure.", key="cure:spell")
+            return True
+        pot = next((i for i in self.c.backpack if i.name == "Orange Potion"), None)
+        if pot:
+            self.c.use(pot.serial)
+            time.sleep(1.5)
+            return True
+        return False
+
+    def r_heal(self):
+        if self.c.poisoned:
+            return False
+        return super().r_heal()
 
     def r_flee(self):
         r = super().r_flee()
@@ -121,6 +163,8 @@ class CasterBot(mage_bot.Bot):
         res = self.c.goto(x, y).wait(timeout=4)
         if abs(self.c.x - x) < 4 and abs(self.c.y - y) < 4 or (res and str(res).startswith(("nopath", "blocked"))):
             self.facts.setdefault("spots_reached", []).append((x, y))
+            if str(res).startswith("nopath"):
+                self.mem.record("blocked", kind="spot", key=cell_of(x, y), ttl=6 * 3600)   # sea or rock: no bot need try it again tonight
             self.cur_spot = None
         return True
 
@@ -133,12 +177,20 @@ class CasterBot(mage_bot.Bot):
         for m in self.c.mobiles(within=14):
             if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and m.name != "Generic Player" and not self.c.ghost:
                 self.mem.sight(BotBase.mkey(m), m.x, m.y)
+        threats = sorted((m.distance, m.name, BotBase.mkey(m)) for m in self.mobs(12))
+        if threats:
+            self.recent_threats = threats
         f = self.fight
         if f:
             f["hpmin"] = min(f["hpmin"], self.c.hp)
-            if not any(m.serial == f["serial"] and not m.is_dead for m in self.c.mobiles(within=16)):
-                self.end_fight("kill" if self.kills > f["kills0"] else "lost")
-            elif time.time() - f["t0"] > 90:
+            target = next((m for m in self.c.mobiles(within=16) if m.serial == f["serial"]), None)
+            if target and not target.is_dead:
+                f["xy"] = (target.x, target.y)
+                if target.max_hits:
+                    f["pct"] = target.hp_pct
+            else:
+                self.end_fight("kill" if self.target_died(f) else "lost")
+            if self.fight is f and time.time() - f["t0"] > 90:
                 self.end_fight("lost")
         super().observe()
         if time.time() - self.last_status < 10:
