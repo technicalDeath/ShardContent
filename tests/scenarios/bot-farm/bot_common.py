@@ -152,10 +152,16 @@ class BotBase:
                 continue
             self.journal.append(t)
             out.append(t)
-            if re.match(r"\[SAY\] Bot\w+:", t):
+            own = t.startswith(f"[SAY] {self.name}:")
+            if re.match(r"\[SAY\] Bot\w+:", t) and not own:
                 continue                      # another bot talking to a banker or vendor
+            if own and re.match(rf"\[SAY\] {self.name}: (bank|balance|withdraw|guards|all release|\w+ (buy|sell|train)\b)", t, re.I):
+                continue                      # what this bot said itself
             body = re.sub(r"^\[(SYSTEM|SAY)\]\s*", "", t)
-            tag = "system" if t.startswith("[SYSTEM]") else ("npc" if t.startswith("[SAY]") and not t.startswith(f"[SAY] {self.name}") else "")
+            # the server's overhead messages to the character itself ("*You feel a bit nauseous*", "The spell fizzles.") come as speech under its own name
+            tag = "system" if t.startswith("[SYSTEM]") else ("self" if own else ("npc" if t.startswith("[SAY]") else ""))
+            if own:
+                body = body[len(self.name) + 2:]
             if tag:
                 k = norm_msg(body)
                 if k not in self.facts["seen_msgs"]:

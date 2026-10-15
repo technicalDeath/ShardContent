@@ -65,8 +65,9 @@ class HunterBot(BotBase):
             self.facts["bank_heavy"] = True
             self.log(f"the ground refused every drop (weight {self.c.weight}/{self.c.max_weight}): off to the bank")
             return False
-        self.note("weight", f"A {self.pname} filled its pack with hides and other crafting material that no shop in Britain buys; nothing tells a new player which loot is worth carrying.",
-                  key="deadweight")
+        carried = sorted({it.name for it in mats[:3]})
+        self.note("weight", f"A {self.pname} reached {self.c.weight}/{self.c.max_weight} stones carrying crafting material it does not use ({', '.join(carried)}); "
+                            "nothing tells a new fighter which loot is worth carrying.", key=f"deadweight:{','.join(carried)}")
         return True
 
     def __init__(self, name, profession):
