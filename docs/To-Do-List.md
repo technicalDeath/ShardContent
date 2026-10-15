@@ -30,11 +30,11 @@ The owner's running list of things to plan and build. Nothing here is signed off
   - **What happens:** a new character's maximum stamina is its Dexterity, often about 33. Bots that ran to hunting ground 150 to 300 tiles from Britain arrived at stamina 1 of 33, could not run from a monster, and had to stand and rest; one mage died out of breath (a brown bear caught it).
   - **Why (engine, pre-AOS settings in `ModernUO/Projects/UOContent/Misc/StaminaSystem.cs`):** running costs a point every 16 steps (`PlayerMobile.StepsMax`), and an extra point per step below 10% (`stamina.additionalLossWhenBelow` 0.10). At 0 a character cannot run (`stamina.cannotRunWhenFatigued`), though it can still walk. Stamina comes back at about a point every 7 seconds (`RegenRates`, `DefaultStamRate`). Nothing but the stamina bar tells the player any of this. The novice combat assist's stamina floor (60) applies to swing speed only, not to movement.
   - **Ideas to choose from** (needs the owner's ruling, then a plan):
-    1. A one-time tip the first time stamina falls below a quarter ("Running tires you. Walk, rest or drink a Refresh potion (red).").
+    1. Widen the existing tip. `newPlayerTips` already has a "tired" tip (`NewPlayerTipsService.Tired`, live since 2026-10-14), but it fires only in a fight and speaks of swing speed. A second, travel tip the first time stamina falls below a quarter outside combat could say "Running tires you. Walk, rest or drink a Refresh potion (red)."
     2. Cheaper running for new characters, as the novice combat assist does for combat (for example a point every 24 or 32 steps while the novice assist applies).
     3. Faster stamina regeneration out of combat for new characters.
     4. Guide lines only ("walk the last stretch").
-  - **Stock-first reading:** this is stock era behavior, so the smallest change is (1) or (4). The starting kit already has 3 Refresh potions.
+  - **Stock-first reading:** this is stock era behavior, so the smallest change is (1), a travel twin of an existing tip, or (4). The starting kit already has 3 Refresh potions.
   - **Evidence:** finding 5 in `Bot-Farm-QoL-Findings.md`, and the bot notes keyed `tired` (22 bots in 6 professions).
 
 ## Quality of life (Tier 1 plan, `Tier-1-QoL-Plan.md`)
