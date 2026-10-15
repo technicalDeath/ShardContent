@@ -343,12 +343,20 @@ class CrafterBot(HunterBot):
         self.c.goto(*self.facts.setdefault("home", (1470, 1620))).wait(timeout=4)
         return True
 
+    @staticmethod
+    def squash(name):
+        return re.sub(r"[^a-z]", "", name.lower())
+
     def is_product(self, name):
         n = name.lower()
         if n == self.cfg["mat"]:
             return False
         if n in self.items or n in self.made_names:
             return True
+        if not hasattr(self, "_squashed"):
+            self._squashed = {self.squash(i) for i in self.items}
+        if self.squash(n) in self._squashed or self.squash(n) in {self.squash(m) for m in self.made_names}:
+            return not any(w in n for w in self.KEEP)
         # made before the names were learned: "chair" is the tail of the menu's "wooden chair" (never a kit word: the starter bag stays)
         return not any(w in n for w in self.KEEP) and any(it.endswith(" " + n) for it in self.items)
 
@@ -463,6 +471,22 @@ class CrafterBot(HunterBot):
         return True
 
     TREES = [(1431, 1631, 20, 3288), (1440, 1718, 20, 3288), (1392, 1673, 30, 3280)]
+    try:
+        # every choppable tree around Britain, one per harvest bank (make_trees.py reads them from the map's statics): three trees were soon chopped bare
+        ALL_TREES = [tuple(t) for t in json.load(open(os.path.join(HERE, "trees.json"), encoding="utf-8"))]
+    except (OSError, ValueError):
+        ALL_TREES = TREES
+
+    def near_trees(self, n=6):
+        """The nearest trees within 60 tiles that no bot has found bare lately, nearest first."""
+        here = (self.c.x, self.c.y)
+        out = []
+        for t in sorted(self.ALL_TREES, key=lambda t: max(abs(t[0] - here[0]), abs(t[1] - here[1]))):
+            if max(abs(t[0] - here[0]), abs(t[1] - here[1])) > 60 or len(out) >= n:
+                break
+            if self.facts.get(("tree", t[0], t[1]), 0) <= time.time() and self.mem.usable("tree", f"{t[0]},{t[1]}"):
+                out.append(t)
+        return out
 
     def r_chop(self):
         """Carpenters cut their own wood when they cannot afford boards: stand by a tree, double-click the hatchet, target the tree."""
@@ -482,9 +506,7 @@ class CrafterBot(HunterBot):
                 self.note("chop", f"The carpenter has no hatchet to cut its own wood; tried the Weaponsmith and the Blacksmith: {got}", key="hatchetbuy")
             self.facts["chop_fail"] = time.time() + 600
             return bool(self.c.gold >= 30)
-        for tx, ty, tz, g in self.TREES:
-            if self.facts.get(("tree", tx, ty), 0) > time.time() or not self.mem.usable("tree", f"{tx},{ty}"):
-                continue
+        for tx, ty, tz, g in self.near_trees()[:3]:
             self.mem.record("claim", kind="tree", key=f"{tx},{ty}", ttl=300)
             self.activity = f"chopping at {tx},{ty}"
             ok = False
@@ -670,8 +692,9 @@ class CrafterBot(HunterBot):
         """Broke, with nothing to make and nothing in the bank: do what a new player does and hunt vermin for coins (the hunter's own rules, limited to what is prey)."""
         if self.c.gold >= 60 or self.facts["bank_balance"] >= 60 or self.count(self.cfg["mat"]) >= 30:
             return False
-        if self.products():
-            self.facts["sold_at"] = 0                     # sell what is in the pack before going out with a dagger
+        if self.products() and time.time() - self.facts.get("earn_sell_at", 0) > 600:
+            self.facts["earn_sell_at"] = time.time()
+            self.facts["sold_at"] = 0                     # sell what is in the pack before going out with a dagger (once in ten minutes)
             if self.r_sell():
                 return True
         self.note("money", f"The {self.pname} has no money, no material and nothing in the bank, so it goes hunting for coins with a craft tool and a dagger.", key="earnhunt")

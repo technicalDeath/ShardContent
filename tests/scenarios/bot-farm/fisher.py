@@ -120,7 +120,17 @@ class FisherBot(BotBase):
             return False
         if self.c.weight > self.c.max_weight * 0.9:
             return False
-        shore = SHORES[self.shore % len(SHORES)]
+        # one fisher to a shore spot: three once fished side by side, and with water on one side and each other on the rest none could step away
+        for _ in range(len(SHORES)):
+            shore = SHORES[self.shore % len(SHORES)]
+            key = f"{shore[0]},{shore[1]}"
+            crowded = any(m.name and m.name.startswith("Bot") and m.name != self.name and max(abs(m.x - shore[0]), abs(m.y - shore[1])) <= 3
+                          for m in self.c.mobiles(within=24))
+            if self.mem.usable("shore", key) and not crowded:
+                break
+            self.shore += 1
+            self.water = None
+        self.mem.record("claim", kind="shore", key=key, ttl=300)
         if max(abs(self.c.x - shore[0]), abs(self.c.y - shore[1])) > 3:
             self.activity = "walking to the lake"
             if not self.travel(*shore, near=2):

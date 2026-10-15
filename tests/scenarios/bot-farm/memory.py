@@ -291,10 +291,25 @@ class SharedMemory:
         return out[:n]
 
     def dangerous_cell(self, cell: str) -> bool:
-        c = self.state["world"]["cells"].get(cell)
-        if c:
-            self._decay_cell(c, time.time())
-        return bool(c and c["deaths"] >= 1.8 and c["deaths"] > c["kills"] * 0.5)
+        """A cell where bots die more than they kill, judged on the cell and on its eight neighbours together: a killing ground spreads its deaths
+        over several cells, each of which alone looked safe."""
+        now = time.time()
+        x, y = (int(v) for v in cell.split(","))
+        deaths = kills = 0.0
+        own = None
+        for dx in (-CELL, 0, CELL):
+            for dy in (-CELL, 0, CELL):
+                c = self.state["world"]["cells"].get(f"{x + dx},{y + dy}")
+                if not c:
+                    continue
+                self._decay_cell(c, now)
+                deaths += c["deaths"]
+                kills += c["kills"]
+                if dx == 0 and dy == 0:
+                    own = c
+        if own and own["deaths"] >= 1.8 and own["deaths"] > own["kills"] * 0.5:
+            return True
+        return deaths >= 3.0 and deaths > kills * 0.5
 
     def vendor_selling(self, word: str):
         """Shops that sell something whose name contains word: [(price, xy, item, qty)], cheapest first."""
