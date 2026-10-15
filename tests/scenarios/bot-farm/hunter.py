@@ -260,7 +260,8 @@ class HunterBot(BotBase):
                 self.mem.record("fight", scope="world", m=self.recent_threats[0][2], grp=self.mem.grp, outcome="death", ttk=0, dmg=self.c.max_hp, hp=self.c.max_hp, cell=cell_of(self.c.x, self.c.y))
         r = super().r_dead()
         if r and was is None:
-            for i, (dist, name, key, avg) in enumerate(self.recent_threats):
+            threats = [t for t in self.recent_threats if not any(w in t[1].lower() for w in SAFE_NAMES)] or self.recent_threats
+            for i, (dist, name, key, avg) in enumerate(threats):
                 # the nearest threat at death is the killer, named or not ("Tekchichak" is a ratman); a newbie has no damage table to blame others by
                 killer = i == 0 and dist <= 6
                 if killer or (name.lower().startswith(("a ", "an ")) and (dist <= 4 or (avg >= 10 and self.mode != "newbie"))):

@@ -290,6 +290,13 @@ class SharedMemory:
         out.sort(reverse=True)
         return out[:n]
 
+    CAMP_KINDS = ("orc", "ratman", "ettin", "troll", "harpy", "gazer", "gargoyle", "shade", "wraith", "spectre", "zombie", "lich", "ogre", "reaper", "lizardman")
+
+    def camp_cell(self, cell: str) -> bool:
+        """A cell where bots have often seen the kinds that live in camps and kill new characters."""
+        c = self.state["world"]["cells"].get(cell)
+        return bool(c and sum(n for k, n in c["sights"].items() if any(w in k for w in self.CAMP_KINDS)) >= 4)
+
     def dangerous_cell(self, cell: str) -> bool:
         """A cell where bots die more than they kill, judged on the cell and on its eight neighbours together: a killing ground spreads its deaths
         over several cells, each of which alone looked safe."""
@@ -407,7 +414,8 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
         ang, r = random.random() * 2 * math.pi, random.uniform(140, 320)
         cands.append((int(FRONTIER_CENTER[0] + r * math.cos(ang)), int(FRONTIER_CENTER[1] + r * math.sin(ang))))
     cands = [p for p in cands if not near(p, here) and not any(near(p, r) for r in recent) and mem.usable("spot", cell_of(*p))]
-    scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y))]
+    scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands
+              if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not mem.camp_cell(cell_of(x, y))]
     if not scored:
         return random.choice(list(fixed))
     scored.sort(reverse=True)

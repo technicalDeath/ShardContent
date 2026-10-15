@@ -36,7 +36,7 @@ CRAFTS = {
              sell_to=(1427, 1652), maxcost=10),
 }
 # where a broke crafter finds vermin for coins: the farms south-west of Britain, inside the town region (the shared memory's cows, chickens and rats)
-EARN_SPOTS = [(1300, 1800), (1340, 1720), (1360, 1760), (1560, 1650)]
+EARN_SPOTS = [(1300, 1800), (1340, 1720), (1360, 1760)]
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
 
@@ -374,6 +374,8 @@ class CrafterBot(HunterBot):
     def r_sell(self):
         stock = self.products()
         heavy = self.c.weight > self.c.max_weight * 0.7
+        if time.time() < self.facts.get("sell_skip_until", 0) and not heavy:
+            return False
         if not stock:
             return False                                 # nothing made: a trip to the buyer would sell nothing
         if len(stock) < 12 and not heavy and not (stock and self.count(self.cfg["mat"]) < 30 and time.time() - self.facts.get("sold_at", 0) > 300):
@@ -428,6 +430,8 @@ class CrafterBot(HunterBot):
         if gained <= 0 and buyer != self.cfg["sell_to"]:
             self.facts["bad_buyers"][f"{buyer[0]},{buyer[1]}"] = time.time() + 3600
             json.dump(self.facts["bad_buyers"], open(self.bad_buyers_path, "w", encoding="utf-8"))
+        if gained <= 0:
+            self.facts["sell_skip_until"] = time.time() + 900          # nobody wanted what is carried: craft, bank or hunt instead of another trip
         if cart and gained <= 0:
             self.note("sell", f"Selling {len(cart) // 2} stacks of crafted goods to {v.name} paid nothing and printed no message: the sell request was accepted silently and the items stayed in the pack.", key="silentsell")
         self.sold_for += max(gained, 0)
@@ -569,7 +573,7 @@ class CrafterBot(HunterBot):
             shops.append(self.cfg["shop"])
         got = {}
         for shop in shops[:3]:
-            got = self.shop_at(shop, self.cfg["wanted"], budget=self.c.gold - 10)
+            got = self.shop_at(shop, self.cfg["wanted"], budget=max(0, self.c.gold - 120))
             if got:
                 break
             self.mem.record("vendor", xy=f"{shop[0]},{shop[1]}", name="", stock=[[word, 0, 0]])   # sold out: tell the others

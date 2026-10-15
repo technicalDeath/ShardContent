@@ -4,6 +4,20 @@ Fifty headless bots played the shard unattended on the disposable farm host (`wo
 
 This report keeps only what a player would meet. Each entry says how many bots and professions hit it, how it was confirmed, and the levers I can see. Nothing here has been changed on the dev world. The economy details (prices, stock, material supply) are in `Bot-Farm-Tuning-Notes.md`.
 
+## In short
+
+**Observation period:** 2026-10-14 19:00 to 2026-10-15 01:38. The roster grew from 12 to 50 bots by 23:21 and held there (the supervisor stopped up to three at a time when memory ran low). Bot faults were fixed as they turned up until 00:41; from 00:41 to 01:38 the farm ran untouched, as a clean hour.
+
+**The findings most worth acting on**, each confirmed in game and in the code, or in the real client:
+1. **Guards ignore monsters inside Britain** (finding 1). Monsters chased bots into town, bots called the guards five times inside the town region, no guard came, and gazers killed bots on the healer's doorstep.
+2. **Training dummies cannot train a new character** (finding 6). Their limit is 25, and every template starts at 50.
+3. **Nothing tells a new crafter which items still teach** (finding 8). Over two hours of a fair test, the veteran tailor gained 3.5 times the newbie's Tailoring. The newbie spent its 500 starting gold on items that taught nothing within the first hour, and then could not craft at all.
+4. **The Bowyer lists fletcher's tools as "Arrow Fletching"** (finding 22, real-client screenshot). They sit beside "Arrow" at the same price.
+5. **Raw ore has no buyer** (finding 10). A miner has to smelt first, and nothing says so.
+6. **A ghost in peace mode is invisible to the healer** (finding 2, already on the to-do list).
+
+**Your decisions**, none of them taken: which of these to change (or to answer in the guide instead), whether the crafted-goods pricing goes to the dev world (`Crafted-Goods-Pricing.md`), and whether the farm should keep running.
+
 How sure each finding is:
 - **Confirmed:** seen in game by several bots *and* found in the server code.
 - **Seen:** seen in game by the bots. Check it in the real client before acting on it.
@@ -14,7 +28,7 @@ Counts are distinct bots that logged the matching line. Brains restarted many ti
 
 ## 1. Danger and death
 
-1. **Monsters chase new players into Britain and the guards do nothing.** Bots that fled into town shouted "guards" six times. Five of the calls were inside Britain's town region (from `Data/regions.json`): an ettin at 1377,1752, a named monster (Oogorim) twice, and a troll twice (once at 1428,1590, near the Carpenter). No guard came, and the monster stayed. Gazers killed two bots inside the town region, one on the healer's doorstep (1470,1619). *Confirmed:* `GuardedRegion.IsGuardCandidate` only accepts criminals and murderers, so an ordinary monster is never a guard target. Levers: guards (or a town-guard spawner) that act on hostile monsters inside the guarded region; or, at least, a line in the guide that the guards protect against people, not monsters.
+1. **Monsters chase new players into Britain and the guards do nothing.** Bots that fled into town shouted "guards" six times. Five of the calls were inside Britain's town region (from `Data/regions.json`): an ettin at 1377,1752, a named monster (Oogorim) twice, and a troll twice (once at 1428,1590, near the Carpenter). No guard came, and the monster stayed. Gazers killed two bots inside the town region, one on the healer's doorstep (1470,1619). During the untouched hour, gazers roamed central Britain: they were seen at 1642,1590, 1658,1574, 1456,1696 and 1446,1709. Two more "guards" calls against them (00:52 and 00:54) brought no guard, and a gazer killed a new tailor at 1462,1652, between the Tinker and the healer (00:55). *Confirmed:* `GuardedRegion.IsGuardCandidate` only accepts criminals and murderers, so an ordinary monster is never a guard target. Levers: guards (or a town-guard spawner) that act on hostile monsters inside the guarded region; or, at least, a line in the guide that the guards protect against people, not monsters.
 2. **A ghost in peace mode is invisible to the healer, and standing beside the healer does nothing.** A living mobile sees a ghost only in war mode (`Mobile.CanSee`), and the healer offers resurrection only when a ghost walks *into* range. Three bots, in three professions, stood beside the healer and were never offered. *Confirmed in code;* the bots now switch war mode on before reaching the healer, so they no longer show it. Already on `To-Do-List.md` at the owner's request.
 3. **After resurrection, the starting weapon and armour are in the backpack, not worn.** 16 bots, 10 professions. Nothing reminds the player, and a character that forgets fights barehanded. *Seen.* Lever: a one-time tip after the first resurrection (the shard's `newPlayerTips` system would fit).
 4. **Undead and orc camps lie within a short walk of Britain.** Shades, wraiths, spectres and zombies by the graveyard north-west of town (about 1300-1400, 1410-1520), and orcs and ratmen to the north and north-east (about 1360,1414 and 1627,1411). They killed bots of every fighting profession, and every melee bot that fought a shade died. Named orcs and ratmen ("Tekchichak", "Oogorim") follow a new character a long way. *Seen,* 20 bots. Lever: beginner spawns (rabbits, deer, wolves, mongbats, slimes) in a ring round Britain, with the undead kept further out. See tuning note 9.
@@ -57,21 +71,35 @@ Newbie bots have no tables, so they learn by dying and by trying. Tonight's earl
 - **Tamers:** a newbie tamer tried a rat, which can teach nothing at 54 Animal Taming.
 - **Deaths:** BotBardB was killed four times by the same named ratman (Tekchichak). Most of that came from bot faults (it walked back for its corpse into the camp, and kept war mode on after resurrection), fixed tonight, so it overstates what a new player would suffer.
 
-**The fair comparison.** Three pairs of brand-new characters (Swordsman, Tailor, Archer) started together at about 23:37, each pair with one veteran brain and one newbie brain on the same template, gold and start time. The first hour, read by the watching session at 00:37:
+**The fair comparison.** Three pairs of brand-new characters (Swordsman, Tailor, Archer) started together at about 23:37, each pair with one veteran brain and one newbie brain on the same template, starting gold and start time. The watching session measured them over two hours. The first hour was disturbed (every brain restarted several times as bots were fixed, both sides alike). The second hour, 00:41-01:35, ran untouched. Two deaths caused by bot faults are left out.
 
-| Pair | Skill points an hour (newbie / veteran) | Main skill gained | Deaths | Kills | Crafted (ok / failed) | Gold |
-| --- | --- | --- | --- | --- | --- | --- |
-| Tailor | 4.3 / 11.0 | Tailoring +1.3 / +3.0 | 0 / 0 | - | 75 / 12 against 39 / 3 | -500 (broke) / -296 |
-| Swordsman | 10.6 / 6.0 | Swordsmanship +1.8 / +1.0 | 0 / 0 | 2 / 6 | - | +52 / +80 |
-| Archer | 9.8 / 9.1 | Archery +3.1 / +1.6 | 0 (+1 in the north-east) / 1 | 4 / 2 | - | -500 / 0 |
+Over the two hours (about 117 minutes):
 
-Every brain restarted several times in that hour as bots were fixed. The restarts hit both sides of each pair alike, so the hour is disturbed but fair. Two deaths caused by bot faults are left out.
+| Pair (newbie / veteran) | Skill points an hour | Main skill gained | Kills | Crafted (ok / failed) | Deaths |
+| --- | --- | --- | --- | --- | --- |
+| Tailor | 3.5 / 9.5 | Tailoring +1.3 / +4.6 | 1 / 2 | 75 / 12 against 61 / 7 | 1 / 0 |
+| Swordsman | 17.8 / 10.6 | Swordsmanship +11.0 / +3.3 | 15 / 14 | - | 1 / 1 |
+| Archer | 6.2 / 7.1 | Archery +3.1 / +4.0 | 4 / 10 | - | 1 / 2 |
 
-- **Crafting shows the gap clearly.** With the skill table, the veteran tailor gained 2.3 times the Tailoring with half the items and lost less gold. The newbie made 75 items that taught little and spent all 500 starting gold. This is finding 8 measured fairly: nothing tells a new crafter which items still teach.
-- **Fighting shows no knowledge gap yet.** Newbie fighters gained as much or more in their weapon skill, because they engage whatever is in front of them. Veterans avoid more and bandage more (the veteran archer gained 7.3 Healing). Tables help a crafter far more than a fighter.
-- **Deaths:** too few in one hour to compare.
+The untouched second hour on its own:
 
-The two-hour read (01:38) will be added when it comes in.
+| Pair (newbie / veteran) | Main skill | Kills | Crafted | Deaths |
+| --- | --- | --- | --- | --- |
+| Tailor | 55.8 -> 55.8 / 57.7 -> 59.1 | 1 / 2 | 0 / 26 | 1 (a gazer in town) / 0 |
+| Swordsman | 54.9 -> 63.4 / 53.8 -> 55.7 | 13 / 7 | - | 1 / 1 |
+| Archer | 55.0 -> 55.0 / 53.5 -> 55.9 | 0 / 8 | - | 1 / 1 |
+
+What it shows:
+1. **For a crafter, not knowing what teaches becomes a poverty trap within an hour.** In the first hour the newbie tailor spent all 500 gold on 75 items that taught little. In the second it was broke, made nothing and gained no Tailoring, while the veteran kept crafting: 3.5 times the newbie's Tailoring over the two hours. This is finding 8, measured fairly, and the strongest case in this report for a guide line about which items still teach.
+2. **The newbie archer stalled the same way.** It spent its gold in the first hour and could not keep itself in arrows: 0 kills and no Archery in the second hour. The veteran kept shooting (8 kills, Archery +2.4). Part of the first-hour spending may be the bots' fletcher's-tools buying fault, fixed at 00:01 for both archers, so read this one with care.
+3. **In melee, knowledge does not hold a newbie back.** The newbie swordsman fought more and learned faster (Swordsmanship +11.0 against +3.3 over two hours). The veteran's table made it pick fewer fights. A new melee character does fine by fighting whatever it meets near town.
+4. **Deaths: no gap.** Every fighter died about once an hour whichever brain it had. The places kill whatever goes there: the graveyard and ratman camp north-west of town, a camp to the south (about 1364-1489, 1928-1986), and gazers inside Britain. Across the whole farm in the untouched hour: 25 deaths in 40.7 bot-hours, 0.61 per bot-hour.
+
+## Shard features the bots saw working
+
+- **Wear notice:** "Your equipment is severely damaged." reached a swordsman when a worn piece first dropped to a quarter of its durability (01:21). (The bot did not react to it and died soon after; that part is the bot's.)
+- **Starting supplies:** the packs of new characters held the 5 Cure (orange), 3 Heal (yellow) and 3 Refresh (red) potions and the camping kit (bedroll, 5 kindling). One fighter drank a Cure potion and stayed poisoned; whether that was a stronger poison than a Lesser Cure handles is not known.
+- **Harvest and action repeat:** mining, fishing and cooking repeated on their own as designed (finding 15 is about where mining stops).
 
 ## Bot-only artifacts (not player problems)
 
