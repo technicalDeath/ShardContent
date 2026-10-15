@@ -298,6 +298,12 @@ class BotBase:
                 self.facts["just_resurrected"] = True
                 if self.c.war_mode:
                     self.c.war(False)
+                # step clear of the healer before resting: seven resurrected bots once rested on its four tiles, and the next ghost could not get in
+                if max(abs(self.c.x - HEALER[0]), abs(self.c.y - HEALER[1])) <= 4:
+                    ring = [(HEALER[0] + dx, HEALER[1] + dy) for dx, dy in ((8, 0), (-8, 0), (0, 8), (0, -8), (6, 6), (-6, 6), (6, -6), (-6, -6))]
+                    others = [m for m in self.c.mobiles(within=16) if m.name and m.name.startswith("Bot")]
+                    spot = min(ring, key=lambda p: sum(1 for m in others if max(abs(m.x - p[0]), abs(m.y - p[1])) <= 2))
+                    self.c.goto(*spot).wait(timeout=15)
             self.facts["ghost_since"] = None
             return False
         if self.facts["ghost_since"] is None:

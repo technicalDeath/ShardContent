@@ -57,7 +57,21 @@ Newbie bots have no tables, so they learn by dying and by trying. Tonight's earl
 - **Tamers:** a newbie tamer tried a rat, which can teach nothing at 54 Animal Taming.
 - **Deaths:** BotBardB was killed four times by the same named ratman (Tekchichak). Most of that came from bot faults (it walked back for its corpse into the camp, and kept war mode on after resurrection), fixed tonight, so it overstates what a new player would suffer.
 
-A fair comparison is running: three pairs of brand-new characters (Swordsman, Tailor, Archer), one veteran brain and one newbie brain each, started together at about 23:37. The watcher measures them at 00:38 and 01:38, and the results will be added here.
+**The fair comparison.** Three pairs of brand-new characters (Swordsman, Tailor, Archer) started together at about 23:37, each pair with one veteran brain and one newbie brain on the same template, gold and start time. The first hour, read by the watching session at 00:37:
+
+| Pair | Skill points an hour (newbie / veteran) | Main skill gained | Deaths | Kills | Crafted (ok / failed) | Gold |
+| --- | --- | --- | --- | --- | --- | --- |
+| Tailor | 4.3 / 11.0 | Tailoring +1.3 / +3.0 | 0 / 0 | - | 75 / 12 against 39 / 3 | -500 (broke) / -296 |
+| Swordsman | 10.6 / 6.0 | Swordsmanship +1.8 / +1.0 | 0 / 0 | 2 / 6 | - | +52 / +80 |
+| Archer | 9.8 / 9.1 | Archery +3.1 / +1.6 | 0 (+1 in the north-east) / 1 | 4 / 2 | - | -500 / 0 |
+
+Every brain restarted several times in that hour as bots were fixed. The restarts hit both sides of each pair alike, so the hour is disturbed but fair. Two deaths caused by bot faults are left out.
+
+- **Crafting shows the gap clearly.** With the skill table, the veteran tailor gained 2.3 times the Tailoring with half the items and lost less gold. The newbie made 75 items that taught little and spent all 500 starting gold. This is finding 8 measured fairly: nothing tells a new crafter which items still teach.
+- **Fighting shows no knowledge gap yet.** Newbie fighters gained as much or more in their weapon skill, because they engage whatever is in front of them. Veterans avoid more and bandage more (the veteran archer gained 7.3 Healing). Tables help a crafter far more than a fighter.
+- **Deaths:** too few in one hour to compare.
+
+The two-hour read (01:38) will be added when it comes in.
 
 ## Bot-only artifacts (not player problems)
 

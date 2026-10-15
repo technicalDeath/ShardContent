@@ -33,7 +33,7 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 MEMDIR = os.path.join(ROOT, "work", "botfarm", "memory")
 CELL = 40
 HALF_LIFE = 1800.0          # seconds: a cell's kills and gold count half as much after half an hour (spawns are used up and come back)
-DEATH_HALF_LIFE = 7200.0    # a place that killed bots stays suspect longer
+DEATH_HALF_LIFE = 14400.0   # a place that killed bots stays suspect for hours: camps do not move (the graveyard camp, quiet for an hour, looked safe again and killed four more)
 FIGHT_HALF_LIFE = 7200.0    # bots get stronger, so old fight records weigh less than new ones
 FIGHT_KEYS = ("n", "kill", "death", "flee", "lost", "ttk", "dmg", "dmgpct")
 
@@ -309,7 +309,7 @@ class SharedMemory:
                     own = c
         if own and own["deaths"] >= 1.8 and own["deaths"] > own["kills"] * 0.5:
             return True
-        return deaths >= 3.0 and deaths > kills * 0.5
+        return deaths >= 2.0 and deaths > kills * 0.5
 
     def vendor_selling(self, word: str):
         """Shops that sell something whose name contains word: [(price, xy, item, qty)], cheapest first."""
