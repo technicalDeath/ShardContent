@@ -211,8 +211,13 @@ class HunterBot(BotBase):
             self.log(f"first sight of {m.name!r} ({m.notoriety}): {'prey' if r else 'DANGER'} - {self.assess(m)['reason']}")
         return r
 
+    def safe_ground(self, m):
+        cell = cell_of(m.x, m.y)
+        return not (self.mem.dangerous_cell(cell) or self.mem.camp_cell(cell))
+
     def prey(self, within=9):
-        return [m for m in self.mobs(within) if self.is_prey(m) and self.ignored.get(m.serial, 0) < time.time()]
+        return [m for m in self.mobs(within) if self.is_prey(m) and self.ignored.get(m.serial, 0) < time.time()
+                and (m.distance <= 2 or self.safe_ground(m))]
 
     def dangers(self, within=8):
         return [m for m in self.mobs(within) if not self.is_prey(m)]
@@ -275,6 +280,7 @@ class HunterBot(BotBase):
         if not ds:
             return False
         d = ds[0]
+        self.facts["avoided_until"] = time.time() + 45      # a commitment: once it runs, it does not turn back to hunt for a while
         a = self.assess(d)
         hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
         hopeless = hopeless or self.mkey(d) in self.avoid_types or self.near_death_spot(self.c.x, self.c.y, 15)
@@ -448,7 +454,9 @@ class HunterBot(BotBase):
         return True
 
     def r_hunt(self):
-        ps = [m for m in self.mobs(18) if self.is_prey(m) and m.distance > 8 and not self.near_death_spot(m.x, m.y, 40)]
+        if time.time() < self.facts.get("avoided_until", 0):
+            return False
+        ps = [m for m in self.mobs(18) if self.is_prey(m) and m.distance > 8 and not self.near_death_spot(m.x, m.y, 40) and self.safe_ground(m)]
         if not ps or self.hp_pct() < 70:
             return False
         t = ps[0]

@@ -158,6 +158,8 @@ class BotBase:
                 continue                      # another bot talking to a banker or vendor
             if own and re.match(rf"\[SAY\] {self.name}: (bank|balance|withdraw|guards|all release|\w+ (buy|sell|train)\b)", t, re.I):
                 continue                      # what this bot said itself
+            if own and self.activity.startswith("taming"):
+                continue                      # the character coaxing the animal while it tames, not the game talking to the player
             body = re.sub(r"^\[(SYSTEM|SAY)\]\s*", "", t)
             # the server's overhead messages to the character itself ("*You feel a bit nauseous*", "The spell fizzles.") come as speech under its own name
             tag = "system" if t.startswith("[SYSTEM]") else ("self" if own else ("npc" if t.startswith("[SAY]") else ""))
@@ -217,12 +219,15 @@ class BotBase:
             return False
         self.facts["stepped_out_at"] = time.time()
         x0, y0 = self.c.x, self.c.y
+        started = time.time()
         for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw"):
+            if time.time() - started > 25:
+                break
             try:
-                self.c.call(f"walk {d}", timeout=4)
+                self.c.call(f"walk {d}", timeout=1.5)
             except Exception:
                 continue
-            time.sleep(0.7)
+            time.sleep(0.5)
             if (self.c.x, self.c.y) != (x0, y0):
                 self.log(f"no path from {x0},{y0}: stepped {d} to {self.c.x},{self.c.y} and tried again")
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
