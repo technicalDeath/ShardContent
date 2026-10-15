@@ -49,6 +49,7 @@ class HunterBot(BotBase):
             return False                                  # drops refused a moment ago (overloaded): r_bank takes it from here
         mats = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.MATERIALS)),
                       key=lambda i: next(k for k, w in enumerate(self.MATERIALS) if w in i.name.lower()))
+        mats += [i for i in self.c.backpack if i.name.lower() == "arrow fletching"][1:]
         if not mats:
             return False
         self.activity = "dropping dead weight"
@@ -414,7 +415,7 @@ class HunterBot(BotBase):
         self.facts["shop_at"] = time.time()
         self.activity = "resupplying"
         if low_ammo:
-            got = self.shop_at((1470, 1579), {"arrow": 150}, budget=self.c.gold // 2)
+            got = self.shop_at((1470, 1579), {"=arrow": 150}, budget=self.c.gold // 2)
             self.note("shop", f"Ammunition sold at the Bowyer: bought {got}.", key="arrows")
         if low_band:
             got = self.shop_at((1472, 1613), {"bandage": 40}, budget=self.c.gold // 2)

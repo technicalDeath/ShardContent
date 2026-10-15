@@ -647,7 +647,7 @@ class BotBase:
                 continue
             if not first[0]:
                 first = (stock, v.name)
-            if any(sub in l.lower() for sub in wanted for l in stock[1:]):
+            if any(self.wants(sub, re.sub(r"^.*x\d+\s+", "", l.strip())) for sub in wanted for l in stock[1:]):
                 vendor_name = v.name
                 break
         else:
@@ -680,9 +680,9 @@ class BotBase:
                 continue
             serial, price, avail, name = m.group(1), int(m.group(2)), int(m.group(3)), m.group(4).strip()
             for sub, target in wanted.items():
-                if sub in name.lower():
+                if self.wants(sub, name):
                     units = 50 if name.lower().startswith("bolt of") else 1     # a bolt cuts into 50 cloth
-                    owned = sum(v for k, v in have.items() if sub in k) + got.get(sub, 0)
+                    owned = sum(v for k, v in have.items() if self.wants(sub, k)) + got.get(sub, 0)
                     n = min(avail, max(0, -(-(target - owned) // units)), max(0, (gold - spent) // max(price, 1)))
                     if n > 0:
                         cart += [serial, str(n)]
@@ -695,6 +695,12 @@ class BotBase:
             time.sleep(3)
             self.log(f"bought {bought} for {spent} gold")
         return bought
+
+    @staticmethod
+    def wants(sub, name):
+        """Does a shop line's item name match a `wanted` key? "=arrow" means exactly "arrow"; any other key is a part of the name."""
+        n = name.strip().lower()
+        return n == sub[1:] if sub.startswith("=") else sub in n
 
     def vendor_list(self, vendor, kind):
         """Ask one vendor for its buy ("buy") or sell ("sell") list and return the lines, or [] when the list that came back is not this vendor's:
@@ -839,6 +845,11 @@ class BotBase:
         if time.time() < self.facts.get("drop_refused_until", 0):
             return False                                  # dropping was refused a moment ago: let r_bank walk to the bank box instead
         stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=rank)
+        if not stacks:
+            # overloaded by something that is not material (gear, ammunition): nothing here to drop, so the rules (the bank trip) take the tick
+            self.facts["drop_refused_until"] = time.time() + 600
+            self.facts["bank_heavy"] = True
+            return False
         left = 0
         for it in stacks[:3]:
             amt = it.amount or 1
@@ -978,6 +989,7 @@ class BotBase:
                 self.read_journal()
                 self.observe()
                 if self.c.weight > self.c.max_weight and not self.c.ghost and self.drop_excess():
+                    time.sleep(0.5)                # never a tick without a pause (a refused drop once spun a brain at 75% of a core)
                     continue
                 acted = None
                 for name in self.RULES:

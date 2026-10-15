@@ -47,6 +47,8 @@ Counts are distinct bots that logged the matching line. Brains restarted many ti
 19. **A criminal ghost is refused by the healer** ("Thou art a criminal. I shall not resurrect thee.") with no word on how long to wait. Three bots, around 20:53. Their criminal flag came from a bot looting fault, so it says nothing yet about how often a real player meets it.
 20. **Tamers could not reach penned or wandering animals.** They chased animals for minutes without getting within the two tiles taming needs. The bots never tried the skill from range, so whether the game says "That is too far away" is untested.
 21. **No Tanner or Leatherworker appears among Britain's map markers.** Hides come only from carving a corpse, which the bots never do, so no bot met this. A player who carves would find no one in Britain to sell hides to.
+22. **The Bowyer's list calls fletcher's tools "Arrow Fletching".** It sits next to "Arrow" at the same price (2 gold), and reads like an arrow part. The archer bots bought dozens of them in place of arrows (a bot fault, fixed). At 2 stones each, the tools overloaded them. Worth checking what the real client's buy list shows. If it says "Arrow Fletching" there too, a new archer could make the same mistake.
+23. **A gargoyle hunts at Britain's north-east edge.** It killed four bots in 15 minutes (23:45-23:54) around 1527-1667, 1410-1528, one of them inside the town region (1527,1528). It casts spells, a bot reckoned a fight with it would cost about 116 hit points against a new character's 74, and the guards ignore it (finding 1). If its spawn sits that close to town, it is deadly to new players.
 
 ## Newbie against veteran
 

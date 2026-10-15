@@ -35,6 +35,8 @@ CRAFTS = {
     19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 50},
              sell_to=(1427, 1652), maxcost=10),
 }
+# where a broke crafter finds vermin for coins: the farms south-west of Britain, inside the town region (the shared memory's cows, chickens and rats)
+EARN_SPOTS = [(1300, 1800), (1340, 1720), (1360, 1760), (1560, 1650)]
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
 
@@ -668,12 +670,21 @@ class CrafterBot(HunterBot):
         """Broke, with nothing to make and nothing in the bank: do what a new player does and hunt vermin for coins (the hunter's own rules, limited to what is prey)."""
         if self.c.gold >= 60 or self.facts["bank_balance"] >= 60 or self.count(self.cfg["mat"]) >= 30:
             return False
+        if self.products():
+            self.facts["sold_at"] = 0                     # sell what is in the pack before going out with a dagger
+            if self.r_sell():
+                return True
         self.note("money", f"The {self.pname} has no money, no material and nothing in the bank, so it goes hunting for coins with a craft tool and a dagger.", key="earnhunt")
         self.activity = "broke: hunting for coins"
         for rule in ("r_loot", "r_heal", "r_fight", "r_hunt"):
             if getattr(HunterBot, rule)(self):
                 return True
-        return HunterBot.r_explore(self)
+        # vermin near town, never the hunters' frontier: a broke tailor once walked to Britain's north-east edge for coins and met a gargoyle
+        near = [s for s in EARN_SPOTS if not self.near_death_spot(*s, 40)] or [(1470, 1620)]
+        x, y = near[int(time.time() // 240) % len(near)]
+        self.activity = f"broke: looking for vermin toward {x},{y}"
+        self.c.goto(x, y).wait(timeout=5)
+        return True
 
     def r_wander(self):
         self.activity = "waiting"
