@@ -47,8 +47,11 @@ class TamerBot(BotBase):
             if m.notoriety == "Innocent" or self.ignored.get(m.serial, 0) > time.time():
                 continue
             t = TAME.get(norm(m.name))
-            if not t or t["min"] > sk + 1 or t["min"] < sk - 30:
+            if not t or t["min"] > sk + 1 or t["min"] < sk - 46:
                 continue                      # unreachable, or so easy that taming it cannot teach anything
+            seen = self.mem.res_stats("tame", norm(m.name))
+            if seen and seen["fail"] >= 6 and seen["ok"] == 0:
+                continue                      # bots have tried this kind many times and never tamed one: not worth the time
             dmg = (t.get("dmg") or [0, 0])
             if sum(dmg) / 2 > WILD_DANGER and t["min"] > sk - 8:
                 continue
@@ -90,6 +93,7 @@ class TamerBot(BotBase):
             if re.search(r"accept you|fail|cannot|already|too far|no chance|stops", result, re.I):
                 break
         self.log(f"tame {m.name} (min {lo}, skill {self.skill():.1f}): {result[:100]}")
+        self.mem.record("res", kind="tame", key=norm(m.name), ok=bool(re.search(r"accept you", result, re.I)), reason=result[:60])
         if re.search(r"accept you", result, re.I):
             self.tamed += 1
             self.note("tame", f"A successful tame says: {result[:100]}", key="tamemsg")

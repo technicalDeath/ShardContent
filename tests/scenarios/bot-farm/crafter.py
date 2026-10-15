@@ -18,6 +18,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bot_common import BotBase  # noqa: E402
+from hunter import HunterBot  # noqa: E402
 from uo import Event  # noqa: E402
 
 DATA = json.load(open(os.path.join(HERE, "craft_data.json"), encoding="utf-8"))
@@ -36,8 +37,8 @@ LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
 
 
-class CrafterBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_wander"]
+class CrafterBot(HunterBot):
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_earn", "r_wander"]
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
@@ -179,7 +180,15 @@ class CrafterBot(BotBase):
                 continue
             if ch < 0.45 or it["max"] <= self.skill:
                 continue
-            key = (it["min"], -it["amount"])
+            seen = self.mem.craft_stats(self.cfg["craft"], name)
+            if seen and seen["n"] >= 8:
+                # what bots of this craft have actually got out of it: skill gains per unit of material (the formula only knows the window)
+                ch = max(0.05, seen["ok"] / seen["n"])
+                if ch < 0.3 and it["min"] > self.skill - 15:
+                    continue
+                key = (round((seen["gain"] / seen["n"]) / it["amount"], 4), it["min"])
+            else:
+                key = (0.15 / it["amount"] if seen is None or seen["n"] < 8 else 0, it["min"])          # untried items get a fair chance
             if best is None or key > best[0]:
                 best = (key, name, it, ch)
         return best
@@ -253,8 +262,16 @@ class CrafterBot(BotBase):
         self.facts["sold_at"] = time.time()
         self.activity = "selling what I made"
         gold0 = self.c.gold
-        res = self.c.goto(*self.cfg["sell_to"]).wait(timeout=100)
-        self.log(f"to the buyer: {res}; carrying {len(stock)} products")
+        buyer = self.cfg["sell_to"]
+        offers_known = {}
+        for it in stock:
+            for price, xy, item in self.mem.vendor_buying(it.name.lower())[:1]:
+                offers_known[xy] = offers_known.get(xy, 0) + price
+        if offers_known:
+            best_xy = max(offers_known, key=offers_known.get)          # the shop that pays most for what is in the pack, from what other bots saw
+            buyer = tuple(int(v) for v in best_xy.split(","))
+        res = self.c.goto(*buyer).wait(timeout=100)
+        self.log(f"to the buyer {buyer}: {res}; carrying {len(stock)} products")
         opened = False
         for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
             self.c.events.drain()
@@ -334,8 +351,9 @@ class CrafterBot(BotBase):
             self.facts["chop_fail"] = time.time() + 600
             return bool(self.c.gold >= 30)
         for tx, ty, tz, g in self.TREES:
-            if self.facts.get(("tree", tx, ty), 0) > time.time():
+            if self.facts.get(("tree", tx, ty), 0) > time.time() or not self.mem.usable("tree", f"{tx},{ty}"):
                 continue
+            self.mem.record("claim", kind="tree", key=f"{tx},{ty}", ttl=300)
             self.activity = f"chopping at {tx},{ty}"
             ok = False
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1)):
@@ -360,7 +378,11 @@ class CrafterBot(BotBase):
                 for l in lines:
                     if re.search(r"wood|log|tree|axe|lumber|chop|enough|far", l, re.I):
                         self.note("chop", f"Chopping says: {l[:100]}", key=f"chopmsg:{l[:40]}")
+                if any(re.search(r"you put .* in your|logs? in your", l, re.I) for l in lines):
+                    self.mem.record("res", kind="tree", key=f"{tx},{ty}", ok=True)
                 if any(re.search(r"not enough wood|no wood|too far|broke", l, re.I) for l in lines):
+                    self.mem.record("res", kind="tree", key=f"{tx},{ty}", ok=False, reason="no wood left or too far")
+                    self.mem.record("blocked", kind="tree", key=f"{tx},{ty}", ttl=1500)
                     self.facts[("tree", tx, ty)] = time.time() + 1500
                     break
             return True
@@ -378,7 +400,13 @@ class CrafterBot(BotBase):
         if self.c.gold < 40:
             self.note("money", f"The {self.pname} has run out of material and money at once; there is no way to see the shortfall coming.", key="broke")
             return False
-        got = self.shop_at(self.cfg["shop"], self.cfg["wanted"], budget=self.c.gold - 10)
+        shop = self.cfg["shop"]
+        word = next(iter(self.cfg["wanted"]))
+        known = [row for row in self.mem.vendor_selling(word) if row[0] > 0]
+        if known:
+            price, xy, item, qty = known[0]                      # the cheapest shop any bot has seen with this material in stock
+            shop = tuple(int(v) for v in xy.split(","))
+        got = self.shop_at(shop, self.cfg["wanted"], budget=self.c.gold - 10)
         self.note("shop", f"Material bought for the {self.pname}: {got}", key="bought")
         return True
 
@@ -420,6 +448,7 @@ class CrafterBot(BotBase):
             ok = bool(re.search(r"You create|You make|put .* in|exceptional", result or "", re.I))
             self.made += ok
             self.fails += not ok
+            self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)))
             if re.search(r"fail", result or "", re.I):
                 self.note("craft", f"A failed craft says: {result[-110:]}", key="failmsg")
             if (result or "").startswith(("nomenu", "menu refused")):
@@ -436,6 +465,17 @@ class CrafterBot(BotBase):
                 self.note("craft", f"A successful craft says: {result[-110:]}", key="okmsg")
         self.log(f"made {self.made} ok, {self.fails} failed; last: {result}")
         return True
+
+    def r_earn(self):
+        """Broke, with nothing to make and nothing in the bank: do what a new player does and hunt vermin for coins (the hunter's own rules, limited to what is prey)."""
+        if self.c.gold >= 60 or self.facts["bank_balance"] >= 60 or self.count(self.cfg["mat"]) >= 30:
+            return False
+        self.note("money", f"The {self.pname} has no money, no material and nothing in the bank, so it goes hunting for coins with a craft tool and a dagger.", key="earnhunt")
+        self.activity = "broke: hunting for coins"
+        for rule in ("r_loot", "r_heal", "r_fight", "r_hunt"):
+            if getattr(HunterBot, rule)(self):
+                return True
+        return HunterBot.r_explore(self)
 
     def r_wander(self):
         self.activity = "waiting"

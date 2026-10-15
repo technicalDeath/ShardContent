@@ -79,18 +79,21 @@ class MinerBot(BotBase):
             return False
         for _ in range(len(MOUNTAIN)):
             tx, ty, tz, g = MOUNTAIN[self.i % len(MOUNTAIN)]
-            if self.blocked.get((tx, ty), 0) < time.time():
-                break
+            if self.blocked.get((tx, ty), 0) < time.time() and self.mem.usable("ore", f"{tx},{ty}"):
+                break                                  # not blocked, and no other bot is digging there right now (shared memory)
             self.i += 1
         if max(abs(self.c.x - tx), abs(self.c.y - ty)) > 2:
             self.activity = f"walking to the hills at {tx},{ty}"
             if not self.stand_near(tx, ty):
                 self.blocked[(tx, ty)] = time.time() + 600
+                self.mem.record("blocked", kind="ore", key=f"{tx},{ty}", ttl=1800)
+                self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=False, reason="no reachable standing place")
                 self.log(f"could not stand near {tx},{ty} (now at {self.c.x},{self.c.y})")
                 self.note("mine", "A mountain tile on the map has no reachable spot within two steps; the miner has to look for another.", key="unreachable")
                 self.i += 1
                 return True
         self.activity = "mining"
+        self.mem.record("claim", kind="ore", key=f"{tx},{ty}", ttl=240)
         self.c.events.drain()
         self.c.use(tool.serial)
         if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
@@ -107,7 +110,11 @@ class MinerBot(BotBase):
                 if re.search(r"dig|ore|nothing|no metal|too far|worn|elsewhere|rock|stone", l, re.I):
                     n += 1
                     self.note("mine", f"Mining says: {l[:100]}", key=f"minemsg:{l[:40]}")
+                if re.search(r"dig some|put it in your backpack", l, re.I):
+                    self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=True)
                 if re.search(r"no metal|elsewhere|too far|cannot", l, re.I):
+                    self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=False, reason=l[:60])
+                    self.mem.record("blocked", kind="ore", key=f"{tx},{ty}", ttl=1500)
                     self.blocked[(tx, ty)] = time.time() + 900
                     self.i += 1
                     return True

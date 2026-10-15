@@ -7,6 +7,7 @@ counted together (aggregate.py). Everything the bot does goes through the comman
 """
 from __future__ import annotations
 
+import faulthandler
 import json
 import os
 import re
@@ -25,6 +26,7 @@ sys.path.insert(0, os.path.join(ROOT, ".claude", "scripts"))
 
 from navrey_session import connect  # noqa: E402
 from uo import Event  # noqa: E402
+from memory import SharedMemory, cell_of  # noqa: E402
 
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
@@ -75,6 +77,7 @@ class BotBase:
         self.dir = os.path.join(FARM, name)
         os.makedirs(self.dir, exist_ok=True)
         self.notes = Notes(name, self.pname)
+        self.mem = SharedMemory(self.pname, name)
         self.journal = deque(maxlen=300)
         self.tick_no = 0
         self.last_rule = ""
@@ -126,6 +129,7 @@ class BotBase:
             if m:
                 self.stats["gains"][m.group(1)] = self.stats["gains"].get(m.group(1), 0) + 1
                 self.skill_values[m.group(1)] = float(m.group(3))
+                self.mem.record("gain", scope="prof", skill=m.group(1), action=self.activity or "?", value=float(m.group(3)))
             d = re.match(r"Damage: (.+?) takes (\d+)", t)
             if d and d.group(1).startswith(self.name):
                 self.stats["damage_taken"] += int(d.group(2))
@@ -158,7 +162,7 @@ class BotBase:
 
     def mobs(self, within):
         """Hostile-looking mobiles that are on this floor: one more than ~14 up or down (a rat in the cellar under Britain) cannot be fought or fought by."""
-        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14]
+        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14 and m.name != "Generic Player"]
 
     def near_death_spot(self, x, y, r=60):
         return any(abs(x - dx) < r and abs(y - dy) < r for dx, dy in self.death_spots)
@@ -233,6 +237,7 @@ class BotBase:
             self.facts["war_at_death"] = self.c.war_mode
             self.log(f"ghost at {self.c.x},{self.c.y}; war mode at death = {self.c.war_mode}")
             self.death_spots.append((self.c.x, self.c.y))
+            self.mem.record("death", cell=cell_of(self.c.x, self.c.y), killers=[t[2] for t in getattr(self, "recent_threats", [])[:3]])
             self.facts["corpse"] = {"xy": (self.c.x, self.c.y), "t": time.time(), "gold": self.last_gold, "tries": 0}
             json.dump({"death_spots": self.death_spots}, open(self.know_path, "w", encoding="utf-8"))
             self.note("death", f"A {self.pname} died.", key=f"death:{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
@@ -314,6 +319,7 @@ class BotBase:
         if self.hp_pct() >= 40 or not threats:
             return False
         self.activity = "fleeing"
+        self.on_flee()
         for item in self.c.backpack:
             if item.name == "Yellow Potion":      # a lesser heal potion: yellow, as in the era
                 self.c.use(item.serial)
@@ -326,6 +332,9 @@ class BotBase:
         self.log(f"fleeing from {threats[0].name} at hp {self.c.hp}")
         self.c.goto(*TOWN).wait(timeout=4)
         return True
+
+    def on_flee(self):
+        pass
 
     def bandage_self(self):
         b = self.c.find("bandage")
@@ -369,6 +378,7 @@ class BotBase:
             return True
         worth = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire",
                  "emerald", "diamond", "amber", "citrine", "tourmaline", "arrow", "bolt", "hide", "leather", "feather", "ingot", "ore", "board", "log")
+        gold0 = self.c.gold
         for it in contents:
             if not any(w in it.name.lower() for w in worth):
                 continue
@@ -381,6 +391,8 @@ class BotBase:
                     break
             self.stats["loot"][it.name] = self.stats["loot"].get(it.name, 0) + (it.amount or 1)
         self.log(f"looted {corpse.name}: {[str(x) for x in contents]}")
+        if self.c.gold > gold0:
+            self.mem.record("loot", cell=cell_of(corpse.x, corpse.y), gold=self.c.gold - gold0, m=re.sub(r"[^a-z]", "", re.sub(r"( corpse| remains)$", "", re.sub(r"^(an?|the) ", "", corpse.name.lower()))))
         return True
 
     def junk_in_pack(self):
@@ -456,12 +468,14 @@ class BotBase:
         res = self.c.goto(*xy).wait(timeout=90)
         self.log(f"to the shop at {xy}: {res}")
         stock = []
+        vendor_name = ""
         for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name]:
             self.c.events.drain()
             self.c.say(f"{v.name.split()[0]} buy")
             time.sleep(2.5)
             stock = self.cmd("shop", timeout=10)
             if len(stock) >= 2:
+                vendor_name = v.name
                 break
         if len(stock) < 2:
             self.note("shop", "Saying '<name> buy' to each person at the shop opened no list: a new player has to know the vendor-name-plus-buy words (or double-click the vendor).", key="noshop")
@@ -472,6 +486,13 @@ class BotBase:
         except (OSError, ValueError):
             shops = {}
         shops[str(xy)] = [l.strip()[:80] for l in stock]
+        rows = []
+        for l in stock:
+            mm = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", l)
+            if mm:
+                rows.append([mm.group(4).strip(), int(mm.group(2)), int(mm.group(3))])
+        if rows:
+            self.mem.record("vendor", xy=f"{xy[0]},{xy[1]}", name=vendor_name, stock=rows)
         json.dump(shops, open(os.path.join(FARM, "shops.json"), "w", encoding="utf-8"), indent=1)
         have = {}
         for it in self.c.backpack:
@@ -517,6 +538,13 @@ class BotBase:
             self.note("sell", "Saying '<vendor> sell' near the vendor opened no list of what the vendor buys.", key="nosell")
             return 0
         self.note("sell", "The sell list shows each item's price (" + "; ".join(l.strip()[11:60] for l in offers[:6]) + ")", key=f"selllist:{xy}")
+        buys = {}
+        for l in offers:
+            mm = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", l)
+            if mm:
+                buys[mm.group(4).strip().lower()] = int(mm.group(2))
+        if buys:
+            self.mem.record("vendor", xy=f"{xy[0]},{xy[1]}", name="", buys=[[k, v] for k, v in buys.items()])
         cart = []
         for line in offers:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
@@ -567,9 +595,17 @@ class BotBase:
 
     # ---- main loop --------------------------------------------------------------------------------------------
 
+    @staticmethod
+    def mkey(m):
+        """The memory's name for a kind of monster: its body species when the client knows it ("orc" for a personally named orc), else its name without the article."""
+        return re.sub(r"[^a-z]", "", (m.species or re.sub(r"^(an?|the) ", "", m.name.lower())).lower())
+
     def observe(self):
         if not self.c.ghost:
             self.last_gold = self.c.gold
+            for m in self.c.mobiles(within=14):
+                if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and m.name != "Generic Player":
+                    self.mem.sight(self.mkey(m), m.x, m.y)
         self.status()
         if self.c.overloaded:
             self.note("weight", f"A {self.pname} became overloaded ({self.c.weight}/{self.c.max_weight} stones) and can no longer walk normally.", key="overload")
@@ -580,7 +616,9 @@ class BotBase:
         end = time.time() + seconds
         self.log(f"start: {self.pname}")
         pause = os.path.join(self.dir, "pause")
+        hang_file = open(os.path.join(self.dir, "hang.txt"), "w")
         while time.time() < end:
+            faulthandler.dump_traceback_later(150, repeat=False, file=hang_file)      # a tick that takes over 150 s leaves its stack in hang.txt
             if os.path.exists(pause):              # `touch work/botfarm/<name>/pause` hands the character to a human or a test script
                 self.activity = "paused"
                 self.status()

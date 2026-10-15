@@ -14,6 +14,8 @@ import os
 import re
 import time
 from collections import defaultdict
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
@@ -46,6 +48,8 @@ def main():
     notes = load_notes()
     by_key = defaultdict(lambda: {"bots": set(), "profs": set(), "text": "", "cat": "", "t": ""})
     for n in notes:
+        if "that follows a new" in n.get("text", ""):
+            continue                                  # the early wording claimed every cornering happened in Britain
         if n.get("key") == "ghostwalk":
             continue                                  # an early wrong explanation (the cause is war mode, key ghostwar)
         if n.get("category") == "message" and NOISE.search(n.get("text", "")):
@@ -70,6 +74,76 @@ def main():
         g = sum((s.get("gains") or {}).values())
         out.append(f"| {s['name']} | {s['profession']} | {s['uptime'] // 60} min | {s.get('kills', 0)} | {s.get('deaths', 0)} | {s.get('gold', 0)} | {sk}; {g} gains |")
     out.append("")
+    # skill gains over every bot's life, so slow and fast skills show side by side
+    gains = defaultdict(lambda: [0, set()])
+    for p in glob.glob(os.path.join(FARM, "Bot*", "status.json")):
+        try:
+            st = json.load(open(p, encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for k, v in (st.get("gains") or {}).items():
+            gains[k][0] += v
+            gains[k][1].add(st["name"])
+    if gains:
+        out.append("## Skill gains (count of +0.1..+0.4 messages across all bots)")
+        out.append("")
+        for k, (n, bots) in sorted(gains.items(), key=lambda kv: -kv[1][0])[:25]:
+            out.append(f"- {k}: {n} gains by {len(bots)} bot(s)")
+        out.append("")
+    out.append("## Shared memory (what the bots have learned and now use)")
+    out.append("")
+    try:
+        import memory as M
+        mem = M.SharedMemory("report", "report")
+        out.append("```")
+        out.append(mem.summary())
+        out.append("```")
+        out.append("")
+        w = mem.state["world"]
+        out.append("Shops seen (position: name, items on sale, items bought):")
+        for xy, v in sorted(w["vendors"].items()):
+            out.append(f"- {xy} {v['name']}: sells {len(v['stock'])} kinds ({', '.join(list(v['stock'])[:6])}), buys {len(v['buys'])} kinds ({', '.join(f'{k} {p}gp' for k, p in list(v['buys'].items())[:6])})")
+        out.append("")
+        out.append("Gathering spots (kind, spot: worked / failed, last reason):")
+        for kind, spots in w["res"].items():
+            for key, r in spots.items():
+                out.append(f"- {kind} {key}: {r['ok']} / {r['fail']} {r['reason']}")
+        out.append("")
+        out.append("Crafts (craft, item: attempts, successes, skill gains), by every profession that logged them:")
+        for scope in ("prof",):
+            pass
+        import glob as _g
+        crafts = defaultdict(lambda: [0, 0, 0])
+        for pth in _g.glob(os.path.join(M.MEMDIR, "prof-*.jsonl")):
+            for line in open(pth, encoding="utf-8"):
+                try:
+                    e = json.loads(line)
+                except ValueError:
+                    continue
+                if e.get("k") == "craft":
+                    c = crafts[(e["craft"], e["item"])]
+                    c[0] += 1
+                    c[1] += 1 if e.get("ok") else 0
+                    c[2] += 1 if e.get("gain") else 0
+        for (craft, item), (n, ok, gain) in sorted(crafts.items(), key=lambda kv: -kv[1][0])[:25]:
+            out.append(f"- {craft} / {item}: {n} tries, {ok} made ({ok * 100 // max(n, 1)}%), {gain} gains ({gain * 100 // max(n, 1)}%)")
+        out.append("")
+        out.append("Skill gains by what the bot was doing when it rose:")
+        gains = defaultdict(lambda: defaultdict(int))
+        for pth in _g.glob(os.path.join(M.MEMDIR, "prof-*.jsonl")):
+            for line in open(pth, encoding="utf-8"):
+                try:
+                    e = json.loads(line)
+                except ValueError:
+                    continue
+                if e.get("k") == "gain":
+                    gains[e["skill"]][e.get("action", "?")] += 1
+        for skill, acts in sorted(gains.items(), key=lambda kv: -sum(kv[1].values()))[:15]:
+            out.append(f"- {skill}: " + ", ".join(f"{a} x{n}" for a, n in sorted(acts.items(), key=lambda kv: -kv[1])[:4]))
+        out.append("")
+    except Exception as exc:  # the report must still be written
+        out.append(f"(memory summary failed: {exc})")
+        out.append("")
     cats = sorted({g["cat"] for g in by_key.values()}, key=lambda c: ORDER.index(c) if c in ORDER else 99)
     for cat in cats:
         rows = sorted((g for g in by_key.values() if g["cat"] == cat), key=lambda g: -len(g["bots"]))

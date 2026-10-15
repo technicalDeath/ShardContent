@@ -203,7 +203,7 @@ class Bot:
 
     def mobs(self, within):
         """Hostile-looking mobiles. An orc with a personal name ("Dilug") only shows as Criminal-colored, so notoriety is what counts."""
-        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14]
+        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14 and m.name != "Generic Player"]
 
     def assess(self, m):
         """The server's numbers for this monster against what the mage can do right now (cached for a few seconds)."""
@@ -327,7 +327,7 @@ class Bot:
             if not self.c.war_mode:
                 self.c.war(True)
             self.log(f"cornered by {d.name}; magic arrow at {d.distance} tiles, hp {self.c.hp} mana {self.c.mana}")
-            self.notes.add("combat", f"A {d.name} that follows a new mage into Britain is not stopped by the town: the mage must fight it with its starting mana.", key="followed", name=d.name)
+            self.notes.add("combat", f"A {d.name} caught up with a new mage at {self.c.x},{self.c.y} ({'inside Britain' if 1420 <= self.c.x <= 1650 and 1540 <= self.c.y <= 1720 else 'in the wilds'}): it cannot be outrun and the mage must fight it with its starting mana.", key=f"followed:{d.name}", name=d.name)
             if not self.attack(d):
                 time.sleep(1.0)
                 self.step_away(d, 5)

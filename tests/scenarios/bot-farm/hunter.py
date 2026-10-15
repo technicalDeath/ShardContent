@@ -20,6 +20,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bot_common import ROOT, TOWN, BotBase  # noqa: E402
+from memory import cell_of, choose_spot  # noqa: E402
 
 sys.path.insert(0, os.path.join(HERE, "..", "new-mage-playtest"))
 from knowledge import Knowledge, norm  # noqa: E402
@@ -51,6 +52,9 @@ class HunterBot(BotBase):
         except (OSError, ValueError):
             pass
         self.recent_threats = []
+        self.fight = None
+        self.cur_spot = None
+        self.spot_since = 0.0
         self.target = None
         self.target_since = 0.0
         self.target_hp = 0
@@ -64,9 +68,12 @@ class HunterBot(BotBase):
 
     def my_dps(self):
         skill = max([v for k, v in self.skill_values.items() if k in ("Archery", "Maces", "Mace Fighting", "Fencing", "Swordsmanship", "Wrestling")] or [50.0])
+        measured = self.mem.measured_dps()
+        if measured:
+            return max(0.8, measured)               # what bots of this profession have actually dealt, from their own kills
         return (2.0 if self.ranged else 2.6) + 0.03 * (skill - 50)
 
-    def assess(self, m):
+    def _assess_table(self, m):
         mon = self.k.monster(m)
         if mon is None:
             n = m.name.lower()
@@ -82,6 +89,45 @@ class HunterBot(BotBase):
         casts = mon.get("casts")
         fight = taken < 0.5 * self.c.hp and not casts and mon["hits"][1] <= 140
         return {"known": True, "fight": fight, "monster": mon, "taken": round(taken), "reason": f"~{ttk:.0f}s to kill, ~{taken:.0f} damage taken of {self.c.hp}" + (", casts spells" if casts else "")}
+
+    def assess(self, m):
+        """The table's estimate, corrected by what bots like this one have actually met: a kind that has killed them is a danger, a kind they beat cheaply is prey."""
+        a = self._assess_table(m)
+        key = self.mkey(m)
+        deadly = self.mem.deadly_kinds()
+        stats, src = self.mem.fight_stats(key)
+        casts = bool((a.get("monster") or {}).get("casts"))
+        if key in deadly:
+            return dict(a, fight=False, reason=f"memory: killed {deadly[key]} bots like this one")
+        if stats:
+            if stats["death_rate"] >= 0.25 or stats["flee_rate"] >= 0.5:
+                return dict(a, fight=False, reason=f"memory ({src}): {stats['n']} fights, {stats['death_rate']:.0%} deaths, {stats['flee_rate']:.0%} fled")
+            if stats["death"] == 0 and stats["flee_rate"] < 0.2 and stats["avg_dmgpct"] <= 0.45 and not casts:
+                return dict(a, fight=True, reason=f"memory ({src}): {stats['n']} fights, lost {stats['avg_dmgpct']:.0%} of hit points on average, none died")
+        return a
+
+    def begin_fight(self, t):
+        f = self.fight
+        if f and f["serial"] == t.serial:
+            return
+        if f:
+            self.end_fight("lost")
+        mon = self.k.monster(t)
+        self.fight = {"serial": t.serial, "key": self.mkey(t), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
+                      "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(t.x, t.y)}
+
+    def end_fight(self, outcome):
+        f, self.fight = self.fight, None
+        if not f:
+            return
+        ttk = time.time() - f["t0"]
+        if ttk < 1.0 and outcome != "death":
+            return
+        for scope in ("world", "prof"):
+            self.mem.record("fight", scope=scope, m=f["key"], grp=self.mem.grp, outcome=outcome, ttk=round(ttk, 1), dmg=max(0, f["hp0"] - f["hpmin"]), hp=self.c.max_hp, cell=f["cell"], mhits=f["mhits"])
+
+    def on_flee(self):
+        self.end_fight("flee")
 
     def is_prey(self, m):
         a = self.facts.setdefault("assess", {})
@@ -123,9 +169,21 @@ class HunterBot(BotBase):
             self.recent_threats = sorted(th)
         if self.c.overloaded:
             self.note("weight", f"A {self.pname} is overloaded ({self.c.weight}/{self.c.max_weight}) and cannot move at full pace.", key="overload")
+        f = self.fight
+        if f:
+            f["hpmin"] = min(f["hpmin"], self.c.hp)
+            if not any(m.serial == f["serial"] for m in self.c.mobiles(within=16)):
+                self.end_fight("kill" if self.kills > f["kills0"] else "lost")
+            elif time.time() - f["t0"] > 90:
+                self.end_fight("lost")
 
     def r_dead(self):
         was = self.facts["ghost_since"]
+        if self.c.ghost and was is None:
+            if self.fight:
+                self.end_fight("death")
+            elif self.recent_threats:
+                self.mem.record("fight", scope="world", m=self.recent_threats[0][2], grp=self.mem.grp, outcome="death", ttk=0, dmg=self.c.max_hp, hp=self.c.max_hp, cell=cell_of(self.c.x, self.c.y))
         r = super().r_dead()
         if r and was is None:
             for dist, name, key, avg in self.recent_threats:
@@ -145,7 +203,7 @@ class HunterBot(BotBase):
                 self.c.war(True)
             self.c.attack(d.serial)
             self.activity = f"cornered by {d.name}"
-            self.note("combat", f"A {d.name} that follows a new {self.pname} into Britain is not stopped by the town: the player must fight it with starting gear.", key=f"followed:{d.name}")
+            self.note("combat", f"A {d.name} caught up with a new {self.pname} at {self.c.x},{self.c.y} ({'inside Britain' if 1420 <= self.c.x <= 1650 and 1540 <= self.c.y <= 1720 else 'in the wilds'}): it cannot be outrun and the player must fight it with starting gear.", key=f"followed:{d.name}")
             time.sleep(1.2)
             return True
         self.activity = f"avoiding {d.name}"
@@ -227,6 +285,7 @@ class HunterBot(BotBase):
             self.target = None
             return True
         self.activity = f"fighting {t.name}"
+        self.begin_fight(t)
         if self.ranged and t.distance > 1 and not self.los(t.serial):
             blocked = self.facts.setdefault("nolos", {})
             blocked[t.serial] = blocked.get(t.serial, 0) + 1
@@ -305,20 +364,18 @@ class HunterBot(BotBase):
         self.c.goto(t.x, t.y).wait(timeout=4)
         return True
 
+    def next_spot(self):
+        return choose_spot(self.mem, SPOTS, lambda x, y: self.near_death_spot(x, y, 60))
+
     def r_explore(self):
-        for _ in range(len(self.spots)):
-            x, y = self.spots[0]
-            if self.near_death_spot(x, y, 60):
-                self.spots.append(self.spots.pop(0))
-            else:
-                break
-        x, y = self.spots[0]
+        if self.cur_spot is None or time.time() - self.spot_since > 240:
+            self.cur_spot = self.next_spot()
+            self.spot_since = time.time()
+        x, y = self.cur_spot
         self.activity = f"exploring toward {x},{y}"
         res = self.c.goto(x, y).wait(timeout=5)
-        if abs(self.c.x - x) < 5 and abs(self.c.y - y) < 5:
-            self.spots.append(self.spots.pop(0))
-        elif res and str(res).startswith(("nopath", "blocked")):
-            self.spots.append(self.spots.pop(0))
+        if abs(self.c.x - x) < 5 and abs(self.c.y - y) < 5 or (res and str(res).startswith(("nopath", "blocked"))):
+            self.cur_spot = None
         return True
 
 
