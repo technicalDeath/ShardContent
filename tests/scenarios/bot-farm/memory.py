@@ -391,7 +391,7 @@ class SharedMemory:
 FRONTIER_CENTER = (1470, 1620)      # Britain
 
 
-def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
+def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center=None, radius=None):
     """Pick the next hunting spot: the fixed ring plus the best-known cells in the shared memory; spots for which is_bad(x, y) is true and cells that have killed
     bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried. A spot within 20 tiles of
     `here` or of a spot in `recent` (just reached) is left out: arriving somewhere with nothing to fight must move the bot on, not choose the same place
@@ -404,6 +404,21 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
     import math
 
     cands = [tuple(sp) for sp in fixed]
+    if center is not None:
+        # a home range: spots and memory cells within `radius` of the bot's own good ground, plus a few untried points inside it
+        cands = [p for p in cands if max(abs(p[0] - center[0]), abs(p[1] - center[1])) <= radius]
+        for score, cell in mem.hunting_cells(near=center, radius=radius, n=10):
+            if score > 0.25:
+                cands.append(cell_center(cell))
+        for _ in range(6):
+            ang, r = random.random() * 2 * math.pi, random.uniform(15, radius)
+            cands.append((int(center[0] + r * math.cos(ang)), int(center[1] + r * math.sin(ang))))
+        cands = [p for p in cands if not near(p, here, 10) and not any(near(p, r, 10) for r in recent) and mem.usable("spot", cell_of(*p))]
+        scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands
+                  if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not mem.camp_cell(cell_of(x, y))]
+        if scored:
+            scored.sort(reverse=True)
+            return scored[0][1]
     for score, cell in mem.hunting_cells(radius=300, n=10):
         if score > 0.25:
             cands.append(cell_center(cell))

@@ -41,6 +41,7 @@ class HunterBot(BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_lighten", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest",
              "r_explore"]
     LOOT_MATERIALS = False
+    REST_BELOW = 65
 
     def r_lighten(self):
         """A fighter over three quarters of its weight with crafting material in the pack (hides from the cows it killed, mostly) leaves the heaviest of
@@ -189,6 +190,7 @@ class HunterBot(BotBase):
             return
         if outcome == "kill":
             self.kills += 1
+            self.note_kill_at(*(f.get("xy") or (self.c.x, self.c.y)))
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
             return
@@ -466,7 +468,9 @@ class HunterBot(BotBase):
 
     def next_spot(self):
         recent = self.facts.setdefault("spots_reached", [])
-        return choose_spot(self.mem, SPOTS, lambda x, y: self.near_death_spot(x, y, 60), here=(self.c.x, self.c.y), recent=recent[-4:])
+        center, radius = self.home_range()
+        return choose_spot(self.mem, SPOTS, lambda x, y: self.near_death_spot(x, y, 60), here=(self.c.x, self.c.y), recent=recent[-4:],
+                           center=center, radius=radius)
 
     def r_explore(self):
         if self.cur_spot is None or time.time() - self.spot_since > 240:

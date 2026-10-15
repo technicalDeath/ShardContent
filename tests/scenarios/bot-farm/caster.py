@@ -52,6 +52,8 @@ class CasterBot(mage_bot.Bot):
 
     # the decision log is the hunters' one (bot_common.BotBase), borrowed as plain functions
     dlog = BotBase.dlog
+    note_kill_at = BotBase.note_kill_at
+    home_range = BotBase.home_range
     track_episode = BotBase.track_episode
     close_episode = BotBase.close_episode
 
@@ -101,6 +103,7 @@ class CasterBot(mage_bot.Bot):
             return
         if outcome == "kill":
             self.kills += 1
+            self.note_kill_at(self.c.x, self.c.y)
             self.log(f"kill #{self.kills}: {f['key']}")
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
@@ -156,8 +159,9 @@ class CasterBot(mage_bot.Bot):
     def r_explore(self):
         if self.cur_spot is None or time.time() - self.spot_since > 240:
             recent = self.facts.setdefault("spots_reached", [])
+            center, radius = self.home_range()
             self.cur_spot = choose_spot(self.mem, [tuple(s) for s in self.spots], lambda x, y: any(abs(x - dx) < 70 and abs(y - dy) < 70 for dx, dy in self.facts.get("death_spots", [])),
-                                        here=(self.c.x, self.c.y), recent=recent[-4:])
+                                        here=(self.c.x, self.c.y), recent=recent[-4:], center=center, radius=radius)
             self.spot_since = time.time()
         x, y = self.cur_spot
         res = self.c.goto(x, y).wait(timeout=4)

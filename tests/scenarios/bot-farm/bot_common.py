@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(ROOT, ".claude", "scripts"))
 
 from navrey_session import connect  # noqa: E402
 from uo import Event  # noqa: E402
-from memory import MEMDIR, SharedMemory, cell_of  # noqa: E402
+from memory import MEMDIR, SharedMemory, cell_center, cell_of  # noqa: E402
 
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
@@ -440,6 +440,26 @@ class BotBase:
         if threat is None:
             return near[0]
         return max(near, key=lambda p: max(abs(p[0] - threat.x), abs(p[1] - threat.y)) - 0.3 * max(abs(p[0] - self.c.x), abs(p[1] - self.c.y)))
+
+    def note_kill_at(self, x, y):
+        k = self.facts.setdefault("kills_at", [])
+        k.append((time.time(), x, y))
+        del k[:-40]
+        self.facts["last_kill_at"] = time.time()
+
+    def home_range(self):
+        """(center, radius): the middle of this bot's own kills in the last hour (else the best-known hunting ground near Britain), and how far
+        it may roam from there: 90 tiles, 40 more for every 8 minutes without a kill, up to 320."""
+        now = time.time()
+        recent = [(x, y) for t, x, y in self.facts.get("kills_at", []) if now - t < 3600]
+        if recent:
+            xs, ys = sorted(p[0] for p in recent), sorted(p[1] for p in recent)
+            center = (xs[len(xs) // 2], ys[len(ys) // 2])
+        else:
+            best = self.mem.hunting_cells(near=(1470, 1620), radius=150, n=1)
+            center = cell_center(best[0][1]) if best else (1470, 1620)
+        quiet = now - self.facts.get("last_kill_at", self.facts.setdefault("range_started", now))
+        return center, min(320, 90 + 40 * int(quiet // 480))
 
     def flee_point(self, threat):
         """Where to run: a town refuge when one is close, otherwise straight away from the threat. Far out (a veteran archer 300 tiles west of
@@ -938,14 +958,24 @@ class BotBase:
         mx = self.c.state.get("maxStam") or 0
         if mx and self.c.stamina < 0.2 * mx:
             self.facts["catching_breath"] = True
-        elif not mx or self.c.stamina >= 0.7 * mx:
+        elif not mx or self.c.stamina >= 0.5 * mx:
             self.facts["catching_breath"] = False
         return bool(self.facts.get("catching_breath"))
 
+    REST_BELOW = 85                          # rest when health is under this percentage (fighters fight on lower)
+
     def r_rest(self):
         """Hurt or out of breath, and nothing around: stand still (a mage meditates, handled by the brain)."""
-        if self.mobs(10) or (self.hp_pct() >= 85 and not self.tired()):
+        if self.mobs(10) or (self.hp_pct() >= self.REST_BELOW and not self.tired()):
             return False
+        if self.tired() and time.time() - self.facts.get("refreshed_at", 0) > 60:
+            red = next((i for i in self.c.backpack if i.name == "Red Potion"), None)     # Refresh: red, as in the era
+            if red:
+                self.facts["refreshed_at"] = time.time()
+                self.c.use(red.serial)
+                self.log(f"drank a Refresh potion at stamina {self.c.stamina}")
+                time.sleep(1.5)
+                return True
         if self.tired():
             self.activity = f"catching breath (stamina {self.c.stamina})"
             if not self.facts.get("tired_noted"):

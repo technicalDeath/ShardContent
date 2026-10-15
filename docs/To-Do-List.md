@@ -26,6 +26,17 @@ The owner's running list of things to plan and build. Nothing here is signed off
 
 - **DONE 2026-10-11 (client text; uncommitted): camp-secure message says how to log off safely.** Client text 500621 now reads "The camp is now secure. To log off safely, put your Bedroll down by the fire, double-click it to unroll it, double-click it again and choose Continue." (first wording corrected: the first double-click only unrolls it) (`ShardContent/data/client/Clilocs.txt`, copied to the client folder; shown in the real client). Wording for the owner to approve or change.
 
+- **New players run out of stamina** (owner, 2026-10-15: "Note for new player qol running out of stamina is an issue"; found by the bot farm, not planned yet).
+  - **What happens:** a new character's maximum stamina is its Dexterity, often about 33. Bots that ran to hunting ground 150 to 300 tiles from Britain arrived at stamina 1 of 33, could not run from a monster, and had to stand and rest; one mage died out of breath (a brown bear caught it).
+  - **Why (engine, pre-AOS settings in `ModernUO/Projects/UOContent/Misc/StaminaSystem.cs`):** running costs a point every 16 steps (`PlayerMobile.StepsMax`), and an extra point per step below 10% (`stamina.additionalLossWhenBelow` 0.10). At 0 a character cannot run (`stamina.cannotRunWhenFatigued`), though it can still walk. Stamina comes back at about a point every 7 seconds (`RegenRates`, `DefaultStamRate`). Nothing but the stamina bar tells the player any of this. The novice combat assist's stamina floor (60) applies to swing speed only, not to movement.
+  - **Ideas to choose from** (needs the owner's ruling, then a plan):
+    1. A one-time tip the first time stamina falls below a quarter ("Running tires you. Walk, rest or drink a Refresh potion (red).").
+    2. Cheaper running for new characters, as the novice combat assist does for combat (for example a point every 24 or 32 steps while the novice assist applies).
+    3. Faster stamina regeneration out of combat for new characters.
+    4. Guide lines only ("walk the last stretch").
+  - **Stock-first reading:** this is stock era behavior, so the smallest change is (1) or (4). The starting kit already has 3 Refresh potions.
+  - **Evidence:** finding 5 in `Bot-Farm-QoL-Findings.md`, and the bot notes keyed `tired` (22 bots in 6 professions).
+
 ## Quality of life (Tier 1 plan, `Tier-1-QoL-Plan.md`)
 
 - **B. Accidental-crime guard rails and the criminal notice** (checked 2026-10-14: the confirm box before helping a grey, criminal or red player is built and described in the guide, and stock already says You've committed a criminal act!! (client text 1005040, Region.OnCriminalAction) whenever a criminal act is flagged with its message, so only a or 2 minutes rewording through Clilocs.txt remains, if you want it): confirm prompts before helping a grey or red or looting a blue's corpse, and a "you are a criminal for 2 minutes" notice. Needs one small engine hook and a flag; waits on the owner's answers.
