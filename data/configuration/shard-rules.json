@@ -232,6 +232,7 @@
     "newPlayerTips": true,
     "autoPickup": true,
     "houseReminder": true,
+    "craftedGoodsPricing": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

@@ -32,6 +32,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 MEMDIR = os.path.join(ROOT, "work", "botfarm", "memory")
 CELL = 40
+HALF_LIFE = 1800.0          # seconds: a cell's kills and gold count half as much after half an hour (spawns are used up and come back)
+DEATH_HALF_LIFE = 7200.0    # a place that killed bots stays suspect longer
+FIGHT_HALF_LIFE = 7200.0    # bots get stronger, so old fight records weigh less than new ones
+FIGHT_KEYS = ("n", "kill", "death", "flee", "lost", "ttk", "dmg", "dmgpct")
 
 # professions whose fights look alike; a melee bot's record against a troll tells an archer little
 GROUPS = {"Archer": "ranged", "Ranger": "ranged", "Bard": "ranged", "MaceFighter": "melee", "Fencer": "melee", "Swordsman": "melee",
@@ -51,10 +55,20 @@ def group_of(prof):
     return GROUPS.get(prof, "other")
 
 
+def _decay(d: dict, keys, t: float, half: float):
+    """Bring the numbers in d (stamped d["t"]) forward to time t, halving them every `half` seconds."""
+    dt = t - d.get("t", t)
+    if dt > 0:
+        f = 0.5 ** (dt / half)
+        for k in keys:
+            d[k] = d[k] * f
+    d["t"] = max(t, d.get("t", 0))
+
+
 def _empty():
     return {
-        "fights": defaultdict(lambda: defaultdict(lambda: {"n": 0, "kill": 0, "death": 0, "flee": 0, "lost": 0, "ttk": 0.0, "dmg": 0.0, "dmgpct": 0.0})),
-        "cells": defaultdict(lambda: {"kills": 0, "deaths": 0, "gold": 0, "sights": defaultdict(int), "fights": 0}),
+        "fights": defaultdict(lambda: defaultdict(lambda: {"n": 0.0, "kill": 0.0, "death": 0.0, "flee": 0.0, "lost": 0.0, "ttk": 0.0, "dmg": 0.0, "dmgpct": 0.0, "t": 0.0})),
+        "cells": defaultdict(lambda: {"kills": 0.0, "deaths": 0.0, "gold": 0.0, "sights": defaultdict(int), "fights": 0.0, "t": 0.0, "pres": []}),
         "vendors": {},
         "crafts": defaultdict(lambda: defaultdict(lambda: {"n": 0, "ok": 0, "gain": 0})),
         "res": defaultdict(lambda: defaultdict(lambda: {"ok": 0, "fail": 0, "reason": "", "blocked_until": 0.0, "claim_until": 0.0, "claim_by": ""})),
@@ -123,6 +137,16 @@ class SharedMemory:
                 except (ValueError, KeyError):
                     pass
 
+    @staticmethod
+    def _decay_cell(c: dict, t: float):
+        dt = t - c.get("t", t)
+        if dt > 0:
+            c["kills"] *= 0.5 ** (dt / HALF_LIFE)
+            c["fights"] *= 0.5 ** (dt / HALF_LIFE)
+            c["gold"] *= 0.5 ** (dt / HALF_LIFE)
+            c["deaths"] *= 0.5 ** (dt / DEATH_HALF_LIFE)
+        c["t"] = max(t, c.get("t", 0))
+
     def _fold(self, scope: str, ev: dict):
         st = self.state[scope]
         st["events"] += 1
@@ -130,6 +154,7 @@ class SharedMemory:
         if k == "fight":
             grp = ev.get("grp") or group_of(ev.get("prof"))
             f = st["fights"][ev["m"]][grp]
+            _decay(f, FIGHT_KEYS, ev["t"], FIGHT_HALF_LIFE)
             f["n"] += 1
             f[ev["outcome"]] = f.get(ev["outcome"], 0) + 1
             f["ttk"] += float(ev.get("ttk", 0))
@@ -141,21 +166,34 @@ class SharedMemory:
                 st["dps"]["n"] += 1
             c = st["cells"][ev["cell"]] if ev.get("cell") else None
             if c is not None:
+                self._decay_cell(c, ev["t"])
                 c["fights"] += 1
                 if ev["outcome"] == "kill":
                     c["kills"] += 1
         elif k == "sight":
             st["cells"][ev["cell"]]["sights"][ev["m"]] += 1
         elif k == "death":
-            st["cells"][ev["cell"]]["deaths"] += 1
+            c = st["cells"][ev["cell"]]
+            self._decay_cell(c, ev["t"])
+            c["deaths"] += 1
         elif k == "loot":
-            st["cells"][ev["cell"]]["gold"] += int(ev.get("gold", 0))
+            c = st["cells"][ev["cell"]]
+            self._decay_cell(c, ev["t"])
+            c["gold"] += int(ev.get("gold", 0))
+        elif k == "presence":
+            c = st["cells"][ev["cell"]]
+            c["pres"] = (c["pres"] + [(ev["t"], ev["bot"])])[-16:]
         elif k == "vendor":
             v = st["vendors"].setdefault(ev["xy"], {"name": "", "stock": {}, "buys": {}, "t": 0})
             v["name"] = ev.get("name") or v["name"]
             v["t"] = ev["t"]
             for item, price, qty in ev.get("stock", []):
-                v["stock"][item.lower()] = [price, qty]
+                if price == 0 and qty == 0:              # "sold out" from a bot that found the shelf empty: every matching item at this shop
+                    for k2 in v["stock"]:
+                        if item.lower() in k2:
+                            v["stock"][k2][1] = 0
+                else:
+                    v["stock"][item.lower()] = [price, qty]
             for item, price in ev.get("buys", []):
                 v["buys"][item.lower()] = price
         elif k == "craft":
@@ -187,13 +225,15 @@ class SharedMemory:
         self.refresh()
         for scope in ("prof", "world"):
             f = self.state[scope]["fights"].get(m, {}).get(self.grp)
+            if f:
+                _decay(f, FIGHT_KEYS, time.time(), FIGHT_HALF_LIFE)
             if f and f["n"] >= min_n:
                 return self._summ(f), scope
         return None, None
 
     @staticmethod
     def _summ(f):
-        n = max(1, f["n"])
+        n = max(1e-9, f["n"])
         return {"n": f["n"], "kill": f["kill"], "death": f["death"], "flee": f["flee"], "death_rate": f["death"] / n, "flee_rate": f["flee"] / n,
                 "avg_ttk": f["ttk"] / n, "avg_dmg": f["dmg"] / n, "avg_dmgpct": f["dmgpct"] / n}
 
@@ -209,17 +249,31 @@ class SharedMemory:
         out = {}
         for m, groups in self.state["world"]["fights"].items():
             f = groups.get(self.grp)
-            if f and f["death"] >= min_deaths and f["death"] >= 0.2 * f["n"]:
-                out[m] = f["death"]
+            if f:
+                _decay(f, FIGHT_KEYS, time.time(), FIGHT_HALF_LIFE)
+            if f and f["death"] >= min_deaths - 0.01 and f["death"] >= 0.2 * f["n"]:
+                out[m] = round(f["death"], 1)
         return out
 
     def cell_score(self, cell: str) -> float:
         """How good a map cell is for hunting: kills and gold per fight, with deaths counted heavily; unknown cells score neutral so they get tried."""
         self.refresh()
         c = self.state["world"]["cells"].get(cell)
-        if not c or c["fights"] + c["deaths"] < 2:
-            return 0.5
-        return (c["kills"] + c["gold"] / 40.0) / (1.0 + c["fights"]) - 1.5 * c["deaths"] / (1.0 + c["fights"])
+        if c:
+            self._decay_cell(c, time.time())
+        crowd = self.crowd(cell) * 0.6
+        if not c or c["fights"] + c["deaths"] < 1.5:
+            return 0.5 - crowd
+        gold = min(c["gold"] / 40.0, 2.0 * c["kills"])
+        return (c["kills"] + gold) / (1.0 + c["fights"]) - 2.5 * c["deaths"] / (1.0 + c["fights"]) - crowd
+
+    def crowd(self, cell: str, window: float = 300.0) -> int:
+        """How many other bots were in this cell in the last few minutes (hunters share spawns, so a crowded cell yields less to each)."""
+        c = self.state["world"]["cells"].get(cell)
+        if not c:
+            return 0
+        now = time.time()
+        return len({b for t, b in c["pres"] if now - t < window and b != self.bot})
 
     def hunting_cells(self, near=(1470, 1620), radius=260, n=8):
         """The best-known cells for hunting within radius of near, best first: [(score, cell)]."""
@@ -229,7 +283,7 @@ class SharedMemory:
             cx, cy = cell_center(cell)
             if abs(cx - near[0]) > radius or abs(cy - near[1]) > radius:
                 continue
-            if c["kills"] + c["sights"].__len__() == 0:
+            if c["kills"] < 0.2 and not c["sights"]:
                 continue
             out.append((self.cell_score(cell), cell))
         out.sort(reverse=True)
@@ -237,7 +291,9 @@ class SharedMemory:
 
     def dangerous_cell(self, cell: str) -> bool:
         c = self.state["world"]["cells"].get(cell)
-        return bool(c and c["deaths"] >= 2 and c["deaths"] > c["kills"] * 0.5)
+        if c:
+            self._decay_cell(c, time.time())
+        return bool(c and c["deaths"] >= 1.8 and c["deaths"] > c["kills"] * 0.5)
 
     def vendor_selling(self, word: str):
         """Shops that sell something whose name contains word: [(price, xy, item, qty)], cheapest first."""
@@ -298,23 +354,32 @@ class SharedMemory:
         fights.sort(reverse=True)
         lines.append("Fights by monster and fighter kind (n, kills, deaths, flees, avg seconds, avg % of hit points lost):")
         for dr, m, grp, s in fights[:25]:
-            lines.append(f"  {m:18} {grp:7} n={s['n']:3} kill={s['kill']:3} death={s['death']:2} flee={s['flee']:2} ttk={s['avg_ttk']:5.1f}s lost={s['avg_dmgpct'] * 100:4.0f}%")
-        cells = sorted(((c["kills"], cell, c) for cell, c in w["cells"].items()), reverse=True)
-        lines.append("Cells by kills (cell: kills, deaths, gold, kinds seen):")
-        for kills, cell, c in cells[:15]:
+            lines.append(f"  {m:18} {grp:7} n={s['n']:5.1f} kill={s['kill']:5.1f} death={s['death']:4.1f} flee={s['flee']:4.1f} ttk={s['avg_ttk']:5.1f}s lost={s['avg_dmgpct'] * 100:4.0f}%")
+        for c in w["cells"].values():
+            self._decay_cell(c, time.time())
+        cells = sorted(((c["kills"] + c["deaths"], cell, c) for cell, c in w["cells"].items() if c["kills"] >= 0.1 or c["deaths"] >= 0.1 or c["sights"]), reverse=True)
+        lines.append("Cells (kills and deaths fade with time; kinds seen are all-time):")
+        for _, cell, c in cells[:15]:
             top = ", ".join(f"{k}x{v}" for k, v in sorted(c["sights"].items(), key=lambda kv: -kv[1])[:4])
-            lines.append(f"  {cell:10} kills={kills:3} deaths={c['deaths']:2} gold={c['gold']:5} seen: {top}")
+            lines.append(f"  {cell:10} kills={c['kills']:4.1f} deaths={c['deaths']:4.1f} gold={c['gold']:6.0f} bots now={self.crowd(cell)} seen: {top}")
         return "\n".join(lines)
 
 
-def choose_spot(mem: "SharedMemory", fixed, is_bad):
+def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=()):
     """Pick the next hunting spot: the fixed ring plus the best-known cells in the shared memory; spots for which is_bad(x, y) is true and cells that have killed
-    bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried."""
+    bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried. A spot within 20 tiles of
+    `here` or of a spot in `recent` (just reached) is left out: arriving somewhere with nothing to fight must move the bot on, not choose the same place
+    again (ten bots once stood in one cell for twenty minutes doing exactly that)."""
     import random
+
+    def near(a, b, r=20):
+        return a is not None and b is not None and abs(a[0] - b[0]) <= r and abs(a[1] - b[1]) <= r
+
     cands = [tuple(sp) for sp in fixed]
     for score, cell in mem.hunting_cells(radius=300, n=10):
         if score > 0.25:
             cands.append(cell_center(cell))
+    cands = [p for p in cands if not near(p, here) and not any(near(p, r) for r in recent)]
     scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y))]
     if not scored:
         return random.choice(list(fixed))

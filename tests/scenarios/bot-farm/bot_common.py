@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import faulthandler
 import json
+import math
 import os
 import re
 import sys
@@ -84,6 +85,8 @@ class BotBase:
         self.kills = 0
         self.deaths = 0
         self.facts = {"looted": set(), "ghost_since": None, "bank_balance": 0, "seen_msgs": set()}
+        if self.c.ghost:
+            self.facts["ghost_since"] = time.time()          # already dead when this brain started: the death was counted by the brain before
         self.stats = {"gains": {}, "loot": {}, "casts": {}, "swings": 0, "damage_taken": 0, "kills_by": {}}
         self.skill_values = {}
         self.activity = ""
@@ -97,6 +100,10 @@ class BotBase:
             pass
         self.last_status = 0.0
         self.last_gold = 0
+        self.episode = None
+        self.work = 0                    # productive results that are not kills or gold: a catch, a craft, ore dug, a tame, a meal cooked
+        self.decisions_path = os.path.join(self.dir, "decisions.jsonl")
+        self.last_presence = 0.0
         self.totals_path = os.path.join(self.dir, "totals.json")
         self.base = {"kills": 0, "deaths": 0, "gains": {}, "uptime": 0}
         try:
@@ -213,6 +220,8 @@ class BotBase:
             "hp": self.c.hp, "max_hp": self.c.max_hp, "mana": self.c.mana, "stam": self.c.stamina, "pos": [self.c.x, self.c.y], "gold": self.c.gold,
             "weight": [self.c.weight, self.c.max_weight], "ghost": self.c.ghost, "kills": self.base["kills"] + self.kills, "deaths": self.base["deaths"] + self.deaths, "gains": gains,
             "skills": dict(sorted(self.skill_values.items(), key=lambda kv: -kv[1])[:6]), "tick": self.tick_no,
+            "all_skills": {k: v for k, v in sorted(self.skill_values.items()) if v > 0},
+            **getattr(self, "status_extra", {}),
         }
         with open(os.path.join(self.dir, "status.json"), "w", encoding="utf-8") as f:
             json.dump(s, f)
@@ -241,7 +250,9 @@ class BotBase:
             self.facts["corpse"] = {"xy": (self.c.x, self.c.y), "t": time.time(), "gold": self.last_gold, "tries": 0}
             json.dump({"death_spots": self.death_spots}, open(self.know_path, "w", encoding="utf-8"))
             self.note("death", f"A {self.pname} died.", key=f"death:{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
-            self.log(f"DEAD at {self.c.x},{self.c.y}; walking to the healer")
+            threats = getattr(self, "recent_threats", [])
+            killer = threats[0][1] if threats else "nothing seen"
+            self.log(f"DEAD at {self.c.x},{self.c.y} (killed by {killer}); walking to the healer")
         self.activity = "ghost: walking to the healer"
         # a living mobile sees a dead one only if it is in war mode (Mobile.CanSee), so a ghost in peace mode is invisible to the healer: switch it on
         if not self.c.war_mode:
@@ -286,7 +297,8 @@ class BotBase:
         x, y = info["xy"]
         self.log(f"going back to the corpse at {x},{y} ({info['gold']} gold lost)")
         self.travel(x, y, near=1, tries=12)
-        corpses = [i for i in self.c.containers(within=6) if "corpse" in i.name.lower()]
+        corpses = [i for i in self.c.containers(within=6) if ("corpse" in i.name.lower() or "remains" in i.name.lower()) and not i.name.lower().startswith(("a ", "an "))]
+        corpses.sort(key=lambda i: max(abs(i.x - x), abs(i.y - y)))          # the one lying where this bot died
         if not corpses:
             self.note("death", "Going back to the death spot found no corpse: it had already rotted away, or the player never saw where it was.", key="nocorpse")
             return True
@@ -336,6 +348,21 @@ class BotBase:
     def on_flee(self):
         pass
 
+    def r_evade(self):
+        """For bots that do not fight for a living: a hostile within seven tiles means walk away from it, towards town, before it gets to them (waiting beside it achieves nothing)."""
+        if self.c.ghost:
+            return False
+        near = [m for m in self.mobs(7) if not m.name.lower().startswith(("a rat", "a cat", "a dog", "a bird", "a chicken", "a rabbit"))]
+        if not near:
+            return False
+        m = near[0]
+        self.activity = f"walking away from {m.name}"
+        self.note("danger", f"A {m.name} came within {m.distance} tiles of a working {self.pname}; a gatherer or crafter can only walk away and come back later.", key=f"evade:{self.mkey(m)}")
+        dx = 1 if self.c.x >= m.x else -1
+        dy = 1 if self.c.y >= m.y else -1
+        self.c.goto(self.c.x + 10 * dx, self.c.y + 10 * dy).wait(timeout=8)
+        return True
+
     def bandage_self(self):
         b = self.c.find("bandage")
         if not b or self.hp_pct() > 80:
@@ -349,7 +376,9 @@ class BotBase:
     def r_loot(self):
         if self.mobs(7):
             return False
-        corpses = [i for i in self.c.containers(within=8) if "corpse" in i.name.lower() and i.serial not in self.facts["looted"]]
+        # only monster corpses ("a rat corpse"); a player's corpse ("corpse", "the remains of BotX") is someone's belongings and taking from it is a crime
+        corpses = [i for i in self.c.containers(within=8) if "corpse" in i.name.lower() and i.name.lower().startswith(("a ", "an ")) and "bot" not in i.name.lower()
+                   and i.serial not in self.facts["looted"]]
         if not corpses:
             return False
         corpse = corpses[0]
@@ -375,6 +404,9 @@ class BotBase:
             contents = []
         if not contents:
             self.note("loot", "An empty corpse still opens by itself.", key="emptycorpse")
+            return True
+        if any(0x203B <= (it.graphic or 0) <= 0x204D for it in contents):
+            self.log(f"{corpse.name} has hair or a beard in it: a person's corpse, left alone")
             return True
         worth = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire",
                  "emerald", "diamond", "amber", "citrine", "tourmaline", "arrow", "bolt", "hide", "leather", "feather", "ingot", "ore", "board", "log")
@@ -442,7 +474,7 @@ class BotBase:
             low = it.name.lower()
             if any(w in low for w in self.KEEP) or low == "backpack":
                 continue
-            self.c.drop(it.serial, box)
+            self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
             time.sleep(1.4)
         gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
         if gold and self.c.gold > reserve + 50:
@@ -595,12 +627,52 @@ class BotBase:
 
     # ---- main loop --------------------------------------------------------------------------------------------
 
+    # ---- the decision log: every stretch of one rule, and what it earned ----------------------------------------------
+
+    def total_gains(self):
+        return sum(self.stats["gains"].values())
+
+    def dlog(self, typ, **kw):
+        """One line in this bot's decisions.jsonl (episodes of a rule, and the moments the shared memory changed a decision); evaluate.py reads them all."""
+        try:
+            with open(self.decisions_path, "a", encoding="utf-8") as f:
+                f.write(json.dumps({"type": typ, "t": round(time.time()), "bot": self.name, "prof": self.pname, **kw}, ensure_ascii=False, separators=(",", ":")) + "\n")
+        except OSError:
+            pass
+
+    def track_episode(self):
+        """Close the current stretch of one rule when the rule changes (or after two minutes) and log what it yielded: gold, kills, skill gains, hit points, deaths, distance."""
+        rule = self.last_rule or "-"
+        now = time.time()
+        ep = self.episode
+        if ep and (rule != ep["rule"] or now - ep["t0"] > 120):
+            self.close_episode(now)
+            ep = None
+        if ep is None:
+            self.episode = {"rule": rule, "act": self.activity, "t0": now, "gold0": self.c.gold, "kills0": self.kills, "gains0": self.total_gains(), "hp0": self.c.hp, "work0": self.work,
+                            "deaths0": self.deaths, "x0": self.c.x, "y0": self.c.y}
+
+    def close_episode(self, now=None):
+        ep, self.episode = self.episode, None
+        if not ep:
+            return
+        now = now or time.time()
+        dur = now - ep["t0"]
+        if dur < 1.5:
+            return
+        self.dlog("ep", rule=ep["rule"], act=(ep["act"] or "")[:40], dur=round(dur, 1), gold=self.c.gold - ep["gold0"], kills=self.kills - ep["kills0"], gains=self.total_gains() - ep["gains0"],
+                  hp=self.c.hp - ep["hp0"], died=self.deaths - ep["deaths0"], work=self.work - ep.get("work0", self.work), moved=round(math.hypot(self.c.x - ep["x0"], self.c.y - ep["y0"])))
+
     @staticmethod
     def mkey(m):
         """The memory's name for a kind of monster: its body species when the client knows it ("orc" for a personally named orc), else its name without the article."""
         return re.sub(r"[^a-z]", "", (m.species or re.sub(r"^(an?|the) ", "", m.name.lower())).lower())
 
     def observe(self):
+        self.track_episode()
+        if time.time() - self.last_presence > 60 and not self.c.ghost:
+            self.last_presence = time.time()
+            self.mem.record("presence", cell=cell_of(self.c.x, self.c.y), rule=self.last_rule)
         if not self.c.ghost:
             self.last_gold = self.c.gold
             for m in self.c.mobiles(within=14):

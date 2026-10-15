@@ -52,6 +52,37 @@ def alive(pid: int) -> bool:
         return False
 
 
+def process_table() -> dict:
+    """{pid: command line} for every python.exe and dotnet.exe, in one query. A recorded PID can be reused by an unrelated process after the original
+    dies (seen: a dead client's PID became svchost's), so a PID only counts as a bot's if its command line says so."""
+    r = subprocess.run(["powershell", "-NoProfile", "-Command",
+                        "Get-CimInstance Win32_Process -Filter \"Name='python.exe' or Name='dotnet.exe'\" | Select-Object ProcessId,CommandLine | ConvertTo-Json -Compress"],
+                       capture_output=True, text=True)
+    try:
+        data = json.loads(r.stdout or "[]")
+    except ValueError:
+        return {}
+    if isinstance(data, dict):
+        data = [data]
+    return {int(d["ProcessId"]): (d.get("CommandLine") or "") for d in data}
+
+
+def is_client(pid, name, table=None) -> bool:
+    """True if pid is this bot's Navrey client: dotnet running cuo.dll with this bot's session folder on its command line."""
+    if not pid:
+        return False
+    cl = (table if table is not None else process_table()).get(int(pid), "").lower()
+    return "cuo.dll" in cl and os.path.join("navrey-sessions", name).lower() + os.sep in cl.replace("/", os.sep)
+
+
+def is_brain(pid, name, table=None) -> bool:
+    """True if pid is this bot's brain: python running a bot-farm script with --name <this bot>."""
+    if not pid:
+        return False
+    cl = (table if table is not None else process_table()).get(int(pid), "")
+    return "bot-farm" in cl and f"--name {name} " in cl + " "
+
+
 def read_state(path):
     try:
         with open(path, encoding="utf-8") as f:
@@ -83,7 +114,7 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
     rec_path = os.path.join(d, "session.json")
     if os.path.exists(rec_path):
         old = json.load(open(rec_path, encoding="utf-8"))
-        if alive(old["pid"]):
+        if is_client(old["pid"], name):
             return {"name": name, "ok": True, "pid": old["pid"], "note": "already running"}
     os.makedirs(d, exist_ok=True)
     pw = password_for(name)
@@ -94,7 +125,9 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
     with open(os.path.join(d, "settings.json"), "w", encoding="utf-8") as dst:
         json.dump(lean, dst, indent=2)
     files = {k: os.path.join(d, v) for k, v in dict(cmd="cuocmd", log="cuolog", state="cuostate.json", world="cuoworld.json").items()}
-    for p in files.values():
+    for p in list(files.values()) + [files["cmd"] + ".pid"]:
+        # cuocmd.pid is Navrey's agent lock; no client of this bot is running here, so whatever PID it names is stale (or reused by another program),
+        # and a live stale PID would make the new client refuse to read its command file
         if os.path.exists(p):
             os.remove(p)
     env = dict(os.environ, DOTNET_ROOT=os.path.dirname(DOTNET), DOTNET_GCConserveMemory="9", DOTNET_TieredPGO="0")
@@ -121,7 +154,9 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
             time.sleep(1.0)
             if in_game(files["state"]):
                 return {"name": name, "ok": True, "pid": proc.pid, "note": "created"}
-    return {"name": name, "ok": False, "pid": proc.pid, "note": "not in game after createcharacter"}
+    if proc.poll() is None:
+        proc.kill()                     # a client that never got in game is driven by nothing: do not leave it running
+    return {"name": name, "ok": False, "pid": proc.pid, "note": "not in game after createcharacter; client stopped"}
 
 
 def main():

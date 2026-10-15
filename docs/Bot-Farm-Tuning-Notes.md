@@ -1,0 +1,33 @@
+# Bot farm: tuning notes
+
+Places where the farm's bots got stuck or made no progress for reasons outside the bots themselves: the shard's economy, its stock levels, its rules or its world. Bot bugs are fixed in the bots (`tests/scenarios/bot-farm/`) and are not listed here.
+Nothing here is decided or built. Each item says what was seen, the evidence, how sure it is, and possible levers for the owner to rule on later.
+
+Started 2026-10-14 from the first farm run (23 bots, about two hours, disposable host `farm`). Live findings: `work/botfarm/report.md` and `evaluation.md`; how to run the farm: `tests/scenarios/bot-farm/OPERATING.md`.
+
+## Economy
+
+1. **Crafting at starting skill loses money, so crafters go broke.** *Addressed 2026-10-14 on the farm host only (owner's authority): vendors now pay material cost plus 25 percent for crafted goods and charge half again above that; tools and consumables stay at stock. See `docs/Crafted-Goods-Pricing.md`; not on the dev world yet.* A Tailor's cloak takes 14 cut cloth (2 gold each at the Tailor, 28 gold) and sells back for 4 to 7 gold. One Tailor sold 11 cloaks for 44 gold, then sat at 15 gold. A Carpenter also fell to 20 gold. Neither could buy material again, and both had to go hunting rats for coins (the bots now do that when broke). The Blacksmith sold two kinds of weapon for 28 gold in total. *Seen repeatedly.* Levers: higher vendor buy prices for crafted goods, cheaper material, a crafting income such as bulk orders, or accept that crafters fund themselves another way and say so in the guide.
+2. **A Tinker's sale request paid nothing and said nothing.** The vendor's sell list offered 3 gold per hammer. Selling 5 hammers was accepted with no message, and the items and gold were unchanged (tested twice by hand). *Seen, cause not found:* it could be the vendor's rules, the client's sell packet or the item location. Worth a real-client check.
+3. **Ingots are scarce.** The Tinker and the Blacksmith each stock 16 "Ingots" at 5 gold. Three ingot crafters (two Blacksmiths, a Tinker) empty both shelves, and later trips buy nothing ("Material bought: {}"). *Seen.* Levers: bigger stock, faster restock, or rely on mining (see 3 and 4).
+4. **Ore has no buyer.** The Miner's buy list near (1420,1580) held only a bag (3 gold) and a pickaxe (12 gold). Ore piles up until the Prospector is overloaded and must bank it or drop it. *Seen.* Levers: let the Miner or the Blacksmith buy ore and ingots.
+5. **Smelting ore at the Britain forge gave no answer.** Double-clicking iron ore and targeting the forge at (1424,1558) (graphic 0x0FB1) gave no message and no ingots, in one test from beside the forge. *Unverified:* it may be the bot's way of targeting a static. Check in the real client before treating it as a shard issue.
+
+## Tools and training
+
+6. **Tools wear out fast and with no warning.** Tongs lasted about 24 crafts, a Tinker's tool kit about a dozen, and a pickaxe under ten minutes of mining. Each ended with "You have worn out your tool!" and nothing before it. *Seen in every crafting and mining bot.* Levers: more uses per tool, or a warning at 10 uses left. The combat bar already warns about worn weapons and armor.
+7. **Training dummies and the archery butte cannot train any new character's main skill.** Their limit is 25 skill (`TrainingDummies.cs` MaxSkill 25). Every template starts its main skills at 50, and an Advanced character at about 30 to 35. Every dummy test said "Your skill in this weapon cannot improve any further by simply practicing with a dummy." *Verified in code and in game.* The map still marks five dummy spots and a butte as places to practise. Levers: raise the limit (for example to 50 or 60), or change the map markers' wording.
+8. **Bandages are almost useless to non-healers.** At Healing near 0, a bandage takes about 14 seconds and heals about 1 hit point ("they barely help"), but templates without Healing still start with 50 bandages. *Verified.* It is also the only way those characters train Healing. Levers: a word in the guide, or fewer bandages for non-healers.
+
+## World and hunting
+
+9. **Near Britain there is little that a new fighter can safely hunt.** The only easy prey are town animals (rats, cats, dogs, birds). The north-west, around the graveyard (about 1300 to 1370, 1440 to 1520), has shades, wraiths, zombies and trolls. They killed at least 8 bots of all kinds, and a wraith killed a Mace Fighter just west of Britain (1279,1599). The shared memory's "cells" table shows kills and deaths by area. *Seen.* Levers: beginner spawns (rabbits, deer, wolves, mongbats, slimes) in a ring around Britain; keep the undead further out.
+10. **Main weapon skills barely gain at 50 while Tactics and Anatomy gain quickly.** In the first hour, fighters logged dozens of Tactics and Anatomy gains and only a handful of weapon-skill gains. That fits the gain curve's challenge rule: rats and birds are no challenge for 50 skill. *Seen, not yet measured per hour per skill (evaluate.py now logs it).* Ties to 9: there is nothing worth fighting that is safe.
+11. **Tamers find nothing to tame.** At Animal Taming 55, nothing tameable within about 25 points of their skill (wolves, deer, bears' lower end) was found near Britain in an hour. There were only town animals (taming difficulty below 0) and monsters. *Seen, 2 bots.* Levers: animals in the 25 to 55 range near town (hinds, timber wolves, black bears, eagles).
+12. **Fishing spots run out quickly.** After a few minutes on one patch, every cast says "The fish don't seem to be biting here." The fisherman has to move along the shore. *Seen.* Probably intended (stock resource banks). The message could say to try elsewhere.
+
+## Rules and messages
+
+13. **Ghosts in peace mode are invisible to healers.** This is in `To-Do-List.md` (the owner asked for it there). A bot that died beside the healer was never offered a resurrection until it switched to war mode and walked out of range and back in.
+14. **A spell cast at a monster behind a wall, or on another floor, is lost with no message.** There is no fizzle, no mana spent and no hint. Bots looped on it for minutes until they learned to check line of sight and floor. *Seen.* Lever: a "You cannot see that." message for spells, as stock sends elsewhere.
+15. **Crafted goods sold to vendors reappear on their shelves one by one.** Shop lists fill with "Cloak x1" and "Butcher Knife x1" rows from earlier sales. *Seen, minor.*

@@ -25,12 +25,12 @@ DATA = json.load(open(os.path.join(HERE, "craft_data.json"), encoding="utf-8"))
 
 # profession -> (craft key, skill name in the skills list, tool, material, material shop wanted, station tile or None, seller)
 CRAFTS = {
-    16: dict(craft="Blacksmith", skill="Blacksmithy", tool="tongs", mat="iron ingot", res="IronIngot", station=(1423, 1557), shop=(1427, 1652), wanted={"ingot": 250},
+    16: dict(craft="Blacksmith", skill="Blacksmithy", tool="tongs", mat="iron ingot", res="IronIngot", station=(1423, 1557), shop=(1427, 1652), wanted={"ingot": 60},
              sell_to=(1418, 1550), maxcost=14),
     18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station=None, shop=(1467, 1688), wanted={"cut cloth": 120},
              sell_to=(1467, 1688), maxcost=20),
-    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station=None, shop=(1427, 1652), wanted={"board": 150}, sell_to=(1430, 1599), maxcost=15),
-    19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 150},
+    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station=None, shop=(1427, 1652), wanted={"board": 60}, sell_to=(1430, 1599), maxcost=15),
+    19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 50},
              sell_to=(1427, 1652), maxcost=10),
 }
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
@@ -38,7 +38,7 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 
 
 class CrafterBot(HunterBot):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_earn", "r_wander"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_earn", "r_wander"]
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
@@ -50,6 +50,7 @@ class CrafterBot(HunterBot):
         self.items = DATA[self.cfg["craft"]]
         self.menu_map_path = os.path.join(self.dir, "menu_map.json")
         self.menu_map = {}
+        self.menu_map_backup = {}
         try:
             self.menu_map = json.load(open(self.menu_map_path, encoding="utf-8"))
         except (OSError, ValueError):
@@ -84,18 +85,43 @@ class CrafterBot(HunterBot):
         words = (word,) + tuple(self.cfg.get("mat_alt", ())) if word == self.cfg["mat"] else (word,)
         return sum((i.amount or 1) for i in self.c.backpack if any(w in i.name.lower() for w in words))
 
+    @staticmethod
+    def parse_menus(lines):
+        """Every open legacy menu in a `menus` listing as [(local, server, [(index, text)])], in listing order (the newest first)."""
+        menus = []
+        for l in lines:
+            m = re.match(r"\[MENU\] local (0x[0-9A-Fa-f]+) server (0x[0-9A-Fa-f]+)", l)
+            if m:
+                menus.append((m.group(1), m.group(2), []))
+                continue
+            o = re.match(r"\s*\[option (\d+)\] graphic \S+ hue \S+ (.+)", l)
+            if o and menus:
+                menus[-1][2].append((int(o.group(1)), o.group(2).strip()))
+        return menus
+
     def read_menu(self, wait=2.5):
-        """The open legacy menu as (local serial, server id, [(index, text)]), or None."""
+        """The newest open legacy menu as (local serial, server id, [(index, text)]), or None. Only that menu's own options: a listing can hold older
+        menus that were never answered, and mixing their options in sent the bot down paths that do not exist (a 55 Blacksmith "learned" 0 items)."""
         deadline = time.time() + wait
         while time.time() < deadline:
-            lines = self.c.call("menus", timeout=8)
-            head = next((l for l in lines if l.startswith("[MENU]")), None)
-            if head:
-                m = re.match(r"\[MENU\] local (0x[0-9A-Fa-f]+) server (0x[0-9A-Fa-f]+)", head)
-                opts = [(int(o.group(1)), o.group(2).strip()) for l in lines for o in [re.match(r"\s*\[option (\d+)\] graphic \S+ hue \S+ (.+)", l)] if o]
-                return m.group(1), m.group(2), opts
+            menus = self.parse_menus(self.c.call("menus", timeout=8))
+            self.status_extra = {"menus": len(menus)}
+            if menus:
+                if len(menus) > 1:
+                    self.close_menus(menus[1:])
+                return menus[0]
             time.sleep(0.4)
         return None
+
+    def close_menus(self, menus=None):
+        """Answer 0 (cancel) to open menus: every menu a path abandons stays open in the client otherwise, and they pile up (134 in one Smith's client)."""
+        if menus is None:
+            menus = self.parse_menus(self.c.call("menus", timeout=8))
+        for local, server, _ in menus:
+            try:
+                self.c.call(f"menuresponse {local} {server} 0", timeout=6)
+            except Exception:
+                pass
 
     def open_menu(self):
         """Tool, then the material: the era's first menu."""
@@ -128,6 +154,7 @@ class CrafterBot(HunterBot):
 
     def explore(self):
         """Walk the whole menu tree once and keep it: {item name: [option texts to press]}."""
+        self.close_menus()
         found = {}
         todo = [[]]
         seen_paths = 0
@@ -139,7 +166,11 @@ class CrafterBot(HunterBot):
                 if not menu:
                     break
                 idx = self.index_of(menu, text)
-                menu = self.pick(menu, idx) if idx else None
+                if not idx:
+                    self.close_menus([menu])
+                    menu = None
+                    break
+                menu = self.pick(menu, idx)
             if not menu:
                 continue
             opts = menu[2]
@@ -155,11 +186,14 @@ class CrafterBot(HunterBot):
                 self.c.call("menuresponse %s %s 0" % (menu[0], menu[1]), timeout=8)       # close it without choosing
             except Exception:
                 pass
+        if not found and self.menu_map_backup:
+            found = self.menu_map_backup                # an empty menu means too little material, not that nothing can be made
         self.menu_map = found
         self.explored_at = (time.time(), self.skill)
         json.dump(found, open(self.menu_map_path, "w"), indent=1)
         self.log(f"learned the craft menu: {len(found)} items")
-        self.note("craft", f"The {self.cfg['craft']} menu lists only what the character can make now ({len(found)} items at skill {self.skill:.0f}); it never says how hard an item is.", key="menusize")
+        if found:
+            self.note("craft", f"The {self.cfg['craft']} menu lists only what the character can make now ({len(found)} items at skill {self.skill:.0f}); it never says how hard an item is.", key="menusize")
         return found
 
     # ---- choosing --------------------------------------------------------------------------------------------
@@ -204,12 +238,14 @@ class CrafterBot(HunterBot):
                     return "nomenu"
                 idx = self.index_of(menu, text)
                 if not idx:
+                    self.close_menus([menu])
                     return "nomenu: '" + text + "' is not offered now"
                 menu = self.pick(menu, idx)
             if not menu:
                 return "nomenu"
             idx = self.index_of(menu, path[-1])
             if not idx:
+                self.close_menus([menu])
                 return "nomenu: '" + path[-1] + "' is not offered now"
             try:
                 self.c.call(f"menuresponse {menu[0]} {menu[1]} {idx}", timeout=8)
@@ -263,12 +299,18 @@ class CrafterBot(HunterBot):
         self.activity = "selling what I made"
         gold0 = self.c.gold
         buyer = self.cfg["sell_to"]
+        # the shop that pays most for what is in the pack, from what other bots saw; it must buy most of the kinds carried (one pickaxe is not a reason
+        # to carry 24 tinker goods to the Miner), and a shop that bought nothing last time is skipped for half an hour
+        kinds = {it.name.lower() for it in stock}
         offers_known = {}
-        for it in stock:
-            for price, xy, item in self.mem.vendor_buying(it.name.lower())[:1]:
-                offers_known[xy] = offers_known.get(xy, 0) + price
+        for xy, v in self.mem.state["world"]["vendors"].items():
+            if self.facts.get(("bad_buyer", xy), 0) > time.time():
+                continue
+            paid = [v["buys"][k] for k in kinds if k in v["buys"]]
+            if kinds and len(paid) >= max(1, len(kinds) // 2):
+                offers_known[xy] = sum(paid)
         if offers_known:
-            best_xy = max(offers_known, key=offers_known.get)          # the shop that pays most for what is in the pack, from what other bots saw
+            best_xy = max(offers_known, key=offers_known.get)
             buyer = tuple(int(v) for v in best_xy.split(","))
         res = self.c.goto(*buyer).wait(timeout=100)
         self.log(f"to the buyer {buyer}: {res}; carrying {len(stock)} products")
@@ -294,6 +336,8 @@ class CrafterBot(HunterBot):
             time.sleep(3)
         time.sleep(2)
         gained = self.c.gold - gold0
+        if gained <= 0 and buyer != self.cfg["sell_to"]:
+            self.facts[("bad_buyer", f"{buyer[0]},{buyer[1]}")] = time.time() + 1800
         if cart and gained <= 0:
             self.note("sell", f"Selling {len(cart) // 2} stacks of crafted goods to {v.name} paid nothing and printed no message: the sell request was accepted silently and the items stayed in the pack.", key="silentsell")
         self.sold_for += max(gained, 0)
@@ -400,13 +444,22 @@ class CrafterBot(HunterBot):
         if self.c.gold < 40:
             self.note("money", f"The {self.pname} has run out of material and money at once; there is no way to see the shortfall coming.", key="broke")
             return False
-        shop = self.cfg["shop"]
         word = next(iter(self.cfg["wanted"]))
-        known = [row for row in self.mem.vendor_selling(word) if row[0] > 0]
-        if known:
-            price, xy, item, qty = known[0]                      # the cheapest shop any bot has seen with this material in stock
-            shop = tuple(int(v) for v in xy.split(","))
-        got = self.shop_at(shop, self.cfg["wanted"], budget=self.c.gold - 10)
+        shops = []
+        for price, xy, item, qty in self.mem.vendor_selling(word):      # cheapest first, from what any bot has seen on the shelves
+            xy = tuple(int(v) for v in xy.split(","))
+            if price > 0 and xy not in shops:
+                shops.append(xy)
+        if self.cfg["shop"] not in shops:
+            shops.append(self.cfg["shop"])
+        got = {}
+        for shop in shops[:3]:
+            got = self.shop_at(shop, self.cfg["wanted"], budget=self.c.gold - 10)
+            if got:
+                break
+            self.mem.record("vendor", xy=f"{shop[0]},{shop[1]}", name="", stock=[[word, 0, 0]])   # sold out: tell the others
+        if not got:
+            self.note("shop", f"No shop had {word} left: the {self.pname}s and other crafters empty the shelves faster than they refill.", key=f"soldout:{word}")
         self.note("shop", f"Material bought for the {self.pname}: {got}", key="bought")
         return True
 
@@ -419,7 +472,10 @@ class CrafterBot(HunterBot):
         if self.count(self.cfg["mat"]) < 5:
             return False
         if self.menu_map and getattr(self, "explored_at", None) and (self.skill - self.explored_at[1] >= 4 or time.time() - self.explored_at[0] > 1500):
+            self.menu_map_backup = self.menu_map
             self.menu_map = {}
+        if not self.menu_map and self.count(self.cfg["mat"]) < 40:
+            return False                                # the menu only lists what the material in the pack allows: restock first
         if not self.menu_map:
             st = self.cfg["station"]
             if st:
@@ -447,6 +503,7 @@ class CrafterBot(HunterBot):
             self.last_made = name
             ok = bool(re.search(r"You create|You make|put .* in|exceptional", result or "", re.I))
             self.made += ok
+            self.work += ok
             self.fails += not ok
             self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)))
             if re.search(r"fail", result or "", re.I):

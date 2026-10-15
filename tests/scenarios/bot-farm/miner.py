@@ -20,7 +20,7 @@ RING = [(0, 1), (1, 0), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1), (0
 
 
 class MinerBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_flee", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_evade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
             "diamond", "amber", "citrine", "tourmaline", "star ")
 
@@ -111,6 +111,7 @@ class MinerBot(BotBase):
                     n += 1
                     self.note("mine", f"Mining says: {l[:100]}", key=f"minemsg:{l[:40]}")
                 if re.search(r"dig some|put it in your backpack", l, re.I):
+                    self.work += 1
                     self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=True)
                 if re.search(r"no metal|elsewhere|too far|cannot", l, re.I):
                     self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=False, reason=l[:60])

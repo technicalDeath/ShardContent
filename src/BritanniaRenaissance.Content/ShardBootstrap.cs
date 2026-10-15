@@ -48,6 +48,7 @@ public static class ShardBootstrap
         NewPlayerTipsService.Configure();
         AutoPickupService.Configure();
         HouseReminderService.Configure();
+        CraftedGoodsPricing.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
         HelpService.Configure();
         ScrollChanceService.Configure();

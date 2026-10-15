@@ -48,13 +48,18 @@ def main():
     notes = load_notes()
     by_key = defaultdict(lambda: {"bots": set(), "profs": set(), "text": "", "cat": "", "t": ""})
     for n in notes:
+        if "(0 items at skill" in n.get("text", ""):
+            continue                                  # a bot bug (stale menus mixed into the listing), not a game fact
         if "that follows a new" in n.get("text", ""):
             continue                                  # the early wording claimed every cornering happened in Britain
         if n.get("key") == "ghostwalk":
             continue                                  # an early wrong explanation (the cause is war mode, key ghostwar)
         if n.get("category") == "message" and NOISE.search(n.get("text", "")):
             continue
-        g = by_key[(n.get("category"), n.get("key"))]
+        key = n.get("key")
+        if n.get("category") == "bot":
+            key = re.sub(r"0x[0-9A-Fa-f]+|\d+", "#", n.get("text", ""))            # one line per kind of exception, not per menu serial
+        g = by_key[(n.get("category"), key)]
         g["bots"].add(n["bot"])
         g["profs"].add(n["profession"])
         g["text"] = g["text"] or n["text"]

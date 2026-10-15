@@ -48,7 +48,9 @@ class HunterBot(BotBase):
         random.Random(name).shuffle(self.spots)
         self.avoid_types = set()
         try:
-            self.avoid_types = set(json.load(open(self.know_path, encoding="utf-8")).get("avoid_types", []))
+            known = json.load(open(self.know_path, encoding="utf-8"))
+            self.avoid_types = set(known.get("avoid_types", []))
+            self.facts["facility_done"] = bool(known.get("facility_done"))      # tried once in this character's life is enough
         except (OSError, ValueError):
             pass
         self.recent_threats = []
@@ -64,7 +66,8 @@ class HunterBot(BotBase):
     # ---- knowledge --------------------------------------------------------------------------------------------
 
     def save_knowledge(self):
-        json.dump({"death_spots": self.death_spots, "avoid_types": sorted(self.avoid_types)}, open(self.know_path, "w", encoding="utf-8"))
+        json.dump({"death_spots": self.death_spots, "avoid_types": sorted(self.avoid_types), "facility_done": bool(self.facts.get("facility_done"))},
+                  open(self.know_path, "w", encoding="utf-8"))
 
     def my_dps(self):
         skill = max([v for k, v in self.skill_values.items() if k in ("Archery", "Maces", "Mace Fighting", "Fencing", "Swordsmanship", "Wrestling")] or [50.0])
@@ -93,6 +96,16 @@ class HunterBot(BotBase):
     def assess(self, m):
         """The table's estimate, corrected by what bots like this one have actually met: a kind that has killed them is a danger, a kind they beat cheaply is prey."""
         a = self._assess_table(m)
+        b = self._assess_memory(m, a)
+        if b["fight"] != a["fight"]:
+            logged = self.facts.setdefault("mem_logged", {})
+            key = self.mkey(m)
+            if time.time() - logged.get(key, 0) > 300:
+                logged[key] = time.time()
+                self.dlog("mem", m=key, table=a["fight"], final=b["fight"], why=b["reason"][:120])
+        return b
+
+    def _assess_memory(self, m, a):
         key = self.mkey(m)
         deadly = self.mem.deadly_kinds()
         stats, src = self.mem.fight_stats(key)
@@ -111,7 +124,7 @@ class HunterBot(BotBase):
         if f and f["serial"] == t.serial:
             return
         if f:
-            self.end_fight("lost")
+            self.end_fight("kill" if self.kills > f["kills0"] else "lost")
         mon = self.k.monster(t)
         self.fight = {"serial": t.serial, "key": self.mkey(t), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
                       "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(t.x, t.y)}
@@ -121,7 +134,7 @@ class HunterBot(BotBase):
         if not f:
             return
         ttk = time.time() - f["t0"]
-        if ttk < 1.0 and outcome != "death":
+        if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
             return
         for scope in ("world", "prof"):
             self.mem.record("fight", scope=scope, m=f["key"], grp=self.mem.grp, outcome=outcome, ttk=round(ttk, 1), dmg=max(0, f["hp0"] - f["hpmin"]), hp=self.c.max_hp, cell=f["cell"], mhits=f["mhits"])
@@ -172,8 +185,8 @@ class HunterBot(BotBase):
         f = self.fight
         if f:
             f["hpmin"] = min(f["hpmin"], self.c.hp)
-            if not any(m.serial == f["serial"] for m in self.c.mobiles(within=16)):
-                self.end_fight("kill" if self.kills > f["kills0"] else "lost")
+            if not any(m.serial == f["serial"] and not m.is_dead for m in self.c.mobiles(within=16)):
+                self.end_fight("kill" if self.kills > f["kills0"] or f.get("seen_dead") else "lost")
             elif time.time() - f["t0"] > 90:
                 self.end_fight("lost")
 
@@ -198,6 +211,16 @@ class HunterBot(BotBase):
         if not ds:
             return False
         d = ds[0]
+        a = self.assess(d)
+        hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
+        if hopeless and d.distance <= 6:
+            # learned from a Mace Fighter killed by a wraith while "cornered": against a caster or something that out-damages us, standing to fight is death;
+            # run for the town guards at once, before the health is gone
+            self.activity = f"running from {d.name}"
+            self.end_fight("flee")
+            self.dlog("choice", what="run to town", why=f"{d.name}: {a.get('reason', '')}"[:120])
+            self.c.goto(*TOWN).wait(timeout=6)
+            return True
         if d.distance <= 3 and self.hp_pct() > 40:
             if not self.c.war_mode:
                 self.c.war(True)
@@ -337,6 +360,7 @@ class HunterBot(BotBase):
         if self.facts.get("facility_done") or self.tick_no < 15 or self.mobs(10) or self.hp_pct() < 80:
             return False
         self.facts["facility_done"] = True
+        self.save_knowledge()
         word, spots = FACILITIES["ranged" if self.ranged else "melee"]
         self.activity = f"trying the {word}"
         for xy in spots:
@@ -365,7 +389,8 @@ class HunterBot(BotBase):
         return True
 
     def next_spot(self):
-        return choose_spot(self.mem, SPOTS, lambda x, y: self.near_death_spot(x, y, 60))
+        recent = self.facts.setdefault("spots_reached", [])
+        return choose_spot(self.mem, SPOTS, lambda x, y: self.near_death_spot(x, y, 60), here=(self.c.x, self.c.y), recent=recent[-4:])
 
     def r_explore(self):
         if self.cur_spot is None or time.time() - self.spot_since > 240:
@@ -375,6 +400,7 @@ class HunterBot(BotBase):
         self.activity = f"exploring toward {x},{y}"
         res = self.c.goto(x, y).wait(timeout=5)
         if abs(self.c.x - x) < 5 and abs(self.c.y - y) < 5 or (res and str(res).startswith(("nopath", "blocked"))):
+            self.facts.setdefault("spots_reached", []).append((x, y))
             self.cur_spot = None
         return True
 
@@ -392,34 +418,24 @@ class BardBot(HunterBot):
         if not inst:
             self.note("music", "The bard has no instrument in the pack.", key="noinstrument")
             return ""
+        # measured 2026-10-14: the server picks the instrument from the pack itself and raises the "Whom do you wish to ..." cursor in the same
+        # instant, so the cursor event is gone before a wait could see it; answer the prompts in order after a short pause instead
         self.c.events.drain()
         self.c.call(f"useskill {skill}", timeout=6)
-        queue = list(targets)
         seen = ""
-        deadline = time.time() + 25
-        answered = 0
-        while time.time() < deadline and answered < 4:
-            from uo import Event
-            ev = self.c.wait_for(Event.TARGET_REQUEST, timeout=3)
+        for t in targets:
+            time.sleep(0.7)
             lines = self.read_journal()
             seen += " | ".join(lines)
-            if ev is None:
-                if answered or lines:
-                    break
-                continue
-            text = " ".join(self.journal).lower()[-200:]
-            if "instrument" in text and answered == 0:
+            if any("instrument" in l.lower() for l in lines):
                 self.c.target(inst.serial)
-            elif queue:
-                t = queue.pop(0)
-                self.c.target_self() if t == "self" else self.c.target(t)
-            else:
-                self.c.call("canceltarget", timeout=4)
-                break
-            answered += 1
-            time.sleep(0.6)
-        time.sleep(3)
-        seen += " | ".join(self.read_journal())
+                time.sleep(0.7)
+            self.c.target_self() if t == "self" else self.c.target(t)
+        time.sleep(4)
+        lines = self.read_journal()
+        seen += " | ".join(lines)
+        if any(w in seen.lower() for w in ("you play", "calm", "incite", "discord", "succeed", "attack")) and "fail" not in seen.lower():
+            self.work += 1
         return seen[-200:]
 
     def r_music(self):

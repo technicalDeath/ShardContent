@@ -98,6 +98,10 @@ def dashboard(bots):
         s = status_of(b["name"])
         age = int(time.time() - s["t"]) if s else -1
         rows.append({**{k: s.get(k) for k in ("name", "profession", "rule", "activity", "hp", "max_hp", "mana", "pos", "gold", "kills", "deaths", "gains", "skills", "uptime")}, "age": age})
+        if b["name"] in shed:
+            out.append(f"{b['name']:13} SHED (stopped by the supervisor: {'by hand, shed.txt' if b['name'] in manual_done else 'low memory'})")
+            rows[-1]["shed"] = True
+            continue
         out.append(f"{b['name']:13} {s.get('profession', '?'):12} hp {s.get('hp', '?')}/{s.get('max_hp', '?')} kills {s.get('kills', 0):3} deaths {s.get('deaths', 0):2} gold {s.get('gold', 0):5} "
                    f"{str(s.get('rule', '')):12} {str(s.get('activity', ''))[:34]:34} age {age}s skills {s.get('skills', '')}")
     open(os.path.join(FARM, "dashboard.txt"), "w", encoding="utf-8").write(time.strftime("%H:%M:%S") + "\n" + "\n".join(out) + "\n")
@@ -116,6 +120,7 @@ def main():
     restarts = {}
     pool = cf.ThreadPoolExecutor(max_workers=2)
     pending = {}
+    retry_at = {}
     log(f"supervising {len(bots)} bots for {a.hours} h")
     last_metrics = 0.0
     last_report = 0.0
@@ -129,26 +134,31 @@ def main():
             manual_done.add(n)
             shed.add(n)
             log(f"{n}: stopped by shed.txt")
-            for pid, img in ((brain_pid(n), "python.exe"), (client_pid(n), "dotnet.exe")):
-                if alive(pid, img):
+            table = farm_launch.process_table()
+            for pid, ok in ((brain_pid(n), farm_launch.is_brain(brain_pid(n), n, table)), (client_pid(n), farm_launch.is_client(client_pid(n), n, table))):
+                if ok:
                     subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
         for n in manual_done - manual:
             manual_done.discard(n)
             shed.discard(n)
             log(f"{n}: back in play (removed from shed.txt)")
         avail = farm_launch.free_mb()
+        with open(os.path.join(FARM, "shed-auto.txt"), "w", encoding="utf-8") as f:
+            f.write("".join(n + "\n" for n in sorted(shed - manual_done)))
         if avail < LOW_MB:
             victim = next((n for n in SHED_ORDER if n not in shed and any(b["name"] == n for b in bots)), None)
             if victim:
                 shed.add(victim)
                 log(f"available memory {avail} MB is under {LOW_MB}: stopping {victim}")
-                for pid, img in ((brain_pid(victim), "python.exe"), (client_pid(victim), "dotnet.exe")):
-                    if alive(pid, img):
+                table = farm_launch.process_table()
+                for pid, ok in ((brain_pid(victim), farm_launch.is_brain(brain_pid(victim), victim, table)), (client_pid(victim), farm_launch.is_client(client_pid(victim), victim, table))):
+                    if ok:
                         subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
         elif avail > OK_MB and (shed - manual_done):
             back = sorted(shed - manual_done, key=SHED_ORDER.index)[0]
             shed.discard(back)
             log(f"available memory {avail} MB: bringing {back} back")
+        table = farm_launch.process_table()           # one query per pass; every check below matches PID and command line
         for b in bots:
             name, prof = b["name"], b["profession"]
             if name in shed:
@@ -157,9 +167,15 @@ def main():
             if fut is not None:
                 if not fut.done():
                     continue
-                log(f"{name}: client restart -> {fut.result()}")
+                res = fut.result()
+                log(f"{name}: client restart -> {res}")
                 pending.pop(name)
-            if not alive(client_pid(name), "dotnet.exe"):
+                if not res.get("ok"):
+                    retry_at[name] = time.time() + 120          # a launch that failed waits two minutes before the next try
+                continue                                        # the process table is from before the launch; look again next pass
+            if time.time() < retry_at.get(name, 0):
+                continue
+            if not farm_launch.is_client(client_pid(name), name, table):
                 log(f"{name}: client is gone; restarting it")
                 pending[name] = pool.submit(farm_launch.start, name, prof, b.get("create"))
                 restarts[name] = restarts.get(name, 0) + 1
@@ -167,10 +183,10 @@ def main():
             bp = brain_pid(name)
             st0 = status_of(name)
             started_at = os.path.getmtime(os.path.join(FARM, name, "brain.pid")) if os.path.exists(os.path.join(FARM, name, "brain.pid")) else 0
-            if alive(bp, "python.exe") and time.time() - started_at > 240 and (not st0 or time.time() - st0["t"] > 240) and not os.path.exists(os.path.join(FARM, name, "pause")):
+            if farm_launch.is_brain(bp, name, table) and time.time() - started_at > 240 and (not st0 or time.time() - st0["t"] > 240) and not os.path.exists(os.path.join(FARM, name, "pause")):
                 log(f"{name}: brain {bp} has written no status for {int(time.time() - st0['t']) if st0 else 'ever'} s; killing it")
                 subprocess.run(["taskkill", "/PID", str(bp), "/F"], capture_output=True)
-            if not alive(brain_pid(name), "python.exe"):
+            if not farm_launch.is_brain(brain_pid(name), name, table):
                 st = status_of(name)
                 left = end - time.time()
                 if left > 60:
@@ -184,12 +200,14 @@ def main():
             with open(os.path.join(FARM, "metrics.jsonl"), "a", encoding="utf-8") as f:
                 for b in bots:
                     st = status_of(b["name"])
-                    if st:
+                    if st and b["name"] not in shed and time.time() - st["t"] < 300:
                         f.write(json.dumps({"t": int(time.time()), "bot": b["name"], "prof": st.get("profession"), "hp": st.get("hp"), "gold": st.get("gold"), "kills": st.get("kills"), "deaths": st.get("deaths"),
-                                            "gains": sum((st.get("gains") or {}).values()), "skills": st.get("skills"), "rule": st.get("rule"), "pos": st.get("pos")}) + "\n")
+                                            "gains": sum((st.get("gains") or {}).values()), "skills": st.get("skills"), "all_skills": st.get("all_skills"), "menus": st.get("menus"),
+                                            "rule": st.get("rule"), "pos": st.get("pos")}) + "\n")
         if time.time() - last_report > 300:
             last_report = time.time()
             subprocess.run([PY, os.path.join(HERE, "aggregate.py")], capture_output=True, creationflags=0x08000000)
+            subprocess.run([PY, os.path.join(HERE, "evaluate.py"), "--minutes", "30"], capture_output=True, creationflags=0x08000000)
         time.sleep(15)
 
 

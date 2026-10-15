@@ -28,6 +28,7 @@ def norm(t):
 
 class TamerBot(BotBase):
     RULES = ["r_dead", "r_corpse", "r_flee", "r_heal", "r_tame", "r_bank", "r_explore"]
+    # no r_evade here: wild animals are what a tamer walks up to
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -95,6 +96,7 @@ class TamerBot(BotBase):
         self.log(f"tame {m.name} (min {lo}, skill {self.skill():.1f}): {result[:100]}")
         self.mem.record("res", kind="tame", key=norm(m.name), ok=bool(re.search(r"accept you", result, re.I)), reason=result[:60])
         if re.search(r"accept you", result, re.I):
+            self.work += 1
             self.tamed += 1
             self.note("tame", f"A successful tame says: {result[:100]}", key="tamemsg")
             self.after_tame(m)

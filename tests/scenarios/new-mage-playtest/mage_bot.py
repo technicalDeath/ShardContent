@@ -384,7 +384,7 @@ class Bot:
         """A kill's corpse in reach: walk up to it, open it, take what is worth carrying, note what came out."""
         if self.dangers(8):
             return False                       # not with something hostile at the mage's back
-        corpses = [i for i in self.c.containers(within=10) if "corpse" in i.name.lower() and i.serial not in self.facts["looted"]]
+        corpses = [i for i in self.c.containers(within=10) if "corpse" in i.name.lower() and i.name.lower().startswith(("a ", "an ")) and "bot" not in i.name.lower() and i.serial not in self.facts["looted"]]   # a player's corpse is not loot: taking from it is a crime
         if not corpses:
             return False
         corpse = corpses[0]
@@ -626,7 +626,7 @@ class Bot:
             low = it.name.lower()
             if any(w in low for w in self.KEEP) or it.name.lower() in ("backpack",):
                 continue
-            self.c.drop(it.serial, box)
+            self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
             time.sleep(1.4)
             deposited.append(it.name)
         gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
