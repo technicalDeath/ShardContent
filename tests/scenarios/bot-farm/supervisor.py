@@ -37,8 +37,11 @@ try:
     SHED_ORDER = [b["name"] for b in _extra if b.get("mode") != "newbie"] + [b["name"] for b in _extra if b.get("mode") == "newbie"] + SHED_ORDER
 except (OSError, ValueError):
     pass
-COMMIT_LOW_MB, COMMIT_OK_MB = 2500, 4500
-LOW_MB, OK_MB = 450, 1700
+# floors to stop a bot at, and the room needed to bring one back; the clients got slimmer (Lean3, about 180-250 MB), so the return bar came down
+COMMIT_LOW_MB, COMMIT_OK_MB = 2500, 3300
+LOW_MB, OK_MB = 450, 1100
+BACK_EVERY = 180          # seconds between bring-backs: a returning client needs about 30 s to reach its full size
+last_back = 0.0
 shed = set()
 manual_done = set()
 
@@ -117,6 +120,7 @@ def dashboard(bots):
 
 
 def main():
+    global last_back
     ap = argparse.ArgumentParser()
     ap.add_argument("--plan", nargs="+", required=True)
     ap.add_argument("--hours", type=float, default=6)
@@ -163,7 +167,8 @@ def main():
                 for pid, ok in ((brain_pid(victim), farm_launch.is_brain(brain_pid(victim), victim, table)), (client_pid(victim), farm_launch.is_client(client_pid(victim), victim, table))):
                     if ok:
                         subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
-        elif avail > OK_MB and commit_free > COMMIT_OK_MB and (shed - manual_done):
+        elif avail > OK_MB and commit_free > COMMIT_OK_MB and (shed - manual_done) and time.time() - last_back > BACK_EVERY:
+            last_back = time.time()
             back = sorted(shed - manual_done, key=SHED_ORDER.index)[0]
             shed.discard(back)
             log(f"available memory {avail} MB: bringing {back} back")

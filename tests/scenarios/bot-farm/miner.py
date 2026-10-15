@@ -73,6 +73,8 @@ class MinerBot(BotBase):
         """A tile within two steps of the mountain tile that the pathfinder can reach."""
         self.travel(tx, ty + 6, near=4, tries=10)
         for dx, dy in RING:
+            if not self.mem.usable("tile", f"{tx + dx},{ty + dy}"):
+                continue                               # a bot got stuck on this tile before (the server denied every step off it)
             res = self.c.gotoexact(tx + dx, ty + dy).wait(timeout=12)
             if max(abs(self.c.x - tx), abs(self.c.y - ty)) <= 2:
                 return True

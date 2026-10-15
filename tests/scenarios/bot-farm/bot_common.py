@@ -233,6 +233,7 @@ class BotBase:
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
                 return True
         self.log(f"no path from {x0},{y0}, and no step in any direction moved the character")
+        self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=6 * 3600)    # a hill tile the server will not let anyone leave: never stand there again
         return False
 
     def ground_items(self, rng=8):
