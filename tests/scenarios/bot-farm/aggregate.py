@@ -11,6 +11,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import time
 from collections import defaultdict
 
@@ -19,6 +20,10 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 FARM = os.path.join(ROOT, "work", "botfarm")
 
 ORDER = ["death", "danger", "combat", "healing", "potions", "bank", "shop", "sell", "money", "loot", "craft", "cook", "fish", "mine", "tame", "training", "weight", "stuck", "bot", "message"]
+
+
+NOISE = re.compile(r"world is saving|World save|Your skill in|has increased|begins to rain|stops raining|Thy current bank balance|Bot\w+: (bank|balance|withdraw)|has changed by|You have (gained|lost) a little|Opening door|"
+                   r"protection of the town guards|bank guard protection|protected from theft|You begin applying|You finish applying|You create the item|You failed to create", re.I)
 
 
 def load_notes():
@@ -41,6 +46,10 @@ def main():
     notes = load_notes()
     by_key = defaultdict(lambda: {"bots": set(), "profs": set(), "text": "", "cat": "", "t": ""})
     for n in notes:
+        if n.get("key") == "ghostwalk":
+            continue                                  # an early wrong explanation (the cause is war mode, key ghostwar)
+        if n.get("category") == "message" and NOISE.search(n.get("text", "")):
+            continue
         g = by_key[(n.get("category"), n.get("key"))]
         g["bots"].add(n["bot"])
         g["profs"].add(n["profession"])

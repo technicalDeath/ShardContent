@@ -26,6 +26,9 @@ from knowledge import Knowledge, norm  # noqa: E402
 
 SPOTS = [(1380, 1560), (1300, 1520), (1260, 1495), (1450, 1450), (1600, 1500), (1650, 1700), (1450, 1850), (1330, 1650), (1530, 1520), (1560, 1650)]
 SAFE_NAMES = ("rat", "cat", "magpie", "crow", "rabbit", "hind", "sheep", "chicken", "pig", "goat", "cow", "gull", "bird", "dog", "lizard", "toad", "frog", "squirrel", "snake", "eagle", "mongbat", "gorilla", "slime", "bull", "swallow", "sparrow", "pigeon", "finch", "owl", "raven", "parrot", "turkey", "duck", "ostrich", "llama", "walrus", "panther", "jackrabbit", "bunny", "mouse", "mud")
+DANGEROUS_WORDS = ("bear", "wolf", "cougar", "panther", "snake", "serpent", "spider", "scorpion", "orc", "troll", "ogre", "lizardman", "ettin", "skeleton", "zombie", "ghoul", "wraith",
+                   "spectre", "shade", "gazer", "harpy", "imp", "daemon", "drake", "dragon", "wyrm", "elemental", "lich", "mummy", "reaper", "golem", "giant", "alligator", "bull", "boar",
+                   "leopard", "lion", "tiger", "ratman", "bone", "mage", "executioner", "brigand", "rogue")
 SWING_SECONDS = 2.0
 ENGAGED = 0.7
 ARMOR_CUT = {"Mace Fighter": 0.3, "Fencer": 0.3, "Swordsman": 0.3, "Archer": 0.15, "Ranger": 0.15, "Bard": 0.15, "Warlock": 0.05}
@@ -34,7 +37,7 @@ FACILITIES = {"melee": ("dummy", [(1589, 1554), (1528, 1431)]), "ranged": ("butt
 
 
 class HunterBot(BotBase):
-    RULES = ["r_dead", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -67,8 +70,8 @@ class HunterBot(BotBase):
         mon = self.k.monster(m)
         if mon is None:
             n = m.name.lower()
-            ok = n.startswith(("a ", "an ")) and any(w in n for w in SAFE_NAMES)
-            return {"known": False, "fight": ok, "reason": "unknown monster, " + ("looks harmless by name" if ok else "not on the harmless list")}
+            ok = n.startswith(("a ", "an ")) and not any(w in n for w in DANGEROUS_WORDS) and norm(m.name) not in self.avoid_types
+            return {"known": False, "fight": ok, "reason": "not in the monster table, " + ("an animal by its name" if ok else "dangerous by its name or by experience")}
         if norm(mon.get("class") or mon.get("name") or "") in self.avoid_types:
             return {"known": True, "fight": False, "reason": "it has killed this bot before", "monster": mon}
         hits = (mon["hits"][0] + mon["hits"][1]) / 2.0
@@ -224,6 +227,15 @@ class HunterBot(BotBase):
             self.target = None
             return True
         self.activity = f"fighting {t.name}"
+        if self.ranged and t.distance > 1 and not self.los(t.serial):
+            blocked = self.facts.setdefault("nolos", {})
+            blocked[t.serial] = blocked.get(t.serial, 0) + 1
+            if blocked[t.serial] == 1:
+                self.note("combat", "An archer cannot shoot a monster behind a wall and nothing says so; it has to walk round until it can see it.", key="nolos")
+            if blocked[t.serial] > 6:
+                self.ignored[t.serial] = time.time() + 120
+            self.c.goto(t.x, t.y).wait(timeout=3)
+            return True
         if self.ranged:
             if t.distance <= 1:
                 self.step_away(t, 4)
@@ -312,7 +324,7 @@ class HunterBot(BotBase):
 
 class BardBot(HunterBot):
     """A bard also practises its instrument skills: Peacemaking at its own feet, Discordance and Provocation on monsters when some are near."""
-    RULES = ["r_dead", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_music", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_music", "r_resupply", "r_bank", "r_facility", "r_hunt", "r_rest", "r_explore"]
 
     def instrument(self):
         return next((i for i in self.c.backpack if any(w in i.name.lower() for w in ("harp", "drum", "lute", "tambourine", "flute"))), None)

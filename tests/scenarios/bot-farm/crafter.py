@@ -28,8 +28,8 @@ CRAFTS = {
              sell_to=(1418, 1550), maxcost=14),
     18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station=None, shop=(1467, 1688), wanted={"cut cloth": 120},
              sell_to=(1467, 1688), maxcost=20),
-    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", res="Board", station=None, shop=(1427, 1652), wanted={"board": 150}, sell_to=(1430, 1599), maxcost=15),
-    19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 150},
+    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station=None, shop=(1427, 1652), wanted={"board": 150}, sell_to=(1430, 1599), maxcost=15),
+    19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station=None, shop=(1427, 1652), wanted={"ingot": 150},
              sell_to=(1427, 1652), maxcost=10),
 }
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
@@ -37,11 +37,11 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 
 
 class CrafterBot(BotBase):
-    RULES = ["r_dead", "r_flee", "r_bank", "r_retool", "r_cut", "r_sell", "r_restock", "r_craft", "r_wander"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_wander"]
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
-            "hide", "board", "log", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow")
+            "hide", "board", "log", "hatchet", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow")
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -63,17 +63,25 @@ class CrafterBot(BotBase):
     # ---- the menu -------------------------------------------------------------------------------------------
 
     def tool(self):
-        t = self.c.find(self.cfg["tool"])
-        if t is None:
+        names = (self.cfg["tool"],) + tuple(self.cfg.get("tool_alt", ()))
+        for _ in range(2):
+            for n in names:
+                t = self.c.find(n)
+                if t is not None:
+                    return t
             self.c.open_backpack()
-            t = self.c.find(self.cfg["tool"])
-        return t
+        return None
 
     def material(self):
-        return self.c.find(self.cfg["mat"])
+        for n in (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ())):
+            m = self.c.find(n)
+            if m is not None:
+                return m
+        return None
 
     def count(self, word):
-        return sum((i.amount or 1) for i in self.c.backpack if word in i.name.lower())
+        words = (word,) + tuple(self.cfg.get("mat_alt", ())) if word == self.cfg["mat"] else (word,)
+        return sum((i.amount or 1) for i in self.c.backpack if any(w in i.name.lower() for w in words))
 
     def read_menu(self, wait=2.5):
         """The open legacy menu as (local serial, server id, [(index, text)]), or None."""
@@ -267,7 +275,10 @@ class CrafterBot(BotBase):
         if cart:
             self.cmd("sell " + " ".join(cart), timeout=10)
             time.sleep(3)
+        time.sleep(2)
         gained = self.c.gold - gold0
+        if cart and gained <= 0:
+            self.note("sell", f"Selling {len(cart) // 2} stacks of crafted goods to {v.name} paid nothing and printed no message: the sell request was accepted silently and the items stayed in the pack.", key="silentsell")
         self.sold_for += max(gained, 0)
         self.log(f"sold {len(cart) // 2} kinds of product; gold {gold0} -> {self.c.gold}")
         self.note("sell", f"A {self.pname} sold {len(cart) // 2} kinds of product for {gained} gold (selllist shows each price before selling).", key="soldproducts")
@@ -282,7 +293,7 @@ class CrafterBot(BotBase):
         self.note("craft", f"The {self.cfg['tool']} wore out after about {self.made + self.fails} crafts; the player has to work out where to buy a new one.", key="toolworn")
         if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
             self.visit_bank("poor", withdraw=300)
-        got = self.shop_at(self.cfg["shop"], {self.cfg["tool"]: 1}, budget=max(self.c.gold - 5, 0))
+        got = self.shop_at(self.cfg["shop"], {self.cfg.get("tool_buy", self.cfg["tool"]): 1}, budget=max(self.c.gold - 5, 0))
         self.bad_items.clear()
         self.note("shop", f"New tool bought: {got}", key="newtool")
         return True
@@ -306,6 +317,55 @@ class CrafterBot(BotBase):
             for l in self.read_journal():
                 self.note("craft", f"Cutting a bolt of cloth with scissors says: {l[:100]}", key="cutmsg")
         return True
+
+    TREES = [(1431, 1631, 20, 3288), (1440, 1718, 20, 3288), (1392, 1673, 30, 3280)]
+
+    def r_chop(self):
+        """Carpenters cut their own wood when they cannot afford boards: stand by a tree, double-click the hatchet, target the tree."""
+        if self.cfg["craft"] != "Carpentry" or self.count(self.cfg["mat"]) >= 30 or self.mobs(10) or self.hp_pct() < 50:
+            return False
+        if self.c.gold >= 150 or time.time() < self.facts.get("chop_fail", 0):
+            return False                                  # still has money: the shop goes first
+        hat = self.c.find("hatchet") or next((i for i in self.c.equipped if "hatchet" in i.name.lower() or "axe" in i.name.lower()), None)
+        if not hat:
+            if self.c.gold >= 30:
+                got = self.shop_at((1427, 1652), {"hatchet": 1}, budget=self.c.gold - 5)
+                self.note("chop", f"The hatchet is gone (put in the bank as a loose tool); bought another: {got}", key="hatchetbuy")
+            self.facts["chop_fail"] = time.time() + 600
+            return bool(self.c.gold >= 30)
+        for tx, ty, tz, g in self.TREES:
+            if self.facts.get(("tree", tx, ty), 0) > time.time():
+                continue
+            self.activity = f"chopping at {tx},{ty}"
+            ok = False
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1)):
+                self.c.gotoexact(tx + dx, ty + dy).wait(timeout=60)
+                if max(abs(self.c.x - tx), abs(self.c.y - ty)) <= 2:
+                    ok = True
+                    break
+            if not ok:
+                self.facts[("tree", tx, ty)] = time.time() + 900
+                continue
+            self.c.events.drain()
+            self.c.use(hat.serial)
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+                self.note("chop", "Double-clicking the hatchet raised no target cursor (an axe has to be in hand?).", key="nochopcursor")
+                self.facts[("tree", tx, ty)] = time.time() + 300
+                continue
+            self.c.call(f"targettile {tx} {ty} {tz} {g}", timeout=8)
+            end = time.time() + 45
+            while time.time() < end:
+                time.sleep(2.5)
+                lines = self.read_journal()
+                for l in lines:
+                    if re.search(r"wood|log|tree|axe|lumber|chop|enough|far", l, re.I):
+                        self.note("chop", f"Chopping says: {l[:100]}", key=f"chopmsg:{l[:40]}")
+                if any(re.search(r"not enough wood|no wood|too far|broke", l, re.I) for l in lines):
+                    self.facts[("tree", tx, ty)] = time.time() + 1500
+                    break
+            return True
+        self.facts["chop_fail"] = time.time() + 600
+        return False
 
     def r_restock(self):
         need = 40 if self.cfg["craft"] != "Tailoring" else 60

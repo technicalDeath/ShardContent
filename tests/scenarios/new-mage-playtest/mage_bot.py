@@ -203,7 +203,7 @@ class Bot:
 
     def mobs(self, within):
         """Hostile-looking mobiles. An orc with a personal name ("Dilug") only shows as Criminal-colored, so notoriety is what counts."""
-        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer")]
+        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14]
 
     def assess(self, m):
         """The server's numbers for this monster against what the mage can do right now (cached for a few seconds)."""
@@ -228,8 +228,20 @@ class Bot:
         n = m.name.lower()
         return n.startswith(("a ", "an ")) and any(w in n for w in SAFE_PREY) and not any(w in n for w in DANGEROUS)
 
+    def los(self, serial):
+        now = time.time()
+        if now - getattr(self, "_los_at", 0) > 0.8:
+            self._los = {}
+            for line in self.c.call("los 12", timeout=6):
+                m = re.match(r"\s+(YES|no)\s+(0x[0-9A-Fa-f]+)", line)
+                if m:
+                    self._los[m.group(2).upper()] = m.group(1) == "YES"
+            self._los_at = now
+        return self._los.get(serial.upper(), True)
+
     def prey(self, within=9):
-        return [m for m in self.mobs(within) if self.is_prey(m)]
+        ign = self.facts.get("ignore_until", {})
+        return [m for m in self.mobs(within) if self.is_prey(m) and ign.get(m.serial, 0) < time.time()]
 
     def dangers(self, within=8):
         return [m for m in self.mobs(within) if not self.is_prey(m)]
@@ -250,6 +262,10 @@ class Bot:
             self.notes.add("death", "The character died.", key=f"death{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
             self.log("DEAD at %d,%d; walking to the healer as a ghost" % (self.c.x, self.c.y))
         waited = time.time() - self.facts["ghost_since"]
+        # a living mobile sees a dead one only if it is in war mode (Mobile.CanSee), so a ghost in peace mode is invisible to the healer: switch it on
+        if not self.c.war_mode:
+            self.c.war(True)
+            self.notes.add("death", "A ghost in peace mode is invisible to the healer (the game only shows a ghost to the living in war mode); nothing tells the player to switch to war mode.", key="ghostwar")
         serial = self.find_gump("Resurrection")
         if serial:
             self.log("the healer's offer is open; accepting")
@@ -338,6 +354,16 @@ class Bot:
         t = ps[0]
         if not self.c.war_mode:
             self.c.war(True)
+        if t.distance > 1 and not self.los(t.serial):
+            # a spell at something behind a wall is cast, spends nothing and does nothing, and the game says nothing: walk round until it is in sight
+            blocked = self.facts.setdefault("nolos", {})
+            blocked[t.serial] = blocked.get(t.serial, 0) + 1
+            if blocked[t.serial] == 1:
+                self.notes.add("combat", "A spell cast at a monster behind a wall is lost with no message at all (no fizzle, no mana spent); the player sees the chant and nothing happens.", key="nolos")
+            if blocked[t.serial] > 6:
+                self.facts.setdefault("ignore_until", {})[t.serial] = time.time() + 120
+            self.c.goto(t.x, t.y).wait(timeout=3)
+            return True
         if self.c.mana < 4:
             self.notes.add("combat", "A new mage runs out of mana after about nine spells and has no quick way to recover it (no Meditation).", key="oom")
             self.log("out of mana: backing off to rest")

@@ -27,7 +27,7 @@ def norm(t):
 
 
 class TamerBot(BotBase):
-    RULES = ["r_dead", "r_flee", "r_heal", "r_tame", "r_bank", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_heal", "r_tame", "r_bank", "r_explore"]
 
     def __init__(self, name, profession):
         super().__init__(name, profession)

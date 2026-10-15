@@ -18,7 +18,7 @@ WATER_LAND = (0xA8, 0xA9, 0xAA, 0xAB)
 
 
 class FisherBot(BotBase):
-    RULES = ["r_dead", "r_flee", "r_bank", "r_cut", "r_cook", "r_fish", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_bank", "r_cut", "r_cook", "r_fish", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pole", "dagger", "flour", "water", "pitcher", "cooked", "fish steak",
             "leg of lamb", "chicken leg", "bread", "pie")
 

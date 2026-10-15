@@ -32,6 +32,7 @@ log_path = os.path.join(FARM, "supervisor.log")
 SHED_ORDER = ["BotTamerB", "BotMageB", "BotArcherB", "BotSorcA", "BotTinkA"]     # stopped first when memory runs short, brought back when it recovers
 LOW_MB, OK_MB = 450, 1700
 shed = set()
+manual_done = set()
 
 
 def log(msg):
@@ -41,8 +42,19 @@ def log(msg):
         f.write(line + "\n")
 
 
-def alive(pid):
-    return farm_launch.alive(pid) if pid else False
+def alive(pid, image=None):
+    """Is this PID a running process (and, when `image` is given, that program)? A recorded PID can be reused by an unrelated process after the original dies."""
+    if not pid:
+        return False
+    try:
+        out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH", "/FO", "CSV"], capture_output=True, text=True).stdout
+    except OSError:
+        return False
+    rows = [r.split('","') for r in out.strip().splitlines() if r.startswith('"')]
+    rows = [r for r in rows if len(r) > 1 and r[1].strip('"') == str(pid)]
+    if not rows:
+        return False
+    return image is None or rows[0][0].strip('"').lower() == image.lower()
 
 
 def brain_pid(name):
@@ -108,17 +120,33 @@ def main():
     last_metrics = 0.0
     last_report = 0.0
     while time.time() < end:
+        # work/botfarm/shed.txt: names (one per line) to stop by hand, e.g. to make room for a watching client; delete the line to bring the bot back
+        try:
+            manual = {l.strip() for l in open(os.path.join(FARM, "shed.txt"), encoding="utf-8") if l.strip() and not l.startswith("#")}
+        except OSError:
+            manual = set()
+        for n in manual - shed - manual_done:
+            manual_done.add(n)
+            shed.add(n)
+            log(f"{n}: stopped by shed.txt")
+            for pid, img in ((brain_pid(n), "python.exe"), (client_pid(n), "dotnet.exe")):
+                if alive(pid, img):
+                    subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
+        for n in manual_done - manual:
+            manual_done.discard(n)
+            shed.discard(n)
+            log(f"{n}: back in play (removed from shed.txt)")
         avail = farm_launch.free_mb()
         if avail < LOW_MB:
             victim = next((n for n in SHED_ORDER if n not in shed and any(b["name"] == n for b in bots)), None)
             if victim:
                 shed.add(victim)
                 log(f"available memory {avail} MB is under {LOW_MB}: stopping {victim}")
-                for pid in (brain_pid(victim), client_pid(victim)):
-                    if alive(pid):
+                for pid, img in ((brain_pid(victim), "python.exe"), (client_pid(victim), "dotnet.exe")):
+                    if alive(pid, img):
                         subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
-        elif avail > OK_MB and shed:
-            back = sorted(shed, key=SHED_ORDER.index)[0]
+        elif avail > OK_MB and (shed - manual_done):
+            back = sorted(shed - manual_done, key=SHED_ORDER.index)[0]
             shed.discard(back)
             log(f"available memory {avail} MB: bringing {back} back")
         for b in bots:
@@ -131,12 +159,18 @@ def main():
                     continue
                 log(f"{name}: client restart -> {fut.result()}")
                 pending.pop(name)
-            if not alive(client_pid(name)):
+            if not alive(client_pid(name), "dotnet.exe"):
                 log(f"{name}: client is gone; restarting it")
-                pending[name] = pool.submit(farm_launch.start, name, prof)
+                pending[name] = pool.submit(farm_launch.start, name, prof, b.get("create"))
                 restarts[name] = restarts.get(name, 0) + 1
                 continue
-            if not alive(brain_pid(name)):
+            bp = brain_pid(name)
+            st0 = status_of(name)
+            started_at = os.path.getmtime(os.path.join(FARM, name, "brain.pid")) if os.path.exists(os.path.join(FARM, name, "brain.pid")) else 0
+            if alive(bp, "python.exe") and time.time() - started_at > 240 and (not st0 or time.time() - st0["t"] > 240) and not os.path.exists(os.path.join(FARM, name, "pause")):
+                log(f"{name}: brain {bp} has written no status for {int(time.time() - st0['t']) if st0 else 'ever'} s; killing it")
+                subprocess.run(["taskkill", "/PID", str(bp), "/F"], capture_output=True)
+            if not alive(brain_pid(name), "python.exe"):
                 st = status_of(name)
                 left = end - time.time()
                 if left > 60:

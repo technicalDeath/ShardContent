@@ -20,7 +20,7 @@ RING = [(0, 1), (1, 0), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1), (0
 
 
 class MinerBot(BotBase):
-    RULES = ["r_dead", "r_flee", "r_sell", "r_bank", "r_mine", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_flee", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
             "diamond", "amber", "citrine", "tourmaline", "star ")
 
@@ -36,6 +36,20 @@ class MinerBot(BotBase):
 
     def pick(self):
         return next((i for i in self.c.backpack if i.name.lower() in ("pickaxe", "shovel")), None) or next((i for i in self.c.equipped if "pickaxe" in i.name.lower()), None)
+
+    def r_retool(self):
+        """The pickaxe wore out (it does, silently): buy another from the Tinker."""
+        self.c.open_backpack()
+        if self.pick() or self.mobs(10) or time.time() - self.facts.get("retool_at", 0) < 120:
+            return False
+        self.facts["retool_at"] = time.time()
+        self.activity = "buying a pickaxe"
+        self.note("mine", "The pickaxe wore out after a short while of mining; no warning came before the last swing, and the player must find who sells another.", key="pickworn")
+        if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
+            self.visit_bank("poor", withdraw=300)
+        got = self.shop_at((1427, 1652), {"pickaxe": 1}, budget=max(self.c.gold - 5, 0))
+        self.note("shop", f"Pickaxe bought: {got}", key="newpick")
+        return True
 
     def r_sell(self):
         heavy = self.c.weight > self.c.max_weight * 0.8

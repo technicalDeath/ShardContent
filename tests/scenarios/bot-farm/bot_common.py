@@ -93,6 +93,7 @@ class BotBase:
         except (OSError, ValueError):
             pass
         self.last_status = 0.0
+        self.last_gold = 0
         self.totals_path = os.path.join(self.dir, "totals.json")
         self.base = {"kills": 0, "deaths": 0, "gains": {}, "uptime": 0}
         try:
@@ -156,7 +157,8 @@ class BotBase:
         return found
 
     def mobs(self, within):
-        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer")]
+        """Hostile-looking mobiles that are on this floor: one more than ~14 up or down (a rat in the cellar under Britain) cannot be fought or fought by."""
+        return [m for m in self.c.mobiles(within=within) if m.notoriety in ("Gray", "Criminal", "Enemy", "Murderer") and abs((m.pos[2] or 0) - self.c.z) <= 14]
 
     def near_death_spot(self, x, y, r=60):
         return any(abs(x - dx) < r and abs(y - dy) < r for dx, dy in self.death_spots)
@@ -169,6 +171,18 @@ class BotBase:
             if m:
                 out.append(SimpleNamespace(serial=m.group(1), name=m.group(2).strip(), distance=int(m.group(3)), x=int(m.group(4)), y=int(m.group(5)), z=int(m.group(6))))
         return out
+
+    def los(self, serial):
+        """Is there a clear line of sight to this mobile? (the `los` command; a spell or arrow at something behind a wall is lost without a word)"""
+        now = time.time()
+        if now - getattr(self, "_los_at", 0) > 0.8:
+            self._los = {}
+            for l in self.c.call("los 12", timeout=6):
+                m = re.match(r"\s+(YES|no)\s+(0x[0-9A-Fa-f]+)", l)
+                if m:
+                    self._los[m.group(2).upper()] = m.group(1) == "YES"
+            self._los_at = now
+        return self._los.get(serial.upper(), True)
 
     def travel(self, x, y, near=2, tries=8, per=60):
         """Walk to (x, y) in hops: a destination beyond the client's loaded map is reached in several goto calls."""
@@ -216,13 +230,21 @@ class BotBase:
         if self.facts["ghost_since"] is None:
             self.facts["ghost_since"] = time.time()
             self.deaths += 1
+            self.facts["war_at_death"] = self.c.war_mode
+            self.log(f"ghost at {self.c.x},{self.c.y}; war mode at death = {self.c.war_mode}")
             self.death_spots.append((self.c.x, self.c.y))
+            self.facts["corpse"] = {"xy": (self.c.x, self.c.y), "t": time.time(), "gold": self.last_gold, "tries": 0}
             json.dump({"death_spots": self.death_spots}, open(self.know_path, "w", encoding="utf-8"))
             self.note("death", f"A {self.pname} died.", key=f"death:{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
             self.log(f"DEAD at {self.c.x},{self.c.y}; walking to the healer")
         self.activity = "ghost: walking to the healer"
+        # a living mobile sees a dead one only if it is in war mode (Mobile.CanSee), so a ghost in peace mode is invisible to the healer: switch it on
+        if not self.c.war_mode:
+            self.c.war(True)
+            self.note("death", "A ghost in peace mode is invisible to the healer (the game only shows a ghost to the living in war mode); nothing tells the player to switch to war mode.", key="ghostwar")
         serial = self.find_gump("Resurrection")
         if serial:
+            self.log(f"resurrection offer opened; ghost war mode = {self.c.war_mode} (at death: {self.facts.get('war_at_death')})")
             self.c.call(f"gumpresponse 1 gump:{serial}", timeout=8)
             self.note("death", "The healer's offer opens as a Resurrection gump (CONTINUE / CANCEL) once the ghost stands near the healer.", key="healergump")
             time.sleep(3)
@@ -239,6 +261,51 @@ class BotBase:
         else:
             self.facts.pop("near_since", None)
             self.c.goto(*HEALER).wait(timeout=5)
+        return True
+
+    def r_corpse(self):
+        """Back from the dead: go and fetch the belongings from the corpse before it rots (the death message says to), once, if there was something worth the walk."""
+        info = self.facts.get("corpse")
+        if not info or self.c.ghost or info["tries"] >= 1:
+            return False
+        if time.time() - info["t"] > 420:
+            self.facts.pop("corpse")
+            return False
+        if self.hp_pct() < 70 or self.mobs(8):
+            return False
+        if info["gold"] < 60:
+            self.facts.pop("corpse")
+            return False
+        info["tries"] += 1
+        self.activity = "going back for my corpse"
+        x, y = info["xy"]
+        self.log(f"going back to the corpse at {x},{y} ({info['gold']} gold lost)")
+        self.travel(x, y, near=1, tries=12)
+        corpses = [i for i in self.c.containers(within=6) if "corpse" in i.name.lower()]
+        if not corpses:
+            self.note("death", "Going back to the death spot found no corpse: it had already rotted away, or the player never saw where it was.", key="nocorpse")
+            return True
+        corpse = corpses[0]
+        self.c.gotoexact(corpse.x, corpse.y).wait(timeout=8)
+        self.c.events.drain()
+        self.c.use(corpse.serial)
+        self.c.wait_for(Event.CONTAINER_CONTENTS, timeout=4)
+        try:
+            contents = self.c.container(corpse.serial, timeout=5)
+        except Exception:
+            contents = []
+        got = 0
+        for it in contents:
+            for attempt in range(3):
+                time.sleep(1.0)
+                self.c.get_item(it.serial, it.amount if (it.amount or 0) > 1 else None)
+                time.sleep(0.9)
+                if not any("must wait" in l.lower() for l in self.read_journal()):
+                    break
+            got += 1
+        self.note("death", f"The bot walked back to its corpse and took {got} things: {[str(x) for x in contents][:6]}. The death message tells the player to do this soon.", key="corpserun", got=got)
+        self.log(f"recovered {got} things from the corpse")
+        self.facts.pop("corpse", None)
         return True
 
     def r_flee(self):
@@ -501,6 +568,8 @@ class BotBase:
     # ---- main loop --------------------------------------------------------------------------------------------
 
     def observe(self):
+        if not self.c.ghost:
+            self.last_gold = self.c.gold
         self.status()
         if self.c.overloaded:
             self.note("weight", f"A {self.pname} became overloaded ({self.c.weight}/{self.c.max_weight} stones) and can no longer walk normally.", key="overload")

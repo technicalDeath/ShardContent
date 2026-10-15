@@ -78,7 +78,7 @@ def password_for(name: str) -> str:
     return pw
 
 
-def start(name: str, profession: int, timeout_login=25, timeout_create=70) -> dict:
+def start(name: str, profession: int, create: str | None = None, timeout_login=25, timeout_create=70) -> dict:
     d = os.path.join(SESSIONS, name)
     rec_path = os.path.join(d, "session.json")
     if os.path.exists(rec_path):
@@ -116,7 +116,7 @@ def start(name: str, profession: int, timeout_login=25, timeout_create=70) -> di
     deadline = time.time() + timeout_create + 60
     while time.time() < deadline and proc.poll() is None:
         with open(files["cmd"], "a", encoding="ascii") as f:
-            f.write(f"createcharacter {name} {profession}\n")
+            f.write((create.format(name=name) if create else f"createcharacter {name} {profession}") + "\n")
         for _ in range(14):
             time.sleep(1.0)
             if in_game(files["state"]):
@@ -146,7 +146,7 @@ def main():
                 break
             if plan is None:
                 break
-            pending.append(ex.submit(start, item["name"], item["profession"]))
+            pending.append(ex.submit(start, item["name"], item["profession"], item.get("create")))
             started += 1
             # stagger so the memory reading reflects the clients already loading
             time.sleep(1.5)
