@@ -147,6 +147,29 @@ public static class ItemTooltipService
 
                     break;
                 }
+            case BaseTool tool:
+                {
+                    // a crafting tool says what it is for (the Bowyer's fletcher's tools are listed as "Arrow Fletching", which a new archer takes for ammunition); its uses left are wear, which the tooltip never shows
+                    yield return Line.Text(ToolLine(tool is FletcherTools));
+
+                    foreach (var line in LootLines(item.LootType))
+                    {
+                        yield return line;
+                    }
+
+                    yield break;
+                }
+            case BaseIngot ingot when !CraftResources.IsStandard(ingot.Resource):
+                {
+                    // stock names every ingot "Ingots" and puts the metal on a line of its own; without it dull copper and iron read alike
+                    yield return Line.Text(MetalLine(CraftResources.GetName(ingot.Resource)));
+                    break;
+                }
+            case BaseOre ore when !CraftResources.IsStandard(ore.Resource):
+                {
+                    yield return Line.Text(MetalLine(CraftResources.GetName(ore.Resource)));
+                    break;
+                }
             case BaseWeapon weapon:
                 {
                     // the maker and the quality are on the single-click label too, except for magic nobody has identified: that label says only "unidentified"
@@ -225,6 +248,15 @@ public static class ItemTooltipService
             yield return line;
         }
     }
+
+    /// <summary>The line that names a rare metal on its ingots and ore.</summary>
+    public static string MetalLine(string metal) => $"Metal: {metal}";
+
+    /// <summary>The sentence a crafting tool's tooltip carries.</summary>
+    public static string ToolLine(bool fletcher) =>
+        fletcher
+            ? "A tool, not ammunition: double-click it to make arrows, bolts and bows."
+            : "A tool: double-click it to open its crafting menu.";
 
     private static bool IsUnidentifiedMagic(Item item) =>
         item switch

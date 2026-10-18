@@ -24,6 +24,7 @@ public static class NewPlayerTipsService
     public const string GoldInPack = "goldInPack";
     public const string FirstPet = "firstPet";
     public const string Overloaded = "overloaded";
+    public const string Winded = "winded";
 
     /// <summary>Gold in the pack at which the bank tip is said.</summary>
     public const int GoldTipThreshold = 2000;
@@ -33,12 +34,13 @@ public static class NewPlayerTipsService
         [OutOfArrows] = "You are out of ammunition. Ammunition that misses falls to the ground near the target, so pick it up, or buy more from a bowyer.",
         [BadlyHurt] = "You are badly hurt. Double-click a bandage, then click yourself to heal. It works better the higher your Healing skill is.",
         [BadlyHurtPotion] = "You are badly hurt and have no bandages. Double-click a Heal potion in your pack to drink it, or buy bandages from a healer or provisioner.",
+        [Winded] = "You are out of breath: running uses up stamina, and at zero you cannot run. Walk or stand still for a moment to get it back. Carrying less helps.",
         [Overloaded] = "You are carrying too much, so you tire quickly when you run. Drop or store heavy things: the bank is at any banker, and a pack animal or a house keeps more.",
         [FirstDeath] = "You have died. Find a healer in town, or ask another player to resurrect you, then take your things from your corpse. Your starting gear stays with you.",
-        [Tired] = "You are tired, so you swing more slowly. Stand still for a moment to get your wind back.",
+        [Tired] = "You are low on stamina. If it runs out you cannot run, so you cannot get away from the fight. Drink a Refresh potion, or step out of the fight for a moment to get it back.",
         [GoldInPack] = "Gold in your pack can be stolen; gold in your bank box cannot. Say bank next to a banker to put it away.",
         [FirstPet] = "Your new pet gets hungry. Feed it food it likes now and then (double-click the food, then click the pet), or it will wander off after about ten hours.",
-        [FirstResurrection] = "Your belongings are on your corpse. Go back for it soon: it turns to bones after a few minutes and is gone not long after.",
+        [FirstResurrection] = "Your belongings are on your corpse: go back for it soon, before it turns to bones. Your starting gear is in your pack, not on you, so put it on again.",
     };
 
     /// <summary>Said once, after the first tip of any kind: system lines fade in a few seconds and the Journal keeps them.</summary>
@@ -82,6 +84,9 @@ public static class NewPlayerTipsService
 
     /// <summary>A follower was added and one of them is a tamed (not summoned) creature.</summary>
     public static bool GainedAPet(int before, int after, bool anyTamed) => after > before && anyTamed;
+
+    /// <summary>Stamina at a tenth or less outside a fight (the tired tip covers a fight): running has worn it down.</summary>
+    public static bool IsWinded(int stam, int stamMax, bool inCombat) => !inCombat && stamMax > 0 && stam * 10 <= stamMax;
 
     public static bool CarriesALotOfGold(int gold) => gold >= GoldTipThreshold;
 
@@ -159,6 +164,11 @@ public static class NewPlayerTipsService
         if (!Pending(player, Overloaded) && StaminaSystem.IsOverloaded(player))
         {
             Show(player, Overloaded);
+        }
+
+        if (IsWinded(player.Stam, player.StamMax, player.Combatant != null))
+        {
+            Show(player, Winded);
         }
 
         if (IsTired(player.Stam, player.StamMax, player.Combatant != null))

@@ -20,6 +20,21 @@ public class WearNoticeTests
     public void TheMessageNamesTheItemInLowerCase() =>
         Assert.Equal("Your long sword is badly worn: about a quarter of its durability is left.", WearNoticeService.Message("Long Sword"));
 
+    [Theory]
+    [InlineData(40, false)]
+    [InlineData(4, false)]
+    [InlineData(3, true)]
+    [InlineData(1, true)]
+    [InlineData(0, false)]   // already gone
+    public void AToolIsLowWithAFewUsesLeft(int uses, bool low) => Assert.Equal(low, WearNoticeService.ToolIsLow(uses));
+
+    [Fact]
+    public void TheToolMessageNamesTheToolAndSaysWhatToDo()
+    {
+        Assert.Equal("Your sewing kit is nearly worn out: only a few more uses are left. Buy or make another one.", WearNoticeService.ToolMessage("Sewing Kit"));
+        Assert.StartsWith("Your tool is nearly worn out", WearNoticeService.ToolMessage(" "));
+    }
+
     [Fact]
     public void TheMessageHasAFallbackName() => Assert.StartsWith("Your equipment is badly worn", WearNoticeService.Message(" "));
 

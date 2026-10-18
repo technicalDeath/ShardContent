@@ -29,6 +29,17 @@ public static class ShardRulesCommands
         CommandSystem.Register("CampStatus", AccessLevel.Administrator, OnCampStatus);
         CommandSystem.Register("ActionRepeatStatus", AccessLevel.Administrator, OnActionRepeatStatus);
         CommandSystem.Register("BuffIconStatus", AccessLevel.Administrator, OnBuffIconStatus);
+        CommandSystem.Register("TownGuardStatus", AccessLevel.Administrator, OnTownGuardStatus);
+    }
+
+    [Usage("TownGuardStatus")]
+    [Description("Shows whether town guards kill monsters, the unguarded areas, the sweep, and whether the ground you stand on is guarded.")]
+    private static void OnTownGuardStatus(CommandEventArgs e)
+    {
+        foreach (var line in TownGuardsService.DescribeStatus(e.Mobile))
+        {
+            e.Mobile.SendMessage(line);
+        }
     }
 
     [Usage("BuffIconStatus")]

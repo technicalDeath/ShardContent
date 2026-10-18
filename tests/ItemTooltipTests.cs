@@ -13,6 +13,15 @@ public class ItemTooltipTests
     // ---- the flag and the mask
 
     [Fact]
+    public void AToolSaysWhatItIsFor()
+    {
+        Assert.Contains("not ammunition", ItemTooltipService.ToolLine(true));
+        Assert.Contains("make arrows", ItemTooltipService.ToolLine(true));
+        Assert.Contains("crafting menu", ItemTooltipService.ToolLine(false));
+        Assert.DoesNotContain("uses", ItemTooltipService.ToolLine(false), StringComparison.OrdinalIgnoreCase);   // wear is never on a tooltip
+    }
+
+    [Fact]
     public void TheFlagIsOffUntilTheOwnerActivatesItAndOnInTheShippedRules()
     {
         Assert.False(new DeferredFeatureFlags().ItemTooltips);

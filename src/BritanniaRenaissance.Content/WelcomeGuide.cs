@@ -53,7 +53,14 @@ public static partial class WelcomeGuide
         bool ItemTooltips = false,
         bool StartInBritainOnly = false,
         bool NewPlayerTips = false,
-        bool AutoPickup = false
+        bool AutoPickup = false,
+        bool TownGuardsKillMonsters = false,
+        bool StaminaNumbers = false,
+        bool LongerPlayerCorpses = false,
+        bool CorpseCompass = false,
+        bool BlueSelfLoot = false,
+        bool KillerGoesHome = false,
+        bool Materializing = false
     );
 
     public static Context Current =>
@@ -88,7 +95,14 @@ public static partial class WelcomeGuide
             ItemTooltipService.Enabled,
             BritainStartService.Enabled,
             NewPlayerTipsService.Enabled,
-            AutoPickupService.Enabled
+            AutoPickupService.Enabled,
+            TownGuardsService.Enabled,
+            StaminaNumbersService.Enabled,
+            LongerPlayerCorpses.Enabled,
+            CorpseCompass.Enabled,
+            BlueSelfLoot.Enabled,
+            KillerGoesHome.Enabled,
+            Materializing.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>

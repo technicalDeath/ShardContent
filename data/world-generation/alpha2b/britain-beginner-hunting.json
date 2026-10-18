@@ -1,0 +1,122 @@
+[
+  {
+    "$type": "Spawner",
+    "guid": "3af82c44-422a-5ecd-9135-924cc74186fa",
+    "name": "Beginner hunting: castle woods",
+    "location": [1240, 1600, 0],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      { "name": "Rabbit", "maxCount": 3, "probability": 100 },
+      { "name": "Hind", "maxCount": 2, "probability": 100 },
+      { "name": "Mongbat", "maxCount": 2, "probability": 100 },
+      { "name": "GiantRat", "maxCount": 2, "probability": 100 },
+      { "name": "Ratman", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e3eba4ce-8a58-5054-8bae-8499cd9103cc",
+    "name": "Beginner hunting: farm vermin",
+    "location": [1265, 1770, 0],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      { "name": "GiantRat", "maxCount": 3, "probability": 100 },
+      { "name": "Snake", "maxCount": 2, "probability": 100 },
+      { "name": "Slime", "maxCount": 2, "probability": 100 },
+      { "name": "Ratman", "maxCount": 2, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d807ab0f-d9fc-5854-92bb-c864790b3a33",
+    "name": "Beginner hunting: west woods edge",
+    "location": [1250, 1701, 0],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      { "name": "Rabbit", "maxCount": 3, "probability": 100 },
+      { "name": "Hind", "maxCount": 2, "probability": 100 },
+      { "name": "GreatHart", "maxCount": 2, "probability": 100 },
+      { "name": "Eagle", "maxCount": 1, "probability": 100 },
+      { "name": "Orc", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a384f91f-5b19-5ad8-b257-c7c562676eb3",
+    "name": "Beginner hunting: west woods",
+    "location": [1191, 1780, 3],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      { "name": "GreyWolf", "maxCount": 2, "probability": 100 },
+      { "name": "GreatHart", "maxCount": 2, "probability": 100 },
+      { "name": "BlackBear", "maxCount": 1, "probability": 100 },
+      { "name": "Hind", "maxCount": 1, "probability": 100 },
+      { "name": "Orc", "maxCount": 2, "probability": 100 },
+      { "name": "OrcishMage", "maxCount": 1, "probability": 100 },
+      { "name": "GreaterMongbat", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8926d23e-bf1f-5ef0-95f4-a1e02e96b4e3",
+    "name": "Beginner hunting: south-west forest",
+    "location": [1340, 1868, 0],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      { "name": "HeadlessOne", "maxCount": 2, "probability": 100 },
+      { "name": "Mongbat", "maxCount": 2, "probability": 100 },
+      { "name": "Slime", "maxCount": 1, "probability": 100 },
+      { "name": "Lizardman", "maxCount": 2, "probability": 100 },
+      { "name": "Ratman", "maxCount": 1, "probability": 100 },
+      { "name": "GreaterMongbat", "maxCount": 1, "probability": 100 }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "555c2a2d-a6d0-5be8-a781-835e9d325046",
+    "name": "Beginner hunting: old bones in the south-west forest",
+    "location": [1301, 1869, 0],
+    "map": "Felucca",
+    "count": 4,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      { "name": "Skeleton", "maxCount": 2, "probability": 100 },
+      { "name": "Zombie", "maxCount": 2, "probability": 100 },
+      { "name": "HeadlessOne", "maxCount": 1, "probability": 100 }
+    ]
+  }
+]

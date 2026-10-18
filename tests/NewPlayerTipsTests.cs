@@ -37,7 +37,7 @@ public class NewPlayerTipsTests
     [Fact]
     public void EveryTipHasPlainShortWordingWithoutTheOldName()
     {
-        foreach (var id in new[] { OutOfArrows, BadlyHurt, FirstDeath, FirstResurrection, Tired, GoldInPack, FirstPet, BadlyHurtPotion, Overloaded })
+        foreach (var id in new[] { OutOfArrows, BadlyHurt, FirstDeath, FirstResurrection, Tired, GoldInPack, FirstPet, BadlyHurtPotion, Overloaded, Winded })
         {
             Assert.True(Texts.TryGetValue(id, out var text), id);
             Assert.InRange(text.Length, 40, 220);
@@ -80,6 +80,18 @@ public class NewPlayerTipsTests
         Assert.Contains(on, l => l.StartsWith("[Tips - ", StringComparison.Ordinal));
         Assert.DoesNotContain(on, l => l.StartsWith("[Pickup", StringComparison.Ordinal));   // automatic pickup is switched in Options and on the combat bar, not by a command
     }
+
+    [Fact]
+    public void TheResurrectionTipTellsThePlayerToPutTheStartingGearOnAgain() =>
+        Assert.Contains("put it on again", Texts[FirstResurrection]);
+
+    [Theory]
+    [InlineData(3, 33, false, true)]
+    [InlineData(4, 40, false, true)]
+    [InlineData(5, 40, false, false)]
+    [InlineData(3, 33, true, false)]    // in a fight the tired tip speaks
+    [InlineData(0, 0, false, false)]
+    public void WindedNeedsAnEmptyTankOutsideAFight(int stam, int max, bool combat, bool expected) => Assert.Equal(expected, IsWinded(stam, max, combat));
 
     [Fact]
     public void TheFlagShipsOffAndIsListedWhenOn()

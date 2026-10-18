@@ -1326,7 +1326,7 @@
       ],
       "paragraphs": [
         "# What it is",
-        "Raw metal from mountains and caves. Plain iron ore is the common kind; eight rarer metals lie in some patches: dull copper, shadow iron, copper, bronze, gold, agapite, verite and valorite. Ore has to be smelted into ingots before a smith or tinker can use it.",
+        "Raw metal from mountains and caves. Plain iron ore is the common kind; eight rarer metals lie in some patches: dull copper, shadow iron, copper, bronze, gold, agapite, verite and valorite. Ore has to be smelted into ingots before a smith or tinker can use it, and no shop buys ore: smelt it and sell the ingots to a blacksmith.",
         "# Where to get it",
         "Double-click a pickaxe or shovel and target a mountain or cave floor; you cannot mine on a mount. The ground is split into 8 by 8 tile patches. A patch holds 10 to 34 diggings, refills 10 to 20 minutes after the first one, and always has the same metal. Each good dig gives one piece, and three pieces in four are big piles.",
         "A rare-metal patch still gives plain iron about half the time, and every time your Mining skill is below the metal's number: dull copper 65, shadow iron 70, copper 75, bronze 80, gold 85, agapite 90, verite 95, valorite 99.",

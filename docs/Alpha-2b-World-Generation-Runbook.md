@@ -40,11 +40,11 @@ Deployment must verify the ModernUO pin and prepare:
 - 28 allowlisted decoration files;
 - 410 Felucca signs;
 - 353 teleporter definitions / 385 canonical placements;
-- 1,551 canonical spawners (1,546 stock-derived plus the five Britain guildmasters and vendors added 2026-10-13, `Britain-Guildmasters-Evidence.md`);
+- 1,557 canonical spawners (1,546 stock-derived, plus the five Britain guildmasters and vendors added 2026-10-13, `Britain-Guildmasters-Evidence.md`, plus the six beginner hunting spawners in Britain's woods and fields added 2026-10-15, `britain-beginner-hunting.json`, `Britain-Beginner-Hunting-Evidence.md`);
 - the pinned `DoorGenerator.cs` source hash, 16 Felucca scan rectangles, four stock Britannia
   exclusions, and 1,345 exact door-frame placements.
 
-The preparation report currently contains 57 hashed inputs and 55 generated outputs. Treat any
+The preparation report currently contains 59 hashed inputs and 57 generated outputs (2026-10-15, with the beginner hunting file). Treat any
 count or hash change as a review event; do not update expectations merely to make a check pass.
 
 ## Clean generation

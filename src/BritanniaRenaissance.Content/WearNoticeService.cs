@@ -14,9 +14,13 @@ namespace BritanniaRenaissance.Content;
 public static class WearNoticeService
 {
     public const int WarnPercent = 25;
+
+    /// <summary>A tool has no stated maximum (a stock tool gets 25 to 75 uses when it is made), so the warning comes when this few uses are left.</summary>
+    public const int ToolWarnUses = 3;
     public const int PollSeconds = 2;
 
     private static readonly Dictionary<uint, bool> WasLow = new();
+    private static readonly Dictionary<uint, bool> ToolWasLow = new();
     private static readonly List<NetState> Online = [];
     private static bool _configured;
     private static int _ticks;
@@ -36,6 +40,12 @@ public static class WearNoticeService
 
     /// <summary>At or below a quarter of the maximum. An item with no maximum has no durability to speak of.</summary>
     public static bool IsLow(int hits, int max) => max > 0 && hits * 100 <= max * WarnPercent;
+
+    /// <summary>A tool with one to three uses left; at 0 it is already gone.</summary>
+    public static bool ToolIsLow(int usesRemaining) => usesRemaining > 0 && usesRemaining <= ToolWarnUses;
+
+    public static string ToolMessage(string toolName) =>
+        $"Your {(string.IsNullOrWhiteSpace(toolName) ? "tool" : toolName.Trim().ToLowerInvariant())} is nearly worn out: only a few more uses are left. Buy or make another one.";
 
     /// <summary>The line the player sees; the item's own name, in lower case.</summary>
     public static string Message(string itemName) =>
@@ -67,8 +77,25 @@ public static class WearNoticeService
 
     private static void Watch(PlayerMobile player)
     {
+        if (player.Backpack is { } pack)
+        {
+            foreach (var item in pack.FindItems(true))
+            {
+                if (item is BaseTool tool)
+                {
+                    WatchTool(player, tool);
+                }
+            }
+        }
+
         foreach (var item in player.Items)
         {
+            if (item is BaseTool worn)
+            {
+                WatchTool(player, worn);
+                continue;
+            }
+
             var (hits, max) = CombatBarService.DurabilityOf(item);
 
             if (max <= 0)
@@ -86,6 +113,19 @@ public static class WearNoticeService
 
             WasLow[serial] = low;
         }
+    }
+
+    private static void WatchTool(PlayerMobile player, BaseTool tool)
+    {
+        var low = ToolIsLow(tool.UsesRemaining);
+        var serial = tool.Serial.Value;
+
+        if (ToolWasLow.TryGetValue(serial, out var before) && !before && low)
+        {
+            player.SendMessage(0x22, ToolMessage(string.IsNullOrWhiteSpace(tool.Name) ? tool.ItemData.Name : tool.Name));
+        }
+
+        ToolWasLow[serial] = low;
     }
 
     /// <summary>Drops the memory of items that no longer exist.</summary>
@@ -106,6 +146,24 @@ public static class WearNoticeService
             foreach (var serial in gone)
             {
                 WasLow.Remove(serial);
+            }
+
+            gone.Clear();
+        }
+
+        foreach (var serial in ToolWasLow.Keys)
+        {
+            if (World.FindItem((Serial)serial) is not { Deleted: false })
+            {
+                (gone ??= []).Add(serial);
+            }
+        }
+
+        if (gone is not null)
+        {
+            foreach (var serial in gone)
+            {
+                ToolWasLow.Remove(serial);
             }
         }
     }

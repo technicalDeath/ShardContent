@@ -1,6 +1,7 @@
 using Server;
 using Server.Engines.Harvest;
 using Server.Items;
+using Server.Misc;
 using Server.Mobiles;
 
 namespace BritanniaRenaissance.Content;
@@ -115,6 +116,12 @@ public static class HarvestRepeatService
     public static bool StageAllowsRepeat(HarvestStage stage, bool toolUsable) =>
         stage is HarvestStage.Harvested or HarvestStage.Failed && toolUsable;
 
+    public const string WeightStopText =
+        "You are carrying as much as you can without being overloaded, so you stop gathering. Sell or put some away, then start again.";
+
+    /// <summary>The loop stops at the carrying limit: past it the character is overloaded and tires when it runs.</summary>
+    public static bool ShouldStopForWeight(int carried, int max) => max > 0 && carried >= max;
+
     private static Snapshot Capture(Mobile from) =>
         new(from.LastMoveTime, from.NextSkillTime, from.NextSpellTime, from.Location, from.Map, from.Hits);
 
@@ -188,6 +195,13 @@ public static class HarvestRepeatService
 
         if (cancel == StopReason.None && StageAllowsRepeat(stage, ToolUsable(tool)))
         {
+            if (from is PlayerMobile { AccessLevel: AccessLevel.Player } && ShouldStopForWeight(Mobile.BodyWeight + from.TotalWeight, StaminaSystem.GetMaxWeight(from)))
+            {
+                from.SendMessage(WeightStopText);
+
+                return;
+            }
+
             system.StartHarvesting(from, tool, target);
         }
     }

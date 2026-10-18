@@ -12,6 +12,7 @@ public static class ShardBootstrap
         EraGateConfiguration.Load();
         Alpha2bWorldGenerationConfiguration.Load();
         ShardRulesCommands.Register();
+        StaffPackCommand.Register();
         Alpha2bWorldGenerationCommands.Register();
         HousingPlacementSurveyCommands.Register();
         HousingStatusCommands.Register();
@@ -60,6 +61,20 @@ public static class ShardBootstrap
         CombatNumbersService.Configure();
         ItemTooltipService.Configure();
         BritainStartService.Configure();
+        TownGuardsService.Configure();
+        StaminaReliefService.Configure();
+        StaminaNumbersService.Configure();
+        GhostHealerReminderService.Configure();
+        CorpseTimerNoticeService.Configure();
+        DeathRecovery.Configure();
+        CriminalGhostNotice.Configure();
+        CraftChancesService.Configure();
+        SpellChancesService.Configure();
+        MeditationTipService.Configure();
+        MetalSkillNoticeService.Configure();
+        CrateSaleService.Configure();
+        ExtraVendorBuyers.Configure();
+        OrdinaryAddonDeeds.Configure();
         SilverOnlyWeaponLoot.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
@@ -74,6 +89,7 @@ public static class ShardBootstrap
     public static void Initialize()
     {
         KnockedOutService.Initialize();
+        TownGuardsService.Initialize();
     }
 
     private static void RebindAlpha2AfterStockHandlers()

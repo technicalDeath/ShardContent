@@ -116,7 +116,8 @@ public static class CraftedGoodsPricing
         return type != null && costs.TryGetValue(type, out var c) ? c : 0;
     }
 
-    private static Dictionary<Type, int> BuildCosts()
+    /// <summary>The material cost of every priced crafted item, from the loaded craft recipes (the buy-to-resell audit test uses it).</summary>
+    public static Dictionary<Type, int> BuildCosts()
     {
         var costs = new Dictionary<Type, int>();
         foreach (var system in new[] { DefBlacksmithy.CraftSystem, DefTailoring.CraftSystem, DefTinkering.CraftSystem, DefCarpentry.CraftSystem, DefBowFletching.CraftSystem })

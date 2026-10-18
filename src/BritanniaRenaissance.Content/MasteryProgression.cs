@@ -248,6 +248,11 @@ public static class MasteryProgression
             return true;
         }
 
+        if (FastSkillStart.TryGain(pm, skill))
+        {
+            return true;
+        }
+
         if (skill.BaseFixedPoint < ThresholdFixedPoint)
         {
             return false;

@@ -10,7 +10,7 @@ Everything below is on the dev distribution unless marked off. "QoL" here means 
 | --- | --- | --- |
 | Less tedium | Gathering repeat: mining, lumberjacking and fishing keep going on the chosen target (`harvestAutoRepeat`) | On since 2026-10-05 |
 | | Action repeat: taming retries, lockpicking while picks last, spinning wheel, loom and cooking take the whole stack (`actionAutoRepeat`) | On since 2026-10-07 |
-| | Crafting "make this many": agreed, planned by itself (Beta 2d) | Not built |
+| | Crafting "make this many": dropped by the owner 2026-10-14 | Not built, not planned |
 | | Declined by the owner: bandage repeat, loot-all, snooping repeat | |
 | New players | Starter package (Bag, scissors, gold once per account, newbied gear, craft materials, Backpack Ward, camping kit); weight budget so every template can walk | On |
 | | Faint Memories: 5.0 free skill points, unlock 24 h after creation, 0.2 per use | On since 2026-10-07 |

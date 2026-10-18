@@ -105,6 +105,12 @@ public static class ShardRulesConfiguration
         MasteryRules.Validate(rules.Mastery, errors);
         NoviceCombatService.Validate(rules.NoviceCombat, errors);
         PoisonReliefService.Validate(rules.PoisonRelief, errors);
+        TownGuardsService.Validate(rules.TownGuards, errors);
+        StaminaReliefService.Validate(rules.StaminaRelief, errors);
+        DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
+        FastSkillStart.Validate("fastHealing", rules.FastHealing, errors);
+        FastSkillStart.Validate("fastMeditation", rules.FastMeditation, errors);
+        ExtraVendorBuyers.Validate(rules.ExtraVendorBuyers, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
@@ -440,6 +446,24 @@ public sealed class ShardRules
 
     [JsonPropertyName("poisonRelief")]
     public PoisonReliefRules PoisonRelief { get; set; } = new();
+
+    [JsonPropertyName("townGuards")]
+    public TownGuardRules TownGuards { get; set; } = new();
+
+    [JsonPropertyName("staminaRelief")]
+    public StaminaReliefRules StaminaRelief { get; set; } = new();
+
+    [JsonPropertyName("deathRecovery")]
+    public DeathRecoveryRules DeathRecovery { get; set; } = new();
+
+    [JsonPropertyName("fastHealing")]
+    public FastSkillStartRules FastHealing { get; set; } = new();
+
+    [JsonPropertyName("fastMeditation")]
+    public FastSkillStartRules FastMeditation { get; set; } = new();
+
+    [JsonPropertyName("extraVendorBuyers")]
+    public ExtraVendorBuyerRules ExtraVendorBuyers { get; set; } = new();
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
@@ -907,6 +931,97 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("craftedGoodsPricing")]
     public bool CraftedGoodsPricing { get; set; }
 
+    /// <summary>Town guards kill a monster that attacks on sight anywhere guards work, whoever struck first, and the guard zones shrink by
+    /// townGuards.unguardedAreas (docs/Town-Guards-Monsters-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("townGuardsKillMonsters")]
+    public bool TownGuardsKillMonsters { get; set; }
+
+    /// <summary>A hit takes at most staminaRelief.maxLossPerHit stamina from a player, and running with none left says that walking still works
+    /// (docs/Stamina-Relief-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("staminaRelief")]
+    public bool StaminaRelief { get; set; }
+
+    /// <summary>Stamina a player loses to a hit, and gains from a refresh potion, floats over their head in blue (docs/Stamina-Numbers-Evidence.md); off
+    /// until the owner says activate.</summary>
+    [JsonPropertyName("staminaNumbers")]
+    public bool StaminaNumbers { get; set; }
+
+    /// <summary>A ghost in peace mode near a healer is told to press Tab for war mode and walk up (docs/Ghost-Healer-Reminder-Evidence.md); off until the
+    /// owner says activate.</summary>
+    [JsonPropertyName("ghostHealerReminder")]
+    public bool GhostHealerReminder { get; set; }
+
+    /// <summary>A player who dies is told how long the corpse lasts (docs/Corpse-Timer-Notice-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("corpseTimerNotice")]
+    public bool CorpseTimerNotice { get; set; }
+
+    /// <summary>A player's corpse lasts deathRecovery.playerCorpseMinutes before it turns to bones (docs/Death-Recovery-Plan.md); off until the owner says activate.</summary>
+    [JsonPropertyName("longerPlayerCorpses")]
+    public bool LongerPlayerCorpses { get; set; }
+
+    /// <summary>An arrow points a dead or resurrected player to their own corpse (docs/Death-Recovery-Plan.md); off until the owner says activate.</summary>
+    [JsonPropertyName("corpseCompass")]
+    public bool CorpseCompass { get; set; }
+
+    /// <summary>A blue player's double-click on their own corpse takes everything back and re-equips worn gear (docs/Death-Recovery-Plan.md); off until the owner says activate.</summary>
+    [JsonPropertyName("blueSelfLoot")]
+    public bool BlueSelfLoot { get; set; }
+
+    /// <summary>A monster that killed a player and fights nobody else goes home and spares them for a while (docs/Death-Recovery-Plan.md); off until the owner says activate.</summary>
+    [JsonPropertyName("killerGoesHome")]
+    public bool KillerGoesHome { get; set; }
+
+    /// <summary>After resurrection monsters cannot see a player until they act, open their corpse, or time runs out (docs/Death-Recovery-Plan.md); off until the owner says activate.</summary>
+    [JsonPropertyName("materializing")]
+    public bool Materializing { get; set; }
+
+    /// <summary>A healer refusing a criminal ghost says how long the flag lasts, and the ghost is told when it ends
+    /// (docs/Criminal-Ghost-Notice-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("criminalGhostNotice")]
+    public bool CriminalGhostNotice { get; set; }
+
+    /// <summary>A craft menu item's tooltip adds its gain and make chance (docs/Craft-Chances-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("craftChances")]
+    public bool CraftChances { get; set; }
+
+    /// <summary>A spell's tooltip in the spellbook adds the chance a cast raises Magery and the chance it succeeds (docs/Craft-Chances-Evidence.md);
+    /// off until the owner says activate.</summary>
+    [JsonPropertyName("spellChances")]
+    public bool SpellChances { get; set; }
+
+    /// <summary>Healing gains surely and fast below 40 (docs/Fast-Healing-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("fastHealing")]
+    public bool FastHealing { get; set; }
+
+    /// <summary>Meditation gains surely and fast below 40, from any Meditation check (docs/Fast-Healing-Evidence.md); off until the owner says activate.</summary>
+    [JsonPropertyName("fastMeditation")]
+    public bool FastMeditation { get; set; }
+
+    /// <summary>A caster refused for want of mana is pointed to Meditation, at most every ten minutes (docs/Fast-Healing-Evidence.md); off until the
+    /// owner says activate.</summary>
+    [JsonPropertyName("meditationTip")]
+    public bool MeditationTip { get; set; }
+
+    /// <summary>The smithing menu says when the chosen metal needs more Blacksmithy (docs/Bot-Farm-QoL-Findings.md item 24); off until the owner
+    /// says activate.</summary>
+    [JsonPropertyName("metalSkillNotice")]
+    public bool MetalSkillNotice { get; set; }
+
+    /// <summary>A lockable container holding only its own keys sells as if empty (docs/Bot-Farm-QoL-Findings.md item 28); off until the owner
+    /// says activate.</summary>
+    [JsonPropertyName("sellCratesWithKeys")]
+    public bool SellCratesWithKeys { get; set; }
+
+    /// <summary>Vendors buy the crafted goods and loot no stock vendor buys (docs/Bot-Farm-QoL-Findings.md items 29+); off until the owner says
+    /// activate.</summary>
+    [JsonPropertyName("extraVendorBuyers")]
+    public bool ExtraVendorBuyers { get; set; }
+
+    /// <summary>New house-addon deeds are ordinary items, not newbied, so vendors can buy them (docs/Bot-Farm-QoL-Findings.md); off until the
+    /// owner says activate.</summary>
+    [JsonPropertyName("ordinaryAddonDeeds")]
+    public bool OrdinaryAddonDeeds { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -965,11 +1080,31 @@ public sealed class DeferredFeatureFlags
         if (AutoPickup) yield return nameof(AutoPickup);
         if (HouseReminder) yield return nameof(HouseReminder);
         if (CraftedGoodsPricing) yield return nameof(CraftedGoodsPricing);
+        if (TownGuardsKillMonsters) yield return nameof(TownGuardsKillMonsters);
+        if (StaminaRelief) yield return nameof(StaminaRelief);
+        if (StaminaNumbers) yield return nameof(StaminaNumbers);
+        if (GhostHealerReminder) yield return nameof(GhostHealerReminder);
+        if (CorpseTimerNotice) yield return nameof(CorpseTimerNotice);
+        if (LongerPlayerCorpses) yield return nameof(LongerPlayerCorpses);
+        if (CorpseCompass) yield return nameof(CorpseCompass);
+        if (BlueSelfLoot) yield return nameof(BlueSelfLoot);
+        if (KillerGoesHome) yield return nameof(KillerGoesHome);
+        if (Materializing) yield return nameof(Materializing);
+        if (CriminalGhostNotice) yield return nameof(CriminalGhostNotice);
+        if (CraftChances) yield return nameof(CraftChances);
+        if (SpellChances) yield return nameof(SpellChances);
+        if (FastHealing) yield return nameof(FastHealing);
+        if (FastMeditation) yield return nameof(FastMeditation);
+        if (MeditationTip) yield return nameof(MeditationTip);
+        if (MetalSkillNotice) yield return nameof(MetalSkillNotice);
+        if (SellCratesWithKeys) yield return nameof(SellCratesWithKeys);
+        if (ExtraVendorBuyers) yield return nameof(ExtraVendorBuyers);
+        if (OrdinaryAddonDeeds) yield return nameof(OrdinaryAddonDeeds);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !CraftedGoodsPricing && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

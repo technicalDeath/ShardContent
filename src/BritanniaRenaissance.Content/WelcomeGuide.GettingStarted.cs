@@ -126,7 +126,13 @@ public static partial class WelcomeGuide
             );
         }
 
-        p.Add("Monsters stay dangerous everywhere. Guards protect the towns, and a healer can bring you back if you die (see Dying).");
+        p.Add(
+            (c.TownGuardsKillMonsters
+                ? "Monsters stay dangerous everywhere. If a monster follows you into a guarded town, shout guards and the guards will kill it, even if you struck it first, so run to town when one chases you. " +
+                  "Britain's woods and fields west of the castle, and south of the south-west houses, are not guarded. "
+                : "Monsters stay dangerous everywhere. If a monster follows you into town and attacks you, shout guards and the guards will kill it; if you struck it first, they will not help, so don't fight back in town. ") +
+            "A healer can bring you back if you die (see Dying)."
+        );
         p.Add("Use the tabs above to read how things work, and type [Welcome any time to open this guide again.");
 
         return new Topic("firsthour", "Your first hour", p);
@@ -275,7 +281,7 @@ public static partial class WelcomeGuide
         );
 
 
-        if (c.DamageNumbers || c.HealNumbers)
+        if (c.DamageNumbers || c.HealNumbers || c.StaminaNumbers)
         {
             var numbers = c.DamageNumbers
                 ? "When you hurt something, or something hurts you, the damage floats up over the one hit: yellow over you, red over anything else. Nobody else's fights show numbers. "
@@ -284,6 +290,11 @@ public static partial class WelcomeGuide
             if (c.HealNumbers)
             {
                 numbers += "A heal floats up as a green plus sign and a number over the one healed, when you heal or are healed, by bandage, potion or spell. ";
+            }
+
+            if (c.StaminaNumbers)
+            {
+                numbers += "The stamina a hit takes from you floats up over you in blue, such as -3 stam (a mace or a staff takes 3 to 5 more), and so does the stamina a refresh potion gives back, such as +8 stam; each has its own switch. ";
             }
 
             p.Add(HeadingMark + "Numbers over heads");
@@ -533,7 +544,10 @@ public static partial class WelcomeGuide
             "Double-click a crafting tool, then target the material you want to work (ingots for a Blacksmith, for example). A menu opens: a Blacksmith sees Repair, Smelt and lists of things to build, a Tinker sees categories. " +
             "A menu lists only what your skill and your materials allow, so a longer list means more skill or more materials.",
             "To make the same thing again, double-click the tool and target the tool itself instead of the material: the game reminds you with Target this tool to make last item.",
-            "Smelt and Repair are in the Blacksmith menu. Blacksmithing needs an anvil and a forge within two tiles."
+            "Smelt and Repair are in the Blacksmith menu. Blacksmithing needs an anvil and a forge within two tiles.",
+            HeadingMark + "Choosing what to make to train",
+            "Click the small ? beside an item in the menu: it shows the skill the item needs and your chance of making it. Making things trains the skill, and it trains most on items you are not sure to make, " +
+            "so an item you almost always make (a shirt, once your Tailoring is well past its need) teaches you very little. Move up to something harder as your chance rises."
         };
 
         if (c.Theft && n.WardIngots > 0)
@@ -561,7 +575,7 @@ public static partial class WelcomeGuide
             p.Add(
                 "Mining, lumberjacking and fishing repeat on the tile you chose until its resource runs out, at the usual pace. " +
                 "Walking, casting, using another skill, entering war mode, fighting or being hurt, or opening another gathering target ends it. " +
-                "A full pack or a worn-out tool ends it too. Target something new while it runs and it moves on to that once the current attempt finishes."
+                "A full pack, a worn-out tool, or carrying as much as you can without being overloaded ends it too. Target something new while it runs and it moves on to that once the current attempt finishes."
             );
         }
 
@@ -574,6 +588,9 @@ public static partial class WelcomeGuide
                 "Walking, casting, using another skill, war mode, fighting or being hurt end these too, and so does opening any target cursor."
             );
         }
+
+        p.Add(HeadingMark + "Selling what you gather");
+        p.Add("No one buys raw ore: smelt it into ingots at a forge first (Smelt is in the Blacksmith menu), then sell the ingots to a blacksmith.");
 
         p.Add(HeadingMark + "Nothing speeds up");
         p.Add("Each attempt is the ordinary one, with the usual delay, skill check and yield. Only the re-targeting is done for you.");
@@ -604,6 +621,9 @@ public static partial class WelcomeGuide
             p.Add("Spell summons, familiars, hirelings, pack llamas and pack horses are not affected.");
         }
 
+        p.Add(HeadingMark + "Setting a pet free");
+        p.Add("Say its name and then release (or all release for every pet). A window asks you to confirm: nothing happens until you press Continue.");
+
         p.Add(HeadingMark + "Stables");
         p.Add(
             "Say stable to an animal trainer, then click the pet to leave there, and say claim to get your pets back. Stabling costs 30 gold for each pet; claiming is free. " +
@@ -617,23 +637,50 @@ public static partial class WelcomeGuide
 
     private static Topic DyingTopic(Context c)
     {
+        var dr = DeathRecovery.Rules;
         var p = new List<string>
         {
             HeadingMark + "When you die",
             "You become a ghost and your body stays where you died. A ghost cannot take anything: come back first (below), then return to your body, open it and take your things. " +
-            "Your body turns to bones after about seven minutes, and the bones, with whatever is still in them, are gone about seven minutes after that."
+            (c.LongerPlayerCorpses
+                ? $"Your body turns to bones after about {dr.PlayerCorpseMinutes} minutes, and the bones, with whatever is still in them, are gone about 7 minutes after that."
+                : "Your body turns to bones after about seven minutes, and the bones, with whatever is still in them, are gone about seven minutes after that.")
         };
+
+        if (c.CorpseCompass)
+        {
+            p.Add("An arrow on your screen points to your body, as a ghost and after you come back, until you reach it, open it, or it is gone.");
+        }
 
         if (c.StarterPackage)
         {
             p.Add("Your newbied starting items are not left on the corpse: they stay with you, even inside bags (a murderer loses them). The Bag itself is an ordinary bag and stays on your body.");
+            p.Add("They come back into your pack, not onto your body: after you are resurrected, put your weapon and armor on again before you fight.");
         }
 
         p.Add(HeadingMark + "Coming back");
         p.Add(
-            "Walk up to a healer in a town (within four tiles, in sight) or to an ankh shrine, and a window offers to bring you back. Healers will not help a criminal or a murderer. " +
+            "Walk up to a healer in a town (within four tiles, in sight) or to an ankh shrine, and a window offers to bring you back. A healer can see a ghost only in war mode (Tab), " +
+            "and offers only as you step within reach, so if you are already beside one, switch to war mode, step back and walk up again. Healers will not help a criminal or a murderer. " +
             "Coming back costs no skill and no stats on this shard."
         );
+
+        if (c.Materializing)
+        {
+            p.Add(HeadingMark + "Between Worlds");
+            p.Add(
+                $"When you come back you are Between Worlds: monsters cannot see you, and other players see you as a pale shape. It lasts up to {dr.MaterializingMinutes} minutes, " +
+                $"or until {Span(dr.MaterializingAfterOpenSeconds)} after you open your body. Walking, opening doors, looking in your pack, your bank and your body, taking things " +
+                "from your body, sorting your pack and putting on your gear keep you there. Anything else (using an item or a skill, casting, attacking, taking things from your bank " +
+                "or anywhere but your body and your pack, buying or selling) brings you fully back, " +
+                "but a window asks you first: OKAY brings you back and goes ahead, CANCEL keeps you Between Worlds."
+            );
+        }
+
+        if (c.KillerGoesHome)
+        {
+            p.Add($"A monster that killed you, if it was fighting nobody else, goes back to where it lives and leaves you alone for {Span(dr.KillerSpareSeconds)} after it next sees you.");
+        }
 
         if (c.KnockedOut)
         {
@@ -652,6 +699,17 @@ public static partial class WelcomeGuide
             (c.HotZones ? " In a Hot Zone anyone may also open the pack of a Knocked Out player." : string.Empty)
         );
 
+        if (c.BlueSelfLoot)
+        {
+            p.Add(
+                "While you are not a murderer or a criminal, double-clicking your own body takes everything back into your pack where it was and puts the gear you " +
+                "were wearing on again. Anything that does not fit stays on the body."
+            );
+        }
+
         return new Topic("dying", "Dying", p);
     }
+
+    private static string Span(int seconds) =>
+        seconds % 60 != 0 ? $"{seconds} seconds" : seconds == 60 ? "a minute" : $"{seconds / 60} minutes";
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "3c7023f65df59faed763662e55940f4e00fe5ec2",
+  "pinnedModernUoCommit": "de9cc62db94b2b139f612fe57962e230229e584f",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -138,6 +138,60 @@
     "graceSeconds": 30.0,
     "graceMaxLevel": 0
   },
+  "deathRecovery": {
+    "playerCorpseMinutes": 10,
+    "compassStopRange": 2,
+    "killerSpareSeconds": 120,
+    "materializingMinutes": 10,
+    "materializingAfterOpenSeconds": 60,
+    "materializingHue": 1150
+  },
+  "fastHealing": {
+    "bands": [
+      { "belowTenths": 200, "minTenths": 50, "maxTenths": 100 },
+      { "belowTenths": 400, "minTenths": 10, "maxTenths": 50 }
+    ]
+  },
+  "extraVendorBuyers": {
+    "crafted": [
+      { "craftSystem": "alchemy", "vendors": [ "Alchemist" ] },
+      { "craftSystem": "carpentry", "vendors": [ "Carpenter" ] },
+      { "craftSystem": "tinkering", "vendors": [ "Tinker", "TinkerGuildmaster" ] },
+      { "craftSystem": "tailoring", "vendors": [ "Tailor", "TailorGuildmaster", "Weaver" ] },
+      { "craftSystem": "bowcraft", "vendors": [ "Bowyer" ] },
+      { "craftSystem": "inscription", "vendors": [ "Scribe", "Mage" ] }
+    ],
+    "loot": [
+      { "item": "BoneChest", "price": 37, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
+      { "item": "BoneArms", "price": 33, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
+      { "item": "BoneLegs", "price": 33, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
+      { "item": "BoneGloves", "price": 25, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
+      { "item": "BoneHelm", "price": 20, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
+      { "item": "Feather", "price": 1, "vendors": [ "Bowyer" ] },
+      { "item": "Shaft", "price": 1, "vendors": [ "Bowyer" ] },
+      { "item": "BigFish", "price": 10, "vendors": [ "Fisherman" ] }
+    ]
+  },
+  "fastMeditation": {
+    "bands": [
+      { "belowTenths": 200, "minTenths": 50, "maxTenths": 100 },
+      { "belowTenths": 400, "minTenths": 10, "maxTenths": 50 }
+    ]
+  },
+  "staminaRelief": {
+    "maxLossPerHit": 3
+  },
+  "townGuards": {
+    "unguardedAreas": [
+      { "name": "Britain Outskirts", "map": "Felucca", "rectangles": [
+        { "x1": 1093, "y1": 1538, "x2": 1288, "y2": 1907 },
+        { "x1": 1288, "y1": 1841, "x2": 1416, "y2": 1907 }
+      ] },
+      { "name": "Moonglow Zoo", "map": "Felucca", "rectangles": [
+        { "x1": 4479, "y1": 1352, "x2": 4541, "y2": 1403 }
+      ] }
+    ]
+  },
   "hotZones": {
     "dungeonRegions": [ { "name": "Hythloth", "map": "Felucca" } ],
     "permanentOutdoorRegions": [
@@ -233,6 +287,26 @@
     "autoPickup": true,
     "houseReminder": true,
     "craftedGoodsPricing": true,
+    "townGuardsKillMonsters": true,
+    "staminaRelief": true,
+    "staminaNumbers": true,
+    "ghostHealerReminder": true,
+    "corpseTimerNotice": true,
+    "longerPlayerCorpses": true,
+    "corpseCompass": true,
+    "blueSelfLoot": true,
+    "killerGoesHome": true,
+    "materializing": true,
+    "criminalGhostNotice": true,
+    "craftChances": true,
+    "spellChances": true,
+    "fastHealing": true,
+    "fastMeditation": true,
+    "meditationTip": true,
+    "metalSkillNotice": true,
+    "sellCratesWithKeys": true,
+    "extraVendorBuyers": true,
+    "ordinaryAddonDeeds": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

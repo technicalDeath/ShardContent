@@ -93,4 +93,20 @@ public class HarvestRepeatTests
         using var doc = System.Text.Json.JsonDocument.Parse(File.ReadAllText(path));
         Assert.True(doc.RootElement.GetProperty("featureFlags").GetProperty("harvestAutoRepeat").GetBoolean());
     }
+
+    [Theory]
+    [InlineData(100, 200, false)]
+    [InlineData(199, 200, false)]
+    [InlineData(200, 200, true)]
+    [InlineData(250, 200, true)]
+    [InlineData(10, 0, false)]   // no limit known: never stop for weight
+    public void TheLoopStopsAtTheCarryingLimit(int carried, int max, bool stops) => Assert.Equal(stops, HarvestRepeatService.ShouldStopForWeight(carried, max));
+
+    [Fact]
+    public void TheWeightLineSaysWhyAndWhatToDo()
+    {
+        Assert.Contains("overloaded", HarvestRepeatService.WeightStopText);
+        Assert.Contains("start again", HarvestRepeatService.WeightStopText);
+        Assert.DoesNotContain("Britannia Renaissance", HarvestRepeatService.WeightStopText, System.StringComparison.OrdinalIgnoreCase);
+    }
 }

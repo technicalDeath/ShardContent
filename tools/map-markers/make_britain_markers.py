@@ -81,7 +81,7 @@ def main():
         for i, (x, y) in enumerate(hits if every else hits[:1]):
             rows.append((x, y, label, colour))
     for x, y in cluster(decorations("TrainingDummy")):
-        rows.append((x, y, "Training dummies (practise fighting skills)", "red"))
+        rows.append((x, y, "Training dummies (fighting skills up to 25)", "red"))
     for x, y in cluster(decorations("ArcheryButte")):
         rows.append((x, y, "Archery butte (practise Archery)", "red"))
     rows.append((1336, 1997, "Moongate (to the other towns)", "white"))
