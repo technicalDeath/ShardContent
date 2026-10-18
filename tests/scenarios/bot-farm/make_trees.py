@@ -25,8 +25,8 @@ def tree_ids():
     return {int(h, 16) for h in re.findall(r"0x([0-9A-Fa-f]{4})", body)}
 
 
-def main():
-    x0, y0, x1, y1 = (int(v) for v in sys.argv[1:5]) if len(sys.argv) >= 5 else (1150, 1400, 1800, 1950)
+def build(x0, y0, x1, y1):
+    """The choppable trees (one per harvest bank) in a box, sorted by position."""
     ids = tree_ids()
     idx = open(os.path.join(UODATA, "staidx0.mul"), "rb")
     sta = open(os.path.join(UODATA, "statics0.mul"), "rb")
@@ -45,10 +45,15 @@ def main():
                     x, y = bx * 8 + sx, by * 8 + sy
                     if x0 <= x <= x1 and y0 <= y <= y1:
                         banks.setdefault((x // 4, y // 3), (x, y, z, g))
-    trees = sorted(banks.values())
+    return sorted(banks.values())
+
+
+def main():
+    x0, y0, x1, y1 = (int(v) for v in sys.argv[1:5]) if len(sys.argv) >= 5 else (1150, 1400, 1800, 1950)
+    trees = build(x0, y0, x1, y1)
     out = os.path.join(HERE, "trees.json")
     json.dump(trees, open(out, "w", encoding="utf-8"))
-    print(f"{len(trees)} trees (one per harvest bank) in {x0},{y0}-{x1},{y1} from {len(ids)} tree ids -> {out}")
+    print(f"{len(trees)} trees (one per harvest bank) in {x0},{y0}-{x1},{y1} from {len(tree_ids())} tree ids -> {out}")
 
 
 if __name__ == "__main__":

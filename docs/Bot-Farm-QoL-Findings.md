@@ -179,3 +179,34 @@ All new flags are **off** in source and were on only in the disposable host `wor
   - A stock quirk: the Stone Crafter pays 24 for the Blacksmith's 22-gold black staff. The Stone Crafter and the Holy Mage never spawn in this world, so the test names their shop lists as not in this world.
 - **Result:** run `20261017T235406065Z-4df521`, shard 1,672 passed, no loops.
 - **Not re-run live:** the earlier sell lists (surcoat, potions, writing table, tinker goods, loot) are all items no stock vendor buys, so they are unchanged by the narrower rule.
+
+## Item 32: confirm before a criminal act on a corpse (built 2026-10-17, flag off, waiting for the batch test)
+
+- **The ruling** (2026-10-15): every criminal act gets a warning and a confirmation, and one without is a bug.
+- **The audit:**
+  - The client already asks before attacking an innocent (`EnabledCriminalActionQuery`, on by default) and before a harmful target on an innocent.
+  - It also asks before helping a grey, criminal or red; that question is on for new profiles through `default-profile.json`.
+  - The server flagged without asking in four cases on a corpse that is not yours to loot (`Corpse.IsCriminalAction`): taking an item (stock gave only a text line), using an item inside it, carving it (`Corpse.Carve`, both monster and player corpses), and stealing from it.
+  - Stealing from a player flags only if you are caught. That is a risk, not a certain act, so it doesn't ask.
+- **Built:**
+  - Engine hook `Corpse.CriminalActAllowed` and `Corpse.AllowCriminalAct`, gating `CheckLift`, `CheckItemUse`, `Carve` and the Stealing target. Null keeps stock behaviour.
+  - Shard: `CriminalCorpseConfirm`, flag `criminalCorpseConfirm` (off).
+  - The first such act on a corpse opens a style-guide window, "Criminal act / Do it anyway?". It says whose corpse it is, which act is criminal, and that you will be a criminal for about 2 minutes, that guards will attack you in town and that anyone may attack you.
+  - OKAY covers that corpse for the character until logout. A carve then happens at once; for anything else the character is told to do it again. CANCEL says "You leave it alone."
+- **Checks so far:** unit tests (`CriminalCorpseConfirmTests`, 6). Full suites, run `20261018T010606553Z-ea5641`: shard 1,678, UOContent 1,404.
+- **Batch test to do:**
+  - A cow killed by one character, then carved and looted by another: the window appears, CANCEL leaves the second character blue, OKAY flags them.
+  - A blue player's corpse: the same.
+  - Stealing from a corpse: the same.
+  - Real-client photographs of the window.
+
+## Spell names when a monster casts (built 2026-10-17, flag off, not deployed, waiting for the batch test)
+
+- **Owner's question and answer:** "Is there a switch to enable spell names shown when a monster casts?", then "Monsters speak + names on" and "Do the work but don't deploy it".
+- **Why the client switch alone did nothing:** ClassicUO has the switch (Options, Combat-Spells, "Enable Overhead Spell Format", format `{power} [{spell}]`). But stock ModernUO speaks a spell's power words only when the caster is a player (`Spell.SayMantra`, `Caster.Player`), so monsters cast in silence and the switch had nothing to rename.
+- **Built:**
+  - Engine hook `Spell.NonPlayerSaysMantra`.
+  - Shard `MonsterSpellWords`, flag `monsterSpellWords` (off): any creature caster speaks the words.
+  - New client profiles get `enabled_spell_format` true (`data/client/default-profile.json`, pinned in `ClientDefaultsTests`; `Client-Defaults.md` item 16). The profile file reaches `ClassicUO/bin/dist` only by hand, at deploy.
+- **Checks:** unit tests, and full suites run `20261018T012316055Z-eb9001` (shard 1,683, UOContent 1,404).
+- **Batch test to do:** with the flag on and a new profile, a lich or evil mage casting shows "Kal Vas Flam [Flamestrike]" (or similar) over its head in the real client.

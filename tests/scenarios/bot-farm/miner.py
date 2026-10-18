@@ -6,21 +6,36 @@ in town when it gets heavy, banks the money, and chops a tree now and then with 
 from __future__ import annotations
 
 import argparse
+import json
+import os
 import re
 import sys
 import time
 
-from bot_common import BotBase
+from bot_common import BotBase, load_features
+from memory import cell_of
 from uo import Event
 
 # mountain tiles north of Britain found by scanning the map (x, y, z, land graphic); the server's mining table accepts all of them
 MOUNTAIN = [(1455, 1525, 20, 557), (1455, 1520, 20, 558), (1455, 1515, 20, 558), (1455, 1510, 20, 558), (1450, 1525, 60, 557), (1450, 1515, 40, 558),
             (1440, 1500, 43, 243), (1425, 1505, 11, 240), (1515, 1510, 42, 556), (1515, 1505, 3, 579)]
 RING = [(0, 1), (1, 0), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1), (0, 2), (2, 0), (-2, 0), (0, -2)]
+try:
+    # every mountain-rock edge around Britain, one per 8 x 8 ore bank (make_mountains.py reads them from the map): ten tiles on one hill were
+    # shared by three miners and the smiths who dig their own ore, so every spot was often taken or dug out
+    _known = {(m[0], m[1]) for m in MOUNTAIN}
+    MOUNTAIN += [tuple(t[:4]) for t in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mountains.json"), encoding="utf-8"))
+                 if (t[0], t[1]) not in _known]
+except (OSError, ValueError):
+    pass
 
 
-class MinerBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
+from market import MinerMarket  # noqa: E402
+
+
+class MinerBot(MinerMarket, BotBase):
+    SHED_LAST = ("ingot", "ore")                          # the product: dropped only when nothing else is left (drop_excess)
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_market", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
             "diamond", "amber", "citrine", "tourmaline", "star ")
 
@@ -31,13 +46,23 @@ class MinerBot(BotBase):
         self.blocked = {}
         self.i = 0
 
+    def mountains(self):
+        """The mountain tiles for this bot's home: Britain's list as before, or the home's own (geo.py, made on demand), nearest first."""
+        m = self.__dict__.get("_mountain_list")
+        if m is None:
+            import geo
+            m = self._mountain_list = [tuple(t[:4]) for t in geo.regional("mountains", self.home(), MOUNTAIN)]
+        return m
+
     def ore(self):
         return sum((i.amount or 1) for i in self.c.backpack if "ore" in i.name.lower() or "ingot" in i.name.lower())
 
     def pick(self):
         return next((i for i in self.c.backpack if i.name.lower() in ("pickaxe", "shovel")), None) or next((i for i in self.c.equipped if "pickaxe" in i.name.lower()), None)
 
-    INGOT_BUYER = (1418, 1550)                            # a Britain blacksmith (buys iron ingots at 4 gp)
+    @property
+    def INGOT_BUYER(self):                               # a blacksmith (buys iron ingots at 4 gp)
+        return self.where1(("smith",))
 
     def r_retool(self):
         """The pickaxe wore out (it does, silently): buy another from the Tinker."""
@@ -49,7 +74,7 @@ class MinerBot(BotBase):
         self.note("mine", "The pickaxe wore out after a short while of mining; no warning came before the last swing, and the player must find who sells another.", key="pickworn")
         if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
             self.visit_bank("poor", withdraw=300)
-        got = self.shop_at((1427, 1652), {"pickaxe": 1}, budget=max(self.c.gold - 5, 0))
+        got = self.shop_at(self.where1(("tinker",), item="pickaxe"), {"pickaxe": 1}, budget=max(self.c.gold - 5, 0))
         self.note("shop", f"Pickaxe bought: {got}", key="newpick")
         return True
 
@@ -62,6 +87,9 @@ class MinerBot(BotBase):
             done = self.smelt()
             if done is None:
                 self.note("sell", "A miner with a full load of ore could not reach the forge; no NPC buys raw ore, so the load is worth nothing until smelted.", key="noforgeload")
+        if self.mkt_hold("iron ingot"):
+            self.activity = "keeping ingots for a smith"          # a smith wants them at more than the NPC pays: r_market sells them
+            return True
         self.activity = "selling ingots"
         earned = self.sell_items(self.INGOT_BUYER, ("ingot",))
         self.note("sell", f"A Blacksmith buys the smelted ingots: {earned} gold for a load ({self.ore()} ore and ingots left).", key="ingotsell")
@@ -87,16 +115,32 @@ class MinerBot(BotBase):
         if not tool:
             self.note("mine", "The pickaxe is gone or worn out; no warning came before the last use.", key="nopick")
             return False
-        for _ in range(len(MOUNTAIN)):
-            tx, ty, tz, g = MOUNTAIN[self.i % len(MOUNTAIN)]
-            if self.blocked.get((tx, ty), 0) < time.time() and self.mem.usable("ore", f"{tx},{ty}"):
-                break                                  # not blocked, and no other bot is digging there right now (shared memory)
-            self.i += 1
+        def ok(t):
+            # not blocked for this bot, nobody else digging it now (shared memory), not where bots die, and within 200 tiles of Britain (a
+            # miner on its way to 1144,1855 died past the west-woods orcs)
+            # (the area danger map does not refuse a digger a whole hill: it ranks the spots by risk and refuses only those above its ceiling)
+            return (self.blocked.get((t[0], t[1]), 0) < time.time() and self.mem.usable("ore", f"{t[0]},{t[1]}")
+                    and not self.gather_danger(cell_of(t[0], t[1]))
+                    and max(abs(t[0] - self.work_centre()[0]), abs(t[1] - self.work_centre()[1])) <= (350 if time.time() < self.facts.get("mine_wide_until", 0) else 200))
+        if self.spot is None or not ok(self.spot):
+            cands = [t for t in self.mountains() if ok(t)]
+            if not cands:
+                # every spot blocked or taken: the old loop fell through to the last one anyway (BotMineAdv kept walking to 1450,1525, which has
+                # nowhere to stand); let selling, banking and idling have the tick
+                self.activity = "every mining spot is taken or blocked"
+                return False
+            self.spot = min(cands, key=lambda t: (round(self.gather_risk(cell_of(t[0], t[1])), 1), abs(t[0] - self.c.x) + abs(t[1] - self.c.y)))
+        tx, ty, tz, g = self.spot
         if max(abs(self.c.x - tx), abs(self.c.y - ty)) > 2:
             self.activity = f"walking to the hills at {tx},{ty}"
             if not self.stand_near(tx, ty):
-                self.blocked[(tx, ty)] = time.time() + 600
-                self.mem.record("blocked", kind="ore", key=f"{tx},{ty}", ttl=1800)
+                # each failure doubles the wait (10 minutes, 20, 40 ... up to 6 hours): BotMineAdv walked back to 1450,1525 every ten minutes
+                # for an hour and never once found a place to stand
+                fails = self.facts.setdefault("stand_fails", {})
+                fails[(tx, ty)] = fails.get((tx, ty), 0) + 1
+                ttl = min(6 * 3600, 600 * 2 ** (fails[(tx, ty)] - 1))
+                self.blocked[(tx, ty)] = time.time() + ttl
+                self.mem.record("blocked", kind="ore", key=f"{tx},{ty}", ttl=max(1800, ttl))
                 self.mem.record("res", kind="ore", key=f"{tx},{ty}", ok=False, reason="no reachable standing place")
                 self.log(f"could not stand near {tx},{ty} (now at {self.c.x},{self.c.y})")
                 self.note("mine", "A mountain tile on the map has no reachable spot within two steps; the miner has to look for another.", key="unreachable")
@@ -136,6 +180,13 @@ class MinerBot(BotBase):
         self.dug += n
         return True
 
+    def stall_switch(self, n):
+        """The miner's way out of a stall (stall.py): every spot near is taken, worked out or blocked, so it looks for ore further out, as a
+        player goes to the next hills (350 tiles from the work centre instead of 200, for 30 minutes)."""
+        self.facts["mine_wide_until"] = time.time() + 1800
+        self.spot = None
+        return "look for ore up to 350 tiles out for 30 min (the near hills are taken or worked out)", ("r_mine",)
+
     def r_idle(self):
         time.sleep(3)
         return True
@@ -147,7 +198,11 @@ def main():
     ap.add_argument("--profession", type=int, default=22)
     ap.add_argument("--for", dest="seconds", type=float, default=3600)
     a = ap.parse_args()
-    bot = MinerBot(a.name, a.profession)
+    cls = MinerBot
+    if "broke_plan" in load_features(a.name):                # the miner that can earn when its pickaxe and purse are gone (broke_gather.py)
+        from broke_gather import BrokeMinerBot
+        cls = BrokeMinerBot
+    bot = cls(a.name, a.profession)
     bot.refresh_skills()
     bot.run(a.seconds)
 

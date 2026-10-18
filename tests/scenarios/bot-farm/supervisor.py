@@ -68,6 +68,28 @@ def alive(pid, image=None):
     return image is None or rows[0][0].strip('"').lower() == image.lower()
 
 
+def cohort_bots():
+    """Every bot named in features.json (a feature's treatment list, and the \"_planned\" and \"_control\" tables): the A/B measurement."""
+    try:
+        table = json.load(open(os.path.join(FARM, "features.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    names = set()
+    for k, v in table.items():
+        if isinstance(v, list):
+            names |= set(v)
+        elif isinstance(v, dict) and k in ("_planned", "_control"):
+            for lst in v.values():
+                names |= set(lst)
+    return names
+
+
+def shed_order():
+    """SHED_ORDER with the cohort bots moved to the end: losing a control or treatment bot to a memory dip spoils a comparison."""
+    keep = cohort_bots()
+    return [n for n in SHED_ORDER if n not in keep] + [n for n in SHED_ORDER if n in keep]
+
+
 def brain_pid(name):
     try:
         return int(open(os.path.join(FARM, name, "brain.pid")).read().strip())
@@ -128,6 +150,10 @@ def main():
     bots = []
     for p in a.plan:
         bots += json.load(open(p, encoding="utf-8"))
+    # bots the fixed order does not name (a fresh roster such as plan-run2.json) are shed last-planned first, veterans before newbies
+    global SHED_ORDER
+    rest = [b for b in reversed(bots) if b["name"] not in SHED_ORDER]
+    SHED_ORDER = SHED_ORDER + [b["name"] for b in rest if b.get("mode") != "newbie"] + [b["name"] for b in rest if b.get("mode") == "newbie"]
     end = time.time() + a.hours * 3600
     restarts = {}
     pool = cf.ThreadPoolExecutor(max_workers=2)
@@ -159,7 +185,7 @@ def main():
         with open(os.path.join(FARM, "shed-auto.txt"), "w", encoding="utf-8") as f:
             f.write("".join(n + "\n" for n in sorted(shed - manual_done)))
         if avail < LOW_MB or commit_free < COMMIT_LOW_MB:
-            victim = next((n for n in SHED_ORDER if n not in shed and any(b["name"] == n for b in bots)), None)
+            victim = next((n for n in shed_order() if n not in shed and any(b["name"] == n for b in bots)), None)
             if victim:
                 shed.add(victim)
                 log(f"available memory {avail} MB, free commit {commit_free} MB (floors {LOW_MB}, {COMMIT_LOW_MB}): stopping {victim}")

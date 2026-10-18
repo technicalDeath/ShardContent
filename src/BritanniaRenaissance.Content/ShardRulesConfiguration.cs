@@ -108,6 +108,7 @@ public static class ShardRulesConfiguration
         TownGuardsService.Validate(rules.TownGuards, errors);
         StaminaReliefService.Validate(rules.StaminaRelief, errors);
         DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
+        HousePricing.Validate(rules.HousePricing, errors);
         FastSkillStart.Validate("fastHealing", rules.FastHealing, errors);
         FastSkillStart.Validate("fastMeditation", rules.FastMeditation, errors);
         ExtraVendorBuyers.Validate(rules.ExtraVendorBuyers, errors);
@@ -455,6 +456,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("deathRecovery")]
     public DeathRecoveryRules DeathRecovery { get; set; } = new();
+
+    [JsonPropertyName("housePricing")]
+    public HousePricingRules HousePricing { get; set; } = new();
 
     [JsonPropertyName("fastHealing")]
     public FastSkillStartRules FastHealing { get; set; } = new();
@@ -1022,6 +1026,15 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("ordinaryAddonDeeds")]
     public bool OrdinaryAddonDeeds { get; set; }
 
+    /// <summary>Looting, using, carving or stealing from a corpse that is not yours to loot asks first (QoL item 32); off until the owner says
+    /// activate.</summary>
+    [JsonPropertyName("criminalCorpseConfirm")]
+    public bool CriminalCorpseConfirm { get; set; }
+
+    /// <summary>Creature casters say their spell's power words, as players do; off until the owner says activate.</summary>
+    [JsonPropertyName("monsterSpellWords")]
+    public bool MonsterSpellWords { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -1100,11 +1113,13 @@ public sealed class DeferredFeatureFlags
         if (SellCratesWithKeys) yield return nameof(SellCratesWithKeys);
         if (ExtraVendorBuyers) yield return nameof(ExtraVendorBuyers);
         if (OrdinaryAddonDeeds) yield return nameof(OrdinaryAddonDeeds);
+        if (CriminalCorpseConfirm) yield return nameof(CriminalCorpseConfirm);
+        if (MonsterSpellWords) yield return nameof(MonsterSpellWords);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

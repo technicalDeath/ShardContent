@@ -50,6 +50,7 @@ public static class ShardBootstrap
         AutoPickupService.Configure();
         HouseReminderService.Configure();
         CraftedGoodsPricing.Configure();
+        HousePricing.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
         HelpService.Configure();
         ScrollChanceService.Configure();
@@ -75,6 +76,8 @@ public static class ShardBootstrap
         CrateSaleService.Configure();
         ExtraVendorBuyers.Configure();
         OrdinaryAddonDeeds.Configure();
+        CriminalCorpseConfirm.Configure();
+        MonsterSpellWords.Configure();
         SilverOnlyWeaponLoot.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below

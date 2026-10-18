@@ -43,6 +43,8 @@ The owner's running list of what the player client should do out of the box (sta
 
 15. **No info bar** (owner, 2026-10-13: it was a fourth health display). `show_info_bar` false; the player's own minimal health bar (`custom_bars_toggled` true so health bars are the minimal ones) is opened once beside the potion bar at first login. No numbers for hits, mana and stamina for now (owner, 2026-10-13: tried on the combat bar and on the health bar, neither looked good; address later).
 
+16. **Spell names over the caster** (owner, 2026-10-17: "Monsters speak + names on"). `enabled_spell_format` true, with the client's own format `{power} [{spell}]`, so spoken spell words read "In Por Ylem [Magic Arrow]" (Options, Combat-Spells, "Enable Overhead Spell Format"). Stock ModernUO speaks words only for player casters; the shard flag `monsterSpellWords` (off until activated) makes creatures speak them too. Not yet checked in the real client (batch test).
+
 Looked at and not changed: font and window scale by resolution. The client has no profile option for a whole-UI scale (only the container scale and the tooltip zoom), so it cannot be a default without a client change; the same pass saw nothing else worth changing.
 
 ## Not in a new profile's reach: the owner's own settings

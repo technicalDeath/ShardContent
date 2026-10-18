@@ -32,7 +32,7 @@ CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
-LEAN_CUO = os.path.join(NAVREY, "bin", "Lean4", "cuo.dll")
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean7", "cuo.dll")
 # NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
 LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11", "NAVREY_RUN": "auto"}
 DEFAULT_CLIENT = "lean"     # the client a bot gets unless its plan entry says "client": "full"
@@ -191,6 +191,12 @@ def main():
     ap.add_argument("--reserve-mb", type=int, default=1200, help="stop starting clients when free RAM falls below this")
     args = ap.parse_args()
     plan = json.load(open(args.plan, encoding="utf-8"))[: args.max]
+    # The server renames any character whose name fails its check to "Generic Player" (no digits allowed), and the client's
+    # creation screen refuses it outright, so a bad name would cost a whole run.
+    bad = [b["name"] for b in plan if not (b["name"].isascii() and b["name"].isalpha() and 2 <= len(b["name"]) <= 16)]
+    if bad:
+        print("names must be 2-16 letters (no digits): " + ", ".join(bad), flush=True)
+        return 1
     results = []
     started = 0
     with cf.ThreadPoolExecutor(max_workers=args.parallel) as ex:

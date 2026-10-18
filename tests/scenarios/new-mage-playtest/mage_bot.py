@@ -79,11 +79,24 @@ class Notes:
         print(f"  NOTE [{category}] {text}", flush=True)
 
 
+def connect_retry(name, tries=20, wait=1.0):
+    """connect() again and again for ~20 s: a client's state file is rewritten constantly and a read can land on a stale or half-written one (NotLiveError "state file is ... stale")."""
+    last = None
+    for i in range(tries):
+        try:
+            return connect(name)
+        except Exception as e:                       # NotLiveError, a half-written JSON, a missing file while the client restarts
+            last = e
+            if i + 1 < tries:
+                time.sleep(wait)
+    raise last
+
+
 class Bot:
     def __init__(self, name, admin):
         self.name = name
-        self.c = connect(name)
-        self.admin = connect(admin) if admin else None
+        self.c = connect_retry(name)
+        self.admin = connect_retry(admin) if admin else None
         self.notes = Notes(os.path.join(OUT, "notes.jsonl"))
         self.journal = deque(maxlen=400)
         self.tick_no = 0
@@ -170,6 +183,8 @@ class Bot:
         for e in self.c.events.poll():
             t = e.text
             # (corpse labels are any corpse in view, other players' kills too: the farm's caster counts kills from its own fights instead)
+            if t.startswith("[LABEL]"):
+                self.label_hook(t)
             if t.startswith(("[GUMP]", "[CMD", "[CONTAINER]", "[PERF]", "[NAV]", "[LABEL]", "[WARN", " ")):
                 continue
             self.journal.append(t)
@@ -246,11 +261,35 @@ class Bot:
 
     # ---- rules, in priority order -----------------------------------------------------------------------------
 
+    def label_hook(self, t):
+        """A "[LABEL]" line (a single-click label of a mobile) before the base drops it; the farm's CasterBot uses it."""
+        return None
+
+    def dead_healer(self):
+        """The healer a ghost walks to (the farm's CasterBot avoids one with a fresh death beside it)."""
+        return self.healer_xy()
+
+    def dead_hook(self, event, **kw):
+        """The four moments of a death ("died", "resurrected", "alive", "offer"): True when the hook acted. Nothing here; the farm's CasterBot overrides it."""
+        return False
+
+    def heal_regs(self):
+        """The reagents for Heal are in the pack (farm, feature death_loop; else True and the cast fails by itself): Heal without them only says "More reagents are needed"."""
+        if not getattr(self, "feature", lambda n: False)("death_loop"):
+            return True
+        self.refresh_state()
+        sp = self.k.spell("heal")
+        return sp is None or self.k.reagent_ok(sp, self.regs)
+
     def r_dead(self):
         """A ghost: the way a new player gets home is to walk to a healer and accept the offer."""
+        HEALER = self.dead_healer()
         if not self.c.ghost:
+            was = self.facts["ghost_since"]
             self.facts["ghost_since"] = None
-            return False
+            if was is not None:
+                self.dead_hook("resurrected")
+            return bool(self.dead_hook("alive"))
         if self.facts["ghost_since"] is None:
             self.facts["ghost_since"] = time.time()
             self.deaths += 1
@@ -259,12 +298,15 @@ class Bot:
                 json.dump({"death_spots": self.facts["death_spots"]}, f)
             self.notes.add("death", "The character died.", key=f"death{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
             self.log("DEAD at %d,%d; walking to the healer as a ghost" % (self.c.x, self.c.y))
+            self.dead_hook("died")
         waited = time.time() - self.facts["ghost_since"]
         # a living mobile sees a dead one only if it is in war mode (Mobile.CanSee), so a ghost in peace mode is invisible to the healer: switch it on
         if not self.c.war_mode:
             self.c.war(True)
             self.notes.add("death", "A ghost in peace mode is invisible to the healer (the game only shows a ghost to the living in war mode); nothing tells the player to switch to war mode.", key="ghostwar")
         serial = self.find_gump("Resurrection")
+        if serial and self.dead_hook("offer", serial=serial):
+            return True
         if serial:
             self.log("the healer's offer is open; accepting")
             self.notes.add("death", "A healer's resurrection offer opens as a gump when the ghost walks up to the healer; it offers CONTINUE and CANCEL.", key="healergump")
@@ -303,7 +345,7 @@ class Bot:
         danger = self.dangers(10) or self.prey(3)
         if self.hp_pct() >= 40 or not danger:
             return False
-        if self.c.mana >= 4:
+        if self.c.mana >= 4 and self.spell_ok("heal") and self.heal_regs():
             self.log(f"emergency heal at {self.c.hp}")
             self.cast("heal", "self")
             return True
@@ -337,7 +379,7 @@ class Bot:
 
     def r_heal(self):
         want = 55 if not self.mobs(9) else 45
-        if self.hp_pct() >= want or self.c.mana < 4:
+        if self.hp_pct() >= want or self.c.mana < 4 or not self.spell_ok("heal") or not self.heal_regs():
             return False
         self.cast("heal", "self")
         return True
@@ -457,11 +499,11 @@ class Bot:
             self.facts["catching_breath"] = True             # running everywhere drains stamina to 1; rest until it is back to 70%
         elif not stam_max or self.c.stamina >= 0.7 * stam_max:
             self.facts["catching_breath"] = False
-        if self.c.mana >= mana_max * 0.85 and self.hp_pct() >= 85 and not self.facts.get("catching_breath"):
+        if self.c.mana >= mana_max * 0.7 and self.hp_pct() >= 65 and not self.facts.get("catching_breath"):
             return False
         if self.c.war_mode:
             self.c.war(False)
-        if self.c.hp < self.c.max_hp - 15 and self.c.mana >= 4:
+        if self.c.hp < self.c.max_hp - 15 and self.c.mana >= 4 and self.spell_ok("heal") and self.heal_regs():
             self.cast("heal", "self")
             return True
         if self.c.mana < mana_max * 0.7 and time.time() > self.facts.get("med_until", 0):
@@ -498,6 +540,9 @@ class Bot:
                     pass
         return counts
 
+    def reagent_plan(self):
+        return PLAN                                   # (CasterBot with the feature stock: the reagents its spells use, 20 each)
+
     def r_resupply(self):
         """Out of reagents (or once after the first hunt): walk to the mage shop, open the vendor's list and buy what casting uses."""
         fail = self.facts.get("last_fail")
@@ -519,7 +564,11 @@ class Bot:
             self.facts["last_fail"] = None
             self.notes.add("shop", "Casting stopped with 'More reagents are needed for this spell.'; the starting reagents do not last one hunt.", key="oor")
         self.log(f"resupply: reagents {self.reagent_counts()}; gold {self.c.gold}")
-        res = self.c.goto(1485, 1553).wait(timeout=90)
+        far = self.far_front(self.mage_shop_xy(), "shop", 90, True)
+        if far:
+            self.far_after(far, "shop")
+            return True
+        res = self.c.goto(*self.mage_shop_xy()).wait(timeout=90)
         self.log(f"walk to the mage shop: {res}, now at {self.c.x},{self.c.y}")
         stock = []
         for vendor in [m for m in self.c.mobiles(within=6) if m.notoriety == "Innocent" and m.name]:
@@ -557,6 +606,7 @@ class Bot:
         self.refresh_state(force=True)
         cart = []
         spent_plan = 0
+        plan = self.reagent_plan()
         # what a hunt uses, from the server numbers: Fireball (black pearl) is the cheapest damage per gold the mage can cast reliably at Magery 50 to 60,
         # Magic Arrow (ash) the fallback, Heal (garlic, ginseng, spider silk) the upkeep, Lightning (mandrake + ash) the stretch spell
         for line in stock:
@@ -565,14 +615,16 @@ class Bot:
                 continue
             serial, price, avail, name = m.group(1), int(m.group(2)), int(m.group(3)), m.group(4).strip()
             key = REAGENT_KEYS.get(norm(name))
-            if key and key in PLAN:
+            if key and key in plan:
                 have = self.regs.get(key, 0)
                 budget = self.c.gold - spent_plan
-                want = min(avail, max(0, PLAN[key] - have), max(0, budget // max(price, 1)))
+                want = min(avail, max(0, plan[key] - have), max(0, budget // max(price, 1)))
                 if want > 0:
                     cart += [serial, str(want)]
                     spent_plan += want * price
-                    self.log(f"  buying {want} {name} at {price}gp (have {have}, plan {PLAN[key]})")
+                    self.log(f"  buying {want} {name} at {price}gp (have {have}, plan {plan[key]})")
+                    if hasattr(self, "ev"):
+                        self.ev("restock", item=name.lower(), qty=want, price=price, **{"from": "shop"})
         if cart:
             self.cmd("buy " + " ".join(cart), timeout=10)
             time.sleep(3)
@@ -583,7 +635,9 @@ class Bot:
         if self.facts.get("trained") or not self.facts.get("shopped") or self.dangers(10) or self.hp_pct() < 60:
             return False
         self.facts["trained"] = True
-        res = self.c.goto(1485, 1553).wait(timeout=90)
+        if self.far_front(self.mage_shop_xy(), "train", 90):
+            return False
+        res = self.c.goto(*self.mage_shop_xy()).wait(timeout=90)
         masters = [m for m in self.c.mobiles(within=8) if m.notoriety == "Innocent" and ("mage" in m.name.lower() or True)]
         self.log(f"at the mage guild: {res}; people near: {[m.name for m in masters][:6]}")
         for m in masters[:3]:
@@ -605,8 +659,12 @@ class Bot:
     def visit_bank(self, why, withdraw=0):
         """Walk to the nearest bank, open the box ("bank"), put the junk and the gold above the reserve into it, and take gold out if asked.
         A new player works all of this out alone: the word "bank", dragging gold in, saying "withdraw N" to take it back."""
-        banks = sorted([(1425, 1690), (1650, 1608)], key=lambda p: abs(p[0] - self.c.x) + abs(p[1] - self.c.y))
+        banks = self.bank_xys()
         self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
+        far = self.far_front(banks[0], "bank", 90, self.c.gold)
+        if far:
+            self.far_after(far, "bank")
+            return False
         res = self.c.goto(*banks[0]).wait(timeout=90)
         if not str(res).startswith("arrived"):
             self.log(f"could not reach the bank: {res}")
@@ -643,9 +701,14 @@ class Bot:
         self.c.say("balance")
         time.sleep(1.5)
         for line in self.read_journal():
-            mb = re.search(r"balance is (\d+) gold", line)
+            mb = re.search(r"balance is ([\d,]+) gold", line)     # "1,071 gold": the banker writes thousands with a comma
             if mb:
-                self.facts["bank_balance"] = int(mb.group(1))
+                self.facts["bank_balance"] = int(mb.group(1).replace(",", ""))
+        try:
+            # the banker's line is spoken aloud, and in a crowded bank the last one heard may be another player's: count the open box instead
+            self.facts["bank_balance"] = sum((i.amount or 1) for i in self.c.container(box, timeout=6) if i.name.lower().startswith("gold coin"))
+        except Exception:
+            pass
         if withdraw and self.facts.get("bank_balance", 0) > 0:
             take = min(withdraw, self.facts["bank_balance"])
             self.c.say(f"withdraw {take}")
@@ -690,6 +753,17 @@ class Bot:
     RULES = ["r_dead", "r_flee", "r_avoid", "r_heal", "r_loot", "r_fight", "r_resupply", "r_train", "r_bank", "r_hunt", "r_rest", "r_explore"]
 
     # ---- actions ----------------------------------------------------------------------------------------------
+
+    def far_front(self, xy, role, timeout=90, value=None):
+        """The farm's FarMixin routes walks to places more than 120 tiles away; here there is none: None = go on with the plain walk."""
+        return None
+
+    def far_after(self, res, role):
+        return bool(res)
+
+    def spell_ok(self, name):
+        """Does the spellbook hold this spell? Always yes here; the farm's CasterBot knows its book (spellbook.py)."""
+        return True
 
     def cast(self, spell, target):
         """Cast any Magery spell by name ("heal", "fireball"): the command, the target cursor if the spell has one, and bookkeeping (casts, reagents, what it did)."""
@@ -756,8 +830,21 @@ class Bot:
         dy = self.c.y - m.y
         self.c.goto(self.c.x + (dist if dx >= 0 else -dist), self.c.y + (dist if dy >= 0 else -dist)).wait(timeout=3)
 
+    # where things are: Britain's constants here; the farm's CasterBot overrides these with the gazetteer (places.py)
+    def healer_xy(self):
+        return HEALER
+
+    def town_xy(self):
+        return TOWN
+
+    def mage_shop_xy(self):
+        return (1485, 1553)
+
+    def bank_xys(self):
+        return sorted([(1425, 1690), (1650, 1608)], key=lambda p: abs(p[0] - self.c.x) + abs(p[1] - self.c.y))
+
     def go_town(self):
-        return self.c.goto(*TOWN).wait(timeout=4)
+        return self.c.goto(*self.town_xy()).wait(timeout=4)
 
     # ---- main loop --------------------------------------------------------------------------------------------
 
@@ -785,12 +872,18 @@ class Bot:
                 self.observe()
                 acted = None
                 for name in self.RULES:
+                    skip = getattr(self, "recovery_skip", None)
+                    if skip and skip(name) or getattr(self, "stall_skip", lambda n: False)(name):
+                        continue                              # the farm's CasterBot: this rule would end materializing (recovery.py)
                     if getattr(self, name)():
                         acted = name
                         break
                 if acted != self.last_rule:
                     self.log(f"rule -> {acted}")
                     self.last_rule = acted
+                hook = getattr(self, "after_tick", None)          # the farm's caster: events and features reload (bot-farm/caster.py)
+                if hook:
+                    hook(acted)
                 if acted is None:
                     self.notes.add("stuck", "No rule handled the situation.", key=f"stuck:{self.tick_no // 50}")
                     time.sleep(1)

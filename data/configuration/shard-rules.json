@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "de9cc62db94b2b139f612fe57962e230229e584f",
+  "pinnedModernUoCommit": "40ae95c5fe87ff71dbb9bf126f61b34935ff5003",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -137,6 +137,9 @@
     "curePotions": 5,
     "graceSeconds": 30.0,
     "graceMaxLevel": 0
+  },
+  "housePricing": {
+    "smallHouses": 16000
   },
   "deathRecovery": {
     "playerCorpseMinutes": 10,
@@ -307,6 +310,8 @@
     "sellCratesWithKeys": true,
     "extraVendorBuyers": true,
     "ordinaryAddonDeeds": true,
+    "criminalCorpseConfirm": true,
+    "monsterSpellWords": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

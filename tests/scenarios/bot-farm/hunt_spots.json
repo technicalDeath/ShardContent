@@ -1,0 +1,1156 @@
+{
+ "note": "creature kinds by spawner near Britain (make_hunt_spots.py)",
+ "schema": 1,
+ "spots": [
+  {
+   "home": 80,
+   "kinds": [
+    {
+     "cls": "chicken",
+     "dmg": 1.0,
+     "hits": 3.0,
+     "n": 5
+    }
+   ],
+   "x": 1216,
+   "y": 1823
+  },
+  {
+   "home": 80,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 5
+    },
+    {
+     "cls": "cat",
+     "dmg": 1.0,
+     "hits": 6.0,
+     "n": 5
+    },
+    {
+     "cls": "dog",
+     "dmg": 5.5,
+     "hits": 19.5,
+     "n": 5
+    },
+    {
+     "cls": "rat",
+     "dmg": 1.5,
+     "hits": 6.0,
+     "n": 5
+    }
+   ],
+   "x": 1217,
+   "y": 1825
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1222,
+   "y": 1418
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1225,
+   "y": 1477
+  },
+  {
+   "home": 50,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 2
+    },
+    {
+     "cls": "blackbear",
+     "dmg": 7.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "boar",
+     "dmg": 4.5,
+     "hits": 15.0,
+     "n": 7
+    },
+    {
+     "cls": "brownbear",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "bull",
+     "dmg": 6.5,
+     "hits": 57.0,
+     "n": 2
+    },
+    {
+     "cls": "cougar",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "cow",
+     "dmg": 2.5,
+     "hits": 18.0,
+     "n": 2
+    },
+    {
+     "cls": "eagle",
+     "dmg": 7.5,
+     "hits": 23.5,
+     "n": 2
+    },
+    {
+     "cls": "goat",
+     "dmg": 3.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "greathart",
+     "dmg": 7.0,
+     "hits": 34.0,
+     "n": 2
+    },
+    {
+     "cls": "greywolf",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 5
+    },
+    {
+     "cls": "grizzlybear",
+     "dmg": 10.5,
+     "hits": 84.5,
+     "n": 5
+    },
+    {
+     "cls": "hind",
+     "dmg": 4.0,
+     "hits": 22.0,
+     "n": 2
+    },
+    {
+     "cls": "panther",
+     "dmg": 8.0,
+     "hits": 44.0,
+     "n": 7
+    },
+    {
+     "cls": "pig",
+     "dmg": 3.0,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "sheep",
+     "dmg": 1.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "timberwolf",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 5
+    }
+   ],
+   "x": 1229,
+   "y": 1655
+  },
+  {
+   "home": 50,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 2
+    },
+    {
+     "cls": "blackbear",
+     "dmg": 7.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "boar",
+     "dmg": 4.5,
+     "hits": 15.0,
+     "n": 7
+    },
+    {
+     "cls": "brownbear",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "bull",
+     "dmg": 6.5,
+     "hits": 57.0,
+     "n": 2
+    },
+    {
+     "cls": "cougar",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "cow",
+     "dmg": 2.5,
+     "hits": 18.0,
+     "n": 2
+    },
+    {
+     "cls": "eagle",
+     "dmg": 7.5,
+     "hits": 23.5,
+     "n": 2
+    },
+    {
+     "cls": "goat",
+     "dmg": 3.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "greathart",
+     "dmg": 7.0,
+     "hits": 34.0,
+     "n": 2
+    },
+    {
+     "cls": "greywolf",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 5
+    },
+    {
+     "cls": "grizzlybear",
+     "dmg": 10.5,
+     "hits": 84.5,
+     "n": 5
+    },
+    {
+     "cls": "hind",
+     "dmg": 4.0,
+     "hits": 22.0,
+     "n": 2
+    },
+    {
+     "cls": "panther",
+     "dmg": 8.0,
+     "hits": 44.0,
+     "n": 7
+    },
+    {
+     "cls": "pig",
+     "dmg": 3.0,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "sheep",
+     "dmg": 1.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "timberwolf",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 5
+    }
+   ],
+   "x": 1231,
+   "y": 1462
+  },
+  {
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "giantrat",
+     "dmg": 6.0,
+     "hits": 32.5,
+     "n": 2
+    },
+    {
+     "cls": "hind",
+     "dmg": 4.0,
+     "hits": 22.0,
+     "n": 2
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 2
+    },
+    {
+     "cls": "rabbit",
+     "dmg": 1.0,
+     "hits": 5.0,
+     "n": 3
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 1
+    }
+   ],
+   "x": 1240,
+   "y": 1600
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1244,
+   "y": 1374
+  },
+  {
+   "home": 25,
+   "kinds": [
+    {
+     "cls": "eagle",
+     "dmg": 7.5,
+     "hits": 23.5,
+     "n": 1
+    },
+    {
+     "cls": "greathart",
+     "dmg": 7.0,
+     "hits": 34.0,
+     "n": 2
+    },
+    {
+     "cls": "hind",
+     "dmg": 4.0,
+     "hits": 22.0,
+     "n": 2
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 1
+    },
+    {
+     "cls": "rabbit",
+     "dmg": 1.0,
+     "hits": 5.0,
+     "n": 3
+    }
+   ],
+   "x": 1250,
+   "y": 1701
+  },
+  {
+   "home": 15,
+   "kinds": [
+    {
+     "cls": "giantrat",
+     "dmg": 6.0,
+     "hits": 32.5,
+     "n": 3
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 2
+    },
+    {
+     "cls": "slime",
+     "dmg": 3.0,
+     "hits": 17.0,
+     "n": 2
+    },
+    {
+     "cls": "snake",
+     "dmg": 2.5,
+     "hits": 17.0,
+     "n": 2
+    }
+   ],
+   "x": 1265,
+   "y": 1770
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1300,
+   "y": 1481
+  },
+  {
+   "home": 15,
+   "kinds": [
+    {
+     "cls": "headlessone",
+     "dmg": 7.5,
+     "hits": 23.0,
+     "n": 1
+    },
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 2
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 2
+    }
+   ],
+   "x": 1301,
+   "y": 1869
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1304,
+   "y": 1413
+  },
+  {
+   "home": 10,
+   "kinds": [
+    {
+     "cls": "cow",
+     "dmg": 2.5,
+     "hits": 18.0,
+     "n": 7
+    }
+   ],
+   "x": 1319,
+   "y": 1810
+  },
+  {
+   "home": 10,
+   "kinds": [
+    {
+     "cls": "cow",
+     "dmg": 2.5,
+     "hits": 18.0,
+     "n": 7
+    }
+   ],
+   "x": 1319,
+   "y": 1821
+  },
+  {
+   "home": 80,
+   "kinds": [
+    {
+     "cls": "chicken",
+     "dmg": 1.0,
+     "hits": 3.0,
+     "n": 5
+    }
+   ],
+   "x": 1339,
+   "y": 1788
+  },
+  {
+   "home": 80,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 5
+    },
+    {
+     "cls": "cat",
+     "dmg": 1.0,
+     "hits": 6.0,
+     "n": 5
+    },
+    {
+     "cls": "dog",
+     "dmg": 5.5,
+     "hits": 19.5,
+     "n": 5
+    },
+    {
+     "cls": "rat",
+     "dmg": 1.5,
+     "hits": 6.0,
+     "n": 5
+    }
+   ],
+   "x": 1340,
+   "y": 1790
+  },
+  {
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "greatermongbat",
+     "dmg": 6.0,
+     "hits": 41.0,
+     "n": 1
+    },
+    {
+     "cls": "headlessone",
+     "dmg": 7.5,
+     "hits": 23.0,
+     "n": 2
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 2
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 2
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 1
+    },
+    {
+     "cls": "slime",
+     "dmg": 3.0,
+     "hits": 17.0,
+     "n": 1
+    }
+   ],
+   "x": 1340,
+   "y": 1868
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1361,
+   "y": 1392
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 3
+    },
+    {
+     "cls": "spectre",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 2
+    },
+    {
+     "cls": "wraith",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 2
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 4
+    }
+   ],
+   "x": 1369,
+   "y": 1475
+  },
+  {
+   "home": 10,
+   "kinds": [
+    {
+     "cls": "rat",
+     "dmg": 1.5,
+     "hits": 6.0,
+     "n": 2
+    }
+   ],
+   "x": 1438,
+   "y": 1761
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "harpy",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "lizardman",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "ratman",
+     "dmg": 4.5,
+     "hits": 65.0,
+     "n": 5
+    },
+    {
+     "cls": "troll",
+     "dmg": 11.0,
+     "hits": 114.5,
+     "n": 5
+    }
+   ],
+   "x": 1445,
+   "y": 1365
+  },
+  {
+   "home": 120,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 15
+    },
+    {
+     "cls": "cat",
+     "dmg": 1.0,
+     "hits": 6.0,
+     "n": 15
+    },
+    {
+     "cls": "dog",
+     "dmg": 5.5,
+     "hits": 19.5,
+     "n": 15
+    },
+    {
+     "cls": "rat",
+     "dmg": 1.5,
+     "hits": 6.0,
+     "n": 15
+    }
+   ],
+   "x": 1550,
+   "y": 1658
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "corpser",
+     "dmg": 16.5,
+     "hits": 101.0,
+     "n": 7
+    },
+    {
+     "cls": "direwolf",
+     "dmg": 14.0,
+     "hits": 65.0,
+     "n": 7
+    },
+    {
+     "cls": "ettin",
+     "dmg": 12.0,
+     "hits": 90.5,
+     "n": 7
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 3
+    },
+    {
+     "cls": "ogre",
+     "dmg": 10.0,
+     "hits": 108.5,
+     "n": 7
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 2
+    },
+    {
+     "cls": "reaper",
+     "dmg": 10.0,
+     "hits": 84.5,
+     "n": 7
+    },
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 7
+    }
+   ],
+   "x": 1640,
+   "y": 1431
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "gargoyle",
+     "dmg": 10.5,
+     "hits": 96.5,
+     "n": 4
+    },
+    {
+     "cls": "gazer",
+     "dmg": 7.5,
+     "hits": 66.5,
+     "n": 4
+    }
+   ],
+   "x": 1652,
+   "y": 1400
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "corpser",
+     "dmg": 16.5,
+     "hits": 101.0,
+     "n": 7
+    },
+    {
+     "cls": "direwolf",
+     "dmg": 14.0,
+     "hits": 65.0,
+     "n": 7
+    },
+    {
+     "cls": "ettin",
+     "dmg": 12.0,
+     "hits": 90.5,
+     "n": 7
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 3
+    },
+    {
+     "cls": "ogre",
+     "dmg": 10.0,
+     "hits": 108.5,
+     "n": 7
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 2
+    },
+    {
+     "cls": "reaper",
+     "dmg": 10.0,
+     "hits": 84.5,
+     "n": 7
+    },
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 7
+    }
+   ],
+   "x": 1692,
+   "y": 1463
+  },
+  {
+   "home": 50,
+   "kinds": [
+    {
+     "cls": "bird",
+     "dmg": 0.0,
+     "hits": 10.0,
+     "n": 2
+    },
+    {
+     "cls": "blackbear",
+     "dmg": 7.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "boar",
+     "dmg": 4.5,
+     "hits": 15.0,
+     "n": 7
+    },
+    {
+     "cls": "brownbear",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 5
+    },
+    {
+     "cls": "bull",
+     "dmg": 6.5,
+     "hits": 57.0,
+     "n": 2
+    },
+    {
+     "cls": "cougar",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "cow",
+     "dmg": 2.5,
+     "hits": 18.0,
+     "n": 2
+    },
+    {
+     "cls": "eagle",
+     "dmg": 7.5,
+     "hits": 23.5,
+     "n": 2
+    },
+    {
+     "cls": "goat",
+     "dmg": 3.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "greathart",
+     "dmg": 7.0,
+     "hits": 34.0,
+     "n": 2
+    },
+    {
+     "cls": "greywolf",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 5
+    },
+    {
+     "cls": "grizzlybear",
+     "dmg": 10.5,
+     "hits": 84.5,
+     "n": 5
+    },
+    {
+     "cls": "hind",
+     "dmg": 4.0,
+     "hits": 22.0,
+     "n": 2
+    },
+    {
+     "cls": "panther",
+     "dmg": 8.0,
+     "hits": 44.0,
+     "n": 7
+    },
+    {
+     "cls": "pig",
+     "dmg": 3.0,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "sheep",
+     "dmg": 1.5,
+     "hits": 12.0,
+     "n": 7
+    },
+    {
+     "cls": "timberwolf",
+     "dmg": 7.0,
+     "hits": 41.0,
+     "n": 5
+    }
+   ],
+   "x": 1725,
+   "y": 1447
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "corpser",
+     "dmg": 16.5,
+     "hits": 101.0,
+     "n": 7
+    },
+    {
+     "cls": "direwolf",
+     "dmg": 14.0,
+     "hits": 65.0,
+     "n": 7
+    },
+    {
+     "cls": "ettin",
+     "dmg": 12.0,
+     "hits": 90.5,
+     "n": 7
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 3
+    },
+    {
+     "cls": "ogre",
+     "dmg": 10.0,
+     "hits": 108.5,
+     "n": 7
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 2
+    },
+    {
+     "cls": "reaper",
+     "dmg": 10.0,
+     "hits": 84.5,
+     "n": 7
+    },
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 7
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 7
+    }
+   ],
+   "x": 1726,
+   "y": 1362
+  }
+ ]
+}

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 from collections import defaultdict
 
@@ -69,16 +70,22 @@ def _empty():
     return {
         "fights": defaultdict(lambda: defaultdict(lambda: {"n": 0.0, "kill": 0.0, "death": 0.0, "flee": 0.0, "lost": 0.0, "ttk": 0.0, "dmg": 0.0, "dmgpct": 0.0, "t": 0.0})),
         "cells": defaultdict(lambda: {"kills": 0.0, "deaths": 0.0, "gold": 0.0, "sights": defaultdict(int), "fights": 0.0, "t": 0.0, "pres": []}),
+        "fightb": defaultdict(lambda: {"n": 0.0, "kill": 0.0, "death": 0.0, "flee": 0.0, "lost": 0.0, "t": 0.0}),     # danger.py: fights by skill and pack band
         "vendors": {},
+        "market": {"offers": {}, "deals": {}, "wants": {}},
         "crafts": defaultdict(lambda: defaultdict(lambda: {"n": 0, "ok": 0, "gain": 0, "exc": 0})),
         "res": defaultdict(lambda: defaultdict(lambda: {"ok": 0, "fail": 0, "reason": "", "blocked_until": 0.0, "claim_until": 0.0, "claim_by": ""})),
         "gains": defaultdict(lambda: defaultdict(int)),
+        "kinds": defaultdict(lambda: {"skills": defaultdict(int), "ttk": 0.0, "fights": 0, "kills": 0, "dmgpct": 0.0}),
+        "kloot": defaultdict(lambda: {"n": 0, "gold": 0}),
         "dps": {"hits": 0.0, "ttk": 0.0, "n": 0},
         "events": 0,
     }
 
 
 class SharedMemory:
+    area = None                    # the area danger map (area_danger.AreaDanger, feature danger_map), attached by the brain
+
     def __init__(self, prof: str, bot: str, root: str = MEMDIR):
         self.prof = prof
         self.bot = bot
@@ -164,6 +171,17 @@ class SharedMemory:
                 st["dps"]["hits"] += float(ev["mhits"])
                 st["dps"]["ttk"] += float(ev["ttk"])
                 st["dps"]["n"] += 1
+            try:
+                from danger import fold_band
+                fold_band(st, ev, grp)                    # danger.py's banded fights; a bad record must never stop the fold
+            except Exception:
+                pass
+            kd = st["kinds"][ev["m"]]
+            if ev["outcome"] != "death":
+                kd["ttk"] += float(ev.get("ttk", 0))
+                kd["fights"] += 1
+                kd["kills"] += ev["outcome"] == "kill"
+                kd["dmgpct"] += float(ev.get("dmg", 0)) / max(1.0, float(ev.get("hp", 1)))
             c = st["cells"][ev["cell"]] if ev.get("cell") else None
             if c is not None:
                 self._decay_cell(c, ev["t"])
@@ -176,10 +194,15 @@ class SharedMemory:
             c = st["cells"][ev["cell"]]
             self._decay_cell(c, ev["t"])
             c["deaths"] += 1
+            c["last_death"] = max(c.get("last_death", 0), ev["t"])
         elif k == "loot":
             c = st["cells"][ev["cell"]]
             self._decay_cell(c, ev["t"])
             c["gold"] += int(ev.get("gold", 0))
+            if ev.get("m"):
+                kl = st["kloot"][ev["m"]]
+                kl["n"] += 1
+                kl["gold"] += int(ev.get("gold", 0))
         elif k == "presence":
             c = st["cells"][ev["cell"]]
             c["pres"] = (c["pres"] + [(ev["t"], ev["bot"])])[-16:]
@@ -216,8 +239,33 @@ class SharedMemory:
                 r["claim_until"], r["claim_by"] = until, ev["bot"]
             else:
                 r["blocked_until"] = max(r["blocked_until"], until)
+        elif k == "unblock":
+            st["res"][ev["kind"]][ev["key"]]["blocked_until"] = 0.0          # a block lifted (a wrong verdict, or the reason is gone)
+        elif k == "mkt":
+            mk = st["market"]
+            if ev["kind"] == "offer":
+                mk["offers"][f"{ev['bot']}|{ev['item']}"] = ev
+            elif ev["kind"] == "unoffer":
+                mk["offers"].pop(f"{ev['bot']}|{ev['item']}", None)
+            elif ev["kind"] == "want":
+                mk.setdefault("wants", {})[f"{ev['bot']}|{ev['item']}"] = ev
+            elif ev["kind"] == "unwant":
+                mk.setdefault("wants", {}).pop(f"{ev['bot']}|{ev['item']}", None)
+            elif ev["kind"] == "deal":
+                mk["deals"][ev["id"]] = dict(ev, state="agreed")
+            elif ev["kind"] in ("done", "fail") and ev.get("id") in mk["deals"]:
+                d = mk["deals"][ev["id"]]
+                d["state"] = ev["kind"]
+                if ev["kind"] == "done":
+                    mk["offers"].pop(f"{d['seller']}|{d['item']}", None)
+                    mk.setdefault("wants", {}).pop(f"{d['buyer']}|{d['item']}", None)
         elif k == "gain":
             st["gains"][ev["skill"]][ev.get("action", "?")] += 1
+            # a gain in a fight belongs to the kind fought: named in the record, or read from the activity ("fighting a cow")
+            act = str(ev.get("action", ""))
+            kind = ev.get("m") or (re.sub(r"[^a-z]", "", re.sub(r"^(an?|the) ", "", act[9:].lower())) if act.startswith("fighting ") else None)
+            if kind:
+                st["kinds"][kind]["skills"][ev["skill"]] += 1
 
     # ---- what the brains ask -----------------------------------------------------------------------------------
 
@@ -237,6 +285,37 @@ class SharedMemory:
         n = max(1e-9, f["n"])
         return {"n": f["n"], "kill": f["kill"], "death": f["death"], "flee": f["flee"], "death_rate": f["death"] / n, "flee_rate": f["flee"] / n,
                 "avg_ttk": f["ttk"] / n, "avg_dmg": f["dmg"] / n, "avg_dmgpct": f["dmgpct"] / n}
+
+    def prey_worth(self, m: str, main: str, min_n: int = 5):
+        """What fights with kind m have been worth to this profession: gains per minute of fighting in the main skill and in the others, gold per
+        kill (all bots' loot), minutes per kill and the share of hit points a fight costs. None until min_n fights are known."""
+        self.refresh()
+        kd = self.state["prof"]["kinds"].get(m)
+        if not kd or kd["fights"] < min_n or kd["ttk"] <= 0:
+            return None
+        kl = self.state["world"]["kloot"].get(m)
+        mins = kd["ttk"] / 60.0
+        main_n = kd["skills"].get(main, 0)
+        return {"n": kd["fights"], "main": main_n / mins, "sec": (sum(kd["skills"].values()) - main_n) / mins,
+                "gold": (kl["gold"] / kl["n"]) if kl and kl["n"] else 0.0, "min_per_kill": mins / max(1, kd["kills"]), "dmgpct": kd["dmgpct"] / kd["fights"]}
+
+    def best_offer(self, item: str, below: float, not_from: str, fresh: float = 900):
+        """The cheapest open offer of exactly this item under `below` gold, posted in the last `fresh` seconds by another bot, with no deal on it."""
+        self.refresh()
+        now = time.time()
+        busy = {(d["seller"], d["item"]) for d in self.state["world"]["market"]["deals"].values() if d["state"] == "agreed" and now - d["t"] < 420}
+        offers = [o for o in self.state["world"]["market"]["offers"].values()
+                  if o["item"] == item and o["price"] < below and o["bot"] != not_from and now - o["t"] < fresh and (o["bot"], item) not in busy]
+        return min(offers, key=lambda o: o["price"]) if offers else None
+
+    def deal_for(self, bot: str):
+        """An agreed deal this bot is in (as seller or buyer), not older than seven minutes."""
+        self.refresh()
+        now = time.time()
+        for d in self.state["world"]["market"]["deals"].values():
+            if d["state"] == "agreed" and bot in (d["seller"], d["buyer"]) and now - d["t"] < 420:
+                return d
+        return None
 
     def measured_dps(self, min_n: int = 6):
         """Hit points of damage per second this profession's bots have actually dealt, from their kills (None until there are min_n kills to average)."""
@@ -297,9 +376,50 @@ class SharedMemory:
         c = self.state["world"]["cells"].get(cell)
         return bool(c and sum(n for k, n in c["sights"].items() if any(w in k for w in self.CAMP_KINDS)) >= 4)
 
-    def dangerous_cell(self, cell: str) -> bool:
+    news = None             # the other memory folder (newbie <-> veteran), for fresh deaths only: what any player hears
+
+    def fresh_death(self, cell: str, window: float = 1200.0) -> bool:
+        """A bot died in this cell or next door in the last twenty minutes (this memory only)."""
+        self.refresh()
+        now = time.time()
+        x, y = (int(v) for v in cell.split(","))
+        for dx in (-CELL, 0, CELL):
+            for dy in (-CELL, 0, CELL):
+                c = self.state["world"]["cells"].get(f"{x + dx},{y + dy}")
+                if c and now - c.get("last_death", 0) < window:
+                    return True
+        return False
+
+    def area_risk(self, cell: str) -> float:
+        """How deadly the area danger map says the cell is (0.0 when there is no map or the bot is outside the feature)."""
+        a = self.area
+        if a is None:
+            return 0.0
+        try:
+            return float(a.rank(cell))
+        except Exception:
+            return 0.0
+
+    def area_ok(self, cell: str) -> bool:
+        """A gatherer may use the cell: its map risk is at or under the map's ceiling."""
+        a = self.area
+        return self.area_risk(cell) <= (getattr(a, "ceiling", 0.5) if a is not None else 1.0)
+
+    def dangerous_cell(self, cell: str, area: bool = True) -> bool:
         """A cell where bots die more than they kill, judged on the cell and on its eight neighbours together: a killing ground spreads its deaths
-        over several cells, each of which alone looked safe."""
+        over several cells, each of which alone looked safe. A fresh death the other memory folder knows of counts too (news)."""
+        if area and self.area is not None:
+            try:
+                if self.area.risky(cell):
+                    return True                    # the area danger map: spawners too strong for this skill, or deaths that keep happening here
+            except Exception:
+                pass
+        if self.news is not None:
+            try:
+                if self.news.fresh_death(cell):
+                    return True
+            except Exception:
+                pass
         now = time.time()
         x, y = (int(v) for v in cell.split(","))
         deaths = kills = 0.0
@@ -309,6 +429,8 @@ class SharedMemory:
                 c = self.state["world"]["cells"].get(f"{x + dx},{y + dy}")
                 if not c:
                     continue
+                if now - c.get("last_death", 0) < 1200:
+                    return True                           # a bot died here or next door in the last twenty minutes: what killed it is still about
                 self._decay_cell(c, now)
                 deaths += c["deaths"]
                 kills += c["kills"]
@@ -391,7 +513,37 @@ class SharedMemory:
 FRONTIER_CENTER = (1470, 1620)      # Britain
 
 
-def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center=None, radius=None):
+def fallback_spot(mem, fixed, is_bad, on_fallback=None):
+    """choose_spot found no candidate. With the area danger map on for this bot: the fixed seed that is least bad (old-rule bad, then blocked, then area risk); else a random seed as before."""
+    import random
+    spots = [tuple(s) for s in fixed]
+    area = getattr(mem, "area", None)
+    try:
+        on = area is not None and area.enabled()
+    except Exception:
+        on = False
+    if not on:
+        return random.choice(spots)
+
+    def key(p):
+        cell = cell_of(*p)
+        try:
+            legacy = mem.dangerous_cell(cell, area=False)
+        except TypeError:
+            legacy = mem.dangerous_cell(cell)
+        return (bool(is_bad(*p) or legacy or mem.camp_cell(cell)), not mem.usable("spot", cell), round(mem.area_risk(cell), 1), random.random())
+    best = min(spots, key=key)
+    if on_fallback:
+        k = key(best)
+        try:
+            on_fallback(best, f"no candidate passed the filters; the least bad of {len(spots)} seeds (old-rule bad {k[0]}, blocked {k[1]}, area risk {k[2]})")
+        except Exception:
+            pass
+    return best
+
+
+
+def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center=None, radius=None, on_fallback=None):
     """Pick the next hunting spot: the fixed ring plus the best-known cells in the shared memory; spots for which is_bad(x, y) is true and cells that have killed
     bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried. A spot within 20 tiles of
     `here` or of a spot in `recent` (just reached) is left out: arriving somewhere with nothing to fight must move the bot on, not choose the same place
@@ -432,6 +584,6 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center
     scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands
               if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not mem.camp_cell(cell_of(x, y))]
     if not scored:
-        return random.choice(list(fixed))
+        return fallback_spot(mem, fixed, is_bad, on_fallback)
     scored.sort(reverse=True)
     return scored[0][1]
