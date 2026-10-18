@@ -49,6 +49,7 @@ public static class ShardBootstrap
         NewPlayerTipsService.Configure();
         AutoPickupService.Configure();
         HouseReminderService.Configure();
+        SellPriceTooltips.Configure();
         CraftedGoodsPricing.Configure();
         HousePricing.Configure();
         WorldSeason.Configure();

@@ -12,7 +12,7 @@ The owner's running list of things to plan and build. Nothing here is signed off
 
 ## Added by the owner
 
-- **Later (owner, 2026-10-18): the item tooltip says where an item sells and for how much,** for example "Sells to Butcher for 3gp". Notes for planning:
+- **BUILT 2026-10-18, flag `sellPriceTooltips` ON by default (owner: no activation needed), uncommitted, not deployed, no sale test yet (`Tooltip-Sell-Price-Plan.md`): the item tooltip says `Value: Ngp at <Vendor>` (best shop only; `each` after the price for a stack).** Seen in the real client on a longsword, dagger and ruby with the earlier wording; the final wording was not re-photographed and a real sale was not compared with the tooltip. Original request: the item tooltip says where an item sells and for how much, for example "Sells to Butcher for 3gp". Notes for planning:
   - It would extend the shard's own tooltip list (`ItemTooltipService`, flag `itemTooltips`).
   - The prices are what the vendor actually pays: the stock lists, plus crafted-goods pricing, plus `extraVendorBuyers`. The data that `VendorResaleAuditTests` already builds is a ready source.
   - Only vendors that spawn in this world should count (the Britain shops).

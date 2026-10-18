@@ -935,6 +935,10 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("houseReminder")]
     public bool HouseReminder { get; set; }
 
+    /// <summary>An item's tooltip says which vendor pays the most for it and how much, "Value: 3gp at Butcher" (docs/Tooltip-Sell-Price-Plan.md); on by default on the owner's word (2026-10-18).</summary>
+    [JsonPropertyName("sellPriceTooltips")]
+    public bool SellPriceTooltips { get; set; }
+
     /// <summary>Vendors pay at least material cost plus 25 percent for crafted items and sell their own at least half again above that (docs/Crafted-Goods-Pricing.md); the owner authorized it 2026-10-14.</summary>
     [JsonPropertyName("craftedGoodsPricing")]
     public bool CraftedGoodsPricing { get; set; }
@@ -1096,6 +1100,7 @@ public sealed class DeferredFeatureFlags
         if (NewPlayerTips) yield return nameof(NewPlayerTips);
         if (AutoPickup) yield return nameof(AutoPickup);
         if (HouseReminder) yield return nameof(HouseReminder);
+        if (SellPriceTooltips) yield return nameof(SellPriceTooltips);
         if (CraftedGoodsPricing) yield return nameof(CraftedGoodsPricing);
         if (TownGuardsKillMonsters) yield return nameof(TownGuardsKillMonsters);
         if (StaminaRelief) yield return nameof(StaminaRelief);
@@ -1123,7 +1128,7 @@ public sealed class DeferredFeatureFlags
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

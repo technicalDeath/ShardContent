@@ -292,6 +292,7 @@
     "newPlayerTips": true,
     "autoPickup": true,
     "houseReminder": true,
+    "sellPriceTooltips": true,
     "craftedGoodsPricing": true,
     "townGuardsKillMonsters": true,
     "staminaRelief": true,

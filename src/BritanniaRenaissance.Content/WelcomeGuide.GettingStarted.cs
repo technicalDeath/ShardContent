@@ -522,6 +522,15 @@ public static partial class WelcomeGuide
             "Say stable to an animal trainer, then click the pet to leave there, and say claim to get your pets back. Stabling costs 30 gold for each pet; claiming is free. Unload a pack animal first."
         };
 
+        if (c.SellPriceTooltips)
+        {
+            p.Add(HeadingMark + "What things sell for");
+            p.Add(
+                "Hover over something to see which shop pays the most for it and how much, for example Value: 3gp at Butcher (3gp each, if it is a stack). " +
+                "Nothing is shown when no shop buys it, or when what it is worth is still unknown (a weapon or armor piece you have not identified)."
+            );
+        }
+
         if (c.Furnishers)
         {
             p.Add(HeadingMark + "The Furnisher");

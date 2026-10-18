@@ -60,7 +60,8 @@ public static partial class WelcomeGuide
         bool CorpseCompass = false,
         bool BlueSelfLoot = false,
         bool KillerGoesHome = false,
-        bool Materializing = false
+        bool Materializing = false,
+        bool SellPriceTooltips = false
     );
 
     public static Context Current =>
@@ -102,7 +103,8 @@ public static partial class WelcomeGuide
             CorpseCompass.Enabled,
             BlueSelfLoot.Enabled,
             KillerGoesHome.Enabled,
-            Materializing.Enabled
+            Materializing.Enabled,
+            global::BritanniaRenaissance.Content.SellPriceTooltips.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>

@@ -157,6 +157,11 @@ public static class ItemTooltipService
                         yield return line;
                     }
 
+                    foreach (var line in SellLines(item))
+                    {
+                        yield return line;
+                    }
+
                     yield break;
                 }
             case BaseIngot ingot when !CraftResources.IsStandard(ingot.Resource):
@@ -205,6 +210,11 @@ public static class ItemTooltipService
                         yield return line;
                     }
 
+                    foreach (var line in SellLines(item))
+                    {
+                        yield return line;
+                    }
+
                     yield break;
                 }
             case BaseArmor armor:
@@ -239,6 +249,11 @@ public static class ItemTooltipService
                         yield return line;
                     }
 
+                    foreach (var line in SellLines(item))
+                    {
+                        yield return line;
+                    }
+
                     yield break;
                 }
         }
@@ -246,6 +261,25 @@ public static class ItemTooltipService
         foreach (var line in LootLines(item.LootType))
         {
             yield return line;
+        }
+
+        foreach (var line in SellLines(item))
+        {
+            yield return line;
+        }
+    }
+
+    /// <summary>Which shop pays the most for the item, behind its own flag; nothing for unidentified magic (the shop price of a weapon or armor piece rises with its magic).</summary>
+    private static IEnumerable<Line> SellLines(Item item)
+    {
+        if (!SellPriceTooltips.Enabled || IsUnidentifiedMagic(item))
+        {
+            yield break;
+        }
+
+        if (SellPriceTooltips.LineFor(item) is { } text)
+        {
+            yield return Line.Text(text);
         }
     }
 
