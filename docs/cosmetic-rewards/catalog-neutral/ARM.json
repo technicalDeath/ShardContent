@@ -1,0 +1,2165 @@
+[
+ {
+  "slug": "dark-oak-weapon-rack",
+  "name": "Dark Oak Weapon Rack",
+  "category": "ARM",
+  "subcategory": "Weapon racks",
+  "parts": [
+   {
+    "id": "0x41AD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x41AE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x41B3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x41B4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "rustic",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A long beam of dark oak on a stepped foot, hilts standing proud along its top and blade tips hanging below.",
+  "era": {
+   "grade": "N",
+   "note": "A plain two-piece weapon rack of carved dark oak, ordinary in any armoury. Art first appeared with the Stygian Abyss lands (2009); the object itself is generic.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "two-tile floor rack (south 0x41AD + 0x41AE at +1,0; east 0x41B3 + 0x41B4 at 0,+1); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-001"
+ },
+ {
+  "slug": "empty-oak-weapon-rack",
+  "name": "Empty Oak Weapon Rack",
+  "category": "ARM",
+  "subcategory": "Weapon racks",
+  "parts": [
+   {
+    "id": "0x41C0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x41C1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x41CD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x41CE",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "The same sturdy oak beam with every peg bare: the guard has his blades in hand today.",
+  "era": {
+   "grade": "N",
+   "note": "The unloaded twin of the dark oak weapon rack, a plain timber stand. Art first appeared with the Stygian Abyss lands (2009); the object is generic.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "two-tile floor rack (south 0x41C0 + 0x41C1 at +1,0; east 0x41CD + 0x41CE at 0,+1); decor-only, inert",
+  "variantOf": "dark-oak-weapon-rack",
+  "id": "CN-ARM-002"
+ },
+ {
+  "slug": "mahogany-sword-rail",
+  "name": "Mahogany Sword Rail",
+  "category": "ARM",
+  "subcategory": "Weapon racks",
+  "parts": [
+   {
+    "id": "0x41DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x41DB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x41E6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x41E7",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "Two russet rails joined by little hooks, from which a row of long swords hangs point-down.",
+  "era": {
+   "grade": "N",
+   "note": "A double rail hung with swords, a standard armoury fitting with no tie to any later race or skill. Art first appeared with the Stygian Abyss lands (2009).",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "two-tile floor rack (south 0x41DA + 0x41DB at +1,0; east 0x41E6 + 0x41E7 at 0,+1); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-003"
+ },
+ {
+  "slug": "polearm-stand",
+  "name": "Polearm Stand",
+  "category": "ARM",
+  "subcategory": "Weapon racks",
+  "parts": [
+   {
+    "id": "0x41FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x41FF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x420E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x420F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A splayed fan of spears, glaives and pikes held upright in a crooked frame of pale timber.",
+  "era": {
+   "grade": "N",
+   "note": "A frame holding a fan of polearms, the kind kept in any barracks or keep. Art first appeared with the Stygian Abyss lands (2009); nothing about it ties to a later expansion.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "two-tile floor rack (south 0x41FE + 0x41FF at +1,0; east 0x420E + 0x420F at 0,+1); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-004"
+ },
+ {
+  "slug": "armourers-mail-frame",
+  "name": "Armourer's Mail Frame",
+  "category": "ARM",
+  "subcategory": "Weapon racks",
+  "parts": [
+   {
+    "id": "0x421E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x421F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4226",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4227",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "A tall triangle of timber with a skirt of ring-mail stretched across it, as an armourer leaves it between orders.",
+  "era": {
+   "grade": "N",
+   "note": "A plain wooden frame carrying draped mail, a smithy fixture rather than anything race-specific. Art first appeared with the Stygian Abyss lands (2009).",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "two-tile floor frame (south 0x421E + 0x421F at +1,0; east 0x4226 + 0x4227 at 0,+1); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-005"
+ },
+ {
+  "slug": "shield-and-crossed-swords",
+  "name": "Shield and Crossed Swords",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x63D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63D5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x99A1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x99A2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A round wooden shield with two broadswords crossed over its face, mounted for a knight's great hall.",
+  "era": {
+   "grade": "N",
+   "note": "A shield with crossed blades, the oldest sign of martial pride in any hall. Generic heraldic display; the art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile wall plaque (south 0x63D4 + 0x63D5 at +1,0; east 0x99A1 + 0x99A2 at 0,+1); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-006"
+ },
+ {
+  "slug": "arrow-pierced-helm",
+  "name": "Arrow-Pierced Helm",
+  "category": "ARM",
+  "subcategory": "Battle relics",
+  "parts": [
+   {
+    "id": "0xAA39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA3A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A close helm bristling with three arrows, taken from a field where the archers did their work.",
+  "era": {
+   "grade": "N",
+   "note": "A battlefield relic: a plain steel helm pierced by arrows. Fits any age of war. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAA39 south, 0xAA3A east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-007"
+ },
+ {
+  "slug": "spear-run-helm",
+  "name": "Spear-Run Helm",
+  "category": "ARM",
+  "subcategory": "Battle relics",
+  "parts": [
+   {
+    "id": "0xAA3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA3C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A dented helm impaled on a spear-shaft, its steel gone dull and dark with old stains.",
+  "era": {
+   "grade": "N",
+   "note": "A battlefield relic: a helm run through by a spear. Fits any age of war. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAA3B south, 0xAA3C east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-008"
+ },
+ {
+  "slug": "arrow-riddled-buckler",
+  "name": "Arrow-Riddled Buckler",
+  "category": "ARM",
+  "subcategory": "Battle relics",
+  "parts": [
+   {
+    "id": "0xAA3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA3E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A small round buckler lying face-up, fletched shafts standing in it like reeds in a pond.",
+  "era": {
+   "grade": "N",
+   "note": "A battlefield relic: a buckler stuck with arrows. Fits any age of war. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAA3D south, 0xAA3E east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-009"
+ },
+ {
+  "slug": "arrow-riddled-heater-shield",
+  "name": "Arrow-Riddled Heater Shield",
+  "category": "ARM",
+  "subcategory": "Battle relics",
+  "parts": [
+   {
+    "id": "0xAA3F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA40",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A knight's heater shield, planed and painted once, now fletched like a hedgehog and still holding together.",
+  "era": {
+   "grade": "N",
+   "note": "A battlefield relic: a medium shield stuck with arrows. Fits any age of war. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAA3F south, 0xAA40 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-010"
+ },
+ {
+  "slug": "arrow-riddled-tower-shield",
+  "name": "Arrow-Riddled Tower Shield",
+  "category": "ARM",
+  "subcategory": "Battle relics",
+  "parts": [
+   {
+    "id": "0xAA41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA42",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A tall tower shield laid on the ground, its face thick with arrows from some forgotten siege.",
+  "era": {
+   "grade": "N",
+   "note": "A battlefield relic: a large shield stuck with arrows. Fits any age of war. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAA41 south, 0xAA42 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-011"
+ },
+ {
+  "slug": "plate-cuirass-on-a-peg",
+  "name": "Plate Cuirass on a Peg",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x9EE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EE8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "noble",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A burnished plate cuirass hung from its peg, the smith's masterwork waiting for a buyer of means.",
+  "era": {
+   "grade": "N",
+   "note": "A plain plate breastplate hung for display. Plate armour is original UO equipment; only this wall-display art is later (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x9EE7 south, 0x9EE8 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-012"
+ },
+ {
+  "slug": "plate-pauldrons-on-a-hook",
+  "name": "Plate Pauldrons on a Hook",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x9EE9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EEA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "noble",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A pair of rounded steel pauldrons slung on a leather loop, ready for the armourer's polishing cloth.",
+  "era": {
+   "grade": "N",
+   "note": "Plate arm armour hung from a loop for display. Plate is original UO equipment; only this display art is later (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x9EE9 south, 0x9EEA east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-013"
+ },
+ {
+  "slug": "plate-greaves-on-a-hook",
+  "name": "Plate Greaves on a Hook",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x9EEB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EEC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "noble",
+   "craft:blacksmithing"
+  ],
+  "blurb": "Segmented plate leggings hanging by a strap, the lames shining where the sun finds them.",
+  "era": {
+   "grade": "N",
+   "note": "Plate leg armour hung from a strap for display. Plate is original UO equipment; only this display art is later (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x9EEB south, 0x9EEC east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-014"
+ },
+ {
+  "slug": "mannequin-in-leather",
+  "name": "Mannequin in Leather",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "humble",
+   "craft:tailoring"
+  ],
+  "blurb": "A tailor's mannequin dressed in a plain leather tunic, so a customer can judge the fit.",
+  "era": {
+   "grade": "N",
+   "note": "Dress form and leather tunic, both original UO art. The main catalog covers other mannequins; this leather tunic art was left over. Generic.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "dress form 0x0EC6 with the leather tunic display graphic 0x13CA drawn over it; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-015"
+ },
+ {
+  "slug": "crimson-barding-stand",
+  "name": "Crimson and Azure Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0xAA56",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAA57",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA58",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA59",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A warhorse's full barding in crimson and azure silks, set on a trestle with its crest tilted high.",
+  "era": {
+   "grade": "N",
+   "note": "A horse's barding on a stand, a stable and tournament fitting. Barding is original UO equipment; this heraldic-colour display art is later (2010s) and carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0xAA56 + 0xAA57 at 0,+1; east 0xAA58 + 0xAA59 at +1,0); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-016"
+ },
+ {
+  "slug": "violet-barding-stand",
+  "name": "Violet and Cyan Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0xAA73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAA74",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA75",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA76",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "Barding of deep violet and cyan, the horse-head plate polished until it throws the torchlight.",
+  "era": {
+   "grade": "N",
+   "note": "A horse's barding on a stand, a stable and tournament fitting. Barding is original UO equipment; this heraldic-colour display art is later (2010s) and carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0xAA73 + 0xAA74 at 0,+1; east 0xAA75 + 0xAA76 at +1,0); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-017"
+ },
+ {
+  "slug": "emerald-barding-stand",
+  "name": "Emerald Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0xAB21",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAB22",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAB23",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAB24",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "Green-trimmed barding resting on its trestle, as a royal stableman keeps it between tournaments.",
+  "era": {
+   "grade": "N",
+   "note": "A horse's barding on a stand, a stable and tournament fitting. Barding is original UO equipment; this heraldic-colour display art is later (2010s) and carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0xAB21 + 0xAB22 at 0,+1; east 0xAB23 + 0xAB24 at +1,0); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-018"
+ },
+ {
+  "slug": "cobalt-barding-stand",
+  "name": "Cobalt and Gold Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0xAB95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAB96",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAB97",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAB98",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A knight's barding in cobalt blue picked out with gold, mounted like a prize for all to see.",
+  "era": {
+   "grade": "N",
+   "note": "A horse's barding on a stand, a stable and tournament fitting. Barding is original UO equipment; this heraldic-colour display art is later (2010s) and carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0xAB95 + 0xAB96 at 0,+1; east 0xAB97 + 0xAB98 at +1,0); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-019"
+ },
+ {
+  "slug": "scarlet-barding-stand",
+  "name": "Scarlet Checkered Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0xAC02",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAC03",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAC04",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAC05",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "Barding of scarlet and amber check on a wooden trestle, ready for the joust-ground.",
+  "era": {
+   "grade": "N",
+   "note": "A horse's barding on a stand, a stable and tournament fitting. Barding is original UO equipment; this heraldic-colour display art is later (2010s) and carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0xAC02 + 0xAC03 at 0,+1; east 0xAC04 + 0xAC05 at +1,0); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-020"
+ },
+ {
+  "slug": "steel-barding-stand",
+  "name": "Steel Barding Stand",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x1379",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1378",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1376",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1377",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "noble",
+   "animal"
+  ],
+  "blurb": "Full steel barding for a warhorse, mailed from nose to croup and propped on a cross-footed trestle.",
+  "era": {
+   "grade": "N",
+   "note": "Horse barding on a trestle, original UO decoration art that the main catalog left unused. Generic knightly display.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "two-tile stand (south 0x1379 + 0x1378 at 0,+1; east 0x1376 + 0x1377 at +1,0), placed this way in a Felucca stable; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-021"
+ },
+ {
+  "slug": "emerald-heart-shield",
+  "name": "Emerald Heart Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB193",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB194",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield with a golden heart on its field, the sign of a tender hand in battle.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB193 south, 0xB194 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-022"
+ },
+ {
+  "slug": "emerald-hand-shield",
+  "name": "Emerald Hand Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB195",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB196",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield blazoned with an open golden hand, a promise of plain dealing.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB195 south, 0xB196 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-023"
+ },
+ {
+  "slug": "emerald-ankh-shield",
+  "name": "Emerald Ankh Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB197",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB198",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield bearing the golden ankh, hung where the faithful will see it.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB197 south, 0xB198 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-024"
+ },
+ {
+  "slug": "emerald-tear-shield",
+  "name": "Emerald Tear Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB199",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB19A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield with a single golden teardrop, for a knight who gave what he had.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB199 south, 0xB19A east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-025"
+ },
+ {
+  "slug": "emerald-chalice-shield",
+  "name": "Emerald Chalice Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB19B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB19C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield showing a golden chalice, the cup held out to every traveller.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB19B south, 0xB19C east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-026"
+ },
+ {
+  "slug": "emerald-sword-shield",
+  "name": "Emerald Sword Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB19D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB19E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield with a plain golden sword set point-up, a sign of steady courage.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB19D south, 0xB19E east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-027"
+ },
+ {
+  "slug": "emerald-crook-shield",
+  "name": "Emerald Crook Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xAFC1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFC2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield marked with two crossed shepherd's crooks, the badge of the humble.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xAFC1 south, 0xAFC2 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-028"
+ },
+ {
+  "slug": "emerald-scales-shield",
+  "name": "Emerald Scales Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xAFC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFC4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A green kite shield hung with a pair of level golden scales, the badge of fair judges.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in the green of the Virtues, whose emblems are classic Ultima lore and old as UO's shrines. The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xAFC3 south, 0xAFC4 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-029"
+ },
+ {
+  "slug": "crimson-moon-shield",
+  "name": "Crimson Moon Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB19F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1A0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A black-and-crimson oval shield bearing a golden crescent, a night-watch badge.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB19F south, 0xB1A0 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-030"
+ },
+ {
+  "slug": "crimson-splintered-shield",
+  "name": "Crimson Splintered Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB1A1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1A2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield that wears a golden broken shield upon its face, a coward's warning.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB1A1 south, 0xB1A2 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-031"
+ },
+ {
+  "slug": "crimson-axe-shield",
+  "name": "Crimson Axe Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB1A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1A4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield crossed with a golden double axe, a brute's blazon.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB1A3 south, 0xB1A4 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-032"
+ },
+ {
+  "slug": "crimson-skull-shield",
+  "name": "Crimson Skull Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB1A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1A6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield studded with a golden skull, hung where it cannot be missed.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB1A5 south, 0xB1A6 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-033"
+ },
+ {
+  "slug": "crimson-crooked-scales-shield",
+  "name": "Crimson Crooked Scales Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB1A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1A8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield with a golden balance dipped to one side, the mark of a bought verdict.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB1A7 south, 0xB1A8 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-034"
+ },
+ {
+  "slug": "crimson-masks-shield",
+  "name": "Crimson Masks Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xB1A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB1AA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield showing the twin golden masks of the players' stage.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xB1A9 south, 0xB1AA east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-035"
+ },
+ {
+  "slug": "crimson-coin-shield",
+  "name": "Crimson Coin Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xAFBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFBE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield bearing one great golden coin, the sign of a miser's house.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xAFBD south, 0xAFBE east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-036"
+ },
+ {
+  "slug": "crimson-scepter-shield",
+  "name": "Crimson Scepter Shield",
+  "category": "ARM",
+  "subcategory": "Emblem shields",
+  "parts": [
+   {
+    "id": "0xAFBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFC0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A crimson oval shield set with a golden scepter, a petty king's pride.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic wall shield in crimson and black, with the emblems of the Virtues' opposites, themselves classic Ultima lore (UO's dungeons are named for them). The art is a later addition (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile wall shield (0xAFBF south, 0xAFC0 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-037"
+ },
+ {
+  "slug": "siege-catapult",
+  "name": "Siege Catapult",
+  "category": "ARM",
+  "subcategory": "Siege and ordnance",
+  "parts": [
+   {
+    "id": "0x164C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1659",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x164B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x165E",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x164D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1649",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1649",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x164E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1655",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x164E",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x164F",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1663",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "martial",
+   "rustic",
+   "dungeon"
+  ],
+  "blurb": "A timber-framed catapult with its throwing-arm cocked back, left standing in a quiet corner of the yard.",
+  "era": {
+   "grade": "N",
+   "note": "A wooden siege engine, plain medieval ordnance. Original UO art, placed as a complete catapult in Felucca near Skara Brae (12 pieces); the main catalog left it out.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "12 statics assembled exactly as the Felucca map places them (offsets copied from the world statics); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-038"
+ },
+ {
+  "slug": "sparring-man-at-arms",
+  "name": "Sparring Man-at-Arms",
+  "category": "ARM",
+  "subcategory": "Practice and sport",
+  "parts": [
+   {
+    "id": "0x981C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9821",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble"
+  ],
+  "blurb": "A steel-capped soldier with kite shield and short sword, frozen mid-guard as though waiting for a challenger.",
+  "era": {
+   "grade": "N",
+   "note": "A fighting-yard dummy shaped like a soldier in plain plate and shield, a training-ground fixture in any age. The art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x981C south idle, 0x9821 east idle); the other tiles of the family are animation frames, not used",
+  "variantOf": null,
+  "id": "CN-ARM-039"
+ },
+ {
+  "slug": "antique-cutlass",
+  "name": "Antique Cutlass",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0xA33B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA33C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "pirate",
+   "rustic"
+  ],
+  "blurb": "A dark, hand-worn cutlass with a looped guard, the sort of blade that has earned its patina.",
+  "era": {
+   "grade": "N",
+   "note": "A plain curved sailor's sword displayed as an antique. Cutlasses are original UO weapons; only this display art is later (2010s).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA33B south, 0xA33C east), a blade to lay on a table or sill; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-040"
+ },
+ {
+  "slug": "antique-rapier",
+  "name": "Antique Rapier",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0xA33D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA33E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A slender dueling blade with a ringed pommel, kept by a gentleman who no longer uses it.",
+  "era": {
+   "grade": "N",
+   "note": "A plain dress sword displayed as an antique. Fencing blades fit any age; the art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA33D south, 0xA33E east), a blade to lay on a table or sill; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-041"
+ },
+ {
+  "slug": "antique-saber",
+  "name": "Antique Saber",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0xA33F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA340",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "noble",
+   "rustic"
+  ],
+  "blurb": "A long curved saber in a soft old finish, a cavalryman's keepsake.",
+  "era": {
+   "grade": "N",
+   "note": "A plain curved sword displayed as an antique. Sabers fit any age; the art is a later addition (2010s) with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA33F south, 0xA340 east), a blade to lay on a table or sill; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-ARM-042"
+ }
+]

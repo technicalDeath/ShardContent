@@ -1,0 +1,2977 @@
+[
+ {
+  "slug": "great-yew",
+  "name": "Great Yew",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0x12BE",
+    "dx": 0,
+    "dy": 9,
+    "dz": 0
+   },
+   {
+    "id": "0x12B6",
+    "dx": 1,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x12BF",
+    "dx": 1,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x12B7",
+    "dx": 2,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x12C0",
+    "dx": 2,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x12B8",
+    "dx": 3,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x12C1",
+    "dx": 3,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x12B9",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x12C2",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x12BA",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x12C3",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x12BB",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x12C4",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x12BC",
+    "dx": 7,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x12C5",
+    "dx": 7,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x12BD",
+    "dx": 8,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12C6",
+    "dx": 8,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12C7",
+    "dx": 9,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "10x10",
+  "tier": "extremely-rare",
+  "tags": [
+   "forest",
+   "wilderness",
+   "town:yew",
+   "sacred",
+   "craft:lumberjacking",
+   "foliage"
+  ],
+  "blurb": "An ancient yew whose roots grip the earth and whose crown shades a whole glade.",
+  "era": {
+   "grade": "B",
+   "note": "Great yew art stands in the Yew woods of the original map (77 placements); no later-expansion link known; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Diagonal strip of ten tiles: eight trunk/crown pairs (0x12B6-0x12BD with 0x12BF-0x12C6) plus end crowns 0x12BE and 0x12C7; offsets copied from the Yew map placement at 277,1030.",
+  "variantOf": null,
+  "id": "CR-FLO-001"
+ },
+ {
+  "slug": "forest-giant-triple",
+  "name": "Triple-Trunk Forest Giant",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0xD45",
+    "dx": 0,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0xD46",
+    "dx": 1,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0xD41",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD47",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD42",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD48",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD91",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD43",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD49",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD92",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD44",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD4A",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD93",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD4B",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD4C",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "8x8",
+  "tier": "extremely-rare",
+  "tags": [
+   "forest",
+   "wilderness",
+   "exotic",
+   "foliage"
+  ],
+  "blurb": "A towering forest giant on three slender trunks, its roots spreading like fingers.",
+  "era": {
+   "grade": "B",
+   "note": "Giant forest-tree columns placed about 3,800 times in the original Britannia map (deep woods); world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Eight-tile diagonal strip of tall tree slices: trunk 0xD41-0xD44 in the middle, crown 0xD45-0xD4C, creeper 0xD91-0xD93; very tall art.",
+  "variantOf": null,
+  "id": "CR-FLO-002"
+ },
+ {
+  "slug": "forest-giant-vined",
+  "name": "Vine-Wrapped Forest Giant",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0xD5C",
+    "dx": 0,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0xD57",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD5D",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD58",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD5E",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD80",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD59",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD5F",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD81",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD5A",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD60",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD82",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD5B",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD61",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD62",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "7x7",
+  "tier": "extremely-rare",
+  "tags": [
+   "forest",
+   "wilderness",
+   "exotic",
+   "foliage"
+  ],
+  "blurb": "A single great trunk, wrapped in a creeper, holding up a crown as wide as a tavern.",
+  "era": {
+   "grade": "B",
+   "note": "Giant forest-tree columns placed thousands of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Seven-tile diagonal strip: trunk 0xD57-0xD5B, crown 0xD5C-0xD62, creeper 0xD80-0xD82.",
+  "variantOf": null,
+  "id": "CR-FLO-003"
+ },
+ {
+  "slug": "forest-giant-spreading",
+  "name": "Spreading Forest Giant",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0xD73",
+    "dx": 0,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0xD6E",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD74",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0xD6F",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD75",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD70",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD76",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD71",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD77",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD72",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD78",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD79",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "7x7",
+  "tier": "rare",
+  "tags": [
+   "forest",
+   "wilderness",
+   "exotic",
+   "foliage"
+  ],
+  "blurb": "A lean, leaning trunk climbs high before it opens into a broad green canopy.",
+  "era": {
+   "grade": "B",
+   "note": "Giant forest-tree columns placed thousands of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Seven-tile diagonal strip: trunk 0xD6E-0xD72, crown 0xD73-0xD79.",
+  "variantOf": null,
+  "id": "CR-FLO-004"
+ },
+ {
+  "slug": "forest-giant-forked",
+  "name": "Forked Forest Giant",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0xD8C",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xD84",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD8D",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xD85",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD8E",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD86",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD8F",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD90",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "forest",
+   "wilderness",
+   "foliage"
+  ],
+  "blurb": "Two great limbs rise from one root and part beneath a dark, layered crown.",
+  "era": {
+   "grade": "B",
+   "note": "Giant forest-tree columns placed thousands of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Five-tile diagonal strip: trunk 0xD84-0xD86, crown 0xD8C-0xD90.",
+  "variantOf": null,
+  "id": "CR-FLO-005"
+ },
+ {
+  "slug": "broadleaf-tree",
+  "name": "Broadleaf Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CCD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CCE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "garden",
+   "foliage"
+  ],
+  "blurb": "A broad old tree with a pale, gnarled trunk and a rounded crown of green.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CCD and foliage crown 0x0CCE (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-006"
+ },
+ {
+  "slug": "autumn-broadleaf-tree",
+  "name": "Autumn Broadleaf Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CCD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CCF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "forest",
+   "season:harvest",
+   "garden",
+   "foliage"
+  ],
+  "blurb": "The same broad tree in the first blaze of autumn, its crown a rust of red and gold.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CCD and foliage crown 0x0CCF (foliage-flagged).",
+  "variantOf": "broadleaf-tree",
+  "id": "CR-FLO-007"
+ },
+ {
+  "slug": "cedar-tree",
+  "name": "Cedar Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CD6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "ice",
+   "season:winter",
+   "foliage"
+  ],
+  "blurb": "A dark, spiked cedar with layered green boughs, the same tree that stood bare of baubles in a holiday hall.",
+  "era": {
+   "grade": "A",
+   "note": "The 1998 and 1999 Holiday Tree Deed tree was this cedar (trunk 0x0CD6, needles 0x0CD7), minus the ornaments; also thousands of world placements.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CD6 and foliage crown 0x0CD7 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-008"
+ },
+ {
+  "slug": "oak-tree",
+  "name": "Oak Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CDA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CDB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "garden",
+   "rustic",
+   "foliage"
+  ],
+  "blurb": "A stout oak with a rounded crown of deep green leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Original Britannia scenery oak, placed about 13,300 times across the 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CDA and foliage crown 0x0CDB (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-009"
+ },
+ {
+  "slug": "great-oak",
+  "name": "Great Oak",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CDE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "forest",
+   "garden",
+   "noble",
+   "foliage"
+  ],
+  "blurb": "A great spreading oak, wider than it is tall, shading a patch of lawn.",
+  "era": {
+   "grade": "B",
+   "note": "Original Britannia scenery oak, placed about 13,100 times across the 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CDD and foliage crown 0x0CDE (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-010"
+ },
+ {
+  "slug": "autumn-oak",
+  "name": "Autumn Oak",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CDA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CDC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "forest",
+   "season:harvest",
+   "garden",
+   "foliage"
+  ],
+  "blurb": "An oak in its autumn colours, the whole crown turned copper and red.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CDA and foliage crown 0x0CDC (foliage-flagged).",
+  "variantOf": "oak-tree",
+  "id": "CR-FLO-011"
+ },
+ {
+  "slug": "walnut-tree",
+  "name": "Walnut Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CE0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "garden",
+   "rustic",
+   "foliage"
+  ],
+  "blurb": "A walnut tree with a broad crown of dark leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Original Britannia scenery walnut, placed about 12,800 times across the 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CE0 and foliage crown 0x0CE1 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-012"
+ },
+ {
+  "slug": "willow-tree",
+  "name": "Willow Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "forest",
+   "swamp",
+   "garden",
+   "elegant",
+   "foliage"
+  ],
+  "blurb": "A willow whose drooping boughs sweep the ground like a green curtain.",
+  "era": {
+   "grade": "B",
+   "note": "Original Britannia scenery willow, placed about 13,100 times across the 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CE6 and foliage crown 0x0CE7 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-013"
+ },
+ {
+  "slug": "golden-willow-tree",
+  "name": "Golden Willow Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CE8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "forest",
+   "season:harvest",
+   "garden",
+   "elegant",
+   "foliage"
+  ],
+  "blurb": "A willow in autumn gold, its long boughs trailing like spun amber.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CE6 and foliage crown 0x0CE8 (foliage-flagged).",
+  "variantOf": "willow-tree",
+  "id": "CR-FLO-014"
+ },
+ {
+  "slug": "cypress-tree",
+  "name": "Cypress Tree",
+  "category": "FLO",
+  "subcategory": "Trees",
+  "parts": [
+   {
+    "id": "0x0CF8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CF9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "swamp",
+   "forest",
+   "wilderness",
+   "foliage"
+  ],
+  "blurb": "A bald cypress with a feathery green crown, a tree of the marsh.",
+  "era": {
+   "grade": "B",
+   "note": "Original Britannia scenery cypress, placed several hundred times in the 1997 map (swamp country); no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components stacked on one tile: trunk 0x0CF8 and foliage crown 0x0CF9 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-015"
+ },
+ {
+  "slug": "dead-tree-gnarled",
+  "name": "Gnarled Dead Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "wilderness",
+   "macabre",
+   "swamp"
+  ],
+  "blurb": "A dead tree, brown and brittle, its bare limbs clawing at the sky.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-016"
+ },
+ {
+  "slug": "bleached-tree",
+  "name": "Bleached Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CCD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "wilderness",
+   "macabre",
+   "desert"
+  ],
+  "blurb": "A tree bleached white by sun and wind, its pale limbs spread wide.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-017"
+ },
+ {
+  "slug": "mossy-dead-cypress",
+  "name": "Mossy Dead Cypress",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CF8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "swamp",
+   "macabre",
+   "wilderness"
+  ],
+  "blurb": "A dead cypress draped in grey moss, a fixture of every haunted bog.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-018"
+ },
+ {
+  "slug": "bog-dead-tree",
+  "name": "Bog Dead Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CFE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "swamp",
+   "macabre",
+   "wilderness"
+  ],
+  "blurb": "A gnarled bog tree, leafless and hunched, with limbs like twisted ropes.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-019"
+ },
+ {
+  "slug": "leafless-elm",
+  "name": "Leafless Elm",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CD0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "forest",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A tall, pale elm bare of leaves, its fine branches combing the sky.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-020"
+ },
+ {
+  "slug": "thicket-tree",
+  "name": "Thicket Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CD3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A dense tangle of twigs on a stout trunk, a hedge-tree left to run wild.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-021"
+ },
+ {
+  "slug": "cedar-snag",
+  "name": "Cedar Snag",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CD6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "macabre"
+  ],
+  "blurb": "A dead cedar, stripped of needles and standing like a grey spar.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-022"
+ },
+ {
+  "slug": "gnarled-oak",
+  "name": "Gnarled Oak",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "forest",
+   "wilderness",
+   "noble"
+  ],
+  "blurb": "A vast old oak, bare and gnarled, with limbs as thick as a man's waist.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-023"
+ },
+ {
+  "slug": "bare-walnut-tree",
+  "name": "Bare Walnut Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CE0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "forest",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A walnut tree in winter, the bark rosy and the branches fanned wide.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-024"
+ },
+ {
+  "slug": "bare-willow-tree",
+  "name": "Bare Willow Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0CE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "forest",
+   "swamp",
+   "elegant"
+  ],
+  "blurb": "A willow with its long, pale whips bare of leaf.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-025"
+ },
+ {
+  "slug": "twisted-swamp-tree",
+  "name": "Twisted Swamp Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0D01",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "swamp",
+   "wilderness",
+   "macabre"
+  ],
+  "blurb": "A heavy, twisted swamp tree with limbs the colour of old brass.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static tree art, placed thousands of times in the 1997 Britannia map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-026"
+ },
+ {
+  "slug": "bare-apple-tree",
+  "name": "Bare Apple Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0D94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest"
+  ],
+  "blurb": "An orchard apple tree in winter, its red-brown limbs bare against the sky.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world orchard-tree art, about a dozen placements in Britannia orchards; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-027"
+ },
+ {
+  "slug": "bare-peach-tree",
+  "name": "Bare Peach Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0D9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest"
+  ],
+  "blurb": "A peach tree with its branches bare for the winter, buds not yet showing.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world orchard-tree art, about a dozen placements in Britannia orchards; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-028"
+ },
+ {
+  "slug": "bare-pear-tree",
+  "name": "Bare Pear Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x0DA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest"
+  ],
+  "blurb": "A slender pear tree, bare in winter, its branches fine as pen strokes.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world orchard-tree art, about a dozen placements in Britannia orchards; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic is flagged impassable; the placed item need not block).",
+  "variantOf": null,
+  "id": "CR-FLO-029"
+ },
+ {
+  "slug": "apple-tree",
+  "name": "Apple Tree",
+  "category": "FLO",
+  "subcategory": "Fruit trees",
+  "parts": [
+   {
+    "id": "0x0D94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0D96",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest",
+   "foliage"
+  ],
+  "blurb": "A neat orchard tree hung with ripe red apples.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world fruit-tree art, about a dozen placements in Britannia orchards and farms; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components on one tile: bare trunk 0x0D94 and fruiting crown 0x0D96 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-030"
+ },
+ {
+  "slug": "peach-tree",
+  "name": "Peach Tree",
+  "category": "FLO",
+  "subcategory": "Fruit trees",
+  "parts": [
+   {
+    "id": "0x0D9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0D9E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest",
+   "foliage"
+  ],
+  "blurb": "A spreading peach tree, its boughs studded with golden fruit.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world fruit-tree art, about a dozen placements in Britannia orchards and farms; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components on one tile: bare trunk 0x0D9C and fruiting crown 0x0D9E (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-031"
+ },
+ {
+  "slug": "pear-tree",
+  "name": "Pear Tree",
+  "category": "FLO",
+  "subcategory": "Fruit trees",
+  "parts": [
+   {
+    "id": "0x0DA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "rustic",
+   "forest",
+   "foliage"
+  ],
+  "blurb": "A slender pear tree with a crown full of ripening pears.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world fruit-tree art, about a dozen placements in Britannia orchards and farms; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components on one tile: bare trunk 0x0DA4 and fruiting crown 0x0DA6 (foliage-flagged).",
+  "variantOf": null,
+  "id": "CR-FLO-032"
+ },
+ {
+  "slug": "autumn-apple-tree",
+  "name": "Autumn Apple Tree",
+  "category": "FLO",
+  "subcategory": "Fruit trees",
+  "parts": [
+   {
+    "id": "0x0D94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0D97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "season:harvest",
+   "forest",
+   "foliage"
+  ],
+  "blurb": "An apple tree once the fruit is picked, its leaves gone to gold and amber.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world fruit-tree art, about a dozen placements in Britannia orchards and farms; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "Two components on one tile: bare trunk 0x0D94 and fruiting crown 0x0D97 (foliage-flagged).",
+  "variantOf": "apple-tree",
+  "id": "CR-FLO-033"
+ },
+ {
+  "slug": "coconut-palm",
+  "name": "Coconut Palm",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0x0C95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "nautical"
+  ],
+  "blurb": "A tall coconut palm with a tuft of long, heavy fronds.",
+  "era": {
+   "grade": "B",
+   "note": "Palm art from the original Britannia map (about 120 placements, island and coast scenery); no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-034"
+ },
+ {
+  "slug": "date-palm",
+  "name": "Date Palm",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0x0C96",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "desert",
+   "wilderness"
+  ],
+  "blurb": "A thick-fronded date palm of the desert oases.",
+  "era": {
+   "grade": "B",
+   "note": "Palm art from the original Britannia map (about 110 placements, desert and coast); no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-035"
+ },
+ {
+  "slug": "banana-tree",
+  "name": "Banana Tree",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0x0CAA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "garden"
+  ],
+  "blurb": "A banana tree with broad, drooping leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Jungle tree art from the original Britannia map (about 20 placements); no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-036"
+ },
+ {
+  "slug": "palm-thicket",
+  "name": "Palm Thicket",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0x0C9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "nautical"
+  ],
+  "blurb": "Three slender young palms sharing one patch of ground.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia palm scenery, placed over 4,000 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-037"
+ },
+ {
+  "slug": "ponytail-palm",
+  "name": "Ponytail Palm",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0x0CA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "exotic",
+   "desert",
+   "garden"
+  ],
+  "blurb": "A squat palm with a bulging base and a fountain of green leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia foliage, placed over 1,700 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-038"
+ },
+ {
+  "slug": "topiary-tree",
+  "name": "Topiary Tree",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x0CC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A neatly clipped little tree on a slim stem, the pride of a careful gardener.",
+  "era": {
+   "grade": "B",
+   "note": "Garden shrub art from the original Britannia map (a few dozen placements, town gardens); no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-039"
+ },
+ {
+  "slug": "trimmed-hedge",
+  "name": "Trimmed Garden Hedge",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x0C8F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A square-cut hedge, clipped sharp enough to please a steward.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world hedge art, about 1,000 placements in town gardens and the hedge maze; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only (graphic is impassable).",
+  "variantOf": null,
+  "id": "CR-FLO-040"
+ },
+ {
+  "slug": "tall-garden-hedge",
+  "name": "Tall Garden Hedge",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x0DB8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall, dense hedge wall of the kind that screens a noble garden.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tall hedge art, about 3,800 placements in gardens and the hedge maze; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only (graphic is impassable).",
+  "variantOf": null,
+  "id": "CR-FLO-041"
+ },
+ {
+  "slug": "tall-fern",
+  "name": "Tall Fern",
+  "category": "FLO",
+  "subcategory": "Ferns and foliage",
+  "parts": [
+   {
+    "id": "0x0CA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "garden"
+  ],
+  "blurb": "A single tall fern, fronds curling outward like green feathers.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia ground and jungle foliage, placed thousands of times across the original 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-042"
+ },
+ {
+  "slug": "pampas-clump",
+  "name": "Pampas Grass Clump",
+  "category": "FLO",
+  "subcategory": "Ferns and foliage",
+  "parts": [
+   {
+    "id": "0x0CC4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "desert",
+   "rustic"
+  ],
+  "blurb": "A bristling clump of pampas grass with feathery plumes.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia ground and jungle foliage, placed thousands of times across the original 1997 world map; no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-043"
+ },
+ {
+  "slug": "foxglove",
+  "name": "Foxglove",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0x0C84",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "season:spring",
+   "rustic"
+  ],
+  "blurb": "Tall spires of purple foxglove nodding above a green cluster of leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia wildflower art, placed over 6,500 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-044"
+ },
+ {
+  "slug": "poppy-bush",
+  "name": "Poppy Thicket",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0x0C86",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "season:spring",
+   "rustic"
+  ],
+  "blurb": "A thicket of red poppies crowded together in bright scarlet.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia wildflower art, placed hundreds of times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-045"
+ },
+ {
+  "slug": "orfluer-blossoms",
+  "name": "Orfluer Blossoms",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0x0CC1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "season:spring",
+   "rustic"
+  ],
+  "blurb": "A bushy patch of orange orfluer blossoms.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia wildflower art (0x0C85 is used about 7,500 times, this variant 177); no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-046"
+ },
+ {
+  "slug": "white-lilies",
+  "name": "White Lilies",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0x0C8B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A tall, feathery stand of white lilies.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia wildflower art, placed over 6,300 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-047"
+ },
+ {
+  "slug": "pumpkin-patch",
+  "name": "Pumpkin Patch",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0xC60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC5F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC5E",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC60",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xC6B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xC6C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xC6A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "rustic",
+   "season:harvest"
+  ],
+  "blurb": "Plump orange pumpkins ripening among a tangle of trailing vines.",
+  "era": {
+   "grade": "B",
+   "note": "Pumpkin and vine art are original-world farm scenery, placed dozens of times in the 1997 Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "2x2 arrangement: vine ground tiles 0x0C5E-0x0C60 under four pumpkins 0x0C6A-0x0C6C.",
+  "variantOf": null,
+  "id": "CR-FLO-048"
+ },
+ {
+  "slug": "flower-bed",
+  "name": "Flower Bed",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0xC84",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC83",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC86",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC85",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "elegant",
+   "season:spring"
+  ],
+  "blurb": "A small bed of foxglove, campion, poppies and orfluer in full bloom.",
+  "era": {
+   "grade": "B",
+   "note": "All four flower tiles are classic wildflower art used hundreds to thousands of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "2x2 arrangement of four flower tiles: foxglove 0x0C84, campion 0x0C83, poppies 0x0C86, orfluer 0x0C85.",
+  "variantOf": null,
+  "id": "CR-FLO-049"
+ },
+ {
+  "slug": "wheat-field",
+  "name": "Golden Wheat Field",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0xC58",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC5B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC5A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC59",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "rustic",
+   "craft:cooking",
+   "season:harvest"
+  ],
+  "blurb": "A dense stand of golden wheat, ripe and ready for the scythe.",
+  "era": {
+   "grade": "B",
+   "note": "Wheat field art is classic 1997 farm scenery, placed hundreds of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "2x2 arrangement of wheat tiles 0x0C58-0x0C5B.",
+  "variantOf": null,
+  "id": "CR-FLO-050"
+ },
+ {
+  "slug": "cornfield",
+  "name": "Cornfield",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0xC7E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC7D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC7D",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC7E",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "rustic",
+   "craft:cooking",
+   "season:harvest"
+  ],
+  "blurb": "Tall stalks of corn with golden tassels, planted in tidy rows.",
+  "era": {
+   "grade": "B",
+   "note": "Corn stalk art is classic 1997 farm scenery (corn is a 1997 cooking ingredient); world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "2x2 arrangement of corn stalks 0x0C7D and 0x0C7E.",
+  "variantOf": null,
+  "id": "CR-FLO-051"
+ },
+ {
+  "slug": "pale-mushroom-ring",
+  "name": "Pale Mushroom Ring",
+  "category": "FLO",
+  "subcategory": "Mushrooms",
+  "parts": [
+   {
+    "id": "0x0D13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A fairy-ring of broad pale mushroom caps.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia cave and forest floor dressing, placed thousands of times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-052"
+ },
+ {
+  "slug": "red-toadstools",
+  "name": "Red Toadstools",
+  "category": "FLO",
+  "subcategory": "Mushrooms",
+  "parts": [
+   {
+    "id": "0x0D15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "forest",
+   "whimsical",
+   "wilderness"
+  ],
+  "blurb": "Two red-capped toadstools, as handsome as they are poisonous.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia floor dressing, placed thousands of times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-053"
+ },
+ {
+  "slug": "saguaro-cluster",
+  "name": "Saguaro Cluster",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x0D27",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "desert",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "Three fat green cacti growing shoulder to shoulder.",
+  "era": {
+   "grade": "B",
+   "note": "Desert cactus art from the original Britannia map, placed about 300 times; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-054"
+ },
+ {
+  "slug": "flowering-cactus",
+  "name": "Flowering Cactus",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x0D25",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "desert",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A little green cactus with a pink flower at its crown.",
+  "era": {
+   "grade": "B",
+   "note": "Desert cactus art from the original Britannia map, placed about 290 times; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-055"
+ },
+ {
+  "slug": "prickly-pear-cactus",
+  "name": "Prickly Pear Cactus",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x0D2C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "desert",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A broad prickly pear with flat pads and spines.",
+  "era": {
+   "grade": "B",
+   "note": "Desert cactus art from the original Britannia map, placed about 360 times; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-056"
+ },
+ {
+  "slug": "organ-pipe-cactus",
+  "name": "Organ Pipe Cactus",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x0D35",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "desert",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A grand bundle of tall, ribbed cactus columns.",
+  "era": {
+   "grade": "B",
+   "note": "Desert cactus art from the original Britannia map, placed over 110 times; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-057"
+ },
+ {
+  "slug": "century-plant",
+  "name": "Century Plant",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x0D31",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "desert",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A desert century plant, its single flower stalk reaching far above the leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Desert plant art from the original Britannia map, placed about 95 times; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-058"
+ },
+ {
+  "slug": "lily-pad-cluster",
+  "name": "Lily Pad Cluster",
+  "category": "FLO",
+  "subcategory": "Water plants",
+  "parts": [
+   {
+    "id": "0x0D0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "swamp",
+   "garden",
+   "wilderness"
+  ],
+  "blurb": "A raft of broad green lily pads.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia pond and swamp dressing, placed over 1,000 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-059"
+ },
+ {
+  "slug": "white-water-lily",
+  "name": "White Water Lily",
+  "category": "FLO",
+  "subcategory": "Water plants",
+  "parts": [
+   {
+    "id": "0x0D06",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "swamp",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A single white water lily floating on its pad.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia pond dressing, placed about 650 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-060"
+ },
+ {
+  "slug": "cattails",
+  "name": "Cattails",
+  "category": "FLO",
+  "subcategory": "Water plants",
+  "parts": [
+   {
+    "id": "0x0CB8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "swamp",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A clump of reeds with brown cattail heads.",
+  "era": {
+   "grade": "B",
+   "note": "Classic Britannia marsh dressing, placed over 2,000 times across the 1997 map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-061"
+ },
+ {
+  "slug": "grape-arbor",
+  "name": "Grape Arbor",
+  "category": "FLO",
+  "subcategory": "Vines and arbors",
+  "parts": [
+   {
+    "id": "0x0D1E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "rustic",
+   "elegant",
+   "craft:cooking"
+  ],
+  "blurb": "A trellis of grapevines heavy with dark purple grapes.",
+  "era": {
+   "grade": "B",
+   "note": "Vineyard trellis art, a few dozen placements in the original Britannia vineyards; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only (graphic is impassable).",
+  "variantOf": null,
+  "id": "CR-FLO-062"
+ },
+ {
+  "slug": "woodcutters-stump",
+  "name": "Woodcutter's Stump",
+  "category": "FLO",
+  "subcategory": "Stumps and logs",
+  "parts": [
+   {
+    "id": "0x0E56",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "craft:lumberjacking",
+   "humble"
+  ],
+  "blurb": "A broad stump with a hatchet left buried in the top.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world stump art, about ten placements in the 1997 Britannia map; no later link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-063"
+ },
+ {
+  "slug": "potted-shrub",
+  "name": "Potted Shrub",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x11C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "humble"
+  ],
+  "blurb": "A small leafy shrub in a terracotta pot.",
+  "era": {
+   "grade": "A",
+   "note": "The December 1999 holiday gift (Publish 1, 23 Nov 1999) was a deed for one of five random potted plants; stock server code maps those five to 0x11C8-0x11CC.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "Stock decoration items exist (HolidayPottedPlant 0x11C8-0x11CC); decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-064"
+ },
+ {
+  "slug": "potted-topiary",
+  "name": "Potted Topiary",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x11C9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A round, clipped topiary tree in a terracotta pot.",
+  "era": {
+   "grade": "A",
+   "note": "The December 1999 holiday gift (Publish 1, 23 Nov 1999) was a deed for one of five random potted plants; stock server code maps those five to 0x11C8-0x11CC.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "Stock decoration items exist (HolidayPottedPlant 0x11C8-0x11CC); decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-065"
+ },
+ {
+  "slug": "potted-foxglove",
+  "name": "Potted Foxglove",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x11CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant",
+   "season:spring"
+  ],
+  "blurb": "A terracotta pot of purple foxglove in full bloom.",
+  "era": {
+   "grade": "A",
+   "note": "The December 1999 holiday gift (Publish 1, 23 Nov 1999) was a deed for one of five random potted plants; stock server code maps those five to 0x11C8-0x11CC.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "Stock decoration items exist (HolidayPottedPlant 0x11C8-0x11CC); decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-066"
+ },
+ {
+  "slug": "potted-marigolds",
+  "name": "Potted Marigolds",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x11CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "season:spring"
+  ],
+  "blurb": "A cheerful pot of orange marigolds.",
+  "era": {
+   "grade": "A",
+   "note": "The December 1999 holiday gift (Publish 1, 23 Nov 1999) was a deed for one of five random potted plants; stock server code maps those five to 0x11C8-0x11CC.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "Stock decoration items exist (HolidayPottedPlant 0x11C8-0x11CC); decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-067"
+ },
+ {
+  "slug": "potted-fern",
+  "name": "Potted Fern",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x11CC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble"
+  ],
+  "blurb": "A small fern in a clay pot, the sort every hall keeps by the door.",
+  "era": {
+   "grade": "A",
+   "note": "The December 1999 holiday gift (Publish 1, 23 Nov 1999) was a deed for one of five random potted plants; stock server code maps those five to 0x11C8-0x11CC.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "Stock decoration items exist (HolidayPottedPlant 0x11C8-0x11CC); decor-only.",
+  "variantOf": null,
+  "id": "CR-FLO-068"
+ },
+ {
+  "slug": "scarecrow",
+  "name": "Scarecrow",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0x1E34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "whimsical",
+   "season:harvest"
+  ],
+  "blurb": "A ragged scarecrow on a post, guarding a field against crows.",
+  "era": {
+   "grade": "C",
+   "note": "Scarecrow art (0x1E34) predates the late Heritage-item scarecrow but appears only once in the original Britannia map; era confirmation needed.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only. Stock class ScarecrowAddon is a later Heritage item; use plain static.",
+  "variantOf": null,
+  "id": "CR-FLO-069"
+ },
+ {
+  "slug": "dry-brambles",
+  "name": "Dry Brambles",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x0D3F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "wilderness",
+   "desert",
+   "rustic"
+  ],
+  "blurb": "A dry, knotted tangle of brambles blown into a ball.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world brambles art, placed about 15,000 times in the 1997 Britannia map (desolate country); no later-expansion link; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only (graphic is flagged damaging; the placed item must not hurt).",
+  "variantOf": null,
+  "id": "CR-FLO-070"
+ }
+]

@@ -1,0 +1,841 @@
+[
+ {
+  "slug": "ivory-chess-king",
+  "name": "Ivory Chess King",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x358A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A tall king carved from pale ivory, crown rounded smooth by many nervous fingers.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-001"
+ },
+ {
+  "slug": "ebony-chess-king",
+  "name": "Ebony Chess King",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x3591",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A tall king of dark, oiled wood, the pale man's patient opponent on a hundred long evenings.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-002"
+ },
+ {
+  "slug": "ivory-chess-knight",
+  "name": "Ivory Chess Knight",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x3588",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A pale carved knight with a proud arched neck, always one jump from a clever fork.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-003"
+ },
+ {
+  "slug": "ebony-chess-knight",
+  "name": "Ebony Chess Knight",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x358F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A dark knight with a flared mane, polished to a deep chestnut sheen.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-004"
+ },
+ {
+  "slug": "ivory-chess-court",
+  "name": "Ivory Chess Court",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x358A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3587",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3585",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A king, a queen and a bishop of pale ivory, set shoulder to shoulder as if for a portrait.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "three single-tile pieces in a row (king, queen, bishop); wants three table tiles; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-005"
+ },
+ {
+  "slug": "ebony-chess-court",
+  "name": "Ebony Chess Court",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x3591",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x358E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x358C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A king, a queen and a bishop of dark polished wood, set side by side in solemn company.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "three single-tile pieces in a row (king, queen, bishop); wants three table tiles; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-006"
+ },
+ {
+  "slug": "lucky-seven-dice",
+  "name": "Lucky Seven Dice",
+  "category": "GAM",
+  "subcategory": "Pastimes",
+  "parts": [
+   {
+    "id": "0x4BB6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4BBD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A pair of well-worn bone dice come to rest on three and four, the gambler's favourite sum.",
+  "era": {
+   "grade": "N",
+   "note": "Six-sided gaming dice, original-world tavern gear. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two single-tile dice (0x4BB6 three, 0x4BBD four); wants two table tiles; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-007"
+ },
+ {
+  "slug": "boxcar-dice",
+  "name": "Boxcar Dice",
+  "category": "GAM",
+  "subcategory": "Pastimes",
+  "parts": [
+   {
+    "id": "0x4BB9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4BC5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "Two dice, both showing six, left lying where the roller swore at them.",
+  "era": {
+   "grade": "N",
+   "note": "Six-sided gaming dice, original-world tavern gear. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two single-tile dice (0x4BB9 and 0x4BC5, both six); wants two table tiles; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-008"
+ },
+ {
+  "slug": "gaming-chip-stacks",
+  "name": "Gaming Chip Stacks",
+  "category": "GAM",
+  "subcategory": "Pastimes",
+  "parts": [
+   {
+    "id": "0x4BCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4BC8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4BC7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4BC6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Four neat stacks of pale counters of different heights, the table's running tally in silver.",
+  "era": {
+   "grade": "N",
+   "note": "Stacked wagering counters for a gaming table. Counters of this kind fit any card-room in the world. The art is a later addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "four single-tile stacks (five, three, two and one chips); wants a 2x2 patch of table; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-009"
+ },
+ {
+  "slug": "frog-hop-water-game",
+  "name": "Frog-Hop Water Game",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0xAF78",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAF88",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "tavern",
+   "garden"
+  ],
+  "blurb": "A long blue trough set with lily pads, played by launching a wooden frog and cheering where it lands.",
+  "era": {
+   "grade": "N",
+   "note": "A fairground target game with a frog and lily pads, generic amusement. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xAF78 south idle, 0xAF88 east idle); art is 134 px wide and overhangs its neighbours; the play animation is not used",
+  "variantOf": null,
+  "id": "CN-GAM-010"
+ },
+ {
+  "slug": "ivory-chess-queen",
+  "name": "Ivory Chess Queen",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x3587",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A graceful queen of pale ivory, the strongest piece on the board and the most carefully carved.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-011"
+ },
+ {
+  "slug": "ebony-chess-queen",
+  "name": "Ebony Chess Queen",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x358E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A graceful queen of dark polished wood, her crown ringed with fine turned beads.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-012"
+ },
+ {
+  "slug": "ivory-chess-rook",
+  "name": "Ivory Chess Rook",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x3586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A castle-crowned rook of pale ivory, solid enough to stand guard over any corner.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-013"
+ },
+ {
+  "slug": "ebony-chess-rook",
+  "name": "Ebony Chess Rook",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x358D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A castle-crowned rook of dark oiled wood, its battlements worn smooth by years of play.",
+  "era": {
+   "grade": "N",
+   "note": "A turned chess piece, plain tavern and parlour furniture in any age. The main catalog holds only the tiny old chessmen; these larger pieces are later client art of unknown date.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-GAM-014"
+ },
+ {
+  "slug": "elven-chess-table",
+  "name": "Elven Chess Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x2DE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   },
+   {
+    "id": "0x0E14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0E13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FA6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 4
+     },
+     {
+      "id": "0x0E14",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     },
+     {
+      "id": "0x0E13",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A long oval table of pale curved wood, its top laid with a board and the pieces of a game half played.",
+  "era": {
+   "grade": "N",
+   "note": "An elven-styled table from the Mondain's Legacy art (2007) carrying the original game board and pieces. Elven objects are era neutral on this shard, which has cosmetic Elves; decor only.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "elven ornate table (0x2DE1 south, 0x2DE2 east) + board 0x0FA6 and chessmen at dz 4/5, as the main catalog's chess tables do; the table graphic is 132 px wide (3 tiles long) and anchored at one end, so the game sits at that end; decor-only",
+  "variantOf": null,
+  "id": "CN-GAM-015"
+ },
+ {
+  "slug": "elven-backgammon-table",
+  "name": "Elven Backgammon Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x2DE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FAD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FAD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 4
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A long oval table of pale curved wood, a folded backgammon board resting at its centre.",
+  "era": {
+   "grade": "N",
+   "note": "An elven-styled table from the Mondain's Legacy art (2007) carrying the original game board and pieces. Elven objects are era neutral on this shard, which has cosmetic Elves; decor only.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "elven ornate table + inert board 0x0FAD at dz 4; the table graphic is 132 px wide (3 tiles long) and anchored at one end, so the game sits at that end; decor-only",
+  "variantOf": null,
+  "id": "CN-GAM-016"
+ },
+ {
+  "slug": "elven-checkers-table",
+  "name": "Elven Checkers Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x2DE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   },
+   {
+    "id": "0x0FA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0FA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FA6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 4
+     },
+     {
+      "id": "0x0FA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     },
+     {
+      "id": "0x0FA5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A long plain table of pale grained wood with a carved corner, a game of draughts left open on it.",
+  "era": {
+   "grade": "N",
+   "note": "An elven-styled table from the Mondain's Legacy art (2007) carrying the original game board and pieces. Elven objects are era neutral on this shard, which has cosmetic Elves; decor only.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "elven fancy table (0x2DE7 south, 0x2DE8 east) + board and checkers at dz 4/5; the table graphic is 132 px wide (3 tiles long) and anchored at one end, so the game sits at that end; decor-only",
+  "variantOf": null,
+  "id": "CN-GAM-017"
+ },
+ {
+  "slug": "elven-card-table",
+  "name": "Elven Card Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x2DE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   },
+   {
+    "id": "0x0FA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 4
+     },
+     {
+      "id": "0x0FA7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 4
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "tavern",
+   "elegant"
+  ],
+  "blurb": "A long table of pale grained wood, a fan of cards and a pair of dice left where the last hand ended.",
+  "era": {
+   "grade": "N",
+   "note": "An elven-styled table from the Mondain's Legacy art (2007) carrying the original game board and pieces. Elven objects are era neutral on this shard, which has cosmetic Elves; decor only.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "elven fancy table + inert cards 0x0FA2 and dice 0x0FA7 at dz 4; the table graphic is 132 px wide (3 tiles long) and anchored at one end, so the game sits at that end; decor-only",
+  "variantOf": null,
+  "id": "CN-GAM-018"
+ }
+]

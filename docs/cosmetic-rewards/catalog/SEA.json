@@ -1,0 +1,2045 @@
+[
+ {
+  "slug": "classic-holiday-tree",
+  "name": "Classic Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F22",
+    "dx": 1,
+    "dy": 1,
+    "dz": 13
+   },
+   {
+    "id": "0x0F18",
+    "dx": 1,
+    "dy": 1,
+    "dz": 20
+   },
+   {
+    "id": "0x0F20",
+    "dx": 1,
+    "dy": 1,
+    "dz": 26
+   },
+   {
+    "id": "0x0F17",
+    "dx": 1,
+    "dy": 1,
+    "dz": 30
+   },
+   {
+    "id": "0x0F24",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F19",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 32
+   },
+   {
+    "id": "0x0F2F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 39
+   },
+   {
+    "id": "0x0F23",
+    "dx": 1,
+    "dy": 1,
+    "dz": 41
+   },
+   {
+    "id": "0x0F2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 43
+   },
+   {
+    "id": "0x0F30",
+    "dx": 1,
+    "dy": 1,
+    "dz": 44
+   },
+   {
+    "id": "0x0F29",
+    "dx": 1,
+    "dy": 1,
+    "dz": 45
+   },
+   {
+    "id": "0x0F16",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F1E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F0F",
+    "dx": 1,
+    "dy": 2,
+    "dz": 23
+   },
+   {
+    "id": "0x0F13",
+    "dx": 1,
+    "dy": 2,
+    "dz": 24
+   },
+   {
+    "id": "0x0F12",
+    "dx": 1,
+    "dy": 2,
+    "dz": 29
+   },
+   {
+    "id": "0x0F15",
+    "dx": 1,
+    "dy": 2,
+    "dz": 30
+   },
+   {
+    "id": "0x0F28",
+    "dx": 1,
+    "dy": 2,
+    "dz": 36
+   },
+   {
+    "id": "0x0F1A",
+    "dx": 1,
+    "dy": 2,
+    "dz": 40
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 48
+   },
+   {
+    "id": "0x0F10",
+    "dx": 2,
+    "dy": 1,
+    "dz": 24
+   },
+   {
+    "id": "0x0F1C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 25
+   },
+   {
+    "id": "0x0F14",
+    "dx": 2,
+    "dy": 1,
+    "dz": 27
+   },
+   {
+    "id": "0x0F26",
+    "dx": 2,
+    "dy": 1,
+    "dz": 28
+   },
+   {
+    "id": "0x0F27",
+    "dx": 2,
+    "dy": 1,
+    "dz": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "sacred",
+   "garden",
+   "treasure"
+  ],
+  "blurb": "A tall cedar hung with glittering baubles of every colour, the way the tree stood in every Britannian hall at the turn of the year.",
+  "era": {
+   "grade": "A",
+   "note": "Christmas tree deeds were the Dec 1998 and Dec 1999 gifts; the tree is cedar trunk 0x0CD6/0x0CD7 hung with gem ornaments 0x0F0F-0x0F30, exactly as the stock Classic tree.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "stock HolidayTree (Classic) layout: trunk + 27 gem ornaments at (x+1,y+1,z+11); ornaments are inert statics here; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-001"
+ },
+ {
+  "slug": "frosted-holiday-tree",
+  "name": "Frosted Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x0F22",
+    "dx": 1,
+    "dy": 1,
+    "dz": 13
+   },
+   {
+    "id": "0x0F18",
+    "dx": 1,
+    "dy": 1,
+    "dz": 20
+   },
+   {
+    "id": "0x0F20",
+    "dx": 1,
+    "dy": 1,
+    "dz": 26
+   },
+   {
+    "id": "0x0F17",
+    "dx": 1,
+    "dy": 1,
+    "dz": 30
+   },
+   {
+    "id": "0x0F1F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F19",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F2F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 39
+   },
+   {
+    "id": "0x0F23",
+    "dx": 1,
+    "dy": 1,
+    "dz": 41
+   },
+   {
+    "id": "0x0F2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 43
+   },
+   {
+    "id": "0x0F30",
+    "dx": 1,
+    "dy": 1,
+    "dz": 44
+   },
+   {
+    "id": "0x0F16",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F1E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F0F",
+    "dx": 1,
+    "dy": 2,
+    "dz": 23
+   },
+   {
+    "id": "0x0F13",
+    "dx": 1,
+    "dy": 2,
+    "dz": 24
+   },
+   {
+    "id": "0x0F12",
+    "dx": 1,
+    "dy": 2,
+    "dz": 29
+   },
+   {
+    "id": "0x0F15",
+    "dx": 1,
+    "dy": 2,
+    "dz": 30
+   },
+   {
+    "id": "0x0F28",
+    "dx": 1,
+    "dy": 2,
+    "dz": 36
+   },
+   {
+    "id": "0x0F1A",
+    "dx": 1,
+    "dy": 2,
+    "dz": 40
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 48
+   },
+   {
+    "id": "0x0F10",
+    "dx": 2,
+    "dy": 1,
+    "dz": 24
+   },
+   {
+    "id": "0x0F1C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 25
+   },
+   {
+    "id": "0x0F14",
+    "dx": 2,
+    "dy": 1,
+    "dz": 27
+   },
+   {
+    "id": "0x0F26",
+    "dx": 2,
+    "dy": 1,
+    "dz": 28
+   },
+   {
+    "id": "0x0F27",
+    "dx": 2,
+    "dy": 1,
+    "dz": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "ice",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "The holiday cedar silvered with frost, its coloured baubles glowing against the white boughs.",
+  "era": {
+   "grade": "B",
+   "note": "Classic holiday tree (Dec 1998/1999 deeds, graphics 0x0CD6/0x0CD7 + 0x0F0F-0x0F30) with white-tinted needles and three fewer ornaments; the frost tint is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "classic HolidayTree layout with the needles component Hue 0x481 (1153) and three ornaments omitted; decor-only",
+  "variantOf": "classic-holiday-tree",
+  "id": "CR-SEA-002"
+ },
+ {
+  "slug": "slender-holiday-cedar",
+  "name": "Slender Holiday Cedar",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F22",
+    "dx": 1,
+    "dy": 1,
+    "dz": 13
+   },
+   {
+    "id": "0x0F18",
+    "dx": 1,
+    "dy": 1,
+    "dz": 20
+   },
+   {
+    "id": "0x0F20",
+    "dx": 1,
+    "dy": 1,
+    "dz": 26
+   },
+   {
+    "id": "0x0F17",
+    "dx": 1,
+    "dy": 1,
+    "dz": 30
+   },
+   {
+    "id": "0x0F24",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F19",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 32
+   },
+   {
+    "id": "0x0F2F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 39
+   },
+   {
+    "id": "0x0F23",
+    "dx": 1,
+    "dy": 1,
+    "dz": 41
+   },
+   {
+    "id": "0x0F2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 43
+   },
+   {
+    "id": "0x0F30",
+    "dx": 1,
+    "dy": 1,
+    "dz": 44
+   },
+   {
+    "id": "0x0F29",
+    "dx": 1,
+    "dy": 1,
+    "dz": 45
+   },
+   {
+    "id": "0x0F16",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F1E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F0F",
+    "dx": 1,
+    "dy": 2,
+    "dz": 23
+   },
+   {
+    "id": "0x0F13",
+    "dx": 1,
+    "dy": 2,
+    "dz": 24
+   },
+   {
+    "id": "0x0F12",
+    "dx": 1,
+    "dy": 2,
+    "dz": 29
+   },
+   {
+    "id": "0x0F15",
+    "dx": 1,
+    "dy": 2,
+    "dz": 30
+   },
+   {
+    "id": "0x0F28",
+    "dx": 1,
+    "dy": 2,
+    "dz": 36
+   },
+   {
+    "id": "0x0F1A",
+    "dx": 1,
+    "dy": 2,
+    "dz": 40
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 48
+   },
+   {
+    "id": "0x0F10",
+    "dx": 2,
+    "dy": 1,
+    "dz": 24
+   },
+   {
+    "id": "0x0F1C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 25
+   },
+   {
+    "id": "0x0F14",
+    "dx": 2,
+    "dy": 1,
+    "dz": 27
+   },
+   {
+    "id": "0x0F26",
+    "dx": 2,
+    "dy": 1,
+    "dz": 28
+   },
+   {
+    "id": "0x0F27",
+    "dx": 2,
+    "dy": 1,
+    "dz": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "garden",
+   "sacred"
+  ],
+  "blurb": "A slim, tall cedar from the northern slopes, strung with the same bright baubles as any hall's holiday tree.",
+  "era": {
+   "grade": "B",
+   "note": "Sibling cedar graphic 0x0CD8/0x0CD9 beside the documented tree trunk 0x0CD6/0x0CD7, hung with the documented Dec 1998/1999 ornaments (0x0F0F-0x0F30).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "classic HolidayTree ornament layout on the 0x0CD8/0x0CD9 cedar; ornaments spill slightly wide of the slimmer crown; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-003"
+ },
+ {
+  "slug": "frosted-slender-holiday-tree",
+  "name": "Frosted Slender Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x0F18",
+    "dx": 1,
+    "dy": 1,
+    "dz": 20
+   },
+   {
+    "id": "0x0F20",
+    "dx": 1,
+    "dy": 1,
+    "dz": 26
+   },
+   {
+    "id": "0x0F24",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F19",
+    "dx": 1,
+    "dy": 1,
+    "dz": 31
+   },
+   {
+    "id": "0x0F1B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 32
+   },
+   {
+    "id": "0x0F23",
+    "dx": 1,
+    "dy": 1,
+    "dz": 41
+   },
+   {
+    "id": "0x0F2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 43
+   },
+   {
+    "id": "0x0F30",
+    "dx": 1,
+    "dy": 1,
+    "dz": 44
+   },
+   {
+    "id": "0x0F16",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F1E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 18
+   },
+   {
+    "id": "0x0F0F",
+    "dx": 1,
+    "dy": 2,
+    "dz": 23
+   },
+   {
+    "id": "0x0F13",
+    "dx": 1,
+    "dy": 2,
+    "dz": 24
+   },
+   {
+    "id": "0x0F15",
+    "dx": 1,
+    "dy": 2,
+    "dz": 30
+   },
+   {
+    "id": "0x0F28",
+    "dx": 1,
+    "dy": 2,
+    "dz": 36
+   },
+   {
+    "id": "0x0F1A",
+    "dx": 1,
+    "dy": 2,
+    "dz": 40
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 48
+   },
+   {
+    "id": "0x0F10",
+    "dx": 2,
+    "dy": 1,
+    "dz": 24
+   },
+   {
+    "id": "0x0F1C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 25
+   },
+   {
+    "id": "0x0F14",
+    "dx": 2,
+    "dy": 1,
+    "dz": 27
+   },
+   {
+    "id": "0x0F26",
+    "dx": 2,
+    "dy": 1,
+    "dz": 28
+   },
+   {
+    "id": "0x0F27",
+    "dx": 2,
+    "dy": 1,
+    "dz": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "ice",
+   "elegant"
+  ],
+  "blurb": "A narrow frosted cedar with a scatter of coloured baubles, sparkling like frost caught in lamplight.",
+  "era": {
+   "grade": "B",
+   "note": "Sibling cedar 0x0CD8/0x0CD9 with documented Dec 1998/1999 holiday ornaments (0x0F0F-0x0F30); the white frost tint is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "needles component Hue 1153, five ornaments omitted; decor-only",
+  "variantOf": "slender-holiday-cedar",
+  "id": "CR-SEA-004"
+ },
+ {
+  "slug": "frosted-cedar",
+  "name": "Frosted Cedar",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0CD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1153
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A slim cedar thick with frost, standing like a pale spire against the winter sky.",
+  "era": {
+   "grade": "B",
+   "note": "Cedar graphic 0x0CD8/0x0CD9 is classic tree art beside the documented holiday trunk; the frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static cedar with the needles Hue 0x481 (1153); decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-005"
+ },
+ {
+  "slug": "snow-heap",
+  "name": "Snow Heap",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A rounded heap of packed snow, as if swept up against a doorstep.",
+  "era": {
+   "grade": "A",
+   "note": "Snow piles 0x08E0-0x08E6 are the graphics behind the Dec 1999 holiday 'pile of snow' gift (era pack 3b/3c); the white tint is the one the stock snow pile uses.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "SnowPileDeco-style static with Hue 0x481 (1153); decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-006"
+ },
+ {
+  "slug": "snow-mound",
+  "name": "Snow Mound",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A tall mound of snow drifted against some buried stump or stone.",
+  "era": {
+   "grade": "A",
+   "note": "Snow piles 0x08E0-0x08E6 are the graphics behind the Dec 1999 holiday 'pile of snow' gift (era pack 3b/3c); the white tint is the one the stock snow pile uses.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "SnowPileDeco-style static (0x08E2 is one of its stock ids) with Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-007"
+ },
+ {
+  "slug": "snow-drift",
+  "name": "Snow Drift",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A lumpy drift of snow, thick on its windward side.",
+  "era": {
+   "grade": "A",
+   "note": "Snow piles 0x08E0-0x08E6 are the graphics behind the Dec 1999 holiday 'pile of snow' gift (era pack 3b/3c); the white tint is the one the stock snow pile uses.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "SnowPileDeco-style static (0x08E3 is a stock id) with Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-008"
+ },
+ {
+  "slug": "snow-crags",
+  "name": "Snow Crags",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A small cluster of snow-capped crags poking through the drifts.",
+  "era": {
+   "grade": "A",
+   "note": "Snow piles 0x08E0-0x08E6 are the graphics behind the Dec 1999 holiday 'pile of snow' gift (era pack 3b/3c); the white tint is the one the stock snow pile uses.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "static from the 0x08E0-0x08E6 snow-pile range with Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-009"
+ },
+ {
+  "slug": "frost-spires",
+  "name": "Frost Spires",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "season:winter",
+   "ice",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A cluster of tall, jagged spires of frozen snow, glittering like salt in the cold light.",
+  "era": {
+   "grade": "A",
+   "note": "Snow piles 0x08E0-0x08E6 are the graphics behind the Dec 1999 holiday 'pile of snow' gift (era pack 3b/3c); the white tint is the one the stock snow pile uses.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "SnowPileDeco-style static (0x08E0 is a stock id) with Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-010"
+ },
+ {
+  "slug": "ice-spire",
+  "name": "Ice Spire",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1154,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "season:winter",
+   "ice",
+   "exotic",
+   "dungeon:ice"
+  ],
+  "blurb": "A tall spire of pale blue ice, said to ring faintly when the wind is right.",
+  "era": {
+   "grade": "B",
+   "note": "Same graphic as the Dec 1999 snow pile (0x08E0); the pale-blue ice tint is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "static 0x08E0 with Hue 0x482 (1154); decor-only",
+  "variantOf": "frost-spires",
+  "id": "CR-SEA-011"
+ },
+ {
+  "slug": "frozen-hollow",
+  "name": "Frozen Hollow",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x08E3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x08E4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "season:winter",
+   "ice",
+   "wilderness",
+   "exotic"
+  ],
+  "blurb": "Three snow-laden crags arched together into a little hollow, the sort of den a winter wolf might choose.",
+  "era": {
+   "grade": "A",
+   "note": "Snow-pile graphics 0x08E0-0x08E6 are the Dec 1999 holiday snow-pile gift art, tinted white; grouping is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "three snow-pile statics (0x08E6, 0x08E3, 0x08E4) on a 2x2, Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-012"
+ },
+ {
+  "slug": "frostspire-ring",
+  "name": "Frostspire Ring",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x08E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x08E0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x08E0",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x08E0",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x08E6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "season:winter",
+   "ice",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "Four towering spires of frost set at the corners of a ring, a drift of snow heaped at its heart.",
+  "era": {
+   "grade": "A",
+   "note": "Snow-pile graphics 0x08E0-0x08E6 are the Dec 1999 holiday snow-pile gift art, tinted white; ring layout is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "four 0x08E0 spires and a 0x08E6 heap on a 3x3, Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-013"
+ },
+ {
+  "slug": "little-snowman",
+  "name": "Little Snowman",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0E74",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "whimsical",
+   "ice"
+  ],
+  "blurb": "A small snowman built of three packed snowballs, grinning at all who pass.",
+  "era": {
+   "grade": "C",
+   "note": "No snowman item is documented before 2001-03 (stock snowman art 0x2328 is fenced as 2003); this one is composed of classic cannonball art tinted white. Art only, audit before use.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "cannon-ball piles (0x0E74, 0x0E73 at z+4) tinted Hue 0x481; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-014"
+ },
+ {
+  "slug": "yule-log",
+  "name": "Yule Log",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CF3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "fire",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A great log burning slowly on the hearth, kept alight through the longest night of the year.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fallen-log art (0x0CF3) with the classic campfire flame (0x0DE3); the pairing is shard design (no documented yule log).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "log static with campfire flame at z+1; decor-only (flame tile is damaging in stock)",
+  "variantOf": null,
+  "id": "CR-SEA-015"
+ },
+ {
+  "slug": "yuletide-candles",
+  "name": "Yuletide Candles",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x1430",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 68
+   },
+   {
+    "id": "0x1434",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x142C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "fire",
+   "humble",
+   "elegant"
+  ],
+  "blurb": "Red, green and white candles burning together in the old holiday colours.",
+  "era": {
+   "grade": "B",
+   "note": "Classic candle family 0x142C-0x1437 (candles stackable Feb 1998) in holiday colours; the dyed wax and the grouping are shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four candle statics on a 2x2 with Hues 33 / 68 / 1153 / 33; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-016"
+ },
+ {
+  "slug": "yuletide-lantern-pair",
+  "name": "Yuletide Lantern Pair",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0A15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x0A15",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 68
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "fire",
+   "tavern"
+  ],
+  "blurb": "A ruby-red lantern and an emerald-green one, set side by side to light the holiday feast.",
+  "era": {
+   "grade": "B",
+   "note": "Lantern graphic sold from Jan 1998 (0x0A15-0x0A25) tinted red and green; the dyed glass and the pairing are shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two Lantern statics with Hues 33 and 68; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-017"
+ },
+ {
+  "slug": "jack-o-lantern",
+  "name": "Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x0C6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0F16",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A fat pumpkin grinning with a fierce orange glow, set out to keep the dark honest on a long autumn night.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Pumpkin 0x0C6A is classic farm art; the glowing face is gem art 0x0F2B/0x0F16 tinted orange, as in the stock jack-o-lantern.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock JackOLantern-style composition: pumpkin + two orange gem tiles at z+3; decor-only (no light)",
+  "variantOf": null,
+  "id": "CR-SEA-018"
+ },
+ {
+  "slug": "bubbling-cauldron",
+  "name": "Bubbling Cauldron over Coals",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0974",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "season:halloween",
+   "arcane",
+   "fire",
+   "macabre",
+   "craft:alchemy"
+  ],
+  "blurb": "A great black cauldron slung over a crackling fire, something dark and bubbling inside.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Cauldrons are classic NPC shop-dressing 'rares' (era pack 3a), but no Halloween use is documented before 2006.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "cauldron statue 0x0974 over a fire pit and campfire flame; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-019"
+ },
+ {
+  "slug": "spider-web",
+  "name": "Spider Web",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x10D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:halloween",
+   "macabre",
+   "dungeon",
+   "undead"
+  ],
+  "blurb": "A broad spider web stretched across a corner, beaded with dust.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Web art 0x10D2 is classic dungeon dressing (30 placements in the original map).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "translucent wall static; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-020"
+ },
+ {
+  "slug": "gibbet-skeleton",
+  "name": "Gibbet Skeleton",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x1B7F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1B7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "season:halloween",
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton still wearing its boots, hung up in chains as a warning to others.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Skeleton art 0x1B7C-0x1B80 is classic dungeon dressing (about 13 placements in the original map).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "stock HangingSkeleton uses 0x1B7F (south) / 0x1B7C (east); decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-021"
+ },
+ {
+  "slug": "hay-sheaf-trio",
+  "name": "Hay Sheaf Trio",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x0F36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F36",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F36",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "Three hay sheaves propped together at the field's edge.",
+  "era": {
+   "grade": "B",
+   "note": "No documented UOR harvest item; sheaf 0x0F36 is farm art (47 placements in the original map); the grouping is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three sheaf statics on a 2x2; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-022"
+ },
+ {
+  "slug": "wheat-sheaf",
+  "name": "Wheat Sheaf",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x1EBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A great sheaf of ripe wheat, bound and left to dry in the sun.",
+  "era": {
+   "grade": "B",
+   "note": "No documented UOR harvest item; wheat sheaf 0x1EBD is farm art (26 placements in the original map); world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-023"
+ },
+ {
+  "slug": "harvest-stook",
+  "name": "Harvest Stook",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x1EBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EBD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EBD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1EBD",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "humble",
+   "festive"
+  ],
+  "blurb": "Four wheat sheaves stood together in a stook, the way the last of the harvest is left to ripen.",
+  "era": {
+   "grade": "B",
+   "note": "No documented UOR harvest item; wheat sheaf 0x1EBD is farm art (26 placements in the original map); the stook grouping is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four sheaf statics on a 2x2; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-024"
+ },
+ {
+  "slug": "harvest-fruit-basket",
+  "name": "Harvest Fruit Basket",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x0993",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "season:harvest",
+   "festive",
+   "rustic",
+   "treasure"
+  ],
+  "blurb": "A wicker basket heaped with the best of the harvest: apples, pears and grapes.",
+  "era": {
+   "grade": "B",
+   "note": "No documented UOR harvest item; 'fruit basket' is a classic NPC shop-dressing rare of 1997-2000 (era pack 3a); world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static, non-edible; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-025"
+ },
+ {
+  "slug": "frosted-elm",
+  "name": "Frosted Elm",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CD0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "season:winter",
+   "ice",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A leafless elm hung with hoar frost, every twig outlined in white.",
+  "era": {
+   "grade": "B",
+   "note": "Leafless elm 0x0CD0 is classic tree art. The frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static tree with Hue 0x481 (1153); decor-only; the bare leafless tree art is classic",
+  "variantOf": null,
+  "id": "CR-SEA-026"
+ },
+ {
+  "slug": "frosted-gnarled-oak",
+  "name": "Frosted Gnarled Oak",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "season:winter",
+   "ice",
+   "forest",
+   "wilderness",
+   "exotic"
+  ],
+  "blurb": "A wide, crooked oak with its bare limbs thick with frost, bent as if from a hundred winters.",
+  "era": {
+   "grade": "B",
+   "note": "Gnarled bare oak 0x0CDD is classic tree art. The frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static tree with Hue 0x481 (1153); decor-only; the bare leafless tree art is classic",
+  "variantOf": null,
+  "id": "CR-SEA-027"
+ },
+ {
+  "slug": "frosted-walnut",
+  "name": "Frosted Walnut Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CE0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:winter",
+   "ice",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A bare walnut tree rimed with frost, standing stark against the snow.",
+  "era": {
+   "grade": "B",
+   "note": "Bare walnut 0x0CE0 is classic tree art. The frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static tree with Hue 0x481 (1153); decor-only; the bare leafless tree art is classic",
+  "variantOf": null,
+  "id": "CR-SEA-028"
+ },
+ {
+  "slug": "frosted-willow",
+  "name": "Frosted Willow",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:winter",
+   "ice",
+   "forest",
+   "wilderness",
+   "swamp"
+  ],
+  "blurb": "A bare willow whose long switches are stiff with ice and ring like glass in the wind.",
+  "era": {
+   "grade": "B",
+   "note": "Bare willow 0x0CE6 is classic tree art. The frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static tree with Hue 0x481 (1153); decor-only; the bare leafless tree art is classic",
+  "variantOf": null,
+  "id": "CR-SEA-029"
+ },
+ {
+  "slug": "frosted-cypress",
+  "name": "Frosted Cypress",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x0CF8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "season:winter",
+   "ice",
+   "forest",
+   "wilderness",
+   "swamp",
+   "exotic"
+  ],
+  "blurb": "A tall cypress draped in moss and hung with long icicles.",
+  "era": {
+   "grade": "B",
+   "note": "Mossy cypress 0x0CF8 is classic tree art. The frost tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static tree with Hue 0x481 (1153); decor-only; the bare leafless tree art is classic",
+  "variantOf": null,
+  "id": "CR-SEA-030"
+ },
+ {
+  "slug": "jack-o-lantern-row",
+  "name": "Jack-o'-Lantern Row",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x0C6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0F16",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0C6A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0F16",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0C6A",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0F16",
+    "dx": 2,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "Three grinning jack-o'-lanterns lined up along a wall, each with its own fierce orange glow.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Three of the jack-o'-lantern composition (classic pumpkin plus orange gem art).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three jack-o-lantern compositions (pumpkin + two gem tiles at z+3) on a 3x1; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-031"
+ },
+ {
+  "slug": "hallows-eve-pair",
+  "name": "Hallows' Eve Pair",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x0C6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F2B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x0F16",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3,
+    "hue": 1161
+   },
+   {
+    "id": "0x1854",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "macabre",
+   "undead",
+   "fire"
+  ],
+  "blurb": "A grinning jack-o'-lantern keeping company with a candle-crowned skull, a doorstep guard for the darkest night.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Jack-o'-lantern composition (classic pumpkin and gem art) beside the classic skull candle; pairing is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "jack-o-lantern composition plus a CandleSkull (0x1854) on a 2x1; decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-032"
+ },
+ {
+  "slug": "ghostlight-lantern",
+  "name": "Ghostlight Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x0A15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1154,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "undead",
+   "arcane",
+   "fire"
+  ],
+  "blurb": "A lantern of pale glass whose cold light, they say, shows things that are better left unseen.",
+  "era": {
+   "grade": "C",
+   "note": "No documented UOR Halloween item; art only. Lantern graphic sold from Jan 1998 (0x0A15-0x0A25) tinted pale blue; the ghostly glow is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lantern with Hue 0x482 (1154); decor-only",
+  "variantOf": null,
+  "id": "CR-SEA-033"
+ }
+]

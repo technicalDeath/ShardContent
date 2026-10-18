@@ -1,0 +1,5824 @@
+{
+"note": "graphic ids players can already reach by crafting, NPC vendors or loot tables (generous: ignores expansion gates)",
+"count": 1185,
+"graphics": {
+"525": [
+"craft:Carpentry"
+],
+"526": [
+"craft:Blacksmithy"
+],
+"600": [
+"loot:Loot"
+],
+"601": [
+"loot:Loot"
+],
+"602": [
+"loot:Loot"
+],
+"603": [
+"loot:Loot"
+],
+"604": [
+"loot:Loot"
+],
+"605": [
+"loot:Loot"
+],
+"606": [
+"loot:Loot"
+],
+"607": [
+"loot:Loot"
+],
+"608": [
+"loot:Loot"
+],
+"609": [
+"loot:Loot"
+],
+"610": [
+"loot:Loot"
+],
+"611": [
+"loot:Loot"
+],
+"612": [
+"loot:Loot"
+],
+"613": [
+"loot:Loot"
+],
+"614": [
+"loot:Loot"
+],
+"615": [
+"loot:Loot"
+],
+"643": [
+"craft:Tailoring"
+],
+"644": [
+"craft:Tailoring"
+],
+"645": [
+"craft:Tailoring"
+],
+"646": [
+"craft:Tailoring"
+],
+"647": [
+"craft:Tailoring"
+],
+"648": [
+"craft:Tailoring"
+],
+"649": [
+"craft:Tailoring"
+],
+"650": [
+"craft:Tailoring"
+],
+"677": [
+"craft:Inscription"
+],
+"678": [
+"craft:Inscription"
+],
+"679": [
+"craft:Inscription"
+],
+"680": [
+"craft:Inscription"
+],
+"681": [
+"craft:Inscription"
+],
+"682": [
+"craft:Inscription"
+],
+"683": [
+"craft:Inscription"
+],
+"684": [
+"craft:Inscription"
+],
+"685": [
+"craft:Inscription"
+],
+"686": [
+"craft:Inscription"
+],
+"687": [
+"craft:Inscription"
+],
+"688": [
+"craft:Inscription"
+],
+"689": [
+"craft:Inscription"
+],
+"690": [
+"craft:Inscription"
+],
+"691": [
+"craft:Inscription"
+],
+"692": [
+"craft:Inscription"
+],
+"769": [
+"craft:Tailoring"
+],
+"770": [
+"craft:Tailoring"
+],
+"771": [
+"craft:Tailoring"
+],
+"772": [
+"craft:Tailoring"
+],
+"773": [
+"craft:Tailoring"
+],
+"774": [
+"craft:Tailoring"
+],
+"784": [
+"craft:Tailoring"
+],
+"785": [
+"craft:Tailoring"
+],
+"2301": [
+"loot:Loot"
+],
+"2303": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"2305": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"2307": [
+"loot:Loot"
+],
+"2308": [
+"loot:Loot"
+],
+"2309": [
+"loot:Loot"
+],
+"2312": [
+"loot:Loot"
+],
+"2314": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"2316": [
+"loot:Loot"
+],
+"2347": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2348": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2352": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2353": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2419": [
+"vendor:SBFisherman"
+],
+"2425": [
+"vendor:SBButcher"
+],
+"2426": [
+"craft:Cooking",
+"vendor:SBFisherman"
+],
+"2427": [
+"craft:Cooking"
+],
+"2430": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"2431": [
+"craft:Tinkering",
+"vendor:SBCook"
+],
+"2444": [
+"vendor:SBBaker"
+],
+"2452": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"2469": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2470": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2472": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2473": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBProvisioner",
+"vendor:SBStoneCrafter",
+"vendor:SBThief"
+],
+"2474": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBProvisioner",
+"vendor:SBStoneCrafter",
+"vendor:SBThief"
+],
+"2485": [
+"craft:Alchemy",
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBFarmer"
+],
+"2486": [
+"craft:Cooking"
+],
+"2487": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"2489": [
+"craft:Cooking",
+"vendor:SBButcher"
+],
+"2491": [
+"vendor:SBCook"
+],
+"2496": [
+"craft:Cooking",
+"vendor:SBButcher"
+],
+"2498": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2499": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2505": [
+"vendor:SBButcher"
+],
+"2512": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"2513": [
+"vendor:SBBarkeeper",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"2514": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"2519": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2537": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBCook"
+],
+"2539": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBCook"
+],
+"2540": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBBeekeeper",
+"vendor:SBCook"
+],
+"2545": [
+"craft:Cooking",
+"vendor:SBButcher"
+],
+"2546": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"2548": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2549": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2550": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2551": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2552": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2553": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2590": [
+"vendor:SBBaker"
+],
+"2597": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBMiner",
+"vendor:SBProvisioner",
+"vendor:SBThief"
+],
+"2599": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"2600": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBMiner",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"2602": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2604": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2612": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2637": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2639": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2641": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2643": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2645": [
+"vendor:SBProvisioner"
+],
+"2646": [
+"vendor:SBProvisioner"
+],
+"2647": [
+"vendor:SBProvisioner"
+],
+"2648": [
+"vendor:SBProvisioner"
+],
+"2649": [
+"vendor:SBProvisioner"
+],
+"2652": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2653": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2658": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2659": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2680": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2681": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2684": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2685": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2686": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2687": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2690": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2691": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2711": [
+"craft:Carpentry"
+],
+"2712": [
+"craft:Carpentry"
+],
+"2713": [
+"craft:Carpentry"
+],
+"2714": [
+"craft:Carpentry"
+],
+"2715": [
+"craft:Carpentry"
+],
+"2716": [
+"craft:Carpentry"
+],
+"2717": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2718": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2860": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2861": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2862": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2863": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2864": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2865": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2866": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2867": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2868": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2869": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2881": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2882": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2883": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2884": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2885": [
+"craft:Masonry"
+],
+"2886": [
+"craft:Masonry"
+],
+"2889": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2890": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2891": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2892": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"2894": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2895": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2896": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2897": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2898": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2899": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2900": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2901": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2902": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2903": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2904": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2905": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2906": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2907": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2908": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2909": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2910": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2940": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2941": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2959": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"2960": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3164": [
+"vendor:SBFarmer"
+],
+"3172": [
+"vendor:SBFarmer"
+],
+"3173": [
+"vendor:SBFarmer"
+],
+"3174": [
+"vendor:SBFarmer"
+],
+"3175": [
+"vendor:SBFarmer"
+],
+"3178": [
+"craft:Cooking",
+"vendor:SBFarmer"
+],
+"3179": [
+"craft:Cooking",
+"vendor:SBFarmer"
+],
+"3181": [
+"vendor:SBFarmer"
+],
+"3182": [
+"vendor:SBFarmer"
+],
+"3184": [
+"vendor:SBFarmer"
+],
+"3185": [
+"vendor:SBFarmer"
+],
+"3186": [
+"vendor:SBFarmer"
+],
+"3187": [
+"vendor:SBFarmer"
+],
+"3188": [
+"craft:Cooking",
+"vendor:SBCook",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"3189": [
+"craft:Cooking",
+"vendor:SBCook",
+"vendor:SBFarmer",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"3191": [
+"vendor:SBFarmer"
+],
+"3192": [
+"vendor:SBFarmer"
+],
+"3193": [
+"vendor:SBFarmer"
+],
+"3194": [
+"vendor:SBFarmer"
+],
+"3195": [
+"vendor:SBFarmer"
+],
+"3196": [
+"vendor:SBFarmer"
+],
+"3199": [
+"vendor:SBFarmer"
+],
+"3201": [
+"vendor:SBFarmer"
+],
+"3386": [
+"vendor:SBFarmer"
+],
+"3520": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBFisherman"
+],
+"3528": [
+"vendor:SBFisherman"
+],
+"3530": [
+"vendor:SBFisherman"
+],
+"3553": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"vendor:SBProvisioner"
+],
+"3568": [
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter",
+"vendor:SBWeaponSmith"
+],
+"3569": [
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter",
+"vendor:SBWeaponSmith"
+],
+"3576": [
+"vendor:SBTailor"
+],
+"3577": [
+"vendor:SBTailor"
+],
+"3612": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBPlayerBarkeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"3613": [
+"vendor:SBWeaver"
+],
+"3614": [
+"vendor:SBWeaver"
+],
+"3615": [
+"vendor:SBWeaver"
+],
+"3617": [
+"vendor:SBFortuneTeller",
+"vendor:SBHealer",
+"vendor:SBRanger",
+"vendor:SBVarietyDealer",
+"vendor:SBVeterinarian"
+],
+"3622": [
+"vendor:SBHairStylist"
+],
+"3626": [
+"craft:Cooking"
+],
+"3644": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3645": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3646": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3647": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3650": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3651": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3699": [
+"craft:Tinkering"
+],
+"3701": [
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTanner",
+"vendor:SBThief",
+"vendor:SBVarietyDealer"
+],
+"3702": [
+"vendor:SBMiner",
+"vendor:SBProvisioner",
+"vendor:SBTanner"
+],
+"3705": [
+"vendor:SBProvisioner",
+"vendor:SBTanner",
+"vendor:SBThief"
+],
+"3709": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBProvisioner",
+"vendor:SBStoneCrafter",
+"vendor:SBThief"
+],
+"3710": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBProvisioner",
+"vendor:SBStoneCrafter",
+"vendor:SBThief"
+],
+"3711": [
+"craft-t2a:CarpentryMenu",
+"craft-t2a:TinkeringMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"3712": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"3713": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter"
+],
+"3714": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter"
+],
+"3717": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBMiner"
+],
+"3718": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBMiner"
+],
+"3719": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"3720": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"3721": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBGlassblower",
+"vendor:SBStavesWeapon"
+],
+"3722": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBGlassblower",
+"vendor:SBStavesWeapon"
+],
+"3739": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHerbalist"
+],
+"3740": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBard",
+"vendor:SBCarpenter",
+"vendor:SBTinker"
+],
+"3741": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBard",
+"vendor:SBCarpenter",
+"vendor:SBTinker"
+],
+"3742": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot"
+],
+"3761": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBard"
+],
+"3762": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBard",
+"vendor:SBCarpenter",
+"vendor:SBTinker"
+],
+"3763": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBard",
+"vendor:SBCarpenter",
+"vendor:SBTinker"
+],
+"3766": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3768": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3771": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3772": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3778": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"3779": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"3780": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"3781": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"3782": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3783": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3824": [
+"craft:Tinkering"
+],
+"3827": [
+"craft-t2a:InscriptionMenu",
+"craft:Carpentry",
+"craft:Inscription",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBMapmaker"
+],
+"3834": [
+"craft:Inscription",
+"vendor:SBHolyMage",
+"vendor:SBKeeperOfChivalry",
+"vendor:SBMage",
+"vendor:SBNinja",
+"vendor:SBSamurai"
+],
+"3836": [
+"vendor:SBFisherman"
+],
+"3839": [
+"vendor:SBAlchemist",
+"vendor:SBHairStylist",
+"vendor:SBProvisioner",
+"vendor:SBThief"
+],
+"3846": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage",
+"vendor:SBMage"
+],
+"3847": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage"
+],
+"3848": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage"
+],
+"3849": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower"
+],
+"3850": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower"
+],
+"3851": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHealer"
+],
+"3852": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHealer"
+],
+"3853": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"craft:Tinkering",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBMage"
+],
+"3854": [
+"craft-t2a:AlchemyMenu",
+"craft:Alchemy",
+"craft:Glassblowing",
+"craft:Tinkering",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower"
+],
+"3856": [
+"craft:Cooking",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3857": [
+"craft:Cooking"
+],
+"3859": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3861": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3862": [
+"craft:Blacksmithy",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3864": [
+"craft:Cooking"
+],
+"3865": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3873": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3877": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3878": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3885": [
+"craft:Blacksmithy",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"3894": [
+"vendor:SBFarmer",
+"vendor:SBMiller"
+],
+"3897": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBMiner",
+"vendor:SBTinker"
+],
+"3903": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"vendor:SBProvisioner",
+"vendor:SBRangedWeapon",
+"vendor:SBVarietyDealer"
+],
+"3907": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBWeaponSmith"
+],
+"3908": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBWeaponSmith"
+],
+"3909": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3910": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3911": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3912": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3913": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3914": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3915": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3916": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"3917": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPoleArmWeapon",
+"vendor:SBWeaponSmith"
+],
+"3918": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPoleArmWeapon",
+"vendor:SBWeaponSmith"
+],
+"3919": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"3920": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"3921": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBKnifeWeapon",
+"vendor:SBWeaponSmith"
+],
+"3922": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBKnifeWeapon",
+"vendor:SBWeaponSmith"
+],
+"3932": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"3933": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"3934": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"3935": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"3936": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"3937": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"3938": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"3939": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"3941": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3943": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3945": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"3947": [
+"vendor:SBInnKeeper",
+"vendor:SBMiner",
+"vendor:SBProvisioner",
+"vendor:SBThief"
+],
+"3960": [
+"loot:Loot",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"3962": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage"
+],
+"3963": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHerbalist"
+],
+"3964": [
+"craft:Cooking"
+],
+"3965": [
+"loot:Loot",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"3966": [
+"craft:Blacksmithy",
+"craft:Tailoring"
+],
+"3972": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHealer"
+],
+"3973": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHealer"
+],
+"3974": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHerbalist"
+],
+"3976": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHerbalist"
+],
+"3978": [
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"3980": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage"
+],
+"3981": [
+"craft:Alchemy",
+"craft:Inscription",
+"loot:Loot",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower",
+"vendor:SBHolyMage"
+],
+"3982": [
+"loot:Loot",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"3983": [
+"craft:Alchemy",
+"loot:Loot",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"3989": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3990": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3991": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3992": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3993": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3994": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3995": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3996": [
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"3997": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTailor",
+"vendor:SBTinker"
+],
+"3998": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTailor",
+"vendor:SBTinker",
+"vendor:SBWeaver"
+],
+"3999": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTailor",
+"vendor:SBTinker",
+"vendor:SBWeaver"
+],
+"4000": [
+"vendor:SBTailor"
+],
+"4006": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBPlayerBarkeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"4007": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBPlayerBarkeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"4009": [
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"4010": [
+"vendor:SBProvisioner"
+],
+"4011": [
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"4013": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBPlayerBarkeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"4015": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4016": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4017": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4020": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4021": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4027": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBBlacksmith",
+"vendor:SBSmithTools",
+"vendor:SBTinker"
+],
+"4028": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBBlacksmith",
+"vendor:SBSmithTools",
+"vendor:SBTinker"
+],
+"4030": [
+"vendor:SBStoneCrafter"
+],
+"4031": [
+"craft:Tinkering",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBMapmaker",
+"vendor:SBRealEstateBroker",
+"vendor:SBScribe"
+],
+"4032": [
+"craft:Tinkering",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBMapmaker",
+"vendor:SBRealEstateBroker",
+"vendor:SBScribe"
+],
+"4033": [
+"vendor:SBArchitect"
+],
+"4070": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4071": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4072": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4073": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4074": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4075": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4076": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4077": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4078": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4079": [
+"vendor:SBScribe"
+],
+"4080": [
+"vendor:SBProvisioner",
+"vendor:SBScribe"
+],
+"4081": [
+"vendor:SBProvisioner"
+],
+"4082": [
+"vendor:SBFisherman",
+"vendor:SBProvisioner",
+"vendor:SBScribe"
+],
+"4084": [
+"vendor:SBGlassblower"
+],
+"4100": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4113": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4117": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4121": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4130": [
+"craft:Tinkering",
+"vendor:SBBowyer"
+],
+"4131": [
+"craft:Tinkering",
+"vendor:SBBowyer"
+],
+"4136": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4137": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4138": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4140": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4141": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4142": [
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4143": [
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4144": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4145": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4146": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4147": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4148": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4149": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4153": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBCook",
+"vendor:SBMiller"
+],
+"4155": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner"
+],
+"4157": [
+"craft:Cooking",
+"vendor:SBBaker"
+],
+"4158": [
+"craft:Tinkering",
+"vendor:SBCook"
+],
+"4159": [
+"craft:Cooking"
+],
+"4160": [
+"craft:Cooking",
+"vendor:SBBaker"
+],
+"4161": [
+"craft:Cooking",
+"vendor:SBBaker",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"4162": [
+"craft:Cooking"
+],
+"4163": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCook"
+],
+"4164": [
+"craft:Cooking"
+],
+"4167": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4171": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4172": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4173": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4174": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"4175": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4176": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4177": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4178": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4179": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4180": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4181": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4182": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4184": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4185": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4186": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4187": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4188": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4189": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4190": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"4191": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4192": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4193": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4194": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4208": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4216": [
+"craft-t2a:T2ACraftSystem",
+"vendor:SBFurtrader",
+"vendor:SBLeatherWorker"
+],
+"4217": [
+"craft-t2a:T2ACraftSystem",
+"vendor:SBFurtrader",
+"vendor:SBLeatherWorker"
+],
+"4225": [
+"craft:Tailoring",
+"craft:Tinkering",
+"vendor:SBTanner"
+],
+"4226": [
+"craft:Tailoring",
+"craft:Tinkering",
+"vendor:SBTanner"
+],
+"4227": [
+"craft:Cooking"
+],
+"4229": [
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4230": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4231": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4232": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4233": [
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4234": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4235": [
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"4324": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4325": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4326": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4327": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker"
+],
+"4359": [
+"craft:Tinkering"
+],
+"4517": [
+"craft:Tinkering"
+],
+"4523": [
+"craft:Tinkering"
+],
+"4586": [
+"craft:Glassblowing"
+],
+"4587": [
+"craft:Glassblowing"
+],
+"4609": [
+"craft:Masonry"
+],
+"4610": [
+"craft:Masonry"
+],
+"4611": [
+"craft:Masonry"
+],
+"4612": [
+"craft:Masonry"
+],
+"4613": [
+"craft:Masonry"
+],
+"4614": [
+"craft:Masonry"
+],
+"4622": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4623": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4624": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4625": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4626": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4627": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4628": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4629": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4630": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"4632": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Masonry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"4633": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Masonry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"4634": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Masonry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"4635": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Masonry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"4644": [
+"loot:Loot"
+],
+"4645": [
+"loot:Loot"
+],
+"4646": [
+"loot:Loot"
+],
+"4647": [
+"loot:Loot"
+],
+"4787": [
+"vendor:SBStoneCrafter"
+],
+"4810": [
+"loot:Loot"
+],
+"4811": [
+"loot:Loot"
+],
+"5018": [
+"craft:Masonry",
+"loot:Loot"
+],
+"5019": [
+"craft:Masonry",
+"loot:Loot"
+],
+"5020": [
+"craft:Masonry",
+"loot:Loot"
+],
+"5021": [
+"craft:Masonry"
+],
+"5039": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5040": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5041": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"5042": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"5043": [
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBCarpenter",
+"vendor:SBMaceWeapon",
+"vendor:SBStoneCrafter",
+"vendor:SBWeaponSmith"
+],
+"5044": [
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBCarpenter",
+"vendor:SBMaceWeapon",
+"vendor:SBStoneCrafter",
+"vendor:SBWeaponSmith"
+],
+"5045": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5046": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5047": [
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5048": [
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5049": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5050": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5051": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5054": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5055": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5056": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5059": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5060": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBChainmailArmor"
+],
+"5061": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5062": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5063": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5067": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5068": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5069": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5074": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5075": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"5076": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5077": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5078": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5082": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5083": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5084": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5085": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5089": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5090": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBStuddedArmor",
+"vendor:SBTanner"
+],
+"5091": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBBlacksmith",
+"vendor:SBTinker",
+"vendor:SBWeaponSmith"
+],
+"5092": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBBlacksmith",
+"vendor:SBTinker",
+"vendor:SBWeaponSmith"
+],
+"5099": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5100": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5101": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5102": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5103": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5104": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5105": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5106": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRingmailArmor"
+],
+"5110": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"5111": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBButcher",
+"vendor:SBKnifeWeapon"
+],
+"5112": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter"
+],
+"5113": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStavesWeapon",
+"vendor:SBStoneCrafter"
+],
+"5114": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5115": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5116": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"5117": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"5118": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5119": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5120": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5121": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5122": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"5123": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSpearForkWeapon",
+"vendor:SBWeaponSmith"
+],
+"5124": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBWeaponSmith"
+],
+"5125": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBWeaponSmith"
+],
+"5126": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5127": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5128": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBHelmetArmor"
+],
+"5130": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBHelmetArmor"
+],
+"5132": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBHelmetArmor"
+],
+"5134": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBHelmetArmor"
+],
+"5136": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5137": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5138": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBHelmetArmor"
+],
+"5139": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5140": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5141": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5142": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5143": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5144": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5146": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"5154": [
+"vendor:SBBeekeeper",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner"
+],
+"5176": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5177": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5178": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5179": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5180": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5181": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMaceWeapon",
+"vendor:SBWeaponSmith"
+],
+"5182": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPoleArmWeapon",
+"vendor:SBWeaponSmith"
+],
+"5183": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPoleArmWeapon",
+"vendor:SBWeaponSmith"
+],
+"5184": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5185": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"5186": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5187": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBAxeWeapon",
+"vendor:SBBlacksmith",
+"vendor:SBWeaponSmith"
+],
+"5198": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5199": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5200": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5201": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5202": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5203": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5204": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5205": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5206": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5207": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"5355": [
+"craft-t2a:CartographyMenu",
+"craft:Cartography",
+"vendor:SBMapmaker"
+],
+"5356": [
+"craft-t2a:CartographyMenu",
+"craft:Cartography",
+"vendor:SBMapmaker"
+],
+"5359": [
+"craft:Carpentry",
+"vendor:SBFisherman"
+],
+"5360": [
+"craft:Blacksmithy",
+"craft:Carpentry",
+"craft:Tinkering",
+"vendor:SBBanker",
+"vendor:SBBarkeeper",
+"vendor:SBFisherman"
+],
+"5362": [
+"vendor:SBProvisioner",
+"vendor:SBShipwright"
+],
+"5365": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"5366": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBArchitect"
+],
+"5371": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBProvisioner",
+"vendor:SBThief",
+"vendor:SBTinker"
+],
+"5372": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBProvisioner",
+"vendor:SBThief",
+"vendor:SBTinker"
+],
+"5397": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5398": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5399": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5400": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5422": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5423": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5425": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5431": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5432": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5433": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5434": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5435": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5436": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5437": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5438": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5440": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5441": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5442": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5444": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5445": [
+"loot:Loot"
+],
+"5447": [
+"loot:Loot"
+],
+"5625": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5626": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5627": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5628": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5629": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"5631": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5632": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5633": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5634": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5636": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5638": [
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper",
+"vendor:SBWaiter"
+],
+"5639": [
+"craft:Cooking",
+"vendor:SBButcher"
+],
+"5640": [
+"craft:Cooking",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"5641": [
+"craft:Cooking",
+"vendor:SBButcher"
+],
+"5642": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBCook",
+"vendor:SBInnKeeper",
+"vendor:SBProvisioner",
+"vendor:SBTavernKeeper"
+],
+"5643": [
+"craft:Cooking",
+"vendor:SBBaker"
+],
+"5899": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"5900": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"5901": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"5902": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"5903": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"5904": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"5905": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"5907": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5908": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5909": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5910": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5911": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5912": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBProvisioner"
+],
+"5913": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5914": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5915": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"5916": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"5919": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"5920": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"5921": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"5922": [
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"5928": [
+"vendor:SBFarmer"
+],
+"5930": [
+"vendor:SBFarmer"
+],
+"5981": [
+"craft:Tailoring"
+],
+"5989": [
+"craft-t2a:T2ACraftSystem",
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"5990": [
+"craft-t2a:T2ACraftSystem",
+"craft:Blacksmithy",
+"craft:Carpentry",
+"craft:Tailoring",
+"vendor:SBTailor"
+],
+"5991": [
+"craft-t2a:T2ACraftSystem",
+"craft:Tailoring",
+"vendor:SBTailor",
+"vendor:SBWeaver"
+],
+"5992": [
+"craft-t2a:T2ACraftSystem",
+"craft:Blacksmithy",
+"craft:Carpentry",
+"craft:Tailoring",
+"vendor:SBTailor"
+],
+"6009": [
+"craft:Masonry"
+],
+"6160": [
+"craft:Glassblowing"
+],
+"6161": [
+"craft:Glassblowing"
+],
+"6162": [
+"vendor:SBProvisioner"
+],
+"6186": [
+"craft:Glassblowing"
+],
+"6187": [
+"craft:Glassblowing"
+],
+"6188": [
+"craft:Glassblowing"
+],
+"6189": [
+"craft:Glassblowing"
+],
+"6190": [
+"craft:Glassblowing"
+],
+"6191": [
+"craft:Glassblowing"
+],
+"6192": [
+"craft:Glassblowing"
+],
+"6193": [
+"craft:Glassblowing"
+],
+"6194": [
+"craft:Glassblowing"
+],
+"6195": [
+"craft:Glassblowing"
+],
+"6196": [
+"craft:Glassblowing"
+],
+"6197": [
+"craft:Glassblowing"
+],
+"6198": [
+"craft:Glassblowing"
+],
+"6199": [
+"craft:Glassblowing"
+],
+"6200": [
+"craft:Glassblowing"
+],
+"6201": [
+"craft:Glassblowing"
+],
+"6202": [
+"craft:Glassblowing"
+],
+"6203": [
+"craft:Glassblowing"
+],
+"6204": [
+"craft:Glassblowing"
+],
+"6205": [
+"craft:Glassblowing"
+],
+"6206": [
+"craft:Glassblowing"
+],
+"6209": [
+"craft:Glassblowing",
+"vendor:SBBanker",
+"vendor:SBBarkeeper",
+"vendor:SBInnKeeper",
+"vendor:SBTavernKeeper"
+],
+"6212": [
+"craft:Glassblowing"
+],
+"6216": [
+"craft:Inscription"
+],
+"6217": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBAlchemist",
+"vendor:SBGlassblower"
+],
+"6226": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"6235": [
+"craft:Glassblowing"
+],
+"6236": [
+"craft:Glassblowing"
+],
+"6237": [
+"craft:Glassblowing"
+],
+"6238": [
+"craft:Glassblowing"
+],
+"6242": [
+"vendor:SBFisherman"
+],
+"6276": [
+"vendor:SBProvisioner"
+],
+"6277": [
+"vendor:SBProvisioner"
+],
+"6278": [
+"vendor:SBProvisioner"
+],
+"6432": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6434": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6436": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6444": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6446": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6448": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6464": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering"
+],
+"6522": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6526": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6534": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6538": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6546": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6550": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6558": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6562": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"6812": [
+"vendor:SBTailor"
+],
+"6813": [
+"vendor:SBTailor"
+],
+"7026": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7027": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7028": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7030": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7033": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7034": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBStoneCrafter",
+"vendor:SBWoodenShields"
+],
+"7035": [
+"craft-t2a:BlacksmithMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBMetalShields"
+],
+"7107": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"7108": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"7121": [
+"craft:BowFletching",
+"craft:Carpentry",
+"vendor:SBRangedWeapon"
+],
+"7124": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"vendor:SBRangedWeapon"
+],
+"7127": [
+"craft-t2a:T2ACraftSystem",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker",
+"vendor:SBVagabond"
+],
+"7130": [
+"craft-t2a:T2ACraftSystem",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter",
+"vendor:SBTinker",
+"vendor:SBVagabond"
+],
+"7133": [
+"craft-t2a:T2ACraftSystem",
+"craft-t2a:TinkeringMenu",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tinkering",
+"vendor:SBCarpenter"
+],
+"7136": [
+"craft-t2a:T2ACraftSystem",
+"craft-t2a:TinkeringMenu",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tinkering",
+"vendor:SBCarpenter"
+],
+"7151": [
+"craft-t2a:BlacksmithMenu",
+"craft-t2a:CarpentryMenu",
+"craft:Blacksmithy",
+"craft:Carpentry",
+"craft:Tinkering",
+"vendor:SBBlacksmith"
+],
+"7154": [
+"craft-t2a:BlacksmithMenu",
+"craft-t2a:CarpentryMenu",
+"craft:Blacksmithy",
+"craft:Carpentry",
+"craft:Tinkering",
+"vendor:SBBlacksmith"
+],
+"7163": [
+"craft-t2a:BowFletchingMenu",
+"craft:BowFletching",
+"craft:Tinkering",
+"vendor:SBProvisioner",
+"vendor:SBRangedWeapon",
+"vendor:SBVarietyDealer"
+],
+"7168": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7169": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7170": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBStuddedArmor"
+],
+"7171": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBStuddedArmor"
+],
+"7172": [
+"craft-t2a:BlacksmithMenu",
+"craft-t2a:TailoringMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"7173": [
+"craft-t2a:BlacksmithMenu",
+"craft-t2a:TailoringMenu",
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBPlateArmor"
+],
+"7174": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7175": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7176": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7177": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7178": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7179": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"7180": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBStuddedArmor"
+],
+"7181": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBLeatherArmor",
+"vendor:SBStuddedArmor"
+],
+"7192": [
+"craft:Glassblowing",
+"vendor:SBMiner",
+"vendor:SBProvisioner",
+"vendor:SBThief"
+],
+"7607": [
+"craft-t2a:TinkeringMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7608": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7609": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"7610": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBProvisioner",
+"vendor:SBTailor"
+],
+"7717": [
+"craft:Carpentry"
+],
+"7857": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7858": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7859": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7860": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"7864": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"7865": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBTinker"
+],
+"7866": [
+"vendor:SBTanner"
+],
+"7867": [
+"craft:Tinkering",
+"vendor:SBTanner"
+],
+"7868": [
+"vendor:SBTinker"
+],
+"7869": [
+"craft:Cooking"
+],
+"7872": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"7875": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry"
+],
+"7888": [
+"vendor:SBJewel"
+],
+"7933": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7934": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7935": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7936": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7937": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBMonk",
+"vendor:SBTailor"
+],
+"7938": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBMonk",
+"vendor:SBTailor"
+],
+"7939": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7940": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"7941": [
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"7942": [
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"7943": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"7944": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"7945": [
+"craft-t2a:TinkeringMenu",
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBJewel",
+"vendor:SBProvisioner",
+"vendor:SBVagabond"
+],
+"7947": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"7956": [
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"7957": [
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"7958": [
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"7959": [
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBVarietyDealer"
+],
+"8059": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8060": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8095": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8096": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8097": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8098": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8189": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8190": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8790": [
+"vendor:SBProvisioner"
+],
+"8791": [
+"vendor:SBProvisioner"
+],
+"8793": [
+"craft:Inscription"
+],
+"8965": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSEHats"
+],
+"8966": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSEHats"
+],
+"8967": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"8968": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"8969": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"8970": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"8971": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8972": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8973": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBMonk",
+"vendor:SBTailor"
+],
+"8974": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBMonk",
+"vendor:SBTailor"
+],
+"8975": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8976": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"8977": [
+"craft:Carpentry"
+],
+"8978": [
+"craft:Carpentry"
+],
+"9242": [
+"craft:Masonry"
+],
+"9244": [
+"craft:Masonry",
+"vendor:SBFisherman"
+],
+"9404": [
+"craft:Tinkering"
+],
+"9406": [
+"craft:Tinkering"
+],
+"9410": [
+"craft:Carpentry"
+],
+"9414": [
+"craft:Carpentry"
+],
+"9418": [
+"craft:Tinkering"
+],
+"9419": [
+"craft:Carpentry"
+],
+"9420": [
+"craft:Carpentry"
+],
+"9421": [
+"craft:Carpentry"
+],
+"9422": [
+"craft:Carpentry"
+],
+"9423": [
+"craft:Carpentry"
+],
+"9424": [
+"craft:Carpentry"
+],
+"9425": [
+"craft:Carpentry"
+],
+"9426": [
+"craft:Carpentry"
+],
+"9427": [
+"craft:Carpentry"
+],
+"9428": [
+"craft:Carpentry"
+],
+"9448": [
+"vendor:SBBarkeeper",
+"vendor:SBSECook",
+"vendor:SBSEFood",
+"vendor:SBTavernKeeper"
+],
+"9451": [
+"craft:Cooking"
+],
+"9793": [
+"craft:Blacksmithy"
+],
+"9794": [
+"craft:Blacksmithy"
+],
+"9795": [
+"craft:Blacksmithy"
+],
+"9796": [
+"craft:Blacksmithy"
+],
+"9797": [
+"craft:Blacksmithy"
+],
+"9798": [
+"craft:Blacksmithy"
+],
+"9799": [
+"craft:Blacksmithy"
+],
+"9800": [
+"craft:Blacksmithy"
+],
+"9815": [
+"craft:Blacksmithy"
+],
+"9816": [
+"craft:Blacksmithy"
+],
+"9863": [
+"vendor:SBMonk"
+],
+"9900": [
+"craft:Tinkering"
+],
+"9901": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"9902": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"9903": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler",
+"vendor:SBLeatherWorker"
+],
+"9904": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBLeatherArmor",
+"vendor:SBTanner"
+],
+"9908": [
+"craft:Blacksmithy"
+],
+"9914": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9915": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9916": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9917": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9918": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9919": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9920": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9921": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9922": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"9923": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"9924": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9925": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9926": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9927": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9928": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9929": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9930": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9931": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBSwordWeapon",
+"vendor:SBWeaponSmith"
+],
+"9932": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"9933": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBBlacksmith",
+"vendor:SBRangedWeapon",
+"vendor:SBWeaponSmith"
+],
+"10100": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10101": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10102": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSEHats",
+"vendor:SBSELeatherArmor"
+],
+"10103": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10104": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10105": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"10106": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10109": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10110": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10111": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10112": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10113": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"10114": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10115": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10116": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"10117": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"10118": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10120": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10121": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"10122": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10123": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10125": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEArmor"
+],
+"10126": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10127": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSEHats"
+],
+"10128": [
+"craft:Tailoring"
+],
+"10129": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10130": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10131": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10132": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10134": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10135": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"10136": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBProvisioner"
+],
+"10137": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10138": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10139": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10140": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10141": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10144": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10145": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10146": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10147": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10148": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10149": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBSEBowyer"
+],
+"10150": [
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBSECarpenter",
+"vendor:SBSEWeapons"
+],
+"10151": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10152": [
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBSEBowyer",
+"vendor:SBSECarpenter"
+],
+"10153": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10154": [
+"craft:Carpentry",
+"vendor:SBSEBowyer",
+"vendor:SBSECarpenter"
+],
+"10155": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10156": [
+"craft:Blacksmithy",
+"vendor:SBSEWeapons"
+],
+"10157": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10158": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBSEBowyer"
+],
+"10159": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10182": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10183": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10189": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10190": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10194": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSELeatherArmor"
+],
+"10202": [
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBSEHats"
+],
+"10203": [
+"craft:Tailoring"
+],
+"10207": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10209": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10210": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBCobbler"
+],
+"10211": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBHolyMage",
+"vendor:SBMage",
+"vendor:SBProvisioner"
+],
+"10212": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10213": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10214": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10215": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"10219": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10220": [
+"craft-t2a:TailoringMenu",
+"craft:Tailoring",
+"loot:Loot",
+"vendor:SBTailor"
+],
+"10221": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10222": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10223": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10224": [
+"craft:BowFletching",
+"loot:Loot",
+"vendor:SBSEBowyer"
+],
+"10225": [
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBSECarpenter",
+"vendor:SBSEWeapons"
+],
+"10226": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10227": [
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBSEBowyer",
+"vendor:SBSECarpenter"
+],
+"10228": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10229": [
+"craft:Carpentry",
+"vendor:SBSEBowyer",
+"vendor:SBSECarpenter"
+],
+"10230": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10231": [
+"craft:Blacksmithy",
+"vendor:SBSEWeapons"
+],
+"10232": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10233": [
+"craft:Tinkering",
+"loot:Loot",
+"vendor:SBSEBowyer"
+],
+"10234": [
+"craft:Blacksmithy",
+"loot:Loot",
+"vendor:SBSEWeapons"
+],
+"10245": [
+"craft:Carpentry",
+"loot:Loot",
+"vendor:SBSECarpenter"
+],
+"10246": [
+"craft:BowFletching",
+"vendor:SBSEBowyer"
+],
+"10248": [
+"craft:Alchemy",
+"craft:Cooking"
+],
+"10251": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"10252": [
+"craft-t2a:CarpentryMenu",
+"craft:Carpentry",
+"vendor:SBCarpenter",
+"vendor:SBStoneCrafter"
+],
+"10253": [
+"craft:Carpentry"
+],
+"10254": [
+"craft:Carpentry"
+],
+"10255": [
+"craft:Carpentry"
+],
+"10256": [
+"craft:Carpentry"
+],
+"10257": [
+"craft:Carpentry"
+],
+"10258": [
+"craft:Carpentry"
+],
+"10259": [
+"craft:Carpentry"
+],
+"10260": [
+"craft:Carpentry"
+],
+"10261": [
+"craft:Carpentry"
+],
+"10262": [
+"craft:Carpentry"
+],
+"10263": [
+"craft:Carpentry"
+],
+"10264": [
+"craft:Carpentry"
+],
+"10265": [
+"craft:Carpentry"
+],
+"10266": [
+"craft:Carpentry"
+],
+"10290": [
+"craft:Tinkering"
+],
+"10291": [
+"craft:Tinkering"
+],
+"10294": [
+"vendor:SBBarkeeper",
+"vendor:SBSECook",
+"vendor:SBSEFood",
+"vendor:SBTavernKeeper"
+],
+"10302": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10304": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10315": [
+"craft:Cooking",
+"vendor:SBBarkeeper",
+"vendor:SBSEFood",
+"vendor:SBTavernKeeper"
+],
+"10316": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10317": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10318": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10319": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10320": [
+"craft:Cooking",
+"vendor:SBSECook"
+],
+"10327": [
+"craft:Carpentry"
+],
+"10328": [
+"craft:Carpentry"
+],
+"10329": [
+"craft:Carpentry"
+],
+"10330": [
+"craft:Carpentry"
+],
+"10331": [
+"craft:Carpentry"
+],
+"10332": [
+"craft:Carpentry"
+],
+"10333": [
+"craft:Carpentry"
+],
+"10334": [
+"craft:Carpentry"
+],
+"10404": [
+"craft:Tailoring"
+],
+"10405": [
+"craft:Tailoring"
+],
+"10406": [
+"craft:Tailoring"
+],
+"10407": [
+"craft:Tailoring"
+],
+"10408": [
+"craft:Tailoring"
+],
+"10409": [
+"craft:Tailoring"
+],
+"10410": [
+"craft:Tailoring"
+],
+"10411": [
+"craft:Tailoring"
+],
+"10412": [
+"craft:Tailoring"
+],
+"10413": [
+"craft:Tailoring"
+],
+"10414": [
+"craft:Tailoring"
+],
+"10415": [
+"craft:Tailoring"
+],
+"11111": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11112": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"11113": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11114": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11115": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11116": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11118": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11119": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11120": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11121": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11122": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11123": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11124": [
+"loot:Loot"
+],
+"11125": [
+"loot:Loot"
+],
+"11126": [
+"loot:Loot"
+],
+"11127": [
+"loot:Loot"
+],
+"11128": [
+"loot:Loot"
+],
+"11525": [
+"craft:Carpentry"
+],
+"11526": [
+"craft:Carpentry"
+],
+"11527": [
+"craft:Carpentry"
+],
+"11528": [
+"craft:Carpentry"
+],
+"11534": [
+"craft:Carpentry"
+],
+"11535": [
+"craft:Carpentry"
+],
+"11536": [
+"craft:Carpentry"
+],
+"11537": [
+"craft:Carpentry"
+],
+"11538": [
+"craft:Carpentry"
+],
+"11539": [
+"craft:Carpentry"
+],
+"11550": [
+"craft:BowFletching",
+"loot:Loot"
+],
+"11551": [
+"craft:BowFletching",
+"loot:Loot"
+],
+"11552": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11553": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11554": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11555": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11556": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11557": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11558": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11559": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11560": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11561": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11562": [
+"craft:BowFletching",
+"loot:Loot"
+],
+"11563": [
+"craft:BowFletching",
+"loot:Loot"
+],
+"11564": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11565": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11566": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11567": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11568": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11569": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"11570": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11571": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11572": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11573": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"11594": [
+"craft:Carpentry"
+],
+"11731": [
+"craft:Carpentry"
+],
+"11732": [
+"craft:Carpentry"
+],
+"11736": [
+"craft:Carpentry"
+],
+"11739": [
+"craft:Carpentry"
+],
+"11740": [
+"craft:Carpentry"
+],
+"11741": [
+"craft:Carpentry"
+],
+"11742": [
+"craft:Carpentry"
+],
+"11747": [
+"craft:Carpentry",
+"craft:Masonry"
+],
+"11748": [
+"craft:Carpentry",
+"craft:Masonry"
+],
+"11749": [
+"craft:Carpentry",
+"craft:Masonry"
+],
+"11750": [
+"craft:Carpentry",
+"craft:Masonry"
+],
+"11755": [
+"craft:Carpentry"
+],
+"11756": [
+"craft:Carpentry"
+],
+"11757": [
+"craft:Carpentry"
+],
+"11758": [
+"craft:Carpentry"
+],
+"11759": [
+"craft:Carpentry"
+],
+"11761": [
+"craft:Carpentry"
+],
+"11762": [
+"craft:Carpentry"
+],
+"11763": [
+"craft:Carpentry"
+],
+"11764": [
+"craft:Carpentry"
+],
+"11765": [
+"craft:Carpentry"
+],
+"11766": [
+"craft:Carpentry"
+],
+"11837": [
+"craft:Carpentry"
+],
+"11839": [
+"craft:Carpentry"
+],
+"12119": [
+"craft:Carpentry",
+"craft:Inscription"
+],
+"12124": [
+"craft:Carpentry",
+"craft:Inscription"
+],
+"12125": [
+"craft:Glassblowing",
+"craft:Inscription"
+],
+"12126": [
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"12127": [
+"craft:Carpentry",
+"craft:Inscription"
+],
+"12129": [
+"craft:Carpentry"
+],
+"12215": [
+"craft:Tailoring"
+],
+"12217": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12218": [
+"loot:Loot"
+],
+"12227": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12228": [
+"loot:Loot"
+],
+"12229": [
+"loot:Loot"
+],
+"12230": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12231": [
+"loot:Loot"
+],
+"12232": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12233": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12234": [
+"loot:Loot"
+],
+"12276": [
+"craft:Carpentry"
+],
+"12364": [
+"craft:Carpentry"
+],
+"12365": [
+"craft:Carpentry"
+],
+"12368": [
+"craft:Carpentry"
+],
+"12369": [
+"craft:Carpentry"
+],
+"12370": [
+"craft:Carpentry"
+],
+"12371": [
+"craft:Carpentry"
+],
+"12372": [
+"craft:Carpentry"
+],
+"12373": [
+"craft:Carpentry"
+],
+"12374": [
+"craft:Carpentry"
+],
+"12375": [
+"craft:Carpentry"
+],
+"12376": [
+"craft:Carpentry"
+],
+"12377": [
+"craft:Carpentry"
+],
+"12411": [
+"craft:Carpentry"
+],
+"12412": [
+"craft:Carpentry"
+],
+"12413": [
+"craft:Carpentry"
+],
+"12414": [
+"craft:Carpentry"
+],
+"12415": [
+"craft:Carpentry"
+],
+"12416": [
+"craft:Carpentry"
+],
+"12417": [
+"craft:Carpentry"
+],
+"12418": [
+"craft:Carpentry"
+],
+"12419": [
+"craft:Carpentry"
+],
+"12420": [
+"craft:Carpentry"
+],
+"12421": [
+"craft:Carpentry"
+],
+"12424": [
+"craft:Carpentry"
+],
+"12425": [
+"craft:Carpentry"
+],
+"12426": [
+"craft:Carpentry"
+],
+"12427": [
+"craft:Carpentry"
+],
+"12428": [
+"craft:Carpentry"
+],
+"12429": [
+"craft:Carpentry"
+],
+"12430": [
+"craft:Carpentry"
+],
+"12431": [
+"craft:Carpentry"
+],
+"12432": [
+"craft:Carpentry"
+],
+"12433": [
+"craft:Carpentry"
+],
+"12434": [
+"craft:Carpentry"
+],
+"12435": [
+"craft:Carpentry"
+],
+"12436": [
+"craft:Carpentry"
+],
+"12437": [
+"craft:Carpentry"
+],
+"12438": [
+"craft:Carpentry"
+],
+"12439": [
+"craft:Carpentry"
+],
+"12440": [
+"craft:Carpentry"
+],
+"12441": [
+"craft:Carpentry"
+],
+"12442": [
+"craft:Carpentry"
+],
+"12443": [
+"craft:Carpentry"
+],
+"12511": [
+"craft:Carpentry"
+],
+"12512": [
+"craft:Carpentry"
+],
+"12513": [
+"craft:Carpentry"
+],
+"12514": [
+"craft:Carpentry"
+],
+"12515": [
+"craft:Carpentry"
+],
+"12516": [
+"craft:Carpentry"
+],
+"12517": [
+"craft:Carpentry"
+],
+"12518": [
+"craft:Carpentry"
+],
+"12632": [
+"craft:Carpentry"
+],
+"12633": [
+"craft:Carpentry"
+],
+"12634": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Inscription",
+"craft:Tailoring"
+],
+"12635": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Inscription",
+"craft:Tailoring"
+],
+"12638": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12639": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12640": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12641": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12642": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12643": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12645": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"12646": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"12647": [
+"craft:Blacksmithy",
+"loot:Loot"
+],
+"12648": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12649": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12650": [
+"craft:Carpentry",
+"loot:Loot"
+],
+"12651": [
+"loot:Loot"
+],
+"12652": [
+"loot:Loot"
+],
+"12653": [
+"loot:Loot"
+],
+"12654": [
+"loot:Loot"
+],
+"12655": [
+"loot:Loot"
+],
+"12657": [
+"craft:Tailoring"
+],
+"12659": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12660": [
+"loot:Loot"
+],
+"12661": [
+"loot:Loot"
+],
+"12662": [
+"loot:Loot"
+],
+"12665": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12666": [
+"loot:Loot"
+],
+"12667": [
+"loot:Loot"
+],
+"12670": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12671": [
+"craft:Tailoring",
+"loot:Loot"
+],
+"12672": [
+"loot:Loot"
+],
+"12676": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Inscription",
+"craft:Tailoring"
+],
+"12677": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tailoring"
+],
+"12678": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tailoring"
+],
+"12679": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Inscription",
+"craft:Tailoring"
+],
+"12680": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Tailoring"
+],
+"12681": [
+"craft:BowFletching"
+],
+"12682": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Inscription"
+],
+"12683": [
+"craft:Carpentry"
+],
+"12684": [
+"craft:Blacksmithy"
+],
+"12685": [
+"craft:Blacksmithy",
+"craft:Tailoring",
+"craft:Tinkering"
+],
+"12686": [
+"craft:Tailoring",
+"craft:Tinkering"
+],
+"12687": [
+"craft:Carpentry"
+],
+"12690": [
+"craft:Blacksmithy",
+"craft:BowFletching"
+],
+"12691": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry"
+],
+"12692": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry"
+],
+"12693": [
+"craft:Blacksmithy",
+"craft:BowFletching"
+],
+"12694": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tailoring",
+"craft:Tinkering"
+],
+"12695": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tailoring",
+"craft:Tinkering"
+],
+"12696": [
+"craft:Blacksmithy",
+"craft:BowFletching",
+"craft:Carpentry",
+"craft:Tinkering"
+],
+"12697": [
+"craft:Blacksmithy",
+"craft:BowFletching"
+],
+"14034": [
+"craft:Tinkering"
+]
+}
+}

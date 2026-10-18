@@ -1,0 +1,4267 @@
+[
+ {
+  "slug": "ettin-figurine",
+  "name": "Ettin Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ettin",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A hand-high effigy of a hulking ettin, painted in earthen browns and glowering at the room.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-001"
+ },
+ {
+  "slug": "two-headed-ettin-figurine",
+  "name": "Two-Headed Ettin Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ettin",
+   "dungeon",
+   "whimsical"
+  ],
+  "blurb": "Two scowling heads share one broad pair of shoulders on this little loincloth-wearing ettin.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-002"
+ },
+ {
+  "slug": "ogre-figurine",
+  "name": "Ogre Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20DF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:ogre",
+   "dungeon"
+  ],
+  "blurb": "A stocky ogre in tan clay, fists hanging low, waiting for a table to loom over.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-003"
+ },
+ {
+  "slug": "gaunt-ogre-figurine",
+  "name": "Gaunt Ogre Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:ogre",
+   "dungeon"
+  ],
+  "blurb": "A leaner, hungrier ogre, caught mid-stride as though it had just smelled supper.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-004"
+ },
+ {
+  "slug": "troll-figurine",
+  "name": "Troll Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:troll",
+   "dungeon"
+  ],
+  "blurb": "A grey, slope-shouldered troll standing hand-high, with a knuckled scowl.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-005"
+ },
+ {
+  "slug": "bone-armed-troll-figurine",
+  "name": "Bone-Armed Troll Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20CC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:troll",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "A lanky troll wearing a trophy of bone on its arm, as cheerful as a troll ever gets.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-006"
+ },
+ {
+  "slug": "orc-figurine",
+  "name": "Orc Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:orc",
+   "dungeon:orc-cave",
+   "martial"
+  ],
+  "blurb": "A green orc in a red loincloth, painted by someone who has clearly met one.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-007"
+ },
+ {
+  "slug": "lizardman-figurine",
+  "name": "Lizardman Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20DE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:lizardman",
+   "swamp",
+   "dungeon"
+  ],
+  "blurb": "A scaly lizardman standing upright with a spear-crest on its brow, small enough to hold in a palm.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-008"
+ },
+ {
+  "slug": "lizardman-warrior-figurine",
+  "name": "Lizardman Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:lizardman",
+   "swamp",
+   "martial"
+  ],
+  "blurb": "A broad-chested lizardman warrior with a horned crest, armed for the marshes.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-009"
+ },
+ {
+  "slug": "ratman-figurine",
+  "name": "Ratman Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x20E3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:ratman",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "A hunched ratman clutching a crude club, whiskers and all.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-010"
+ },
+ {
+  "slug": "cyclops-figurine",
+  "name": "Cyclops Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:cyclops",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A one-eyed giant of the Lost Lands, a lantern swinging in its fist.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-011"
+ },
+ {
+  "slug": "titan-figurine",
+  "name": "Titan Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:titan",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A towering titan of the Lost Lands, reduced to a mantel-sized brute with a club.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-012"
+ },
+ {
+  "slug": "headless-one-figurine",
+  "name": "Headless One Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x210A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:headless",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A lumbering orange body with no head at all, which somehow makes it more watchful.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-013"
+ },
+ {
+  "slug": "zombie-figurine",
+  "name": "Zombie Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20EC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:zombie",
+   "undead",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A shambling green zombie, arms swinging, with grave-dirt still in its creases.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-014"
+ },
+ {
+  "slug": "skeleton-figurine",
+  "name": "Skeleton Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:skeleton",
+   "undead",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A little bone-white skeleton, ribs polished by a keeper with too much time.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-015"
+ },
+ {
+  "slug": "liche-figurine",
+  "name": "Lich Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20F8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:lich",
+   "undead",
+   "arcane",
+   "macabre"
+  ],
+  "blurb": "A robed lich with a hood of shadow and a cold, steady gaze.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-016"
+ },
+ {
+  "slug": "mongbat-figurine",
+  "name": "Mongbat Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20F9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:mongbat",
+   "dungeon",
+   "whimsical"
+  ],
+  "blurb": "A russet mongbat with wings half-folded, ready to flap off the shelf.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-017"
+ },
+ {
+  "slug": "gazer-figurine",
+  "name": "Gazer Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:gazer",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A round, many-stalked gazer with a bulging eye on every stalk, watching the room.",
+  "era": {
+   "grade": "C",
+   "note": "Icon art is era-safe, but this species' April 2000 date is unverified (era pack 6b). Figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-018"
+ },
+ {
+  "slug": "harpy-figurine",
+  "name": "Harpy Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:harpy",
+   "wilderness"
+  ],
+  "blurb": "A talon-footed harpy with a feathered cowl, perched in a permanent, shrieking crouch.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-019"
+ },
+ {
+  "slug": "gargoyle-figurine",
+  "name": "Gargoyle Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:gargoyle",
+   "demonic",
+   "dungeon"
+  ],
+  "blurb": "A pink-skinned gargoyle with its wings flared, carved the way old dungeon fonts are carved.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-020"
+ },
+ {
+  "slug": "reaper-figurine",
+  "name": "Reaper Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x20FA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:reaper",
+   "forest",
+   "macabre"
+  ],
+  "blurb": "A gnarled, leafless reaper-tree, every branch a grasping finger.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-021"
+ },
+ {
+  "slug": "corpser-figurine",
+  "name": "Corpser Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x20D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:corpser",
+   "swamp",
+   "dungeon"
+  ],
+  "blurb": "A tangle of green tendrils rising from a dark clump, waiting for the unwary.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-022"
+ },
+ {
+  "slug": "dragon-figurine",
+  "name": "Dragon Figurine",
+  "category": "FIG",
+  "subcategory": "Dragons and daemons",
+  "parts": [
+   {
+    "id": "0x20D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:dragon",
+   "dragon",
+   "dungeon:despise",
+   "treasure"
+  ],
+  "blurb": "A dark dragon with wings spread wide, fierce even at the size of a loaf.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-023"
+ },
+ {
+  "slug": "daemon-figurine",
+  "name": "Daemon Figurine",
+  "category": "FIG",
+  "subcategory": "Dragons and daemons",
+  "parts": [
+   {
+    "id": "0x20D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:daemon",
+   "demonic",
+   "dungeon:hythloth",
+   "macabre"
+  ],
+  "blurb": "A crimson daemon with its wings folded high, smouldering quietly.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-024"
+ },
+ {
+  "slug": "daemon-colossus-figurine",
+  "name": "Daemon Colossus Figurine",
+  "category": "FIG",
+  "subcategory": "Dragons and daemons",
+  "parts": [
+   {
+    "id": "0x2104",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:daemon",
+   "demonic",
+   "dungeon:hythloth",
+   "fire"
+  ],
+  "blurb": "A towering crimson daemon, wings raised and blade in hand, a showpiece for the proudest hall.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-025"
+ },
+ {
+  "slug": "fire-elemental-figurine",
+  "name": "Fire Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x20F3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:fire-elemental",
+   "fire",
+   "arcane"
+  ],
+  "blurb": "A figure of living flame, glowing orange at the heart and white at the edges.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-026"
+ },
+ {
+  "slug": "water-elemental-figurine",
+  "name": "Water Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x210B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:water-elemental",
+   "arcane",
+   "nautical"
+  ],
+  "blurb": "A rising figure of blue water, caught the instant before it splashes down.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-027"
+ },
+ {
+  "slug": "wisp-figurine",
+  "name": "Wisp Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x2100",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:wisp",
+   "arcane",
+   "whimsical"
+  ],
+  "blurb": "A small star of blue-white light, as good as a wisp can be without moving.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-028"
+ },
+ {
+  "slug": "slime-figurine",
+  "name": "Slime Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x20E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:slime",
+   "dungeon",
+   "swamp",
+   "whimsical"
+  ],
+  "blurb": "A shining grey slime in a puddle of its own making.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-029"
+ },
+ {
+  "slug": "terathan-drone-figurine",
+  "name": "Terathan Drone Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:terathan",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "A purple-bodied terathan drone, eight legs splayed over its stand.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-030"
+ },
+ {
+  "slug": "terathan-matriarch-figurine",
+  "name": "Terathan Matriarch Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:terathan",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "The spider-queen of the Lost Lands, bristling with legs, kept for display only.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-031"
+ },
+ {
+  "slug": "ophidian-mage-figurine",
+  "name": "Ophidian Mage Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2132",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ophidian",
+   "arcane",
+   "desert"
+  ],
+  "blurb": "A coiled ophidian mage clutching a long staff of office.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-032"
+ },
+ {
+  "slug": "ophidian-queen-figurine",
+  "name": "Ophidian Queen Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2134",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:ophidian",
+   "arcane",
+   "desert"
+  ],
+  "blurb": "A sinuous ophidian queen coiled upon her own tail, imperious even in miniature.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-033"
+ },
+ {
+  "slug": "giant-toad-figurine",
+  "name": "Giant Toad Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:giant-toad",
+   "swamp",
+   "whimsical"
+  ],
+  "blurb": "A warty giant toad squatting, a spotted brown lump of patience.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-034"
+ },
+ {
+  "slug": "desert-ostard-figurine",
+  "name": "Desert Ostard Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2135",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:ostard",
+   "desert",
+   "wilderness"
+  ],
+  "blurb": "A long-legged desert ostard in sandy tan, poised mid-stride.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-035"
+ },
+ {
+  "slug": "forest-ostard-figurine",
+  "name": "Forest Ostard Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2137",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:ostard",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A grey-green forest ostard with its neck stretched high.",
+  "era": {
+   "grade": "B",
+   "note": "Second Age (Oct 1998) creature icon; the species is in the T2A publish. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-036"
+ },
+ {
+  "slug": "giant-spider-figurine",
+  "name": "Giant Spider Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:giant-spider",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "A brown giant spider with eight bent legs, small enough to frighten only the very timid.",
+  "era": {
+   "grade": "C",
+   "note": "Icon art is era-safe, but this species' April 2000 date is unverified (era pack 6b). Figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-037"
+ },
+ {
+  "slug": "scorpion-figurine",
+  "name": "Scorpion Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:scorpion",
+   "desert",
+   "dungeon"
+  ],
+  "blurb": "A dark scorpion with claws wide and tail high, poised to strike.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-038"
+ },
+ {
+  "slug": "alligator-figurine",
+  "name": "Alligator Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:alligator",
+   "swamp",
+   "wilderness"
+  ],
+  "blurb": "A mossy-green alligator lying low, jaws just parted.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-039"
+ },
+ {
+  "slug": "serpent-figurine",
+  "name": "Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:serpent",
+   "swamp",
+   "wilderness"
+  ],
+  "blurb": "A silver-grey serpent rippling in a lazy S across its stand.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-040"
+ },
+ {
+  "slug": "gorilla-figurine",
+  "name": "Gorilla Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:gorilla",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A broad-shouldered grey gorilla at rest on its knuckles.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-041"
+ },
+ {
+  "slug": "silverback-gorilla-figurine",
+  "name": "Silverback Gorilla Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20C9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:gorilla",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A great black gorilla hunched low, enormous even at this size.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-042"
+ },
+ {
+  "slug": "brown-bear-figurine",
+  "name": "Brown Bear Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:bear",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A broad brown bear seen head-on, as sturdy as a hearth-stone.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-043"
+ },
+ {
+  "slug": "polar-bear-figurine",
+  "name": "Polar Bear Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20E1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:polar-bear",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A pale polar bear of the frozen north, hunched and heavy.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-044"
+ },
+ {
+  "slug": "black-bear-figurine",
+  "name": "Black Bear Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x2118",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:bear",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A dark, round-backed black bear sniffing at the shelf's edge.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-045"
+ },
+ {
+  "slug": "wolf-figurine",
+  "name": "Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x2122",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:wolf",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A lean timber wolf mid-prowl, ears forward.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-046"
+ },
+ {
+  "slug": "panther-figurine",
+  "name": "Panther Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x2102",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:panther",
+   "wilderness",
+   "exotic"
+  ],
+  "blurb": "A sleek black panther stretched low and silent.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-047"
+ },
+ {
+  "slug": "eagle-figurine",
+  "name": "Eagle Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20F2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:eagle",
+   "wilderness",
+   "heraldic"
+  ],
+  "blurb": "An eagle with its wings spread wide, brown as old leather.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-048"
+ },
+ {
+  "slug": "giant-rat-figurine",
+  "name": "Giant Rat Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20D0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:rat",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A reddish giant rat, tail looped, on the scurry.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-049"
+ },
+ {
+  "slug": "goat-figurine",
+  "name": "Goat Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x2108",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:goat",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A shaggy goat standing sure-footed on a rock.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-050"
+ },
+ {
+  "slug": "grey-horse-figurine",
+  "name": "Grey Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x211F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:horse",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A dapple-grey horse with its head held high.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-051"
+ },
+ {
+  "slug": "llama-figurine",
+  "name": "Llama Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20F6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:llama",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A russet-and-white llama standing with the poise of a lord.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-052"
+ },
+ {
+  "slug": "cow-figurine",
+  "name": "Cow Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2103",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:cow",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A black-and-white cow, chewing contentedly for eternity.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-053"
+ },
+ {
+  "slug": "bull-figurine",
+  "name": "Bull Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20EF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:bull",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A red-brown bull, head lowered and horns tipped with white.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-054"
+ },
+ {
+  "slug": "pig-figurine",
+  "name": "Pig Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2101",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:pig",
+   "rustic",
+   "humble",
+   "whimsical"
+  ],
+  "blurb": "A plump pink pig, snout down, entirely at ease.",
+  "era": {
+   "grade": "B",
+   "note": "Everyday animal icon from the Tracking-menu set (herd animals roam in the 1997 notes). The figurine use is custom content; first obtainable creature statues were 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-055"
+ },
+ {
+  "slug": "sea-serpent-figurine",
+  "name": "Sea Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Sea creatures",
+  "parts": [
+   {
+    "id": "0x20FB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:sea-serpent",
+   "nautical",
+   "treasure"
+  ],
+  "blurb": "A sea serpent rearing from the waves, its fins and horn picked out in dark grey.",
+  "era": {
+   "grade": "B",
+   "note": "Creature-icon art in the Tracking-menu set, present by 1998-2000. The figurine use is custom content; the first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same graphic the stock MonsterStatuette/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-056"
+ },
+ {
+  "slug": "jade-dragon-figurine",
+  "name": "Jade Dragon Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:dragon",
+   "dragon",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A dragon cut from green jade, wings spread, cool as a river stone.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the dragon icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62 on the base graphic",
+  "variantOf": "dragon-figurine",
+  "id": "CR-FIG-057"
+ },
+ {
+  "slug": "gilded-dragon-figurine",
+  "name": "Gilded Dragon Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:dragon",
+   "dragon",
+   "treasure",
+   "noble"
+  ],
+  "blurb": "A dragon in beaten gold leaf, wings spread and glowing like a hoard in the lamplight.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1161) of the dragon icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161 on the base graphic",
+  "variantOf": "dragon-figurine",
+  "id": "CR-FIG-058"
+ },
+ {
+  "slug": "obsidian-daemon-figurine",
+  "name": "Obsidian Daemon Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2104",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:daemon",
+   "demonic",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A towering daemon cut from black glass, every wing-spine razor sharp.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1109) of the daemon colossus icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1109 on the base graphic",
+  "variantOf": "daemon-colossus-figurine",
+  "id": "CR-FIG-059"
+ },
+ {
+  "slug": "jade-gargoyle-figurine",
+  "name": "Jade Gargoyle Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:gargoyle",
+   "exotic",
+   "demonic"
+  ],
+  "blurb": "A gargoyle carved in green jade, winged and unmoved.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the gargoyle icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62 on the base graphic",
+  "variantOf": "gargoyle-figurine",
+  "id": "CR-FIG-060"
+ },
+ {
+  "slug": "obsidian-troll-figurine",
+  "name": "Obsidian Troll Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:troll",
+   "dungeon",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A troll polished from volcanic glass, black as a moonless cave.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1109) of the troll icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1109 on the base graphic",
+  "variantOf": "troll-figurine",
+  "id": "CR-FIG-061"
+ },
+ {
+  "slug": "gilded-ogre-figurine",
+  "name": "Gilded Ogre Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20DF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ogre",
+   "treasure",
+   "noble"
+  ],
+  "blurb": "An ogre in gold leaf, treasured as a trophy and as a joke.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1161) of the ogre icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161 on the base graphic",
+  "variantOf": "ogre-figurine",
+  "id": "CR-FIG-062"
+ },
+ {
+  "slug": "copper-ettin-figurine",
+  "name": "Copper Ettin Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 43,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:ettin",
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "A hulking ettin cast in dull copper, with the greenish bloom of old coins.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 43) of the ettin icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 43 on the base graphic",
+  "variantOf": "ettin-figurine",
+  "id": "CR-FIG-063"
+ },
+ {
+  "slug": "jade-gazer-figurine",
+  "name": "Jade Gazer Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:gazer",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A many-eyed gazer in cool green jade, one eye to every stalk.",
+  "era": {
+   "grade": "C",
+   "note": "Recolour (hue 62) of the gazer icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62 on the base graphic",
+  "variantOf": "gazer-figurine",
+  "id": "CR-FIG-064"
+ },
+ {
+  "slug": "ember-wisp-figurine",
+  "name": "Ember Wisp Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2100",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:wisp",
+   "fire",
+   "arcane"
+  ],
+  "blurb": "A wisp the colour of banked embers, glowing quietly red.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1157) of the wisp icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1157 on the base graphic",
+  "variantOf": "wisp-figurine",
+  "id": "CR-FIG-065"
+ },
+ {
+  "slug": "obsidian-scorpion-figurine",
+  "name": "Obsidian Scorpion Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:scorpion",
+   "desert",
+   "exotic"
+  ],
+  "blurb": "A scorpion cut from black glass, sting raised, glittering in the candlelight.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1109) of the scorpion icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1109 on the base graphic",
+  "variantOf": "scorpion-figurine",
+  "id": "CR-FIG-066"
+ },
+ {
+  "slug": "jade-serpent-figurine",
+  "name": "Jade Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:serpent",
+   "exotic",
+   "swamp"
+  ],
+  "blurb": "A serpent of polished green jade, coiled in a lazy S.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the serpent icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62 on the base graphic",
+  "variantOf": "serpent-figurine",
+  "id": "CR-FIG-067"
+ },
+ {
+  "slug": "golden-pig-figurine",
+  "name": "Golden Pig Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2101",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:pig",
+   "treasure",
+   "whimsical",
+   "humble"
+  ],
+  "blurb": "A fat little pig in gold leaf; farmers swear it brings a good harvest.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1161) of the pig icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161 on the base graphic",
+  "variantOf": "pig-figurine",
+  "id": "CR-FIG-068"
+ },
+ {
+  "slug": "copper-horse-figurine",
+  "name": "Copper Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x211F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 43,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:horse",
+   "craft:blacksmithing",
+   "noble"
+  ],
+  "blurb": "A proud horse beaten out of ruddy copper, with a mane that catches every lamp.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 43) of the grey horse icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 43 on the base graphic",
+  "variantOf": "grey-horse-figurine",
+  "id": "CR-FIG-069"
+ },
+ {
+  "slug": "cobalt-sea-serpent-figurine",
+  "name": "Cobalt Sea Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20FB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1266,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:sea-serpent",
+   "nautical",
+   "exotic"
+  ],
+  "blurb": "A sea serpent in bright cobalt glaze, rearing from a wave that never breaks.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1266) of the sea serpent icon, which is era-safe art. The figurine use is custom content; first obtainable creature statues were 2001 veteran rewards.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1266 on the base graphic",
+  "variantOf": "sea-serpent-figurine",
+  "id": "CR-FIG-070"
+ },
+ {
+  "slug": "chicken-figurine",
+  "name": "Chicken Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20D1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:chicken",
+   "rustic",
+   "humble",
+   "whimsical"
+  ],
+  "blurb": "A plump red-brown hen of painted clay, comb held high and tail feathers fanned as she scratches at the floor.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in towns).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-071"
+ },
+ {
+  "slug": "hind-figurine",
+  "name": "Hind Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:hind",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A slender tawny hind with her long legs braced, ready to bolt for the cover of the wood.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wild herds).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-072"
+ },
+ {
+  "slug": "dog-figurine",
+  "name": "Dog Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20D5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:dog",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A lean grey hound of baked clay, standing watch with its back to the room and its tail low.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in towns).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-073"
+ },
+ {
+  "slug": "earth-elemental-figurine",
+  "name": "Earth Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x20D7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:earth-elemental",
+   "arcane",
+   "mining",
+   "dungeon:shame"
+  ],
+  "blurb": "A lumpen figure of packed loam and pebble, hunched as though it were still dragging itself up out of the ground.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Shame, Despise).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-074"
+ },
+ {
+  "slug": "grizzly-bear-figurine",
+  "name": "Grizzly Bear Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:grizzly-bear",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A broad golden-brown grizzly seen from behind, its great round back turned to the room as it ambles off.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-075"
+ },
+ {
+  "slug": "lumbering-grizzly-figurine",
+  "name": "Lumbering Grizzly Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x211E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:grizzly-bear",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A tawny grizzly caught in mid-stride, head low and shoulders rolling beneath a thick coat of fur.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-076"
+ },
+ {
+  "slug": "rabbit-figurine",
+  "name": "Rabbit Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20E2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:rabbit",
+   "wilderness",
+   "humble",
+   "whimsical"
+  ],
+  "blurb": "A brown rabbit sitting up alert in the grass, its white scut turned toward the room.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-077"
+ },
+ {
+  "slug": "sheep-figurine",
+  "name": "Sheep Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:sheep",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A fleecy white sheep in painted clay, standing stolid with its back to the room.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness, towns).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-078"
+ },
+ {
+  "slug": "woolly-sheep-figurine",
+  "name": "Woolly Sheep Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:sheep",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A heavy-fleeced grey ewe, wool grown thick and shaggy, waiting patiently for the shearers.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness, towns).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-079"
+ },
+ {
+  "slug": "timber-wolf-figurine",
+  "name": "Timber Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:timber-wolf",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A brown timber wolf stalking away with its head down and tan paws planted, tracking some scent through the trees.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-080"
+ },
+ {
+  "slug": "air-elemental-figurine",
+  "name": "Air Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elementals and oozes",
+  "parts": [
+   {
+    "id": "0x20ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:air-elemental",
+   "arcane"
+  ],
+  "blurb": "A churning grey thundercloud shaped in clay, one curling arm sweeping out to the side as if to strike.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in outdoors, Shame).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-081"
+ },
+ {
+  "slug": "pied-bull-figurine",
+  "name": "Pied Bull Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x20F0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:bull",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A dark bull with a pale-marked head and shoulders, lowered to face the room as if about to charge.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-082"
+ },
+ {
+  "slug": "dolphin-figurine",
+  "name": "Dolphin Figurine",
+  "category": "FIG",
+  "subcategory": "Sea creatures",
+  "parts": [
+   {
+    "id": "0x20F1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:dolphin",
+   "nautical",
+   "whimsical"
+  ],
+  "blurb": "A leaping blue dolphin with its fins swept back, glazed the colour of a calm summer sea.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in the seas).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-083"
+ },
+ {
+  "slug": "cougar-figurine",
+  "name": "Cougar Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:cougar",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A sleek dusky cougar in mid-bound, forepaws reaching out and tail trailing behind.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-084"
+ },
+ {
+  "slug": "snake-figurine",
+  "name": "Snake Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x20FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:snake",
+   "wilderness",
+   "swamp"
+  ],
+  "blurb": "A slate-grey snake wound in a long S, each scale picked out with a fine point.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in outdoors).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-085"
+ },
+ {
+  "slug": "walrus-figurine",
+  "name": "Walrus Figurine",
+  "category": "FIG",
+  "subcategory": "Sea creatures",
+  "parts": [
+   {
+    "id": "0x20FF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:walrus",
+   "ice",
+   "nautical"
+  ],
+  "blurb": "A tusked walrus hauled out flat on the ice, its flippers splayed to either side.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in outdoors, Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-086"
+ },
+ {
+  "slug": "ghoul-figurine",
+  "name": "Ghoul Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x2109",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ghoul",
+   "undead",
+   "macabre",
+   "dungeon:deceit"
+  ],
+  "blurb": "A gaunt ghoul with its ribs and rotting flesh painted bare, long arms hanging limp at its sides.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in graveyards, Deceit).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-087"
+ },
+ {
+  "slug": "prowling-panther-figurine",
+  "name": "Prowling Panther Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x2119",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:panther",
+   "wilderness",
+   "exotic"
+  ],
+  "blurb": "A black panther in a low prowl, amber eyes fixed on whoever walks past.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-088"
+ },
+ {
+  "slug": "cat-figurine",
+  "name": "Cat Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x211B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:cat",
+   "humble",
+   "whimsical"
+  ],
+  "blurb": "A small black house cat with amber eyes, crouched as though watching a mouse hole.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in towns).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-089"
+ },
+ {
+  "slug": "white-wolf-figurine",
+  "name": "White Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x211C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:white-wolf",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A pale silver-white wolf of the northern snows, head low and hackles raised.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in outdoors, Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-090"
+ },
+ {
+  "slug": "brown-eagle-figurine",
+  "name": "Brown Eagle Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts of the wild",
+  "parts": [
+   {
+    "id": "0x211D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:eagle",
+   "wilderness",
+   "heraldic"
+  ],
+  "blurb": "A brown eagle with white head and wings half-folded, stooping toward its prey.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-091"
+ },
+ {
+  "slug": "bay-horse-figurine",
+  "name": "Bay Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2121",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:horse",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A dark bay horse with its head up and one hoof raised, ready to be bridled and ridden out.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness, Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-092"
+ },
+ {
+  "slug": "buckskin-horse-figurine",
+  "name": "Buckskin Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2124",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:horse",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A tan buckskin horse with a dark mane, standing quietly with its head raised toward the room.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness, Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-093"
+ },
+ {
+  "slug": "saddled-horse-figurine",
+  "name": "Saddled Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2126",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:horse",
+   "rustic",
+   "craft:tailoring"
+  ],
+  "blurb": "A patient cream horse wearing a folded saddle-blanket and packs, glazed ready for the road.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness, Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-094"
+ },
+ {
+  "slug": "saddled-llama-figurine",
+  "name": "Saddled Llama Figurine",
+  "category": "FIG",
+  "subcategory": "Livestock and mounts",
+  "parts": [
+   {
+    "id": "0x2127",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:ridable-llama",
+   "rustic",
+   "exotic"
+  ],
+  "blurb": "A white-and-brown llama wearing a woven saddle-blanket, its long neck raised above the rest of the herd.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-095"
+ },
+ {
+  "slug": "terathan-warrior-figurine",
+  "name": "Terathan Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x212A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:terathan-warrior",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "A green-skinned terathan warrior rearing on its spider legs, armoured claws spread to strike.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Terathan Keep).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-096"
+ },
+ {
+  "slug": "bullfrog-figurine",
+  "name": "Bullfrog Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2130",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:bull-frog",
+   "swamp",
+   "whimsical"
+  ],
+  "blurb": "A fat, mottled bullfrog squatting low, its throat swollen as if about to croak.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Britain sewers).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-097"
+ },
+ {
+  "slug": "lava-lizard-figurine",
+  "name": "Lava Lizard Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2131",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:lava-lizard",
+   "fire",
+   "dungeon:fire"
+  ],
+  "blurb": "A cinder-grey lizard crawling low, its scaled back dark as cooled lava.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Fire dungeon).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-098"
+ },
+ {
+  "slug": "ophidian-warrior-figurine",
+  "name": "Ophidian Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2133",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ophidian-warrior",
+   "martial",
+   "desert"
+  ],
+  "blurb": "A coiled ophidian warrior with a long spear laid back along its serpent body.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Terathan Keep).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-099"
+ },
+ {
+  "slug": "frenzied-ostard-figurine",
+  "name": "Frenzied Ostard Figurine",
+  "category": "FIG",
+  "subcategory": "Second Age creatures",
+  "parts": [
+   {
+    "id": "0x2136",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:frenzied-ostard",
+   "desert",
+   "wilderness"
+  ],
+  "blurb": "A grey-feathered ostard with its neck craned high, wild-eyed and ruffled in mid-stride.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Lost Lands).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link",
+  "variantOf": null,
+  "id": "CR-FIG-100"
+ },
+ {
+  "slug": "frost-troll-figurine",
+  "name": "Frost Troll Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1154,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:frost-troll",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A hulking troll glazed in frosted blue-grey, rimed as if it had just stomped out of the glacier.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Ice dungeon, Lost Lands); recolour of the troll icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1154",
+  "variantOf": "troll-figurine",
+  "id": "CR-FIG-101"
+ },
+ {
+  "slug": "ice-elemental-figurine",
+  "name": "Ice Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1152,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:ice-elemental",
+   "ice",
+   "arcane",
+   "dungeon:ice"
+  ],
+  "blurb": "A cloud of living ice, glassy and cyan, shaped into a sweeping arm and still glittering with frost.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Ice dungeon); recolour of the air elemental icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1152",
+  "variantOf": "air-elemental-figurine",
+  "id": "CR-FIG-102"
+ },
+ {
+  "slug": "hell-hound-figurine",
+  "name": "Hell Hound Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2122",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 37,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:hell-hound",
+   "fire",
+   "demonic",
+   "dungeon:fire"
+  ],
+  "blurb": "A wolfish hound glazed the deep red of banked coals, caught in a low, snarling stalk.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Hythloth, Fire dungeon); recolour of the wolf icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 37",
+  "variantOf": "wolf-figurine",
+  "id": "CR-FIG-103"
+ },
+ {
+  "slug": "stone-harpy-figurine",
+  "name": "Stone Harpy Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1105,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:stone-harpy",
+   "macabre",
+   "dungeon:covetous"
+  ],
+  "blurb": "A harpy turned to dark slate-grey stone, its wings drawn tight about its body and its talons dangling.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Lost Lands, Covetous); recolour of the harpy icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1105",
+  "variantOf": "harpy-figurine",
+  "id": "CR-FIG-104"
+ },
+ {
+  "slug": "stone-gargoyle-figurine",
+  "name": "Stone Gargoyle Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1105,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:stone-gargoyle",
+   "demonic",
+   "dungeon:hythloth"
+  ],
+  "blurb": "A winged gargoyle of dark slate-grey stone, its wings half-spread as though it had only just stirred.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Lost Lands, Hythloth); recolour of the gargoyle icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1105",
+  "variantOf": "gargoyle-figurine",
+  "id": "CR-FIG-105"
+ },
+ {
+  "slug": "boar-figurine",
+  "name": "Boar Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2101",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1145,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:boar",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A bristled dark-brown boar, head low and tusks ready, glazed the colour of wet forest earth.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in wilderness); recolour of the pig icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1145",
+  "variantOf": "pig-figurine",
+  "id": "CR-FIG-106"
+ },
+ {
+  "slug": "ice-snake-figurine",
+  "name": "Ice Snake Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1152,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:ice-snake",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A snake of glassy pale-blue ice, wound in a long S and glittering like a frozen stream.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Ice dungeon, Lost Lands); recolour of the snake icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1152",
+  "variantOf": "snake-figurine",
+  "id": "CR-FIG-107"
+ },
+ {
+  "slug": "lava-snake-figurine",
+  "name": "Lava Snake Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x20FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:lava-snake",
+   "fire",
+   "dungeon:fire"
+  ],
+  "blurb": "A snake the molten orange of a lava flow, winding in a slow S as if it were still cooling.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Fire dungeon); recolour of the snake icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1161",
+  "variantOf": "snake-figurine",
+  "id": "CR-FIG-108"
+ },
+ {
+  "slug": "hell-cat-figurine",
+  "name": "Hell Cat Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2119",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:hell-cat",
+   "fire",
+   "demonic",
+   "dungeon:fire"
+  ],
+  "blurb": "A panther glazed ember red, crouched in a low prowl as though it had just stepped out of a furnace.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in Fire dungeon); recolour of the panther icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 33",
+  "variantOf": "prowling-panther-figurine",
+  "id": "CR-FIG-109"
+ },
+ {
+  "slug": "snow-leopard-figurine",
+  "name": "Snow Leopard Figurine",
+  "category": "FIG",
+  "subcategory": "Hued effigies",
+  "parts": [
+   {
+    "id": "0x2119",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:snow-leopard",
+   "ice",
+   "wilderness",
+   "exotic"
+  ],
+  "blurb": "A pale snow leopard in a low prowl, its coat the colour of the drifts it hunts in.",
+  "era": {
+   "grade": "B",
+   "note": "Art = creature icons present by 1998-2000; figurine concept is custom content for a creature that is present in our game (spawned in outdoors); recolour of the panther icon.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-03-23rd-february/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-12-24th-july/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; same icon graphic the Tracking/shrink table uses, no pet link; hue 1153",
+  "variantOf": "prowling-panther-figurine",
+  "id": "CR-FIG-110"
+ }
+]

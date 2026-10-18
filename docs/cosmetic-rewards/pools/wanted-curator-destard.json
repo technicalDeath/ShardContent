@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-destard",
+ "system": "wanted-curator",
+ "notes": "Destard is a dragon-and-drake lair, so the set is what a dragon leaves behind: dripstone, fallen adventurers' armour and gold. The dragon hoard pieces that would have been ideal are claimed by the Hot Zone pool and the gilded suits of armour by artisan-signatures, so a gold ingot stack is the showpiece; there is no extremely rare piece left for this lair.",
+ "entries": [
+  {
+   "id": "CR-DNG-038",
+   "tier": "easy",
+   "why": "Stalagmite cluster in the lair."
+  },
+  {
+   "id": "CR-DNG-019",
+   "tier": "easy",
+   "why": "Slumped skeleton, arms still raised against the wyrm."
+  },
+  {
+   "id": "CR-TRS-008",
+   "tier": "medium",
+   "why": "Jewelled gold heap, a dragon's bed."
+  },
+  {
+   "id": "CR-ARM-023",
+   "tier": "medium",
+   "why": "Chainmail laid out, a fallen adventurer's kit."
+  },
+  {
+   "id": "CR-TRS-014",
+   "tier": "hard",
+   "why": "Agapite ingots, a rarer layer of the hoard."
+  },
+  {
+   "id": "CR-ARM-024",
+   "tier": "hard",
+   "why": "Ringmail set left where its owner fell."
+  },
+  {
+   "id": "CR-TRS-011",
+   "tier": "boss",
+   "why": "Gold ingot stack, the fortune a dragon sleeps on."
+  }
+ ]
+}

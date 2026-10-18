@@ -1,0 +1,18 @@
+{
+  "pool": "hythloth-drops",
+  "system": "hot-zone",
+  "notes": "Hythloth is the permanent Hot dungeon, so its drops are the most hellish pieces in the catalog: two daemon figures, the Blood Pentagram, the dungeon arch the catalog tags 'dungeon:hythloth', demon faces, a blood altar and a skull wreathed in fire. 'tier' is the catalog tier and can be used directly as drop rarity (five extremely-rare, so the top end is always a daemon or a hell-gate piece). 'theme' groups the pieces so a daemon corpse can roll daemon items and a chest can roll rite items. One piece (CR-CUR-019) is era grade C: kept because nothing else in the catalog reads as hellfire this clearly. Hythloth is not a Wanted destination, so none of these overlap the curator pools.",
+  "entries": [
+    { "id": "CR-FIG-025", "tier": "extremely-rare", "theme": "daemon",      "why": "Towering daemon colossus, the showpiece of the pool" },
+    { "id": "CR-FIG-059", "tier": "extremely-rare", "theme": "daemon",      "why": "Obsidian daemon, black glass and menace" },
+    { "id": "CR-ALC-001", "tier": "extremely-rare", "theme": "summoning",   "why": "Blood-red pentagram, the mark a daemon is called by" },
+    { "id": "CR-ARC-041", "tier": "extremely-rare", "theme": "gateway",     "why": "Mossy dungeon arch, the catalog's own Hythloth-tagged gate" },
+    { "id": "CR-CUR-019", "tier": "extremely-rare", "theme": "hellfire",    "why": "Skull wreathed in fire; grade C but nothing else says hellfire so well" },
+    { "id": "CR-REL-022", "tier": "rare",           "theme": "blood-rite",  "why": "Pentagram altar ringed with skull candles, ready for a rite" },
+    { "id": "CR-ALC-007", "tier": "rare",           "theme": "summoning",   "why": "Summoning circle with its corner skulls and candles" },
+    { "id": "CR-ALC-006", "tier": "scarce",         "theme": "summoning",   "why": "Black obsidian pentagram, cold and unlit" },
+    { "id": "CR-CUR-017", "tier": "scarce",         "theme": "demon-faces", "why": "Row of three stone demon faces glaring from the wall line" },
+    { "id": "CR-CUR-027", "tier": "scarce",         "theme": "demon-faces", "why": "Jade demon face, a green horned grimace" },
+    { "id": "CR-CUR-016", "tier": "uncommon",       "theme": "demon-faces", "why": "A single grey stone demon face, the humbler trophy of the set" }
+  ]
+}

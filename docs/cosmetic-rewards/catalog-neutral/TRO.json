@@ -1,0 +1,984 @@
+[
+ {
+  "slug": "mounted-grouper",
+  "name": "Mounted Red Grouper",
+  "category": "TRO",
+  "subcategory": "Mounted fish",
+  "parts": [
+   {
+    "id": "0x4B51",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4B55",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A mottled red grouper nailed to a plank, the sort of catch a fisherman mounts to settle an argument.",
+  "era": {
+   "grade": "N",
+   "note": "Fish-mount art from the High Seas era (2010); a mounted real-world fish is a generic angler's trophy with no creature or lore tie, so it reads naturally in 2000 Britannia.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "wooden mount board and fish graphic stacked on one tile; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4B54",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-001"
+ },
+ {
+  "slug": "mounted-barracuda",
+  "name": "Mounted Barracuda",
+  "category": "TRO",
+  "subcategory": "Mounted fish",
+  "parts": [
+   {
+    "id": "0x4B51",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA1A1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "rustic"
+  ],
+  "blurb": "A long silver barracuda, mouth full of needles, fixed to a board over the harbour tavern's hearth.",
+  "era": {
+   "grade": "N",
+   "note": "Fish-mount art from the High Seas era (2010); a mounted real-world fish is a generic angler's trophy with no creature or lore tie, so it reads naturally in 2000 Britannia.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "wooden mount board and fish graphic stacked on one tile; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA1A0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-002"
+ },
+ {
+  "slug": "mounted-dragonfish",
+  "name": "Mounted Spined Dragonfish",
+  "category": "TRO",
+  "subcategory": "Mounted fish",
+  "parts": [
+   {
+    "id": "0x4B51",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x44E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "exotic",
+   "whimsical"
+  ],
+  "blurb": "A spined, green-gold sea monster of a fish on a plank, with fins like a dragon's frill. It put up quite a fight.",
+  "era": {
+   "grade": "N",
+   "note": "Fish-mount art from the High Seas era (2010); a mounted fantasy fish is a generic angler's trophy with no creature or lore tie to later content.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "wooden mount board and fish graphic stacked on one tile; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x44E8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-003"
+ },
+ {
+  "slug": "mounted-marlin",
+  "name": "Mounted Blue Marlin",
+  "category": "TRO",
+  "subcategory": "Mounted fish",
+  "parts": [
+   {
+    "id": "0x44E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "rustic",
+   "elegant"
+  ],
+  "blurb": "A great blue marlin arched on its mount, sword-nose raised, the prize of some deep-water voyage.",
+  "era": {
+   "grade": "N",
+   "note": "Fish-mount art from the High Seas era (2010); a mounted real-world fish is a generic angler's trophy with no creature or lore tie, so it reads naturally in 2000 Britannia.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x44EC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-004"
+ },
+ {
+  "slug": "stuffed-brown-bear",
+  "name": "Stuffed Brown Bear",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0x9A26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:bear",
+   "wilderness",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A brown bear risen on its hind legs on a polished plinth, claws curled and glass eyes fixed on the door.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Bears are among the animals of the original client's creature icons.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A27",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-005"
+ },
+ {
+  "slug": "stuffed-grey-wolf",
+  "name": "Stuffed Grey Wolf",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0x9A28",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:wolf",
+   "wilderness",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A lean grey wolf stalking along its plinth, caught mid-stride by a taxidermist with a steady hand.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Wolves are among the animals of the original client's creature icons.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A29",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-006"
+ },
+ {
+  "slug": "stuffed-panther",
+  "name": "Stuffed Black Panther",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0x9A2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:panther",
+   "wilderness",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A black panther crouched on its stand, every whisker in place. They say it was the last of its pride.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Panthers are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A2B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-007"
+ },
+ {
+  "slug": "stuffed-polar-bear",
+  "name": "Stuffed Polar Bear",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0xA9CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:polar-bear",
+   "wilderness",
+   "ice",
+   "martial"
+  ],
+  "blurb": "A great white bear reared up on a dark wooden base, a trophy from the ice fields that every hunter's hall envies.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Polar bears are among the animals of the original client's creature icons.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9CB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-008"
+ },
+ {
+  "slug": "stuffed-gorilla",
+  "name": "Stuffed Gorilla",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0xA7AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:gorilla",
+   "wilderness",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A huge dark gorilla standing on its plinth, knuckles to the floor. Visitors tend to give it a wide berth.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Gorillas are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA7AB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-009"
+ },
+ {
+  "slug": "prize-hog-trophy",
+  "name": "Prize Hog Trophy",
+  "category": "TRO",
+  "subcategory": "Stuffed animals",
+  "parts": [
+   {
+    "id": "0x64E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:pig",
+   "rustic",
+   "humble",
+   "whimsical"
+  ],
+  "blurb": "A plump pink hog on a wooden plinth, the champion of some county fair long ago.",
+  "era": {
+   "grade": "N",
+   "note": "Later trophy art of an ordinary farm pig; pigs are among the animals of the original tracking menu, and a prize-animal trophy is a plain rural keepsake.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x64EA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-010"
+ },
+ {
+  "slug": "mounted-eagle-head",
+  "name": "Mounted Eagle Head",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0x9A36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "wilderness",
+   "rustic",
+   "martial",
+   "monster:eagle"
+  ],
+  "blurb": "An eagle's head, white-crowned and proud, mounted on a wooden shield over a hunter's door.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Eagles are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A37",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-011"
+ },
+ {
+  "slug": "longhorn-skull-mount",
+  "name": "Longhorn Skull Mount",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0x9A2E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "monster:bull",
+   "wilderness",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A bleached longhorn skull with a swept spread of horns, fixed to a leather-backed shield.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Bulls are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A2F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-012"
+ },
+ {
+  "slug": "mounted-dragon-head",
+  "name": "Mounted Dragon Head",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0xB2B3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "dragon",
+   "monster:dragon",
+   "martial",
+   "exotic"
+  ],
+  "blurb": "A silver-white dragon's head, horned and fanged, mounted on a shield of dark oak. A very long hunt ended here.",
+  "era": {
+   "grade": "N",
+   "note": "Later mount art; the head is an ordinary dragon's, and dragons are documented from Oct 1997 (Despise), so a dragon-head trophy reads naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB2B4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-013"
+ },
+ {
+  "slug": "great-dragon-skull",
+  "name": "Great Dragon Skull",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0xB2B5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "animal",
+   "dragon",
+   "monster:dragon",
+   "undead",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A dragon's skull as big as a hay-cart, horns swept back and a jaw lined with sabres. The hall that holds it is proud.",
+  "era": {
+   "grade": "N",
+   "note": "Later art of a plain dragon skull; dragons are documented from Oct 1997 (Despise), so a dragon skull trophy reads naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB2B6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-014"
+ },
+ {
+  "slug": "kraken-trophy",
+  "name": "Kraken Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0xA7A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:kraken",
+   "nautical",
+   "exotic",
+   "martial"
+  ],
+  "blurb": "A carved red kraken coiled on a stand, tentacles clutching at the air, awarded to the crew that took one down.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Krakens are documented by Mar 1998 (the 1998-03-18 publish).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-TRO-015"
+ },
+ {
+  "slug": "mounted-walrus-head",
+  "name": "Mounted Walrus Head",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0x9A32",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "monster:walrus",
+   "wilderness",
+   "ice",
+   "rustic",
+   "nautical"
+  ],
+  "blurb": "A whiskered walrus head with fine ivory tusks, mounted on a shield and hung where the fishermen can admire it.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Walruses are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A33",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-016"
+ },
+ {
+  "slug": "mounted-crocodile-head",
+  "name": "Mounted Crocodile Head",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0x9A34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "monster:crocodile",
+   "swamp",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A swamp crocodile's long, ridged snout, jaws agape and tongue lolling, mounted on a plank of cypress.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Crocodiles are among the animals of the original client's creature icons.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A35",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-017"
+ },
+ {
+  "slug": "mounted-black-widow",
+  "name": "Mounted Black Widow Spider",
+  "category": "TRO",
+  "subcategory": "Mounted heads and skulls",
+  "parts": [
+   {
+    "id": "0x9DA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "monster:giant-spider",
+   "dungeon",
+   "macabre",
+   "martial"
+  ],
+  "blurb": "A glossy black spider, red-marked and hand-wide, pinned to an oval plaque. Hunters brag about this one.",
+  "era": {
+   "grade": "N",
+   "note": "Later taxidermy art, a generic mount of an animal from the original client set; stuffed animals are timeless and the art ties to no later creature. Giant spiders are among the animals of the original tracking menu.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile (two-tile rotated twin); decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9DAA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9DA9",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-TRO-018"
+ },
+ {
+  "slug": "bronze-trophy-cup",
+  "name": "Bronze Trophy Cup",
+  "category": "TRO",
+  "subcategory": "Prize cups",
+  "parts": [
+   {
+    "id": "0xB4D1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant",
+   "martial",
+   "whimsical"
+  ],
+  "blurb": "A twin-handled cup of rosy bronze, third prize at a tournament, polished by a proud winner every week since.",
+  "era": {
+   "grade": "N",
+   "note": "Later prize-cup art; a plain tournament cup of bronze with no event or expansion branding.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-TRO-019"
+ },
+ {
+  "slug": "gold-trophy-cup",
+  "name": "Gold Trophy Cup",
+  "category": "TRO",
+  "subcategory": "Prize cups",
+  "parts": [
+   {
+    "id": "0xB4CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "martial",
+   "treasure"
+  ],
+  "blurb": "A tall gilded cup with two scrolled handles, the sort of prize a lord hands over with a speech.",
+  "era": {
+   "grade": "N",
+   "note": "Later prize-cup art; a plain tournament cup of gold with no event or expansion branding.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-TRO-020"
+ }
+]

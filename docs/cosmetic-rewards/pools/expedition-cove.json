@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-cove",
+ "system": "expedition",
+ "notes": "Coastal curios from a small harbour town: pilings, a winch, a lantern cluster, a shell collection and a ship in miniature. Core pieces are the dock-side basics; the rares are the lamps, the model ship and the pilings with the sea round them. Tagged town:cove in the catalog.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-NAU-006",
+   "why": "Plain dock piling, the first thing at any quay"
+  },
+  {
+   "role": "core",
+   "id": "CR-NAU-026",
+   "why": "Three barrels, harbour-side cooperage"
+  },
+  {
+   "role": "core",
+   "id": "CR-NAU-041",
+   "why": "Shells, a starfish and sea glass picked from the strand"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-033",
+   "why": "A ship in miniature, the harbour's keepsake"
+  },
+  {
+   "role": "rare",
+   "id": "CR-LGT-019",
+   "why": "Cluster of hanging harbour lanterns, 2x2"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-010",
+   "why": "Three pilings bound together, 2x2 dockside centrepiece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-009",
+   "why": "A piling standing in the lapping surf"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-014",
+   "why": "Iron dock winch with its rope drum"
+  }
+ ]
+}

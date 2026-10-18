@@ -1,0 +1,1693 @@
+[
+ {
+  "slug": "marble-column",
+  "name": "Marble Column",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x011B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A fluted marble column with a carved capital, as grand as any in the old halls of Britain.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 46 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; tiledata variants 0x011C-0x0120 look identical",
+  "variantOf": null,
+  "id": "CR-ARC-001"
+ },
+ {
+  "slug": "white-marble-column",
+  "name": "White Marble Column",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x02A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A pale marble column, cool to the touch and faintly veined with blue.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 12 times outside the late regions. A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; variants 0x02A8-0x02AC look identical",
+  "variantOf": "marble-column",
+  "id": "CR-ARC-002"
+ },
+ {
+  "slug": "marble-portico",
+  "name": "Marble Portico",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x011B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x011B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x011B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x011B",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "Four marble columns standing at the corners of an open court, waiting for a roof that was never raised.",
+  "era": {
+   "grade": "B",
+   "note": "Four copies of the marble column world static (used 46 times). The arrangement is custom set-dressing, a reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four floor statics on a 3x3 grid; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-003"
+ },
+ {
+  "slug": "sandstone-portico",
+  "name": "Sandstone Portico",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x0194",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0194",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0194",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0194",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "desert",
+   "sacred"
+  ],
+  "blurb": "Four golden sandstone columns marking the corners of a shaded court under an open sky.",
+  "era": {
+   "grade": "B",
+   "note": "Four copies of the sandstone column world static (used 15 times). The arrangement is custom set-dressing, a reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four floor statics on a 3x3 grid; decor-only",
+  "variantOf": "marble-portico",
+  "id": "CR-ARC-004"
+ },
+ {
+  "slug": "sandstone-column",
+  "name": "Sandstone Column",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x0194",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "desert"
+  ],
+  "blurb": "A golden sandstone column, banded at foot and crown, warm as a loaf from the sun.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 15 times outside the late regions. A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; variants 0x0195-0x0196 look identical",
+  "variantOf": null,
+  "id": "CR-ARC-005"
+ },
+ {
+  "slug": "ornate-sandstone-post",
+  "name": "Ornate Sandstone Post",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x015B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "desert"
+  ],
+  "blurb": "A tall sandstone post carved with a row of feathered chevrons.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 69 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-006"
+ },
+ {
+  "slug": "carved-sandstone-post",
+  "name": "Carved Sandstone Post",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x0167",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "desert",
+   "garden"
+  ],
+  "blurb": "A squat sandstone post carved with a leaf pattern, fit for a gate or a garden path.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 168 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-007"
+ },
+ {
+  "slug": "stacked-stone-post",
+  "name": "Stacked Stone Post",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x08F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A post of dressed grey blocks, mossed over at the joints.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 30 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; paired rail version is the stone post-and-rail entry",
+  "variantOf": null,
+  "id": "CR-ARC-008"
+ },
+ {
+  "slug": "stepped-stone-obelisk",
+  "name": "Stepped Stone Obelisk",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x0077",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A stepped obelisk of mortared stone, narrowing course by course to a worn point.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used about 15 times (Britannia, Hythloth). Hythloth documented Oct 1997. A reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone column'; wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-009"
+ },
+ {
+  "slug": "sandstone-obelisk",
+  "name": "Sandstone Obelisk",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x017B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "desert",
+   "sacred"
+  ],
+  "blurb": "A slender sandstone obelisk with a needle point, marking a boundary or a grave.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 15 times (tiledata calls it a battlement spire). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-010"
+ },
+ {
+  "slug": "black-stone-spire",
+  "name": "Black Stone Spire",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x00DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A dark, faceted spire of rough stone, tall as a man and sharp at the tip.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 496 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; tiledata calls it 'stone pillar'",
+  "variantOf": null,
+  "id": "CR-ARC-011"
+ },
+ {
+  "slug": "weathered-stone-spire",
+  "name": "Weathered Stone Spire",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x01DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "rustic"
+  ],
+  "blurb": "A pitted brown spire of old stone, weathered to a smooth point.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 144 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; tiledata calls it 'stone pillar'",
+  "variantOf": null,
+  "id": "CR-ARC-012"
+ },
+ {
+  "slug": "mossy-stone-post",
+  "name": "Mossy Stone Post",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x00CC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "garden",
+   "dungeon"
+  ],
+  "blurb": "A narrow stone post, green with moss at its foot and grey with age at the top.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 238 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-013"
+ },
+ {
+  "slug": "stone-buttress",
+  "name": "Stone Buttress",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x00D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A rough stone buttress, thick at the base and leaning in to hold up a wall.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 109 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; mirror twin is 0x00D3",
+  "variantOf": null,
+  "id": "CR-ARC-014"
+ },
+ {
+  "slug": "hewn-log-post",
+  "name": "Hewn Log Post",
+  "category": "ARC",
+  "subcategory": "Columns and posts",
+  "parts": [
+   {
+    "id": "0x0093",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A tall hewn log, still dark from the forest and cut clean at the top.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 129 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-015"
+ },
+ {
+  "slug": "wrought-iron-fence",
+  "name": "Wrought Iron Fence",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x0849",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A black wrought-iron fence topped with spear-point finials, tall enough to discourage trespassers.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 981 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; the 0x0821-0x0823 set is near-identical",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x084B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-016"
+ },
+ {
+  "slug": "iron-fence-corner",
+  "name": "Iron Fence Corner",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x084A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "Two runs of black iron fence meeting at a spear-topped point.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 500 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": "wrought-iron-fence",
+  "id": "CR-ARC-017"
+ },
+ {
+  "slug": "plank-rail-fence",
+  "name": "Plank Rail Fence",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x08FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness",
+   "garden"
+  ],
+  "blurb": "Two weathered rails pegged between posts, good for a paddock or a field edge.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 264 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x08FB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-018"
+ },
+ {
+  "slug": "rail-fence-corner-post",
+  "name": "Rail Fence Corner Post",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x085C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness",
+   "garden"
+  ],
+  "blurb": "A stout post with rails running off in two directions: the corner of a paddock.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 17 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "id": "CR-ARC-019"
+ },
+ {
+  "slug": "stone-post-and-rail",
+  "name": "Stone Post and Rail",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x08EE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "garden",
+   "humble"
+  ],
+  "blurb": "A stone fence post with two wooden rails pegged into it.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 6 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x08ED",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-020"
+ },
+ {
+  "slug": "sandstone-post-and-rail",
+  "name": "Sandstone Post and Rail",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x08F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "desert",
+   "garden",
+   "humble"
+  ],
+  "blurb": "A sandstone fence post with two wooden rails pegged into it.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 5 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": "stone-post-and-rail",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x08F6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-021"
+ },
+ {
+  "slug": "marble-post-and-rail",
+  "name": "Marble Post and Rail",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x07D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A white marble post with two dark wooden rails: a gentleman's boundary.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block (wall-flagged post-and-rail family, used 5-30 times). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static",
+  "variantOf": "stone-post-and-rail",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x07D7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-022"
+ },
+ {
+  "slug": "farm-gate",
+  "name": "Farm Gate",
+  "category": "ARC",
+  "subcategory": "Fences, rails and gates",
+  "parts": [
+   {
+    "id": "0x088B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A wooden farm gate between two stout posts, braced across the middle.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 21 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata calls it 'wooden fence' (not a door)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x088A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-023"
+ },
+ {
+  "slug": "leaded-casement-window",
+  "name": "Leaded Casement Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x0155",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A wood-framed window of small leaded panes, with a hint of sky behind the glass.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 29 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0154",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-024"
+ },
+ {
+  "slug": "sandstone-round-window",
+  "name": "Sandstone Round Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x0162",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "desert",
+   "noble"
+  ],
+  "blurb": "A sandstone wall section pierced by a small round-topped window.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 289 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0163",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-025"
+ },
+ {
+  "slug": "gothic-stone-window",
+  "name": "Gothic Stone Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x005D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "sacred",
+   "scholar"
+  ],
+  "blurb": "A grey stone wall section with a tall, narrow, pointed window.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 14 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x005E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-026"
+ },
+ {
+  "slug": "shuttered-log-window",
+  "name": "Shuttered Log Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x0099",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A dark timber wall section with a small glazed window and a hinged shutter.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 126 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0098",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-027"
+ },
+ {
+  "slug": "plaster-arched-window",
+  "name": "Plaster Arched Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x00FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "humble"
+  ],
+  "blurb": "A cream plaster wall section with an arched window, like those in any Britain street.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 90 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x00FC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-028"
+ },
+ {
+  "slug": "marble-arched-window",
+  "name": "Marble Arched Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x02AD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A white marble wall section with a banded cornice and an arched window.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 26 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x02AE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-029"
+ },
+ {
+  "slug": "brick-window",
+  "name": "Brick Window",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x003C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble"
+  ],
+  "blurb": "A red-brick wall section with a plain recessed window.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 172 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x003B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-030"
+ },
+ {
+  "slug": "arrow-slit-wall",
+  "name": "Arrow-Slit Wall",
+  "category": "ARC",
+  "subcategory": "Windows and wall sections",
+  "parts": [
+   {
+    "id": "0x00CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "dungeon",
+   "rustic"
+  ],
+  "blurb": "A rough mossy stone wall section cut with a narrow slit for archers.",
+  "era": {
+   "grade": "B",
+   "note": "World static (a wall section with a window): used 260 times in the original map. Third Dawn re-drew wall art in place, ids unchanged. A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; tiledata calls it 'arrow loop'; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x00CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-031"
+ },
+ {
+  "slug": "flagstone-step",
+  "name": "Flagstone Step",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x0915",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "garden"
+  ],
+  "blurb": "A broad white flagstone, laid as a doorstep or a stepping stone across a lawn.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 21 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone step'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-032"
+ },
+ {
+  "slug": "mossy-flagstone-step",
+  "name": "Mossy Flagstone Step",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x0917",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "garden",
+   "dungeon"
+  ],
+  "blurb": "A green-grey flagstone, softened by moss and long use.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 22 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone step'; decor-only",
+  "variantOf": "flagstone-step",
+  "id": "CR-ARC-033"
+ },
+ {
+  "slug": "sandstone-cairn",
+  "name": "Sandstone Cairn",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x03B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "desert",
+   "sacred"
+  ],
+  "blurb": "Three sandstone boulders stacked by a traveller, a mark to say that someone passed this way.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 64 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone ruins'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-034"
+ },
+ {
+  "slug": "fallen-sandstone-masonry",
+  "name": "Fallen Sandstone Masonry",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x03C3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "desert"
+  ],
+  "blurb": "A heap of tumbled sandstone blocks from a wall that stood long before the town.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 27 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone ruins'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-035"
+ },
+ {
+  "slug": "tumbled-sandstone-wall",
+  "name": "Tumbled Sandstone Wall",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x03B8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "desert"
+  ],
+  "blurb": "A broken curve of sandstone rubble, all that remains of a garden wall.",
+  "era": {
+   "grade": "B",
+   "note": "World static art, used 7 times in the original Britannia map (pillars, walls and fences are world dressing). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'stone ruins'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-036"
+ },
+ {
+  "slug": "crumbled-stone-pillar",
+  "name": "Crumbled Stone Pillar",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x027C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A pillar of dressed stone with its upper courses gone, one cap block still balanced on top.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 37 times outside the late regions (Destard 31). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'ruined wall'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-037"
+ },
+ {
+  "slug": "mossy-rubble-heap",
+  "name": "Mossy Rubble Heap",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x0279",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "dungeon"
+  ],
+  "blurb": "A heap of dark, moss-furred stone rubble, fallen from some forgotten wall.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 19 times outside the late regions (Destard 15). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'ruined wall'; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-038"
+ },
+ {
+  "slug": "mossy-chimney-stack",
+  "name": "Mossy Chimney Stack",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x08D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A rough-stone chimney stack, furred with moss, still stained black at the lip.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 29 times outside the late regions. A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-039"
+ },
+ {
+  "slug": "brick-chimney-stack",
+  "name": "Brick Chimney Stack",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x08D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "humble",
+   "elegant"
+  ],
+  "blurb": "A neat brick chimney stack with a pale stone cap and a hollow throat.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 4 times in the original map (house and shop chimneys). A reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CR-ARC-040"
+ },
+ {
+  "slug": "mossy-dungeon-arch",
+  "name": "Mossy Dungeon Arch",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x0245",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0247",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0249",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:hythloth",
+   "noble",
+   "undead"
+  ],
+  "blurb": "A tall arch of moss-stained dungeon brick, its keystones weeping green. Only the dead walk under it for pleasure.",
+  "era": {
+   "grade": "B",
+   "note": "World static art: the arch run is used over 100 times in Deceit, Hythloth and Britannia. Hythloth documented Oct 1997; Deceit presumed launch-era. A reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "three-piece run read from the original map (Deceit); decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0246",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0248",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x024A",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-041"
+ },
+ {
+  "slug": "rope-ladder",
+  "name": "Rope Ladder",
+  "category": "ARC",
+  "subcategory": "Steps and stonework",
+  "parts": [
+   {
+    "id": "0x08A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A rope ladder with wooden rungs, hung against a wall as though some climber had just gone up.",
+  "era": {
+   "grade": "B",
+   "note": "World static art in the classic block, used 7 times outside the late regions (also Terathan Keep, T2A Oct 1998). A reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as a climbable surface; decor-only, strip function",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x08A6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-ARC-042"
+ }
+]

@@ -1,0 +1,82 @@
+{
+ "pool": "seasonal-harvest",
+ "system": "seasonal",
+ "notes": "Harvest pool (season:harvest): the autumn trees, the pumpkin patch and corn and wheat fields, hay and sheaves, a fruit basket and a harvest feast. 'tier' is the catalog tier and can be used as event drop rarity (the Farmyard Corner is the single extremely-rare). Almost all grade B; the Scarecrow is grade C, kept because it is the harvest icon. A few of these pieces (the autumn trees and fields) live in the flora category, which another curator draws from first, so no other pool uses them; check for later clashes.",
+ "entries": [
+  {
+   "id": "CR-ANM-021",
+   "tier": "extremely-rare",
+   "why": "Farmyard corner: the whole harvest-time yard"
+  },
+  {
+   "id": "CR-FOO-036",
+   "tier": "rare",
+   "why": "Harvest banquet table, the feast after the last sheaf"
+  },
+  {
+   "id": "CR-FLO-048",
+   "tier": "rare",
+   "why": "Pumpkin patch heavy with fruit"
+  },
+  {
+   "id": "CR-SEA-024",
+   "tier": "scarce",
+   "why": "Four wheat sheaves stood in a stook"
+  },
+  {
+   "id": "CR-FLO-050",
+   "tier": "scarce",
+   "why": "Golden wheat field ready to cut"
+  },
+  {
+   "id": "CR-FLO-051",
+   "tier": "scarce",
+   "why": "Cornfield standing tall"
+  },
+  {
+   "id": "CR-FLO-011",
+   "tier": "scarce",
+   "why": "Autumn oak in russet and gold"
+  },
+  {
+   "id": "CR-FLO-014",
+   "tier": "scarce",
+   "why": "Golden willow tree, all yellow leaves"
+  },
+  {
+   "id": "CR-FLO-033",
+   "tier": "scarce",
+   "why": "Autumn apple tree hung with fruit"
+  },
+  {
+   "id": "CR-ANM-001",
+   "tier": "scarce",
+   "why": "Haystack standing at the field's edge"
+  },
+  {
+   "id": "CR-SEA-025",
+   "tier": "uncommon",
+   "why": "Basket heaped with apples, pears and grapes"
+  },
+  {
+   "id": "CR-FLO-007",
+   "tier": "uncommon",
+   "why": "Autumn broadleaf tree"
+  },
+  {
+   "id": "CR-FLO-069",
+   "tier": "uncommon",
+   "why": "Scarecrow; grade C but the harvest icon"
+  },
+  {
+   "id": "CR-SEA-022",
+   "tier": "common",
+   "why": "Three hay sheaves at the field's edge"
+  },
+  {
+   "id": "CR-SEA-023",
+   "tier": "common",
+   "why": "Great sheaf of ripe wheat"
+  }
+ ]
+}

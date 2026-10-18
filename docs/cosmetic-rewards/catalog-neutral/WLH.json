@@ -1,0 +1,1762 @@
+[
+ {
+  "slug": "haunted-wall-mirror",
+  "name": "Haunted Wall Mirror",
+  "category": "WLH",
+  "subcategory": "Mirrors",
+  "parts": [
+   {
+    "id": "0x2A7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A7D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "macabre",
+   "elegant"
+  ],
+  "blurb": "A tall glass in a frame of black iron claws, its silvered face clouded as if something looks back.",
+  "era": {
+   "grade": "N",
+   "note": "A wall mirror in a wrought-iron frame; a looking-glass is ordinary decor, and its dark-magic styling reads as plain gothic dressing. Art from the 2007 Hallow's Eve decor set.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-001"
+ },
+ {
+  "slug": "haunted-wall-mirror-awake",
+  "name": "Haunted Wall Mirror, Glowing",
+  "category": "WLH",
+  "subcategory": "Mirrors",
+  "parts": [
+   {
+    "id": "0x2A7C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A7E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "arcane",
+   "macabre",
+   "fire"
+  ],
+  "blurb": "The same iron-framed glass in its waking state, a cold green light swelling behind the silvering.",
+  "era": {
+   "grade": "N",
+   "note": "A wall mirror in a wrought-iron frame; a looking-glass is ordinary decor, and its dark-magic styling reads as plain gothic dressing. Art from the 2007 Hallow's Eve decor set. The waking frame is the glowing state of the same mirror.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-002"
+ },
+ {
+  "slug": "disturbing-portrait",
+  "name": "Disturbing Portrait",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x2A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A61",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A gilt-framed portrait of a pale figure in black, whose gaze seems a little too fixed.",
+  "era": {
+   "grade": "N",
+   "note": "A framed portrait with an unsettling subject: spooky portraits are ordinary dark-magic wall dressing. Art from the 2007 Hallow's Eve decor set.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-003"
+ },
+ {
+  "slug": "unsettling-portrait",
+  "name": "Unsettling Portrait",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x2A65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "arcane"
+  ],
+  "blurb": "A silver-framed canvas of a burning figure, painted in streaks of orange and soot.",
+  "era": {
+   "grade": "N",
+   "note": "A framed portrait with an unsettling subject: spooky portraits are ordinary dark-magic wall dressing. Art from the 2007 Hallow's Eve decor set.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-004"
+ },
+ {
+  "slug": "creepy-portrait",
+  "name": "Creepy Portrait",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x2A69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant"
+  ],
+  "blurb": "A dark-framed portrait of a face half in shadow, peering out of the canvas.",
+  "era": {
+   "grade": "N",
+   "note": "A framed portrait with an unsettling subject: spooky portraits are ordinary dark-magic wall dressing. Art from the 2007 Hallow's Eve decor set.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-005"
+ },
+ {
+  "slug": "castle-painting",
+  "name": "Painting of a Dark Castle",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x4C20",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C21",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant",
+   "dungeon"
+  ],
+  "blurb": "A plain-framed painting of a black keep rising from a pale sky, copper pinned at the corners.",
+  "era": {
+   "grade": "N",
+   "note": "A framed landscape of a castle; generic art with no expansion subject. Tile family is the 2010 house-painting set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-006"
+ },
+ {
+  "slug": "white-horse-painting",
+  "name": "Painting of a White Horse",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x4C22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C23",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A narrow painting of a pale horse on a green field, mounted in a slim frame.",
+  "era": {
+   "grade": "N",
+   "note": "A framed horse painting; horses are core 1997 fauna. Tile is partly hue-able, left at its natural green and white.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-007"
+ },
+ {
+  "slug": "round-ship-painting",
+  "name": "Round Painting of a Ship",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x4C26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C27",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "An oval painting of a tall ship in full sail under a stormy sky, framed in dark wood and brass.",
+  "era": {
+   "grade": "N",
+   "note": "An oval painting of a sailing ship; ships and the sea are core Britannia. Art from the 2010 sea-themed decor.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-008"
+ },
+ {
+  "slug": "honesty-tapestry",
+  "name": "Honesty Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49BF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:honesty"
+  ],
+  "blurb": "A crimson hanging stitched in gold with the open hand of truth.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-009"
+ },
+ {
+  "slug": "compassion-tapestry",
+  "name": "Compassion Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49B5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:compassion"
+  ],
+  "blurb": "A crimson hanging with the golden heart-shape of mercy.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-010"
+ },
+ {
+  "slug": "valor-tapestry",
+  "name": "Valor Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49B3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49BB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:valor"
+  ],
+  "blurb": "A crimson hanging with the golden blade of courage.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-011"
+ },
+ {
+  "slug": "justice-tapestry",
+  "name": "Justice Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49BA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:justice"
+  ],
+  "blurb": "A crimson hanging with the golden sign of the balanced scales.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-012"
+ },
+ {
+  "slug": "sacrifice-tapestry",
+  "name": "Sacrifice Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49B4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:sacrifice"
+  ],
+  "blurb": "A crimson hanging with the golden flame of giving.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-013"
+ },
+ {
+  "slug": "honor-tapestry",
+  "name": "Honor Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49BE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:honor"
+  ],
+  "blurb": "A crimson hanging with the golden sign of a knight's word.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-014"
+ },
+ {
+  "slug": "spirituality-tapestry",
+  "name": "Spirituality Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49B9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:spirituality"
+  ],
+  "blurb": "A crimson hanging with the golden chalice of the spirit.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-015"
+ },
+ {
+  "slug": "humility-tapestry",
+  "name": "Humility Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x49A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49C0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:humility"
+  ],
+  "blurb": "A crimson hanging with the golden sign of the bowed head.",
+  "era": {
+   "grade": "N",
+   "note": "Wall hanging with the glyph of one of the eight virtues, which are Ultima lore from the first games and part of the shard's core from launch. Tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-016"
+ },
+ {
+  "slug": "hall-of-the-eight-virtues",
+  "name": "Hall of the Eight Virtues",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x49A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49A8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49B3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49A7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49A0",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49B2",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49A1",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x49A3",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x49BF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x49B5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x49BB",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x49BA",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x49B4",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x49BE",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x49B9",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x49C0",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "8x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "noble",
+   "virtue:honesty",
+   "virtue:compassion",
+   "virtue:valor",
+   "virtue:justice",
+   "virtue:sacrifice",
+   "virtue:honor",
+   "virtue:spirituality",
+   "virtue:humility"
+  ],
+  "blurb": "All eight virtue tapestries hung side by side in the order of the old teaching, a pilgrim's shrine wall.",
+  "era": {
+   "grade": "N",
+   "note": "All eight virtue tapestries in a row, in the order of the Ultima IV virtues. The virtues are core Ultima lore from the first games; tapestry art is from the later wall-hanging set.",
+   "artEra": "SA"
+  },
+  "impl": "addon",
+  "implNote": "eight tapestries in a row (offsets +1 along the wall); decor-only",
+  "variantOf": null,
+  "id": "CN-WLH-017"
+ },
+ {
+  "slug": "tapestry-of-sosaria",
+  "name": "Tapestry of Sosaria",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x234E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x234F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "noble",
+   "craft:cartography"
+  ],
+  "blurb": "A gold-bordered tapestry woven with a map of old Sosaria, the land that came before Britannia.",
+  "era": {
+   "grade": "N",
+   "note": "A woven map of Sosaria, the pre-Britannia land of Ultima lore. Plain cartographic decor; art from the 2003 holiday gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-018"
+ },
+ {
+  "slug": "crimson-filigree-tapestry",
+  "name": "Crimson Filigree Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x4C98",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C9A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A tall crimson hanging woven all over with gold filigree, hung from a plain rod.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-019"
+ },
+ {
+  "slug": "gilt-rodded-hanging",
+  "name": "Gilt-Rodded Hanging",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x4C9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C9F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A framed cloth of cream and brown hung from a slanted gilt rod.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-020"
+ },
+ {
+  "slug": "weathered-gilt-hanging",
+  "name": "Weathered Gilt Hanging",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x4C9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "rustic",
+   "scholar"
+  ],
+  "blurb": "An old cloth faded to the colour of parchment, still hung from its gilt rod.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-021"
+ },
+ {
+  "slug": "olive-damask-hanging",
+  "name": "Olive Damask Hanging",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x4CA0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4CA3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "elegant"
+  ],
+  "blurb": "An olive damask hanging with a pale emblem, edged in yellow braid.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-022"
+ },
+ {
+  "slug": "silvered-olive-hanging",
+  "name": "Silvered Olive Hanging",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x4CA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4CA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "humble"
+  ],
+  "blurb": "A fine olive hanging with a silver-white emblem and a pale yellow border.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-023"
+ },
+ {
+  "slug": "dusk-landscape-tapestry",
+  "name": "Dusk Landscape Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x2FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2FF3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A broad tapestry of a landscape in warm browns and golds, bordered in black.",
+  "era": {
+   "grade": "N",
+   "note": "A woven landscape with no figures or lore; the only shared name is 'colorful tapestry'. Art is from the Mondain's Legacy tile block but generic.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-024"
+ },
+ {
+  "slug": "red-fringed-hanging",
+  "name": "Red Fringed Hanging",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x42C4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A broad red hanging woven with gold scrollwork and finished with a heavy fringe.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental hanging with no figures or lore; two tiles wide, north wall only. Tile family is the 2009 'colorful tapestry' set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile, hangs on a north wall",
+  "variantOf": null,
+  "id": "CN-WLH-025"
+ },
+ {
+  "slug": "wall-sea-chart",
+  "name": "Framed Sea Chart",
+  "category": "WLH",
+  "subcategory": "Maps and Plaques",
+  "parts": [
+   {
+    "id": "0xA2C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xA2C9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "scholar",
+   "craft:cartography"
+  ],
+  "blurb": "A framed chart of coasts and soundings, the pride of a ship's captain.",
+  "era": {
+   "grade": "N",
+   "note": "A framed wall chart; maps and sailing are core Britannia. Art from the later High Seas decor.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-026"
+ },
+ {
+  "slug": "dragon-plaque",
+  "name": "Dragon Plaque",
+  "category": "WLH",
+  "subcategory": "Maps and Plaques",
+  "parts": [
+   {
+    "id": "0xB2C1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xB2C2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "dragon"
+  ],
+  "blurb": "A black board edged with two gilded dragons rearing at its corners, ready for any house motto.",
+  "era": {
+   "grade": "N",
+   "note": "A plain engraved plaque topped with two gilt dragons. Dragons existed in 2000 and the piece carries no later lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-027"
+ },
+ {
+  "slug": "silver-pole-curtain",
+  "name": "Curtain on a Silver Pole",
+  "category": "WLH",
+  "subcategory": "Drapes and Curtains",
+  "parts": [
+   {
+    "id": "0x154E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x154F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A heavy red curtain gathered at a silver pole, to be drawn across a hall.",
+  "era": {
+   "grade": "N",
+   "note": "A plain velvet curtain on a floor pole; the tile is old-block art the main catalog left out.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-028"
+ },
+ {
+  "slug": "haunted-gallery",
+  "name": "Haunted Gallery",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x2A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2A7B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2A69",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2A65",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2A61",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x2A7D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x2A6D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x2A67",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "Three uneasy portraits and an iron-framed mirror hung in a row, the wall of a very odd family.",
+  "era": {
+   "grade": "N",
+   "note": "Arrangement of the haunted portraits and mirror. Spooky portraits and a gothic mirror are ordinary dark-magic dressing; art from the 2007 Hallow's Eve decor set.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "four wall pieces in a row (offsets +1 along the wall); decor-only",
+  "variantOf": null,
+  "id": "CN-WLH-029"
+ },
+ {
+  "slug": "great-hall-hangings",
+  "name": "Great Hall Hangings",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x4C98",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C9C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4CA0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C9A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C9F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4CA3",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A crimson filigree cloth, a gilt-rodded hanging and an olive damask side by side along a hall wall.",
+  "era": {
+   "grade": "N",
+   "note": "Arrangement of three ornamental hangings with no figures or lore. Tile family is the 2010 wall-tapestry set.",
+   "artEra": "SA"
+  },
+  "impl": "addon",
+  "implNote": "three wall hangings in a row (offsets +1 along the wall); decor-only",
+  "variantOf": null,
+  "id": "CN-WLH-030"
+ },
+ {
+  "slug": "navigators-wall",
+  "name": "Navigator's Wall",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x4C26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA2C8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C26",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C27",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA2C9",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4C27",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "scholar",
+   "craft:cartography"
+  ],
+  "blurb": "A framed sea chart between two round paintings of sailing ships, the wall of a well-travelled captain.",
+  "era": {
+   "grade": "N",
+   "note": "Arrangement of a framed sea chart and two round ship paintings; sailing and charts are core Britannia decor. Art from the 2010 sea-themed decor.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "three wall pieces in a row (offsets +1 along the wall); decor-only",
+  "variantOf": null,
+  "id": "CN-WLH-031"
+ },
+ {
+  "slug": "small-elven-tapestry",
+  "name": "Small Elven Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x2D6F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2D70",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A narrow tapestry in leaf-greens and golds, woven with a slim, curling pattern in the elven manner.",
+  "era": {
+   "grade": "N",
+   "note": "Elven wall piece from the Mondain's Legacy block. The shard has cosmetic Elves, so elven furnishings count as era neutral; this is a plain object with no race-only gear or fey lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-032"
+ },
+ {
+  "slug": "elven-tapestry",
+  "name": "Elven Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x2D71",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2D72",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A tall tapestry worked in teal and gold around a pale central figure, hung from a slender rod.",
+  "era": {
+   "grade": "N",
+   "note": "Elven wall piece from the Mondain's Legacy block. The shard has cosmetic Elves, so elven furnishings count as era neutral; this is a plain object with no race-only gear or fey lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-033"
+ },
+ {
+  "slug": "elven-wall-map",
+  "name": "Elven Wall Map",
+  "category": "WLH",
+  "subcategory": "Maps and Plaques",
+  "parts": [
+   {
+    "id": "0x2D73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x2D74",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "scholar",
+   "craft:cartography"
+  ],
+  "blurb": "A broad wall map drawn on pale hide in fine brown ink, the lands marked in the flowing elven hand.",
+  "era": {
+   "grade": "N",
+   "note": "Elven wall piece from the Mondain's Legacy block. The shard has cosmetic Elves, so elven furnishings count as era neutral; this is a plain object with no race-only gear or fey lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-WLH-034"
+ }
+]

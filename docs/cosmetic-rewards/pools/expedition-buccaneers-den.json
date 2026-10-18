@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-buccaneers-den",
+ "system": "expedition",
+ "notes": "Pirates and plunder: kegs, a sack of plunder and dice for the core; the rares are the gun deck, a pirate hoard, a plunder chest, Harbour Row (hanging wharf-side shop signs) and an anchor with rope. All are drawn to look like a pirate's haul or a buccaneer's wharf, with no real function.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-NAU-024",
+   "why": "Stacked kegs, grog and powder"
+  },
+  {
+   "role": "core",
+   "id": "CR-TRS-007",
+   "why": "Sack of plunder, a heap of coin and loot"
+  },
+  {
+   "role": "core",
+   "id": "CR-GAM-019",
+   "why": "Barrel-head dice and a bottle, a sailors' game"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-037",
+   "why": "Gun Deck Station, 2x3 cannon with shot and keg"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TRS-024",
+   "why": "Pirate hoard, 2x2 chest and jewelled coin"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TRS-020",
+   "why": "Overflowing wooden chest of plunder"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TWN-038",
+   "why": "Harbour Row, 4x1 hanging signs of the wharf-side shops"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-003",
+   "why": "Anchor with coiled rope, a buccaneer's trophy"
+  }
+ ]
+}

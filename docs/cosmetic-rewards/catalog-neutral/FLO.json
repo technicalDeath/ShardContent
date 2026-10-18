@@ -1,0 +1,1279 @@
+[
+ {
+  "slug": "staked-tomato-row",
+  "name": "Staked Tomato Row",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0x0DEB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DEC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DED",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DEE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A kitchen-garden row of tomato plants from bare seedling to heavy-laden vine, staked and tied with twine.",
+  "era": {
+   "grade": "N",
+   "note": "Plant-system garden art (2009 or later) used here as plain garden decor; tomatoes are everyday produce with no expansion tie. Art 0x0DEB-0x0DEE is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "addon",
+  "implNote": "four statics in a row (growth stages); decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-001"
+ },
+ {
+  "slug": "pink-spire-bush",
+  "name": "Pink Spire Bush",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x0DC5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A round bush bristling with pink flower spikes, bright against a green wall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic flowering garden shrub. Art 0x0DC4/0x0DC5 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0DC4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-002"
+ },
+ {
+  "slug": "potted-flowering-cactus",
+  "name": "Potted Flowering Cactus",
+  "category": "FLO",
+  "subcategory": "Cacti and desert plants",
+  "parts": [
+   {
+    "id": "0x1E0F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "desert",
+   "humble"
+  ],
+  "blurb": "A clay pot holding a tall ribbed cactus crowned with a single pink bloom.",
+  "era": {
+   "grade": "N",
+   "note": "A potted cactus is a generic houseplant. Classic-block art 0x1E0F; first appearance in the shipped client not documented.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-003"
+ },
+ {
+  "slug": "potted-silver-sapling",
+  "name": "Potted Silver Sapling",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x42C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A slender sapling with pale silvery leaves, growing in a glazed red pot.",
+  "era": {
+   "grade": "N",
+   "note": "Plant-system garden art (2009 or later) used here as plain garden decor; a potted young tree is generic. Art 0x42C8 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-004"
+ },
+ {
+  "slug": "potted-elephant-fern",
+  "name": "Potted Elephant Fern",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x9962",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble"
+  ],
+  "blurb": "A glossy broad-leafed fern spilling over the rim of a red clay pot.",
+  "era": {
+   "grade": "N",
+   "note": "A potted houseplant fern with no expansion tie. Art 0x9962/0x9963 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9963",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-005"
+ },
+ {
+  "slug": "hanging-staghorn-fern",
+  "name": "Hanging Staghorn Fern",
+  "category": "FLO",
+  "subcategory": "Ferns and foliage",
+  "parts": [
+   {
+    "id": "0x9964",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A staghorn fern mounted on a board, its roots trailing and its fronds spread like antlers.",
+  "era": {
+   "grade": "N",
+   "note": "A mounted staghorn fern is a generic hanging plant. Art 0x9964/0x9965 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9965",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-006"
+ },
+ {
+  "slug": "seedling-planter-box",
+  "name": "Seedling Planter Box",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0x9A20",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A banded wooden planter holding a young seedling that has only just found the sun.",
+  "era": {
+   "grade": "N",
+   "note": "Plant-system garden art (2009 or later) used here as plain garden decor; a seedling in a planter box is generic. Art 0x9A20 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-007"
+ },
+ {
+  "slug": "berry-shrub-planter",
+  "name": "Berry Shrub Planter",
+  "category": "FLO",
+  "subcategory": "Crops and fields",
+  "parts": [
+   {
+    "id": "0x9A23",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall leafy shrub heavy with red berries, rooted in a banded wooden planter.",
+  "era": {
+   "grade": "N",
+   "note": "Plant-system garden art (2009 or later) used here as plain garden decor; a berry-bearing shrub in a box is generic. Art 0x9A23 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-008"
+ },
+ {
+  "slug": "white-orchid-stand",
+  "name": "White Orchid on a Stand",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x9B10",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A spray of white orchids nodding over a wrought plant stand, a gift for a lady's solar.",
+  "era": {
+   "grade": "N",
+   "note": "A potted orchid is a generic houseplant. Art 0x9B10 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-009"
+ },
+ {
+  "slug": "potted-amaryllis",
+  "name": "Potted Amaryllis",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0x9D3E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "humble"
+  ],
+  "blurb": "White amaryllis blooms rising from a half-barrel pot, spreading like stars.",
+  "era": {
+   "grade": "N",
+   "note": "A potted amaryllis is a generic houseplant. Art 0x9D3E is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-010"
+ },
+ {
+  "slug": "yellow-climbing-vine",
+  "name": "Yellow Climbing Vine",
+  "category": "FLO",
+  "subcategory": "Vines and arbors",
+  "parts": [
+   {
+    "id": "0x4B8C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "forest"
+  ],
+  "blurb": "A slender vine twining up a stake, set with small yellow blossoms.",
+  "era": {
+   "grade": "N",
+   "note": "Plant-system garden art (2009 or later) used here as plain garden decor; a flowering climbing vine is generic. Art 0x4B8C is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-011"
+ },
+ {
+  "slug": "cattail-urn",
+  "name": "Cattail Urn",
+  "category": "FLO",
+  "subcategory": "Potted plants",
+  "parts": [
+   {
+    "id": "0xA0EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "rustic",
+   "elegant"
+  ],
+  "blurb": "Tall brown cattails rising from a glazed red urn, as rustic as a pond edge and twice as tidy.",
+  "era": {
+   "grade": "N",
+   "note": "A decorative urn of cattails is generic dried-flower decor. Art 0xA0EB is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-012"
+ },
+ {
+  "slug": "copper-pot-daisies",
+  "name": "Copper-Pot Daisies",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0xA35D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "craft:tinkering"
+  ],
+  "blurb": "Red daisies nodding on long stems from a polished copper pot.",
+  "era": {
+   "grade": "N",
+   "note": "Daisies in a copper pot are generic decor. Art 0xA35D/0xA35E is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-013"
+ },
+ {
+  "slug": "tulip-patch",
+  "name": "Tulip Patch",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0xA88C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant",
+   "humble"
+  ],
+  "blurb": "A little knot of orange and red tulips opening on slim green stems.",
+  "era": {
+   "grade": "N",
+   "note": "A patch of tulips is generic garden scenery. Art 0xA88C is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-014"
+ },
+ {
+  "slug": "garden-rose-bush",
+  "name": "Garden Rose Bush",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0xA8F2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A glossy shrub covered in crimson roses, fragrant as an orchard in June.",
+  "era": {
+   "grade": "N",
+   "note": "A rose bush is generic garden planting. Art 0xA8F2 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-015"
+ },
+ {
+  "slug": "sunflower-daisy-patch",
+  "name": "Sunflower and Daisy Patch",
+  "category": "FLO",
+  "subcategory": "Flowers",
+  "parts": [
+   {
+    "id": "0xB494",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "Tall yellow sunflowers with white daisies crowding round their feet, all turned to the sun.",
+  "era": {
+   "grade": "N",
+   "note": "Sunflowers and daisies are generic garden flowers. Art 0xB494/0xB495 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB495",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-016"
+ },
+ {
+  "slug": "toadstool-ring",
+  "name": "Toadstool Ring",
+  "category": "FLO",
+  "subcategory": "Mushrooms",
+  "parts": [
+   {
+    "id": "0xB28F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "forest",
+   "whimsical"
+  ],
+  "blurb": "A circle of red-capped toadstools and pale mushrooms, grown in the night by no gardener's hand.",
+  "era": {
+   "grade": "N",
+   "note": "A ring of mushrooms is a natural woodland oddity of folklore, with no creature or race tie. Art 0xB28F-0xB296 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-017"
+ },
+ {
+  "slug": "llama-topiary",
+  "name": "Llama Topiary",
+  "category": "FLO",
+  "subcategory": "Topiary",
+  "parts": [
+   {
+    "id": "0xA9C3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elegant",
+   "animal",
+   "whimsical"
+  ],
+  "blurb": "A pack-llama clipped from green boxwood with a long neck and a serene, stuck-up gaze.",
+  "era": {
+   "grade": "N",
+   "note": "A clipped topiary of a pack llama (a creature in 2000). Topiary is a generic garden art. Art 0xA9C3/0xA9C4 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9C4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-018"
+ },
+ {
+  "slug": "polar-bear-topiary",
+  "name": "Polar Bear Topiary",
+  "category": "FLO",
+  "subcategory": "Topiary",
+  "parts": [
+   {
+    "id": "0xA9C5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "elegant",
+   "animal",
+   "ice"
+  ],
+  "blurb": "A great white bear shaped from clipped green shrub, standing on its hind legs.",
+  "era": {
+   "grade": "N",
+   "note": "A clipped topiary of a polar bear (a creature in 2000). Topiary is generic garden art. Art 0xA9C5/0xA9C6 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-019"
+ },
+ {
+  "slug": "dragon-topiary",
+  "name": "Dragon Topiary",
+  "category": "FLO",
+  "subcategory": "Topiary",
+  "parts": [
+   {
+    "id": "0xB2D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "garden",
+   "elegant",
+   "dragon",
+   "noble"
+  ],
+  "blurb": "A winged dragon in leafy green, crouched on its haunches and wearing a noble's patient smile.",
+  "era": {
+   "grade": "N",
+   "note": "A clipped topiary of a dragon (a creature in 2000). Topiary is generic garden art. Art 0xB2D6/0xB2D7 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB2D7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FLO-020"
+ },
+ {
+  "slug": "wide-fan-palm",
+  "name": "Wide Fan Palm",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0xA641",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "exotic",
+   "desert"
+  ],
+  "blurb": "A spreading fan palm whose broad, ribbed fronds fan out in every direction like green parasols.",
+  "era": {
+   "grade": "N",
+   "note": "Fan palms are a common ornamental and oasis plant. Art 0xA63F-0xA644 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-021"
+ },
+ {
+  "slug": "topiary-globe-pot",
+  "name": "Topiary Globe in a Pot",
+  "category": "FLO",
+  "subcategory": "Topiary",
+  "parts": [
+   {
+    "id": "0x2378",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A round-headed little tree clipped into a perfect green globe and set in a white pot.",
+  "era": {
+   "grade": "N",
+   "note": "A potted globe topiary is generic garden art. Art 0x2378 first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-022"
+ },
+ {
+  "slug": "snow-capped-hedge",
+  "name": "Snow-Capped Hedge",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0xA602",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "ice",
+   "season:winter"
+  ],
+  "blurb": "A tall garden hedge under a thick cap of snow.",
+  "era": {
+   "grade": "N",
+   "note": "A snow-covered hedge is generic winter garden scenery. Art 0xA600-0xA603 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-023"
+ },
+ {
+  "slug": "winterberry-holly",
+  "name": "Winterberry Holly",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0xA8E2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "season:winter",
+   "elegant"
+  ],
+  "blurb": "A holly bush glowing with red winterberries, bright against the frost.",
+  "era": {
+   "grade": "N",
+   "note": "A holly bush with winterberries is generic winter greenery. Art 0xA8E2 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-024"
+ },
+ {
+  "slug": "twin-date-palms",
+  "name": "Twin Date Palms",
+  "category": "FLO",
+  "subcategory": "Palms and exotics",
+  "parts": [
+   {
+    "id": "0xA640",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "exotic",
+   "desert"
+  ],
+  "blurb": "A pair of slender date palms leaning together, their fronds meeting overhead.",
+  "era": {
+   "grade": "N",
+   "note": "Date palms are a common garden and oasis tree. Art 0xA63F-0xA644 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-025"
+ },
+ {
+  "slug": "heartwood-tall-fir",
+  "name": "Heartwood Tall Fir",
+  "category": "FLO",
+  "subcategory": "Giant trees",
+  "parts": [
+   {
+    "id": "0x309C",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x309D",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x309E",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x309F",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x30A0",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x30A1",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30A2",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x30A3",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x30A4",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x30A5",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x6",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "elven",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A very tall, narrow fir of the elven city, bare and russet-barked, its tiered branches rising like a ship's masts.",
+  "era": {
+   "grade": "N",
+   "note": "Elven (Mondain's Legacy) decor is in: the shard has cosmetic Elves; a plain plant, no creature. Ten slices laid out as Heartwood's map has them; no leaf tiles, so Felucca hides nothing. Art 0x309C-0x30A5.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "ten tree slices (0x309C-0x30A5) in the footprint the Heartwood map uses; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-026"
+ },
+ {
+  "slug": "heartwood-gnarled-tree",
+  "name": "Gnarled Heartwood Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x30BD",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30BE",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30BF",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30C0",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30C1",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x30C2",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elven",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A broad, gnarled elven tree with a thick twisting trunk and bare, spreading boughs.",
+  "era": {
+   "grade": "N",
+   "note": "Elven (Mondain's Legacy) decor is in: the shard has cosmetic Elves; a plain plant, no creature. Six slices laid out as Heartwood's map has them; no leaf tiles, so Felucca hides nothing. Art 0x30BD-0x30C2.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "six tree slices (0x30BD-0x30C2) in the footprint the Heartwood map uses; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-027"
+ },
+ {
+  "slug": "heartwood-twisted-tree",
+  "name": "Twisted Heartwood Tree",
+  "category": "FLO",
+  "subcategory": "Dead and bare trees",
+  "parts": [
+   {
+    "id": "0x30C3",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x30C4",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x30C5",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x30C6",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x30C7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x4",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "elven",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A twisted, narrow-crowned elven tree whose bare branches curl and coil like wrought iron.",
+  "era": {
+   "grade": "N",
+   "note": "Elven (Mondain's Legacy) decor is in: the shard has cosmetic Elves; a plain plant, no creature. Five slices laid out as Heartwood's map has them; no leaf tiles, so Felucca hides nothing. Art 0x30C3-0x30C7.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "five tree slices (0x30C3-0x30C7) in the footprint the Heartwood map uses; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-028"
+ },
+ {
+  "slug": "violet-blossom-vine",
+  "name": "Violet Blossom Vine",
+  "category": "FLO",
+  "subcategory": "Vines and arbors",
+  "parts": [
+   {
+    "id": "0x2CFB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A long green vine hung with violet blossoms, trailing down a wall the way elven gardeners like it.",
+  "era": {
+   "grade": "N",
+   "note": "Elven (Mondain's Legacy) decor is in: the shard has cosmetic Elves; a plain plant, no creature. Art 0x2CF9-0x2CFC hangs on the walls of Heartwood.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-029"
+ },
+ {
+  "slug": "rose-blossom-vine",
+  "name": "Rose Blossom Vine",
+  "category": "FLO",
+  "subcategory": "Vines and arbors",
+  "parts": [
+   {
+    "id": "0x2CFC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A long green vine thick with rose-pink blossoms, trailing from a wall or an eave.",
+  "era": {
+   "grade": "N",
+   "note": "Elven (Mondain's Legacy) decor is in: the shard has cosmetic Elves; a plain plant, no creature. Art 0x2CF9-0x2CFC hangs on the walls of Heartwood.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-030"
+ },
+ {
+  "slug": "pale-bramble-thicket",
+  "name": "Pale Bramble Thicket",
+  "category": "FLO",
+  "subcategory": "Shrubs and hedges",
+  "parts": [
+   {
+    "id": "0x3020",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A tangle of bleached, thorny brambles, as brittle as old bone.",
+  "era": {
+   "grade": "N",
+   "note": "A dry bramble thicket is generic wilderness scrub with no race or creature tie. Art 0x3020-0x3024 is Mondain's Legacy-era.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-FLO-031"
+ }
+]

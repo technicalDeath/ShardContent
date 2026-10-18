@@ -1,0 +1,977 @@
+[
+ {
+  "slug": "gilded-side-table",
+  "name": "Gilded Marble Side Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x4CA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4CA8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A small table of white marble inlaid with a gold border and an ornate pattern, on a scrolled iron foot.",
+  "era": {
+   "grade": "N",
+   "note": "Plain furniture from the 2012-era housing art block (0x4C00-0x4FFF); later than April 2000 but tied to no expansion, creature or skill.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-001"
+ },
+ {
+  "slug": "veined-marble-table",
+  "name": "Veined Marble Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x4CAE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4CB2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A dark-veined marble top in a frame of copper-banded legs, polished until it shows a face.",
+  "era": {
+   "grade": "N",
+   "note": "Plain furniture from the 2012-era housing art block (0x4C00-0x4FFF); later than April 2000 but tied to no expansion, creature or skill.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-002"
+ },
+ {
+  "slug": "silvered-side-table",
+  "name": "Silvered Side Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x4CB7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4CBB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A pale silver-grey table with a scroll-footed pedestal, light enough to be moved for each guest.",
+  "era": {
+   "grade": "N",
+   "note": "Plain furniture from the 2012-era housing art block (0x4C00-0x4FFF); later than April 2000 but tied to no expansion, creature or skill.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-003"
+ },
+ {
+  "slug": "pale-wood-side-table",
+  "name": "Pale Wood Side Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x4CC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4CCA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A little table of pale wood with a cushioned-looking top, braced with a cross rail.",
+  "era": {
+   "grade": "N",
+   "note": "Plain furniture from the 2012-era housing art block (0x4C00-0x4FFF); later than April 2000 but tied to no expansion, creature or skill.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-004"
+ },
+ {
+  "slug": "round-linen-table",
+  "name": "Round Linen-Draped Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x9E8D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A round table hidden under a gathered white cloth tied with ribbon, set for a feast or a wedding breakfast.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-005"
+ },
+ {
+  "slug": "ornate-elven-table",
+  "name": "Ornate Elven Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x2DE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "An oval table of pale carved wood, its top worked with an interlaced pattern of leaves and knots.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-006"
+ },
+ {
+  "slug": "fancy-elven-table",
+  "name": "Fancy Elven Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x2DE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant"
+  ],
+  "blurb": "A long plain-boarded table edged in pale wood, simple and graceful as an elven supper-board.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-007"
+ },
+ {
+  "slug": "elven-storage-table",
+  "name": "Elven Storage Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x2DE9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DEA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "humble"
+  ],
+  "blurb": "A low carved table with two drawers beneath its top, the panels cut with a four-pointed star.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-008"
+ },
+ {
+  "slug": "stone-topped-counter",
+  "name": "Stone-Topped Counter",
+  "category": "TBL",
+  "subcategory": "Counters",
+  "parts": [
+   {
+    "id": "0xA2DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A sturdy counter with a dark stone top and a plain plank front, good for a kitchen or a stall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-009"
+ },
+ {
+  "slug": "white-pie-safe",
+  "name": "White Pie Safe",
+  "category": "TBL",
+  "subcategory": "Cabinets",
+  "parts": [
+   {
+    "id": "0xA29F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A tall white cupboard with paned doors and a grey top, where a household keeps its pies safe from small hands.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-010"
+ },
+ {
+  "slug": "mirrored-vanity",
+  "name": "Mirrored Vanity",
+  "category": "TBL",
+  "subcategory": "Dressers",
+  "parts": [
+   {
+    "id": "0x2BD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2BD8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A small wooden dressing table with drawers and a round swivel mirror, loved by every lady in Britain.",
+  "era": {
+   "grade": "N",
+   "note": "A plain dressing table with a mirror; ordinary bedchamber furniture. Art from the 2003-2004 Age of Shadows block, no later lore.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-011"
+ },
+ {
+  "slug": "gilded-stone-plinth",
+  "name": "Gilded Stone Plinth",
+  "category": "TBL",
+  "subcategory": "Pedestals",
+  "parts": [
+   {
+    "id": "0x32F2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "arcane"
+  ],
+  "blurb": "A block of grey stone banded in gold, made to bear a bust, a trophy, or a bowl of flowers.",
+  "era": {
+   "grade": "N",
+   "note": "A generic stone plinth with gold bands. Art from the Mondain's Legacy block, but a plain display pedestal with no elven or arcane lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-TBL-012"
+ },
+ {
+  "slug": "dyers-hutch",
+  "name": "Dyer's Hutch",
+  "category": "TBL",
+  "subcategory": "Cabinets",
+  "parts": [
+   {
+    "id": "0xB128",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB129",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:tailoring",
+   "whimsical"
+  ],
+  "blurb": "A tall dresser crowded with pots of dye in every colour, cloth swatches and stained rags. A dyer's pride.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no dyeing",
+  "variantOf": null,
+  "id": "CN-TBL-013"
+ },
+ {
+  "slug": "apothecary-bookcase",
+  "name": "Apothecary Bookcase",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelving",
+  "parts": [
+   {
+    "id": "0x4C24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C25",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "scholar"
+  ],
+  "blurb": "A tall bookcase of red-brown wood crowded with tomes, with coloured flasks on the top shelf.",
+  "era": {
+   "grade": "N",
+   "note": "Plain furniture from the 2012-era housing art block (0x4C00-0x4FFF); later than April 2000 but tied to no expansion, creature or skill.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-014"
+ },
+ {
+  "slug": "reagent-cabinet",
+  "name": "Slate Reagent Cabinet",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelving",
+  "parts": [
+   {
+    "id": "0xA5E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA5E9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "scholar"
+  ],
+  "blurb": "A narrow slate-grey cabinet whose shelves hold jars and flasks of every colour, labelled in a cramped hand.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-015"
+ },
+ {
+  "slug": "scholars-bookshelf",
+  "name": "Scholar's Bookshelf and Mortar",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelving",
+  "parts": [
+   {
+    "id": "0x9EE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EE4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:alchemy"
+  ],
+  "blurb": "A small bookshelf stacked with tomes, a pestle and mortar on top and a heap of red volumes at its foot.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-016"
+ },
+ {
+  "slug": "iron-wine-rack",
+  "name": "Iron Wine Rack",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelving",
+  "parts": [
+   {
+    "id": "0xA567",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA569",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "elegant"
+  ],
+  "blurb": "A tall iron lattice rack with a slot for every bottle, black against the cellar wall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic piece of furniture; nothing in its look or lore belongs to a later expansion, so it would not seem out of place in 2000 Britannia. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-017"
+ },
+ {
+  "slug": "elven-wash-basin",
+  "name": "Elven Wash Basin",
+  "category": "TBL",
+  "subcategory": "Dressers",
+  "parts": [
+   {
+    "id": "0x2D0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D0C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "humble"
+  ],
+  "blurb": "A washstand with a round white basin set in a pale carved top.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no water",
+  "variantOf": null,
+  "id": "CN-TBL-018"
+ },
+ {
+  "slug": "elven-dresser",
+  "name": "Elven Dresser",
+  "category": "TBL",
+  "subcategory": "Dressers",
+  "parts": [
+   {
+    "id": "0x2D09",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D0A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "humble"
+  ],
+  "blurb": "A pale-topped dresser with carved drawer-fronts and slim legs.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-019"
+ },
+ {
+  "slug": "simple-elven-armoire",
+  "name": "Simple Elven Armoire",
+  "category": "TBL",
+  "subcategory": "Cabinets",
+  "parts": [
+   {
+    "id": "0x2D05",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D06",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "humble"
+  ],
+  "blurb": "A tall pale armoire with two plain doors and a peaked top.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-020"
+ },
+ {
+  "slug": "fancy-elven-armoire",
+  "name": "Fancy Elven Armoire",
+  "category": "TBL",
+  "subcategory": "Cabinets",
+  "parts": [
+   {
+    "id": "0x2D07",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D08",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A very tall dark armoire whose doors are inlaid with pale vines and silver filigree.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-021"
+ },
+ {
+  "slug": "arcane-bookshelf",
+  "name": "Arcane Bookshelf",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelving",
+  "parts": [
+   {
+    "id": "0x3085",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3084",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x3087",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x3086",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "elven",
+   "scholar",
+   "arcane"
+  ],
+  "blurb": "A tall twin bookshelf of golden wood with arched tops and carved leaf panels, heavy with old books.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "stock ArcaneBookshelf addon (2 tiles), decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-TBL-022"
+ }
+]

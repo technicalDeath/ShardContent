@@ -1,0 +1,1985 @@
+[
+ {
+  "slug": "iron-anchor",
+  "name": "Iron Anchor",
+  "category": "NAU",
+  "subcategory": "Anchors and rope",
+  "parts": [
+   {
+    "id": "0x14F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14F9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "town:cove"
+  ],
+  "blurb": "A heavy iron anchor, black with old salt, resting where the tide left it.",
+  "era": {
+   "grade": "B",
+   "note": "Classic anchor art, used about fifty times as world dressing on the original Britannia map (docks and harbour towns).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; plain static",
+  "variantOf": null,
+  "id": "CR-NAU-001"
+ },
+ {
+  "slug": "barnacled-anchor",
+  "name": "Barnacled Anchor",
+  "category": "NAU",
+  "subcategory": "Anchors and rope",
+  "parts": [
+   {
+    "id": "0x14F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 86,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14F9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "town:ocllo"
+  ],
+  "blurb": "A sunken anchor crusted green with verdigris and barnacles, hauled up from the deep.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic anchor graphic in a sea-green hue; a recolour, nothing newer than the base art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "hue 86 recolour of iron-anchor",
+  "variantOf": "iron-anchor",
+  "id": "CR-NAU-002"
+ },
+ {
+  "slug": "anchor-and-coiled-rope",
+  "name": "Anchor and Coiled Rope",
+  "category": "NAU",
+  "subcategory": "Anchors and rope",
+  "parts": [
+   {
+    "id": "0x14F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14F8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "An anchor laid out on the quay beside a neat coil of mooring line.",
+  "era": {
+   "grade": "B",
+   "note": "Two classic harbour props (anchor, rope coil) set side by side; both graphics are heavily used original world art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two statics side by side",
+  "variantOf": null,
+  "id": "CR-NAU-003"
+ },
+ {
+  "slug": "coil-of-rope",
+  "name": "Coil of Rope",
+  "category": "NAU",
+  "subcategory": "Anchors and rope",
+  "parts": [
+   {
+    "id": "0x14F8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14FA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A tidy coil of stout hemp rope, flaked down for the next voyage.",
+  "era": {
+   "grade": "B",
+   "note": "Classic rope-coil art, common world dressing near docks and ships since the original map.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-004"
+ },
+ {
+  "slug": "hawser-bundle",
+  "name": "Hawser Bundle",
+  "category": "NAU",
+  "subcategory": "Anchors and rope",
+  "parts": [
+   {
+    "id": "0x1EA0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A thick bundle of tarred hawser, bound and waiting beside the capstan.",
+  "era": {
+   "grade": "B",
+   "note": "Classic rope-bundle art in the original item block; used as dock and ship clutter.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-005"
+ },
+ {
+  "slug": "dock-piling",
+  "name": "Dock Piling",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A stout round piling of weathered timber, driven deep to hold the pier.",
+  "era": {
+   "grade": "B",
+   "note": "Classic pier-piling art used about 580 times on the original Britannia map along harbour jetties.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; blocks the tile",
+  "variantOf": null,
+  "id": "CR-NAU-006"
+ },
+ {
+  "slug": "rope-wrapped-piling",
+  "name": "Rope-Wrapped Piling",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A piling scarred by mooring lines, with a rope wound tight about its shoulders.",
+  "era": {
+   "grade": "B",
+   "note": "Rope-bound variant of the classic pier piling, original dock art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-007"
+ },
+ {
+  "slug": "rope-moored-piling",
+  "name": "Rope-Moored Piling",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A piling with a mooring rope slung round it and trailing down both sides.",
+  "era": {
+   "grade": "B",
+   "note": "Rope-draped variant of the classic pier piling, original dock art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-008"
+ },
+ {
+  "slug": "piling-in-the-surf",
+  "name": "Piling in the Surf",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:cove"
+  ],
+  "blurb": "A piling standing in a lapping ring of seawater, as if the pier ran straight into the tide.",
+  "era": {
+   "grade": "B",
+   "note": "Classic pier piling with water at its foot, used about 390 times on the original map; includes an animated water ring.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "art includes animated surf; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-009"
+ },
+ {
+  "slug": "dock-piling-trio",
+  "name": "Dock Piling Trio",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x03AB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x03AC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "rustic",
+   "town:cove",
+   "town:buccaneers-den"
+  ],
+  "blurb": "Three rope-bound pilings in a cluster, the kind a harbourmaster ties a whole fleet to.",
+  "era": {
+   "grade": "B",
+   "note": "Three classic pier pilings grouped on a 2x2 footprint; every graphic is heavily used original dock art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three statics, 2x2 footprint",
+  "variantOf": null,
+  "id": "CR-NAU-010"
+ },
+ {
+  "slug": "pair-of-oars",
+  "name": "Pair of Oars",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x1E2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E2B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "Two ash oars leaned on end against the boathouse wall.",
+  "era": {
+   "grade": "B",
+   "note": "Classic oar art (standing pair), a small ship-and-boat prop in the original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-011"
+ },
+ {
+  "slug": "barrel-of-oars",
+  "name": "Barrel of Oars",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x0FAE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "A stout barrel with a pair of spare oars standing in it, the way every boathouse keeps them.",
+  "era": {
+   "grade": "B",
+   "note": "Classic barrel (hundreds of map uses) with the classic standing oar pair; both original item-block art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "oars stood in barrel via dz 3; decor-only barrel",
+  "variantOf": null,
+  "id": "CR-NAU-012"
+ },
+ {
+  "slug": "piling-with-tackle",
+  "name": "Piling with Block and Tackle",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "craft:tinkering",
+   "town:cove"
+  ],
+  "blurb": "A rope-wrapped piling with a pulley block lashed on, ready to hoist cargo off the quay.",
+  "era": {
+   "grade": "B",
+   "note": "Classic pier piling with a classic pulley block; original dock and workshop art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; no lifting",
+  "variantOf": null,
+  "id": "CR-NAU-013"
+ },
+ {
+  "slug": "dock-winch",
+  "name": "Dock Winch",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x1EA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1EAC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "rustic",
+   "craft:tinkering",
+   "town:cove"
+  ],
+  "blurb": "A squat iron-framed winch wound with rope, used to haul nets and cargo up from the water.",
+  "era": {
+   "grade": "B",
+   "note": "Classic winch art in the original item block; kept as a purely decorative prop.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; non-animated frame chosen",
+  "variantOf": null,
+  "id": "CR-NAU-014"
+ },
+ {
+  "slug": "spread-fishing-net",
+  "name": "Spread Fishing Net",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x0DCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "A great fishing net spread flat on the ground to dry and be mended.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fishing-net art from the original item block, about sixteen uses as dressing on the Britannia map.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-015"
+ },
+ {
+  "slug": "drying-nets",
+  "name": "Drying Nets",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x0DC8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DD0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "town:ocllo",
+   "town:cove"
+  ],
+  "blurb": "Two long nets laid in a corner of the quay, knotted and tarred, waiting on the next tide.",
+  "era": {
+   "grade": "B",
+   "note": "Two classic fishing-net graphics laid side by side; original item-block art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-016"
+ },
+ {
+  "slug": "hanging-net-narrow",
+  "name": "Hanging Net",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x1EA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1EA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "town:ocllo"
+  ],
+  "blurb": "A tall net draped over a drying line, its green floats still wet with spray.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hanging-net art (original item block), a small number of placements as harbour dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-017"
+ },
+ {
+  "slug": "hanging-net-wide",
+  "name": "Wide Hanging Net",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x1EA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1EA6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "town:ocllo",
+   "town:cove"
+  ],
+  "blurb": "A broad net slung between poles with floats and weights, a fisher's pride on the waterfront.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wide hanging-net art (original item block), used about fourteen times as harbour dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-018"
+ },
+ {
+  "slug": "net-draped-barrel",
+  "name": "Net-Draped Barrel",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x0FAE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "shipwreck",
+   "town:ocllo"
+  ],
+  "blurb": "A cask with a tangle of fishing net thrown over its lid, left where the crew last used it.",
+  "era": {
+   "grade": "B",
+   "note": "Classic barrel (about 670 map uses) with a classic fishing net draped on top; both original art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "net on barrel top via dz 4; decor-only barrel (no container)",
+  "variantOf": null,
+  "id": "CR-NAU-019"
+ },
+ {
+  "slug": "fishermans-pole-and-net",
+  "name": "Fisherman's Pole and Net",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x0DC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "craft:carpentry",
+   "humble"
+  ],
+  "blurb": "A fishing pole laid across a folded net, ready for a morning on the pier.",
+  "era": {
+   "grade": "A",
+   "note": "Carpentry fishing poles were added on 1999-01-19; fishing nets are original art.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "pole is a stock craftable laid over a static net",
+  "variantOf": null,
+  "id": "CR-NAU-020"
+ },
+ {
+  "slug": "fresh-caught-fish",
+  "name": "Fresh-Caught Fish",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x09CE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x09CF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "A fat fish laid out on a board, still bright-eyed.",
+  "era": {
+   "grade": "B",
+   "note": "Classic whole-fish art from the original item block; shop and market dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-021"
+ },
+ {
+  "slug": "stacked-cargo-crates",
+  "name": "Stacked Cargo Crates",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "Two crates of cargo stacked one on the other, rope-bound for the hold.",
+  "era": {
+   "grade": "A",
+   "note": "Crates are classic carpentry, and the 1999-02-24 publish let players freely stack chests and crates; classic crate art stacked two high.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-03-24th-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "two crates stacked via dz 3; decor-only, no storage",
+  "variantOf": null,
+  "id": "CR-NAU-022"
+ },
+ {
+  "slug": "cargo-heap",
+  "name": "Cargo Heap",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0E3C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3F",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A stair-step heap of cargo crates, enough to stock a merchantman, roped down for the swell.",
+  "era": {
+   "grade": "A",
+   "note": "Crates are classic carpentry, and the 1999-02-24 publish let players freely stack chests and crates; classic crate art piled four.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-03-24th-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "four crates stair-stepped; decor-only, no storage",
+  "variantOf": null,
+  "id": "CR-NAU-023"
+ },
+ {
+  "slug": "stacked-kegs",
+  "name": "Stacked Kegs",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x1AD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E7F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "pirate",
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "Two kegs stacked one atop the other, the sort of cargo a smuggler never admits to.",
+  "era": {
+   "grade": "B",
+   "note": "Classic kegs (about 230 map uses) stacked two high; kegs are classic carpentry.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two kegs stacked via dz 3; decor-only, no storage",
+  "variantOf": null,
+  "id": "CR-NAU-024"
+ },
+ {
+  "slug": "seaweed-draped-crate",
+  "name": "Seaweed-Draped Crate",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E3E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "swamp",
+   "town:ocllo"
+  ],
+  "blurb": "A cargo crate hauled from the shallows, still hung with ribbons of seaweed.",
+  "era": {
+   "grade": "B",
+   "note": "Classic crate with classic seaweed art laid across its top; original world art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "'barnacled crate' shipwreck candidate; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-025"
+ },
+ {
+  "slug": "barrel-trio",
+  "name": "Barrel Trio",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0FAE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E7F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "rustic",
+   "tavern",
+   "town:cove"
+  ],
+  "blurb": "A big water cask flanked by two powder kegs, stowed against the bulkhead.",
+  "era": {
+   "grade": "B",
+   "note": "Classic barrel (over 670 map uses) with two classic kegs; kegs are classic carpentry.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function",
+  "variantOf": null,
+  "id": "CR-NAU-026"
+ },
+ {
+  "slug": "water-barrel-and-bucket",
+  "name": "Water Barrel and Bucket",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x154D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14E0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble",
+   "craft:camping"
+  ],
+  "blurb": "A water barrel brimming for the crew, with a wooden bucket set beside it.",
+  "era": {
+   "grade": "B",
+   "note": "Classic water-barrel art (about 30 map uses) with a classic bucket; ordinary dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-NAU-027"
+ },
+ {
+  "slug": "broken-cask",
+  "name": "Broken Cask",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x1DB4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EB2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DB8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic"
+  ],
+  "blurb": "A cask burst open by the surf, its staves and lid scattered among the planks.",
+  "era": {
+   "grade": "B",
+   "note": "Classic broken-barrel art with loose staves and a lid, all in the original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-028"
+ },
+ {
+  "slug": "bleached-driftwood",
+  "name": "Bleached Driftwood",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0D3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "Sun-bleached driftwood, worn smooth by the tide and stranded on the shingle.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fallen-branch art (about fifteen map uses) read here as driftwood.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-029"
+ },
+ {
+  "slug": "sea-chest",
+  "name": "Sea Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "pirate",
+   "treasure"
+  ],
+  "blurb": "A sailor's sea chest of dark wood, salt-stained and banded, with someone's initials cut in the lid.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wooden chest art from the original item block; chests are classic carpentry.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function",
+  "variantOf": null,
+  "id": "CR-NAU-030"
+ },
+ {
+  "slug": "iron-bound-sea-chest",
+  "name": "Iron-Bound Sea Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E41",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "pirate",
+   "treasure"
+  ],
+  "blurb": "A captain's strongbox of black iron bands and brass corners, still shut tight after years under the sea.",
+  "era": {
+   "grade": "B",
+   "note": "Classic metal chest art (about 14-19 map uses); decor-only here, no storage.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function",
+  "variantOf": null,
+  "id": "CR-NAU-031"
+ },
+ {
+  "slug": "salvage-heap",
+  "name": "Salvage Heap",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DB4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x14F8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1BD9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "swamp"
+  ],
+  "blurb": "The salvage of a broken hull: a crate, a split cask, loose planks and a snarl of rope.",
+  "era": {
+   "grade": "B",
+   "note": "A group of classic crate, barrel, plank and rope art; all original item-block graphics.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "five statics; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-032"
+ },
+ {
+  "slug": "miniature-ship-model",
+  "name": "Miniature Ship Model",
+  "category": "NAU",
+  "subcategory": "Navigation and ship fittings",
+  "parts": [
+   {
+    "id": "0x14F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x14F3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "scholar",
+   "craft:carpentry",
+   "town:cove"
+  ],
+  "blurb": "A finely made model of a ship, every spar and shroud picked out in miniature.",
+  "era": {
+   "grade": "A",
+   "note": "Docked boats became miniature models (harbormaster dry-dock 1997-11-12; boats dock anywhere into a miniature boat 1999-05-25).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-07-25th-may/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; plain static, not a boat deed",
+  "variantOf": null,
+  "id": "CR-NAU-033"
+ },
+ {
+  "slug": "shipwrights-plans",
+  "name": "Shipwright's Plans",
+  "category": "NAU",
+  "subcategory": "Navigation and ship fittings",
+  "parts": [
+   {
+    "id": "0x14F1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14F2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "scholar",
+   "craft:carpentry",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A parchment of ship plans, inked with hull lines and masts, curling at the corners.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 'ship plans' art from the original item block (shipwright-themed tabletop dressing).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-034"
+ },
+ {
+  "slug": "weathered-ships-lantern",
+  "name": "Weathered Ship's Lantern",
+  "category": "NAU",
+  "subcategory": "Navigation and ship fittings",
+  "parts": [
+   {
+    "id": "0x0A25",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "town:cove"
+  ],
+  "blurb": "A salt-streaked deck lantern with its flame long out, still clinging to its iron ring.",
+  "era": {
+   "grade": "B",
+   "note": "Classic unlit lantern art (lanterns sold from Jan 1998, tinkerable); original item block, about fifteen map uses.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "unlit lantern; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-035"
+ },
+ {
+  "slug": "ships-cannon",
+  "name": "Ship's Cannon",
+  "category": "NAU",
+  "subcategory": "Pirate and gunnery",
+  "parts": [
+   {
+    "id": "0x0E8D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E8C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E8B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E94",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E95",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E96",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0E93",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E92",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0E91",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0E8E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E8F",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E90",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A bronze-banded cannon on a heavy wooden carriage, run out and ready to speak.",
+  "era": {
+   "grade": "B",
+   "note": "Classic cannon art; ModernUO's Britannia decoration places it in the Orc Caves as 'orcish drilling devices'. A world prop then, never a player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-part addon; stock CannonAddon offsets reused, decor-only (no firing)",
+  "variantOf": null,
+  "id": "CR-NAU-036"
+ },
+ {
+  "slug": "cannon-station",
+  "name": "Gun Deck Station",
+  "category": "NAU",
+  "subcategory": "Pirate and gunnery",
+  "parts": [
+   {
+    "id": "0x0E8D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E8C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E8B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0E74",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD7",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A cannon with its shot piled beside it and a powder keg at hand: a whole gun crew's corner of the deck.",
+  "era": {
+   "grade": "B",
+   "note": "Cannon, cannonballs and keg are classic item-block art (cannon balls were a classic shop-dressing rare); the arrangement is custom.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "five statics; decor-only (no firing)",
+  "variantOf": null,
+  "id": "CR-NAU-037"
+ },
+ {
+  "slug": "fishermans-quay",
+  "name": "Fisherman's Quay",
+  "category": "NAU",
+  "subcategory": "Dock and pier",
+  "parts": [
+   {
+    "id": "0x03AB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x03AD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EA5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EA8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14F8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "town:ocllo",
+   "town:cove"
+  ],
+  "blurb": "A corner of a working quay: two pilings, a great net hung to dry, a winch and a coil of line.",
+  "era": {
+   "grade": "B",
+   "note": "Classic pilings, hanging net, winch and rope coil composed on a 3x2 footprint; all original dock art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "five statics; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-038"
+ },
+ {
+  "slug": "fish-drying-pole",
+  "name": "Fish Drying Pole",
+  "category": "NAU",
+  "subcategory": "Nets and fishing gear",
+  "parts": [
+   {
+    "id": "0x10AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10AD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10AC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x09CE",
+    "dx": 0,
+    "dy": 1,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x10B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10B0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10AF",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x09CF",
+      "dx": 1,
+      "dy": 0,
+      "dz": 8
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "rustic",
+   "town:ocllo"
+  ],
+  "blurb": "A hanging pole on timber trestles with a big catch strung from it to cure in the sea wind.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hanging-pole fixture (butcher and market dressing) with a classic fish; both original item-block art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "pole run plus a hung fish via dz 8; decor-only",
+  "variantOf": null,
+  "id": "CR-NAU-039"
+ },
+ {
+  "slug": "sunken-treasure-chest",
+  "name": "Sunken Treasure Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x0E40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0DBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0F2F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "pirate",
+   "treasure",
+   "swamp"
+  ],
+  "blurb": "A black iron chest dragged from the seabed, spilling gold and an emerald through a veil of weed.",
+  "era": {
+   "grade": "B",
+   "note": "Classic metal chest, gold-coin heap, seaweed and emerald art composed together; decor-only, no storage.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "chest + coins + seaweed + gem via dz; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-NAU-040"
+ },
+ {
+  "slug": "beachcombers-collection",
+  "name": "Beachcomber's Collection",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0x0FC4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FC7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FC6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FCA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A tidy collection of shells arranged by a patient beachcomber: conch, nautilus and little treasures from many shores.",
+  "era": {
+   "grade": "B",
+   "note": "Four classic shell graphics set on a 2x2 footprint; original item-block art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-NAU-041"
+ },
+ {
+  "slug": "wrecked-longboat-section",
+  "name": "Wrecked Longboat Section",
+  "category": "NAU",
+  "subcategory": "Cargo and wreckage",
+  "parts": [
+   {
+    "id": "0x3E69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "pirate",
+   "rustic"
+  ],
+  "blurb": "A broken section of a longboat's bow, its ribs splintered and its planking gaping from the reef.",
+  "era": {
+   "grade": "C",
+   "note": "Hull-section art from the original ship-part block 0x3E3F-0x3EF1, but the block is mixed-era and the map never places it; plausible, audit.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "ship-part graphic as decor; audit before use",
+  "variantOf": null,
+  "id": "CR-NAU-042"
+ }
+]

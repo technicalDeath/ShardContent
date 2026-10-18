@@ -1,0 +1,2443 @@
+[
+ {
+  "slug": "bleached-skull",
+  "name": "Bleached Skull",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A plain, sun-whitened skull, the sort of thing a scholar keeps on a desk to remind him of his own hours.",
+  "era": {
+   "grade": "N",
+   "note": "An ordinary human skull: memento-mori dressing that ties to no later creature or skill. The art arrived with the 2003 dungeon dressing blocks.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-001"
+ },
+ {
+  "slug": "azure-crystal-skull",
+  "name": "Azure Crystal Skull",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x9A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A1B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "macabre",
+   "treasure"
+  ],
+  "blurb": "A skull carved from a single block of pale blue crystal, so clear that the candlelight seems to live inside it.",
+  "era": {
+   "grade": "N",
+   "note": "A generic carved crystal skull, a collector's curiosity in any age. Not tied to a creature, race or later skill; the art is later than the era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-002"
+ },
+ {
+  "slug": "jade-tusked-skull",
+  "name": "Jade Tusked Skull",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x9A1C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A1D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "macabre",
+   "monster:orc",
+   "treasure"
+  ],
+  "blurb": "A green jade skull with two stubby tusks, carved by someone who had seen a great many orcs up close.",
+  "era": {
+   "grade": "N",
+   "note": "A carved jade skull in the manner of an orc trophy. Orcs existed in the era; the object is a plain curio with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-003"
+ },
+ {
+  "slug": "crimson-crystal-idol",
+  "name": "Crimson Crystal Skull Idol",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA3A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA3A3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "exotic",
+   "demonic",
+   "macabre",
+   "desert"
+  ],
+  "blurb": "A blood-red crystal skull in a striped funerary headdress, the kind of idol a tomb robber hopes never to meet again.",
+  "era": {
+   "grade": "N",
+   "note": "A desert-tomb skull idol in a funerary headdress: generic curse-and-grave-goods dressing, comfortable in any Britannian crypt. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-004"
+ },
+ {
+  "slug": "carved-skull-pedestal",
+  "name": "Carved Skull Pedestal",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA06A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "arcane"
+  ],
+  "blurb": "A skull carved from dark wood and mounted on a stepped pedestal, grave and well made.",
+  "era": {
+   "grade": "N",
+   "note": "A carved wooden skull bust on a pedestal. Pure dark-magic dressing with no tie to a later skill or monster. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-005"
+ },
+ {
+  "slug": "ember-eyed-skull-pedestal",
+  "name": "Ember-Eyed Skull Pedestal",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA06C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "arcane",
+   "fire",
+   "demonic"
+  ],
+  "blurb": "The same carved skull, but with two coals glowing in its sockets that never seem to go out.",
+  "era": {
+   "grade": "N",
+   "note": "A carved skull bust whose eyes smoulder: ordinary dark-magic theatre, not tied to any later skill, creature or lair. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "carved-skull-pedestal",
+  "id": "CN-NEC-006"
+ },
+ {
+  "slug": "skulls-on-a-pike",
+  "name": "Skulls on a Pike",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x42B5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "dungeon",
+   "monster"
+  ],
+  "blurb": "Three stained skulls spitted on a single iron pike, a warning planted where travellers cannot miss it.",
+  "era": {
+   "grade": "N",
+   "note": "A pike of trophy skulls is generic war and warning dressing; nothing here belongs to a later expansion. Art first appeared in the 2009 Halloween block.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-007"
+ },
+ {
+  "slug": "gilded-skeleton-spire",
+  "name": "Gilded Skeleton Spire",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x42BD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant",
+   "treasure"
+  ],
+  "blurb": "A gilded skeleton twisted around a spiral spike, grinning at whoever dares to stand close enough to read the warning.",
+  "era": {
+   "grade": "N",
+   "note": "A golden skeleton on a spike: a generic memento-mori sculpture with no ties to a later creature or skill. Art first appeared in the 2009 Halloween block.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-008"
+ },
+ {
+  "slug": "skull-pierced-by-arrow",
+  "name": "Skull Pierced by an Arrow",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFD5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFD6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "dungeon"
+  ],
+  "blurb": "A yellowed skull with a black-fletched arrow still buried in the bone, a grim trophy of a good shot.",
+  "era": {
+   "grade": "N",
+   "note": "A skull with an arrow through it: ordinary battlefield dressing. No creature, skill or lore beyond the era; the art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-009"
+ },
+ {
+  "slug": "skull-on-a-sword",
+  "name": "Skull Set on a Sword",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFD8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "dungeon"
+  ],
+  "blurb": "A skull set over the grip of a notched blade driven point-first into the ground.",
+  "era": {
+   "grade": "N",
+   "note": "A skull and sword memorial: generic battlefield dressing that reads naturally in 2000 Britannia. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-010"
+ },
+ {
+  "slug": "skull-in-a-wreath-of-sparks",
+  "name": "Skull in a Wreath of Sparks",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFDA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A skull haloed by motes of cold blue light, as though some half-finished spell still clings to it.",
+  "era": {
+   "grade": "N",
+   "note": "A skull wrapped in magical sparks: generic dark-magic dressing, not tied to Necromancy or any other later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-011"
+ },
+ {
+  "slug": "stacked-skull-idol",
+  "name": "Stacked Skull Idol",
+  "category": "NEC",
+  "subcategory": "Totems and idols",
+  "parts": [
+   {
+    "id": "0xA74F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "exotic",
+   "demonic",
+   "monster"
+  ],
+  "blurb": "Skulls stacked on skulls on a squat stone plinth, with bright red pinpricks glowing in the topmost sockets.",
+  "era": {
+   "grade": "N",
+   "note": "A stacked-skull totem idol, generic tribal and cursed-shrine dressing. Not a creature figurine and not tied to a later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-012"
+ },
+ {
+  "slug": "skull-flask",
+  "name": "Skull-Shaped Flask",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA92B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA92C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "craft:alchemy",
+   "whimsical"
+  ],
+  "blurb": "A black glass flask blown in the shape of a skull and stoppered with a cork the colour of old bone.",
+  "era": {
+   "grade": "N",
+   "note": "A glass flask blown in a skull shape: apothecary and sorcerer's-shop curio with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-013"
+ },
+ {
+  "slug": "red-skull-urn",
+  "name": "Red Skull Urn",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall urn glazed the red of old wine, with a gilded skull set in its belly.",
+  "era": {
+   "grade": "N",
+   "note": "A glazed urn with a gold skull emblem: ordinary funerary-ware decoration. No later creature, skill or lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-014"
+ },
+ {
+  "slug": "skull-incense-burner",
+  "name": "Skull Incense Burner",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x9EDB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EDF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A little wooden boat with a skull at its prow and a stick of incense smouldering at its tail.",
+  "era": {
+   "grade": "N",
+   "note": "A skull incense burner is ordinary shrine and sorcerer's-parlour dressing with no later lore. The art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-015"
+ },
+ {
+  "slug": "jesters-mask",
+  "name": "Evil Jester's Mask",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0x4BA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4BA6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A skull-faced mask under a jester's grey cap and blue bells, grinning in a way that is not at all funny.",
+  "era": {
+   "grade": "N",
+   "note": "A jester's skull mask is plain carnival and Halloween dressing, tied to no later skill or race. Art first appeared in the 2012 Halloween block.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-016"
+ },
+ {
+  "slug": "skull-and-spike-cairn",
+  "name": "Skull and Spike Cairn",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x21FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "monster"
+  ],
+  "blurb": "A heap of skulls pierced through with iron spikes, built up one grim trophy at a time.",
+  "era": {
+   "grade": "N",
+   "note": "A cairn of skulls and spikes is generic warlord and dungeon dressing. The art first showed in the 2003 dungeon dressing blocks of Malas.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-017"
+ },
+ {
+  "slug": "bleached-rib-cage",
+  "name": "Bleached Rib Cage",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x1B17",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "The curved ribs of some long-dead traveller, scattered where the dust has half buried them.",
+  "era": {
+   "grade": "N",
+   "note": "A loose rib cage: ordinary dungeon dressing. The art is original-client art that the main catalog did not use.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-018"
+ },
+ {
+  "slug": "bleached-spine",
+  "name": "Bleached Spine",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x1B1B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "A long string of knuckled vertebrae, gone the colour of old candle wax.",
+  "era": {
+   "grade": "N",
+   "note": "A loose spine: plain dungeon dressing from the original art, unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-019"
+ },
+ {
+  "slug": "scattered-ribs-and-femurs",
+  "name": "Scattered Ribs and Femurs",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x1B0E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "Ribs and thigh bones strewn about as though something had picked through them and lost interest.",
+  "era": {
+   "grade": "N",
+   "note": "Plain mixed bones, generic dungeon dressing. Original client art not used by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-020"
+ },
+ {
+  "slug": "colossal-spine",
+  "name": "Colossal Spine",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0xABCD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABCF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "monster",
+   "wilderness"
+  ],
+  "blurb": "A great arched spine, each vertebra the size of a barrel head, half buried in the dirt.",
+  "era": {
+   "grade": "N",
+   "note": "A giant beast's spine, generic wilderness bone dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-021"
+ },
+ {
+  "slug": "colossal-rib-cage",
+  "name": "Colossal Rib Cage",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0xABD1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABD5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "monster",
+   "wilderness"
+  ],
+  "blurb": "A row of ribs standing in the soil like the gutted frame of a shed, the rest of the beast long gone.",
+  "era": {
+   "grade": "N",
+   "note": "A giant beast's ribs, generic wilderness bone dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-022"
+ },
+ {
+  "slug": "scatter-of-colossal-bones",
+  "name": "Scatter of Colossal Bones",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0xABD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABDA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "monster",
+   "wilderness"
+  ],
+  "blurb": "Knuckle bones, knobbed ribs and chunks of something big, strewn about where a feast once ended.",
+  "era": {
+   "grade": "N",
+   "note": "A scatter of giant bones, generic wilderness dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-023"
+ },
+ {
+  "slug": "toppled-skull-totem",
+  "name": "Toppled Skull Totem",
+  "category": "NEC",
+  "subcategory": "Totems and idols",
+  "parts": [
+   {
+    "id": "0xAA28",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA2A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "monster:orc",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A totem pulled down by someone with a grudge, its skulls now heaped among the broken poles.",
+  "era": {
+   "grade": "N",
+   "note": "A fallen skull totem, generic war-camp ruin dressing. No later race or lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-024"
+ },
+ {
+  "slug": "preserved-heart",
+  "name": "Preserved Heart",
+  "category": "NEC",
+  "subcategory": "Anatomy and organs",
+  "parts": [
+   {
+    "id": "0x1CED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A human heart cured dark and dry, kept by someone with strong opinions about anatomy or about love.",
+  "era": {
+   "grade": "N",
+   "note": "A preserved heart is ordinary anatomist and sorcerer's-shop dressing. Original client art, unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-025"
+ },
+ {
+  "slug": "pickled-brain",
+  "name": "Pickled Brain",
+  "category": "NEC",
+  "subcategory": "Anatomy and organs",
+  "parts": [
+   {
+    "id": "0x1CF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A brain the colour of old plums, plucked from a skull and steeped for the benefit of science.",
+  "era": {
+   "grade": "N",
+   "note": "A preserved brain is ordinary anatomist's dressing. Original client art, unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-026"
+ },
+ {
+  "slug": "heart-on-a-wooden-tray",
+  "name": "Heart on a Wooden Tray",
+  "category": "NEC",
+  "subcategory": "Anatomy and organs",
+  "parts": [
+   {
+    "id": "0x0991",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A preserved heart laid out on a gilt-edged tray, ready for a lesson nobody asked to attend.",
+  "era": {
+   "grade": "N",
+   "note": "A heart on a tray is plain anatomist's-table dressing. Built from original client tray and organ art; no later lore.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite on one surface",
+  "variantOf": null,
+  "id": "CN-NEC-027"
+ },
+ {
+  "slug": "brain-on-a-pewter-plate",
+  "name": "Brain on a Pewter Plate",
+  "category": "NEC",
+  "subcategory": "Anatomy and organs",
+  "parts": [
+   {
+    "id": "0x09D7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A pickled brain served on a pewter plate, with an expression that suggests it has had better days.",
+  "era": {
+   "grade": "N",
+   "note": "A brain on a plate is plain anatomist's or butcher's-joke dressing. Original client plate and organ art; no later lore.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite on one surface",
+  "variantOf": null,
+  "id": "CN-NEC-028"
+ },
+ {
+  "slug": "grasping-hand",
+  "name": "Grasping Hand",
+  "category": "NEC",
+  "subcategory": "Anatomy and organs",
+  "parts": [
+   {
+    "id": "0xA85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA860",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:zombie"
+  ],
+  "blurb": "A green-grey hand clawing out of the soil, fingers spread for a handhold that is not there.",
+  "era": {
+   "grade": "N",
+   "note": "A hand clawing from the ground is plain graveyard dressing. Zombies existed in the era; this is a prop, not a creature figurine. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-029"
+ },
+ {
+  "slug": "crimson-ritual-dagger",
+  "name": "Crimson Ritual Dagger",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0xA765",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA766",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "demonic"
+  ],
+  "blurb": "A thin, curved dagger with a blood-red grip, the sort of blade that is never used for supper.",
+  "era": {
+   "grade": "N",
+   "note": "A curved ritual dagger as decor is ordinary dark-magic dressing, tied to no later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-030"
+ },
+ {
+  "slug": "basin-of-blood",
+  "name": "Basin of Blood",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0x0E23",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "demonic"
+  ],
+  "blurb": "A white basin brimming with something thick and dark, with a few drops dried on its rim.",
+  "era": {
+   "grade": "N",
+   "note": "A basin of blood is ordinary ritual and butcher's dressing. Original client art, not used by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-031"
+ },
+ {
+  "slug": "reapers-scythe",
+  "name": "Reaper's Scythe",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0x26BA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "sacred"
+  ],
+  "blurb": "A long-handled scythe with a notched, rusty blade, said to be favoured by one very patient reaper.",
+  "era": {
+   "grade": "N",
+   "note": "A scythe as a grim-reaper prop reads naturally in 2000 Britannia (scythes are a farmer's tool). The art was added in 2003 as a weapon icon.",
+   "artEra": "SE"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-032"
+ },
+ {
+  "slug": "bone-bladed-scythe",
+  "name": "Bone-Bladed Scythe",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0x26BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "arcane"
+  ],
+  "blurb": "A scythe whose blade seems to have been grown rather than forged, curved like a rib and pale as one.",
+  "era": {
+   "grade": "N",
+   "note": "A scythe with a bone blade is generic grim-reaper dressing, comfortable as dark-magic decor. The art dates from 2003.",
+   "artEra": "SE"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-033"
+ },
+ {
+  "slug": "green-fire-brazier",
+  "name": "Green-Fire Brazier",
+  "category": "NEC",
+  "subcategory": "Fire and gloom",
+  "parts": [
+   {
+    "id": "0xB00D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "arcane",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "An iron bowl on thorny feet, burning with a tall, pale green flame that gives off no heat at all.",
+  "era": {
+   "grade": "N",
+   "note": "A brazier burning with magical green fire is generic dark-magic dressing, tied to no later skill or monster. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-034"
+ },
+ {
+  "slug": "black-taper-candelabra",
+  "name": "Black Taper Candelabra",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0x0A29",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A tall three-armed candelabrum and its candles, lacquered black from foot to flame.",
+  "era": {
+   "grade": "N",
+   "note": "A black candelabrum is plain sinister-candle dressing. Original client art, unused by the main catalog; the black hue is from the standard palette.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-035"
+ },
+ {
+  "slug": "bloodwax-candelabra",
+  "name": "Bloodwax Candelabra",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0x0A27",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A table candelabrum with three crimson candles that look suspiciously as if they were poured from something other than wax.",
+  "era": {
+   "grade": "N",
+   "note": "A red-hued table candelabrum is plain sinister-candle dressing. Original client art, unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-036"
+ },
+ {
+  "slug": "plague-doctors-mask",
+  "name": "Plague Doctor's Mask",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0x4A8E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4A8F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "scholar",
+   "exotic"
+  ],
+  "blurb": "A long-beaked golden mask of the kind worn by physicians who walked into plague houses so you would not have to.",
+  "era": {
+   "grade": "N",
+   "note": "A beaked plague mask is a historical physician's costume prop; it ties to no later skill or creature. Art first appeared in the 2011 Halloween block.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-037"
+ },
+ {
+  "slug": "daemon-mask",
+  "name": "Daemon Mask",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0x4A92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4A93",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "demonic",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A horned mask with amber eyes and a scowl, carved to scare small children and the odd tax collector.",
+  "era": {
+   "grade": "N",
+   "note": "A horned daemon mask is plain festival and ritual dressing. Daemons existed in the era; this is a prop mask, not a creature figurine. Art first appeared in the 2011 Halloween block.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-038"
+ },
+ {
+  "slug": "horned-daemon-head",
+  "name": "Horned Daemon Head",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0xA7D1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA7D2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "demonic",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A great iron-grey horned head with a snarl, mounted so that guests can feel judged from every angle.",
+  "era": {
+   "grade": "N",
+   "note": "A horned daemon head ornament is generic dark-magic dressing. Daemons existed in the era; this is a mounted trophy prop. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-039"
+ },
+ {
+  "slug": "bronze-daemon-face",
+  "name": "Bronze Daemon Face",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0xA7D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA7D4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "demonic",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A bronze-coloured daemon face with swept-back horns and a howling mouth, built to ward off the unwelcome.",
+  "era": {
+   "grade": "N",
+   "note": "A bronze horned daemon face, generic dark-magic dressing. Daemons existed in the era; this is a mounted trophy prop. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "horned-daemon-head",
+  "id": "CN-NEC-040"
+ },
+ {
+  "slug": "daemon-head-on-a-platter",
+  "name": "Daemon Head on a Platter",
+  "category": "NEC",
+  "subcategory": "Masks and heads",
+  "parts": [
+   {
+    "id": "0xA7A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA7A8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "demonic",
+   "macabre",
+   "festive"
+  ],
+  "blurb": "A horned daemon head served up on a bed of leaves with the compliments of a very bold cook.",
+  "era": {
+   "grade": "N",
+   "note": "A daemon head on a platter is feast-table gallows humour, tied to no later race or skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-041"
+ },
+ {
+  "slug": "skull-marked-grimoire",
+  "name": "Skull-Marked Grimoire",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0x2253",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A small green book with a silver skull on the cover, the kind that is hidden behind other books.",
+  "era": {
+   "grade": "N",
+   "note": "A book bearing a skull is ordinary dark-magic dressing and reads as a plain grimoire. Art dates to 2003.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-042"
+ },
+ {
+  "slug": "rune-etched-black-tome",
+  "name": "Rune-Etched Black Tome",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0xA92D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA92E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A squat black book with a plate of strange runes riveted to the cover and no title at all.",
+  "era": {
+   "grade": "N",
+   "note": "A black tome with a rune plate is generic dark-magic dressing, not tied to a later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-043"
+ },
+ {
+  "slug": "weathered-open-grimoire",
+  "name": "Weathered Open Grimoire",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0xA92F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA930",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "scholar",
+   "macabre"
+  ],
+  "blurb": "A big weathered book lying open to a page crowded with tiny, anxious handwriting.",
+  "era": {
+   "grade": "N",
+   "note": "An open weathered tome, generic scholar and sorcerer's-study dressing. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-NEC-044"
+ },
+ {
+  "slug": "scattered-skeleton",
+  "name": "Scattered Skeleton",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B17",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B1B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1B15",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "Skull, ribs, spine and hip bones strewn across the floor as though the owner had come apart all at once.",
+  "era": {
+   "grade": "N",
+   "note": "Loose bones arranged into one skeleton: plain dungeon dressing built from original client art that the main catalog skipped.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "four-tile composite of loose bone and skull tiles",
+  "variantOf": null,
+  "id": "CN-NEC-045"
+ },
+ {
+  "slug": "pyramid-of-skulls",
+  "name": "Pyramid of Skulls",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2203",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "martial",
+   "monster"
+  ],
+  "blurb": "Three skulls for a base and one for a crown, stacked with the tidy pride of a collector.",
+  "era": {
+   "grade": "N",
+   "note": "A neat pyramid of skulls is classic warlord and ossuary dressing, tied to no later race or skill.",
+   "artEra": "AoS"
+  },
+  "impl": "addon",
+  "implNote": "four-tile composite of one skull graphic",
+  "variantOf": null,
+  "id": "CN-NEC-046"
+ },
+ {
+  "slug": "colossal-skeleton",
+  "name": "Colossal Skeleton",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0xABC7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xABD3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xABCD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xABC9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xABCB",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "monster",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "The whole frame of some great beast laid out where it fell: skull, ribs, spine and mighty thigh bones.",
+  "era": {
+   "grade": "N",
+   "note": "A giant beast's bones assembled into one skeleton: generic wilderness and dungeon dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "five-tile composite of the giant-bone tiles",
+  "variantOf": null,
+  "id": "CN-NEC-047"
+ },
+ {
+  "slug": "anatomists-table",
+  "name": "Anatomist's Table",
+  "category": "NEC",
+  "subcategory": "Bones and ossuary",
+  "parts": [
+   {
+    "id": "0x1DA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D8F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "scholar",
+   "undead",
+   "monster:skeleton"
+  ],
+  "blurb": "A plain plank table with a whole skeleton laid out on it, the day's lecture apparently cut short.",
+  "era": {
+   "grade": "N",
+   "note": "A skeleton on a plank table is plain anatomist and embalmer's-room dressing. Built from original client art; no later lore.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite: table and skeleton",
+  "variantOf": null,
+  "id": "CN-NEC-048"
+ },
+ {
+  "slug": "blood-stained-slab",
+  "name": "Blood-Stained Stone Slab",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0x1205",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x122A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "demonic",
+   "dungeon",
+   "sacred"
+  ],
+  "blurb": "A heavy grey slab slick with something dark, set up where a ritual of the least friendly kind was held.",
+  "era": {
+   "grade": "N",
+   "note": "A stone slab stained with blood is plain dungeon altar dressing, tied to no later skill or monster. Built from original client art.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite: stone slab and blood decal",
+  "variantOf": null,
+  "id": "CN-NEC-049"
+ },
+ {
+  "slug": "blood-stained-table",
+  "name": "Blood-Stained Table",
+  "category": "NEC",
+  "subcategory": "Ritual implements",
+  "parts": [
+   {
+    "id": "0x1DA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x122A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "rustic"
+  ],
+  "blurb": "A rough plank table with a great dark stain across the top, and nobody keen to explain it.",
+  "era": {
+   "grade": "N",
+   "note": "A bloodied plank table is plain butcher and dungeon dressing. Built from original client art; no later lore.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite: table and blood decal",
+  "variantOf": null,
+  "id": "CN-NEC-050"
+ },
+ {
+  "slug": "memento-mori-candelabra",
+  "name": "Memento Mori Candelabra",
+  "category": "NEC",
+  "subcategory": "Sinister tomes and candles",
+  "parts": [
+   {
+    "id": "0x0A27",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2203",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "scholar",
+   "fire"
+  ],
+  "blurb": "A gilt candelabrum burning over a quiet skull, set out to remind the reader how little time there is.",
+  "era": {
+   "grade": "N",
+   "note": "A skull beneath a candelabrum is a classic memento-mori study piece, with no tie to a later skill or monster.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite: candelabrum and skull",
+  "variantOf": null,
+  "id": "CN-NEC-051"
+ },
+ {
+  "slug": "bloodstone-crystal-skull",
+  "name": "Bloodstone Crystal Skull",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x9A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A1B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "macabre",
+   "treasure"
+  ],
+  "blurb": "A skull cut from deep red crystal, with a dark core that looks too much like a swallowed ember.",
+  "era": {
+   "grade": "N",
+   "note": "A red-hued carved crystal skull, a generic collector's curiosity. Not tied to any creature, race or later skill; the art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "azure-crystal-skull",
+  "id": "CN-NEC-052"
+ },
+ {
+  "slug": "amber-crystal-skull",
+  "name": "Amber Crystal Skull",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0x9A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A1B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "exotic",
+   "macabre",
+   "treasure"
+  ],
+  "blurb": "A skull of clear amber-gold crystal, lit from within like honey held up to a lamp.",
+  "era": {
+   "grade": "N",
+   "note": "An amber-hued carved crystal skull, a generic collector's curiosity with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "azure-crystal-skull",
+  "id": "CN-NEC-053"
+ },
+ {
+  "slug": "silvered-skull-pedestal",
+  "name": "Silvered Skull Pedestal",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA06A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "arcane"
+  ],
+  "blurb": "The carved skull on its stepped pedestal, rubbed to a pale, silvery finish.",
+  "era": {
+   "grade": "N",
+   "note": "A carved skull bust in a silvered finish; ordinary dark-magic dressing with no tie to a later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "carved-skull-pedestal",
+  "id": "CN-NEC-054"
+ },
+ {
+  "slug": "obsidian-skull-pedestal",
+  "name": "Obsidian Skull Pedestal",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xA06A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "arcane",
+   "demonic"
+  ],
+  "blurb": "The carved skull on its stepped pedestal, finished glossy black like a piece of cut obsidian.",
+  "era": {
+   "grade": "N",
+   "note": "A carved skull bust in a black finish; ordinary dark-magic dressing with no later tie. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "carved-skull-pedestal",
+  "id": "CN-NEC-055"
+ },
+ {
+  "slug": "alabaster-skull-idol",
+  "name": "Alabaster Skull Idol",
+  "category": "NEC",
+  "subcategory": "Totems and idols",
+  "parts": [
+   {
+    "id": "0xA74F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "exotic",
+   "sacred",
+   "monster"
+  ],
+  "blurb": "A stacked-skull idol rubbed to the pale colour of alabaster, grim but oddly serene.",
+  "era": {
+   "grade": "N",
+   "note": "A stacked-skull idol in a pale finish: generic tribal shrine dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "stacked-skull-idol",
+  "id": "CN-NEC-056"
+ },
+ {
+  "slug": "obsidian-skull-idol",
+  "name": "Obsidian Skull Idol",
+  "category": "NEC",
+  "subcategory": "Totems and idols",
+  "parts": [
+   {
+    "id": "0xA74F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "exotic",
+   "demonic",
+   "monster"
+  ],
+  "blurb": "A stacked-skull idol finished black as pitch, the red glints in its sockets all but gone out.",
+  "era": {
+   "grade": "N",
+   "note": "A stacked-skull idol in a black finish: generic cursed-shrine dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "stacked-skull-idol",
+  "id": "CN-NEC-057"
+ },
+ {
+  "slug": "silver-skull-urn",
+  "name": "Silver Skull Urn",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall urn glazed in pale silver, with a skull set in its belly like a seal.",
+  "era": {
+   "grade": "N",
+   "note": "A glazed funerary urn with a skull emblem in a silver tint: plain funerary-ware dressing, no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "red-skull-urn",
+  "id": "CN-NEC-058"
+ },
+ {
+  "slug": "black-skull-urn",
+  "name": "Black Skull Urn",
+  "category": "NEC",
+  "subcategory": "Skulls and skull pieces",
+  "parts": [
+   {
+    "id": "0xAFBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A mourning-black urn with a skull in its belly, kept by families who do not much like to talk about it.",
+  "era": {
+   "grade": "N",
+   "note": "A glazed funerary urn with a skull emblem in black: plain funerary-ware dressing, no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "red-skull-urn",
+  "id": "CN-NEC-059"
+ }
+]

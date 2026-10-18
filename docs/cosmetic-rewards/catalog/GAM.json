@@ -1,0 +1,947 @@
+[
+ {
+  "slug": "checkered-game-board",
+  "name": "Checkered Game Board",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A plain checkered board in a dark wooden frame, waiting for pieces.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Game board 0x0FA6.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "inert game board (stock item is a container); decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-001"
+ },
+ {
+  "slug": "chess-set",
+  "name": "Chess Set",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0E13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "scholar",
+   "noble"
+  ],
+  "blurb": "A chess board set up for a game, black and white men facing off across the squares.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Chessmen 0x0E12-0x0E14, 0x0FA8.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "board 0x0FA6 + chessmen 0x0E14 and 0x0E13 at dz 1; decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-002"
+ },
+ {
+  "slug": "chess-endgame",
+  "name": "Chess Endgame",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "scholar"
+  ],
+  "blurb": "A chess board with a handful of pieces left standing in the middle.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Chess pieces 0x0FA8.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "board 0x0FA6 + pieces 0x0FA8 at dz 1; decor-only",
+  "variantOf": "chess-set",
+  "id": "CR-GAM-003"
+ },
+ {
+  "slug": "checkers-set",
+  "name": "Checkers Set",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A game of checkers under way, red and white men scattered across the board.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Checkers 0x0E1A-0x0E1B, 0x0FA4-0x0FA5.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "board 0x0FA6 + checkers 0x0FA4 and 0x0FA5 at dz 1; decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-004"
+ },
+ {
+  "slug": "backgammon-board",
+  "name": "Backgammon Board",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FAD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E1C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "noble"
+  ],
+  "blurb": "A folding backgammon board in glossy amber wood, its points inlaid with ivory.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Backgammon 0x0E1C, 0x0FAD.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "inert board (stock item is a container); decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-005"
+ },
+ {
+  "slug": "dice-and-cup",
+  "name": "Dice and Cup",
+  "category": "GAM",
+  "subcategory": "Pastimes",
+  "parts": [
+   {
+    "id": "0x0FA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A leather dice cup tipped on its side, a pair of bone dice tumbled beside it.",
+  "era": {
+   "grade": "A",
+   "note": "Chess, checkers, backgammon and dice sets were sold in shops from 10 Oct 1997. Dice and cup 0x0FA7 (dice for board games added 25 Sep 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-10th-october/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-1-25th-september/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-006"
+ },
+ {
+  "slug": "playing-cards",
+  "name": "Playing Cards",
+  "category": "GAM",
+  "subcategory": "Pastimes",
+  "parts": [
+   {
+    "id": "0x0FA2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0FA3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A fan of well-thumbed playing cards left face-up on the table.",
+  "era": {
+   "grade": "B",
+   "note": "Playing cards 0x0E15-0x0E19 and 0x0FA2-0x0FA3 sit in the game-set art block documented 10 Oct 1997 (cards not named in the note).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-007"
+ },
+ {
+  "slug": "mahjong-game",
+  "name": "Mahjong Game",
+  "category": "GAM",
+  "subcategory": "Board games",
+  "parts": [
+   {
+    "id": "0x0FAA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "exotic"
+  ],
+  "blurb": "A square game board with a dark well at its heart, laid out for an exotic tile game.",
+  "era": {
+   "grade": "B",
+   "note": "Mahjong game 0x0FAA lies inside the game-set art block (0x0FA4-0x0FAD) documented 10 Oct 1997; mahjong itself is not named.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-008"
+ },
+ {
+  "slug": "dartboard",
+  "name": "Dartboard",
+  "category": "GAM",
+  "subcategory": "Target games",
+  "parts": [
+   {
+    "id": "0x1E2E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E2F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A scarred red-and-white dartboard on a tavern wall.",
+  "era": {
+   "grade": "A",
+   "note": "Dartboards became craftable on 28 Mar 1999 (0x1E2E-0x1E33).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock DartBoardSouthAddon 0x1E2E / East 0x1E2F; decor-only; strip throwing function",
+  "variantOf": null,
+  "id": "CR-GAM-009"
+ },
+ {
+  "slug": "dartboard-with-axe",
+  "name": "Dartboard with Axe",
+  "category": "GAM",
+  "subcategory": "Target games",
+  "parts": [
+   {
+    "id": "0x1E30",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E31",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "martial",
+   "craft:carpentry"
+  ],
+  "blurb": "A dartboard split by a hand axe some drunken champion threw on a dare.",
+  "era": {
+   "grade": "A",
+   "note": "Dartboard family documented 28 Mar 1999; the axe variant is 0x1E30-0x1E31.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only graphic of the stock dartboard family",
+  "variantOf": "dartboard",
+  "id": "CR-GAM-010"
+ },
+ {
+  "slug": "dartboard-with-knives",
+  "name": "Dartboard with Knives",
+  "category": "GAM",
+  "subcategory": "Target games",
+  "parts": [
+   {
+    "id": "0x1E32",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E33",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "martial",
+   "craft:carpentry"
+  ],
+  "blurb": "A dartboard bristling with throwing knives from a long evening's contest.",
+  "era": {
+   "grade": "A",
+   "note": "Dartboard family documented 28 Mar 1999; the knives variant is 0x1E32-0x1E33.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only graphic of the stock dartboard family",
+  "variantOf": "dartboard",
+  "id": "CR-GAM-011"
+ },
+ {
+  "slug": "gamblers-table",
+  "name": "Gambler's Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0FA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "noble",
+   "whimsical"
+  ],
+  "blurb": "A solid table scattered with cards and a dice cup, the stakes long since lost.",
+  "era": {
+   "grade": "B",
+   "note": "Table 0x0B3C is original dressing (45 map statics); cards and dice are the 1997 shop game sets.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert cards 0x0FA2 and dice 0x0FA7 at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-012"
+ },
+ {
+  "slug": "backgammon-table",
+  "name": "Backgammon Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FAD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "noble"
+  ],
+  "blurb": "A table topped by a folding backgammon board, a favourite of merchants.",
+  "era": {
+   "grade": "B",
+   "note": "Table 0x0B3C is original dressing (45 map statics); backgammon is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert board 0x0FAD at dz 6; decor-only",
+  "variantOf": "backgammon-board",
+  "id": "CR-GAM-013"
+ },
+ {
+  "slug": "tavern-chess-table",
+  "name": "Tavern Chess Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0E14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0x0E13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "A sturdy tavern table with a chess game left mid-play.",
+  "era": {
+   "grade": "B",
+   "note": "Table 0x0B3C is original dressing (45 map statics); chess is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + board 0x0FA6 + chessmen at dz 6/7; decor-only",
+  "variantOf": "chess-set",
+  "id": "CR-GAM-014"
+ },
+ {
+  "slug": "chequered-chess-table",
+  "name": "Chequered Chess Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x1669",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0E14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0x0E13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A table with a blue-and-brown chequered top, set with a chess board and the pieces of an unfinished game.",
+  "era": {
+   "grade": "B",
+   "note": "Chequered table 0x1669 is original dressing (2 map statics); chess is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x1669 + board + chessmen at dz 6/7; decor-only",
+  "variantOf": "chess-set",
+  "id": "CR-GAM-015"
+ },
+ {
+  "slug": "checkers-table",
+  "name": "Checkers Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x1DA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0FA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0FA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A low round-topped table with a checkers game in progress.",
+  "era": {
+   "grade": "B",
+   "note": "Low table 0x1DA5 is original dressing (3 map statics); checkers is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x1DA5 + board + checkers at dz 2/3; decor-only",
+  "variantOf": "checkers-set",
+  "id": "CR-GAM-016"
+ },
+ {
+  "slug": "fortune-tellers-table",
+  "name": "Fortune-Teller's Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x118F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "exotic",
+   "arcane"
+  ],
+  "blurb": "A small table draped in a dark plaid cloth and spread with tarot cards for a reading.",
+  "era": {
+   "grade": "B",
+   "note": "Plaid-cloth table 0x118F is original dressing (8 map statics); tarot is classic 1997 art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x118F + inert tarot spread 0x12A7 at dz 3; decor-only",
+  "variantOf": null,
+  "id": "CR-GAM-017"
+ },
+ {
+  "slug": "barrel-head-checkers",
+  "name": "Barrel-Head Checkers",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x0E77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0FA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0FA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A checkers board balanced on a barrel head, the game of every dockside tavern.",
+  "era": {
+   "grade": "B",
+   "note": "Barrel 0x0E77 is original dressing; checkers is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "barrel 0x0E77 + board + checkers at dz 5/6; decor-only, no storage",
+  "variantOf": "checkers-set",
+  "id": "CR-GAM-018"
+ },
+ {
+  "slug": "barrel-head-dice",
+  "name": "Barrel-Head Dice",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x0E77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A dice cup and a pair of bone dice on a barrel head, a quick game for tired sailors.",
+  "era": {
+   "grade": "B",
+   "note": "Barrel 0x0E77 is original dressing; dice and cup are a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "barrel 0x0E77 + dice 0x0FA7 at dz 5; decor-only, no storage",
+  "variantOf": "dice-and-cup",
+  "id": "CR-GAM-019"
+ },
+ {
+  "slug": "marble-chess-table",
+  "name": "Marble Chess Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x1DC1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0E14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0x0E13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "tavern",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A marble table bearing a chess game of the sort lords play while they plot.",
+  "era": {
+   "grade": "B",
+   "note": "Marble table 0x1DC1 is original dressing (map statics in Britannia); chess is a 1997 shop game set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "marble table 0x1DC1 + board + chessmen at dz 6/7; decor-only",
+  "variantOf": "chess-set",
+  "id": "CR-GAM-020"
+ },
+ {
+  "slug": "sandstone-game-table",
+  "name": "Sandstone Game Table",
+  "category": "GAM",
+  "subcategory": "Game tables",
+  "parts": [
+   {
+    "id": "0x1DBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FAA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "desert",
+   "exotic"
+  ],
+  "blurb": "A sandstone table with an exotic board game laid out for the desert afternoon.",
+  "era": {
+   "grade": "B",
+   "note": "Sandstone table 0x1DBB is original dressing (map statics in Britannia); the game board is from the 1997 game-set block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "sandstone table 0x1DBB + game 0x0FAA at dz 6; decor-only",
+  "variantOf": "mahjong-game",
+  "id": "CR-GAM-021"
+ }
+]

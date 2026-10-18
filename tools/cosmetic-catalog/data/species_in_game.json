@@ -1,0 +1,1267 @@
+{
+ "source": "ModernUO/Distribution/Data/BritanniaRenaissance/Alpha2b/Spawns/*.json (era-reviewed Felucca spawners), read 2026-10-08",
+ "rule": "a `monster:<species>` tag is valid when its words appear in order inside the kebab-case name of a spawned creature",
+ "creatures": {
+  "AcidElemental": {
+   "kebab": "acid-elemental",
+   "spawners": 14,
+   "where": {
+    "Outdoors": 12,
+    "Despise": 1,
+    "Shame": 1
+   }
+  },
+  "AirElemental": {
+   "kebab": "air-elemental",
+   "spawners": 75,
+   "where": {
+    "Outdoors": 66,
+    "Shame": 9
+   }
+  },
+  "Alligator": {
+   "kebab": "alligator",
+   "spawners": 43,
+   "where": {
+    "Outdoors": 36,
+    "BritainSewer": 6,
+    "LostLands": 1
+   }
+  },
+  "AncientLich": {
+   "kebab": "ancient-lich",
+   "spawners": 2,
+   "where": {
+    "Khaldun": 2
+   }
+  },
+  "AncientWyrm": {
+   "kebab": "ancient-wyrm",
+   "spawners": 1,
+   "where": {
+    "Destard": 1
+   }
+  },
+  "ArcticOgreLord": {
+   "kebab": "arctic-ogre-lord",
+   "spawners": 2,
+   "where": {
+    "Ice": 2
+   }
+  },
+  "Balron": {
+   "kebab": "balron",
+   "spawners": 12,
+   "where": {
+    "TerathanKeep": 10,
+    "Hythloth": 2
+   }
+  },
+  "Bird": {
+   "kebab": "bird",
+   "spawners": 247,
+   "where": {
+    "WildLife": 179,
+    "TownsLife": 34,
+    "LostLands": 33,
+    "Outdoors": 1
+   }
+  },
+  "BlackBear": {
+   "kebab": "black-bear",
+   "spawners": 209,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 28,
+    "Outdoors": 2
+   }
+  },
+  "BloodElemental": {
+   "kebab": "blood-elemental",
+   "spawners": 2,
+   "where": {
+    "Shame": 2
+   }
+  },
+  "Boar": {
+   "kebab": "boar",
+   "spawners": 180,
+   "where": {
+    "WildLife": 179,
+    "Outdoors": 1
+   }
+  },
+  "BoneKnight": {
+   "kebab": "bone-knight",
+   "spawners": 6,
+   "where": {
+    "Covetous": 3,
+    "Deceit": 1,
+    "Khaldun": 1,
+    "LostLands": 1
+   }
+  },
+  "BoneMagi": {
+   "kebab": "bone-magi",
+   "spawners": 4,
+   "where": {
+    "Deceit": 1,
+    "Fire": 1,
+    "Khaldun": 1,
+    "LostLands": 1
+   }
+  },
+  "Brigand": {
+   "kebab": "brigand",
+   "spawners": 8,
+   "where": {
+    "Outdoors": 7,
+    "Wrong": 1
+   }
+  },
+  "BrownBear": {
+   "kebab": "brown-bear",
+   "spawners": 209,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 28,
+    "Outdoors": 2
+   }
+  },
+  "Bull": {
+   "kebab": "bull",
+   "spawners": 183,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 3,
+    "TownsLife": 1
+   }
+  },
+  "BullFrog": {
+   "kebab": "bull-frog",
+   "spawners": 18,
+   "where": {
+    "BritainSewer": 15,
+    "Outdoors": 2,
+    "LostLands": 1
+   }
+  },
+  "Cat": {
+   "kebab": "cat",
+   "spawners": 28,
+   "where": {
+    "TownsLife": 27,
+    "Outdoors": 1
+   }
+  },
+  "Chicken": {
+   "kebab": "chicken",
+   "spawners": 19,
+   "where": {
+    "TownsLife": 17,
+    "LostLands": 1,
+    "Outdoors": 1
+   }
+  },
+  "Corpser": {
+   "kebab": "corpser",
+   "spawners": 111,
+   "where": {
+    "Outdoors": 78,
+    "LostLands": 25,
+    "Covetous": 7,
+    "OrcCaves": 1
+   }
+  },
+  "Cougar": {
+   "kebab": "cougar",
+   "spawners": 209,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 28,
+    "Outdoors": 2
+   }
+  },
+  "Cow": {
+   "kebab": "cow",
+   "spawners": 190,
+   "where": {
+    "WildLife": 179,
+    "TownsLife": 9,
+    "LostLands": 2
+   }
+  },
+  "Cursed": {
+   "kebab": "cursed",
+   "spawners": 4,
+   "where": {
+    "Khaldun": 4
+   }
+  },
+  "Cyclops": {
+   "kebab": "cyclops",
+   "spawners": 2,
+   "where": {
+    "Despise": 1,
+    "LostLands": 1
+   }
+  },
+  "Daemon": {
+   "kebab": "daemon",
+   "spawners": 12,
+   "where": {
+    "Hythloth": 6,
+    "Outdoors": 3,
+    "Destard": 1,
+    "Fire": 1,
+    "TownsLife": 1
+   }
+  },
+  "DeepSeaSerpent": {
+   "kebab": "deep-sea-serpent",
+   "spawners": 115,
+   "where": {
+    "SeaLife": 115
+   }
+  },
+  "DesertOstard": {
+   "kebab": "desert-ostard",
+   "spawners": 4,
+   "where": {
+    "LostLands": 4
+   }
+  },
+  "DireWolf": {
+   "kebab": "dire-wolf",
+   "spawners": 44,
+   "where": {
+    "Outdoors": 42,
+    "OrcCaves": 2
+   }
+  },
+  "Dog": {
+   "kebab": "dog",
+   "spawners": 28,
+   "where": {
+    "TownsLife": 27,
+    "Outdoors": 1
+   }
+  },
+  "Dolphin": {
+   "kebab": "dolphin",
+   "spawners": 115,
+   "where": {
+    "SeaLife": 115
+   }
+  },
+  "Dragon": {
+   "kebab": "dragon",
+   "spawners": 22,
+   "where": {
+    "TerathanKeep": 10,
+    "Destard": 8,
+    "Outdoors": 2,
+    "Covetous": 1,
+    "TownsLife": 1
+   }
+  },
+  "Drake": {
+   "kebab": "drake",
+   "spawners": 27,
+   "where": {
+    "Destard": 11,
+    "TerathanKeep": 10,
+    "Outdoors": 3,
+    "Covetous": 1,
+    "LostLands": 1,
+    "TownsLife": 1
+   }
+  },
+  "DreadSpider": {
+   "kebab": "dread-spider",
+   "spawners": 8,
+   "where": {
+    "TrinsicPassage": 5,
+    "Covetous": 3
+   }
+  },
+  "DullCopperElemental": {
+   "kebab": "dull-copper-elemental",
+   "spawners": 4,
+   "where": {
+    "Shame": 4
+   }
+  },
+  "Eagle": {
+   "kebab": "eagle",
+   "spawners": 180,
+   "where": {
+    "WildLife": 179,
+    "Outdoors": 1
+   }
+  },
+  "EarthElemental": {
+   "kebab": "earth-elemental",
+   "spawners": 22,
+   "where": {
+    "Shame": 14,
+    "Despise": 4,
+    "Outdoors": 3,
+    "OrcCaves": 1
+   }
+  },
+  "Efreet": {
+   "kebab": "efreet",
+   "spawners": 4,
+   "where": {
+    "Fire": 3,
+    "LostLands": 1
+   }
+  },
+  "ElderGazer": {
+   "kebab": "elder-gazer",
+   "spawners": 4,
+   "where": {
+    "Shame": 2,
+    "Covetous": 1,
+    "Hythloth": 1
+   }
+  },
+  "Ettin": {
+   "kebab": "ettin",
+   "spawners": 239,
+   "where": {
+    "Outdoors": 199,
+    "LostLands": 29,
+    "Despise": 11
+   }
+  },
+  "EvilMage": {
+   "kebab": "evil-mage",
+   "spawners": 15,
+   "where": {
+    "Fire": 11,
+    "Shame": 3,
+    "Destard": 1
+   }
+  },
+  "EvilMageLord": {
+   "kebab": "evil-mage-lord",
+   "spawners": 8,
+   "where": {
+    "Fire": 5,
+    "Shame": 3
+   }
+  },
+  "FireElemental": {
+   "kebab": "fire-elemental",
+   "spawners": 29,
+   "where": {
+    "Fire": 12,
+    "Shame": 9,
+    "TrinsicPassage": 5,
+    "Deceit": 1,
+    "Destard": 1,
+    "LostLands": 1
+   }
+  },
+  "FireGargoyle": {
+   "kebab": "fire-gargoyle",
+   "spawners": 2,
+   "where": {
+    "Hythloth": 2
+   }
+  },
+  "ForestOstard": {
+   "kebab": "forest-ostard",
+   "spawners": 25,
+   "where": {
+    "LostLands": 25
+   }
+  },
+  "FrenziedOstard": {
+   "kebab": "frenzied-ostard",
+   "spawners": 1,
+   "where": {
+    "LostLands": 1
+   }
+  },
+  "FrostOoze": {
+   "kebab": "frost-ooze",
+   "spawners": 4,
+   "where": {
+    "Ice": 3,
+    "Outdoors": 1
+   }
+  },
+  "FrostSpider": {
+   "kebab": "frost-spider",
+   "spawners": 5,
+   "where": {
+    "Ice": 4,
+    "Outdoors": 1
+   }
+  },
+  "FrostTroll": {
+   "kebab": "frost-troll",
+   "spawners": 11,
+   "where": {
+    "Ice": 5,
+    "LostLands": 5,
+    "Outdoors": 1
+   }
+  },
+  "Gargoyle": {
+   "kebab": "gargoyle",
+   "spawners": 68,
+   "where": {
+    "Outdoors": 54,
+    "Hythloth": 14
+   }
+  },
+  "Gazer": {
+   "kebab": "gazer",
+   "spawners": 93,
+   "where": {
+    "Outdoors": 56,
+    "LostLands": 26,
+    "Hythloth": 6,
+    "Covetous": 5
+   }
+  },
+  "GazerLarva": {
+   "kebab": "gazer-larva",
+   "spawners": 7,
+   "where": {
+    "Covetous": 4,
+    "Hythloth": 3
+   }
+  },
+  "Ghoul": {
+   "kebab": "ghoul",
+   "spawners": 80,
+   "where": {
+    "Outdoors": 63,
+    "Deceit": 16,
+    "LostLands": 1
+   }
+  },
+  "GiantRat": {
+   "kebab": "giant-rat",
+   "spawners": 6,
+   "where": {
+    "Fire": 2,
+    "Outdoors": 2,
+    "LostLands": 1,
+    "OrcCaves": 1
+   }
+  },
+  "GiantSerpent": {
+   "kebab": "giant-serpent",
+   "spawners": 49,
+   "where": {
+    "Outdoors": 40,
+    "LostLands": 5,
+    "Destard": 3,
+    "Fire": 1
+   }
+  },
+  "GiantSpider": {
+   "kebab": "giant-spider",
+   "spawners": 100,
+   "where": {
+    "Outdoors": 72,
+    "LostLands": 25,
+    "Covetous": 3
+   }
+  },
+  "GiantToad": {
+   "kebab": "giant-toad",
+   "spawners": 2,
+   "where": {
+    "LostLands": 1,
+    "Outdoors": 1
+   }
+  },
+  "Goat": {
+   "kebab": "goat",
+   "spawners": 180,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 1
+   }
+  },
+  "Golem": {
+   "kebab": "golem",
+   "spawners": 2,
+   "where": {
+    "Wrong": 2
+   }
+  },
+  "Gorilla": {
+   "kebab": "gorilla",
+   "spawners": 11,
+   "where": {
+    "Outdoors": 7,
+    "LostLands": 4
+   }
+  },
+  "GreatHart": {
+   "kebab": "great-hart",
+   "spawners": 226,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 39,
+    "Outdoors": 8
+   }
+  },
+  "GreyWolf": {
+   "kebab": "grey-wolf",
+   "spawners": 181,
+   "where": {
+    "WildLife": 179,
+    "Outdoors": 2
+   }
+  },
+  "GrizzlyBear": {
+   "kebab": "grizzly-bear",
+   "spawners": 209,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 28,
+    "Outdoors": 2
+   }
+  },
+  "Harpy": {
+   "kebab": "harpy",
+   "spawners": 105,
+   "where": {
+    "Outdoors": 77,
+    "LostLands": 26,
+    "Covetous": 2
+   }
+  },
+  "HarrowerTentacles": {
+   "kebab": "harrower-tentacles",
+   "spawners": 1,
+   "where": {
+    "Khaldun": 1
+   }
+  },
+  "HeadlessOne": {
+   "kebab": "headless-one",
+   "spawners": 67,
+   "where": {
+    "Outdoors": 38,
+    "LostLands": 25,
+    "Covetous": 4
+   }
+  },
+  "HellCat": {
+   "kebab": "hell-cat",
+   "spawners": 12,
+   "where": {
+    "Fire": 6,
+    "TrinsicPassage": 5,
+    "LostLands": 1
+   }
+  },
+  "HellHound": {
+   "kebab": "hell-hound",
+   "spawners": 22,
+   "where": {
+    "Hythloth": 13,
+    "Fire": 8,
+    "LostLands": 1
+   }
+  },
+  "Hind": {
+   "kebab": "hind",
+   "spawners": 223,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 37,
+    "Outdoors": 7
+   }
+  },
+  "Horse": {
+   "kebab": "horse",
+   "spawners": 217,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 37,
+    "Outdoors": 1
+   }
+  },
+  "IceElemental": {
+   "kebab": "ice-elemental",
+   "spawners": 5,
+   "where": {
+    "Ice": 5
+   }
+  },
+  "IceFiend": {
+   "kebab": "ice-fiend",
+   "spawners": 2,
+   "where": {
+    "Ice": 2
+   }
+  },
+  "IceSerpent": {
+   "kebab": "ice-serpent",
+   "spawners": 11,
+   "where": {
+    "LostLands": 6,
+    "Ice": 4,
+    "Outdoors": 1
+   }
+  },
+  "IceSnake": {
+   "kebab": "ice-snake",
+   "spawners": 10,
+   "where": {
+    "LostLands": 6,
+    "Ice": 3,
+    "Outdoors": 1
+   }
+  },
+  "Imp": {
+   "kebab": "imp",
+   "spawners": 25,
+   "where": {
+    "Hythloth": 14,
+    "LostLands": 7,
+    "Outdoors": 4
+   }
+  },
+  "JackRabbit": {
+   "kebab": "jack-rabbit",
+   "spawners": 34,
+   "where": {
+    "LostLands": 33,
+    "Outdoors": 1
+   }
+  },
+  "JukaLord": {
+   "kebab": "juka-lord",
+   "spawners": 7,
+   "where": {
+    "Wrong": 7
+   }
+  },
+  "JukaMage": {
+   "kebab": "juka-mage",
+   "spawners": 7,
+   "where": {
+    "Wrong": 7
+   }
+  },
+  "JukaWarrior": {
+   "kebab": "juka-warrior",
+   "spawners": 8,
+   "where": {
+    "Wrong": 8
+   }
+  },
+  "Kraken": {
+   "kebab": "kraken",
+   "spawners": 124,
+   "where": {
+    "SeaLife": 115,
+    "Shame": 9
+   }
+  },
+  "LavaLizard": {
+   "kebab": "lava-lizard",
+   "spawners": 11,
+   "where": {
+    "Fire": 5,
+    "TrinsicPassage": 5,
+    "LostLands": 1
+   }
+  },
+  "LavaSerpent": {
+   "kebab": "lava-serpent",
+   "spawners": 4,
+   "where": {
+    "Fire": 3,
+    "LostLands": 1
+   }
+  },
+  "LavaSnake": {
+   "kebab": "lava-snake",
+   "spawners": 12,
+   "where": {
+    "Fire": 6,
+    "TrinsicPassage": 5,
+    "LostLands": 1
+   }
+  },
+  "Lich": {
+   "kebab": "lich",
+   "spawners": 18,
+   "where": {
+    "Deceit": 8,
+    "Outdoors": 4,
+    "Fire": 2,
+    "Graveyards": 2,
+    "Covetous": 1,
+    "TownsLife": 1
+   }
+  },
+  "LichLord": {
+   "kebab": "lich-lord",
+   "spawners": 5,
+   "where": {
+    "Outdoors": 2,
+    "Deceit": 1,
+    "Fire": 1,
+    "TownsLife": 1
+   }
+  },
+  "Lizardman": {
+   "kebab": "lizardman",
+   "spawners": 170,
+   "where": {
+    "Outdoors": 137,
+    "LostLands": 24,
+    "Despise": 9
+   }
+  },
+  "Llama": {
+   "kebab": "llama",
+   "spawners": 34,
+   "where": {
+    "LostLands": 33,
+    "Outdoors": 1
+   }
+  },
+  "Mongbat": {
+   "kebab": "mongbat",
+   "spawners": 70,
+   "where": {
+    "LostLands": 35,
+    "Outdoors": 35
+   }
+  },
+  "Mummy": {
+   "kebab": "mummy",
+   "spawners": 12,
+   "where": {
+    "Covetous": 5,
+    "Deceit": 3,
+    "LostLands": 3,
+    "Outdoors": 1
+   }
+  },
+  "Nightmare": {
+   "kebab": "nightmare",
+   "spawners": 10,
+   "where": {
+    "TerathanKeep": 10
+   }
+  },
+  "Ogre": {
+   "kebab": "ogre",
+   "spawners": 119,
+   "where": {
+    "Outdoors": 115,
+    "Despise": 4
+   }
+  },
+  "OgreLord": {
+   "kebab": "ogre-lord",
+   "spawners": 1,
+   "where": {
+    "Despise": 1
+   }
+  },
+  "OphidianArchmage": {
+   "kebab": "ophidian-archmage",
+   "spawners": 16,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 6
+   }
+  },
+  "OphidianKnight": {
+   "kebab": "ophidian-knight",
+   "spawners": 16,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 6
+   }
+  },
+  "OphidianMage": {
+   "kebab": "ophidian-mage",
+   "spawners": 16,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 6
+   }
+  },
+  "OphidianMatriarch": {
+   "kebab": "ophidian-matriarch",
+   "spawners": 16,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 6
+   }
+  },
+  "OphidianWarrior": {
+   "kebab": "ophidian-warrior",
+   "spawners": 17,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 6,
+    "Outdoors": 1
+   }
+  },
+  "Orc": {
+   "kebab": "orc",
+   "spawners": 242,
+   "where": {
+    "Outdoors": 224,
+    "OrcCaves": 10,
+    "LostLands": 8
+   }
+  },
+  "OrcishLord": {
+   "kebab": "orcish-lord",
+   "spawners": 20,
+   "where": {
+    "LostLands": 8,
+    "OrcCaves": 6,
+    "Outdoors": 6
+   }
+  },
+  "OrcishMage": {
+   "kebab": "orcish-mage",
+   "spawners": 24,
+   "where": {
+    "Outdoors": 21,
+    "OrcCaves": 3
+   }
+  },
+  "Panther": {
+   "kebab": "panther",
+   "spawners": 185,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 4,
+    "Outdoors": 2
+   }
+  },
+  "Pig": {
+   "kebab": "pig",
+   "spawners": 180,
+   "where": {
+    "WildLife": 179,
+    "Outdoors": 1
+   }
+  },
+  "PoisonElemental": {
+   "kebab": "poison-elemental",
+   "spawners": 5,
+   "where": {
+    "Shame": 3,
+    "Deceit": 2
+   }
+  },
+  "PolarBear": {
+   "kebab": "polar-bear",
+   "spawners": 20,
+   "where": {
+    "Outdoors": 14,
+    "LostLands": 6
+   }
+  },
+  "Rabbit": {
+   "kebab": "rabbit",
+   "spawners": 34,
+   "where": {
+    "LostLands": 33,
+    "Outdoors": 1
+   }
+  },
+  "Rat": {
+   "kebab": "rat",
+   "spawners": 73,
+   "where": {
+    "LostLands": 29,
+    "TownsLife": 27,
+    "BritainSewer": 15,
+    "Outdoors": 1,
+    "Vendors": 1
+   }
+  },
+  "Ratman": {
+   "kebab": "ratman",
+   "spawners": 121,
+   "where": {
+    "Outdoors": 93,
+    "LostLands": 24,
+    "Ice": 4
+   }
+  },
+  "RatmanArcher": {
+   "kebab": "ratman-archer",
+   "spawners": 1,
+   "where": {
+    "Ice": 1
+   }
+  },
+  "RatmanMage": {
+   "kebab": "ratman-mage",
+   "spawners": 2,
+   "where": {
+    "Ice": 2
+   }
+  },
+  "Reaper": {
+   "kebab": "reaper",
+   "spawners": 96,
+   "where": {
+    "Outdoors": 71,
+    "LostLands": 25
+   }
+  },
+  "RidableLlama": {
+   "kebab": "ridable-llama",
+   "spawners": 33,
+   "where": {
+    "LostLands": 33
+   }
+  },
+  "RottingCorpse": {
+   "kebab": "rotting-corpse",
+   "spawners": 2,
+   "where": {
+    "Covetous": 1,
+    "Outdoors": 1
+   }
+  },
+  "Scorpion": {
+   "kebab": "scorpion",
+   "spawners": 29,
+   "where": {
+    "Outdoors": 14,
+    "Shame": 9,
+    "LostLands": 6
+   }
+  },
+  "SeaHorse": {
+   "kebab": "sea-horse",
+   "spawners": 115,
+   "where": {
+    "SeaLife": 115
+   }
+  },
+  "SeaSerpent": {
+   "kebab": "sea-serpent",
+   "spawners": 122,
+   "where": {
+    "SeaLife": 115,
+    "Shame": 7
+   }
+  },
+  "SewerRat": {
+   "kebab": "sewer-rat",
+   "spawners": 28,
+   "where": {
+    "BritainSewer": 15,
+    "Outdoors": 12,
+    "LostLands": 1
+   }
+  },
+  "Shade": {
+   "kebab": "shade",
+   "spawners": 22,
+   "where": {
+    "Covetous": 8,
+    "Deceit": 8,
+    "Graveyards": 3,
+    "Outdoors": 3
+   }
+  },
+  "ShadowFiend": {
+   "kebab": "shadow-fiend",
+   "spawners": 10,
+   "where": {
+    "Khaldun": 10
+   }
+  },
+  "ShadowWyrm": {
+   "kebab": "shadow-wyrm",
+   "spawners": 2,
+   "where": {
+    "Destard": 2
+   }
+  },
+  "Sheep": {
+   "kebab": "sheep",
+   "spawners": 194,
+   "where": {
+    "WildLife": 179,
+    "TownsLife": 10,
+    "FelCropsLS": 3,
+    "LostLands": 1,
+    "Outdoors": 1
+   }
+  },
+  "SilverSerpent": {
+   "kebab": "silver-serpent",
+   "spawners": 16,
+   "where": {
+    "Outdoors": 11,
+    "LostLands": 4,
+    "Deceit": 1
+   }
+  },
+  "SkeletalKnight": {
+   "kebab": "skeletal-knight",
+   "spawners": 10,
+   "where": {
+    "Covetous": 5,
+    "Khaldun": 3,
+    "Deceit": 1,
+    "LostLands": 1
+   }
+  },
+  "SkeletalMage": {
+   "kebab": "skeletal-mage",
+   "spawners": 2,
+   "where": {
+    "Fire": 1,
+    "Khaldun": 1
+   }
+  },
+  "Skeleton": {
+   "kebab": "skeleton",
+   "spawners": 115,
+   "where": {
+    "Outdoors": 75,
+    "Deceit": 15,
+    "Covetous": 13,
+    "Graveyards": 7,
+    "Khaldun": 4,
+    "LostLands": 1
+   }
+  },
+  "Slime": {
+   "kebab": "slime",
+   "spawners": 26,
+   "where": {
+    "Outdoors": 23,
+    "Fire": 2,
+    "Covetous": 1
+   }
+  },
+  "Snake": {
+   "kebab": "snake",
+   "spawners": 35,
+   "where": {
+    "Outdoors": 35
+   }
+  },
+  "SnowElemental": {
+   "kebab": "snow-elemental",
+   "spawners": 12,
+   "where": {
+    "Ice": 6,
+    "LostLands": 6
+   }
+  },
+  "SnowLeopard": {
+   "kebab": "snow-leopard",
+   "spawners": 14,
+   "where": {
+    "Outdoors": 14
+   }
+  },
+  "SpectralArmour": {
+   "kebab": "spectral-armour",
+   "spawners": 2,
+   "where": {
+    "Khaldun": 2
+   }
+  },
+  "Spectre": {
+   "kebab": "spectre",
+   "spawners": 31,
+   "where": {
+    "Outdoors": 15,
+    "Covetous": 6,
+    "Deceit": 5,
+    "Graveyards": 5
+   }
+  },
+  "StoneGargoyle": {
+   "kebab": "stone-gargoyle",
+   "spawners": 5,
+   "where": {
+    "LostLands": 3,
+    "Hythloth": 2
+   }
+  },
+  "StoneHarpy": {
+   "kebab": "stone-harpy",
+   "spawners": 6,
+   "where": {
+    "LostLands": 4,
+    "Covetous": 2
+   }
+  },
+  "StrongMongbat": {
+   "kebab": "strong-mongbat",
+   "spawners": 13,
+   "where": {
+    "Outdoors": 13
+   }
+  },
+  "SwampTentacle": {
+   "kebab": "swamp-tentacle",
+   "spawners": 2,
+   "where": {
+    "LostLands": 1,
+    "Outdoors": 1
+   }
+  },
+  "TerathanAvenger": {
+   "kebab": "terathan-avenger",
+   "spawners": 11,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 1
+   }
+  },
+  "TerathanDrone": {
+   "kebab": "terathan-drone",
+   "spawners": 11,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 1
+   }
+  },
+  "TerathanMatriarch": {
+   "kebab": "terathan-matriarch",
+   "spawners": 11,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 1
+   }
+  },
+  "TerathanWarrior": {
+   "kebab": "terathan-warrior",
+   "spawners": 11,
+   "where": {
+    "TerathanKeep": 10,
+    "LostLands": 1
+   }
+  },
+  "TimberWolf": {
+   "kebab": "timber-wolf",
+   "spawners": 214,
+   "where": {
+    "WildLife": 179,
+    "LostLands": 28,
+    "Outdoors": 7
+   }
+  },
+  "Titan": {
+   "kebab": "titan",
+   "spawners": 1,
+   "where": {
+    "LostLands": 1
+   }
+  },
+  "Troll": {
+   "kebab": "troll",
+   "spawners": 187,
+   "where": {
+    "Outdoors": 157,
+    "LostLands": 26,
+    "Despise": 4
+   }
+  },
+  "TropicalBird": {
+   "kebab": "tropical-bird",
+   "spawners": 6,
+   "where": {
+    "Outdoors": 6
+   }
+  },
+  "Walrus": {
+   "kebab": "walrus",
+   "spawners": 19,
+   "where": {
+    "Outdoors": 13,
+    "LostLands": 6
+   }
+  },
+  "WaterElemental": {
+   "kebab": "water-elemental",
+   "spawners": 168,
+   "where": {
+    "SeaLife": 115,
+    "Outdoors": 40,
+    "Shame": 8,
+    "Destard": 3,
+    "Covetous": 1,
+    "Deceit": 1
+   }
+  },
+  "WhiteWolf": {
+   "kebab": "white-wolf",
+   "spawners": 20,
+   "where": {
+    "Outdoors": 14,
+    "LostLands": 6
+   }
+  },
+  "WhiteWyrm": {
+   "kebab": "white-wyrm",
+   "spawners": 1,
+   "where": {
+    "Ice": 1
+   }
+  },
+  "Wisp": {
+   "kebab": "wisp",
+   "spawners": 90,
+   "where": {
+    "Outdoors": 90
+   }
+  },
+  "Wraith": {
+   "kebab": "wraith",
+   "spawners": 25,
+   "where": {
+    "Deceit": 11,
+    "Covetous": 5,
+    "Graveyards": 5,
+    "Outdoors": 3,
+    "LostLands": 1
+   }
+  },
+  "Wyvern": {
+   "kebab": "wyvern",
+   "spawners": 19,
+   "where": {
+    "Destard": 12,
+    "LostLands": 7
+   }
+  },
+  "Zombie": {
+   "kebab": "zombie",
+   "spawners": 95,
+   "where": {
+    "Outdoors": 60,
+    "Deceit": 13,
+    "Covetous": 8,
+    "Khaldun": 8,
+    "Graveyards": 6
+   }
+  }
+ }
+}

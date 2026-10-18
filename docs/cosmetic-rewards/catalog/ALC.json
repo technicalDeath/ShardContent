@@ -1,0 +1,2493 @@
+[
+ {
+  "slug": "blood-pentagram",
+  "name": "Blood Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x1CF9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF8",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF7",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF6",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF5",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D09",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D08",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D07",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF4",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0A",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D11",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D10",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D06",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF3",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFD",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0B",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D12",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0F",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D05",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF2",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFE",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0C",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0D",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0E",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D04",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF1",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFF",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D00",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D01",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D02",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D03",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "6x6",
+  "tier": "extremely-rare",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic",
+   "dungeon"
+  ],
+  "blurb": "A great pentagram drawn in clotted blood, six paces across, as if the floor itself remembers the ritual.",
+  "era": {
+   "grade": "B",
+   "note": "Blood-splatter pentagram decals (0x1CF1-0x1D12) used at several sites across the original Britannia map (473 tiles in all; each piece n=10-22)."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.BloodPentagram (6x6 addon, static decor)",
+  "variantOf": null,
+  "id": "CR-ALC-001"
+ },
+ {
+  "slug": "azure-blood-pentagram",
+  "name": "Azure Blood Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x1CF9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF8",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF7",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF6",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF5",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D09",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D08",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D07",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF4",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0A",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D11",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D10",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D06",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF3",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFD",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0B",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D12",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0F",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D05",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF2",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFE",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0C",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0D",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D0E",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D04",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CF1",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1CFF",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D00",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D01",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D02",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1D03",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 98,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "6x6",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "ice",
+   "elegant"
+  ],
+  "blurb": "The same ritual circle, but drawn in cold blue, a rite of frost rather than fire.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic blood-pentagram art (0x1CF1-0x1D12) in a custom blue hue (98)."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class BloodPentagram with hue 98; placement ground-cover",
+  "variantOf": "blood-pentagram",
+  "id": "CR-ALC-002"
+ },
+ {
+  "slug": "pentagram",
+  "name": "Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x0FE7",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE8",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE6",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE9",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "craft:carpentry"
+  ],
+  "blurb": "A mosaic pentagram of red, grey and white stone set into the floor.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed craftable by carpenters since the Housing Phase 3 publish (1998-12-21).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class Server.Items.PentagramAddon (3x3 floor addon); plain craftable base for the variants",
+  "variantOf": null,
+  "id": "CR-ALC-003"
+ },
+ {
+  "slug": "azure-pentagram",
+  "name": "Azure Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x0FE7",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE8",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE6",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE9",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 98,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A mosaic pentagram in deep sapphire blue, cool as lake water.",
+  "era": {
+   "grade": "A",
+   "note": "Pentagram deed is documented 1998-12-21; this blue tint (hue 98) is a custom hue on the craftable base.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "PentagramAddon with hue 98",
+  "variantOf": "pentagram",
+  "id": "CR-ALC-004"
+ },
+ {
+  "slug": "gilded-pentagram",
+  "name": "Gilded Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x0FE7",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE8",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE6",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE9",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "A pentagram worked in burnished gold, a mage's circle fit for a palace.",
+  "era": {
+   "grade": "A",
+   "note": "Pentagram deed is documented 1998-12-21; this gold tint (hue 0x8A5) is a custom hue on the craftable base.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "PentagramAddon with hue 0x8A5",
+  "variantOf": "pentagram",
+  "id": "CR-ALC-005"
+ },
+ {
+  "slug": "obsidian-pentagram",
+  "name": "Obsidian Pentagram",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x0FE7",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE8",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE6",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE9",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A pentagram of black obsidian that seems to drink the light around it.",
+  "era": {
+   "grade": "A",
+   "note": "Pentagram deed is documented 1998-12-21; this black tint (hue 0x497) is a custom hue on the craftable base.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "PentagramAddon with hue 0x497",
+  "variantOf": "pentagram",
+  "id": "CR-ALC-006"
+ },
+ {
+  "slug": "summoning-circle",
+  "name": "Summoning Circle",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x0FE7",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE8",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE6",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE9",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": -2,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": -2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A pentagram of red and white stone with a skull candle burning at each point of the compass.",
+  "era": {
+   "grade": "B",
+   "note": "Pentagram deed is documented 1998-12-21; skull candles (0x1854, n=29) are original-world shop and dungeon dressing. Combined set is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-part: PentagramAddon + 4 skull candles; candles purely decorative",
+  "variantOf": null,
+  "id": "CR-ALC-007"
+ },
+ {
+  "slug": "alchemists-sigil-ring",
+  "name": "Alchemist's Sigil Ring",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x1824",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1823",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1825",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1826",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1822",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1821",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1820",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1828",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x181F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1827",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x181E",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x181D",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0771",
+    "dx": 1,
+    "dy": 1,
+    "dz": -2
+   },
+   {
+    "id": "0x0774",
+    "dx": 1,
+    "dy": 2,
+    "dz": -2
+   },
+   {
+    "id": "0x0773",
+    "dx": 2,
+    "dy": 1,
+    "dz": -2
+   },
+   {
+    "id": "0x0772",
+    "dx": 2,
+    "dy": 2,
+    "dz": -2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "arcane",
+   "scholar",
+   "craft:alchemy",
+   "elegant"
+  ],
+  "blurb": "Twelve parchment-coloured tiles, each bearing a different alchemical sigil, ring a stepped sandstone dais.",
+  "era": {
+   "grade": "B",
+   "note": "Placed once as a 4x4 sigil ring in an interior of the original Britannia map; classic alchemical symbol art (0x181D-0x1828) from the 1997-era block."
+  },
+  "impl": "addon",
+  "implNote": "28-part addon: 12 sigil tiles + 4 sandstone steps (centre at z-2); floor, decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-008"
+ },
+ {
+  "slug": "alchemical-sigil-mosaic",
+  "name": "Alchemical Sigil Mosaic",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x181F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1820",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1827",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1828",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "scholar",
+   "craft:alchemy"
+  ],
+  "blurb": "Four stone tiles engraved with alchemical sigils, laid as a square floor mosaic.",
+  "era": {
+   "grade": "B",
+   "note": "Classic alchemical symbol tiles (0x181D-0x1828), placed once as a 12-tile ring in the original Britannia map; 1997-era block."
+  },
+  "impl": "addon",
+  "implNote": "4-tile floor addon; walkable, decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-009"
+ },
+ {
+  "slug": "sigil-of-quicksilver",
+  "name": "Sigil of Quicksilver",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x181E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "craft:alchemy"
+  ],
+  "blurb": "A single sandstone floor tile engraved with the alchemist's sign for quicksilver.",
+  "era": {
+   "grade": "B",
+   "note": "Classic alchemical symbol tile (0x181E) from the 0x181D-0x1828 set, placed in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; ground-cover",
+  "variantOf": null,
+  "id": "CR-ALC-010"
+ },
+ {
+  "slug": "sigil-of-salt",
+  "name": "Sigil of Salt",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x1823",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "craft:alchemy"
+  ],
+  "blurb": "A single sandstone floor tile engraved with a cut-glass looking sigil of salt.",
+  "era": {
+   "grade": "B",
+   "note": "Classic alchemical symbol tile (0x1823) from the 0x181D-0x1828 set, placed in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; ground-cover",
+  "variantOf": "sigil-of-quicksilver",
+  "id": "CR-ALC-011"
+ },
+ {
+  "slug": "sigil-of-sulphur",
+  "name": "Sigil of Sulphur",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x1826",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "craft:alchemy"
+  ],
+  "blurb": "A single sandstone floor tile engraved with the sign of sulphur, the fire-stone.",
+  "era": {
+   "grade": "B",
+   "note": "Classic alchemical symbol tile (0x1826) from the 0x181D-0x1828 set, placed in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; ground-cover",
+  "variantOf": "sigil-of-quicksilver",
+  "id": "CR-ALC-012"
+ },
+ {
+  "slug": "chaos-sigil",
+  "name": "Chaos Sigil",
+  "category": "ALC",
+  "subcategory": "Circles and sigils",
+  "parts": [
+   {
+    "id": "0x14E3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14E4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14E6",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14E5",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A black diamond floor tile bearing a crimson eight-pointed sigil of chaos.",
+  "era": {
+   "grade": "C",
+   "note": "Tiles are named 'Chaos' and placed in the Lost Lands (T2A) in the Britannia map; no dated record of the emblem or of its in-game use."
+  },
+  "impl": "addon",
+  "implNote": "4-tile floor addon; walkable, decor-only; may overlap REL if claimed as a shrine mark",
+  "variantOf": null,
+  "id": "CR-ALC-013"
+ },
+ {
+  "slug": "crystal-ball",
+  "name": "Crystal Ball",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x0E2D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "scholar"
+  ],
+  "blurb": "A clear glass sphere on a turned wooden base, cloudy with the hint of other places.",
+  "era": {
+   "grade": "A",
+   "note": "Crystal balls were 2nd-anniversary gift-bag items in Sept 1999 (art 0x0E2D); decor-only use is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/items/holiday-gifts/anniversary-gifts/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-08-22nd-september/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; do NOT reuse 0x0E2F (Dec 2000 snow globe)",
+  "variantOf": null,
+  "id": "CR-ALC-014"
+ },
+ {
+  "slug": "seers-table",
+  "name": "Seer's Table",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E2D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "exotic",
+   "elegant"
+  ],
+  "blurb": "A small pedestal table bearing a glass sphere, the work-desk of a gypsy fortune teller.",
+  "era": {
+   "grade": "B",
+   "note": "Composite: classic carpentry pedestal table (0x0B6B, n=147) with the 1999 anniversary crystal ball (0x0E2D). Combined set is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/items/holiday-gifts/anniversary-gifts/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + crystal ball; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-015"
+ },
+ {
+  "slug": "scrying-stand",
+  "name": "Scrying Stand",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x0B34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E2D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "rustic"
+  ],
+  "blurb": "A spindly three-legged table holding a crystal ball, favoured by hedge wizards and wandering seers.",
+  "era": {
+   "grade": "B",
+   "note": "Composite: classic carpentry table (0x0B34) with the 1999 anniversary crystal ball (0x0E2D). Combined set is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/items/holiday-gifts/anniversary-gifts/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + crystal ball; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-016"
+ },
+ {
+  "slug": "fortune-tellers-spread",
+  "name": "Fortune Teller's Spread",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x12A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "whimsical"
+  ],
+  "blurb": "A handful of painted tarot cards fanned across the table, the topmost face-down.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tarot art (0x12A5-0x12A8); gypsy fortune-teller dressing in the original map (n=1-2)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip any deck function",
+  "variantOf": null,
+  "id": "CR-ALC-017"
+ },
+ {
+  "slug": "grand-tarot-spread",
+  "name": "Grand Tarot Spread",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x12A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "exotic",
+   "whimsical"
+  ],
+  "blurb": "A great spread of nine painted tarot cards laid out in a cross for a reading of weighty matters.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tarot art (0x12A5-0x12A8); gypsy fortune-teller dressing in the original map (n=1-2)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip any deck function",
+  "variantOf": "fortune-tellers-spread",
+  "id": "CR-ALC-018"
+ },
+ {
+  "slug": "green-crystal-shard",
+  "name": "Green Crystal Shard",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x1F1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A shard of green crystal on a dark stone plinth, faintly luminous in the dark.",
+  "era": {
+   "grade": "B",
+   "note": "Magical crystal (0x1F19-0x1F1B) is a classic decorative 'rare' graphic in the 0x1F1x block; never used as scenery (n=0)."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.DecoMagicalCrystal (use static-art version, no function)",
+  "variantOf": null,
+  "id": "CR-ALC-019"
+ },
+ {
+  "slug": "violet-crystal-shard",
+  "name": "Violet Crystal Shard",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x1F1D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A shard of violet crystal on a dark stone plinth, humming at the edge of hearing.",
+  "era": {
+   "grade": "B",
+   "note": "Sister graphic of the magical crystal (0x1F1C-0x1F1E) in the same classic 0x1F1x block; never used as scenery (n=0)."
+  },
+  "impl": "static",
+  "implNote": "decor-only (stock PowerCrystal uses 0x1F1C: avoid that item, use plain graphic)",
+  "variantOf": "green-crystal-shard",
+  "id": "CR-ALC-020"
+ },
+ {
+  "slug": "emerald-crystal-cluster",
+  "name": "Emerald Crystal Cluster",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x02DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "dungeon",
+   "treasure"
+  ],
+  "blurb": "A natural cluster of emerald crystal spears, thrusting up like a frozen green flame.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world crystal formation (0x02DA, 72x74), used 66 times as scenery in the Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable flag in tiledata, check footprint",
+  "variantOf": null,
+  "id": "CR-ALC-021"
+ },
+ {
+  "slug": "blue-moongate",
+  "name": "Moongate Display (Blue)",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x0F6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "sacred"
+  ],
+  "blurb": "A shimmering blue oval of moonlight, a replica of a moongate. It goes nowhere, but the shimmer is real.",
+  "era": {
+   "grade": "B",
+   "note": "Moongate art 0x0F6C is classic 1997-era art (moongates existed from launch). Decor-only copy: no teleport, no travel."
+  },
+  "impl": "static",
+  "implNote": "decor-only; MUST NOT teleport (display graphic only); animated art frames 0x0F6C-0x0F7B",
+  "variantOf": null,
+  "id": "CR-ALC-022"
+ },
+ {
+  "slug": "red-moongate",
+  "name": "Moongate Display (Red)",
+  "category": "ALC",
+  "subcategory": "Scrying and crystals",
+  "parts": [
+   {
+    "id": "0x0DDA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "demonic"
+  ],
+  "blurb": "A shimmering red oval of moonlight, a replica of a moongate. It goes nowhere, but the shimmer is real.",
+  "era": {
+   "grade": "C",
+   "note": "Red moongate art (0x0DDA) is linked to Felucca gates after Renaissance (Apr 2000); exact art date unproven. Decor-only copy: no teleport."
+  },
+  "impl": "static",
+  "implNote": "decor-only; MUST NOT teleport; animated art frames 0x0DDA-0x0DDE",
+  "variantOf": "blue-moongate",
+  "id": "CR-ALC-023"
+ },
+ {
+  "slug": "witchs-cauldron",
+  "name": "Witch's Cauldron",
+  "category": "ALC",
+  "subcategory": "Cauldrons and ritual",
+  "parts": [
+   {
+    "id": "0x0974",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0975",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "macabre",
+   "craft:alchemy",
+   "rustic"
+  ],
+  "blurb": "A black iron cauldron hung from a tripod of crooked posts, ready for something unpleasant to be brewed in it.",
+  "era": {
+   "grade": "B",
+   "note": "Cauldron (0x0974/0x0975) is classic world and shop dressing, used 19 times in the original Britannia map; 'cauldron' is a named rare shop-dressing item.",
+   "sources": [
+    "https://uorenn.com/compendium/list/Spawning/P.html"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip any cooking function",
+  "variantOf": null,
+  "id": "CR-ALC-024"
+ },
+ {
+  "slug": "guttered-skull-candle",
+  "name": "Guttered Skull Candle",
+  "category": "ALC",
+  "subcategory": "Cauldrons and ritual",
+  "parts": [
+   {
+    "id": "0x1853",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "A skull holding a candle burned down to a stump of wax.",
+  "era": {
+   "grade": "B",
+   "note": "Skull candle (0x1853) sits with the 0x1853-0x185A family of classic shop and dungeon dressing.",
+   "sources": [
+    "https://uorenn.com/compendium/list/Spawning/P.html"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-025"
+ },
+ {
+  "slug": "ritual-table",
+  "name": "Ritual Table",
+  "category": "ALC",
+  "subcategory": "Cauldrons and ritual",
+  "parts": [
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "A small altar-table with a skull candle upon it, where something should not be asked.",
+  "era": {
+   "grade": "B",
+   "note": "Composite: classic carpentry pedestal table (0x0B6B, n=147) with a skull candle (0x1854, n=29). Combined set is custom."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + candle; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-026"
+ },
+ {
+  "slug": "blue-distilling-flask",
+  "name": "Blue Distilling Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x182A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A tall glass flask holding a bright blue tincture, with a long neck for slow distillation.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.MediumFlask / SmallBlueFlask; decor-only (no potion function)",
+  "variantOf": null,
+  "id": "CR-ALC-027"
+ },
+ {
+  "slug": "crimson-flask",
+  "name": "Crimson Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x182C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "arcane"
+  ],
+  "blurb": "A long-necked flask brimming with a bright crimson solution.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.SmallRedFlask; decor-only",
+  "variantOf": "blue-distilling-flask",
+  "id": "CR-ALC-028"
+ },
+ {
+  "slug": "violet-ribbed-flask",
+  "name": "Violet Ribbed Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1839",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A tall ribbed glass vessel filled with swirling violet liquid.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.VioletRibbedFlask; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-029"
+ },
+ {
+  "slug": "crimson-ribbed-flask",
+  "name": "Crimson Ribbed Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1838",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "macabre"
+  ],
+  "blurb": "A tall ribbed glass vessel with a thick red fluid that looks all too much like blood.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.RedRibbedFlask / LongFlask; decor-only",
+  "variantOf": "violet-ribbed-flask",
+  "id": "CR-ALC-030"
+ },
+ {
+  "slug": "amber-round-flask",
+  "name": "Amber Round-Bottomed Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x183B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "scholar"
+  ],
+  "blurb": "A round-bottomed flask of amber liquid, bubbling slowly over some unseen flame.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.LargeYellowFlask; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-031"
+ },
+ {
+  "slug": "bubbling-violet-flask",
+  "name": "Bubbling Violet Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1841",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A flask of violet liquid that never stops bubbling, the froth flecked with glints of light.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.AniLargeVioletFlask (animated 0x1841-0x1843); decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-032"
+ },
+ {
+  "slug": "red-alembic-tube",
+  "name": "Red Alembic Tube",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1833",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "scholar"
+  ],
+  "blurb": "A curved glass condenser tube with a bead of red distillate pooling in the bend.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.RedCurvedFlask; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-033"
+ },
+ {
+  "slug": "green-alembic-tube",
+  "name": "Green Alembic Tube",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1837",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "scholar"
+  ],
+  "blurb": "A curved glass condenser tube with a bead of green distillate pooling in the bend.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.GreenCurvedFlask; decor-only",
+  "variantOf": "red-alembic-tube",
+  "id": "CR-ALC-034"
+ },
+ {
+  "slug": "yellow-beaker",
+  "name": "Yellow Beaker",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x182E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "humble"
+  ],
+  "blurb": "A squat glass beaker of cloudy amber liquid in its working measure.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.YellowBeaker; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-035"
+ },
+ {
+  "slug": "blue-beaker",
+  "name": "Blue Beaker",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x1830",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "humble"
+  ],
+  "blurb": "A squat glass beaker of clear blue liquid, marked in measures along its side.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing from the classic 1997-era glassware block (0x182A-0x1849); placed in Moonglow, Vesper and Skara Brae shops in the original map. Fits the 'rare' shop-dressing pattern."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.BlueBeaker; decor-only",
+  "variantOf": "yellow-beaker",
+  "id": "CR-ALC-036"
+ },
+ {
+  "slug": "empty-vial-rack",
+  "name": "Rack of Empty Vials",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x185B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x185C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:alchemy",
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "A wooden rack of glass vials, stoppered and clean, waiting for an apothecary's next batch.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing (0x185B-0x185E, n=2 each) in the classic glassware block; stock class exists."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.EmptyVialsWRack; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-037"
+ },
+ {
+  "slug": "full-vial-rack",
+  "name": "Rack of Filled Vials",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x185D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x185E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "scholar",
+   "arcane"
+  ],
+  "blurb": "A wooden rack of glass vials, each holding a different bright potion tincture.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist shop dressing (0x185B-0x185E, n=2 each) in the classic glassware block; stock class exists."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.FullVialsWRack; decor-only",
+  "variantOf": "empty-vial-rack",
+  "id": "CR-ALC-038"
+ },
+ {
+  "slug": "pair-of-corked-jars",
+  "name": "Pair of Corked Jars",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x0E44",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "Two glass jars sealed with red wax-capped corks, sitting hip to hip.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era jar graphics (0x0E44-0x0E4F, 'empty jars' / 'full jars'); never used as map scenery (n=0-1)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container flag",
+  "variantOf": null,
+  "id": "CR-ALC-039"
+ },
+ {
+  "slug": "cluster-of-corked-jars",
+  "name": "Cluster of Corked Jars",
+  "category": "ALC",
+  "subcategory": "Glassware and vials",
+  "parts": [
+   {
+    "id": "0x0E47",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "Five glass jars huddled together, each sealed with a red-tipped cork.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era jar graphics (0x0E44-0x0E4F); never used as map scenery (n=0-1)."
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": "pair-of-corked-jars",
+  "id": "CR-ALC-040"
+ },
+ {
+  "slug": "crimson-spellbook",
+  "name": "Crimson Spellbook",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EFA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar"
+  ],
+  "blurb": "A spellbook bound in crimson leather and stamped with a gold circle, the standard of every apprentice mage.",
+  "era": {
+   "grade": "B",
+   "note": "Classic spellbook art (0x0E3B/0x0EFA), a stock item from launch (0x0EFA used 10 times as scenery). Decorative use only."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.Spellbook art; decor-only, no spells, no container",
+  "variantOf": null,
+  "id": "CR-ALC-041"
+ },
+ {
+  "slug": "black-grimoire",
+  "name": "Black Grimoire",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "demonic"
+  ],
+  "blurb": "A grimoire bound in black, its cover bare of any title, which is what makes one wary.",
+  "era": {
+   "grade": "B",
+   "note": "Classic spellbook art (0x0E3B) in a custom near-black hue (0x497)."
+  },
+  "impl": "stock-class",
+  "implNote": "decor-only; hue 0x497",
+  "variantOf": "crimson-spellbook",
+  "id": "CR-ALC-042"
+ },
+ {
+  "slug": "silvered-spellbook",
+  "name": "Silvered Spellbook",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A spellbook whose cover shines like moonlit silver.",
+  "era": {
+   "grade": "B",
+   "note": "Classic spellbook art (0x0E3B) in a custom silver hue (0x835)."
+  },
+  "impl": "stock-class",
+  "implNote": "decor-only; hue 0x835",
+  "variantOf": "crimson-spellbook",
+  "id": "CR-ALC-043"
+ },
+ {
+  "slug": "emerald-spellbook",
+  "name": "Emerald Spellbook",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1269,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A spellbook bound in deep emerald, smelling faintly of crushed leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Classic spellbook art (0x0E3B) in a custom green hue (0x4F5)."
+  },
+  "impl": "stock-class",
+  "implNote": "decor-only; hue 0x4F5",
+  "variantOf": "crimson-spellbook",
+  "id": "CR-ALC-044"
+ },
+ {
+  "slug": "grimoire-stack",
+  "name": "Stack of Grimoires",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2,
+    "hue": 1175
+   },
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4,
+    "hue": 1269
+   },
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6,
+    "hue": 98
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "scholar",
+   "exotic"
+  ],
+  "blurb": "Four grimoires in red, black, green and blue piled together, a mage's lifetime of study in one heap.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of the classic spellbook tile (0x0E3B) in four colours (custom hues). Spellbooks existed from launch."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only, no spells",
+  "variantOf": null,
+  "id": "CR-ALC-045"
+ },
+ {
+  "slug": "spell-lectern",
+  "name": "Spell Lectern",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0B49",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A slant-topped desk with a crimson spellbook open for study.",
+  "era": {
+   "grade": "B",
+   "note": "Composite: classic carpentry writing table (0x0B49) with a classic spellbook (0x0E3B). Combined set is custom."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + spellbook; decor-only",
+  "variantOf": null,
+  "id": "CR-ALC-046"
+ },
+ {
+  "slug": "gold-tipped-wand",
+  "name": "Gold-Tipped Wand",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0DF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A slender wand of pale wood tipped in gold and a tiny jewel.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wand art (0x0DF2-0x0DF5); magic wands are 1997-era loot items (0x0DF2 used 8 times as scenery)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip all wand effects",
+  "variantOf": null,
+  "id": "CR-ALC-047"
+ },
+ {
+  "slug": "gnarled-wand",
+  "name": "Gnarled Wand",
+  "category": "ALC",
+  "subcategory": "Tomes and implements",
+  "parts": [
+   {
+    "id": "0x0DF5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "rustic",
+   "forest"
+  ],
+  "blurb": "A gnarled wand of dark wood with a golden bulb at the top.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wand art (0x0DF2-0x0DF5); magic wands are 1997-era loot items (0x0DF5 used 6 times as scenery)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip all wand effects",
+  "variantOf": "gold-tipped-wand",
+  "id": "CR-ALC-048"
+ }
+]

@@ -1,0 +1,1974 @@
+[
+ {
+  "slug": "wall-sword-rack",
+  "name": "Wall Sword Rack",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x1565",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1564",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1566",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1567",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "Three plain swords hang point-down from a stout rail, ready to be admired and never drawn.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: hanging-sword art stands in dozens of original Britannia armories (50 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two-tile wall piece (north: 0x1564 at -1,0 + 0x1565); decor-only, inert",
+  "variantOf": null,
+  "id": "CR-ARM-001"
+ },
+ {
+  "slug": "wall-axe-rack",
+  "name": "Wall Axe Rack",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x1569",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1568",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x156A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x156B",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "A pair of long-hafted axes slung in a wooden frame beside the armory door.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: hanging-axe art is common in original Britannia armories (about 40 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two-tile wall piece (north: 0x1568 at -1,0 + 0x1569); decor-only, inert",
+  "variantOf": null,
+  "id": "CR-ARM-002"
+ },
+ {
+  "slug": "hung-halberd",
+  "name": "Hung Halberd",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x1560",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1562",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic"
+  ],
+  "blurb": "A halberd mounted on the wall by a pair of iron brackets.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: classic decorative polearm wall piece (24 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; flip pair 0x1560/0x1562",
+  "variantOf": null,
+  "id": "CR-ARM-003"
+ },
+ {
+  "slug": "hung-longbow-arrows-low",
+  "name": "Hung Longbow and Arrows",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x155C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x155F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "forest",
+   "craft:bowcraft"
+  ],
+  "blurb": "A well-oiled longbow with a bundle of arrows tied below it.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: decorative bow wall pieces appear a dozen times in Britannia buildings.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; flip pair 0x155C/0x155F",
+  "variantOf": null,
+  "id": "CR-ARM-004"
+ },
+ {
+  "slug": "hung-longbow-arrows-high",
+  "name": "Hung Longbow and Fletching",
+  "category": "ARM",
+  "subcategory": "Wall weapons",
+  "parts": [
+   {
+    "id": "0x155D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x155E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "forest",
+   "craft:bowcraft"
+  ],
+  "blurb": "A longbow hung beside a sheaf of fletched shafts, favoured by woodsmen and wardens.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: second decorative bow wall piece (13 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; flip pair 0x155D/0x155E",
+  "variantOf": "hung-longbow-arrows-low",
+  "id": "CR-ARM-005"
+ },
+ {
+  "slug": "banded-round-shield",
+  "name": "Banded Round Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x156C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x156D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A battered round shield bound with gold straps, hung where visitors can see the dents.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (5 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; iron buckler with gold straps; flip pair 0x156C/0x156D",
+  "variantOf": null,
+  "id": "CR-ARM-006"
+ },
+ {
+  "slug": "silver-star-kite-shield",
+  "name": "Silver Star Kite Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x156E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x156F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A tall silver kite shield bearing a star, polished for show.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (4 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; silver kite, star boss; flip pair 0x156E/0x156F",
+  "variantOf": null,
+  "id": "CR-ARM-007"
+ },
+ {
+  "slug": "golden-star-kite-shield",
+  "name": "Golden Star Kite Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1570",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1571",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "The same star kite shield in burnished gold, a fine mark of rank over the hearth.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (14 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; gold kite, star boss; flip pair 0x1570/0x1571",
+  "variantOf": "silver-star-kite-shield",
+  "id": "CR-ARM-008"
+ },
+ {
+  "slug": "silver-scroll-shield",
+  "name": "Silver Scrollwork Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1572",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1573",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "An oval shield chased with flowing scrollwork in pale silver.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (1 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; silver oval, scrollwork; flip pair 0x1572/0x1573",
+  "variantOf": null,
+  "id": "CR-ARM-009"
+ },
+ {
+  "slug": "golden-scroll-shield",
+  "name": "Golden Scrollwork Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1574",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1575",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "An oval shield chased with flowing scrollwork in warm gold.",
+  "era": {
+   "grade": "C",
+   "note": "Same decorative-shield art block as its siblings, but never placed on the original map; no dated source, so audit before use.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; gold oval, scrollwork; flip pair 0x1574/0x1575",
+  "variantOf": "silver-scroll-shield",
+  "id": "CR-ARM-010"
+ },
+ {
+  "slug": "silver-serpent-shield",
+  "name": "Silver Serpent Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1576",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1577",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A silver kite shield with a coiled serpent worked into the face.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (6 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; silver kite, serpent; flip pair 0x1576/0x1577",
+  "variantOf": null,
+  "id": "CR-ARM-011"
+ },
+ {
+  "slug": "golden-serpent-shield",
+  "name": "Golden Serpent Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1578",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1579",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A golden kite shield wrapped about by a serpent, the sort a captain of the Hold might own.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (8 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; gold kite, serpent; flip pair 0x1578/0x1579",
+  "variantOf": "silver-serpent-shield",
+  "id": "CR-ARM-012"
+ },
+ {
+  "slug": "silver-studded-oval-shield",
+  "name": "Silver Studded Oval Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x157A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x157B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "An oval silver shield riveted with a star of studs.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (3 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; silver oval, rivets; flip pair 0x157A/0x157B",
+  "variantOf": null,
+  "id": "CR-ARM-013"
+ },
+ {
+  "slug": "golden-studded-oval-shield",
+  "name": "Golden Studded Oval Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x157C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x157D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "An oval golden shield riveted with a star of studs.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (3 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; gold oval, rivets; flip pair 0x157C/0x157D",
+  "variantOf": "silver-studded-oval-shield",
+  "id": "CR-ARM-014"
+ },
+ {
+  "slug": "silver-strapped-round-shield",
+  "name": "Silver Strapped Round Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x157E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x157F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A round silver shield crossed with riveted straps.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: original decorative-shield art block, hung in Britannia halls (3 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; silver round, straps; flip pair 0x157E/0x157F",
+  "variantOf": null,
+  "id": "CR-ARM-015"
+ },
+ {
+  "slug": "golden-strapped-round-shield",
+  "name": "Golden Strapped Round Shield",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1580",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1581",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A round golden shield crossed with riveted straps.",
+  "era": {
+   "grade": "C",
+   "note": "Same decorative-shield art block as its siblings, but never placed on the original map; no dated source, so audit before use.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; gold round, straps; flip pair 0x1580/0x1581",
+  "variantOf": "silver-strapped-round-shield",
+  "id": "CR-ARM-016"
+ },
+ {
+  "slug": "silver-ankh-shield-and-sword",
+  "name": "Silver Ankh Shield and Sword",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1582",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1635",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred",
+   "virtue:sacrifice"
+  ],
+  "blurb": "A silver shield blazoned with the ankh, a sword hung crosswise above it.",
+  "era": {
+   "grade": "B",
+   "note": "Shield-and-sword wall pieces belong to the original decorative-weapon art block (2 map statics) beside the plain shields.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; north 0x1582 / west 0x1635",
+  "variantOf": null,
+  "id": "CR-ARM-017"
+ },
+ {
+  "slug": "golden-ankh-shield-and-sword",
+  "name": "Golden Ankh Shield and Sword",
+  "category": "ARM",
+  "subcategory": "Wall shields",
+  "parts": [
+   {
+    "id": "0x1584",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1637",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred",
+   "noble",
+   "virtue:sacrifice"
+  ],
+  "blurb": "A golden shield blazoned with the ankh, a sword hung crosswise above it.",
+  "era": {
+   "grade": "B",
+   "note": "Gold twin of the silver shield-and-sword piece in the same original art block (2 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; north 0x1584 / west 0x1637",
+  "variantOf": "silver-ankh-shield-and-sword",
+  "id": "CR-ARM-018"
+ },
+ {
+  "slug": "knights-suit-of-armor",
+  "name": "Knight's Suit of Armor",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x151C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x151D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A full suit of blue-steel plate with a red plume, standing guard on its plinth with a halberd.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: standing suit-of-armor art decorates Britannia halls (11 map statics for twin tile 0x1508).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable variants 0x151C/0x151D (non-impassable twins 0x1508/0x1509)",
+  "variantOf": null,
+  "id": "CR-ARM-019"
+ },
+ {
+  "slug": "bronze-suit-of-armor",
+  "name": "Bronze Suit of Armor",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x151A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x151B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A bronze-plated suit of armor on a marble plinth, one gauntlet resting on a tall halberd.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing used as a reward, not a documented player item: second standing suit-of-armor design (8 map statics for twin tile 0x1512).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable variants 0x151A/0x151B (non-impassable twins 0x1512/0x1513)",
+  "variantOf": null,
+  "id": "CR-ARM-020"
+ },
+ {
+  "slug": "valorite-suit-of-armor",
+  "name": "Valorite Suit of Armor",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x151C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2219,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x151D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "martial",
+   "noble",
+   "mining",
+   "craft:blacksmithing"
+  ],
+  "blurb": "The knight's suit of armor in the deep blue sheen of valorite, a smith's proudest showpiece.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic suit as the Knight's Suit, tinted with the valorite ore colour introduced with the coloured ingots (Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 2219 on 0x151C/0x151D; decor-only",
+  "variantOf": "knights-suit-of-armor",
+  "id": "CR-ARM-021"
+ },
+ {
+  "slug": "golden-suit-of-armor",
+  "name": "Golden Suit of Armor",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x151A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x151B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "martial",
+   "noble",
+   "treasure",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A suit of armor of pure gold, polished until it throws the torchlight about the room.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bronze suit tinted with the gold ore colour from the coloured ingots (Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 2213 on 0x151A/0x151B; decor-only",
+  "variantOf": "bronze-suit-of-armor",
+  "id": "CR-ARM-022"
+ },
+ {
+  "slug": "chainmail-set-display",
+  "name": "Chainmail Armor Set",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x13BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13BE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13BB",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "humble"
+  ],
+  "blurb": "A chainmail hauberk, leggings and coif laid out in a neat set, as a smith sets out finished work.",
+  "era": {
+   "grade": "B",
+   "note": "Chainmail pieces are 1997-era armorer goods; this arranges their original ground art as a set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three inert statics (0x13BF tunic, 0x13BE leggings, 0x13BB coif); decor-only, not equippable",
+  "variantOf": null,
+  "id": "CR-ARM-023"
+ },
+ {
+  "slug": "ringmail-set-display",
+  "name": "Ringmail Armor Set",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x13E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13E5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13E9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "humble"
+  ],
+  "blurb": "A ringmail tunic, sleeves and leggings laid out together on the floor of the smithy.",
+  "era": {
+   "grade": "B",
+   "note": "Ringmail armor is original 1997 smith goods; this arranges its classic ground art as a set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three inert statics (0x13E7 tunic, 0x13E5 leggings, 0x13E9 sleeves); decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-024"
+ },
+ {
+  "slug": "studded-set-display",
+  "name": "Studded Leather Set",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x13D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13D8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13D7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A studded leather tunic, leggings and sleeves, set out for inspection.",
+  "era": {
+   "grade": "B",
+   "note": "Studded leather armor is original 1997 tailor goods; this arranges its classic ground art as a set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three inert statics (0x13D9 tunic, 0x13D8 leggings, 0x13D7 sleeves); decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-025"
+ },
+ {
+  "slug": "plate-set-display",
+  "name": "Plate Armor Set",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x1415",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1411",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1410",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1412",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "noble"
+  ],
+  "blurb": "Plate breast, leggings, arms and helm gleaming together, the finest work a smith can show.",
+  "era": {
+   "grade": "B",
+   "note": "Plate armor is original 1997 smith goods; this arranges its classic ground art as a set.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "four inert statics (0x1415 breastplate, 0x1411 legs, 0x1410 arms, 0x1412 helm); decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-026"
+ },
+ {
+  "slug": "ringmail-mannequin",
+  "name": "Mannequin in Ringmail",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13EC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:tailoring",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A dress form fitted with a ringmail tunic so the shoulders show off the rings.",
+  "era": {
+   "grade": "A",
+   "note": "Dress forms were added to carpentry on 19 Jan 1999; ringmail is a 1997 armor. Combines two original graphics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "dress form 0x0EC6 + inert tunic 0x13EC at dz 6; decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-ARM-027"
+ },
+ {
+  "slug": "chainmail-mannequin",
+  "name": "Mannequin in Chainmail",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:tailoring",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A dress form wearing a chainmail hauberk, shoulders squared as if ready to march.",
+  "era": {
+   "grade": "A",
+   "note": "Dress forms were added to carpentry on 19 Jan 1999; chainmail is a 1997 armor. Combines two original graphics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "dress form 0x0EC6 + inert chainmail tunic 0x13BF at dz 6; decor-only; strip function",
+  "variantOf": "ringmail-mannequin",
+  "id": "CR-ARM-028"
+ },
+ {
+  "slug": "studded-mannequin",
+  "name": "Mannequin in Studded Leather",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x13DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A dress form wearing a studded leather tunic, rivets bright against the red hide.",
+  "era": {
+   "grade": "A",
+   "note": "Dress forms were added to carpentry on 19 Jan 1999; studded leather is a 1997 armor. Combines two original graphics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "dress form 0x0EC6 + inert studded tunic 0x13DB at dz 6; decor-only; strip function",
+  "variantOf": "ringmail-mannequin",
+  "id": "CR-ARM-029"
+ },
+ {
+  "slug": "plate-mannequin",
+  "name": "Mannequin in Plate",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1415",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "craft:tailoring",
+   "craft:blacksmithing",
+   "noble"
+  ],
+  "blurb": "A dress form clad in a plate breastplate, the smith's finest work shown upright.",
+  "era": {
+   "grade": "A",
+   "note": "Dress forms were added to carpentry on 19 Jan 1999; plate is a 1997 armor. Combines two original graphics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "dress form 0x0EC6 + inert plate tunic 0x1415 at dz 6; decor-only; strip function",
+  "variantOf": "ringmail-mannequin",
+  "id": "CR-ARM-030"
+ },
+ {
+  "slug": "marble-helm-pedestal",
+  "name": "Helm on a Marble Pedestal",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1412",
+    "dx": 0,
+    "dy": 0,
+    "dz": 9
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A closed plate helm presented on a carved marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Marble pedestal 0x1223 is original world dressing (56 map statics); the helm is a 1997 armor graphic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "pedestal 0x1223 + inert plate helm at dz 9; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-031"
+ },
+ {
+  "slug": "sandstone-helm-pedestal",
+  "name": "Helm on a Sandstone Pedestal",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x1F2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x140C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "desert",
+   "humble"
+  ],
+  "blurb": "A norse helm resting on a sandstone pillar, favoured in the desert garrisons.",
+  "era": {
+   "grade": "B",
+   "note": "Sandstone pedestal 0x1F2A is original dressing (6 map statics); the norse helm is a 1997 armor graphic.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "pedestal 0x1F2A + inert norse helm at dz 8; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-032"
+ },
+ {
+  "slug": "armourers-display-table",
+  "name": "Armourer's Display Table",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1412",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0F61",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "A sturdy table laid with a plate helm and a longsword, the pride of a country armourer.",
+  "era": {
+   "grade": "B",
+   "note": "The table is original dressing (45 map statics); the helm and sword are 1997 smith goods.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert helm 0x1412 and sword 0x0F61 at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-033"
+ },
+ {
+  "slug": "headsmans-table",
+  "name": "Headsman's Table",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0B34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x140C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0F45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A small table bearing an executioner's axe and the helm of the one who swung it.",
+  "era": {
+   "grade": "B",
+   "note": "Executioner's axe is a 1997 weapon graphic; the table is original dressing (16 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B34 + inert norse helm 0x140C and executioner's axe 0x0F45 at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-034"
+ },
+ {
+  "slug": "bowyers-arrow-table",
+  "name": "Bowyer's Arrow Table",
+  "category": "ARM",
+  "subcategory": "Armor displays",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "craft:bowcraft",
+   "forest"
+  ],
+  "blurb": "A bundle of fletched arrows stacked on a bowyer's table.",
+  "era": {
+   "grade": "B",
+   "note": "Arrow bundle 0x0F41 and the table are both original 1997 graphics (table: 45 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert arrow bundle 0x0F41 at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-035"
+ },
+ {
+  "slug": "training-dummy",
+  "name": "Training Dummy",
+  "category": "ARM",
+  "subcategory": "Practice and sport",
+  "parts": [
+   {
+    "id": "0x1074",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1070",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic"
+  ],
+  "blurb": "A sack-stuffed dummy slung from a wooden frame, scarred by many hard practice swings.",
+  "era": {
+   "grade": "A",
+   "note": "Training dummies were craftable house add-ons in Housing Phase 3 (21 Dec 1998) and already worked in houses on 18 Dec 1997.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-8-18th-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock TrainingDummy add-on east 0x1074 / south 0x1070; decor-only; strip skill-training function",
+  "variantOf": null,
+  "id": "CR-ARM-036"
+ },
+ {
+  "slug": "pickpocket-dummy",
+  "name": "Pickpocket Dummy",
+  "category": "ARM",
+  "subcategory": "Practice and sport",
+  "parts": [
+   {
+    "id": "0x1EC0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1EC3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A capped dummy hung with jingling pouches, for thieves who prefer to practise before the market.",
+  "era": {
+   "grade": "A",
+   "note": "Pickpocket dummies were craftable house add-ons in Housing Phase 3 (21 Dec 1998).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock PickpocketDip add-on south 0x1EC0 / east 0x1EC3; decor-only; strip stealing practice function",
+  "variantOf": null,
+  "id": "CR-ARM-037"
+ },
+ {
+  "slug": "archery-butte",
+  "name": "Archery Butte",
+  "category": "ARM",
+  "subcategory": "Practice and sport",
+  "parts": [
+   {
+    "id": "0x100A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x100B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A hay-banked butte with a painted target, stuck full of arrows.",
+  "era": {
+   "grade": "B",
+   "note": "Archery buttes stand at original world archery ranges (4 map statics) and in the classic art block.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock ArcheryButte east 0x100A / south 0x100B; decor-only; strip target function",
+  "variantOf": null,
+  "id": "CR-ARM-038"
+ },
+ {
+  "slug": "iron-framed-target",
+  "name": "Iron-Framed Target",
+  "category": "ARM",
+  "subcategory": "Practice and sport",
+  "parts": [
+   {
+    "id": "0x1ED6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "rustic"
+  ],
+  "blurb": "A square practice target of nested red rings in a heavy iron frame.",
+  "era": {
+   "grade": "C",
+   "note": "Original-numbered item art (0x1ED3 block) but no map use and no dated source; confirm it existed by April 2000.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; 0x1ED3-0x1ED8 six frames, 0x1ED6 chosen",
+  "variantOf": null,
+  "id": "CR-ARM-039"
+ },
+ {
+  "slug": "decorative-cannon",
+  "name": "Decorative Cannon",
+  "category": "ARM",
+  "subcategory": "Siege and ordnance",
+  "parts": [
+   {
+    "id": "0x0E91",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E92",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E93",
+    "dx": 0,
+    "dy": -2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E96",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E95",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E94",
+      "dx": -2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0E8D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E8C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0E8B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0E8E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E8F",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0E90",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "nautical",
+   "pirate"
+  ],
+  "blurb": "An iron cannon on a wooden carriage, black powder long gone but its menace undimmed.",
+  "era": {
+   "grade": "B",
+   "note": "Cannon art decorates original Britannia ships and fortresses (2 and 13 map statics) and is part of the 1997 art block.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock CannonAddon geometry (three tiles); decor-only; strip firing function",
+  "variantOf": null,
+  "id": "CR-ARM-040"
+ },
+ {
+  "slug": "cannonball-stack",
+  "name": "Stack of Cannonballs",
+  "category": "ARM",
+  "subcategory": "Siege and ordnance",
+  "parts": [
+   {
+    "id": "0x0E74",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E74",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0E73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "nautical",
+   "pirate"
+  ],
+  "blurb": "A tidy pyramid of iron cannonballs.",
+  "era": {
+   "grade": "B",
+   "note": "Cannonball pile 0x0E74 stands 18 times in the original map (ships and forts).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "stacked 0x0E74 x2 + 0x0E73; decor-only",
+  "variantOf": null,
+  "id": "CR-ARM-041"
+ }
+]

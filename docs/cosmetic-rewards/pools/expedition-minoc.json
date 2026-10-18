@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-minoc",
+ "system": "expedition",
+ "notes": "Smithing and mining relics for the mining town: anvil, pick, ore, a master smithy, an ore cart and a vault of bullion. Core pieces are the working tools; the rares are the Master Smithy (2x4), the ore cart and the precious-metal showpieces.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-CRF-002",
+   "why": "The smith's anvil on its stump"
+  },
+  {
+   "role": "core",
+   "id": "CR-CRF-041",
+   "why": "Pick and shovel leaned against the mine wall"
+  },
+  {
+   "role": "core",
+   "id": "CR-CRF-037",
+   "why": "Heap of raw iron ore"
+  },
+  {
+   "role": "rare",
+   "id": "CR-CRF-005",
+   "why": "Master Smithy, a forge and anvil together, 2x4 centrepiece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-CRF-036",
+   "why": "Ore cart, the mountain town's emblem (tagged town:minoc)"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TRS-027",
+   "why": "Bullion vault, stacked ingots of every metal"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TRS-015",
+   "why": "Stack of valorite ingots, the miner's prize"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TWN-024",
+   "why": "Miners' Guild sign for the hall or mine door"
+  }
+ ]
+}

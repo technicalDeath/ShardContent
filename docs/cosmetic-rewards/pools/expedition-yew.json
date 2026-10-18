@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-yew",
+ "system": "expedition",
+ "notes": "Woodland and antiquarian: the Court of Truth's old oak and stone, forest relics, one great ancient tree. Core pieces are the humble woodland furnishings; the rares are the Great Yew (in Felucca its crown is bare, so it reads as a vast gnarled ancient), a judge's stone chair and ceremonial hangings.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-TBL-003",
+   "why": "The town's namesake table in pale yew wood"
+  },
+  {
+   "role": "core",
+   "id": "CR-LIB-012",
+   "why": "Moss-grown stack of old books, the antiquarian's shelf"
+  },
+  {
+   "role": "core",
+   "id": "CR-FLO-042",
+   "why": "A tall woodland fern for the glade"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FLO-001",
+   "why": "The Great Yew itself, 10x10; bare gnarled giant in Felucca"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FRN-009",
+   "why": "Carved stone seat fit for a Court of Truth judge"
+  },
+  {
+   "role": "rare",
+   "id": "CR-WLH-012",
+   "why": "Tapestry of six emblems, a scholar's heraldic hanging"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-015",
+   "why": "Midnight lace hanging, a ceremonial banner of the old forest court"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FLO-023",
+   "why": "Gnarled oak with sprawling bare limbs, a forest relic"
+  }
+ ]
+}

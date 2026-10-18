@@ -1,0 +1,1125 @@
+[
+ {
+  "slug": "stone-fire-pit",
+  "name": "Stone-Edged Fire Pit",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0x29FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "fire",
+   "wilderness",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A square pit lined with grey stones and a bright little fire dancing in the middle.",
+  "era": {
+   "grade": "N",
+   "note": "A stone-ringed fire pit is a generic camp and hall fixture. The animated pit art arrived with the Samurai Empire-era block but nothing in it is oriental or tied to a later system.",
+   "artEra": "SE"
+  },
+  "impl": "static",
+  "implNote": "animated flames; decor-only, gives no heat or light effect",
+  "variantOf": null,
+  "id": "CN-CMP-001"
+ },
+ {
+  "slug": "cold-fire-pit",
+  "name": "Cold Stone Fire Pit",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0x2A04",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "An empty stone-lined pit of old ash, waiting for the next traveller's kindling.",
+  "era": {
+   "grade": "N",
+   "note": "The unlit twin of the stone fire pit is a generic camp fixture. Art is from the same later block as the lit pit.",
+   "artEra": "SE"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-002"
+ },
+ {
+  "slug": "pit-and-cauldron",
+  "name": "Cauldron in the Fire Pit",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0x29FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "fire",
+   "craft:cooking",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A black iron cauldron set down in a stone-lined pit of glowing coals.",
+  "era": {
+   "grade": "N",
+   "note": "A pot in a fire pit is a generic camp-cooking scene; both pieces are ordinary props from later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two statics; decor-only, cooks nothing",
+  "variantOf": null,
+  "id": "CN-CMP-003"
+ },
+ {
+  "slug": "bonfire-unlit",
+  "name": "Unlit Bonfire",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0xA2F6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "rustic",
+   "craft:camping",
+   "season:harvest"
+  ],
+  "blurb": "A cone of dry timber stacked inside a ring of river stones, waiting for a spark.",
+  "era": {
+   "grade": "N",
+   "note": "A stacked bonfire in a stone ring is a generic camp and festival fixture. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-004"
+ },
+ {
+  "slug": "bonfire-and-cauldron",
+  "name": "Cauldron by the Bonfire",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0xA2F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "fire",
+   "craft:cooking",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A black iron cauldron squatting in front of a roaring bonfire, supper well on its way.",
+  "era": {
+   "grade": "N",
+   "note": "A pot at a bonfire is a generic camp-cooking scene; both pieces are ordinary props from later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two statics on one tile; decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-005"
+ },
+ {
+  "slug": "pig-roast-pit-cold",
+  "name": "Cold Roasting Pit",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0x9987",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9993",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "craft:cooking",
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A stone roasting pit with its iron grid and spit-rests, swept and ready for the next feast.",
+  "era": {
+   "grade": "N",
+   "note": "The empty roasting pit is the same generic cooking fixture without the pig. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-006"
+ },
+ {
+  "slug": "iron-stove-cold",
+  "name": "Cast-Iron Stove",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0xA2A8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA2A4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "craft:tinkering",
+   "rustic",
+   "humble",
+   "camp"
+  ],
+  "blurb": "A squat black stove with a stove-pipe chimney, the kind a trapper hauls up to his winter cabin.",
+  "era": {
+   "grade": "N",
+   "note": "A pot-bellied iron stove is generic cabin and camp furniture. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-007"
+ },
+ {
+  "slug": "iron-stove-lit",
+  "name": "Cast-Iron Stove, Fired",
+  "category": "CMP",
+  "subcategory": "Fires and cooking",
+  "parts": [
+   {
+    "id": "0xA2A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA2A5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "craft:tinkering",
+   "fire",
+   "rustic",
+   "camp"
+  ],
+  "blurb": "The same black stove with its door aglow and a warm shimmer above the pipe.",
+  "era": {
+   "grade": "N",
+   "note": "A lit pot-bellied stove is generic cabin and camp furniture. The glowing art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated glow; decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-008"
+ },
+ {
+  "slug": "picnic-blanket",
+  "name": "Plaid Picnic Blanket",
+  "category": "CMP",
+  "subcategory": "Bedding and groundcloth",
+  "parts": [
+   {
+    "id": "0xA0D0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA0CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "humble",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A blue plaid blanket spread on the grass, with a red thread running through the check.",
+  "era": {
+   "grade": "N",
+   "note": "A picnic blanket is generic outdoor bedding with no later theme. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only ground cover",
+  "variantOf": null,
+  "id": "CN-CMP-009"
+ },
+ {
+  "slug": "picnic-blanket-large",
+  "name": "Large Plaid Picnic Blanket",
+  "category": "CMP",
+  "subcategory": "Bedding and groundcloth",
+  "parts": [
+   {
+    "id": "0xA0D0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D2",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D3",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA0CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA0CB",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA0CC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0xA0CD",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "humble",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A big blue plaid blanket, room enough for a whole company to sit down to supper.",
+  "era": {
+   "grade": "N",
+   "note": "A larger picnic blanket made from four plaid tiles; generic outdoor bedding. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-CMP-010"
+ },
+ {
+  "slug": "canvas-groundsheet",
+  "name": "Canvas Groundsheet",
+  "category": "CMP",
+  "subcategory": "Bedding and groundcloth",
+  "parts": [
+   {
+    "id": "0x1F24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "humble",
+   "craft:camping",
+   "craft:tailoring"
+  ],
+  "blurb": "A square of plain sailcloth laid under the bedroll to keep out the damp.",
+  "era": {
+   "grade": "N",
+   "note": "A tarred canvas groundsheet is generic camp equipment with no later theme. Art is from the original item block.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only ground cover",
+  "variantOf": null,
+  "id": "CN-CMP-011"
+ },
+ {
+  "slug": "fur-bedding",
+  "name": "Trapper's Fur Bedding",
+  "category": "CMP",
+  "subcategory": "Bedding and groundcloth",
+  "parts": [
+   {
+    "id": "0x11F8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11FA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "animal",
+   "rustic",
+   "craft:camping"
+  ],
+  "blurb": "Two thick furs laid side by side, the warmest bed a night on the high ground can offer.",
+  "era": {
+   "grade": "N",
+   "note": "Pelts laid as bedding are generic trapper's camp gear. Fur-pile art is from the original item block; the main catalog already holds single pelts.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "two statics side by side",
+  "variantOf": null,
+  "id": "CN-CMP-012"
+ },
+ {
+  "slug": "raw-hide-heap",
+  "name": "Heap of Raw Hides",
+  "category": "CMP",
+  "subcategory": "Bedding and groundcloth",
+  "parts": [
+   {
+    "id": "0x1079",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A bundle of untanned hides heaped and stinking, ready for the skinner's yard.",
+  "era": {
+   "grade": "N",
+   "note": "A pile of raw hides is generic hunter's and tanner's camp gear. Art is from the original item block.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-013"
+ },
+ {
+  "slug": "choppers-stump",
+  "name": "Chopper's Stump with Axe",
+  "category": "CMP",
+  "subcategory": "Wood and stumps",
+  "parts": [
+   {
+    "id": "0x0E58",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:lumberjacking",
+   "rustic"
+  ],
+  "blurb": "A broad stump scarred by many blows, an axe still stuck fast in the top.",
+  "era": {
+   "grade": "N",
+   "note": "A woodcutter's chopping stump with an axe is generic camp furniture. Art is from the original item block; the main catalog holds a neighbouring stump tile.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-014"
+ },
+ {
+  "slug": "charred-stump",
+  "name": "Splintered Stump",
+  "category": "CMP",
+  "subcategory": "Wood and stumps",
+  "parts": [
+   {
+    "id": "0xA71D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "rustic",
+   "fire"
+  ],
+  "blurb": "A shattered, fire-blackened stump jutting from the ground like a broken tooth.",
+  "era": {
+   "grade": "N",
+   "note": "A burnt tree stump is generic wilderness dressing. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-015"
+ },
+ {
+  "slug": "mossy-fallen-log",
+  "name": "Mossy Fallen Log",
+  "category": "CMP",
+  "subcategory": "Wood and stumps",
+  "parts": [
+   {
+    "id": "0x0CF7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A rotting log furred with moss, long since fallen and found a use as a seat.",
+  "era": {
+   "grade": "N",
+   "note": "A fallen mossy log is generic woodland scenery; this variant is from the original item block and is widely used on the old map.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-016"
+ },
+ {
+  "slug": "birch-log-section",
+  "name": "Birch Log Section",
+  "category": "CMP",
+  "subcategory": "Wood and stumps",
+  "parts": [
+   {
+    "id": "0x0DAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0DAD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:lumberjacking",
+   "humble"
+  ],
+  "blurb": "A cut length of pale birch trunk, stood on end beside the firewood.",
+  "era": {
+   "grade": "N",
+   "note": "A cut birch log is generic woodcutter's stock. Art is from the original item block.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-017"
+ },
+ {
+  "slug": "travellers-rucksack",
+  "name": "Traveller's Rucksack",
+  "category": "CMP",
+  "subcategory": "Packs and kit",
+  "parts": [
+   {
+    "id": "0xAD77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAD78",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "rustic",
+   "humble",
+   "craft:camping"
+  ],
+  "blurb": "A stuffed canvas rucksack with a bedroll strapped to the top, dropped by the fire.",
+  "era": {
+   "grade": "N",
+   "note": "A rucksack with a bedroll is generic traveller's gear. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-CMP-018"
+ },
+ {
+  "slug": "leather-satchel",
+  "name": "Leather Satchel",
+  "category": "CMP",
+  "subcategory": "Packs and kit",
+  "parts": [
+   {
+    "id": "0xA273",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA272",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "rustic",
+   "craft:tailoring",
+   "craft:camping"
+  ],
+  "blurb": "A red leather satchel with buckled straps, scuffed from the road.",
+  "era": {
+   "grade": "N",
+   "note": "A leather satchel is generic traveller's gear. Art is from a later item block; it is not tied to any later skill or system here.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-CMP-019"
+ },
+ {
+  "slug": "lashed-wood-bundle",
+  "name": "Lashed Bundle of Faggots",
+  "category": "CMP",
+  "subcategory": "Packs and kit",
+  "parts": [
+   {
+    "id": "0xA275",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA274",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:lumberjacking",
+   "rustic"
+  ],
+  "blurb": "A bundle of cut sticks lashed up in rope, easy to sling on a shoulder.",
+  "era": {
+   "grade": "N",
+   "note": "A lashed bundle of kindling is generic camp stock. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-CMP-020"
+ },
+ {
+  "slug": "pack-animal-feed-bag",
+  "name": "Pack-Animal Feed Bag",
+  "category": "CMP",
+  "subcategory": "Packs and kit",
+  "parts": [
+   {
+    "id": "0xA4E3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4E4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "animal",
+   "wilderness",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A bulging leather nosebag of oats, hung on a post for the pack beasts.",
+  "era": {
+   "grade": "N",
+   "note": "A feed bag is generic stable and camp equipment with no later theme. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-CMP-021"
+ },
+ {
+  "slug": "stump-seat-campfire",
+  "name": "Stump-Seat Campfire",
+  "category": "CMP",
+  "subcategory": "Campsites",
+  "parts": [
+   {
+    "id": "0xA2F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E57",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E59",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D0",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0xAD77",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "fire",
+   "wilderness",
+   "rustic",
+   "craft:camping"
+  ],
+  "blurb": "A roaring bonfire ringed with stump seats, a plaid blanket and a rucksack left where its owner will return.",
+  "era": {
+   "grade": "N",
+   "note": "A bonfire with stump seats and kit is a generic campsite vignette built from independent props of the original and later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "five statics on a 3x3 footprint",
+  "variantOf": null,
+  "id": "CN-CMP-022"
+ },
+ {
+  "slug": "trail-kitchen",
+  "name": "Trail Kitchen",
+  "category": "CMP",
+  "subcategory": "Campsites",
+  "parts": [
+   {
+    "id": "0x29FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0xA324",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E58",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xAD77",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "fire",
+   "craft:cooking",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A fire pit with a cauldron on the coals, a pail of water, a chopping stump and a pack waiting by the pot.",
+  "era": {
+   "grade": "N",
+   "note": "A fire pit, pot, pail, stump and pack form a generic travelling cook's camp; each piece is an ordinary prop.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "five statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-CMP-023"
+ },
+ {
+  "slug": "feast-camp",
+  "name": "Feast Camp",
+  "category": "CMP",
+  "subcategory": "Campsites",
+  "parts": [
+   {
+    "id": "0x9989",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D1",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D2",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA0D3",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA2F6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "camp",
+   "fire",
+   "craft:cooking",
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A pig turning over coals beside a wide plaid blanket and a stacked bonfire, the whole company's feast laid out.",
+  "era": {
+   "grade": "N",
+   "note": "A pig roast, picnic blanket and bonfire form a generic outdoor-feast vignette made of independent props from later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "six statics on a 4x3 footprint",
+  "variantOf": null,
+  "id": "CN-CMP-024"
+ }
+]

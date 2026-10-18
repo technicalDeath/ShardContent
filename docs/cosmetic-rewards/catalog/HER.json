@@ -1,0 +1,2504 @@
+[
+ {
+  "slug": "silver-lace-hanging",
+  "name": "Silver Lace Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1587",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1588",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x161E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x161D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A wide silver hanging worked with a pattern like lace, three tiles broad on a dark rod.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (map n=2-14); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-001"
+ },
+ {
+  "slug": "gilded-wave-hanging",
+  "name": "Gilded Wave Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1589",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x158A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x158B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1622",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1621",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1620",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A wide hanging of gold and silver, banded in waves from rod to hem.",
+  "era": {
+   "grade": "C",
+   "note": "Banner tile used only in its west mirror on the original map (n=1 each); the north tiles are unused. World-dressing art used as a reward; banner deeds are 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-002"
+ },
+ {
+  "slug": "triple-gold-pennants",
+  "name": "Triple Gold Pennants",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1590",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1591",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x158F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1628",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1627",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1626",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "Three narrow gold pennants edged in silver, strung from one dark rod.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (north side n=1-4); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-003"
+ },
+ {
+  "slug": "gilded-pennant-trio",
+  "name": "Gilded Pennant Trio",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1592",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1593",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x158F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x162A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1629",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1626",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "Three silver pennants with a scrolling pattern, each topped in gold.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (map n=3-11); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-004"
+ },
+ {
+  "slug": "black-chequered-hanging",
+  "name": "Black Chequered Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1594",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1595",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1596",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A broad hanging of black and silver chequers, the sort that flies over a fortress hall.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art heavily used as Britannia wall dressing (map n=7-15); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-005"
+ },
+ {
+  "slug": "gold-scroll-banner",
+  "name": "Gold Scroll Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1610",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x160F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "garden"
+  ],
+  "blurb": "A banner of rich gold bearing a dark green scrolling vine, hung from a short pole.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (map n=7-9); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-006"
+ },
+ {
+  "slug": "silver-scroll-banner",
+  "name": "Silver Scroll Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1612",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1611",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A banner of plain silver cloth stitched with a spiralling vine.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (map n=8-10); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-007"
+ },
+ {
+  "slug": "sable-and-silver-banner",
+  "name": "Sable and Silver Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1614",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1613",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial"
+  ],
+  "blurb": "A banner quartered in black and silver, each quarter stitched with a small device.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art heavily used as Britannia wall dressing (map n=20-43); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-008"
+ },
+ {
+  "slug": "gilded-floral-banner",
+  "name": "Gilded Floral Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1616",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1615",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble",
+   "garden"
+  ],
+  "blurb": "A banner of gold above and silver below, with a pattern of flowers.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art heavily used as Britannia wall dressing (map n=23-26); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-009"
+ },
+ {
+  "slug": "ankh-banner",
+  "name": "Ankh Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1618",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1617",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "A silver banner with a golden ankh below a gilded top, hung in honour of the virtues.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (north side n=3, west mirror unused); the wall-banner deed itself is a 2001 veteran reward. World-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-010"
+ },
+ {
+  "slug": "silver-pennant-banner",
+  "name": "Silver Pennant Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15AB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1619",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "A long pennant of plain pale cloth, edged in a row of small scallops.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art used as Britannia wall dressing (map n=2-3); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-011"
+ },
+ {
+  "slug": "sable-and-gold-banner",
+  "name": "Sable and Gold Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15AC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15AD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x161B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A banner of gold and black chequers beneath a black head, flying the colours of a fortress.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art heavily used as Britannia wall dressing (map n=38-48); the wall-banner deed itself is a 2001 veteran reward. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile wall banner (offsets from stock WallBanner addon); decor-only",
+  "variantOf": null,
+  "id": "CR-HER-012"
+ },
+ {
+  "slug": "crimson-chequered-hanging",
+  "name": "Crimson Chequered Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1594",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   },
+   {
+    "id": "0x1595",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   },
+   {
+    "id": "0x1596",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1157
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1157
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 1157
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "The great chequered hanging in dark crimson and black, as flown in a lord's hall.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus hue 1157, a hue the original map itself places on these tiles (13 placements); the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the black chequered hanging, hue 1157 on every part",
+  "variantOf": "black-chequered-hanging",
+  "id": "CR-HER-013"
+ },
+ {
+  "slug": "russet-chequered-hanging",
+  "name": "Russet Chequered Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1594",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   },
+   {
+    "id": "0x1595",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   },
+   {
+    "id": "0x1596",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1645
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1645
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 1645
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "The great chequered hanging in russet red and black, like old rust on iron.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus hue 1645, a hue the original map itself places on these tiles (8 placements); the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the black chequered hanging, hue 1645 on every part",
+  "variantOf": "black-chequered-hanging",
+  "id": "CR-HER-014"
+ },
+ {
+  "slug": "midnight-lace-hanging",
+  "name": "Midnight Lace Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   },
+   {
+    "id": "0x1587",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   },
+   {
+    "id": "0x1588",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1156
+     },
+     {
+      "id": "0x161E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1156
+     },
+     {
+      "id": "0x161D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 1156
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The wide lace hanging dyed the deep blue of a moonless night.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus hue 1156, a hue the original map itself places on these tiles (west side); the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the silver lace hanging, hue 1156 on every part",
+  "variantOf": "silver-lace-hanging",
+  "id": "CR-HER-015"
+ },
+ {
+  "slug": "amber-lace-hanging",
+  "name": "Amber Lace Hanging",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x1586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 450
+   },
+   {
+    "id": "0x1587",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 450
+   },
+   {
+    "id": "0x1588",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 450
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 450
+     },
+     {
+      "id": "0x161E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 450
+     },
+     {
+      "id": "0x161D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 450
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The wide lace hanging dyed the brown-gold of old amber.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus hue 450, a hue the original map itself places on these tiles (5 placements); the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the silver lace hanging, hue 450 on every part",
+  "variantOf": "silver-lace-hanging",
+  "id": "CR-HER-016"
+ },
+ {
+  "slug": "russet-scroll-banner",
+  "name": "Russet Scroll Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   },
+   {
+    "id": "0x15A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1612",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1645
+     },
+     {
+      "id": "0x1611",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1645
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "The scrolled banner dyed a deep red-brown, like a good red wine.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus hue 1645, a hue the original map itself places on these tiles (2 placements); the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the silver scroll banner, hue 1645 on every part",
+  "variantOf": "silver-scroll-banner",
+  "id": "CR-HER-017"
+ },
+ {
+  "slug": "crimson-scroll-banner",
+  "name": "Crimson Scroll Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x15A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1612",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x1611",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "The scrolled banner dyed a bright crimson.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus a red hue (33); the map places red hues 32/33 on banner tiles. the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the silver scroll banner, hue 33 on every part",
+  "variantOf": "silver-scroll-banner",
+  "id": "CR-HER-018"
+ },
+ {
+  "slug": "sable-and-crimson-banner",
+  "name": "Sable and Crimson Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x15A4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x15A5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1614",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x1613",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial"
+  ],
+  "blurb": "The quartered banner dyed crimson and black, the colours of a war host.",
+  "era": {
+   "grade": "B",
+   "note": "Banner art plus a red hue (33); the map places red hues 32/33 on banner tiles. the wall-banner deed itself is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "same parts as the sable and silver banner, hue 33 on every part",
+  "variantOf": "sable-and-silver-banner",
+  "id": "CR-HER-019"
+ },
+ {
+  "slug": "red-and-silver-pennant",
+  "name": "Red-and-Silver Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15D5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial"
+  ],
+  "blurb": "A silver pennant dyed red along one edge, hung from a pole thrust out from the wall.",
+  "era": {
+   "grade": "B",
+   "note": "Pennant tile with red hues 32/33 placed on the original map (n=4); the banner deed is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 33 on all parts",
+  "variantOf": null,
+  "id": "CR-HER-020"
+ },
+ {
+  "slug": "maroon-pennant",
+  "name": "Maroon Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1636
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15E5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1636
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial"
+  ],
+  "blurb": "A long pale pennant dyed maroon at the hem, hung from a short pole.",
+  "era": {
+   "grade": "B",
+   "note": "Pennant tile with hue 1636 placed on the original map (n=5); the banner deed is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 1636 on all parts",
+  "variantOf": null,
+  "id": "CR-HER-021"
+ },
+ {
+  "slug": "sable-scroll-pennant",
+  "name": "Sable Scroll Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15BF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial"
+  ],
+  "blurb": "A black and grey pennant stitched with a thin scrolling line, brass-tipped.",
+  "era": {
+   "grade": "B",
+   "note": "Pennant tile placed on the original map (n=2); the banner deed is a 2001 veteran reward. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-022"
+ },
+ {
+  "slug": "gilded-ornate-pennant",
+  "name": "Gilded Ornate Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15F5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A long, narrow pennant of pale gold, patterned from top to hem in a knotwork design.",
+  "era": {
+   "grade": "B",
+   "note": "Pennant tile placed on the original map (n=3); the banner deed is a 2001 veteran reward. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-023"
+ },
+ {
+  "slug": "red-star-pennant",
+  "name": "Red Star Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15DB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A red pennant bearing a pale star, with a long gold tail.",
+  "era": {
+   "grade": "C",
+   "note": "Pennant tile used only in its west mirror on the original map (n=2); the north tile is unused. World-dressing art used as a reward; banner deeds are 2001.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-024"
+ },
+ {
+  "slug": "navy-hanging-banner",
+  "name": "Navy Hanging Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x159F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x159E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1156
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "nautical",
+   "humble"
+  ],
+  "blurb": "A long swathe of deep navy cloth hung from a brass-tipped pole, plain as a sailor's flag.",
+  "era": {
+   "grade": "B",
+   "note": "Hanging-cloth tiles with hue 1156 placed on the original map (11 placements); the banner deed is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 1156 on all parts",
+  "variantOf": null,
+  "id": "CR-HER-025"
+ },
+ {
+  "slug": "dark-crimson-hanging-banner",
+  "name": "Dark Crimson Hanging Banner",
+  "category": "HER",
+  "subcategory": "Wall banners",
+  "parts": [
+   {
+    "id": "0x159F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x159E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1157
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A long swathe of dark crimson cloth hung from a brass-tipped pole, as plain as a war cry.",
+  "era": {
+   "grade": "B",
+   "note": "Hanging-cloth tile with hue 1157 placed once on the original map; the banner deed is a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 1157 on all parts",
+  "variantOf": null,
+  "id": "CR-HER-026"
+ },
+ {
+  "slug": "tattered-war-banner",
+  "name": "Tattered War Banner",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x0426",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x042B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc"
+  ],
+  "blurb": "A ragged rust-red banner with black blotches, torn at the hem by many a campaign.",
+  "era": {
+   "grade": "B",
+   "note": "Tattered banner art placed on the original map (n=25/4), typical of orc and brigand camps. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-027"
+ },
+ {
+  "slug": "tattered-banner-of-the-horde",
+  "name": "Tattered Banner of the Horde",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x0427",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x042A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc"
+  ],
+  "blurb": "A long rust-red banner, scorched and ragged, left hanging over a ruined camp.",
+  "era": {
+   "grade": "B",
+   "note": "Tattered banner art placed on the original map (n=25/4), typical of orc and brigand camps. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-028"
+ },
+ {
+  "slug": "tattered-raiders-banner",
+  "name": "Tattered Raiders' Banner",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x042C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x042E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc"
+  ],
+  "blurb": "A rust-red banner slashed through with black, a mark of raiders from the hills.",
+  "era": {
+   "grade": "B",
+   "note": "Tattered banner art placed on the original map (n=3/1). World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-029"
+ },
+ {
+  "slug": "gruesome-hide-standard",
+  "name": "Gruesome Hide Standard",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x0428",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x041F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc",
+   "dungeon:orc-cave"
+  ],
+  "blurb": "A pole lashed with hide and crowned with a skull, the standard of an orc war band.",
+  "era": {
+   "grade": "B",
+   "note": "Gruesome standard art placed on the original map (n=10/20), typical of orc forts. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-030"
+ },
+ {
+  "slug": "gruesome-shield-standard",
+  "name": "Gruesome Shield Standard",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x0429",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0420",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc",
+   "dungeon:orc-cave"
+  ],
+  "blurb": "A skull above a battered round shield, lashed between two spears, the standard of an orc war band.",
+  "era": {
+   "grade": "B",
+   "note": "Gruesome standard art placed on the original map (n=27/22), typical of orc forts. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-HER-031"
+ },
+ {
+  "slug": "war-band-standards",
+  "name": "Pair of War Band Standards",
+  "category": "HER",
+  "subcategory": "War banners and standards",
+  "parts": [
+   {
+    "id": "0x0428",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0429",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x041F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0420",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "martial",
+   "monster:orc",
+   "dungeon:orc-cave"
+  ],
+  "blurb": "Two skull-crowned standards set side by side: a hide-wrapped pole and a shield on spears.",
+  "era": {
+   "grade": "B",
+   "note": "Gruesome standard art placed on the original map (n=10-27), typical of orc forts. Composed pair of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two floor standards on adjacent tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-HER-032"
+ },
+ {
+  "slug": "serpent-crest",
+  "name": "Serpent Crest",
+  "category": "HER",
+  "subcategory": "Crests and shields",
+  "parts": [
+   {
+    "id": "0x1514",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall-west",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A round crest of red and silver bearing a coiled serpent, hung as a house's mark.",
+  "era": {
+   "grade": "B",
+   "note": "Serpent Crest tile placed once on the original map (n=1). World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; west-wall piece only",
+  "variantOf": null,
+  "id": "CR-HER-033"
+ },
+ {
+  "slug": "hall-of-banners",
+  "name": "Hall of Banners",
+  "category": "HER",
+  "subcategory": "Banner arrangements",
+  "parts": [
+   {
+    "id": "0x15A0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A2",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A3",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A4",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A5",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1610",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x160F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1612",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1611",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x1614",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x1613",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "6x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "martial"
+  ],
+  "blurb": "Three great banners, gold, silver and sable, side by side along a long hall wall.",
+  "era": {
+   "grade": "B",
+   "note": "Three banner designs heavily used on the original map (n=7-23). Composed arrangement; banner deeds are a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three two-tile wall banners; decor-only",
+  "variantOf": null,
+  "id": "CR-HER-034"
+ },
+ {
+  "slug": "banner-between-shields",
+  "name": "Banner Between Shields",
+  "category": "HER",
+  "subcategory": "Banner arrangements",
+  "parts": [
+   {
+    "id": "0x1570",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A1",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1570",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1571",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1610",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x160F",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1571",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "martial"
+  ],
+  "blurb": "A gold scroll banner flanked by two gilded starburst shields: a lord's colours over the hearth.",
+  "era": {
+   "grade": "B",
+   "note": "Banner and shield tiles placed on the original map (n=7-14). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile banner plus two shields; decor-only",
+  "variantOf": null,
+  "id": "CR-HER-035"
+ },
+ {
+  "slug": "lit-banner",
+  "name": "Banner Between Sconces",
+  "category": "HER",
+  "subcategory": "Banner arrangements",
+  "parts": [
+   {
+    "id": "0x09FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x15A4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15A5",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 3,
+    "dy": 0,
+    "dz": 10
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 0,
+      "dz": 10
+     },
+     {
+      "id": "0x1614",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1613",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 3,
+      "dz": 10
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "martial"
+  ],
+  "blurb": "A sable-and-silver banner with a candle sconce on either side, hung in a guard hall.",
+  "era": {
+   "grade": "B",
+   "note": "Banner tiles heavily used on the original map (n=20-23) with classic sconces. Composed arrangement; light is cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile banner plus two lit sconces (dz 10); lights are pure decoration",
+  "variantOf": null,
+  "id": "CR-HER-036"
+ },
+ {
+  "slug": "great-banner-wall",
+  "name": "Great Banner Wall",
+  "category": "HER",
+  "subcategory": "Banner arrangements",
+  "parts": [
+   {
+    "id": "0x1586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1587",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1588",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1594",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1595",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1596",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1592",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1593",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x158F",
+    "dx": 8,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x161F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x161E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x161D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x162A",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x1629",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     },
+     {
+      "id": "0x1626",
+      "dx": 0,
+      "dy": 8,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "9x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "martial"
+  ],
+  "blurb": "Three broad banners in silver lace, black chequer and gilded pennants, fit for a keep's great hall.",
+  "era": {
+   "grade": "B",
+   "note": "Three banner sets used on the original map (n=2-15). Composed arrangement; banner deeds are a 2001 veteran reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three three-tile wall banners; decor-only",
+  "variantOf": null,
+  "id": "CR-HER-037"
+ },
+ {
+  "slug": "hall-of-colours",
+  "name": "Hall of Colours",
+  "category": "HER",
+  "subcategory": "Banner arrangements",
+  "parts": [
+   {
+    "id": "0x1594",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   },
+   {
+    "id": "0x1595",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   },
+   {
+    "id": "0x1596",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1157
+   },
+   {
+    "id": "0x1586",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   },
+   {
+    "id": "0x1587",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   },
+   {
+    "id": "0x1588",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1156
+   },
+   {
+    "id": "0x1594",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   },
+   {
+    "id": "0x1595",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   },
+   {
+    "id": "0x1596",
+    "dx": 8,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1645
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1157
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1157
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 1157
+     },
+     {
+      "id": "0x161F",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0,
+      "hue": 1156
+     },
+     {
+      "id": "0x161E",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0,
+      "hue": 1156
+     },
+     {
+      "id": "0x161D",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0,
+      "hue": 1156
+     },
+     {
+      "id": "0x162D",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0,
+      "hue": 1645
+     },
+     {
+      "id": "0x162C",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0,
+      "hue": 1645
+     },
+     {
+      "id": "0x162B",
+      "dx": 0,
+      "dy": 8,
+      "dz": 0,
+      "hue": 1645
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "9x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "martial"
+  ],
+  "blurb": "Three broad hangings in crimson, midnight blue and russet, each a house's colours in cloth.",
+  "era": {
+   "grade": "B",
+   "note": "Three banner sets in hues the original map uses on these tiles (1157, 1156, 1645). Composed arrangement; banner deeds are 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three three-tile wall banners with per-part hues; decor-only",
+  "variantOf": null,
+  "id": "CR-HER-038"
+ }
+]

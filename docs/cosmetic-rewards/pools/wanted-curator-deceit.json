@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-deceit",
+ "system": "wanted-curator",
+ "notes": "Deceit is the undead dungeon of bones, chains and gibbets. The easy pieces are bones and a small web, the hard pieces are hung prisoners, and the Pillory Scaffold is the showpiece. Deceit and Wrong share a torture theme, so the two pools split it: racks and blocks go to Wrong.",
+ "entries": [
+  {
+   "id": "CR-DNG-011",
+   "tier": "easy",
+   "why": "Small orb web beaded with dew."
+  },
+  {
+   "id": "CR-DNG-018",
+   "tier": "easy",
+   "why": "Skeleton folded where it dropped."
+  },
+  {
+   "id": "CR-DNG-024",
+   "tier": "medium",
+   "why": "Empty chain and the bones beneath it."
+  },
+  {
+   "id": "CR-GRV-005",
+   "tier": "medium",
+   "why": "Open coffin, lid gone, lining empty."
+  },
+  {
+   "id": "CR-DNG-023",
+   "tier": "hard",
+   "why": "Hanging skeleton, one prisoner still in his boots."
+  },
+  {
+   "id": "CR-DNG-026",
+   "tier": "hard",
+   "why": "Gibbet Row, two prisoners and an empty cage."
+  },
+  {
+   "id": "CR-DNG-030",
+   "tier": "boss",
+   "why": "Pillory Scaffold, whipping post and onlookers' bench."
+  }
+ ]
+}

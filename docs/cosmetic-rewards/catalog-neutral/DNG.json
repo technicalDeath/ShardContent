@@ -1,0 +1,1774 @@
+[
+ {
+  "slug": "great-dragon-egg",
+  "name": "Great Dragon Egg",
+  "category": "DNG",
+  "subcategory": "Eggs and nests",
+  "parts": [
+   {
+    "id": "0xB2D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "dungeon",
+   "dragon",
+   "monster:dragon",
+   "exotic"
+  ],
+  "blurb": "An egg as tall as a child, its gold-green scales laid in ranks like a knight's mail. It will not hatch for a thousand years.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; dragons are documented from Oct 1997 (Despise), so an egg of the species reads naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-001"
+ },
+ {
+  "slug": "nest-with-egg-clutch",
+  "name": "Dragon's Nest of Eggs",
+  "category": "DNG",
+  "subcategory": "Eggs and nests",
+  "parts": [
+   {
+    "id": "0xB2D5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB2D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "dungeon",
+   "dragon",
+   "monster:dragon",
+   "treasure",
+   "exotic"
+  ],
+  "blurb": "A full brood laid in the nest, white and sooty alike. The heart of a dragon's hoard is always its young.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a composite of two dragon-lair graphics; dragons are documented from Oct 1997 (Despise).",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "two statics on one tile (clutch at dz 2 in the nest); decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-002"
+ },
+ {
+  "slug": "great-cobweb-sheet",
+  "name": "Great Cobweb Sheet",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0xA992",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "macabre"
+  ],
+  "blurb": "A web as tall as a doorway, its silk spun so fine it shows only when the torchlight slants across it.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; spider webs are classic dungeon dressing (the main catalog already holds the older web art).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile, wall-hung; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-003"
+ },
+ {
+  "slug": "tangled-web-corner",
+  "name": "Tangled Web Corner",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0xA995",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "humble"
+  ],
+  "blurb": "A drift of cobweb heaped in a corner where nobody has swept for a generation.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; spider webs are classic dungeon dressing.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-004"
+ },
+ {
+  "slug": "giant-beast-skull",
+  "name": "Giant Beast Skull",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0xABC7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:dragon",
+   "monster:ogre"
+  ],
+  "blurb": "A skull the size of a washtub, empty sockets staring and brow ridge worn smooth. Something enormous died here.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; the bones of a great beast; dragons and ogres are documented by 1997-98.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABC8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-005"
+ },
+ {
+  "slug": "giant-femur",
+  "name": "Giant Femur",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0xABC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:ogre",
+   "monster:dragon"
+  ],
+  "blurb": "A thighbone as long as a man is tall, knobbed at the joints and gone the colour of old tea.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; the bones of a great beast; ogres and dragons are documented by 1997-98.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABCB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-006"
+ },
+ {
+  "slug": "giant-curved-ribs",
+  "name": "Giant Curved Ribs",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0xABDC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:dragon"
+  ],
+  "blurb": "A bowed ribcage reaching up out of the dust like the frame of an upturned boat.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; the bones of a great beast; dragons are documented from Oct 1997.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xABE1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-007"
+ },
+ {
+  "slug": "heaped-bone-pile",
+  "name": "Heaped Bone Pile",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1B0D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A knee-high heap of old bones and ribs, left where the last meal was finished.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world dungeon bone art (1997 id block), not used by the main catalog; plain remains that fit any dungeon.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-008"
+ },
+ {
+  "slug": "great-bone-heap",
+  "name": "Great Bone Heap",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1B10",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A broad litter of splintered bone, skulls and vertebrae, the leavings of a very long siege.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world dungeon bone art (1997 id block), not used by the main catalog; plain remains that fit any dungeon.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-009"
+ },
+ {
+  "slug": "horned-beast-skull",
+  "name": "Horned Beast Skull",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x224E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "demonic",
+   "monster:daemon"
+  ],
+  "blurb": "A bleached skull with a single swept-back horn and a jaw full of cruel teeth.",
+  "era": {
+   "grade": "N",
+   "note": "Plain horned skull (Malas-heavy art of the AoS era, no lore): daemons are documented by 1997, so a horned skull reads naturally.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x224F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-010"
+ },
+ {
+  "slug": "scattered-remains",
+  "name": "Scattered Remains",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x0ECF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "Long bones and a cracked skull sprawled across the floor, some traveller's last camp.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world dungeon remains (1997 id block), not used by the main catalog; plain skeleton debris.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-011"
+ },
+ {
+  "slug": "crouching-skeleton",
+  "name": "Crouching Skeleton",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x9F1E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton hunched on its heels with knees drawn up, as if waiting patiently for rescue.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain skeleton pose; skeletons are documented by Jan 1998.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9F1F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-012"
+ },
+ {
+  "slug": "long-dead-skeleton",
+  "name": "Long-Dead Skeleton",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1D91",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D90",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "A full skeleton laid out on its back, hands folded, past worrying about the draughts.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world dungeon remains (1997 id block); two-tile pose used on Britannia's dungeon floors and not held by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile arrangement; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1D8E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1D8F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-013"
+ },
+ {
+  "slug": "gibbet-with-skeleton",
+  "name": "Gibbet with Hanged Skeleton",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x9D38",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "martial",
+   "monster:skeleton"
+  ],
+  "blurb": "A stout gibbet with a skeleton still hanging from the beam by a frayed rope. A warning to all who pass.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain execution gibbet with remains; gallows are timeless.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D3A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-014"
+ },
+ {
+  "slug": "empty-gibbet",
+  "name": "Empty Gibbet",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x9D39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A gibbet post with its arm and hook bare. Either the prisoner escaped, or the next one is on his way.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain gibbet post; gallows are timeless.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D3B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-015"
+ },
+ {
+  "slug": "wall-shackles",
+  "name": "Hanging Wall Shackles",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1262",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A pair of iron manacles on a short chain, dangling from a ring set deep in the wall.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world dungeon static art (1997 id block), used on Britannia dungeon walls; not used by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; wall-hung; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1263",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-016"
+ },
+ {
+  "slug": "iron-portcullis",
+  "name": "Iron Portcullis",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x06F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A lattice of black iron bars that will keep out anything with the sense to respect a gate.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world static art (1997 id block): a castle portcullis, the nearest thing the old art has to an iron-bar cell wall.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single wall-style tile with a rotated twin; impassable decor",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x06F6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-017"
+ },
+ {
+  "slug": "brazen-bull",
+  "name": "Brazen Bull",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xA4FB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA4FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA4FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA4FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "martial",
+   "elegant"
+  ],
+  "blurb": "A great bronze bull on a stone plinth, hollow, with a door in its flank. Old tyrants roasted their enemies inside it.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a medieval torture engine from real history, with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "four layered statics on one tile (the art's four 'p' pieces); decor-only, no fire frames",
+  "variantOf": null,
+  "id": "CN-DNG-018"
+ },
+ {
+  "slug": "judas-cradle",
+  "name": "Judas Cradle",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xA4EC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A wooden stand topped with a sharpened pyramid. It is not a seat, whatever the inquisitors claimed.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a medieval torture device from real history, with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-019"
+ },
+ {
+  "slug": "meat-hooks",
+  "name": "Iron Meat Hooks",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xA4E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A stout beam hung with heavy iron hooks. It served a butcher well, or a jailer better.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain butcher's or jailer's fitting.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4E9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-020"
+ },
+ {
+  "slug": "wooden-stocks",
+  "name": "Wooden Stocks",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xA4ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "martial",
+   "humble",
+   "dungeon"
+  ],
+  "blurb": "A hinged timber frame with holes for wrists and neck. Fine for a gaol, dreadful for a Tuesday.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; village stocks are a medieval commonplace.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only (does not hold anyone)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4EE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-021"
+ },
+ {
+  "slug": "spiked-chair",
+  "name": "Spiked Interrogation Chair",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xA4EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "martial"
+  ],
+  "blurb": "A plain oak chair with iron nails driven up through the seat and back. Questions were never very long.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a medieval torture chair from real history, with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4EB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-022"
+ },
+ {
+  "slug": "splintered-torture-frame",
+  "name": "Splintered Torture Frame",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x4AA0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A wrecked wooden frame of hooks and crossbeams. What it was built for is best left unasked.",
+  "era": {
+   "grade": "N",
+   "note": "Torture-chamber dressing (id block of the Stygian Abyss era), plain wooden scaffolding with no lore.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4AA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-023"
+ },
+ {
+  "slug": "torture-frame-with-skeleton",
+  "name": "Torture Frame with Skeleton",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x4AA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "undead",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton still bound in its frame, hands stretched overhead. The jailer forgot to send for the key.",
+  "era": {
+   "grade": "N",
+   "note": "Torture-chamber dressing (id block of the Stygian Abyss era), plain wooden scaffolding with a skeleton; no lore.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4AA3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-024"
+ },
+ {
+  "slug": "rolling-boulder",
+  "name": "Rolling Boulder",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x11B7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A boulder as round as a cart-wheel, set at the top of a tomb passage to teach grave-robbers manners.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world static art (1997 id block), the dungeon boulder-trap stone; here an inert round rock, not used by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only, no trap function",
+  "variantOf": null,
+  "id": "CN-DNG-025"
+ },
+ {
+  "slug": "open-bear-trap",
+  "name": "Open Bear Trap",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0xB2C3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "wilderness",
+   "humble",
+   "martial",
+   "camp"
+  ],
+  "blurb": "A trapper's iron jaws, sprung wide and rusting in the leaves.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain trapper's tool.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only (does not trigger)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB2C4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-026"
+ },
+ {
+  "slug": "orc-watchtower",
+  "name": "Orc Watchtower",
+  "category": "DNG",
+  "subcategory": "Orc camps and monster lairs",
+  "parts": [
+   {
+    "id": "0xA931",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA932",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster:orc",
+   "martial",
+   "dungeon",
+   "wilderness",
+   "camp"
+  ],
+  "blurb": "A crooked tower of lashed timber, red hides and bristling spikes, from which a clan keeps its eyes on the road.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; orcs are documented from Oct 1997 and the orc fort by Dec 1997, so an orc watchtower reads naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "base and roof graphics stacked on one tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-027"
+ },
+ {
+  "slug": "miniature-orc-tower",
+  "name": "Miniature Orc Tower",
+  "category": "DNG",
+  "subcategory": "Orc camps and monster lairs",
+  "parts": [
+   {
+    "id": "0xAC6D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster:orc",
+   "martial",
+   "whimsical",
+   "camp"
+  ],
+  "blurb": "A hand-high model of an orc watchtower, hides and spikes included, made by some patient and bored siege engineer.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a scale model of an orc camp piece; orcs are documented from Oct 1997.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-028"
+ },
+ {
+  "slug": "stake-thicket",
+  "name": "Sharpened Stake Thicket",
+  "category": "DNG",
+  "subcategory": "Orc camps and monster lairs",
+  "parts": [
+   {
+    "id": "0xA961",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0xA962",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0xA963",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA964",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA965",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA966",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA967",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA968",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "monster:orc",
+   "martial",
+   "wilderness",
+   "camp",
+   "dungeon"
+  ],
+  "blurb": "A ring of ironwood stakes cut to wicked points and driven in tight, the sort of garden an orc clan plants for company.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; crude sharpened stakes around a camp; orcs are documented from Oct 1997.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "eight-tile ring of stake pieces around an empty centre tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-029"
+ },
+ {
+  "slug": "stockade-pen",
+  "name": "Timber Stockade Pen",
+  "category": "DNG",
+  "subcategory": "Orc camps and monster lairs",
+  "parts": [
+   {
+    "id": "0xA975",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0xA976",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0xA977",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA978",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA979",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA97A",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA97B",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA97C",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "wilderness",
+   "camp",
+   "rustic",
+   "monster:orc"
+  ],
+  "blurb": "A square pen of upright sharpened logs with a gate-gap and an open yard in the middle, for prisoners or pigs.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain timber palisade pen; palisades are a medieval commonplace.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "eight-tile ring of palisade pieces around an empty centre tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-030"
+ },
+ {
+  "slug": "spiked-barricade",
+  "name": "Spiked Barricade",
+  "category": "DNG",
+  "subcategory": "Orc camps and monster lairs",
+  "parts": [
+   {
+    "id": "0xA4BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "camp",
+   "wilderness",
+   "rustic",
+   "dungeon"
+  ],
+  "blurb": "Crossed timbers shod with iron spikes, dragged across a path to slow cavalry and hecklers alike.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; a plain spiked field barricade (a cheval-de-frise).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4BC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-031"
+ },
+ {
+  "slug": "ruined-wardrobe",
+  "name": "Ruined Wardrobe",
+  "category": "DNG",
+  "subcategory": "Ruined furnishings",
+  "parts": [
+   {
+    "id": "0x0C24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A moss-stained wardrobe with its doors askew, a fine thing once, in a house that is no longer there.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world static art (1997 id block), used in Britannia's ruins and not held by the main catalog; a plain broken wardrobe.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C25",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-032"
+ },
+ {
+  "slug": "splintered-barrel",
+  "name": "Splintered Barrel",
+  "category": "DNG",
+  "subcategory": "Ruined furnishings",
+  "parts": [
+   {
+    "id": "0x1DB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "dungeon",
+   "camp"
+  ],
+  "blurb": "The staves and hoops of a barrel stove in by a boot, with a dribble of something dark beneath.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world static art (1997 id block): broken barrel staves used in Britannia's dungeons and not held by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-033"
+ },
+ {
+  "slug": "giant-pink-mushroom",
+  "name": "Giant Pink Mushroom",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0x222F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "exotic",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A toadstool the height of a man, with a flushed, speckled cap and a trunk like a dining pillar.",
+  "era": {
+   "grade": "N",
+   "note": "Plain giant mushroom art (AoS-era fungal cave), no lore tie: fantasy fungi are ordinary UO dressing.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-034"
+ },
+ {
+  "slug": "giant-grey-toadstool",
+  "name": "Giant Grey Toadstool",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0xB28A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "exotic",
+   "forest",
+   "macabre"
+  ],
+  "blurb": "A smoke-coloured toadstool with a cap like a shield-boss. Wise folk do not taste it.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; fantasy fungi are ordinary UO dressing.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-035"
+ },
+ {
+  "slug": "twin-toadstools",
+  "name": "Twin Toadstools",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0xB470",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "forest",
+   "humble"
+  ],
+  "blurb": "Two spotted grey toadstools, leaning together like gossips.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; fantasy fungi are ordinary UO dressing.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-036"
+ },
+ {
+  "slug": "great-icicle",
+  "name": "Great Icicle",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0x4572",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A sword-length icicle hung from the vault of a cavern that has not felt the sun in an age.",
+  "era": {
+   "grade": "N",
+   "note": "Icicle decor from the High Seas-era id block, plain ice with no lore; the Ice dungeon is documented by Mar 1999.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4575",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-DNG-037"
+ },
+ {
+  "slug": "emerald-crystal-spire",
+  "name": "Emerald Crystal Spire",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0x2FDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "arcane",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A cluster of green crystal lances, thrusting from the cave floor and throwing back every glimmer.",
+  "era": {
+   "grade": "N",
+   "note": "Plain crystal cluster art (Mondain's Legacy id block), no elven or ML lore: natural crystals fit any cave.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-038"
+ },
+ {
+  "slug": "amethyst-crystal-spire",
+  "name": "Amethyst Crystal Spire",
+  "category": "DNG",
+  "subcategory": "Caves and fungal gardens",
+  "parts": [
+   {
+    "id": "0x2FE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "arcane",
+   "exotic",
+   "wilderness"
+  ],
+  "blurb": "A thicket of violet crystal columns, the tallest as high as a mounted man.",
+  "era": {
+   "grade": "N",
+   "note": "Plain crystal cluster art (Mondain's Legacy id block), no elven or ML lore: natural crystals fit any cave.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-039"
+ },
+ {
+  "slug": "dried-blood-splash",
+  "name": "Dried Blood Splash",
+  "category": "DNG",
+  "subcategory": "Blood and rites",
+  "parts": [
+   {
+    "id": "0x9D11",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A broad dark splash of long-dried blood, a reminder that the last tenant did not leave by choice.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art (2020s id block), but an ordinary object with no tie to any expansion, race or skill; plain floor stain; no creature, race or expansion tie.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "flat stain tile; decor-only",
+  "variantOf": null,
+  "id": "CN-DNG-040"
+ }
+]

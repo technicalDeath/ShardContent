@@ -1,0 +1,217 @@
+{
+ "pool": "artisan-signatures",
+ "system": "artisan",
+ "notes": "Cosmetic pieces each crafting profession can sign. 'basis' says how solid the link is: 'crafted-variant' or 'signature-tag' means the catalog already marks the piece as a craftable variant or a signature item; 'proposed' means a static or stock-class piece with a clear craft fit that would need a new crafted variant. Carpentry (also instruments), tinkering (candelabras, lanterns, globes, goblets, clock) and blacksmithing (two suits of armor, a plate mannequin and bronze castings) have strong catalog support; tailoring, alchemy, cooking and inscription lean on 'proposed' pieces, and bowcraft has only two commons (the catalog has no rare fletching art). Owner decisions: whether a signed piece is a crafted copy of the base item or a reward for crafting milestones, and whether bowcraft needs new art. No NPC resale value, no stats.",
+ "entries": [
+  {
+   "craft": "carpentry",
+   "id": "CR-CRF-021",
+   "basis": "signature-tag",
+   "why": "Carpenter's workbench, the one piece the catalog tags as a signature"
+  },
+  {
+   "craft": "carpentry",
+   "id": "CR-FRN-002",
+   "basis": "crafted-variant",
+   "why": "Throne of crimson velvet, the carpenter's showpiece"
+  },
+  {
+   "craft": "carpentry",
+   "id": "CR-FRN-031",
+   "basis": "crafted-variant",
+   "why": "Master's four-poster bed, joinery that shows"
+  },
+  {
+   "craft": "carpentry",
+   "id": "CR-FRN-006",
+   "basis": "crafted-variant",
+   "why": "Fancy ladder-back chair, a fine chair-maker's mark"
+  },
+  {
+   "craft": "carpentry",
+   "id": "CR-MUS-006",
+   "basis": "crafted-variant",
+   "why": "Gilded lute; instruments are carpenter's work"
+  },
+  {
+   "craft": "blacksmithing",
+   "id": "CR-ARM-021",
+   "basis": "crafted-variant",
+   "why": "Valorite suit of armor, a smith's proof of fine ore"
+  },
+  {
+   "craft": "blacksmithing",
+   "id": "CR-ARM-022",
+   "basis": "crafted-variant",
+   "why": "Golden suit of armor, the master smith's showpiece"
+  },
+  {
+   "craft": "blacksmithing",
+   "id": "CR-ARM-030",
+   "basis": "proposed",
+   "why": "Mannequin in plate, a smith's full harness on show"
+  },
+  {
+   "craft": "blacksmithing",
+   "id": "CR-STA-020",
+   "basis": "proposed",
+   "why": "Bronze spear-bearer, cast by a smith's own hand"
+  },
+  {
+   "craft": "blacksmithing",
+   "id": "CR-STA-029",
+   "basis": "proposed",
+   "why": "Bronze pegasus, a smith's small casting"
+  },
+  {
+   "craft": "tailoring",
+   "id": "CR-CRF-009",
+   "basis": "signature-tag",
+   "why": "Weaver's corner, catalog-tagged signature piece"
+  },
+  {
+   "craft": "tailoring",
+   "id": "CR-CRF-015",
+   "basis": "crafted-variant",
+   "why": "Indigo dyer's tub, a tailor's own colour"
+  },
+  {
+   "craft": "tailoring",
+   "id": "CR-CRF-010",
+   "basis": "proposed",
+   "why": "Dress form, the tailor's mark of a finished garment"
+  },
+  {
+   "craft": "tailoring",
+   "id": "CR-ARM-029",
+   "basis": "proposed",
+   "why": "Mannequin in studded leather, a tailor's cuirass on show"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-LGT-014",
+   "basis": "crafted-variant",
+   "why": "Valorite candelabra, tinkering at its finest"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-LGT-015",
+   "basis": "crafted-variant",
+   "why": "Verite candelabra stand, a tall tinker's piece"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-LGT-020",
+   "basis": "crafted-variant",
+   "why": "Ruby lantern, a small signed light"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-LIB-033",
+   "basis": "crafted-variant",
+   "why": "Gilded globe, delicate tinker's gearwork"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-TRS-018",
+   "basis": "crafted-variant",
+   "why": "Gold goblet, a tinker's table piece"
+  },
+  {
+   "craft": "tinkering",
+   "id": "CR-WLH-020",
+   "basis": "crafted-variant",
+   "why": "Tall wall clock, springs and gears on display"
+  },
+  {
+   "craft": "alchemy",
+   "id": "CR-ALC-008",
+   "basis": "proposed",
+   "why": "Alchemist's sigil ring, the alchemist's own seal"
+  },
+  {
+   "craft": "alchemy",
+   "id": "CR-ALC-032",
+   "basis": "proposed",
+   "why": "Bubbling violet flask, a brewer's signed work"
+  },
+  {
+   "craft": "alchemy",
+   "id": "CR-ALC-030",
+   "basis": "proposed",
+   "why": "Crimson ribbed flask, an alchemist's bench piece"
+  },
+  {
+   "craft": "alchemy",
+   "id": "CR-ALC-038",
+   "basis": "proposed",
+   "why": "Rack of filled vials, a stocked apothecary shelf"
+  },
+  {
+   "craft": "cooking",
+   "id": "CR-FOO-011",
+   "basis": "proposed",
+   "why": "Frosted cake, a baker's flourish"
+  },
+  {
+   "craft": "cooking",
+   "id": "CR-FOO-001",
+   "basis": "proposed",
+   "why": "Roast pig on a platter, a cook's centrepiece"
+  },
+  {
+   "craft": "cooking",
+   "id": "CR-FOO-010",
+   "basis": "proposed",
+   "why": "Baked pie, the cook's honest signature dish"
+  },
+  {
+   "craft": "cooking",
+   "id": "CR-CMP-012",
+   "basis": "crafted-variant",
+   "why": "Camp cookware, dented pots a trail cook has made their own"
+  },
+  {
+   "craft": "bowcraft",
+   "id": "CR-ARM-004",
+   "basis": "proposed",
+   "why": "Longbow hung with its arrows, a bowyer's mark"
+  },
+  {
+   "craft": "bowcraft",
+   "id": "CR-ARM-005",
+   "basis": "proposed",
+   "why": "Longbow hung with fletching, a fletcher's mark"
+  },
+  {
+   "craft": "inscription",
+   "id": "CR-LIB-020",
+   "basis": "proposed",
+   "why": "Quill and inkwell, a scribe's rare tool"
+  },
+  {
+   "craft": "inscription",
+   "id": "CR-LIB-038",
+   "basis": "proposed",
+   "why": "Scribe's writing desk"
+  },
+  {
+   "craft": "inscription",
+   "id": "CR-ALC-043",
+   "basis": "proposed",
+   "why": "Silvered spellbook, a scribe's finest binding"
+  },
+  {
+   "craft": "inscription",
+   "id": "CR-ALC-044",
+   "basis": "proposed",
+   "why": "Emerald spellbook, a scribe's green binding"
+  },
+  {
+   "craft": "inscription",
+   "id": "CR-ALC-041",
+   "basis": "proposed",
+   "why": "Crimson spellbook, a scribe's plain binding"
+  }
+ ]
+}

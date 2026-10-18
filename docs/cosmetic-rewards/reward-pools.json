@@ -1,0 +1,3225 @@
+{
+ "schema": "uo-rekindled-reward-pools/1",
+ "pools": [
+  {
+   "pool": "artisan-signatures",
+   "system": "artisan",
+   "notes": "Cosmetic pieces each crafting profession can sign. 'basis' says how solid the link is: 'crafted-variant' or 'signature-tag' means the catalog already marks the piece as a craftable variant or a signature item; 'proposed' means a static or stock-class piece with a clear craft fit that would need a new crafted variant. Carpentry (also instruments), tinkering (candelabras, lanterns, globes, goblets, clock) and blacksmithing (two suits of armor, a plate mannequin and bronze castings) have strong catalog support; tailoring, alchemy, cooking and inscription lean on 'proposed' pieces, and bowcraft has only two commons (the catalog has no rare fletching art). Owner decisions: whether a signed piece is a crafted copy of the base item or a reward for crafting milestones, and whether bowcraft needs new art. No NPC resale value, no stats.",
+   "entries": [
+    {
+     "craft": "carpentry",
+     "id": "CR-CRF-021",
+     "basis": "signature-tag",
+     "why": "Carpenter's workbench, the one piece the catalog tags as a signature"
+    },
+    {
+     "craft": "carpentry",
+     "id": "CR-FRN-002",
+     "basis": "crafted-variant",
+     "why": "Throne of crimson velvet, the carpenter's showpiece"
+    },
+    {
+     "craft": "carpentry",
+     "id": "CR-FRN-031",
+     "basis": "crafted-variant",
+     "why": "Master's four-poster bed, joinery that shows"
+    },
+    {
+     "craft": "carpentry",
+     "id": "CR-FRN-006",
+     "basis": "crafted-variant",
+     "why": "Fancy ladder-back chair, a fine chair-maker's mark"
+    },
+    {
+     "craft": "carpentry",
+     "id": "CR-MUS-006",
+     "basis": "crafted-variant",
+     "why": "Gilded lute; instruments are carpenter's work"
+    },
+    {
+     "craft": "blacksmithing",
+     "id": "CR-ARM-021",
+     "basis": "crafted-variant",
+     "why": "Valorite suit of armor, a smith's proof of fine ore"
+    },
+    {
+     "craft": "blacksmithing",
+     "id": "CR-ARM-022",
+     "basis": "crafted-variant",
+     "why": "Golden suit of armor, the master smith's showpiece"
+    },
+    {
+     "craft": "blacksmithing",
+     "id": "CR-ARM-030",
+     "basis": "proposed",
+     "why": "Mannequin in plate, a smith's full harness on show"
+    },
+    {
+     "craft": "blacksmithing",
+     "id": "CR-STA-020",
+     "basis": "proposed",
+     "why": "Bronze spear-bearer, cast by a smith's own hand"
+    },
+    {
+     "craft": "blacksmithing",
+     "id": "CR-STA-029",
+     "basis": "proposed",
+     "why": "Bronze pegasus, a smith's small casting"
+    },
+    {
+     "craft": "tailoring",
+     "id": "CR-CRF-009",
+     "basis": "signature-tag",
+     "why": "Weaver's corner, catalog-tagged signature piece"
+    },
+    {
+     "craft": "tailoring",
+     "id": "CR-CRF-015",
+     "basis": "crafted-variant",
+     "why": "Indigo dyer's tub, a tailor's own colour"
+    },
+    {
+     "craft": "tailoring",
+     "id": "CR-CRF-010",
+     "basis": "proposed",
+     "why": "Dress form, the tailor's mark of a finished garment"
+    },
+    {
+     "craft": "tailoring",
+     "id": "CR-ARM-029",
+     "basis": "proposed",
+     "why": "Mannequin in studded leather, a tailor's cuirass on show"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-LGT-014",
+     "basis": "crafted-variant",
+     "why": "Valorite candelabra, tinkering at its finest"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-LGT-015",
+     "basis": "crafted-variant",
+     "why": "Verite candelabra stand, a tall tinker's piece"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-LGT-020",
+     "basis": "crafted-variant",
+     "why": "Ruby lantern, a small signed light"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-LIB-033",
+     "basis": "crafted-variant",
+     "why": "Gilded globe, delicate tinker's gearwork"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-TRS-018",
+     "basis": "crafted-variant",
+     "why": "Gold goblet, a tinker's table piece"
+    },
+    {
+     "craft": "tinkering",
+     "id": "CR-WLH-020",
+     "basis": "crafted-variant",
+     "why": "Tall wall clock, springs and gears on display"
+    },
+    {
+     "craft": "alchemy",
+     "id": "CR-ALC-008",
+     "basis": "proposed",
+     "why": "Alchemist's sigil ring, the alchemist's own seal"
+    },
+    {
+     "craft": "alchemy",
+     "id": "CR-ALC-032",
+     "basis": "proposed",
+     "why": "Bubbling violet flask, a brewer's signed work"
+    },
+    {
+     "craft": "alchemy",
+     "id": "CR-ALC-030",
+     "basis": "proposed",
+     "why": "Crimson ribbed flask, an alchemist's bench piece"
+    },
+    {
+     "craft": "alchemy",
+     "id": "CR-ALC-038",
+     "basis": "proposed",
+     "why": "Rack of filled vials, a stocked apothecary shelf"
+    },
+    {
+     "craft": "cooking",
+     "id": "CR-FOO-011",
+     "basis": "proposed",
+     "why": "Frosted cake, a baker's flourish"
+    },
+    {
+     "craft": "cooking",
+     "id": "CR-FOO-001",
+     "basis": "proposed",
+     "why": "Roast pig on a platter, a cook's centrepiece"
+    },
+    {
+     "craft": "cooking",
+     "id": "CR-FOO-010",
+     "basis": "proposed",
+     "why": "Baked pie, the cook's honest signature dish"
+    },
+    {
+     "craft": "cooking",
+     "id": "CR-CMP-012",
+     "basis": "crafted-variant",
+     "why": "Camp cookware, dented pots a trail cook has made their own"
+    },
+    {
+     "craft": "bowcraft",
+     "id": "CR-ARM-004",
+     "basis": "proposed",
+     "why": "Longbow hung with its arrows, a bowyer's mark"
+    },
+    {
+     "craft": "bowcraft",
+     "id": "CR-ARM-005",
+     "basis": "proposed",
+     "why": "Longbow hung with fletching, a fletcher's mark"
+    },
+    {
+     "craft": "inscription",
+     "id": "CR-LIB-020",
+     "basis": "proposed",
+     "why": "Quill and inkwell, a scribe's rare tool"
+    },
+    {
+     "craft": "inscription",
+     "id": "CR-LIB-038",
+     "basis": "proposed",
+     "why": "Scribe's writing desk"
+    },
+    {
+     "craft": "inscription",
+     "id": "CR-ALC-043",
+     "basis": "proposed",
+     "why": "Silvered spellbook, a scribe's finest binding"
+    },
+    {
+     "craft": "inscription",
+     "id": "CR-ALC-044",
+     "basis": "proposed",
+     "why": "Emerald spellbook, a scribe's green binding"
+    },
+    {
+     "craft": "inscription",
+     "id": "CR-ALC-041",
+     "basis": "proposed",
+     "why": "Crimson spellbook, a scribe's plain binding"
+    }
+   ]
+  },
+  {
+   "pool": "bod-reward-tiers",
+   "system": "bod",
+   "notes": "PROPOSAL ONLY: the actual BOD tier structure (how orders are issued, which crafts get which reward tier, how rewards are rolled) is a later roadmap item (Beta 3, BOD reward tiers) and is not decided here. This pool just proposes which cosmetic goes with which crafting profession at three tiers: 'small' (plain workshop pieces and goods), 'large' (fuller pieces) and 'exceptional' (the best-looking piece of that craft), using catalog tiers common, uncommon and scarce-to-rare to line up. Eight crafts are covered: blacksmithing, carpentry, tailoring, tinkering, alchemy, cooking, bowcraft and inscription. Weak spots: bowcraft has only commons in the catalog (the exceptional is an arrow-slit wall) and cooking and inscription share a few 'exceptional' pieces. These pieces are kept separate from artisan-signatures, so a BOD reward and a crafted signature are never the same design. Cosmetic only; no NPC resale or BOD-value, as for all catalog rewards.",
+   "entries": [
+    {
+     "craft": "blacksmithing",
+     "bodTier": "small",
+     "id": "CR-TRS-009",
+     "why": "Stack of iron ingots, the smith's daily bread"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "small",
+     "id": "CR-CRF-006",
+     "why": "Smith's dishing stump, a smith's humble bench block"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "large",
+     "id": "CR-ARM-027",
+     "why": "Mannequin in ringmail, a bigger order done well"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "large",
+     "id": "CR-ARM-028",
+     "why": "Mannequin in chainmail, a finished harness on show"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "large",
+     "id": "CR-CRF-003",
+     "why": "Smithy corner: forge and anvil together"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "exceptional",
+     "id": "CR-CRF-004",
+     "why": "Large forge, glowing like a master smith's shop"
+    },
+    {
+     "craft": "blacksmithing",
+     "bodTier": "exceptional",
+     "id": "CR-ARM-033",
+     "why": "Armourer's display table with a helm and blade"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "small",
+     "id": "CR-CRF-027",
+     "why": "Stack of boards, fresh from the saw"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "small",
+     "id": "CR-CRF-026",
+     "why": "Stack of logs, the raw start of a job"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "large",
+     "id": "CR-CRF-022",
+     "why": "Cooper's bench with plane"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "large",
+     "id": "CR-CRF-023",
+     "why": "Cooper's bench with chute"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "large",
+     "id": "CR-CRF-025",
+     "why": "Stack of crates, a big order boxed up"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "large",
+     "id": "CR-CRF-028",
+     "why": "Lumberyard stack of logs and boards"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "exceptional",
+     "id": "CR-CRF-024",
+     "why": "Cooper's work in progress, barrel and staves"
+    },
+    {
+     "craft": "carpentry",
+     "bodTier": "exceptional",
+     "id": "CR-MUS-001",
+     "why": "Gilded standing harp, an instrument-maker's pride"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "small",
+     "id": "CR-CRF-011",
+     "why": "Bolts of cloth, standing in a row"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "small",
+     "id": "CR-CRF-013",
+     "why": "Stack of folded cloth"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "large",
+     "id": "CR-CRF-012",
+     "why": "Assorted bolts of cloth in bright colours"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "large",
+     "id": "CR-ARM-025",
+     "why": "Studded leather set, a leatherworker's order"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "exceptional",
+     "id": "CR-CRF-007",
+     "why": "Weaver's loom, the heart of a tailor's workshop"
+    },
+    {
+     "craft": "tailoring",
+     "bodTier": "exceptional",
+     "id": "CR-CRF-016",
+     "why": "Tanner's corner with hides and tools"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "small",
+     "id": "CR-CRF-018",
+     "why": "Tinker's tools laid out on the bench"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "small",
+     "id": "CR-CRF-019",
+     "why": "Tinker's toolbox, battered and busy"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "large",
+     "id": "CR-CRF-017",
+     "why": "Tinker's parts table with small pieces and gears"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "large",
+     "id": "CR-CRF-035",
+     "why": "Chandler's wax table, candles in the making"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "exceptional",
+     "id": "CR-LGT-045",
+     "why": "Agapite candelabra, a tinker's finest metalwork"
+    },
+    {
+     "craft": "tinkering",
+     "bodTier": "exceptional",
+     "id": "CR-LIB-034",
+     "why": "Sapphire globe on a delicate stand"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "small",
+     "id": "CR-ALC-040",
+     "why": "Cluster of corked jars"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "small",
+     "id": "CR-ALC-035",
+     "why": "Yellow beaker, a small bench piece"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "large",
+     "id": "CR-ALC-037",
+     "why": "Rack of empty vials waiting to be filled"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "large",
+     "id": "CR-ALC-024",
+     "why": "Witch's cauldron for a big brew"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "exceptional",
+     "id": "CR-ALC-009",
+     "why": "Alchemical sigil mosaic, the four sigils together"
+    },
+    {
+     "craft": "alchemy",
+     "bodTier": "exceptional",
+     "id": "CR-ALC-029",
+     "why": "Violet ribbed flask, rare distilling glass"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "small",
+     "id": "CR-FOO-009",
+     "why": "Loaves of French bread"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "small",
+     "id": "CR-FOO-004",
+     "why": "Cured ham, a plain cook's order"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "large",
+     "id": "CR-FOO-005",
+     "why": "Glazed ham for a feast"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "large",
+     "id": "CR-FOO-012",
+     "why": "Pan of cookies, a baker's large batch"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "exceptional",
+     "id": "CR-FOO-024",
+     "why": "Roast pig banquet, the cook's crowning order"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "exceptional",
+     "id": "CR-CMP-030",
+     "why": "Camp kitchen with cauldron, spit and spare pot"
+    },
+    {
+     "craft": "cooking",
+     "bodTier": "exceptional",
+     "id": "CR-FOO-026",
+     "why": "Baker's spread laid out for a morning market"
+    },
+    {
+     "craft": "bowcraft",
+     "bodTier": "small",
+     "id": "CR-CRF-042",
+     "why": "Fletcher's arrow bundle"
+    },
+    {
+     "craft": "bowcraft",
+     "bodTier": "large",
+     "id": "CR-ARM-035",
+     "why": "Bowyer's arrow table"
+    },
+    {
+     "craft": "bowcraft",
+     "bodTier": "exceptional",
+     "id": "CR-ARC-031",
+     "why": "Arrow-slit wall, a bowman's loop"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "small",
+     "id": "CR-LIB-022",
+     "why": "Bundle of blank scrolls"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "small",
+     "id": "CR-LIB-023",
+     "why": "Scrolls tied with red ribbon"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "large",
+     "id": "CR-LIB-025",
+     "why": "Pile of scrolls, a scribe's larger order"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "large",
+     "id": "CR-LIB-026",
+     "why": "Scroll and quill"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "large",
+     "id": "CR-LIB-021",
+     "why": "Open primer and quill"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "exceptional",
+     "id": "CR-LIB-040",
+     "why": "Ledger desk with blue ribbon"
+    },
+    {
+     "craft": "inscription",
+     "bodTier": "exceptional",
+     "id": "CR-ALC-046",
+     "why": "Spell lectern with an open book, a scribe's crowning piece"
+    }
+   ]
+  },
+  {
+   "pool": "camping-rewards",
+   "system": "camping",
+   "notes": "Fifteen pieces for a Rekindled camp, all grade B or better and almost all tagged 'camp'. 'kind' says which outcome they suit: hearth (what a campfire can leave behind), shelter, bedding, provisions and trail (relics left along a route). Catalog tiers run from common (kindling, a campfire, a bedroll) up to the whole Hunter's Camp as the extremely-rare showpiece, so the humblest camping outcome is a small, useful-looking keepsake and the rarest is a full camp tableau. Other camp-tagged pieces (extra tents, the camp kitchen, skinner's and hunter's poles, tool and cookware sets) are held back on purpose for the artisan and BOD pools, so the camping set stays about the fire, the bedroll and the trail.",
+   "entries": [
+    {
+     "id": "CR-CMP-018",
+     "kind": "hearth",
+     "why": "Bundle of dry kindling, the first thing any Rekindled fire needs"
+    },
+    {
+     "id": "CR-CMP-015",
+     "kind": "hearth",
+     "why": "A small crossed-stick campfire, the plain reward for a lit fire"
+    },
+    {
+     "id": "CR-CMP-016",
+     "kind": "hearth",
+     "why": "Neat stack of split firewood for the long night"
+    },
+    {
+     "id": "CR-LGT-032",
+     "kind": "hearth",
+     "why": "Stone-ringed campfire, a fire pit built to last the season"
+    },
+    {
+     "id": "CR-CMP-011",
+     "kind": "hearth",
+     "why": "Blackened kettle steaming on the embers"
+    },
+    {
+     "id": "CR-CMP-010",
+     "kind": "hearth",
+     "why": "Cookfire with a hanging cauldron, supper and woodsmoke"
+    },
+    {
+     "id": "CR-CMP-013",
+     "kind": "provisions",
+     "why": "Chicken turning on a spit above the embers, a camper's feast"
+    },
+    {
+     "id": "CR-CMP-009",
+     "kind": "bedding",
+     "why": "Rolled bedroll leaning against a battered pack, a whole traveller's kit"
+    },
+    {
+     "id": "CR-CMP-008",
+     "kind": "bedding",
+     "why": "Spread bedroll with a straw pillow, a wanderer's comfort"
+    },
+    {
+     "id": "CR-CMP-020",
+     "kind": "shelter",
+     "why": "Fallen moss-streaked log that serves as bench and back-rest"
+    },
+    {
+     "id": "CR-CMP-004",
+     "kind": "shelter",
+     "why": "Small grey tent, just big enough for one weary traveller"
+    },
+    {
+     "id": "CR-CMP-003",
+     "kind": "shelter",
+     "why": "Forest-green canvas tent that hides among the trees"
+    },
+    {
+     "id": "CR-CMP-026",
+     "kind": "trail",
+     "why": "Cairn of stacked stones set by travellers to mark a trail"
+    },
+    {
+     "id": "CR-CMP-031",
+     "kind": "shelter",
+     "why": "Tent, fire and log: a night's stop on a long road"
+    },
+    {
+     "id": "CR-CMP-028",
+     "kind": "shelter",
+     "why": "A whole hunter's camp, the showpiece for a long-road camper"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-buccaneers-den",
+   "system": "expedition",
+   "notes": "Pirates and plunder: kegs, a sack of plunder and dice for the core; the rares are the gun deck, a pirate hoard, a plunder chest, Harbour Row (hanging wharf-side shop signs) and an anchor with rope. All are drawn to look like a pirate's haul or a buccaneer's wharf, with no real function.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-NAU-024",
+     "why": "Stacked kegs, grog and powder"
+    },
+    {
+     "role": "core",
+     "id": "CR-TRS-007",
+     "why": "Sack of plunder, a heap of coin and loot"
+    },
+    {
+     "role": "core",
+     "id": "CR-GAM-019",
+     "why": "Barrel-head dice and a bottle, a sailors' game"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-037",
+     "why": "Gun Deck Station, 2x3 cannon with shot and keg"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TRS-024",
+     "why": "Pirate hoard, 2x2 chest and jewelled coin"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TRS-020",
+     "why": "Overflowing wooden chest of plunder"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TWN-038",
+     "why": "Harbour Row, 4x1 hanging signs of the wharf-side shops"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-003",
+     "why": "Anchor with coiled rope, a buccaneer's trophy"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-cove",
+   "system": "expedition",
+   "notes": "Coastal curios from a small harbour town: pilings, a winch, a lantern cluster, a shell collection and a ship in miniature. Core pieces are the dock-side basics; the rares are the lamps, the model ship and the pilings with the sea round them. Tagged town:cove in the catalog.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-NAU-006",
+     "why": "Plain dock piling, the first thing at any quay"
+    },
+    {
+     "role": "core",
+     "id": "CR-NAU-026",
+     "why": "Three barrels, harbour-side cooperage"
+    },
+    {
+     "role": "core",
+     "id": "CR-NAU-041",
+     "why": "Shells, a starfish and sea glass picked from the strand"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-033",
+     "why": "A ship in miniature, the harbour's keepsake"
+    },
+    {
+     "role": "rare",
+     "id": "CR-LGT-019",
+     "why": "Cluster of hanging harbour lanterns, 2x2"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-010",
+     "why": "Three pilings bound together, 2x2 dockside centrepiece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-009",
+     "why": "A piling standing in the lapping surf"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-014",
+     "why": "Iron dock winch with its rope drum"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-jhelom",
+   "system": "expedition",
+   "notes": "Duelling and martial pageantry for the warriors' island: training dummy, archery butte, halberd and racks of swords, bronze sentinels, a hall of colours and chequered hangings. Core pieces are the practice yard; the rares are the pageantry.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-ARM-036",
+     "why": "Training dummy for the practice yard"
+    },
+    {
+     "role": "core",
+     "id": "CR-ARM-038",
+     "why": "Archery butte, a target on straw"
+    },
+    {
+     "role": "core",
+     "id": "CR-ARM-003",
+     "why": "Hung halberd, a duelling-hall trophy"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARM-026",
+     "why": "Plate armor set laid out in full, 2x2 champion's display"
+    },
+    {
+     "role": "rare",
+     "id": "CR-STA-037",
+     "why": "Pair of bronze sentinel maidens, 3x1 pageant statues"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-038",
+     "why": "Hall of Colours, 9x1 banner row of the duelling houses"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-013",
+     "why": "Crimson chequered hanging, a duellist's colours"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARM-001",
+     "why": "Wall sword rack of duelling blades"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-minoc",
+   "system": "expedition",
+   "notes": "Smithing and mining relics for the mining town: anvil, pick, ore, a master smithy, an ore cart and a vault of bullion. Core pieces are the working tools; the rares are the Master Smithy (2x4), the ore cart and the precious-metal showpieces.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-CRF-002",
+     "why": "The smith's anvil on its stump"
+    },
+    {
+     "role": "core",
+     "id": "CR-CRF-041",
+     "why": "Pick and shovel leaned against the mine wall"
+    },
+    {
+     "role": "core",
+     "id": "CR-CRF-037",
+     "why": "Heap of raw iron ore"
+    },
+    {
+     "role": "rare",
+     "id": "CR-CRF-005",
+     "why": "Master Smithy, a forge and anvil together, 2x4 centrepiece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-CRF-036",
+     "why": "Ore cart, the mountain town's emblem (tagged town:minoc)"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TRS-027",
+     "why": "Bullion vault, stacked ingots of every metal"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TRS-015",
+     "why": "Stack of valorite ingots, the miner's prize"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TWN-024",
+     "why": "Miners' Guild sign for the hall or mine door"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-moonglow",
+   "system": "expedition",
+   "notes": "Scholars and mages: a crystal ball, wand and mage's sign for the core; the rares are the Moonglow Orrery, the town's stone fountain, a moongate display, a scholar's nook and Scholars' Row, the row of hanging shop signs. The Orrery is era grade C (no dated record of the art) but it is the town's one-of-a-kind landmark and would be missed.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-ALC-014",
+     "why": "Crystal ball for the seer's table"
+    },
+    {
+     "role": "core",
+     "id": "CR-ALC-047",
+     "why": "Gold-tipped wand, a mage's tool"
+    },
+    {
+     "role": "core",
+     "id": "CR-TWN-006",
+     "why": "Mage's sign over the door"
+    },
+    {
+     "role": "rare",
+     "id": "CR-LIB-037",
+     "why": "Moonglow Orrery, 11x11 brass telescope on a runed dais (grade C, see notes)"
+    },
+    {
+     "role": "rare",
+     "id": "CR-WTR-001",
+     "why": "Moonglow's stone fountain, 4x4"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ALC-022",
+     "why": "Blue moongate display, the town's namesake"
+    },
+    {
+     "role": "rare",
+     "id": "CR-LIB-044",
+     "why": "Scholar's nook with desk, lamp and shelf, 2x2"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TWN-035",
+     "why": "Scholars' Row, 4x1 hanging signs of the Lycaeum quarter"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-nujelm",
+   "system": "expedition",
+   "notes": "Palace luxury and desert exotica: sandstone posts and cacti and an amphora for the core; the rares are the sandstone fountain, the portico, the royal medallion carpet, a gilded amphora and a golden feather pillow.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-ARC-007",
+     "why": "Carved sandstone post for a palace court"
+    },
+    {
+     "role": "core",
+     "id": "CR-FLO-055",
+     "why": "Flowering cactus from the desert garden"
+    },
+    {
+     "role": "core",
+     "id": "CR-CUR-006",
+     "why": "Large amphora, a trade vase of the south"
+    },
+    {
+     "role": "rare",
+     "id": "CR-WTR-002",
+     "why": "Sandstone fountain, 4x4 palace-court centrepiece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARC-004",
+     "why": "Sandstone portico, 3x3 colonnade"
+    },
+    {
+     "role": "rare",
+     "id": "CR-RUG-022",
+     "why": "Royal medallion carpet, 7x6 palace floor"
+    },
+    {
+     "role": "rare",
+     "id": "CR-CUR-011",
+     "why": "Gilded amphora, golden luxury"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FRN-051",
+     "why": "Golden feather pillow for the divan"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-ocllo",
+   "system": "expedition",
+   "notes": "Island life, fishing and tropical: nets, oars and the day's catch for the core; the rares are Fisherman's Quay, a palm and hammock, the fish-drying pole and a bamboo banquet table. Tagged town:ocllo in the catalog.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-NAU-015",
+     "why": "Spread fishing net drying on the sand"
+    },
+    {
+     "role": "core",
+     "id": "CR-NAU-011",
+     "why": "Pair of oars leaning on the hut"
+    },
+    {
+     "role": "core",
+     "id": "CR-NAU-021",
+     "why": "A fresh-caught fish, the day's haul"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-038",
+     "why": "Fisherman's Quay, 3x2 net, barrel and piling"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FRN-042",
+     "why": "Papuan hammock slung between the palms"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FLO-034",
+     "why": "Coconut palm, a tropical shade tree"
+    },
+    {
+     "role": "rare",
+     "id": "CR-NAU-039",
+     "why": "Fish-drying pole, 1x3 with a catch hanging"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TBL-025",
+     "why": "Bamboo banquet table, 2x3 island feast board"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-serpents-hold",
+   "system": "expedition",
+   "notes": "Naval and military order: serpent crests and shields, cannonballs and hawser, a decorative cannon, a navigator's table and the Great Banner Wall. Core pieces are the barrack and quay basics; the rares are the serpent heraldry, cannon and chart table.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-ARM-041",
+     "why": "Stack of cannonballs by the battery"
+    },
+    {
+     "role": "core",
+     "id": "CR-NAU-005",
+     "why": "Hawser bundle, coiled mooring rope"
+    },
+    {
+     "role": "core",
+     "id": "CR-ARM-011",
+     "why": "Silver serpent shield, the order's plain badge"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARM-040",
+     "why": "Decorative cannon, 1x3 gun for the sea wall"
+    },
+    {
+     "role": "rare",
+     "id": "CR-LIB-042",
+     "why": "Navigator's chart table, the admiral's desk"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-033",
+     "why": "Serpent crest, a scarlet and silver wall emblem"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARM-012",
+     "why": "Golden serpent shield, the officers' badge"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-037",
+     "why": "Great Banner Wall, 9x1 hall of the order's colours"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-skara-brae",
+   "system": "expedition",
+   "notes": "Spiritual and druidic, graveyard-gentle: votive and mushroom-ring pieces, a family plot and a pair of ankhs, lilies and an old great oak. Core pieces are quiet woodland and votive touches; the rares are the plot, the twin ankhs and the great oak. No macabre pieces.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-REL-026",
+     "why": "Wooden votive bowl, a druid's offering"
+    },
+    {
+     "role": "core",
+     "id": "CR-FLO-052",
+     "why": "Ring of pale mushrooms, a fairy ring in the grass"
+    },
+    {
+     "role": "core",
+     "id": "CR-GRV-031",
+     "why": "Slender grave obelisk, a quiet marker"
+    },
+    {
+     "role": "rare",
+     "id": "CR-GRV-038",
+     "why": "Family plot, 5x3 churchyard centrepiece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-REL-021",
+     "why": "Twin stone ankhs, 4x2 shrine pair"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FLO-047",
+     "why": "White lilies, the flower of remembrance"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FLO-010",
+     "why": "Great oak, the druids' sacred grove tree"
+    },
+    {
+     "role": "rare",
+     "id": "CR-GRV-035",
+     "why": "Grave with red granite spire, a gentle memorial"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-trinsic",
+   "system": "expedition",
+   "notes": "Knightly heraldry for the paladin city: kite shields and shield-and-sword pairs on the wall, pennants and banner rows, a stone spear-bearer and a helm on its pedestal. Core pieces are the silver shields, pennant and helm; the rares are gold, tall and wide.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-ARM-007",
+     "why": "Silver star kite shield, plain knightly heraldry"
+    },
+    {
+     "role": "core",
+     "id": "CR-ARM-017",
+     "why": "Silver ankh shield with sword, a paladin's crest"
+    },
+    {
+     "role": "core",
+     "id": "CR-HER-020",
+     "why": "Red-and-silver pennant on its staff"
+    },
+    {
+     "role": "core",
+     "id": "CR-ARM-031",
+     "why": "A knight's helm on a marble pedestal"
+    },
+    {
+     "role": "rare",
+     "id": "CR-STA-017",
+     "why": "Stone Spear-Bearer, 2x2 statue for a hall or square"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-034",
+     "why": "Hall of Banners, six tiles of gold, silver and black"
+    },
+    {
+     "role": "rare",
+     "id": "CR-ARM-018",
+     "why": "Golden ankh shield and sword, the order's crest"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-035",
+     "why": "Banner hung between a pair of gold shields, 4x1"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-vesper",
+   "system": "expedition",
+   "notes": "Merchant luxuries for the trading city: scales and coin, ledgers and a ledger desk, glass counters, a gilded vase pair and a mirrored dresser. Core pieces are the counting-house basics; the rares are the grand glass counter and the finer furnishings.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-TRS-005",
+     "why": "Coins and scales, the merchant's emblem"
+    },
+    {
+     "role": "core",
+     "id": "CR-TWN-028",
+     "why": "Merchants' Guild sign"
+    },
+    {
+     "role": "core",
+     "id": "CR-LIB-009",
+     "why": "Red-ribbon ledger for the day's accounts"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TBL-030",
+     "why": "Grand glass counter, 6x1 shop centrepiece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-CUR-015",
+     "why": "Cobalt and gilt amphorae, a pair of trade luxuries"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TBL-038",
+     "why": "Mirrored dresser, a rich merchant's bedchamber piece"
+    },
+    {
+     "role": "rare",
+     "id": "CR-TRS-026",
+     "why": "Counting-house heap of coin, 2x2"
+    },
+    {
+     "role": "rare",
+     "id": "CR-LIB-039",
+     "why": "Ledger desk with red ribbon, the factor's station"
+    }
+   ]
+  },
+  {
+   "pool": "expedition-yew",
+   "system": "expedition",
+   "notes": "Woodland and antiquarian: the Court of Truth's old oak and stone, forest relics, one great ancient tree. Core pieces are the humble woodland furnishings; the rares are the Great Yew (in Felucca its crown is bare, so it reads as a vast gnarled ancient), a judge's stone chair and ceremonial hangings.",
+   "entries": [
+    {
+     "role": "core",
+     "id": "CR-TBL-003",
+     "why": "The town's namesake table in pale yew wood"
+    },
+    {
+     "role": "core",
+     "id": "CR-LIB-012",
+     "why": "Moss-grown stack of old books, the antiquarian's shelf"
+    },
+    {
+     "role": "core",
+     "id": "CR-FLO-042",
+     "why": "A tall woodland fern for the glade"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FLO-001",
+     "why": "The Great Yew itself, 10x10; bare gnarled giant in Felucca"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FRN-009",
+     "why": "Carved stone seat fit for a Court of Truth judge"
+    },
+    {
+     "role": "rare",
+     "id": "CR-WLH-012",
+     "why": "Tapestry of six emblems, a scholar's heraldic hanging"
+    },
+    {
+     "role": "rare",
+     "id": "CR-HER-015",
+     "why": "Midnight lace hanging, a ceremonial banner of the old forest court"
+    },
+    {
+     "role": "rare",
+     "id": "CR-FLO-023",
+     "why": "Gnarled oak with sprawling bare limbs, a forest relic"
+    }
+   ]
+  },
+  {
+   "pool": "hot-zone-drops",
+   "system": "hot-zone",
+   "notes": "Rare cosmetic drops from Hot Zone monsters and chests (Hythloth has its own pool). Five themes so the loot matches the killer: undead and graveyard (sarcophagi, coffins), bones and candles, dragon hoards, shadowiron and dark relics, and dark arcana (rite tables, grimoires, bloody altars). 'tier' is the catalog tier and can be used as drop rarity (three extremely-rare: the ornate sarcophagus, the dragon's hoard and the twin bloodstained altars). 'theme' lets a system roll from the right group (undead corpse, dragon corpse, chest). Three entries are era grade C: the dragon hoards are the only hoard art of that kind in the catalog, and the pool would feel hollow without them. Nothing here is mentioned as a Nemesis trophy, a Wanted curator item or a shipwreck piece.",
+   "entries": [
+    {
+     "id": "CR-GRV-011",
+     "tier": "extremely-rare",
+     "theme": "undead",
+     "why": "Ornate open sarcophagus, a noble crypt looted from a lich's lair"
+    },
+    {
+     "id": "CR-GRV-008",
+     "tier": "rare",
+     "theme": "undead",
+     "why": "Sarcophagus carved with the effigy of its long-dead occupant"
+    },
+    {
+     "id": "CR-GRV-012",
+     "tier": "rare",
+     "theme": "undead",
+     "why": "Sarcophagus with its effigy lid slid aside, the sleeper gone"
+    },
+    {
+     "id": "CR-GRV-006",
+     "tier": "scarce",
+     "theme": "undead",
+     "why": "Splintered coffin, burst open from the inside"
+    },
+    {
+     "id": "CR-GRV-010",
+     "tier": "scarce",
+     "theme": "undead",
+     "why": "Stone sarcophagus with the lid thrown down beside it"
+    },
+    {
+     "id": "CR-GRV-041",
+     "tier": "uncommon",
+     "theme": "undead",
+     "why": "Skull candle burnt down to a stub, a small grim keepsake"
+    },
+    {
+     "id": "CR-LGT-012",
+     "tier": "scarce",
+     "theme": "bones",
+     "why": "Bone pile with a skull candle still guttering on top"
+    },
+    {
+     "id": "CR-LGT-011",
+     "tier": "scarce",
+     "theme": "bones",
+     "why": "Three skull candles burning in a triangle"
+    },
+    {
+     "id": "CR-LGT-010",
+     "tier": "uncommon",
+     "theme": "bones",
+     "why": "A lone lit skull candle, easy to fit anywhere dark"
+    },
+    {
+     "id": "CR-TRS-029",
+     "tier": "extremely-rare",
+     "theme": "dragon",
+     "why": "A dragon's whole hoard; grade C, the best dragon-lair art there is"
+    },
+    {
+     "id": "CR-TRS-030",
+     "tier": "rare",
+     "theme": "dragon",
+     "why": "Hoard strewn with skulls of those who came for it (grade C)"
+    },
+    {
+     "id": "CR-TRS-031",
+     "tier": "rare",
+     "theme": "dragon",
+     "why": "Jewelled hoard spilled across the floor (grade C)"
+    },
+    {
+     "id": "CR-TRS-023",
+     "tier": "rare",
+     "theme": "chest",
+     "why": "Chest of gold bullion for a chest drop that feels earned"
+    },
+    {
+     "id": "CR-TRS-021",
+     "tier": "scarce",
+     "theme": "chest",
+     "why": "Iron chest heaped with coin, the sort a guarded vault holds"
+    },
+    {
+     "id": "CR-TRS-006",
+     "tier": "uncommon",
+     "theme": "chest",
+     "why": "A skull perched on a gold heap, a warning to the next thief"
+    },
+    {
+     "id": "CR-LGT-016",
+     "tier": "scarce",
+     "theme": "shadowiron",
+     "why": "Black shadow-iron candelabra stand"
+    },
+    {
+     "id": "CR-STA-022",
+     "tier": "scarce",
+     "theme": "shadowiron",
+     "why": "Spear-bearer cast in black shadow iron"
+    },
+    {
+     "id": "CR-STA-034",
+     "tier": "scarce",
+     "theme": "shadowiron",
+     "why": "Shadow-iron guardian on a marble pedestal"
+    },
+    {
+     "id": "CR-REL-017",
+     "tier": "uncommon",
+     "theme": "shadowiron",
+     "why": "A near-black ankh, the healers' sign turned to a memorial"
+    },
+    {
+     "id": "CR-REL-019",
+     "tier": "rare",
+     "theme": "dark-arcana",
+     "why": "Round pentagram altar dark with old blood"
+    },
+    {
+     "id": "CR-REL-020",
+     "tier": "extremely-rare",
+     "theme": "dark-arcana",
+     "why": "Two bloodstained pentagram altars, a rite-room in stone"
+    },
+    {
+     "id": "CR-LGT-043",
+     "tier": "rare",
+     "theme": "dark-arcana",
+     "why": "Black candles and a skull set in a ritual circle"
+    },
+    {
+     "id": "CR-ALC-026",
+     "tier": "scarce",
+     "theme": "dark-arcana",
+     "why": "Ritual table topped with a burning skull candle"
+    },
+    {
+     "id": "CR-ALC-042",
+     "tier": "scarce",
+     "theme": "dark-arcana",
+     "why": "A black grimoire nobody should open"
+    },
+    {
+     "id": "CR-ALC-045",
+     "tier": "rare",
+     "theme": "dark-arcana",
+     "why": "A tall stack of grimoires, a necromancer's reading pile"
+    },
+    {
+     "id": "CR-CUR-024",
+     "tier": "scarce",
+     "theme": "dark-arcana",
+     "why": "Crimson rune sigil burned into the floor"
+    }
+   ]
+  },
+  {
+   "pool": "hythloth-drops",
+   "system": "hot-zone",
+   "notes": "Hythloth is the permanent Hot dungeon, so its drops are the most hellish pieces in the catalog: two daemon figures, the Blood Pentagram, the dungeon arch the catalog tags 'dungeon:hythloth', demon faces, a blood altar and a skull wreathed in fire. 'tier' is the catalog tier and can be used directly as drop rarity (five extremely-rare, so the top end is always a daemon or a hell-gate piece). 'theme' groups the pieces so a daemon corpse can roll daemon items and a chest can roll rite items. One piece (CR-CUR-019) is era grade C: kept because nothing else in the catalog reads as hellfire this clearly. Hythloth is not a Wanted destination, so none of these overlap the curator pools.",
+   "entries": [
+    {
+     "id": "CR-FIG-025",
+     "tier": "extremely-rare",
+     "theme": "daemon",
+     "why": "Towering daemon colossus, the showpiece of the pool"
+    },
+    {
+     "id": "CR-FIG-059",
+     "tier": "extremely-rare",
+     "theme": "daemon",
+     "why": "Obsidian daemon, black glass and menace"
+    },
+    {
+     "id": "CR-ALC-001",
+     "tier": "extremely-rare",
+     "theme": "summoning",
+     "why": "Blood-red pentagram, the mark a daemon is called by"
+    },
+    {
+     "id": "CR-ARC-041",
+     "tier": "extremely-rare",
+     "theme": "gateway",
+     "why": "Mossy dungeon arch, the catalog's own Hythloth-tagged gate"
+    },
+    {
+     "id": "CR-CUR-019",
+     "tier": "extremely-rare",
+     "theme": "hellfire",
+     "why": "Skull wreathed in fire; grade C but nothing else says hellfire so well"
+    },
+    {
+     "id": "CR-REL-022",
+     "tier": "rare",
+     "theme": "blood-rite",
+     "why": "Pentagram altar ringed with skull candles, ready for a rite"
+    },
+    {
+     "id": "CR-ALC-007",
+     "tier": "rare",
+     "theme": "summoning",
+     "why": "Summoning circle with its corner skulls and candles"
+    },
+    {
+     "id": "CR-ALC-006",
+     "tier": "scarce",
+     "theme": "summoning",
+     "why": "Black obsidian pentagram, cold and unlit"
+    },
+    {
+     "id": "CR-CUR-017",
+     "tier": "scarce",
+     "theme": "demon-faces",
+     "why": "Row of three stone demon faces glaring from the wall line"
+    },
+    {
+     "id": "CR-CUR-027",
+     "tier": "scarce",
+     "theme": "demon-faces",
+     "why": "Jade demon face, a green horned grimace"
+    },
+    {
+     "id": "CR-CUR-016",
+     "tier": "uncommon",
+     "theme": "demon-faces",
+     "why": "A single grey stone demon face, the humbler trophy of the set"
+    }
+   ]
+  },
+  {
+   "pool": "nemesis-species-trophies",
+   "system": "nemesis",
+   "notes": "Plan 6.1: one species trophy per species, identical everywhere. Monster figurines (FIG) are used wherever the species has one, because a figurine is the clearest possible species link (owner rule 2026-10-08: a figurine is fine when its creature is present in our game; every figurine species here is spawned by the shard, see Species-In-Game.md). Species with no figurine use lair pieces that evoke them: orc captain and orc lord take the rust-red war banners, the mummy a sarcophagus, the black bear a bearskin rug. 52 species. Still without a main-catalog figurine (the era-neutral section has some, ids CN-FIG-...): imp, orcish mage, wyvern, ancient wyrm, kraken, hell hound and the other dungeon creatures; using era-neutral ids in pools needs an owner decision. Gazer and giant spider rest on grade C art (their creature dates are unverified), and the drake reuses the jade dragon figurine, so it looks like a dragon; the owner may prefer to drop those three.",
+   "entries": [
+    {
+     "species": "orc",
+     "id": "CR-FIG-007",
+     "why": "Green orc in a red loincloth, unmistakably an orc."
+    },
+    {
+     "species": "orc-captain",
+     "id": "CR-HER-027",
+     "why": "Rust-red war banner; a captain's standard on the march."
+    },
+    {
+     "species": "orc-lord",
+     "id": "CR-HER-028",
+     "why": "Banner of the Horde; the warlord's own colours."
+    },
+    {
+     "species": "troll",
+     "id": "CR-FIG-005",
+     "why": "Grey, slope-shouldered troll with a knuckled scowl."
+    },
+    {
+     "species": "ettin",
+     "id": "CR-FIG-001",
+     "why": "Hulking brown ettin, the sculpt that matches the Tracking icon."
+    },
+    {
+     "species": "ogre",
+     "id": "CR-FIG-003",
+     "why": "Stocky tan ogre with hanging fists."
+    },
+    {
+     "species": "lizardman",
+     "id": "CR-FIG-008",
+     "why": "Upright scaly lizardman with a spear-crest."
+    },
+    {
+     "species": "ratman",
+     "id": "CR-FIG-010",
+     "why": "Hunched ratman with a crude club."
+    },
+    {
+     "species": "cyclops",
+     "id": "CR-FIG-011",
+     "why": "One-eyed giant swinging a lantern."
+    },
+    {
+     "species": "titan",
+     "id": "CR-FIG-012",
+     "why": "Towering club-wielding titan, mantel-sized."
+    },
+    {
+     "species": "headless",
+     "id": "CR-FIG-013",
+     "why": "Orange headless body, no head at all."
+    },
+    {
+     "species": "harpy",
+     "id": "CR-FIG-019",
+     "why": "Talon-footed harpy in a shrieking crouch."
+    },
+    {
+     "species": "gargoyle",
+     "id": "CR-FIG-020",
+     "why": "Winged gargoyle, the creature that spawns in the outdoors and Hythloth."
+    },
+    {
+     "species": "zombie",
+     "id": "CR-FIG-014",
+     "why": "Shambling green zombie with grave-dirt in its creases."
+    },
+    {
+     "species": "skeleton",
+     "id": "CR-FIG-015",
+     "why": "Bone-white skeleton, ribs polished."
+    },
+    {
+     "species": "lich",
+     "id": "CR-FIG-016",
+     "why": "Hooded lich with a cold steady gaze."
+    },
+    {
+     "species": "mummy",
+     "id": "CR-GRV-009",
+     "why": "Open stone sarcophagus, the mummy's empty bed (best non-figurine fit)."
+    },
+    {
+     "species": "mongbat",
+     "id": "CR-FIG-017",
+     "why": "Russet mongbat with wings half-folded."
+    },
+    {
+     "species": "gazer",
+     "id": "CR-FIG-018",
+     "why": "Many-stalked gazer; grade C art, only art for the species, would genuinely miss it."
+    },
+    {
+     "species": "reaper",
+     "id": "CR-FIG-021",
+     "why": "Gnarled leafless reaper-tree, grasping branches."
+    },
+    {
+     "species": "corpser",
+     "id": "CR-FIG-022",
+     "why": "Green tendrils rising from a dark clump."
+    },
+    {
+     "species": "wisp",
+     "id": "CR-FIG-028",
+     "why": "Small blue-white star of light."
+    },
+    {
+     "species": "slime",
+     "id": "CR-FIG-029",
+     "why": "Shining grey slime in its own puddle."
+    },
+    {
+     "species": "giant-spider",
+     "id": "CR-FIG-037",
+     "why": "Brown giant spider on eight legs; grade C art, an iconic species we would miss."
+    },
+    {
+     "species": "scorpion",
+     "id": "CR-FIG-038",
+     "why": "Dark scorpion with claws wide and tail raised."
+    },
+    {
+     "species": "giant-serpent",
+     "id": "CR-FIG-040",
+     "why": "Silver-grey serpent in a lazy S, the giant silver serpent."
+    },
+    {
+     "species": "dragon",
+     "id": "CR-FIG-023",
+     "why": "Dark winged dragon, the classic dragon silhouette."
+    },
+    {
+     "species": "drake",
+     "id": "CR-FIG-057",
+     "why": "Green jade dragon read as a drake; flagged: dragon-kin look-alike."
+    },
+    {
+     "species": "daemon",
+     "id": "CR-FIG-024",
+     "why": "Crimson daemon with folded wings."
+    },
+    {
+     "species": "fire-elemental",
+     "id": "CR-FIG-026",
+     "why": "Figure of living flame."
+    },
+    {
+     "species": "water-elemental",
+     "id": "CR-FIG-027",
+     "why": "Rising figure of blue water."
+    },
+    {
+     "species": "ice-elemental",
+     "id": "CR-FIG-102",
+     "why": "Pale-blue ice elemental, the same icon the Tracking menu shows."
+    },
+    {
+     "species": "terathan-drone",
+     "id": "CR-FIG-030",
+     "why": "Purple-bodied terathan drone, eight legs splayed."
+    },
+    {
+     "species": "terathan-matriarch",
+     "id": "CR-FIG-031",
+     "why": "Spider-queen bristling with legs."
+    },
+    {
+     "species": "ophidian-mage",
+     "id": "CR-FIG-032",
+     "why": "Coiled ophidian mage with a staff of office."
+    },
+    {
+     "species": "ophidian-queen",
+     "id": "CR-FIG-033",
+     "why": "Imperious ophidian queen coiled on her tail."
+    },
+    {
+     "species": "sea-serpent",
+     "id": "CR-FIG-056",
+     "why": "Sea serpent rearing from the waves, dark grey fins and horn."
+    },
+    {
+     "species": "deep-sea-serpent",
+     "id": "CR-FIG-070",
+     "why": "Cobalt sea serpent on an unbroken wave, the deep-sea kind."
+    },
+    {
+     "species": "brown-bear",
+     "id": "CR-FIG-043",
+     "why": "Broad brown bear seen head-on."
+    },
+    {
+     "species": "black-bear",
+     "id": "CR-TRO-016",
+     "why": "Black bearskin rug, the slayer's classic trophy."
+    },
+    {
+     "species": "polar-bear",
+     "id": "CR-FIG-044",
+     "why": "Pale polar bear of the frozen north."
+    },
+    {
+     "species": "gorilla",
+     "id": "CR-FIG-042",
+     "why": "Great black silverback hunched low."
+    },
+    {
+     "species": "timber-wolf",
+     "id": "CR-FIG-046",
+     "why": "Lean timber wolf mid-prowl."
+    },
+    {
+     "species": "panther",
+     "id": "CR-FIG-047",
+     "why": "Sleek black panther stretched low."
+    },
+    {
+     "id": "CR-FIG-105",
+     "species": "stone-gargoyle",
+     "why": "Greyer stone gargoyle, the rarer carved kind."
+    },
+    {
+     "id": "CR-FIG-081",
+     "species": "air-elemental",
+     "why": "Swirling grey-white air elemental."
+    },
+    {
+     "id": "CR-FIG-074",
+     "species": "earth-elemental",
+     "why": "Hunched earth elemental of packed clay."
+    },
+    {
+     "id": "CR-FIG-087",
+     "species": "ghoul",
+     "why": "Gaunt ghoul in a grave-robber's crouch."
+    },
+    {
+     "id": "CR-FIG-101",
+     "species": "frost-troll",
+     "why": "Pale-blue frost troll with icy hair."
+    },
+    {
+     "id": "CR-FIG-104",
+     "species": "stone-harpy",
+     "why": "Grey stone harpy with wings wrapped around her."
+    },
+    {
+     "id": "CR-FIG-096",
+     "species": "terathan-warrior",
+     "why": "Terathan warrior, legs spread and spear raised."
+    },
+    {
+     "id": "CR-FIG-099",
+     "species": "ophidian-warrior",
+     "why": "Ophidian warrior with a long red spear."
+    }
+   ]
+  },
+  {
+   "pool": "pilgrimage-shrine-tokens",
+   "system": "pilgrimage",
+   "notes": "One green-marble virtue mosaic per shrine, each carrying that virtue's own golden emblem (hand, heart, scales, sword, chalice, flame, ankh, crook), so the eight tokens read as one collectible set and each is unmistakable at a glance. All are grade B, tradable floor pieces with no function. The ninth entry, the Ring of the Eight Virtues, is an optional capstone for a pilgrim who has visited every shrine: it is the same eight emblems joined in a circle, listed under 'singularity' (the unity of the virtues). Drop it and the pool still satisfies 'one token per shrine'. There is no separate art for 'Spirit'. Which towns host which shrine, and whether the curator trades tokens for the Ring, is a Pilgrimage design matter for the roadmap item, not decided here.",
+   "entries": [
+    {
+     "shrine": "honesty",
+     "id": "CR-REL-001",
+     "why": "Golden open hand on green marble, the sign of Honesty"
+    },
+    {
+     "shrine": "compassion",
+     "id": "CR-REL-002",
+     "why": "Golden heart on green marble, the sign of Compassion"
+    },
+    {
+     "shrine": "valor",
+     "id": "CR-REL-004",
+     "why": "Golden sword on green marble, the sign of Valor"
+    },
+    {
+     "shrine": "justice",
+     "id": "CR-REL-003",
+     "why": "Golden scales on green marble, the sign of Justice"
+    },
+    {
+     "shrine": "sacrifice",
+     "id": "CR-REL-008",
+     "why": "Golden flame on green marble, the sign of Sacrifice"
+    },
+    {
+     "shrine": "honor",
+     "id": "CR-REL-006",
+     "why": "Golden chalice on green marble, the sign of Honor"
+    },
+    {
+     "shrine": "spirituality",
+     "id": "CR-REL-005",
+     "why": "Golden ankh on green marble, the sign of Spirituality"
+    },
+    {
+     "shrine": "humility",
+     "id": "CR-REL-007",
+     "why": "Golden shepherd's crook on green marble, the sign of Humility"
+    },
+    {
+     "shrine": "singularity",
+     "id": "CR-REL-010",
+     "why": "Optional capstone: all eight emblems in one ring, for the pilgrim who walked every shrine"
+    }
+   ]
+  },
+  {
+   "pool": "seasonal-halloween",
+   "system": "seasonal",
+   "notes": "Hallows' Eve pool (season:halloween): grinning jack-o'-lanterns, a witch's cauldron over coals, webs, gibbets and a churchyard. IMPORTANT: the era evidence found no Halloween items documented before 2006, so seven of these fifteen pieces are era grade C (the whole SEA Halloween set) and the pool is flavour for an event rather than a period claim; the owner may prefer to drop or delay it. The grade B pieces (graves, coffins, sheeted chair, moth-eaten bed, black candle, stopped clock) do exist in the era as dungeon and graveyard dressing and reuse that art for the event. 'tier' is the catalog tier (the Row of Fine Graves is the single extremely-rare).",
+   "entries": [
+    {
+     "id": "CR-GRV-039",
+     "tier": "extremely-rare",
+     "why": "Row of fine graves, a graveyard showpiece"
+    },
+    {
+     "id": "CR-SEA-019",
+     "tier": "rare",
+     "why": "Cauldron bubbling over coals (grade C)"
+    },
+    {
+     "id": "CR-GRV-037",
+     "tier": "rare",
+     "why": "Churchyard row of crooked graves"
+    },
+    {
+     "id": "CR-SEA-032",
+     "tier": "scarce",
+     "why": "Jack-o'-lantern beside a candle-crowned skull (grade C)"
+    },
+    {
+     "id": "CR-SEA-021",
+     "tier": "scarce",
+     "why": "Skeleton hung in chains (grade C)"
+    },
+    {
+     "id": "CR-FRN-036",
+     "tier": "scarce",
+     "why": "Moth-eaten four-poster, a haunted house's bed"
+    },
+    {
+     "id": "CR-SEA-018",
+     "tier": "uncommon",
+     "why": "A single jack-o'-lantern (grade C)"
+    },
+    {
+     "id": "CR-SEA-031",
+     "tier": "uncommon",
+     "why": "Row of three jack-o'-lanterns (grade C)"
+    },
+    {
+     "id": "CR-SEA-033",
+     "tier": "uncommon",
+     "why": "Ghostlight lantern of cold pale glass (grade C)"
+    },
+    {
+     "id": "CR-FRN-012",
+     "tier": "uncommon",
+     "why": "Sheet-draped chair, a ghost's seat"
+    },
+    {
+     "id": "CR-WLH-021",
+     "tier": "uncommon",
+     "why": "Stopped wall clock in a haunted hall"
+    },
+    {
+     "id": "CR-LGT-004",
+     "tier": "uncommon",
+     "why": "Black candle for the darkest night"
+    },
+    {
+     "id": "CR-GRV-003",
+     "tier": "common",
+     "why": "Plain wooden coffin"
+    },
+    {
+     "id": "CR-GRV-040",
+     "tier": "common",
+     "why": "Freshly dug grave"
+    },
+    {
+     "id": "CR-SEA-020",
+     "tier": "common",
+     "why": "Spider web across a corner (grade C)"
+    }
+   ]
+  },
+  {
+   "pool": "seasonal-harvest",
+   "system": "seasonal",
+   "notes": "Harvest pool (season:harvest): the autumn trees, the pumpkin patch and corn and wheat fields, hay and sheaves, a fruit basket and a harvest feast. 'tier' is the catalog tier and can be used as event drop rarity (the Farmyard Corner is the single extremely-rare). Almost all grade B; the Scarecrow is grade C, kept because it is the harvest icon. A few of these pieces (the autumn trees and fields) live in the flora category, which another curator draws from first, so no other pool uses them; check for later clashes.",
+   "entries": [
+    {
+     "id": "CR-ANM-021",
+     "tier": "extremely-rare",
+     "why": "Farmyard corner: the whole harvest-time yard"
+    },
+    {
+     "id": "CR-FOO-036",
+     "tier": "rare",
+     "why": "Harvest banquet table, the feast after the last sheaf"
+    },
+    {
+     "id": "CR-FLO-048",
+     "tier": "rare",
+     "why": "Pumpkin patch heavy with fruit"
+    },
+    {
+     "id": "CR-SEA-024",
+     "tier": "scarce",
+     "why": "Four wheat sheaves stood in a stook"
+    },
+    {
+     "id": "CR-FLO-050",
+     "tier": "scarce",
+     "why": "Golden wheat field ready to cut"
+    },
+    {
+     "id": "CR-FLO-051",
+     "tier": "scarce",
+     "why": "Cornfield standing tall"
+    },
+    {
+     "id": "CR-FLO-011",
+     "tier": "scarce",
+     "why": "Autumn oak in russet and gold"
+    },
+    {
+     "id": "CR-FLO-014",
+     "tier": "scarce",
+     "why": "Golden willow tree, all yellow leaves"
+    },
+    {
+     "id": "CR-FLO-033",
+     "tier": "scarce",
+     "why": "Autumn apple tree hung with fruit"
+    },
+    {
+     "id": "CR-ANM-001",
+     "tier": "scarce",
+     "why": "Haystack standing at the field's edge"
+    },
+    {
+     "id": "CR-SEA-025",
+     "tier": "uncommon",
+     "why": "Basket heaped with apples, pears and grapes"
+    },
+    {
+     "id": "CR-FLO-007",
+     "tier": "uncommon",
+     "why": "Autumn broadleaf tree"
+    },
+    {
+     "id": "CR-FLO-069",
+     "tier": "uncommon",
+     "why": "Scarecrow; grade C but the harvest icon"
+    },
+    {
+     "id": "CR-SEA-022",
+     "tier": "common",
+     "why": "Three hay sheaves at the field's edge"
+    },
+    {
+     "id": "CR-SEA-023",
+     "tier": "common",
+     "why": "Great sheaf of ripe wheat"
+    }
+   ]
+  },
+  {
+   "pool": "seasonal-winter",
+   "system": "seasonal",
+   "notes": "Winter holiday pool (season:winter): holiday trees and Yule hearth pieces up top, frosted trees and snow in the middle, small seasonal touches at the bottom. 'tier' is the catalog tier and can be used as event drop rarity (the Classic Holiday Tree, which the era evidence documents as a December 1998 and 1999 holiday gift, is the single extremely-rare). Most of the snow and ice crags went to the Ice curator and the Nemesis pool, so this set leans on holiday trees, frosted trees and Yule fire. The Little Snowman (CR-SEA-014) is deliberately left out: the era notes put its art in the 2003 winter package. Every piece here is grade A or B. Winter art has no function; whether these are event drops, a vendor's seasonal stock or both is for the Retention roadmap item.",
+   "entries": [
+    {
+     "id": "CR-SEA-001",
+     "tier": "extremely-rare",
+     "why": "Classic holiday tree hung with baubles, the winter showpiece"
+    },
+    {
+     "id": "CR-SEA-002",
+     "tier": "rare",
+     "why": "Frost-silvered holiday tree"
+    },
+    {
+     "id": "CR-SEA-027",
+     "tier": "rare",
+     "why": "Wide crooked oak with its bare limbs thick with frost"
+    },
+    {
+     "id": "CR-SEA-003",
+     "tier": "scarce",
+     "why": "Slim holiday cedar strung with baubles"
+    },
+    {
+     "id": "CR-SEA-004",
+     "tier": "scarce",
+     "why": "Narrow frosted tree sparkling with coloured baubles"
+    },
+    {
+     "id": "CR-SEA-030",
+     "tier": "scarce",
+     "why": "Tall frosted cypress hung with icicles"
+    },
+    {
+     "id": "CR-SEA-005",
+     "tier": "uncommon",
+     "why": "Frosted cedar standing like a pale spire"
+    },
+    {
+     "id": "CR-SEA-007",
+     "tier": "uncommon",
+     "why": "Tall snow mound drifted against a buried stump"
+    },
+    {
+     "id": "CR-SEA-015",
+     "tier": "uncommon",
+     "why": "Yule log burning through the longest night"
+    },
+    {
+     "id": "CR-SEA-016",
+     "tier": "uncommon",
+     "why": "Red, green and white yuletide candles"
+    },
+    {
+     "id": "CR-SEA-017",
+     "tier": "uncommon",
+     "why": "Pair of ruby and emerald yuletide lanterns"
+    },
+    {
+     "id": "CR-SEA-026",
+     "tier": "uncommon",
+     "why": "Leafless frosted elm, every twig outlined in white"
+    },
+    {
+     "id": "CR-SEA-006",
+     "tier": "common",
+     "why": "Round snow heap swept against a doorstep"
+    },
+    {
+     "id": "CR-SEA-028",
+     "tier": "common",
+     "why": "Bare frosted walnut tree"
+    },
+    {
+     "id": "CR-SEA-029",
+     "tier": "common",
+     "why": "Frosted willow, switches stiff with ice"
+    },
+    {
+     "id": "CR-FLO-008",
+     "tier": "common",
+     "why": "Plain cedar tree, the humble winter evergreen"
+    }
+   ]
+  },
+  {
+   "pool": "shipwreck-decor",
+   "system": "shipwreck",
+   "notes": "One weighted roll per salvaged wreck, so the art runs from flotsam (lantern, crate, cask, driftwood) through a captain's cabin (chest, chart and sextant) to hull pieces (anchor, cannon, strongbox) and one showpiece, the Lighthouse Lamp Room, which the catalog already tags shipwreck. The longboat section (CR-NAU-042) is the most wreck-like piece of all but is grade C, so it is left out; swap it in for the cannon if the owner would rather have it.",
+   "entries": [
+    {
+     "id": "CR-NAU-035",
+     "rarity": "uncommon",
+     "why": "Weathered ship's lantern, salt-streaked and long out."
+    },
+    {
+     "id": "CR-NAU-025",
+     "rarity": "uncommon",
+     "why": "Cargo crate hauled from the shallows, hung with seaweed."
+    },
+    {
+     "id": "CR-NAU-028",
+     "rarity": "uncommon",
+     "why": "Cask burst open by the surf."
+    },
+    {
+     "id": "CR-NAU-029",
+     "rarity": "uncommon",
+     "why": "Sun-bleached driftwood stranded by the tide."
+    },
+    {
+     "id": "CR-NAU-002",
+     "rarity": "scarce",
+     "why": "Anchor crusted green with verdigris and barnacles."
+    },
+    {
+     "id": "CR-NAU-030",
+     "rarity": "scarce",
+     "why": "Sailor's salt-stained sea chest."
+    },
+    {
+     "id": "CR-NAU-032",
+     "rarity": "scarce",
+     "why": "Salvage heap of crate, cask, planks and rope."
+    },
+    {
+     "id": "CR-LIB-029",
+     "rarity": "scarce",
+     "why": "Captain's chart with a brass sextant laid across it."
+    },
+    {
+     "id": "CR-NAU-031",
+     "rarity": "rare",
+     "why": "Captain's iron-bound strongbox, still shut."
+    },
+    {
+     "id": "CR-NAU-040",
+     "rarity": "rare",
+     "why": "Black iron chest dragged from the seabed."
+    },
+    {
+     "id": "CR-NAU-036",
+     "rarity": "rare",
+     "why": "Bronze-banded ship's cannon on its carriage."
+    },
+    {
+     "id": "CR-LGT-041",
+     "rarity": "extremely-rare",
+     "why": "Lighthouse Lamp Room, the great lamp of a lost harbour."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-covetous",
+   "system": "wanted-curator",
+   "notes": "Covetous is greed in a dungeon, so the set is bones, webs and the treasure that killed their owners. Tiers climb from a skull to silver chests to the Golden Pylon, a gold-sheathed miniature tomb that is the showpiece. The skull-on-gold and dragon hoards are held by the Hot Zone pool and the Bullion Vault by the Minoc expedition.",
+   "entries": [
+    {
+     "id": "CR-DNG-015",
+     "tier": "easy",
+     "why": "A single weathered skull."
+    },
+    {
+     "id": "CR-DNG-006",
+     "tier": "easy",
+     "why": "Dangling cobweb in the treasure vaults."
+    },
+    {
+     "id": "CR-TRS-016",
+     "tier": "medium",
+     "why": "Chain, bracelet and ring on a gold heap."
+    },
+    {
+     "id": "CR-TRS-010",
+     "tier": "medium",
+     "why": "Stack of silver ingots like a moneylender's bricks."
+    },
+    {
+     "id": "CR-TRS-025",
+     "tier": "hard",
+     "why": "Chest of silver ingots, enough to buy a barony."
+    },
+    {
+     "id": "CR-TRS-022",
+     "tier": "hard",
+     "why": "Silver strongbox with one flawless diamond."
+    },
+    {
+     "id": "CR-CUR-025",
+     "tier": "boss",
+     "why": "Golden Pylon, a tomb sheathed in gold for a patient king."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-deceit",
+   "system": "wanted-curator",
+   "notes": "Deceit is the undead dungeon of bones, chains and gibbets. The easy pieces are bones and a small web, the hard pieces are hung prisoners, and the Pillory Scaffold is the showpiece. Deceit and Wrong share a torture theme, so the two pools split it: racks and blocks go to Wrong.",
+   "entries": [
+    {
+     "id": "CR-DNG-011",
+     "tier": "easy",
+     "why": "Small orb web beaded with dew."
+    },
+    {
+     "id": "CR-DNG-018",
+     "tier": "easy",
+     "why": "Skeleton folded where it dropped."
+    },
+    {
+     "id": "CR-DNG-024",
+     "tier": "medium",
+     "why": "Empty chain and the bones beneath it."
+    },
+    {
+     "id": "CR-GRV-005",
+     "tier": "medium",
+     "why": "Open coffin, lid gone, lining empty."
+    },
+    {
+     "id": "CR-DNG-023",
+     "tier": "hard",
+     "why": "Hanging skeleton, one prisoner still in his boots."
+    },
+    {
+     "id": "CR-DNG-026",
+     "tier": "hard",
+     "why": "Gibbet Row, two prisoners and an empty cage."
+    },
+    {
+     "id": "CR-DNG-030",
+     "tier": "boss",
+     "why": "Pillory Scaffold, whipping post and onlookers' bench."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-despise",
+   "system": "wanted-curator",
+   "notes": "Despise is the dragon cave: heaped skulls and bones, dripstone, an ogre midden and a flowstone column. Price follows size, from a single bone heap up to the Great Pile of Skulls as the showpiece. The dragon's own hoard pieces are held by hot-zone-drops, so this set is the cave itself.",
+   "entries": [
+    {
+     "id": "CR-DNG-016",
+     "tier": "easy",
+     "why": "Heap of bones, the cave floor."
+    },
+    {
+     "id": "CR-DNG-017",
+     "tier": "easy",
+     "why": "Scattered bones flung wide by whatever fed here."
+    },
+    {
+     "id": "CR-DNG-046",
+     "tier": "easy",
+     "why": "A cavern rock that predates the dungeon."
+    },
+    {
+     "id": "CR-DNG-040",
+     "tier": "medium",
+     "why": "Ridge of stone teeth, a cave grown a jaw."
+    },
+    {
+     "id": "CR-DNG-037",
+     "tier": "medium",
+     "why": "Ogre and troll midden of bones and old boots."
+    },
+    {
+     "id": "CR-DNG-014",
+     "tier": "hard",
+     "why": "Tight skull heap, a lair's tally."
+    },
+    {
+     "id": "CR-DNG-013",
+     "tier": "boss",
+     "why": "Great Pile of Skulls, the dragon's grim showpiece."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-destard",
+   "system": "wanted-curator",
+   "notes": "Destard is a dragon-and-drake lair, so the set is what a dragon leaves behind: dripstone, fallen adventurers' armour and gold. The dragon hoard pieces that would have been ideal are claimed by the Hot Zone pool and the gilded suits of armour by artisan-signatures, so a gold ingot stack is the showpiece; there is no extremely rare piece left for this lair.",
+   "entries": [
+    {
+     "id": "CR-DNG-038",
+     "tier": "easy",
+     "why": "Stalagmite cluster in the lair."
+    },
+    {
+     "id": "CR-DNG-019",
+     "tier": "easy",
+     "why": "Slumped skeleton, arms still raised against the wyrm."
+    },
+    {
+     "id": "CR-TRS-008",
+     "tier": "medium",
+     "why": "Jewelled gold heap, a dragon's bed."
+    },
+    {
+     "id": "CR-ARM-023",
+     "tier": "medium",
+     "why": "Chainmail laid out, a fallen adventurer's kit."
+    },
+    {
+     "id": "CR-TRS-014",
+     "tier": "hard",
+     "why": "Agapite ingots, a rarer layer of the hoard."
+    },
+    {
+     "id": "CR-ARM-024",
+     "tier": "hard",
+     "why": "Ringmail set left where its owner fell."
+    },
+    {
+     "id": "CR-TRS-011",
+     "tier": "boss",
+     "why": "Gold ingot stack, the fortune a dragon sleeps on."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-fire",
+   "system": "wanted-curator",
+   "notes": "The Fire dungeon is lava, obsidian and hot stone. Braziers and fire pits make the cheap pieces, lava and obsidian the hard pieces, and the great Rough Stone Fireplace is the showpiece. The Flaming Stone Face is grade C but is the one genuinely infernal piece left, so I would keep it.",
+   "entries": [
+    {
+     "id": "CR-LGT-030",
+     "tier": "easy",
+     "why": "Coal bowl brazier, glowing."
+    },
+    {
+     "id": "CR-LGT-031",
+     "tier": "easy",
+     "why": "Stone fire pit."
+    },
+    {
+     "id": "CR-LGT-033",
+     "tier": "medium",
+     "why": "Blazing fire pit."
+    },
+    {
+     "id": "CR-LGT-029",
+     "tier": "medium",
+     "why": "Tall iron brazier on a slender stand."
+    },
+    {
+     "id": "CR-DNG-048",
+     "tier": "hard",
+     "why": "Tile of molten lava, crust splitting."
+    },
+    {
+     "id": "CR-DNG-045",
+     "tier": "hard",
+     "why": "Obsidian ridge, knives of black glass."
+    },
+    {
+     "id": "CR-CUR-018",
+     "tier": "hard",
+     "why": "Flaming stone face; grade C, kept as the only infernal piece left."
+    },
+    {
+     "id": "CR-LGT-036",
+     "tier": "boss",
+     "why": "Rough Stone Fireplace, the dungeon's roaring hearth."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-ice",
+   "system": "wanted-curator",
+   "notes": "The Ice dungeon is snow, frost and stone gone blue. The set is built from the A-grade winter spires and snow crags, with a frozen hearth and a white pelt, and the Frostspire Ring as the showpiece. There is no extremely rare ice piece, so the boss is a rare; Ice Spire is held by the ice-elemental Nemesis trophy.",
+   "entries": [
+    {
+     "id": "CR-SEA-009",
+     "tier": "easy",
+     "why": "Snow-capped crags through the drifts."
+    },
+    {
+     "id": "CR-SEA-008",
+     "tier": "easy",
+     "why": "Lumpy snow drift against a doorway."
+    },
+    {
+     "id": "CR-GRV-022",
+     "tier": "medium",
+     "why": "Blue-grey slate slab, ice-cold."
+    },
+    {
+     "id": "CR-TRO-022",
+     "tier": "medium",
+     "why": "Snow-white fur pelt from the far north."
+    },
+    {
+     "id": "CR-SEA-010",
+     "tier": "hard",
+     "why": "Tall jagged spires of frozen snow."
+    },
+    {
+     "id": "CR-LGT-038",
+     "tier": "hard",
+     "why": "Frostbrick fireplace in blue-grey stone."
+    },
+    {
+     "id": "CR-SEA-012",
+     "tier": "hard",
+     "why": "Frozen hollow of arched snow crags."
+    },
+    {
+     "id": "CR-SEA-013",
+     "tier": "boss",
+     "why": "Frostspire Ring, four towering spires around a ring."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-orc-cave",
+   "system": "wanted-curator",
+   "notes": "The Orc Cave set is a war band's camp: sharpened stakes, skull-crowned standards and their weapon rack. The orc war banners are the Nemesis orc-captain and orc-lord trophies, so the curator takes the other banners and standards. The Pair of War Band Standards is the showpiece.",
+   "entries": [
+    {
+     "id": "CR-DNG-035",
+     "tier": "easy",
+     "why": "Sharpened stake palisade."
+    },
+    {
+     "id": "CR-HER-029",
+     "tier": "easy",
+     "why": "Slashed rust-red raiders' banner."
+    },
+    {
+     "id": "CR-HER-030",
+     "tier": "medium",
+     "why": "Hide-wrapped standard crowned with a skull."
+    },
+    {
+     "id": "CR-HER-031",
+     "tier": "medium",
+     "why": "Skull above a battered round shield."
+    },
+    {
+     "id": "CR-DNG-036",
+     "tier": "hard",
+     "why": "Skull-topped stakes marking a boundary."
+    },
+    {
+     "id": "CR-ARM-002",
+     "tier": "hard",
+     "why": "Wall axe rack of long-hafted axes."
+    },
+    {
+     "id": "CR-HER-032",
+     "tier": "boss",
+     "why": "Pair of War Band Standards, a hide and a shield."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-shame",
+   "system": "wanted-curator",
+   "notes": "Shame is the dungeon of elementals and winding caves, so it takes dripstone, crystal and the dark smears of a fight. Crystals suggest elemental cores without being a species trophy. The Emerald Crystal Cluster is the showpiece.",
+   "entries": [
+    {
+     "id": "CR-DNG-039",
+     "tier": "easy",
+     "why": "Slender stalagmites, wet with slow water."
+    },
+    {
+     "id": "CR-DNG-050",
+     "tier": "easy",
+     "why": "Blood smear, something dragged away."
+    },
+    {
+     "id": "CR-DNG-020",
+     "tier": "medium",
+     "why": "Sprawled skeleton flung across the flags."
+    },
+    {
+     "id": "CR-DNG-041",
+     "tier": "medium",
+     "why": "Rust-stained stalagmite, iron in the water."
+    },
+    {
+     "id": "CR-ALC-019",
+     "tier": "medium",
+     "why": "Green crystal shard on a stone plinth."
+    },
+    {
+     "id": "CR-DNG-044",
+     "tier": "hard",
+     "why": "Flowstone column, floor to roof."
+    },
+    {
+     "id": "CR-ALC-021",
+     "tier": "boss",
+     "why": "Emerald Crystal Cluster, an elemental's heart-stone."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-terathan-keep",
+   "system": "wanted-curator",
+   "notes": "Terathan Keep is spider country: webs, egg sacs, cocoons and a larder. It has more lair dressing than any other dungeon, so every tier is webs; the Great Spider Web is the showpiece. These are lair dressing, not a species trophy; the giant-spider Nemesis trophy is a figurine.",
+   "entries": [
+    {
+     "id": "CR-DNG-005",
+     "tier": "easy",
+     "why": "Corner cobweb."
+    },
+    {
+     "id": "CR-DNG-007",
+     "tier": "easy",
+     "why": "Spider egg sac the size of a loaf."
+    },
+    {
+     "id": "CR-DNG-009",
+     "tier": "medium",
+     "why": "Man-sized silk cocoon."
+    },
+    {
+     "id": "CR-DNG-010",
+     "tier": "medium",
+     "why": "Cobwebbed sea chest nobody dares open."
+    },
+    {
+     "id": "CR-DNG-008",
+     "tier": "hard",
+     "why": "Webbed egg clutch in fresh silk."
+    },
+    {
+     "id": "CR-DNG-012",
+     "tier": "hard",
+     "why": "Spider's larder of cocoons round an egg sac."
+    },
+    {
+     "id": "CR-DNG-002",
+     "tier": "hard",
+     "why": "Orb weaver's web across a doorway."
+    },
+    {
+     "id": "CR-DNG-001",
+     "tier": "boss",
+     "why": "Great Spider Web, wall to wall, wide enough for an ogre."
+    }
+   ]
+  },
+  {
+   "pool": "wanted-curator-wrong",
+   "system": "wanted-curator",
+   "notes": "Wrong is the prison dungeon: blood, chains, a butcher's larder, the guillotine and the rack. The easy pieces are stains and a chain, the hard pieces are the block and the blade, and the Torture Rack is the showpiece. Grim, but the same gallows dressing already in the stock Britannia dungeons.",
+   "entries": [
+    {
+     "id": "CR-DNG-049",
+     "tier": "easy",
+     "why": "Pool of blood, not quite dry."
+    },
+    {
+     "id": "CR-DNG-025",
+     "tier": "easy",
+     "why": "Heavy chain worn bright at its lowest link."
+    },
+    {
+     "id": "CR-DNG-028",
+     "tier": "medium",
+     "why": "Chained post, polished by many hands."
+    },
+    {
+     "id": "CR-DNG-021",
+     "tier": "medium",
+     "why": "Charnel heap, a slaughterhouse floor."
+    },
+    {
+     "id": "CR-DNG-027",
+     "tier": "hard",
+     "why": "Hanging carcass, a butcher's larder."
+    },
+    {
+     "id": "CR-DNG-031",
+     "tier": "hard",
+     "why": "Executioner's block with the axe still in it."
+    },
+    {
+     "id": "CR-DNG-032",
+     "tier": "hard",
+     "why": "Guillotine with its blade drawn up."
+    },
+    {
+     "id": "CR-DNG-029",
+     "tier": "boss",
+     "why": "Torture Rack, ratchet drum and darkened cords."
+    }
+   ]
+  }
+ ],
+ "unallocated": [
+  "CR-FIG-002",
+  "CR-FIG-004",
+  "CR-FIG-006",
+  "CR-FIG-009",
+  "CR-FIG-034",
+  "CR-FIG-035",
+  "CR-FIG-036",
+  "CR-FIG-039",
+  "CR-FIG-041",
+  "CR-FIG-045",
+  "CR-FIG-048",
+  "CR-FIG-049",
+  "CR-FIG-050",
+  "CR-FIG-051",
+  "CR-FIG-052",
+  "CR-FIG-053",
+  "CR-FIG-054",
+  "CR-FIG-055",
+  "CR-FIG-058",
+  "CR-FIG-060",
+  "CR-FIG-061",
+  "CR-FIG-062",
+  "CR-FIG-063",
+  "CR-FIG-064",
+  "CR-FIG-065",
+  "CR-FIG-066",
+  "CR-FIG-067",
+  "CR-FIG-068",
+  "CR-FIG-069",
+  "CR-FIG-071",
+  "CR-FIG-072",
+  "CR-FIG-073",
+  "CR-FIG-075",
+  "CR-FIG-076",
+  "CR-FIG-077",
+  "CR-FIG-078",
+  "CR-FIG-079",
+  "CR-FIG-080",
+  "CR-FIG-082",
+  "CR-FIG-083",
+  "CR-FIG-084",
+  "CR-FIG-085",
+  "CR-FIG-086",
+  "CR-FIG-088",
+  "CR-FIG-089",
+  "CR-FIG-090",
+  "CR-FIG-091",
+  "CR-FIG-092",
+  "CR-FIG-093",
+  "CR-FIG-094",
+  "CR-FIG-095",
+  "CR-FIG-097",
+  "CR-FIG-098",
+  "CR-FIG-100",
+  "CR-FIG-103",
+  "CR-FIG-106",
+  "CR-FIG-107",
+  "CR-FIG-108",
+  "CR-FIG-109",
+  "CR-FIG-110",
+  "CR-TRO-001",
+  "CR-TRO-002",
+  "CR-TRO-003",
+  "CR-TRO-004",
+  "CR-TRO-005",
+  "CR-TRO-006",
+  "CR-TRO-007",
+  "CR-TRO-008",
+  "CR-TRO-009",
+  "CR-TRO-010",
+  "CR-TRO-011",
+  "CR-TRO-012",
+  "CR-TRO-013",
+  "CR-TRO-014",
+  "CR-TRO-015",
+  "CR-TRO-017",
+  "CR-TRO-018",
+  "CR-TRO-019",
+  "CR-TRO-020",
+  "CR-TRO-021",
+  "CR-TRO-023",
+  "CR-TRO-024",
+  "CR-TRO-025",
+  "CR-TRO-026",
+  "CR-TRO-027",
+  "CR-TRO-028",
+  "CR-TRO-029",
+  "CR-TRO-030",
+  "CR-TRO-031",
+  "CR-TRO-032",
+  "CR-TRO-033",
+  "CR-TRO-034",
+  "CR-TRO-035",
+  "CR-CUR-001",
+  "CR-CUR-002",
+  "CR-CUR-003",
+  "CR-CUR-004",
+  "CR-CUR-005",
+  "CR-CUR-007",
+  "CR-CUR-008",
+  "CR-CUR-009",
+  "CR-CUR-010",
+  "CR-CUR-012",
+  "CR-CUR-013",
+  "CR-CUR-014",
+  "CR-CUR-020",
+  "CR-CUR-021",
+  "CR-CUR-022",
+  "CR-CUR-023",
+  "CR-CUR-026",
+  "CR-STA-001",
+  "CR-STA-002",
+  "CR-STA-003",
+  "CR-STA-004",
+  "CR-STA-005",
+  "CR-STA-006",
+  "CR-STA-007",
+  "CR-STA-008",
+  "CR-STA-009",
+  "CR-STA-010",
+  "CR-STA-011",
+  "CR-STA-012",
+  "CR-STA-013",
+  "CR-STA-014",
+  "CR-STA-015",
+  "CR-STA-016",
+  "CR-STA-018",
+  "CR-STA-019",
+  "CR-STA-021",
+  "CR-STA-023",
+  "CR-STA-024",
+  "CR-STA-025",
+  "CR-STA-026",
+  "CR-STA-027",
+  "CR-STA-028",
+  "CR-STA-030",
+  "CR-STA-031",
+  "CR-STA-032",
+  "CR-STA-033",
+  "CR-STA-035",
+  "CR-STA-036",
+  "CR-STA-038",
+  "CR-STA-039",
+  "CR-STA-040",
+  "CR-GRV-001",
+  "CR-GRV-002",
+  "CR-GRV-004",
+  "CR-GRV-007",
+  "CR-GRV-013",
+  "CR-GRV-014",
+  "CR-GRV-015",
+  "CR-GRV-016",
+  "CR-GRV-017",
+  "CR-GRV-018",
+  "CR-GRV-019",
+  "CR-GRV-020",
+  "CR-GRV-021",
+  "CR-GRV-023",
+  "CR-GRV-024",
+  "CR-GRV-025",
+  "CR-GRV-026",
+  "CR-GRV-027",
+  "CR-GRV-028",
+  "CR-GRV-029",
+  "CR-GRV-030",
+  "CR-GRV-032",
+  "CR-GRV-033",
+  "CR-GRV-034",
+  "CR-GRV-036",
+  "CR-REL-009",
+  "CR-REL-011",
+  "CR-REL-012",
+  "CR-REL-013",
+  "CR-REL-014",
+  "CR-REL-015",
+  "CR-REL-016",
+  "CR-REL-018",
+  "CR-REL-023",
+  "CR-REL-024",
+  "CR-REL-025",
+  "CR-FLO-002",
+  "CR-FLO-003",
+  "CR-FLO-004",
+  "CR-FLO-005",
+  "CR-FLO-006",
+  "CR-FLO-009",
+  "CR-FLO-012",
+  "CR-FLO-013",
+  "CR-FLO-015",
+  "CR-FLO-016",
+  "CR-FLO-017",
+  "CR-FLO-018",
+  "CR-FLO-019",
+  "CR-FLO-020",
+  "CR-FLO-021",
+  "CR-FLO-022",
+  "CR-FLO-024",
+  "CR-FLO-025",
+  "CR-FLO-026",
+  "CR-FLO-027",
+  "CR-FLO-028",
+  "CR-FLO-029",
+  "CR-FLO-030",
+  "CR-FLO-031",
+  "CR-FLO-032",
+  "CR-FLO-035",
+  "CR-FLO-036",
+  "CR-FLO-037",
+  "CR-FLO-038",
+  "CR-FLO-039",
+  "CR-FLO-040",
+  "CR-FLO-041",
+  "CR-FLO-043",
+  "CR-FLO-044",
+  "CR-FLO-045",
+  "CR-FLO-046",
+  "CR-FLO-049",
+  "CR-FLO-053",
+  "CR-FLO-054",
+  "CR-FLO-056",
+  "CR-FLO-057",
+  "CR-FLO-058",
+  "CR-FLO-059",
+  "CR-FLO-060",
+  "CR-FLO-061",
+  "CR-FLO-062",
+  "CR-FLO-063",
+  "CR-FLO-064",
+  "CR-FLO-065",
+  "CR-FLO-066",
+  "CR-FLO-067",
+  "CR-FLO-068",
+  "CR-FLO-070",
+  "CR-WTR-003",
+  "CR-WTR-004",
+  "CR-WTR-005",
+  "CR-WTR-006",
+  "CR-WTR-007",
+  "CR-WTR-008",
+  "CR-WTR-009",
+  "CR-WTR-010",
+  "CR-WTR-011",
+  "CR-WTR-012",
+  "CR-WTR-013",
+  "CR-ANM-002",
+  "CR-ANM-003",
+  "CR-ANM-004",
+  "CR-ANM-005",
+  "CR-ANM-006",
+  "CR-ANM-007",
+  "CR-ANM-008",
+  "CR-ANM-009",
+  "CR-ANM-010",
+  "CR-ANM-011",
+  "CR-ANM-012",
+  "CR-ANM-013",
+  "CR-ANM-014",
+  "CR-ANM-015",
+  "CR-ANM-016",
+  "CR-ANM-017",
+  "CR-ANM-018",
+  "CR-ANM-019",
+  "CR-ANM-020",
+  "CR-ANM-022",
+  "CR-FRN-001",
+  "CR-FRN-003",
+  "CR-FRN-004",
+  "CR-FRN-005",
+  "CR-FRN-007",
+  "CR-FRN-008",
+  "CR-FRN-010",
+  "CR-FRN-011",
+  "CR-FRN-013",
+  "CR-FRN-014",
+  "CR-FRN-015",
+  "CR-FRN-016",
+  "CR-FRN-017",
+  "CR-FRN-018",
+  "CR-FRN-019",
+  "CR-FRN-020",
+  "CR-FRN-021",
+  "CR-FRN-022",
+  "CR-FRN-023",
+  "CR-FRN-024",
+  "CR-FRN-025",
+  "CR-FRN-026",
+  "CR-FRN-027",
+  "CR-FRN-028",
+  "CR-FRN-029",
+  "CR-FRN-030",
+  "CR-FRN-032",
+  "CR-FRN-033",
+  "CR-FRN-034",
+  "CR-FRN-035",
+  "CR-FRN-037",
+  "CR-FRN-038",
+  "CR-FRN-039",
+  "CR-FRN-040",
+  "CR-FRN-041",
+  "CR-FRN-043",
+  "CR-FRN-044",
+  "CR-FRN-045",
+  "CR-FRN-046",
+  "CR-FRN-047",
+  "CR-FRN-048",
+  "CR-FRN-049",
+  "CR-FRN-050",
+  "CR-TBL-001",
+  "CR-TBL-002",
+  "CR-TBL-004",
+  "CR-TBL-005",
+  "CR-TBL-006",
+  "CR-TBL-007",
+  "CR-TBL-008",
+  "CR-TBL-009",
+  "CR-TBL-010",
+  "CR-TBL-011",
+  "CR-TBL-012",
+  "CR-TBL-013",
+  "CR-TBL-014",
+  "CR-TBL-015",
+  "CR-TBL-016",
+  "CR-TBL-017",
+  "CR-TBL-018",
+  "CR-TBL-019",
+  "CR-TBL-020",
+  "CR-TBL-021",
+  "CR-TBL-022",
+  "CR-TBL-023",
+  "CR-TBL-024",
+  "CR-TBL-026",
+  "CR-TBL-027",
+  "CR-TBL-028",
+  "CR-TBL-029",
+  "CR-TBL-031",
+  "CR-TBL-032",
+  "CR-TBL-033",
+  "CR-TBL-034",
+  "CR-TBL-035",
+  "CR-TBL-036",
+  "CR-TBL-037",
+  "CR-TBL-039",
+  "CR-TBL-040",
+  "CR-TBL-041",
+  "CR-TBL-042",
+  "CR-TBL-043",
+  "CR-TBL-044",
+  "CR-TBL-045",
+  "CR-RUG-001",
+  "CR-RUG-002",
+  "CR-RUG-003",
+  "CR-RUG-004",
+  "CR-RUG-005",
+  "CR-RUG-006",
+  "CR-RUG-007",
+  "CR-RUG-008",
+  "CR-RUG-009",
+  "CR-RUG-010",
+  "CR-RUG-011",
+  "CR-RUG-012",
+  "CR-RUG-013",
+  "CR-RUG-014",
+  "CR-RUG-015",
+  "CR-RUG-016",
+  "CR-RUG-017",
+  "CR-RUG-018",
+  "CR-RUG-019",
+  "CR-RUG-020",
+  "CR-RUG-021",
+  "CR-RUG-023",
+  "CR-RUG-024",
+  "CR-RUG-025",
+  "CR-RUG-026",
+  "CR-WLH-001",
+  "CR-WLH-002",
+  "CR-WLH-003",
+  "CR-WLH-004",
+  "CR-WLH-005",
+  "CR-WLH-006",
+  "CR-WLH-007",
+  "CR-WLH-008",
+  "CR-WLH-009",
+  "CR-WLH-010",
+  "CR-WLH-011",
+  "CR-WLH-013",
+  "CR-WLH-014",
+  "CR-WLH-015",
+  "CR-WLH-016",
+  "CR-WLH-017",
+  "CR-WLH-018",
+  "CR-WLH-019",
+  "CR-WLH-022",
+  "CR-WLH-023",
+  "CR-WLH-024",
+  "CR-WLH-025",
+  "CR-WLH-026",
+  "CR-WLH-027",
+  "CR-WLH-028",
+  "CR-WLH-029",
+  "CR-WLH-030",
+  "CR-WLH-031",
+  "CR-WLH-032",
+  "CR-WLH-033",
+  "CR-WLH-034",
+  "CR-WLH-035",
+  "CR-WLH-036",
+  "CR-WLH-037",
+  "CR-WLH-038",
+  "CR-WLH-039",
+  "CR-WLH-040",
+  "CR-WLH-041",
+  "CR-WLH-042",
+  "CR-HER-001",
+  "CR-HER-002",
+  "CR-HER-003",
+  "CR-HER-004",
+  "CR-HER-005",
+  "CR-HER-006",
+  "CR-HER-007",
+  "CR-HER-008",
+  "CR-HER-009",
+  "CR-HER-010",
+  "CR-HER-011",
+  "CR-HER-012",
+  "CR-HER-014",
+  "CR-HER-016",
+  "CR-HER-017",
+  "CR-HER-018",
+  "CR-HER-019",
+  "CR-HER-021",
+  "CR-HER-022",
+  "CR-HER-023",
+  "CR-HER-024",
+  "CR-HER-025",
+  "CR-HER-026",
+  "CR-HER-036",
+  "CR-TWN-001",
+  "CR-TWN-002",
+  "CR-TWN-003",
+  "CR-TWN-004",
+  "CR-TWN-005",
+  "CR-TWN-007",
+  "CR-TWN-008",
+  "CR-TWN-009",
+  "CR-TWN-010",
+  "CR-TWN-011",
+  "CR-TWN-012",
+  "CR-TWN-013",
+  "CR-TWN-014",
+  "CR-TWN-015",
+  "CR-TWN-016",
+  "CR-TWN-017",
+  "CR-TWN-018",
+  "CR-TWN-019",
+  "CR-TWN-020",
+  "CR-TWN-021",
+  "CR-TWN-022",
+  "CR-TWN-023",
+  "CR-TWN-025",
+  "CR-TWN-026",
+  "CR-TWN-027",
+  "CR-TWN-029",
+  "CR-TWN-030",
+  "CR-TWN-031",
+  "CR-TWN-032",
+  "CR-TWN-033",
+  "CR-TWN-034",
+  "CR-TWN-036",
+  "CR-TWN-037",
+  "CR-LGT-001",
+  "CR-LGT-002",
+  "CR-LGT-003",
+  "CR-LGT-005",
+  "CR-LGT-006",
+  "CR-LGT-007",
+  "CR-LGT-008",
+  "CR-LGT-009",
+  "CR-LGT-013",
+  "CR-LGT-017",
+  "CR-LGT-018",
+  "CR-LGT-021",
+  "CR-LGT-022",
+  "CR-LGT-023",
+  "CR-LGT-024",
+  "CR-LGT-025",
+  "CR-LGT-026",
+  "CR-LGT-027",
+  "CR-LGT-028",
+  "CR-LGT-034",
+  "CR-LGT-035",
+  "CR-LGT-037",
+  "CR-LGT-039",
+  "CR-LGT-040",
+  "CR-LGT-042",
+  "CR-LGT-044",
+  "CR-LGT-046",
+  "CR-LGT-047",
+  "CR-SEA-011",
+  "CR-SEA-014",
+  "CR-MUS-002",
+  "CR-MUS-003",
+  "CR-MUS-004",
+  "CR-MUS-005",
+  "CR-MUS-007",
+  "CR-MUS-008",
+  "CR-MUS-009",
+  "CR-MUS-010",
+  "CR-MUS-011",
+  "CR-MUS-012",
+  "CR-MUS-013",
+  "CR-MUS-014",
+  "CR-MUS-015",
+  "CR-MUS-016",
+  "CR-MUS-017",
+  "CR-MUS-018",
+  "CR-MUS-019",
+  "CR-MUS-020",
+  "CR-MUS-021",
+  "CR-NAU-001",
+  "CR-NAU-004",
+  "CR-NAU-007",
+  "CR-NAU-008",
+  "CR-NAU-012",
+  "CR-NAU-013",
+  "CR-NAU-016",
+  "CR-NAU-017",
+  "CR-NAU-018",
+  "CR-NAU-019",
+  "CR-NAU-020",
+  "CR-NAU-022",
+  "CR-NAU-023",
+  "CR-NAU-027",
+  "CR-NAU-034",
+  "CR-NAU-042",
+  "CR-CMP-001",
+  "CR-CMP-002",
+  "CR-CMP-005",
+  "CR-CMP-006",
+  "CR-CMP-007",
+  "CR-CMP-014",
+  "CR-CMP-017",
+  "CR-CMP-019",
+  "CR-CMP-021",
+  "CR-CMP-022",
+  "CR-CMP-023",
+  "CR-CMP-024",
+  "CR-CMP-025",
+  "CR-CMP-027",
+  "CR-CMP-029",
+  "CR-TRS-001",
+  "CR-TRS-002",
+  "CR-TRS-003",
+  "CR-TRS-004",
+  "CR-TRS-012",
+  "CR-TRS-013",
+  "CR-TRS-017",
+  "CR-TRS-019",
+  "CR-TRS-028",
+  "CR-ARM-006",
+  "CR-ARM-008",
+  "CR-ARM-009",
+  "CR-ARM-010",
+  "CR-ARM-013",
+  "CR-ARM-014",
+  "CR-ARM-015",
+  "CR-ARM-016",
+  "CR-ARM-019",
+  "CR-ARM-020",
+  "CR-ARM-032",
+  "CR-ARM-034",
+  "CR-ARM-037",
+  "CR-ARM-039",
+  "CR-CRF-001",
+  "CR-CRF-008",
+  "CR-CRF-014",
+  "CR-CRF-020",
+  "CR-CRF-029",
+  "CR-CRF-030",
+  "CR-CRF-031",
+  "CR-CRF-032",
+  "CR-CRF-033",
+  "CR-CRF-034",
+  "CR-CRF-038",
+  "CR-CRF-039",
+  "CR-CRF-040",
+  "CR-CRF-043",
+  "CR-CRF-044",
+  "CR-CRF-045",
+  "CR-GAM-001",
+  "CR-GAM-002",
+  "CR-GAM-003",
+  "CR-GAM-004",
+  "CR-GAM-005",
+  "CR-GAM-006",
+  "CR-GAM-007",
+  "CR-GAM-008",
+  "CR-GAM-009",
+  "CR-GAM-010",
+  "CR-GAM-011",
+  "CR-GAM-012",
+  "CR-GAM-013",
+  "CR-GAM-014",
+  "CR-GAM-015",
+  "CR-GAM-016",
+  "CR-GAM-017",
+  "CR-GAM-018",
+  "CR-GAM-020",
+  "CR-GAM-021",
+  "CR-LIB-001",
+  "CR-LIB-002",
+  "CR-LIB-003",
+  "CR-LIB-004",
+  "CR-LIB-005",
+  "CR-LIB-006",
+  "CR-LIB-007",
+  "CR-LIB-008",
+  "CR-LIB-010",
+  "CR-LIB-011",
+  "CR-LIB-013",
+  "CR-LIB-014",
+  "CR-LIB-015",
+  "CR-LIB-016",
+  "CR-LIB-017",
+  "CR-LIB-018",
+  "CR-LIB-019",
+  "CR-LIB-024",
+  "CR-LIB-027",
+  "CR-LIB-028",
+  "CR-LIB-030",
+  "CR-LIB-031",
+  "CR-LIB-032",
+  "CR-LIB-035",
+  "CR-LIB-036",
+  "CR-LIB-041",
+  "CR-LIB-043",
+  "CR-LIB-045",
+  "CR-ALC-002",
+  "CR-ALC-003",
+  "CR-ALC-004",
+  "CR-ALC-005",
+  "CR-ALC-010",
+  "CR-ALC-011",
+  "CR-ALC-012",
+  "CR-ALC-013",
+  "CR-ALC-015",
+  "CR-ALC-016",
+  "CR-ALC-017",
+  "CR-ALC-018",
+  "CR-ALC-020",
+  "CR-ALC-023",
+  "CR-ALC-025",
+  "CR-ALC-027",
+  "CR-ALC-028",
+  "CR-ALC-031",
+  "CR-ALC-033",
+  "CR-ALC-034",
+  "CR-ALC-036",
+  "CR-ALC-039",
+  "CR-ALC-048",
+  "CR-FOO-002",
+  "CR-FOO-003",
+  "CR-FOO-006",
+  "CR-FOO-007",
+  "CR-FOO-008",
+  "CR-FOO-013",
+  "CR-FOO-014",
+  "CR-FOO-015",
+  "CR-FOO-016",
+  "CR-FOO-017",
+  "CR-FOO-018",
+  "CR-FOO-019",
+  "CR-FOO-020",
+  "CR-FOO-021",
+  "CR-FOO-022",
+  "CR-FOO-023",
+  "CR-FOO-025",
+  "CR-FOO-027",
+  "CR-FOO-028",
+  "CR-FOO-029",
+  "CR-FOO-030",
+  "CR-FOO-031",
+  "CR-FOO-032",
+  "CR-FOO-033",
+  "CR-FOO-034",
+  "CR-FOO-035",
+  "CR-FOO-037",
+  "CR-FOO-038",
+  "CR-FOO-039",
+  "CR-FOO-040",
+  "CR-DNG-003",
+  "CR-DNG-004",
+  "CR-DNG-022",
+  "CR-DNG-033",
+  "CR-DNG-034",
+  "CR-DNG-042",
+  "CR-DNG-043",
+  "CR-DNG-047",
+  "CR-ARC-001",
+  "CR-ARC-002",
+  "CR-ARC-003",
+  "CR-ARC-005",
+  "CR-ARC-006",
+  "CR-ARC-008",
+  "CR-ARC-009",
+  "CR-ARC-010",
+  "CR-ARC-011",
+  "CR-ARC-012",
+  "CR-ARC-013",
+  "CR-ARC-014",
+  "CR-ARC-015",
+  "CR-ARC-016",
+  "CR-ARC-017",
+  "CR-ARC-018",
+  "CR-ARC-019",
+  "CR-ARC-020",
+  "CR-ARC-021",
+  "CR-ARC-022",
+  "CR-ARC-023",
+  "CR-ARC-024",
+  "CR-ARC-025",
+  "CR-ARC-026",
+  "CR-ARC-027",
+  "CR-ARC-028",
+  "CR-ARC-029",
+  "CR-ARC-030",
+  "CR-ARC-032",
+  "CR-ARC-033",
+  "CR-ARC-034",
+  "CR-ARC-035",
+  "CR-ARC-036",
+  "CR-ARC-037",
+  "CR-ARC-038",
+  "CR-ARC-039",
+  "CR-ARC-040",
+  "CR-ARC-042"
+ ]
+}

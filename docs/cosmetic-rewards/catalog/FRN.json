@@ -1,0 +1,3126 @@
+[
+ {
+  "slug": "wooden-throne",
+  "name": "Wooden Throne",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B2E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B2F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B31",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B30",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall, plank-backed seat of dark timber, plain but commanding enough for a village elder.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-001"
+ },
+ {
+  "slug": "red-cushioned-throne",
+  "name": "Throne of Crimson Velvet",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B32",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B33",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A carved dark-wood throne with a high oval back and a crimson velvet seat, fit for a lord's hall.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-002"
+ },
+ {
+  "slug": "bamboo-chair",
+  "name": "Bamboo-Seated Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B5B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B5A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B5C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B5D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A slender ladder-backed chair with a woven straw seat, light enough to carry to the porch.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-003"
+ },
+ {
+  "slug": "wooden-chair",
+  "name": "Plain Wooden Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B57",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B56",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B59",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B58",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "craft:carpentry"
+  ],
+  "blurb": "A sturdy slat-backed chair of pale pine, the kind found in every tavern and cottage.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-004"
+ },
+ {
+  "slug": "cushioned-chair",
+  "name": "Cushioned Ladder-Back Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B53",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B52",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B54",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B55",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall ladder-backed chair with a grey wool cushion tied to the seat.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-005"
+ },
+ {
+  "slug": "fancy-cushioned-chair",
+  "name": "Fancy Ladder-Back Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B4F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B51",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A turned-post chair with a high slatted back and a thick padded seat, the pride of a good dining room.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-006"
+ },
+ {
+  "slug": "crimson-cushioned-chair",
+  "name": "Crimson-Cushioned Fancy Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B4F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B51",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "A fancy ladder-back chair whose padded seat has been re-covered in rich crimson cloth.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry chair (documented). The coloured cushion is the shard's cosmetic hue; seat cloth is a partial-hue pixel range.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hued crafted chair; decor-only, strip sitting",
+  "variantOf": "fancy-cushioned-chair",
+  "id": "CR-FRN-007"
+ },
+ {
+  "slug": "azure-cushioned-chair",
+  "name": "Azure-Cushioned Fancy Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B4F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 5,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B51",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "A fancy ladder-back chair whose padded seat has been re-covered in rich azure cloth.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry chair (documented). The coloured cushion is the shard's cosmetic hue; seat cloth is a partial-hue pixel range.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hued crafted chair; decor-only, strip sitting",
+  "variantOf": "fancy-cushioned-chair",
+  "id": "CR-FRN-008"
+ },
+ {
+  "slug": "stone-chair",
+  "name": "Carved Stone Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x1218",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1219",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x121A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x121B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "martial",
+   "dungeon",
+   "sacred"
+  ],
+  "blurb": "A grim high-backed chair hewn from grey stone and carved with a lattice of knotted stonework.",
+  "era": {
+   "grade": "B",
+   "note": "Stone chairs 0x1218-0x121B appear only in Lost Lands (T2A, Oct 1998) scenery (n=14 in the map file); world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; ModernUO StoneChair class exists; decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-009"
+ },
+ {
+  "slug": "paneled-armchair",
+  "name": "Paneled Oak Armchair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x0B92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B94",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B91",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B93",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar",
+   "tavern"
+  ],
+  "blurb": "A high-backed armchair of dark panelled oak, its tall back carved with recessed panels.",
+  "era": {
+   "grade": "B",
+   "note": "Panelled bench art from the classic furniture block 0x0B91-0x0B94, used as scenery in Britannia houses.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-010"
+ },
+ {
+  "slug": "pine-chair",
+  "name": "Pale Pine Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x1E6F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E78",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A slender chair of unstained pine, left bare as a carpenter's shop would display it.",
+  "era": {
+   "grade": "B",
+   "note": "Unfinished pine furniture set (0x1E6E-0x1E7F) appears only in Lost Lands scenery (T2A, Oct 1998; n=24); world dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-011"
+ },
+ {
+  "slug": "draped-chair",
+  "name": "Sheet-Draped Chair",
+  "category": "FRN",
+  "subcategory": "Ruined Furniture",
+  "parts": [
+   {
+    "id": "0x0C17",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C18",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "whimsical"
+  ],
+  "blurb": "A lonely chair under a dusty white sheet, as left in a house no one has lived in for years.",
+  "era": {
+   "grade": "B",
+   "note": "Classic ruined-house furniture block (0x0C10-0x0C2B), placed in Britannia ruins.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-012"
+ },
+ {
+  "slug": "toppled-chair",
+  "name": "Toppled Chair",
+  "category": "FRN",
+  "subcategory": "Ruined Furniture",
+  "parts": [
+   {
+    "id": "0x0C19",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C1A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A wooden chair kicked over onto its side, one rung snapped.",
+  "era": {
+   "grade": "B",
+   "note": "Classic ruined-house furniture block (0x0C10-0x0C2B); used in Britannia ruins and dungeon rooms.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-013"
+ },
+ {
+  "slug": "tavern-barstool",
+  "name": "Tavern Barstool",
+  "category": "FRN",
+  "subcategory": "Stools",
+  "parts": [
+   {
+    "id": "0x0A2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall round-topped stool with a footrail, polished smooth by years of elbows and trousers.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-014"
+ },
+ {
+  "slug": "three-legged-stool",
+  "name": "Three-Legged Stool",
+  "category": "FRN",
+  "subcategory": "Stools",
+  "parts": [
+   {
+    "id": "0x0A2B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A little round stool on three spindly legs, ideal for milking or mending.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-015"
+ },
+ {
+  "slug": "foot-stool",
+  "name": "Cushioned Foot Stool",
+  "category": "FRN",
+  "subcategory": "Stools",
+  "parts": [
+   {
+    "id": "0x0B5E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A low padded stool for resting tired feet beside the hearth.",
+  "era": {
+   "grade": "A",
+   "note": "Classic carpentry-menu furniture; sitting on chairs and benches is documented from Publish 7 (Dec 1997).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class (Carpentry-crafted); decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-016"
+ },
+ {
+  "slug": "bamboo-stool",
+  "name": "Bamboo Stool",
+  "category": "FRN",
+  "subcategory": "Stools",
+  "parts": [
+   {
+    "id": "0x11FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "exotic",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A round stool of lashed bamboo poles, made by the folk of the Lost Lands.",
+  "era": {
+   "grade": "B",
+   "note": "Bamboo furniture block 0x11D6-0x11FC from the Lost Lands (T2A, Oct 1998); the stool is used mostly in Lost Lands scenery (n=8).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-017"
+ },
+ {
+  "slug": "marble-bench",
+  "name": "Marble Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0459",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x045A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A heavy bench of creamy marble, cool to sit on and good for a century of rain.",
+  "era": {
+   "grade": "B",
+   "note": "Marble bench tiles 0x0459-0x045A are used about 38 times in Britannia and the Lost Lands. World dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-018"
+ },
+ {
+  "slug": "stone-bench",
+  "name": "Grey Stone Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x1208",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1207",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x120B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x120A",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A long bench cut from a single slab of grey stone, mounted on two squat piers.",
+  "era": {
+   "grade": "B",
+   "note": "Grey stone bench tiles 0x1207-0x120C are used about 310 times, mostly in Lost Lands (T2A, Oct 1998) buildings; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-019"
+ },
+ {
+  "slug": "long-stone-bench",
+  "name": "Long Courtyard Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x1208",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1209",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1207",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A three-bay stone bench long enough for a whole guard rotation to rest on.",
+  "era": {
+   "grade": "B",
+   "note": "Grey stone bench tiles 0x1207-0x120C are used about 310 times, mostly in Lost Lands (T2A, Oct 1998) buildings; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-020"
+ },
+ {
+  "slug": "marble-garden-bench",
+  "name": "Marble Garden Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x1DD1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DD0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1DCE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DCD",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A smooth marble bench with a pale veined seat and chunky square legs.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-021"
+ },
+ {
+  "slug": "sandstone-garden-bench",
+  "name": "Sandstone Garden Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x1DCB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DCC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DCA",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1DC8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC9",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC7",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "desert",
+   "humble"
+  ],
+  "blurb": "A long sandstone bench in warm tan, three tiles of seat for a sunny courtyard.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-022"
+ },
+ {
+  "slug": "log-bench",
+  "name": "Rough-Hewn Log Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0B66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B67",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B65",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B60",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B61",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B5F",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "wilderness",
+   "tavern"
+  ],
+  "blurb": "A bench split from a single log and propped on crossed stakes, bark still showing along its edge.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-023"
+ },
+ {
+  "slug": "plank-bench",
+  "name": "Pale Plank Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0B69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B68",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B63",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B64",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B62",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A smooth plank seat on stout wooden legs, three feet of honest carpentry.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-024"
+ },
+ {
+  "slug": "dark-oak-bench",
+  "name": "Dark Oak Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0B2D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B2D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B2D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B2C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B2C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B2C",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "Three dark oak benches pushed end to end, scarred by a thousand tankards.",
+  "era": {
+   "grade": "A",
+   "note": "Dark-oak wooden bench is the classic carpentry-menu bench; sitting on benches documented Dec 1997.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class WoodenBench (3 units); decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-025"
+ },
+ {
+  "slug": "oak-settle",
+  "name": "High-Backed Oak Settle",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0B92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B91",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B94",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B93",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "tavern",
+   "scholar"
+  ],
+  "blurb": "A two-seat settle of dark panelled oak with a tall back, built to keep draughts off the fireside.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-026"
+ },
+ {
+  "slug": "great-hall-settle",
+  "name": "Four-Seat Settle",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x0B92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B91",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B92",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B91",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B94",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B93",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B94",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B93",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "4x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "tavern",
+   "martial"
+  ],
+  "blurb": "A long, high-backed settle for four, the sort of pew a guildmaster keeps beside the great hearth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world bench art used as scenery across Britannia; world dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip sitting",
+  "variantOf": null,
+  "id": "CR-FRN-027"
+ },
+ {
+  "slug": "linen-four-poster",
+  "name": "Linen Four-Poster Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A70",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A72",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A71",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A77",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A76",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A74",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A75",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A grand four-poster in carved brown wood, draped in crisp white linen with a fringed valance.",
+  "era": {
+   "grade": "A",
+   "note": "Small and large beds became craftable on 1999-03-28; this bed art sits in the documented bed tile block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CR-FRN-028"
+ },
+ {
+  "slug": "down-four-poster",
+  "name": "Feather-Down Four-Poster",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A85",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A84",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A87",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A86",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A89",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A8B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A88",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A8A",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A four-poster dressed with a thick white eiderdown and plump pillows, as a duchess might insist.",
+  "era": {
+   "grade": "A",
+   "note": "Small and large beds became craftable on 1999-03-28; this bed art sits in the documented bed tile block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CR-FRN-029"
+ },
+ {
+  "slug": "wool-four-poster",
+  "name": "Wool-Blanketed Four-Poster",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A80",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A7F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A81",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A7E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "rustic"
+  ],
+  "blurb": "A carved four-poster under a heavy grey wool blanket, tucked tight at the corners.",
+  "era": {
+   "grade": "A",
+   "note": "Small and large beds became craftable on 1999-03-28; this bed art sits in the documented bed tile block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CR-FRN-030"
+ },
+ {
+  "slug": "masters-four-poster",
+  "name": "Master's Four-Poster Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A7D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A7C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A83",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A7F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A82",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A7E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "The carpenter's large bed: four posts, a carved headboard and a grey blanket with a single pillow.",
+  "era": {
+   "grade": "A",
+   "note": "Small and large beds became craftable on 1999-03-28; this bed art sits in the documented bed tile block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class LargeBedEastAddon / LargeBedSouthAddon; decor-only, strip sleeping",
+  "variantOf": null,
+  "id": "CR-FRN-031"
+ },
+ {
+  "slug": "slept-in-four-poster",
+  "name": "Rumpled Four-Poster",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A8F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A8E",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A8D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A8C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0DB5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0DB1",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0DB4",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0DB0",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "whimsical"
+  ],
+  "blurb": "A four-poster with the covers thrown back and the pillows still dented, as if its owner has just gone down to breakfast.",
+  "era": {
+   "grade": "A",
+   "note": "Large-bed tile block 0x0A70-0x0A91 and 0x0DB0-0x0DB5 (documented bed block); the rumpled arrangement is the shard's own.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; stock UnmadeBed layout later in ModernUO",
+  "variantOf": null,
+  "id": "CR-FRN-032"
+ },
+ {
+  "slug": "crimson-four-poster",
+  "name": "Crimson Four-Poster Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A80",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x0A7F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x0A81",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x0A7E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A grand four-poster whose heavy wool blanket has been dyed a deep crimson, fit for a noble house.",
+  "era": {
+   "grade": "B",
+   "note": "Documented large-bed art (1999-03-28); the blanket colour is the shard's cosmetic hue on the bed's partial-hue pixels.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": "wool-four-poster",
+  "id": "CR-FRN-033"
+ },
+ {
+  "slug": "azure-four-poster",
+  "name": "Azure Four-Poster Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 5,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A80",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     },
+     {
+      "id": "0x0A7F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 5
+     },
+     {
+      "id": "0x0A81",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     },
+     {
+      "id": "0x0A7E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A grand four-poster under a rich azure blanket, the colour of a clear Britannian noon.",
+  "era": {
+   "grade": "B",
+   "note": "Documented large-bed art (1999-03-28); the blanket colour is the shard's cosmetic hue on the bed's partial-hue pixels.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": "wool-four-poster",
+  "id": "CR-FRN-034"
+ },
+ {
+  "slug": "midnight-four-poster",
+  "name": "Midnight Four-Poster Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0A79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A80",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1175
+     },
+     {
+      "id": "0x0A7F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1175
+     },
+     {
+      "id": "0x0A81",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1175
+     },
+     {
+      "id": "0x0A7E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1175
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A four-poster draped in a blanket of true midnight black, a bed for those who keep late hours and darker secrets.",
+  "era": {
+   "grade": "B",
+   "note": "Documented large-bed art (1999-03-28); the blanket colour is the shard's cosmetic hue on the bed's partial-hue pixels.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; strip sleeping/regen",
+  "variantOf": "wool-four-poster",
+  "id": "CR-FRN-035"
+ },
+ {
+  "slug": "moth-eaten-four-poster",
+  "name": "Moth-Eaten Four-Poster",
+  "category": "FRN",
+  "subcategory": "Ruined Furniture",
+  "parts": [
+   {
+    "id": "0x1895",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1894",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1897",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1896",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1899",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x189B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1898",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x189A",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A grand old four-poster gone to ruin, its hangings in tatters and its blankets chewed through by moths.",
+  "era": {
+   "grade": "B",
+   "note": "Ruined four-poster tiles 0x1894-0x189B appear only in Lost Lands ruins (T2A, Oct 1998; n=40 in the map file); world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x2), decor-only; stock BrokenBed layout",
+  "variantOf": null,
+  "id": "CR-FRN-036"
+ },
+ {
+  "slug": "plank-bed",
+  "name": "Plank Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A5B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A5A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A plain single bed with a straw-coloured tick and a low wooden headboard.",
+  "era": {
+   "grade": "A",
+   "note": "Small beds became craftable on 1999-03-28; small-bed tiles 0x0A5A-0x0A6B are in the documented bed block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x1), decor-only; strip sleeping",
+  "variantOf": null,
+  "id": "CR-FRN-037"
+ },
+ {
+  "slug": "linen-small-bed",
+  "name": "Linen Small Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A61",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A5E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A5F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A narrow bed made up in clean white linen.",
+  "era": {
+   "grade": "A",
+   "note": "Small beds became craftable on 1999-03-28; small-bed tiles 0x0A5A-0x0A6B are in the documented bed block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x1), decor-only; strip sleeping",
+  "variantOf": null,
+  "id": "CR-FRN-038"
+ },
+ {
+  "slug": "wool-small-bed",
+  "name": "Wool-Blanketed Small Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A62",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A63",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A5C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A simple single bed with a grey wool blanket and a small white pillow.",
+  "era": {
+   "grade": "A",
+   "note": "Small beds became craftable on 1999-03-28; small-bed tiles 0x0A5A-0x0A6B are in the documented bed block.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class SmallBedEastAddon / SmallBedSouthAddon; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-039"
+ },
+ {
+  "slug": "crimson-small-bed",
+  "name": "Crimson Small Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A62",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A63",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A5C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A single bed under a wool blanket dyed crimson, with a white pillow at the head.",
+  "era": {
+   "grade": "B",
+   "note": "Documented small-bed art (1999-03-28); the blanket colour is the shard's cosmetic hue on the bed's partial-hue pixels.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hued stock small bed; decor-only, strip sleeping",
+  "variantOf": "wool-small-bed",
+  "id": "CR-FRN-040"
+ },
+ {
+  "slug": "midnight-small-bed",
+  "name": "Midnight Small Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x0A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A62",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A63",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A5C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A single bed under a wool blanket dyed midnight, with a white pillow at the head.",
+  "era": {
+   "grade": "B",
+   "note": "Documented small-bed art (1999-03-28); the blanket colour is the shard's cosmetic hue on the bed's partial-hue pixels.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hued stock small bed; decor-only, strip sleeping",
+  "variantOf": "wool-small-bed",
+  "id": "CR-FRN-041"
+ },
+ {
+  "slug": "papuan-hammock",
+  "name": "Papuan Hammock",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x11F0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11F1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x11F2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x11F3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "nautical"
+  ],
+  "blurb": "A woven-mat hammock slung between lashed bamboo poles, strung with knotted rope.",
+  "era": {
+   "grade": "B",
+   "note": "Lost Lands (T2A, Oct 1998) bamboo-furniture block 0x11D6-0x11FF; hammock tiles 0x11F0-0x11F3 appear only in Lost Lands scenery (n=8).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, strip sleeping",
+  "variantOf": null,
+  "id": "CR-FRN-042"
+ },
+ {
+  "slug": "bamboo-cot",
+  "name": "Bamboo Cot",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x11FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11FE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x11FF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1200",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "exotic",
+   "humble",
+   "camp"
+  ],
+  "blurb": "A narrow folding cot with a bamboo frame and a coarse tan mattress.",
+  "era": {
+   "grade": "B",
+   "note": "Cot tiles 0x11FD-0x1200 are used about 130 times across Britannia towns, dungeons and the Lost Lands (T2A, Oct 1998); world dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, strip sleeping",
+  "variantOf": null,
+  "id": "CR-FRN-043"
+ },
+ {
+  "slug": "folded-wool-blanket",
+  "name": "Folded Wool Blanket",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x0A6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A thick grey wool blanket folded neatly into a square.",
+  "era": {
+   "grade": "B",
+   "note": "Folded linens (0x0A6C-0x0A6F, 0x0A92-0x0A95) are classic bed-block shop and house dressing; world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-044"
+ },
+ {
+  "slug": "crimson-folded-blanket",
+  "name": "Crimson Folded Blanket",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x0A6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A blanket of rich crimson wool, folded and left at the foot of the bed.",
+  "era": {
+   "grade": "B",
+   "note": "Folded linens (0x0A6C-0x0A6F, 0x0A92-0x0A95) are classic bed-block shop and house dressing; world dressing used as a reward. Hue is a cosmetic recolour.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static, hued; decor-only",
+  "variantOf": "folded-wool-blanket",
+  "id": "CR-FRN-045"
+ },
+ {
+  "slug": "folded-linen-sheet",
+  "name": "Folded Linen Sheet",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x0A92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A93",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble"
+  ],
+  "blurb": "A freshly laundered sheet, folded flat and smelling faintly of lavender.",
+  "era": {
+   "grade": "B",
+   "note": "Folded linens (0x0A6C-0x0A6F, 0x0A92-0x0A95) are classic bed-block shop and house dressing; world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-046"
+ },
+ {
+  "slug": "straw-pillow",
+  "name": "Straw-Stuffed Pillow",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x11EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11EB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A coarse sack pillow stuffed with fresh straw.",
+  "era": {
+   "grade": "B",
+   "note": "Straw pillow tiles 0x11EA-0x11EB are used about 80 times in Lost Lands (T2A, Oct 1998) huts and Britannia camps; world dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-047"
+ },
+ {
+  "slug": "tufted-cushion",
+  "name": "Tufted Cushion",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x1397",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "elegant"
+  ],
+  "blurb": "A square button-tufted cushion in soft grey.",
+  "era": {
+   "grade": "B",
+   "note": "Pillow tiles (0x1397, 0x13A4-0x13AE, 0x163B-0x163C) are classic scenery dressing in houses and shops; world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-048"
+ },
+ {
+  "slug": "crimson-tufted-cushion",
+  "name": "Crimson Tufted Cushion",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x1397",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A square cushion in deep crimson, buttoned at the centre.",
+  "era": {
+   "grade": "B",
+   "note": "Pillow tiles (0x1397, 0x13A4-0x13AE, 0x163B-0x163C) are classic scenery dressing in houses and shops; world dressing used as a reward. Hue is a cosmetic recolour.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static, hued; decor-only",
+  "variantOf": "tufted-cushion",
+  "id": "CR-FRN-049"
+ },
+ {
+  "slug": "azure-bolster",
+  "name": "Azure Bolster Pillow",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x13A4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 5,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x13A5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A long round bolster in azure cloth for propping up a reader or a sleeper.",
+  "era": {
+   "grade": "B",
+   "note": "Pillow tiles (0x1397, 0x13A4-0x13AE, 0x163B-0x163C) are classic scenery dressing in houses and shops; world dressing used as a reward. Hue is a cosmetic recolour.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static, hued; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-050"
+ },
+ {
+  "slug": "golden-pillow",
+  "name": "Golden Feather Pillow",
+  "category": "FRN",
+  "subcategory": "Bedding and Cushions",
+  "parts": [
+   {
+    "id": "0x13A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 53,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x13AA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 53
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A big square pillow in gold-yellow cloth, plump as a young cheese.",
+  "era": {
+   "grade": "B",
+   "note": "Pillow tiles (0x1397, 0x13A4-0x13AE, 0x163B-0x163C) are classic scenery dressing in houses and shops; world dressing used as a reward. Hue is a cosmetic recolour.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static, hued; decor-only",
+  "variantOf": null,
+  "id": "CR-FRN-051"
+ }
+]

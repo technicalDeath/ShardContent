@@ -1,0 +1,47 @@
+{
+ "pool": "wanted-curator-terathan-keep",
+ "system": "wanted-curator",
+ "notes": "Terathan Keep is spider country: webs, egg sacs, cocoons and a larder. It has more lair dressing than any other dungeon, so every tier is webs; the Great Spider Web is the showpiece. These are lair dressing, not a species trophy; the giant-spider Nemesis trophy is a figurine.",
+ "entries": [
+  {
+   "id": "CR-DNG-005",
+   "tier": "easy",
+   "why": "Corner cobweb."
+  },
+  {
+   "id": "CR-DNG-007",
+   "tier": "easy",
+   "why": "Spider egg sac the size of a loaf."
+  },
+  {
+   "id": "CR-DNG-009",
+   "tier": "medium",
+   "why": "Man-sized silk cocoon."
+  },
+  {
+   "id": "CR-DNG-010",
+   "tier": "medium",
+   "why": "Cobwebbed sea chest nobody dares open."
+  },
+  {
+   "id": "CR-DNG-008",
+   "tier": "hard",
+   "why": "Webbed egg clutch in fresh silk."
+  },
+  {
+   "id": "CR-DNG-012",
+   "tier": "hard",
+   "why": "Spider's larder of cocoons round an egg sac."
+  },
+  {
+   "id": "CR-DNG-002",
+   "tier": "hard",
+   "why": "Orb weaver's web across a doorway."
+  },
+  {
+   "id": "CR-DNG-001",
+   "tier": "boss",
+   "why": "Great Spider Web, wall to wall, wide enough for an ogre."
+  }
+ ]
+}

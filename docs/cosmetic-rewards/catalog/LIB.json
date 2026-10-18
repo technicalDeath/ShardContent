@@ -1,0 +1,2250 @@
+[
+ {
+  "slug": "weathered-leather-tome",
+  "name": "Weathered Leather Tome",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A thick tome in cracked brown leather, its title long since rubbed away.",
+  "era": {
+   "grade": "B",
+   "note": "Original 1997-era book art (classic item block 0x0FEF-0x0FF4 / 0x1E20-0x1E25); books were basic stock and loot from launch. Decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-001"
+ },
+ {
+  "slug": "green-clothbound-tome",
+  "name": "Green Clothbound Tome",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A slim volume bound in green woven cloth, the kind a village scribe keeps his accounts in.",
+  "era": {
+   "grade": "B",
+   "note": "Original 1997-era book art (classic item block 0x0FEF-0x0FF4 / 0x1E20-0x1E25); books were basic stock and loot from launch. Decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-002"
+ },
+ {
+  "slug": "crimson-bound-tome",
+  "name": "Crimson-Bound Tome",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "noble"
+  ],
+  "blurb": "A small book in deep crimson leather, much handled and well loved.",
+  "era": {
+   "grade": "B",
+   "note": "Original 1997-era book art (classic item block 0x0FEF-0x0FF4 / 0x1E20-0x1E25); books were basic stock and loot from launch. Decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-003"
+ },
+ {
+  "slug": "violet-bound-tome",
+  "name": "Violet-Bound Tome",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "arcane"
+  ],
+  "blurb": "A tidy book in faded violet cloth, favoured by travelling scholars.",
+  "era": {
+   "grade": "B",
+   "note": "Original 1997-era book art (classic item block 0x0FEF-0x0FF4 / 0x1E20-0x1E25); books were basic stock and loot from launch. Decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-004"
+ },
+ {
+  "slug": "open-primer",
+  "name": "Open Primer",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FF4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A plain primer lying open on its spine, the pages dog-eared by many small fingers.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x0FF4, used 11 times as scenery in the original Britannia map)."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-005"
+ },
+ {
+  "slug": "illuminated-open-book",
+  "name": "Illuminated Open Book",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0FBE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A great book lying open with a red ribbon marker, the pages dense with careful script.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x0FBD/0x0FBE), used 24 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-006"
+ },
+ {
+  "slug": "crimson-folio",
+  "name": "Crimson Folio",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E20",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "noble"
+  ],
+  "blurb": "A folio in crimson covers, splayed open as though its reader had only just stepped away.",
+  "era": {
+   "grade": "B",
+   "note": "Original 1997-era book art (classic item block 0x0FEF-0x0FF4 / 0x1E20-0x1E25); books were basic stock and loot from launch. Decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-007"
+ },
+ {
+  "slug": "brace-of-old-books",
+  "name": "Brace of Old Books",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E21",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "Two old books, one russet and one gilt-edged, casually laid together.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x1E21), used 11 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-008"
+ },
+ {
+  "slug": "red-ribbon-ledger",
+  "name": "Red-Ribbon Ledger",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "noble"
+  ],
+  "blurb": "An open ledger of cream pages with a scarlet ribbon laid across the gutter.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x1E22), seen 6 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": null,
+  "id": "CR-LIB-009"
+ },
+ {
+  "slug": "blue-ribbon-ledger",
+  "name": "Blue-Ribbon Ledger",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E23",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "An open ledger of cream pages with a sapphire ribbon laid across the gutter.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x1E23), seen 5 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip read/write function",
+  "variantOf": "red-ribbon-ledger",
+  "id": "CR-LIB-010"
+ },
+ {
+  "slug": "tall-book-stack",
+  "name": "Tall Stack of Books",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "A leaning tower of books in faded reds and blues, one good sneeze from collapse.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x1E24), seen 5 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; floor-standing small stack",
+  "variantOf": null,
+  "id": "CR-LIB-011"
+ },
+ {
+  "slug": "mossy-book-stack",
+  "name": "Stack of Mossy Books",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1E25",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "A tilted stack of green and rust-coloured books that smells of old cellars.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era book art (0x1E25), seen 5 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; floor-standing small stack",
+  "variantOf": null,
+  "id": "CR-LIB-012"
+ },
+ {
+  "slug": "heap-of-old-books",
+  "name": "Heap of Old Books",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0C16",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "rustic",
+   "dungeon"
+  ],
+  "blurb": "A spilled heap of water-stained books and loose pages, the remains of some forgotten library.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dressing: 'damaged books' (0x0C16) is used 48 times as scenery in the Britannia map, so it is plainly classic ruin dressing."
+  },
+  "impl": "static",
+  "implNote": "decor-only; floor scatter, walkable pile in the original (check blocking)",
+  "variantOf": null,
+  "id": "CR-LIB-013"
+ },
+ {
+  "slug": "book-of-truth",
+  "name": "Book of Truth",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x1C13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "sacred",
+   "heraldic"
+  ],
+  "blurb": "A heavy volume in blue-black covers, a golden gem set in its page, said to hold the first Principle.",
+  "era": {
+   "grade": "C",
+   "note": "Art sits beside the Candle of Love and Bell of Courage (0x1C12-0x1C16); the Bell is a Dec-2000 holiday graphic, so the Book's own era is unproven."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip any use; REL curator may also claim",
+  "variantOf": null,
+  "id": "CR-LIB-014"
+ },
+ {
+  "slug": "stack-of-three-tomes",
+  "name": "Stack of Three Tomes",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "Three bound tomes stacked neatly, brown below, crimson in the middle, violet on top.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era single-book tiles (0x0FEF, 0x0FF1, 0x0FF2); each is an original book graphic."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-015"
+ },
+ {
+  "slug": "stack-of-four-tomes",
+  "name": "Stack of Four Tomes",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0FF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "Four tomes of differing sizes and colours, piled by a scribe who ran out of shelf.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era single-book tiles (0x0FEF-0x0FF2); each is an original book graphic."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-016"
+ },
+ {
+  "slug": "reading-stack",
+  "name": "Reading Stack",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "Two closed books topped with an open illuminated volume, left mid-chapter.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era book tiles (0x0FEF, 0x0FF2, 0x0FBD)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-017"
+ },
+ {
+  "slug": "scholars-tower-of-books",
+  "name": "Scholar's Tower of Books",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0FF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   },
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "whimsical"
+  ],
+  "blurb": "Six tomes balanced in a precarious tower with a quill thrust in the top, the mark of a scholar who never stops reading.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era book tiles (0x0FEF-0x0FF2) and the pen-and-ink tile (0x0FBF)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-018"
+ },
+ {
+  "slug": "open-book-atop-stack",
+  "name": "Open Book Atop a Stack",
+  "category": "LIB",
+  "subcategory": "Books and tomes",
+  "parts": [
+   {
+    "id": "0x0FEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0FF0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0FF4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 4
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A pile of four closed books crowned with an open primer, as though someone is working through the stack.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era book tiles (0x0FEF-0x0FF2, 0x0FF4)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-019"
+ },
+ {
+  "slug": "quill-and-inkwell",
+  "name": "Quill and Inkwell",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0FC0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "A white-feathered quill resting in a well of midnight-blue ink.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era 'pen and ink' tile (0x0FBF/0x0FC0), used 12 times as scenery in the original Britannia map; the scribe's pen existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-LIB-020"
+ },
+ {
+  "slug": "open-primer-and-quill",
+  "name": "Open Primer and Quill",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0FF4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "An open primer with a quill and inkwell laid across it, the ink still wet.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era tiles 0x0FF4 (book) and 0x0FBF (pen and ink)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-021"
+ },
+ {
+  "slug": "blank-scroll-bundle",
+  "name": "Bundle of Blank Scrolls",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0E34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EF3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "A bound bundle of unmarked parchment scrolls, waiting for a scribe's hand.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era scroll art (0x0E34/0x0EF3 family), the stock graphic of scribe's blank scrolls since launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-LIB-022"
+ },
+ {
+  "slug": "red-ribbon-scrolls",
+  "name": "Scrolls with Red Ribbon",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0E35",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EF4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "A bundle of rolled scrolls tied with a red ribbon.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era scroll art (0x0E35/0x0EF4), the stock spell-scroll graphic since launch; decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": "blank-scroll-bundle",
+  "id": "CR-LIB-023"
+ },
+ {
+  "slug": "blue-ribbon-scrolls",
+  "name": "Scrolls with Blue Ribbon",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0E36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EF5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "A bundle of rolled scrolls tied with a deep blue ribbon.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era scroll art (0x0E36/0x0EF5), the stock spell-scroll graphic since launch; decorative use is custom."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": "blank-scroll-bundle",
+  "id": "CR-LIB-024"
+ },
+ {
+  "slug": "pile-of-scrolls",
+  "name": "Pile of Scrolls",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0E34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E35",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0E36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0E37",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "Four bundles of scrolls heaped together, blank and ribboned, the stock of a busy scribe.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era scroll tiles (0x0E34-0x0E37)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-025"
+ },
+ {
+  "slug": "scroll-and-quill",
+  "name": "Scroll and Quill",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x0E34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:inscription"
+  ],
+  "blurb": "A bundle of scrolls with a quill and inkwell set upon it.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era tiles 0x0E34 (scrolls) and 0x0FBF (pen and ink)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-026"
+ },
+ {
+  "slug": "antique-map",
+  "name": "Antique Map",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x14EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14EC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "nautical"
+  ],
+  "blurb": "A hand-painted chart of Britannia on aged vellum, curled at the corners and pinned with red wax.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era map tile (0x14EB/0x14EC), used 9 times as scenery in the original Britannia map; maps were stock cartography items from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip map function",
+  "variantOf": null,
+  "id": "CR-LIB-027"
+ },
+ {
+  "slug": "rolled-map",
+  "name": "Rolled Map",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x14ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14EE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:cartography"
+  ],
+  "blurb": "A map rolled tight and sealed with a bit of red wax.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era rolled-map tile (0x14ED/0x14EE), used 12 times as scenery in the original Britannia map."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip map function",
+  "variantOf": null,
+  "id": "CR-LIB-028"
+ },
+ {
+  "slug": "map-and-sextant",
+  "name": "Chart and Sextant",
+  "category": "LIB",
+  "subcategory": "Scrolls and maps",
+  "parts": [
+   {
+    "id": "0x14EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1057",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "nautical",
+   "craft:cartography"
+  ],
+  "blurb": "An unrolled chart with a brass sextant laid across it, ready for a navigator's afternoon sums.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic 1997-era tiles: map 0x14EB and sextant 0x1057 (both used as scenery in the original Britannia map)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part on one tile; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-029"
+ },
+ {
+  "slug": "brass-sextant",
+  "name": "Brass Sextant",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1057",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1058",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "nautical",
+   "craft:tinkering"
+  ],
+  "blurb": "A burnished brass sextant, its arc finely graduated for taking the angle of the stars.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era sextant tile (0x1057/0x1058), used 12 times as scenery in the original Britannia map; tinkered sextants sit in the classic menu."
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-LIB-030"
+ },
+ {
+  "slug": "brass-spyglass",
+  "name": "Brass Spyglass",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x14F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "nautical",
+   "craft:tinkering"
+  ],
+  "blurb": "A collapsible brass spyglass with a leather grip, polished by years of use at the rail.",
+  "era": {
+   "grade": "A",
+   "note": "Spyglass was a Dec 1998 holiday gift and a classic tinkering item; shown here as plain decoration.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip moon-phase function; plain spyglass is tinker-craftable",
+  "variantOf": null,
+  "id": "CR-LIB-031"
+ },
+ {
+  "slug": "silvered-globe",
+  "name": "Silvered Globe",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1047",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1048",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:tinkering"
+  ],
+  "blurb": "A globe of Britannia worked in bright silver, turning on a slender stand.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered globes (0x1047/0x1048) were added 1999-03-28; this silver tint is a custom hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip function; hue 0x835 is custom on a craftable base",
+  "variantOf": null,
+  "id": "CR-LIB-032"
+ },
+ {
+  "slug": "gilded-globe",
+  "name": "Gilded Globe",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1047",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1048",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "noble",
+   "craft:tinkering"
+  ],
+  "blurb": "A globe of Britannia in burnished gold, the sort of thing a guildmaster keeps beside his desk.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered globes (0x1047/0x1048) were added 1999-03-28; this gilded tint is a custom hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip function; hue 0x8A5 is custom on a craftable base",
+  "variantOf": "silvered-globe",
+  "id": "CR-LIB-033"
+ },
+ {
+  "slug": "sapphire-globe",
+  "name": "Sapphire Globe",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1047",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 98,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1048",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "nautical",
+   "craft:tinkering"
+  ],
+  "blurb": "A globe in deep sapphire blue, as if the whole world lay under the sea.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered globes (0x1047/0x1048) were added 1999-03-28; this blue tint is a custom hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip function; hue 98 is custom on a craftable base",
+  "variantOf": "silvered-globe",
+  "id": "CR-LIB-034"
+ },
+ {
+  "slug": "standing-hourglass",
+  "name": "Standing Hourglass",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1810",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A turned-wood hourglass with red sand, the grains falling steadily toward a quiet end.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era hourglass tile (0x1810, 13-tile hourglass family); sits in the long-established glassware block."
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.Hourglass (decor-only; animated variant HourglassAni exists)",
+  "variantOf": null,
+  "id": "CR-LIB-035"
+ },
+ {
+  "slug": "hourglass-on-its-side",
+  "name": "Hourglass on Its Side",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1812",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "whimsical"
+  ],
+  "blurb": "An hourglass laid on its side, time stopped for the moment.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era hourglass tile (0x1812) from the same family as 0x1810."
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-036"
+ },
+ {
+  "slug": "moonglow-orrery",
+  "name": "Moonglow Orrery",
+  "category": "LIB",
+  "subcategory": "Study instruments",
+  "parts": [
+   {
+    "id": "0x1494",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x145B",
+    "dx": 0,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x145A",
+    "dx": 0,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1495",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x145C",
+    "dx": 1,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x145D",
+    "dx": 1,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x1496",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1499",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x148E",
+    "dx": 2,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1493",
+    "dx": 2,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1492",
+    "dx": 2,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x145E",
+    "dx": 2,
+    "dy": 9,
+    "dz": 0
+   },
+   {
+    "id": "0x1459",
+    "dx": 2,
+    "dy": 10,
+    "dz": 0
+   },
+   {
+    "id": "0x1497",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x145F",
+    "dx": 3,
+    "dy": 9,
+    "dz": 0
+   },
+   {
+    "id": "0x1461",
+    "dx": 3,
+    "dy": 10,
+    "dz": 0
+   },
+   {
+    "id": "0x149A",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1498",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x148F",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x148D",
+    "dx": 4,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1488",
+    "dx": 4,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x1460",
+    "dx": 4,
+    "dy": 9,
+    "dz": 0
+   },
+   {
+    "id": "0x1462",
+    "dx": 4,
+    "dy": 10,
+    "dz": 0
+   },
+   {
+    "id": "0x1490",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x148B",
+    "dx": 5,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x148A",
+    "dx": 5,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1486",
+    "dx": 5,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1485",
+    "dx": 5,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x147C",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1491",
+    "dx": 6,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x148C",
+    "dx": 6,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1489",
+    "dx": 6,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1487",
+    "dx": 6,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1484",
+    "dx": 6,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x1463",
+    "dx": 6,
+    "dy": 10,
+    "dz": 0
+   },
+   {
+    "id": "0x147B",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x147F",
+    "dx": 7,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1480",
+    "dx": 7,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1482",
+    "dx": 7,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1469",
+    "dx": 7,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1468",
+    "dx": 7,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1465",
+    "dx": 7,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x1464",
+    "dx": 7,
+    "dy": 9,
+    "dz": 0
+   },
+   {
+    "id": "0x147A",
+    "dx": 8,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1479",
+    "dx": 8,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1477",
+    "dx": 8,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x147E",
+    "dx": 8,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1481",
+    "dx": 8,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1483",
+    "dx": 8,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x146A",
+    "dx": 8,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1467",
+    "dx": 8,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1466",
+    "dx": 8,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x1478",
+    "dx": 9,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1475",
+    "dx": 9,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1474",
+    "dx": 9,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x146F",
+    "dx": 9,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x146E",
+    "dx": 9,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x146D",
+    "dx": 9,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x146C",
+    "dx": 9,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x1476",
+    "dx": 10,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1473",
+    "dx": 10,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1470",
+    "dx": 10,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1471",
+    "dx": 10,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1472",
+    "dx": 10,
+    "dy": 6,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "11x11",
+  "tier": "extremely-rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "exotic",
+   "town:moonglow",
+   "elegant"
+  ],
+  "blurb": "A great brass telescope and clockwork orrery on a runed copper dais, wheels and orbits turning beneath the lens.",
+  "era": {
+   "grade": "C",
+   "note": "Placed once as a 64-tile static group in the Britannia map near Moonglow; no dated record of the telescope art or of its introduction."
+  },
+  "impl": "addon",
+  "implNote": "64-tile addon (11x11 footprint, flat z=0), decor-only; needs size check for houses/guild halls",
+  "variantOf": null,
+  "id": "CR-LIB-037"
+ },
+ {
+  "slug": "scribes-writing-desk",
+  "name": "Scribe's Writing Desk",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B49",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0FBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:inscription"
+  ],
+  "blurb": "A slant-topped writing desk with an illuminated book open upon it and a quill in its well.",
+  "era": {
+   "grade": "B",
+   "note": "Writing table is classic carpentry (stock menu); the book and pen-and-ink tiles are 1997-era art. The combined set is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: carpentry writing table + book + pen and ink; decor-only (writing table itself is craftable)",
+  "variantOf": null,
+  "id": "CR-LIB-038"
+ },
+ {
+  "slug": "ledger-desk-red",
+  "name": "Ledger Desk (Red Ribbon)",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B4B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x1E22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "noble",
+   "craft:inscription"
+  ],
+  "blurb": "A scribe's desk bearing an open ledger with a scarlet ribbon, a quill beside it.",
+  "era": {
+   "grade": "B",
+   "note": "Writing table is classic carpentry; ledger 0x1E22 and pen-and-ink 0x0FBF are classic 1997-era tiles. Combined set is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: writing table + ledger + pen and ink; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-039"
+ },
+ {
+  "slug": "ledger-desk-blue",
+  "name": "Ledger Desk (Blue Ribbon)",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B4C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FC0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x1E23",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:inscription"
+  ],
+  "blurb": "A scribe's desk bearing an open ledger with a sapphire ribbon, a quill beside it.",
+  "era": {
+   "grade": "B",
+   "note": "Writing table is classic carpentry; ledger 0x1E23 and pen-and-ink 0x0FC0 are classic 1997-era tiles. Combined set is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: writing table + ledger + pen and ink; decor-only",
+  "variantOf": "ledger-desk-red",
+  "id": "CR-LIB-040"
+ },
+ {
+  "slug": "cartographers-table",
+  "name": "Cartographer's Table",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "rustic"
+  ],
+  "blurb": "A narrow wooden table with a painted chart of Britannia pinned flat for study.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of a classic carpentry table (0x0B34) and the 1997-era map tile (0x14EB, used 9 times in the Britannia map)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + map; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-041"
+ },
+ {
+  "slug": "navigators-chart-table",
+  "name": "Navigator's Chart Table",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1057",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "nautical",
+   "craft:cartography"
+  ],
+  "blurb": "A pedestal table spread with a sea chart and a brass sextant, a navigator's tools at rest.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of a classic carpentry table (0x0B6B), map 0x14EB and sextant 0x1057, all 1997-era tiles. Combined set is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + map + sextant; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-042"
+ },
+ {
+  "slug": "map-lectern",
+  "name": "Map Lectern",
+  "category": "LIB",
+  "subcategory": "Desks and lecterns",
+  "parts": [
+   {
+    "id": "0x0B49",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14EB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B4A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14EC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "elegant"
+  ],
+  "blurb": "A slant-topped lectern with a painted chart of Britannia pinned across it for study.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of the classic carpentry writing table (0x0B49/0x0B4A) and the 1997-era map tile (0x14EB/0x14EC, n=9)."
+  },
+  "impl": "addon",
+  "implNote": "multi-part: writing table + map; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-043"
+ },
+ {
+  "slug": "scholars-nook",
+  "name": "Scholar's Nook",
+  "category": "LIB",
+  "subcategory": "Libraries",
+  "parts": [
+   {
+    "id": "0x0A97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A98",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B4A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0FC0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 5
+   },
+   {
+    "id": "0x0FBE",
+    "dx": 0,
+    "dy": 1,
+    "dz": 5
+   },
+   {
+    "id": "0x1047",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 2213
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "Twin bookcases, a slant-topped desk with an open book, and a gilded globe: a corner of a learned household.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of classic carpentry bookcases (0x0A97/0x0A98), writing table 0x0B4A, 1997-era book/pen tiles and a tinkered globe 0x1047 (A-graded, 1999-03-28) in a custom gilded hue."
+  },
+  "impl": "addon",
+  "implNote": "multi-part set; bookcase containers must be inert; decor-only",
+  "variantOf": null,
+  "id": "CR-LIB-044"
+ },
+ {
+  "slug": "ruined-bookcase-left",
+  "name": "Ruined Bookcase",
+  "category": "LIB",
+  "subcategory": "Libraries",
+  "parts": [
+   {
+    "id": "0x0C14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C15",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "dungeon",
+   "rustic"
+  ],
+  "blurb": "A bookcase gone to ruin, shelves sagging and the few surviving books mouldering in place.",
+  "era": {
+   "grade": "B",
+   "note": "'Ruined bookcase' (0x0C14/0x0C15) is used 38 and 31 times as dressing in the original Britannia map; classic ruin dressing."
+  },
+  "impl": "static",
+  "implNote": "decor-only; container flag must be stripped",
+  "variantOf": null,
+  "id": "CR-LIB-045"
+ }
+]

@@ -1,0 +1,2418 @@
+[
+ {
+  "slug": "roast-pig-platter",
+  "name": "Roast Pig on a Platter",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x09BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x09BC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "tavern",
+   "festive",
+   "craft:cooking"
+  ],
+  "blurb": "A whole roast pig, glazed and crackling, laid out on a long pewter platter.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09BB/0x09BC, n=9 in the Britannia map); whole roast pig is a feast-hall staple of original shop and inn dressing.",
+   "sources": [
+    "https://uorenn.com/compendium/list/Spawning/P.html"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-001"
+ },
+ {
+  "slug": "chicken-on-a-spit",
+  "name": "Chicken on a Spit",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x1E94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "rustic",
+   "craft:cooking"
+  ],
+  "blurb": "A plump chicken turning on an iron spit over a cook-fire, the fire long gone but the smell remembered.",
+  "era": {
+   "grade": "B",
+   "note": "Used as camp dressing in the stock brigand/orc/ratman camps (mid-1997 notes mention brigand camps); 0x1E94 never appears as map scenery itself."
+  },
+  "impl": "static",
+  "implNote": "decor-only; spit frame is impassable in tiledata, check footprint",
+  "variantOf": null,
+  "id": "CR-FOO-002"
+ },
+ {
+  "slug": "roast-fowl",
+  "name": "Roast Fowl",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x09B7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x09B8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A brown roast fowl, plucked and crisp, ready to carve.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09B7); placed 4 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-003"
+ },
+ {
+  "slug": "cured-ham",
+  "name": "Cured Ham",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x09C9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A cured ham with a pink cut face and a rind as dark as walnut.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09C9); placed 6 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-004"
+ },
+ {
+  "slug": "glazed-ham",
+  "name": "Glazed Ham",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x09D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "festive",
+   "craft:cooking"
+  ],
+  "blurb": "A honey-glazed ham, a centrepiece for any festival table.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09D3); placed 6 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": "cured-ham",
+  "id": "CR-FOO-005"
+ },
+ {
+  "slug": "rack-of-ribs",
+  "name": "Rack of Ribs",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x09F2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "rustic",
+   "craft:cooking"
+  ],
+  "blurb": "A glistening rack of cooked ribs.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09F2); placed 3 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-006"
+ },
+ {
+  "slug": "leg-of-lamb",
+  "name": "Leg of Lamb",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x160A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A roast leg of lamb, the bone bare at one end for easy carving.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x160A) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-007"
+ },
+ {
+  "slug": "poached-salmon",
+  "name": "Poached Salmon",
+  "category": "FOO",
+  "subcategory": "Roasts and meats",
+  "parts": [
+   {
+    "id": "0x1E1C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "craft:cooking",
+   "craft:fishing"
+  ],
+  "blurb": "A whole poached salmon in pink slices, garnished and ready for a lord's table.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x1E1C) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-008"
+ },
+ {
+  "slug": "french-bread-loaves",
+  "name": "Loaves of French Bread",
+  "category": "FOO",
+  "subcategory": "Breads and sweets",
+  "parts": [
+   {
+    "id": "0x098C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:cooking"
+  ],
+  "blurb": "Two long crusty loaves of French bread.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x098C); placed 11 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-009"
+ },
+ {
+  "slug": "baked-pie",
+  "name": "Baked Pie",
+  "category": "FOO",
+  "subcategory": "Breads and sweets",
+  "parts": [
+   {
+    "id": "0x1041",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:cooking"
+  ],
+  "blurb": "A golden-brown pie cooling in its dish.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x1041); placed 9 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-010"
+ },
+ {
+  "slug": "frosted-cake",
+  "name": "Frosted Cake",
+  "category": "FOO",
+  "subcategory": "Breads and sweets",
+  "parts": [
+   {
+    "id": "0x09E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "elegant",
+   "craft:cooking"
+  ],
+  "blurb": "A tall cake with pale frosting and a wreath of green leaves around its base.",
+  "era": {
+   "grade": "A",
+   "note": "Cake was a cookable food by the 1998-11-23 publish (art 0x09E9, n=13 in the Britannia map). Decorative non-edible use is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-011"
+ },
+ {
+  "slug": "pan-of-cookies",
+  "name": "Pan of Cookies",
+  "category": "FOO",
+  "subcategory": "Breads and sweets",
+  "parts": [
+   {
+    "id": "0x160B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "festive",
+   "craft:cooking"
+  ],
+  "blurb": "An iron baking sheet of round cookies, golden at the edges.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x160B); placed 3 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-012"
+ },
+ {
+  "slug": "jar-of-honey",
+  "name": "Jar of Honey",
+  "category": "FOO",
+  "subcategory": "Breads and sweets",
+  "parts": [
+   {
+    "id": "0x09EC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A stoneware jar of golden honey with a wooden dipper.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09EC); placed 5 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-013"
+ },
+ {
+  "slug": "wheel-of-cheese",
+  "name": "Wheel of Cheese",
+  "category": "FOO",
+  "subcategory": "Cheese and produce",
+  "parts": [
+   {
+    "id": "0x097E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A full wheel of yellow cheese in its waxed rind.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x097E) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-014"
+ },
+ {
+  "slug": "watermelon",
+  "name": "Watermelon",
+  "category": "FOO",
+  "subcategory": "Cheese and produce",
+  "parts": [
+   {
+    "id": "0x0C5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "garden",
+   "humble"
+  ],
+  "blurb": "A fat striped watermelon, heavy as a cannonball.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x0C5C); placed 55 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-015"
+ },
+ {
+  "slug": "bowl-of-carrots",
+  "name": "Bowl of Carrots",
+  "category": "FOO",
+  "subcategory": "Cheese and produce",
+  "parts": [
+   {
+    "id": "0x15F9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A wooden bowl of bright orange carrots.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x15F9) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-016"
+ },
+ {
+  "slug": "pot-of-stew",
+  "name": "Pot of Stew",
+  "category": "FOO",
+  "subcategory": "Bowls and pots",
+  "parts": [
+   {
+    "id": "0x1604",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "tavern",
+   "craft:cooking"
+  ],
+  "blurb": "A large two-handled clay pot of thick stew.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x1604) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-017"
+ },
+ {
+  "slug": "jugs-of-cider",
+  "name": "Jugs of Cider",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x098D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "tavern",
+   "humble"
+  ],
+  "blurb": "Three corked clay jugs of cider, sweaty with cellar damp.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x098D) in the long-standing food/drink block; nothing hints at a later expansion."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-018"
+ },
+ {
+  "slug": "bottles-of-ale",
+  "name": "Bottles of Ale",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x09A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A stack of amber bottles of ale, bound for the cellar.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09A2); placed 17 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-019"
+ },
+ {
+  "slug": "bottles-of-wine",
+  "name": "Bottles of Wine",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x09C4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "noble",
+   "garden"
+  ],
+  "blurb": "A cluster of green wine bottles, wax-sealed and dusty.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x09C4); placed 6 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-020"
+ },
+ {
+  "slug": "bottles-of-liquor",
+  "name": "Bottles of Liquor",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x099E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "exotic"
+  ],
+  "blurb": "A tight group of pale glass bottles of clear spirit.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997-era food art (0x099E); placed 3 times in the original Britannia map; food existed from launch."
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-021"
+ },
+ {
+  "slug": "tray-of-glass-mugs",
+  "name": "Tray of Glass Mugs",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x1941",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "festive"
+  ],
+  "blurb": "A wooden tray holding nine glass mugs, polished and ready for a feast.",
+  "era": {
+   "grade": "C",
+   "note": "Tray graphics 0x1941-0x1943 sit beside the potion keg (0x1940, Nov 1999) but are never used as scenery; pewter mugs and goblets were tinkerable 1999-03-28.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": null,
+  "id": "CR-FOO-022"
+ },
+ {
+  "slug": "tray-of-tankards",
+  "name": "Tray of Tankards",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x1943",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A wooden tray of dark pewter tankards, enough for the whole hall.",
+  "era": {
+   "grade": "C",
+   "note": "Tray graphics 0x1941-0x1943 sit beside the potion keg (0x1940, Nov 1999) but are never used as scenery; pewter mugs and goblets were tinkerable 1999-03-28.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; must not be edible and must not spoil",
+  "variantOf": "tray-of-glass-mugs",
+  "id": "CR-FOO-023"
+ },
+ {
+  "slug": "roast-pig-banquet",
+  "name": "Roast Pig Banquet",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09BB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0993",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x098C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x09BB",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x0993",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x098C",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "tavern",
+   "festive",
+   "noble",
+   "craft:cooking"
+  ],
+  "blurb": "A long plank table laid with a whole roast pig, a basket of fruit and fresh bread: the start of a feast.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part: 3 tables + 3 food items; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-024"
+ },
+ {
+  "slug": "fruit-and-cheese-table",
+  "name": "Fruit and Cheese Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0993",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x097E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x098C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0993",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x097E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x098C",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "festive",
+   "garden"
+  ],
+  "blurb": "A plank table set with a fruit basket, a wheel of cheese and loaves of bread: a farmer's lunch.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-025"
+ },
+ {
+  "slug": "bakers-spread",
+  "name": "Baker's Spread",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1041",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x160B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x09E9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x1041",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x160B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A plank table laden with a frosted cake, a baked pie and a pan of cookies.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only (cake is A-graded, 1998-11-23)",
+  "variantOf": null,
+  "id": "CR-FOO-026"
+ },
+ {
+  "slug": "butchers-board",
+  "name": "Butcher's Board",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09C9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09F2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x160A",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x09C9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x09F2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x160A",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "tavern",
+   "craft:cooking"
+  ],
+  "blurb": "A plank table of cured ham, ribs and a leg of lamb, laid out by a village butcher.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-027"
+ },
+ {
+  "slug": "tavern-tray-table",
+  "name": "Tavern Tray Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B3C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B3C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1941",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1942",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1943",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "festive"
+  ],
+  "blurb": "A long trestle table lined with trays of glass mugs, goblets and tankards, ready for a hall full of thirsty guests.",
+  "era": {
+   "grade": "C",
+   "note": "Tray graphics 0x1941-0x1943 sit beside the potion keg (0x1940, Nov 1999) but are never used as scenery; pewter mugs and goblets were tinkerable 1999-03-28.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-028"
+ },
+ {
+  "slug": "grand-banquet-table",
+  "name": "Grand Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x09BB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0993",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x098C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09D3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x09E9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x097E",
+    "dx": 2,
+    "dy": 1,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "tavern",
+   "festive",
+   "noble",
+   "craft:cooking"
+  ],
+  "blurb": "A broad double table groaning with roast pig, glazed ham, fruit, cheese, bread and a frosted cake: a lord's feast in full.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "3x2 multi-part: 6 tables + 6 food items; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-029"
+ },
+ {
+  "slug": "cake-stand",
+  "name": "Cake Stand",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "elegant",
+   "craft:cooking"
+  ],
+  "blurb": "A small pedestal table bearing a frosted cake, presented for a celebration.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry pedestal table (0x0B6B, n=147) with cake art 0x09E9 (cookable by 1998-11-23). Combined set is custom.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + cake; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-030"
+ },
+ {
+  "slug": "cellarmasters-table",
+  "name": "Cellarmaster's Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09C4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x099E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x09C4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x09A2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x099E",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "noble",
+   "garden"
+  ],
+  "blurb": "A plank table lined with wine, ale and spirit bottles, the stock-in-trade of a good cellarmaster.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-031"
+ },
+ {
+  "slug": "greengrocers-table",
+  "name": "Greengrocer's Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x15F9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x15FA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x15FB",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x15F9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x15FA",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x15FB",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A plank table set with bowls of carrots, corn and greens, fresh from a market garden.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-032"
+ },
+ {
+  "slug": "soup-kitchen-table",
+  "name": "Soup Kitchen Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1604",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1606",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09D8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1604",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x1606",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x09D8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "tavern"
+  ],
+  "blurb": "A plank table with pots of stew and soup and a plate of the day's dinner, laid out for the hungry.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-033"
+ },
+ {
+  "slug": "breakfast-table",
+  "name": "Breakfast Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x098C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1041",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09EC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x098C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x1041",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x09EC",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "humble",
+   "rustic",
+   "festive"
+  ],
+  "blurb": "A plank table of fresh bread, a round pie and a jar of honey, set out for a quiet morning.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-034"
+ },
+ {
+  "slug": "nobles-dinner-table",
+  "name": "Noble's Dinner Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E1C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09C4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09B7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1E1C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x09C4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x09B7",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:cooking"
+  ],
+  "blurb": "A plank table set for a lord's dinner: poached salmon, a bottle of wine and a roast fowl.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-035"
+ },
+ {
+  "slug": "harvest-banquet",
+  "name": "Harvest Banquet",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0C5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x0993",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1722",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x15F9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x097E",
+    "dx": 1,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x098C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "festive",
+   "garden",
+   "craft:cooking"
+  ],
+  "blurb": "A broad plank table heaped with watermelon, fruit, bananas, carrots, cheese and bread, the produce of a good year.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x2 multi-part: 6 tables + 6 food items; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-036"
+ },
+ {
+  "slug": "hunters-feast",
+  "name": "Hunter's Feast",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x09C9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09F2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x160A",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x1E1C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x09B7",
+    "dx": 2,
+    "dy": 1,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "tavern",
+   "craft:cooking",
+   "wilderness"
+  ],
+  "blurb": "A broad plank table of ham, ribs, lamb, sausages, salmon and roast fowl, laid out after a successful hunt.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x2 multi-part: 6 tables + 6 food items; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-037"
+ },
+ {
+  "slug": "ale-cask-on-stand",
+  "name": "Ale Cask on a Stand",
+  "category": "FOO",
+  "subcategory": "Bottles and casks",
+  "parts": [
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1940",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A small tapped cask of ale set on a pedestal stand, the spigot ready for the next thirsty visitor.",
+  "era": {
+   "grade": "A",
+   "note": "Keg art 0x1940 is the potion keg of Publish 1 (1999-11-23); pedestal table 0x0B6B is classic carpentry. The composed stand is custom, decor-only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-publish-01-23rd-november/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "multi-part: table + keg graphic; decor-only (strip potion-keg container function)",
+  "variantOf": null,
+  "id": "CR-FOO-038"
+ },
+ {
+  "slug": "cider-and-ale-table",
+  "name": "Cider and Ale Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x098D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x09A2",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x09A7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x098D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x09A2",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A plank table with a blue-glazed pitcher, jugs of cider and bottles of ale, the makings of a country evening.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-039"
+ },
+ {
+  "slug": "cheesemongers-table",
+  "name": "Cheesemonger's Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x097E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x097D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x097E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x097E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     },
+     {
+      "id": "0x097D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 6
+     },
+     {
+      "id": "0x097E",
+      "dx": 0,
+      "dy": 2,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "A plank table with whole and cut wheels of cheese, set out by a cheesemonger at market.",
+  "era": {
+   "grade": "B",
+   "note": "Plank tables (0x0B73, n=1181) are classic carpentry/shop furniture; food tiles are classic 1997-era art. The composed feast is custom decoration."
+  },
+  "impl": "addon",
+  "implNote": "3x1 multi-part; decor-only",
+  "variantOf": null,
+  "id": "CR-FOO-040"
+ }
+]

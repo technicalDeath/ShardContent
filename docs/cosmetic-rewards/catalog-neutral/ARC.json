@@ -1,0 +1,2512 @@
+[
+ {
+  "slug": "iron-garden-gate",
+  "name": "Iron Garden Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0x082C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A tall wrought-iron gate with spear-tipped bars, shut and latched against all but invited guests.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gate with no later-expansion theme. This is stock door-class art in the client since 1997; the main catalog passed over door graphics, so it is offered here as a fixed, non-swinging decoration.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the gate does not swing",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0824",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-001"
+ },
+ {
+  "slug": "low-iron-gate",
+  "name": "Low Iron Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0x0854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A waist-high iron gate with a simple latch, the kind that guards a kitchen garden or a side yard.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gate with no later-expansion theme. This is stock door-class art in the client since 1997; the main catalog passed over door graphics, so it is offered here as a fixed, non-swinging decoration.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the gate does not swing",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x084C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-002"
+ },
+ {
+  "slug": "light-oak-gate",
+  "name": "Light Oak Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0x0841",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A plank gate of pale oak, banded with iron straps and hung on a stout post.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gate with no later-expansion theme. This is stock door-class art in the client since 1997; the main catalog passed over door graphics, so it is offered here as a fixed, non-swinging decoration.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the gate does not swing",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0839",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-003"
+ },
+ {
+  "slug": "dark-oak-gate",
+  "name": "Dark Oak Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0x086E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A heavy gate of dark, oiled oak, braced across with iron.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gate with no later-expansion theme. This is stock door-class art in the client since 1997; the main catalog passed over door graphics, so it is offered here as a fixed, non-swinging decoration.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the gate does not swing",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0866",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-004"
+ },
+ {
+  "slug": "ironbound-timber-gate",
+  "name": "Ironbound Timber Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0xA4C1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A braced timber gate with an iron panel let into its frame, built to outlast the weather and the neighbours.",
+  "era": {
+   "grade": "N",
+   "note": "A plain timber gate with an iron panel; generic yard furniture tied to no skill or expansion. Art added well after 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA4C0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-005"
+ },
+ {
+  "slug": "crypt-gate",
+  "name": "Crypt Gate",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0xB015",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A rust-red iron door set between rough stone posts, shut on whatever the family would rather not discuss.",
+  "era": {
+   "grade": "N",
+   "note": "A cemetery gate: stone posts and a rusted iron door. Reads as ordinary graveyard dressing for any age of Britannia, with no creature, faction or skill attached.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB013",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-006"
+ },
+ {
+  "slug": "crypt-fence",
+  "name": "Crypt Fence Post",
+  "category": "ARC",
+  "subcategory": "Gates, grilles and fences",
+  "parts": [
+   {
+    "id": "0xB018",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A rough stone post with an iron rail, built to ring a burial ground.",
+  "era": {
+   "grade": "N",
+   "note": "A stone-and-iron graveyard fence post; ordinary cemetery dressing tied to no creature, faction or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "crypt-gate",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB017",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-007"
+ },
+ {
+  "slug": "cathedral-window-arched",
+  "name": "Cathedral Window, Arched",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x4B16",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A great arched window of ruby and sapphire glass, set in grey-green stone.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Wall art added with the Stygian Abyss era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4B10",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-008"
+ },
+ {
+  "slug": "cathedral-window-mosaic",
+  "name": "Cathedral Window, Mosaic",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x4B17",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A wall of many-coloured glass, cut in a mosaic that throws jewels across the floor at noon.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Wall art added with the Stygian Abyss era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "cathedral-window-arched",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4B11",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-009"
+ },
+ {
+  "slug": "cathedral-window-framed",
+  "name": "Cathedral Window, Framed",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x4B19",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall stained-glass panel in a plain stone frame, like the window over a minster's high altar.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Wall art added with the Stygian Abyss era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "cathedral-window-arched",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4B13",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-010"
+ },
+ {
+  "slug": "cathedral-window-sill",
+  "name": "Cathedral Window with Sill",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x4B1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A stained-glass window above a stone sill, where a pilgrim might rest a candle.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Wall art added with the Stygian Abyss era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "cathedral-window-arched",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4B14",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-011"
+ },
+ {
+  "slug": "ashlar-window-red-glass",
+  "name": "Ashlar Window of Red Glass",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x29A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "sacred",
+   "dungeon"
+  ],
+  "blurb": "A slit of ruby glass in a wall of neat grey ashlar, glowing like an ember in the dusk.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Block of wall art from the 2005-2007 expansions.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; window and light-source flags",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x29A0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-012"
+ },
+ {
+  "slug": "ashlar-window-blue-glass",
+  "name": "Ashlar Window of Blue Glass",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x29A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "sacred",
+   "dungeon"
+  ],
+  "blurb": "A narrow slit of cobalt glass in grey ashlar, cool as a winter evening.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Block of wall art from the 2005-2007 expansions.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; window and light-source flags",
+  "variantOf": "ashlar-window-red-glass",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x29A1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-013"
+ },
+ {
+  "slug": "rubble-window-amber-glass",
+  "name": "Rubble Window of Amber Glass",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x29A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "sacred"
+  ],
+  "blurb": "A little window of amber glass in a thick wall of tumbled brown stone.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Block of wall art from the 2005-2007 expansions.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; window and light-source flags",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x29A5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-014"
+ },
+ {
+  "slug": "brick-lancet-window-amber",
+  "name": "Brick Lancet Window, Amber",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0x29BC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "sacred",
+   "scholar"
+  ],
+  "blurb": "A pointed lancet of amber glass in dark brick, as if cut for a chapel library.",
+  "era": {
+   "grade": "N",
+   "note": "Generic stained or leaded glass in a stone wall; nothing in it ties to a later expansion, creature or skill. Block of wall art from the 2005-2007 expansions.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; window and light-source flags",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x29B7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-015"
+ },
+ {
+  "slug": "oval-window-ankh",
+  "name": "Oval Window of the Ankh",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xAD7D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "An oval of green glass with a golden ankh at its heart, ringed in coloured lead.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A holy symbol that has stood for the Virtues since Ultima IV.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xAD7E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-016"
+ },
+ {
+  "slug": "oval-window-sword",
+  "name": "Oval Window of the Sword",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xAD7F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "An oval of green glass bearing a golden blade, a quiet sermon on valour.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A sword emblem reads as knightly, not as any weapon skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xAD80",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-017"
+ },
+ {
+  "slug": "oval-window-axe",
+  "name": "Oval Window of the Axe",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xAD7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "rustic"
+  ],
+  "blurb": "An oval of ruby glass carrying a golden double-bladed axe.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. An axe is ordinary heraldry.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xAD7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-018"
+ },
+ {
+  "slug": "oval-window-masks",
+  "name": "Oval Window of the Masks",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xAD79",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "scholar",
+   "heraldic"
+  ],
+  "blurb": "An oval of ruby glass with the golden masks of comedy and tragedy, for a house that loves a play.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. Theatre masks are a timeless emblem.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xAD7A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-019"
+ },
+ {
+  "slug": "oval-window-heart",
+  "name": "Oval Window of the Heart",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA7C1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "sacred",
+   "whimsical"
+  ],
+  "blurb": "An oval of green glass holding a golden heart, warm even on a grey day.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A heart is the oldest of devotional emblems.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA7C2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-020"
+ },
+ {
+  "slug": "oval-window-flame",
+  "name": "Oval Window of the Flame",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA7BD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "sacred",
+   "elegant"
+  ],
+  "blurb": "An oval of ruby glass with a golden flame that seems to lick upward.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A flame is ordinary church and hearth symbolism.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA7BE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-021"
+ },
+ {
+  "slug": "oval-window-scales",
+  "name": "Oval Window of the Scales",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA5FA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "An oval of green glass bearing golden scales: the court's own window, for a house that settles its quarrels fairly.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. Scales are the plain emblem of justice.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA5FB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-022"
+ },
+ {
+  "slug": "oval-window-crescent",
+  "name": "Oval Window of the Crescent",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA9D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "An oval of ruby glass with a golden crescent moon, for an evening-room window.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A crescent moon is ordinary heraldry and night-sky ornament.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA9D7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-023"
+ },
+ {
+  "slug": "oval-window-chalice",
+  "name": "Oval Window of the Chalice",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA9DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "tavern"
+  ],
+  "blurb": "An oval of green glass holding a golden cup, fit for a chapel or a very respectable tavern.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. A chalice is a universal devotional emblem.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA9DB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-024"
+ },
+ {
+  "slug": "oval-window-hand",
+  "name": "Oval Window of the Hand",
+  "category": "ARC",
+  "subcategory": "Windows and stained glass",
+  "parts": [
+   {
+    "id": "0xA7BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "An oval of green glass with a golden hand held open, in oath or in welcome.",
+  "era": {
+   "grade": "N",
+   "note": "An oval stained-glass medallion with a plain heraldic or devotional emblem, tied to no later content. Hung in a window or on a wall. An open hand is an everyday emblem of oath and compassion.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "light-source-flagged static; decor-only",
+  "variantOf": "oval-window-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA7C0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-025"
+ },
+ {
+  "slug": "gothic-lancet-window",
+  "name": "Gothic Lancet Window",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x4AFD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "sacred",
+   "scholar"
+  ],
+  "blurb": "A tall pointed window cut through pale green-grey stone, open to the weather and the sky.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gothic wall with a pointed window: architecture, not lore. Used in Malas, but the style is ordinary cathedral stonework tied to no creature or skill.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4AF7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-026"
+ },
+ {
+  "slug": "gothic-pointed-alcove",
+  "name": "Gothic Pointed Alcove",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x4AFB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "sacred",
+   "scholar"
+  ],
+  "blurb": "A blind pointed arch set into the stone, waiting for a saint or a lamp.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gothic wall with a recessed pointed arch; ordinary cathedral stonework tied to no creature or skill.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "gothic-lancet-window",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x4AF5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-027"
+ },
+ {
+  "slug": "skull-ringed-window",
+  "name": "Skull-Ringed Window",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x2200",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "arcane"
+  ],
+  "blurb": "A keyhole window in grey ashlar, its rim set with tiny skulls so the dead may look out as well as in.",
+  "era": {
+   "grade": "N",
+   "note": "Stone wall with a window ringed in carved skulls: ordinary dark-magic and charnel dressing, with no creature, faction or skill attached.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x21FF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-028"
+ },
+ {
+  "slug": "faceted-stone-spire",
+  "name": "Faceted Stone Spire",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x2201",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "arcane",
+   "noble"
+  ],
+  "blurb": "A needle of mortared stone blocks, stepping in course by course to a worn point.",
+  "era": {
+   "grade": "N",
+   "note": "A plain pyramidal stone spike, a gatepost or boundary marker with no later-expansion theme.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-029"
+ },
+ {
+  "slug": "gothic-corner-tower",
+  "name": "Gothic Corner Tower",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x4B0C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "sacred",
+   "martial"
+  ],
+  "blurb": "A square pale-stone turret with a pointed window, the corner stone of a chapel wall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic gothic corner turret of pale stone, with no creature, faction or skill attached.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-030"
+ },
+ {
+  "slug": "gothic-vault-pier",
+  "name": "Gothic Vault Pier",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x4B3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "sacred",
+   "elegant"
+  ],
+  "blurb": "A slender stone pier branching into two ribs at the top, ready to carry a vaulted roof.",
+  "era": {
+   "grade": "N",
+   "note": "A generic gothic vault pier of pale stone, with no creature, faction or skill attached.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-031"
+ },
+ {
+  "slug": "celtic-cross-slit-wall",
+  "name": "Celtic Cross-Slit Wall",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xB3DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A grey stone wall carved with knotwork at its foot and pierced by a narrow cross-shaped slit.",
+  "era": {
+   "grade": "N",
+   "note": "Plain stone wall with knotwork carving and a loop window. Knotwork is generic Dark-Age ornament, not tied to any expansion, race or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB3D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-032"
+ },
+ {
+  "slug": "celtic-arched-window-wall",
+  "name": "Celtic Arched Window Wall",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xB3DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "noble",
+   "sacred"
+  ],
+  "blurb": "A knotwork-carved wall with a round-headed window, like the cell of a mountain abbey.",
+  "era": {
+   "grade": "N",
+   "note": "Plain stone wall with knotwork carving and an arched window; generic ornament tied to no expansion, race or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "celtic-cross-slit-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB3DB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-033"
+ },
+ {
+  "slug": "board-and-batten-wall",
+  "name": "Board-and-Batten Wall",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x77E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "forest"
+  ],
+  "blurb": "Upright planks with the seams battened over: a barn wall honest enough for any farm in Britannia.",
+  "era": {
+   "grade": "N",
+   "note": "A plain board-and-batten barn wall. Generic frontier carpentry, nothing to tie it to a later expansion.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x77E6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-034"
+ },
+ {
+  "slug": "fieldstone-wall",
+  "name": "Fieldstone Wall",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xAD8B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A knee-to-shoulder wall of round field stones, mortared and mossed by many winters.",
+  "era": {
+   "grade": "N",
+   "note": "A dry-laid fieldstone garden wall; generic walling with no later-expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xAD8A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-035"
+ },
+ {
+  "slug": "fieldstone-post",
+  "name": "Fieldstone Post",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xAD8C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A stout post of mortared field stones, ready to end a wall or hang a gate.",
+  "era": {
+   "grade": "N",
+   "note": "A fieldstone gate post; generic walling with no later-expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "fieldstone-wall",
+  "id": "CN-ARC-036"
+ },
+ {
+  "slug": "gothic-column",
+  "name": "Gothic Column",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x2FEC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "sacred",
+   "dungeon"
+  ],
+  "blurb": "A tall dark column ribbed like a bundle of reeds, topped with a split capital.",
+  "era": {
+   "grade": "N",
+   "note": "A plain gothic stone column in dark grey. The style is ordinary cathedral stonework, tied to no creature or skill.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; mirror twin is 0x2FED",
+  "variantOf": null,
+  "id": "CN-ARC-037"
+ },
+ {
+  "slug": "mossy-support-column",
+  "name": "Mossy Support Column",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xA9BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "noble"
+  ],
+  "blurb": "A massive grey column wrapped in climbing moss, its capital long since chipped away.",
+  "era": {
+   "grade": "N",
+   "note": "A weathered stone support column with moss, ordinary ruin dressing tied to no creature or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-038"
+ },
+ {
+  "slug": "log-pillar",
+  "name": "Log Pillar",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0xA985",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "forest"
+  ],
+  "blurb": "A single great log stood on end, bark stripped and top cut clean: a pillar from a timber hall.",
+  "era": {
+   "grade": "N",
+   "note": "A plain timber pillar; generic carpentry with no later-expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-039"
+ },
+ {
+  "slug": "marble-vault-pier",
+  "name": "Marble Vault Pier",
+  "category": "ARC",
+  "subcategory": "Walls, piers and columns",
+  "parts": [
+   {
+    "id": "0x0446",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A pale marble pier forking into two arms at its crown, as if holding up a roof that was never built.",
+  "era": {
+   "grade": "N",
+   "note": "A branching marble pier from the original house-wall art; the main catalog used the columns and left the pier forms out. Plain architecture.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-040"
+ },
+ {
+  "slug": "elven-simple-wall",
+  "name": "Elven Simple Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2B7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A smooth pale wall panel with one clean carved edge, plain as a pressed leaf.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2B7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-041"
+ },
+ {
+  "slug": "elven-windowed-wall",
+  "name": "Elven Windowed Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2B7E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A pale carved wall cut with a tall narrow window, framed in one soft curving line.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-simple-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2B7D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-042"
+ },
+ {
+  "slug": "elven-intricate-wall",
+  "name": "Elven Intricate Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2BBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A wall of pale stone carved with flowing, interlaced lines, like roots remembering they were once rivers.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-simple-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2BBE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-043"
+ },
+ {
+  "slug": "elven-carved-window-wall",
+  "name": "Elven Carved Window Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2BBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A pale wall carved all over with trailing vines around a tall arched window.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-simple-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2BC0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-044"
+ },
+ {
+  "slug": "elven-ornate-post",
+  "name": "Elven Ornate Post",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2BB2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A slim pale post carved with a spiral of leaves from foot to cap.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "id": "CN-ARC-045"
+ },
+ {
+  "slug": "elven-ornate-corner",
+  "name": "Elven Ornate Corner Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2BAF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "Two carved pale wall faces meeting at a corner, scrolled like the page of a very old book.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-simple-wall",
+  "id": "CN-ARC-046"
+ },
+ {
+  "slug": "elven-twig-wall",
+  "name": "Elven Twig Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A wall of interwoven roots and branches, grown or woven rather than built.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D41",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-047"
+ },
+ {
+  "slug": "elven-twig-half-wall",
+  "name": "Elven Twig Half Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D3E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A waist-high wall of knotted branches, good for a garden or a woodland porch.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-twig-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D3F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-048"
+ },
+ {
+  "slug": "elven-twig-window-wall",
+  "name": "Elven Twig Window Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A woven-branch wall with a round window left open in the weave.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-twig-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-049"
+ },
+ {
+  "slug": "elven-twig-star-window-wall",
+  "name": "Elven Twig Star Window Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D44",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A woven-branch wall pierced by a star-shaped window, with no two twigs alike.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-twig-wall",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D45",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-050"
+ },
+ {
+  "slug": "elven-twig-post",
+  "name": "Elven Twig Post",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D1D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A tall post of one slender, gnarled trunk, left with its bark and its character.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-twig-wall",
+  "id": "CN-ARC-051"
+ },
+ {
+  "slug": "elven-twig-corner",
+  "name": "Elven Twig Corner Wall",
+  "category": "ARC",
+  "subcategory": "Elven walls, doors and posts",
+  "parts": [
+   {
+    "id": "0x2D1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A woven-branch corner, two walls of roots turning to face the weather together.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged static; decor-only",
+  "variantOf": "elven-twig-wall",
+  "id": "CN-ARC-052"
+ },
+ {
+  "slug": "elven-crescent-door",
+  "name": "Elven Crescent Door",
+  "category": "ARC",
+  "subcategory": "Elven doors",
+  "parts": [
+   {
+    "id": "0x2D63",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A tall pale door with a gentle moon-curve carved across its face.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the door does not swing",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D65",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-053"
+ },
+ {
+  "slug": "elven-knotwork-door",
+  "name": "Elven Knotwork Door",
+  "category": "ARC",
+  "subcategory": "Elven doors",
+  "parts": [
+   {
+    "id": "0x2D67",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A pale door carved edge to edge in intertwined vines, a lock of pure ornament.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the door does not swing",
+  "variantOf": "elven-crescent-door",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D69",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-054"
+ },
+ {
+  "slug": "elven-plain-door",
+  "name": "Elven Plain Door",
+  "category": "ARC",
+  "subcategory": "Elven doors",
+  "parts": [
+   {
+    "id": "0x2D6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A plain tan door with a rounded top and a quiet knob, for a house that likes its privacy.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the door does not swing",
+  "variantOf": "elven-crescent-door",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2D6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-055"
+ },
+ {
+  "slug": "elven-moon-door",
+  "name": "Elven Moon Door",
+  "category": "ARC",
+  "subcategory": "Elven doors",
+  "parts": [
+   {
+    "id": "0x2FE2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "arcane"
+  ],
+  "blurb": "A tall green door marked with a pale crescent moon, closed for the night.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the door does not swing",
+  "variantOf": "elven-crescent-door",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x2FE3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-ARC-056"
+ },
+ {
+  "slug": "elven-twig-door",
+  "name": "Elven Twig Door",
+  "category": "ARC",
+  "subcategory": "Elven doors",
+  "parts": [
+   {
+    "id": "0x2D46",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A door of slim rods lashed in a lattice, light enough to open with one finger.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-crafted house art from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; nothing here is a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "door-class graphic placed as a plain static; the door does not swing",
+  "variantOf": null,
+  "id": "CN-ARC-057"
+ }
+]

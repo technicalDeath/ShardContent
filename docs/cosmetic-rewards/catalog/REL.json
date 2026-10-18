@@ -1,0 +1,2128 @@
+[
+ {
+  "slug": "mosaic-of-honesty",
+  "name": "Mosaic of Honesty",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x149F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14A3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14A4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14A6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14A5",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "virtue:honesty",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with an open golden hand, the sign of Honesty.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14A3-0x14A6",
+  "variantOf": null,
+  "id": "CR-REL-001"
+ },
+ {
+  "slug": "mosaic-of-compassion",
+  "name": "Mosaic of Compassion",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14AB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14AC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14AE",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14AD",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "virtue:compassion",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden heart, the sign of Compassion.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14AB-0x14AE",
+  "variantOf": null,
+  "id": "CR-REL-002"
+ },
+ {
+  "slug": "mosaic-of-justice",
+  "name": "Mosaic of Justice",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14AF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14B2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14B3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14B4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14B6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14B5",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "virtue:justice",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with golden scales, the sign of Justice.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14B3-0x14B6",
+  "variantOf": null,
+  "id": "CR-REL-003"
+ },
+ {
+  "slug": "mosaic-of-valor",
+  "name": "Mosaic of Valor",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14B7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14BA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14BB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14BC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14BE",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14BD",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "virtue:valor",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden sword, the sign of Valor.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14BB-0x14BE",
+  "variantOf": null,
+  "id": "CR-REL-004"
+ },
+ {
+  "slug": "mosaic-of-spirituality",
+  "name": "Mosaic of Spirituality",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14C2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14C3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14C4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14C6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14C5",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "virtue:spirituality",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden ankh, the sign of Spirituality.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=3 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14C3-0x14C6",
+  "variantOf": null,
+  "id": "CR-REL-005"
+ },
+ {
+  "slug": "mosaic-of-honor",
+  "name": "Mosaic of Honor",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14C7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14C8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14CA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14C9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14CB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14CC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14CE",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14CD",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "virtue:honor",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden chalice, the sign of Honor.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14CB-0x14CE",
+  "variantOf": null,
+  "id": "CR-REL-006"
+ },
+ {
+  "slug": "mosaic-of-humility",
+  "name": "Mosaic of Humility",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x14CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14D0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14D2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14D1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14D3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14D4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14D6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14D5",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "virtue:humility",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden shepherd's crook, the sign of Humility.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=2 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x14D3-0x14D6",
+  "variantOf": null,
+  "id": "CR-REL-007"
+ },
+ {
+  "slug": "mosaic-of-sacrifice",
+  "name": "Mosaic of Sacrifice",
+  "category": "REL",
+  "subcategory": "Virtue mosaics",
+  "parts": [
+   {
+    "id": "0x150A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x150B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x150D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x150C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x150E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x150F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1511",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1510",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "virtue:sacrifice",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A green marble floor-plaque in a stone frame, inlaid with a golden flame, the sign of Sacrifice.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world floor art: Lord British's castle at Britain lays all eight virtue plaques (n=1 placements); classic-block tiles, world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four flat tiles (2x2) with the stock Britannia layout; decor-only; mirrored set 0x150E-0x1511",
+  "variantOf": null,
+  "id": "CR-REL-008"
+ },
+ {
+  "slug": "triad-of-truth-love-courage",
+  "name": "Triad of Truth, Love and Courage",
+  "category": "REL",
+  "subcategory": "Virtue sets",
+  "parts": [
+   {
+    "id": "0x149F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AA",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14B7",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B8",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14BA",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B9",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "6x2",
+  "tier": "scarce",
+  "tags": [
+   "virtue:honesty",
+   "virtue:compassion",
+   "virtue:valor",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "Honesty, Compassion and Valor set side by side: the three principles from which the other virtues spring.",
+  "era": {
+   "grade": "B",
+   "note": "Three original-world virtue floor plaques (n=2 each in Britain), set in a row; the principle-to-virtue pairing is Ultima lore, the arrangement is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three 2x2 plaques in a row; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-009"
+ },
+ {
+  "slug": "ring-of-the-eight-virtues",
+  "name": "Ring of the Eight Virtues",
+  "category": "REL",
+  "subcategory": "Virtue sets",
+  "parts": [
+   {
+    "id": "0x149F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AA",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14B7",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B8",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14BA",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B9",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14B0",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x14B2",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14B1",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x150A",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x150B",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x150D",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x150C",
+    "dx": 5,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x14C7",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x14C8",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x14CA",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x14C9",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x14BF",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x14C0",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x14C2",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x14C1",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x14CF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14D0",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x14D2",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14D1",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "6x6",
+  "tier": "extremely-rare",
+  "tags": [
+   "virtue:honesty",
+   "virtue:compassion",
+   "virtue:justice",
+   "virtue:valor",
+   "virtue:sacrifice",
+   "virtue:honor",
+   "virtue:spirituality",
+   "virtue:humility",
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Eight golden emblems on green marble circle a clear space at the centre, a floor fit for a shrine or a great hall.",
+  "era": {
+   "grade": "B",
+   "note": "All eight plaques are original-world floor art from Lord British's castle; the ring arrangement around a free 2x2 centre is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "eight 2x2 plaques in a 6x6 ring with the 2x2 centre left free; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-010"
+ },
+ {
+  "slug": "triangle-of-justice",
+  "name": "Triangle of Justice",
+  "category": "REL",
+  "subcategory": "Virtue sets",
+  "parts": [
+   {
+    "id": "0x149F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AA",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AF",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14B0",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x14B2",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14B1",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "virtue:honesty",
+   "virtue:compassion",
+   "virtue:justice",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "Honesty and Compassion above, joined below by Justice, the virtue that Truth and Love make together.",
+  "era": {
+   "grade": "B",
+   "note": "Three original-world virtue floor plaques (n=2 each in Britain); the parent-virtue pairing follows the Ultima virtue chart, the triangle arrangement is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three 2x2 plaques in a triangle; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-011"
+ },
+ {
+  "slug": "triangle-of-honor",
+  "name": "Triangle of Honor",
+  "category": "REL",
+  "subcategory": "Virtue sets",
+  "parts": [
+   {
+    "id": "0x149F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14A2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14B7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14BA",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14C7",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14C8",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x14CA",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14C9",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "virtue:honesty",
+   "virtue:valor",
+   "virtue:honor",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "Honesty and Valor above, joined below by Honor, the virtue that Truth and Courage make together.",
+  "era": {
+   "grade": "B",
+   "note": "Three original-world virtue floor plaques (n=2 each in Britain); the parent-virtue pairing follows the Ultima virtue chart, the triangle arrangement is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three 2x2 plaques in a triangle; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-012"
+ },
+ {
+  "slug": "triangle-of-sacrifice",
+  "name": "Triangle of Sacrifice",
+  "category": "REL",
+  "subcategory": "Virtue sets",
+  "parts": [
+   {
+    "id": "0x14A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14AA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14A9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14B7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14BA",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14B9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x150A",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x150B",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x150D",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x150C",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "virtue:compassion",
+   "virtue:valor",
+   "virtue:sacrifice",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "Compassion and Valor above, joined below by Sacrifice, the virtue that Love and Courage make together.",
+  "era": {
+   "grade": "B",
+   "note": "Three original-world virtue floor plaques (n=2 each in Britain); the parent-virtue pairing follows the Ultima virtue chart, the triangle arrangement is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three 2x2 plaques in a triangle; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-013"
+ },
+ {
+  "slug": "stone-ankh",
+  "name": "Stone Ankh",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x0003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0004",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0005",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "noble",
+   "virtue:spirituality"
+  ],
+  "blurb": "A great ankh of grey stone, the old sign of life and rebirth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: the ankh halves (n=26 on the Britannia map) mark healers and shrines; world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile addon (the two ankh halves); decor-only, no resurrection; east set 0x0004 + 0x0005",
+  "variantOf": null,
+  "id": "CR-REL-014"
+ },
+ {
+  "slug": "gilded-ankh",
+  "name": "Gilded Ankh",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x0003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0004",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0005",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "noble",
+   "treasure",
+   "virtue:spirituality"
+  ],
+  "blurb": "The ankh in bright gold, as if it had been blessed by a generous temple.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world ankh art (n=26); the gold is a coloured-ingot hue, and ore colours existed from Feb 1999.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two-tile addon (the two ankh halves); decor-only, no resurrection; east set 0x0004 + 0x0005",
+  "variantOf": "stone-ankh",
+  "id": "CR-REL-015"
+ },
+ {
+  "slug": "amber-ankh",
+  "name": "Amber Ankh",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x0003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 47,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0004",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0005",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "desert",
+   "virtue:spirituality"
+  ],
+  "blurb": "An ankh the colour of old amber, carved for a shrine in a far country.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world ankh art; the Lost Lands map itself places this ankh pair in hue 47, an amber-orange, so a coloured ankh existed in the world.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile addon (the two ankh halves); decor-only, no resurrection; east set 0x0004 + 0x0005",
+  "variantOf": "stone-ankh",
+  "id": "CR-REL-016"
+ },
+ {
+  "slug": "shadowiron-ankh",
+  "name": "Shadowiron Ankh",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x0003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2406,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0004",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0005",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "A near-black ankh, the symbol of the Healers turned to a grim memorial.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world ankh art (n=26); the dark finish is a coloured-ingot hue, and ore colours existed from Feb 1999.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two-tile addon (the two ankh halves); decor-only, no resurrection; east set 0x0004 + 0x0005",
+  "variantOf": "stone-ankh",
+  "id": "CR-REL-017"
+ },
+ {
+  "slug": "ankh-of-sacrifice",
+  "name": "Ankh of Sacrifice",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x1D98",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D97",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E5D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E5C",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "sacred",
+   "virtue:sacrifice",
+   "macabre"
+  ],
+  "blurb": "A dark stone ankh streaked with red where the stone seems to weep blood.",
+  "era": {
+   "grade": "C",
+   "note": "Placed once in the Felucca Lost Lands (T2A) and in Malas; the mirrored pair 0x1E5C-0x1E5D sits in a block with later fills, so era is uncertain.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile addon; decor-only; east set 0x1E5D + 0x1E5C",
+  "variantOf": null,
+  "id": "CR-REL-018"
+ },
+ {
+  "slug": "blood-altar",
+  "name": "Bloodstained Altar",
+  "category": "REL",
+  "subcategory": "Altars",
+  "parts": [
+   {
+    "id": "0x120E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1215",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1214",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x120F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1216",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1213",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1210",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1211",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1212",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "demonic",
+   "dungeon",
+   "arcane"
+  ],
+  "blurb": "A round stone altar cut with a pentagram and a skull, its centre dark with old blood.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon art: the stone altar tiles (n=22 placements of the full set on the Britannia map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine-tile addon, decor-only (no sacrifice function)",
+  "variantOf": null,
+  "id": "CR-REL-019"
+ },
+ {
+  "slug": "twin-blood-altars",
+  "name": "Twin Bloodstained Altars",
+  "category": "REL",
+  "subcategory": "Altars",
+  "parts": [
+   {
+    "id": "0x120E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1215",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1214",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x120F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1216",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1213",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1210",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1211",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1212",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x120E",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1215",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1214",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x120F",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1216",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1213",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1210",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1211",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1212",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "6x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "demonic",
+   "dungeon",
+   "arcane"
+  ],
+  "blurb": "Two pentagram altars side by side, a rite-room's worth of carved stone and old stain.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon altar tiles; the Britannia map also lays the nine-tile altar twice side by side in the Lost Lands.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two nine-tile altars side by side; decor-only",
+  "variantOf": null,
+  "id": "CR-REL-020"
+ },
+ {
+  "slug": "twin-stone-ankhs",
+  "name": "Twin Stone Ankhs",
+  "category": "REL",
+  "subcategory": "Ankhs",
+  "parts": [
+   {
+    "id": "0x0003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0003",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0002",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "4x2",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "noble",
+   "virtue:spirituality"
+  ],
+  "blurb": "Two great stone ankhs standing three tiles apart, a gateway of life for a shrine or a hall.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: the ankh halves (n=26 on the Britannia map) mark healers and shrines; world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two ankh addons three tiles apart, decor-only; no resurrection",
+  "variantOf": null,
+  "id": "CR-REL-021"
+ },
+ {
+  "slug": "candlelit-blood-altar",
+  "name": "Candlelit Bloodstained Altar",
+  "category": "REL",
+  "subcategory": "Altars",
+  "parts": [
+   {
+    "id": "0x120E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1215",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1214",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x120F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1216",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1213",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1210",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1211",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1212",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "demonic",
+   "dungeon",
+   "arcane",
+   "undead"
+  ],
+  "blurb": "The pentagram altar with four skull candles burning at its corners, ready for a rite.",
+  "era": {
+   "grade": "B",
+   "note": "Altar tiles are original-world dungeon art (n=22); skull candles were NPC shop-dressing rares. The skulls-on-altar arrangement is ours.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine-tile altar plus four skull candles (lit art, decor-only; no light function)",
+  "variantOf": null,
+  "id": "CR-REL-022"
+ },
+ {
+  "slug": "candle-of-love",
+  "name": "Candle of Love",
+  "category": "REL",
+  "subcategory": "Virtue relics",
+  "parts": [
+   {
+    "id": "0x1C14",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "virtue:compassion",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "A single lit candle in a brass holder, the old symbol of Love.",
+  "era": {
+   "grade": "B",
+   "note": "Classic-block tile named for the Ultima IV virtue relic; the Britannia map places it in Magincia (n=4). Light flag ignored: decoration only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single tile; lit art, treat as pure decoration",
+  "variantOf": null,
+  "id": "CR-REL-023"
+ },
+ {
+  "slug": "pewter-offering-bowl",
+  "name": "Two-Handled Offering Bowl",
+  "category": "REL",
+  "subcategory": "Offering vessels",
+  "parts": [
+   {
+    "id": "0x1603",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "humble",
+   "elegant"
+  ],
+  "blurb": "A broad pewter bowl with two handles, the kind set out for votive gifts.",
+  "era": {
+   "grade": "B",
+   "note": "Classic-block bowl tile (0x1603) from the 1997-1999 kitchen and tinker art; plain and unremarkable, used here as a votive vessel.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only; no storage",
+  "variantOf": null,
+  "id": "CR-REL-024"
+ },
+ {
+  "slug": "gilded-offering-bowl",
+  "name": "Gilded Offering Bowl",
+  "category": "REL",
+  "subcategory": "Offering vessels",
+  "parts": [
+   {
+    "id": "0x1603",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "A gilded two-handled bowl, set out at shrines for the gifts of the faithful.",
+  "era": {
+   "grade": "B",
+   "note": "Classic-block bowl tiles (tinker and kitchen art from the 1997-1999 era); the gilt is a coloured-ingot hue, ore colours existed from Feb 1999.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "single tile; hue 0x8A5 gold; decor-only",
+  "variantOf": "pewter-offering-bowl",
+  "id": "CR-REL-025"
+ },
+ {
+  "slug": "wooden-offering-bowl",
+  "name": "Wooden Votive Bowl",
+  "category": "REL",
+  "subcategory": "Offering vessels",
+  "parts": [
+   {
+    "id": "0x1605",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A deep wooden bowl with two handles, dark with years of use at the shrine.",
+  "era": {
+   "grade": "B",
+   "note": "Classic-block bowl tile (0x1605) from the 1997-1999 kitchen art; plain and unremarkable, used here as a votive vessel.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only; no storage",
+  "variantOf": null,
+  "id": "CR-REL-026"
+ }
+]

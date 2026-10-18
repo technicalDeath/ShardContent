@@ -1,0 +1,16 @@
+{
+  "pool": "pilgrimage-shrine-tokens",
+  "system": "pilgrimage",
+  "notes": "One green-marble virtue mosaic per shrine, each carrying that virtue's own golden emblem (hand, heart, scales, sword, chalice, flame, ankh, crook), so the eight tokens read as one collectible set and each is unmistakable at a glance. All are grade B, tradable floor pieces with no function. The ninth entry, the Ring of the Eight Virtues, is an optional capstone for a pilgrim who has visited every shrine: it is the same eight emblems joined in a circle, listed under 'singularity' (the unity of the virtues). Drop it and the pool still satisfies 'one token per shrine'. There is no separate art for 'Spirit'. Which towns host which shrine, and whether the curator trades tokens for the Ring, is a Pilgrimage design matter for the roadmap item, not decided here.",
+  "entries": [
+    { "shrine": "honesty",      "id": "CR-REL-001", "why": "Golden open hand on green marble, the sign of Honesty" },
+    { "shrine": "compassion",   "id": "CR-REL-002", "why": "Golden heart on green marble, the sign of Compassion" },
+    { "shrine": "valor",        "id": "CR-REL-004", "why": "Golden sword on green marble, the sign of Valor" },
+    { "shrine": "justice",      "id": "CR-REL-003", "why": "Golden scales on green marble, the sign of Justice" },
+    { "shrine": "sacrifice",    "id": "CR-REL-008", "why": "Golden flame on green marble, the sign of Sacrifice" },
+    { "shrine": "honor",        "id": "CR-REL-006", "why": "Golden chalice on green marble, the sign of Honor" },
+    { "shrine": "spirituality", "id": "CR-REL-005", "why": "Golden ankh on green marble, the sign of Spirituality" },
+    { "shrine": "humility",     "id": "CR-REL-007", "why": "Golden shepherd's crook on green marble, the sign of Humility" },
+    { "shrine": "singularity",  "id": "CR-REL-010", "why": "Optional capstone: all eight emblems in one ring, for the pilgrim who walked every shrine" }
+  ]
+}

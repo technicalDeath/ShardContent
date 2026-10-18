@@ -1,0 +1,2513 @@
+[
+ {
+  "slug": "lunar-phases-rug",
+  "name": "Lunar Phases Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0xA5A6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A1",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA59C",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA5AB",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A7",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A2",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA59D",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA598",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA59E",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA599",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA595",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA597",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A4",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA59F",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA59A",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA596",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA5AA",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A5",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5A0",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA59B",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A great round rug of black wool ringed in gold, the moon passing through all its phases around a bronze compass-star.",
+  "era": {
+   "grade": "N",
+   "note": "A round rug with the phases of the moon and a compass-rose centre: generic celestial dressing, like the globes and sextants of 2000. The art is far later.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "23-tile floor addon (5x5 oval), decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-001"
+ },
+ {
+  "slug": "gilded-moon-ring-rug",
+  "name": "Gilded Moon-Ring Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0xA5AE",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA5AF",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA5B0",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA5B1",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5D6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5D7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA5D8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5D9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA5DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A round black rug bordered with a gold band of moons and stars. The centre is left plain for a table to stand on.",
+  "era": {
+   "grade": "N",
+   "note": "A round rug with a border of moons and stars: generic celestial dressing. The art is much later than April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "9-tile floor addon (3x3 oval), decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-002"
+ },
+ {
+  "slug": "crescent-moon-rug",
+  "name": "Crescent Moon Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0xB2B0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AB",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB2AA",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB2A9",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB2A8",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A fringed oval rug woven with two crescent moons, one pale blue and one rose, over a field of sparkling stars.",
+  "era": {
+   "grade": "N",
+   "note": "An oval rug with crescent moons and stars: generic night-sky dressing with no expansion lore. The art is much later than 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "9-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-003"
+ },
+ {
+  "slug": "slate-dragon-rug",
+  "name": "Slate Dragon Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x9FE6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD4",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD5",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE1",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE5",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDB",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD2",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE0",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE4",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDA",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD1",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD0",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE3",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD9",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x9FCF",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x9FCE",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDE",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x9FE2",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD8",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD6",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x9FD7",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x9FDD",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x9FCD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC3",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBB",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBC",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC8",
+      "dx": 4,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9FCC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC2",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBA",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x9FB9",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC7",
+      "dx": 4,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x9FCB",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC1",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x9FB8",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x9FB7",
+      "dx": 3,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC6",
+      "dx": 4,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x9FCA",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC0",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x9FB6",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x9FB5",
+      "dx": 3,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC5",
+      "dx": 4,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC9",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBF",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBD",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x9FBE",
+      "dx": 3,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x9FC4",
+      "dx": 4,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "5x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "dragon",
+   "exotic",
+   "noble"
+  ],
+  "blurb": "A square slate-grey rug with a fretted border, across which a flame-red dragon unfurls its wings.",
+  "era": {
+   "grade": "N",
+   "note": "A rug with a classic red dragon, a creature that existed in 2000; a rug is ordinary furnishing. The art postdates 2000 by many years.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "25-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-004"
+ },
+ {
+  "slug": "skull-crossbones-rug",
+  "name": "Skull and Crossbones Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x4709",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x470C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x470F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x470D",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x470E",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4708",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x470B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4707",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4710",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x470A",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4714",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4713",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4711",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4715",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4712",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x4744",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4743",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4742",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4741",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4740",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x473F",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x473E",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x473D",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x473C",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x4723",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4722",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4721",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4718",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x4717",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x4716",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "5x3",
+  "tier": "uncommon",
+  "tags": [
+   "pirate",
+   "macabre",
+   "nautical"
+  ],
+  "blurb": "A dark oval rug with a grinning skull and crossed bones, as fit for a pirate's cabin as a smuggler's den.",
+  "era": {
+   "grade": "N",
+   "note": "An oval rug with a skull and crossbones: the old pirate sign and ordinary dark dressing, like the skulls and bones of 2000. The art is far later.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "15-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-005"
+ },
+ {
+  "slug": "grand-skull-rug",
+  "name": "Grand Skull and Crossbones Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x386C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x386B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x386A",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3869",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x386F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x386E",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x386D",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3870",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x3873",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3872",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3871",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3874",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x3877",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3876",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3875",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3878",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x387B",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x387A",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3879",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x387C",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x387F",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x387E",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x387D",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3880",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x3883",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3882",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3881",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x3884",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x389F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x389E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x389D",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38A0",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x389B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x389A",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x3899",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x389C",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x3897",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3896",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3895",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3898",
+      "dx": 3,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3893",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3892",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3891",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3894",
+      "dx": 3,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x388F",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x388E",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x388D",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x3890",
+      "dx": 3,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x388B",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x388A",
+      "dx": 1,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x3889",
+      "dx": 2,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x388C",
+      "dx": 3,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x3888",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x3887",
+      "dx": 1,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x3886",
+      "dx": 2,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x3885",
+      "dx": 3,
+      "dy": 6,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "7x4",
+  "tier": "scarce",
+  "tags": [
+   "pirate",
+   "macabre",
+   "nautical"
+  ],
+  "blurb": "A great oval rug of black wool with a bone-white skull and crossbones, wide enough for a captain's table.",
+  "era": {
+   "grade": "N",
+   "note": "A large oval rug with a skull and crossbones: ordinary pirate dressing. The art is far later than 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "28-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-006"
+ },
+ {
+  "slug": "red-rose-rug",
+  "name": "Red Rose Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x4762",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4759",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x475C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x475F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4756",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4760",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4758",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4754",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x475E",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4755",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4761",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4757",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x475A",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x475D",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x475B",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x4753",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4746",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4747",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4748",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4749",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x474A",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x474B",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x4745",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x474D",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x474E",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x474F",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4750",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4751",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x4752",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x474C",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "5x3",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A cream oval rug with a single red rose in full bloom, a favourite of ladies' chambers.",
+  "era": {
+   "grade": "N",
+   "note": "An oval rug with a red rose: plain floral dressing. The art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "15-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-007"
+ },
+ {
+  "slug": "grand-rose-rug",
+  "name": "Grand Red Rose Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x38A4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38A3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38A2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38A1",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38A8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38A6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38A5",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38A7",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38AC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38AA",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38A9",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38AB",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38B0",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38AE",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38AD",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38AF",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38B4",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38B2",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38B1",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38B3",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38B8",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38B6",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38B5",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38B7",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38BC",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38BA",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38B9",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38BB",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x38D8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38D6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38D5",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38D7",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38D4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38D2",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38D1",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38D3",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38D0",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38CE",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38CD",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38CF",
+      "dx": 3,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38CC",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x38CA",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x38C9",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x38CB",
+      "dx": 3,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x38C8",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x38C6",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x38C5",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x38C7",
+      "dx": 3,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x38C4",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x38C2",
+      "dx": 1,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x38C1",
+      "dx": 2,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x38C3",
+      "dx": 3,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x38C0",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x38BF",
+      "dx": 1,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x38BE",
+      "dx": 2,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x38BD",
+      "dx": 3,
+      "dy": 6,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "7x4",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "garden",
+   "noble"
+  ],
+  "blurb": "A grand cream oval rug bearing one huge red rose, thorns and all, for a hall that values romance.",
+  "era": {
+   "grade": "N",
+   "note": "A large oval rug with a red rose: plain floral dressing. The art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "28-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-008"
+ },
+ {
+  "slug": "dolphin-rug",
+  "name": "Dolphin Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x47D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4777",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x477A",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x47D6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x47D9",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4773",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4776",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4772",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x477C",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4779",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x47D7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4775",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4778",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x477B",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x4774",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x476F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x476D",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x476E",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4766",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4767",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4768",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x4769",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x4763",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x476B",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x476A",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4765",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x4764",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x476C",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x4770",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x4771",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "5x3",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "whimsical"
+  ],
+  "blurb": "A sky-blue oval rug on which a grey dolphin leaps, for a house by the sea.",
+  "era": {
+   "grade": "N",
+   "note": "An oval rug with a leaping dolphin; dolphins swam the seas of 2000 Britannia. The art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "15-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-009"
+ },
+ {
+  "slug": "grand-dolphin-rug",
+  "name": "Grand Dolphin Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x38DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38DB",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38DA",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38D9",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38DF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38DE",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38DD",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38E0",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38E3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38E2",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38E1",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38E4",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38E7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38E6",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38E5",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38E8",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38EB",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38EA",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38E9",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38EC",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38EF",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38EE",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38ED",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38F0",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x38F3",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x38F2",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x38F1",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x38F4",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x38F5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38F6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38F7",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38F8",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x38FC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38F9",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38FA",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x38FB",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x3900",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38FD",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38FE",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x38FF",
+      "dx": 3,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3904",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3901",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3902",
+      "dx": 2,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3903",
+      "dx": 3,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x3908",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x3905",
+      "dx": 1,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x3906",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x3907",
+      "dx": 3,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x390C",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x3909",
+      "dx": 1,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x390A",
+      "dx": 2,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x390B",
+      "dx": 3,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x3910",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x390D",
+      "dx": 1,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x390E",
+      "dx": 2,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x390F",
+      "dx": 3,
+      "dy": 6,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "7x4",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "whimsical"
+  ],
+  "blurb": "A wide blue oval rug showing one dolphin arching over the waves, the colour of a calm harbour.",
+  "era": {
+   "grade": "N",
+   "note": "A large oval rug with a leaping dolphin; dolphins existed in 2000. The art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "28-tile floor addon, decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-010"
+ },
+ {
+  "slug": "welcome-mat",
+  "name": "Welcome Mat",
+  "category": "RUG",
+  "subcategory": "Mats",
+  "parts": [
+   {
+    "id": "0x47DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x47DB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A white doormat with a plain WELCOME stitched in grey, laid just inside the threshold.",
+  "era": {
+   "grade": "N",
+   "note": "A plain floor rug with a simple emblem; rugs are ordinary Britannian furnishing. The art is much later than April 2000 but carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-011"
+ },
+ {
+  "slug": "stone-doorstep-mat",
+  "name": "Stone Doorstep Mat",
+  "category": "RUG",
+  "subcategory": "Mats",
+  "parts": [
+   {
+    "id": "0x4790",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4791",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A half-round step of grey flagstone to lay before a door, worn into a shallow dish by many boots.",
+  "era": {
+   "grade": "N",
+   "note": "A plain floor rug with a simple emblem; rugs are ordinary Britannian furnishing. The art is much later than April 2000 but carries no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-RUG-012"
+ }
+]

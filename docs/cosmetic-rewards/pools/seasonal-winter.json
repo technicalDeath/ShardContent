@@ -1,0 +1,87 @@
+{
+ "pool": "seasonal-winter",
+ "system": "seasonal",
+ "notes": "Winter holiday pool (season:winter): holiday trees and Yule hearth pieces up top, frosted trees and snow in the middle, small seasonal touches at the bottom. 'tier' is the catalog tier and can be used as event drop rarity (the Classic Holiday Tree, which the era evidence documents as a December 1998 and 1999 holiday gift, is the single extremely-rare). Most of the snow and ice crags went to the Ice curator and the Nemesis pool, so this set leans on holiday trees, frosted trees and Yule fire. The Little Snowman (CR-SEA-014) is deliberately left out: the era notes put its art in the 2003 winter package. Every piece here is grade A or B. Winter art has no function; whether these are event drops, a vendor's seasonal stock or both is for the Retention roadmap item.",
+ "entries": [
+  {
+   "id": "CR-SEA-001",
+   "tier": "extremely-rare",
+   "why": "Classic holiday tree hung with baubles, the winter showpiece"
+  },
+  {
+   "id": "CR-SEA-002",
+   "tier": "rare",
+   "why": "Frost-silvered holiday tree"
+  },
+  {
+   "id": "CR-SEA-027",
+   "tier": "rare",
+   "why": "Wide crooked oak with its bare limbs thick with frost"
+  },
+  {
+   "id": "CR-SEA-003",
+   "tier": "scarce",
+   "why": "Slim holiday cedar strung with baubles"
+  },
+  {
+   "id": "CR-SEA-004",
+   "tier": "scarce",
+   "why": "Narrow frosted tree sparkling with coloured baubles"
+  },
+  {
+   "id": "CR-SEA-030",
+   "tier": "scarce",
+   "why": "Tall frosted cypress hung with icicles"
+  },
+  {
+   "id": "CR-SEA-005",
+   "tier": "uncommon",
+   "why": "Frosted cedar standing like a pale spire"
+  },
+  {
+   "id": "CR-SEA-007",
+   "tier": "uncommon",
+   "why": "Tall snow mound drifted against a buried stump"
+  },
+  {
+   "id": "CR-SEA-015",
+   "tier": "uncommon",
+   "why": "Yule log burning through the longest night"
+  },
+  {
+   "id": "CR-SEA-016",
+   "tier": "uncommon",
+   "why": "Red, green and white yuletide candles"
+  },
+  {
+   "id": "CR-SEA-017",
+   "tier": "uncommon",
+   "why": "Pair of ruby and emerald yuletide lanterns"
+  },
+  {
+   "id": "CR-SEA-026",
+   "tier": "uncommon",
+   "why": "Leafless frosted elm, every twig outlined in white"
+  },
+  {
+   "id": "CR-SEA-006",
+   "tier": "common",
+   "why": "Round snow heap swept against a doorstep"
+  },
+  {
+   "id": "CR-SEA-028",
+   "tier": "common",
+   "why": "Bare frosted walnut tree"
+  },
+  {
+   "id": "CR-SEA-029",
+   "tier": "common",
+   "why": "Frosted willow, switches stiff with ice"
+  },
+  {
+   "id": "CR-FLO-008",
+   "tier": "common",
+   "why": "Plain cedar tree, the humble winter evergreen"
+  }
+ ]
+}

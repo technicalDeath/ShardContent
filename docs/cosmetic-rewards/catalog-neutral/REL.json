@@ -1,0 +1,1078 @@
+[
+ {
+  "slug": "banner-of-honesty",
+  "name": "Banner of Honesty",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:honesty"
+  ],
+  "blurb": "In blue and gold, the banner of Honesty hangs straight and says exactly what it means.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99BA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-001"
+ },
+ {
+  "slug": "banner-of-compassion",
+  "name": "Banner of Compassion",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99B7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:compassion"
+  ],
+  "blurb": "In warm amber and gold, the banner of Compassion hangs where the weary can see it first.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99B8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-002"
+ },
+ {
+  "slug": "banner-of-justice",
+  "name": "Banner of Justice",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:justice"
+  ],
+  "blurb": "In green and gold, the banner of Justice hangs level, with nothing leaning on the scale.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99C0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-003"
+ },
+ {
+  "slug": "banner-of-humility",
+  "name": "Banner of Humility",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99BD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:humility"
+  ],
+  "blurb": "In plain white and black, the banner of Humility asks for the smallest corner of the wall.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99BE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-004"
+ },
+ {
+  "slug": "banner-of-valor",
+  "name": "Banner of Valor",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99C5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:valor"
+  ],
+  "blurb": "In red and gold, the banner of Valor flies above a door that has seen a few arrows.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-005"
+ },
+ {
+  "slug": "banner-of-honor",
+  "name": "Banner of Honor",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:honor"
+  ],
+  "blurb": "In gold and cream, the banner of Honor, kept clean for the day someone asks what it stands for.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99BC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-006"
+ },
+ {
+  "slug": "banner-of-spirituality",
+  "name": "Banner of Spirituality",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99C3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:spirituality"
+  ],
+  "blurb": "In white and silver, the banner of Spirituality: quiet as an abbey and just as bright.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99C4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-007"
+ },
+ {
+  "slug": "banner-of-sacrifice",
+  "name": "Banner of Sacrifice",
+  "category": "REL",
+  "subcategory": "Virtue banners",
+  "parts": [
+   {
+    "id": "0x99C1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "sacred",
+   "virtue:sacrifice"
+  ],
+  "blurb": "In ember-orange and gold, the banner of Sacrifice, for a house that gives before it is asked.",
+  "era": {
+   "grade": "N",
+   "note": "A gilt-framed hanging banner bearing the sign of one of the eight Virtues, which have been Britannia's creed since the shrines of 1997. The banner art is far newer; the theme is core Britannia.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "wall-flagged hanging; decor-only",
+  "variantOf": "banner-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x99C2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-008"
+ },
+ {
+  "slug": "rune-of-honesty",
+  "name": "Rune of Honesty",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA51A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:honesty"
+  ],
+  "blurb": "A blue stone bearing an open hand, for those who keep their word and their palms where you can see them.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA519",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-009"
+ },
+ {
+  "slug": "rune-of-compassion",
+  "name": "Rune of Compassion",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA51C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:compassion"
+  ],
+  "blurb": "A stone with a golden heart, worn smooth from being carried in a pocket.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA51B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-010"
+ },
+ {
+  "slug": "rune-of-justice",
+  "name": "Rune of Justice",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA520",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:justice"
+  ],
+  "blurb": "A green-marked stone with the scales of the court, even on both sides.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA51F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-011"
+ },
+ {
+  "slug": "rune-of-humility",
+  "name": "Rune of Humility",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA522",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:humility"
+  ],
+  "blurb": "A black shepherd's crook on grey stone, the humblest of the eight signs.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA521",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-012"
+ },
+ {
+  "slug": "rune-of-valor",
+  "name": "Rune of Valor",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA526",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:valor"
+  ],
+  "blurb": "A red sword struck on a grey stone, cold in the palm and warm in the memory.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA525",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-013"
+ },
+ {
+  "slug": "rune-of-honor",
+  "name": "Rune of Honor",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA51E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:honor"
+  ],
+  "blurb": "A violet chalice on a stone, raised to the ones who keep their oaths.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA51D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-014"
+ },
+ {
+  "slug": "rune-of-spirituality",
+  "name": "Rune of Spirituality",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA518",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:spirituality"
+  ],
+  "blurb": "A silver ankh on a pale stone, the quietest of the eight.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA517",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-015"
+ },
+ {
+  "slug": "rune-of-sacrifice",
+  "name": "Rune of Sacrifice",
+  "category": "REL",
+  "subcategory": "Virtue rune stones",
+  "parts": [
+   {
+    "id": "0xA524",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "virtue:sacrifice"
+  ],
+  "blurb": "An orange drop of flame on a stone, for what was given up so others might keep.",
+  "era": {
+   "grade": "N",
+   "note": "A palm-sized stone struck with the sign of one of the eight Virtues, a pilgrim's keepsake. The Virtues have been core Britannia since 1997; the stone art is newer, the theme is not.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "small tabletop stone; art for west and north",
+  "variantOf": "rune-of-honesty",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA523",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-016"
+ },
+ {
+  "slug": "flowering-stone-ankh",
+  "name": "Flowering Stone Ankh",
+  "category": "REL",
+  "subcategory": "Ankhs and holy symbols",
+  "parts": [
+   {
+    "id": "0xB02E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "sacred",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A stone ankh wound about with violet-flowered vines, as if the shrine had been planted rather than built.",
+  "era": {
+   "grade": "N",
+   "note": "A stone ankh overgrown with flowering vines. The ankh has been the Virtues' holy symbol since Ultima IV; vines and violets are ordinary garden growth. Art is later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the vines are part of the art; art for west and north",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB02D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-017"
+ },
+ {
+  "slug": "ankh-trellis",
+  "name": "Ankh Trellis",
+  "category": "REL",
+  "subcategory": "Ankhs and holy symbols",
+  "parts": [
+   {
+    "id": "0xB02C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A slender ankh-shaped trellis, its vines heavy with small violet blossoms.",
+  "era": {
+   "grade": "N",
+   "note": "An ankh-shaped garden trellis with climbing violets; a holy symbol of the Virtues as ordinary garden dressing.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; foliage-flagged vine art; art for west and north",
+  "variantOf": "flowering-stone-ankh",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xB02B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-018"
+ },
+ {
+  "slug": "broken-wayside-shrine",
+  "name": "Broken Wayside Shrine",
+  "category": "REL",
+  "subcategory": "Shrines and standing stones",
+  "parts": [
+   {
+    "id": "0xA41A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "dungeon",
+   "wilderness"
+  ],
+  "blurb": "A dark stone shrine split and leaning in its own rubble, one arm lost to the weather. Pilgrims still leave a coin.",
+  "era": {
+   "grade": "N",
+   "note": "A weathered, broken stone wayside shrine: ordinary roadside ruin dressing with no creature or faction attached.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for west and north",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA41B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-019"
+ },
+ {
+  "slug": "tall-runestone",
+  "name": "Tall Runestone",
+  "category": "REL",
+  "subcategory": "Shrines and standing stones",
+  "parts": [
+   {
+    "id": "0xADB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "wilderness",
+   "noble"
+  ],
+  "blurb": "A tall grey standing stone cut with columns of runes, older than the road that goes around it.",
+  "era": {
+   "grade": "N",
+   "note": "A carved standing stone with runic markings: a plain boundary or memorial stone of the old north. Pure decoration; it speaks no spell and calls on no skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing and broken versions are not used",
+  "variantOf": null,
+  "id": "CN-REL-020"
+ },
+ {
+  "slug": "squat-runestone",
+  "name": "Squat Runestone",
+  "category": "REL",
+  "subcategory": "Shrines and standing stones",
+  "parts": [
+   {
+    "id": "0xADB7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "wilderness",
+   "humble"
+  ],
+  "blurb": "A knee-high stone, rune-cut and leaning a little, left where a boundary used to be.",
+  "era": {
+   "grade": "N",
+   "note": "A carved standing stone with runic markings: a plain boundary or memorial stone of the old north. Pure decoration; it speaks no spell and calls on no skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing and broken versions are not used",
+  "variantOf": "tall-runestone",
+  "id": "CN-REL-021"
+ },
+ {
+  "slug": "weathered-runestone",
+  "name": "Weathered Runestone",
+  "category": "REL",
+  "subcategory": "Shrines and standing stones",
+  "parts": [
+   {
+    "id": "0xADB9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A rough standing stone with its runes worn soft, the kind a shepherd leans on and a scholar sketches.",
+  "era": {
+   "grade": "N",
+   "note": "A carved standing stone with runic markings: a plain boundary or memorial stone of the old north. Pure decoration; it speaks no spell and calls on no skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing and broken versions are not used",
+  "variantOf": "tall-runestone",
+  "id": "CN-REL-022"
+ },
+ {
+  "slug": "toppled-runestone",
+  "name": "Cracked Runestone",
+  "category": "REL",
+  "subcategory": "Shrines and standing stones",
+  "parts": [
+   {
+    "id": "0xADC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A great runestone split down the middle and held together by lichen and habit.",
+  "era": {
+   "grade": "N",
+   "note": "A carved standing stone with runic markings: a plain boundary or memorial stone of the old north. Pure decoration; it speaks no spell and calls on no skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; broken variant of the tall runestone",
+  "variantOf": "tall-runestone",
+  "id": "CN-REL-023"
+ },
+ {
+  "slug": "gilded-votive-tray",
+  "name": "Gilded Votive Tray",
+  "category": "REL",
+  "subcategory": "Bells and votive vessels",
+  "parts": [
+   {
+    "id": "0x983E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A little gilt tray of white candles, lit in thanks or in hope.",
+  "era": {
+   "grade": "N",
+   "note": "A gilded tray with votive candles, the kind of offering a chapel leaves out for pilgrims. No creature, faction or skill attached.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the animated flame frames are not used",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x983A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-REL-024"
+ }
+]

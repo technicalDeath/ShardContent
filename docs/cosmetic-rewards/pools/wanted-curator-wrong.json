@@ -1,0 +1,47 @@
+{
+ "pool": "wanted-curator-wrong",
+ "system": "wanted-curator",
+ "notes": "Wrong is the prison dungeon: blood, chains, a butcher's larder, the guillotine and the rack. The easy pieces are stains and a chain, the hard pieces are the block and the blade, and the Torture Rack is the showpiece. Grim, but the same gallows dressing already in the stock Britannia dungeons.",
+ "entries": [
+  {
+   "id": "CR-DNG-049",
+   "tier": "easy",
+   "why": "Pool of blood, not quite dry."
+  },
+  {
+   "id": "CR-DNG-025",
+   "tier": "easy",
+   "why": "Heavy chain worn bright at its lowest link."
+  },
+  {
+   "id": "CR-DNG-028",
+   "tier": "medium",
+   "why": "Chained post, polished by many hands."
+  },
+  {
+   "id": "CR-DNG-021",
+   "tier": "medium",
+   "why": "Charnel heap, a slaughterhouse floor."
+  },
+  {
+   "id": "CR-DNG-027",
+   "tier": "hard",
+   "why": "Hanging carcass, a butcher's larder."
+  },
+  {
+   "id": "CR-DNG-031",
+   "tier": "hard",
+   "why": "Executioner's block with the axe still in it."
+  },
+  {
+   "id": "CR-DNG-032",
+   "tier": "hard",
+   "why": "Guillotine with its blade drawn up."
+  },
+  {
+   "id": "CR-DNG-029",
+   "tier": "boss",
+   "why": "Torture Rack, ratchet drum and darkened cords."
+  }
+ ]
+}

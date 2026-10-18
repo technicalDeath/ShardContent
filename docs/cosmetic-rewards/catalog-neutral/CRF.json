@@ -1,0 +1,1115 @@
+[
+ {
+  "slug": "upright-loom",
+  "name": "Upright Loom",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x1063",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1064",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A tall timber frame strung with pale warp threads and a heavy weaving beam, the old way of making cloth.",
+  "era": {
+   "grade": "N",
+   "note": "A standing warp loom, plain cottage weaving gear. Original UO art that the original map never places (zero statics); the main catalog uses only the deed loom.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x1063 south view, 0x1064 east view); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-001"
+ },
+ {
+  "slug": "great-standing-loom",
+  "name": "Great Standing Loom",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0xA81D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA82D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:tailoring",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A master weaver's great loom, its shuttle-race and treadles worked into a frame of polished timber.",
+  "era": {
+   "grade": "N",
+   "note": "A large treadle loom, a weaving-hall fixture of any age. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA81D south view, 0xA82D east view); the other tiles of the family are animation frames, not used",
+  "variantOf": null,
+  "id": "CN-CRF-002"
+ },
+ {
+  "slug": "embroidery-hoop",
+  "name": "Embroidery Hoop",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0xA20A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A round hoop of cloth stretched taut, half-finished roses blooming across it in coloured thread.",
+  "era": {
+   "grade": "N",
+   "note": "A plain needlework hoop with a rose pattern. Embroidery is as old as cloth; the art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-003"
+ },
+ {
+  "slug": "pile-of-cured-hides",
+  "name": "Pile of Cured Hides",
+  "category": "CRF",
+  "subcategory": "Tanning and leather",
+  "parts": [
+   {
+    "id": "0x9BCE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9BCF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "Tawny hides cured and stacked flat, waiting on the tanner's table for the next order.",
+  "era": {
+   "grade": "N",
+   "note": "A stack of tanned hides, trade stock for any tanner or cobbler. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x9BCE south, 0x9BCF east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-004"
+ },
+ {
+  "slug": "dark-iron-anvil",
+  "name": "Dark Iron Anvil",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0xA108",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA102",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:blacksmithing",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A black, many-times-struck anvil with a long horn, the kind a smith will not part with at any price.",
+  "era": {
+   "grade": "N",
+   "note": "A plain smithing anvil. Anvils are original UO equipment; the main catalog holds the older art, this is a second, darker drawing. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA108 south idle, 0xA102 east idle); the animated strike frames are not used",
+  "variantOf": null,
+  "id": "CN-CRF-005"
+ },
+ {
+  "slug": "forge-bellows",
+  "name": "Forge Bellows",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x197D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1989",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "rustic"
+  ],
+  "blurb": "A leather bellows seated on a stone hearth, coals glowing in the heap at its nozzle.",
+  "era": {
+   "grade": "N",
+   "note": "A smith's bellows on its hearth. Original UO art, a standard smithy fixture; the main catalog uses the forges but not the bellows.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x197D south, 0x1989 east); the animated twins 0x197B/0x197C and 0x1987/0x1988 are not used",
+  "variantOf": null,
+  "id": "CN-CRF-006"
+ },
+ {
+  "slug": "great-bellows",
+  "name": "Great Bellows",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x1995",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x19A1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "rustic"
+  ],
+  "blurb": "A heavier stone hearth with a great bellows and a fierce bed of coals, built for a master smith's work.",
+  "era": {
+   "grade": "N",
+   "note": "The larger bellows-and-hearth piece of the forge set. Original UO art, a standard smithy fixture left unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x1995 south, 0x19A1 east); the animated twins are not used",
+  "variantOf": null,
+  "id": "CN-CRF-007"
+ },
+ {
+  "slug": "glassblowers-furnace",
+  "name": "Glassblower's Furnace",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0xA530",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA534",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "craft:alchemy",
+   "fire",
+   "elegant"
+  ],
+  "blurb": "A domed furnace of red brick and copper, the heart of a glasshouse, banked low between pours.",
+  "era": {
+   "grade": "N",
+   "note": "A glassmaker's kiln; the glassblower NPC art has been in the client since the start, though this furnace art is later. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA530 south idle, 0xA534 east idle); the lit animation frames are not used",
+  "variantOf": null,
+  "id": "CN-CRF-008"
+ },
+ {
+  "slug": "glassblowers-table",
+  "name": "Glassblower's Table",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0xA52F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA52E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:alchemy",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A frame table with a slate marver and iron rests for the pipe, worn smooth by years of work.",
+  "era": {
+   "grade": "N",
+   "note": "A glassblower's work-table. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA52F south, 0xA52E east); decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-CRF-009"
+ },
+ {
+  "slug": "tool-caddy",
+  "name": "Tool Caddy",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0xA743",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA744",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A little wooden carrier bristling with pliers, snips and files, ready to go wherever it is needed.",
+  "era": {
+   "grade": "N",
+   "note": "A plain tradesman's tool carrier. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA743 south, 0xA744 east); decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-CRF-010"
+ },
+ {
+  "slug": "tinkers-desk",
+  "name": "Tinker's Desk",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0xA212",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA21A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:tinkering",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A corner desk of dark wood with a small lamp, gear-trays and a rack of fine tools for close work.",
+  "era": {
+   "grade": "N",
+   "note": "A tinker's drawing and assembly desk. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA212 south, 0xA21A east); art is 88 px wide; the animated frames are not used",
+  "variantOf": null,
+  "id": "CN-CRF-011"
+ },
+ {
+  "slug": "repair-bench",
+  "name": "Repair Bench",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0xA277",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA27E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:tinkering",
+   "craft:carpentry",
+   "humble"
+  ],
+  "blurb": "A hardwood bench rigged with clamps and hooks, one small hammer left where the last mend ended.",
+  "era": {
+   "grade": "N",
+   "note": "A repairer's work bench. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA277 south, 0xA27E east); the animated frames are not used",
+  "variantOf": null,
+  "id": "CN-CRF-012"
+ },
+ {
+  "slug": "hanging-saws-and-tools",
+  "name": "Hanging Saws and Tools",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0xA302",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA303",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA329",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA32A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:carpentry",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A stout beam hung with long saws, a spade and a bow-saw, each on its own peg above the workshop floor.",
+  "era": {
+   "grade": "N",
+   "note": "A carpenter's tool rack. Both tiles share one tile, as the art is built to overlap. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two overlapping graphics on one tile (south 0xA302 + 0xA303; east 0xA329 + 0xA32A); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-013"
+ },
+ {
+  "slug": "turners-spindle-rack",
+  "name": "Turner's Spindle Rack",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0x1E82",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A frame of bare pegs holding a row of freshly turned spindles and rails, pale as new bread.",
+  "era": {
+   "grade": "N",
+   "note": "Lathe-turned woodwork on a drying frame. Original UO art with no use in the original map; the main catalog skipped it.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single tile (66x54 art, overhangs its neighbour); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-014"
+ },
+ {
+  "slug": "rolled-chart-rack",
+  "name": "Rolled Chart Rack",
+  "category": "CRF",
+  "subcategory": "Library and chart-making",
+  "parts": [
+   {
+    "id": "0xA849",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA84A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cartography",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A tall banded stand crowded with rolled charts of coast, road and mountain, each tied with ribbon.",
+  "era": {
+   "grade": "N",
+   "note": "A stand of rolled maps. Maps have always been part of UO. The art is a later addition to the client.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA849 south, 0xA84A east); decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-CRF-015"
+ },
+ {
+  "slug": "masons-hoist",
+  "name": "Mason's Hoist",
+  "category": "CRF",
+  "subcategory": "Masonry and building",
+  "parts": [
+   {
+    "id": "0xA540",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA538",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A scaffold of rough poles with a pulley hoist and a squared block hanging half-dressed in its sling.",
+  "era": {
+   "grade": "N",
+   "note": "A stonecutter's hoist, plain building-trade gear. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA540 south idle, 0xA538 east idle); the working animation frames are not used",
+  "variantOf": null,
+  "id": "CN-CRF-016"
+ },
+ {
+  "slug": "granite-handcart",
+  "name": "Granite Handcart",
+  "category": "CRF",
+  "subcategory": "Masonry and building",
+  "parts": [
+   {
+    "id": "0xA54A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA54B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:mining",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A two-handled wooden barrow with a single iron wheel, built to haul stone down a rough track.",
+  "era": {
+   "grade": "N",
+   "note": "A plain stone-hauling handcart. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA54A south, 0xA54B east); decor-only, no storage",
+  "variantOf": null,
+  "id": "CN-CRF-017"
+ },
+ {
+  "slug": "heap-of-granite-blocks",
+  "name": "Heap of Granite Blocks",
+  "category": "CRF",
+  "subcategory": "Masonry and building",
+  "parts": [
+   {
+    "id": "0xA54C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA54D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:mining",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A loose heap of roughly squared granite blocks, still bearing the chisel-marks of the quarry.",
+  "era": {
+   "grade": "N",
+   "note": "A pile of quarried stone. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA54C south, 0xA54D east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-018"
+ },
+ {
+  "slug": "spare-millstone",
+  "name": "Spare Millstone",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1885",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A worn grey millstone stood on its edge against the wall, kept in case the miller's runner cracks.",
+  "era": {
+   "grade": "N",
+   "note": "A millstone, plain mill stock. Original UO art, placed once in the original map; the main catalog uses the flour mill but not the stones.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-019"
+ },
+ {
+  "slug": "butter-churn",
+  "name": "Butter Churn",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0xA2FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A tall oaken churn with an iron-banded barrel and a long dasher, smelling faintly of the dairy.",
+  "era": {
+   "grade": "N",
+   "note": "A dairy churn, plain farmstead gear. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-020"
+ },
+ {
+  "slug": "hand-plough",
+  "name": "Hand Plough",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0xA31F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA320",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:herding",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A one-man plough on a wooden wheel, handles worn bright by a generation of spring ploughing.",
+  "era": {
+   "grade": "N",
+   "note": "A simple hand-plough, farm gear of any age. The main catalog holds other plough art; this is a separate drawing. The art is a later addition to the client with no expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single tile (0xA31F south, 0xA320 east); decor-only, inert",
+  "variantOf": null,
+  "id": "CN-CRF-021"
+ },
+ {
+  "slug": "elven-forge",
+  "name": "Elven Forge",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x2DD8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "craft:blacksmithing",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A tall column of glass and silver in which a blue flame turns lazily, the smith's fire made gentle.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-styled craft fixture from the Mondain's Legacy art (2007). Elven objects are era neutral on this shard, which has cosmetic Elves; decor only, with no race-only function.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only, no crafting; placed with the elven anvils in Felucca's elven smithy",
+  "variantOf": null,
+  "id": "CN-CRF-022"
+ },
+ {
+  "slug": "elven-anvil",
+  "name": "Elven Anvil",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x2DD5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DD6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "craft:blacksmithing",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A single shard of pale grey stone, split flat on top, where metal is coaxed rather than beaten.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-styled craft fixture from the Mondain's Legacy art (2007). Elven objects are era neutral on this shard, which has cosmetic Elves; decor only, with no race-only function.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x2DD5 south, 0x2DD6 east); decor-only, no crafting",
+  "variantOf": null,
+  "id": "CN-CRF-023"
+ },
+ {
+  "slug": "elven-spinning-wheel",
+  "name": "Elven Spinning Wheel",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x2DD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DDA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "craft:tailoring",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A spinning wheel of pale curved wood and silver fittings, its great rim wrapped in carved vines.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-styled craft fixture from the Mondain's Legacy art (2007). Elven objects are era neutral on this shard, which has cosmetic Elves; decor only, with no race-only function.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single tile (0x2DD9 south, 0x2DDA east), partial-hue art; decor-only, no spinning",
+  "variantOf": null,
+  "id": "CN-CRF-024"
+ },
+ {
+  "slug": "elven-bow-stringer",
+  "name": "Elven Bow Stringer",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0x2DD7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "craft:bowcraft",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A small pair of pegs joined by a loop of cord, the bowyer's trick for stringing a stubborn bow.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-styled craft fixture from the Mondain's Legacy art (2007). Elven objects are era neutral on this shard, which has cosmetic Elves; decor only, with no race-only function.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single tile tool; decor-only, no function",
+  "variantOf": null,
+  "id": "CN-CRF-025"
+ }
+]

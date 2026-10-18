@@ -1,0 +1,2032 @@
+[
+ {
+  "slug": "azure-streamers-gilt-crown",
+  "name": "Azure Streamers Under a Gilt Crown",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 92,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15AF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Twin tails of azure silk hung from a gilded head, thrust out from the wall on a short pole.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-001"
+ },
+ {
+  "slug": "crimson-twin-streamers",
+  "name": "Crimson Twin Streamers",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 32,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15B5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial",
+   "humble"
+  ],
+  "blurb": "Two long tails of crimson cloth on a pole with a grey iron finial, the plain colours of a garrison.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-002"
+ },
+ {
+  "slug": "parti-purple-gold-pennant",
+  "name": "Purple and Gold Parti Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15B6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 12,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15B7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A pennant quartered in violet and gold, the sort a house flies from its hall on feast days.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-003"
+ },
+ {
+  "slug": "sable-gyron-pennant",
+  "name": "Sable Gyron Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15C2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15C3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "macabre"
+  ],
+  "blurb": "A shield-shaped pennant cut in eight black and silver wedges, set on a pole of tarnished brass.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-004"
+ },
+ {
+  "slug": "black-cross-pennant",
+  "name": "Pennant of the Golden Cross",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15C6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15C7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "sacred"
+  ],
+  "blurb": "A grey pennant crossed in black and gold, a knight's colours borne out over the street.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-005"
+ },
+ {
+  "slug": "azure-bend-pennant",
+  "name": "Azure Bend Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15CB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A rounded pennant slashed with a diagonal band, dyed a deep sea blue.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-006"
+ },
+ {
+  "slug": "blue-gold-swallowtail",
+  "name": "Blue and Gold Swallowtail",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15CE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 92,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15CF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "nautical"
+  ],
+  "blurb": "A forked pennant split down its length in gold and blue, cut like the tail of a swallow.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-007"
+ },
+ {
+  "slug": "star-on-red-pennant",
+  "name": "Star on Red, Blue Tail",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15D7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A red head bearing a golden star over a long tail of blue, hung from a gilded pole.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-008"
+ },
+ {
+  "slug": "midnight-chequy-pennant",
+  "name": "Midnight Chequy Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15E7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "elegant",
+   "macabre"
+  ],
+  "blurb": "A broad pennant tiled in midnight blue and silver diamonds, rich as a gaming board.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-009"
+ },
+ {
+  "slug": "crimson-scale-pennant",
+  "name": "Crimson Scale Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 32,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15EB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A hanging of overlapping lozenges in crimson and silver, rippled like a mail shirt.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-010"
+ },
+ {
+  "slug": "crimson-scroll-pennant",
+  "name": "Crimson Scroll Pennant",
+  "category": "HER",
+  "subcategory": "Projecting pennants",
+  "parts": [
+   {
+    "id": "0x15EE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x15EF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A narrow crimson streamer worked with a gold scroll, thrust out from the wall on a gilded pole.",
+  "era": {
+   "grade": "N",
+   "note": "Generic heraldic pennant on a wall pole, one of 36 designs of the banner-deed art (old tile block, added as a 2001 reward). Plain cloth and colour, no faction or lore.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-011"
+ },
+ {
+  "slug": "banner-of-trinsic",
+  "name": "Banner of Trinsic",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B6B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble",
+   "town:trinsic"
+  ],
+  "blurb": "A purple banner bursting with a golden sun, flown above the walls of the paladin city.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-012"
+ },
+ {
+  "slug": "banner-of-moonglow",
+  "name": "Banner of Moonglow",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B63",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B6C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "arcane",
+   "scholar",
+   "town:moonglow"
+  ],
+  "blurb": "A banner of blue and gold diagonals with a pale disc at its heart, the colours of the scholars' island.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-013"
+ },
+ {
+  "slug": "banner-of-britain",
+  "name": "Banner of Britain",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B64",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant",
+   "town:britain"
+  ],
+  "blurb": "A banner chequered in black and white, the plain colours of the capital.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-014"
+ },
+ {
+  "slug": "banner-of-jhelom",
+  "name": "Banner of Jhelom",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B6E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "martial",
+   "noble",
+   "town:jhelom"
+  ],
+  "blurb": "A banner quartered in yellow and red with small white devices, hung over the island of duellists.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-015"
+ },
+ {
+  "slug": "banner-of-yew",
+  "name": "Banner of Yew",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B6F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "forest",
+   "humble",
+   "town:yew"
+  ],
+  "blurb": "A green banner bearing a white tree, flown in the deep woods of Yew.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-016"
+ },
+ {
+  "slug": "banner-of-minoc",
+  "name": "Banner of Minoc",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B67",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B70",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "mining",
+   "craft:blacksmithing",
+   "town:minoc"
+  ],
+  "blurb": "A banner of red and gold stripes bearing a white device, for the town of miners and smiths.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-017"
+ },
+ {
+  "slug": "banner-of-vesper",
+  "name": "Banner of Vesper",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B68",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B71",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "nautical",
+   "humble",
+   "town:vesper"
+  ],
+  "blurb": "A banner chequered in grey with a golden star, hung along the canals of the river port.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-018"
+ },
+ {
+  "slug": "banner-of-new-magincia",
+  "name": "Banner of New Magincia",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B72",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "humble",
+   "sacred",
+   "town:magincia"
+  ],
+  "blurb": "A grey banner striped with chevrons, the modest colours of the rebuilt island town.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-019"
+ },
+ {
+  "slug": "banner-of-skara-brae",
+  "name": "Banner of Skara Brae",
+  "category": "HER",
+  "subcategory": "City banners",
+  "parts": [
+   {
+    "id": "0x4B6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "animal",
+   "town:skara-brae"
+  ],
+  "blurb": "A white banner bearing a blue horse, the arms of the little town by the sea.",
+  "era": {
+   "grade": "N",
+   "note": "Heraldic banner of a Britannian city, art from the city-loyalty era. The cities are in the 2000 world; the banner is plain civic heraldry with no later-expansion theme.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-020"
+ },
+ {
+  "slug": "flag-of-trinsic",
+  "name": "Flag of Trinsic",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAB67",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAB6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "martial",
+   "town:trinsic"
+  ],
+  "blurb": "A purple flag with a golden sunburst, snapping from a tall pole.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore. Matches the Trinsic city banner.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-021"
+ },
+ {
+  "slug": "flag-of-moonglow",
+  "name": "Flag of Moonglow",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAB84",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAB8A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "arcane",
+   "town:moonglow"
+  ],
+  "blurb": "A flag of blue and gold diagonals with a pale disc, flown on the scholars' isle.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore. Matches the Moonglow city banner.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-022"
+ },
+ {
+  "slug": "flag-of-britain",
+  "name": "Flag of Britain",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xABA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xABAE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble",
+   "town:britain"
+  ],
+  "blurb": "A black and white chequered flag, the colours of the capital, waving from its pole.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore. Matches the Britain city banner.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-023"
+ },
+ {
+  "slug": "flag-red-and-azure",
+  "name": "Flag of Red and Azure Bands",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAA45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAA4B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A crimson flag crossed by two bands of azure, cheerful above any camp or yard.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-024"
+ },
+ {
+  "slug": "flag-violet-and-azure",
+  "name": "Violet and Azure Flag",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAA62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAA68",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A flag shaded from violet to azure, bright against a grey sky.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-025"
+ },
+ {
+  "slug": "flag-black-horse",
+  "name": "Flag of the Black Horse",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAA7F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAA85",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "animal",
+   "noble"
+  ],
+  "blurb": "An amber flag bearing a rearing black horse, a rider's standard.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-026"
+ },
+ {
+  "slug": "flag-tricolour-diagonal",
+  "name": "Flag of Three Colours",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAA9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAAA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A flag cut diagonally in red, azure and amber, a plain company colour.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-027"
+ },
+ {
+  "slug": "flag-golden-harp",
+  "name": "Flag of the Golden Harp",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAB4A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAB50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "scholar",
+   "noble"
+  ],
+  "blurb": "An amber flag bearing a dark harp, hung high over a bardic hall.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-028"
+ },
+ {
+  "slug": "flag-green-and-amber",
+  "name": "Green and Amber Flag",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAC0E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAC14",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A flag in green, amber and violet bands, a woodland company's colours.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-029"
+ },
+ {
+  "slug": "flag-purple-orange-stripes",
+  "name": "Flag of Purple and Amber Stripes",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAAF3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAAF9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A flag striped in purple, red and amber, cheerful on any hall roof.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-030"
+ },
+ {
+  "slug": "flag-russet-chequy",
+  "name": "Flag of Russet Chequers",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xABF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xABF7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A flag chequered in red, brown and violet, the plain colours of a country fair.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-031"
+ },
+ {
+  "slug": "pirate-flag-skull-and-bones",
+  "name": "Pirate Flag of Skull and Bones",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAFE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAFE9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "pirate",
+   "nautical",
+   "macabre"
+  ],
+  "blurb": "A black flag bearing a grinning skull over crossed bones, the old warning of the sea.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore. The jolly roger is generic pirate dressing and fits Britannian buccaneers.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-032"
+ },
+ {
+  "slug": "pirate-flag-skull-and-swords",
+  "name": "Pirate Flag of Skull and Swords",
+  "category": "HER",
+  "subcategory": "Standing flags",
+  "parts": [
+   {
+    "id": "0xAFEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xAFF5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "pirate",
+   "nautical",
+   "martial"
+  ],
+  "blurb": "A black flag with a skull above two crossed swords, flown by the boldest of the buccaneers.",
+  "era": {
+   "grade": "N",
+   "note": "Free-standing flag on a pole. The art is a six-frame wave; the flag colours are plain heraldic fields and carry no expansion lore. Generic pirate flag.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only standing flag on its own pole; the client animates the 6-frame wave from this first tile",
+  "variantOf": null,
+  "id": "CN-HER-033"
+ },
+ {
+  "slug": "bunting-red-azure",
+  "name": "Red and Azure Bunting",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAA52",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA53",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "A swag of red and azure cloth draped across a hall front for the feast.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-034"
+ },
+ {
+  "slug": "bunting-violet-azure",
+  "name": "Violet and Azure Bunting",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAA6F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA70",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "A fall of violet and azure cloth, gathered in deep swags.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-035"
+ },
+ {
+  "slug": "bunting-black-horse",
+  "name": "Amber Bunting of the Black Horse",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAA8C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA8D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "heraldic",
+   "animal"
+  ],
+  "blurb": "Amber bunting with a black horse, the colours of a rider's guild.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-036"
+ },
+ {
+  "slug": "bunting-sunburst",
+  "name": "Sunburst Bunting",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAB74",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAB75",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "Purple bunting with a golden sun, draped for a paladin's celebration.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-037"
+ },
+ {
+  "slug": "pennant-string-red-azure",
+  "name": "String of Red and Azure Pennants",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAA5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA5D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "A line of small red and azure pennants strung from wall to wall.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-038"
+ },
+ {
+  "slug": "pennant-string-violet",
+  "name": "String of Violet Pennants",
+  "category": "HER",
+  "subcategory": "Bunting and streamers",
+  "parts": [
+   {
+    "id": "0xAA79",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA7A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "heraldic",
+   "whimsical"
+  ],
+  "blurb": "Little violet and blue pennants strung along a cord for a fair.",
+  "era": {
+   "grade": "N",
+   "note": "Festive draped bunting or pennant string in plain heraldic colours. A hanging swag of cloth with no expansion lore.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-039"
+ },
+ {
+  "slug": "horn-banner-red-azure",
+  "name": "Banner of Red and Azure Bars",
+  "category": "HER",
+  "subcategory": "Hanging banners",
+  "parts": [
+   {
+    "id": "0xAA43",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAA44",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A narrow banner barred in red and azure, hung from a pole topped with a brass horn.",
+  "era": {
+   "grade": "N",
+   "note": "Small hanging banner on a horn-topped pole, plain heraldry in the city-colour set. No expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-040"
+ },
+ {
+  "slug": "horn-banner-golden-harp",
+  "name": "Banner of the Golden Harp",
+  "category": "HER",
+  "subcategory": "Hanging banners",
+  "parts": [
+   {
+    "id": "0xAB48",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xAB49",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "scholar",
+   "noble"
+  ],
+  "blurb": "An amber banner carrying a dark harp, hung under a brass horn.",
+  "era": {
+   "grade": "N",
+   "note": "Small hanging banner on a horn-topped pole, plain heraldry in the city-colour set. No expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-041"
+ },
+ {
+  "slug": "serpent-banner-crimson",
+  "name": "Crimson Banner of the White Serpent",
+  "category": "HER",
+  "subcategory": "Other banners",
+  "parts": [
+   {
+    "id": "0x42CD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x42CE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "heraldic",
+   "exotic",
+   "macabre"
+  ],
+  "blurb": "A long crimson banner with a white serpent coiled down its length.",
+  "era": {
+   "grade": "N",
+   "note": "Plain red banner with a white serpent device; the tile is placed on the Felucca map. Generic heraldry, no lore tie.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-HER-042"
+ },
+ {
+  "slug": "charnel-banner",
+  "name": "Banner of Skulls",
+  "category": "HER",
+  "subcategory": "Other banners",
+  "parts": [
+   {
+    "id": "0xB020",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xB021",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "heraldic"
+  ],
+  "blurb": "A tall maroon banner heaped with skulls and bones, hung from a gilded pole.",
+  "era": {
+   "grade": "N",
+   "note": "Dark-magic dressing: a skull-covered hanging reads as ordinary Britannian necromantic decor. Skulls and zombies existed in 2000; the art is from a later Halloween set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; named 'Zombie Banner' in tile data",
+  "variantOf": null,
+  "id": "CN-HER-043"
+ }
+]

@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-jhelom",
+ "system": "expedition",
+ "notes": "Duelling and martial pageantry for the warriors' island: training dummy, archery butte, halberd and racks of swords, bronze sentinels, a hall of colours and chequered hangings. Core pieces are the practice yard; the rares are the pageantry.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-ARM-036",
+   "why": "Training dummy for the practice yard"
+  },
+  {
+   "role": "core",
+   "id": "CR-ARM-038",
+   "why": "Archery butte, a target on straw"
+  },
+  {
+   "role": "core",
+   "id": "CR-ARM-003",
+   "why": "Hung halberd, a duelling-hall trophy"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARM-026",
+   "why": "Plate armor set laid out in full, 2x2 champion's display"
+  },
+  {
+   "role": "rare",
+   "id": "CR-STA-037",
+   "why": "Pair of bronze sentinel maidens, 3x1 pageant statues"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-038",
+   "why": "Hall of Colours, 9x1 banner row of the duelling houses"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-013",
+   "why": "Crimson chequered hanging, a duellist's colours"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARM-001",
+   "why": "Wall sword rack of duelling blades"
+  }
+ ]
+}

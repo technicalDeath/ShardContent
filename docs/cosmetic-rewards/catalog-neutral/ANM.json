@@ -1,0 +1,929 @@
+[
+ {
+  "slug": "dove-cage",
+  "name": "Black Iron Dove Cage",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0xA4B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "elegant",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A domed cage of black wrought iron with a white dove cooing on its swing, hung or stood in a sunny window.",
+  "era": {
+   "grade": "N",
+   "note": "A wrought-iron bird cage with a dove; plain pet furnishing, no creature or expansion theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; the hue tints the bird only (partially hueable)",
+  "variantOf": null,
+  "id": "CN-ANM-001"
+ },
+ {
+  "slug": "canary-cage",
+  "name": "Canary Cage",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0xA4B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "elegant",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A black iron cage holding a bright yellow canary that sings the morning in.",
+  "era": {
+   "grade": "N",
+   "note": "The same wrought-iron bird cage holding a canary; plain pet furnishing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "hue 1161 tints the bird only",
+  "variantOf": "dove-cage",
+  "id": "CN-ANM-002"
+ },
+ {
+  "slug": "parakeet-cage",
+  "name": "Parakeet Cage",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0xA4B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "elegant",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A black iron cage with a chattering green parakeet clinging to the bars.",
+  "era": {
+   "grade": "N",
+   "note": "The same wrought-iron bird cage holding a green parakeet; plain pet furnishing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "hue 62 tints the bird only",
+  "variantOf": "dove-cage",
+  "id": "CN-ANM-003"
+ },
+ {
+  "slug": "cardinal-cage",
+  "name": "Cardinal Cage",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0xA4B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "elegant",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A black iron cage with a scarlet cardinal, bright as a drop of blood against the dark bars.",
+  "era": {
+   "grade": "N",
+   "note": "The same wrought-iron bird cage holding a red cardinal; plain pet furnishing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "hue 33 tints the bird only",
+  "variantOf": "dove-cage",
+  "id": "CN-ANM-004"
+ },
+ {
+  "slug": "wooden-birdhouse",
+  "name": "Wooden Birdhouse",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0xA607",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA608",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "garden",
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A little shingle-roofed birdhouse with a round door, put up by a child for the spring wrens.",
+  "era": {
+   "grade": "N",
+   "note": "A plain garden birdhouse. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-ANM-005"
+ },
+ {
+  "slug": "parrot-perch",
+  "name": "Parrot Perch",
+  "category": "ANM",
+  "subcategory": "Cages and perches",
+  "parts": [
+   {
+    "id": "0x2FF4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2FF5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "pirate",
+   "nautical",
+   "rustic"
+  ],
+  "blurb": "A simple wooden perch on a round weighted foot, where a seafarer's parrot can watch the room.",
+  "era": {
+   "grade": "N",
+   "note": "A plain wooden bird perch (it shipped as a Mondain's Legacy-era add-on deed); the object is generic seafarer decor with no elven or race styling.",
+   "artEra": "ML"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.ParrotPerchAddon (0x2FF4); decor-only",
+  "variantOf": null,
+  "id": "CN-ANM-006"
+ },
+ {
+  "slug": "produce-feeding-trough",
+  "name": "Produce Feeding Trough",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0xA2FF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA2FE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "humble",
+   "craft:herding"
+  ],
+  "blurb": "A long wooden trough heaped with cabbages, apples and roots for the stock to pick through.",
+  "era": {
+   "grade": "N",
+   "note": "A farm feeding trough with produce; plain husbandry dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-ANM-007"
+ },
+ {
+  "slug": "galvanized-water-tub",
+  "name": "Galvanized Water Tub",
+  "category": "ANM",
+  "subcategory": "Troughs",
+  "parts": [
+   {
+    "id": "0xA4E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4E2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "humble",
+   "craft:herding"
+  ],
+  "blurb": "A hooped metal tub brimming with clear water, kept filled for the horses.",
+  "era": {
+   "grade": "N",
+   "note": "A metal watering tub for stock; plain stable dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "full frames 0xA4E0/0xA4E2; empty 0xA4DF/0xA4E1",
+  "variantOf": null,
+  "id": "CN-ANM-008"
+ },
+ {
+  "slug": "empty-galvanized-tub",
+  "name": "Empty Galvanized Tub",
+  "category": "ANM",
+  "subcategory": "Troughs",
+  "parts": [
+   {
+    "id": "0xA4DF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA4E1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "humble",
+   "craft:herding"
+  ],
+  "blurb": "A dented metal tub, drained and left upside the fence post until the next rain.",
+  "era": {
+   "grade": "N",
+   "note": "A metal watering tub, empty; plain stable dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "empty frames 0xA4DF/0xA4E1",
+  "variantOf": "galvanized-water-tub",
+  "id": "CN-ANM-009"
+ },
+ {
+  "slug": "chicken-coop",
+  "name": "Chicken Coop",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x4514",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4513",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "rustic",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A weathered plank coop on stilts with a little ramp and a sloped roof, loud with hens at dawn.",
+  "era": {
+   "grade": "N",
+   "note": "A farmyard chicken coop; plain husbandry dressing. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-ANM-010"
+ },
+ {
+  "slug": "golden-dragon-egg",
+  "name": "Golden Dragon Egg",
+  "category": "ANM",
+  "subcategory": "Nests and eggs",
+  "parts": [
+   {
+    "id": "0xB2CD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "dragon",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A single egg of overlapping golden scales, warm to the touch and heavy as a cannonball.",
+  "era": {
+   "grade": "N",
+   "note": "A scaled dragon egg; an egg of an existing launch-era monster. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; larger 'mature' frame 0xB2D3",
+  "variantOf": null,
+  "id": "CN-ANM-011"
+ },
+ {
+  "slug": "ash-grey-dragon-egg",
+  "name": "Ash-Grey Dragon Egg",
+  "category": "ANM",
+  "subcategory": "Nests and eggs",
+  "parts": [
+   {
+    "id": "0xB2D1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "dragon",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A speckled grey-and-white egg of rough scale, the kind found in a cold mountain eyrie.",
+  "era": {
+   "grade": "N",
+   "note": "A scaled dragon egg in grey; an egg of an existing launch-era monster. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; sibling frame 0xB2D0",
+  "variantOf": "golden-dragon-egg",
+  "id": "CN-ANM-012"
+ },
+ {
+  "slug": "hatching-dragon-egg",
+  "name": "Hatching Dragon Egg",
+  "category": "ANM",
+  "subcategory": "Nests and eggs",
+  "parts": [
+   {
+    "id": "0xB2D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "animal",
+   "dragon",
+   "whimsical",
+   "exotic"
+  ],
+  "blurb": "A cracked egg with a tiny, indignant dragon peering out through the shell.",
+  "era": {
+   "grade": "N",
+   "note": "A hatching dragon egg; a plain fantasy curio of an existing launch-era monster. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; partially hueable",
+  "variantOf": null,
+  "id": "CN-ANM-013"
+ },
+ {
+  "slug": "empty-twig-nest",
+  "name": "Empty Twig Nest",
+  "category": "ANM",
+  "subcategory": "Nests and eggs",
+  "parts": [
+   {
+    "id": "0x1AD5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "garden",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A cup of woven twigs and grass, long abandoned by its songbirds.",
+  "era": {
+   "grade": "N",
+   "note": "A small twig nest, the empty sibling of the nest with eggs already in the main catalog. Original-era art; the empty version was left out.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "static, bg-flagged tile",
+  "variantOf": null,
+  "id": "CN-ANM-014"
+ },
+ {
+  "slug": "broody-hen-nest-box",
+  "name": "Broody Hen Nest Box",
+  "category": "ANM",
+  "subcategory": "Nests and eggs",
+  "parts": [
+   {
+    "id": "0xA514",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xA513",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "rustic",
+   "humble",
+   "craft:herding"
+  ],
+  "blurb": "A hen settled deep in a straw-lined box on a post, refusing to budge from her eggs.",
+  "era": {
+   "grade": "N",
+   "note": "A hen on a straw nest box, a farmyard furnishing rather than a creature statue. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-ANM-015"
+ },
+ {
+  "slug": "castle-kennel",
+  "name": "Castle Kennel",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0xA73C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA73A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "whimsical",
+   "noble",
+   "dungeon"
+  ],
+  "blurb": "A crenellated stone kennel with a barred gate, a water bowl and a bone left by the door.",
+  "era": {
+   "grade": "N",
+   "note": "A pet kennel built like a miniature castle; whimsical but ordinary animal furnishing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; partially hueable",
+  "variantOf": null,
+  "id": "CN-ANM-016"
+ },
+ {
+  "slug": "grey-cat-basket",
+  "name": "Sleeping Grey Cat Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A grey tabby curled asleep in a wicker basket, one paw over its nose.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-017"
+ },
+ {
+  "slug": "black-cat-basket",
+  "name": "Sleeping Black Cat Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A sleek black cat dozing in a wicker basket, only the white whiskers showing.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-018"
+ },
+ {
+  "slug": "orange-cat-basket",
+  "name": "Sleeping Orange Cat Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63E2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A marmalade-and-white cat snoring in a wicker basket, tail tucked round.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-019"
+ },
+ {
+  "slug": "white-dog-basket",
+  "name": "Sleeping White Dog Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A shaggy white dog asleep in a wicker bed, its flanks rising and falling.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-020"
+ },
+ {
+  "slug": "tan-and-black-dog-basket",
+  "name": "Sleeping Tan-and-Black Dog Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63EE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A black-and-tan hound sprawled in a wicker bed, one ear flopped over its eye.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-021"
+ },
+ {
+  "slug": "beagle-basket",
+  "name": "Sleeping Beagle Basket",
+  "category": "ANM",
+  "subcategory": "Kennels and baskets",
+  "parts": [
+   {
+    "id": "0x63F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "A tri-coloured hound curled in a wicker bed, twitching in some happy dream.",
+  "era": {
+   "grade": "N",
+   "note": "A pet asleep in a basket: ordinary household animal furnishing, and the cat and dog are plain launch-era animals. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated breathing, 6 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-ANM-022"
+ }
+]

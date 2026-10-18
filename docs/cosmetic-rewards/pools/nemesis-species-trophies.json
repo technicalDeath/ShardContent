@@ -1,0 +1,267 @@
+{
+ "pool": "nemesis-species-trophies",
+ "system": "nemesis",
+ "notes": "Plan 6.1: one species trophy per species, identical everywhere. Monster figurines (FIG) are used wherever the species has one, because a figurine is the clearest possible species link (owner rule 2026-10-08: a figurine is fine when its creature is present in our game; every figurine species here is spawned by the shard, see Species-In-Game.md). Species with no figurine use lair pieces that evoke them: orc captain and orc lord take the rust-red war banners, the mummy a sarcophagus, the black bear a bearskin rug. 52 species. Still without a main-catalog figurine (the era-neutral section has some, ids CN-FIG-...): imp, orcish mage, wyvern, ancient wyrm, kraken, hell hound and the other dungeon creatures; using era-neutral ids in pools needs an owner decision. Gazer and giant spider rest on grade C art (their creature dates are unverified), and the drake reuses the jade dragon figurine, so it looks like a dragon; the owner may prefer to drop those three.",
+ "entries": [
+  {
+   "species": "orc",
+   "id": "CR-FIG-007",
+   "why": "Green orc in a red loincloth, unmistakably an orc."
+  },
+  {
+   "species": "orc-captain",
+   "id": "CR-HER-027",
+   "why": "Rust-red war banner; a captain's standard on the march."
+  },
+  {
+   "species": "orc-lord",
+   "id": "CR-HER-028",
+   "why": "Banner of the Horde; the warlord's own colours."
+  },
+  {
+   "species": "troll",
+   "id": "CR-FIG-005",
+   "why": "Grey, slope-shouldered troll with a knuckled scowl."
+  },
+  {
+   "species": "ettin",
+   "id": "CR-FIG-001",
+   "why": "Hulking brown ettin, the sculpt that matches the Tracking icon."
+  },
+  {
+   "species": "ogre",
+   "id": "CR-FIG-003",
+   "why": "Stocky tan ogre with hanging fists."
+  },
+  {
+   "species": "lizardman",
+   "id": "CR-FIG-008",
+   "why": "Upright scaly lizardman with a spear-crest."
+  },
+  {
+   "species": "ratman",
+   "id": "CR-FIG-010",
+   "why": "Hunched ratman with a crude club."
+  },
+  {
+   "species": "cyclops",
+   "id": "CR-FIG-011",
+   "why": "One-eyed giant swinging a lantern."
+  },
+  {
+   "species": "titan",
+   "id": "CR-FIG-012",
+   "why": "Towering club-wielding titan, mantel-sized."
+  },
+  {
+   "species": "headless",
+   "id": "CR-FIG-013",
+   "why": "Orange headless body, no head at all."
+  },
+  {
+   "species": "harpy",
+   "id": "CR-FIG-019",
+   "why": "Talon-footed harpy in a shrieking crouch."
+  },
+  {
+   "species": "gargoyle",
+   "id": "CR-FIG-020",
+   "why": "Winged gargoyle, the creature that spawns in the outdoors and Hythloth."
+  },
+  {
+   "species": "zombie",
+   "id": "CR-FIG-014",
+   "why": "Shambling green zombie with grave-dirt in its creases."
+  },
+  {
+   "species": "skeleton",
+   "id": "CR-FIG-015",
+   "why": "Bone-white skeleton, ribs polished."
+  },
+  {
+   "species": "lich",
+   "id": "CR-FIG-016",
+   "why": "Hooded lich with a cold steady gaze."
+  },
+  {
+   "species": "mummy",
+   "id": "CR-GRV-009",
+   "why": "Open stone sarcophagus, the mummy's empty bed (best non-figurine fit)."
+  },
+  {
+   "species": "mongbat",
+   "id": "CR-FIG-017",
+   "why": "Russet mongbat with wings half-folded."
+  },
+  {
+   "species": "gazer",
+   "id": "CR-FIG-018",
+   "why": "Many-stalked gazer; grade C art, only art for the species, would genuinely miss it."
+  },
+  {
+   "species": "reaper",
+   "id": "CR-FIG-021",
+   "why": "Gnarled leafless reaper-tree, grasping branches."
+  },
+  {
+   "species": "corpser",
+   "id": "CR-FIG-022",
+   "why": "Green tendrils rising from a dark clump."
+  },
+  {
+   "species": "wisp",
+   "id": "CR-FIG-028",
+   "why": "Small blue-white star of light."
+  },
+  {
+   "species": "slime",
+   "id": "CR-FIG-029",
+   "why": "Shining grey slime in its own puddle."
+  },
+  {
+   "species": "giant-spider",
+   "id": "CR-FIG-037",
+   "why": "Brown giant spider on eight legs; grade C art, an iconic species we would miss."
+  },
+  {
+   "species": "scorpion",
+   "id": "CR-FIG-038",
+   "why": "Dark scorpion with claws wide and tail raised."
+  },
+  {
+   "species": "giant-serpent",
+   "id": "CR-FIG-040",
+   "why": "Silver-grey serpent in a lazy S, the giant silver serpent."
+  },
+  {
+   "species": "dragon",
+   "id": "CR-FIG-023",
+   "why": "Dark winged dragon, the classic dragon silhouette."
+  },
+  {
+   "species": "drake",
+   "id": "CR-FIG-057",
+   "why": "Green jade dragon read as a drake; flagged: dragon-kin look-alike."
+  },
+  {
+   "species": "daemon",
+   "id": "CR-FIG-024",
+   "why": "Crimson daemon with folded wings."
+  },
+  {
+   "species": "fire-elemental",
+   "id": "CR-FIG-026",
+   "why": "Figure of living flame."
+  },
+  {
+   "species": "water-elemental",
+   "id": "CR-FIG-027",
+   "why": "Rising figure of blue water."
+  },
+  {
+   "species": "ice-elemental",
+   "id": "CR-FIG-102",
+   "why": "Pale-blue ice elemental, the same icon the Tracking menu shows."
+  },
+  {
+   "species": "terathan-drone",
+   "id": "CR-FIG-030",
+   "why": "Purple-bodied terathan drone, eight legs splayed."
+  },
+  {
+   "species": "terathan-matriarch",
+   "id": "CR-FIG-031",
+   "why": "Spider-queen bristling with legs."
+  },
+  {
+   "species": "ophidian-mage",
+   "id": "CR-FIG-032",
+   "why": "Coiled ophidian mage with a staff of office."
+  },
+  {
+   "species": "ophidian-queen",
+   "id": "CR-FIG-033",
+   "why": "Imperious ophidian queen coiled on her tail."
+  },
+  {
+   "species": "sea-serpent",
+   "id": "CR-FIG-056",
+   "why": "Sea serpent rearing from the waves, dark grey fins and horn."
+  },
+  {
+   "species": "deep-sea-serpent",
+   "id": "CR-FIG-070",
+   "why": "Cobalt sea serpent on an unbroken wave, the deep-sea kind."
+  },
+  {
+   "species": "brown-bear",
+   "id": "CR-FIG-043",
+   "why": "Broad brown bear seen head-on."
+  },
+  {
+   "species": "black-bear",
+   "id": "CR-TRO-016",
+   "why": "Black bearskin rug, the slayer's classic trophy."
+  },
+  {
+   "species": "polar-bear",
+   "id": "CR-FIG-044",
+   "why": "Pale polar bear of the frozen north."
+  },
+  {
+   "species": "gorilla",
+   "id": "CR-FIG-042",
+   "why": "Great black silverback hunched low."
+  },
+  {
+   "species": "timber-wolf",
+   "id": "CR-FIG-046",
+   "why": "Lean timber wolf mid-prowl."
+  },
+  {
+   "species": "panther",
+   "id": "CR-FIG-047",
+   "why": "Sleek black panther stretched low."
+  },
+  {
+   "id": "CR-FIG-105",
+   "species": "stone-gargoyle",
+   "why": "Greyer stone gargoyle, the rarer carved kind."
+  },
+  {
+   "id": "CR-FIG-081",
+   "species": "air-elemental",
+   "why": "Swirling grey-white air elemental."
+  },
+  {
+   "id": "CR-FIG-074",
+   "species": "earth-elemental",
+   "why": "Hunched earth elemental of packed clay."
+  },
+  {
+   "id": "CR-FIG-087",
+   "species": "ghoul",
+   "why": "Gaunt ghoul in a grave-robber's crouch."
+  },
+  {
+   "id": "CR-FIG-101",
+   "species": "frost-troll",
+   "why": "Pale-blue frost troll with icy hair."
+  },
+  {
+   "id": "CR-FIG-104",
+   "species": "stone-harpy",
+   "why": "Grey stone harpy with wings wrapped around her."
+  },
+  {
+   "id": "CR-FIG-096",
+   "species": "terathan-warrior",
+   "why": "Terathan warrior, legs spread and spear raised."
+  },
+  {
+   "id": "CR-FIG-099",
+   "species": "ophidian-warrior",
+   "why": "Ophidian warrior with a long red spear."
+  }
+ ]
+}

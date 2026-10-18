@@ -1,0 +1,1077 @@
+[
+ {
+  "slug": "carved-sword-idol",
+  "name": "Carved Sword on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0x9E80",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic",
+   "sacred"
+  ],
+  "blurb": "A sword of dark wood standing point-up on a red-banded pedestal: valour carved into something you can dust.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A sword is the emblem of valour.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": null,
+  "id": "CN-STA-001"
+ },
+ {
+  "slug": "carved-axe-idol",
+  "name": "Carved Axe on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0x9E81",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic",
+   "rustic"
+  ],
+  "blurb": "A double-bladed axe of dark wood on a stepped base, as grim as a headsman's block.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A battle-axe is plain heraldry.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-002"
+ },
+ {
+  "slug": "carved-ankh-idol",
+  "name": "Carved Ankh on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0x9E82",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "A wooden ankh on a stepped base, polished by a thousand reverent thumbs.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. The ankh is the oldest symbol of the Virtues.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-003"
+ },
+ {
+  "slug": "carved-masks-idol",
+  "name": "Carved Masks on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0x9E83",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "scholar",
+   "heraldic"
+  ],
+  "blurb": "The twin masks of comedy and tragedy in carved wood, grinning and grieving on one plinth.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. Theatre masks are a timeless emblem.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-004"
+ },
+ {
+  "slug": "carved-crescent-idol",
+  "name": "Carved Crescent on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA060",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "A wooden crescent moon on a stepped base, tilted as if waiting for its night.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A crescent moon is common heraldry.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-005"
+ },
+ {
+  "slug": "carved-chalice-idol",
+  "name": "Carved Chalice on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA065",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "A goblet of dark wood on a stepped base, brimming with nothing and worth more for it.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A chalice is a universal devotional emblem.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-006"
+ },
+ {
+  "slug": "carved-hand-idol",
+  "name": "Carved Hand on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA252",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "An open hand of dark wood, raised in oath or in welcome.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. An open hand is an everyday emblem of oath and compassion.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-007"
+ },
+ {
+  "slug": "carved-heart-idol",
+  "name": "Carved Heart on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA257",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "whimsical"
+  ],
+  "blurb": "A plump heart of honey-coloured wood on a stepped base: sentiment you can keep on a shelf.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A heart is the oldest devotional emblem.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-008"
+ },
+ {
+  "slug": "carved-scales-idol",
+  "name": "Carved Scales on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA499",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A pair of balanced scales on a stepped base, as even as any court has ever managed.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. Scales are the emblem of justice.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-009"
+ },
+ {
+  "slug": "carved-crooks-idol",
+  "name": "Carved Crooks on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA49E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "humble",
+   "heraldic",
+   "rustic"
+  ],
+  "blurb": "Two shepherd's crooks crossed over one another on a stepped base, humility in two curls of wood.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. Crossed crooks are an emblem of humility and shepherding.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-010"
+ },
+ {
+  "slug": "carved-coin-idol",
+  "name": "Carved Coin on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA4A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "heraldic",
+   "treasure",
+   "humble"
+  ],
+  "blurb": "A great wooden coin set on edge, stamped with a ring of tiny marks.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A coin is a plain emblem of sacrifice and trade.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-011"
+ },
+ {
+  "slug": "carved-teardrop-idol",
+  "name": "Carved Teardrop on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA06F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "heraldic",
+   "humble"
+  ],
+  "blurb": "A single great teardrop of pale wood on a stepped base: grief made smooth enough to hold.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A teardrop is a plain emblem of mourning and sacrifice.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-012"
+ },
+ {
+  "slug": "carved-scepter-idol",
+  "name": "Carved Scepter on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA4A8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "A slim scepter of dark wood with a rounded head, standing upright on a stepped base like a ruler asleep on duty.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A scepter is plain royal heraldry.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-013"
+ },
+ {
+  "slug": "carved-broken-shield-idol",
+  "name": "Carved Broken Shield on a Pedestal",
+  "category": "STA",
+  "subcategory": "Carved wooden symbols",
+  "parts": [
+   {
+    "id": "0xA261",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic",
+   "macabre"
+  ],
+  "blurb": "A cracked wooden shield on a stepped base, a lesson in what happens to a coward's guard.",
+  "era": {
+   "grade": "N",
+   "note": "A symbolic carving on a stepped pedestal: a plain virtue emblem or heraldic charge that reads as ordinary Britannian decoration, tied to no creature, race or skill. A broken shield is a plain heraldic image of defeat.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; the glowing versions of this carving are not used",
+  "variantOf": "carved-sword-idol",
+  "id": "CN-STA-014"
+ },
+ {
+  "slug": "white-swan-statue",
+  "name": "White Swan Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x9F10",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "garden",
+   "animal"
+  ],
+  "blurb": "A white swan with wings half-raised, carved in glossy stone for the edge of a pond or a manor lawn.",
+  "era": {
+   "grade": "N",
+   "note": "A garden swan figure. Swans are ordinary garden statuary with no later-expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9F0F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-015"
+ },
+ {
+  "slug": "black-swan-statue",
+  "name": "Black Swan Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x9F11",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "garden",
+   "animal"
+  ],
+  "blurb": "A black swan of polished stone, its beak a single stroke of red.",
+  "era": {
+   "grade": "N",
+   "note": "A garden swan figure in black stone; ordinary garden statuary with no later-expansion theme.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": "white-swan-statue",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9F12",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-016"
+ },
+ {
+  "slug": "cupid-statue",
+  "name": "Cupid Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x4F7D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A winged little cupid in pale stone, bow drawn on a block of white marble.",
+  "era": {
+   "grade": "N",
+   "note": "A cherub with a bow, a classical garden sculpture. Generic Valentine and garden dressing, not tied to a skill or expansion.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4F7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-017"
+ },
+ {
+  "slug": "marble-seahorse-statue",
+  "name": "Marble Seahorse Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x4578",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A seahorse of white marble curling up from a square base, as if the tide had turned to stone.",
+  "era": {
+   "grade": "N",
+   "note": "A seahorse sculpture: ordinary harbour and fountain statuary, tied to no creature of a later expansion.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4579",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-018"
+ },
+ {
+  "slug": "marble-mermaid-statue",
+  "name": "Marble Mermaid Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x457A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A mermaid of pale marble, one hand raised to the sea she has no use for any more.",
+  "era": {
+   "grade": "N",
+   "note": "A mermaid sculpture: a sailor's folk-tale figure used as harbour statuary, not a creature of any expansion.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x457B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-019"
+ },
+ {
+  "slug": "marble-gryphon-statue",
+  "name": "Marble Gryphon Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x457C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A white marble gryphon, half eagle and half lion, wings lifted above a rearing crouch: the arms of a proud house.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic gryphon in marble. As a coat-of-arms charge it is pure heraldry, not a specific creature.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x457D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-020"
+ },
+ {
+  "slug": "rearing-pegasus-statue",
+  "name": "Rearing Pegasus Statue",
+  "category": "STA",
+  "subcategory": "Garden and nautical statuary",
+  "parts": [
+   {
+    "id": "0x456E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "heraldic",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A winged white horse reared high on its hind legs, spreading feathered wings over the garden path.",
+  "era": {
+   "grade": "N",
+   "note": "A heraldic winged horse in marble; a classical garden sculpture, in keeping with the pegasus statuette already in the main catalog.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x456F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-021"
+ },
+ {
+  "slug": "weathered-knight-statue",
+  "name": "Weathered Knight Statue",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0x2D12",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "heraldic",
+   "elven"
+  ],
+  "blurb": "A sandstone knight leaning on his sword, his face eroded to a smooth question mark by the rain.",
+  "era": {
+   "grade": "N",
+   "note": "A plain weathered knight on a sandstone plinth. The figure is an ordinary human man-at-arms, not a hero, race or creature of a later expansion.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D13",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-022"
+ },
+ {
+  "slug": "giant-chess-knight",
+  "name": "Giant Chess Knight",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0xA581",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "whimsical",
+   "scholar",
+   "martial"
+  ],
+  "blurb": "A steel-grey knight from some giant's chess set, a horse's head on a round wooden base.",
+  "era": {
+   "grade": "N",
+   "note": "An oversized chess knight of grey stone on a wooden base. Chess is ordinary parlour furniture and ties to no expansion, creature or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA582",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-023"
+ },
+ {
+  "slug": "giant-chess-rook",
+  "name": "Giant Chess Rook",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0xA583",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "whimsical",
+   "scholar",
+   "martial"
+  ],
+  "blurb": "A steel-grey rook with a battlemented crown on a round wooden base: a castle for a very large game.",
+  "era": {
+   "grade": "N",
+   "note": "An oversized chess rook of grey stone on a wooden base. Chess is ordinary parlour furniture and ties to no expansion, creature or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; one graphic serves every facing",
+  "variantOf": "giant-chess-knight",
+  "id": "CN-STA-024"
+ },
+ {
+  "slug": "inscribed-memorial-stone",
+  "name": "Inscribed Memorial Stone",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0xA9E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A black marble slab cut with rows of gilded lettering, the long list of someone who is missed.",
+  "era": {
+   "grade": "N",
+   "note": "A black memorial slab carrying lines of gilded text; a generic monument form that ties to no expansion, event or skill.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9E5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-025"
+ },
+ {
+  "slug": "robed-mage-statue",
+  "name": "Robed Mage Statue",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0x2D0E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A sandstone mage in flowing robes with one arm flung wide, caught mid-spell on a square plinth.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-art monument from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; the figure is a plain human or animal, not a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D0F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-026"
+ },
+ {
+  "slug": "sandstone-squirrel-statue",
+  "name": "Sandstone Squirrel Statue",
+  "category": "STA",
+  "subcategory": "Monuments and memorials",
+  "parts": [
+   {
+    "id": "0x2D10",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "forest",
+   "whimsical"
+  ],
+  "blurb": "A sandstone squirrel sitting up on a small plinth, tail curled over its back as if it had just heard an acorn drop.",
+  "era": {
+   "grade": "N",
+   "note": "Elven-art monument from Mondain's Legacy. Elven objects are era neutral on this shard, which has cosmetic Elves; the figure is a plain human or animal, not a creature, faction or skill item.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "plain static; art for south and east",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D11",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-STA-027"
+ }
+]

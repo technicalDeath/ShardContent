@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-serpents-hold",
+ "system": "expedition",
+ "notes": "Naval and military order: serpent crests and shields, cannonballs and hawser, a decorative cannon, a navigator's table and the Great Banner Wall. Core pieces are the barrack and quay basics; the rares are the serpent heraldry, cannon and chart table.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-ARM-041",
+   "why": "Stack of cannonballs by the battery"
+  },
+  {
+   "role": "core",
+   "id": "CR-NAU-005",
+   "why": "Hawser bundle, coiled mooring rope"
+  },
+  {
+   "role": "core",
+   "id": "CR-ARM-011",
+   "why": "Silver serpent shield, the order's plain badge"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARM-040",
+   "why": "Decorative cannon, 1x3 gun for the sea wall"
+  },
+  {
+   "role": "rare",
+   "id": "CR-LIB-042",
+   "why": "Navigator's chart table, the admiral's desk"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-033",
+   "why": "Serpent crest, a scarlet and silver wall emblem"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARM-012",
+   "why": "Golden serpent shield, the officers' badge"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-037",
+   "why": "Great Banner Wall, 9x1 hall of the order's colours"
+  }
+ ]
+}

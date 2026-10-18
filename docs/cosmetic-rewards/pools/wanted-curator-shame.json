@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-shame",
+ "system": "wanted-curator",
+ "notes": "Shame is the dungeon of elementals and winding caves, so it takes dripstone, crystal and the dark smears of a fight. Crystals suggest elemental cores without being a species trophy. The Emerald Crystal Cluster is the showpiece.",
+ "entries": [
+  {
+   "id": "CR-DNG-039",
+   "tier": "easy",
+   "why": "Slender stalagmites, wet with slow water."
+  },
+  {
+   "id": "CR-DNG-050",
+   "tier": "easy",
+   "why": "Blood smear, something dragged away."
+  },
+  {
+   "id": "CR-DNG-020",
+   "tier": "medium",
+   "why": "Sprawled skeleton flung across the flags."
+  },
+  {
+   "id": "CR-DNG-041",
+   "tier": "medium",
+   "why": "Rust-stained stalagmite, iron in the water."
+  },
+  {
+   "id": "CR-ALC-019",
+   "tier": "medium",
+   "why": "Green crystal shard on a stone plinth."
+  },
+  {
+   "id": "CR-DNG-044",
+   "tier": "hard",
+   "why": "Flowstone column, floor to roof."
+  },
+  {
+   "id": "CR-ALC-021",
+   "tier": "boss",
+   "why": "Emerald Crystal Cluster, an elemental's heart-stone."
+  }
+ ]
+}

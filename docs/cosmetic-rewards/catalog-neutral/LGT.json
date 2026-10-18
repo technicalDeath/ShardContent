@@ -1,0 +1,1166 @@
+[
+ {
+  "slug": "fieldstone-home-hearth",
+  "name": "Fieldstone Home Hearth",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x2352",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x2358",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x2360",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x2366",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "fire",
+   "rustic",
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A tall fieldstone chimney-breast with a log fire laid in the grate and a timber mantel above, the heart of a warm, lived-in house.",
+  "era": {
+   "grade": "N",
+   "note": "Plain fieldstone hearth with no race, skill or event styling in the art. The art first shipped in 2003 as a winter-gift deed, but the object is ordinary period furnishing.",
+   "artEra": "AoS"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.HearthOfHomeFire(east/south): two light-emitting tiles; decor-only, shown lit",
+  "variantOf": null,
+  "id": "CN-LGT-001"
+ },
+ {
+  "slug": "gilded-marble-hearth",
+  "name": "Gilded Marble Hearth",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x9A5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A63",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A small hearth of sand-gold marble, a flame dancing behind carved scrollwork and a gleaming trim.",
+  "era": {
+   "grade": "N",
+   "note": "A generic marble fireplace in a gilded stone, ordinary grand-house furnishing with no expansion theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing (animated flame, first frame); decor-only",
+  "variantOf": null,
+  "id": "CN-LGT-002"
+ },
+ {
+  "slug": "slate-roofed-hearth",
+  "name": "Slate-Roofed Hearth",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x9A69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A6F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "An open iron-posted hearth capped with a slab of grey slate, a steady fire glowing in its cage.",
+  "era": {
+   "grade": "N",
+   "note": "A generic iron-and-slate fireplace; nothing in it belongs to a later race, skill or creature. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing (animated flame, first frame); decor-only",
+  "variantOf": null,
+  "id": "CN-LGT-003"
+ },
+ {
+  "slug": "green-marble-hearth",
+  "name": "Green Marble Hearth",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x9A75",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9A7B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A mossy-green marble hearth, cool veined stone around a bright, cheerful fire.",
+  "era": {
+   "grade": "N",
+   "note": "A generic marble fireplace in a green stone, plain furnishing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing (animated flame, first frame); decor-only",
+  "variantOf": null,
+  "id": "CN-LGT-004"
+ },
+ {
+  "slug": "great-bonfire",
+  "name": "Great Bonfire",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0xA2F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "camp",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A towering blaze roaring in a ring of heavy stones, built for feast nights and long gatherings under the stars.",
+  "era": {
+   "grade": "N",
+   "note": "A generic stone-ringed bonfire. Nothing in the art ties it to an expansion or creature. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (animated flame, first frame); strip the damage flag for a house item",
+  "variantOf": null,
+  "id": "CN-LGT-005"
+ },
+ {
+  "slug": "log-stack-campfire",
+  "name": "Log-Stack Campfire",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0xB2DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "fire",
+   "camp",
+   "wilderness",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "Split logs stacked in a tepee over a bright, crackling flame, the traveller's oldest comfort.",
+  "era": {
+   "grade": "N",
+   "note": "A plain log campfire; era neutral because it is a universal camp object with no later-content styling. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (animated flame, first frame); strip the damage flag for a house item",
+  "variantOf": null,
+  "id": "CN-LGT-006"
+ },
+ {
+  "slug": "bronze-fire-bowl",
+  "name": "Bronze Fire Bowl on a Stand",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0xB3BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A shallow bronze bowl heaped with burning coals, held up on a slender three-footed stand.",
+  "era": {
+   "grade": "N",
+   "note": "A generic bronze standing brazier with no expansion theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (animated flame, first frame)",
+  "variantOf": null,
+  "id": "CN-LGT-007"
+ },
+ {
+  "slug": "squat-iron-lamp-post",
+  "name": "Squat Iron Lamp Post",
+  "category": "LGT",
+  "subcategory": "Lamp posts",
+  "parts": [
+   {
+    "id": "0x0B22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "humble",
+   "fire"
+  ],
+  "blurb": "A short round-footed lamp post for a doorstep or garden path, its yellow glass lit all night.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era lamp post graphic (0x0B22), plain town furniture. The main catalog uses it only as part of a street scene.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.LampPost2 (lit 0x0B22); decor-only",
+  "variantOf": null,
+  "id": "CN-LGT-008"
+ },
+ {
+  "slug": "slender-iron-lamp-post",
+  "name": "Slender Iron Lamp Post",
+  "category": "LGT",
+  "subcategory": "Lamp posts",
+  "parts": [
+   {
+    "id": "0xAE0D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "A slim black lamp post on a stepped base, a yellow flame behind pale glass under a pointed cap.",
+  "era": {
+   "grade": "N",
+   "note": "A generic slender street lamp with no race, skill or creature styling. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (lit tile 0xAE0D, unlit 0xAE0E)",
+  "variantOf": null,
+  "id": "CN-LGT-009"
+ },
+ {
+  "slug": "gallows-lantern-post",
+  "name": "Gallows Lantern Post",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A1F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A1A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 16
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A20",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A1A",
+      "dx": 0,
+      "dy": 1,
+      "dz": 16
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble",
+   "tavern",
+   "fire"
+  ],
+  "blurb": "A stout timber post with a crooked arm, a hanging lantern swaying from its tip over the inn door.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era lantern post and hanging lantern, composed here into the one object they were drawn to be. Both pieces are 1998-era art.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "custom",
+  "implNote": "post 0x0A1F/0x0A20 plus a hanging lantern 0x0A1A at dz 16 on the arm tip (east: dx+1, south: dy+1)",
+  "variantOf": null,
+  "id": "CN-LGT-010"
+ },
+ {
+  "slug": "dragon-wrapped-oil-lamp",
+  "name": "Dragon-Wrapped Oil Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "elegant",
+   "dragon",
+   "exotic"
+  ],
+  "blurb": "A burnished-bronze dragon coiled around a glass bulb of lamp oil, its flame glowing amber inside.",
+  "era": {
+   "grade": "N",
+   "note": "A bronze dragon (a launch-era monster) curled round a plain oil bulb; no later creature or race. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x4C41 (south) and 0x4C43 (east); unlit 0x4C40/0x4C42",
+  "variantOf": null,
+  "id": "CN-LGT-011"
+ },
+ {
+  "slug": "dragon-egg-lamp",
+  "name": "Dragon Egg Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C4D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C4F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "dragon",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A small winged wyrm clasping a glowing, speckled egg, a lamp for a dragon-tamer's study.",
+  "era": {
+   "grade": "N",
+   "note": "A winged dragon holding a glowing egg; dragons and their eggs read as ordinary fantasy dressing. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x4C4D (south) and 0x4C4F (east); unlit 0x4C4C/0x4C4E",
+  "variantOf": null,
+  "id": "CN-LGT-012"
+ },
+ {
+  "slug": "songbird-globe-lamp",
+  "name": "Songbird Globe Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C47",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "whimsical",
+   "elegant"
+  ],
+  "blurb": "A sea-green glass globe held aloft on a curling stem, a little songbird perched on the leaves below.",
+  "era": {
+   "grade": "N",
+   "note": "A glass-globe lamp with a songbird and leaf stem; no expansion theme. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x4C45 (south) and 0x4C47 (east); unlit 0x4C44/0x4C46",
+  "variantOf": null,
+  "id": "CN-LGT-013"
+ },
+ {
+  "slug": "stained-glass-lamp",
+  "name": "Stained-Glass Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C51",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A table lamp with a leaded stained-glass shade in amber, violet and rose, glowing on a bronze foot.",
+  "era": {
+   "grade": "N",
+   "note": "A leaded-glass table lamp, ordinary refined furnishing with no expansion theme. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x4C51; unlit 0x4C50",
+  "variantOf": null,
+  "id": "CN-LGT-014"
+ },
+ {
+  "slug": "silk-shaded-floor-lamp",
+  "name": "Silk-Shaded Floor Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C53",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C55",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A tall brass lamp on a round, ringed foot, glowing softly through a shade of pleated cream silk.",
+  "era": {
+   "grade": "N",
+   "note": "A brass floor lamp with a silk shade, plain period furnishing. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x4C53 (south) and 0x4C55 (east); unlit 0x4C52/0x4C54",
+  "variantOf": null,
+  "id": "CN-LGT-015"
+ },
+ {
+  "slug": "twin-blue-glass-lamp",
+  "name": "Twin Blue-Glass Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x4C57",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C59",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "arcane",
+   "whimsical"
+  ],
+  "blurb": "A pair of swan-necked arms bearing two bulbs of cool blue glass, rising from a fluted iron foot.",
+  "era": {
+   "grade": "N",
+   "note": "A twin-armed blue-glass lamp with no creature, race or skill styling. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x4C57 (south) and 0x4C59 (east); unlit 0x4C56/0x4C58",
+  "variantOf": null,
+  "id": "CN-LGT-016"
+ },
+ {
+  "slug": "amber-globe-lamp",
+  "name": "Amber Globe Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x49C1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A round globe of amber glass on a slim white stem, a simple lamp for a bedside or a writing desk.",
+  "era": {
+   "grade": "N",
+   "note": "A plain amber globe lamp with no expansion theme. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x49C1; unlit 0x49C2",
+  "variantOf": null,
+  "id": "CN-LGT-017"
+ },
+ {
+  "slug": "silver-three-globe-lamp",
+  "name": "Silver Three-Globe Lamp",
+  "category": "LGT",
+  "subcategory": "Lamps",
+  "parts": [
+   {
+    "id": "0x9E93",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall silver stand bearing three pearly globes of light, fit for a long banquet hall.",
+  "era": {
+   "grade": "N",
+   "note": "A silver standing lamp with three globes, ordinary refined furnishing (first seen in a wedding set but not tied to the event). Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (animated glow, first frame)",
+  "variantOf": null,
+  "id": "CN-LGT-018"
+ },
+ {
+  "slug": "slender-silver-candelabra",
+  "name": "Slender Silver Candelabra",
+  "category": "LGT",
+  "subcategory": "Candelabras",
+  "parts": [
+   {
+    "id": "0x9EF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "sacred"
+  ],
+  "blurb": "A tall, slim stand of polished silver with five tapers burning in a row at the top.",
+  "era": {
+   "grade": "N",
+   "note": "A silver five-branch floor candelabra (first seen in a wedding set but not tied to the event); plain, unthemed. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x9EF1; unlit 0x9EF4",
+  "variantOf": null,
+  "id": "CN-LGT-019"
+ },
+ {
+  "slug": "wrought-taper-stand",
+  "name": "Wrought Taper Stand",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0xA858",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A twisted black-iron stem topped with one long taper, its wax running in golden streaks.",
+  "era": {
+   "grade": "N",
+   "note": "A single wrought-iron taper stand, a generic candle holder. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0xA858 (first of six)",
+  "variantOf": null,
+  "id": "CN-LGT-020"
+ },
+ {
+  "slug": "gold-candle-tray",
+  "name": "Gold Candle Tray",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x983B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x983F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "noble",
+   "sacred"
+  ],
+  "blurb": "A gleaming gold tray bearing a cluster of cream-white candles, a gift for a shrine or a bridal table.",
+  "era": {
+   "grade": "N",
+   "note": "A gold tray of white candles, an ordinary altar or table dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frames 0x983B (east) and 0x983F (south); unlit 0x983A/0x983E",
+  "variantOf": null,
+  "id": "CN-LGT-021"
+ },
+ {
+  "slug": "dungeon-lantern",
+  "name": "Dungeon Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "rustic",
+   "humble",
+   "fire"
+  ],
+  "blurb": "A small iron-framed lantern with a flame behind horn panes, carried down every cellar stair.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era hand lantern (0x0A22-0x0A25); the main catalog uses a different lantern frame and a ship's lantern only.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.Lantern-family art (lit 0x0A22); decor-only",
+  "variantOf": null,
+  "id": "CN-LGT-022"
+ },
+ {
+  "slug": "red-glass-storm-lantern",
+  "name": "Red-Glass Storm Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x40FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "A hooded storm lantern with panes of red glass, throwing a coloured glow across the table.",
+  "era": {
+   "grade": "N",
+   "note": "A plain storm lantern with coloured glass; no expansion theme. Stygian Abyss-era art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-LGT-023"
+ },
+ {
+  "slug": "blue-glass-storm-lantern",
+  "name": "Blue-Glass Storm Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x40FF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "A hooded storm lantern with panes of blue glass, throwing a coloured glow across the table.",
+  "era": {
+   "grade": "N",
+   "note": "A plain storm lantern with coloured glass; no expansion theme. Stygian Abyss-era art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-LGT-024"
+ },
+ {
+  "slug": "green-glass-storm-lantern",
+  "name": "Green-Glass Storm Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x4100",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "A hooded storm lantern with panes of green glass, throwing a coloured glow across the table.",
+  "era": {
+   "grade": "N",
+   "note": "A plain storm lantern with coloured glass; no expansion theme. Stygian Abyss-era art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-LGT-025"
+ },
+ {
+  "slug": "violet-glass-storm-lantern",
+  "name": "Violet-Glass Storm Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x4101",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "A hooded storm lantern with panes of violet glass, throwing a coloured glow across the table.",
+  "era": {
+   "grade": "N",
+   "note": "A plain storm lantern with coloured glass; no expansion theme. Stygian Abyss-era art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-LGT-026"
+ },
+ {
+  "slug": "chalice-rune-lantern",
+  "name": "Chalice Rune Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x9DFE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A six-sided bronze lantern with a chalice cut into its panes and a calm green light behind.",
+  "era": {
+   "grade": "N",
+   "note": "A bronze hexagonal lantern with a chalice cut-out; holy-chalice symbolism reads as ordinary knightly or sacred dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x9DFE (green); unlit 0x9DE5",
+  "variantOf": null,
+  "id": "CN-LGT-027"
+ },
+ {
+  "slug": "crescent-moon-rune-lantern",
+  "name": "Crescent Moon Rune Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x9E04",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "elegant"
+  ],
+  "blurb": "A bronze lantern with a crescent moon cut into its panes, throwing a dull red light across the wall.",
+  "era": {
+   "grade": "N",
+   "note": "A bronze hexagonal lantern with a crescent-moon cut-out; moon symbolism is ordinary arcane dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x9E04 (red); unlit 0x9DE6",
+  "variantOf": null,
+  "id": "CN-LGT-028"
+ },
+ {
+  "slug": "skull-rune-lantern",
+  "name": "Skull Rune Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x9E07",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "arcane",
+   "undead"
+  ],
+  "blurb": "A bronze lantern with a grinning skull cut into its panes, glowing a sullen red like a banked ember.",
+  "era": {
+   "grade": "N",
+   "note": "A bronze hexagonal lantern with a skull cut-out; skull motifs pass as ordinary dark-magic dressing. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "lit frame 0x9E07 (red); unlit 0x9DE8",
+  "variantOf": null,
+  "id": "CN-LGT-029"
+ }
+]

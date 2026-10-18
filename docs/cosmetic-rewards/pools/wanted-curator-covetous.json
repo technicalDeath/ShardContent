@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-covetous",
+ "system": "wanted-curator",
+ "notes": "Covetous is greed in a dungeon, so the set is bones, webs and the treasure that killed their owners. Tiers climb from a skull to silver chests to the Golden Pylon, a gold-sheathed miniature tomb that is the showpiece. The skull-on-gold and dragon hoards are held by the Hot Zone pool and the Bullion Vault by the Minoc expedition.",
+ "entries": [
+  {
+   "id": "CR-DNG-015",
+   "tier": "easy",
+   "why": "A single weathered skull."
+  },
+  {
+   "id": "CR-DNG-006",
+   "tier": "easy",
+   "why": "Dangling cobweb in the treasure vaults."
+  },
+  {
+   "id": "CR-TRS-016",
+   "tier": "medium",
+   "why": "Chain, bracelet and ring on a gold heap."
+  },
+  {
+   "id": "CR-TRS-010",
+   "tier": "medium",
+   "why": "Stack of silver ingots like a moneylender's bricks."
+  },
+  {
+   "id": "CR-TRS-025",
+   "tier": "hard",
+   "why": "Chest of silver ingots, enough to buy a barony."
+  },
+  {
+   "id": "CR-TRS-022",
+   "tier": "hard",
+   "why": "Silver strongbox with one flawless diamond."
+  },
+  {
+   "id": "CR-CUR-025",
+   "tier": "boss",
+   "why": "Golden Pylon, a tomb sheathed in gold for a patient king."
+  }
+ ]
+}

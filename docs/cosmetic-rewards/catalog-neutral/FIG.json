@@ -1,0 +1,2212 @@
+[
+ {
+  "slug": "ghoul-figurine",
+  "name": "Ghoul Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x2591",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:ghoul",
+   "undead",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A hunched, grey-skinned ghoul caught mid-shamble, with a graveyard hunger carved into every line.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors and Deceit spawners); a hunched ghoul; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-001"
+ },
+ {
+  "slug": "rotting-corpse-figurine",
+  "name": "Rotting Corpse Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x25B8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:rotting-corpse",
+   "undead",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A gaunt, half-melted corpse standing where it should not, rags clinging to what is left of it.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Covetous and the Outdoors spawners); a decaying corpse standing upright; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-002"
+ },
+ {
+  "slug": "mummy-figurine",
+  "name": "Mummy Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x25A7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:mummy",
+   "undead",
+   "macabre",
+   "desert",
+   "dungeon"
+  ],
+  "blurb": "A bandage-wrapped mummy, stiff-limbed and patient, fresh from a tomb nobody remembers sealing.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Covetous, Deceit and the Lost Lands spawners); a bandaged mummy; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-003"
+ },
+ {
+  "slug": "skeletal-knight-figurine",
+  "name": "Skeletal Knight Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x25BD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:skeletal-knight",
+   "monster:bone-knight",
+   "undead",
+   "martial",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "The bones of a long-fallen knight, still standing in the posture of a sentry who never got relieved.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Covetous and Khaldun (bone knights in Covetous, Deceit and Khaldun)); a skeleton in knightly bearing, shown for both our skeletal and bone knights; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-004"
+ },
+ {
+  "slug": "skeletal-mage-figurine",
+  "name": "Skeletal Mage Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x25BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:skeletal-mage",
+   "monster:bone-magi",
+   "undead",
+   "arcane",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A robed skeleton with one hand raised and a ruby gleam where the eyes were, caught in the middle of an incantation.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Fire and Khaldun (bone magi in Deceit, Fire and Khaldun)); a robed skeletal caster, shown for both our skeletal mages and bone magi; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-005"
+ },
+ {
+  "slug": "lich-lord-figurine",
+  "name": "Lich Lord Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x25A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:lich-lord",
+   "undead",
+   "arcane",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A tall, robed lich lord leaning on a crooked staff, the sort of figure that makes a hearth fire flicker.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Deceit, Fire and the Outdoors); a robed lich lord with a staff; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-006"
+ },
+ {
+  "slug": "evil-mage-figurine",
+  "name": "Evil Mage Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x258A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:evil-mage",
+   "arcane",
+   "macabre",
+   "humble"
+  ],
+  "blurb": "A grey-gowned practitioner of forbidden arts, hood back and hands folded round a little spell.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Fire and Shame); a robed mage; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-007"
+ },
+ {
+  "slug": "evil-mage-lord-figurine",
+  "name": "Evil Mage Lord Figurine",
+  "category": "FIG",
+  "subcategory": "Undead and arcane",
+  "parts": [
+   {
+    "id": "0x258B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:evil-mage-lord",
+   "arcane",
+   "macabre",
+   "noble"
+  ],
+  "blurb": "A hulking figure in plum-purple robes, hood drawn low, with something glowing where its face should be.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Fire and Shame); a purple-robed mage lord; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-008"
+ },
+ {
+  "slug": "imp-figurine",
+  "name": "Imp Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x259F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:imp",
+   "demonic",
+   "whimsical",
+   "dungeon:hythloth"
+  ],
+  "blurb": "A scrawny little imp with wings like pressed leaves, grinning at mischief nobody has done yet.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Hythloth, the Lost Lands and the Outdoors); a winged imp; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-009"
+ },
+ {
+  "slug": "ice-fiend-figurine",
+  "name": "Ice Fiend Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2587",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:ice-fiend",
+   "demonic",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A winged fiend wrought in frost-blue, its leathery wings edged in a deep red like a sunset on glacier.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Ice Dungeon); a blue winged fiend; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-010"
+ },
+ {
+  "slug": "hell-hound-figurine",
+  "name": "Hell Hound Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2596",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:hell-hound",
+   "demonic",
+   "fire",
+   "dungeon:hythloth"
+  ],
+  "blurb": "A black-furred hound shot through with ember-red veins, its lips curled over a smoulder of teeth.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Hythloth and Fire); a hellish hound; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-011"
+ },
+ {
+  "slug": "hell-cat-figurine",
+  "name": "Hell Cat Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2597",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:hell-cat",
+   "demonic",
+   "fire",
+   "animal"
+  ],
+  "blurb": "A tiger-striped cat with a smoulder-coloured coat, back arched and fangs bared at the warm edge of the world.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Fire and Trinsic Passage); a striped, ember-coloured cat; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-012"
+ },
+ {
+  "slug": "efreet-figurine",
+  "name": "Efreet Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2590",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:efreet",
+   "arcane",
+   "fire",
+   "exotic",
+   "desert"
+  ],
+  "blurb": "A cross-legged efreet in lime-green fire, arms folded, looking as though he'd happily grant a wish and misread it.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Fire and the Lost Lands); a seated, green, genie-like efreet; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-013"
+ },
+ {
+  "slug": "stone-gargoyle-figurine",
+  "name": "Stone Gargoyle Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x258E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:stone-gargoyle",
+   "dungeon",
+   "arcane"
+  ],
+  "blurb": "A grey stone gargoyle with wings drawn in tight, a sentinel whittled out of cold granite.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands and Hythloth); a winged grey gargoyle of stone; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-014"
+ },
+ {
+  "slug": "stone-harpy-figurine",
+  "name": "Stone Harpy Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2594",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:stone-harpy",
+   "dungeon",
+   "arcane"
+  ],
+  "blurb": "A harpy wrapped in her own stone wings, silent and grey as a gravestone bird.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands and Covetous); a grey, stone-winged harpy; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-015"
+ },
+ {
+  "slug": "golem-figurine",
+  "name": "Golem Figurine",
+  "category": "FIG",
+  "subcategory": "Daemons, imps and fiends",
+  "parts": [
+   {
+    "id": "0x2610",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:golem",
+   "arcane",
+   "martial",
+   "exotic"
+  ],
+  "blurb": "A clockwork golem of plated bronze and glowing seams, a hulking guardian reduced to desk size.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Wrong); a plated, mechanical golem; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-016"
+ },
+ {
+  "slug": "acid-elemental-figurine",
+  "name": "Acid Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:acid-elemental",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A knot of emerald light that spits and hisses, as if the acid had been taught to sit still.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Outdoors); a green, crackling knot of acid-light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-017"
+ },
+ {
+  "slug": "air-elemental-figurine",
+  "name": "Air Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25D7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:air-elemental",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A swirl of sky-blue light, forever on the verge of spinning off the shelf.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Outdoors and Shame); a blue, whirling knot of wind-light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-018"
+ },
+ {
+  "slug": "poison-elemental-figurine",
+  "name": "Poison Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:poison-elemental",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A sickly yellow-green glow with a mean crackle in it, kept well away from the wine.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Shame and Deceit); a yellow-green, venomous knot of light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-019"
+ },
+ {
+  "slug": "snow-elemental-figurine",
+  "name": "Snow Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25DC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:snow-elemental",
+   "arcane",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A clump of pure white light that glitters like fresh snow caught in lamplight.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Ice Dungeon and the Lost Lands); a white, glittering knot of snow-light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-020"
+ },
+ {
+  "slug": "ice-elemental-figurine",
+  "name": "Ice Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:ice-elemental",
+   "arcane",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A shard-bright knot of glacier blue, so cold the shelf seems to frost over.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Ice Dungeon); a pale-blue, frozen knot of light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-021"
+ },
+ {
+  "slug": "blood-elemental-figurine",
+  "name": "Blood Elemental Figurine",
+  "category": "FIG",
+  "subcategory": "Elemental figurines",
+  "parts": [
+   {
+    "id": "0x25D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:blood-elemental",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "A crimson clot of light that pulses like something alive, and unhappy about it.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Shame); a red, pulsing knot of light; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-022"
+ },
+ {
+  "slug": "ogre-lord-figurine",
+  "name": "Ogre Lord Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25A8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ogre-lord",
+   "martial",
+   "dungeon",
+   "wilderness"
+  ],
+  "blurb": "A slab of an ogre lord in studded leathers, arms hung low and ready to swing.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Despise); an armoured ogre lord; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-023"
+ },
+ {
+  "slug": "orcish-lord-figurine",
+  "name": "Orcish Lord Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25B0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:orcish-lord",
+   "martial",
+   "dungeon:orc-cave",
+   "wilderness"
+  ],
+  "blurb": "An orc chieftain in battered brass plate and a crest of rust-red bristle, rallying a warband that is not there.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands, the Orc Caves and the Outdoors); an armoured orc with a bristled crest; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-024"
+ },
+ {
+  "slug": "juka-warrior-figurine",
+  "name": "Juka Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x261F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:juka-warrior",
+   "martial",
+   "dungeon:wrong",
+   "exotic"
+  ],
+  "blurb": "A crimson-clad juka warrior in segmented plate, grim and upright like a soldier of some other, darker court.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Wrong); a juka warrior in red armour; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-025"
+ },
+ {
+  "slug": "juka-mage-figurine",
+  "name": "Juka Mage Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x261E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:juka-mage",
+   "arcane",
+   "dungeon:wrong",
+   "exotic"
+  ],
+  "blurb": "A juka mage in ruddy robes, one hand half-raised in the beginning of a spell.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Wrong); a juka mage in red robes; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-026"
+ },
+ {
+  "slug": "ophidian-warrior-figurine",
+  "name": "Ophidian Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25AD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:ophidian-warrior",
+   "dungeon:terathan-keep",
+   "martial",
+   "swamp"
+  ],
+  "blurb": "A green, hooded ophidian warrior, coiled on its tail with a hungry little crimson crest.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep and the Lost Lands); a hooded, snake-bodied ophidian warrior; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-027"
+ },
+ {
+  "slug": "ophidian-knight-figurine",
+  "name": "Ophidian Knight Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ophidian-knight",
+   "dungeon:terathan-keep",
+   "martial",
+   "swamp"
+  ],
+  "blurb": "A purple and rose ophidian knight drawn up on its coils, armoured like the vanguard of a serpent king.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep and the Lost Lands); a coiled, armoured ophidian knight; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-028"
+ },
+ {
+  "slug": "ophidian-archmage-figurine",
+  "name": "Ophidian Archmage Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25A9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:ophidian-archmage",
+   "dungeon:terathan-keep",
+   "arcane",
+   "swamp"
+  ],
+  "blurb": "A blue-scaled ophidian archmage in a hooded mantle, coiled on a bed of its own tail and murmuring.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep and the Lost Lands); a coiled ophidian spellcaster in a hood; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-029"
+ },
+ {
+  "slug": "terathan-avenger-figurine",
+  "name": "Terathan Avenger Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:terathan-avenger",
+   "dungeon:terathan-keep",
+   "wilderness"
+  ],
+  "blurb": "A green-bodied spider-warrior with a pale, almost-human torso rising from its eight-legged frame.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep); a spider-bodied terathan avenger; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-030"
+ },
+ {
+  "slug": "terathan-warrior-figurine",
+  "name": "Terathan Warrior Figurine",
+  "category": "FIG",
+  "subcategory": "Humanoid monsters",
+  "parts": [
+   {
+    "id": "0x25CC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:terathan-warrior",
+   "dungeon:terathan-keep",
+   "wilderness"
+  ],
+  "blurb": "A scuttling terathan warrior, all legs and spite, with a lime-green torso above its spidery body.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep); a spider-bodied terathan warrior; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-031"
+ },
+ {
+  "slug": "giant-serpent-figurine",
+  "name": "Giant Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:giant-serpent",
+   "animal",
+   "swamp",
+   "wilderness"
+  ],
+  "blurb": "A thick-bodied serpent in burnt-orange scales, coiled and watchful.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors, the Lost Lands and Destard); a coiled orange-scaled serpent; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-032"
+ },
+ {
+  "slug": "ice-snake-figurine",
+  "name": "Ice Snake Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25C0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:ice-snake",
+   "monster:ice-serpent",
+   "animal",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A frost-white snake with a glacier-blue sheen, coiled in an S as though caught in a drift.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands and the Ice Dungeon); a coiled white-blue snake; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-033"
+ },
+ {
+  "slug": "silver-serpent-figurine",
+  "name": "Silver Serpent Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25C2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:silver-serpent",
+   "animal",
+   "arcane",
+   "wilderness"
+  ],
+  "blurb": "A pearl-white serpent with a hint of rose at the throat, polished like temple silver.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors and the Lost Lands); a coiled silver-white serpent; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-034"
+ },
+ {
+  "slug": "dread-spider-figurine",
+  "name": "Dread Spider Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25C4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:dread-spider",
+   "animal",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A glossy black spider with legs like hooked needles, patiently crouched in the dust.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Trinsic Passage and Covetous); a black spider with a glossy carapace; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-035"
+ },
+ {
+  "slug": "frost-spider-figurine",
+  "name": "Frost Spider Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25C5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:frost-spider",
+   "animal",
+   "ice",
+   "dungeon:ice"
+  ],
+  "blurb": "A pale grey-blue spider whose legs look dusted in rime, still as the first frost.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Ice Dungeon); a pale grey-blue spider; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-036"
+ },
+ {
+  "slug": "swamp-tentacle-figurine",
+  "name": "Swamp Tentacle Figurine",
+  "category": "FIG",
+  "subcategory": "Serpents, spiders and tentacles",
+  "parts": [
+   {
+    "id": "0x25C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:swamp-tentacle",
+   "swamp",
+   "macabre",
+   "wilderness"
+  ],
+  "blurb": "A sprawl of dark, root-like tentacles splayed out the way a bog beast reaches from the water.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands and the Outdoors); a tangle of brown tentacles; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-037"
+ },
+ {
+  "slug": "cougar-figurine",
+  "name": "Cougar Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x2583",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:cougar",
+   "animal",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A tawny cougar, ears back and hunting-low, the sort of cat that watches a camp from the treeline.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife spawners across Felucca); a tawny cougar; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-038"
+ },
+ {
+  "slug": "hound-figurine",
+  "name": "Hound Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x2588",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:dog",
+   "animal",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A short-coated, broad-chested hound the colour of a hearth-baked loaf, waiting for the word to run.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the town-life spawners); a brown hound; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-039"
+ },
+ {
+  "slug": "chestnut-horse-figurine",
+  "name": "Chestnut Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x2598",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:horse",
+   "animal",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A chestnut horse in mid-stride, mane flying, a plain, honest piece of stable-yard art.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife spawners across Felucca); a chestnut horse; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-040"
+ },
+ {
+  "slug": "palomino-horse-figurine",
+  "name": "Palomino Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x259E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:horse",
+   "animal",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A cream-coated palomino with a pale mane, standing quietly as if waiting for a rider who never comes.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife spawners across Felucca); a tan horse; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-041"
+ },
+ {
+  "slug": "nightmare-figurine",
+  "name": "Nightmare Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x259C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:nightmare",
+   "animal",
+   "demonic",
+   "noble"
+  ],
+  "blurb": "A smoke-grey steed that looks too restless to be stabled, its coat shot through with shadow.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep); a dark grey steed; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-042"
+ },
+ {
+  "slug": "snow-leopard-figurine",
+  "name": "Snow Leopard Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x25A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:snow-leopard",
+   "animal",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A cream-and-grey leopard with smoky rosettes on its coat, crouched low on a ledge nobody else can see.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors); a snow leopard; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-043"
+ },
+ {
+  "slug": "dire-wolf-figurine",
+  "name": "Dire Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x25D0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:dire-wolf",
+   "animal",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A hulking dark-grey wolf, shoulders hunched, with a scarred muzzle and a stare that doesn't blink.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors and the Orc Caves); a large dark-grey wolf; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-044"
+ },
+ {
+  "slug": "white-wolf-figurine",
+  "name": "White Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x25D2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:white-wolf",
+   "animal",
+   "ice",
+   "wilderness"
+  ],
+  "blurb": "A silver-white wolf, alert and silent, as though listening for something far over the snow.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors and the Lost Lands); a silver-white wolf; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-045"
+ },
+ {
+  "slug": "timber-wolf-figurine",
+  "name": "Timber Wolf Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x25D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:timber-wolf",
+   "animal",
+   "forest",
+   "wilderness"
+  ],
+  "blurb": "A brindled timber wolf, ears pricked, with the amber stare of a hunter that has found your trail.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife spawners across Felucca); a brown-and-tan timber wolf; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-046"
+ },
+ {
+  "slug": "frenzied-ostard-figurine",
+  "name": "Frenzied Ostard Figurine",
+  "category": "FIG",
+  "subcategory": "Beasts and mounts",
+  "parts": [
+   {
+    "id": "0x25B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:frenzied-ostard",
+   "animal",
+   "desert",
+   "exotic"
+  ],
+  "blurb": "A brown, long-legged ostard with a temper to match, mid-stride and not slowing for anybody.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands); a long-necked brown ostard; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-047"
+ },
+ {
+  "slug": "wyvern-figurine",
+  "name": "Wyvern Figurine",
+  "category": "FIG",
+  "subcategory": "Dragonkin and sea creatures",
+  "parts": [
+   {
+    "id": "0x25D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:wyvern",
+   "dragon",
+   "exotic",
+   "wilderness",
+   "dungeon:destard"
+  ],
+  "blurb": "A bone-grey wyvern seen from above with wings spread wide, hooked tail trailing, caught in an endless glide.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Destard and the Lost Lands); a pale, winged wyvern in flight; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-048"
+ },
+ {
+  "slug": "red-drake-figurine",
+  "name": "Red Drake Figurine",
+  "category": "FIG",
+  "subcategory": "Dragonkin and sea creatures",
+  "parts": [
+   {
+    "id": "0x2634",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:drake",
+   "monster:dragon",
+   "dragon",
+   "fire",
+   "dungeon:destard",
+   "exotic"
+  ],
+  "blurb": "A crimson drake with membranous wings half-folded, a small and fierce cousin of the great dragons.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Destard, Terathan Keep and the Outdoors); a small red winged dragon; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-049"
+ },
+ {
+  "slug": "black-dragon-figurine",
+  "name": "Black Dragon Figurine",
+  "category": "FIG",
+  "subcategory": "Dragonkin and sea creatures",
+  "parts": [
+   {
+    "id": "0x2635",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:dragon",
+   "dragon",
+   "dungeon",
+   "exotic",
+   "macabre"
+  ],
+  "blurb": "A sleek night-black dragon with batlike wings stretched wide, the kind of beast whose silhouette sells a legend.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep, Destard and the Outdoors); a black winged dragon; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-050"
+ },
+ {
+  "slug": "kraken-figurine",
+  "name": "Kraken Figurine",
+  "category": "FIG",
+  "subcategory": "Dragonkin and sea creatures",
+  "parts": [
+   {
+    "id": "0x25A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:kraken",
+   "nautical",
+   "exotic",
+   "macabre"
+  ],
+  "blurb": "A red-bodied kraken with tentacles flung wide, the terror of the deep boiled down to a single gesture.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the open sea and Shame); a red kraken with trailing tentacles; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-051"
+ },
+ {
+  "slug": "sea-horse-figurine",
+  "name": "Sea Horse Figurine",
+  "category": "FIG",
+  "subcategory": "Dragonkin and sea creatures",
+  "parts": [
+   {
+    "id": "0x25BA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:sea-horse",
+   "animal",
+   "nautical",
+   "whimsical"
+  ],
+  "blurb": "A sea horse in orange and violet bands, tail curled, drawn straight out of the shallows.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the open sea); a banded sea horse; creature-icon art from the 0x2554-0x2635 set (AoS-SE era art).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; creature-icon art, no pet or creature link",
+  "variantOf": null,
+  "id": "CN-FIG-052"
+ },
+ {
+  "slug": "ostard-statuette",
+  "name": "Ostard Statuette",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0xAFDF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster",
+   "monster:ostard",
+   "animal",
+   "desert",
+   "exotic",
+   "rustic"
+  ],
+  "blurb": "A little carved ostard in earthen browns, striding across a plinth of dark wood.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands); a statuette of an ostard on a wooden plinth.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; no pet or creature link",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFE0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-053"
+ },
+ {
+  "slug": "frenzied-ostard-statuette",
+  "name": "Frenzied Ostard Statuette",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0xAFE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:frenzied-ostard",
+   "animal",
+   "desert",
+   "exotic",
+   "macabre"
+  ],
+  "blurb": "A wild-eyed, ash-grey ostard on a wooden plinth, caught between one furious step and the next.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Lost Lands); a grey, wild-looking ostard statuette on a wooden plinth.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; no pet or creature link",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-054"
+ },
+ {
+  "slug": "sheep-figurine",
+  "name": "Woolly Sheep Figurine",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0x4A94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:sheep",
+   "animal",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A fat white sheep with a good coat on her, the sort of figure that belongs by a farmhouse door.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife and town-life spawners); a small figure of a woolly sheep.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; no pet or creature link",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4A96",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-055"
+ },
+ {
+  "slug": "shorn-sheep-figurine",
+  "name": "Shorn Sheep Figurine",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0x4A95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster",
+   "monster:sheep",
+   "animal",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A freshly-sheared sheep with a rosy hide and a look of mild offence.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the wildlife and town-life spawners); a small figure of a shorn sheep.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; no pet or creature link",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4A97",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-056"
+ },
+ {
+  "slug": "gargoyle-statuette",
+  "name": "Weathered Gargoyle Statuette",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0x42C0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "monster",
+   "monster:gargoyle",
+   "dungeon",
+   "arcane",
+   "macabre"
+  ],
+  "blurb": "A squat gargoyle in mossy olive stone, hunched on its haunches as if it has guarded this corner for centuries.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in the Outdoors and Hythloth); a seated stone gargoyle statuette.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; tiledata names these two graphics 'horse' but the art is a seated stone gargoyle",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x42C1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-057"
+ },
+ {
+  "slug": "coiled-dragon-statue",
+  "name": "Coiled Dragon Statue",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0x9F41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster",
+   "monster:dragon",
+   "dragon",
+   "noble",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A dark-scaled dragon wound round a gilded pedestal, claws sunk in, head thrown back as if to roar at the rafters.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Terathan Keep and Destard); a dark dragon coiled around a gilded pillar.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; first frame of an animated tile set, shown as a still",
+  "variantOf": null,
+  "id": "CN-FIG-058"
+ },
+ {
+  "slug": "mummy-yard-ornament",
+  "name": "Mummy Yard Ornament",
+  "category": "FIG",
+  "subcategory": "Creature statuettes",
+  "parts": [
+   {
+    "id": "0xA620",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster",
+   "monster:mummy",
+   "undead",
+   "festive",
+   "season:halloween",
+   "whimsical"
+  ],
+  "blurb": "A painted wooden mummy cut-out on a stake, bandages flapping, planted in the front garden as a warning to the superstitious.",
+  "era": {
+   "grade": "N",
+   "note": "creature present in our game (spawned in Covetous, Deceit and the Lost Lands); a wooden yard cut-out of a mummy.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only static; Halloween yard-ornament art",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA621",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-FIG-059"
+ }
+]

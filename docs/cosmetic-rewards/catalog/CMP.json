@@ -1,0 +1,1831 @@
+[
+ {
+  "slug": "grey-canvas-tent",
+  "name": "Grey Canvas Tent",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x036B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0371",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0370",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x036C",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0369",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0368",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x036A",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A tall wall tent of grey canvas stitched with rope ties, the sort an army or a long-trailing ranger raises at dusk.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tent-wall art, used about 75-90 times on the Britannia map for camps and pavilions; tents were camp items reimbursed 1998-11-23.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "eight tent-wall statics on a 3x3 ring (pole 0x036B, walls 0x0368-0x0371); decor-only, impassable",
+  "variantOf": null,
+  "id": "CR-CMP-001"
+ },
+ {
+  "slug": "blue-canvas-tent",
+  "name": "Blue Canvas Tent",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x01F3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x01F9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x01F5",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x01F8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x01F4",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x01F1",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x01F0",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x01F2",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A deep blue canvas tent, dyed against the rain and pegged taut across a ridge pole.",
+  "era": {
+   "grade": "B",
+   "note": "Blue/green sibling of the classic grey tent-wall set (the map itself places the grey and blue-grey sets); tents existed and were reimbursed 1998-11-23.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "blue tent-wall set 0x01F0-0x01F9 on a 3x3 ring; decor-only",
+  "variantOf": "grey-canvas-tent",
+  "id": "CR-CMP-002"
+ },
+ {
+  "slug": "green-canvas-tent",
+  "name": "Green Canvas Tent",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x0233",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0239",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0235",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0238",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0234",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0231",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0230",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0232",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A forest-green tent that vanishes among the trees until the cook-fire gives it away.",
+  "era": {
+   "grade": "B",
+   "note": "Blue/green sibling of the classic grey tent-wall set (the map itself places the grey and blue-grey sets); tents existed and were reimbursed 1998-11-23.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "green tent-wall set 0x0230-0x0239 on a 3x3 ring; decor-only",
+  "variantOf": "grey-canvas-tent",
+  "id": "CR-CMP-003"
+ },
+ {
+  "slug": "small-grey-tent",
+  "name": "Small Grey Tent",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x036B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0368",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A cone of grey canvas on a single pole, just big enough for one weary traveller.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tent-wall art, used about 75-90 times on the Britannia map for camps and pavilions; tents were camp items reimbursed 1998-11-23.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "four tent-wall statics on a 2x2 footprint; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-004"
+ },
+ {
+  "slug": "small-green-tent",
+  "name": "Small Green Tent",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x0233",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0235",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0234",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0230",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A little green pavilion for a hunter who prefers the woods to an inn.",
+  "era": {
+   "grade": "B",
+   "note": "Blue/green sibling of the classic grey tent-wall set (the map itself places the grey and blue-grey sets); tents existed and were reimbursed 1998-11-23.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-19-23rd-november/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "four tent-wall statics (green set) on a 2x2 footprint; decor-only",
+  "variantOf": "small-grey-tent",
+  "id": "CR-CMP-005"
+ },
+ {
+  "slug": "rolled-bedroll",
+  "name": "Rolled Bedroll",
+  "category": "CMP",
+  "subcategory": "Bedding",
+  "parts": [
+   {
+    "id": "0x0A58",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A59",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A tightly tied bedroll of rough wool, ready to be thrown down by any fire.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bedroll art from the original item block (about two to three map placements); camping staple.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a bed",
+  "variantOf": null,
+  "id": "CR-CMP-006"
+ },
+ {
+  "slug": "spread-bedroll",
+  "name": "Spread Bedroll",
+  "category": "CMP",
+  "subcategory": "Bedding",
+  "parts": [
+   {
+    "id": "0x0A55",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A56",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A sleeping mat of coarse cloth spread flat on the ground.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bedroll-spread art from the original item block; camping staple.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a bed",
+  "variantOf": null,
+  "id": "CR-CMP-007"
+ },
+ {
+  "slug": "bedroll-with-straw-pillow",
+  "name": "Bedroll with Straw Pillow",
+  "category": "CMP",
+  "subcategory": "Bedding",
+  "parts": [
+   {
+    "id": "0x0A55",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A spread bedroll with a bundle of straw for a pillow, a wanderer's idea of comfort.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bedroll and straw-pillow art composed together; both original item-block graphics.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "pillow set on mat via dz 1; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-008"
+ },
+ {
+  "slug": "bedroll-and-pack",
+  "name": "Bedroll and Pack",
+  "category": "CMP",
+  "subcategory": "Bedding",
+  "parts": [
+   {
+    "id": "0x0A58",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E75",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A rolled bedroll leaning beside a battered leather pack, the whole kit of a roving adventurer.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bedroll and backpack art side by side; original item-block graphics.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function of the pack",
+  "variantOf": null,
+  "id": "CR-CMP-009"
+ },
+ {
+  "slug": "cookfire-and-cauldron",
+  "name": "Cookfire and Cauldron",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0974",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "craft:camping",
+   "fire"
+  ],
+  "blurb": "A live cookfire licking round the belly of a hanging cauldron: supper, and the smell of woodsmoke.",
+  "era": {
+   "grade": "B",
+   "note": "Classic campfire and tripod cauldron, exactly as ModernUO's brigand/orc camps stack them; brigand and gypsy camps are 1997-10-29 world dressing.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "campfire graphic is animated and light-emitting in stock; decor-only, strip damage/light",
+  "variantOf": null,
+  "id": "CR-CMP-010"
+ },
+ {
+  "slug": "kettle-on-the-embers",
+  "name": "Kettle on the Embers",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x09ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A blackened kettle set on a bed of glowing embers, steaming.",
+  "era": {
+   "grade": "B",
+   "note": "Classic kettle and embers art; kettle is NPC shop-dressing in 1997-2000, embers part of the original camp art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "embers graphic emits light in stock; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-011"
+ },
+ {
+  "slug": "camp-cookware",
+  "name": "Camp Cookware",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x09E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09F3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x097F",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x09E3",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "craft:cooking",
+   "craft:tinkering",
+   "humble"
+  ],
+  "blurb": "A set of dented pots and pans laid out around the cooking stones.",
+  "era": {
+   "grade": "B",
+   "note": "Classic pot, pan and frypan art (kitchen shop dressing in 1997-2000); original item block.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "four tinker cookware statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CR-CMP-012"
+ },
+ {
+  "slug": "spit-roast-chicken",
+  "name": "Spit-Roast Chicken",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x0DEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0DEA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0DE9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E97",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "craft:camping",
+   "tavern"
+  ],
+  "blurb": "A plump chicken turning on a spit above the embers, juices spitting into the ash.",
+  "era": {
+   "grade": "B",
+   "note": "Chicken-on-a-spit is the cook-fire prop of the stock brigand/orc camps; brigand and gypsy camps are 1997-10-29 world dressing.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip food/cooking function",
+  "variantOf": null,
+  "id": "CR-CMP-013"
+ },
+ {
+  "slug": "spit-roast-rabbit",
+  "name": "Spit-Roast Rabbit",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x0DEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0DEA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0DE9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "craft:camping",
+   "animal"
+  ],
+  "blurb": "A rabbit on a green-wood spit, browned over the embers, a hunter's reward.",
+  "era": {
+   "grade": "B",
+   "note": "Rabbit-on-a-spit is the cook-fire prop of the stock brigand/orc camps; brigand and gypsy camps are 1997-10-29 world dressing.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip food/cooking function",
+  "variantOf": null,
+  "id": "CR-CMP-014"
+ },
+ {
+  "slug": "crackling-campfire",
+  "name": "Crackling Campfire",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "fire"
+  ],
+  "blurb": "A small campfire of crossed sticks, flames flickering at the edges of the dark.",
+  "era": {
+   "grade": "B",
+   "note": "Classic campfire art (animated flame), the product of the Camping skill; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "animated, light and damage in stock; decor-only, strip all effects",
+  "variantOf": null,
+  "id": "CR-CMP-015"
+ },
+ {
+  "slug": "stack-of-firewood",
+  "name": "Stack of Firewood",
+  "category": "CMP",
+  "subcategory": "Firewood and fuel",
+  "parts": [
+   {
+    "id": "0x1BDF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1BE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:lumberjacking",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A neat stack of split logs, seasoned and ready for the long cold night.",
+  "era": {
+   "grade": "B",
+   "note": "Classic log-pile art from the original item block (stacked logs); lumberjacking resource art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource stack",
+  "variantOf": null,
+  "id": "CR-CMP-016"
+ },
+ {
+  "slug": "twin-woodpiles",
+  "name": "Twin Woodpiles",
+  "category": "CMP",
+  "subcategory": "Firewood and fuel",
+  "parts": [
+   {
+    "id": "0x1BDF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BE2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:lumberjacking",
+   "rustic"
+  ],
+  "blurb": "Two great stacks of firewood, enough to see a camp or a hearth through the winter.",
+  "era": {
+   "grade": "B",
+   "note": "Two classic log-pile graphics side by side; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-017"
+ },
+ {
+  "slug": "bundle-of-kindling",
+  "name": "Bundle of Kindling",
+  "category": "CMP",
+  "subcategory": "Firewood and fuel",
+  "parts": [
+   {
+    "id": "0x0DE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "altFacings": [
+   {
+    "facing": "none",
+    "parts": [
+     {
+      "id": "0x0DE2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "humble"
+  ],
+  "blurb": "A handful of dry twigs and shavings, the first thing any fire needs.",
+  "era": {
+   "grade": "B",
+   "note": "Classic kindling art from the original item block (camping resource); used as camp dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-CMP-018"
+ },
+ {
+  "slug": "heap-of-dry-brush",
+  "name": "Heap of Dry Brush",
+  "category": "CMP",
+  "subcategory": "Firewood and fuel",
+  "parts": [
+   {
+    "id": "0x1B93",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "rustic"
+  ],
+  "blurb": "A thick heap of dry brush and tangled branches gathered against the night chill.",
+  "era": {
+   "grade": "B",
+   "note": "Classic brush-pile art from the original item block (dozens of map placements as forest litter).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "",
+  "variantOf": null,
+  "id": "CR-CMP-019"
+ },
+ {
+  "slug": "fallen-log-seat",
+  "name": "Fallen Log Seat",
+  "category": "CMP",
+  "subcategory": "Wilderness furnishings",
+  "parts": [
+   {
+    "id": "0x0CF6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A fallen moss-streaked log that serves a camp for a bench and a back-rest for the storyteller.",
+  "era": {
+   "grade": "A",
+   "note": "Sitting on logs and rocks was added 1997-12-09; this log is the classic world-dressing art used thousands of times.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-7-9th-december/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; sit behaviour not required",
+  "variantOf": null,
+  "id": "CR-CMP-020"
+ },
+ {
+  "slug": "woodcutters-corner",
+  "name": "Woodcutter's Corner",
+  "category": "CMP",
+  "subcategory": "Firewood and fuel",
+  "parts": [
+   {
+    "id": "0x0E56",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BDF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BE1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "forest",
+   "craft:lumberjacking",
+   "rustic"
+  ],
+  "blurb": "A chopping stump, a stack of split logs, a loose billet and a pile of kindling: a woodcutter's whole yard.",
+  "era": {
+   "grade": "B",
+   "note": "Classic stump, log pile, log and kindling art composed on a 2x2 footprint; original item block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four statics; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-021"
+ },
+ {
+  "slug": "hunters-hanging-pole",
+  "name": "Hunter's Hanging Pole",
+  "category": "CMP",
+  "subcategory": "Hides and curing",
+  "parts": [
+   {
+    "id": "0x10AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10AD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10AC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1871",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x10B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10B0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10AF",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1872",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "animal",
+   "rustic"
+  ],
+  "blurb": "A hanging pole on timber trestles with a skinned carcass strung up to dry and drain.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hanging-pole fixture (butcher dressing) with a classic carcass; original item block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "pole run plus hung carcass; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-022"
+ },
+ {
+  "slug": "game-and-rabbit-pole",
+  "name": "Game and Rabbit Pole",
+  "category": "CMP",
+  "subcategory": "Hides and curing",
+  "parts": [
+   {
+    "id": "0x10AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10AD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10AC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1874",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E93",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x10B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10B0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10AF",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1873",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E92",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "animal",
+   "rustic"
+  ],
+  "blurb": "A hanging pole with a dressed sheep and a skinned rabbit swinging in the breeze.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hanging-pole fixture with a classic sheep carcass and skinned rabbit; original item block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "pole run plus hung carcass and rabbit; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-023"
+ },
+ {
+  "slug": "camp-tool-set",
+  "name": "Camp Tool Set",
+  "category": "CMP",
+  "subcategory": "Camp tools and gear",
+  "parts": [
+   {
+    "id": "0x0F39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F43",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1034",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E85",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:lumberjacking",
+   "craft:mining",
+   "craft:tinkering"
+  ],
+  "blurb": "A shovel, hatchet, saw and pick laid out on a cloth, everything a camp needs to carve a living from the wild.",
+  "era": {
+   "grade": "B",
+   "note": "Classic shovel, hatchet, saw and pickaxe art laid out on a 2x2 footprint; plain tinker/carpentry tools.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "four tool statics on a 2x2 footprint; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-024"
+ },
+ {
+  "slug": "travellers-backpack",
+  "name": "Traveller's Backpack",
+  "category": "CMP",
+  "subcategory": "Camp tools and gear",
+  "parts": [
+   {
+    "id": "0x0E75",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "camp",
+   "wilderness",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A scuffed leather backpack, buckled shut, left by a traveller who is never far away.",
+  "era": {
+   "grade": "B",
+   "note": "Classic backpack art, the most familiar item in the game; used here as decor-only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function",
+  "variantOf": null,
+  "id": "CR-CMP-025"
+ },
+ {
+  "slug": "stone-cairn",
+  "name": "Stone Cairn",
+  "category": "CMP",
+  "subcategory": "Wilderness furnishings",
+  "parts": [
+   {
+    "id": "0x1363",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1366",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x136A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "camp",
+   "wilderness",
+   "sacred",
+   "rustic"
+  ],
+  "blurb": "A cairn of stacked stones set by travellers to mark a trail or a grave.",
+  "era": {
+   "grade": "B",
+   "note": "Classic rock art (original item block, rocks heavily used as world dressing) stacked three high.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three rocks stacked via dz; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-026"
+ },
+ {
+  "slug": "skinners-yard",
+  "name": "Skinner's Yard",
+  "category": "CMP",
+  "subcategory": "Hides and curing",
+  "parts": [
+   {
+    "id": "0x106B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x106B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x106B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x10B1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10B0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10AF",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1873",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E92",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:tailoring",
+   "animal",
+   "rustic"
+  ],
+  "blurb": "Hide frames in a row and a hanging pole of dressed game: the working yard of a camp skinner.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hide frames, hanging pole, sheep carcass and skinned rabbit composed on a 4x3 footprint; original item block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "eight statics; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-027"
+ },
+ {
+  "slug": "hunters-camp",
+  "name": "Hunter's Camp",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x036B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0368",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0974",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A58",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0E75",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1BDF",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "craft:cooking",
+   "rustic"
+  ],
+  "blurb": "A whole hunter's camp: a tent, a cookfire and cauldron, a bedroll and pack, and a stack of firewood to see the night out.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tent walls, campfire, tripod cauldron, bedroll, backpack and log pile composed on a 4x4 footprint; all original item-block art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine statics; decor-only (strip fire damage/light and pack container)",
+  "variantOf": null,
+  "id": "CR-CMP-028"
+ },
+ {
+  "slug": "fowlers-pole",
+  "name": "Fowler's Pole",
+  "category": "CMP",
+  "subcategory": "Hides and curing",
+  "parts": [
+   {
+    "id": "0x10AE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10AD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10AC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1E8B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 6
+   },
+   {
+    "id": "0x1E8B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x10B1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10B0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10AF",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E8B",
+      "dx": 1,
+      "dy": 0,
+      "dz": 4
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "animal",
+   "rustic"
+  ],
+  "blurb": "A hanging pole with two plucked birds strung from it, a fowler's evening bag hung out to drain.",
+  "era": {
+   "grade": "B",
+   "note": "Classic hanging-pole fixture with the classic plucked-bird art; original item block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "pole run plus hung birds via dz; decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-029"
+ },
+ {
+  "slug": "camp-kitchen",
+  "name": "Camp Kitchen",
+  "category": "CMP",
+  "subcategory": "Cooking and fire",
+  "parts": [
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0974",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E7B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E94",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x09E0",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:cooking",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A cookfire with a hanging cauldron, a chicken turning on a spit, a tub of water and a spare pot: a whole camp kitchen.",
+  "era": {
+   "grade": "B",
+   "note": "Classic campfire, tripod cauldron, spit, water tub and pot art composed on a 2x2 footprint; all original item-block graphics.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "six statics; campfire and embers emit light/damage in stock, decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-030"
+ },
+ {
+  "slug": "overnight-camp",
+  "name": "Overnight Camp",
+  "category": "CMP",
+  "subcategory": "Tents and shelter",
+  "parts": [
+   {
+    "id": "0x036B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x036C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0368",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0CF6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A58",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "rare",
+  "tags": [
+   "camp",
+   "wilderness",
+   "craft:camping",
+   "rustic"
+  ],
+  "blurb": "A small tent, a fire and a fallen log to sit on, with a rolled bedroll set by: a night's stop on a long road.",
+  "era": {
+   "grade": "B",
+   "note": "Classic tent walls, campfire, log and bedroll art composed on a 4x3 footprint; original item-block graphics.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "seven statics; campfire emits light/damage in stock, decor-only",
+  "variantOf": null,
+  "id": "CR-CMP-031"
+ }
+]

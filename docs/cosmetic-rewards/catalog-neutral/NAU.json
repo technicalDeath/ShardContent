@@ -1,0 +1,1777 @@
+[
+ {
+  "slug": "ship-wheel-standing",
+  "name": "Ship's Wheel on a Stand",
+  "category": "NAU",
+  "subcategory": "Ship fittings",
+  "parts": [
+   {
+    "id": "0x46FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x46FD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "craft:carpentry",
+   "town:cove",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A spoked oak wheel on a carved post, worn smooth by a generation of helmsmen.",
+  "era": {
+   "grade": "N",
+   "note": "A helm wheel is a generic ship fitting that belongs to any seafaring port. Standing-wheel art arrived with High Seas (2010); the object is not tied to any later skill or creature.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; does not steer anything",
+  "variantOf": null,
+  "id": "CN-NAU-001"
+ },
+ {
+  "slug": "ship-wheel-mounted",
+  "name": "Mounted Ship's Wheel",
+  "category": "NAU",
+  "subcategory": "Ship fittings",
+  "parts": [
+   {
+    "id": "0x46FE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x46FF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:carpentry",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A small spoked wheel pinned to the wall like a trophy of the sea, with a rope hitch round one handle.",
+  "era": {
+   "grade": "N",
+   "note": "A ship's wheel hung as wall decor is ordinary seaside dressing. Wall-wheel art appeared with High Seas (2010); the object reads as period nautical decor.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece",
+  "variantOf": null,
+  "id": "CN-NAU-002"
+ },
+ {
+  "slug": "chest-under-the-black-flag",
+  "name": "Corsair's Chest under the Black Flag",
+  "category": "NAU",
+  "subcategory": "Pirate trappings",
+  "parts": [
+   {
+    "id": "0xAFEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4102",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "pirate",
+   "nautical",
+   "treasure",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A tall sea chest planted beneath a black standard of skull and crossed swords, as a boarding party leaves its claim.",
+  "era": {
+   "grade": "N",
+   "note": "A skull-and-swords pennant over a sea chest is generic pirate dressing, made of independent props. The animated flag and tall chest art are later than April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "two statics; animated flag, decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-003"
+ },
+ {
+  "slug": "pirate-gun-post",
+  "name": "Pirate Gun Post",
+  "category": "NAU",
+  "subcategory": "Pirate trappings",
+  "parts": [
+   {
+    "id": "0xAFE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4225",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x421A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "pirate",
+   "nautical",
+   "martial",
+   "shipwreck",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A black flag of skull and bones snapping over a broadside gun and a neat pyramid of shot.",
+  "era": {
+   "grade": "N",
+   "note": "A skull-and-bones flag over a gun and shot is generic pirate dressing, made of independent props. Art is from High Seas and later item blocks.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "three statics on a 2x2 footprint; cannot fire",
+  "variantOf": null,
+  "id": "CN-NAU-004"
+ },
+ {
+  "slug": "corsairs-chest",
+  "name": "Corsair's Sea Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0x4102",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4106",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "pirate",
+   "treasure",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A tall, iron-strapped chest that has sailed more leagues than most men.",
+  "era": {
+   "grade": "N",
+   "note": "A sea chest is a generic seafarer's strongbox. This tall chest art arrived with Stygian Abyss and is purely decorative here.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-NAU-005"
+ },
+ {
+  "slug": "corsairs-chest-open",
+  "name": "Open Corsair's Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0x4105",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4109",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "pirate",
+   "treasure",
+   "shipwreck",
+   "town:buccaneers-den"
+  ],
+  "blurb": "The same battered chest with its lid thrown wide, long since emptied by someone quicker than you.",
+  "era": {
+   "grade": "N",
+   "note": "An opened sea chest is generic pirate dressing; the lid-up art is a variant of the same Stygian Abyss chest and is purely decorative.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; always empty",
+  "variantOf": null,
+  "id": "CN-NAU-006"
+ },
+ {
+  "slug": "barnacled-sea-chest",
+  "name": "Barnacle-Crusted Chest",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0xA30A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA30B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "pirate",
+   "treasure",
+   "swamp",
+   "town:ocllo"
+  ],
+  "blurb": "A metal-bound chest furred with barnacles and green weed, hauled from some drowned hold.",
+  "era": {
+   "grade": "N",
+   "note": "A chest crusted by the sea is generic shipwreck dressing, not specific to any event. The art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-NAU-007"
+ },
+ {
+  "slug": "trade-crate-canvas",
+  "name": "Merchant's Trade Crate",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0xA2C4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA2C5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "humble",
+   "rustic",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A stout crate lashed under canvas and stencilled for a far-off merchant house.",
+  "era": {
+   "grade": "N",
+   "note": "A canvas-lashed trade crate is generic shipping cargo. Art from a later item block; nothing in it is tied to a later system.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-NAU-008"
+ },
+ {
+  "slug": "dockside-crate-stack",
+  "name": "Stacked Dock Crates",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0xAA0D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA16",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "humble",
+   "rustic",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A tumbled stack of slatted crates waiting on the quay for a cart that is always late.",
+  "era": {
+   "grade": "N",
+   "note": "Stacked shipping crates are generic harbour clutter. The art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-NAU-009"
+ },
+ {
+  "slug": "fallen-barrel-staves",
+  "name": "Fallen Barrel Staves",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0x1EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1EB4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "shipwreck",
+   "rustic",
+   "humble",
+   "tavern"
+  ],
+  "blurb": "The curved staves of a burst barrel, heaped where the cask came apart.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of barrel staves is generic wreckage and cooper's stock. The tile is original item-block art the main catalog left out.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-010"
+ },
+ {
+  "slug": "small-crate-stack",
+  "name": "Small Stack of Crates",
+  "category": "NAU",
+  "subcategory": "Cargo and chests",
+  "parts": [
+   {
+    "id": "0xAC72",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAC73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "humble",
+   "rustic",
+   "town:cove"
+  ],
+  "blurb": "A few small crates stacked and roped, ready to be handed up a gangway.",
+  "era": {
+   "grade": "N",
+   "note": "A tidy stack of small shipping crates is generic cargo. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-011"
+ },
+ {
+  "slug": "ship-cannon-light",
+  "name": "Four-Pounder Ship's Gun",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x4216",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4219",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A light gun on a wooden truck, small enough for a cutter, loud enough for a customs man.",
+  "era": {
+   "grade": "N",
+   "note": "A ship's gun is a generic naval prop and the main catalog already uses cannons as scenery. This light-gun art arrived with High Seas (2010); it is decor only here.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; cannot fire",
+  "variantOf": null,
+  "id": "CN-NAU-012"
+ },
+ {
+  "slug": "ship-cannon-heavy",
+  "name": "Eighteen-Pounder Broadside Gun",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x421A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x421D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A black, brass-studded gun on a stout carriage, the sort that decides a sea fight.",
+  "era": {
+   "grade": "N",
+   "note": "A heavy ship's gun is a generic naval prop. The art arrived with High Seas (2010); here it is purely decorative.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; cannot fire",
+  "variantOf": null,
+  "id": "CN-NAU-013"
+ },
+ {
+  "slug": "ship-cannon-mortar",
+  "name": "Squat Black Gun",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0xA2C0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xA2C1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A short-barrelled, wide-mouthed black gun on a gilded carriage, made to throw shot a short way, hard.",
+  "era": {
+   "grade": "N",
+   "note": "A squat naval gun is a generic ship's weapon. Art is from a much later item block; decorative only.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; cannot fire",
+  "variantOf": null,
+  "id": "CN-NAU-014"
+ },
+ {
+  "slug": "round-shot-pyramid",
+  "name": "Pyramid of Round Shot",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x4225",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "martial",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "Iron round shot piled in a neat pyramid beside the gun, ready to be loaded.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of cannonballs is a generic gunnery prop. The art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-015"
+ },
+ {
+  "slug": "rammer-and-swab",
+  "name": "Rammer and Swab",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x4246",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4248",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "martial",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A long-handled rammer and a woolly swab, leaned together by the gun they serve.",
+  "era": {
+   "grade": "N",
+   "note": "A rammer and swab are generic gun-crew tools. Art arrived with High Seas (2010); decor only.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "two statics side by side",
+  "variantOf": null,
+  "id": "CN-NAU-016"
+ },
+ {
+  "slug": "slow-match-coil",
+  "name": "Coil of Slow Match",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x4628",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "martial",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A pale coil of slow-match cord, smouldering-ready for the gun captain.",
+  "era": {
+   "grade": "N",
+   "note": "A coil of fuse cord is a generic gunnery prop; art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; does not burn",
+  "variantOf": null,
+  "id": "CN-NAU-017"
+ },
+ {
+  "slug": "gun-deck-battery",
+  "name": "Gun Deck Battery",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x421A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4225",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4246",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4248",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A heavy gun with its shot, rammer and swab laid out, as if the crew had just stepped away from the guns.",
+  "era": {
+   "grade": "N",
+   "note": "A gun with its shot and tools is a generic naval vignette; the art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint; cannot fire",
+  "variantOf": null,
+  "id": "CN-NAU-018"
+ },
+ {
+  "slug": "navigators-star-chart",
+  "name": "Navigator's Star Chart",
+  "category": "NAU",
+  "subcategory": "Instruments and charts",
+  "parts": [
+   {
+    "id": "0xA1E5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA1E4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "scholar",
+   "elegant",
+   "craft:cartography"
+  ],
+  "blurb": "A scroll drawn with a compass rose and a scatter of stars, weighted flat with a wax seal.",
+  "era": {
+   "grade": "N",
+   "note": "A star chart or compass-rose scroll is a generic navigator's aid. Art is from a later item block; no later system is implied.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; opens nothing",
+  "variantOf": null,
+  "id": "CN-NAU-019"
+ },
+ {
+  "slug": "brass-porthole",
+  "name": "Brass Porthole",
+  "category": "NAU",
+  "subcategory": "Ship fittings",
+  "parts": [
+   {
+    "id": "0xA325",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA327",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:tinkering",
+   "town:cove"
+  ],
+  "blurb": "A round brass-rimmed porthole, glassed and dogged shut against the weather.",
+  "era": {
+   "grade": "N",
+   "note": "A porthole is a generic ship fitting and reads naturally in any sea-themed room. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece",
+  "variantOf": null,
+  "id": "CN-NAU-020"
+ },
+ {
+  "slug": "brass-porthole-open",
+  "name": "Open Brass Porthole",
+  "category": "NAU",
+  "subcategory": "Ship fittings",
+  "parts": [
+   {
+    "id": "0xA326",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA328",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:tinkering",
+   "town:cove"
+  ],
+  "blurb": "A brass porthole swung open on its hinge, as though to let in the sea air.",
+  "era": {
+   "grade": "N",
+   "note": "An opened porthole is a generic ship fitting and a variant of the closed one. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece",
+  "variantOf": null,
+  "id": "CN-NAU-021"
+ },
+ {
+  "slug": "mooring-bollard",
+  "name": "Rope-Wound Mooring Bollard",
+  "category": "NAU",
+  "subcategory": "Harbour fittings",
+  "parts": [
+   {
+    "id": "0xA467",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA468",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "rustic",
+   "humble",
+   "town:cove",
+   "town:ocllo"
+  ],
+  "blurb": "A squat iron bollard wound with hawser, where the quay holds its ships.",
+  "era": {
+   "grade": "N",
+   "note": "A mooring bollard is a generic harbour fitting. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-022"
+ },
+ {
+  "slug": "ship-in-a-bottle",
+  "name": "Ship in a Bottle",
+  "category": "NAU",
+  "subcategory": "Instruments and charts",
+  "parts": [
+   {
+    "id": "0xA322",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA321",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "whimsical",
+   "elegant",
+   "craft:carpentry",
+   "town:cove"
+  ],
+  "blurb": "A tiny ship, all masts and rigging, sealed inside a long glass bottle.",
+  "era": {
+   "grade": "N",
+   "note": "A ship in a bottle is a classic seafarer's craft, with no tie to any later content. The art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-023"
+ },
+ {
+  "slug": "harbour-light-tower",
+  "name": "Stone Harbour Light",
+  "category": "NAU",
+  "subcategory": "Harbour fittings",
+  "parts": [
+   {
+    "id": "0x4724",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "nautical",
+   "fire",
+   "elegant",
+   "town:cove"
+  ],
+  "blurb": "A slim stone lighthouse with a domed copper lantern room, its great lamp kept lit for ships coming home.",
+  "era": {
+   "grade": "N",
+   "note": "A lighthouse tower is a generic harbour structure. This stone-lighthouse art arrived with High Seas (2010) and is animated; it is very tall, for a hall or courtyard.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "animated lamp art; decor-only, very tall",
+  "variantOf": null,
+  "id": "CN-NAU-024"
+ },
+ {
+  "slug": "gunners-linstock",
+  "name": "Gunner's Linstock",
+  "category": "NAU",
+  "subcategory": "Gunnery",
+  "parts": [
+   {
+    "id": "0x4570",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4571",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "martial",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A long forked staff that holds a slow-match, so the gunner can fire from arm's length.",
+  "era": {
+   "grade": "N",
+   "note": "A linstock is a generic gun-crew tool. The art arrived with High Seas (2010); decor only.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-025"
+ },
+ {
+  "slug": "lobster-pot",
+  "name": "Lobster Pot",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0x44CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x44D0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble",
+   "rustic",
+   "town:ocllo"
+  ],
+  "blurb": "A slatted wooden lobster pot with a funnel door, hauled up dripping at dawn.",
+  "era": {
+   "grade": "N",
+   "note": "A lobster pot is a generic fisherman's trap with no tie to later content. The art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-026"
+ },
+ {
+  "slug": "lobster-buoy",
+  "name": "Lobster Buoy",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0x44CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "A bright painted float that bobbed above the pots, a little flag on a stick.",
+  "era": {
+   "grade": "N",
+   "note": "A marker buoy is a generic fisherman's float. The art arrived with High Seas (2010) and is a four-frame animation.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "animated float; decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-027"
+ },
+ {
+  "slug": "pot-and-buoy",
+  "name": "Lobster Pot and Buoy",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0x44CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x44CB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "rustic",
+   "town:ocllo",
+   "town:cove"
+  ],
+  "blurb": "A lobster pot set out beside its marker buoy, as the fisherman left it on the stones.",
+  "era": {
+   "grade": "N",
+   "note": "A trap and its float form a generic fisherman's pair. The art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "two statics side by side",
+  "variantOf": null,
+  "id": "CN-NAU-028"
+ },
+ {
+  "slug": "fresh-crab",
+  "name": "Fresh-Caught Crab",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0x44D1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x44D2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "craft:cooking",
+   "humble",
+   "town:ocllo"
+  ],
+  "blurb": "A hard-shelled crab with its claws tied, still waiting on the market slab.",
+  "era": {
+   "grade": "N",
+   "note": "A caught crab is a generic seafood item, not a creature or monster. The art arrived with High Seas (2010).",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-029"
+ },
+ {
+  "slug": "cooked-lobster",
+  "name": "Boiled Lobster",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0x9843",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9842",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "craft:cooking",
+   "tavern",
+   "town:ocllo"
+  ],
+  "blurb": "A lobster boiled red and laid on a plate, the pride of a harbour inn.",
+  "era": {
+   "grade": "N",
+   "note": "A cooked lobster is a generic table dish. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-030"
+ },
+ {
+  "slug": "fish-basket",
+  "name": "Basket of the Day's Catch",
+  "category": "NAU",
+  "subcategory": "Fishing and the catch",
+  "parts": [
+   {
+    "id": "0xA7AC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble",
+   "rustic",
+   "town:ocllo"
+  ],
+  "blurb": "A woven basket brimming with small, bright fish.",
+  "era": {
+   "grade": "N",
+   "note": "A basket of fish is a generic market item, not a creature. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-NAU-031"
+ },
+ {
+  "slug": "sea-fan-coral",
+  "name": "Pink Sea Fan",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA38C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A feathery pink sea fan, dried and set out as a curiosity from the reef.",
+  "era": {
+   "grade": "N",
+   "note": "A dried sea fan is a generic beachcomber's curio, like the shells already in the main catalog. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-032"
+ },
+ {
+  "slug": "staghorn-coral",
+  "name": "Staghorn Coral",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA38D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A pale, branching coral like a stag's antlers, bleached by the sun on the strand.",
+  "era": {
+   "grade": "N",
+   "note": "A coral specimen is a generic beachcomber's curio. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-033"
+ },
+ {
+  "slug": "red-tree-coral",
+  "name": "Red Tree Coral",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA38F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A knot of ruby-red coral, hard as bone and prized by the traders at Ocllo.",
+  "era": {
+   "grade": "N",
+   "note": "A red coral specimen is a generic beachcomber's curio. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-034"
+ },
+ {
+  "slug": "brain-coral",
+  "name": "Brain Coral",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0x4C2C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A round, grooved dome of coral, pale as bread dough.",
+  "era": {
+   "grade": "N",
+   "note": "A brain coral is a generic beachcomber's curio. Art is from the Stygian Abyss-era block.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-035"
+ },
+ {
+  "slug": "orange-sea-sponge",
+  "name": "Orange Sea Sponge",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA389",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "exotic",
+   "humble",
+   "town:ocllo",
+   "craft:fishing"
+  ],
+  "blurb": "A soft orange sponge, dried hard and kept by the washtub.",
+  "era": {
+   "grade": "N",
+   "note": "A bath sponge is a generic seaside curio and household object. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-036"
+ },
+ {
+  "slug": "tube-sponge-cluster",
+  "name": "Tube Sponge Cluster",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA38A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A cluster of rust-orange tube sponges, hollow as organ pipes.",
+  "era": {
+   "grade": "N",
+   "note": "A dried sponge cluster is a generic beachcomber's curio. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-037"
+ },
+ {
+  "slug": "dried-starfish",
+  "name": "Dried Starfish",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA395",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "exotic",
+   "humble",
+   "whimsical",
+   "town:ocllo"
+  ],
+  "blurb": "A fat five-armed starfish, white and red-studded, dried flat on the window-sill.",
+  "era": {
+   "grade": "N",
+   "note": "A dried starfish is a generic beachcomber's souvenir, not a creature statue. Art is from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-NAU-038"
+ },
+ {
+  "slug": "tide-pool-curios",
+  "name": "Tide Pool Curios",
+  "category": "NAU",
+  "subcategory": "Shells and sea life",
+  "parts": [
+   {
+    "id": "0xA38C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA395",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA38D",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA388",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "exotic",
+   "scholar",
+   "town:ocllo"
+  ],
+  "blurb": "A collector's spread of sea fan, starfish, coral and urchin, as found along a rocky shore.",
+  "era": {
+   "grade": "N",
+   "note": "A beachcomber's collection of shore finds is generic seaside dressing. Art is from later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-NAU-039"
+ },
+ {
+  "slug": "quarterdeck-corner",
+  "name": "Quarterdeck Corner",
+  "category": "NAU",
+  "subcategory": "Ship fittings",
+  "parts": [
+   {
+    "id": "0x46FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xAFE3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA12C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA467",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "nautical",
+   "pirate",
+   "martial",
+   "elegant",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A helm, a captain's telescope, a bollard and a black flag: everything a pirate needs to command a corner of a house.",
+  "era": {
+   "grade": "N",
+   "note": "A helm, telescope, bollard and flag form a generic pirate-ship vignette made of independent props. Art is from High Seas and later item blocks.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-NAU-040"
+ }
+]

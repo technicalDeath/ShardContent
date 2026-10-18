@@ -1,0 +1,54 @@
+{
+  "note": "Which of the 100 the Britain Furnisher sells in version 1 (owner, 2026-10-08: 'a selection of each rarity'; other vendors later). Rule used: one piece per wing at each of Common, Uncommon and Scarce, then six Rare, four Extremely Rare and three Wonders (the Great Hall Table, the Fieldstone Home Hearth and the Great Hall Carpet) spread across the wings. Everything else stays designed and photographed but is not on sale until another vendor exists.",
+  "furnisher-britain": {
+    "1": [
+      "CR-FRN-037",
+      "CR-FRN-011",
+      "CR-TBL-011",
+      "CR-RUG-002",
+      "CN-LGT-020",
+      "CR-TBL-042",
+      "CR-WLH-017",
+      "CN-CUR-013"
+    ],
+    "2": [
+      "CN-FRN-016",
+      "CR-FRN-010",
+      "CR-FOO-039",
+      "CR-RUG-010",
+      "CN-LGT-015",
+      "CR-LIB-011",
+      "CR-WLH-013",
+      "CN-CUR-003"
+    ],
+    "3": [
+      "CR-FRN-028",
+      "CR-FRN-026",
+      "CR-TBL-013",
+      "CR-RUG-012",
+      "CN-LGT-003",
+      "CN-TBL-016",
+      "CR-WLH-031",
+      "CN-CUR-002"
+    ],
+    "4": [
+      "CR-FRN-029",
+      "CR-FRN-027",
+      "CR-TBL-007",
+      "CR-RUG-020",
+      "CR-LGT-037",
+      "CN-LIB-001"
+    ],
+    "5": [
+      "CN-FRN-019",
+      "CR-TBL-022",
+      "CN-RUG-004",
+      "CN-LGT-002"
+    ],
+    "6": [
+      "CR-TBL-010",
+      "CN-LGT-001",
+      "CR-RUG-023"
+    ]
+  }
+}

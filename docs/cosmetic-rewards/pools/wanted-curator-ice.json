@@ -1,0 +1,47 @@
+{
+ "pool": "wanted-curator-ice",
+ "system": "wanted-curator",
+ "notes": "The Ice dungeon is snow, frost and stone gone blue. The set is built from the A-grade winter spires and snow crags, with a frozen hearth and a white pelt, and the Frostspire Ring as the showpiece. There is no extremely rare ice piece, so the boss is a rare; Ice Spire is held by the ice-elemental Nemesis trophy.",
+ "entries": [
+  {
+   "id": "CR-SEA-009",
+   "tier": "easy",
+   "why": "Snow-capped crags through the drifts."
+  },
+  {
+   "id": "CR-SEA-008",
+   "tier": "easy",
+   "why": "Lumpy snow drift against a doorway."
+  },
+  {
+   "id": "CR-GRV-022",
+   "tier": "medium",
+   "why": "Blue-grey slate slab, ice-cold."
+  },
+  {
+   "id": "CR-TRO-022",
+   "tier": "medium",
+   "why": "Snow-white fur pelt from the far north."
+  },
+  {
+   "id": "CR-SEA-010",
+   "tier": "hard",
+   "why": "Tall jagged spires of frozen snow."
+  },
+  {
+   "id": "CR-LGT-038",
+   "tier": "hard",
+   "why": "Frostbrick fireplace in blue-grey stone."
+  },
+  {
+   "id": "CR-SEA-012",
+   "tier": "hard",
+   "why": "Frozen hollow of arched snow crags."
+  },
+  {
+   "id": "CR-SEA-013",
+   "tier": "boss",
+   "why": "Frostspire Ring, four towering spires around a ring."
+  }
+ ]
+}

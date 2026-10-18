@@ -1,0 +1,2185 @@
+[
+ {
+  "slug": "grinning-jack-o-lantern",
+  "name": "Grinning Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x4691",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A fat pumpkin with a lopsided grin and a candle glowing behind its eyes, set out to keep the dark honest.",
+  "era": {
+   "grade": "N",
+   "note": "Plain carved pumpkin with a candle glow; folk custom, no creature or expansion tie. Art (0x4691, glowing animated frame) is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x4691 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-001"
+ },
+ {
+  "slug": "toothy-jack-o-lantern",
+  "name": "Toothy Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xACBE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A squat, round-bellied lantern grinning through two rows of square teeth.",
+  "era": {
+   "grade": "N",
+   "note": "A carved pumpkin lantern is plain folk custom, tied to no creature, race or expansion; the Hallows-tide candle-in-a-gourd reads as ordinary Britannian dressing. Art is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xACBE (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-002"
+ },
+ {
+  "slug": "broad-grin-jack-o-lantern",
+  "name": "Broad-Grin Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xACD2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A lantern with a mouth as wide as a harvest moon and not a care in the world.",
+  "era": {
+   "grade": "N",
+   "note": "A carved pumpkin lantern is plain folk custom, tied to no creature, race or expansion; the Hallows-tide candle-in-a-gourd reads as ordinary Britannian dressing. Art is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xACD2 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-003"
+ },
+ {
+  "slug": "mournful-jack-o-lantern",
+  "name": "Mournful Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xACE2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "Droopy eyes and a drooping mouth: the saddest pumpkin in all Britannia, glowing sadly through the night.",
+  "era": {
+   "grade": "N",
+   "note": "A carved pumpkin lantern is plain folk custom, tied to no creature, race or expansion; the Hallows-tide candle-in-a-gourd reads as ordinary Britannian dressing. Art is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xACE2 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-004"
+ },
+ {
+  "slug": "owl-jack-o-lantern",
+  "name": "Owl Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9F24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A pumpkin carved with a wide-eyed owl perched in a window of candlelight.",
+  "era": {
+   "grade": "N",
+   "note": "Pumpkin carved with an owl silhouette; owls are ordinary woodland fowl. Generic seasonal decor; art 0x9F24 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x9F24 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-005"
+ },
+ {
+  "slug": "black-cat-jack-o-lantern",
+  "name": "Black Cat Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9F28",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A cat's pointed ears and whiskers cut into a pumpkin, glowing like a hearth-side tabby.",
+  "era": {
+   "grade": "N",
+   "note": "Pumpkin carved with a cat's face; house cats are everyday folk. Generic seasonal decor, art 0x9F28 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x9F28 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-006"
+ },
+ {
+  "slug": "welcome-jack-o-lantern",
+  "name": "Welcome Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA5E5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "The word WELCOME carved in flickering letters: a friendly lantern for a doorstep, or a trap.",
+  "era": {
+   "grade": "N",
+   "note": "Pumpkin carved with the word Welcome; a doorstep custom with no expansion tie. Art 0xA5E5 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA5E5 (lit); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-007"
+ },
+ {
+  "slug": "skull-jack-o-lantern",
+  "name": "Skull Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA166",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "macabre",
+   "undead",
+   "fire"
+  ],
+  "blurb": "A real skull seems to grin out of a split pumpkin, red-eyed and fire-lit.",
+  "era": {
+   "grade": "N",
+   "note": "Skulls and bone ornaments read as ordinary dark-magic dressing in 2000 Britannia; the pumpkin is plain harvest folk custom. Art 0xA166 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA166 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-008"
+ },
+ {
+  "slug": "tongue-out-jack-o-lantern",
+  "name": "Tongue-Out Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA16A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A squinting pumpkin sticks out a long orange tongue at every passer-by.",
+  "era": {
+   "grade": "N",
+   "note": "Whimsical carved pumpkin with no creature, race or expansion tie. Art 0xA16A is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA16A (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-009"
+ },
+ {
+  "slug": "two-faced-jack-o-lantern",
+  "name": "Two-Faced Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA16E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "macabre",
+   "fire"
+  ],
+  "blurb": "Half the pumpkin smiles, half is sour and rotten: you never quite know which face to trust.",
+  "era": {
+   "grade": "N",
+   "note": "Pumpkin carved with two faces, a generic folk motif tied to no creature or expansion. Art 0xA16E is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA16E (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-010"
+ },
+ {
+  "slug": "kraken-jack-o-lantern",
+  "name": "Kraken Jack-o'-Lantern",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA397",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "A pumpkin carved with a curling many-armed beast of the deep, its tentacles aglow.",
+  "era": {
+   "grade": "N",
+   "note": "Pumpkin carved with a sea-monster's tentacles; sea serpents and krakens are sailors' legends, not a specific later creature. Art 0xA397 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA397 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-011"
+ },
+ {
+  "slug": "great-dragon-pumpkin",
+  "name": "Great Dragon Pumpkin",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA199",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "dragon",
+   "fire"
+  ],
+  "blurb": "A prodigious pumpkin, carved from stem to base with a coiling wyrm breathing fire across its hide.",
+  "era": {
+   "grade": "N",
+   "note": "A huge carved pumpkin showing a dragon; dragons existed by 2000 and the pumpkin is plain folk custom. Art 0xA199 (lit, animated) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA199 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-012"
+ },
+ {
+  "slug": "witch-carved-tall-pumpkin",
+  "name": "Witch-Carved Tall Pumpkin",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9931",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "arcane",
+   "fire"
+  ],
+  "blurb": "A tall oval pumpkin with a witch on her broomstick cut in silhouette against the candle glow.",
+  "era": {
+   "grade": "N",
+   "note": "A witch-on-broom silhouette is folk Hallows-tide dressing, not a specific later class or skill. Art 0x9931 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x9931 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-013"
+ },
+ {
+  "slug": "carved-pumpkin-trio",
+  "name": "Carved Pumpkin Trio",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9946",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9942",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x993E",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "macabre",
+   "fire"
+  ],
+  "blurb": "Three tall pumpkins in a huddle: one with a skull, one with a bat and one with a spider, all burning orange.",
+  "era": {
+   "grade": "N",
+   "note": "Three carved tall pumpkins (skull, bat, spider): ordinary dark-magic dressing with no creature or expansion tie. Art is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "addon",
+  "implNote": "three lit carved pumpkins (0x9946, 0x9942, 0x993E); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-014"
+ },
+ {
+  "slug": "white-pumpkin-black-cat",
+  "name": "White Pumpkin with Black Cat",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xB261",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A pale ghost-white pumpkin with a black cat curled on its glowing side.",
+  "era": {
+   "grade": "N",
+   "note": "White pumpkin carved with a curled cat; plain folk dressing, no expansion tie. Art 0xB261 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xB261 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-015"
+ },
+ {
+  "slug": "white-pumpkin-ghost",
+  "name": "White Pumpkin with Ghost",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xB4FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "undead",
+   "fire"
+  ],
+  "blurb": "A pale gourd with a little white spirit carved into its flank, floating in candlelight.",
+  "era": {
+   "grade": "N",
+   "note": "White pumpkin carved with a plain sheeted ghost; ghosts are ordinary folk-tale fare. Art 0xB4FD is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xB4FD (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-016"
+ },
+ {
+  "slug": "pumpkin-stack",
+  "name": "Pumpkin Stack",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x6407",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "season:harvest",
+   "rustic"
+  ],
+  "blurb": "Two pumpkins stacked fat-over-slim, topped with a stalk, like a squat orange snowman.",
+  "era": {
+   "grade": "N",
+   "note": "A balanced stack of plain pumpkins; harvest dressing with no expansion tie. Art 0x6407 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-017"
+ },
+ {
+  "slug": "pumpkin-farmer",
+  "name": "Pumpkin Farmer",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x640A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "season:harvest",
+   "whimsical",
+   "rustic"
+  ],
+  "blurb": "A scarecrow built of two pumpkins, a carved grin, a battered hat and a pitchfork propped at his side.",
+  "era": {
+   "grade": "N",
+   "note": "A pumpkin-bodied scarecrow with hat and pitchfork; scarecrows and gourd men are field folklore. Art 0x640A/0x640B is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x640B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-018"
+ },
+ {
+  "slug": "jumbo-pumpkin",
+  "name": "Jumbo Pumpkin",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9D2B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x9D2D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9D2C",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "season:harvest",
+   "rustic"
+  ],
+  "blurb": "A prize pumpkin the size of a hay cart, ribbed and golden with a curling green stem.",
+  "era": {
+   "grade": "N",
+   "note": "A giant prize pumpkin: plain harvest decor with no expansion tie, assembled from three tile slices. Art 0x9D2B-0x9D2D is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "three statics: 0x9D2B, 0x9D2D, 0x9D2C; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-019"
+ },
+ {
+  "slug": "fanged-pumpkin-vine",
+  "name": "Fanged Pumpkin Vine",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA9BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "garden"
+  ],
+  "blurb": "A pumpkin that has grown fangs and thorny vines, snapping at anything that wanders near the patch.",
+  "era": {
+   "grade": "N",
+   "note": "A fanged pumpkin on a vine, a whimsical garden-gone-wrong motif with no creature or expansion tie. Art 0xA9BE is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9BF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-020"
+ },
+ {
+  "slug": "pumpkin-candy-bowl",
+  "name": "Pumpkin Candy Bowl",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x6401",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "humble"
+  ],
+  "blurb": "A hollowed pumpkin bowl heaped with blue and orange sweets for the children who come knocking.",
+  "era": {
+   "grade": "N",
+   "note": "A pumpkin-shaped bowl of sweets; generic seasonal tableware. Art 0x6401 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-021"
+ },
+ {
+  "slug": "black-iron-cauldron",
+  "name": "Black Iron Cauldron",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA5B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "arcane",
+   "craft:alchemy"
+  ],
+  "blurb": "A squat black cauldron on three stumpy legs, rimmed in rust, deep enough to brew a hag's best.",
+  "era": {
+   "grade": "N",
+   "note": "A plain iron cauldron; cooking and brewing pots are everyday kit. Generic Halloween dressing; art 0xA5B4 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA5B4; decor-only (empty, no contents)",
+  "variantOf": null,
+  "id": "CN-SEA-022"
+ },
+ {
+  "slug": "haunted-scarecrow",
+  "name": "Haunted Scarecrow",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x469B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "macabre",
+   "rustic"
+  ],
+  "blurb": "A ragged black scarecrow with outstretched arms and a pumpkin for a head, rattling in the wind.",
+  "era": {
+   "grade": "N",
+   "note": "A ragged pumpkin-headed scarecrow; scarecrows are ordinary field fixtures. Art 0x469B is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-023"
+ },
+ {
+  "slug": "flaming-scarecrow",
+  "name": "Flaming Scarecrow",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0x9F3A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "fire",
+   "rustic"
+  ],
+  "blurb": "A farmhand's scarecrow with its straw head set alight, burning bright over the stubble.",
+  "era": {
+   "grade": "N",
+   "note": "A burning scarecrow, a harvest-bonfire custom with no expansion tie. Art 0x9F3A/0x9F34 (animated flame frames) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphics 0x9F3A south / 0x9F34 east (animated flame); decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9F34",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-024"
+ },
+ {
+  "slug": "ghost-yard-ornament",
+  "name": "Ghost Yard Ornament",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA622",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "whimsical",
+   "undead"
+  ],
+  "blurb": "A sheeted ghost cut from painted board and stood on a stake in the front garden to startle callers.",
+  "era": {
+   "grade": "N",
+   "note": "A painted board ghost on a stake; flat yard decoration, not a creature statuette. Art 0xA622/0xA623 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA623",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-025"
+ },
+ {
+  "slug": "pumpkin-figurehead",
+  "name": "Pumpkin-Headed Figurehead",
+  "category": "SEA",
+  "subcategory": "Halloween",
+  "parts": [
+   {
+    "id": "0xA403",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "festive",
+   "season:halloween",
+   "nautical",
+   "shipwreck",
+   "macabre"
+  ],
+  "blurb": "A great carved prow-figure with a glowering pumpkin head, draped in weed and rotting vine, torn from some haunted hull.",
+  "era": {
+   "grade": "N",
+   "note": "A pumpkin-headed ship's figurehead wrapped in weed: nautical decor and Halloween folklore with no expansion tie. Art 0xA403-0xA406 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xA404",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0xA405",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA406",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-026"
+ },
+ {
+  "slug": "snowman",
+  "name": "Snowman",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2328",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "whimsical",
+   "ice"
+  ],
+  "blurb": "A round snowman in a top hat and scarf, twig arms outstretched and a carrot nose pointing the way.",
+  "era": {
+   "grade": "N",
+   "note": "A snowman is a generic winter figure tied to no creature or expansion. Art 0x2328/0x2329 first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2329",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-027"
+ },
+ {
+  "slug": "silver-gift-boxes",
+  "name": "Silver Gift Boxes",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x232B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x232A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x232B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "Three boxes wrapped in white paper and gold ribbon, one perched on another, waiting beneath the tree.",
+  "era": {
+   "grade": "N",
+   "note": "Plain wrapped presents; gift-giving is generic. Art 0x232A/0x232B first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "addon",
+  "implNote": "3 statics laid out as an addon; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-028"
+ },
+ {
+  "slug": "presents-under-the-tree",
+  "name": "Presents Under the Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x46A5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x46A2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x46A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "A cluster of wrapped presents: a blue-ribboned cube, a round box with a green bow and a long red-ribboned parcel.",
+  "era": {
+   "grade": "N",
+   "note": "A jumble of wrapped presents; generic festive dressing. Art 0x46A2-0x46A7 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "addon",
+  "implNote": "3 statics laid out as an addon; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-029"
+ },
+ {
+  "slug": "mounded-presents",
+  "name": "Mounded Presents",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DCB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "A glittering heap of gift boxes of every size and colour, piled until the top ones teeter.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of wrapped presents; generic festive dressing. Art 0x9DCB is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-030"
+ },
+ {
+  "slug": "red-gift-sack",
+  "name": "Red Gift Sack",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "A fat red sack with a knotted yellow cord, stuffed with parcels for good children.",
+  "era": {
+   "grade": "N",
+   "note": "A plain red sack of gifts, no named character. Art 0x9DB5 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-031"
+ },
+ {
+  "slug": "holly-wreath",
+  "name": "Holly Wreath",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xA12F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A thick wreath of holly and evergreen, dotted with red berries and tied with a silver ribbon.",
+  "era": {
+   "grade": "N",
+   "note": "A holly wreath is a generic winter door decoration. Art 0xA12E/0xA12F is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA12E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-032"
+ },
+ {
+  "slug": "red-poinsettia",
+  "name": "Red Poinsettia",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2330",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "garden"
+  ],
+  "blurb": "Scarlet bracts and green leaves in a yellow clay pot: winter's best-loved houseplant.",
+  "era": {
+   "grade": "N",
+   "note": "A potted poinsettia is a generic winter houseplant. Art 0x2330 first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-033"
+ },
+ {
+  "slug": "holiday-candle",
+  "name": "Holiday Candle",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x236E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A tall candle in a brass holder, wrapped round with a silver ribbon bow.",
+  "era": {
+   "grade": "N",
+   "note": "A decorated candle is generic seasonal lighting. Art 0x236E (animated flame) first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x236E (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-034"
+ },
+ {
+  "slug": "holly-candle-cluster",
+  "name": "Holly Candle Cluster",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xA7C6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "Three white candles in a nest of holly and red berries, flickering at different heights.",
+  "era": {
+   "grade": "N",
+   "note": "A candle-and-holly centrepiece is generic winter dressing. Art 0xA7C6 (animated flame) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA7C6 (lit, animated); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-035"
+ },
+ {
+  "slug": "mistletoe",
+  "name": "Mistletoe",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2374",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ceiling",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "garden",
+   "whimsical"
+  ],
+  "blurb": "A sprig of mistletoe with white berries, tied with a bow and hung where lovers will pass.",
+  "era": {
+   "grade": "N",
+   "note": "Mistletoe is a generic winter custom. Art 0x2374/0x2375 first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-036"
+ },
+ {
+  "slug": "green-christmas-stocking",
+  "name": "Green Christmas Stocking",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2BD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "A green knitted stocking with a white cuff and a little gingerbread man on its toe, hung for filling.",
+  "era": {
+   "grade": "N",
+   "note": "A knitted holiday stocking is a generic winter custom. Art 0x2BD9-0x2BDC first appeared with the 2003 holiday stockings (unnamed tiles).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2BDA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-037"
+ },
+ {
+  "slug": "red-christmas-stocking",
+  "name": "Red Christmas Stocking",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2BDB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble"
+  ],
+  "blurb": "A red stocking with a fur-white cuff and a holly leaf on the toe, slung from the mantel.",
+  "era": {
+   "grade": "N",
+   "note": "A knitted holiday stocking is a generic winter custom. Art 0x2BDB/0x2BDC first appeared with the 2003 holiday stockings (unnamed tiles).",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2BDC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-038"
+ },
+ {
+  "slug": "grand-holiday-tree",
+  "name": "Grand Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DB8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A towering dark-green fir hung with baubles of every colour, fit for a town square.",
+  "era": {
+   "grade": "N",
+   "note": "A decorated winter fir is a generic festive tree. Art 0x9DB8 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-039"
+ },
+ {
+  "slug": "grand-holiday-tree-lit",
+  "name": "Grand Holiday Tree, Lit",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "forest",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "The tall holiday fir strung with twinkling lights that wink in turn down its branches.",
+  "era": {
+   "grade": "N",
+   "note": "A decorated, illuminated winter fir is a generic festive tree. Art 0x9DBB (animated lights) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x9DBB (animated lights); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-040"
+ },
+ {
+  "slug": "flocked-holiday-tree",
+  "name": "Flocked Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DD2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "forest",
+   "ice"
+  ],
+  "blurb": "A fir frosted white from root to crown with a bright star blazing at the very top.",
+  "era": {
+   "grade": "N",
+   "note": "A snow-flocked winter fir is a generic festive tree. Art 0x9DD2 (twinkling star) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x9DD2 (animated star); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-041"
+ },
+ {
+  "slug": "candlelit-holiday-tree",
+  "name": "Candlelit Holiday Tree",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xADE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A slender evergreen strung with glittering lights and small ornaments, glowing warm in the dark.",
+  "era": {
+   "grade": "N",
+   "note": "A lit and decorated winter evergreen is a generic festive tree. Art 0xADE4 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-042"
+ },
+ {
+  "slug": "ribbon-wrapped-evergreen",
+  "name": "Ribbon-Wrapped Evergreen",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xA4CF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "forest",
+   "elegant"
+  ],
+  "blurb": "A dense green fir gift-wrapped in broad silver ribbons and one enormous bow.",
+  "era": {
+   "grade": "N",
+   "note": "A fir wrapped in a ribbon and bow is generic seasonal decor. Art 0xA4CF is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-043"
+ },
+ {
+  "slug": "potted-snowy-spruce",
+  "name": "Potted Snowy Spruce",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x2377",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "garden",
+   "ice"
+  ],
+  "blurb": "A cone of spruce dusted with snow in a brass pot, a touch of the frozen north indoors.",
+  "era": {
+   "grade": "N",
+   "note": "A snow-dusted potted conifer is a generic winter houseplant. Art 0x2377 first appeared in the 2003 winter gift set.",
+   "artEra": "AoS"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-044"
+ },
+ {
+  "slug": "red-bauble-garland",
+  "name": "Red Bauble Garland",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xAFCB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "elegant"
+  ],
+  "blurb": "A looping strand of green leaf with red glass baubles, hung along a beam or a mantel.",
+  "era": {
+   "grade": "N",
+   "note": "A hanging garland of baubles is a generic festive decoration. Art 0xAFCB-0xAFD0 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAFCC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-045"
+ },
+ {
+  "slug": "giant-candy-cane",
+  "name": "Giant Candy Cane",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "whimsical",
+   "humble"
+  ],
+  "blurb": "A candy cane as tall as a child, striped red and white and bound with a red bow.",
+  "era": {
+   "grade": "N",
+   "note": "An oversized candy cane is a generic winter sweet and decoration. Art 0x9DC3 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-046"
+ },
+ {
+  "slug": "candy-cane-lamp-post",
+  "name": "Candy Cane Lamp Post",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xAFD1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "whimsical",
+   "fire"
+  ],
+  "blurb": "A lamp post twisted like a candy cane, with a red lantern glowing at its crook.",
+  "era": {
+   "grade": "N",
+   "note": "A candy-striped lamp post is a generic festive fixture. Art 0xAFD1 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xAFD1 (lantern lit); decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-047"
+ },
+ {
+  "slug": "holiday-sleigh",
+  "name": "Holiday Sleigh",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x9DC5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "festive",
+   "season:winter",
+   "elegant"
+  ],
+  "blurb": "A red-lacquered sleigh strung with tiny lights, its runners curling like the crest of a wave.",
+  "era": {
+   "grade": "N",
+   "note": "A decorated sleigh is a generic winter conveyance; the reindeer team is deliberately left out. Art 0x9DC5 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-048"
+ },
+ {
+  "slug": "holiday-sled",
+  "name": "Holiday Sled",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xB270",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "festive",
+   "season:winter",
+   "humble",
+   "ice"
+  ],
+  "blurb": "A little wooden sled with a bow of holly across the top, itching for a snowy hill.",
+  "era": {
+   "grade": "N",
+   "note": "A decorated child's sled is generic winter dressing. Art 0xB270/0xB271 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB271",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-049"
+ },
+ {
+  "slug": "nutcracker-soldier",
+  "name": "Nutcracker Soldier",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0x46F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:winter",
+   "martial",
+   "whimsical"
+  ],
+  "blurb": "A tall painted nutcracker in blue coat and red cap, rifle-straight at the post.",
+  "era": {
+   "grade": "N",
+   "note": "A toy-soldier nutcracker is a generic winter ornament. Art 0x46F2-0x46F7 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x46F2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-050"
+ },
+ {
+  "slug": "mini-igloo",
+  "name": "Mini Igloo",
+  "category": "SEA",
+  "subcategory": "Winter",
+  "parts": [
+   {
+    "id": "0xB04F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:winter",
+   "ice",
+   "whimsical"
+  ],
+  "blurb": "A little dome of packed snow blocks with a low doorway, big enough for a dog or a very small mage.",
+  "era": {
+   "grade": "N",
+   "note": "A snow igloo is a generic northern shelter. Art 0xB04F/0xB050 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB050",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-051"
+ },
+ {
+  "slug": "pumpkin-patch-vines",
+  "name": "Pumpkin Patch Vines",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0xA8DE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "festive",
+   "season:harvest",
+   "garden",
+   "rustic"
+  ],
+  "blurb": "A tangle of green vine with a fat crop of orange pumpkins ripening in the leaves.",
+  "era": {
+   "grade": "N",
+   "note": "A patch of ripe pumpkins on the vine is ordinary farm scenery. Art 0xA8DE is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-052"
+ },
+ {
+  "slug": "hay-bundle",
+  "name": "Hay Bundle",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x100C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A tied bundle of golden hay, bound at the waist and standing on its cut end.",
+  "era": {
+   "grade": "N",
+   "note": "A tied bundle of hay; classic farm fixture. Art 0x100C is early client art.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-053"
+ },
+ {
+  "slug": "harvest-pumpkin-barrel",
+  "name": "Harvest Pumpkin Barrel",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x640C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "season:harvest",
+   "season:halloween",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A hooped oak barrel heaped with pumpkins and yellow squash straight from the field.",
+  "era": {
+   "grade": "N",
+   "note": "A barrel of autumn squash; ordinary farm produce. Art 0x640C is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-SEA-054"
+ },
+ {
+  "slug": "pumpkin-market-rack",
+  "name": "Pumpkin Market Rack",
+  "category": "SEA",
+  "subcategory": "Harvest",
+  "parts": [
+   {
+    "id": "0x641F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x6420",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "festive",
+   "season:harvest",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A tiered wooden display rack stacked with pumpkins, gourds and squash of every shape and colour.",
+  "era": {
+   "grade": "N",
+   "note": "A tiered produce rack, ordinary market fixture. Art 0x641F-0x6422 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "2 statics laid out as an addon; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x6421",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x6422",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-SEA-055"
+ }
+]

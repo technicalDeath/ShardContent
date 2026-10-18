@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-moonglow",
+ "system": "expedition",
+ "notes": "Scholars and mages: a crystal ball, wand and mage's sign for the core; the rares are the Moonglow Orrery, the town's stone fountain, a moongate display, a scholar's nook and Scholars' Row, the row of hanging shop signs. The Orrery is era grade C (no dated record of the art) but it is the town's one-of-a-kind landmark and would be missed.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-ALC-014",
+   "why": "Crystal ball for the seer's table"
+  },
+  {
+   "role": "core",
+   "id": "CR-ALC-047",
+   "why": "Gold-tipped wand, a mage's tool"
+  },
+  {
+   "role": "core",
+   "id": "CR-TWN-006",
+   "why": "Mage's sign over the door"
+  },
+  {
+   "role": "rare",
+   "id": "CR-LIB-037",
+   "why": "Moonglow Orrery, 11x11 brass telescope on a runed dais (grade C, see notes)"
+  },
+  {
+   "role": "rare",
+   "id": "CR-WTR-001",
+   "why": "Moonglow's stone fountain, 4x4"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ALC-022",
+   "why": "Blue moongate display, the town's namesake"
+  },
+  {
+   "role": "rare",
+   "id": "CR-LIB-044",
+   "why": "Scholar's nook with desk, lamp and shelf, 2x2"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TWN-035",
+   "why": "Scholars' Row, 4x1 hanging signs of the Lycaeum quarter"
+  }
+ ]
+}

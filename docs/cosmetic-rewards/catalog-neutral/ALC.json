@@ -1,0 +1,1144 @@
+[
+ {
+  "slug": "silvered-orrery",
+  "name": "Silvered Orrery",
+  "category": "ALC",
+  "subcategory": "Orreries and book stands",
+  "parts": [
+   {
+    "id": "0xA17B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "An orrery cast in bright silver, the sort of gift a king gives a wizard when he wants a favour.",
+  "era": {
+   "grade": "N",
+   "note": "A silver-finished orrery, a scholar's instrument with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "brass-orrery",
+  "id": "CN-ALC-001"
+ },
+ {
+  "slug": "gilded-dragon-book-stand",
+  "name": "Gilded Dragon Book Stand",
+  "category": "ALC",
+  "subcategory": "Orreries and book stands",
+  "parts": [
+   {
+    "id": "0xA588",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA58E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "scholar",
+   "elegant",
+   "dragon"
+  ],
+  "blurb": "A gilded dragon rears over a pair of golden orbs and holds an open book aloft, wings spread to keep the pages steady.",
+  "era": {
+   "grade": "N",
+   "note": "A gilded book stand shaped like a dragon is a generic study ornament, not a creature figurine and not tied to a later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-002"
+ },
+ {
+  "slug": "alchemists-workbench",
+  "name": "Alchemist's Workbench",
+  "category": "ALC",
+  "subcategory": "Bookcases and workbenches",
+  "parts": [
+   {
+    "id": "0x9D8B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D96",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A cluttered workbench with bubbling red globes, coloured vials, scattered recipes and a small skull supervising it all.",
+  "era": {
+   "grade": "N",
+   "note": "An alchemist's bench dressed with glassware and a skull is ordinary laboratory dressing; the craft sat in the era. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-003"
+ },
+ {
+  "slug": "potion-vat",
+  "name": "Potion Vat",
+  "category": "ALC",
+  "subcategory": "Cauldrons and vats",
+  "parts": [
+   {
+    "id": "0xA84B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "rustic"
+  ],
+  "blurb": "A squat barrel vat with a loose lid, a ladle and a smell that you only remember after you step away.",
+  "era": {
+   "grade": "N",
+   "note": "A barrel vat for brewing potions is ordinary apothecary dressing. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-004"
+ },
+ {
+  "slug": "tipped-cauldron",
+  "name": "Tipped Cauldron",
+  "category": "ALC",
+  "subcategory": "Cauldrons and vats",
+  "parts": [
+   {
+    "id": "0xB163",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "whimsical",
+   "macabre"
+  ],
+  "blurb": "A cauldron lying on its side with a pale powder and a purple something-or-other spilling out.",
+  "era": {
+   "grade": "N",
+   "note": "A spilled cauldron is plain apothecary and witch dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-005"
+ },
+ {
+  "slug": "pewter-stew-pot",
+  "name": "Pewter Stew Pot",
+  "category": "ALC",
+  "subcategory": "Cauldrons and vats",
+  "parts": [
+   {
+    "id": "0x42BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "craft:cooking",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A big two-handled pewter pot, as good for a brew as for a stew and a great deal easier to carry than a cauldron.",
+  "era": {
+   "grade": "N",
+   "note": "A big pewter pot is plain kitchen and apothecary ware, tied to nothing later. Art is post-era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-006"
+ },
+ {
+  "slug": "crystal-ball-on-a-pedestal",
+  "name": "Crystal Ball on a Pedestal",
+  "category": "ALC",
+  "subcategory": "Scrying orbs",
+  "parts": [
+   {
+    "id": "0xB007",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "elegant",
+   "exotic",
+   "scholar"
+  ],
+  "blurb": "A grey crystal ball on a spiral stem and a tiered foot, tall enough to look the seer straight in the eye.",
+  "era": {
+   "grade": "N",
+   "note": "A crystal ball on a stand is classic fortune-teller dressing, tied to no later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-007"
+ },
+ {
+  "slug": "starlit-scrying-orb",
+  "name": "Starlit Scrying Orb",
+  "category": "ALC",
+  "subcategory": "Scrying orbs",
+  "parts": [
+   {
+    "id": "0xA5DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A scrying orb cupped in gilded claws, filled with a night sky of tiny stars that drift as you watch.",
+  "era": {
+   "grade": "N",
+   "note": "A scrying orb in a claw stand is classic seer's dressing, tied to no later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-008"
+ },
+ {
+  "slug": "claw-footed-crystal-ball",
+  "name": "Claw-Footed Crystal Ball",
+  "category": "ALC",
+  "subcategory": "Scrying orbs",
+  "parts": [
+   {
+    "id": "0x468B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A clear crystal ball held in the black iron claws of a three-legged stand.",
+  "era": {
+   "grade": "N",
+   "note": "A crystal ball on a claw stand is classic fortune-teller dressing, unrelated to any later skill. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-009"
+ },
+ {
+  "slug": "pink-glass-orb",
+  "name": "Pink Glass Orb",
+  "category": "ALC",
+  "subcategory": "Scrying orbs",
+  "parts": [
+   {
+    "id": "0xA98E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A plain glass orb swirled with pink and teal, which gives nothing away and is probably better for it.",
+  "era": {
+   "grade": "N",
+   "note": "A swirled glass orb is a simple curio with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-010"
+ },
+ {
+  "slug": "violet-crystal-spire",
+  "name": "Violet Crystal Spire",
+  "category": "ALC",
+  "subcategory": "Crystals",
+  "parts": [
+   {
+    "id": "0x9CB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "elegant",
+   "treasure"
+  ],
+  "blurb": "A tall cluster of crystals that fade from clear blue at the tips to deep violet at the root.",
+  "era": {
+   "grade": "N",
+   "note": "A natural-looking crystal cluster is generic dressing, tied to no later land, skill or creature. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-011"
+ },
+ {
+  "slug": "twin-crystals",
+  "name": "Twin Crystals",
+  "category": "ALC",
+  "subcategory": "Crystals",
+  "parts": [
+   {
+    "id": "0x9CB7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "exotic",
+   "elegant",
+   "treasure"
+  ],
+  "blurb": "Two crystals growing from one root, blue above and rose below, catching every candle in the room.",
+  "era": {
+   "grade": "N",
+   "note": "A crystal pair is generic mineral dressing, tied to no later land, skill or creature. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-012"
+ },
+ {
+  "slug": "silver-perfume-flask",
+  "name": "Silver Perfume Flask",
+  "category": "ALC",
+  "subcategory": "Glassware and reagents",
+  "parts": [
+   {
+    "id": "0xA1E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A slim silver flask with a tall stopper, in the shape of a teardrop.",
+  "era": {
+   "grade": "N",
+   "note": "A silver flask is ordinary apothecary and toilet-table glassware. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-013"
+ },
+ {
+  "slug": "banded-glass-decanter",
+  "name": "Banded Glass Decanter",
+  "category": "ALC",
+  "subcategory": "Glassware and reagents",
+  "parts": [
+   {
+    "id": "0xA1E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A glass decanter in a lantern-shaped brass frame, stoppered with a little silver bulb.",
+  "era": {
+   "grade": "N",
+   "note": "A banded decanter is ordinary apothecary glassware. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-014"
+ },
+ {
+  "slug": "spilled-reagent-sack",
+  "name": "Spilled Reagent Sack",
+  "category": "ALC",
+  "subcategory": "Glassware and reagents",
+  "parts": [
+   {
+    "id": "0xA32F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA330",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:alchemy",
+   "arcane",
+   "rustic"
+  ],
+  "blurb": "A burlap sack on its side with herbs, roots, mushrooms and a few purple berries tumbling out.",
+  "era": {
+   "grade": "N",
+   "note": "A sack of spilled reagents is ordinary apothecary dressing. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-015"
+ },
+ {
+  "slug": "crimson-wand",
+  "name": "Crimson Wand",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0xA767",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA768",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "macabre"
+  ],
+  "blurb": "A short wand of dark wood with a red stone at its tip, the kind found abandoned in a sorcerer's coat pocket.",
+  "era": {
+   "grade": "N",
+   "note": "A plain wand is generic mage dressing, tied to no later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-016"
+ },
+ {
+  "slug": "standing-pentagram",
+  "name": "Standing Pentagram",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0xA797",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA79F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "arcane",
+   "demonic",
+   "macabre",
+   "fire"
+  ],
+  "blurb": "A pentagram within a ring of dark red light, standing upright like a mirror that only shows one thing.",
+  "era": {
+   "grade": "N",
+   "note": "A pentagram is a classic, generic sigil of the dark arts that pre-dates any later skill. This upright, glowing version is later art.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-017"
+ },
+ {
+  "slug": "pentagram-clothed-table",
+  "name": "Pentagram-Clothed Table",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0x9EE5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EE6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "exotic",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A fortune-teller's table with a black-and-red cloth woven with a pentagram, the kind of thing you hope is for show.",
+  "era": {
+   "grade": "N",
+   "note": "A table with a pentagram cloth is generic fortune-teller dressing, tied to no later skill. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-018"
+ },
+ {
+  "slug": "forked-floor-rune",
+  "name": "Forked Floor Rune",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0x0E5D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "dungeon"
+  ],
+  "blurb": "A forked rune scratched into the floor, glowing a faint blue.",
+  "era": {
+   "grade": "N",
+   "note": "A single glowing floor rune, ordinary arcane dressing. Original client art unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-019"
+ },
+ {
+  "slug": "barred-floor-rune",
+  "name": "Barred Floor Rune",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0x0E62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "scholar",
+   "dungeon"
+  ],
+  "blurb": "A rune of crossed bars and stray strokes drawn on the floor in a pale glowing blue.",
+  "era": {
+   "grade": "N",
+   "note": "A single glowing floor rune, ordinary arcane dressing. Original client art unused by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-020"
+ },
+ {
+  "slug": "elven-alchemy-table",
+  "name": "Elven Alchemy Table",
+  "category": "ALC",
+  "subcategory": "Elven study and alchemy pieces",
+  "parts": [
+   {
+    "id": "0x2DD4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DD3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "craft:alchemy",
+   "scholar",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A long, slender-legged table crowded with stoppered vials, a mortar of green herbs and a little rack of flasks.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furniture is in for this section (cosmetic Elves): a plain alchemy bench, no race-only gear or creature lore. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; stock addon AlchemistTable (south 0x2DD4, east 0x2DD3)",
+  "variantOf": null,
+  "id": "CN-ALC-021"
+ },
+ {
+  "slug": "grey-stone-alchemy-bench",
+  "name": "Grey Stone Alchemy Bench",
+  "category": "ALC",
+  "subcategory": "Elven study and alchemy pieces",
+  "parts": [
+   {
+    "id": "0x3078",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3077",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x307A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x3079",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "craft:alchemy",
+   "scholar",
+   "arcane"
+  ],
+  "blurb": "A pale stone bench lined with blue and red bottles, a bundle of herbs and a scroll left half unrolled.",
+  "era": {
+   "grade": "N",
+   "note": "An elven stone alchemy bench: plain furniture with no race-only gear or creature lore, in for this section by owner ruling. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "two-tile composite; east version uses 0x307A and 0x3079",
+  "variantOf": null,
+  "id": "CN-ALC-022"
+ },
+ {
+  "slug": "elven-book-stand-green",
+  "name": "Elven Book Stand, Green Tome",
+  "category": "ALC",
+  "subcategory": "Elven study and alchemy pieces",
+  "parts": [
+   {
+    "id": "0x2D4B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D4C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "scholar",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A slender stone stand tilted to hold a single green-bound tome open at a convenient angle.",
+  "era": {
+   "grade": "N",
+   "note": "An elven reading stand: plain study furniture, no race-only gear or creature lore, in for this section by owner ruling. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-023"
+ },
+ {
+  "slug": "elven-book-stand-open-page",
+  "name": "Elven Book Stand, Open Page",
+  "category": "ALC",
+  "subcategory": "Elven study and alchemy pieces",
+  "parts": [
+   {
+    "id": "0x2D4D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elven",
+   "scholar",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A slim stone stand with a pale open page tilted up on it, as though someone has just stepped away mid-sentence.",
+  "era": {
+   "grade": "N",
+   "note": "An elven reading stand: plain study furniture, no race-only gear or creature lore, in for this section by owner ruling. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-024"
+ },
+ {
+  "slug": "triangle-and-spiral-circle",
+  "name": "Triangle-and-Spiral Circle",
+  "category": "ALC",
+  "subcategory": "Glyphs, wands and circles",
+  "parts": [
+   {
+    "id": "0x3083",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x3080",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3082",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x3081",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x307D",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x307F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x307E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x307C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x307B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "arcane",
+   "exotic",
+   "macabre"
+  ],
+  "blurb": "A nine-tile ring of red and grey stone inlay around a triangle and a watching spiral, laid by someone with patience.",
+  "era": {
+   "grade": "N",
+   "note": "A floor-inlay ritual circle with a triangle and spiral: reads as plain arcane dressing, no creature or race-only lore. Mondain's Legacy art; flagged for owner review (Spellweaving association).",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "nine-tile composite matching stock ArcaneCircleAddon",
+  "variantOf": null,
+  "id": "CN-ALC-025"
+ },
+ {
+  "slug": "crystal-on-a-stone-pillar",
+  "name": "Crystal on a Stone Pillar",
+  "category": "ALC",
+  "subcategory": "Crystals",
+  "parts": [
+   {
+    "id": "0x2FD4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "arcane",
+   "elegant",
+   "treasure"
+  ],
+  "blurb": "A green crystal growing out of a pale stone pillar as though the two had always belonged together.",
+  "era": {
+   "grade": "N",
+   "note": "A crystal on a stone pillar from the elven art block: generic ornamental dressing, no creature or race-only lore. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-026"
+ },
+ {
+  "slug": "opal-orb-branch",
+  "name": "Opal Orb on a Twisted Branch",
+  "category": "ALC",
+  "subcategory": "Scrying orbs",
+  "parts": [
+   {
+    "id": "0xA777",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA778",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "whimsical",
+   "exotic",
+   "elegant"
+  ],
+  "blurb": "A shimmering opal orb cradled in a twisted little branch, with a sprinkle of pink blossom clinging on.",
+  "era": {
+   "grade": "N",
+   "note": "An opal orb on a branch: a generic ornamental curio with no creature or race-only lore. The art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-ALC-027"
+ }
+]

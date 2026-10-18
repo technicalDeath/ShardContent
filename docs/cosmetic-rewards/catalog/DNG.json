@@ -1,0 +1,2447 @@
+[
+ {
+  "slug": "great-spider-web",
+  "name": "Great Spider Web",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10BC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10BB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x10BA",
+    "dx": 2,
+    "dy": -2,
+    "dz": 0
+   },
+   {
+    "id": "0x10B9",
+    "dx": 3,
+    "dy": -3,
+    "dz": 0
+   },
+   {
+    "id": "0x10B8",
+    "dx": 4,
+    "dy": -4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "dungeon:terathan-keep",
+   "macabre"
+  ],
+  "blurb": "A towering silk web strung wall to wall, wide enough to snare an ogre and still hold the dew of the deep.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: these web statics sit 20-35 times each in Terathan Keep, Hythloth and Fire. Used here as a reward, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.GiantWeb1 / GiantWeb2 offsets; decor-only; strip nothing, webs are inert statics",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x10BD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x10BE",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x10BF",
+      "dx": 2,
+      "dy": -2,
+      "dz": 0
+     },
+     {
+      "id": "0x10C0",
+      "dx": 3,
+      "dy": -3,
+      "dz": 0
+     },
+     {
+      "id": "0x10C1",
+      "dx": 4,
+      "dy": -4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-001"
+ },
+ {
+  "slug": "orb-weavers-web",
+  "name": "Orb Weaver's Web",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10CB",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x10CC",
+    "dx": 2,
+    "dy": -2,
+    "dz": 0
+   },
+   {
+    "id": "0x10CD",
+    "dx": 3,
+    "dy": -3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "dungeon:terathan-keep"
+  ],
+  "blurb": "A great round web, spun spoke by spoke across a doorway, its centre long since stripped of whatever it caught.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: used 32-47 times each, mostly in Terathan Keep (T2A, Oct 1998). A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.GiantWeb5 / GiantWeb6 offsets; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x10CE",
+      "dx": 3,
+      "dy": -3,
+      "dz": 0
+     },
+     {
+      "id": "0x10CF",
+      "dx": 2,
+      "dy": -2,
+      "dz": 0
+     },
+     {
+      "id": "0x10D0",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x10D1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-002"
+ },
+ {
+  "slug": "spiders-corner-web",
+  "name": "Spider's Corner Web",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10C2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10C3",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x10C4",
+    "dx": 2,
+    "dy": -2,
+    "dz": 0
+   },
+   {
+    "id": "0x10C5",
+    "dx": 3,
+    "dy": -3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "dungeon:terathan-keep"
+  ],
+  "blurb": "A low web slung between wall and ceiling beam, its sagging threads thick with grey dust.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: used 19-27 times each, mostly Terathan Keep (T2A, Oct 1998). A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.GiantWeb3 / GiantWeb4 offsets; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x10C6",
+      "dx": 3,
+      "dy": -3,
+      "dz": 0
+     },
+     {
+      "id": "0x10C7",
+      "dx": 2,
+      "dy": -2,
+      "dz": 0
+     },
+     {
+      "id": "0x10C8",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x10C9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-003"
+ },
+ {
+  "slug": "hanging-orb-web",
+  "name": "Hanging Orb Web",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "dungeon:deceit",
+   "dungeon:terathan-keep"
+  ],
+  "blurb": "A wheel of silk the width of a cart, hung from a single strand and trembling in no wind at all.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 70 times (Terathan Keep, Deceit, Covetous). Deceit and Covetous presumed launch-era (unverified). Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x10D2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-004"
+ },
+ {
+  "slug": "corner-cobweb",
+  "name": "Corner Cobweb",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "humble"
+  ],
+  "blurb": "A triangle of old silk, spun into the angle where wall meets ceiling.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 57 times (mostly Terathan Keep, T2A Oct 1998). A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x10D7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-005"
+ },
+ {
+  "slug": "dangling-cobweb",
+  "name": "Dangling Cobweb",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x0EE5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "dungeon:despise",
+   "dungeon:shame",
+   "dungeon:covetous"
+  ],
+  "blurb": "Long grey strands of web that sway whenever somebody walks beneath them.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used about 330 times (Despise, Shame, Covetous). Despise documented Oct 1997; Shame and Covetous presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-006"
+ },
+ {
+  "slug": "spider-egg-sac",
+  "name": "Spider Egg Sac",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "macabre"
+  ],
+  "blurb": "A pale, leathery egg sac the size of a loaf, warm to the touch and not yet empty.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 113 times (Britannia and Terathan Keep). A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.EggCaseArtifact uses this graphic; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-007"
+ },
+ {
+  "slug": "webbed-egg-clutch",
+  "name": "Webbed Egg Clutch",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10D9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "macabre"
+  ],
+  "blurb": "A spider's egg sac half-buried in fresh, bristling silk. Something inside shifts.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of two original-world dungeon statics (egg case, egg-case web), both seen in Terathan Keep (T2A, Oct 1998). Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two statics on one tile (web at dz 2); decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-008"
+ },
+ {
+  "slug": "silk-cocoon",
+  "name": "Silk Cocoon",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "A man-sized cocoon of tight white silk. Best not to wonder what is wrapped inside.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 39 times (Britannia, Covetous, Hythloth, Terathan Keep). A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "variants 0x10DB and 0x10DC are mirror-ish copies; one entry is enough",
+  "variantOf": null,
+  "id": "CR-DNG-009"
+ },
+ {
+  "slug": "cobwebbed-chest",
+  "name": "Cobwebbed Chest",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x0E42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "treasure",
+   "humble"
+  ],
+  "blurb": "An old sea chest nobody has dared open, furred over with the silk of a long-departed spider.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wooden chest (era carpentry block) plus an original-world web static; the pairing is custom dressing. Reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; strip container capacity from the chest; web overlay is a separate static at dz 6",
+  "variantOf": null,
+  "id": "CR-DNG-010"
+ },
+ {
+  "slug": "small-orb-web",
+  "name": "Small Orb Web",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "dungeon:deceit",
+   "dungeon:terathan-keep"
+  ],
+  "blurb": "A neat little wheel of silk, no wider than a shield, still beaded with last night's damp.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 53 times (Britannia, Deceit, Terathan Keep). Deceit presumed launch-era (unverified). Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x10D5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-011"
+ },
+ {
+  "slug": "spiders-larder",
+  "name": "Spider's Larder",
+  "category": "DNG",
+  "subcategory": "Webs and spider lairs",
+  "parts": [
+   {
+    "id": "0x10DA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10DB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10D9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10D8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 2
+   },
+   {
+    "id": "0x10DC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10D6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "monster:giant-spider",
+   "monster:terathan",
+   "macabre",
+   "undead"
+  ],
+  "blurb": "Cocoons hung like winter hams around a fresh egg sac. The spider keeps a well-stocked pantry.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of original-world dungeon statics (cocoons, egg sac, webs) all seen in Terathan Keep (T2A, Oct 1998) and Hythloth. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "2x2 composite with a corner web overlay at dz 8; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-012"
+ },
+ {
+  "slug": "great-pile-of-skulls",
+  "name": "Great Pile of Skulls",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1AD8",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD9",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADA",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADD",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADE",
+    "dx": 2,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADF",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "rare",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "dungeon:covetous",
+   "monster:skeleton"
+  ],
+  "blurb": "A grinning mound of skulls heaped higher than a man's waist: the tally of a dungeon's long dead.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: skull-pile tiles are used 110-160 times each, half of them in Despise (documented Oct 1997). Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.SkullPileAddon offsets; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-013"
+ },
+ {
+  "slug": "skull-heap",
+  "name": "Skull Heap",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1ADB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "dungeon:covetous"
+  ],
+  "blurb": "A tight heap of skulls, wedged together like cobbles in a charnel yard.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 157 times (Despise 72, Covetous 31). Despise documented Oct 1997; Covetous presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-014"
+ },
+ {
+  "slug": "weathered-skull",
+  "name": "Weathered Skull",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "dungeon:covetous",
+   "monster:skeleton"
+  ],
+  "blurb": "A single bleached skull, rolled to rest in the dust by someone long ago.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used about 150 times (Despise, Covetous, Britannia). Despise documented Oct 1997. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-015"
+ },
+ {
+  "slug": "heap-of-bones",
+  "name": "Heap of Bones",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1B0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "monster:skeleton"
+  ],
+  "blurb": "A tangle of ribs, jaws and long bones, gnawed clean and left where they fell.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 216 times (Despise 74). Despise documented Oct 1997. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.BonePile (0x1B09-0x1B10); decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-016"
+ },
+ {
+  "slug": "scattered-bones",
+  "name": "Scattered Bones",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1B0A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "monster:skeleton"
+  ],
+  "blurb": "A skull, a rib and a few stray bones, flung wide by whatever came last.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used about 90 times outside the late regions (Despise 46). Despise documented Oct 1997. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.BonePile (0x1B09-0x1B10); decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-017"
+ },
+ {
+  "slug": "collapsed-skeleton",
+  "name": "Collapsed Skeleton",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x0ECA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:shame",
+   "dungeon:deceit",
+   "dungeon:despise",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton folded where it dropped, still clutching the dust of its last stand.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 127 times (Shame, Deceit, Despise). Despise documented Oct 1997; Shame and Deceit presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as a container ('bones'); decor-only, strip function",
+  "variantOf": null,
+  "id": "CR-DNG-018"
+ },
+ {
+  "slug": "slumped-skeleton",
+  "name": "Slumped Skeleton",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x0ECC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:shame",
+   "dungeon:deceit",
+   "dungeon:destard",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton sagging against nothing, ribs open and arms still raised as if warding off a blow.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 103 times (Shame, Deceit, Destard). All three presumed launch-era (unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as a container ('bones'); decor-only, strip function",
+  "variantOf": null,
+  "id": "CR-DNG-019"
+ },
+ {
+  "slug": "sprawled-skeleton",
+  "name": "Sprawled Skeleton",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x0ECE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:shame",
+   "dungeon:despise",
+   "dungeon:covetous",
+   "monster:skeleton"
+  ],
+  "blurb": "A whole skeleton, flung full length across the flagstones with its arms thrown wide.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 245 times (Shame, Despise, Covetous). Despise documented Oct 1997; the others presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as a container ('bones'); decor-only, strip function",
+  "variantOf": null,
+  "id": "CR-DNG-020"
+ },
+ {
+  "slug": "charnel-heap",
+  "name": "Charnel Heap",
+  "category": "DNG",
+  "subcategory": "Bones and skulls",
+  "parts": [
+   {
+    "id": "0x1B0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B0F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B0C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ADB",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x122D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1AE4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:despise",
+   "dungeon:wrong"
+  ],
+  "blurb": "A slaughterhouse floor of skulls and bones and a dark stain that will not scrub out.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of four original-world bone and skull statics plus a blood pool, all used heavily in Despise (documented Oct 1997) and Wrong. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "2x2 composite with a blood overlay at the north tile; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-021"
+ },
+ {
+  "slug": "hanging-skeleton",
+  "name": "Hanging Skeleton",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1A0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "monster:skeleton"
+  ],
+  "blurb": "A skeleton dangling by one arm from a rusted chain, rattling softly when anything passes.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: 6 placements in Britannia, and its look-alike twins hang in Deceit and Wrong (presumed launch-era, unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "hangs from its own chain graphic; place as a floor item or under a beam",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x1A0C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-022"
+ },
+ {
+  "slug": "hanging-skeleton-in-boots",
+  "name": "Hanging Skeleton in Boots",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1A01",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:wrong",
+   "monster:skeleton"
+  ],
+  "blurb": "One prisoner still wears his boots. The rest of him was left for the chains.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 17 times (Deceit, Wrong, Terathan Keep). Deceit and Wrong presumed launch-era (unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "hangs from its own chain graphic; place as a floor item or under a beam",
+  "variantOf": null,
+  "id": "CR-DNG-023"
+ },
+ {
+  "slug": "bones-beneath-a-chain",
+  "name": "Bones Beneath a Chain",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1A09",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "monster:skeleton"
+  ],
+  "blurb": "An empty chain, and below it the heap of what once hung there.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 8 times (Britannia, Terathan Keep, Deceit). Deceit presumed launch-era (unverified). Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1A0A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-024"
+ },
+ {
+  "slug": "dangling-chains",
+  "name": "Dangling Chains",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1A07",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong",
+   "dungeon:deceit"
+  ],
+  "blurb": "A length of heavy chain hanging from a ceiling ring, worn bright at the lowest links.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: chain tiles sit in Wrong and Deceit (6-7 each). Both dungeons presumed launch-era (unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x1A08",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-025"
+ },
+ {
+  "slug": "gibbet-row",
+  "name": "Gibbet Row",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1A01",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1A02",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1A05",
+    "dx": 2,
+    "dy": -2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "undead",
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:wrong",
+   "monster:skeleton"
+  ],
+  "blurb": "Three gibbets in a row: two of them still holding their prisoners, the third long past caring.",
+  "era": {
+   "grade": "B",
+   "note": "Composite of three original-world hanging-skeleton statics from Deceit and Wrong (presumed launch-era, unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three floor statics in a row; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-026"
+ },
+ {
+  "slug": "hanging-carcass",
+  "name": "Hanging Carcass",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1B1D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong",
+   "monster:ogre",
+   "monster:orc"
+  ],
+  "blurb": "A carcass strung up by the heels and left for the flies: a butcher's larder in a monster's den.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 48 times (Wrong 21, Britannia). Wrong presumed launch-era (unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata calls it 'skeleton with meat'",
+  "variantOf": null,
+  "id": "CR-DNG-027"
+ },
+ {
+  "slug": "chained-post",
+  "name": "Chained Post",
+  "category": "DNG",
+  "subcategory": "Gibbets and chains",
+  "parts": [
+   {
+    "id": "0x1640",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong"
+  ],
+  "blurb": "A stout post with a rusted chain looped round its crown, polished smooth by many wrists.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 7 times (Wrong 5, Hythloth). Wrong presumed launch-era (unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-028"
+ },
+ {
+  "slug": "torture-rack",
+  "name": "Torture Rack",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x1254",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1255",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1253",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1252",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1250",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1251",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x124F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x124E",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "4x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:wrong"
+  ],
+  "blurb": "A wooden rack with a worn ratchet drum at one end and cords gone dark with use. The Wrong's guests did not enjoy it.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: all eight pieces appear together in Deceit and Wrong (presumed launch-era, unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "8-tile assembly read from the original map; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x125C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x125B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1258",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1257",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x125D",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x125A",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1259",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1256",
+      "dx": 1,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-029"
+ },
+ {
+  "slug": "pillory-scaffold",
+  "name": "Pillory Scaffold",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x1287",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1281",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1286",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1280",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1288",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1285",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1285",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x127F",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1289",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1283",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1283",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x127E",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:wrong"
+  ],
+  "blurb": "A low plank scaffold with a whipping post, a chain and a bench for the onlookers. Justice, of a sort, was done here.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: the 12-piece platform appears intact in Deceit and Wrong (presumed launch-era, unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "12-tile assembly read from the original map; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-030"
+ },
+ {
+  "slug": "executioners-block",
+  "name": "Executioner's Block",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x1272",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x126F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1270",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x126C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x126B",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:deceit",
+   "dungeon:wrong"
+  ],
+  "blurb": "A stained oak block on a low dais, with a heavy axe still sunk in the grain.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: the five pieces appear together in Deceit and Wrong (presumed launch-era, unverified). Reward use only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "5-tile assembly read from the original map; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-031"
+ },
+ {
+  "slug": "guillotine",
+  "name": "Guillotine",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x1230",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong"
+  ],
+  "blurb": "A tall wooden frame, its blade drawn up and its basket stained dark.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art: the frame is used in Wrong (presumed launch-era, unverified); its blade-drop frames are in the same block. Reward use only.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock Server.Items.GuillotineAddon / GuillotineComponent use 0x125E and 0x1230; decor-only, strip the use/damage behaviour",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x125E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-032"
+ },
+ {
+  "slug": "iron-maiden",
+  "name": "Iron Maiden",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x124D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A man-shaped shell of black iron, hinged down one side, with a rusty stain running from the foot.",
+  "era": {
+   "grade": "C",
+   "note": "Same classic torture-chamber block as the rack and guillotine, but the original map uses these tiles only in later (Stygian-era) areas. Needs an era audit.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata flags it as animated",
+  "variantOf": null,
+  "id": "CR-DNG-033"
+ },
+ {
+  "slug": "open-iron-maiden",
+  "name": "Open Iron Maiden",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x1249",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "The iron shell stands wide, its inner spikes still dark with old rust.",
+  "era": {
+   "grade": "C",
+   "note": "Open form of the iron maiden; the original map uses these tiles only in later (Stygian-era) areas. Same classic block as the rack. Needs an era audit.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata flags it as animated",
+  "variantOf": "iron-maiden",
+  "id": "CR-DNG-034"
+ },
+ {
+  "slug": "sharpened-stake-palisade",
+  "name": "Sharpened Stake Palisade",
+  "category": "DNG",
+  "subcategory": "Monster lairs",
+  "parts": [
+   {
+    "id": "0x0424",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:orc",
+   "dungeon:orc-cave",
+   "dungeon:ice",
+   "martial",
+   "rustic"
+  ],
+  "blurb": "Five pale-tipped logs, driven deep and sharpened to a point: an orc's idea of a garden fence.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world camp static art, used about 270 times (orc forts, Ice). Orc fort documented Dec 1997, Ice Mar 1999. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-8-16th-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata flags it as damaging, strip that",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0423",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-035"
+ },
+ {
+  "slug": "skull-topped-stakes",
+  "name": "Skull-Topped Stakes",
+  "category": "DNG",
+  "subcategory": "Monster lairs",
+  "parts": [
+   {
+    "id": "0x0422",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "monster:orc",
+   "monster:ogre",
+   "dungeon:orc-cave",
+   "martial"
+  ],
+  "blurb": "A bundle of tall stakes with one grinning skull hung high as a boundary mark.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world camp static art, used 42 times (orc forts, Ice). Orc fort documented Dec 1997, Ice Mar 1999. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-8-16th-december/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata flags it as damaging, strip that",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0421",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-036"
+ },
+ {
+  "slug": "midden-heap",
+  "name": "Midden Heap",
+  "category": "DNG",
+  "subcategory": "Monster lairs",
+  "parts": [
+   {
+    "id": "0x10F2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "monster:ogre",
+   "monster:troll",
+   "dungeon:destard",
+   "dungeon:despise",
+   "rustic"
+  ],
+  "blurb": "A steaming hump of bones, scraps and gnawed boots: the kitchen refuse of something large.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 34 times outside the late regions (Destard, Despise, Deceit). Despise documented Oct 1997. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; tiledata calls it 'pile of garbage'",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x10F3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CR-DNG-037"
+ },
+ {
+  "slug": "stalagmite-cluster",
+  "name": "Stalagmite Cluster",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08E5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "dungeon:despise",
+   "dungeon:shame",
+   "dungeon:destard"
+  ],
+  "blurb": "A crown of dripstone spires rising from a cave floor, grown over a thousand patient winters.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static art, used about 1,400 times outside the late regions (Destard, Despise, Shame). Despise documented Oct 1997. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-038"
+ },
+ {
+  "slug": "slender-stalagmites",
+  "name": "Slender Stalagmites",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08E1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "dungeon:despise",
+   "dungeon:shame"
+  ],
+  "blurb": "A few thin dripstone spires, no taller than a child, wet with the cave's slow weeping.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static art, used about 2,600 times outside the late regions (Despise, Shame, Destard). Despise documented Oct 1997. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-039"
+ },
+ {
+  "slug": "stalagmite-ridge",
+  "name": "Stalagmite Ridge",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08E9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "dungeon:despise",
+   "dungeon:fire"
+  ],
+  "blurb": "A long ridge of stone teeth, as if the cave had grown a jaw.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static art, used about 1,480 times (Despise, Fire). Despise documented Oct 1997. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-040"
+ },
+ {
+  "slug": "rust-stained-stalagmite",
+  "name": "Rust-Stained Stalagmite",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "dungeon:shame",
+   "dungeon:despise",
+   "mining"
+  ],
+  "blurb": "A russet spire of mineral-stained stone, rich with the colour of iron-bearing water.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static art, used about 530 times outside the late regions (Shame, Despise, Covetous). Despise documented Oct 1997. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-041"
+ },
+ {
+  "slug": "mine-timber-prop",
+  "name": "Mine Timber Prop",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x019F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "mining",
+   "craft:mining",
+   "dungeon",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A forked timber prop, wedged against a mine roof to keep a few more tons of rock from falling.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art, used 127 times (mines and dungeons across Britannia). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-042"
+ },
+ {
+  "slug": "bloodied-floor-spikes",
+  "name": "Bloodied Floor Spikes",
+  "category": "DNG",
+  "subcategory": "Torture chamber",
+  "parts": [
+   {
+    "id": "0x119F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:hythloth"
+  ],
+  "blurb": "Three iron spikes thrust up from the flags, their tips dark with old blood.",
+  "era": {
+   "grade": "C",
+   "note": "Trap art in the classic block; sibling tiles are used in Hythloth (documented Oct 1997) but this extended frame is never placed. Needs an era audit.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as damaging and animated; decor-only, strip all trap behaviour",
+  "variantOf": null,
+  "id": "CR-DNG-043"
+ },
+ {
+  "slug": "flowstone-column",
+  "name": "Flowstone Column",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "dungeon:despise",
+   "dungeon:shame"
+  ],
+  "blurb": "A fluted pillar of dripping stone, floor to roof, glistening with mineral damp.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static art, used about 600 times outside the late regions (Despise, Fire, Shame). Despise documented Oct 1997. A reward use, not a documented player item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-044"
+ },
+ {
+  "slug": "obsidian-ridge",
+  "name": "Obsidian Ridge",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x08EA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1175,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "fire",
+   "demonic",
+   "wilderness"
+  ],
+  "blurb": "A ridge of black volcanic glass, edged like a row of knives and cold to the hand.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cave static (used about 540 times outside the late regions) in stock hue 1175; no new art. A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "hue 1175; decor-only",
+  "variantOf": "stalagmite-ridge",
+  "id": "CR-DNG-045"
+ },
+ {
+  "slug": "cavern-rock",
+  "name": "Cavern Rock",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x1771",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "rustic",
+   "dungeon:despise"
+  ],
+  "blurb": "A heavy, rounded rock that has lain on this cave floor since before the dungeon had a name.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art, used about 225 times outside the late regions (Despise 71, Shame 31). Despise documented Oct 1997. A reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "tiledata calls it 'rock'; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-046"
+ },
+ {
+  "slug": "cave-boulder",
+  "name": "Cave Boulder",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x1362",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A great square-shouldered boulder, fallen from a cavern roof and never moved.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art, used about 275 times across Britannia and dungeons. A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; impassable static",
+  "variantOf": null,
+  "id": "CR-DNG-047"
+ },
+ {
+  "slug": "pool-of-molten-lava",
+  "name": "Pool of Molten Lava",
+  "category": "DNG",
+  "subcategory": "Caves and mines",
+  "parts": [
+   {
+    "id": "0x12EE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "fire",
+   "demonic"
+  ],
+  "blurb": "A tile of glowing lava, its crust splitting on a river of red-orange heat.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art, used 81 times (Britannia and fire-region dungeons). A reward use, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata flags it as damaging and light-emitting; decor-only, strip damage",
+  "variantOf": null,
+  "id": "CR-DNG-048"
+ },
+ {
+  "slug": "pool-of-blood",
+  "name": "Pool of Blood",
+  "category": "DNG",
+  "subcategory": "Blood and rites",
+  "parts": [
+   {
+    "id": "0x122A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong",
+   "dungeon:shame",
+   "dungeon:hythloth"
+  ],
+  "blurb": "A dark pool, thick and slow, that has not quite finished drying.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 185 times (Wrong, Shame, Hythloth). Hythloth documented Oct 1997; the rest presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-049"
+ },
+ {
+  "slug": "blood-smear",
+  "name": "Blood Smear",
+  "category": "DNG",
+  "subcategory": "Blood and rites",
+  "parts": [
+   {
+    "id": "0x122F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "dungeon:wrong",
+   "dungeon:shame",
+   "dungeon:hythloth"
+  ],
+  "blurb": "A long dark streak across the flags, as though something was dragged away.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon static art, used 241 times (Wrong 64, Shame, Hythloth). Hythloth documented Oct 1997; the rest presumed launch-era. Reward use only.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1997-2/1997-2-october-29th/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "translucent static; decor-only",
+  "variantOf": null,
+  "id": "CR-DNG-050"
+ }
+]

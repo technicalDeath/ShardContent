@@ -1,0 +1,33 @@
+{
+  "pool": "hot-zone-drops",
+  "system": "hot-zone",
+  "notes": "Rare cosmetic drops from Hot Zone monsters and chests (Hythloth has its own pool). Five themes so the loot matches the killer: undead and graveyard (sarcophagi, coffins), bones and candles, dragon hoards, shadowiron and dark relics, and dark arcana (rite tables, grimoires, bloody altars). 'tier' is the catalog tier and can be used as drop rarity (three extremely-rare: the ornate sarcophagus, the dragon's hoard and the twin bloodstained altars). 'theme' lets a system roll from the right group (undead corpse, dragon corpse, chest). Three entries are era grade C: the dragon hoards are the only hoard art of that kind in the catalog, and the pool would feel hollow without them. Nothing here is mentioned as a Nemesis trophy, a Wanted curator item or a shipwreck piece.",
+  "entries": [
+    { "id": "CR-GRV-011", "tier": "extremely-rare", "theme": "undead",      "why": "Ornate open sarcophagus, a noble crypt looted from a lich's lair" },
+    { "id": "CR-GRV-008", "tier": "rare",           "theme": "undead",      "why": "Sarcophagus carved with the effigy of its long-dead occupant" },
+    { "id": "CR-GRV-012", "tier": "rare",           "theme": "undead",      "why": "Sarcophagus with its effigy lid slid aside, the sleeper gone" },
+    { "id": "CR-GRV-006", "tier": "scarce",         "theme": "undead",      "why": "Splintered coffin, burst open from the inside" },
+    { "id": "CR-GRV-010", "tier": "scarce",         "theme": "undead",      "why": "Stone sarcophagus with the lid thrown down beside it" },
+    { "id": "CR-GRV-041", "tier": "uncommon",       "theme": "undead",      "why": "Skull candle burnt down to a stub, a small grim keepsake" },
+    { "id": "CR-LGT-012", "tier": "scarce",         "theme": "bones",       "why": "Bone pile with a skull candle still guttering on top" },
+    { "id": "CR-LGT-011", "tier": "scarce",         "theme": "bones",       "why": "Three skull candles burning in a triangle" },
+    { "id": "CR-LGT-010", "tier": "uncommon",       "theme": "bones",       "why": "A lone lit skull candle, easy to fit anywhere dark" },
+    { "id": "CR-TRS-029", "tier": "extremely-rare", "theme": "dragon",      "why": "A dragon's whole hoard; grade C, the best dragon-lair art there is" },
+    { "id": "CR-TRS-030", "tier": "rare",           "theme": "dragon",      "why": "Hoard strewn with skulls of those who came for it (grade C)" },
+    { "id": "CR-TRS-031", "tier": "rare",           "theme": "dragon",      "why": "Jewelled hoard spilled across the floor (grade C)" },
+    { "id": "CR-TRS-023", "tier": "rare",           "theme": "chest",       "why": "Chest of gold bullion for a chest drop that feels earned" },
+    { "id": "CR-TRS-021", "tier": "scarce",         "theme": "chest",       "why": "Iron chest heaped with coin, the sort a guarded vault holds" },
+    { "id": "CR-TRS-006", "tier": "uncommon",       "theme": "chest",       "why": "A skull perched on a gold heap, a warning to the next thief" },
+    { "id": "CR-LGT-016", "tier": "scarce",         "theme": "shadowiron",  "why": "Black shadow-iron candelabra stand" },
+    { "id": "CR-STA-022", "tier": "scarce",         "theme": "shadowiron",  "why": "Spear-bearer cast in black shadow iron" },
+    { "id": "CR-STA-034", "tier": "scarce",         "theme": "shadowiron",  "why": "Shadow-iron guardian on a marble pedestal" },
+    { "id": "CR-REL-017", "tier": "uncommon",       "theme": "shadowiron",  "why": "A near-black ankh, the healers' sign turned to a memorial" },
+    { "id": "CR-REL-019", "tier": "rare",           "theme": "dark-arcana", "why": "Round pentagram altar dark with old blood" },
+    { "id": "CR-REL-020", "tier": "extremely-rare", "theme": "dark-arcana", "why": "Two bloodstained pentagram altars, a rite-room in stone" },
+    { "id": "CR-LGT-043", "tier": "rare",           "theme": "dark-arcana", "why": "Black candles and a skull set in a ritual circle" },
+    { "id": "CR-ALC-026", "tier": "scarce",         "theme": "dark-arcana", "why": "Ritual table topped with a burning skull candle" },
+    { "id": "CR-ALC-042", "tier": "scarce",         "theme": "dark-arcana", "why": "A black grimoire nobody should open" },
+    { "id": "CR-ALC-045", "tier": "rare",           "theme": "dark-arcana", "why": "A tall stack of grimoires, a necromancer's reading pile" },
+    { "id": "CR-CUR-024", "tier": "scarce",         "theme": "dark-arcana", "why": "Crimson rune sigil burned into the floor" }
+  ]
+}

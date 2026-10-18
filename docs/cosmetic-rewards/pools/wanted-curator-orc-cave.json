@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-orc-cave",
+ "system": "wanted-curator",
+ "notes": "The Orc Cave set is a war band's camp: sharpened stakes, skull-crowned standards and their weapon rack. The orc war banners are the Nemesis orc-captain and orc-lord trophies, so the curator takes the other banners and standards. The Pair of War Band Standards is the showpiece.",
+ "entries": [
+  {
+   "id": "CR-DNG-035",
+   "tier": "easy",
+   "why": "Sharpened stake palisade."
+  },
+  {
+   "id": "CR-HER-029",
+   "tier": "easy",
+   "why": "Slashed rust-red raiders' banner."
+  },
+  {
+   "id": "CR-HER-030",
+   "tier": "medium",
+   "why": "Hide-wrapped standard crowned with a skull."
+  },
+  {
+   "id": "CR-HER-031",
+   "tier": "medium",
+   "why": "Skull above a battered round shield."
+  },
+  {
+   "id": "CR-DNG-036",
+   "tier": "hard",
+   "why": "Skull-topped stakes marking a boundary."
+  },
+  {
+   "id": "CR-ARM-002",
+   "tier": "hard",
+   "why": "Wall axe rack of long-hafted axes."
+  },
+  {
+   "id": "CR-HER-032",
+   "tier": "boss",
+   "why": "Pair of War Band Standards, a hide and a shield."
+  }
+ ]
+}

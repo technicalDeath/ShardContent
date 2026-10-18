@@ -1,0 +1,2073 @@
+[
+ {
+  "slug": "brown-bear-trophy",
+  "name": "Brown Bear Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "wilderness",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "A brown bear's head, snarling softly, mounted on a polished oak shield.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-001"
+ },
+ {
+  "slug": "great-hart-trophy",
+  "name": "Great Hart Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E61",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E68",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "wilderness",
+   "forest",
+   "noble",
+   "martial"
+  ],
+  "blurb": "A great hart's head with a full crown of antlers, mounted on dark walnut.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-002"
+ },
+ {
+  "slug": "big-fish-trophy",
+  "name": "Big Fish Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E69",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "rustic"
+  ],
+  "blurb": "A silver-scaled catch mounted whole upon an oval plaque, mouth still open in surprise.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-003"
+ },
+ {
+  "slug": "gorilla-trophy",
+  "name": "Gorilla Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E63",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster:gorilla",
+   "animal",
+   "wilderness",
+   "exotic",
+   "martial"
+  ],
+  "blurb": "A great ape's grey face, mounted on a plaque and frowning at the room.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-004"
+ },
+ {
+  "slug": "orc-head-trophy",
+  "name": "Orc Head Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E64",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "monster:orc",
+   "martial",
+   "macabre",
+   "dungeon:orc-cave"
+  ],
+  "blurb": "A grim orc head on a plaque, hung where guests can admire the hunter's courage.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-005"
+ },
+ {
+  "slug": "polar-bear-trophy",
+  "name": "Polar Bear Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster:polar-bear",
+   "animal",
+   "ice",
+   "martial",
+   "exotic"
+  ],
+  "blurb": "A polar bear's pale head on a plaque, brought home from the frozen north.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-006"
+ },
+ {
+  "slug": "troll-trophy",
+  "name": "Troll Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "monster:troll",
+   "martial",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A scowling troll head, tusks and all, hung from a wooden plaque.",
+  "era": {
+   "grade": "C",
+   "note": "Mounted-head art sits in Papua, Delucia and Deceit map statics, so it may predate 2001; the player taxidermy kit is documented only on 2001-03-14. Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; stock TrophyAddon uses these tiles (north id / west id). Strip taxidermy deed.",
+  "variantOf": null,
+  "id": "CR-TRO-007"
+ },
+ {
+  "slug": "black-bear-trophy",
+  "name": "Black Bear Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "wilderness",
+   "martial",
+   "exotic"
+  ],
+  "blurb": "A black bear's dusky head on a plaque, its muzzle lost in shadow.",
+  "era": {
+   "grade": "C",
+   "note": "Recolour (hue 1109) of the brown bear trophy art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1109 on the stock trophy tile",
+  "variantOf": "brown-bear-trophy",
+  "id": "CR-TRO-008"
+ },
+ {
+  "slug": "gilded-great-hart-trophy",
+  "name": "Gilded Great Hart Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E61",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E68",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "forest",
+   "noble",
+   "treasure",
+   "martial"
+  ],
+  "blurb": "A hart's head and antlers cast in gold leaf, mounted as a prize for the finest hunt.",
+  "era": {
+   "grade": "C",
+   "note": "Recolour (hue 1161) of the great hart trophy art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161 on the stock trophy tile",
+  "variantOf": "great-hart-trophy",
+  "id": "CR-TRO-009"
+ },
+ {
+  "slug": "gilded-big-fish-trophy",
+  "name": "Gilded Big Fish Trophy",
+  "category": "TRO",
+  "subcategory": "Mounted heads",
+  "parts": [
+   {
+    "id": "0x1E62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E69",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "treasure",
+   "noble"
+  ],
+  "blurb": "A prize catch gilded from fin to tail, mounted on a golden plaque.",
+  "era": {
+   "grade": "C",
+   "note": "Recolour (hue 1161) of the big fish trophy art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161 on the stock trophy tile",
+  "variantOf": "big-fish-trophy",
+  "id": "CR-TRO-010"
+ },
+ {
+  "slug": "beast-slayers-trophy-row",
+  "name": "Beast-Slayer's Trophy Row",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E64",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E63",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E6B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E6A",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "monster:troll",
+   "monster:orc",
+   "monster:gorilla",
+   "martial",
+   "macabre"
+  ],
+  "blurb": "Troll, orc and ape heads mounted side by side, a hunter's boast for the whole wall.",
+  "era": {
+   "grade": "C",
+   "note": "Hung on three consecutive tiles in Papua statics (troll, orc, gorilla), so it follows an original layout; mounted-head art itself is unverified before 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile wall addon: three TrophyAddon tiles on consecutive wall tiles (x for north wall, y for west wall)",
+  "variantOf": null,
+  "id": "CR-TRO-011"
+ },
+ {
+  "slug": "hunters-wall",
+  "name": "Hunter's Wall",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E64",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E61",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E65",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E6B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E68",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1E6C",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "monster:bear",
+   "monster:orc",
+   "monster:polar-bear",
+   "animal",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A bear, an orc, a great hart and a polar bear hung in a row; the proudest wall in any hall.",
+  "era": {
+   "grade": "C",
+   "note": "Four mounted-head tiles on consecutive wall tiles, as the bear and orc are hung in Papua statics. Head art unverified before the 2001 kit.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile wall addon of four stock trophy tiles",
+  "variantOf": null,
+  "id": "CR-TRO-012"
+ },
+ {
+  "slug": "huntsmans-spread",
+  "name": "Huntsman's Spread",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E61",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E62",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E68",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1E69",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "forest",
+   "nautical",
+   "craft:fishing",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A brown bear, a great hart and a big fish spaced along one wall, the hunter's whole season.",
+  "era": {
+   "grade": "C",
+   "note": "Spaced as three separate wall trophies (bear, hart, fish), all from the unverified mounted-head tile block; the layout is a shard invention.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile wall addon; gaps of one tile between trophies",
+  "variantOf": null,
+  "id": "CR-TRO-013"
+ },
+ {
+  "slug": "brown-bearskin-rug",
+  "name": "Brown Bearskin Rug",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1E36",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E37",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E38",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E39",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3C",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3D",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3E",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E40",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E41",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E42",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E43",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E44",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E45",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E46",
+      "dx": -1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E47",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E48",
+      "dx": -1,
+      "dy": -1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "uncommon",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "rustic",
+   "wilderness",
+   "martial",
+   "camp"
+  ],
+  "blurb": "A full brown bearskin, claws and glass-eyed head intact, spread before the hearth.",
+  "era": {
+   "grade": "B",
+   "note": "Bearskin rug statics appear in Delucia and Papua (T2A map, Oct 1998). World dressing used as a reward; no player craft is documented before 2001.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "stock BrownBearRugSouthAddon / BrownBearRugEastAddon (Items/Addons/BearRugs.cs); decor-only",
+  "variantOf": null,
+  "id": "CR-TRO-014"
+ },
+ {
+  "slug": "polar-bearskin-rug",
+  "name": "Polar Bearskin Rug",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1E49",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4B",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4C",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E4F",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E50",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E51",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E53",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E54",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E55",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E56",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E57",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E58",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E59",
+      "dx": -1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E5A",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E5B",
+      "dx": -1,
+      "dy": -1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "monster:polar-bear",
+   "animal",
+   "ice",
+   "rustic",
+   "martial",
+   "exotic"
+  ],
+  "blurb": "A white polar bearskin, thick and soft, spread wide enough for a feast on top.",
+  "era": {
+   "grade": "C",
+   "note": "Same bearskin-rug art block as the brown rug, but the Britannia map never uses the polar tiles, so it cannot be tied to 2000. Plausible, unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "stock PolarBearRugSouthAddon / PolarBearRugEastAddon (Items/Addons/BearRugs.cs); decor-only",
+  "variantOf": null,
+  "id": "CR-TRO-015"
+ },
+ {
+  "slug": "black-bearskin-rug",
+  "name": "Black Bearskin Rug",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1E36",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E37",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E38",
+    "dx": -1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E39",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3C",
+    "dx": 1,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3D",
+    "dx": 0,
+    "dy": -1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E3E",
+    "dx": -1,
+    "dy": -1,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E40",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E41",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E42",
+      "dx": 1,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E43",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E44",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E45",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E46",
+      "dx": -1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1E47",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E48",
+      "dx": -1,
+      "dy": -1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "rustic",
+   "macabre",
+   "martial"
+  ],
+  "blurb": "A black bearskin that swallows the lamplight, spread across the floor like a pool of night.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1109) of the brown bearskin rug art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-15-24th-october/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "stock brown bear rug addon with hue 1109; decor-only",
+  "variantOf": "brown-bearskin-rug",
+  "id": "CR-TRO-016"
+ },
+ {
+  "slug": "dark-fur-pelt",
+  "name": "Dark Fur Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "wilderness",
+   "camp",
+   "humble"
+  ],
+  "blurb": "A thick dark-furred pelt, cured and spread flat on the floor.",
+  "era": {
+   "grade": "B",
+   "note": "Fur pelts are classic shop and hut dressing in Yew, Trinsic, Minoc, Vesper, Papua and Delucia statics. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-017"
+ },
+ {
+  "slug": "shaggy-brown-pelt",
+  "name": "Shaggy Brown Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "wilderness",
+   "camp",
+   "humble"
+  ],
+  "blurb": "A shaggy brown pelt, with the fold of the hide still showing along one edge.",
+  "era": {
+   "grade": "B",
+   "note": "Fur pelts are classic shop and hut dressing in Yew, Trinsic, Minoc, Vesper, Papua and Delucia statics. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-018"
+ },
+ {
+  "slug": "tawny-fur-pelt",
+  "name": "Tawny Fur Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "desert",
+   "camp",
+   "humble"
+  ],
+  "blurb": "A tawny pelt as soft as a lion's mane, spread out to dry in the sun.",
+  "era": {
+   "grade": "B",
+   "note": "Fur pelts are classic shop and hut dressing in Yew, Trinsic, Minoc, Vesper, Papua and Delucia statics. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-019"
+ },
+ {
+  "slug": "golden-fur-pelt",
+  "name": "Golden Fur Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "desert",
+   "exotic"
+  ],
+  "blurb": "A golden fur pelt, bright as ripe wheat, spread wide on the floor.",
+  "era": {
+   "grade": "B",
+   "note": "Fur pelts are classic shop and hut dressing in Yew, Trinsic, Minoc, Vesper, Papua and Delucia statics. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-020"
+ },
+ {
+  "slug": "black-fur-pelt",
+  "name": "Black Fur Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A pelt of glossy black fur, as dark as a moonless night.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1109) of the dark fur pelt art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1109 on the stock fur tile",
+  "variantOf": "dark-fur-pelt",
+  "id": "CR-TRO-021"
+ },
+ {
+  "slug": "white-fur-pelt",
+  "name": "White Fur Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x11F6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "ice",
+   "exotic",
+   "elegant"
+  ],
+  "blurb": "A pelt of snow-white fur, the finest thing a hunter of the north can bring home.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1153) of the tawny fur pelt art, which carries the base grade. A shard-made variant; not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1153 on the stock fur tile",
+  "variantOf": "tawny-fur-pelt",
+  "id": "CR-TRO-022"
+ },
+ {
+  "slug": "small-brown-pelt",
+  "name": "Small Brown Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1F73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "wilderness",
+   "humble"
+  ],
+  "blurb": "A small brown pelt, trimmed and squared, fit for a stool or a doorstep.",
+  "era": {
+   "grade": "B",
+   "note": "Small pelts are used only a few times in the Lost Lands (Delucia), so Second Age (Oct 1998) world dressing at best. Reward use is custom.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-023"
+ },
+ {
+  "slug": "small-tawny-pelt",
+  "name": "Small Tawny Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1F77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "wilderness",
+   "humble"
+  ],
+  "blurb": "A small tawny pelt, the colour of dry grass, pegged flat.",
+  "era": {
+   "grade": "B",
+   "note": "Small pelts are used only a few times in the Lost Lands (Delucia), so Second Age (Oct 1998) world dressing at best. Reward use is custom.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-024"
+ },
+ {
+  "slug": "sandy-pelt",
+  "name": "Sandy Pelt",
+  "category": "TRO",
+  "subcategory": "Pelts and bearskin rugs",
+  "parts": [
+   {
+    "id": "0x1F79",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "desert",
+   "humble"
+  ],
+  "blurb": "A small sandy-coloured pelt, softened by wear.",
+  "era": {
+   "grade": "B",
+   "note": "Small pelts are used only a few times in the Lost Lands (Delucia), so Second Age (Oct 1998) world dressing at best. Reward use is custom.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; fur tile is a plain ground item",
+  "variantOf": null,
+  "id": "CR-TRO-025"
+ },
+ {
+  "slug": "small-hide-frame",
+  "name": "Small Hide Frame",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x1069",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A small hide laced tight in a wooden frame, drying in the open air.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; impassable wooden frame, no crafting function",
+  "variantOf": null,
+  "id": "CR-TRO-026"
+ },
+ {
+  "slug": "pale-hide-frame",
+  "name": "Pale Hide Frame",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x106A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A pale hide stretched on a frame, cured almost to parchment.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; impassable wooden frame, no crafting function",
+  "variantOf": null,
+  "id": "CR-TRO-027"
+ },
+ {
+  "slug": "stretched-hide-frame",
+  "name": "Stretched Hide Frame",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x106B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "wilderness"
+  ],
+  "blurb": "A russet hide stretched on a tall wooden frame, lashed at every corner.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; impassable wooden frame, no crafting function",
+  "variantOf": null,
+  "id": "CR-TRO-028"
+ },
+ {
+  "slug": "large-hide-frame",
+  "name": "Large Hide Frame",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x106D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "wilderness"
+  ],
+  "blurb": "A large hide on a generous frame, the pride of any tannery yard.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; impassable wooden frame, no crafting function",
+  "variantOf": null,
+  "id": "CR-TRO-029"
+ },
+ {
+  "slug": "tanned-hide-frame",
+  "name": "Tanned Hide Frame",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x106F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1080",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "wilderness"
+  ],
+  "blurb": "A fully tanned hide, light as honey, laced into a frame for display.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; impassable wooden frame, no crafting function",
+  "variantOf": null,
+  "id": "CR-TRO-030"
+ },
+ {
+  "slug": "tanners-drying-row",
+  "name": "Tanner's Drying Row",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x106B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x106D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x106F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x107E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1080",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "wilderness",
+   "camp"
+  ],
+  "blurb": "Three hides stretched in a row, a tannery yard laid out for the whole season's catch.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile addon of three stock hide frames",
+  "variantOf": null,
+  "id": "CR-TRO-031"
+ },
+ {
+  "slug": "pale-hide-pair",
+  "name": "Pale Hide Pair",
+  "category": "TRO",
+  "subcategory": "Hide frames",
+  "parts": [
+   {
+    "id": "0x1069",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x106A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x107A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x107B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A pair of pale hides stretched side by side, still drying.",
+  "era": {
+   "grade": "B",
+   "note": "Tanner's drying frames are original-world statics in Britain, Minoc, Yew, Vesper, Ocllo and other classic towns. World dressing used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile addon of two stock hide frames",
+  "variantOf": null,
+  "id": "CR-TRO-032"
+ },
+ {
+  "slug": "hunters-pair",
+  "name": "Hunter's Pair",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E61",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E68",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "monster:bear",
+   "animal",
+   "forest",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A brown bear and a great hart mounted side by side, the two quarries every hunter boasts about.",
+  "era": {
+   "grade": "C",
+   "note": "Two mounted-head tiles on adjacent wall tiles; the head art is unverified before the 2001 kit and the pairing is a shard invention.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile wall addon of two stock trophy tiles",
+  "variantOf": null,
+  "id": "CR-TRO-033"
+ },
+ {
+  "slug": "frostland-pair",
+  "name": "Frostland Pair",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E66",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E6C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E6D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "monster:polar-bear",
+   "monster:troll",
+   "ice",
+   "martial",
+   "macabre"
+  ],
+  "blurb": "A polar bear and a troll, mounted together as the proof of a northern campaign.",
+  "era": {
+   "grade": "C",
+   "note": "Two mounted-head tiles on adjacent wall tiles; head art unverified before the 2001 kit; the pairing is a shard invention.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile wall addon of two stock trophy tiles",
+  "variantOf": null,
+  "id": "CR-TRO-034"
+ },
+ {
+  "slug": "anglers-catch",
+  "name": "Angler's Catch",
+  "category": "TRO",
+  "subcategory": "Trophy sets",
+  "parts": [
+   {
+    "id": "0x1E62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1E62",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1161
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E69",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1E69",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0,
+      "hue": 1161
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "animal",
+   "nautical",
+   "craft:fishing",
+   "rustic"
+  ],
+  "blurb": "Two prize fish mounted a tile apart on matching plaques, one natural and one gilded.",
+  "era": {
+   "grade": "C",
+   "note": "Two copies of the big-fish trophy tile (second part gilded, hue 1161); head art unverified before the 2001 kit.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2001-2/2001-publish-11-14th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only wall addon of two trophy-fish tiles; second part uses hue 1161",
+  "variantOf": null,
+  "id": "CR-TRO-035"
+ }
+]

@@ -1,0 +1,47 @@
+{
+ "pool": "wanted-curator-fire",
+ "system": "wanted-curator",
+ "notes": "The Fire dungeon is lava, obsidian and hot stone. Braziers and fire pits make the cheap pieces, lava and obsidian the hard pieces, and the great Rough Stone Fireplace is the showpiece. The Flaming Stone Face is grade C but is the one genuinely infernal piece left, so I would keep it.",
+ "entries": [
+  {
+   "id": "CR-LGT-030",
+   "tier": "easy",
+   "why": "Coal bowl brazier, glowing."
+  },
+  {
+   "id": "CR-LGT-031",
+   "tier": "easy",
+   "why": "Stone fire pit."
+  },
+  {
+   "id": "CR-LGT-033",
+   "tier": "medium",
+   "why": "Blazing fire pit."
+  },
+  {
+   "id": "CR-LGT-029",
+   "tier": "medium",
+   "why": "Tall iron brazier on a slender stand."
+  },
+  {
+   "id": "CR-DNG-048",
+   "tier": "hard",
+   "why": "Tile of molten lava, crust splitting."
+  },
+  {
+   "id": "CR-DNG-045",
+   "tier": "hard",
+   "why": "Obsidian ridge, knives of black glass."
+  },
+  {
+   "id": "CR-CUR-018",
+   "tier": "hard",
+   "why": "Flaming stone face; grade C, kept as the only infernal piece left."
+  },
+  {
+   "id": "CR-LGT-036",
+   "tier": "boss",
+   "why": "Rough Stone Fireplace, the dungeon's roaring hearth."
+  }
+ ]
+}

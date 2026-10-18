@@ -1,0 +1,307 @@
+{
+ "pool": "bod-reward-tiers",
+ "system": "bod",
+ "notes": "PROPOSAL ONLY: the actual BOD tier structure (how orders are issued, which crafts get which reward tier, how rewards are rolled) is a later roadmap item (Beta 3, BOD reward tiers) and is not decided here. This pool just proposes which cosmetic goes with which crafting profession at three tiers: 'small' (plain workshop pieces and goods), 'large' (fuller pieces) and 'exceptional' (the best-looking piece of that craft), using catalog tiers common, uncommon and scarce-to-rare to line up. Eight crafts are covered: blacksmithing, carpentry, tailoring, tinkering, alchemy, cooking, bowcraft and inscription. Weak spots: bowcraft has only commons in the catalog (the exceptional is an arrow-slit wall) and cooking and inscription share a few 'exceptional' pieces. These pieces are kept separate from artisan-signatures, so a BOD reward and a crafted signature are never the same design. Cosmetic only; no NPC resale or BOD-value, as for all catalog rewards.",
+ "entries": [
+  {
+   "craft": "blacksmithing",
+   "bodTier": "small",
+   "id": "CR-TRS-009",
+   "why": "Stack of iron ingots, the smith's daily bread"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "small",
+   "id": "CR-CRF-006",
+   "why": "Smith's dishing stump, a smith's humble bench block"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "large",
+   "id": "CR-ARM-027",
+   "why": "Mannequin in ringmail, a bigger order done well"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "large",
+   "id": "CR-ARM-028",
+   "why": "Mannequin in chainmail, a finished harness on show"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "large",
+   "id": "CR-CRF-003",
+   "why": "Smithy corner: forge and anvil together"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "exceptional",
+   "id": "CR-CRF-004",
+   "why": "Large forge, glowing like a master smith's shop"
+  },
+  {
+   "craft": "blacksmithing",
+   "bodTier": "exceptional",
+   "id": "CR-ARM-033",
+   "why": "Armourer's display table with a helm and blade"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "small",
+   "id": "CR-CRF-027",
+   "why": "Stack of boards, fresh from the saw"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "small",
+   "id": "CR-CRF-026",
+   "why": "Stack of logs, the raw start of a job"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "large",
+   "id": "CR-CRF-022",
+   "why": "Cooper's bench with plane"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "large",
+   "id": "CR-CRF-023",
+   "why": "Cooper's bench with chute"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "large",
+   "id": "CR-CRF-025",
+   "why": "Stack of crates, a big order boxed up"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "large",
+   "id": "CR-CRF-028",
+   "why": "Lumberyard stack of logs and boards"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "exceptional",
+   "id": "CR-CRF-024",
+   "why": "Cooper's work in progress, barrel and staves"
+  },
+  {
+   "craft": "carpentry",
+   "bodTier": "exceptional",
+   "id": "CR-MUS-001",
+   "why": "Gilded standing harp, an instrument-maker's pride"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "small",
+   "id": "CR-CRF-011",
+   "why": "Bolts of cloth, standing in a row"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "small",
+   "id": "CR-CRF-013",
+   "why": "Stack of folded cloth"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "large",
+   "id": "CR-CRF-012",
+   "why": "Assorted bolts of cloth in bright colours"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "large",
+   "id": "CR-ARM-025",
+   "why": "Studded leather set, a leatherworker's order"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "exceptional",
+   "id": "CR-CRF-007",
+   "why": "Weaver's loom, the heart of a tailor's workshop"
+  },
+  {
+   "craft": "tailoring",
+   "bodTier": "exceptional",
+   "id": "CR-CRF-016",
+   "why": "Tanner's corner with hides and tools"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "small",
+   "id": "CR-CRF-018",
+   "why": "Tinker's tools laid out on the bench"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "small",
+   "id": "CR-CRF-019",
+   "why": "Tinker's toolbox, battered and busy"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "large",
+   "id": "CR-CRF-017",
+   "why": "Tinker's parts table with small pieces and gears"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "large",
+   "id": "CR-CRF-035",
+   "why": "Chandler's wax table, candles in the making"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "exceptional",
+   "id": "CR-LGT-045",
+   "why": "Agapite candelabra, a tinker's finest metalwork"
+  },
+  {
+   "craft": "tinkering",
+   "bodTier": "exceptional",
+   "id": "CR-LIB-034",
+   "why": "Sapphire globe on a delicate stand"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "small",
+   "id": "CR-ALC-040",
+   "why": "Cluster of corked jars"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "small",
+   "id": "CR-ALC-035",
+   "why": "Yellow beaker, a small bench piece"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "large",
+   "id": "CR-ALC-037",
+   "why": "Rack of empty vials waiting to be filled"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "large",
+   "id": "CR-ALC-024",
+   "why": "Witch's cauldron for a big brew"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "exceptional",
+   "id": "CR-ALC-009",
+   "why": "Alchemical sigil mosaic, the four sigils together"
+  },
+  {
+   "craft": "alchemy",
+   "bodTier": "exceptional",
+   "id": "CR-ALC-029",
+   "why": "Violet ribbed flask, rare distilling glass"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "small",
+   "id": "CR-FOO-009",
+   "why": "Loaves of French bread"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "small",
+   "id": "CR-FOO-004",
+   "why": "Cured ham, a plain cook's order"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "large",
+   "id": "CR-FOO-005",
+   "why": "Glazed ham for a feast"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "large",
+   "id": "CR-FOO-012",
+   "why": "Pan of cookies, a baker's large batch"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "exceptional",
+   "id": "CR-FOO-024",
+   "why": "Roast pig banquet, the cook's crowning order"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "exceptional",
+   "id": "CR-CMP-030",
+   "why": "Camp kitchen with cauldron, spit and spare pot"
+  },
+  {
+   "craft": "cooking",
+   "bodTier": "exceptional",
+   "id": "CR-FOO-026",
+   "why": "Baker's spread laid out for a morning market"
+  },
+  {
+   "craft": "bowcraft",
+   "bodTier": "small",
+   "id": "CR-CRF-042",
+   "why": "Fletcher's arrow bundle"
+  },
+  {
+   "craft": "bowcraft",
+   "bodTier": "large",
+   "id": "CR-ARM-035",
+   "why": "Bowyer's arrow table"
+  },
+  {
+   "craft": "bowcraft",
+   "bodTier": "exceptional",
+   "id": "CR-ARC-031",
+   "why": "Arrow-slit wall, a bowman's loop"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "small",
+   "id": "CR-LIB-022",
+   "why": "Bundle of blank scrolls"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "small",
+   "id": "CR-LIB-023",
+   "why": "Scrolls tied with red ribbon"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "large",
+   "id": "CR-LIB-025",
+   "why": "Pile of scrolls, a scribe's larger order"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "large",
+   "id": "CR-LIB-026",
+   "why": "Scroll and quill"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "large",
+   "id": "CR-LIB-021",
+   "why": "Open primer and quill"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "exceptional",
+   "id": "CR-LIB-040",
+   "why": "Ledger desk with blue ribbon"
+  },
+  {
+   "craft": "inscription",
+   "bodTier": "exceptional",
+   "id": "CR-ALC-046",
+   "why": "Spell lectern with an open book, a scribe's crowning piece"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-vesper",
+ "system": "expedition",
+ "notes": "Merchant luxuries for the trading city: scales and coin, ledgers and a ledger desk, glass counters, a gilded vase pair and a mirrored dresser. Core pieces are the counting-house basics; the rares are the grand glass counter and the finer furnishings.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-TRS-005",
+   "why": "Coins and scales, the merchant's emblem"
+  },
+  {
+   "role": "core",
+   "id": "CR-TWN-028",
+   "why": "Merchants' Guild sign"
+  },
+  {
+   "role": "core",
+   "id": "CR-LIB-009",
+   "why": "Red-ribbon ledger for the day's accounts"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TBL-030",
+   "why": "Grand glass counter, 6x1 shop centrepiece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-CUR-015",
+   "why": "Cobalt and gilt amphorae, a pair of trade luxuries"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TBL-038",
+   "why": "Mirrored dresser, a rich merchant's bedchamber piece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TRS-026",
+   "why": "Counting-house heap of coin, 2x2"
+  },
+  {
+   "role": "rare",
+   "id": "CR-LIB-039",
+   "why": "Ledger desk with red ribbon, the factor's station"
+  }
+ ]
+}

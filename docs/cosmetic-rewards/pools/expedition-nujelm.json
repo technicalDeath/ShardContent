@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-nujelm",
+ "system": "expedition",
+ "notes": "Palace luxury and desert exotica: sandstone posts and cacti and an amphora for the core; the rares are the sandstone fountain, the portico, the royal medallion carpet, a gilded amphora and a golden feather pillow.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-ARC-007",
+   "why": "Carved sandstone post for a palace court"
+  },
+  {
+   "role": "core",
+   "id": "CR-FLO-055",
+   "why": "Flowering cactus from the desert garden"
+  },
+  {
+   "role": "core",
+   "id": "CR-CUR-006",
+   "why": "Large amphora, a trade vase of the south"
+  },
+  {
+   "role": "rare",
+   "id": "CR-WTR-002",
+   "why": "Sandstone fountain, 4x4 palace-court centrepiece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARC-004",
+   "why": "Sandstone portico, 3x3 colonnade"
+  },
+  {
+   "role": "rare",
+   "id": "CR-RUG-022",
+   "why": "Royal medallion carpet, 7x6 palace floor"
+  },
+  {
+   "role": "rare",
+   "id": "CR-CUR-011",
+   "why": "Gilded amphora, golden luxury"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FRN-051",
+   "why": "Golden feather pillow for the divan"
+  }
+ ]
+}

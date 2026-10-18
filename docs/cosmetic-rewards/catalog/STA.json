@@ -1,0 +1,2217 @@
+[
+ {
+  "slug": "wayfarer-statuette",
+  "name": "Stone Wayfarer Statuette",
+  "category": "STA",
+  "subcategory": "Statuettes",
+  "parts": [
+   {
+    "id": "0x1224",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x139A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A small carved traveller with a bow-like staff in hand, standing on a round stone plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 5 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.StatueEast2 (0x1224) / StatueSouth (0x139A)",
+  "variantOf": null,
+  "id": "CR-STA-001"
+ },
+ {
+  "slug": "robed-sage-statuette",
+  "name": "Robed Sage Statuette",
+  "category": "STA",
+  "subcategory": "Statuettes",
+  "parts": [
+   {
+    "id": "0x1225",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A narrow stone figure in long robes, hands folded, on a low round base.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 8 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.StatueSouthEast (0x1225)",
+  "variantOf": null,
+  "id": "CR-STA-002"
+ },
+ {
+  "slug": "winged-guardian-statuette",
+  "name": "Winged Guardian Statuette",
+  "category": "STA",
+  "subcategory": "Statuettes",
+  "parts": [
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x139B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A stone guardian with folded wings keeps watch from a carved plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 11 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.StatueWest (0x1226) / StatueNorth (0x139B)",
+  "variantOf": null,
+  "id": "CR-STA-003"
+ },
+ {
+  "slug": "outstretched-hand-statuette",
+  "name": "Outstretched Hand Statuette",
+  "category": "STA",
+  "subcategory": "Statuettes",
+  "parts": [
+   {
+    "id": "0x1227",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x139C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A stone figure with one arm held out, as though showing the way, on a rounded base.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 6 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.StatueSouth2 (0x1227) / StatueEast (0x139C)",
+  "variantOf": null,
+  "id": "CR-STA-004"
+ },
+ {
+  "slug": "pegasus-statue",
+  "name": "Pegasus Statue",
+  "category": "STA",
+  "subcategory": "Statuettes",
+  "parts": [
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x139D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "whimsical",
+   "elegant",
+   "animal"
+  ],
+  "blurb": "A winged horse in grey stone, wings flung wide, rearing from its own square block.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 10 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.StatuePegasus2 (0x1228) / StatuePegasus (0x139D)",
+  "variantOf": null,
+  "id": "CR-STA-005"
+ },
+ {
+  "slug": "scholars-bust",
+  "name": "Scholar's Bust",
+  "category": "STA",
+  "subcategory": "Busts",
+  "parts": [
+   {
+    "id": "0x12CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A stern marble bust of a learned man in a high collar.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 1 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class Server.Items.BustSouth (0x12CB) / BustEast (0x12CA)",
+  "variantOf": null,
+  "id": "CR-STA-006"
+ },
+ {
+  "slug": "wayfarer-on-marble-pedestal",
+  "name": "Wayfarer on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1224",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A stone traveller stands watch atop a fluted marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=11 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-007"
+ },
+ {
+  "slug": "sage-on-marble-pedestal",
+  "name": "Sage on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1225",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A robed sage in grey stone, raised on a pale marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=11 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-008"
+ },
+ {
+  "slug": "guardian-on-marble-pedestal",
+  "name": "Guardian on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A winged stone guardian standing high on a marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=11 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-009"
+ },
+ {
+  "slug": "beckoner-on-marble-pedestal",
+  "name": "Beckoning Figure on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1227",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A stone figure beckons from the top of a marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=11 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-010"
+ },
+ {
+  "slug": "pegasus-on-marble-pedestal",
+  "name": "Pegasus on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 9
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 9
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "elegant",
+   "animal"
+  ],
+  "blurb": "A stone pegasus spreads its wings above a tall marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=9 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-011"
+ },
+ {
+  "slug": "bust-on-marble-pedestal",
+  "name": "Bust on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x12CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A learned man's bust set on a fluted marble column, ready for a hall or library.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1223 pedestals (n=56).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=11 on the marble pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-012"
+ },
+ {
+  "slug": "wayfarer-on-sandstone-pedestal",
+  "name": "Wayfarer on a Sandstone Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1F2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1224",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1F2A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 8
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "desert",
+   "scholar"
+  ],
+  "blurb": "A stone traveller on a narrow pedestal of warm sandstone.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1F2A pedestals (n=6).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=8 on the sandstone pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-013"
+ },
+ {
+  "slug": "guardian-on-sandstone-pedestal",
+  "name": "Guardian on a Sandstone Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1F2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x1F2A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x139B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 8
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "desert",
+   "elegant"
+  ],
+  "blurb": "A winged guardian in grey stone on a sandstone shaft.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1F2A pedestals (n=6).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=8 on the sandstone pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-014"
+ },
+ {
+  "slug": "bust-on-sandstone-pedestal",
+  "name": "Bust on a Sandstone Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1F2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1F2A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x12CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 8
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "desert",
+   "elegant"
+  ],
+  "blurb": "A stern bust of grey stone on a column of pale sandstone.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1F2A pedestals (n=6).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=8 on the sandstone pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-015"
+ },
+ {
+  "slug": "pegasus-on-sandstone-pedestal",
+  "name": "Pegasus on a Sandstone Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1F2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x139D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1F2A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1228",
+      "dx": 0,
+      "dy": 0,
+      "dz": 6
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "desert",
+   "animal"
+  ],
+  "blurb": "A stone pegasus perched above a slender sandstone pillar.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal both original-world static art; the Britannia map stands these exact statuettes on 0x1F2A pedestals (n=6).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only; two plain items stacked (statuette dz=6 on the sandstone pedestal), or one two-part addon",
+  "variantOf": null,
+  "id": "CR-STA-016"
+ },
+ {
+  "slug": "spear-bearer-statue",
+  "name": "Statue of the Spear-Bearer",
+  "category": "STA",
+  "subcategory": "Grand statues",
+  "parts": [
+   {
+    "id": "0x129F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x139E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x139F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "heraldic"
+  ],
+  "blurb": "A towering stone hero in a long cloak, spear in one hand, stands guard on a weathered square base.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 6 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock-class StoneStatueAddon (0x129F + 0x12A0 + 0x12A1); south set shown, east set 0x139E/0x139F/0x13A0",
+  "variantOf": null,
+  "id": "CR-STA-017"
+ },
+ {
+  "slug": "betrothed-statue",
+  "name": "Statue of the Betrothed",
+  "category": "STA",
+  "subcategory": "Grand statues",
+  "parts": [
+   {
+    "id": "0x12A2",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x13A1",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A3",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A man and a woman carved side by side, a dog and a cat at their feet, on a broad stone plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 7 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon, offsets from the original map grouping; south set shown, east set 0x13A1/0x13A2/0x13A3",
+  "variantOf": null,
+  "id": "CR-STA-018"
+ },
+ {
+  "slug": "sentinel-maiden-pillar",
+  "name": "Sentinel Maiden on a Pillar",
+  "category": "STA",
+  "subcategory": "Grand statues",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A stone maiden in a short tunic holds a spear aloft atop a tall carved pillar.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art (statue tile used 35 times on the Britannia map), offered as a reward; world dressing, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single tile; mirrored pose is 0x12D9",
+  "variantOf": null,
+  "id": "CR-STA-019"
+ },
+ {
+  "slug": "bronze-spear-bearer",
+  "name": "Bronze Statue of the Spear-Bearer",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x129F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x139E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x139F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "heraldic",
+   "craft:blacksmithing"
+  ],
+  "blurb": "The old hero cast in dark bronze, cloak and spear gleaming where hands have polished them.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=6); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "hue 2418 (0x972) on every part; same art as spear-bearer-statue",
+  "variantOf": "spear-bearer-statue",
+  "id": "CR-STA-020"
+ },
+ {
+  "slug": "gilded-spear-bearer",
+  "name": "Gilded Statue of the Spear-Bearer",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x129F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x139E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x139F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "martial",
+   "noble",
+   "treasure",
+   "heraldic"
+  ],
+  "blurb": "A golden champion in a flowing cloak, spear raised, fit for the entrance of a great hall.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=6); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "hue 2213 (0x8A5) on every part; same art as spear-bearer-statue",
+  "variantOf": "spear-bearer-statue",
+  "id": "CR-STA-021"
+ },
+ {
+  "slug": "obsidian-spear-bearer",
+  "name": "Shadowiron Statue of the Spear-Bearer",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x129F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2406,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x139E",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x139F",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A0",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "dungeon",
+   "macabre"
+  ],
+  "blurb": "The stone hero in near-black metal, a grim sentinel for a cellar stair or a dark hall.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=6); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "hue 2406 (0x966) on every part; same art as spear-bearer-statue",
+  "variantOf": "spear-bearer-statue",
+  "id": "CR-STA-022"
+ },
+ {
+  "slug": "bronze-betrothed",
+  "name": "Bronze Statue of the Betrothed",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12A2",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x13A1",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A3",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden",
+   "craft:blacksmithing"
+  ],
+  "blurb": "The couple and their two small companions, cast in warm bronze on a broad plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=7); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "hue 2418 (0x972) on every part; same art as betrothed-statue",
+  "variantOf": "betrothed-statue",
+  "id": "CR-STA-023"
+ },
+ {
+  "slug": "verdigris-betrothed",
+  "name": "Verdigris Statue of the Betrothed",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12A2",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x12A3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12A4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2207,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x13A1",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x13A3",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "The couple in green-weathered metal, as though they had stood in a garden for a hundred years.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=7); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "hue 2207 (0x89F) on every part; same art as betrothed-statue",
+  "variantOf": "betrothed-statue",
+  "id": "CR-STA-024"
+ },
+ {
+  "slug": "bronze-sentinel-maiden",
+  "name": "Bronze Sentinel Maiden",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The spear-maiden cast in bronze, her pillar left in plain stone.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=35); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2418 (0x972) on every part; same art as sentinel-maiden-pillar",
+  "variantOf": "sentinel-maiden-pillar",
+  "id": "CR-STA-025"
+ },
+ {
+  "slug": "gilded-sentinel-maiden",
+  "name": "Gilded Sentinel Maiden",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "A gleaming golden maiden with a lifted spear above a gilded pillar.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=35); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2213 (0x8A5) on every part; same art as sentinel-maiden-pillar",
+  "variantOf": "sentinel-maiden-pillar",
+  "id": "CR-STA-026"
+ },
+ {
+  "slug": "frostwrought-sentinel-maiden",
+  "name": "Frostwrought Sentinel Maiden",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2219,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "ice",
+   "elegant"
+  ],
+  "blurb": "Blue-grey as winter slate, the maiden and her pillar look carved from a frozen quarry.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=35); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2219 (0x8AB) on every part; same art as sentinel-maiden-pillar",
+  "variantOf": "sentinel-maiden-pillar",
+  "id": "CR-STA-027"
+ },
+ {
+  "slug": "gilded-pegasus",
+  "name": "Gilded Pegasus",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x139D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "treasure",
+   "animal"
+  ],
+  "blurb": "A golden pegasus in mid-rear, every feather picked out in bright metal.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=10); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2213 (0x8A5) on every part; same art as pegasus-statue",
+  "variantOf": "pegasus-statue",
+  "id": "CR-STA-028"
+ },
+ {
+  "slug": "bronze-pegasus",
+  "name": "Bronze Pegasus",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x139D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "whimsical",
+   "animal",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A dark bronze pegasus with outspread wings, small enough for a mantel.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=10); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2418 (0x972) on every part; same art as pegasus-statue",
+  "variantOf": "pegasus-statue",
+  "id": "CR-STA-029"
+ },
+ {
+  "slug": "bronze-guardian-statuette",
+  "name": "Bronze Winged Guardian",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "west",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x139B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "elegant",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A bronze guardian with folded wings, small enough to stand on a shelf.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=11); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2418 (0x972) on every part; same art as winged-guardian-statuette",
+  "variantOf": "winged-guardian-statuette",
+  "id": "CR-STA-030"
+ },
+ {
+  "slug": "gilded-wayfarer-statuette",
+  "name": "Gilded Wayfarer Statuette",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x1224",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x139A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "treasure",
+   "noble"
+  ],
+  "blurb": "The little traveller dipped in gold and set on a round plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=5); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2213 (0x8A5) on every part; same art as wayfarer-statuette",
+  "variantOf": "wayfarer-statuette",
+  "id": "CR-STA-031"
+ },
+ {
+  "slug": "bronze-scholars-bust",
+  "name": "Bronze Scholar's Bust",
+  "category": "STA",
+  "subcategory": "Cast and gilded editions",
+  "parts": [
+   {
+    "id": "0x12CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x12CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A bust of a learned man in dark bronze, fit for a study or a guild hall.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=1); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "hue 2418 (0x972) on every part; same art as scholars-bust",
+  "variantOf": "scholars-bust",
+  "id": "CR-STA-032"
+ },
+ {
+  "slug": "gilded-pegasus-on-marble-pedestal",
+  "name": "Gilded Pegasus on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 0
+   },
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 9
+   }
+  ],
+  "hue": 2213,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 0
+     },
+     {
+      "id": "0x139D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 9
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "treasure",
+   "animal",
+   "elegant"
+  ],
+  "blurb": "A golden pegasus rears above a plain white marble pedestal.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal are original-world static art (n=10); the statuette's hue is a coloured-ingot colour (ore colours existed from Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only; pedestal natural, statuette part carries hue 2213 (0x8A5)",
+  "variantOf": "pegasus-on-marble-pedestal",
+  "id": "CR-STA-033"
+ },
+ {
+  "slug": "shadowiron-guardian-on-marble-pedestal",
+  "name": "Shadowiron Guardian on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 0
+   },
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 2406,
+  "facing": "west",
+  "altFacings": [
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 0
+     },
+     {
+      "id": "0x139B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "macabre",
+   "noble"
+  ],
+  "blurb": "A near-black guardian with folded wings, stark against pale marble.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal are original-world static art (n=11); the statuette's hue is a coloured-ingot colour (ore colours existed from Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only; pedestal natural, statuette part carries hue 2406 (0x966)",
+  "variantOf": "guardian-on-marble-pedestal",
+  "id": "CR-STA-034"
+ },
+ {
+  "slug": "bronze-bust-on-marble-pedestal",
+  "name": "Bronze Bust on a Marble Pedestal",
+  "category": "STA",
+  "subcategory": "Statues on pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 0
+   },
+   {
+    "id": "0x12CB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 2418,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1223",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 0
+     },
+     {
+      "id": "0x12CA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 11
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A bronze bust of a learned man on a pillar of pale marble.",
+  "era": {
+   "grade": "B",
+   "note": "Statuette and pedestal are original-world static art (n=1); the statuette's hue is a coloured-ingot colour (ore colours existed from Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only; pedestal natural, statuette part carries hue 2418 (0x972)",
+  "variantOf": "bust-on-marble-pedestal",
+  "id": "CR-STA-035"
+ },
+ {
+  "slug": "sentinel-maiden-pair",
+  "name": "Pair of Sentinel Maidens",
+  "category": "STA",
+  "subcategory": "Statue sets",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12D9",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "Two spear-maidens on tall pillars, posed as mirror images to flank a gate or a stair.",
+  "era": {
+   "grade": "B",
+   "note": "Both tiles are original-world statue art (n=35 and 46); the pair is just the two mirrored poses set two tiles apart.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two single-tile statues with one tile between them; decor-only",
+  "variantOf": null,
+  "id": "CR-STA-036"
+ },
+ {
+  "slug": "bronze-sentinel-maiden-pair",
+  "name": "Pair of Bronze Sentinel Maidens",
+  "category": "STA",
+  "subcategory": "Statue sets",
+  "parts": [
+   {
+    "id": "0x12D8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x12D9",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2418,
+  "facing": "both",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "elegant",
+   "craft:blacksmithing"
+  ],
+  "blurb": "Two bronze spear-maidens on tall pillars, mirror images set to flank a gate or a stair.",
+  "era": {
+   "grade": "B",
+   "note": "Graphic is original-world statue art (n=35 and 46); the colour is a coloured-ingot hue (ore colours existed from Feb 1999), so a bronze or gilded finish is plausible.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two single-tile statues with one tile between; hue 2418 (0x972) on both; decor-only",
+  "variantOf": "sentinel-maiden-pair",
+  "id": "CR-STA-037"
+ },
+ {
+  "slug": "guardian-pedestal-pair",
+  "name": "Twin Guardians on Marble Pedestals",
+  "category": "STA",
+  "subcategory": "Statue sets",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1226",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   },
+   {
+    "id": "0x1223",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x139B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Two winged guardians turn toward one another from matching marble pedestals.",
+  "era": {
+   "grade": "B",
+   "note": "Statuettes and pedestals are original-world static art; the Britannia map stands these figures on 0x1223 pedestals in matching sets.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two pedestal-and-statuette stacks one tile apart; decor-only",
+  "variantOf": null,
+  "id": "CR-STA-038"
+ },
+ {
+  "slug": "pegasus-pedestal-pair",
+  "name": "Twin Pegasi on Marble Pedestals",
+  "category": "STA",
+  "subcategory": "Statue sets",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1228",
+    "dx": 0,
+    "dy": 0,
+    "dz": 9
+   },
+   {
+    "id": "0x1223",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x139D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 9
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "whimsical",
+   "elegant",
+   "animal"
+  ],
+  "blurb": "Two stone pegasi with wings outspread, mirrored on matching pedestals.",
+  "era": {
+   "grade": "B",
+   "note": "Pegasus tiles are original-world static art (n=10 and 13) and the map mounts them on 0x1223 pedestals.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two pedestal-and-statue stacks one tile apart; decor-only",
+  "variantOf": null,
+  "id": "CR-STA-039"
+ },
+ {
+  "slug": "wayfarer-pedestal-pair",
+  "name": "Pair of Wayfarers on Pedestals",
+  "category": "STA",
+  "subcategory": "Statue sets",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x139A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 11
+   },
+   {
+    "id": "0x1223",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1224",
+    "dx": 2,
+    "dy": 0,
+    "dz": 11
+   }
+  ],
+  "hue": 0,
+  "facing": "both",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "Two stone wayfarers on marble pedestals, one facing each way.",
+  "era": {
+   "grade": "B",
+   "note": "Statuettes and pedestal are original-world static art; matching pedestal-and-statuette stacks appear on the Britannia map.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two pedestal-and-statuette stacks one tile apart; decor-only",
+  "variantOf": null,
+  "id": "CR-STA-040"
+ }
+]

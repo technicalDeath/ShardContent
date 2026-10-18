@@ -1,0 +1,1187 @@
+[
+ {
+  "slug": "heap-of-jewelled-gold",
+  "name": "Heap of Jewelled Gold",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B43",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "exotic",
+   "dungeon"
+  ],
+  "blurb": "A glittering mound of gold coin with a sapphire and a ruby winking out of the pile.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of gold and gems is generic hoard dressing. The tile is original dungeon-treasure art left out of the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-TRS-001"
+ },
+ {
+  "slug": "gold-and-silver-heap",
+  "name": "Heap of Gold and Silver",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B51",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "noble",
+   "humble"
+  ],
+  "blurb": "Gold coin and silver plate tumbled together as if swept from a table.",
+  "era": {
+   "grade": "N",
+   "note": "A mixed heap of gold and silver is generic hoard dressing. The tile is original dungeon-treasure art left out of the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-TRS-002"
+ },
+ {
+  "slug": "mound-of-silver",
+  "name": "Mound of Silver Plate",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B4C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A bright cairn of silver plate and coin, with one lone ruby set on top.",
+  "era": {
+   "grade": "N",
+   "note": "A mound of silver is generic hoard dressing. The tile is original dungeon-treasure art left out of the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-TRS-003"
+ },
+ {
+  "slug": "gem-strewn-gold",
+  "name": "Gem-Strewn Gold",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B67",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "exotic",
+   "dungeon"
+  ],
+  "blurb": "Gold and silver heaped together, studded with cut gems in every colour.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of coin and cut stones is generic hoard dressing. The tile is original dungeon-treasure art left out of the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-TRS-004"
+ },
+ {
+  "slug": "hoard-with-blade",
+  "name": "Hoard with a Buried Blade",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "pirate",
+   "martial",
+   "dungeon"
+  ],
+  "blurb": "A heap of gold, silver and gems with the hilt of a sword standing in it, as if a hero had left it there.",
+  "era": {
+   "grade": "N",
+   "note": "A hoard with a blade in it is generic loot dressing, with no artifact or champion link. The tile is original dungeon-treasure art left out of the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only; the blade is part of the picture",
+  "variantOf": null,
+  "id": "CN-TRS-005"
+ },
+ {
+  "slug": "great-treasure-heap",
+  "name": "Great Treasure Heap",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0x1B43",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B62",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1B6A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B67",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "noble",
+   "exotic",
+   "dungeon"
+  ],
+  "blurb": "A shoulder-high pile of gold, silver and jewels, big enough to bury a man to his chin.",
+  "era": {
+   "grade": "N",
+   "note": "Four ordinary treasure-pile tiles joined into one large hoard; generic loot dressing from original dungeon art.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-TRS-006"
+ },
+ {
+  "slug": "spilled-coin-purse",
+  "name": "Spilled Coin Purse",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0xA331",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA332",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "humble",
+   "pirate",
+   "rustic"
+  ],
+  "blurb": "A leather purse tipped on its side, spilling its coins across the floor.",
+  "era": {
+   "grade": "N",
+   "note": "A spilled purse is a generic loot or tavern prop with no later theme. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-007"
+ },
+ {
+  "slug": "spilled-gem-pouch",
+  "name": "Spilled Gem Pouch",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0xA333",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA334",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "exotic",
+   "craft:tinkering"
+  ],
+  "blurb": "A velvet pouch tipped open, scattering cut stones of every colour.",
+  "era": {
+   "grade": "N",
+   "note": "A pouch of spilled gems is a generic treasure prop with no later theme. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-008"
+ },
+ {
+  "slug": "pot-of-gold",
+  "name": "Pot of Gold",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0xB164",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "whimsical",
+   "noble",
+   "craft:tinkering"
+  ],
+  "blurb": "A black iron pot heaped with gold, with a few coins that rolled out and stayed.",
+  "era": {
+   "grade": "N",
+   "note": "A pot brimming with coin is a generic folk-tale hoard and is readable without any later event. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-009"
+ },
+ {
+  "slug": "pearl-strewn-gold",
+  "name": "Gold Heap with a Pearl Strand",
+  "category": "TRS",
+  "subcategory": "Heaps and hoards",
+  "parts": [
+   {
+    "id": "0xA63E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA63D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "pirate"
+  ],
+  "blurb": "A glittering mound of gold and gems with a pearl necklace trailing from the top.",
+  "era": {
+   "grade": "N",
+   "note": "A heap of gold and jewellery is a generic treasure display. Art is from a much later item block; the tile's tiledata name is a plain 'Chest Treasure'.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-TRS-010"
+ },
+ {
+  "slug": "copper-ingot-stack",
+  "name": "Stack of Copper Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BE8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BE8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BE8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "Three layers of rust-red copper ingots, neatly piled for the smith.",
+  "era": {
+   "grade": "N",
+   "note": "A stack of copper ingots is a generic smith's stock; the main catalog stacks other metals but leaves copper out. Original item-block art.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "three statics stacked, like the other ingot stacks",
+  "variantOf": null,
+  "id": "CN-TRS-011"
+ },
+ {
+  "slug": "black-iron-chest",
+  "name": "Black Iron Strongchest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA304",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA305",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "martial",
+   "noble",
+   "dungeon"
+  ],
+  "blurb": "A domed black chest banded and cornered in gold, lock gleaming.",
+  "era": {
+   "grade": "N",
+   "note": "A decorative strongchest is a generic treasure prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-012"
+ },
+ {
+  "slug": "rusted-treasure-chest",
+  "name": "Rusted Treasure Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA306",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA307",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "dungeon",
+   "macabre",
+   "rustic"
+  ],
+  "blurb": "A chest gone red-brown with rust, the iron straps flaking but the lid still shut tight.",
+  "era": {
+   "grade": "N",
+   "note": "A rusted chest is a generic dungeon prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-013"
+ },
+ {
+  "slug": "gilded-treasure-chest",
+  "name": "Gilded Treasure Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA308",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA309",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A chest sheathed in beaten gold, so bright it seems lit from within.",
+  "era": {
+   "grade": "N",
+   "note": "A gilded treasure chest is a generic hoard prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-014"
+ },
+ {
+  "slug": "silver-bound-chest",
+  "name": "Silver-Bound Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xB4A6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB4A7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "martial"
+  ],
+  "blurb": "A pale chest strapped in silver and trimmed with gold, small enough to carry under one arm.",
+  "era": {
+   "grade": "N",
+   "note": "A small silver-bound chest is a generic treasure prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-015"
+ },
+ {
+  "slug": "grand-silver-chest",
+  "name": "Grand Silver Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xB4B4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB4B5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "martial"
+  ],
+  "blurb": "A big pale chest with gold corners and a lock the size of a fist.",
+  "era": {
+   "grade": "N",
+   "note": "A large silver-bound chest is a generic treasure prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-016"
+ },
+ {
+  "slug": "gold-fitted-chest",
+  "name": "Gold-Fitted Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA393",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA394",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "rustic",
+   "pirate"
+  ],
+  "blurb": "A plain brown chest, its hinges and lock plate picked out in gold.",
+  "era": {
+   "grade": "N",
+   "note": "A gold-fitted wooden chest is a generic treasure prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-017"
+ },
+ {
+  "slug": "oak-strongbox",
+  "name": "Brass-Banded Oak Strongbox",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA84F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA850",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "rustic",
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A small oak box with brass bands, the sort a merchant hides under the counter.",
+  "era": {
+   "grade": "N",
+   "note": "A small banded strongbox is a generic merchant's prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-018"
+ },
+ {
+  "slug": "iron-strongbox",
+  "name": "Iron Strongbox",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0xA851",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA852",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "any",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "martial",
+   "humble",
+   "dungeon"
+  ],
+  "blurb": "A black iron box with a heavy hasp, built to resist a thief with a crowbar.",
+  "era": {
+   "grade": "N",
+   "note": "A plain iron strongbox is a generic treasure prop. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-019"
+ },
+ {
+  "slug": "banded-oak-trunk",
+  "name": "Banded Oak Trunk",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0x4910",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4911",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "rustic",
+   "noble",
+   "tavern"
+  ],
+  "blurb": "A barrel-lidded oak trunk girded with iron, with room for a captain's whole fortune.",
+  "era": {
+   "grade": "N",
+   "note": "A banded oak trunk is a generic traveller's and treasure chest. Art is from the Stygian Abyss-era block.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-020"
+ },
+ {
+  "slug": "silver-filigree-elven-chest",
+  "name": "Silver-Filigree Elven Chest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0x2DF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DF2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "elven",
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A pale chest covered in fine silver knotwork, its little gold lock shaped like a leaf.",
+  "era": {
+   "grade": "N",
+   "note": "An ornate elven chest from the Mondain's Legacy block (0x2DF1). Elven pieces are in for this section because the shard has cosmetic Elves; it is a plain decorative chest, not racial gear.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-021"
+ },
+ {
+  "slug": "carved-elven-chest",
+  "name": "Carved Elven Strongchest",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0x2DF3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DF4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "elven",
+   "elegant",
+   "rustic",
+   "exotic"
+  ],
+  "blurb": "A chest of pale carved wood with a knot of three looping lines on its face, light as a bird and strong as a vault.",
+  "era": {
+   "grade": "N",
+   "note": "An ornate elven chest from the Mondain's Legacy block (0x2DF3). Elven pieces are in for this section because the shard has cosmetic Elves; it is a plain decorative chest.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-022"
+ },
+ {
+  "slug": "velvet-jewel-case",
+  "name": "Velvet Jewel Display Case",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0x2FEA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2FEB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A glass-topped table lined in midnight-blue velvet and spangled with cut gems.",
+  "era": {
+   "grade": "N",
+   "note": "A jeweller's display case is a generic shop and treasure fixture. The art is from the Mondain's Legacy block; the object has no elven or later-expansion link.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-023"
+ },
+ {
+  "slug": "jewellers-stand",
+  "name": "Jeweller's Stand",
+  "category": "TRS",
+  "subcategory": "Chests and strongboxes",
+  "parts": [
+   {
+    "id": "0x9F1C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9F1D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "elegant",
+   "noble",
+   "craft:tinkering"
+  ],
+  "blurb": "A tall white scrollwork stand on slender legs, where a jeweller keeps her finest pieces.",
+  "era": {
+   "grade": "N",
+   "note": "A jewellery stand is generic shop and chamber furniture. Art is from a much later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; holds nothing",
+  "variantOf": null,
+  "id": "CN-TRS-024"
+ },
+ {
+  "slug": "misers-corner",
+  "name": "Miser's Corner",
+  "category": "TRS",
+  "subcategory": "Hoards",
+  "parts": [
+   {
+    "id": "0xB164",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA851",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA333",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA331",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "noble",
+   "whimsical",
+   "pirate"
+  ],
+  "blurb": "A pot of gold, a locked strongbox and two spilled purses tucked into one greedy little corner.",
+  "era": {
+   "grade": "N",
+   "note": "A pot, strongbox and spilled pouches form a generic hoard vignette made of independent props from later item blocks.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-TRS-025"
+ },
+ {
+  "slug": "treasure-vault-corner",
+  "name": "Treasure Vault Corner",
+  "category": "TRS",
+  "subcategory": "Hoards",
+  "parts": [
+   {
+    "id": "0xA308",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA304",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB4B4",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB164",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "dungeon"
+  ],
+  "blurb": "Three fine chests and a pot of gold crowded together: the corner of a vault no thief ever reached.",
+  "era": {
+   "grade": "N",
+   "note": "Three decorative chests and a pot of coin form a generic vault vignette made of independent props from a later item block.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "four statics on a 2x2 footprint",
+  "variantOf": null,
+  "id": "CN-TRS-026"
+ }
+]

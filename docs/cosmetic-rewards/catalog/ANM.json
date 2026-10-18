@@ -1,0 +1,1575 @@
+[
+ {
+  "slug": "haystack",
+  "name": "Haystack",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 1,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "animal",
+   "season:harvest"
+  ],
+  "blurb": "A heaped stack of hay sheaves, built up two high against the barn wall.",
+  "era": {
+   "grade": "B",
+   "note": "Set composed of 1997 farm art (sheaf of hay and loose hay) that the original Britannia map places in barns and farms; used as a reward.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "2x2 arrangement: loose hay 0x0F34 under four sheaves 0x0F36, two more stacked on top (dz 7); decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-001"
+ },
+ {
+  "slug": "open-stock-pen",
+  "name": "Open Stock Pen",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB43",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB44",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:herding"
+  ],
+  "blurb": "A rail-fenced stall open to the south, with a hay-strewn floor, a sheaf for fodder and a full water trough.",
+  "era": {
+   "grade": "B",
+   "note": "Set of the original map's rail fence, hay and a documented 1999 water trough, used as a reward; the set itself is composed.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "4x4 U-shaped arrangement of wooden fence pieces 0x085C-0x0861, hay 0x0F34/0x0F36 and trough 0x0B43/0x0B44; fence pieces are wall-flagged, decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-002"
+ },
+ {
+  "slug": "plough",
+  "name": "Farmer's Plough",
+  "category": "ANM",
+  "subcategory": "Farm tools",
+  "parts": [
+   {
+    "id": "0x1501",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1500",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1502",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1503",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:herding"
+  ],
+  "blurb": "A wooden plough with its iron share, left in the furrow between seasons.",
+  "era": {
+   "grade": "B",
+   "note": "Shop and farm dressing placed in the original Britannia map (four pieces); no craft or deed documented; used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Two tiles (east pair); decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-003"
+ },
+ {
+  "slug": "saddle-stand",
+  "name": "Saddle Stand",
+  "category": "ANM",
+  "subcategory": "Tack and harness",
+  "parts": [
+   {
+    "id": "0x0F37",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0F38",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "animal",
+   "noble"
+  ],
+  "blurb": "A wooden stand on which a leather saddle waits for its rider.",
+  "era": {
+   "grade": "B",
+   "note": "Shop dressing: placed a handful of times in the original Britannia map (stablers and tack shops); used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic 'saddle', impassable).",
+  "variantOf": null,
+  "id": "CR-ANM-004"
+ },
+ {
+  "slug": "coiled-bridle",
+  "name": "Coiled Bridle",
+  "category": "ANM",
+  "subcategory": "Tack and harness",
+  "parts": [
+   {
+    "id": "0x1374",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1375",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A leather bridle and bit, coiled up on a shelf.",
+  "era": {
+   "grade": "B",
+   "note": "Shop dressing: five placements in the original Britannia map (stablers and tack shops); plain 1997 art used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-005"
+ },
+ {
+  "slug": "horseshoes",
+  "name": "Horseshoes",
+  "category": "ANM",
+  "subcategory": "Tack and harness",
+  "parts": [
+   {
+    "id": "0x0FB6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A trio of iron horseshoes, worn smooth at the toe.",
+  "era": {
+   "grade": "B",
+   "note": "Shop dressing: placed a few times in the original Britannia map (smithies and stables); plain 1997 art used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-006"
+ },
+ {
+  "slug": "shepherds-crook",
+  "name": "Shepherd's Crook",
+  "category": "ANM",
+  "subcategory": "Tack and harness",
+  "parts": [
+   {
+    "id": "0x0E81",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0E82",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:herding",
+   "craft:carpentry"
+  ],
+  "blurb": "A long ash crook with a hooked end, the shepherd's staff and the herder's pride.",
+  "era": {
+   "grade": "A",
+   "note": "Carpenters could craft shepherd's crooks from 19 January 1999.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "Plain stock crook (carpentry); decor-only, strip weapon/wear function; use only as a themed set piece.",
+  "variantOf": null,
+  "id": "CR-ANM-007"
+ },
+ {
+  "slug": "tack-room-display",
+  "name": "Tack Room Display",
+  "category": "ANM",
+  "subcategory": "Tack and harness",
+  "parts": [
+   {
+    "id": "0x0F38",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1374",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x0FB6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0x0E81",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "animal",
+   "noble",
+   "craft:herding"
+  ],
+  "blurb": "A stablemaster's corner: a saddle on its stand, a coiled bridle, a trio of horseshoes and the shepherd's crook.",
+  "era": {
+   "grade": "B",
+   "note": "Set of original stabler and tack-shop dressing (saddle, bridle, horseshoes) with a documented 1999 crook; the set itself is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "2x2 arrangement: saddle stand 0x0F38, bridle 0x1374 and horseshoes 0x0FB6 on surfaces, crook 0x0E81; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-008"
+ },
+ {
+  "slug": "straw-beehive",
+  "name": "Straw Beehive",
+  "category": "ANM",
+  "subcategory": "Beasts and nests",
+  "parts": [
+   {
+    "id": "0x091A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "garden",
+   "animal"
+  ],
+  "blurb": "A woven straw skep for bees, glowing gold in the sun.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world art: the beehive stands fourteen times in the original Britannia map (farms and apiaries); used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only (graphic 'beehive', impassable); no bees, no honey.",
+  "variantOf": null,
+  "id": "CR-ANM-009"
+ },
+ {
+  "slug": "nest-with-eggs",
+  "name": "Nest with Eggs",
+  "category": "ANM",
+  "subcategory": "Beasts and nests",
+  "parts": [
+   {
+    "id": "0x1AD4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "forest",
+   "animal"
+  ],
+  "blurb": "A snug little nest of twigs holding a clutch of speckled eggs.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world art placed in the Britannia map; plain 1997 item; used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-010"
+ },
+ {
+  "slug": "sheep-fold",
+  "name": "Sheep Fold",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85C",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF35",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB41",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB42",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xE81",
+    "dx": 1,
+    "dy": 3,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:herding"
+  ],
+  "blurb": "A rail-fenced fold with a gap for the flock, a trough of clean water, a sheaf of hay and the shepherd's crook.",
+  "era": {
+   "grade": "B",
+   "note": "Set of the original map's post-and-rail fence, hay dressing, a documented 1999 trough and crook; the set itself is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "5x5 fence ring (0x085C-0x0861, one tile gap) with hay 0x0F34/0x0F35/0x0F36, trough 0x0B41/0x0B42 and crook 0x0E81; fence pieces are wall-flagged, decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-011"
+ },
+ {
+  "slug": "hen-run",
+  "name": "Hen Run",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85C",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xF35",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD4",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xE7E",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD4",
+    "dx": 2,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xF34",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A small fenced run for the hens, with straw underfoot, a laying crate and two nests holding eggs.",
+  "era": {
+   "grade": "B",
+   "note": "Set of the original map's post-and-rail fence and plain farm dressing (hay, crate, nest); the set itself is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "4x4 fence ring (one tile gap) with straw 0x0F34/0x0F35, crate 0x0E7E and two nests 0x1AD4; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-012"
+ },
+ {
+  "slug": "pig-wallow",
+  "name": "Pig Wallow",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85C",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1E01",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E02",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1E01",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB43",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB44",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1605",
+    "dx": 3,
+    "dy": 1,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x4",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A muddy pen with a trough and a broad feeding bowl, the happy ruin of any pig's day.",
+  "era": {
+   "grade": "B",
+   "note": "Set of the original map's post-and-rail fence and plain farm dressing (mud, trough, bowl); the set itself is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "5x4 fence ring (one tile gap) with mud 0x1E01/0x1E02, trough 0x0B43/0x0B44 and large wooden bowl 0x1605; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-013"
+ },
+ {
+  "slug": "stable-stall",
+  "name": "Stable Stall",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x85D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x85F",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x860",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x85E",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x861",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x85C",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0F37",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1374",
+    "dx": 2,
+    "dy": 3,
+    "dz": 1
+   },
+   {
+    "id": "0xFB6",
+    "dx": 1,
+    "dy": 2,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x5",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "animal",
+   "noble"
+  ],
+  "blurb": "A railed stable stall with fresh straw, a sheaf of fodder, a saddle on its stand, a coiled bridle and horseshoes.",
+  "era": {
+   "grade": "B",
+   "note": "Set of the original map's post-and-rail fence and original stabler dressing (saddle, bridle, horseshoes); the set itself is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "4x5 fence ring (one tile gap) with hay 0x0F34/0x0F36, saddle stand 0x0F37, bridle 0x1374 and horseshoes 0x0FB6; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-014"
+ },
+ {
+  "slug": "feed-tub",
+  "name": "Feed Tub",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0xE83",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "An old barrel sawn down to a feed tub, with a handful of hay in the bottom.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: 'empty tub' and loose hay both appear in the original Britannia map; used as a reward.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Empty tub 0x0E83 with loose hay 0x0F34 laid over it; decor-only (tub graphic is a container; strip function).",
+  "variantOf": null,
+  "id": "CR-ANM-015"
+ },
+ {
+  "slug": "grain-feeding-bowl",
+  "name": "Grain Feeding Bowl",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0x1605",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1449",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A broad wooden bowl set out for the chickens, with grain scattered round it.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: bowl art and 'loose grain' (placed over 30 times) appear in the original Britannia map; used as a reward.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Large wooden bowl 0x1605 with loose grain 0x1449 spilled beside it; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-016"
+ },
+ {
+  "slug": "apiary",
+  "name": "Apiary",
+  "category": "ANM",
+  "subcategory": "Beasts and nests",
+  "parts": [
+   {
+    "id": "0x91A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x91A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x91A",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x91A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "garden",
+   "animal"
+  ],
+  "blurb": "A little yard of straw skeps where the bees come and go all summer.",
+  "era": {
+   "grade": "B",
+   "note": "Beehives stand fourteen times in the original Britannia map; the arrangement is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Four beehives 0x091A in a 3x2 block; decor-only, no bees, no honey.",
+  "variantOf": null,
+  "id": "CR-ANM-017"
+ },
+ {
+  "slug": "hay-crate",
+  "name": "Hay Crate",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0xE7E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF35",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A slatted crate overflowing with fresh hay, set at the end of a stall for the horses.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: the small crate (14 placements) and scattered hay (160 placements) both appear in the original Britannia map; used as a reward.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Small crate 0x0E7E with scattered hay 0x0F35 laid over it; decor-only (crate graphic is a container; strip function).",
+  "variantOf": null,
+  "id": "CR-ANM-018"
+ },
+ {
+  "slug": "scattered-grain",
+  "name": "Scattered Grain",
+  "category": "ANM",
+  "subcategory": "Hay and feed",
+  "parts": [
+   {
+    "id": "0x1449",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "Loose golden grain scattered on the floor where the hens have been feeding.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: loose grain is placed over thirty times in the original Britannia map; used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile, decor-only, walkable ground dressing.",
+  "variantOf": null,
+  "id": "CR-ANM-019"
+ },
+ {
+  "slug": "pitchfork-and-hay",
+  "name": "Pitchfork and Hay",
+  "category": "ANM",
+  "subcategory": "Farm tools",
+  "parts": [
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xE87",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal"
+  ],
+  "blurb": "A three-tined pitchfork leaned against a sheaf of hay, as the stablehand left it at dusk.",
+  "era": {
+   "grade": "B",
+   "note": "Pitchforks (seven placements) and hay appear as shop and farm dressing in the original Britannia map; the pairing is composed; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Pitchfork 0x0E87 (stock Pitchfork art, decor-only; strip weapon function) leaning by hay sheaf 0x0F36 on loose hay 0x0F34.",
+  "variantOf": null,
+  "id": "CR-ANM-020"
+ },
+ {
+  "slug": "farmyard-corner",
+  "name": "Farmyard Corner",
+  "category": "ANM",
+  "subcategory": "Pens and stalls",
+  "parts": [
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xF36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0xE87",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1501",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1500",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xE83",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xF34",
+    "dx": 2,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0x154D",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "season:harvest"
+  ],
+  "blurb": "A corner of the farmyard: a haystack, a pitchfork, a plough, a feed tub and a rain barrel waiting for the morning chores.",
+  "era": {
+   "grade": "B",
+   "note": "Set of original-world farm dressing (hay, pitchfork, plough, tub, barrel), used as a reward; the set itself is composed.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "4x3 arrangement: hay 0x0F34/0x0F36, pitchfork 0x0E87, plough 0x1500/0x1501, empty tub 0x0E83, rain barrel 0x154D; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-021"
+ },
+ {
+  "slug": "bee-garden",
+  "name": "Bee Garden",
+  "category": "ANM",
+  "subcategory": "Beasts and nests",
+  "parts": [
+   {
+    "id": "0xC84",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC8B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xCC1",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xC86",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x91A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xC84",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xCC1",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xC8B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x91A",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "garden",
+   "animal",
+   "season:spring"
+  ],
+  "blurb": "Two straw skeps in a bed of foxglove, white lilies, poppies and orfluer, the sweetest corner of the garden.",
+  "era": {
+   "grade": "B",
+   "note": "Set of beehives (fourteen placements in the original map) and classic wildflower art placed thousands of times; used as a reward; the arrangement is composed.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "3x3 arrangement: beehives 0x091A with foxglove 0x0C84, white lilies 0x0C8B, orfluer 0x0CC1 and poppies 0x0C86; decor-only.",
+  "variantOf": null,
+  "id": "CR-ANM-022"
+ }
+]

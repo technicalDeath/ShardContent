@@ -1,0 +1,1304 @@
+[
+ {
+  "slug": "ornate-lidded-sarcophagus",
+  "name": "Ornate Lidded Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C93",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C94",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C95",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C92",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C91",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C90",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant",
+   "noble",
+   "dungeon"
+  ],
+  "blurb": "A long stone sarcophagus under a lid carved with interlocking crosses. Whoever lies within meant to stay.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain stone sarcophagus.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only (closed; no storage)",
+  "variantOf": null,
+  "id": "CN-GRV-001"
+ },
+ {
+  "slug": "effigy-bier-sarcophagus",
+  "name": "Effigy Bier Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1CAA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CAB",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CAC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1CA9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CA8",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CA7",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant",
+   "noble",
+   "dungeon"
+  ],
+  "blurb": "A grey stone bier with a recumbent figure carved along the lid, hands folded and eyes closed.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain effigy sarcophagus.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-002"
+ },
+ {
+  "slug": "sarcophagus-and-carved-lid",
+  "name": "Sarcophagus with Carved Lid Aside",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C96",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C97",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C98",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C9C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C9D",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C9E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C9B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C9A",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C99",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "An empty stone sarcophagus with its carved lid slid onto the floor beside it, the sort of find that ends a tomb-robber's story.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open sarcophagus.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "nine-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-003"
+ },
+ {
+  "slug": "sarcophagus-and-effigy-lid",
+  "name": "Sarcophagus with Effigy Lid Aside",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C72",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C74",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C71",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C75",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C70",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C76",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6F",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x2",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A stone coffin lying open, its effigy lid propped alongside with a stern, sleeping face.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open sarcophagus.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "eight-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-004"
+ },
+ {
+  "slug": "long-effigy-lid-sarcophagus",
+  "name": "Great Sarcophagus and Effigy Lid",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1CBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CBC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CBD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1CBE",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1CBF",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1CBA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1CB9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1CB8",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1CB7",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1CB6",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A tall stone coffin standing open with its heavy lid, carved as a sleeping knight, laid down beside it.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open sarcophagus with an effigy lid.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "ten-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-005"
+ },
+ {
+  "slug": "black-stone-sarcophagus",
+  "name": "Black Stone Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x2FF9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A squat sarcophagus of black stone, its flanks carved with a plain round boss. Quiet, heavy and final.",
+  "era": {
+   "grade": "N",
+   "note": "Plain dark stone coffin art (Mondain's Legacy id block), no elven styling or lore: a coffin fits any crypt.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only (closed)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2FFA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-006"
+ },
+ {
+  "slug": "great-black-stone-coffin",
+  "name": "Great Black Stone Coffin",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x3049",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A broad black stone coffin with a raised lid and a round boss on its flank, built for someone who was not small.",
+  "era": {
+   "grade": "N",
+   "note": "Plain dark stone coffin art (Mondain's Legacy id block), no elven styling or lore: a coffin fits any crypt.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only (closed)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x304B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-007"
+ },
+ {
+  "slug": "casket-with-skeleton",
+  "name": "Open Casket with Skeleton",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D6F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D70",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D71",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1D6E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D6D",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D6C",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:skeleton",
+   "dungeon",
+   "elegant"
+  ],
+  "blurb": "A fine casket with its lid thrown back on blue silk, and a skeleton lying in state. It does not mind visitors.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open casket with remains; skeletons are documented by Jan 1998.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-008"
+ },
+ {
+  "slug": "open-coffin-with-skeleton",
+  "name": "Open Coffin with Skeleton",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D75",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D74",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:skeleton",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A plain pine coffin, lid off, and a skeleton in the bottom with its hands on its chest.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open coffin with remains; skeletons are documented by Jan 1998.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-009"
+ },
+ {
+  "slug": "coffin-with-lid-aside",
+  "name": "Coffin with Lid Aside",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D54",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D53",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D58",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:skeleton",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A wooden coffin with its lid slid off, a skeleton inside gazing up at the rafters.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open coffin with remains; skeletons are documented by Jan 1998.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-010"
+ },
+ {
+  "slug": "stone-tomb-with-skeleton",
+  "name": "Stone Tomb with Skeleton",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D65",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D67",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D64",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D63",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:skeleton",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A stone trough of a tomb, open to the air, with its occupant laid out in his burial rags.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open stone tomb with remains; skeletons are documented by Jan 1998.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "five-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-011"
+ },
+ {
+  "slug": "notched-stone-tomb",
+  "name": "Notched Stone Tomb with Skeleton",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D5B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D62",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D5F",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1D5E",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:skeleton",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A grey stone tomb with a shoulder cut into one end, as if for a lid that was never put back.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain open stone tomb with remains; skeletons are documented by Jan 1998.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "five-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-GRV-012"
+ },
+ {
+  "slug": "wrapped-mummy",
+  "name": "Wrapped Mummy",
+  "category": "GRV",
+  "subcategory": "Tombs with remains",
+  "parts": [
+   {
+    "id": "0x1D8A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1D8B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "monster:mummy",
+   "dungeon"
+  ],
+  "blurb": "A mummy bound in grey, brittle linen and laid on the flags. It has had a long time to think.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world crypt art (1997 id block), placed in Britannia's dungeon crypts but left out of the main catalog's graphic sets; a plain wrapped corpse; mummies are documented in the Oct 1998 T2A list.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "two-tile arrangement; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1D8C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1D8D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-013"
+ },
+ {
+  "slug": "cracked-warriors-tomb",
+  "name": "Cracked Effigy Tomb",
+  "category": "GRV",
+  "subcategory": "Warrior tombs",
+  "parts": [
+   {
+    "id": "0xA952",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA953",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "noble",
+   "martial",
+   "humble"
+  ],
+  "blurb": "The knight's tomb after a hard winter: the lid is split across the knees and ivy has found a hold.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a weathered knightly effigy tomb; knightly and funerary symbols read naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "two statics on one tile; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA954",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA955",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA956",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-014"
+ },
+ {
+  "slug": "shattered-warriors-tomb",
+  "name": "Shattered Effigy Tomb",
+  "category": "GRV",
+  "subcategory": "Warrior tombs",
+  "parts": [
+   {
+    "id": "0xA95C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA95D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "noble",
+   "martial",
+   "humble"
+  ],
+  "blurb": "A tomb broken open by long neglect and a lot of hammers. The knight, wisely, has long since left.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a broken knightly effigy tomb; knightly and funerary symbols read naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "two statics on one tile; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA95E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA95F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA960",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-015"
+ },
+ {
+  "slug": "fallen-soldiers-helm",
+  "name": "Fallen Soldier's Helm and Axe",
+  "category": "GRV",
+  "subcategory": "Warrior tombs",
+  "parts": [
+   {
+    "id": "0xAA37",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "martial",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A battered helm on a stone block with a war-axe leaning crossways above it, a marker for a man who did not come home.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a plain battlefield grave marker; no creature, race or skill tie.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA38",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-016"
+ },
+ {
+  "slug": "broken-headstone",
+  "name": "Broken Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0xAA1F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble",
+   "dungeon"
+  ],
+  "blurb": "A grave marker snapped off at the shoulders, its name long since worn from the stone.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a plain broken gravestone.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA20",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-017"
+ },
+ {
+  "slug": "cracked-tomb-slab",
+  "name": "Cracked Tomb Slab",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0xAA21",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble",
+   "dungeon"
+  ],
+  "blurb": "A tomb lid split down the middle and tumbled into the pit beneath it, with weeds growing through the gap.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a plain broken tomb slab.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA22",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-018"
+ },
+ {
+  "slug": "broken-winged-monument",
+  "name": "Broken Winged Monument",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0xAA23",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "A grave-monument of a robed figure with spread wings, snapped off at the knees and chipped by a century of weather.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a plain broken cemetery monument; winged mourning figures are a graveyard commonplace.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA24",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-019"
+ },
+ {
+  "slug": "engraved-memorial-slab",
+  "name": "Engraved Memorial Slab",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0xA9E6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "noble",
+   "elegant",
+   "sacred"
+  ],
+  "blurb": "A black memorial stone engraved line upon line in gold with the names of the fallen, with room still for more.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; a plain memorial stele with lettering; memorials for the dead are timeless.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile with a rotated twin; decor-only (the lettering is fixed art)",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA9E7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-020"
+ },
+ {
+  "slug": "ankh-funerary-urn",
+  "name": "Ankh Funerary Urn",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0xB189",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "sacred",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall green glazed urn with a golden ankh on its belly, the sort in which a family keeps its dead.",
+  "era": {
+   "grade": "N",
+   "note": "Later decor art, but an ordinary funerary object with no tie to any expansion, race or skill; the ankh is the old Britannian symbol of life; a funerary urn marked with it reads naturally.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "single static tile; decor-only (holds nothing)",
+  "variantOf": null,
+  "id": "CN-GRV-021"
+ },
+ {
+  "slug": "wrought-iron-churchyard-fence",
+  "name": "Wrought-Iron Churchyard Fence",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x823",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x823",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x823",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble",
+   "humble"
+  ],
+  "blurb": "Three spans of black iron railing, each bar crowned with a small spear-point, keeping the dead in and the cows out.",
+  "era": {
+   "grade": "N",
+   "note": "Original-world static art (1997 id block): a spiked iron fence used in Britannia towns and keeps, not held by the main catalog.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "addon",
+  "implNote": "three-tile run of the fence graphic; impassable decor",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x821",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x821",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x821",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-GRV-022"
+ }
+]

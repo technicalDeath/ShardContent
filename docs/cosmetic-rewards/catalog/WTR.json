@@ -1,0 +1,1007 @@
+[
+ {
+  "slug": "stone-fountain",
+  "name": "Stone Fountain",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0x1731",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1732",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1733",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1734",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1735",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1736",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1737",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1738",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1739",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x173A",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x173B",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x173C",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x173D",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x173E",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x173F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1741",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "garden",
+   "town:moonglow"
+  ],
+  "blurb": "A grand round fountain of pale marble, its three tiers murmuring around a bright central jet.",
+  "era": {
+   "grade": "B",
+   "note": "World static art (Moonglow and the hedge maze in the original map), used here as a reward; no deed or craft before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Stock class Server.Items.StoneFountainAddon (16 components, offsets -2..+1); decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-001"
+ },
+ {
+  "slug": "sandstone-fountain",
+  "name": "Sandstone Fountain",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0x19C3",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x19C4",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x19C5",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x19C6",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x19C7",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x19C8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x19C9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19CA",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19CB",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x19CC",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x19CD",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x19CE",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x19CF",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x19D0",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x19D1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19D3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "garden",
+   "desert",
+   "exotic"
+  ],
+  "blurb": "A warm sandstone fountain of the southern style, ringed in golden tiers and a cool blue basin.",
+  "era": {
+   "grade": "B",
+   "note": "World static art beside the stone fountain in the original item set, used here as a reward; no deed or craft before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Stock class Server.Items.SandstoneFountainAddon (16 components, offsets -2..+1); decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-002"
+ },
+ {
+  "slug": "water-trough",
+  "name": "Water Trough",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0xB41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB42",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0xB43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xB44",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:carpentry"
+  ],
+  "blurb": "A stout wooden trough, brim-full of clear water.",
+  "era": {
+   "grade": "A",
+   "note": "Carpenters could craft water troughs from 28 March 1999 (Publish notes, 'these work as water sources').",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "Stock classes WaterTroughEastAddon / WaterTroughSouthAddon; decor-only, strip the water-source function.",
+  "variantOf": null,
+  "id": "CR-WTR-003"
+ },
+ {
+  "slug": "rain-barrel",
+  "name": "Rain Barrel",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0x154D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A hooped barrel set under the eaves to catch the rain, filled nearly to the top.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: placed about 30 times in the original Britannia map; no craft or deed documented; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic 'water barrel', not a container).",
+  "variantOf": null,
+  "id": "CR-WTR-004"
+ },
+ {
+  "slug": "water-tub",
+  "name": "Water Tub",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0x0E7B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A squat wooden tub of still water, the sort found beside every forge and stable.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: placed about a dozen times in the original Britannia map; no craft or deed documented; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only (graphic 'water tub').",
+  "variantOf": null,
+  "id": "CR-WTR-005"
+ },
+ {
+  "slug": "water-bucket",
+  "name": "Bucket of Water",
+  "category": "WTR",
+  "subcategory": "Vessels and basins",
+  "parts": [
+   {
+    "id": "0x0FFA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A small oak bucket with a rope handle, filled with fresh water.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: a handful of placements in the original Britannia map; plain bucket art from the 1997 item set; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only, not a water source.",
+  "variantOf": null,
+  "id": "CR-WTR-006"
+ },
+ {
+  "slug": "wash-basin",
+  "name": "Wash Basin",
+  "category": "WTR",
+  "subcategory": "Vessels and basins",
+  "parts": [
+   {
+    "id": "0x1008",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A white glazed basin of clean water, set out for washing up.",
+  "era": {
+   "grade": "B",
+   "note": "World dressing: placed about seven times in the original Britannia map (inns and homes); no craft or deed documented; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "Single tile; decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-007"
+ },
+ {
+  "slug": "water-vat",
+  "name": "Water Vat",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0x1558",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x14DE",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1552",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14DF",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1554",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1559",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1550",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1555",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14D7",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1558",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x14DE",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1552",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x14DF",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1554",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1559",
+      "dx": 2,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1551",
+      "dx": 2,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x1556",
+      "dx": 4,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x14D7",
+      "dx": 3,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "craft:tinkering",
+   "dungeon"
+  ],
+  "blurb": "A great hooped vat as tall as a man, brim-full of dark water, with a ladder for climbing up to the rim.",
+  "era": {
+   "grade": "B",
+   "note": "World static art placed twice in the original Britannia map (about 4 placements per piece); no craft or deed documented; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Stock classes WaterVatEast / WaterVatSouth (9 visible components plus invisible blockers); decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-008"
+ },
+ {
+  "slug": "small-lily-pool",
+  "name": "Small Lily Pool",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0x1797",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1798",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1799",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x179A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xD06",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xDC1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xCB8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "swamp",
+   "elegant"
+  ],
+  "blurb": "A little pool no wider than a cart, studded with lily pads and one white bloom.",
+  "era": {
+   "grade": "B",
+   "note": "Composed from classic pond art: water statics used 150,000 times and lily pads 1,000 times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "2x2 water statics (0x1797-0x179A) with lily pads 0x0D0B, 0x0D06, 0x0DC1 and cattails 0x0CB8; water tiles are impassable 'wet' art, decor-only; place flush with the floor.",
+  "variantOf": null,
+  "id": "CR-WTR-009"
+ },
+ {
+  "slug": "lily-pond",
+  "name": "Lily Pond",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0x1797",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1798",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1799",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x179A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x179B",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x179C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1797",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1798",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1799",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xD0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xD0B",
+    "dx": 2,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xD06",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xDC1",
+    "dx": 1,
+    "dy": 2,
+    "dz": 1
+   },
+   {
+    "id": "0xCB8",
+    "dx": 2,
+    "dy": 2,
+    "dz": 1
+   },
+   {
+    "id": "0xCB7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "swamp",
+   "elegant"
+  ],
+  "blurb": "A broad garden pond, still and green, with lily pads drifting across its dark water.",
+  "era": {
+   "grade": "B",
+   "note": "Composed from classic pond art: water statics used 150,000 times and lily pads 1,000 times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "3x3 water statics (0x1797-0x179C) with lily pads 0x0D0B, 0x0D06, 0x0DC1 and cattails 0x0CB7/0x0CB8; water tiles are impassable 'wet' art, decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-010"
+ },
+ {
+  "slug": "reed-pond",
+  "name": "Reed Pond",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0x1797",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1798",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1799",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x179A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xD05",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xCB8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xC94",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xCB7",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xD04",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "swamp",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "A reedy pool where cattails nod over dark water and pale blossoms float among the leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Composed from classic marsh art: water statics, reeds, cattails and bulrushes placed thousands of times in the original Britannia map; world dressing used as a reward, not a documented item.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "2x2 water statics with reeds 0x0D05, cattails 0x0CB7/0x0CB8, bulrushes 0x0C94 and water plants 0x0D04; decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-011"
+ },
+ {
+  "slug": "marsh-pool",
+  "name": "Mossy Marsh Pool",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0x1797",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1798",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1799",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x179A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xCF6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xD13",
+    "dx": 1,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0xC94",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xDBE",
+    "dx": 0,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xCB7",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "swamp",
+   "wilderness",
+   "forest"
+  ],
+  "blurb": "A dark pool at the edge of the wood, ringed with bulrushes, pale mushrooms and a mossy fallen log.",
+  "era": {
+   "grade": "B",
+   "note": "Composed from classic marsh art (water, lily pads, bulrushes, mushrooms, logs) placed thousands of times in the original map; used as a reward.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "2x2 water statics with fallen log 0x0CF6, mushrooms 0x0D13, bulrushes 0x0C94, lily pads 0x0DBE and cattails 0x0CB7; decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-012"
+ },
+ {
+  "slug": "stableyard-watering-place",
+  "name": "Stableyard Watering Place",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0xB41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB42",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x154D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xFFA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 1
+   },
+   {
+    "id": "0xE7B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble",
+   "animal",
+   "craft:carpentry"
+  ],
+  "blurb": "A trough, two full barrels and a rope-handled bucket, the daily furniture of a stableyard.",
+  "era": {
+   "grade": "B",
+   "note": "Set of a documented 1999 carpenter's trough and classic world dressing (barrel, tub, bucket), used as a reward; the set itself is not documented.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "Water trough east 0x0B41/0x0B42 plus rain barrel 0x154D, water tub 0x0E7B and bucket 0x0FFA; decor-only.",
+  "variantOf": null,
+  "id": "CR-WTR-013"
+ }
+]

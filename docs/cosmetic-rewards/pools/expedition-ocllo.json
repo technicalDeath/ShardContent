@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-ocllo",
+ "system": "expedition",
+ "notes": "Island life, fishing and tropical: nets, oars and the day's catch for the core; the rares are Fisherman's Quay, a palm and hammock, the fish-drying pole and a bamboo banquet table. Tagged town:ocllo in the catalog.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-NAU-015",
+   "why": "Spread fishing net drying on the sand"
+  },
+  {
+   "role": "core",
+   "id": "CR-NAU-011",
+   "why": "Pair of oars leaning on the hut"
+  },
+  {
+   "role": "core",
+   "id": "CR-NAU-021",
+   "why": "A fresh-caught fish, the day's haul"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-038",
+   "why": "Fisherman's Quay, 3x2 net, barrel and piling"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FRN-042",
+   "why": "Papuan hammock slung between the palms"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FLO-034",
+   "why": "Coconut palm, a tropical shade tree"
+  },
+  {
+   "role": "rare",
+   "id": "CR-NAU-039",
+   "why": "Fish-drying pole, 1x3 with a catch hanging"
+  },
+  {
+   "role": "rare",
+   "id": "CR-TBL-025",
+   "why": "Bamboo banquet table, 2x3 island feast board"
+  }
+ ]
+}

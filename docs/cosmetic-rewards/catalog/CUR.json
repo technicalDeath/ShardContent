@@ -1,0 +1,1063 @@
+[
+ {
+  "slug": "brass-spittoon",
+  "name": "Brass Spittoon",
+  "category": "CUR",
+  "subcategory": "Shop-dressing rares",
+  "parts": [
+   {
+    "id": "0x1003",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "whimsical",
+   "rustic"
+  ],
+  "blurb": "A dented brass spittoon, polished by years of careless aim.",
+  "era": {
+   "grade": "C",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Art is in the classic block, but the Britannia map uses it only once (ML region): unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-001"
+ },
+ {
+  "slug": "dirty-iron-pot",
+  "name": "Dirty Iron Pot",
+  "category": "CUR",
+  "subcategory": "Shop-dressing rares",
+  "parts": [
+   {
+    "id": "0x09DF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "humble",
+   "rustic",
+   "whimsical"
+  ],
+  "blurb": "An iron pot with last week's supper burnt into the bottom and no one willing to scrub it.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Used 6 times in map statics (Wrong dungeon and elsewhere).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-002"
+ },
+ {
+  "slug": "bloody-bandages",
+  "name": "Bloody Bandages",
+  "category": "CUR",
+  "subcategory": "Shop-dressing rares",
+  "parts": [
+   {
+    "id": "0x0E20",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E22",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "humble",
+   "dungeon"
+  ],
+  "blurb": "A crumpled pair of bloodied bandages, tossed aside after a rough night.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Used 6 and 12 times in map statics (Wrong, Papua, Serpent's Hold).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; not a usable bandage",
+  "variantOf": null,
+  "id": "CR-CUR-003"
+ },
+ {
+  "slug": "scrub-brush",
+  "name": "Scrub Brush",
+  "category": "CUR",
+  "subcategory": "Shop-dressing rares",
+  "parts": [
+   {
+    "id": "0x1370",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A worn wooden scrub brush with bristles bent to the shape of its owner's hand.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Used a handful of times in classic towns (Vesper, Delucia).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; not a usable tool",
+  "variantOf": null,
+  "id": "CR-CUR-004"
+ },
+ {
+  "slug": "wig-stand",
+  "name": "Wig Stand",
+  "category": "CUR",
+  "subcategory": "Shop-dressing rares",
+  "parts": [
+   {
+    "id": "0x0E05",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "whimsical"
+  ],
+  "blurb": "A turned wooden head on a stand, waiting for a wig that has long since gone to market.",
+  "era": {
+   "grade": "C",
+   "note": "Barber-shop dressing, but this stand is unused in the Britannia map. Plausible shop dressing, unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-005"
+ },
+ {
+  "slug": "large-amphora",
+  "name": "Large Amphora",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A tall, two-handled amphora of grey-brown clay, shaped by a patient hand.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Large vases are named among the classic shop rares and used in Wind, Delucia and mainland statics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static (vase graphic; not a container)",
+  "variantOf": null,
+  "id": "CR-CUR-006"
+ },
+ {
+  "slug": "ceramic-vase",
+  "name": "Ceramic Vase",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B46",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A slender-necked ceramic vase, plain and pleasing, meant for a single stem.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Large vases are named among the classic shop rares and used in Wind, Delucia and mainland statics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-007"
+ },
+ {
+  "slug": "large-clay-urn",
+  "name": "Large Clay Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B47",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "exotic",
+   "scholar"
+  ],
+  "blurb": "A wide-bellied clay urn banded with shadows, big enough to hold a season's grain.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Large vases are named among the classic shop rares and used in Wind, Delucia and mainland statics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static (urn graphic; not a container)",
+  "variantOf": null,
+  "id": "CR-CUR-008"
+ },
+ {
+  "slug": "small-clay-pot",
+  "name": "Small Clay Pot",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B48",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A small brown clay pot with a pinched rim, forever empty.",
+  "era": {
+   "grade": "C",
+   "note": "Same vase block as the large clay urn, but the Britannia map uses this pot only in Khaldun (Sept 2000, after the window). Unverified.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-009"
+ },
+ {
+  "slug": "cobalt-amphora",
+  "name": "Cobalt Amphora",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1266,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "exotic",
+   "noble",
+   "nautical"
+  ],
+  "blurb": "A two-handled amphora glazed in deep cobalt blue, with a shine like the open sea.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1266) of the large amphora art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1266",
+  "variantOf": "large-amphora",
+  "id": "CR-CUR-010"
+ },
+ {
+  "slug": "gilded-amphora",
+  "name": "Gilded Amphora",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "treasure",
+   "exotic"
+  ],
+  "blurb": "An amphora coated in beaten gold leaf, a gift fit for a guildmaster's mantel.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1161) of the large amphora art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161",
+  "variantOf": "large-amphora",
+  "id": "CR-CUR-011"
+ },
+ {
+  "slug": "jade-vase",
+  "name": "Jade Vase",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B46",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic",
+   "garden"
+  ],
+  "blurb": "A slender vase in cool green jade, polished until it glows.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the ceramic vase art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62",
+  "variantOf": "ceramic-vase",
+  "id": "CR-CUR-012"
+ },
+ {
+  "slug": "oxblood-urn",
+  "name": "Oxblood Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B47",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "exotic",
+   "macabre",
+   "noble"
+  ],
+  "blurb": "A great urn glazed the deep red of old wine, heavy and dark.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1157) of the large clay urn art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1157",
+  "variantOf": "large-clay-urn",
+  "id": "CR-CUR-013"
+ },
+ {
+  "slug": "potters-trio",
+  "name": "Potter's Trio",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B47",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B46",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "rustic",
+   "exotic",
+   "craft"
+  ],
+  "blurb": "An amphora, an urn and a vase set in a row, as if fresh from the kiln.",
+  "era": {
+   "grade": "B",
+   "note": "Classic NPC shop-dressing rare; players carried these off until Publish 5. Large vases are named among the classic shop rares and used in Wind, Delucia and mainland statics.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile addon of three stock vase tiles",
+  "variantOf": null,
+  "id": "CR-CUR-014"
+ },
+ {
+  "slug": "cobalt-and-gilt-pair",
+  "name": "Cobalt and Gilt Pair",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x0B45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1266
+   },
+   {
+    "id": "0x0B45",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1161
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "treasure",
+   "exotic"
+  ],
+  "blurb": "A matched pair of amphorae, one cobalt and one gilded, set to flank a doorway.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1266) of the large amphora (second part hue 1161) art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/2000-2/2000-publish-05-27th-april/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile addon; second part needs hue 1161 on 0x0B45, first part hue 1266 (set per part)",
+  "variantOf": "large-amphora",
+  "id": "CR-CUR-015"
+ },
+ {
+  "slug": "stone-demon-face",
+  "name": "Stone Demon Face",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x110F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1110",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "demonic",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "A horned demon face carved from grey stone, its mouth set in a permanent sneer.",
+  "era": {
+   "grade": "B",
+   "note": "Stone faces are used 7 and 3 times in the Shame and Deceit dungeons (classic dungeon dressing). Decor-only: no trap function.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; strip fire-trap logic (stock fire-trap face graphic)",
+  "variantOf": null,
+  "id": "CR-CUR-016"
+ },
+ {
+  "slug": "stone-face-row",
+  "name": "Row of Stone Faces",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x110F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x110F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x110F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1110",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1110",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1110",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "demonic",
+   "macabre",
+   "exotic"
+  ],
+  "blurb": "Three demon faces glowering side by side, like a dungeon gallery of unwelcome guests.",
+  "era": {
+   "grade": "B",
+   "note": "Stone faces are used 7 and 3 times in the Shame and Deceit dungeons (classic dungeon dressing). Decor-only: no trap function.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "decor-only multi-tile addon of three stone-face tiles",
+  "variantOf": null,
+  "id": "CR-CUR-017"
+ },
+ {
+  "slug": "flaming-stone-face",
+  "name": "Flaming Stone Face",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x10FF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "dungeon",
+   "demonic",
+   "fire",
+   "macabre"
+  ],
+  "blurb": "A grey demon face wreathed in a restless flame, which flickers but never burns.",
+  "era": {
+   "grade": "C",
+   "note": "Fire-trap face graphic from the classic dungeon trap family; trap items are not placed as map statics, so its April 2000 art is unverified.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only animated static; strip fire-trap damage and light",
+  "variantOf": null,
+  "id": "CR-CUR-018"
+ },
+ {
+  "slug": "skull-in-flames",
+  "name": "Skull in Flames",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x10FA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "dungeon",
+   "fire",
+   "macabre",
+   "undead",
+   "demonic"
+  ],
+  "blurb": "A horned skull ringed by a crown of fire, the sort of thing a daemon keeps by the door.",
+  "era": {
+   "grade": "C",
+   "note": "Fire-trap skull graphic from the classic dungeon trap family; no map use, so its April 2000 art is unverified.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only animated static; strip fire-trap damage and light",
+  "variantOf": null,
+  "id": "CR-CUR-019"
+ },
+ {
+  "slug": "mossy-pylon",
+  "name": "Mossy Pylon",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x1ECA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "ice",
+   "scholar",
+   "exotic"
+  ],
+  "blurb": "A small stepped pylon of dark stone, green with moss and older than its builders' names.",
+  "era": {
+   "grade": "B",
+   "note": "Pylon pillars are used 2-9 times in the Ice dungeon and the mainland (classic dungeon dressing).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-020"
+ },
+ {
+  "slug": "granite-pylon",
+  "name": "Granite Pylon",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x1ECB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "scholar",
+   "exotic"
+  ],
+  "blurb": "A small stepped pylon of speckled granite, set to mark a boundary no one remembers.",
+  "era": {
+   "grade": "B",
+   "note": "Pylon pillars are used 2-9 times in the Ice dungeon and the mainland (classic dungeon dressing).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-021"
+ },
+ {
+  "slug": "sandstone-pylon",
+  "name": "Sandstone Pylon",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x1ECC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "desert",
+   "scholar",
+   "exotic"
+  ],
+  "blurb": "A little stepped pyramid of golden sandstone, warm even in the shade.",
+  "era": {
+   "grade": "B",
+   "note": "Pylon pillars are used 2-9 times in the Ice dungeon and the mainland (classic dungeon dressing).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static",
+  "variantOf": null,
+  "id": "CR-CUR-022"
+ },
+ {
+  "slug": "glowing-rune-sigil",
+  "name": "Glowing Rune Sigil",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x0E5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "dungeon",
+   "exotic"
+  ],
+  "blurb": "A small arcane sigil that glows faintly blue on the floor, as though the room remembered a spell.",
+  "era": {
+   "grade": "B",
+   "note": "Glowing floor runes are used 10-28 times in Deceit, Wrong, Wind and Ice (classic dungeon dressing). Decor-only.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only animated static; light stripped",
+  "variantOf": null,
+  "id": "CR-CUR-023"
+ },
+ {
+  "slug": "crimson-rune-sigil",
+  "name": "Crimson Rune Sigil",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x0E5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "dungeon",
+   "fire",
+   "exotic"
+  ],
+  "blurb": "The same small sigil in an angry red, as though the spell behind it meant harm.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1157) of the glowing rune sigil art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only animated static; hue 1157, light stripped",
+  "variantOf": "glowing-rune-sigil",
+  "id": "CR-CUR-024"
+ },
+ {
+  "slug": "golden-pylon",
+  "name": "Golden Pylon",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x1ECC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1161,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "exotic",
+   "noble",
+   "desert"
+  ],
+  "blurb": "A little stepped pyramid sheathed in gold, a miniature tomb for a very patient king.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 1161) of the sandstone pylon art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 1161",
+  "variantOf": "sandstone-pylon",
+  "id": "CR-CUR-025"
+ },
+ {
+  "slug": "jade-pylon",
+  "name": "Jade Pylon",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x1ECC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "scholar",
+   "forest"
+  ],
+  "blurb": "A little stepped pyramid of cool green jade, carved to mark a forgotten boundary.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the sandstone pylon art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62",
+  "variantOf": "sandstone-pylon",
+  "id": "CR-CUR-026"
+ },
+ {
+  "slug": "jade-demon-face",
+  "name": "Jade Demon Face",
+  "category": "CUR",
+  "subcategory": "Dungeon curiosities",
+  "parts": [
+   {
+    "id": "0x110F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1110",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "dungeon",
+   "demonic",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A horned demon face carved from green jade, grinning like a bad dream.",
+  "era": {
+   "grade": "B",
+   "note": "Recolour (hue 62) of the stone demon face art, which carries the base grade. A shard-made variant, not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only static; hue 62",
+  "variantOf": "stone-demon-face",
+  "id": "CR-CUR-027"
+ }
+]

@@ -1,0 +1,3389 @@
+[
+ {
+  "slug": "copper-rug",
+  "name": "Plain Copper Rug",
+  "category": "RUG",
+  "subcategory": "Plain Rugs",
+  "parts": [
+   {
+    "id": "0x0AAE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB1",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AA9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AA9",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAC",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAA",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AA9",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AA9",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAC",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAF",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAB",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AAB",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB0",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A square of coarse reddish-brown woven rug, honest and hard-wearing.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=105-800 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-001"
+ },
+ {
+  "slug": "olive-rug",
+  "name": "Plain Olive Rug",
+  "category": "RUG",
+  "subcategory": "Plain Rugs",
+  "parts": [
+   {
+    "id": "0x0AB8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABB",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB3",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB3",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB3",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB5",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB5",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABA",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A thick olive-green rug with a dark binding, the kind that hides a lot of muddy boots.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=141-864 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-002"
+ },
+ {
+  "slug": "grey-rug",
+  "name": "Plain Grey Rug",
+  "category": "RUG",
+  "subcategory": "Plain Rugs",
+  "parts": [
+   {
+    "id": "0x109D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x109C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x109C",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x10A0",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1099",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10A2",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10A3",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x109B",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1099",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10A3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x10A2",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x109B",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x109E",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x109A",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x109A",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x109F",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A flat grey woollen rug in a close weave, as plain as a monk's cell floor.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=20-76 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-003"
+ },
+ {
+  "slug": "olive-hall-runner",
+  "name": "Olive Hall Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0AB8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABB",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB4",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB6",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AB9",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABA",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "6x2",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A long narrow olive runner for a draughty corridor.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=141-373 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 12 tiles (6x2), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-004"
+ },
+ {
+  "slug": "blue-bordered-rug",
+  "name": "Blue Bordered Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC4",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC5",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC2",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A deep blue rug edged with a pale blue pattern and fringed all round.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=46-628 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-005"
+ },
+ {
+  "slug": "blue-doorstep-carpet",
+  "name": "Blue Floral Doorstep Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC4",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABD",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABD",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC5",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC2",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x3",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic",
+   "garden"
+  ],
+  "blurb": "A small blue carpet scattered with coral flowers and finished with a teal fringe.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=46-219 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 12 tiles (4x3), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-006"
+ },
+ {
+  "slug": "small-ornate-rug",
+  "name": "Small Russet Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE5",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE6",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x2",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "humble",
+   "exotic"
+  ],
+  "blurb": "A small russet rug woven in a repeating diamond pattern.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=78-268 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 6 tiles (3x2), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-007"
+ },
+ {
+  "slug": "russet-runner",
+  "name": "Russet Hall Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0AEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF1",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEE",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x2",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A narrow runner in coral and navy, woven to carpet a passage.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=77-257 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 8 tiles (4x2), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-008"
+ },
+ {
+  "slug": "golden-runner",
+  "name": "Golden Hall Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0ADC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE2",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE2",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE0",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE2",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADE",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADB",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "5x2",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A golden-brown runner with a dark border, long enough for a manor hallway.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=93-274 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 10 tiles (5x2), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-009"
+ },
+ {
+  "slug": "crimson-runner",
+  "name": "Crimson Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0ACA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACB",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACC",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC9",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "5x3",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A plain crimson runner with a gold stripe and a tasselled fringe at each end.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=88-1731 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 15 tiles (5x3), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-010"
+ },
+ {
+  "slug": "navy-gold-carpet",
+  "name": "Navy and Gold Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AD1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD1",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD9",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD1",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD1",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD9",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD4",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD5",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD8",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD2",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A square carpet of deep navy woven with golden scrollwork and a stepped border.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=101-1074 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-011"
+ },
+ {
+  "slug": "golden-arabesque-carpet",
+  "name": "Golden Arabesque Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0ADC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADF",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADD",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADA",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE2",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADA",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADA",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE2",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE1",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE1",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ADB",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A bright golden carpet worked with brown arabesque scrolls and a banded edge.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=93-867 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-012"
+ },
+ {
+  "slug": "russet-carpet",
+  "name": "Russet Ornate Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE5",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE3",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x5",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A tasselled carpet in russet and gold, woven in a thick geometric pattern.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=78-405 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 20 tiles (4x5), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-013"
+ },
+ {
+  "slug": "hearth-rug",
+  "name": "Orange Hearth Rug",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE5",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE3",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A warm orange and brown carpet with a tasselled border, made for firelight.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=78-390 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-014"
+ },
+ {
+  "slug": "crimson-tasselled-carpet",
+  "name": "Crimson Tasselled Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0ACA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACB",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC6",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC7",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC7",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC6",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC8",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACC",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC9",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "5x5",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "A deep crimson carpet with a gold border, tiny gold crosses and a long tasselled fringe.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=88-1731 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 25 tiles (5x5), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-015"
+ },
+ {
+  "slug": "crimson-hall-runner",
+  "name": "Crimson Hall Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0ACA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACB",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC6",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC7",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC6",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC7",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC9",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x6",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "A long red runner with a thin gold border and a fringe at each end, for a lord's hall.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=88-489 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 18 tiles (3x6), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-016"
+ },
+ {
+  "slug": "ornate-red-runner",
+  "name": "Ornate Red Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0ACA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACB",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC9",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "3x5",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A red runner whose centre is woven in an orange and navy medallion pattern.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=88-489 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 15 tiles (3x5), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-017"
+ },
+ {
+  "slug": "orange-hall-runner",
+  "name": "Orange Hall Runner",
+  "category": "RUG",
+  "subcategory": "Runners",
+  "parts": [
+   {
+    "id": "0x0AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE5",
+    "dx": 0,
+    "dy": 8,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEB",
+    "dx": 1,
+    "dy": 7,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 1,
+    "dy": 8,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "2x9",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A very long, narrow runner in russet and orange, made to carpet a gallery.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=78-405 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 18 tiles (2x9), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-018"
+ },
+ {
+  "slug": "medallion-carpet",
+  "name": "Navy Medallion Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF0",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF1",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEE",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic"
+  ],
+  "blurb": "A navy carpet with a great coral medallion at its heart and a double fringed border.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=77-650 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 16 tiles (4x4), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-019"
+ },
+ {
+  "slug": "blue-floral-carpet",
+  "name": "Blue Floral Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC4",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC1",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC0",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABD",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABF",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ABE",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF9",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC5",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC2",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF6",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF8",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "5x5",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden",
+   "exotic"
+  ],
+  "blurb": "A large blue carpet scattered with coral blossoms and edged with a deep teal fringe.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=46-628 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 25 tiles (5x5), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-020"
+ },
+ {
+  "slug": "grand-crimson-carpet",
+  "name": "Grand Crimson Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0ACA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACD",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACB",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AD0",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACC",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0ACF",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AC9",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEC",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x6",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "A broad red and orange carpet, intricately woven and finished with a long tasselled fringe.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=88-489 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 24 tiles (4x6), decor-only; lockdown-heavy",
+  "variantOf": null,
+  "id": "CR-RUG-021"
+ },
+ {
+  "slug": "royal-medallion-carpet",
+  "name": "Royal Medallion Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF2",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF0",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF3",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFA",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF5",
+    "dx": 5,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF1",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AF4",
+    "dx": 6,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEE",
+    "dx": 6,
+    "dy": 5,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "7x6",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A vast navy carpet patterned in coral and gold medallions, fit for the floor of a throne room.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=77-650 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 42 tiles (7x6), decor-only; lockdown-heavy; very large",
+  "variantOf": "medallion-carpet",
+  "id": "CR-RUG-022"
+ },
+ {
+  "slug": "great-hall-carpet",
+  "name": "Great Hall Carpet",
+  "category": "RUG",
+  "subcategory": "Carpets",
+  "parts": [
+   {
+    "id": "0x0AE4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE7",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE5",
+    "dx": 0,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 1,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 3,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 4,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE6",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 5,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 5,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 5,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 5,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE8",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 6,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AED",
+    "dx": 6,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AEA",
+    "dx": 6,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE6",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 7,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 7,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 7,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE9",
+    "dx": 7,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0AE3",
+    "dx": 7,
+    "dy": 5,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "8x6",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "A huge russet carpet of tightly woven coral and orange patterns, for a hall where banquets run for days.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world carpet tiles (n=78-268 in the Britannia map); no documented craft or deed before 2001, so world static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, 48 tiles (8x6), decor-only; lockdown-heavy; very large",
+  "variantOf": null,
+  "id": "CR-RUG-023"
+ },
+ {
+  "slug": "woven-mat",
+  "name": "Woven Reed Mat",
+  "category": "RUG",
+  "subcategory": "Mats",
+  "parts": [
+   {
+    "id": "0x11E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x11E6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11E7",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "exotic",
+   "camp"
+  ],
+  "blurb": "A mat of tightly woven golden reed, light enough to roll up and carry.",
+  "era": {
+   "grade": "B",
+   "note": "Woven floor-mat tiles (0x11E2-0x11E9) are Lost Lands (T2A, Oct 1998) art, n=35-236 for the main tiles in Britannia; static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x1), decor-only",
+  "variantOf": null,
+  "id": "CR-RUG-024"
+ },
+ {
+  "slug": "long-woven-mat",
+  "name": "Long Woven Mat",
+  "category": "RUG",
+  "subcategory": "Mats",
+  "parts": [
+   {
+    "id": "0x11E8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E9",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ground-cover",
+  "footprint": "4x2",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "exotic",
+   "camp"
+  ],
+  "blurb": "A broad mat of woven golden reed, wide enough for a family to sit on.",
+  "era": {
+   "grade": "B",
+   "note": "Woven floor-mat tiles (0x11E2-0x11E9) are Lost Lands (T2A, Oct 1998) art, n=35-236 for the main tiles in Britannia; static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (4x2), decor-only",
+  "variantOf": "woven-mat",
+  "id": "CR-RUG-025"
+ },
+ {
+  "slug": "grass-mat",
+  "name": "Green Grass Mat",
+  "category": "RUG",
+  "subcategory": "Mats",
+  "parts": [
+   {
+    "id": "0x11E4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x11E2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11E3",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "ground-cover",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "wilderness",
+   "camp"
+  ],
+  "blurb": "A mat plaited from fresh green grass, still smelling of the meadow.",
+  "era": {
+   "grade": "B",
+   "note": "Grass-mat tiles (0x11E2-0x11E5) are Lost Lands (T2A, Oct 1998) art, n=1-35 in Britannia; static art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon (2x1), decor-only",
+  "variantOf": null,
+  "id": "CR-RUG-026"
+ }
+]

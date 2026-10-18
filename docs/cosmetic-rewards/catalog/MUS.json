@@ -1,0 +1,899 @@
+[
+ {
+  "slug": "gilded-standing-harp",
+  "name": "Gilded Standing Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "treasure",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall standing harp gilded from crown to foot, strung with fine wire that gleams in any hall.",
+  "era": {
+   "grade": "B",
+   "note": "The standing harp graphic is carpentry-craftable from 1999-03-28; the gilt hue is a shard cosmetic, not a documented item.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Harp (0x0EB1) with Hue 0x8A5 (2213); decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-001"
+ },
+ {
+  "slug": "ivory-standing-harp",
+  "name": "Ivory Standing Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "sacred",
+   "craft:carpentry"
+  ],
+  "blurb": "A standing harp of pale, ivory-white wood, fit for a temple choir or a queen's solar.",
+  "era": {
+   "grade": "B",
+   "note": "The standing harp graphic is carpentry-craftable from 1999-03-28; the ivory hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Harp with Hue 0x481 (1153); decor-only, must not play",
+  "variantOf": "gilded-standing-harp",
+  "id": "CR-MUS-002"
+ },
+ {
+  "slug": "crimson-standing-harp",
+  "name": "Crimson Standing Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "macabre",
+   "exotic",
+   "craft:carpentry"
+  ],
+  "blurb": "A standing harp lacquered the deep red of old wine, a favourite of bards who like their ballads dark.",
+  "era": {
+   "grade": "B",
+   "note": "The standing harp graphic is carpentry-craftable from 1999-03-28; the crimson hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Harp with Hue 0x485 (1157); decor-only, must not play",
+  "variantOf": "gilded-standing-harp",
+  "id": "CR-MUS-003"
+ },
+ {
+  "slug": "gilded-lap-harp",
+  "name": "Gilded Lap Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A small lap harp gilded in gold leaf, its strings humming faintly whenever the door is shut too hard.",
+  "era": {
+   "grade": "B",
+   "note": "The lap harp graphic is carpentry-craftable from 1999-03-28; the gilt hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock LapHarp (0x0EB2) with Hue 2213; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-004"
+ },
+ {
+  "slug": "ivory-lap-harp",
+  "name": "Ivory Lap Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "sacred",
+   "craft:carpentry"
+  ],
+  "blurb": "A lap harp of pale ivory-white wood, light enough for a bard to carry from tavern to tavern.",
+  "era": {
+   "grade": "B",
+   "note": "The lap harp graphic is carpentry-craftable from 1999-03-28; the ivory hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock LapHarp with Hue 1153; decor-only, must not play",
+  "variantOf": "gilded-lap-harp",
+  "id": "CR-MUS-005"
+ },
+ {
+  "slug": "gilded-lute",
+  "name": "Gilded Lute",
+  "category": "MUS",
+  "subcategory": "Strings and percussion",
+  "parts": [
+   {
+    "id": "0x0EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "tavern",
+   "craft:carpentry"
+  ],
+  "blurb": "A lute gilded all over in bright gold, too handsome to be played and too proud to be hidden.",
+  "era": {
+   "grade": "B",
+   "note": "The lute graphic is carpentry-craftable from 1999-03-28; the gold hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lute (0x0EB3; 0x0EB4 is the mirrored pose) with Hue 2213; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-006"
+ },
+ {
+  "slug": "gilded-drum",
+  "name": "Gilded Drum",
+  "category": "MUS",
+  "subcategory": "Strings and percussion",
+  "parts": [
+   {
+    "id": "0x0E9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "martial",
+   "tavern",
+   "craft:carpentry"
+  ],
+  "blurb": "A drum with its skin and rim burnished gold, a pair of sticks laid across the head.",
+  "era": {
+   "grade": "B",
+   "note": "The drum graphic is carpentry-craftable from 1999-03-28; the gold hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Drums (0x0E9C) with Hue 2213; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-007"
+ },
+ {
+  "slug": "gilded-tambourine",
+  "name": "Gilded Tambourine",
+  "category": "MUS",
+  "subcategory": "Strings and percussion",
+  "parts": [
+   {
+    "id": "0x0E9E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "whimsical",
+   "craft:carpentry"
+  ],
+  "blurb": "A tambourine of gleaming gold with a trailing tassel, ready for any festival.",
+  "era": {
+   "grade": "B",
+   "note": "The tassel tambourine graphic is carpentry-craftable from 1999-03-28; the gold hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock TambourineTassel (0x0E9E) with Hue 2213; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-008"
+ },
+ {
+  "slug": "minstrels-stool",
+  "name": "Minstrel's Stool",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0A2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A three-legged stool with a lute left resting on the seat, its owner gone to fetch another ale.",
+  "era": {
+   "grade": "A",
+   "note": "Carpentry stool and lute are classic items; the lute was craftable from 1999-03-28. The pairing is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "stool static + lute static at z+7; decor-only, lute must not play",
+  "variantOf": null,
+  "id": "CR-MUS-009"
+ },
+ {
+  "slug": "harpists-recital-set",
+  "name": "Harpist's Recital Set",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0EB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EBC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "scholar",
+   "craft:carpentry"
+  ],
+  "blurb": "A standing harp, a tall music stand and a low stool, arranged as if the next piece were about to begin.",
+  "era": {
+   "grade": "A",
+   "note": "Standing harp (1999-03-28), tall music stand (1999-01-19) and stool are all carpentry items; the grouping is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "Harp + TallMusicStand (0x0EBC) + stool statics on a 2x2; decor-only, harp must not play",
+  "variantOf": null,
+  "id": "CR-MUS-010"
+ },
+ {
+  "slug": "percussion-corner",
+  "name": "Percussion Corner",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0E9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0E9E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "whimsical",
+   "craft:carpentry"
+  ],
+  "blurb": "A drum with a tambourine perched on its head and a tasselled tambourine beside it, waiting for a lively reel.",
+  "era": {
+   "grade": "A",
+   "note": "Drum, tambourine and tassel tambourine were carpentry-craftable from 1999-03-28; the grouping is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "Drums + Tambourine (z+5) + TambourineTassel statics; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-011"
+ },
+ {
+  "slug": "duet-music-stands",
+  "name": "Duet Music Stands",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0EBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EBC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "Two tall music stands set side by side, scores open for a pair of players.",
+  "era": {
+   "grade": "A",
+   "note": "Tall music stands were carpentry-craftable from 1999-01-19; this pairing is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two TallMusicStand statics (0x0EBB, 0x0EBC); decor-only",
+  "variantOf": null,
+  "id": "CR-MUS-012"
+ },
+ {
+  "slug": "rehearsal-stand",
+  "name": "Rehearsal Stand",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0EB6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EBD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EBF",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A music stand with sheets of half-learned music scattered around its feet.",
+  "era": {
+   "grade": "A",
+   "note": "Short music stands were carpentry-craftable from 1999-01-19; the sheet-music tiles are classic art, and the arrangement is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "ShortMusicStand + two sheet-music statics on a 2x2; decor-only",
+  "variantOf": null,
+  "id": "CR-MUS-013"
+ },
+ {
+  "slug": "minstrels-ensemble",
+  "name": "Minstrel's Ensemble",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0EB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EBC",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A2A",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EB3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 7
+   },
+   {
+    "id": "0x0E9C",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "tavern",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A harp, a stand of music, a lute on its stool and a drum with tambourine: a whole company of players, caught between songs.",
+  "era": {
+   "grade": "A",
+   "note": "Harp, lute, drum, tambourine (1999-03-28), music stand (1999-01-19) and stool are classic craftable items; the full arrangement is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "six statics on a 3x3 footprint (harp, tall stand, stool, lute at z+7, drum, tassel tambourine); decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-014"
+ },
+ {
+  "slug": "loose-sheet-music",
+  "name": "Loose Sheet Music",
+  "category": "MUS",
+  "subcategory": "Scores and bells",
+  "parts": [
+   {
+    "id": "0x0EBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0EBE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A single leaf of hand-copied sheet music, ink smudged by many a thumb.",
+  "era": {
+   "grade": "B",
+   "note": "Sheet-music tiles 0x0EBD-0x0EC0 sit directly beside the music stands (craftable 1999-01-19) in the classic block; no separate document.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static item on a table or the floor; the 0x0EBF/0x0EC0 pair is a taller variant",
+  "variantOf": null,
+  "id": "CR-MUS-015"
+ },
+ {
+  "slug": "crimson-lap-harp",
+  "name": "Crimson Lap Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0x0EB2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "macabre",
+   "craft:carpentry"
+  ],
+  "blurb": "A small lap harp lacquered the colour of old wine, its strings dark as a raven's wing.",
+  "era": {
+   "grade": "B",
+   "note": "The lap harp graphic is carpentry-craftable from 1999-03-28; the crimson hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock LapHarp with Hue 1157; decor-only, must not play",
+  "variantOf": "gilded-lap-harp",
+  "id": "CR-MUS-016"
+ },
+ {
+  "slug": "ivory-lute",
+  "name": "Ivory Lute",
+  "category": "MUS",
+  "subcategory": "Strings and percussion",
+  "parts": [
+   {
+    "id": "0x0EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "sacred",
+   "craft:carpentry"
+  ],
+  "blurb": "A lute of pale ivory-white wood, light and bright, made for a bard who sings of saints.",
+  "era": {
+   "grade": "B",
+   "note": "The lute graphic is carpentry-craftable from 1999-03-28; the ivory hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lute with Hue 1153; decor-only, must not play",
+  "variantOf": "gilded-lute",
+  "id": "CR-MUS-017"
+ },
+ {
+  "slug": "ivory-music-stand",
+  "name": "Ivory Music Stand",
+  "category": "MUS",
+  "subcategory": "Strings and percussion",
+  "parts": [
+   {
+    "id": "0x0EBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "scholar",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall music stand of bleached ivory-pale wood, a score always open on its desk.",
+  "era": {
+   "grade": "B",
+   "note": "Tall music stands were carpentry-craftable from 1999-01-19; the ivory hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock TallMusicStand (0x0EBB, mirrored 0x0EBC) with Hue 1153; decor-only",
+  "variantOf": null,
+  "id": "CR-MUS-018"
+ },
+ {
+  "slug": "minstrels-bench",
+  "name": "Minstrel's Bench",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0B2C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A plain wooden bench with a lute laid across it, the strings still faintly humming.",
+  "era": {
+   "grade": "A",
+   "note": "Carpentry bench and lute are classic items; the lute was craftable from 1999-03-28. The pairing is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "wooden bench static + lute static at z+5; decor-only, lute must not play",
+  "variantOf": null,
+  "id": "CR-MUS-019"
+ },
+ {
+  "slug": "troupe-corner",
+  "name": "Troupe Corner",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0A2A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 7
+   },
+   {
+    "id": "0x0A2B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EB2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 7
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "whimsical",
+   "craft:carpentry"
+  ],
+  "blurb": "Two stools set side by side, a lute and a lap harp left waiting for their players.",
+  "era": {
+   "grade": "A",
+   "note": "Carpentry stools plus lute and lap harp (craftable 1999-03-28); the pairing is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "two stool statics each with an instrument at z+7; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-020"
+ },
+ {
+  "slug": "drum-circle",
+  "name": "Drum Circle",
+  "category": "MUS",
+  "subcategory": "Set pieces",
+  "parts": [
+   {
+    "id": "0x0E9C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9D",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "wilderness",
+   "whimsical",
+   "craft:carpentry"
+  ],
+  "blurb": "Three drums and a tambourine set in a ring, as for a night of festival dancing around the fire.",
+  "era": {
+   "grade": "A",
+   "note": "Drum and tambourine were carpentry-craftable from 1999-03-28; the circle arrangement is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "three Drums + one Tambourine static on a 2x2; decor-only, must not play",
+  "variantOf": null,
+  "id": "CR-MUS-021"
+ }
+]

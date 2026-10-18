@@ -1,0 +1,2218 @@
+[
+ {
+  "slug": "polished-casket",
+  "name": "Polished Casket",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C25",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C24",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C26",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C23",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C27",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C22",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble",
+   "undead"
+  ],
+  "blurb": "A burial casket of honey-coloured wood with a bevelled lid and turned feet.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (4 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only (closed; no storage)",
+  "variantOf": null,
+  "id": "CR-GRV-001"
+ },
+ {
+  "slug": "open-casket",
+  "name": "Open Casket",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C2B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C2C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C2A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C2D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C29",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C2E",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C28",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "4x2",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "elegant",
+   "undead",
+   "noble"
+  ],
+  "blurb": "A casket with its lid thrown back, showing a pale lining and a bed made ready for the dead.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (1 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "seven-tile addon, decor-only; no storage",
+  "variantOf": null,
+  "id": "CR-GRV-002"
+ },
+ {
+  "slug": "plain-wooden-coffin",
+  "name": "Plain Wooden Coffin",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C44",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C45",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C46",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1C52",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1C53",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1C54",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "humble",
+   "undead"
+  ],
+  "blurb": "A plain hexagonal coffin of rough planks, nailed shut.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (a few placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon; east set 0x1C52-0x1C54",
+  "variantOf": null,
+  "id": "CR-GRV-003"
+ },
+ {
+  "slug": "ankh-marked-coffin",
+  "name": "Ankh-Marked Coffin",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C42",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C43",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1C4F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1C50",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1C51",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "sacred",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A wooden coffin with a carved ankh on the lid, for one whose faith was in resurrection.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (a few placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon; east set 0x1C4F-0x1C51",
+  "variantOf": null,
+  "id": "CR-GRV-004"
+ },
+ {
+  "slug": "open-coffin",
+  "name": "Open Coffin",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C47",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C48",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C49",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1C57",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1C56",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1C55",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "humble",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A coffin with the lid gone, its dark lining empty and waiting.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (3 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon; east set 0x1C57/0x1C56/0x1C55",
+  "variantOf": null,
+  "id": "CR-GRV-005"
+ },
+ {
+  "slug": "splintered-coffin",
+  "name": "Splintered Coffin",
+  "category": "GRV",
+  "subcategory": "Caskets and coffins",
+  "parts": [
+   {
+    "id": "0x1C4E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C56",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C55",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "An open coffin with its head-board split, as though something had forced its way out.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (1 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-006"
+ },
+ {
+  "slug": "stone-sarcophagus",
+  "name": "Carved Stone Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C63",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C62",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C64",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C61",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C65",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C60",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1C93",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1C94",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1C95",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x1C92",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1C91",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1C90",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A closed stone sarcophagus with a robed figure carved in low relief on the lid.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (2 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon (3x2); east set is 0x1C90-0x1C95",
+  "variantOf": null,
+  "id": "CR-GRV-007"
+ },
+ {
+  "slug": "effigy-sarcophagus",
+  "name": "Effigy Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C7A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C79",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C7B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C78",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C7C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C77",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A heavy tomb with a recumbent effigy and a band of carved arches around its flanks.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (13 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-008"
+ },
+ {
+  "slug": "open-sarcophagus",
+  "name": "Open Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C69",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A stone sarcophagus with the lid long gone, empty and cold.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (a few placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "six-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-009"
+ },
+ {
+  "slug": "sarcophagus-lid-beside",
+  "name": "Sarcophagus with Lid Beside",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C66",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C6E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C69",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C67",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C68",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "4x3",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "An open tomb with its carved lid lying alongside, as though shoved aside by someone in a hurry.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (2 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-010"
+ },
+ {
+  "slug": "ornate-open-sarcophagus",
+  "name": "Ornate Open Sarcophagus",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C8B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C8A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C8C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C89",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C8D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C88",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C8E",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C87",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C8F",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C86",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "5x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A fine tomb with arcaded sides, lid half-slid away to show the dark inside.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (2 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "ten-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-011"
+ },
+ {
+  "slug": "sarcophagus-and-effigy-lid",
+  "name": "Sarcophagus and Effigy Lid",
+  "category": "GRV",
+  "subcategory": "Sarcophagi",
+  "parts": [
+   {
+    "id": "0x1C83",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C82",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C7D",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C84",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C81",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C7E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1C85",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1C80",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1C7F",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "An open tomb and its lid, carved with a sleeping figure, left side by side.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world dungeon-dressing art, placed in Britannia's dungeon crypts (1 placements on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-012"
+ },
+ {
+  "slug": "tall-grave-marker",
+  "name": "Tall Grave Marker",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x0ED4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A squared pillar of grey stone with a plain panel for a name.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=16 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-013"
+ },
+ {
+  "slug": "arched-headstone",
+  "name": "Arched Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x0ED7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0ED8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A headstone with a worn arched panel, set in a framed slab.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=17 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-014"
+ },
+ {
+  "slug": "scroll-topped-headstone",
+  "name": "Scroll-Topped Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x0EDB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EDC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A pale headstone crowned with a stone scroll, as if the dead had one last tale to tell.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=4 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-015"
+ },
+ {
+  "slug": "red-granite-spire",
+  "name": "Red Granite Spire",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x0EDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EDE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A slender spire of red granite on a pale stepped base, a fine marker for one of means.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=2 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-016"
+ },
+ {
+  "slug": "sandstone-headstone",
+  "name": "Sandstone Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1165",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1166",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "humble",
+   "desert"
+  ],
+  "blurb": "A rounded headstone of soft yellow sandstone, its lettering nearly worn away.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=12 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-017"
+ },
+ {
+  "slug": "weathered-round-headstone",
+  "name": "Weathered Round Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1167",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A rounded grey headstone carved with a scroll border.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=10 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-018"
+ },
+ {
+  "slug": "rose-granite-headstone",
+  "name": "Rose Granite Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1169",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x116A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A rounded headstone of rose-coloured granite on a darker base.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=3 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-019"
+ },
+ {
+  "slug": "slate-headstone",
+  "name": "Slate Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x116B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x116C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A leaning slate headstone with a faded border.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=5 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-020"
+ },
+ {
+  "slug": "carved-slate-slab",
+  "name": "Carved Slate Slab",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x116D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x116E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "elegant"
+  ],
+  "blurb": "A squat slab of dark slate carved with knotwork panels.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=7 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-021"
+ },
+ {
+  "slug": "blue-slate-slab",
+  "name": "Blue Slate Slab",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x116F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1170",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "ice"
+  ],
+  "blurb": "A broad blue-grey slab with a panel of interlaced carving.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=10 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-022"
+ },
+ {
+  "slug": "brown-grave-pillar",
+  "name": "Brown Grave Pillar",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1171",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1172",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "humble",
+   "undead"
+  ],
+  "blurb": "A narrow brown pillar standing on a small plinth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=7 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-023"
+ },
+ {
+  "slug": "mossy-grave-pillar",
+  "name": "Mossy Grave Pillar",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1174",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "swamp"
+  ],
+  "blurb": "A narrow stone pillar green with lichen.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=12 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-024"
+ },
+ {
+  "slug": "twin-slate-stones",
+  "name": "Twin Slate Stones",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1175",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "Two arched stones on one base for a husband and wife.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=7 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-025"
+ },
+ {
+  "slug": "twin-tablets",
+  "name": "Twin Tablets",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1177",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1178",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A pair of pale tablets, each inscribed, joined at the shoulder.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=3 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-026"
+ },
+ {
+  "slug": "arched-marker-blue-base",
+  "name": "Arched Marker on a Blue Base",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x117B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A buff arched marker raised on a base of blue stone, worn smooth.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=7 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-027"
+ },
+ {
+  "slug": "crumbling-mossy-headstone",
+  "name": "Crumbling Mossy Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x117D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "swamp",
+   "dungeon"
+  ],
+  "blurb": "A leaning stone, chipped and furred with moss, close to falling.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=10 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-028"
+ },
+ {
+  "slug": "black-granite-slab",
+  "name": "Black Granite Slab",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x117F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A polished black slab on a pale plinth, rarely seen outside the finest graveyards.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=3 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-029"
+ },
+ {
+  "slug": "mossy-ornate-headstone",
+  "name": "Mossy Ornate Headstone",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1181",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "swamp"
+  ],
+  "blurb": "A carved headstone half-swallowed by moss and creeper.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=3 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-030"
+ },
+ {
+  "slug": "slender-grave-obelisk",
+  "name": "Slender Grave Obelisk",
+  "category": "GRV",
+  "subcategory": "Headstones and markers",
+  "parts": [
+   {
+    "id": "0x1183",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A narrow stone obelisk on a stepped base.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world static art: graveyard tile used in Britannia cemeteries (n=11 on the map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single static tile (stock decoration art), decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-031"
+ },
+ {
+  "slug": "grave-with-grey-marker",
+  "name": "Grave with Grey Marker",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0ED4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A fresh-turned grave with a squared grey marker at its head.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three plain static tiles; marker at the head, earth mounds in front (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-032"
+ },
+ {
+  "slug": "grave-with-mossy-pillar",
+  "name": "Grave with Mossy Pillar",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x1174",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "swamp"
+  ],
+  "blurb": "A long-settled grave, its pillar green with moss.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three plain static tiles; marker at the head, earth mounds in front (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-033"
+ },
+ {
+  "slug": "grave-with-rose-slab",
+  "name": "Grave with Rose Granite Slab",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x117E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A neat plot beneath a slab of rose granite.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three plain static tiles; marker at the head, earth mounds in front (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-034"
+ },
+ {
+  "slug": "grave-with-red-spire",
+  "name": "Grave with Red Granite Spire",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0EDE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EE2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EE0",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A grave marked by a red granite spire, the earth heaped long and low beside it.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three plain static tiles; marker at the head, earth mounds in front (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-035"
+ },
+ {
+  "slug": "grave-with-arched-headstone",
+  "name": "Grave with Arched Headstone",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0ED8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "A simple plot beneath an arched headstone.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three plain static tiles; marker at the head, earth mounds in front (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-036"
+ },
+ {
+  "slug": "churchyard-row",
+  "name": "Churchyard Row",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0ED4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED5",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED6",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "5x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "Three mounded graves in a row beneath matching pillars, grey, dark and mossy.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine plain static tiles, three plots laid out two tiles apart as in the Britannia graveyards (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-037"
+ },
+ {
+  "slug": "family-plot",
+  "name": "Family Plot",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x117E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x116C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x117E",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "5x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "undead",
+   "elegant"
+  ],
+  "blurb": "A family's three graves under three neat headstones, the earth still bare.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine plain static tiles, three plots laid out two tiles apart as in the Britannia graveyards (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-038"
+ },
+ {
+  "slug": "great-houses-row",
+  "name": "Row of Fine Graves",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0EDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x117F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDD",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0ED3",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "5x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "macabre",
+   "elegant",
+   "noble",
+   "undead"
+  ],
+  "blurb": "Three graves marked by red spires and a black slab, the resting place of some great household.",
+  "era": {
+   "grade": "B",
+   "note": "Stone tile and both earth tiles are original-world cemetery art; the Britannia graveyards lay each marker with these two mounds in front of it.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "nine plain static tiles, three plots laid out two tiles apart as in the Britannia graveyards (decor-only)",
+  "variantOf": null,
+  "id": "CR-GRV-039"
+ },
+ {
+  "slug": "freshly-dug-grave",
+  "name": "Freshly Dug Grave",
+  "category": "GRV",
+  "subcategory": "Grave plots",
+  "parts": [
+   {
+    "id": "0x0ED3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EDF",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "ground-cover",
+  "footprint": "1x2",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "undead",
+   "humble"
+  ],
+  "blurb": "Two long mounds of turned earth, waiting for a marker.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world cemetery earth tiles (n=42 and 153 on the Britannia map); world dressing offered as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two flat static tiles, decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-040"
+ },
+ {
+  "slug": "burnt-skull-candle",
+  "name": "Burnt-Down Skull Candle",
+  "category": "GRV",
+  "subcategory": "Funeral candles",
+  "parts": [
+   {
+    "id": "0x1859",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "tavern"
+  ],
+  "blurb": "A skull with a stub of candle burnt almost to its crown, wax run down over the bone.",
+  "era": {
+   "grade": "B",
+   "note": "Skull candles were NPC shop-dressing 'rares' players could carry off in 1997-2000, and the art is in the Lost Lands map of Oct 1998.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single tile; decor-only",
+  "variantOf": null,
+  "id": "CR-GRV-041"
+ }
+]

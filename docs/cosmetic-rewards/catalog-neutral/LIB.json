@@ -1,0 +1,795 @@
+[
+ {
+  "slug": "brass-telescope",
+  "name": "Brass Telescope on Tripod",
+  "category": "LIB",
+  "subcategory": "Instruments",
+  "parts": [
+   {
+    "id": "0xA12C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA12D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "nautical",
+   "arcane"
+  ],
+  "blurb": "A long brass telescope on a three-legged stand of dark wood, aimed at the night sky or at a ship on the horizon.",
+  "era": {
+   "grade": "N",
+   "note": "A plain brass telescope on a tripod, like the spyglasses and sextants of 2000; no expansion lore. The art is much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no scrying",
+  "variantOf": null,
+  "id": "CN-LIB-001"
+ },
+ {
+  "slug": "brass-orrery",
+  "name": "Brass Orrery",
+  "category": "LIB",
+  "subcategory": "Instruments",
+  "parts": [
+   {
+    "id": "0xA17B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A tiered brass orrery on a round marble-and-brass base, with golden worlds hung on arms about a bright centre.",
+  "era": {
+   "grade": "N",
+   "note": "A brass model of the heavens, the same family of object as globes and astrolabes of 2000; no lore tie to later content. Art much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; 29 animation frames exist (0xA17B-0xA197), frame 1 used; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-002"
+ },
+ {
+  "slug": "map-of-ocllo",
+  "name": "Map of Ocllo",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xAB9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:ocllo"
+  ],
+  "blurb": "A chart of the isle of Ocllo, its town, harbour and cliffs drawn in a careful island hand.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-003"
+ },
+ {
+  "slug": "map-of-trinsic",
+  "name": "Map of Trinsic",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:trinsic"
+  ],
+  "blurb": "A town chart of Trinsic, its walls and the paladins' gate drawn in blue ink.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-004"
+ },
+ {
+  "slug": "map-of-moonglow",
+  "name": "Map of Moonglow",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:moonglow"
+  ],
+  "blurb": "A map of Moonglow and its sea-wrapped island, with the scholars' tower marked in red.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-005"
+ },
+ {
+  "slug": "map-of-britain",
+  "name": "Map of Britain",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:britain"
+  ],
+  "blurb": "A town chart of Britain, castle, bank and moat in a tidy cartographer's colours.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-006"
+ },
+ {
+  "slug": "map-of-skara-brae",
+  "name": "Map of Skara Brae",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:skara-brae"
+  ],
+  "blurb": "A chart of Skara Brae and its green forest, the old woodland road drawn in brown.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-007"
+ },
+ {
+  "slug": "map-of-vesper",
+  "name": "Map of Vesper",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:vesper"
+  ],
+  "blurb": "A chart of the river city of Vesper, the waterways picked out in pale blue.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-008"
+ },
+ {
+  "slug": "map-of-magincia",
+  "name": "Map of Magincia",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:magincia"
+  ],
+  "blurb": "A chart of Magincia, proud once, with the great houses drawn in tiny careful squares.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-009"
+ },
+ {
+  "slug": "map-of-yew",
+  "name": "Map of Yew",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:yew"
+  ],
+  "blurb": "A chart of Yew and its wood, with the abbey and court marked on the sheet.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-010"
+ },
+ {
+  "slug": "map-of-jhelom",
+  "name": "Map of Jhelom",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xABA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "town:jhelom"
+  ],
+  "blurb": "A chart of Jhelom's island, the fighters' halls and harbour marked by crossed swords.",
+  "era": {
+   "grade": "N",
+   "note": "A map of a town that already stood in 2000; ordinary cartographer's work like the maps of 2000. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable map",
+  "variantOf": null,
+  "id": "CN-LIB-011"
+ },
+ {
+  "slug": "elven-reading-desk",
+  "name": "Elven Reading Desk",
+  "category": "LIB",
+  "subcategory": "Desks",
+  "parts": [
+   {
+    "id": "0x2DF5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DF6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A small dark reading desk on slender curved legs, its slanted top inlaid with a pale lattice.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-012"
+ },
+ {
+  "slug": "drafting-table",
+  "name": "Cartographer's Drafting Table",
+  "category": "LIB",
+  "subcategory": "Desks",
+  "parts": [
+   {
+    "id": "0xA833",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "craft:cartography",
+   "elegant"
+  ],
+  "blurb": "A tilting drafting table with a half-drawn chart pinned to the board and a pair of brass dividers laid across it.",
+  "era": {
+   "grade": "N",
+   "note": "A cartographer's drafting table; Cartography was a skill of 2000. The art is far later, but the object is generic.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; 22 animation frames exist (0xA833-0xA848), frame 1 used; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-013"
+ },
+ {
+  "slug": "blue-quill-and-inkwell",
+  "name": "Inkwell with Blue Quill",
+  "category": "LIB",
+  "subcategory": "Writing Sets",
+  "parts": [
+   {
+    "id": "0x2D61",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2D62",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A little stoppered inkpot holding a long blue-feathered quill, its nib stained the colour of the sea.",
+  "era": {
+   "grade": "N",
+   "note": "A plain inkwell and quill; scribes' tools of 2000. The art is from the 2005 ML block but carries no lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-014"
+ },
+ {
+  "slug": "open-illuminated-tome",
+  "name": "Open Illuminated Tome",
+  "category": "LIB",
+  "subcategory": "Books",
+  "parts": [
+   {
+    "id": "0xA5CE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA5CF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A great book lying open, its pages edged in gold and one corner of vellum curling up.",
+  "era": {
+   "grade": "N",
+   "note": "A generic study or scholar's object; nothing in its look or lore belongs to a later expansion. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a readable book",
+  "variantOf": null,
+  "id": "CN-LIB-015"
+ },
+ {
+  "slug": "heaped-book-stack",
+  "name": "Heaped Stack of Books",
+  "category": "LIB",
+  "subcategory": "Books",
+  "parts": [
+   {
+    "id": "0xA584",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA585",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "whimsical"
+  ],
+  "blurb": "A teetering heap of books in blue, rose and green, topped with a ribbon-bound folio.",
+  "era": {
+   "grade": "N",
+   "note": "A generic study or scholar's object; nothing in its look or lore belongs to a later expansion. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not readable books",
+  "variantOf": null,
+  "id": "CN-LIB-016"
+ },
+ {
+  "slug": "leather-bound-tome",
+  "name": "Brown Leather-Bound Tome",
+  "category": "LIB",
+  "subcategory": "Books",
+  "parts": [
+   {
+    "id": "0xA75F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA760",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A thick brown book bound in plain leather, the sort found on every study shelf in Britannia.",
+  "era": {
+   "grade": "N",
+   "note": "A generic study or scholar's object; nothing in its look or lore belongs to a later expansion. The art postdates April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a readable book",
+  "variantOf": null,
+  "id": "CN-LIB-017"
+ },
+ {
+  "slug": "dagger-pinned-chart",
+  "name": "Dagger-Pinned Chart",
+  "category": "LIB",
+  "subcategory": "Charts and Maps",
+  "parts": [
+   {
+    "id": "0xB029",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB02A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "pirate",
+   "martial"
+  ],
+  "blurb": "A rough chart held to the table by a driven dagger, with a ship's course and a number of crosses on it.",
+  "era": {
+   "grade": "N",
+   "note": "A map pinned down with a dagger: ordinary adventurer's or pirate's dressing. The art is far later than 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-018"
+ },
+ {
+  "slug": "charred-scrolls",
+  "name": "Charred Scrolls",
+  "category": "LIB",
+  "subcategory": "Scrolls",
+  "parts": [
+   {
+    "id": "0x640F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x6410",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "fire",
+   "dungeon"
+  ],
+  "blurb": "A pair of scroll tubes scorched at the ends, smelling of smoke and stolen secrets.",
+  "era": {
+   "grade": "N",
+   "note": "Scorched scrolls; ordinary ruin and dungeon dressing, like burnt books. The art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, not a usable scroll",
+  "variantOf": null,
+  "id": "CN-LIB-019"
+ },
+ {
+  "slug": "occultist-writing-desk",
+  "name": "Occultist's Writing Desk",
+  "category": "LIB",
+  "subcategory": "Desks",
+  "parts": [
+   {
+    "id": "0x9FF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9FEA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "macabre",
+   "scholar"
+  ],
+  "blurb": "A narrow desk of dark wood crowded with a flask, a flaming candle, a skull and a loose page of cramped writing.",
+  "era": {
+   "grade": "N",
+   "note": "A writing desk dressed with a skull, flasks and a candle; ordinary dark-magic dressing like the skulls and grimoires of 2000. The art is far later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; animated flame frames exist (0x9FEA-0x9FF7), first frame used; decor-only",
+  "variantOf": null,
+  "id": "CN-LIB-020"
+ }
+]

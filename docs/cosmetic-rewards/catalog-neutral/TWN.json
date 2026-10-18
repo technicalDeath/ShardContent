@@ -1,0 +1,1536 @@
+[
+ {
+  "slug": "crossroads-signpost",
+  "name": "Crossroads Signpost",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA855",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A tall pole pinned with arrow-shaped boards, pointing travellers on to the next town.",
+  "era": {
+   "grade": "N",
+   "note": "A plain wooden signpost with direction arrows; no text, no lore. Art from the later road-sign set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-001"
+ },
+ {
+  "slug": "triple-lantern-lamp-post",
+  "name": "Triple-Lantern Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA5BA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "A black iron post branching into three scrolled arms, each hung with a clear glass lantern.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental iron street lamp; lamp posts are core town dressing. The clear-glass post is the unlit base of a four-colour set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only unlit lamp post",
+  "variantOf": null,
+  "id": "CN-TWN-002"
+ },
+ {
+  "slug": "ruby-lantern-lamp-post",
+  "name": "Ruby-Glass Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA5BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "The three-armed iron lamp post with ruby glass, its small flames dancing behind the red.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental iron street lamp with tinted lanterns; lamp posts are core town dressing. Art from the later four-colour lamp-post set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only lit lamp post; animated flame (4 frames) starts on this tile",
+  "variantOf": null,
+  "id": "CN-TWN-003"
+ },
+ {
+  "slug": "sapphire-lantern-lamp-post",
+  "name": "Sapphire-Glass Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA5C0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "The three-armed iron lamp post with sapphire glass, throwing a cool blue glow.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental iron street lamp with tinted lanterns; lamp posts are core town dressing. Art from the later four-colour lamp-post set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only lit lamp post; animated flame (4 frames) starts on this tile",
+  "variantOf": null,
+  "id": "CN-TWN-004"
+ },
+ {
+  "slug": "emerald-lantern-lamp-post",
+  "name": "Emerald-Glass Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA5C5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "The three-armed iron lamp post with emerald glass, casting a green light on the paving.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental iron street lamp with tinted lanterns; lamp posts are core town dressing. Art from the later four-colour lamp-post set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only lit lamp post; animated flame (4 frames) starts on this tile",
+  "variantOf": null,
+  "id": "CN-TWN-005"
+ },
+ {
+  "slug": "amethyst-lantern-lamp-post",
+  "name": "Amethyst-Glass Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0xA5CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "arcane"
+  ],
+  "blurb": "The three-armed iron lamp post with amethyst glass, the rarest colour of the set.",
+  "era": {
+   "grade": "N",
+   "note": "An ornamental iron street lamp with tinted lanterns; lamp posts are core town dressing. Art from the later four-colour lamp-post set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only lit lamp post; animated flame (4 frames) starts on this tile",
+  "variantOf": null,
+  "id": "CN-TWN-006"
+ },
+ {
+  "slug": "slim-iron-lamp-post",
+  "name": "Slim Iron Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x0B20",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "fire"
+  ],
+  "blurb": "A narrow black iron post topped with a small lit lantern, the plain lamp of a quiet lane.",
+  "era": {
+   "grade": "N",
+   "note": "A plain town lamp post in the old block; the main catalog holds two other lamp-post patterns but not this one.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only lit lamp post",
+  "variantOf": null,
+  "id": "CN-TWN-007"
+ },
+ {
+  "slug": "ornate-iron-lamp-post",
+  "name": "Ornate Iron Lamp Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x0B25",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "A tall scrolled iron lamp post with a bud-shaped lantern, left unlit for the daytime.",
+  "era": {
+   "grade": "N",
+   "note": "A plain ornamental lamp post in the old block, the unlit twin of a pattern the main catalog holds lit.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only unlit lamp post",
+  "variantOf": null,
+  "id": "CN-TWN-008"
+ },
+ {
+  "slug": "small-brass-bell",
+  "name": "Small Brass Bell on a Bracket",
+  "category": "TWN",
+  "subcategory": "Bells",
+  "parts": [
+   {
+    "id": "0x4C5C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x4C5D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "humble",
+   "scholar"
+  ],
+  "blurb": "A small brass bell hung from a wooden bracket, rung by hand to call the house to supper.",
+  "era": {
+   "grade": "N",
+   "note": "A plain hand-bell on a wall bracket; bells are timeless town and abbey dressing. Art from the 2010 bell set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-TWN-009"
+ },
+ {
+  "slug": "large-brass-bell",
+  "name": "Large Brass Bell in an Arch",
+  "category": "TWN",
+  "subcategory": "Bells",
+  "parts": [
+   {
+    "id": "0x4C5E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C5F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A big brass bell hung inside a copper arch on a low wooden plinth.",
+  "era": {
+   "grade": "N",
+   "note": "A plain brass bell on a frame; bells are timeless town and abbey dressing. Art from the 2010 bell set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-010"
+ },
+ {
+  "slug": "bell-on-a-frame",
+  "name": "Bell on a Wheel Frame",
+  "category": "TWN",
+  "subcategory": "Bells",
+  "parts": [
+   {
+    "id": "0x4C92",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C95",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "sacred",
+   "scholar",
+   "rustic"
+  ],
+  "blurb": "A cream-coloured bell swung in an iron frame with a rope wheel and a bit of cloth against the clapper.",
+  "era": {
+   "grade": "N",
+   "note": "A plain swinging bell on a wheel frame; bells are timeless town and abbey dressing. Art from the 2010 bell set.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-011"
+ },
+ {
+  "slug": "barrel-post-box",
+  "name": "Barrel Post Box",
+  "category": "TWN",
+  "subcategory": "Post boxes",
+  "parts": [
+   {
+    "id": "0xA1F8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA1F5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "An old barrel turned on its side on a post, with a red-lined mouth for letters.",
+  "era": {
+   "grade": "N",
+   "note": "A small barrel nailed to a post as a letter drop; a rustic mailbox reads as a period village piece. Art from the later mailbox set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-012"
+ },
+ {
+  "slug": "lantern-post-box",
+  "name": "Lantern Post Box",
+  "category": "TWN",
+  "subcategory": "Post boxes",
+  "parts": [
+   {
+    "id": "0xA26C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA268",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A squat pillar of green glass and brass crowned with a small lantern chimney, the town's letter box.",
+  "era": {
+   "grade": "N",
+   "note": "A pillar-style letter box with a lamp top, like a Victorian pillar box; reads as a period street piece. Art from the later mailbox set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-013"
+ },
+ {
+  "slug": "lit-lantern-post-box",
+  "name": "Lamp-Lit Post Box",
+  "category": "TWN",
+  "subcategory": "Post boxes",
+  "parts": [
+   {
+    "id": "0xA26D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA269",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "fire"
+  ],
+  "blurb": "The same brass-and-glass pillar box with its lantern aglow, throwing a yellow light across the street.",
+  "era": {
+   "grade": "N",
+   "note": "The lit state of the pillar-style letter box; a lamp-topped box is a period street piece. Art from the later mailbox set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; animated flame (6 frames) starts on this tile",
+  "variantOf": null,
+  "id": "CN-TWN-014"
+ },
+ {
+  "slug": "fishmongers-stall-silver",
+  "name": "Fishmonger's Stall of Silver Fish",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xB36A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB36F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble"
+  ],
+  "blurb": "A wooden fish stall laid with a tray of bright silver fish on ice.",
+  "era": {
+   "grade": "N",
+   "note": "A plain market stall with a tray of fish; fish and fishmongers are core Britannia. Art from the 2010 fish-market set.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only stall; the tile data names these Fish Market Containers, but they are not containers here",
+  "variantOf": null,
+  "id": "CN-TWN-015"
+ },
+ {
+  "slug": "fishmongers-stall-salmon",
+  "name": "Fishmonger's Stall of Salmon and Greens",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xB36B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB36E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "humble"
+  ],
+  "blurb": "A fish stall with red salmon laid beside baskets of green crabs and weed.",
+  "era": {
+   "grade": "N",
+   "note": "A plain market stall with salmon and greens; fish and fishmongers are core Britannia. Art from the 2010 fish-market set.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only stall; the tile data names these Fish Market Containers, but they are not containers here",
+  "variantOf": null,
+  "id": "CN-TWN-016"
+ },
+ {
+  "slug": "crab-and-lobster-stall",
+  "name": "Crab and Lobster Stall",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xB36C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB36D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "tavern"
+  ],
+  "blurb": "A tray stall piled with red crabs and lobsters, the pride of a harbour market.",
+  "era": {
+   "grade": "N",
+   "note": "A plain market stall of shellfish; crabs and lobsters are ordinary harbour goods. Art from the 2010 fish-market set.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only stall; the tile data names these Fish Market Containers, but they are not containers here",
+  "variantOf": null,
+  "id": "CN-TWN-017"
+ },
+ {
+  "slug": "harvest-produce-stand",
+  "name": "Harvest Produce Stand",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0x641F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x6420",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A tiered wooden stand heaped with orange pumpkins and squash for the harvest fair.",
+  "era": {
+   "grade": "N",
+   "note": "A produce stand of pumpkins and squash; harvest markets are generic. Art from the Halloween 'Pumpkin Market Booth' set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-018"
+ },
+ {
+  "slug": "harvest-produce-stand-heaped",
+  "name": "Heaped Harvest Produce Stand",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0x6421",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x6422",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "season:harvest",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A second tiered stand with green and gold gourds packed between the orange pumpkins.",
+  "era": {
+   "grade": "N",
+   "note": "A produce stand of pumpkins and squash; harvest markets are generic. Art from the Halloween 'Pumpkin Market Booth' set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-019"
+ },
+ {
+  "slug": "merchants-handcart",
+  "name": "Merchant's Handcart",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xAC70",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAC71",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A little two-wheeled handcart stacked with barrels, crates and a sack of greens.",
+  "era": {
+   "grade": "N",
+   "note": "A plain merchant's handcart with a load of barrels; carts are core town dressing. Art from the later cart set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-020"
+ },
+ {
+  "slug": "loaded-market-wagon",
+  "name": "Loaded Market Wagon",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xA9F5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA9F6",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA9F7",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA9F8",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA01",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA02",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA03",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA04",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A four-wheeled wagon piled with barrels and crates, its shafts resting on the cobbles.",
+  "era": {
+   "grade": "N",
+   "note": "A plain horse-drawn wagon with a trade load; wagons are core town dressing. Art from the later wagon set (four tiles per facing).",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "four-tile wagon (offsets +1 along the long side); decor-only",
+  "variantOf": null,
+  "id": "CN-TWN-021"
+ },
+ {
+  "slug": "wagon-of-spilled-goods",
+  "name": "Wagon of Spilled Goods",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xA9F9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA9FA",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA9FB",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA9FC",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA05",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA06",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA07",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA08",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x4",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "treasure"
+  ],
+  "blurb": "A laden wagon with its load shifted and yellow grain spilling out over the wheels.",
+  "era": {
+   "grade": "N",
+   "note": "A plain wagon with a spilling load; wagons are core town dressing. Art from the later wagon set (four tiles per facing).",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "four-tile wagon (offsets +1 along the long side); decor-only",
+  "variantOf": null,
+  "id": "CN-TWN-022"
+ },
+ {
+  "slug": "weathered-trade-wagon",
+  "name": "Weathered Trade Wagon",
+  "category": "TWN",
+  "subcategory": "Market stalls and carts",
+  "parts": [
+   {
+    "id": "0xA9FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA9FE",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA9FF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xAA00",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA09",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA0A",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA0B",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xAA0C",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x4",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "humble",
+   "desert"
+  ],
+  "blurb": "An old wagon with sun-bleached boards and a ragged load, left at the edge of the road.",
+  "era": {
+   "grade": "N",
+   "note": "A plain weathered wagon with a ragged load; wagons are core town dressing. Art from the later wagon set (four tiles per facing).",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "four-tile wagon (offsets +1 along the long side); decor-only",
+  "variantOf": null,
+  "id": "CN-TWN-023"
+ },
+ {
+  "slug": "market-crate-stack",
+  "name": "Stack of Market Crates",
+  "category": "TWN",
+  "subcategory": "Crates and barrels",
+  "parts": [
+   {
+    "id": "0xAA0E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA18",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "Three iron-banded crates stacked crosswise in a corner of the market.",
+  "era": {
+   "grade": "N",
+   "note": "A plain stack of crates; crates are core trade dressing. Art from the later crates-and-wagon set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-024"
+ },
+ {
+  "slug": "pile-of-merchants-crates",
+  "name": "Pile of Merchant's Crates",
+  "category": "TWN",
+  "subcategory": "Crates and barrels",
+  "parts": [
+   {
+    "id": "0xAA10",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA19",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "treasure"
+  ],
+  "blurb": "A tall pile of open crates spilling folds of purple cloth, blue bottles and yellow goods.",
+  "era": {
+   "grade": "N",
+   "note": "A plain pile of merchant's crates with cloth and wares; crates are core trade dressing. Art from the later crates-and-wagon set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-025"
+ },
+ {
+  "slug": "crates-of-spice-and-cloth",
+  "name": "Crates of Spice and Cloth",
+  "category": "TWN",
+  "subcategory": "Crates and barrels",
+  "parts": [
+   {
+    "id": "0xAA11",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA1B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "exotic"
+  ],
+  "blurb": "A few open crates of gold-yellow spice and a roll of cloth, set down by a stall.",
+  "era": {
+   "grade": "N",
+   "note": "A plain few crates of spice and cloth; crates are core trade dressing. Art from the later crates-and-wagon set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-026"
+ },
+ {
+  "slug": "weathered-crates",
+  "name": "Weathered Crates",
+  "category": "TWN",
+  "subcategory": "Crates and barrels",
+  "parts": [
+   {
+    "id": "0xAA13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA1C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "dungeon"
+  ],
+  "blurb": "A pile of broken, sun-bleached crates left to rot by the road.",
+  "era": {
+   "grade": "N",
+   "note": "A plain pile of weathered crates; crates are core trade dressing. Art from the later crates-and-wagon set.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; one tile per facing",
+  "variantOf": null,
+  "id": "CN-TWN-027"
+ },
+ {
+  "slug": "barber-sign",
+  "name": "Barber's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BBA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "town:britain",
+   "humble",
+   "elegant"
+  ],
+  "blurb": "A sign painted with a razor and comb, swinging from a scrolled iron bracket.",
+  "era": {
+   "grade": "N",
+   "note": "Plain old-block shop sign the main catalog left out; signs on brackets are core town dressing.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-TWN-028"
+ },
+ {
+  "slug": "fletcher-sign",
+  "name": "Fletcher's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BBD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BBE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:bowcraft",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A sign painted with feathered arrows, hung from a scrolled iron bracket.",
+  "era": {
+   "grade": "N",
+   "note": "Plain old-block shop sign the main catalog left out; signs on brackets are core town dressing.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-TWN-029"
+ },
+ {
+  "slug": "customs-house-sign",
+  "name": "Customs House Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "town:britain",
+   "scholar"
+  ],
+  "blurb": "A wooden sign marking the customs house, hung from a plain bracket over the quay.",
+  "era": {
+   "grade": "N",
+   "note": "Plain old-block shop sign the main catalog left out; signs on brackets are core town dressing.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "decor-only wall piece; north-wall and west-wall tiles",
+  "variantOf": null,
+  "id": "CN-TWN-030"
+ },
+ {
+  "slug": "fish-market-row",
+  "name": "Fish Market Row",
+  "category": "TWN",
+  "subcategory": "Market rows",
+  "parts": [
+   {
+    "id": "0xB36A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB36B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB36C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB36F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xB36E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0xB36D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "nautical",
+   "craft:fishing",
+   "town:britain"
+  ],
+  "blurb": "Three fish stalls shoulder to shoulder, silver fish, salmon and shellfish for the morning crowd.",
+  "era": {
+   "grade": "N",
+   "note": "Arrangement of three plain fish stalls; fishmongers are core Britannia. Art from the 2010 fish-market set.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "three stalls in a row (offsets +1 along the street); decor-only",
+  "variantOf": null,
+  "id": "CN-TWN-031"
+ }
+]

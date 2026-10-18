@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-skara-brae",
+ "system": "expedition",
+ "notes": "Spiritual and druidic, graveyard-gentle: votive and mushroom-ring pieces, a family plot and a pair of ankhs, lilies and an old great oak. Core pieces are quiet woodland and votive touches; the rares are the plot, the twin ankhs and the great oak. No macabre pieces.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-REL-026",
+   "why": "Wooden votive bowl, a druid's offering"
+  },
+  {
+   "role": "core",
+   "id": "CR-FLO-052",
+   "why": "Ring of pale mushrooms, a fairy ring in the grass"
+  },
+  {
+   "role": "core",
+   "id": "CR-GRV-031",
+   "why": "Slender grave obelisk, a quiet marker"
+  },
+  {
+   "role": "rare",
+   "id": "CR-GRV-038",
+   "why": "Family plot, 5x3 churchyard centrepiece"
+  },
+  {
+   "role": "rare",
+   "id": "CR-REL-021",
+   "why": "Twin stone ankhs, 4x2 shrine pair"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FLO-047",
+   "why": "White lilies, the flower of remembrance"
+  },
+  {
+   "role": "rare",
+   "id": "CR-FLO-010",
+   "why": "Great oak, the druids' sacred grove tree"
+  },
+  {
+   "role": "rare",
+   "id": "CR-GRV-035",
+   "why": "Grave with red granite spire, a gentle memorial"
+  }
+ ]
+}

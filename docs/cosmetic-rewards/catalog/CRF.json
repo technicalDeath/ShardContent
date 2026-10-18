@@ -1,0 +1,2198 @@
+[
+ {
+  "slug": "small-forge",
+  "name": "Small Forge",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x0FB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "humble"
+  ],
+  "blurb": "A squat ring of fieldstone holding a bed of glowing coals.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Small forge 0x0FB1.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock SmallForgeAddon; decor-only; strip smelting/forge function",
+  "variantOf": null,
+  "id": "CR-CRF-001"
+ },
+ {
+  "slug": "blacksmiths-anvil",
+  "name": "Blacksmith's Anvil",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x0FAF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0FB0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:blacksmithing",
+   "humble"
+  ],
+  "blurb": "A heavy anvil set on a rough oak stump, its face bright from years of hammering.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Anvil east 0x0FAF, south 0x0FB0.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock AnvilEastAddon/AnvilSouthAddon; decor-only; strip crafting function",
+  "variantOf": null,
+  "id": "CR-CRF-002"
+ },
+ {
+  "slug": "smithy-corner",
+  "name": "Smithy Corner",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x0FB1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FAF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "rustic"
+  ],
+  "blurb": "A small forge and an anvil side by side, the heart of a village smithy.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Combines the small forge and the anvil.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "small forge 0x0FB1 + anvil 0x0FAF; decor-only; strip functions",
+  "variantOf": null,
+  "id": "CR-CRF-003"
+ },
+ {
+  "slug": "large-forge",
+  "name": "Large Forge",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x1986",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x198A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1996",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1992",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x197A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x197E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x19A2",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x199E",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x4",
+  "tier": "rare",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "mining",
+   "noble"
+  ],
+  "blurb": "A long stone hearth heaped with coals, a leather bellows at either end, built for a master smith.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Big forge east/south.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock LargeForgeEastAddon / LargeForgeSouthAddon (four tiles); decor-only; strip forge function",
+  "variantOf": null,
+  "id": "CR-CRF-004"
+ },
+ {
+  "slug": "master-smithy",
+  "name": "Master Smithy",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x1986",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x198A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1996",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1992",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0FAF",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x197A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x197E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x19A2",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x199E",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FB0",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "craft:blacksmithing",
+   "fire",
+   "mining",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "The great forge of a master smith with his anvil drawn up beside it, coals glowing day and night.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Large forge plus anvil, composed as one centrepiece.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "large forge (four tiles) + anvil 0x0FAF/0x0FB0; decor-only; strip functions",
+  "variantOf": "large-forge",
+  "id": "CR-CRF-005"
+ },
+ {
+  "slug": "dishing-stump",
+  "name": "Smith's Dishing Stump",
+  "category": "CRF",
+  "subcategory": "Smithy",
+  "parts": [
+   {
+    "id": "0x1865",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1866",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:blacksmithing",
+   "rustic"
+  ],
+  "blurb": "A hollowed oak stump bound in iron, where a smith dishes bowls and helms from hot metal.",
+  "era": {
+   "grade": "B",
+   "note": "Classic 1997 smith-shop dressing; used on the original map (3 statics across both facings), no later fill suspected.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-006"
+ },
+ {
+  "slug": "weavers-loom",
+  "name": "Weaver's Loom",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x1060",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x105F",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1061",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1062",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A tall upright loom strung with pale warp threads, the shuttle still resting in the weave.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Loom east/south.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock LoomEastAddon / LoomSouthAddon (two tiles); decor-only; strip weaving function",
+  "variantOf": null,
+  "id": "CR-CRF-007"
+ },
+ {
+  "slug": "spinning-wheel",
+  "name": "Spinning Wheel",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x1019",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1015",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A treadle spinning wheel with a hank of grey wool still on the distaff.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Spinning wheel east 0x1019, south 0x1015.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock SpinningWheelEastAddon / SouthAddon; decor-only; strip spinning function",
+  "variantOf": null,
+  "id": "CR-CRF-008"
+ },
+ {
+  "slug": "weavers-corner",
+  "name": "Weaver's Corner",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x1060",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x105F",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1019",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x175D",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0,
+    "hue": 5
+   },
+   {
+    "id": "0x175E",
+    "dx": 1,
+    "dy": 2,
+    "dz": 1,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "signature"
+  ],
+  "blurb": "A loom, a spinning wheel and a stack of freshly woven blue and red cloth: a household's whole winter work.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Loom and spinning wheel, with folded cloth.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "loom east + spinning wheel east + two hued folded-cloth tiles; decor-only; strip functions",
+  "variantOf": null,
+  "id": "CR-CRF-009"
+ },
+ {
+  "slug": "dress-form",
+  "name": "Dress Form",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x0EC6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EC7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "craft:carpentry",
+   "humble"
+  ],
+  "blurb": "A padded wooden dress form on an iron stand, a seamstress's silent apprentice.",
+  "era": {
+   "grade": "A",
+   "note": "Dress forms became craftable on 19 Jan 1999 (0x0EC6-0x0EC7).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock dress form; decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-CRF-010"
+ },
+ {
+  "slug": "bolts-of-cloth",
+  "name": "Bolts of Cloth",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x0F95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x0F96",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 5
+   },
+   {
+    "id": "0x0F97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 53
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "Three bolts of cloth in crimson, blue and gold, standing ready for the draper's knife.",
+  "era": {
+   "grade": "B",
+   "note": "Bolts of cloth (0x0F95 family) are 1997 tailor goods; the dye colours are ordinary dye-tub hues.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three inert bolt tiles with hues 33/5/53; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-011"
+ },
+ {
+  "slug": "assorted-bolts-of-cloth",
+  "name": "Assorted Bolts of Cloth",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x0F95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x0F96",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 5
+   },
+   {
+    "id": "0x0F97",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 53
+   },
+   {
+    "id": "0x0F98",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 68
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tailoring",
+   "festive",
+   "humble"
+  ],
+  "blurb": "Four brightly dyed bolts of cloth arranged in a draper's window.",
+  "era": {
+   "grade": "B",
+   "note": "Bolts of cloth are 1997 tailor goods; arranged here as a four-colour display.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "four inert bolt tiles, hues 33/5/53/68; decor-only",
+  "variantOf": "bolts-of-cloth",
+  "id": "CR-CRF-012"
+ },
+ {
+  "slug": "folded-cloth-stack",
+  "name": "Stack of Folded Cloth",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x175D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x175E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1,
+    "hue": 5
+   },
+   {
+    "id": "0x175F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2,
+    "hue": 53
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "Neatly folded lengths of red, blue and yellow cloth, piled high.",
+  "era": {
+   "grade": "B",
+   "note": "Folded-cloth tiles 0x175D-0x1764 are classic 1997-98 tailor goods (stackable cloth, Feb 1998).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three inert cloth tiles, hues 33/5/53, stacked dz 0/1/2; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-013"
+ },
+ {
+  "slug": "dyers-tub",
+  "name": "Dyer's Tub",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x0FAB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tailoring",
+   "rustic"
+  ],
+  "blurb": "A broad oak tub brimming with dye-water, its staves stained by a hundred dippings.",
+  "era": {
+   "grade": "A",
+   "note": "The dyeing tub graphic 0x0FAB was the 1998 holiday black dye tub (23 Dec 1998), and dye tubs were sold earlier.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock DyeTub art; decor-only; strip dyeing function",
+  "variantOf": null,
+  "id": "CR-CRF-014"
+ },
+ {
+  "slug": "indigo-dyers-tub",
+  "name": "Indigo Dyer's Tub",
+  "category": "CRF",
+  "subcategory": "Tailoring and weaving",
+  "parts": [
+   {
+    "id": "0x0FAB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 5,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tailoring",
+   "rustic"
+  ],
+  "blurb": "The dyer's tub filled with a deep indigo bath.",
+  "era": {
+   "grade": "A",
+   "note": "Same dyeing tub graphic (holiday black dye tub, 23 Dec 1998) with a blue dye-water hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-22-23rd-december/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 5 colours only the water (partial hue); decor-only",
+  "variantOf": "dyers-tub",
+  "id": "CR-CRF-015"
+ },
+ {
+  "slug": "tanners-corner",
+  "name": "Tanner's Corner",
+  "category": "CRF",
+  "subcategory": "Tanning and leather",
+  "parts": [
+   {
+    "id": "0x106D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1078",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1067",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "craft:tailoring",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A stretching frame, a heap of cured hides and a few cut strips of leather, the tanner's daily work.",
+  "era": {
+   "grade": "B",
+   "note": "Stretched-hide and hide-pile art are 1997 tanner-shop dressing (hide frames used 2-6 times on the original map).",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "0x106D frame + 0x1078 hide pile + 0x1067 cut leather; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-016"
+ },
+ {
+  "slug": "tinkers-parts-table",
+  "name": "Tinker's Parts Table",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1053",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1051",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1055",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tinkering",
+   "arcane",
+   "rustic"
+  ],
+  "blurb": "A worn table strewn with gears, axles and hinges from half-finished clockwork.",
+  "era": {
+   "grade": "B",
+   "note": "Gears, axles and hinges are classic 1997 tinker goods; the table is original dressing (45 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert 0x1053 gears, 0x1051 axle, 0x1055 hinge at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-017"
+ },
+ {
+  "slug": "tinkers-tools",
+  "name": "Tinker's Tools",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0x1EBC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "humble"
+  ],
+  "blurb": "A tinker's set of pliers, cutters and awls laid out on a cloth.",
+  "era": {
+   "grade": "B",
+   "note": "Tinker's tools are a 1997 craft tool; this uses its ground graphic as an inert display.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip tool function",
+  "variantOf": null,
+  "id": "CR-CRF-018"
+ },
+ {
+  "slug": "tinkers-toolbox",
+  "name": "Tinker's Toolbox",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0x1EBA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "humble"
+  ],
+  "blurb": "A battered wooden box bristling with files, saws and chisels.",
+  "era": {
+   "grade": "B",
+   "note": "Tool kit graphic is a 1997 craft tool; this uses it as an inert display.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip tool function",
+  "variantOf": null,
+  "id": "CR-CRF-019"
+ },
+ {
+  "slug": "merchants-scales",
+  "name": "Merchant's Scales",
+  "category": "CRF",
+  "subcategory": "Tinkering",
+  "parts": [
+   {
+    "id": "0x1851",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1852",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "town:britain",
+   "humble"
+  ],
+  "blurb": "A pair of brass scales for weighing coin, spice and gems.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered scales were added as decorative shop items on 25 May 1999 (0x1851-0x1852).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-07-25th-may/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock tinkered scales; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-020"
+ },
+ {
+  "slug": "carpenters-workbench",
+  "name": "Carpenter's Workbench",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0x19F1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19F4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1034",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x102A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x19F5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x19F8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1035",
+      "dx": 0,
+      "dy": 0,
+      "dz": 3
+     },
+     {
+      "id": "0x102B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 3
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:carpentry",
+   "rustic",
+   "signature"
+  ],
+  "blurb": "A scarred oak workbench with a vise, a saw and a hammer left where the carpenter set them down.",
+  "era": {
+   "grade": "B",
+   "note": "Woodworker's bench art 0x19F1-0x19F8 is original carpenter-shop dressing; saw and hammer are 1997 tools.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "bench 0x19F1 + vise 0x19F4 + inert saw 0x1034 and hammer 0x102A; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-021"
+ },
+ {
+  "slug": "coopers-bench-plane",
+  "name": "Cooper's Bench with Plane",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0x19FA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x19FB",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A cooper's long bench with a plane resting on a half-shaped stave.",
+  "era": {
+   "grade": "B",
+   "note": "Cooper's benches 0x19F9-0x19FC are original cooper-shop dressing (2 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; flip pair 0x19FA/0x19FB",
+  "variantOf": null,
+  "id": "CR-CRF-022"
+ },
+ {
+  "slug": "coopers-bench-chute",
+  "name": "Cooper's Bench with Chute",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0x19FC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x19F9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A cooper's bench fitted with a wooden trough for shaving staves.",
+  "era": {
+   "grade": "B",
+   "note": "Cooper's benches 0x19F9-0x19FC are original cooper-shop dressing (1 map static).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; flip pair 0x19F9/0x19FC",
+  "variantOf": "coopers-bench-plane",
+  "id": "CR-CRF-023"
+ },
+ {
+  "slug": "coopers-work-in-progress",
+  "name": "Cooper's Work in Progress",
+  "category": "CRF",
+  "subcategory": "Carpentry and cooperage",
+  "parts": [
+   {
+    "id": "0x1EB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1EB1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x10E1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "craft:carpentry",
+   "rustic",
+   "nautical"
+  ],
+  "blurb": "An unfinished barrel waiting for its hoops, beside a heap of stave stock and two iron bands.",
+  "era": {
+   "grade": "B",
+   "note": "Barrel staves and hoops are classic carpentry resources (barrel staves are on the pre-AoS carpentry menu); unfinished barrel is 1997 art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "unfinished barrel 0x1EB5 + staves 0x1EB1 + hoops 0x10E1; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-024"
+ },
+ {
+  "slug": "stack-of-crates",
+  "name": "Stack of Crates",
+  "category": "CRF",
+  "subcategory": "Trade goods",
+  "parts": [
+   {
+    "id": "0x0E3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0E7E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "humble"
+  ],
+  "blurb": "Three wooden crates stacked against a warehouse wall.",
+  "era": {
+   "grade": "B",
+   "note": "Small, medium and large crates are on the pre-AoS carpentry menu; the stack is composed from their original graphics.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "crate 0x0E3D + 0x0E3C + small crate 0x0E7E at dz 0/3/6; decor-only, no storage",
+  "variantOf": null,
+  "id": "CR-CRF-025"
+ },
+ {
+  "slug": "stack-of-logs",
+  "name": "Stack of Logs",
+  "category": "CRF",
+  "subcategory": "Trade goods",
+  "parts": [
+   {
+    "id": "0x1BE2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:lumberjacking",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A tidy cord of cut logs.",
+  "era": {
+   "grade": "B",
+   "note": "Log piles are 1997 lumberjacking resources; used here as inert decor (statics cannot be harvested).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource",
+  "variantOf": null,
+  "id": "CR-CRF-026"
+ },
+ {
+  "slug": "stack-of-boards",
+  "name": "Stack of Boards",
+  "category": "CRF",
+  "subcategory": "Trade goods",
+  "parts": [
+   {
+    "id": "0x1BD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:lumberjacking",
+   "craft:carpentry",
+   "humble"
+  ],
+  "blurb": "Planed boards stacked and stickered to dry.",
+  "era": {
+   "grade": "B",
+   "note": "Board piles are 1997 lumberjacking resources; used here as inert decor.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource",
+  "variantOf": null,
+  "id": "CR-CRF-027"
+ },
+ {
+  "slug": "lumberyard-stack",
+  "name": "Lumberyard Stack",
+  "category": "CRF",
+  "subcategory": "Trade goods",
+  "parts": [
+   {
+    "id": "0x1BE2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BD9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BDC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "craft:lumberjacking",
+   "craft:carpentry",
+   "forest"
+  ],
+  "blurb": "A woodcutter's yard: cut logs, seasoned boards and a few planed offcuts.",
+  "era": {
+   "grade": "B",
+   "note": "Composed from 1997 log and board piles; inert decor.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "0x1BE2 logs + 0x1BD9 and 0x1BDC boards; decor-only",
+  "variantOf": "stack-of-logs",
+  "id": "CR-CRF-028"
+ },
+ {
+  "slug": "flour-mill",
+  "name": "Flour Mill",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1920",
+    "dx": -1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1922",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1924",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x192C",
+      "dx": 0,
+      "dy": -1,
+      "dz": 0
+     },
+     {
+      "id": "0x192E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1930",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "craft:cooking",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A hand-cranked flour mill: hopper, millstone and crank set in a tall oak frame.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Flour mill east/south.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock FlourMillEastAddon / FlourMillSouthAddon (three tiles); decor-only; strip milling function",
+  "variantOf": null,
+  "id": "CR-CRF-029"
+ },
+ {
+  "slug": "stone-bake-oven",
+  "name": "Stone Bake Oven",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x092C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x092B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0931",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0930",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "fire",
+   "rustic"
+  ],
+  "blurb": "A tall fieldstone oven with an iron door, its chimney blackened by many loaves.",
+  "era": {
+   "grade": "A",
+   "note": "House add-on deed documented in Housing Phase 3 (21 Dec 1998). Stone oven east/south.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-21-21st-december/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock StoneOvenEastAddon / StoneOvenSouthAddon (two tiles); decor-only; strip baking function",
+  "variantOf": null,
+  "id": "CR-CRF-030"
+ },
+ {
+  "slug": "sacks-of-flour",
+  "name": "Sacks of Flour",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1039",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1045",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x103A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "humble"
+  ],
+  "blurb": "Two stacked sacks of flour and one with its mouth open, a dusting of white spilled about.",
+  "era": {
+   "grade": "B",
+   "note": "Sacks of flour 0x1039-0x1046 are 1997 baker goods; arranged here as a display.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "inert sacks; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-031"
+ },
+ {
+  "slug": "wooden-plough",
+  "name": "Wooden Plough",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1500",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1503",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A hand plough with an iron-shod share, left at the end of a furrow.",
+  "era": {
+   "grade": "B",
+   "note": "Plough art 0x1500-0x1503 is classic farm dressing used on the original map (1-3 statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-032"
+ },
+ {
+  "slug": "wheeled-plough",
+  "name": "Wheeled Plough",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1501",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1502",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A heavy two-wheeled plough, rutted and mud-caked from the spring planting.",
+  "era": {
+   "grade": "B",
+   "note": "Wheeled plough art 0x1501-0x1502 is classic farm dressing used on the original map (3 and 1 statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": "wooden-plough",
+  "id": "CR-CRF-033"
+ },
+ {
+  "slug": "iron-tooth-harrow",
+  "name": "Iron-Toothed Harrow",
+  "category": "CRF",
+  "subcategory": "Farm and mill",
+  "parts": [
+   {
+    "id": "0x1505",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1507",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness"
+  ],
+  "blurb": "A square wooden harrow bristling with iron teeth and weighed down with a stone.",
+  "era": {
+   "grade": "B",
+   "note": "Harrow art 0x1504-0x1507 is classic farm dressing (2 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-034"
+ },
+ {
+  "slug": "chandlers-table",
+  "name": "Chandler's Wax Table",
+  "category": "CRF",
+  "subcategory": "Chandlery",
+  "parts": [
+   {
+    "id": "0x0B3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x142A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1428",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:tinkering",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A table set with a pot of melted wax, a dipping stick and a freshly dipped candle.",
+  "era": {
+   "grade": "B",
+   "note": "Beeswax, dipping stick, pot of wax and candles are 1997 art (candles stackable Feb 1998); table is original dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "table 0x0B3C + inert pot 0x142A, dipping stick 0x1428, candle 0x1430 at dz 6; decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-035"
+ },
+ {
+  "slug": "ore-cart",
+  "name": "Ore Cart",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x1A88",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1A83",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "town:minoc",
+   "rustic"
+  ],
+  "blurb": "A rattling wooden cart heaped with iron ore, hauled up from the Minoc mines.",
+  "era": {
+   "grade": "B",
+   "note": "Ore carts stand in the original Minoc mines and elsewhere (12 and 13 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; no storage",
+  "variantOf": null,
+  "id": "CR-CRF-036"
+ },
+ {
+  "slug": "iron-ore-heap",
+  "name": "Heap of Iron Ore",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x19B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "humble"
+  ],
+  "blurb": "A rusty heap of freshly dug iron ore.",
+  "era": {
+   "grade": "B",
+   "note": "Iron ore piles 0x19B7-0x19BA are classic mine dressing (23 to 54 map statics).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource",
+  "variantOf": null,
+  "id": "CR-CRF-037"
+ },
+ {
+  "slug": "valorite-ore-heap",
+  "name": "Heap of Valorite Ore",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x19B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2219,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "treasure"
+  ],
+  "blurb": "A glittering heap of deep blue valorite ore.",
+  "era": {
+   "grade": "B",
+   "note": "Iron ore pile tinted with the valorite ore colour from the coloured ingots and ores (Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 2219 on 0x19B9; decor-only",
+  "variantOf": "iron-ore-heap",
+  "id": "CR-CRF-038"
+ },
+ {
+  "slug": "verite-ore-heap",
+  "name": "Heap of Verite Ore",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x19B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2207,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "treasure"
+  ],
+  "blurb": "A glittering heap of green verite ore.",
+  "era": {
+   "grade": "B",
+   "note": "Iron ore pile tinted with the verite ore colour from the coloured ingots and ores (Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 2207 on 0x19B9; decor-only",
+  "variantOf": "iron-ore-heap",
+  "id": "CR-CRF-039"
+ },
+ {
+  "slug": "golden-ore-heap",
+  "name": "Heap of Golden Ore",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x19B9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "treasure"
+  ],
+  "blurb": "A heap of bright golden ore, a miner's dream.",
+  "era": {
+   "grade": "B",
+   "note": "Iron ore pile tinted with the gold ore colour from the coloured ingots and ores (Feb 1999).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "hue 2213 on 0x19B9; decor-only",
+  "variantOf": "iron-ore-heap",
+  "id": "CR-CRF-040"
+ },
+ {
+  "slug": "miners-pick-and-shovel",
+  "name": "Miner's Pick and Shovel",
+  "category": "CRF",
+  "subcategory": "Mining",
+  "parts": [
+   {
+    "id": "0x0E85",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F39",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:mining",
+   "mining",
+   "humble"
+  ],
+  "blurb": "A pick and shovel left leaning where the miner knocked off for the day.",
+  "era": {
+   "grade": "B",
+   "note": "Pickaxe and shovel are 1997 mining tools; shown here as inert display items.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "two inert tiles; decor-only; strip tool function",
+  "variantOf": null,
+  "id": "CR-CRF-041"
+ },
+ {
+  "slug": "fletchers-bundle",
+  "name": "Fletcher's Arrow Bundle",
+  "category": "CRF",
+  "subcategory": "Bowcraft",
+  "parts": [
+   {
+    "id": "0x1022",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1023",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:bowcraft",
+   "forest",
+   "humble"
+  ],
+  "blurb": "A bundle of arrows with coloured fletching still bound, ready for the quiver.",
+  "era": {
+   "grade": "B",
+   "note": "Arrow fletching and shafts are 1997 bowyer goods (arrow fletching tiles 0x1022-0x1023).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-CRF-042"
+ },
+ {
+  "slug": "artists-easel",
+  "name": "Artist's Easel",
+  "category": "CRF",
+  "subcategory": "Studio",
+  "parts": [
+   {
+    "id": "0x0F65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0F67",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0F69",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:carpentry",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A tall wooden easel, empty and waiting for a canvas.",
+  "era": {
+   "grade": "A",
+   "note": "Easels became craftable on 19 Jan 1999 (0x0F65-0x0F6A).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock easel; decor-only; strip function",
+  "variantOf": null,
+  "id": "CR-CRF-043"
+ },
+ {
+  "slug": "easel-with-canvas",
+  "name": "Easel with Canvas",
+  "category": "CRF",
+  "subcategory": "Studio",
+  "parts": [
+   {
+    "id": "0x0F66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0F68",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0F6A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "An easel bearing a fresh blank canvas.",
+  "era": {
+   "grade": "A",
+   "note": "Easels became craftable on 19 Jan 1999; easel-with-canvas is 0x0F66/0x0F68/0x0F6A.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-01-19th-january/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "stock easel with canvas; decor-only",
+  "variantOf": "artists-easel",
+  "id": "CR-CRF-044"
+ },
+ {
+  "slug": "rack-of-canvases",
+  "name": "Rack of Canvases",
+  "category": "CRF",
+  "subcategory": "Studio",
+  "parts": [
+   {
+    "id": "0x0F71",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:carpentry",
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A wooden rack holding a stack of blank canvases.",
+  "era": {
+   "grade": "B",
+   "note": "Rack of canvases 0x0F71-0x0F76 is classic artist-shop art; no dated source, but it belongs with the 1999 easels.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; no storage",
+  "variantOf": null,
+  "id": "CR-CRF-045"
+ }
+]

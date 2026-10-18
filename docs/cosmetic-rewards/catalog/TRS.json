@@ -1,0 +1,1585 @@
+[
+ {
+  "slug": "gold-coin-heap",
+  "name": "Heap of Gold Coins",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "noble",
+   "humble"
+  ],
+  "blurb": "A bright heap of gold coins, spilled where the counting stopped.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin-pile art, the game's currency graphic since launch (original item block).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not currency",
+  "variantOf": null,
+  "id": "CR-TRS-001"
+ },
+ {
+  "slug": "silver-coin-heap",
+  "name": "Heap of Silver Coins",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "humble"
+  ],
+  "blurb": "A heap of tarnished silver coins, the kind a thrifty merchant counts twice.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin-pile art, the game's currency graphic since launch (original item block).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not currency",
+  "variantOf": null,
+  "id": "CR-TRS-002"
+ },
+ {
+  "slug": "copper-coin-heap",
+  "name": "Heap of Copper Coins",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A mound of copper pennies, grubby from a hundred hands.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin-pile art, the game's currency graphic since launch (original item block).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not currency",
+  "variantOf": null,
+  "id": "CR-TRS-003"
+ },
+ {
+  "slug": "merchants-coin-spread",
+  "name": "Merchant's Coin Spread",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EF2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "noble",
+   "tavern"
+  ],
+  "blurb": "Three heaps, gold, silver and copper, laid out on the counter for the day's takings.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin-pile art, the game's currency graphic since launch (original item block).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "three coin heaps on a 2x2 footprint; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-004"
+ },
+ {
+  "slug": "coins-and-scales",
+  "name": "Coins and Scales",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x1851",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "craft:tinkering",
+   "tavern"
+  ],
+  "blurb": "A brass merchant's scale beside a heap of gold, the honest weight of trade.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered scales were added as decorative shop items on 1999-05-25; coin heap is classic currency art.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-07-25th-may/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "scales stock craftable plus a coin heap; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-005"
+ },
+ {
+  "slug": "skull-on-gold",
+  "name": "Skull on a Gold Heap",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1AE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "macabre",
+   "undead",
+   "dungeon"
+  ],
+  "blurb": "A grinning skull set on a heap of gold, a warning that wealth is poor company in the grave.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin heap and skull art (skulls used on the original map by the hundreds); original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "skull on heap via dz 2; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-006"
+ },
+ {
+  "slug": "sack-of-plunder",
+  "name": "Sack of Plunder",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "pirate",
+   "rustic"
+  ],
+  "blurb": "A drawstring sack slumped on a heap of coins, the take of a good night's work.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bag and coin-heap art (bags are among the most common items); original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "sack on coins via dz 2; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-007"
+ },
+ {
+  "slug": "jewelled-gold-heap",
+  "name": "Jewelled Gold Heap",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0F21",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0F2F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0F13",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A heap of gold with a sapphire, an emerald and a ruby glittering on its crown.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin heap and gem art (gems drop in dungeons and mine alike since launch).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "gems set on heap via dz 3; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-008"
+ },
+ {
+  "slug": "iron-ingot-stack",
+  "name": "Stack of Iron Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "humble"
+  ],
+  "blurb": "A tidy stack of iron ingots, hammered and cast and waiting for a smith.",
+  "era": {
+   "grade": "B",
+   "note": "Classic iron-ingot art stacked three high (ingots are a classic smithing resource).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource stack",
+  "variantOf": null,
+  "id": "CR-TRS-009"
+ },
+ {
+  "slug": "silver-ingot-stack",
+  "name": "Stack of Silver Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BF7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "noble"
+  ],
+  "blurb": "Bars of bright silver stacked like bricks in a moneylender's vault.",
+  "era": {
+   "grade": "B",
+   "note": "Classic silver-ingot art stacked three high (about twenty map uses).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource stack",
+  "variantOf": null,
+  "id": "CR-TRS-010"
+ },
+ {
+  "slug": "gold-ingot-stack",
+  "name": "Stack of Gold Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "noble"
+  ],
+  "blurb": "A tall stack of gold ingots, the kind of fortune a dragon sleeps on.",
+  "era": {
+   "grade": "B",
+   "note": "Classic gold-ingot art stacked three high (about twenty-six map uses).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; not a resource stack",
+  "variantOf": null,
+  "id": "CR-TRS-011"
+ },
+ {
+  "slug": "assay-display",
+  "name": "Assay Display",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BE8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "scholar"
+  ],
+  "blurb": "A smith's sample board of four metals: gold, silver, copper and iron, laid out for the buyer's eye.",
+  "era": {
+   "grade": "B",
+   "note": "Four classic ingot graphics arranged on a 2x2 footprint; ingots are a classic smithing resource.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "four ingot piles; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-012"
+ },
+ {
+  "slug": "verite-ingot-stack",
+  "name": "Stack of Verite Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 2207,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "exotic"
+  ],
+  "blurb": "A stack of mossy green verite ingots, a rare ore hard-won from the deepest seams.",
+  "era": {
+   "grade": "A",
+   "note": "Coloured ingots and eight new ores, including verite, were added on 1999-02-02; same iron-ingot art in the verite hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "iron ingot art, hue 2207 (verite)",
+  "variantOf": "iron-ingot-stack",
+  "id": "CR-TRS-013"
+ },
+ {
+  "slug": "agapite-ingot-stack",
+  "name": "Stack of Agapite Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 2425,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "exotic"
+  ],
+  "blurb": "A stack of rose-tinted agapite ingots, warm as a late sunset.",
+  "era": {
+   "grade": "A",
+   "note": "Coloured ingots and eight new ores, including agapite, were added on 1999-02-02; same iron-ingot art in the agapite hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "iron ingot art, hue 2425 (agapite)",
+  "variantOf": "iron-ingot-stack",
+  "id": "CR-TRS-014"
+ },
+ {
+  "slug": "valorite-ingot-stack",
+  "name": "Stack of Valorite Ingots",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   }
+  ],
+  "hue": 2219,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "exotic",
+   "noble"
+  ],
+  "blurb": "A tall stack of pale blue valorite ingots, the rarest metal in the realm, cold to the touch.",
+  "era": {
+   "grade": "A",
+   "note": "Coloured ingots and eight new ores, including valorite, were added on 1999-02-02; gold-ingot art in the valorite hue.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "gold ingot art tinted with the valorite hue 2219 for visibility",
+  "variantOf": null,
+  "id": "CR-TRS-015"
+ },
+ {
+  "slug": "jewellery-on-gold",
+  "name": "Jewellery on Gold",
+  "category": "TRS",
+  "subcategory": "Gems and jewellery",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1089",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1086",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x108A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "craft:tinkering",
+   "elegant"
+  ],
+  "blurb": "A gold chain, a bracelet and a ring thrown carelessly across a heap of coins.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered jewelry was added on 1999-03-28; these are the classic jewelry graphics on a classic coin heap.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "jewelry set on heap via dz 3; decor-only, not wearable",
+  "variantOf": null,
+  "id": "CR-TRS-016"
+ },
+ {
+  "slug": "silver-goblet",
+  "name": "Silver Goblet",
+  "category": "TRS",
+  "subcategory": "Gems and jewellery",
+  "parts": [
+   {
+    "id": "0x099A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "treasure",
+   "noble",
+   "tavern",
+   "craft:tinkering"
+  ],
+  "blurb": "A plain silver goblet, polished until it shows the room upside down.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered goblets were added on 1999-03-28; this is the classic goblet graphic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip drinking function",
+  "variantOf": null,
+  "id": "CR-TRS-017"
+ },
+ {
+  "slug": "gold-goblet",
+  "name": "Gold Goblet",
+  "category": "TRS",
+  "subcategory": "Gems and jewellery",
+  "parts": [
+   {
+    "id": "0x09B3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "elegant",
+   "craft:tinkering"
+  ],
+  "blurb": "A gold goblet with a heavy base, the cup of a king's table.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered goblets were added on 1999-03-28; this is the classic gold-coloured goblet graphic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "decor-only; strip drinking function",
+  "variantOf": null,
+  "id": "CR-TRS-018"
+ },
+ {
+  "slug": "golden-toast",
+  "name": "Golden Toast",
+  "category": "TRS",
+  "subcategory": "Gems and jewellery",
+  "parts": [
+   {
+    "id": "0x09B3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "tavern",
+   "elegant"
+  ],
+  "blurb": "Two golden goblets raised over a heap of coins: a toast to a profitable year.",
+  "era": {
+   "grade": "A",
+   "note": "Tinkered goblets were added on 1999-03-28; classic goblet and coin art composed together.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "two goblets plus a coin heap; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-019"
+ },
+ {
+  "slug": "overflowing-wooden-chest",
+  "name": "Overflowing Wooden Chest",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x0E42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EEF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "pirate",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A dark wooden chest that cannot close, gold coins spilling over its lip.",
+  "era": {
+   "grade": "B",
+   "note": "Classic wooden chest (carpentry) with a classic coin heap heaped on top; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "coin heap on chest via dz 5; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-020"
+ },
+ {
+  "slug": "overflowing-iron-chest",
+  "name": "Overflowing Iron Chest",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x0E40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E41",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EEF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "pirate",
+   "noble",
+   "martial"
+  ],
+  "blurb": "An iron-bound strongbox with its lid thrown back on a hill of gold.",
+  "era": {
+   "grade": "B",
+   "note": "Classic metal chest with a classic coin heap on top; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "coin heap on chest via dz 5; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-021"
+ },
+ {
+  "slug": "silver-strongbox",
+  "name": "Strongbox of Silver",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x09AB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EF2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x0F29",
+    "dx": 0,
+    "dy": 0,
+    "dz": 8
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "martial",
+   "dungeon"
+  ],
+  "blurb": "A grey-iron strongbox holding a mound of silver and a single flawless diamond.",
+  "era": {
+   "grade": "B",
+   "note": "Classic metal chest, silver heap and diamond art composed together; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-022"
+ },
+ {
+  "slug": "chest-of-gold-bullion",
+  "name": "Chest of Gold Bullion",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x0E42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E43",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1BEE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "noble",
+   "mining",
+   "pirate"
+  ],
+  "blurb": "A chest packed to the brim with bars of gold, the whole fortune of a merchant prince.",
+  "era": {
+   "grade": "B",
+   "note": "Classic chest and gold-ingot art composed together; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "ingots on chest via dz 5; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-023"
+ },
+ {
+  "slug": "pirate-hoard",
+  "name": "Pirate Hoard",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x0E42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0EF2",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0F21",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0F22",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "pirate",
+   "nautical",
+   "noble"
+  ],
+  "blurb": "An open chest of gold beside stacked bullion, a heap of silver and a pair of cut gems: a buccaneer's whole cache.",
+  "era": {
+   "grade": "B",
+   "note": "Classic chest, coin heaps, ingots and gems composed on a 2x2 footprint; all original item-block graphics.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "seven statics; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-024"
+ },
+ {
+  "slug": "chest-of-silver-ingots",
+  "name": "Chest of Silver Ingots",
+  "category": "TRS",
+  "subcategory": "Chests and caches",
+  "parts": [
+   {
+    "id": "0x0E40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0E41",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1BF7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "mining",
+   "martial"
+  ],
+  "blurb": "An iron-bound chest stacked to the lid with silver bars, enough to buy a barony.",
+  "era": {
+   "grade": "B",
+   "note": "Classic metal chest and silver-ingot art composed together; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "ingots on chest via dz 5; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-025"
+ },
+ {
+  "slug": "counting-house-heap",
+  "name": "Counting-House Heap",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0EF2",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0EEC",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "noble",
+   "tavern",
+   "mining"
+  ],
+  "blurb": "The takings of a counting house: gold, silver and copper heaps beside a stack of gold bars.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin heaps and gold ingots composed on a 2x2 footprint; original item block.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "five statics; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-026"
+ },
+ {
+  "slug": "bullion-vault",
+  "name": "Bullion Vault",
+  "category": "TRS",
+  "subcategory": "Ingots and bullion",
+  "parts": [
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BEE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x1BF7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 6
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 2207
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 3,
+    "hue": 2207
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 6,
+    "hue": 2207
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 2425
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 3,
+    "hue": 2425
+   },
+   {
+    "id": "0x1BF1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 6,
+    "hue": 2425
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "mining",
+   "craft:blacksmithing",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "Four tall stacks of bullion in gold, silver, verite green and agapite rose: the vault of a mining baron.",
+  "era": {
+   "grade": "A",
+   "note": "Coloured ingots and eight new ores were added on 1999-02-02; gold, silver and iron ingot art stacked in the verite and agapite hues.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "twelve ingot statics on a 2x2 footprint; decor-only",
+  "variantOf": null,
+  "id": "CR-TRS-027"
+ },
+ {
+  "slug": "brigands-loot",
+  "name": "Brigand's Loot",
+  "category": "TRS",
+  "subcategory": "Coins and plunder",
+  "parts": [
+   {
+    "id": "0x0EEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0EF2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 2
+   },
+   {
+    "id": "0x0EEC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0E76",
+    "dx": 0,
+    "dy": 1,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "pirate",
+   "rustic",
+   "martial"
+  ],
+  "blurb": "Heaps of gold, silver and copper with fat sacks and a pouch slumped on top: a brigand's share, uncounted.",
+  "era": {
+   "grade": "B",
+   "note": "Classic coin heaps with classic bag and pouch art; bags and pouches are among the most common items (original item block).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "six statics on a 2x2 footprint; decor-only, strip container function",
+  "variantOf": null,
+  "id": "CR-TRS-028"
+ },
+ {
+  "slug": "dragons-hoard",
+  "name": "Dragon's Hoard",
+  "category": "TRS",
+  "subcategory": "Hoards",
+  "parts": [
+   {
+    "id": "0x1B57",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B56",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1B58",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B5D",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1B59",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B5C",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1B5A",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1B5B",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "treasure",
+   "dragon",
+   "monster:dragon",
+   "noble",
+   "dungeon:despise"
+  ],
+  "blurb": "A dragon's hoard heaped across a whole cavern floor: gold, gems and the weapons of a hundred slain heroes.",
+  "era": {
+   "grade": "C",
+   "note": "Treasure-pile art 0x1B3F-0x1B6A sits among classic UNUSED placeholders, yet the original map never uses it; the current client places it only in Ilshenar, Malas and Ter Mur. Audit.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "eight treasure-pile statics on a 4x2 footprint, copied from the single Felucca placement; audit art era",
+  "variantOf": null,
+  "id": "CR-TRS-029"
+ },
+ {
+  "slug": "skull-strewn-hoard",
+  "name": "Skull-Strewn Hoard",
+  "category": "TRS",
+  "subcategory": "Hoards",
+  "parts": [
+   {
+    "id": "0x1B60",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "dragon",
+   "macabre",
+   "dungeon"
+  ],
+  "blurb": "A heap of gold and silver with a grinning skull among it, the last owner's reward.",
+  "era": {
+   "grade": "C",
+   "note": "Treasure-pile art 0x1B3F-0x1B6A sits among classic UNUSED placeholders, yet the original map never uses it; the current client places it only in Ilshenar, Malas and Ter Mur. Audit.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single treasure-pile static; audit art era",
+  "variantOf": null,
+  "id": "CR-TRS-030"
+ },
+ {
+  "slug": "jewelled-hoard",
+  "name": "Jewelled Hoard",
+  "category": "TRS",
+  "subcategory": "Hoards",
+  "parts": [
+   {
+    "id": "0x1B68",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "treasure",
+   "dragon",
+   "exotic",
+   "noble"
+  ],
+  "blurb": "A great pile of gold shot through with emeralds, rubies and the odd forgotten blade.",
+  "era": {
+   "grade": "C",
+   "note": "Treasure-pile art 0x1B3F-0x1B6A sits among classic UNUSED placeholders, yet the original map never uses it; the current client places it only in Ilshenar, Malas and Ter Mur. Audit.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "single treasure-pile static; audit art era",
+  "variantOf": null,
+  "id": "CR-TRS-031"
+ }
+]

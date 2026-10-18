@@ -1,0 +1,2101 @@
+[
+ {
+  "slug": "tall-pillar-candle",
+  "name": "Tall Pillar Candle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "fire"
+  ],
+  "blurb": "A tall tallow pillar candle, burning steadily on its own drippings.",
+  "era": {
+   "grade": "A",
+   "note": "Candles became stackable in Feb 1998 (publish 06); the 0x142C-0x1437 candle family is classic shop and house dressing.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-6-27th-february/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.CandleLong (lit 0x1430, unlit 0x1433); decor-only, shown lit",
+  "variantOf": null,
+  "id": "CR-LGT-001"
+ },
+ {
+  "slug": "candle-stub",
+  "name": "Guttered Candle Stub",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x142F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "scholar"
+  ],
+  "blurb": "A stub of grey wax, long since burned down and guttered out.",
+  "era": {
+   "grade": "A",
+   "note": "Unlit form of the classic 0x142C-0x1437 candle family (candles stackable Feb 1998, usable shop wares).",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-6-27th-february/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.CandleShort unlit graphic 0x142F; deliberately the unlit/burnt-out look (no lit pair used)",
+  "variantOf": null,
+  "id": "CR-LGT-002"
+ },
+ {
+  "slug": "slender-candle",
+  "name": "Slender Taper",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1434",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A slim taper of white wax, favoured by scribes who read late.",
+  "era": {
+   "grade": "A",
+   "note": "Part of the classic 0x142C-0x1437 candle family; candles stackable Feb 1998.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-6-27th-february/"
+   ]
+  },
+  "impl": "static",
+  "implNote": "no stock light class uses 0x1434; plain static, shown lit",
+  "variantOf": null,
+  "id": "CR-LGT-003"
+ },
+ {
+  "slug": "black-candle",
+  "name": "Black Candle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "arcane",
+   "fire"
+  ],
+  "blurb": "A pillar of pitch-black wax whose flame seems to burn a little colder than it should.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented candle graphic (candles stackable Feb 1998); the black dye is a shard cosmetic, not a documented item.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock CandleLong with Hue 1; decor-only",
+  "variantOf": "tall-pillar-candle",
+  "id": "CR-LGT-004"
+ },
+ {
+  "slug": "blood-red-candle",
+  "name": "Blood-Red Candle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "noble",
+   "fire"
+  ],
+  "blurb": "A candle of deep, clotted red wax, burning like a drop of blood.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented candle graphic (candles stackable Feb 1998); the colour is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock CandleLong with Hue 1157 (0x485); decor-only",
+  "variantOf": "tall-pillar-candle",
+  "id": "CR-LGT-005"
+ },
+ {
+  "slug": "violet-candle",
+  "name": "Violet Candle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 11,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "arcane",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A candle of soft violet wax, scented with something that smells faintly of lavender and old spellbooks.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented candle graphic (candles stackable Feb 1998); the colour is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock CandleLong with Hue 11; decor-only",
+  "variantOf": "tall-pillar-candle",
+  "id": "CR-LGT-006"
+ },
+ {
+  "slug": "emerald-taper",
+  "name": "Emerald Taper",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1434",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 68,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A green taper dyed with crushed fern, burning with a bright, clean light.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented candle graphic (candles stackable Feb 1998); the colour is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "static 0x1434 with Hue 68; decor-only",
+  "variantOf": "slender-candle",
+  "id": "CR-LGT-007"
+ },
+ {
+  "slug": "sapphire-taper",
+  "name": "Sapphire Taper",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1434",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1176,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "elegant",
+   "ice"
+  ],
+  "blurb": "A deep blue taper, the colour of a calm harbour at dusk.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented candle graphic (candles stackable Feb 1998); the colour is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "static 0x1434 with Hue 1176 (0x498); decor-only",
+  "variantOf": "slender-candle",
+  "id": "CR-LGT-008"
+ },
+ {
+  "slug": "brass-candlestick",
+  "name": "Brass Candlestick",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x0B1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "scholar"
+  ],
+  "blurb": "A polished brass candlestick with a single white candle burning in the socket.",
+  "era": {
+   "grade": "B",
+   "note": "Candle-on-brass-stick graphic from the classic block beside the candelabras; used as shop and tavern dressing in the original map.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.CandleLarge (lit 0x0B1A, unlit 0x0A26); decor-only, shown lit",
+  "variantOf": null,
+  "id": "CR-LGT-009"
+ },
+ {
+  "slug": "skull-candle",
+  "name": "Skull Candle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "undead",
+   "arcane",
+   "fire"
+  ],
+  "blurb": "A yellowed skull with a stub of white candle fixed in the crown, the wax run down its brow like tears.",
+  "era": {
+   "grade": "B",
+   "note": "Skull candles are the classic NPC shop-dressing 'rares' of 1997-2000 (era pack 3a) and sit in the original map; no dated publish.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.CandleSkull (lit 0x1854, unlit 0x1853); decor-only, shown lit",
+  "variantOf": null,
+  "id": "CR-LGT-010"
+ },
+ {
+  "slug": "skull-candle-trio",
+  "name": "Skull Candle Trio",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1858",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "arcane",
+   "dungeon"
+  ],
+  "blurb": "Three candle-crowned skulls set in a loose triangle, as a necromancer might leave them around a working.",
+  "era": {
+   "grade": "B",
+   "note": "Three of the classic skull-candle shop-dressing graphics (era pack 3a rares) arranged as one set piece; arrangement is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three CandleSkull components (0x1854, 0x1858, 0x1854); decor-only; each tile its own item or one addon",
+  "variantOf": null,
+  "id": "CR-LGT-011"
+ },
+ {
+  "slug": "candlelit-bone-pile",
+  "name": "Candlelit Bone Pile",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1B09",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1854",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "dungeon",
+   "fire"
+  ],
+  "blurb": "A scatter of gnawed bones with a single skull candle guttering at its heart, a small shrine to something best left unnamed.",
+  "era": {
+   "grade": "B",
+   "note": "Classic dungeon bone-pile art (heavily used in the original map) with a classic skull candle on top; the pairing is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two static components, skull candle at z+2; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-012"
+ },
+ {
+  "slug": "iron-hooked-candle-stand",
+  "name": "Iron-Hooked Candle Stand",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x184A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft",
+   "scholar",
+   "humble",
+   "fire"
+  ],
+  "blurb": "A short candle in a brass dish, held within an iron bracket for steady light at a worktable.",
+  "era": {
+   "grade": "B",
+   "note": "Alchemist's 'heating stand' graphic from the classic block (0x1849-0x1850); candle-in-frame workshop art, not documented by any publish.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.HeatingStand (lit 0x184A, unlit 0x1849) - strip its heating function; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-013"
+ },
+ {
+  "slug": "valorite-candelabra",
+  "name": "Valorite Candelabra",
+  "category": "LGT",
+  "subcategory": "Candelabras",
+  "parts": [
+   {
+    "id": "0x0B1D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2219,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:tinkering",
+   "fire"
+  ],
+  "blurb": "A three-armed candelabra wrought from pale blue-grey valorite, its candles lit and steady.",
+  "era": {
+   "grade": "B",
+   "note": "Candelabra were tinkerable from 1999-03-28 (0x0B1D-0x0B1F); coloured ore hues exist from Feb 1999 but tinkered items did not take them, so the hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Candelabra (lit 0x0B1D, unlit 0x0A27) with Hue 0x8AB (2219); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-014"
+ },
+ {
+  "slug": "verite-candelabra-stand",
+  "name": "Verite Candelabra Stand",
+  "category": "LGT",
+  "subcategory": "Candelabras",
+  "parts": [
+   {
+    "id": "0x0B26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2207,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:tinkering",
+   "fire"
+  ],
+  "blurb": "A tall floor-standing candelabra of olive-green verite, throwing a warm light across the room.",
+  "era": {
+   "grade": "B",
+   "note": "Standing candelabra graphic 0x0B26 is classic (candelabras tinkerable Mar 1999, heavy original-map use); verite hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock CandelabraStand (lit 0x0B26, unlit 0x0A29) with Hue 0x89F (2207); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-015"
+ },
+ {
+  "slug": "shadow-iron-candelabra-stand",
+  "name": "Shadow Iron Candelabra Stand",
+  "category": "LGT",
+  "subcategory": "Candelabras",
+  "parts": [
+   {
+    "id": "0x0B26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2406,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "undead",
+   "noble",
+   "craft:tinkering"
+  ],
+  "blurb": "A tall candelabra of lustreless shadow iron, its three flames reflected in the dark metal like distant stars.",
+  "era": {
+   "grade": "B",
+   "note": "Standing candelabra graphic 0x0B26 is classic (candelabras tinkerable Mar 1999); shadow iron hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock CandelabraStand with Hue 0x966 (2406); decor-only",
+  "variantOf": "verite-candelabra-stand",
+  "id": "CR-LGT-016"
+ },
+ {
+  "slug": "hanging-lantern",
+  "name": "Hanging Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ceiling",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "tavern",
+   "nautical",
+   "fire"
+  ],
+  "blurb": "An iron-framed lantern hung from a hook, glowing amber through its glass panes.",
+  "era": {
+   "grade": "A",
+   "note": "Lantern family 0x0A15-0x0A25 existed from 1998 (lanterns sold Jan 1998); hanging lanterns are placed in Papua, Delucia, Trinsic and Buccaneer's Den.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-3-29th-january/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.HangingLantern (lit 0x0A1A, unlit 0x0A1D); decor-only, shown lit",
+  "variantOf": null,
+  "id": "CR-LGT-017"
+ },
+ {
+  "slug": "violet-hanging-lantern",
+  "name": "Violet Hanging Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 11,
+  "facing": "none",
+  "placement": "ceiling",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "elegant",
+   "exotic",
+   "fire"
+  ],
+  "blurb": "A hanging lantern fitted with violet glass that bathes the room in a witch-light glow.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of an era-documented lantern graphic (lanterns sold Jan 1998); the violet glass is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock HangingLantern with Hue 11; decor-only",
+  "variantOf": "hanging-lantern",
+  "id": "CR-LGT-018"
+ },
+ {
+  "slug": "hanging-lantern-cluster",
+  "name": "Hanging Lantern Cluster",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A1A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A1B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A1C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "ceiling",
+  "footprint": "2x2",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "tavern",
+   "noble",
+   "fire"
+  ],
+  "blurb": "Three iron lanterns hung at staggered heights, standing in for a chandelier in any hall that cannot afford one.",
+  "era": {
+   "grade": "A",
+   "note": "Three lantern-family graphics (0x0A15-0x0A25, lanterns sold Jan 1998) grouped into one ceiling cluster; the grouping is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-3-29th-january/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "three HangingLantern-style ceiling components; decor-only; each tile its own item or one addon",
+  "variantOf": null,
+  "id": "CR-LGT-019"
+ },
+ {
+  "slug": "ruby-lantern",
+  "name": "Ruby Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "exotic",
+   "tavern",
+   "noble",
+   "fire"
+  ],
+  "blurb": "A brass lantern glazed in ruby-red glass, casting a rosy light across the table.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the lantern graphic sold from Jan 1998 (0x0A15-0x0A25); the glass colour is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-3-29th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lantern (lit 0x0A15) with Hue 33; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-020"
+ },
+ {
+  "slug": "emerald-lantern",
+  "name": "Emerald Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 68,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "forest",
+   "exotic",
+   "garden",
+   "fire"
+  ],
+  "blurb": "A lantern of green glass, its light the colour of sunlight through summer leaves.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the lantern graphic sold from Jan 1998 (0x0A15-0x0A25); the glass colour is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-3-29th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lantern with Hue 68; decor-only",
+  "variantOf": "ruby-lantern",
+  "id": "CR-LGT-021"
+ },
+ {
+  "slug": "sapphire-lantern",
+  "name": "Sapphire Lantern",
+  "category": "LGT",
+  "subcategory": "Lanterns",
+  "parts": [
+   {
+    "id": "0x0A15",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1176,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "nautical",
+   "exotic",
+   "ice",
+   "fire"
+  ],
+  "blurb": "A lantern of deep blue glass that makes a small cold moon of its flame.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the lantern graphic sold from Jan 1998 (0x0A15-0x0A25); the glass colour is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-3-29th-january/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Lantern with Hue 1176 (0x498); decor-only",
+  "variantOf": "ruby-lantern",
+  "id": "CR-LGT-022"
+ },
+ {
+  "slug": "wall-torch",
+  "name": "Wall Torch",
+  "category": "LGT",
+  "subcategory": "Wall lights",
+  "parts": [
+   {
+    "id": "0x0A07",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A0C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "dungeon",
+   "martial",
+   "rustic",
+   "fire"
+  ],
+  "blurb": "A pitch-soaked torch burning in an iron bracket, the way every old keep and crypt is lit.",
+  "era": {
+   "grade": "B",
+   "note": "The most heavily used wall fixtures in the original map (0x0A07 n=333, 0x0A0C n=271 in the Britannia statics); classic world dressing.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.WallTorch (east lit 0x0A07 / south lit 0x0A0C); the east piece mounts on a west wall, the south piece on a north wall",
+  "variantOf": null,
+  "id": "CR-LGT-023"
+ },
+ {
+  "slug": "wall-sconce",
+  "name": "Candle Wall Sconce",
+  "category": "LGT",
+  "subcategory": "Wall lights",
+  "parts": [
+   {
+    "id": "0x09FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "tavern",
+   "fire"
+  ],
+  "blurb": "A black iron wall bracket holding a single brass candle, burning with a quiet flame.",
+  "era": {
+   "grade": "A",
+   "note": "Candle sconce family 0x09FB-0x0A04; candles were stackable shop wares from Feb 1998 and the sconces are among the most-placed fixtures in the original map.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-6-27th-february/"
+   ]
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.WallSconce (east lit 0x09FD / south lit 0x0A02); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-024"
+ },
+ {
+  "slug": "magincia-standard-torch",
+  "name": "Magincia Standard Torch",
+  "category": "LGT",
+  "subcategory": "Lamp posts",
+  "parts": [
+   {
+    "id": "0x088C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "town:magincia",
+   "noble",
+   "exotic",
+   "fire"
+  ],
+  "blurb": "A tall slender pole crowned with a glowing torch-head, of the sort that lines the avenues of Magincia.",
+  "era": {
+   "grade": "B",
+   "note": "Used 24 times in the original Britannia map, chiefly along Magincia's streets (about x3560-3730, y2050-2140); classic world dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "tiledata name 'Tiki Torch EAST' (misnomer); impassable tall static; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-025"
+ },
+ {
+  "slug": "iron-tripod-brazier",
+  "name": "Iron Tripod Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x0E31",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "noble",
+   "martial",
+   "sacred"
+  ],
+  "blurb": "A scrolled iron tripod cradling a bowl of glowing coals.",
+  "era": {
+   "grade": "B",
+   "note": "Braziers are NPC shop and temple dressing in the original map (0x0E31 n=30), part of the 1997-2000 shop-decoration 'rares' pool.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.Brazier (lit 0x0E31); decor-only, no light-level effect",
+  "variantOf": null,
+  "id": "CR-LGT-026"
+ },
+ {
+  "slug": "emerald-flame-brazier",
+  "name": "Emerald-Flame Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x0E31",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 80,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "arcane",
+   "exotic",
+   "swamp"
+  ],
+  "blurb": "An iron brazier burning with a cold green fire that gives no heat and casts no shadow.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the classic brazier graphic; the coloured flame is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Brazier with Hue 80; decor-only",
+  "variantOf": "iron-tripod-brazier",
+  "id": "CR-LGT-027"
+ },
+ {
+  "slug": "moonfire-brazier",
+  "name": "Moonfire Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x0E31",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1154,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "arcane",
+   "elegant",
+   "ice"
+  ],
+  "blurb": "A brazier whose pale silver flame is said to be kindled from moonlight.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the classic brazier graphic; the silver flame is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Brazier with Hue 1154 (0x482); decor-only",
+  "variantOf": "iron-tripod-brazier",
+  "id": "CR-LGT-028"
+ },
+ {
+  "slug": "tall-iron-brazier",
+  "name": "Tall Iron Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x19AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "sacred",
+   "noble",
+   "martial"
+  ],
+  "blurb": "A slender standing brazier of black iron, a shallow bowl of flame held high on a long stem.",
+  "era": {
+   "grade": "B",
+   "note": "Classic standing brazier (0x19AA, n=12) used in temples and shop dressing in the original map.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.BrazierTall (lit 0x19AA); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-029"
+ },
+ {
+  "slug": "coal-bowl-brazier",
+  "name": "Coal Bowl Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x19BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "fire",
+   "humble",
+   "mining",
+   "rustic"
+  ],
+  "blurb": "A broad iron bowl of glowing coals, set down wherever a little warmth is wanted.",
+  "era": {
+   "grade": "B",
+   "note": "Low brazier bowl used widely in the original map (0x19BB n=85) as shop and forge dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static; decor-only; damaging flag in tiledata does not matter once it is an inert house item",
+  "variantOf": null,
+  "id": "CR-LGT-030"
+ },
+ {
+  "slug": "stone-fire-pit",
+  "name": "Stone Fire Pit",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "fire",
+   "camp",
+   "rustic",
+   "wilderness"
+  ],
+  "blurb": "A ring of blackened stones around a bed of smouldering coals.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fire-pit art (0x0FAC, n=51 in the original map) used for camps and smithies.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "plain static; tiledata marks it damaging, strip that for a house item",
+  "variantOf": null,
+  "id": "CR-LGT-031"
+ },
+ {
+  "slug": "ringed-campfire",
+  "name": "Stone-Ringed Campfire",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "camp",
+   "wilderness",
+   "rustic"
+  ],
+  "blurb": "Bright yellow flames leaping from a ring of fire-blackened stones.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fire-pit ring (0x0FAC) with the camping fire graphic (0x0DE3); both are 1997-era art, the pairing is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two static components, flame at z+1; decor-only (stock Campfire damages)",
+  "variantOf": null,
+  "id": "CR-LGT-032"
+ },
+ {
+  "slug": "blazing-fire-pit",
+  "name": "Blazing Fire Pit",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19AB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "martial",
+   "dungeon",
+   "rustic"
+  ],
+  "blurb": "A stone-ringed pit heaped with wood and roaring in full blaze.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fire-pit ring (0x0FAC) beneath the big flame graphic (0x19AB, n=64 in the map); both original art, pairing is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two static components, flame at z+2; decor-only (flame tile is damaging in stock)",
+  "variantOf": null,
+  "id": "CR-LGT-033"
+ },
+ {
+  "slug": "roasting-spit",
+  "name": "Roasting Spit",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 1
+   },
+   {
+    "id": "0x1E94",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "tavern",
+   "camp",
+   "rustic"
+  ],
+  "blurb": "A fowl turning on an iron spit over a bright fire, forever just short of done.",
+  "era": {
+   "grade": "B",
+   "note": "Classic chicken-on-a-spit (0x1E94) and fire-pit art, tavern and camp dressing in the original map; the combination is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three static components (pit, flame z+1, spit z+2); decor-only; the spit tile is an inert 'food on spit' static",
+  "variantOf": null,
+  "id": "CR-LGT-034"
+ },
+ {
+  "slug": "emerald-flame-fire-pit",
+  "name": "Emerald-Flame Fire Pit",
+  "category": "LGT",
+  "subcategory": "Fire pits",
+  "parts": [
+   {
+    "id": "0x0FAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19AC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 2,
+    "hue": 80
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "fire",
+   "arcane",
+   "swamp",
+   "exotic"
+  ],
+  "blurb": "A stone-ringed pit of cold green flame that wakes a faint chill in anyone who sits close.",
+  "era": {
+   "grade": "B",
+   "note": "Classic fire-pit ring with the big flame graphic (0x19AC); only the flame's green hue is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "two static components; the flame component carries Hue 80, the pit stays natural; decor-only",
+  "variantOf": "blazing-fire-pit",
+  "id": "CR-LGT-035"
+ },
+ {
+  "slug": "stone-fireplace",
+  "name": "Rough Stone Fireplace",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x0959",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0953",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0967",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0961",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "fire",
+   "rustic",
+   "tavern",
+   "noble"
+  ],
+  "blurb": "A massive fieldstone hearth with a timber mantel and a log fire crackling in the grate.",
+  "era": {
+   "grade": "B",
+   "note": "The lit stone fireplace pair 0x0953/0x0959 stands in the original map (Britain castle and two other sites); not a documented player add-on.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.StoneFireplaceEastAddon / SouthAddon (2 tiles each); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-036"
+ },
+ {
+  "slug": "gray-brick-fireplace",
+  "name": "Gray Brick Fireplace",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x093D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0937",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x094B",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0945",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "noble",
+   "tavern",
+   "elegant"
+  ],
+  "blurb": "A tall chimney-breast of grey brick with a heavy oak mantel above a warm, blazing grate.",
+  "era": {
+   "grade": "B",
+   "note": "Lit sibling of the grey-brick hearth 0x08CF-0x08D2 that stands in the original map; this lit set (0x0937-0x094B) is not itself placed there and is undocumented.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.GrayBrickFireplaceEastAddon / SouthAddon (2 tiles each); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-037"
+ },
+ {
+  "slug": "frostbrick-fireplace",
+  "name": "Frostbrick Fireplace",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x093D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0937",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 2219,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x094B",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0945",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "ice",
+   "arcane",
+   "exotic"
+  ],
+  "blurb": "A hearth of pale blue-grey stone, its fire burning white and cold as winter lightning.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the grey-brick fireplace graphic; the icy tint is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "GrayBrickFireplace addon with Hue 0x8AB on every component; decor-only",
+  "variantOf": "gray-brick-fireplace",
+  "id": "CR-LGT-038"
+ },
+ {
+  "slug": "sandstone-fireplace",
+  "name": "Sandstone Fireplace",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x0489",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0475",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0482",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x047B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "rare",
+  "tags": [
+   "fire",
+   "desert",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A warm sandstone hearth with a dark timber mantel and a fire glowing in the grate.",
+  "era": {
+   "grade": "C",
+   "note": "Sandstone fireplace tiles 0x0475-0x048E hardly appear in the original map (one tile in the whole world); classic id block but no document or placed example, so audit before use.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.SandstoneFireplaceEastAddon / SouthAddon (2 tiles each); decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-039"
+ },
+ {
+  "slug": "rubble-stone-hearth",
+  "name": "Rubble Stone Hearth",
+  "category": "LGT",
+  "subcategory": "Fireplaces",
+  "parts": [
+   {
+    "id": "0x11ED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11EC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x11EE",
+      "dx": -1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11EF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "humble",
+   "wilderness",
+   "dungeon"
+  ],
+  "blurb": "A hearth of heaped fieldstone under a rough timber lintel, swept clean and waiting for kindling.",
+  "era": {
+   "grade": "C",
+   "note": "Rubble-stone fireplace tiles 0x11EC-0x11EF sit in the classic block beside the Dec 1999 potted plants (0x11C8) but are never placed in the original map; undocumented, audit before use.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two static tiles per facing (east: side 0x11ED + front 0x11EC; south: side 0x11EE + front 0x11EF); unlit, no fire graphic; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-040"
+ },
+ {
+  "slug": "lighthouse-lamp-room",
+  "name": "Lighthouse Lamp Room",
+  "category": "LGT",
+  "subcategory": "Beacons",
+  "parts": [
+   {
+    "id": "0x1ABB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1ABC",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ABD",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1ABA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACE",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACD",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1ABF",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1AC1",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1AB9",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACF",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACB",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACA",
+    "dx": 2,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1AC7",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1AC4",
+    "dx": 2,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA4",
+    "dx": 2,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1AB7",
+    "dx": 3,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1ACC",
+    "dx": 3,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA5",
+    "dx": 3,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1AB3",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1AB0",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA6",
+    "dx": 4,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1AAD",
+    "dx": 5,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1AD0",
+    "dx": 5,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA7",
+    "dx": 5,
+    "dy": 6,
+    "dz": 0
+   },
+   {
+    "id": "0x1AAC",
+    "dx": 6,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1AAB",
+    "dx": 6,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1AAA",
+    "dx": 6,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA9",
+    "dx": 6,
+    "dy": 5,
+    "dz": 0
+   },
+   {
+    "id": "0x1AA8",
+    "dx": 6,
+    "dy": 6,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "7x7",
+  "tier": "extremely-rare",
+  "tags": [
+   "nautical",
+   "noble",
+   "fire",
+   "treasure",
+   "shipwreck"
+  ],
+  "blurb": "The octagonal lamp room of an old lighthouse, its glass blazing gold beneath a stone cone roof.",
+  "era": {
+   "grade": "B",
+   "note": "Original-map statics at (5668-5674, 2388-2394), Lost Lands region (T2A, 1998); layout copied from the world file. Too large for a normal house plot.",
+   "sources": []
+  },
+  "impl": "custom",
+  "implNote": "29 statics copied tile-for-tile from the Britannia map; needs a very large addon or a garden/guild-hall plot; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-041"
+ },
+ {
+  "slug": "vigil-candle-cluster",
+  "name": "Vigil Candle Cluster",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x142C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1434",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1432",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "humble",
+   "scholar",
+   "fire"
+  ],
+  "blurb": "A huddle of candles of every height, lit for a vigil and left to burn through the night.",
+  "era": {
+   "grade": "A",
+   "note": "Four candles from the 0x142C-0x1437 family (candles stackable Feb 1998); the cluster is shard design.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-6-27th-february/"
+   ]
+  },
+  "impl": "addon",
+  "implNote": "four candle statics on a 2x2 footprint; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-042"
+ },
+ {
+  "slug": "ritual-candle-circle",
+  "name": "Ritual Candle Circle",
+  "category": "LGT",
+  "subcategory": "Candles",
+  "parts": [
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1
+   },
+   {
+    "id": "0x1430",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1
+   },
+   {
+    "id": "0x1430",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 1
+   },
+   {
+    "id": "0x1430",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0,
+    "hue": 1
+   },
+   {
+    "id": "0x1854",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "rare",
+  "tags": [
+   "macabre",
+   "arcane",
+   "undead",
+   "fire"
+  ],
+  "blurb": "Four black candles set at the corners of a square, a skull candle burning at its heart.",
+  "era": {
+   "grade": "B",
+   "note": "Classic candle and skull-candle graphics (candles stackable Feb 1998; skull candles are classic shop dressing); the black wax and layout are shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "five statics on a 3x3 footprint; four are Hue 1; decor-only",
+  "variantOf": null,
+  "id": "CR-LGT-043"
+ },
+ {
+  "slug": "flanking-braziers",
+  "name": "Flanking Braziers",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x19AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x19AA",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "noble",
+   "sacred",
+   "martial"
+  ],
+  "blurb": "A pair of tall iron braziers set either side of a doorway, burning to honour whoever passes between them.",
+  "era": {
+   "grade": "B",
+   "note": "Two of the classic standing braziers (0x19AA, used in temples and shops in the original map) as a doorway pair; arrangement is shard design.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two BrazierTall statics two tiles apart; decor-only",
+  "variantOf": "tall-iron-brazier",
+  "id": "CR-LGT-044"
+ },
+ {
+  "slug": "agapite-candelabra",
+  "name": "Agapite Candelabra",
+  "category": "LGT",
+  "subcategory": "Candelabras",
+  "parts": [
+   {
+    "id": "0x0B1D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2425,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:tinkering",
+   "fire"
+  ],
+  "blurb": "A three-armed candelabra of rosy agapite, its pale candles burning in a halo of pink-gold light.",
+  "era": {
+   "grade": "B",
+   "note": "Candelabra were tinkerable from 1999-03-28 (0x0B1D-0x0B1F); coloured ore hues exist from Feb 1999 but tinkered items did not take them, so the hue is a shard cosmetic.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-04-28th-march/",
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-02-2nd-february/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Candelabra (lit 0x0B1D) with Hue 0x979 (2425); decor-only",
+  "variantOf": "valorite-candelabra",
+  "id": "CR-LGT-045"
+ },
+ {
+  "slug": "sapphire-coal-brazier",
+  "name": "Sapphire-Flame Coal Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x19BB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1176,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "arcane",
+   "ice",
+   "exotic"
+  ],
+  "blurb": "A broad iron bowl of coals glowing deep sapphire blue, a fire that gives light but no warmth.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the classic coal-bowl brazier graphic (0x19BB, n=85 in the original map); the blue glow is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "static 0x19BB with Hue 0x498 (1176); decor-only",
+  "variantOf": "coal-bowl-brazier",
+  "id": "CR-LGT-046"
+ },
+ {
+  "slug": "violet-tripod-brazier",
+  "name": "Violet-Flame Tripod Brazier",
+  "category": "LGT",
+  "subcategory": "Braziers",
+  "parts": [
+   {
+    "id": "0x0E31",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 11,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "fire",
+   "arcane",
+   "exotic",
+   "elegant"
+  ],
+  "blurb": "A scrolled iron tripod holding a bowl of coals that burn a deep, witch-light violet.",
+  "era": {
+   "grade": "B",
+   "note": "Hue-only variant of the classic brazier graphic (0x0E31, n=30 in the original map); the violet flame is a shard cosmetic.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock Brazier with Hue 11; decor-only",
+  "variantOf": "iron-tripod-brazier",
+  "id": "CR-LGT-047"
+ }
+]

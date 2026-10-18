@@ -1,0 +1,137 @@
+{
+  "note": "Themed collections: each of the 100 items belongs to exactly one. Purely descriptive (shop windows and set-building); no mechanical set bonus.",
+  "collections": {
+    "The Master Bedchamber": [
+      "CR-FRN-029",
+      "CN-FRN-015",
+      "CN-FRN-018",
+      "CN-FRN-019",
+      "CR-FRN-028"
+    ],
+    "The Guest Room and Dressing Room": [
+      "CR-FRN-038",
+      "CN-FRN-016",
+      "CR-FRN-037",
+      "CN-TBL-018",
+      "CR-TBL-037",
+      "CN-TBL-011"
+    ],
+    "The Parlour": [
+      "CR-FRN-011",
+      "CN-FRN-008",
+      "CR-FRN-024",
+      "CR-FRN-010",
+      "CN-FRN-001",
+      "CR-FRN-026",
+      "CN-FRN-005",
+      "CR-FRN-027",
+      "CN-FRN-003",
+      "CN-FRN-011",
+      "CN-FRN-007"
+    ],
+    "The Music Room": [
+      "CN-MUS-005",
+      "CN-MUS-003",
+      "CN-MUS-014",
+      "CN-MUS-002"
+    ],
+    "The Dining Hall": [
+      "CN-TBL-005",
+      "CR-TBL-011",
+      "CR-TBL-013",
+      "CR-TBL-007",
+      "CN-FOO-016",
+      "CR-TBL-022",
+      "CR-TBL-010",
+      "CR-FOO-039",
+      "CR-TBL-028"
+    ],
+    "The Kitchen and Cellar": [
+      "CN-ALC-006",
+      "CN-FOO-022",
+      "CN-CMP-007",
+      "CN-FOO-021",
+      "CR-FOO-031",
+      "CN-FOO-018",
+      "CN-FOO-020"
+    ],
+    "The Great Carpets": [
+      "CR-RUG-023",
+      "CN-RUG-004",
+      "CR-RUG-019",
+      "CR-RUG-020",
+      "CN-RUG-001",
+      "CR-RUG-012"
+    ],
+    "Runners and Hearth Rugs": [
+      "CR-RUG-002",
+      "CN-RUG-011",
+      "CR-RUG-010",
+      "CR-RUG-005",
+      "CR-RUG-009",
+      "CR-RUG-014",
+      "CR-RUG-016"
+    ],
+    "The Hearthside": [
+      "CN-LGT-001",
+      "CN-LGT-002",
+      "CR-LGT-037",
+      "CN-LGT-003"
+    ],
+    "The Lamplit Room": [
+      "CN-LGT-020",
+      "CN-LGT-017",
+      "CN-LGT-015",
+      "CN-LGT-016",
+      "CN-LGT-013",
+      "CN-LGT-011",
+      "CN-LGT-014"
+    ],
+    "The Library": [
+      "CR-LIB-008",
+      "CN-LIB-015",
+      "CR-TBL-042",
+      "CR-LIB-011",
+      "CN-LIB-016",
+      "CN-TBL-014",
+      "CN-TBL-016",
+      "CN-LIB-013"
+    ],
+    "The Observatory": [
+      "CN-LIB-001",
+      "CN-LIB-002",
+      "CN-CUR-007",
+      "CN-LIB-005"
+    ],
+    "The Gallery": [
+      "CR-WLH-031",
+      "CR-WLH-030",
+      "CR-WLH-038",
+      "CR-WLH-037",
+      "CR-WLH-039",
+      "CN-WLH-018",
+      "CN-WLH-017"
+    ],
+    "Drapes and Tapestries": [
+      "CR-WLH-017",
+      "CR-WLH-018",
+      "CR-WLH-013",
+      "CR-WLH-014",
+      "CN-WLH-008"
+    ],
+    "The Entrance Hall": [
+      "CN-CUR-013",
+      "CR-CUR-008",
+      "CN-CUR-001",
+      "CN-CUR-003",
+      "CN-CUR-002",
+      "CN-CUR-004",
+      "CN-CUR-017"
+    ],
+    "The Conservatory": [
+      "CN-ANM-002",
+      "CN-FLO-006",
+      "CN-FLO-009"
+    ]
+  }
+}

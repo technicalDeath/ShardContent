@@ -1,0 +1,636 @@
+[
+ {
+  "slug": "spouting-stone-cistern",
+  "name": "Spouting Stone Cistern",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0x437E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "elegant",
+   "craft:masonry"
+  ],
+  "blurb": "A block of dressed stone with a water-spout set high in its back wall, trickling into a small square trough.",
+  "era": {
+   "grade": "N",
+   "note": "A plain stone spout-and-trough, generic masonry waterworks; no Gargish styling. Art 0x437E is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x437E (animated water); decor-only",
+  "variantOf": null,
+  "id": "CN-WTR-001"
+ },
+ {
+  "slug": "stone-water-basin",
+  "name": "Stone Water Basin",
+  "category": "WTR",
+  "subcategory": "Troughs, barrels and tubs",
+  "parts": [
+   {
+    "id": "0x4386",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "craft:masonry"
+  ],
+  "blurb": "A square stone basin brimming with clear water, a slim stone post rising from one corner.",
+  "era": {
+   "grade": "N",
+   "note": "A plain square stone water basin; generic masonry. Art 0x4386 is a later client addition.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "graphic 0x4386 (animated water); decor-only",
+  "variantOf": null,
+  "id": "CN-WTR-002"
+ },
+ {
+  "slug": "copper-hand-pump",
+  "name": "Copper Hand Pump",
+  "category": "WTR",
+  "subcategory": "Vessels and basins",
+  "parts": [
+   {
+    "id": "0xA633",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "garden",
+   "humble",
+   "craft:tinkering"
+  ],
+  "blurb": "A cast hand-pump over a squat copper pot, its arm raised and a thread of water falling in.",
+  "era": {
+   "grade": "N",
+   "note": "A hand pump over a copper pot is a generic farmyard fixture. The art arrived with a 2005 anniversary item but the object is plain; owner may wish to review. Art 0xA633 (animated).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA633 (animated water); decor-only, no container use",
+  "variantOf": null,
+  "id": "CN-WTR-003"
+ },
+ {
+  "slug": "slate-roofed-wishing-well",
+  "name": "Slate-Roofed Wishing Well",
+  "category": "WTR",
+  "subcategory": "Wells",
+  "parts": [
+   {
+    "id": "0xA301",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "rustic",
+   "craft:masonry"
+  ],
+  "blurb": "A round fieldstone well under a little slate roof, its crank and bucket dangling over the dark water.",
+  "era": {
+   "grade": "N",
+   "note": "A fieldstone wishing well is a generic village feature. Art 0xA300/0xA301 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA300",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-WTR-004"
+ },
+ {
+  "slug": "tiered-copper-fountain",
+  "name": "Tiered Copper Fountain",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0xA62A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble",
+   "craft:tinkering"
+  ],
+  "blurb": "A little tiered fountain of beaten copper on a round pedestal, water spilling from basin to basin.",
+  "era": {
+   "grade": "N",
+   "note": "A tiered copper garden fountain is generic ornamental waterworks. The art arrived with a 2005 anniversary item but the object is plain; owner may wish to review. Art 0xA62A (animated).",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xA62A (animated); decor-only, no container use",
+  "variantOf": null,
+  "id": "CN-WTR-005"
+ },
+ {
+  "slug": "ruined-well",
+  "name": "Ruined Well",
+  "category": "WTR",
+  "subcategory": "Wells",
+  "parts": [
+   {
+    "id": "0xAA26",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "rustic",
+   "macabre",
+   "craft:masonry"
+  ],
+  "blurb": "The caved-in rim of an abandoned well, its roof long gone and its bucket-rope rotted away.",
+  "era": {
+   "grade": "N",
+   "note": "A ruined well; generic abandoned-homestead dressing. Art 0xAA26 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one static graphic; decor-only",
+  "variantOf": null,
+  "id": "CN-WTR-006"
+ },
+ {
+  "slug": "round-moon-fountain",
+  "name": "Round Moon Fountain",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0xB398",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble",
+   "craft:masonry"
+  ],
+  "blurb": "A broad circular stone basin of still, dark-blue water around a squat central plinth.",
+  "era": {
+   "grade": "N",
+   "note": "A plain circular stone fountain; generic ornamental waterworks. Art 0xB398 is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xB398 (animated); decor-only",
+  "variantOf": null,
+  "id": "CN-WTR-007"
+ },
+ {
+  "slug": "rose-orb-fountain",
+  "name": "Rose-Orb Fountain",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0xB3AA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "elegant",
+   "noble",
+   "arcane"
+  ],
+  "blurb": "A round stone fountain with a glowing rose-pink orb floating above its centre.",
+  "era": {
+   "grade": "N",
+   "note": "A circular stone fountain with a glowing orb; generic ornamental waterworks. Art 0xB3AA is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphic 0xB3AA (animated); decor-only",
+  "variantOf": null,
+  "id": "CN-WTR-008"
+ },
+ {
+  "slug": "flowering-rock-cascade",
+  "name": "Flowering Rock Cascade",
+  "category": "WTR",
+  "subcategory": "Waterfalls",
+  "parts": [
+   {
+    "id": "0xB1B1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xB1AB",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xB1B2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xB1B3",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "1x4",
+  "tier": "rare",
+  "tags": [
+   "garden",
+   "wilderness",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A little waterfall tumbling down a rock wall thick with violets and primroses.",
+  "era": {
+   "grade": "N",
+   "note": "A rock-garden waterfall with flowers; generic landscape feature. Art 0xB1AB-0xB1B3 (animated water) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "4 statics laid out as an addon; decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0xB1BA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xB1AF",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xB1BB",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xB1BC",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-WTR-009"
+ },
+ {
+  "slug": "millrace-waterwheel",
+  "name": "Millrace Waterwheel",
+  "category": "WTR",
+  "subcategory": "Fountains",
+  "parts": [
+   {
+    "id": "0xA0F8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "rustic",
+   "craft:carpentry",
+   "wilderness"
+  ],
+  "blurb": "A great wooden waterwheel under a slate eave, turning steadily in a gushing millrace.",
+  "era": {
+   "grade": "N",
+   "note": "A mill waterwheel is generic rustic machinery. Art 0xA0EE-0xA101 (animated) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "graphics 0xA0F8 south / 0xA0EE east (animated wheel); decor-only",
+  "variantOf": null,
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA0EE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "id": "CN-WTR-010"
+ },
+ {
+  "slug": "rockery-garden-pond",
+  "name": "Rockery Garden Pond",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0xA011",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA012",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA013",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA014",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA015",
+    "dx": 2,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA016",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA017",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA018",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA019",
+    "dx": 2,
+    "dy": 2,
+    "dz": 3
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x3",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "wilderness",
+   "elegant",
+   "craft:masonry"
+  ],
+  "blurb": "A small rock-ringed pond with a spurt of water at one end and a few gold fish turning below.",
+  "era": {
+   "grade": "N",
+   "note": "A rock-edged garden pond with fish; generic landscape feature. Art 0xA011-0xA01E (animated water) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "9 statics: 8 rim rocks 0xA011-0xA018 clockwise round a 3x3, water frame 0xA019 at the south corner z+3",
+  "variantOf": null,
+  "id": "CN-WTR-011"
+ },
+ {
+  "slug": "great-rock-pond",
+  "name": "Great Rock Pond",
+  "category": "WTR",
+  "subcategory": "Ponds and pools",
+  "parts": [
+   {
+    "id": "0xA01F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA020",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA021",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA022",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA023",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA024",
+    "dx": 4,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA025",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA026",
+    "dx": 4,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA027",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA028",
+    "dx": 3,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA029",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA02A",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA02B",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0xA02C",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0xA02D",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0xA02E",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0xA02F",
+    "dx": 4,
+    "dy": 4,
+    "dz": 5
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "garden",
+   "wilderness",
+   "noble",
+   "craft:masonry"
+  ],
+  "blurb": "A broad pond ringed with tall grey boulders, dark water rippling from one end with gold fish flickering through it.",
+  "era": {
+   "grade": "N",
+   "note": "A large rock-ringed ornamental pond with fish; generic landscape feature. Art 0xA01F-0xA037 (animated water) is a later client addition.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "17 statics: 16 rim rocks 0xA01F-0xA02E clockwise round a 5x5, water frame 0xA02F at the south corner z+5",
+  "variantOf": null,
+  "id": "CN-WTR-012"
+ }
+]

@@ -1,0 +1,67 @@
+{
+ "pool": "shipwreck-decor",
+ "system": "shipwreck",
+ "notes": "One weighted roll per salvaged wreck, so the art runs from flotsam (lantern, crate, cask, driftwood) through a captain's cabin (chest, chart and sextant) to hull pieces (anchor, cannon, strongbox) and one showpiece, the Lighthouse Lamp Room, which the catalog already tags shipwreck. The longboat section (CR-NAU-042) is the most wreck-like piece of all but is grade C, so it is left out; swap it in for the cannon if the owner would rather have it.",
+ "entries": [
+  {
+   "id": "CR-NAU-035",
+   "rarity": "uncommon",
+   "why": "Weathered ship's lantern, salt-streaked and long out."
+  },
+  {
+   "id": "CR-NAU-025",
+   "rarity": "uncommon",
+   "why": "Cargo crate hauled from the shallows, hung with seaweed."
+  },
+  {
+   "id": "CR-NAU-028",
+   "rarity": "uncommon",
+   "why": "Cask burst open by the surf."
+  },
+  {
+   "id": "CR-NAU-029",
+   "rarity": "uncommon",
+   "why": "Sun-bleached driftwood stranded by the tide."
+  },
+  {
+   "id": "CR-NAU-002",
+   "rarity": "scarce",
+   "why": "Anchor crusted green with verdigris and barnacles."
+  },
+  {
+   "id": "CR-NAU-030",
+   "rarity": "scarce",
+   "why": "Sailor's salt-stained sea chest."
+  },
+  {
+   "id": "CR-NAU-032",
+   "rarity": "scarce",
+   "why": "Salvage heap of crate, cask, planks and rope."
+  },
+  {
+   "id": "CR-LIB-029",
+   "rarity": "scarce",
+   "why": "Captain's chart with a brass sextant laid across it."
+  },
+  {
+   "id": "CR-NAU-031",
+   "rarity": "rare",
+   "why": "Captain's iron-bound strongbox, still shut."
+  },
+  {
+   "id": "CR-NAU-040",
+   "rarity": "rare",
+   "why": "Black iron chest dragged from the seabed."
+  },
+  {
+   "id": "CR-NAU-036",
+   "rarity": "rare",
+   "why": "Bronze-banded ship's cannon on its carriage."
+  },
+  {
+   "id": "CR-LGT-041",
+   "rarity": "extremely-rare",
+   "why": "Lighthouse Lamp Room, the great lamp of a lost harbour."
+  }
+ ]
+}

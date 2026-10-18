@@ -1,0 +1,22 @@
+{
+  "pool": "camping-rewards",
+  "system": "camping",
+  "notes": "Fifteen pieces for a Rekindled camp, all grade B or better and almost all tagged 'camp'. 'kind' says which outcome they suit: hearth (what a campfire can leave behind), shelter, bedding, provisions and trail (relics left along a route). Catalog tiers run from common (kindling, a campfire, a bedroll) up to the whole Hunter's Camp as the extremely-rare showpiece, so the humblest camping outcome is a small, useful-looking keepsake and the rarest is a full camp tableau. Other camp-tagged pieces (extra tents, the camp kitchen, skinner's and hunter's poles, tool and cookware sets) are held back on purpose for the artisan and BOD pools, so the camping set stays about the fire, the bedroll and the trail.",
+  "entries": [
+    { "id": "CR-CMP-018", "kind": "hearth",     "why": "Bundle of dry kindling, the first thing any Rekindled fire needs" },
+    { "id": "CR-CMP-015", "kind": "hearth",     "why": "A small crossed-stick campfire, the plain reward for a lit fire" },
+    { "id": "CR-CMP-016", "kind": "hearth",     "why": "Neat stack of split firewood for the long night" },
+    { "id": "CR-LGT-032", "kind": "hearth",     "why": "Stone-ringed campfire, a fire pit built to last the season" },
+    { "id": "CR-CMP-011", "kind": "hearth",     "why": "Blackened kettle steaming on the embers" },
+    { "id": "CR-CMP-010", "kind": "hearth",     "why": "Cookfire with a hanging cauldron, supper and woodsmoke" },
+    { "id": "CR-CMP-013", "kind": "provisions", "why": "Chicken turning on a spit above the embers, a camper's feast" },
+    { "id": "CR-CMP-009", "kind": "bedding",    "why": "Rolled bedroll leaning against a battered pack, a whole traveller's kit" },
+    { "id": "CR-CMP-008", "kind": "bedding",    "why": "Spread bedroll with a straw pillow, a wanderer's comfort" },
+    { "id": "CR-CMP-020", "kind": "shelter",    "why": "Fallen moss-streaked log that serves as bench and back-rest" },
+    { "id": "CR-CMP-004", "kind": "shelter",    "why": "Small grey tent, just big enough for one weary traveller" },
+    { "id": "CR-CMP-003", "kind": "shelter",    "why": "Forest-green canvas tent that hides among the trees" },
+    { "id": "CR-CMP-026", "kind": "trail",      "why": "Cairn of stacked stones set by travellers to mark a trail" },
+    { "id": "CR-CMP-031", "kind": "shelter",    "why": "Tent, fire and log: a night's stop on a long road" },
+    { "id": "CR-CMP-028", "kind": "shelter",    "why": "A whole hunter's camp, the showpiece for a long-road camper" }
+  ]
+}

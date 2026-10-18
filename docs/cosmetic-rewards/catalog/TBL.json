@@ -1,0 +1,3176 @@
+[
+ {
+  "slug": "nightstand",
+  "name": "Bedside Nightstand",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B35",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B34",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A small square table with a single drawer, perfect for a candle and a prayer book.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry-menu furniture (era pack 2b); dated launch of the item is not documented, but nothing later adds it.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class Nightstand; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-001"
+ },
+ {
+  "slug": "writing-table",
+  "name": "Writing Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B4A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B49",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "north",
+    "parts": [
+     {
+      "id": "0x0B4B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   },
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B4C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "craft:carpentry",
+   "noble"
+  ],
+  "blurb": "A slender writing desk with a shallow drawer, scarred by many a quill and spilled inkwell.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry-menu furniture (era pack 2b); dated launch of the item is not documented, but nothing later adds it.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class WritingTable; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-002"
+ },
+ {
+  "slug": "yew-wood-table",
+  "name": "Yew-Wood Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B8F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "craft:carpentry",
+   "elegant"
+  ],
+  "blurb": "A broad, smooth-topped table of golden yew, with trestle feet carved into scrolls.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry-menu furniture (era pack 2b); dated launch of the item is not documented, but nothing later adds it.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class YewWoodTable; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-003"
+ },
+ {
+  "slug": "large-table",
+  "name": "Large Plank Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B90",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B7D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A big plank-topped table on turned trestle legs, built for supper with the whole family.",
+  "era": {
+   "grade": "B",
+   "note": "Classic carpentry-menu furniture (era pack 2b); dated launch of the item is not documented, but nothing later adds it.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class LargeTable; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-004"
+ },
+ {
+  "slug": "pedestal-side-table",
+  "name": "Pedestal Side Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x1DA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1DA7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "tavern",
+   "elegant"
+  ],
+  "blurb": "A little round-topped table on a single carved pedestal, just right for a mug and a candle.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world table art (0x1DA5-0x1DA7) used in Britannia shops and houses; used sparingly (n=3-5).",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-005"
+ },
+ {
+  "slug": "polished-oak-table",
+  "name": "Polished Oak Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6D",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B7F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B80",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B7E",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "A long, smooth-topped table of honey-coloured oak on carved scroll feet.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), used hundreds of times (n=147+) in Britannia taverns and homes.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-006"
+ },
+ {
+  "slug": "banquet-table",
+  "name": "Long Banquet Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6D",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6D",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6D",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0B6B",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B7F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B80",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B80",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B80",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B7E",
+      "dx": 4,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "tavern",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A five-tile banquet table in polished oak, long enough to seat the whole guild at Midwinter.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), used hundreds of times in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-007"
+ },
+ {
+  "slug": "dark-oak-dining-table",
+  "name": "Dark Oak Dining Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B70",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B72",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B71",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "2x2",
+  "tier": "common",
+  "tags": [
+   "tavern",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A solid square table in dark oak, with legs thick as a blacksmith's wrists.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), n=1181 for its centre piece 0x0B73; classic scenery.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-008"
+ },
+ {
+  "slug": "dark-oak-long-table",
+  "name": "Dark Oak Long Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B70",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B72",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B71",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B70",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B74",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B72",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B71",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A broad dark oak table three tiles long, big enough to lay out a map or a roast boar.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), a common arrangement in Britannia taverns.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-009"
+ },
+ {
+  "slug": "great-hall-table",
+  "name": "Great Hall Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0B70",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0B72",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B73",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0B71",
+    "dx": 1,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B70",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B74",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B74",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B73",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B74",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B72",
+      "dx": 4,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B71",
+      "dx": 4,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "tavern",
+   "martial"
+  ],
+  "blurb": "A vast two-by-five table of dark oak, the heart of any hall where lords are made to wait.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), n=17 as placed in Britannia great halls.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-010"
+ },
+ {
+  "slug": "rustic-plank-table",
+  "name": "Rustic Plank Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B7A",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B75",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B89",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8D",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8D",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B88",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "4x1",
+  "tier": "common",
+  "tags": [
+   "rustic",
+   "tavern",
+   "wilderness"
+  ],
+  "blurb": "A long table of rough weathered planks on crossed legs, as served in a roadside inn.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world plank table family (0x0B75-0x0B8D), n=46 for this arrangement alone in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-011"
+ },
+ {
+  "slug": "alehouse-trestle-table",
+  "name": "Alehouse Trestle Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B7A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B7A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B77",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x0B79",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B7A",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B78",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0B8D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8C",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8D",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8D",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8A",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B8B",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A wide trestle table of rough planks, ring-marked by decades of tankards.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world plank table family (0x0B75-0x0B8D), used in Britannia taverns.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-012"
+ },
+ {
+  "slug": "plank-top-dining-table",
+  "name": "Plank-Top Dining Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x0B86",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B85",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B86",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B86",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x0B83",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B84",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A three-by-two dining table with a smooth plank top, plain and strong.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world tavern table family (0x0B6B-0x0B90), n=17 for this arrangement in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-013"
+ },
+ {
+  "slug": "tartan-dining-table",
+  "name": "Tartan-Runner Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x166A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x166B",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x166C",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x1669",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1668",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1667",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "tavern"
+  ],
+  "blurb": "A long wooden table with a green and blue tartan runner draped lengthwise.",
+  "era": {
+   "grade": "C",
+   "note": "Tartan-cloth table tiles 0x1667-0x166C are used only a few times (n=2-5) in Britannia; era not documented, to be audited.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-014"
+ },
+ {
+  "slug": "violet-runner-table",
+  "name": "Violet-Runner Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x118B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A wooden table dressed with a violet runner embroidered along both edges.",
+  "era": {
+   "grade": "C",
+   "note": "Cloth-table tile 0x118B is never used on the Britannia map (n=0); modern 'table with cloth' reward art, era uncertain, to be audited.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-015"
+ },
+ {
+  "slug": "crimson-runner-table",
+  "name": "Crimson-Runner Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x118D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "tavern"
+  ],
+  "blurb": "A wooden table dressed with a crimson and gold runner that trails over each end.",
+  "era": {
+   "grade": "C",
+   "note": "Cloth-table tile 0x118D is used once (n=1) on the Britannia map; modern 'table with cloth' reward art, era uncertain, to be audited.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": "violet-runner-table",
+  "id": "CR-TBL-016"
+ },
+ {
+  "slug": "green-tartan-table",
+  "name": "Green Tartan Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x118F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1190",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1190",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x118F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "4x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "tavern"
+  ],
+  "blurb": "A long table covered edge to edge in a green and black tartan cloth.",
+  "era": {
+   "grade": "B",
+   "note": "Cloth-table tiles 0x118F-0x1192 appear a handful of times (n=1-9) in the Britannia map, classic block.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-017"
+ },
+ {
+  "slug": "stone-table",
+  "name": "Grey Stone Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1202",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1201",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1205",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1204",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A stout slab table of rough grey stone, built to outlast the hall around it.",
+  "era": {
+   "grade": "B",
+   "note": "Stone table family 0x1201-0x1206 is used about 550 times, almost all in Lost Lands (T2A, Oct 1998) buildings; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock class MediumStoneTableEast/SouthAddon (2 tiles); decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-018"
+ },
+ {
+  "slug": "long-stone-table",
+  "name": "Long Stone Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1202",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1203",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1201",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1205",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1206",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1204",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A three-tile table of grey stone slab, cold to the elbows and impossible to move.",
+  "era": {
+   "grade": "B",
+   "note": "Stone table family 0x1201-0x1206 is used about 550 times, almost all in Lost Lands (T2A, Oct 1998) buildings; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock class LargeStoneTableEast/SouthAddon (3 tiles); decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-019"
+ },
+ {
+  "slug": "stone-banquet-table",
+  "name": "Stone Banquet Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1202",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1203",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1203",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1201",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1202",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1203",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1203",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1201",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1205",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1206",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1206",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1204",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1205",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1206",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1206",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1204",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x4",
+  "tier": "rare",
+  "tags": [
+   "martial",
+   "noble",
+   "dungeon"
+  ],
+  "blurb": "A broad double-width stone table where a warlord might lay out his war maps.",
+  "era": {
+   "grade": "B",
+   "note": "Stone table family 0x1201-0x1206 is used about 550 times, almost all in Lost Lands (T2A, Oct 1998) buildings; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-020"
+ },
+ {
+  "slug": "marble-table",
+  "name": "Marble Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1DC2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC1",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1DC5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC4",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A smooth marble table, veined in pale grey, the sort that makes any tavern feel like a palace.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world marble table family (0x1DC1-0x1DC6), n=15-38 in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-021"
+ },
+ {
+  "slug": "marble-banquet-table",
+  "name": "Marble Banquet Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1DC2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC3",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC3",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC1",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC3",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC3",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC1",
+    "dx": 1,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1DC5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC6",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC6",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC6",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC6",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC4",
+      "dx": 3,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x1DC4",
+      "dx": 3,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x4",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden"
+  ],
+  "blurb": "A grand double marble table, cool and gleaming, for banquets that end in treaties.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world marble table family (0x1DC1-0x1DC6), n=15-38 in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-022"
+ },
+ {
+  "slug": "sandstone-slab-table",
+  "name": "Sandstone Slab Table",
+  "category": "TBL",
+  "subcategory": "Stone and Marble Tables",
+  "parts": [
+   {
+    "id": "0x1DC0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x1DC0",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "common",
+  "tags": [
+   "desert",
+   "humble",
+   "garden"
+  ],
+  "blurb": "A long flat slab of warm sandstone laid across stout stone blocks.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world sandstone table tile 0x1DC0, n=28 in Britannia.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-023"
+ },
+ {
+  "slug": "bamboo-table",
+  "name": "Bamboo Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x11D7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11D8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11D6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11DA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DB",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11D9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "humble"
+  ],
+  "blurb": "A light table of lashed bamboo poles, cool under the hand.",
+  "era": {
+   "grade": "B",
+   "note": "Bamboo-furniture block 0x11D6-0x11DB, used about 50 times, mostly in the Lost Lands (T2A, Oct 1998); world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-024"
+ },
+ {
+  "slug": "bamboo-banquet-table",
+  "name": "Bamboo Banquet Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x11D7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11D8",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11D6",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x11D7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11D8",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11D6",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11DA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DA",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x11DB",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DB",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x11D9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11D9",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "exotic",
+   "wilderness",
+   "festive"
+  ],
+  "blurb": "A wide bamboo table made for sharing a pig roast with the whole village.",
+  "era": {
+   "grade": "B",
+   "note": "Bamboo-furniture block 0x11D6-0x11DB, used about 50 times, mostly in the Lost Lands (T2A, Oct 1998); world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-025"
+ },
+ {
+  "slug": "log-table",
+  "name": "Log Slab Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x11DD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11DE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11DC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x11E0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11E1",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x11DF",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "wilderness",
+   "humble"
+  ],
+  "blurb": "A table of split logs, ends still bearing the bark and the marks of the axe.",
+  "era": {
+   "grade": "B",
+   "note": "Log-table block 0x11DC-0x11E1, used about 100 times in Britannia proper and a few in the Lost Lands; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-026"
+ },
+ {
+  "slug": "log-banquet-table",
+  "name": "Log Feasting Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x11E0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E1",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11DF",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x11E0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x11E1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x11DF",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x11DD",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DD",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x11DE",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DE",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x11DC",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x11DC",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "wilderness",
+   "festive"
+  ],
+  "blurb": "A double-width log table for feasts around a great fire.",
+  "era": {
+   "grade": "B",
+   "note": "Log-table block 0x11DC-0x11E1, used about 100 times in Britannia proper and a few in the Lost Lands; world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-027"
+ },
+ {
+  "slug": "healers-table",
+  "name": "Linen-Topped Table",
+  "category": "TBL",
+  "subcategory": "Tables",
+  "parts": [
+   {
+    "id": "0x1916",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x1917",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "scholar",
+   "craft"
+  ],
+  "blurb": "A sturdy table topped with clean white linen, the kind a healer or tailor uses.",
+  "era": {
+   "grade": "B",
+   "note": "Table tiles 0x1916-0x1917 (tiledata 'massage table') appear only in Lost Lands scenery (T2A, Oct 1998; n=32); world dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-028"
+ },
+ {
+  "slug": "glass-counter",
+  "name": "Merchant's Glass Counter",
+  "category": "TBL",
+  "subcategory": "Counters",
+  "parts": [
+   {
+    "id": "0x0AFF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B02",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B01",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B01",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFD",
+    "dx": 3,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B00",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B05",
+      "dx": 0,
+      "dy": 0,
+      "dz": 3
+     },
+     {
+      "id": "0x0B08",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 1,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 2,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B03",
+      "dx": 0,
+      "dy": 3,
+      "dz": 3
+     },
+     {
+      "id": "0x0B06",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "craft",
+   "treasure"
+  ],
+  "blurb": "A brass-framed shop counter with a dark velvet-lined case beneath its glass lid.",
+  "era": {
+   "grade": "B",
+   "note": "Shop display-case counters (0x0AFD-0x0B18), used in hundreds of Britannia shops (n=24-1078); shop dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip container",
+  "variantOf": null,
+  "id": "CR-TBL-029"
+ },
+ {
+  "slug": "long-glass-counter",
+  "name": "Grand Glass Counter",
+  "category": "TBL",
+  "subcategory": "Counters",
+  "parts": [
+   {
+    "id": "0x0AFF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B02",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B01",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B01",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B01",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0AFD",
+    "dx": 4,
+    "dy": 0,
+    "dz": 3
+   },
+   {
+    "id": "0x0B00",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B05",
+      "dx": 0,
+      "dy": 0,
+      "dz": 3
+     },
+     {
+      "id": "0x0B08",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 1,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 2,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 3,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0B04",
+      "dx": 0,
+      "dy": 4,
+      "dz": 3
+     },
+     {
+      "id": "0x0B07",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x0B03",
+      "dx": 0,
+      "dy": 5,
+      "dz": 3
+     },
+     {
+      "id": "0x0B06",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "6x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "craft",
+   "treasure"
+  ],
+  "blurb": "A long jeweller's counter, glass-topped and velvet-lined, for showing off a lordly stock.",
+  "era": {
+   "grade": "B",
+   "note": "Shop display-case counters (0x0AFD-0x0B18), used in hundreds of Britannia shops (n=24-1078); shop dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip container",
+  "variantOf": null,
+  "id": "CR-TBL-030"
+ },
+ {
+  "slug": "plank-counter",
+  "name": "Shopkeeper's Plank Counter",
+  "category": "TBL",
+  "subcategory": "Counters",
+  "parts": [
+   {
+    "id": "0x0B40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B3E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B40",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B3F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3F",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft",
+   "tavern"
+  ],
+  "blurb": "A plain wooden counter on slender legs, worn smooth by a thousand coin-counting hands.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world shop counter (0x0B3D-0x0B40), used 566-1256 times in Britannia shops; shop dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-031"
+ },
+ {
+  "slug": "long-plank-counter",
+  "name": "Long Plank Counter",
+  "category": "TBL",
+  "subcategory": "Counters",
+  "parts": [
+   {
+    "id": "0x0B40",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B3E",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B40",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B3E",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B40",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0B3F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3D",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3F",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3D",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0B3F",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "5x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft",
+   "tavern",
+   "humble"
+  ],
+  "blurb": "A five-tile counter of dark planks, long enough for a busy market-day line.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world shop counter (0x0B3D-0x0B40), used 566-1256 times in Britannia shops; shop dressing.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-032"
+ },
+ {
+  "slug": "mahogany-armoire",
+  "name": "Mahogany Armoire",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A4D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A51",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall two-door armoire in dark mahogany with delicate curved feet.",
+  "era": {
+   "grade": "A",
+   "note": "Armoires were in the game by Sept 1999 (publish notes fixed lost items); classic carpentry-menu armoire art.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-08-22nd-september/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class FancyArmoire/Armoire; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-033"
+ },
+ {
+  "slug": "mahogany-armoire-open",
+  "name": "Open Mahogany Armoire",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A4C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A50",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft:carpentry"
+  ],
+  "blurb": "A mahogany armoire with its doors flung open and its shelves cleared.",
+  "era": {
+   "grade": "A",
+   "note": "Armoires were in the game by Sept 1999 (publish notes fixed lost items); classic carpentry-menu armoire art.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-08-22nd-september/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class FancyArmoire open graphic; decor-only",
+  "variantOf": "mahogany-armoire",
+  "id": "CR-TBL-034"
+ },
+ {
+  "slug": "oak-armoire",
+  "name": "Pale Oak Armoire",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A4F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A53",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A plain two-door armoire of pale oak, tall enough for a lord's cloaks.",
+  "era": {
+   "grade": "A",
+   "note": "Armoires were in the game by Sept 1999 (publish notes fixed lost items); classic carpentry-menu armoire art.",
+   "sources": [
+    "https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1999-2/1999-08-22nd-september/"
+   ]
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class Armoire; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-035"
+ },
+ {
+  "slug": "oak-chest-of-drawers",
+  "name": "Oak Chest of Drawers",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A2C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A34",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall chest of five wide drawers in honey-coloured oak.",
+  "era": {
+   "grade": "B",
+   "note": "Classic furniture art (0x0A2C-0x0A38), used as house and shop dressing in Britannia; not in the documented carpentry menu.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class Drawer; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-036"
+ },
+ {
+  "slug": "mahogany-chest-of-drawers",
+  "name": "Mahogany Chest of Drawers",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A30",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A38",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A tall chest of drawers in dark mahogany, each drawer fitted with a brass pull.",
+  "era": {
+   "grade": "B",
+   "note": "Classic furniture art (0x0A2C-0x0A38), used as house and shop dressing in Britannia; not in the documented carpentry menu.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class FancyDrawer; decor-only, strip container",
+  "variantOf": "oak-chest-of-drawers",
+  "id": "CR-TBL-037"
+ },
+ {
+  "slug": "mirrored-dresser",
+  "name": "Mirrored Dresser",
+  "category": "TBL",
+  "subcategory": "Cabinets and Drawers",
+  "parts": [
+   {
+    "id": "0x0A3D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0A3C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x0A45",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0A44",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "craft"
+  ],
+  "blurb": "A dressing table with an oval mirror above and drawers either side, for the lady or lord of the house.",
+  "era": {
+   "grade": "B",
+   "note": "Classic vanity art (0x0A3C-0x0A45), n=3-5 in Britannia houses; the matching ModernUO item is a later reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; strip container",
+  "variantOf": null,
+  "id": "CR-TBL-038"
+ },
+ {
+  "slug": "mahogany-bookcase",
+  "name": "Mahogany Bookcase",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelves",
+  "parts": [
+   {
+    "id": "0x0A97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "noble",
+   "craft:carpentry"
+  ],
+  "blurb": "A tall bookcase of dark mahogany, its shelves crowded with leather-bound volumes.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bookcase art (0x0A97-0x0A9C), n=18-56 in Britannia libraries and houses; carpentry-menu empty bookcase.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "stock class FullBookcase graphic; decor-only, strip container",
+  "variantOf": null,
+  "id": "CR-TBL-039"
+ },
+ {
+  "slug": "scholars-bookcase",
+  "name": "Scholar's Bookcase",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelves",
+  "parts": [
+   {
+    "id": "0x0A9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "noble"
+  ],
+  "blurb": "A bookcase crammed so full that several volumes lie sideways across the shelves.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bookcase art (0x0A97-0x0A9C), n=28-37 in Britannia libraries and houses.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "stock class FullBookcase graphic; decor-only, strip container",
+  "variantOf": "mahogany-bookcase",
+  "id": "CR-TBL-040"
+ },
+ {
+  "slug": "empty-bookcase",
+  "name": "Empty Mahogany Shelves",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelves",
+  "parts": [
+   {
+    "id": "0x0A9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0A9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry",
+   "scholar"
+  ],
+  "blurb": "A tall shelving unit of dark wood with three roomy empty shelves.",
+  "era": {
+   "grade": "B",
+   "note": "Classic bookcase art (0x0A9D-0x0A9E), n=59-66 in Britannia; the carpentry-menu empty bookcase.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class EmptyBookcase; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-041"
+ },
+ {
+  "slug": "pine-shelves",
+  "name": "Pale Pine Shelves",
+  "category": "TBL",
+  "subcategory": "Bookcases and Shelves",
+  "parts": [
+   {
+    "id": "0x1E76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x1E7E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "craft:carpentry",
+   "rustic"
+  ],
+  "blurb": "A tall set of shelves in unstained pine, still smelling of fresh sawdust.",
+  "era": {
+   "grade": "B",
+   "note": "Unfinished pine furniture set (0x1E6E-0x1E7F) appears only in Lost Lands scenery (T2A, Oct 1998; n=24); world dressing.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-042"
+ },
+ {
+  "slug": "marble-pedestal",
+  "name": "Marble Pedestal",
+  "category": "TBL",
+  "subcategory": "Pedestals",
+  "parts": [
+   {
+    "id": "0x1223",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant",
+   "garden",
+   "sacred"
+  ],
+  "blurb": "A tapering pedestal of pale marble, waiting for a bust, a bowl or a very smug cat.",
+  "era": {
+   "grade": "B",
+   "note": "Original-world marble pedestal tile 0x1223, n=56 in Britannia temples and gardens; world dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-043"
+ },
+ {
+  "slug": "broken-armoire",
+  "name": "Broken Armoire",
+  "category": "TBL",
+  "subcategory": "Ruined Furniture",
+  "parts": [
+   {
+    "id": "0x0C12",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C13",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "An armoire with one door hanging off its hinges and its insides long since looted.",
+  "era": {
+   "grade": "B",
+   "note": "Classic ruined-house furniture block (0x0C10-0x0C2B), placed in Britannia ruins and old dungeons.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CR-TBL-044"
+ },
+ {
+  "slug": "broken-dresser",
+  "name": "Broken Dresser",
+  "category": "TBL",
+  "subcategory": "Ruined Furniture",
+  "parts": [
+   {
+    "id": "0x0C21",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C20",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0C23",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C22",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A dressing table with a cracked, clouded mirror and every drawer hanging open.",
+  "era": {
+   "grade": "B",
+   "note": "Classic ruined-house furniture block (0x0C10-0x0C2B), placed in Britannia ruins and old dungeons.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "multi-tile addon, decor-only; stock BrokenVanity layout",
+  "variantOf": null,
+  "id": "CR-TBL-045"
+ }
+]

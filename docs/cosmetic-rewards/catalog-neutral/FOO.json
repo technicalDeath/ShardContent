@@ -1,0 +1,1391 @@
+[
+ {
+  "slug": "roasting-pig-on-a-brick-pit",
+  "name": "Roasting Pig on a Brick Pit",
+  "category": "FOO",
+  "subcategory": "Roasts and spits",
+  "parts": [
+   {
+    "id": "0x9989",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9995",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:cooking",
+   "rustic",
+   "tavern",
+   "fire"
+  ],
+  "blurb": "A whole pig turning on an iron spit over a bed of glowing coals in a brick pit, the pride of any feast day.",
+  "era": {
+   "grade": "N",
+   "note": "A pig roasting on a spit is a universal feast object with no later-content styling. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static (animated coals, first of ten frames per facing); unlit frame 0x9987/0x9993",
+  "variantOf": null,
+  "id": "CN-FOO-001"
+ },
+ {
+  "slug": "roast-turkey-platter",
+  "name": "Roast Turkey Platter",
+  "category": "FOO",
+  "subcategory": "Roasts and spits",
+  "parts": [
+   {
+    "id": "0x4988",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "noble",
+   "tavern",
+   "season:harvest"
+  ],
+  "blurb": "A golden roast turkey on a broad green platter, ringed with herbs and cranberries.",
+  "era": {
+   "grade": "N",
+   "note": "A roast fowl on a platter is a generic feast dish, ordinary at any period table. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CN-FOO-002"
+ },
+ {
+  "slug": "bone-in-steak",
+  "name": "Bone-In Steak",
+  "category": "FOO",
+  "subcategory": "Roasts and spits",
+  "parts": [
+   {
+    "id": "0xAD6C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAD6E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A thick steak seared dark and glistening, served on the long bone it was cut from.",
+  "era": {
+   "grade": "N",
+   "note": "A cooked bone-in steak, ordinary tavern food. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-FOO-003"
+ },
+ {
+  "slug": "tiered-cake",
+  "name": "White Tiered Cake",
+  "category": "FOO",
+  "subcategory": "Cakes and pies",
+  "parts": [
+   {
+    "id": "0x4BA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1153,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "festive",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A three-tiered cake iced in snowy white and piped garlands, the centrepiece of any celebration.",
+  "era": {
+   "grade": "N",
+   "note": "A tiered celebration cake with no later-content styling. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "partially hueable (frosting tint); hue 1153 is the white version",
+  "variantOf": null,
+  "id": "CN-FOO-004"
+ },
+ {
+  "slug": "red-velvet-tiered-cake",
+  "name": "Red Velvet Tiered Cake",
+  "category": "FOO",
+  "subcategory": "Cakes and pies",
+  "parts": [
+   {
+    "id": "0x4BA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 33,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "craft:cooking",
+   "festive",
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The same tall celebration cake in deep crimson icing, piped with pale garlands.",
+  "era": {
+   "grade": "N",
+   "note": "A tiered celebration cake tinted crimson; no later-content styling. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "hue 33 version of the tiered cake",
+  "variantOf": "tiered-cake",
+  "id": "CN-FOO-005"
+ },
+ {
+  "slug": "golden-pie",
+  "name": "Golden Pie",
+  "category": "FOO",
+  "subcategory": "Cakes and pies",
+  "parts": [
+   {
+    "id": "0x4C0D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic",
+   "season:harvest"
+  ],
+  "blurb": "A whole pie baked to a deep golden brown, a fork-slit steaming in the crust.",
+  "era": {
+   "grade": "N",
+   "note": "A baked pie, plain home cooking. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "partially hueable; uncooked variant 0x4C0C",
+  "variantOf": null,
+  "id": "CN-FOO-006"
+ },
+ {
+  "slug": "cheese-and-fruit-board",
+  "name": "Cheese and Fruit Board",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xA856",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA857",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "elegant",
+   "noble",
+   "tavern"
+  ],
+  "blurb": "A wooden board laid with sliced meats, ripe cheeses, grapes and berries for the guests.",
+  "era": {
+   "grade": "N",
+   "note": "A grazing board of meats, cheese and fruit; generic fare. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-FOO-007"
+ },
+ {
+  "slug": "salad-bowl-banquet-table",
+  "name": "Salad Bowl Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D3F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D49",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A plank table with a great stone bowl of green salad and sprigs of parsley at its edge.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with a bowl of salad, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-008"
+ },
+ {
+  "slug": "cold-cuts-banquet-table",
+  "name": "Cold Cuts Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D4B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A table spread with sliced cold meats, knives laid by and garnish of green leaves.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with sliced cold meats, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-009"
+ },
+ {
+  "slug": "roast-chicken-banquet-table",
+  "name": "Roast Chicken Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D42",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D4C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A table bearing a platter of golden roast chicken with a crusty loaf beside it.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with roast chicken, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-010"
+ },
+ {
+  "slug": "roast-fowl-banquet-table",
+  "name": "Roast Fowl Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D43",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D4D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A table of browned roast fowl and a round loaf, ready to be carved.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with roast fowl and bread, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-011"
+ },
+ {
+  "slug": "roast-ham-banquet-table",
+  "name": "Roast Ham Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D44",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A table dominated by a great glazed ham on a white plate, carving knife at the ready.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with a glazed ham, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-012"
+ },
+ {
+  "slug": "roast-turkey-banquet-table",
+  "name": "Roast Turkey Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D45",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D4F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A feast table with a golden turkey ringed in garnish, a pie baking-hot at its side.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with a roast turkey and a pie, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-013"
+ },
+ {
+  "slug": "frosted-cake-banquet-table",
+  "name": "Frosted Cake Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D47",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D51",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A table set with an iced cake on a pedestal and sweet garnish all around.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with an iced cake, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-014"
+ },
+ {
+  "slug": "meat-pie-banquet-table",
+  "name": "Meat Pie Banquet Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D48",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D52",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "tavern",
+   "rustic",
+   "noble"
+  ],
+  "blurb": "A small round table with a whole meat pie on a plate, still warm from the oven.",
+  "era": {
+   "grade": "N",
+   "note": "A one-tile table laden with a meat pie, a plain feast display with no later theme. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; food is part of the table graphic (decor-only, nothing to eat)",
+  "variantOf": null,
+  "id": "CN-FOO-015"
+ },
+ {
+  "slug": "candlelit-dinner-table",
+  "name": "Candlelit Dinner Table",
+  "category": "FOO",
+  "subcategory": "Feast tables",
+  "parts": [
+   {
+    "id": "0x9D69",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9D6A",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D75",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x9D76",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "rare",
+  "tags": [
+   "craft:cooking",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A long table laid for two, with a white runner, pewter cups, crimson napkins and a candle at each end.",
+  "era": {
+   "grade": "N",
+   "note": "A table laid with plates, cups and candles; generic and unthemed (first seen in a feasting-table set). Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "two table tiles in a row (south along x, east along y); partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-016"
+ },
+ {
+  "slug": "butchers-block",
+  "name": "Butcher's Block",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xA2A3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic",
+   "tavern"
+  ],
+  "blurb": "A thick oak chopping block, its top scarred by years of cleaver and knife.",
+  "era": {
+   "grade": "N",
+   "note": "A butcher's chopping block; a plain kitchen fixture. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-017"
+ },
+ {
+  "slug": "kitchen-pump-counter",
+  "name": "Kitchen Pump Counter",
+  "category": "FOO",
+  "subcategory": "Stoves and ovens",
+  "parts": [
+   {
+    "id": "0xA2AC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA2AD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0xA2AE",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA2B3",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0xA2B4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0xA2B5",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A run of oak cupboards under a dark stone top, with a hand pump and deep basin set into the middle.",
+  "era": {
+   "grade": "N",
+   "note": "A kitchen counter with a hand-pump sink; ordinary household fitting. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "three tiles (left, pump, right); water-running frames 0xA2AF-0xA2B2 / 0xA2B6-0xA2B9; partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-018"
+ },
+ {
+  "slug": "marble-topped-bar",
+  "name": "Marble-Topped Bar",
+  "category": "FOO",
+  "subcategory": "Taverns and bars",
+  "parts": [
+   {
+    "id": "0x99C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x99C8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x99C8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x99C8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x99C8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x99C8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "rare",
+  "tags": [
+   "tavern",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A long oak bar with a polished marble top, the pride of the best taproom in town.",
+  "era": {
+   "grade": "N",
+   "note": "A plain marble-topped tavern counter. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "three counter tiles in a row (south along x, east along y); partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-019"
+ },
+ {
+  "slug": "marble-bar-with-sink",
+  "name": "Marble Bar with Sink",
+  "category": "FOO",
+  "subcategory": "Taverns and bars",
+  "parts": [
+   {
+    "id": "0x99C8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x99C8",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x99CB",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x99C8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x99C8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x99CA",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "tavern",
+   "elegant",
+   "noble",
+   "craft:cooking"
+  ],
+  "blurb": "A marble-topped bar with a rinsing basin built into one end, so a barkeep need never leave the counter.",
+  "era": {
+   "grade": "N",
+   "note": "A tavern counter with a sink at one end. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "two counter tiles plus a sink end (0x99CB south / 0x99CA east); partially hueable",
+  "variantOf": "marble-topped-bar",
+  "id": "CN-FOO-020"
+ },
+ {
+  "slug": "silver-framed-wine-cabinet",
+  "name": "Silver-Framed Wine Cabinet",
+  "category": "FOO",
+  "subcategory": "Cellar and casks",
+  "parts": [
+   {
+    "id": "0xA568",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA56A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "elegant",
+   "noble",
+   "craft:cooking"
+  ],
+  "blurb": "A tall cabinet of silvered iron whose diamond racks hold green-glass bottles laid down to age.",
+  "era": {
+   "grade": "N",
+   "note": "A wine rack cabinet, a generic cellar fitting. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "stocked frames 0xA568/0xA56A; empty 0xA567/0xA569; partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-021"
+ },
+ {
+  "slug": "pie-safe",
+  "name": "Pie Safe",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xA29B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA29D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A slate-topped cupboard with pierced tin doors that keep the pies safe from mice and flies.",
+  "era": {
+   "grade": "N",
+   "note": "A pie safe cupboard; ordinary farm kitchen furniture. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "closed frames; contents graphic 0xA29C/0xA29E; partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-022"
+ },
+ {
+  "slug": "pie-safe-with-pies",
+  "name": "Pie Safe with Pies",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xA29C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA29E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic",
+   "season:harvest"
+  ],
+  "blurb": "A pie safe with its doors thrown open on a shelf of cooling fruit pies.",
+  "era": {
+   "grade": "N",
+   "note": "A pie safe standing open on its pies. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "open frames; partially hueable",
+  "variantOf": "pie-safe",
+  "id": "CN-FOO-023"
+ },
+ {
+  "slug": "cellar-cask-on-a-stand",
+  "name": "Cellar Cask on a Stand",
+  "category": "FOO",
+  "subcategory": "Cellar and casks",
+  "parts": [
+   {
+    "id": "0x9E36",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9E37",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "tavern",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A banded oak cask lying on a wooden cradle, its tap ready over a waiting mug.",
+  "era": {
+   "grade": "N",
+   "note": "A small tapped cask on a cradle, ordinary cellar and tavern stock. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-FOO-024"
+ },
+ {
+  "slug": "meat-grinder",
+  "name": "Meat Grinder",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xB180",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB181",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "craft:tinkering"
+  ],
+  "blurb": "A hand-cranked iron grinder screwed to the table edge, for sausage and mince.",
+  "era": {
+   "grade": "N",
+   "note": "A hand-cranked meat grinder, an ordinary kitchen tool. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-FOO-025"
+ },
+ {
+  "slug": "kitchen-jars",
+  "name": "Kitchen Jars",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xB182",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB183",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "Three stoppered jars of dried goods lined up on the kitchen shelf.",
+  "era": {
+   "grade": "N",
+   "note": "A trio of kitchen storage jars. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing; partially hueable",
+  "variantOf": null,
+  "id": "CN-FOO-026"
+ },
+ {
+  "slug": "wicker-picnic-basket",
+  "name": "Wicker Picnic Basket",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0xA0DB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA0DC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:cooking",
+   "garden"
+  ],
+  "blurb": "A woven wicker basket with a hinged lid, packed for a day out on the green.",
+  "era": {
+   "grade": "N",
+   "note": "A wicker picnic basket, a plain household item. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-FOO-027"
+ },
+ {
+  "slug": "copper-elven-stove",
+  "name": "Copper Elven Stove",
+  "category": "FOO",
+  "subcategory": "Stoves and ovens",
+  "parts": [
+   {
+    "id": "0x2DDB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x2DDC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "craft:cooking",
+   "elegant",
+   "fire"
+  ],
+  "blurb": "A little copper stove with a long flared flue, its sloped base stamped with leaf patterns.",
+  "era": {
+   "grade": "N",
+   "note": "An elven kitchen stove; an elven object, in scope now that the shard has cosmetic Elves. Mondain's Legacy art, 2007.",
+   "artEra": "ML"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.ElvenStoveEastAddon (0x2DDB) / ElvenStoveSouthAddon (0x2DDC); decor-only, no cooking function",
+  "variantOf": null,
+  "id": "CN-FOO-028"
+ },
+ {
+  "slug": "fruit-bowl-on-a-stand",
+  "name": "Fruit Bowl on a Stand",
+  "category": "FOO",
+  "subcategory": "Larder",
+  "parts": [
+   {
+    "id": "0x2D4F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A round bowl of apples, plums and pears held up on a slim wooden stand.",
+  "era": {
+   "grade": "N",
+   "note": "A fruit bowl on a stand, plain table dressing from the Mondain's Legacy art block (2007); not elven-styled.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-FOO-029"
+ }
+]

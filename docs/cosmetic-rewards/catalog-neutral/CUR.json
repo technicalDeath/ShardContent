@@ -1,0 +1,970 @@
+[
+ {
+  "slug": "marble-hourglass-stand",
+  "name": "Marble Hourglass Stand",
+  "category": "CUR",
+  "subcategory": "Timepieces and sundials",
+  "parts": [
+   {
+    "id": "0xA339",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA33A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant",
+   "arcane",
+   "noble"
+  ],
+  "blurb": "A tall hourglass of red sand in a gilded frame, set on a marble stand where all may watch their time run out.",
+  "era": {
+   "grade": "N",
+   "note": "A framed hourglass on a stand is a classic scholar's piece with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-001"
+ },
+ {
+  "slug": "walnut-longcase-clock",
+  "name": "Walnut Longcase Clock",
+  "category": "CUR",
+  "subcategory": "Timepieces and sundials",
+  "parts": [
+   {
+    "id": "0x44D5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x44D9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar",
+   "craft:tinkering"
+  ],
+  "blurb": "A tall walnut clock, carved at the foot and the hood, ticking out the hours in a voice like a heartbeat.",
+  "era": {
+   "grade": "N",
+   "note": "A longcase clock is an ordinary tinker's masterpiece that would not look strange in 2000 Britannia. The art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-002"
+ },
+ {
+  "slug": "oak-longcase-clock",
+  "name": "Oak Longcase Clock",
+  "category": "CUR",
+  "subcategory": "Timepieces and sundials",
+  "parts": [
+   {
+    "id": "0x44DD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x44E1",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "scholar",
+   "craft:tinkering"
+  ],
+  "blurb": "A plain oak longcase clock with a brass pendulum, the sort of timepiece that outlives three generations of owners.",
+  "era": {
+   "grade": "N",
+   "note": "A plain longcase clock, an ordinary tinker's make with no tie to a later expansion. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-003"
+ },
+ {
+  "slug": "ivory-longcase-clock",
+  "name": "Ivory Longcase Clock",
+  "category": "CUR",
+  "subcategory": "Timepieces and sundials",
+  "parts": [
+   {
+    "id": "0x48D4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x48D8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar",
+   "craft:tinkering"
+  ],
+  "blurb": "A white-lacquered longcase clock with a gilded face and a pendulum that glints in the lamplight.",
+  "era": {
+   "grade": "N",
+   "note": "A white longcase clock, an ordinary fine tinker's make with no later lore. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-004"
+ },
+ {
+  "slug": "bronze-armillary-sphere",
+  "name": "Bronze Armillary Sphere",
+  "category": "CUR",
+  "subcategory": "Spheres and instruments",
+  "parts": [
+   {
+    "id": "0x9CEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "Nested bronze rings that turn on a single stand, built to model the heavens for anyone with the patience to read them.",
+  "era": {
+   "grade": "N",
+   "note": "An armillary sphere is an old astronomer's instrument with no tie to a later skill, race or land. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-005"
+ },
+ {
+  "slug": "steel-armillary-sphere",
+  "name": "Steel Armillary Sphere",
+  "category": "CUR",
+  "subcategory": "Spheres and instruments",
+  "parts": [
+   {
+    "id": "0x9CEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2101,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant",
+   "noble"
+  ],
+  "blurb": "An armillary sphere of cold blue-grey steel rings, turning slowly in the corner of a scholar's study.",
+  "era": {
+   "grade": "N",
+   "note": "A steel-finished armillary sphere, a plain astronomer's instrument with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "bronze-armillary-sphere",
+  "id": "CN-CUR-006"
+ },
+ {
+  "slug": "gilded-armillary-sphere",
+  "name": "Gilded Armillary Sphere",
+  "category": "CUR",
+  "subcategory": "Spheres and instruments",
+  "parts": [
+   {
+    "id": "0x9CEF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 2213,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant",
+   "noble",
+   "treasure"
+  ],
+  "blurb": "A sphere of gleaming gold rings, the kind of instrument that a royal astronomer would be forgiven for guarding with his life.",
+  "era": {
+   "grade": "N",
+   "note": "A gold-finished armillary sphere, a plain astronomer's instrument with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "bronze-armillary-sphere",
+  "id": "CN-CUR-007"
+ },
+ {
+  "slug": "jeweled-infinity-loop",
+  "name": "Jeweled Infinity Loop",
+  "category": "CUR",
+  "subcategory": "Spheres and instruments",
+  "parts": [
+   {
+    "id": "0xA773",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA774",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "elegant",
+   "exotic",
+   "treasure"
+  ],
+  "blurb": "A figure-eight loop of gilded wire strung with amethyst beads, with no beginning and no end.",
+  "era": {
+   "grade": "N",
+   "note": "A jeweled lemniscate sculpture is a generic ornamental curio with no tie to a later skill or race. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-008"
+ },
+ {
+  "slug": "jack-in-the-box-opening",
+  "name": "Jack-in-the-Box, Opening",
+  "category": "CUR",
+  "subcategory": "Toys and curios",
+  "parts": [
+   {
+    "id": "0x9F65",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "whimsical",
+   "humble"
+  ],
+  "blurb": "A red toy box with its lid just beginning to lift, as though something inside has had enough of waiting.",
+  "era": {
+   "grade": "N",
+   "note": "A jack-in-the-box is an old toy that would not be strange in a 2000 Britannian toymaker's shop. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-009"
+ },
+ {
+  "slug": "jack-in-the-box-sprung",
+  "name": "Jack-in-the-Box, Sprung",
+  "category": "CUR",
+  "subcategory": "Toys and curios",
+  "parts": [
+   {
+    "id": "0x9F66",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "humble"
+  ],
+  "blurb": "A grinning jester on a spring has burst out of his red box, waving a little knife in a manner that is not entirely friendly.",
+  "era": {
+   "grade": "N",
+   "note": "A sprung jack-in-the-box is a plain toy curio with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-010"
+ },
+ {
+  "slug": "rocking-horse",
+  "name": "Rocking Horse",
+  "category": "CUR",
+  "subcategory": "Toys and curios",
+  "parts": [
+   {
+    "id": "0x4214",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4215",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "whimsical",
+   "humble",
+   "noble"
+  ],
+  "blurb": "A dapple-grey rocking horse on scarlet runners, with a real mane and a well-worn saddle.",
+  "era": {
+   "grade": "N",
+   "note": "A child's rocking horse is an ordinary toy with no later lore; horses existed in the era. Art first appeared in the 2010 holiday block.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-011"
+ },
+ {
+  "slug": "gypsy-caravan",
+  "name": "Gypsy Caravan",
+  "category": "CUR",
+  "subcategory": "Toys and curios",
+  "parts": [
+   {
+    "id": "0x9D34",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9D35",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "rare",
+  "tags": [
+   "exotic",
+   "whimsical",
+   "camp",
+   "wilderness"
+  ],
+  "blurb": "A blue-roofed travelling wagon with lamps lit at the windows and a little ramp for guests who dare to enter.",
+  "era": {
+   "grade": "N",
+   "note": "A travelling caravan wagon is plain wanderer's dressing, tied to no later race or expansion. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-012"
+ },
+ {
+  "slug": "grey-patterned-vase",
+  "name": "Grey Patterned Vase",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x42B2",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A big stoneware vase glazed grey and etched all round with a band of tiny patterns.",
+  "era": {
+   "grade": "N",
+   "note": "A large glazed vase, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-013"
+ },
+ {
+  "slug": "olive-inscribed-vase",
+  "name": "Olive Inscribed Vase",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x42B3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A tall olive-glazed vase with a ring of inscribed letters round the shoulder that nobody can quite read.",
+  "era": {
+   "grade": "N",
+   "note": "A large glazed vase, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-014"
+ },
+ {
+  "slug": "ivory-slender-urn",
+  "name": "Ivory Slender Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x9BC7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "noble",
+   "sacred"
+  ],
+  "blurb": "A slim ivory urn with a pale carved band, the kind you would find on a mantel in a gentle house.",
+  "era": {
+   "grade": "N",
+   "note": "A slender glazed urn, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-015"
+ },
+ {
+  "slug": "spiral-urn",
+  "name": "Spiral Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x9BCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "A big white urn whose belly bears a carved spiral, whatever it means.",
+  "era": {
+   "grade": "N",
+   "note": "A big glazed urn with a spiral motif, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-016"
+ },
+ {
+  "slug": "cobalt-spiral-urn",
+  "name": "Cobalt Spiral Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x9BCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1266,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "The great spiral urn in a deep cobalt glaze, with the white spiral standing out like a thumbprint in a pool.",
+  "era": {
+   "grade": "N",
+   "note": "A cobalt-glazed urn with a spiral motif, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "spiral-urn",
+  "id": "CN-CUR-017"
+ },
+ {
+  "slug": "oxblood-spiral-urn",
+  "name": "Oxblood Spiral Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x9BCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1157,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "The great spiral urn in a heavy oxblood red, polished until it almost seems wet.",
+  "era": {
+   "grade": "N",
+   "note": "An oxblood-glazed urn with a spiral motif, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "spiral-urn",
+  "id": "CN-CUR-018"
+ },
+ {
+  "slug": "jade-spiral-urn",
+  "name": "Jade Spiral Urn",
+  "category": "CUR",
+  "subcategory": "Vases and urns",
+  "parts": [
+   {
+    "id": "0x9BCA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 62,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "exotic"
+  ],
+  "blurb": "The great spiral urn in a soft jade green, quiet and cool to the touch.",
+  "era": {
+   "grade": "N",
+   "note": "A jade-glazed urn with a spiral motif, plain household dressing with no later lore. Art is post-era.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": "spiral-urn",
+  "id": "CN-CUR-019"
+ },
+ {
+  "slug": "whole-geode",
+  "name": "Whole Geode",
+  "category": "CUR",
+  "subcategory": "Minerals and geodes",
+  "parts": [
+   {
+    "id": "0x4B4B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B4F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "mining",
+   "wilderness"
+  ],
+  "blurb": "A knobbly brown stone the size of a loaf, plain on the outside and promising nothing at all.",
+  "era": {
+   "grade": "N",
+   "note": "A whole geode is a plain mineral collector's piece, tied to no later skill, creature or land. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-020"
+ },
+ {
+  "slug": "split-geode",
+  "name": "Split Geode",
+  "category": "CUR",
+  "subcategory": "Minerals and geodes",
+  "parts": [
+   {
+    "id": "0x4B4A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B4E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "mining",
+   "wilderness"
+  ],
+  "blurb": "A stone cracked open to show a hollow lined with crystal, glittering like frost on a window.",
+  "era": {
+   "grade": "N",
+   "note": "A split geode shows crystal inside: a plain mineral collector's piece with no later lore. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-021"
+ },
+ {
+  "slug": "open-geode-half",
+  "name": "Open Geode Half",
+  "category": "CUR",
+  "subcategory": "Minerals and geodes",
+  "parts": [
+   {
+    "id": "0x4B49",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B4D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "mining",
+   "wilderness"
+  ],
+  "blurb": "One neat half of a geode with its white crystal lining facing the room, set out for visitors.",
+  "era": {
+   "grade": "N",
+   "note": "A geode half with crystal lining: a plain mineral collector's piece with no later lore. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-022"
+ },
+ {
+  "slug": "quartz-shards",
+  "name": "Quartz Shards",
+  "category": "CUR",
+  "subcategory": "Minerals and geodes",
+  "parts": [
+   {
+    "id": "0x4B48",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4B4C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "mining",
+   "arcane"
+  ],
+  "blurb": "A little cluster of milky quartz shards, the sort a child might pick up on a mountain path.",
+  "era": {
+   "grade": "N",
+   "note": "A small cluster of quartz shards: a plain mineral collector's piece with no later lore. Art is post-era.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "decor-only; static art",
+  "variantOf": null,
+  "id": "CN-CUR-023"
+ },
+ {
+  "slug": "gilded-acorn-sculpture",
+  "name": "Gilded Acorn Sculpture",
+  "category": "CUR",
+  "subcategory": "Elven curios",
+  "parts": [
+   {
+    "id": "0x2D4A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "garden",
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A giant acorn worked in bronze and brown enamel, set on three little feet in case it takes a mind to roll away.",
+  "era": {
+   "grade": "N",
+   "note": "An elven ornamental acorn sculpture: a plain decorative piece with no race-only gear or creature lore, in for this section by owner ruling. Mondain's Legacy art.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "decor-only; stock item GiantReplicaAcorn",
+  "variantOf": null,
+  "id": "CN-CUR-024"
+ }
+]

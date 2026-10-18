@@ -1,0 +1,1846 @@
+[
+ {
+  "slug": "crimson-studded-armchair",
+  "name": "Crimson Studded Armchair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x4C80",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C81",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A deep armchair in crimson leather, its tall back buttoned in rows of brass studs. The sort of seat a guildmaster keeps for guests.",
+  "era": {
+   "grade": "N",
+   "note": "A generic upholstered armchair. Its art (0x4C80 block, 2012-era housing furniture) is later than April 2000 but nothing about it ties it to an expansion.",
+   "artEra": "HS"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no sitting",
+  "variantOf": null,
+  "id": "CN-FRN-001"
+ },
+ {
+  "slug": "crimson-studded-settee",
+  "name": "Crimson Studded Settee",
+  "category": "FRN",
+  "subcategory": "Couches and Settees",
+  "parts": [
+   {
+    "id": "0x4C82",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C83",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C85",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C84",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Two crimson studded seats joined side by side, with a back like a row of buttoned shields. A noble house's idea of cosy.",
+  "era": {
+   "grade": "N",
+   "note": "A plain two-seat settee in the same upholstered style as the armchair. Later housing art, but a generic piece of furniture a 2000 player would accept.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "2x1 addon, decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-002"
+ },
+ {
+  "slug": "black-leather-sofa",
+  "name": "Black Leather Sofa",
+  "category": "FRN",
+  "subcategory": "Couches and Settees",
+  "parts": [
+   {
+    "id": "0x4C8C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C8B",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4C8A",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C8E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C8F",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C8D",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A long sofa of black leather edged in polished copper, the kind of seat a master scholar sinks into with a heavy book.",
+  "era": {
+   "grade": "N",
+   "note": "A generic three-section leather sofa. The art is later (0x4C8A block, 2012-era housing furniture) but the object ties to no expansion, race or skill.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "3x1 addon, decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-003"
+ },
+ {
+  "slug": "velvet-chaise",
+  "name": "Dark Velvet Chaise",
+  "category": "FRN",
+  "subcategory": "Couches and Settees",
+  "parts": [
+   {
+    "id": "0x9C5F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9C5E",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A chaise longue upholstered in dark velvet, its single scrolled arm trimmed with copper. Made for languid afternoons.",
+  "era": {
+   "grade": "N",
+   "note": "A generic chaise longue; nothing in its look or lore belongs to a later expansion. The art was added long after 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "2-tile addon, decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-004"
+ },
+ {
+  "slug": "long-velvet-sofa",
+  "name": "Long Velvet Sofa",
+  "category": "FRN",
+  "subcategory": "Couches and Settees",
+  "parts": [
+   {
+    "id": "0x9C62",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9C60",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x9C61",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A three-seat sofa in dark velvet, curved at one end like a swan's neck. Fit for a manor's long hall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic three-seat sofa; no later-content theme. The art postdates 2000 by many years.",
+   "artEra": "unknown"
+  },
+  "impl": "addon",
+  "implNote": "3x1 addon, decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-005"
+ },
+ {
+  "slug": "iron-heart-chair",
+  "name": "Wrought-Iron Heart-Back Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0xA05C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA05E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "garden",
+   "elegant"
+  ],
+  "blurb": "A slim garden chair of black wrought iron, its back worked into a looping heart. Lovely beneath an arbour.",
+  "era": {
+   "grade": "N",
+   "note": "A generic wrought-iron garden chair. A plain object with no lore tie; its art is far later than April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-006"
+ },
+ {
+  "slug": "ribboned-linen-chair",
+  "name": "Ribboned Linen Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x9E8E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9E8F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A light wooden chair dressed in white linen and tied with a bow at the back, as for a feast or a wedding.",
+  "era": {
+   "grade": "N",
+   "note": "A generic festive dining chair with a linen cover. No expansion theme; the art is far later than 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-007"
+ },
+ {
+  "slug": "tall-linen-chair",
+  "name": "Tall-Backed Linen Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x9E90",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9E91",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "humble"
+  ],
+  "blurb": "A slender chair with a high linen back and a white cushioned seat, plain enough for any hall.",
+  "era": {
+   "grade": "N",
+   "note": "A generic linen-cushioned chair, no lore tie to later content. Art much later than April 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-008"
+ },
+ {
+  "slug": "folding-linen-chair",
+  "name": "Folding Linen Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x9E9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x9EA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "garden"
+  ],
+  "blurb": "A folding chair of pale wood with a white linen seat, easy to carry to a lawn or a long table.",
+  "era": {
+   "grade": "N",
+   "note": "A generic folding chair. Nothing in its look ties it to a later expansion; the art is far later than 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-009"
+ },
+ {
+  "slug": "antler-chair",
+  "name": "Antler-Crowned Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0xB2BF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xB2C0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "rustic",
+   "wilderness",
+   "noble"
+  ],
+  "blurb": "A grey-cushioned chair whose back is crowned with a spread of stag antlers. A huntsman's seat.",
+  "era": {
+   "grade": "N",
+   "note": "A hunting-lodge chair with antlers. Antlers and cushions are ordinary Britannian dressing; the art postdates 2000.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-010"
+ },
+ {
+  "slug": "gnarled-root-throne",
+  "name": "Gnarled Root Throne",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0xA586",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA587",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "arcane",
+   "exotic",
+   "noble"
+  ],
+  "blurb": "A throne of twisted black roots that glow amber in the grain, with a seat of dark leather. A hermit-mage's whim.",
+  "era": {
+   "grade": "N",
+   "note": "A fantasy throne of gnarled wood. No race, skill or expansion lore attaches to it; plausible wizardly dressing for 2000. Art much later.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-011"
+ },
+ {
+  "slug": "obsidian-bench",
+  "name": "Obsidian Slab Bench",
+  "category": "FRN",
+  "subcategory": "Benches and Settles",
+  "parts": [
+   {
+    "id": "0x3DFF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x3E00",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "dungeon",
+   "noble"
+  ],
+  "blurb": "A heavy bench cut from one dark slab, cold to sit on and impossible to move. Found in old crypts and older halls.",
+  "era": {
+   "grade": "N",
+   "note": "A plain stone bench in black slate. Its tile is used about 170 times in Ilshenar (2001) but the object is generic.",
+   "artEra": "UOR-LBR"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-012"
+ },
+ {
+  "slug": "canopied-linen-bed",
+  "name": "Canopied Linen Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C6A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C68",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4C69",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C6F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C6E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C70",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A copper-posted bed with a canopy frame and plain white linen. Light curtains were meant to hang from the rails.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "3-tile addon, decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-013"
+ },
+ {
+  "slug": "canopied-pillow-bed",
+  "name": "Canopied Pillow Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C6C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4C6D",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C72",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C71",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A tall-posted canopy bed heaped with grey pillows and a folded quilt, as comfortable as a manor can make it.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "3-tile addon, decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-014"
+ },
+ {
+  "slug": "crimson-canopied-bed",
+  "name": "Crimson Canopied Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C6B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x4C6C",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x4C6D",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 33,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C73",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x4C72",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x4C71",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The same tall canopy bed in a deep crimson quilt, with enough pillows for a baron and his dreams.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "crafted-variant",
+  "implNote": "3-tile addon; blanket hued on partial-hue pixels",
+  "variantOf": "canopied-pillow-bed",
+  "id": "CN-FRN-015"
+ },
+ {
+  "slug": "carved-rosewood-bed",
+  "name": "Carved Rosewood Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C78",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4C79",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C7A",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C7B",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A bed with a carved headboard crowned by turned posts and a footboard to match, dressed in pale linen.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "3-tile addon, decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-016"
+ },
+ {
+  "slug": "carved-oak-bed",
+  "name": "Carved Oak Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x4C74",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x4C75",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C7D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C7E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x4C7F",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A carved oak four-poster with a high scrollwork headboard, kept for the best guest room.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "addon",
+  "implNote": "3-tile addon, decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-017"
+ },
+ {
+  "slug": "azure-carved-bed",
+  "name": "Azure Carved Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C77",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 5
+   },
+   {
+    "id": "0x4C78",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 5
+   },
+   {
+    "id": "0x4C79",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 5
+   }
+  ],
+  "hue": 5,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C7C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     },
+     {
+      "id": "0x4C7A",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     },
+     {
+      "id": "0x4C7B",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 5
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The carved four-poster made up in a deep azure quilt, as if the sea had laid itself across the bed.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "crafted-variant",
+  "implNote": "3-tile addon; blanket hued on partial-hue pixels",
+  "variantOf": "carved-rosewood-bed",
+  "id": "CN-FRN-018"
+ },
+ {
+  "slug": "midnight-carved-bed",
+  "name": "Midnight Carved Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x4C76",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1109
+   },
+   {
+    "id": "0x4C74",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1109
+   },
+   {
+    "id": "0x4C75",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 1109
+   }
+  ],
+  "hue": 1109,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C7D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1109
+     },
+     {
+      "id": "0x4C7E",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1109
+     },
+     {
+      "id": "0x4C7F",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1109
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x3",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A carved oak bed under a quilt dyed the deep blue of the small hours.",
+  "era": {
+   "grade": "N",
+   "note": "A generic four-post bed. The art is from 2012-era housing furniture (0x4C68-0x4C7F), later than April 2000, but the object ties to no expansion.",
+   "artEra": "HS"
+  },
+  "impl": "crafted-variant",
+  "implNote": "3-tile addon; blanket hued on partial-hue pixels",
+  "variantOf": "carved-oak-bed",
+  "id": "CN-FRN-019"
+ },
+ {
+  "slug": "ankh-cushion",
+  "name": "Ankh Silk Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA0A0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA09F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "elegant"
+  ],
+  "blurb": "A green silk cushion worked with a golden ankh, the old sign of life and the spirit.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden ankh; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-020"
+ },
+ {
+  "slug": "crook-cushion",
+  "name": "Shepherd's Crook Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA24A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA24B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A green cushion embroidered with a pair of crossed crooks, a keepsake from a pastoral house.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered crossed crooks; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-021"
+ },
+ {
+  "slug": "sceptre-cushion",
+  "name": "Sceptre Silk Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA24E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA24F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "heraldic"
+  ],
+  "blurb": "A crimson silk cushion with a gold sceptre worked across it. Laid on a throne to be admired, not leaned on.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered gold sceptre; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-022"
+ },
+ {
+  "slug": "coin-cushion",
+  "name": "Golden Coin Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA250",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA251",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "treasure"
+  ],
+  "blurb": "A crimson cushion with a single embroidered gold coin, a merchant's idea of a parlour joke.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered gold coin; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-023"
+ },
+ {
+  "slug": "chalice-cushion",
+  "name": "Chalice Silk Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA491",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA492",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "sacred",
+   "elegant"
+  ],
+  "blurb": "A green silk cushion bearing a gold chalice, popular in houses of the faithful.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden chalice; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-024"
+ },
+ {
+  "slug": "crescent-moon-cushion",
+  "name": "Crescent Moon Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA495",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA496",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "elegant"
+  ],
+  "blurb": "A crimson cushion with a gold crescent moon, much favoured by stargazers and the sleepless.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden crescent moon; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-025"
+ },
+ {
+  "slug": "skull-cushion",
+  "name": "Death's-Head Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA497",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA498",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "elegant"
+  ],
+  "blurb": "A crimson cushion embroidered with a golden skull, for the kind of house that jokes about the grave.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden skull; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-026"
+ },
+ {
+  "slug": "sword-cushion",
+  "name": "Sword Silk Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA09E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA09D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A green silk cushion with a sword stitched in gold, a soldier's sentiment.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden sword; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-027"
+ },
+ {
+  "slug": "axe-cushion",
+  "name": "Battle-Axe Silk Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA09B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA09C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A crimson silk cushion with a gold battle-axe, to soften a veteran's armchair.",
+  "era": {
+   "grade": "N",
+   "note": "A throw cushion with an embroidered golden axe; ordinary soft furnishing with no tie to a later expansion. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-028"
+ },
+ {
+  "slug": "red-heart-cushion",
+  "name": "Red Heart Cushion",
+  "category": "FRN",
+  "subcategory": "Cushions",
+  "parts": [
+   {
+    "id": "0xA0A1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA0A2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "whimsical",
+   "elegant"
+  ],
+  "blurb": "A plump heart-shaped cushion in quilted red satin, a keepsake for a sweetheart's bench.",
+  "era": {
+   "grade": "N",
+   "note": "A heart-shaped plush cushion; ordinary soft furnishing, no expansion lore. The art is from the 2010s.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-029"
+ },
+ {
+  "slug": "elven-bed",
+  "name": "Elven Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x304D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x304C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x3050",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x3051",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A pale carved bed with green silk sheets and a headboard of woven wood, made the elven way.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "stock ElvenBed addon (2 tiles), decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-030"
+ },
+ {
+  "slug": "tall-elven-bed",
+  "name": "Tall Elven Bed",
+  "category": "FRN",
+  "subcategory": "Beds",
+  "parts": [
+   {
+    "id": "0x3054",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3053",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x3055",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x3052",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x3058",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x3057",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x3059",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x3056",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "rare",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A tall carved bed hung with crimson silk and trailed with vines and white blossoms.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "stock TallElvenBed addon (4 tiles), decor-only; strip sleeping/regen",
+  "variantOf": null,
+  "id": "CN-FRN-031"
+ },
+ {
+  "slug": "elven-loveseat",
+  "name": "Elven Loveseat",
+  "category": "FRN",
+  "subcategory": "Couches and Settees",
+  "parts": [
+   {
+    "id": "0x308A",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x308B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x3088",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x3089",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "1x2",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant"
+  ],
+  "blurb": "A slim two-seat sofa of pale carved wood, cushioned in red velvet with a gold stripe.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "addon",
+  "implNote": "stock ElvenLoveseat addon (2 tiles), decor-only",
+  "variantOf": null,
+  "id": "CN-FRN-032"
+ },
+ {
+  "slug": "ornate-elven-chair",
+  "name": "Ornate Elven Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x2DE3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DE4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "A delicate chair of pale carved wood with a green cushion, its back an open lattice of leaves.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no sitting",
+  "variantOf": null,
+  "id": "CN-FRN-033"
+ },
+ {
+  "slug": "big-elven-chair",
+  "name": "Big Elven Chair",
+  "category": "FRN",
+  "subcategory": "Chairs and Thrones",
+  "parts": [
+   {
+    "id": "0x2DEC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x2DED",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "noble"
+  ],
+  "blurb": "A broad armchair of curving golden wood with a deep red cushion, for an elder of the grove.",
+  "era": {
+   "grade": "N",
+   "note": "Elven furnishing from Mondain's Legacy (2005). The shard has cosmetic Elves (owner ruling 2026-10-08), so elven objects are in; no creature or Sidhe lore.",
+   "artEra": "ML"
+  },
+  "impl": "static",
+  "implNote": "static; decor-only, no sitting",
+  "variantOf": null,
+  "id": "CN-FRN-034"
+ }
+]

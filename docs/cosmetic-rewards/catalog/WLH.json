@@ -1,0 +1,2552 @@
+[
+ {
+  "slug": "portrait-lady-in-gold",
+  "name": "Portrait of a Lady in Gold",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0E9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EC8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A gilt-framed portrait of a lady in a golden gown, her face lit softly against a dim background.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=10/3). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class WomanPortrait1 (flippable 0x0E9F/0x0EC8); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-001"
+ },
+ {
+  "slug": "portrait-lady-in-azure",
+  "name": "Portrait of a Lady in Azure",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EC9",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A lady in a gown of blue and gold looks out from a heavy wooden frame.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=8/5). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class WomanPortrait2 (flippable 0x0EE7/0x0EC9); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-002"
+ },
+ {
+  "slug": "portrait-gentleman",
+  "name": "Portrait of a Gentleman",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A stern gentleman in dark clothes gazes from a deep green canvas, framed in russet wood.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used heavily in original Britannia dressing (map n=28/31). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class ManPortrait2 (flippable 0x0EA3/0x0EA4); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-003"
+ },
+ {
+  "slug": "portrait-lady-in-green",
+  "name": "Portrait of a Lady in Green",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A dark-haired lady in a gown of deep green velvet, painted with a quiet, knowing smile.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=13). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class LadyPortrait1 (0x0EA6); decor-only; north-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-004"
+ },
+ {
+  "slug": "portrait-lady-in-violet",
+  "name": "Portrait of a Lady in Violet",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall-west",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The same dark-haired lady, painted in a gown of rich violet, as if for a different season.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=6). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class LadyPortrait1 flipped (0x0EA5); decor-only; west-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-005"
+ },
+ {
+  "slug": "portrait-lady-in-crimson",
+  "name": "Portrait of a Lady in Crimson",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A pale lady in a gown of deep crimson sits for her portrait in a carved frame.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=17). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class LadyPortrait2 (0x0EA7); decor-only; north-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-006"
+ },
+ {
+  "slug": "portrait-lady-in-sapphire",
+  "name": "Portrait of a Lady in Sapphire",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA8",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall-west",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A lady in a gown of midnight blue, painted with a distant, thoughtful look.",
+  "era": {
+   "grade": "B",
+   "note": "Framed portrait tile used in original Britannia dressing (map n=25). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class LadyPortrait2 flipped (0x0EA8); decor-only; west-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-007"
+ },
+ {
+  "slug": "painting-dancing-figure",
+  "name": "Painting of a Dancing Figure",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0EA0",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A tall canvas in a narrow crimson frame, showing a figure caught mid-dance in swirling colours.",
+  "era": {
+   "grade": "B",
+   "note": "Large painting tile used in original Britannia dressing (map n=22). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "stock-class",
+  "implNote": "stock class LargePainting (0x0EA0); decor-only; north-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-008"
+ },
+ {
+  "slug": "painting-torn-canvas",
+  "name": "Torn Canvas in a Ruined Frame",
+  "category": "WLH",
+  "subcategory": "Portraits and Paintings",
+  "parts": [
+   {
+    "id": "0x0C2C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "dungeon",
+   "humble"
+  ],
+  "blurb": "A once-grand painting, slashed and stained, still showing a green-clad figure through the tears.",
+  "era": {
+   "grade": "B",
+   "note": "Ruined painting tile used in original Britannia dressing (map n=10). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; north-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-009"
+ },
+ {
+  "slug": "tapestry-slender",
+  "name": "Slender Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0EAA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EAB",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "2x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A narrow woven hanging of dusky grey wool, slung from a dark pole.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry tiles used in original Britannia dressing (map n=1/1). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock class Tapestry1N (0x0EAA + 0x0EAB at X+1); decor-only; north-wall only",
+  "variantOf": null,
+  "id": "CR-WLH-010"
+ },
+ {
+  "slug": "tapestry-patchwork",
+  "name": "Patchwork Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0EAC",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EAD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EAF",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EAE",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A broad tapestry of woven patches in red, green and cream, edged in a deep red border.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry tiles used in original Britannia dressing (map n=2/2, 5/6). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock classes Tapestry2N / Tapestry2W; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-011"
+ },
+ {
+  "slug": "tapestry-six-emblems",
+  "name": "Tapestry of Six Emblems",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0FD5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD6",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FD8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FD7",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "heraldic",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "Six woven emblems sit in dark panels on an olive ground, hung wide from a polished rod.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry tiles used in original Britannia dressing (map n=1/2, 4/1). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock classes Tapestry3N / Tapestry3W (offsets 2 tiles apart); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-012"
+ },
+ {
+  "slug": "tapestry-gold-and-green",
+  "name": "Gold-and-Green Floral Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0FD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FDC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDB",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "garden"
+  ],
+  "blurb": "Gold blossoms on a deep green ground, woven so closely the cloth seems to glow.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry tiles used in original Britannia dressing (map n=6/4, 1/1). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock classes Tapestry4N / Tapestry4W; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-013"
+ },
+ {
+  "slug": "tapestry-midnight-blossoms",
+  "name": "Midnight Blossom Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0FDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDE",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FE0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDF",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "garden"
+  ],
+  "blurb": "Pale blossoms drift across a ground as dark as a moonless night.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry tiles used in original Britannia dressing (map n=1/1, 2/2). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock classes Tapestry5N / Tapestry5W; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-014"
+ },
+ {
+  "slug": "tapestry-russet-landscape",
+  "name": "Russet Landscape Tapestry",
+  "category": "WLH",
+  "subcategory": "Tapestries",
+  "parts": [
+   {
+    "id": "0x0FE1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FE2",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FE4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FE3",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A tapestry of russet and rose, with a pale hem, showing a village scene in thread.",
+  "era": {
+   "grade": "C",
+   "note": "Tapestry tiles are original-world static art; this pair is used 0-1 times on the map. World-dressing art used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "stock classes Tapestry6N / Tapestry6W; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-015"
+ },
+ {
+  "slug": "red-velvet-drape",
+  "name": "Red Velvet Drape",
+  "category": "WLH",
+  "subcategory": "Drapes and Curtains",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A heavy drape of red velvet, falling in deep folds from ceiling to floor.",
+  "era": {
+   "grade": "B",
+   "note": "Drape tiles used in original Britannia dressing (map n=20/14). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; stock craftable-looking curtain graphic",
+  "variantOf": null,
+  "id": "CR-WLH-016"
+ },
+ {
+  "slug": "blue-velvet-drape",
+  "name": "Blue Velvet Drape",
+  "category": "WLH",
+  "subcategory": "Drapes and Curtains",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 93,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "The same heavy drape, dyed a rich ocean blue.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic drape tiles (map n=20/14), tinted blue. Hued dressing is a plausible rare; not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 93 on all parts",
+  "variantOf": "red-velvet-drape",
+  "id": "CR-WLH-017"
+ },
+ {
+  "slug": "green-velvet-drape",
+  "name": "Green Velvet Drape",
+  "category": "WLH",
+  "subcategory": "Drapes and Curtains",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 73,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "elegant",
+   "forest"
+  ],
+  "blurb": "The same heavy drape, dyed a deep forest green.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic drape tiles (map n=20/14), tinted green. Hued dressing is a plausible rare; not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 73 on all parts",
+  "variantOf": "red-velvet-drape",
+  "id": "CR-WLH-018"
+ },
+ {
+  "slug": "mourning-drape",
+  "name": "Mourning Drape",
+  "category": "WLH",
+  "subcategory": "Drapes and Curtains",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 1109,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "sacred",
+   "noble"
+  ],
+  "blurb": "A black velvet drape of the kind hung in halls of mourning.",
+  "era": {
+   "grade": "B",
+   "note": "Same classic drape tiles (map n=20/14), tinted black. Hued dressing is a plausible rare; not a documented item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; hue 1109 on all parts",
+  "variantOf": "red-velvet-drape",
+  "id": "CR-WLH-019"
+ },
+ {
+  "slug": "wall-clock",
+  "name": "Tall Wall Clock",
+  "category": "WLH",
+  "subcategory": "Clocks",
+  "parts": [
+   {
+    "id": "0x104C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x104B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "A tall wooden case with a pale clock face and a little window for the swinging weight.",
+  "era": {
+   "grade": "B",
+   "note": "Tinker-craftable clock in the classic tinkering block (map n=11/13). Clock date unverified; common Britannia dressing.",
+   "sources": []
+  },
+  "impl": "crafted-variant",
+  "implNote": "stock class Server.Items.Clock (flippable 0x104B/0x104C); decor-only; strip clock readout",
+  "variantOf": null,
+  "id": "CR-WLH-020"
+ },
+ {
+  "slug": "wall-clock-stopped",
+  "name": "Stopped Wall Clock",
+  "category": "WLH",
+  "subcategory": "Clocks",
+  "parts": [
+   {
+    "id": "0x0C1F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "west",
+  "placement": "wall-west",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "macabre",
+   "scholar",
+   "humble"
+  ],
+  "blurb": "An old clock gone green with damp, its hands long since stopped.",
+  "era": {
+   "grade": "B",
+   "note": "Broken-clock tile used in original Britannia dressing (map n=6). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only; west-wall piece only",
+  "variantOf": null,
+  "id": "CR-WLH-021"
+ },
+ {
+  "slug": "peg-board",
+  "name": "Peg Board",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C3A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "craft:carpentry"
+  ],
+  "blurb": "A plain plank studded with wooden pegs, for hanging whatever a household needs close to hand.",
+  "era": {
+   "grade": "B",
+   "note": "Peg board tiles used in original Britannia shop and house dressing (map n=23/26). Classic world-dressing art used as a reward, not a documented player item; no deed before 2001.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-022"
+ },
+ {
+  "slug": "hanging-dried-herbs",
+  "name": "Hanging Dried Herbs",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C42",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "garden",
+   "craft:alchemy"
+  ],
+  "blurb": "A bundle of brown herbs tied by the stems and hung to dry.",
+  "era": {
+   "grade": "B",
+   "note": "Dried herbs: classic shop-dressing item (map n=16/3), one of the NPC shop decorations players once carried off. World-dressing art.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-023"
+ },
+ {
+  "slug": "hanging-onion-string",
+  "name": "Hanging Onion String",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C3F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C40",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "tavern"
+  ],
+  "blurb": "A braided string of pale onions hung beside the hearth.",
+  "era": {
+   "grade": "B",
+   "note": "Dried onions: classic shop-dressing item (map n=9/10), one of the NPC shop decorations players once carried off.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-024"
+ },
+ {
+  "slug": "hanging-dried-flowers",
+  "name": "Hanging Dried Flowers",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C3B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C3C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic",
+   "garden"
+  ],
+  "blurb": "A drooping spray of dark flowers, hung upside down to dry.",
+  "era": {
+   "grade": "B",
+   "note": "Dried flowers: classic shop-dressing item (map n=13/21), one of the NPC shop decorations players once carried off.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-025"
+ },
+ {
+  "slug": "peg-rail-herbalist",
+  "name": "Herbalist's Peg Rail",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C39",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C41",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C3D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C3A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C3A",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0C42",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C3E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "scarce",
+  "tags": [
+   "garden",
+   "craft:alchemy",
+   "rustic"
+  ],
+  "blurb": "Two long peg boards hung with dried herbs and a garland of bright flowers: an herbalist's workroom wall.",
+  "era": {
+   "grade": "B",
+   "note": "Peg boards and dried herbs/flowers are classic shop dressing (map n=16-26). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two peg boards plus two hanging bundles; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-026"
+ },
+ {
+  "slug": "peg-rail-pantry",
+  "name": "Pantry Peg Rail",
+  "category": "WLH",
+  "subcategory": "Rustic Wall Pieces",
+  "parts": [
+   {
+    "id": "0x0C39",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C39",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C3F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C41",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0C3A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C3A",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0C40",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C42",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "2x1",
+  "tier": "uncommon",
+  "tags": [
+   "humble",
+   "rustic",
+   "tavern"
+  ],
+  "blurb": "Onions and herbs hung from a double peg rail to keep them dry and close to the kitchen.",
+  "era": {
+   "grade": "B",
+   "note": "Peg boards, dried onions and herbs are classic shop dressing (map n=9-26). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two peg boards plus two hanging bundles; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-027"
+ },
+ {
+  "slug": "ladies-gallery",
+  "name": "Ladies' Gallery",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0EA6",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9F",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EA5",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Three ladies in green, gold and crimson, hung shoulder to shoulder along one wall.",
+  "era": {
+   "grade": "B",
+   "note": "Three classic portrait tiles (map n=10-17) arranged as a gallery. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three single-tile portraits at consecutive offsets; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-028"
+ },
+ {
+  "slug": "hall-of-portraits",
+  "name": "Hall of Portraits",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0E9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EE7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EC8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC9",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A stern gentleman hung between a lady in gold and a lady in azure: a household's ancestors in a row.",
+  "era": {
+   "grade": "B",
+   "note": "Three classic portrait tiles (map n=3-28) arranged as a gallery. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three single-tile portraits at consecutive offsets; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-029"
+ },
+ {
+  "slug": "portrait-with-sconces",
+  "name": "Portrait Between Sconces",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x09FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 10
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 0,
+      "dz": 10
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 2,
+      "dz": 10
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A lady in crimson, lit from either side by a candle in an iron wall sconce.",
+  "era": {
+   "grade": "B",
+   "note": "Portrait and wall sconce tiles are classic Britannia dressing (map n=17 and sconce item decoration). Composed arrangement; light is cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "portrait plus two lit sconces (dz 10); lights are pure decoration",
+  "variantOf": null,
+  "id": "CR-WLH-030"
+ },
+ {
+  "slug": "curtained-portrait",
+  "name": "Curtained Portrait",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x160E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A gentleman's portrait framed between two long red drapes, like a window onto the past.",
+  "era": {
+   "grade": "B",
+   "note": "Portrait and drape tiles are classic Britannia dressing (map n=20-31). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "portrait plus two drapes; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-031"
+ },
+ {
+  "slug": "clock-and-portraits",
+  "name": "Parlour Wall",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0EA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x104C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x104B",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "3x1",
+  "tier": "uncommon",
+  "tags": [
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A tall clock flanked by two portraits: the wall of a well-ordered parlour.",
+  "era": {
+   "grade": "B",
+   "note": "Clock and portrait tiles are classic Britannia dressing (map n=11-31). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "clock plus two portraits; decor-only, strip clock function",
+  "variantOf": null,
+  "id": "CR-WLH-032"
+ },
+ {
+  "slug": "tapestry-between-portraits",
+  "name": "Tapestry Between Portraits",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0EA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD9",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDA",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EE7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDC",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDB",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC9",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "A gold-and-green tapestry with a gentleman on one side and a lady on the other.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry and portrait tiles are classic Britannia dressing (map n=1-31). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two-tile tapestry plus two portraits; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-033"
+ },
+ {
+  "slug": "great-hall-tapestries",
+  "name": "Great Hall Tapestries",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0FD9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDE",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EAC",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EAD",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FDC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDB",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0FE0",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDF",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0EAF",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x0EAE",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "6x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "heraldic",
+   "elegant"
+  ],
+  "blurb": "Three great tapestries hung side by side along a long wall, each with its own colours and pattern.",
+  "era": {
+   "grade": "B",
+   "note": "Three classic tapestry sets (map n=1-6) arranged as one hall wall. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three two-tile tapestries; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-034"
+ },
+ {
+  "slug": "hall-of-six-emblems",
+  "name": "Hall of Emblems",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0FD5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD6",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA3",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0FD8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FD7",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "heraldic"
+  ],
+  "blurb": "The great tapestry of six emblems, with a lady and a gentleman hung at its right hand.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry and portrait tiles are classic Britannia dressing (map n=1-31). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile tapestry plus two portraits; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-035"
+ },
+ {
+  "slug": "lit-tapestry-six-emblems",
+  "name": "Lit Hall of Emblems",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x09FD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x0FD5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 4,
+    "dy": 0,
+    "dz": 10
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 0,
+      "dz": 10
+     },
+     {
+      "id": "0x0FD8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0FD7",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 4,
+      "dz": 10
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "heraldic",
+   "scholar"
+  ],
+  "blurb": "The wide tapestry of six emblems, lit from both ends by iron wall sconces.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry (map n=1/2) and sconce tiles are classic Britannia dressing. Composed arrangement; light is cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three-tile tapestry plus two lit sconces (dz 10); lights are pure decoration",
+  "variantOf": null,
+  "id": "CR-WLH-036"
+ },
+ {
+  "slug": "hall-of-ancestors",
+  "name": "Hall of Ancestors",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x0EA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EE7",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA6",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC9",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA5",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC8",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Five generations of a proud family, frame to frame along a single wall.",
+  "era": {
+   "grade": "B",
+   "note": "Five classic portrait tiles (map n=8-28) arranged as a gallery. World-dressing art used as a reward.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "five single-tile portraits at consecutive offsets; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-037"
+ },
+ {
+  "slug": "velvet-gallery",
+  "name": "Velvet Gallery",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA6",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0E9F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x160E",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0EC8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "5x1",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant"
+  ],
+  "blurb": "Three ladies in green, gold and crimson, framed at either end by tall velvet drapes.",
+  "era": {
+   "grade": "B",
+   "note": "Portrait and drape tiles are classic Britannia dressing (map n=10-20). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "three portraits plus two drapes; decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-038"
+ },
+ {
+  "slug": "grand-gallery",
+  "name": "Grand Gallery",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x0FD9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FDA",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 5,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x160E",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 2,
+      "dz": 10
+     },
+     {
+      "id": "0x0FDC",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0FDB",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 5,
+      "dz": 10
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "8x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "heraldic"
+  ],
+  "blurb": "A gentleman, a gold-and-green tapestry and a lady in crimson, lit by sconces and framed by velvet drapes.",
+  "era": {
+   "grade": "B",
+   "note": "Portrait, tapestry, drape and sconce tiles are classic Britannia dressing (map n=4-28). Composed arrangement; light is cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "eight-tile wall: drapes, portraits, tapestry, two lit sconces (dz 10); lights are pure decoration",
+  "variantOf": null,
+  "id": "CR-WLH-039"
+ },
+ {
+  "slug": "great-hall-wall",
+  "name": "Great Hall Wall",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0FD6",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 4,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x0EA3",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x104C",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0EA7",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x09FD",
+    "dx": 8,
+    "dy": 0,
+    "dz": 10
+   },
+   {
+    "id": "0x160E",
+    "dx": 9,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0FD8",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0FD7",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 4,
+      "dz": 10
+     },
+     {
+      "id": "0x0EA4",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x104B",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x0EA8",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     },
+     {
+      "id": "0x0A02",
+      "dx": 0,
+      "dy": 8,
+      "dz": 10
+     },
+     {
+      "id": "0x160D",
+      "dx": 0,
+      "dy": 9,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "10x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "heraldic",
+   "scholar"
+  ],
+  "blurb": "A lord's hall wall: velvet drapes, a tapestry of emblems, two portraits and a tall clock between lit sconces.",
+  "era": {
+   "grade": "B",
+   "note": "Tapestry, portrait, clock, drape and sconce tiles are classic Britannia dressing (map n=1-28). Composed arrangement; light is cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "ten-tile wall of drapes, tapestry, portraits, clock and two lit sconces; lights and clock are pure decoration",
+  "variantOf": null,
+  "id": "CR-WLH-040"
+ },
+ {
+  "slug": "mourning-alcove",
+  "name": "Mourning Alcove",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1109
+   },
+   {
+    "id": "0x0C2C",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x160E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1109
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "macabre",
+   "sacred",
+   "dungeon"
+  ],
+  "blurb": "A slashed painting hung between two black drapes, as if a house had been left in grief.",
+  "era": {
+   "grade": "B",
+   "note": "Ruined-painting (map n=10) and drape (n=20) tiles are classic Britannia dressing; black tint is a plausible hue. Composed arrangement.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "torn painting plus two black drapes (hue 1109); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-041"
+ },
+ {
+  "slug": "dancer-alcove",
+  "name": "Dancer's Alcove",
+  "category": "WLH",
+  "subcategory": "Gallery Walls",
+  "parts": [
+   {
+    "id": "0x160E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 93
+   },
+   {
+    "id": "0x0EA0",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x160E",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0,
+    "hue": 93
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "placement": "wall-north",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "whimsical"
+  ],
+  "blurb": "A painting of a dancing figure framed by two ocean-blue drapes.",
+  "era": {
+   "grade": "B",
+   "note": "Painting (map n=22) and drape (n=20) tiles are classic Britannia dressing; blue tint is a plausible hue. Composed arrangement.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "painting plus two blue drapes (hue 93); decor-only",
+  "variantOf": null,
+  "id": "CR-WLH-042"
+ }
+]

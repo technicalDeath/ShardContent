@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold-Sink Pricing Sandbox</title>
+<style>
+:root{--bg:#f4f1ea;--panel:#fffdf8;--ink:#2a2620;--mute:#7b7468;--line:#d9d2c3;--accent:#8a5a1c;--input:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1c1a17;--panel:#27241f;--ink:#ece6d8;--mute:#a39b8b;--line:#3b362e;--accent:#e0a85a;--input:#1c1a17}}
+:root[data-theme="dark"]{--bg:#1c1a17;--panel:#27241f;--ink:#ece6d8;--mute:#a39b8b;--line:#3b362e;--accent:#e0a85a;--input:#1c1a17}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,Segoe UI,Arial,sans-serif}
+header{padding:18px 16px 6px;max-width:1200px;margin:0 auto}
+h1{margin:0 0 4px;font-size:22px}
+p.sub{margin:0;color:var(--mute)}
+main{max-width:1200px;margin:0 auto;padding:10px 16px 60px;display:grid;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px}
+.card h2{margin:0 0 10px;font-size:16px}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+label{display:block;font-size:12px;color:var(--mute)}
+input,select,button{font:inherit;color:var(--ink);background:var(--input);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+button{cursor:pointer;width:auto;background:var(--panel)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-top:10px}
+.big{font-size:28px;font-weight:700;color:var(--accent)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:12px;color:var(--mute);font-weight:600;position:sticky;top:0;background:var(--panel)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.thumb{width:64px;height:48px;display:flex;align-items:center;justify-content:center;background:#46484d;border-radius:4px}
+.thumb img{max-width:60px;max-height:44px;image-rendering:pixelated}
+.tag{display:inline-block;color:#fff;border-radius:9px;padding:0 8px;font-size:11px}
+.bar{height:8px;background:var(--accent);border-radius:4px;min-width:1px}
+td input.price{width:110px;text-align:right}
+.scroll{max-height:640px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+.hint{font-size:12px;color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+<h1>Gold-Sink Pricing Sandbox</h1>
+<p class="sub">The 100 house decorations of Design Proposal 3. Set a base price and a curve; every price, the cost of the whole set and each collection update. Nothing here is saved to the game: use the export when you have decided.</p>
+</header>
+<main>
+<section class="card">
+<h2>The curve</h2>
+<div class="controls" id="mults"></div>
+<div class="row">
+<div style="min-width:150px"><label for="base">Base price (the Common anchor), gp</label><input id="base" type="number" min="1" step="50" value="2000"></div>
+<div style="min-width:150px"><label for="cap">Price ceiling (dearest piece), gp</label><input id="cap" type="number" min="1" step="1000" value="80000"></div>
+<div style="min-width:150px"><label for="spread">Spread inside a rarity, +/- %</label><input id="spread" type="number" min="0" max="50" step="1" value="15"></div>
+<div style="min-width:150px"><label for="round">Round prices to</label><select id="round"><option>1</option><option>10</option><option selected>50</option><option>100</option><option>500</option><option>1000</option></select></div>
+<button data-preset="1,1.5,2.5,5,10,25">Flatter</button>
+<button data-preset="1,2,4,8,16,35" class="primary">Suggested</button>
+<button data-preset="1,3,6,12,24,40">Steeper</button>
+<button data-preset="1,3,8,22,60,150">Earlier draft (steep)</button>
+<button id="clearOverrides">Clear manual prices</button>
+</div>
+<p class="hint">price = base x rarity multiplier x (1 - spread + 2 x spread x position), position 0 for the plainest piece of a rarity and 1 for the coolest by coolness score, never above the ceiling. Type in a price box in the table to override one piece.</p>
+</section>
+
+<section class="grid2">
+<div class="card"><h2>Whole set (one of each)</h2><div class="big" id="total">-</div><div class="hint" id="totalNote"></div>
+<table id="tierTable"></table></div>
+<div class="card"><h2>The Britain Furnisher (version 1)</h2><div class="big" id="britainTotal">-</div><div class="hint" id="britainNote"></div><table id="britainTable"></table><h2 style="margin-top:14px">By wing (all 100)</h2><table id="wingTable"></table></div>
+</section>
+
+<section class="card"><h2>By collection</h2><table id="collTable"></table></section>
+
+<section class="card">
+<h2>All 100 pieces</h2>
+<div class="row" style="margin-top:0">
+<div><label for="fw">Wing</label><select id="fw"><option value="">All</option></select></div>
+<div><label for="ft">Rarity</label><select id="ft"><option value="">All</option></select></div>
+<div><label for="fs">Sold at</label><select id="fs"><option value="">All</option><option value="britain">Britain Furnisher</option><option value="later">Later vendors</option></select></div>
+<button id="csv" class="primary">Download prices (CSV)</button>
+<button id="json">Copy prices (JSON)</button>
+<span class="hint" id="msg"></span>
+</div>
+<div class="scroll" style="margin-top:10px"><table id="items"></table></div>
+</section>
+</main>
+<script>
+const DATA = __DATA__;
+const COLORS = {1:"#8a8f98",2:"#3fa34d",3:"#3a7bd5",4:"#a24bd6",5:"#e0a020",6:"#e0502a"};
+const PRESETS = {};
+let mult = Object.assign({}, DATA.units);
+const overrides = {};
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString("en-US");
+
+function buildMultInputs(){
+  const box = $("mults"); box.innerHTML = "";
+  for (const t of Object.keys(DATA.tiers)) {
+    const d = document.createElement("div");
+    d.innerHTML = '<label>' + t + ' ' + DATA.tiers[t] + ' (x)</label><input type="number" min="0" step="0.5" data-t="' + t + '" value="' + mult[t] + '">';
+    box.appendChild(d);
+  }
+  box.querySelectorAll("input").forEach(i => i.addEventListener("input", () => { mult[i.dataset.t] = parseFloat(i.value) || 0; render(); }));
+}
+function priceOf(it){
+  if (overrides[it.id] != null) return overrides[it.id];
+  const base = parseFloat($("base").value) || 0, sp = (parseFloat($("spread").value) || 0) / 100, step = parseInt($("round").value, 10) || 1;
+  const cap = parseFloat($("cap").value) || Infinity;
+  const raw = base * mult[it.tier] * (1 - sp + 2 * sp * it.positionInTier);
+  return Math.min(cap, Math.max(step, Math.round(raw / step) * step));
+}
+function group(keyFn, items){
+  const m = new Map();
+  for (const it of items) { const k = keyFn(it); const g = m.get(k) || {n:0, sum:0}; g.n++; g.sum += priceOf(it); m.set(k, g); }
+  return m;
+}
+function render(){
+  const items = DATA.items;
+  const total = items.reduce((s, it) => s + priceOf(it), 0);
+  $("total").textContent = fmt(total) + " gp";
+  const base = parseFloat($("base").value) || 0;
+  $("totalNote").textContent = base ? "about " + (total / base).toFixed(0) + " x the base price; average piece " + fmt(total / items.length) + " gp" : "";
+  const byTier = group(it => it.tier, items), max = Math.max(...[...byTier.values()].map(g => g.sum), 1);
+  let h = "<tr><th>Rarity</th><th class='n'>Pieces</th><th class='n'>Each (avg)</th><th class='n'>Subtotal</th><th></th></tr>";
+  for (const t of Object.keys(DATA.tiers)) { const g = byTier.get(+t) || {n:0,sum:0};
+    h += "<tr><td><span class='tag' style='background:" + COLORS[t] + "'>" + DATA.tiers[t] + "</span></td><td class='n'>" + g.n + "</td><td class='n'>" + fmt(g.n ? g.sum / g.n : 0) + "</td><td class='n'>" + fmt(g.sum) + "</td><td style='width:30%'><div class='bar' style='width:" + (100 * g.sum / max) + "%'></div></td></tr>"; }
+  $("tierTable").innerHTML = h;
+  const bi = items.filter(it => it.soldAt === "britain");
+  const bTotal = bi.reduce((s, it) => s + priceOf(it), 0);
+  $("britainTotal").textContent = fmt(bTotal) + " gp";
+  $("britainNote").textContent = bi.length + " pieces, one of each; the other " + (items.length - bi.length) + " wait for later vendors";
+  let hb = "<tr><th>Rarity</th><th class='n'>Pieces</th><th class='n'>Cheapest</th><th class='n'>Dearest</th></tr>";
+  for (const t of Object.keys(DATA.tiers)) { const ps = bi.filter(it => it.tier === +t).map(priceOf);
+    hb += "<tr><td><span class='tag' style='background:" + COLORS[t] + "'>" + DATA.tiers[t] + "</span></td><td class='n'>" + ps.length + "</td><td class='n'>" + (ps.length ? fmt(Math.min(...ps)) : "-") + "</td><td class='n'>" + (ps.length ? fmt(Math.max(...ps)) : "-") + "</td></tr>"; }
+  $("britainTable").innerHTML = hb;
+  const byWing = group(it => it.wing, items);
+  h = "<tr><th>Wing</th><th class='n'>Pieces</th><th class='n'>Whole wing</th></tr>";
+  for (const w of Object.keys(DATA.wings)) { const g = byWing.get(w) || {n:0,sum:0}; h += "<tr><td>" + DATA.wings[w] + "</td><td class='n'>" + g.n + "</td><td class='n'>" + fmt(g.sum) + "</td></tr>"; }
+  $("wingTable").innerHTML = h;
+  const byColl = group(it => it.collection, items);
+  h = "<tr><th>Collection</th><th class='n'>Pieces</th><th class='n'>Whole collection</th><th class='n'>Cheapest</th><th class='n'>Dearest</th></tr>";
+  const rows = [...byColl.entries()].sort((a, b) => b[1].sum - a[1].sum);
+  for (const [name, g] of rows) { const ps = items.filter(it => it.collection === name).map(priceOf);
+    h += "<tr><td>" + name + "</td><td class='n'>" + g.n + "</td><td class='n'>" + fmt(g.sum) + "</td><td class='n'>" + fmt(Math.min(...ps)) + "</td><td class='n'>" + fmt(Math.max(...ps)) + "</td></tr>"; }
+  $("collTable").innerHTML = h;
+  renderItems();
+}
+function renderItems(){
+  const fw = $("fw").value, ft = $("ft").value, fs = $("fs").value;
+  let h = "<tr><th></th><th class='n'>No.</th><th>Piece</th><th>Wing</th><th>Rarity</th><th class='n'>Position</th><th>Sold at</th><th class='n'>Price (gp)</th></tr>";
+  for (const it of DATA.items) {
+    if (fw && it.wing !== fw) continue; if (ft && String(it.tier) !== ft) continue; if (fs && it.soldAt !== fs) continue;
+    h += "<tr><td><div class='thumb'><img src='../" + it.image + "' alt='' loading='lazy'></div></td><td class='n'>" + it.no + "</td><td><b>" + it.name + "</b><br><span class='hint'>" + it.id + " &middot; " + it.collection + "</span></td><td>" + DATA.wings[it.wing] + "</td><td><span class='tag' style='background:" + COLORS[it.tier] + "'>" + it.tierName + "</span></td><td class='n'>" + it.positionInTier.toFixed(2) + "</td><td>" + (it.soldAt === "britain" ? "Britain" : "later") + "</td><td class='n'><input class='price' type='number' min='1' step='10' data-id='" + it.id + "' value='" + priceOf(it) + "'></td></tr>";
+  }
+  $("items").innerHTML = h;
+  $("items").querySelectorAll("input.price").forEach(i => i.addEventListener("change", () => { const v = parseFloat(i.value); if (v > 0) overrides[i.dataset.id] = v; else delete overrides[i.dataset.id]; render(); }));
+}
+function download(name, text, type){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+$("csv").addEventListener("click", () => {
+  const rows = ["no,catalogId,name,wing,rarity,soldAt,price"];
+  for (const it of DATA.items) rows.push([it.no, it.id, '"' + it.name.replace(/"/g, "") + '"', it.wing, it.tierName, it.soldAt, priceOf(it)].join(","));
+  download("gold-sink-prices.csv", rows.join("\n") + "\n", "text/csv");
+  $("msg").textContent = "Saved gold-sink-prices.csv";
+});
+$("json").addEventListener("click", async () => {
+  const o = {}; for (const it of DATA.items) o[it.id] = priceOf(it);
+  const text = JSON.stringify(o, null, 2);
+  try { await navigator.clipboard.writeText(text); $("msg").textContent = "Copied " + Object.keys(o).length + " prices"; } catch (e) { download("gold-sink-prices.json", text, "application/json"); $("msg").textContent = "Saved gold-sink-prices.json"; }
+});
+$("clearOverrides").addEventListener("click", () => { for (const k of Object.keys(overrides)) delete overrides[k]; render(); });
+document.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+  const v = b.dataset.preset.split(",").map(Number); Object.keys(DATA.tiers).forEach((t, i) => mult[t] = v[i]); buildMultInputs(); render();
+}));
+["base", "spread", "round", "cap"].forEach(id => $(id).addEventListener("input", render));
+for (const w of Object.keys(DATA.wings)) $("fw").insertAdjacentHTML("beforeend", "<option value='" + w + "'>" + DATA.wings[w] + "</option>");
+for (const t of Object.keys(DATA.tiers)) $("ft").insertAdjacentHTML("beforeend", "<option value='" + t + "'>" + t + " " + DATA.tiers[t] + "</option>");
+$("fw").addEventListener("change", renderItems); $("ft").addEventListener("change", renderItems); $("fs").addEventListener("change", renderItems);
+buildMultInputs(); render();
+</script>
+</body>
+</html>

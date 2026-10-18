@@ -1,0 +1,47 @@
+{
+ "pool": "expedition-trinsic",
+ "system": "expedition",
+ "notes": "Knightly heraldry for the paladin city: kite shields and shield-and-sword pairs on the wall, pennants and banner rows, a stone spear-bearer and a helm on its pedestal. Core pieces are the silver shields, pennant and helm; the rares are gold, tall and wide.",
+ "entries": [
+  {
+   "role": "core",
+   "id": "CR-ARM-007",
+   "why": "Silver star kite shield, plain knightly heraldry"
+  },
+  {
+   "role": "core",
+   "id": "CR-ARM-017",
+   "why": "Silver ankh shield with sword, a paladin's crest"
+  },
+  {
+   "role": "core",
+   "id": "CR-HER-020",
+   "why": "Red-and-silver pennant on its staff"
+  },
+  {
+   "role": "core",
+   "id": "CR-ARM-031",
+   "why": "A knight's helm on a marble pedestal"
+  },
+  {
+   "role": "rare",
+   "id": "CR-STA-017",
+   "why": "Stone Spear-Bearer, 2x2 statue for a hall or square"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-034",
+   "why": "Hall of Banners, six tiles of gold, silver and black"
+  },
+  {
+   "role": "rare",
+   "id": "CR-ARM-018",
+   "why": "Golden ankh shield and sword, the order's crest"
+  },
+  {
+   "role": "rare",
+   "id": "CR-HER-035",
+   "why": "Banner hung between a pair of gold shields, 4x1"
+  }
+ ]
+}

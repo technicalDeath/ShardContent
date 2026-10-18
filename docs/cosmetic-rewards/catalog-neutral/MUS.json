@@ -1,0 +1,1121 @@
+[
+ {
+  "slug": "ebonwood-harpsichord",
+  "name": "Ebonwood Harpsichord",
+  "category": "MUS",
+  "subcategory": "Keyboards",
+  "parts": [
+   {
+    "id": "0x63BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x63C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x63C2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x63C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x63C5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x63C8",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x63C7",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x63C9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A winged harpsichord in dark ebonwood with a gilt-edged keyboard, its lid propped open and a small stool set before it.",
+  "era": {
+   "grade": "N",
+   "note": "A plain period keyboard instrument with its own stool; no expansion, race or skill theme. Art is from the later decor block (2010s); the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "2x2 body plus 1-tile stool (east), 2x2 body plus stool (south); partially hueable",
+  "variantOf": null,
+  "id": "CN-MUS-001"
+ },
+ {
+  "slug": "harpsichord-and-long-bench",
+  "name": "Ebonwood Harpsichord and Bench",
+  "category": "MUS",
+  "subcategory": "Keyboards",
+  "parts": [
+   {
+    "id": "0x63BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x63C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x63BC",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x63BD",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x63C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x63C5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x63C8",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x63C7",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x63C3",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x63C4",
+      "dx": 1,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "extremely-rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "An ebonwood harpsichord with a long padded bench drawn up to the keys, set for a duet.",
+  "era": {
+   "grade": "N",
+   "note": "The same plain harpsichord with a two-seat bench instead of a stool; ordinary parlour furnishing. Art is from the later decor block (2010s); the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "2x2 body plus a two-tile bench; partially hueable",
+  "variantOf": "ebonwood-harpsichord",
+  "id": "CN-MUS-002"
+ },
+ {
+  "slug": "blue-and-gold-harp",
+  "name": "Blue and Gold Harp",
+  "category": "MUS",
+  "subcategory": "Harps",
+  "parts": [
+   {
+    "id": "0xA775",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xA776",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "whimsical"
+  ],
+  "blurb": "A graceful harp strung in silver, its blue frame banded with gold.",
+  "era": {
+   "grade": "N",
+   "note": "A plain concert harp with no elven or expansion styling. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-003"
+ },
+ {
+  "slug": "brass-trumpet-on-a-stand",
+  "name": "Brass Trumpet on a Stand",
+  "category": "MUS",
+  "subcategory": "Brass and strings",
+  "parts": [
+   {
+    "id": "0x4C3C",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C3D",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "martial",
+   "noble"
+  ],
+  "blurb": "A polished brass trumpet displayed on a round wooden stand, ready for a herald's fanfare.",
+  "era": {
+   "grade": "N",
+   "note": "A brass trumpet on a stand; a generic instrument with no theme. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-004"
+ },
+ {
+  "slug": "cello-on-a-stand",
+  "name": "Cello on a Stand",
+  "category": "MUS",
+  "subcategory": "Brass and strings",
+  "parts": [
+   {
+    "id": "0x4C3E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C3F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A honey-gold cello resting on an iron stand, its bow laid across the strings.",
+  "era": {
+   "grade": "N",
+   "note": "A cello on a stand; a generic stringed instrument with no theme. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-005"
+ },
+ {
+  "slug": "copper-service-bell",
+  "name": "Copper Service Bell",
+  "category": "MUS",
+  "subcategory": "Bells and gongs",
+  "parts": [
+   {
+    "id": "0x4C5A",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x4C5B",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "craft:tinkering"
+  ],
+  "blurb": "A domed copper bell on a dark wooden block, struck to summon the innkeeper.",
+  "era": {
+   "grade": "N",
+   "note": "A copper counter bell; ordinary tavern dressing. Stygian Abyss-era decor art, 2009 onward.",
+   "artEra": "SA"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-006"
+ },
+ {
+  "slug": "disc-gong-on-a-frame",
+  "name": "Disc Gong on a Frame",
+  "category": "MUS",
+  "subcategory": "Bells and gongs",
+  "parts": [
+   {
+    "id": "0xAA5E",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0xAA5F",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "sacred",
+   "exotic"
+  ],
+  "blurb": "A great enamelled disc hung in a polished wooden frame, its note rolling through the hall when struck.",
+  "era": {
+   "grade": "N",
+   "note": "A decorative disc gong in a wooden frame; the art is not Tokuno-styled and shows no later race or creature. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-007"
+ },
+ {
+  "slug": "ornate-music-box",
+  "name": "Ornate Music Box",
+  "category": "MUS",
+  "subcategory": "Scores and boxes",
+  "parts": [
+   {
+    "id": "0xB3CA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "whimsical",
+   "noble"
+  ],
+  "blurb": "A red-and-gold music box on three spindly legs, its lid raised on a tiny winding cylinder.",
+  "era": {
+   "grade": "N",
+   "note": "A generic wind-up music box. The tile carries the name of a later event, but the art itself is a plain parlour curio. Art is from the later decor block; the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "static",
+  "implNote": "animated, 8 frames (first frame)",
+  "variantOf": null,
+  "id": "CN-MUS-008"
+ },
+ {
+  "slug": "tall-music-stand",
+  "name": "Tall Music Stand",
+  "category": "MUS",
+  "subcategory": "Scores and boxes",
+  "parts": [
+   {
+    "id": "0x0EB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x0EB7",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "scholar",
+   "elegant",
+   "humble"
+  ],
+  "blurb": "A tall copper-and-wood stand with a tilted board for the score, set for rehearsal.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era music stand graphic (0x0EB5-0x0EB9); the main catalog uses other frames of the same family.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "one tile per facing",
+  "variantOf": null,
+  "id": "CN-MUS-009"
+ },
+ {
+  "slug": "carpeted-stage-dais",
+  "name": "Carpeted Stage Dais",
+  "category": "MUS",
+  "subcategory": "Stage dressing",
+  "parts": [
+   {
+    "id": "0x07BA",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x07BA",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x07BA",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x07BA",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x07BC",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x07BC",
+    "dx": 1,
+    "dy": 2,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x07BA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x07BA",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x07BA",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x07BA",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x07BB",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x07BB",
+      "dx": 2,
+      "dy": 1,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A low platform draped in deep red carpet with a short flight of steps, where the minstrels hold court.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era carpeted rostrum and steps (0x07BA-0x07BC, as in Britain's theatre); the main catalog left them unused. Nothing about them is later content.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "custom",
+  "implNote": "2x2 rostrum blocks 0x07BA plus two stair tiles (0x07BC south, 0x07BB east)",
+  "variantOf": null,
+  "id": "CN-MUS-010"
+ },
+ {
+  "slug": "cream-lute",
+  "name": "Cream Lute",
+  "category": "MUS",
+  "subcategory": "Brass and strings",
+  "parts": [
+   {
+    "id": "0x0EB4",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "elegant",
+   "humble",
+   "scholar"
+  ],
+  "blurb": "A pale, round-bellied lute left on the table, one string still humming.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era lute graphic (0x0EB4) that the main catalog left out in favour of its sibling 0x0EB3; a plain period instrument.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-MUS-011"
+ },
+ {
+  "slug": "hide-tambourine",
+  "name": "Hide Tambourine",
+  "category": "MUS",
+  "subcategory": "Brass and strings",
+  "parts": [
+   {
+    "id": "0x0E9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "surface",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "tavern",
+   "whimsical"
+  ],
+  "blurb": "A hoop of pale hide hung with little brass jingles, tossed on the bench after the last reel.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era tambourine graphic (0x0E9D), left out by the main catalog in favour of 0x0E9E; a plain period instrument.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "static",
+  "implNote": "static",
+  "variantOf": null,
+  "id": "CN-MUS-012"
+ },
+ {
+  "slug": "ivory-harpsichord",
+  "name": "Ivory Harpsichord",
+  "category": "MUS",
+  "subcategory": "Keyboards",
+  "parts": [
+   {
+    "id": "0x63BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x63BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x63C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x63C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1153
+   },
+   {
+    "id": "0x63C2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 1153
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x63C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1153
+     },
+     {
+      "id": "0x63C5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1153
+     },
+     {
+      "id": "0x63C8",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1153
+     },
+     {
+      "id": "0x63C7",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1153
+     },
+     {
+      "id": "0x63C9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1153
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A harpsichord lacquered the white of piano keys, its lid propped open over a matching stool.",
+  "era": {
+   "grade": "N",
+   "note": "The same plain period harpsichord in a different lacquer; no expansion, race or skill theme. Art is from the later decor block (2010s); the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "2x2 body plus stool, every part hued 1153 (partially hueable art)",
+  "variantOf": "ebonwood-harpsichord",
+  "id": "CN-MUS-013"
+ },
+ {
+  "slug": "crimson-lacquer-harpsichord",
+  "name": "Crimson Lacquer Harpsichord",
+  "category": "MUS",
+  "subcategory": "Keyboards",
+  "parts": [
+   {
+    "id": "0x63BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x63BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x63C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x63C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 33
+   },
+   {
+    "id": "0x63C2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 33
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x63C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x63C5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x63C8",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x63C7",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 33
+     },
+     {
+      "id": "0x63C9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 33
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "rare",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A harpsichord in glossy crimson lacquer with a gilt-edged keyboard and a stool to match.",
+  "era": {
+   "grade": "N",
+   "note": "The same plain period harpsichord in a different lacquer; no expansion, race or skill theme. Art is from the later decor block (2010s); the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "2x2 body plus stool, every part hued 33 (partially hueable art)",
+  "variantOf": "ebonwood-harpsichord",
+  "id": "CN-MUS-014"
+ },
+ {
+  "slug": "amber-harpsichord",
+  "name": "Amber Harpsichord",
+  "category": "MUS",
+  "subcategory": "Keyboards",
+  "parts": [
+   {
+    "id": "0x63BE",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1161
+   },
+   {
+    "id": "0x63BF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0,
+    "hue": 1161
+   },
+   {
+    "id": "0x63C0",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1161
+   },
+   {
+    "id": "0x63C1",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0,
+    "hue": 1161
+   },
+   {
+    "id": "0x63C2",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0,
+    "hue": 1161
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x63C6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1161
+     },
+     {
+      "id": "0x63C5",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1161
+     },
+     {
+      "id": "0x63C8",
+      "dx": 1,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1161
+     },
+     {
+      "id": "0x63C7",
+      "dx": 1,
+      "dy": 1,
+      "dz": 0,
+      "hue": 1161
+     },
+     {
+      "id": "0x63C9",
+      "dx": 2,
+      "dy": 0,
+      "dz": 0,
+      "hue": 1161
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "2x3",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "noble",
+   "scholar"
+  ],
+  "blurb": "A harpsichord stained a warm amber like old honey, its lid raised and a stool set before it.",
+  "era": {
+   "grade": "N",
+   "note": "The same plain period harpsichord in a different lacquer; no expansion, race or skill theme. Art is from the later decor block (2010s); the release date is unverified.",
+   "artEra": "unknown"
+  },
+  "impl": "custom",
+  "implNote": "2x2 body plus stool, every part hued 1161 (partially hueable art)",
+  "variantOf": "ebonwood-harpsichord",
+  "id": "CN-MUS-015"
+ },
+ {
+  "slug": "plank-stage-platform",
+  "name": "Plank Stage Platform",
+  "category": "MUS",
+  "subcategory": "Stage dressing",
+  "parts": [
+   {
+    "id": "0x07BD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x07BD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x07BD",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x07BD",
+    "dx": 0,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x07BD",
+    "dx": 1,
+    "dy": 1,
+    "dz": 0
+   },
+   {
+    "id": "0x07BD",
+    "dx": 2,
+    "dy": 1,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "3x2",
+  "tier": "uncommon",
+  "tags": [
+   "rustic",
+   "humble",
+   "tavern"
+  ],
+  "blurb": "A low stage of wide oak planks, scuffed by a thousand jigs and recitals.",
+  "era": {
+   "grade": "N",
+   "note": "Original-era plank platform graphic (0x07BD, well used in the original map); a plain wooden stage with no later content. The main catalog left it unused.",
+   "artEra": "T2A-or-earlier"
+  },
+  "impl": "custom",
+  "implNote": "3x2 of identical platform tiles; flat, walkable",
+  "variantOf": null,
+  "id": "CN-MUS-016"
+ },
+ {
+  "slug": "elven-conductors-podium",
+  "name": "Elven Conductor's Podium",
+  "category": "MUS",
+  "subcategory": "Scores and boxes",
+  "parts": [
+   {
+    "id": "0x2DDD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "east",
+  "altFacings": [
+   {
+    "facing": "south",
+    "parts": [
+     {
+      "id": "0x2DDE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elven",
+   "elegant",
+   "scholar"
+  ],
+  "blurb": "A tall, pale podium of carved wood with a tilted desk, where a conductor rests the score.",
+  "era": {
+   "grade": "N",
+   "note": "An elven podium (the elven-bookstand graphic); an elven object, in scope now that the shard has cosmetic Elves. Mondain's Legacy art, 2007.",
+   "artEra": "ML"
+  },
+  "impl": "stock-class",
+  "implNote": "Server.Items.ElvenPodium (flippable 0x2DDD/0x2DDE); decor-only",
+  "variantOf": null,
+  "id": "CN-MUS-017"
+ }
+]

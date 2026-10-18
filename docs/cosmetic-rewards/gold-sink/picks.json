@@ -1,0 +1,217 @@
+{
+  "note": "Hand-picked launch set for the gold-sink decoration vendors (design proposal 2026-10-08, furnishing curation pass the same day). Source of truth: edit this file, then run sinkplan.py build. Tier numbers: 1 Common, 2 Uncommon, 3 Scarce, 4 Rare, 5 Extremely Rare, 6 Wonder.",
+  "tiers": {
+    "1": "Common",
+    "2": "Uncommon",
+    "3": "Scarce",
+    "4": "Rare",
+    "5": "Extremely Rare",
+    "6": "Wonder"
+  },
+  "picks": {
+    "BEDCHAMBER": {
+      "1": [
+        "CR-FRN-038",
+        "CR-FRN-037"
+      ],
+      "2": [
+        "CN-FRN-016",
+        "CN-TBL-018",
+        "CR-TBL-037"
+      ],
+      "3": [
+        "CR-FRN-028",
+        "CN-TBL-011"
+      ],
+      "4": [
+        "CR-FRN-029",
+        "CN-FRN-015",
+        "CN-FRN-018"
+      ],
+      "5": [
+        "CN-FRN-019"
+      ]
+    },
+    "PARLOUR": {
+      "1": [
+        "CR-FRN-011",
+        "CN-FRN-008",
+        "CR-FRN-024"
+      ],
+      "2": [
+        "CR-FRN-010",
+        "CN-FRN-001",
+        "CN-MUS-005",
+        "CN-FRN-007"
+      ],
+      "3": [
+        "CR-FRN-026",
+        "CN-FRN-005",
+        "CN-MUS-003"
+      ],
+      "4": [
+        "CR-FRN-027",
+        "CN-FRN-003",
+        "CN-MUS-014"
+      ],
+      "5": [
+        "CN-FRN-011",
+        "CN-MUS-002"
+      ]
+    },
+    "DINING": {
+      "1": [
+        "CR-TBL-011",
+        "CN-ALC-006",
+        "CN-TBL-005"
+      ],
+      "2": [
+        "CR-FOO-039",
+        "CR-TBL-028",
+        "CN-FOO-022",
+        "CN-CMP-007"
+      ],
+      "3": [
+        "CR-TBL-013",
+        "CN-FOO-021",
+        "CR-FOO-031"
+      ],
+      "4": [
+        "CR-TBL-007",
+        "CN-FOO-016",
+        "CN-FOO-018"
+      ],
+      "5": [
+        "CR-TBL-022",
+        "CN-FOO-020"
+      ],
+      "6": [
+        "CR-TBL-010"
+      ]
+    },
+    "FLOORS": {
+      "1": [
+        "CR-RUG-002",
+        "CN-RUG-011"
+      ],
+      "2": [
+        "CR-RUG-010",
+        "CR-RUG-005",
+        "CR-RUG-009"
+      ],
+      "3": [
+        "CR-RUG-012",
+        "CR-RUG-014",
+        "CR-RUG-016"
+      ],
+      "4": [
+        "CR-RUG-019",
+        "CR-RUG-020",
+        "CN-RUG-001"
+      ],
+      "5": [
+        "CN-RUG-004"
+      ],
+      "6": [
+        "CR-RUG-023"
+      ]
+    },
+    "HEARTH": {
+      "1": [
+        "CN-LGT-020",
+        "CN-LGT-017"
+      ],
+      "2": [
+        "CN-LGT-015",
+        "CN-LGT-013",
+        "CN-LGT-016"
+      ],
+      "3": [
+        "CN-LGT-003",
+        "CN-LGT-011"
+      ],
+      "4": [
+        "CR-LGT-037",
+        "CN-LGT-014"
+      ],
+      "5": [
+        "CN-LGT-002"
+      ],
+      "6": [
+        "CN-LGT-001"
+      ]
+    },
+    "STUDY": {
+      "1": [
+        "CR-LIB-008",
+        "CN-LIB-015",
+        "CR-TBL-042"
+      ],
+      "2": [
+        "CR-LIB-011",
+        "CN-LIB-005",
+        "CN-LIB-016"
+      ],
+      "3": [
+        "CN-TBL-014",
+        "CN-TBL-016"
+      ],
+      "4": [
+        "CN-LIB-001",
+        "CN-LIB-013"
+      ],
+      "5": [
+        "CN-LIB-002"
+      ]
+    },
+    "WALLS": {
+      "1": [
+        "CR-WLH-017",
+        "CR-WLH-018"
+      ],
+      "2": [
+        "CR-WLH-013",
+        "CR-WLH-014",
+        "CN-WLH-008"
+      ],
+      "3": [
+        "CR-WLH-031",
+        "CR-WLH-030"
+      ],
+      "4": [
+        "CR-WLH-038",
+        "CR-WLH-037",
+        "CN-WLH-018"
+      ],
+      "5": [
+        "CN-WLH-017"
+      ],
+      "6": [
+        "CR-WLH-039"
+      ]
+    },
+    "CURIOS": {
+      "1": [
+        "CN-CUR-013",
+        "CR-CUR-008",
+        "CN-CUR-001"
+      ],
+      "2": [
+        "CN-CUR-003",
+        "CN-ANM-002",
+        "CN-FLO-006"
+      ],
+      "3": [
+        "CN-CUR-002",
+        "CN-FLO-009",
+        "CN-CUR-017"
+      ],
+      "4": [
+        "CN-CUR-004"
+      ],
+      "5": [
+        "CN-CUR-007"
+      ]
+    }
+  }
+}

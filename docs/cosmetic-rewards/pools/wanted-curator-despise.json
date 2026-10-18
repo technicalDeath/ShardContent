@@ -1,0 +1,42 @@
+{
+ "pool": "wanted-curator-despise",
+ "system": "wanted-curator",
+ "notes": "Despise is the dragon cave: heaped skulls and bones, dripstone, an ogre midden and a flowstone column. Price follows size, from a single bone heap up to the Great Pile of Skulls as the showpiece. The dragon's own hoard pieces are held by hot-zone-drops, so this set is the cave itself.",
+ "entries": [
+  {
+   "id": "CR-DNG-016",
+   "tier": "easy",
+   "why": "Heap of bones, the cave floor."
+  },
+  {
+   "id": "CR-DNG-017",
+   "tier": "easy",
+   "why": "Scattered bones flung wide by whatever fed here."
+  },
+  {
+   "id": "CR-DNG-046",
+   "tier": "easy",
+   "why": "A cavern rock that predates the dungeon."
+  },
+  {
+   "id": "CR-DNG-040",
+   "tier": "medium",
+   "why": "Ridge of stone teeth, a cave grown a jaw."
+  },
+  {
+   "id": "CR-DNG-037",
+   "tier": "medium",
+   "why": "Ogre and troll midden of bones and old boots."
+  },
+  {
+   "id": "CR-DNG-014",
+   "tier": "hard",
+   "why": "Tight skull heap, a lair's tally."
+  },
+  {
+   "id": "CR-DNG-013",
+   "tier": "boss",
+   "why": "Great Pile of Skulls, the dragon's grim showpiece."
+  }
+ ]
+}

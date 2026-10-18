@@ -1,0 +1,82 @@
+{
+ "pool": "seasonal-halloween",
+ "system": "seasonal",
+ "notes": "Hallows' Eve pool (season:halloween): grinning jack-o'-lanterns, a witch's cauldron over coals, webs, gibbets and a churchyard. IMPORTANT: the era evidence found no Halloween items documented before 2006, so seven of these fifteen pieces are era grade C (the whole SEA Halloween set) and the pool is flavour for an event rather than a period claim; the owner may prefer to drop or delay it. The grade B pieces (graves, coffins, sheeted chair, moth-eaten bed, black candle, stopped clock) do exist in the era as dungeon and graveyard dressing and reuse that art for the event. 'tier' is the catalog tier (the Row of Fine Graves is the single extremely-rare).",
+ "entries": [
+  {
+   "id": "CR-GRV-039",
+   "tier": "extremely-rare",
+   "why": "Row of fine graves, a graveyard showpiece"
+  },
+  {
+   "id": "CR-SEA-019",
+   "tier": "rare",
+   "why": "Cauldron bubbling over coals (grade C)"
+  },
+  {
+   "id": "CR-GRV-037",
+   "tier": "rare",
+   "why": "Churchyard row of crooked graves"
+  },
+  {
+   "id": "CR-SEA-032",
+   "tier": "scarce",
+   "why": "Jack-o'-lantern beside a candle-crowned skull (grade C)"
+  },
+  {
+   "id": "CR-SEA-021",
+   "tier": "scarce",
+   "why": "Skeleton hung in chains (grade C)"
+  },
+  {
+   "id": "CR-FRN-036",
+   "tier": "scarce",
+   "why": "Moth-eaten four-poster, a haunted house's bed"
+  },
+  {
+   "id": "CR-SEA-018",
+   "tier": "uncommon",
+   "why": "A single jack-o'-lantern (grade C)"
+  },
+  {
+   "id": "CR-SEA-031",
+   "tier": "uncommon",
+   "why": "Row of three jack-o'-lanterns (grade C)"
+  },
+  {
+   "id": "CR-SEA-033",
+   "tier": "uncommon",
+   "why": "Ghostlight lantern of cold pale glass (grade C)"
+  },
+  {
+   "id": "CR-FRN-012",
+   "tier": "uncommon",
+   "why": "Sheet-draped chair, a ghost's seat"
+  },
+  {
+   "id": "CR-WLH-021",
+   "tier": "uncommon",
+   "why": "Stopped wall clock in a haunted hall"
+  },
+  {
+   "id": "CR-LGT-004",
+   "tier": "uncommon",
+   "why": "Black candle for the darkest night"
+  },
+  {
+   "id": "CR-GRV-003",
+   "tier": "common",
+   "why": "Plain wooden coffin"
+  },
+  {
+   "id": "CR-GRV-040",
+   "tier": "common",
+   "why": "Freshly dug grave"
+  },
+  {
+   "id": "CR-SEA-020",
+   "tier": "common",
+   "why": "Spider web across a corner (grade C)"
+  }
+ ]
+}

@@ -1,0 +1,2766 @@
+[
+ {
+  "slug": "bakery-sign",
+  "name": "Bakery Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "town:britain",
+   "craft:cooking",
+   "humble"
+  ],
+  "blurb": "A round sign painted with two crusty loaves, swinging from a scrolled iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 12 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-001"
+ },
+ {
+  "slug": "tailor-sign",
+  "name": "Tailor's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "A purple board bearing a pair of silver shears, hung from a curled iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 15 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-002"
+ },
+ {
+  "slug": "tinker-sign",
+  "name": "Tinker's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:tinkering",
+   "humble"
+  ],
+  "blurb": "A maroon board marked with a tinker's tool, hung from an iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 6 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-003"
+ },
+ {
+  "slug": "butcher-sign",
+  "name": "Butcher's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:cooking",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A grey-bordered board showing a cleaver and a joint of meat, hung from a heavy wooden arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 14 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-004"
+ },
+ {
+  "slug": "healer-sign",
+  "name": "Healer's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "sacred",
+   "virtue:compassion",
+   "town:empath-abbey"
+  ],
+  "blurb": "A green board with a golden ankh, the mark of the healers, hung from an iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 17 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-005"
+ },
+ {
+  "slug": "mage-sign",
+  "name": "Mage's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAD",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "scholar",
+   "town:moonglow"
+  ],
+  "blurb": "A deep blue board bearing a bright crystal among sparks, hung from a scrolled iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 16 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-006"
+ },
+ {
+  "slug": "woodworker-sign",
+  "name": "Woodworker's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B99",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:carpentry",
+   "rustic",
+   "humble"
+  ],
+  "blurb": "A grey-blue board with a long-toothed saw, hung from a pale wooden arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 11 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-007"
+ },
+ {
+  "slug": "inn-sign",
+  "name": "Inn Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "rustic",
+   "town:britain"
+  ],
+  "blurb": "A round maroon sign with a lit candle, promising warmth and a bed for the night.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 22 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-008"
+ },
+ {
+  "slug": "shipwright-sign",
+  "name": "Shipwright's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "nautical",
+   "craft:carpentry",
+   "town:buccaneers-den"
+  ],
+  "blurb": "A round blue sign painted with a pale anchor, hung from an iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 7 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-009"
+ },
+ {
+  "slug": "stables-sign",
+  "name": "Stables Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:taming"
+  ],
+  "blurb": "A brown board hung with a pair of horseshoes, for the stable door.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 10 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-010"
+ },
+ {
+  "slug": "bard-sign",
+  "name": "Bard's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BBB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BBC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "tavern",
+   "whimsical"
+  ],
+  "blurb": "A round purple sign with a gilded lute, for the house of song.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 4 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-011"
+ },
+ {
+  "slug": "armourer-sign",
+  "name": "Armourer's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0BA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BBF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "martial",
+   "craft:blacksmithing"
+  ],
+  "blurb": "A round dark sign bearing a steel shield, hung from a plain iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 21 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-012"
+ },
+ {
+  "slug": "jeweler-sign",
+  "name": "Jeweler's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "treasure",
+   "noble"
+  ],
+  "blurb": "A brown board set with a glittering green gem, hung from an iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 8 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-013"
+ },
+ {
+  "slug": "tavern-sign",
+  "name": "Tavern Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "tavern",
+   "rustic"
+  ],
+  "blurb": "A round dark sign with a green bottle and a bunch of purple grapes: the tavern's promise.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 18 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-014"
+ },
+ {
+  "slug": "reagent-shop-sign",
+  "name": "Reagent Shop Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "arcane",
+   "craft:alchemy"
+  ],
+  "blurb": "A round maroon sign painted with a mortar and pestle, hung from an iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 7 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-015"
+ },
+ {
+  "slug": "blacksmith-sign",
+  "name": "Blacksmith's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:blacksmithing",
+   "mining",
+   "humble"
+  ],
+  "blurb": "A brown board showing hammer and anvil, hung from a stout iron bracket.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 13 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-016"
+ },
+ {
+  "slug": "painter-sign",
+  "name": "Painter's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC9",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BCA",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "scholar",
+   "whimsical"
+  ],
+  "blurb": "A round dark sign with an artist's palette of bright colours.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 3 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-017"
+ },
+ {
+  "slug": "provisioner-sign",
+  "name": "Provisioner's Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B99",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BCB",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BCC",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "craft:camping",
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A red-brown board with a burning torch, hung from a pale wooden arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 17 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-018"
+ },
+ {
+  "slug": "library-sign",
+  "name": "Library Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0BA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B96",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "scholar",
+   "elegant"
+  ],
+  "blurb": "A round sign painted with an open book and a scroll, for the house of learning.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 7 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-019"
+ },
+ {
+  "slug": "bank-sign",
+  "name": "Bank Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0BA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C0B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C0C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "treasure",
+   "noble",
+   "town:britain"
+  ],
+  "blurb": "A round green sign with a ring of gold coins, hung above the bank door.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 17 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-020"
+ },
+ {
+  "slug": "theatre-sign",
+  "name": "Theatre Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C0D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C0E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "elegant",
+   "whimsical",
+   "town:britain"
+  ],
+  "blurb": "A round purple sign painted with a pair of pale masks, for the playhouse.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 4 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-021"
+ },
+ {
+  "slug": "wooden-hanging-sign",
+  "name": "Plain Wooden Hanging Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B99",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BCF",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BD0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "humble",
+   "rustic"
+  ],
+  "blurb": "A blank wooden board scored with a few marks, hung from a pale wooden arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 17 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-022"
+ },
+ {
+  "slug": "brass-hanging-sign",
+  "name": "Brass Hanging Sign",
+  "category": "TWN",
+  "subcategory": "Shop signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BD1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BD2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "uncommon",
+  "tags": [
+   "elegant",
+   "noble"
+  ],
+  "blurb": "A polished brass board engraved with a line of script, hung from a scrolled iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 40 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-023"
+ },
+ {
+  "slug": "miners-guild-sign",
+  "name": "Miners' Guild Sign",
+  "category": "TWN",
+  "subcategory": "Guild signs",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BEE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "mining",
+   "craft:mining",
+   "martial"
+  ],
+  "blurb": "A guild board in blue and gold quarters, hung from a heavy wooden arm over a miners' hall.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 6 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-024"
+ },
+ {
+  "slug": "warriors-guild-sign",
+  "name": "Warriors' Guild Sign",
+  "category": "TWN",
+  "subcategory": "Guild signs",
+  "parts": [
+   {
+    "id": "0x0BA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C03",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C04",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "martial",
+   "heraldic"
+  ],
+  "blurb": "A guild board of blue and red with a cross, hung from a plain iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 5 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-025"
+ },
+ {
+  "slug": "tinkers-guild-sign",
+  "name": "Tinkers' Guild Sign",
+  "category": "TWN",
+  "subcategory": "Guild signs",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C01",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C02",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:tinkering",
+   "heraldic"
+  ],
+  "blurb": "A guild board in blue, gold and violet stripes, hung from an iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 3 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-026"
+ },
+ {
+  "slug": "mages-guild-sign",
+  "name": "Mages' Guild Sign",
+  "category": "TWN",
+  "subcategory": "Guild signs",
+  "parts": [
+   {
+    "id": "0x0B9D",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BE7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BE8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "arcane",
+   "heraldic",
+   "scholar"
+  ],
+  "blurb": "A guild board of teal and violet quarters, hung from a scrolled iron arm over a mages' hall.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 1 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-027"
+ },
+ {
+  "slug": "merchants-guild-sign",
+  "name": "Merchants' Guild Sign",
+  "category": "TWN",
+  "subcategory": "Guild signs",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C09",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0C0A",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "1x1",
+  "tier": "scarce",
+  "tags": [
+   "treasure",
+   "heraldic",
+   "noble"
+  ],
+  "blurb": "A guild board of green with a golden mark, hung from a scrolled iron arm.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphic placed 2 times in the original Britannia sign list (map dressing; house signs exist since 1997). Used as a reward, not a documented player item.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only hanging sign on a bracket (stock class Sign); strip house-sign function",
+  "variantOf": null,
+  "id": "CR-TWN-028"
+ },
+ {
+  "slug": "hitching-post",
+  "name": "Hitching Post",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x14E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14E8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor",
+  "footprint": "1x1",
+  "tier": "common",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:taming"
+  ],
+  "blurb": "A stout black post capped with a horse's head and ringed for reins.",
+  "era": {
+   "grade": "B",
+   "note": "Hitching post tile placed on the original map (n=2/3). World dressing used as a reward.",
+   "sources": []
+  },
+  "impl": "static",
+  "implNote": "decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-029"
+ },
+ {
+  "slug": "pair-of-hitching-posts",
+  "name": "Pair of Hitching Posts",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x14E7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14E8",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "south",
+  "altFacings": [
+   {
+    "facing": "east",
+    "parts": [
+     {
+      "id": "0x14E8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x14E7",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "floor-multi",
+  "footprint": "3x1",
+  "tier": "scarce",
+  "tags": [
+   "animal",
+   "rustic",
+   "craft:taming"
+  ],
+  "blurb": "Two black hitching posts a pace apart, with room for a horse between them.",
+  "era": {
+   "grade": "B",
+   "note": "Hitching post tiles placed on the original map (n=2/3). Composed pair of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "two posts two tiles apart; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-030"
+ },
+ {
+  "slug": "lamplit-crossing",
+  "name": "Lamplit Crossing",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x0B22",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B22",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B22",
+    "dx": 0,
+    "dy": 3,
+    "dz": 0
+   },
+   {
+    "id": "0x0B22",
+    "dx": 3,
+    "dy": 3,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "4x4",
+  "tier": "rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "town:britain"
+  ],
+  "blurb": "Four round-footed lamp posts marking the corners of a street crossing.",
+  "era": {
+   "grade": "B",
+   "note": "Lamp post tile placed on the original map (n=4); the 1997-10-29 notes add 'multiple lamps' to the map. World dressing used as a reward; light cosmetic.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four lamp posts at the corners of a 4x4 square; light cosmetic only",
+  "variantOf": null,
+  "id": "CR-TWN-031"
+ },
+ {
+  "slug": "grand-lamplit-square",
+  "name": "Grand Lamplit Square",
+  "category": "TWN",
+  "subcategory": "Street furniture",
+  "parts": [
+   {
+    "id": "0x0B24",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B24",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B24",
+    "dx": 0,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x0B24",
+    "dx": 4,
+    "dy": 4,
+    "dz": 0
+   },
+   {
+    "id": "0x14E7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x14E8",
+    "dx": 0,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14E7",
+    "dx": 4,
+    "dy": 2,
+    "dz": 0
+   },
+   {
+    "id": "0x14E8",
+    "dx": 2,
+    "dy": 4,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "none",
+  "placement": "floor-multi",
+  "footprint": "5x5",
+  "tier": "extremely-rare",
+  "tags": [
+   "noble",
+   "elegant",
+   "town:britain",
+   "animal"
+  ],
+  "blurb": "A town square for a proud house: four ornate lamp posts at the corners, a hitching post on every side.",
+  "era": {
+   "grade": "B",
+   "note": "Lamp post (n=1) and hitching post (n=2/3) tiles placed on the original map. Composed centrepiece; lights cosmetic only.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four ornate lamp posts plus four hitching posts around a 5x5 square; light cosmetic only",
+  "variantOf": null,
+  "id": "CR-TWN-032"
+ },
+ {
+  "slug": "merchants-row",
+  "name": "Merchant's Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAB",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA6",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAC",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "town:britain",
+   "humble",
+   "craft:cooking"
+  ],
+  "blurb": "Four shop signs in a row along a street wall: the baker, the tailor, the smith and the healer.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphics placed on the original Britannia sign list (n=7-15 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-033"
+ },
+ {
+  "slug": "guild-row",
+  "name": "Guild Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0B97",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BED",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA1",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C03",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9B",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C09",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9F",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0C01",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BEE",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0C04",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0C0A",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0C02",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "rare",
+  "tags": [
+   "heraldic",
+   "martial",
+   "town:britain"
+  ],
+  "blurb": "The Miners', Warriors', Merchants' and Tinkers' guild signs hung together on one wall.",
+  "era": {
+   "grade": "B",
+   "note": "Guild-sign graphics placed on the original Britannia sign list (n=1-8 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "four bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-034"
+ },
+ {
+  "slug": "scholars-row",
+  "name": "Scholars' Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0BA1",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B95",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAD",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC5",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9B",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA2",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B96",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAE",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC6",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0BCA",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "rare",
+  "tags": [
+   "scholar",
+   "arcane",
+   "elegant",
+   "town:moonglow"
+  ],
+  "blurb": "The library, the mage, the reagent shop and the painter hung together: a street for the learned.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphics placed on the original Britannia sign list (1-11 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "4 bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-035"
+ },
+ {
+  "slug": "great-shop-row",
+  "name": "Great Shop Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0B9B",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA3",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA5",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA9",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9B",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAB",
+    "dx": 4,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAD",
+    "dx": 5,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B99",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAF",
+    "dx": 6,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB3",
+    "dx": 7,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA4",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA6",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAA",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9C",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAC",
+      "dx": 0,
+      "dy": 4,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x0BAE",
+      "dx": 0,
+      "dy": 5,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9A",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB0",
+      "dx": 0,
+      "dy": 6,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB4",
+      "dx": 0,
+      "dy": 7,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "8x1",
+  "tier": "extremely-rare",
+  "tags": [
+   "town:britain",
+   "humble",
+   "craft:cooking",
+   "tavern"
+  ],
+  "blurb": "Eight shop signs side by side along a long wall: baker, tailor, tinker, butcher, healer, mage, woodworker and inn.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphics placed on the original Britannia sign list (1-15 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "8 bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-036"
+ },
+ {
+  "slug": "craftsmens-row",
+  "name": "Craftsmen's Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA7",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B99",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BAF",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9F",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC7",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B9D",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BA5",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA8",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9A",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB0",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC8",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B9E",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0BA6",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "craft:tinkering",
+   "craft:carpentry",
+   "craft:blacksmithing",
+   "craft:tailoring",
+   "humble"
+  ],
+  "blurb": "The tinker, woodworker, blacksmith and tailor hung in a line: the working street of a trading town.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphics placed on the original Britannia sign list (1-8 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "4 bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-037"
+ },
+ {
+  "slug": "harbour-row",
+  "name": "Harbour Row",
+  "category": "TWN",
+  "subcategory": "Shop rows",
+  "parts": [
+   {
+    "id": "0x0B9F",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB5",
+    "dx": 0,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB3",
+    "dx": 1,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BC3",
+    "dx": 2,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0B97",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   },
+   {
+    "id": "0x0BB7",
+    "dx": 3,
+    "dy": 0,
+    "dz": 0
+   }
+  ],
+  "hue": 0,
+  "facing": "north",
+  "altFacings": [
+   {
+    "facing": "west",
+    "parts": [
+     {
+      "id": "0x0BA0",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB6",
+      "dx": 0,
+      "dy": 0,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB4",
+      "dx": 0,
+      "dy": 1,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0BC4",
+      "dx": 0,
+      "dy": 2,
+      "dz": 0
+     },
+     {
+      "id": "0x0B98",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     },
+     {
+      "id": "0x0BB8",
+      "dx": 0,
+      "dy": 3,
+      "dz": 0
+     }
+    ]
+   }
+  ],
+  "placement": "wall",
+  "footprint": "4x1",
+  "tier": "scarce",
+  "tags": [
+   "nautical",
+   "tavern",
+   "rustic",
+   "town:buccaneers-den"
+  ],
+  "blurb": "Shipwright, inn, tavern and stables: the signs a traveller looks for on arriving at a port town.",
+  "era": {
+   "grade": "B",
+   "note": "Shop-sign graphics placed on the original Britannia sign list (3-11 each). Composed arrangement of world-dressing art.",
+   "sources": []
+  },
+  "impl": "addon",
+  "implNote": "4 bracket-and-sign pairs on consecutive tiles; decor-only",
+  "variantOf": null,
+  "id": "CR-TWN-038"
+ }
+]
