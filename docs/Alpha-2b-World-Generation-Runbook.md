@@ -37,14 +37,14 @@ From `ShardContent` with the server stopped:
 
 Deployment must verify the ModernUO pin and prepare:
 
-- 28 allowlisted decoration files;
+- 29 allowlisted decoration files (27 stock, plus the shard's `britain-bountyboards.cfg` and `greater-britain-flavor.cfg`);
 - 410 Felucca signs;
 - 353 teleporter definitions / 385 canonical placements;
-- 1,557 canonical spawners (1,546 stock-derived, plus the five Britain guildmasters and vendors added 2026-10-13, `Britain-Guildmasters-Evidence.md`, plus the six beginner hunting spawners in Britain's woods and fields added 2026-10-15, `britain-beginner-hunting.json`, `Britain-Beginner-Hunting-Evidence.md`);
+- 1,583 canonical spawners (1,546 stock-derived, plus the five Britain guildmasters and vendors added 2026-10-13, `Britain-Guildmasters-Evidence.md`, plus the six beginner hunting spawners in Britain's woods and fields added 2026-10-15, `britain-beginner-hunting.json`, `Britain-Beginner-Hunting-Evidence.md`, plus 26 new spawners from the greater-Britain spawn areas added 2026-10-18 (24 forest wildlife sites and two West Mountain Woods spawners; the same file re-themes 76 stock and shard spawners in place by GUID), `greater-britain-spawn-areas.json`, `Greater-Britain-Spawn-Areas-Evidence.md`);
 - the pinned `DoorGenerator.cs` source hash, 16 Felucca scan rectangles, four stock Britannia
   exclusions, and 1,345 exact door-frame placements.
 
-The preparation report currently contains 59 hashed inputs and 57 generated outputs (2026-10-15, with the beginner hunting file). Treat any
+The preparation report currently contains 61 hashed inputs and 59 generated outputs (2026-10-18, with the greater-Britain spawn areas and flavor files). Treat any
 count or hash change as a review event; do not update expectations merely to make a check pass.
 
 ## Clean generation
@@ -86,6 +86,8 @@ from `Configuration/furnishers.json` on every server start, but leaves an empty 
 `apply` still sees a fresh world. After generation, **restart once** (or run `[FurnisherRefresh`) and
 the vendor and the 229 display items appear; check `[FurnisherStatus`. They do not change any
 audited count, and the `rerun` leaves them alone (`Furnisher-Evidence.md`, case 21).
+
+**Re-themed spawners and the shard's flavor objects in a world in use (2026-10-18).** A spawner counts as exact only when its GUID, place, count and creature list (name, most at once, chance) all match the data, so `addspawners` also replaces a spawner whose creatures changed in the data and leaves everything else alone. On a disposable copy of the dev world it added 102 and replaced 76 stale ones, and the audit passed with 1,583 spawners (`Greater-Britain-Spawn-Areas-Evidence.md`). `[Alpha2bWorldGen adddecorations CONFIRM-UOR-FELUCCA` places the manifest's `customDecorationFiles` (the bounty board and the greater-Britain flavor objects) in a world in use; a piece already in place is skipped, so a second run places nothing, and stock decoration files are never touched (on the host: 316 placed, then 0).
 
 **Adding spawners to a world in use.** A world that was generated earlier and has players in it cannot be regenerated (`apply` refuses a non-fresh world). `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` adds just the canonical spawners it lacks (by GUID and place), through the same spawner pass, saves only when every canonical spawner is then exact, and prints the full audit; with nothing missing it does nothing. Snapshot `Saves` first, as for any change to the shared dev world. It is how the five Britain additions reached the dev world.
 

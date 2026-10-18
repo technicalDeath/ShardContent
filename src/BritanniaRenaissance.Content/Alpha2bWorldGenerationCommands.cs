@@ -22,8 +22,8 @@ public static class Alpha2bWorldGenerationCommands
         CommandSystem.Register("Alpha2bWorldGen", AccessLevel.Owner, OnCommand);
     }
 
-    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit|addspawners CONFIRM-UOR-FELUCCA")]
-    [Description("Previews, generates, or audits the era-reviewed Alpha 2b UOR/Felucca world baseline, or adds the canonical spawners an existing world lacks.")]
+    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit|addspawners CONFIRM-UOR-FELUCCA|adddecorations CONFIRM-UOR-FELUCCA")]
+    [Description("Previews, generates, or audits the era-reviewed Alpha 2b UOR/Felucca world baseline, or adds the canonical spawners or the shard's own decorations an existing world lacks.")]
     private static void OnCommand(CommandEventArgs e)
     {
         var operation = e.GetString(0).ToLowerInvariant();
@@ -42,9 +42,12 @@ public static class Alpha2bWorldGenerationCommands
             case "addspawners":
                 AddMissingSpawners(e);
                 break;
+            case "adddecorations":
+                AddShardDecorations(e);
+                break;
             default:
                 e.Mobile.SendMessage(
-                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit|addspawners {Confirmation}"
+                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit|addspawners {Confirmation}|adddecorations {Confirmation}"
                 );
                 break;
         }
@@ -193,16 +196,75 @@ public static class Alpha2bWorldGenerationCommands
     }
 
     /// <summary>
-    /// The canonical spawners (exactly as the audit counts them: the definition's GUID once, at the definition's place) that an existing world does not have. Everything already right is left
-    /// alone, which is the whole point: a world with players in it is not regenerated to gain a few spawners.
+    /// The canonical spawners (exactly as the audit counts them: the definition's GUID once, at the definition's place, spawning what the definition spawns) that an existing world does not
+    /// have. Everything already right is left alone, which is the whole point: a world with players in it is not regenerated to gain a few spawners. A spawner whose GUID and place are right
+    /// but whose creatures or count changed in the data (the greater-Britain spawn areas, 2026-10-18) counts as missing, so the spawner pass replaces it.
     /// </summary>
     private static List<SpawnerDto> MissingSpawners(IEnumerable<SpawnerDto> definitions, IReadOnlyDictionary<Guid, List<BaseSpawner>> existingByGuid) =>
-        definitions
-            .Where(
-                definition => !(existingByGuid.TryGetValue(definition.Guid, out var matches) && matches.Count == 1 &&
-                                matches[0].Location == definition.Location)
-            )
-            .ToList();
+        definitions.Where(definition => !IsExact(definition, existingByGuid)).ToList();
+
+    private static bool IsExact(SpawnerDto definition, IReadOnlyDictionary<Guid, List<BaseSpawner>> existingByGuid) =>
+        existingByGuid.TryGetValue(definition.Guid, out var matches) && matches.Count == 1 &&
+        matches[0].Location == definition.Location && SpawnsAsDefined(matches[0], definition);
+
+    /// <summary>The same count and the same creatures, each with the same most-at-once and chance (order does not matter).</summary>
+    private static bool SpawnsAsDefined(BaseSpawner spawner, SpawnerDto definition)
+    {
+        if (spawner.Count != definition.Count || spawner.Entries.Count != definition.EntryView.Count)
+        {
+            return false;
+        }
+
+        static string Key(string name, int maxCount, int probability) => $"{name.ToLowerInvariant()}|{maxCount}|{probability}";
+        var have = spawner.Entries.Select(entry => Key(entry.SpawnedName, entry.SpawnedMaxCount, entry.SpawnedProbability)).Order();
+        var want = definition.EntryView.Select(entry => Key(entry.SpawnedName, entry.SpawnedMaxCount, entry.SpawnedProbability)).Order();
+        return have.SequenceEqual(want);
+    }
+
+    /// <summary>
+    /// <c>[Alpha2bWorldGen adddecorations CONFIRM-UOR-FELUCCA</c>: for a world in use, places the shard's own decoration files (the manifest's <c>customDecorationFiles</c>: Britain's bounty
+    /// board, the greater-Britain flavor objects). The decoration pass skips a piece that is already in place, so running it again adds nothing; stock decoration files are not touched.
+    /// </summary>
+    private static void AddShardDecorations(CommandEventArgs e)
+    {
+        var from = e.Mobile;
+
+        if (e.GetString(1) != Confirmation || e.Length > 2)
+        {
+            from.SendMessage($"Refusing without the exact confirmation token and nothing after it: {Confirmation}");
+            return;
+        }
+
+        if (World.Saving)
+        {
+            from.SendMessage("Refusing while a world save is active.");
+            return;
+        }
+
+        if (!TryLoadInputs(from, out var inputs))
+        {
+            return;
+        }
+
+        var custom = inputs.Manifest.CustomDecorationFiles.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var files = inputs.DecorationFiles.Where(file => custom.Contains(Path.GetFileName(file))).ToArray();
+
+        try
+        {
+            foreach (var result in GenerateDecorations(files))
+            {
+                from.SendMessage($"Alpha 2b: {result.Source}: placed {result.Created}, already in place {result.Skipped}.");
+            }
+        }
+        catch (Exception ex)
+        {
+            from.SendMessage($"Alpha 2b adding decorations failed: {ex.GetType().Name}: {ex.Message}. The world was not saved; stop the server without saving.");
+            return;
+        }
+
+        AutoSave.Save();
+        from.SendMessage("Alpha 2b: the shard's decorations are in place. Saved.");
+    }
 
     /// <summary>
     /// <c>[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA</c>: for a world that was generated earlier and is in use, adds the canonical spawners it lacks (for example ones added to the
@@ -641,10 +703,7 @@ public static class Alpha2bWorldGenerationCommands
         }
 
         var spawnersByGuid = CountSpawnersByGuid();
-        var spawnersFound = inputs.Spawners.Count(
-            definition => spawnersByGuid.TryGetValue(definition.Guid, out var matches) &&
-                          matches.Count == 1 && matches[0].Location == definition.Location
-        );
+        var spawnersFound = inputs.Spawners.Count(definition => IsExact(definition, spawnersByGuid));
         if (spawnersFound != inputs.Spawners.Count)
         {
             var duplicates = inputs.Spawners.Count(

@@ -109,6 +109,7 @@ public static class ShardRulesConfiguration
         StaminaReliefService.Validate(rules.StaminaRelief, errors);
         DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
         HousePricing.Validate(rules.HousePricing, errors);
+        WorldSeason.Validate(rules.WorldSeason, errors);
         FastSkillStart.Validate("fastHealing", rules.FastHealing, errors);
         FastSkillStart.Validate("fastMeditation", rules.FastMeditation, errors);
         ExtraVendorBuyers.Validate(rules.ExtraVendorBuyers, errors);
@@ -459,6 +460,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("housePricing")]
     public HousePricingRules HousePricing { get; set; } = new();
+
+    [JsonPropertyName("worldSeason")]
+    public WorldSeasonRules WorldSeason { get; set; } = new();
 
     [JsonPropertyName("fastHealing")]
     public FastSkillStartRules FastHealing { get; set; } = new();

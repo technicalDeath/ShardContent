@@ -1,0 +1,1028 @@
+{
+ "about": "Flavor objects (owner, 2026-10-18): single small standalone pieces scattered through each spawn area, each on clean open ground, never composed into scenes (the scenes were dropped as illogical to look at). No piece may share its art with anything a player can own or pick up (check_deco.py; 'allowed' lists the justified hits), only single-tile art from the classic set, nothing that needs a wall, a tree or a companion piece. 'themes' and 'assemblies' are the dropped scene design, kept for reference.",
+ "themes": {
+  "deer-and-critters": {
+   "scene": "Woodland clearing",
+   "story": "Cut logs left by a woodcutter, a fallen trunk and old stumps where game grazes.",
+   "anchor": [
+    [
+     "log pile",
+     "0x1BDF"
+    ]
+   ],
+   "supports": [
+    [
+     "fallen log",
+     "0x0CF6"
+    ],
+    [
+     "fern",
+     "0x0CA2"
+    ],
+    [
+     "fern",
+     "0x0CA0"
+    ]
+   ],
+   "accents": [
+    [
+     "mushrooms",
+     "0x0D0D"
+    ],
+    [
+     "nest",
+     "0x1AD5"
+    ]
+   ]
+  },
+  "farm-vermin": {
+   "scene": "Neglected field edge",
+   "story": "A farm corner gone to rats: spilled hay, a split barrel, a broken chair.",
+   "anchor": [
+    [
+     "broken barrel",
+     "0x1DB3"
+    ]
+   ],
+   "supports": [
+    [
+     "spilled hay",
+     "0x1036"
+    ],
+    [
+     "spilled hay",
+     "0x1037"
+    ],
+    [
+     "broken chair",
+     "0x0C10"
+    ]
+   ],
+   "accents": [
+    [
+     "debris",
+     "0x0C2F"
+    ],
+    [
+     "fence run",
+     "0x0836"
+    ]
+   ]
+  },
+  "wild-pasture": {
+   "scene": "Drovers' watering place",
+   "story": "A trough and scattered fodder where drovers once rested their herds.",
+   "anchor": [
+    [
+     "water trough",
+     "0x0B41"
+    ]
+   ],
+   "supports": [
+    [
+     "spilled hay",
+     "0x1036"
+    ],
+    [
+     "fence run",
+     "0x0836"
+    ]
+   ],
+   "accents": [
+    [
+     "rock",
+     "0x1368"
+    ],
+    [
+     "grasses",
+     "0x0CBB"
+    ]
+   ]
+  },
+  "lesser-dead": {
+   "scene": "Overgrown graves",
+   "story": "Paupers' graves outside the walled yard; the dead do not rest.",
+   "anchor": [
+    [
+     "gravestone",
+     "0x0EDB"
+    ]
+   ],
+   "supports": [
+    [
+     "gravestone and grave",
+     "0x0ED8"
+    ],
+    [
+     "grave mound",
+     "0x0EE0"
+    ],
+    [
+     "grave",
+     "0x0ED3"
+    ]
+   ],
+   "accents": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "jaw bone",
+     "0x1B13"
+    ]
+   ]
+  },
+  "wolf-meadow": {
+   "scene": "Wolves' kill",
+   "story": "Blood and scattered bones where the pack ate.",
+   "anchor": [
+    [
+     "blood",
+     "0x122A"
+    ]
+   ],
+   "supports": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "jaw bone",
+     "0x1B14"
+    ],
+    [
+     "rocks",
+     "0x136A"
+    ]
+   ],
+   "accents": [
+    [
+     "fallen log",
+     "0x0CF3"
+    ],
+    [
+     "fern",
+     "0x0CA2"
+    ]
+   ]
+  },
+  "orc-band": {
+   "scene": "Orc camp",
+   "story": "A cooking fire by a boulder, smashed plunder and the bones of the last meal.",
+   "anchor": [
+    [
+     "campfire",
+     "0x0DE3"
+    ]
+   ],
+   "supports": [
+    [
+     "boulder",
+     "0x1352"
+    ],
+    [
+     "broken barrel",
+     "0x1DB4"
+    ],
+    [
+     "jaw bone",
+     "0x1B13"
+    ]
+   ],
+   "accents": [
+    [
+     "debris",
+     "0x0C2E"
+    ],
+    [
+     "bone",
+     "0x1B11"
+    ]
+   ]
+  },
+  "ratman-warren": {
+   "scene": "Scavengers' midden",
+   "story": "Ratmen drag rubbish home: splintered wood, broken furniture, gnawed bones.",
+   "anchor": [
+    [
+     "debris",
+     "0x0C2D"
+    ]
+   ],
+   "supports": [
+    [
+     "broken furniture",
+     "0x0C24"
+    ],
+    [
+     "broken barrel",
+     "0x1DB5"
+    ],
+    [
+     "jaw bone",
+     "0x1B14"
+    ]
+   ],
+   "accents": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "broken chair",
+     "0x0C11"
+    ]
+   ]
+  },
+  "lizardman-marsh": {
+   "scene": "Reed-bed hunting spot",
+   "story": "Lizardmen wait in the reeds by the mud.",
+   "anchor": [
+    [
+     "cattails",
+     "0x0CB7"
+    ]
+   ],
+   "supports": [
+    [
+     "cattails",
+     "0x0CB8"
+    ],
+    [
+     "mud",
+     "0x1E01"
+    ],
+    [
+     "grasses",
+     "0x0CBB"
+    ]
+   ],
+   "accents": [
+    [
+     "jaw bone",
+     "0x1B13"
+    ],
+    [
+     "fern",
+     "0x0C9F"
+    ]
+   ]
+  },
+  "woodland-predators": {
+   "scene": "Bear's den",
+   "story": "A boulder den with gnawed bones outside it.",
+   "anchor": [
+    [
+     "boulder",
+     "0x1350"
+    ]
+   ],
+   "supports": [
+    [
+     "fallen log",
+     "0x0CF3"
+    ],
+    [
+     "bone",
+     "0x1B11"
+    ]
+   ],
+   "accents": [
+    [
+     "fern",
+     "0x0CA1"
+    ],
+    [
+     "grasses",
+     "0x0CBA"
+    ]
+   ]
+  },
+  "troll-hills": {
+   "scene": "Giant's larder",
+   "story": "Where the hill giants eat: a heap of skulls by a great stone.",
+   "anchor": [
+    [
+     "heap of skulls",
+     "0x1AD8"
+    ]
+   ],
+   "supports": [
+    [
+     "boulder",
+     "0x11B6"
+    ],
+    [
+     "blood",
+     "0x122B"
+    ]
+   ],
+   "accents": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "rocks",
+     "0x136A"
+    ]
+   ]
+  },
+  "gargoyle-heights": {
+   "scene": "Fallen shrine",
+   "story": "Broken stonework from an older age, where the gargoyles roost.",
+   "anchor": [
+    [
+     "stone column",
+     "0x0077"
+    ]
+   ],
+   "supports": [
+    [
+     "ruined wall",
+     "0x0278"
+    ],
+    [
+     "ruined wall",
+     "0x0277"
+    ],
+    [
+     "stone pillar",
+     "0x00DB"
+    ]
+   ],
+   "accents": [
+    [
+     "rocks",
+     "0x136A"
+    ],
+    [
+     "rock",
+     "0x1369"
+    ]
+   ]
+  },
+  "harpy-crags": {
+   "scene": "Harpy nests",
+   "story": "Nests among the rocks and picked bones.",
+   "anchor": [
+    [
+     "nest with eggs",
+     "0x1AD4"
+    ]
+   ],
+   "supports": [
+    [
+     "nest",
+     "0x1AD5"
+    ],
+    [
+     "boulder",
+     "0x1352"
+    ],
+    [
+     "rock",
+     "0x1368"
+    ]
+   ],
+   "accents": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "jaw bone",
+     "0x1B14"
+    ]
+   ]
+  },
+  "deep-forest": {
+   "scene": "Webbed hollow",
+   "story": "Webs and an egg case between the trees.",
+   "anchor": [
+    [
+     "small web",
+     "0x10D2"
+    ]
+   ],
+   "supports": [
+    [
+     "small web",
+     "0x10D3"
+    ],
+    [
+     "egg case",
+     "0x10D9"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ]
+   ],
+   "accents": [
+    [
+     "mushroom",
+     "0x0D17"
+    ],
+    [
+     "fern",
+     "0x0CA1"
+    ]
+   ]
+  },
+  "haunted-wood": {
+   "scene": "Forgotten burial",
+   "story": "Old graves lost in the wood, where armoured dead walk.",
+   "anchor": [
+    [
+     "gravestone",
+     "0x0ED5"
+    ]
+   ],
+   "supports": [
+    [
+     "gravestone and grave",
+     "0x0ED8"
+    ],
+    [
+     "grave mound",
+     "0x0EE0"
+    ],
+    [
+     "grave",
+     "0x0ED3"
+    ]
+   ],
+   "accents": [
+    [
+     "mushrooms",
+     "0x0D0C"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ]
+   ]
+  },
+  "wisp-glade": {
+   "scene": "Mushroom ring and standing stone",
+   "story": "A fairy ring of mushrooms round a standing stone, where the wisps dance.",
+   "anchor": [
+    [
+     "stone pillar",
+     "0x00DB"
+    ]
+   ],
+   "supports": [
+    [
+     "mushrooms",
+     "0x0D0C"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ],
+    [
+     "mushrooms",
+     "0x0D10"
+    ]
+   ],
+   "accents": [
+    [
+     "fern",
+     "0x0C9F"
+    ],
+    [
+     "rock",
+     "0x1369"
+    ]
+   ]
+  },
+  "barrow-dead": {
+   "scene": "Broken crypt",
+   "story": "A tumbled crypt wall and old graves just north of the walled yard; something stronger than a zombie walks here.",
+   "anchor": [
+    [
+     "ruined wall",
+     "0x0277"
+    ]
+   ],
+   "supports": [
+    [
+     "gravestone",
+     "0x0EDB"
+    ],
+    [
+     "grave mound",
+     "0x0EE0"
+    ],
+    [
+     "gravestone and grave",
+     "0x0ED8"
+    ]
+   ],
+   "accents": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "jaw bone",
+     "0x1B14"
+    ]
+   ]
+  }
+ },
+ "allowed": {
+  "0x0DE3": "campfire: never movable; the stock orc and lizardman camps use the same fire",
+  "0x0B41": "water trough: a house addon of later eras, not obtainable here",
+  "0x0B42": "water trough, second half",
+  "0x0ED3": "grave mound: only a digging target, not an item",
+  "0x0EE0": "grave mound: only a digging target, not an item",
+  "0x122A": "blood: combat splatter, never picked up",
+  "0x122B": "blood: combat splatter, never picked up",
+  "0x1350": "boulder: AOS plague beast internals, not in this era",
+  "0x1351": "boulder: AOS plague beast internals, not in this era",
+  "0x0C24": "ruined construction decoration",
+  "0x0C2D": "ruined construction decoration",
+  "0x0C2E": "ruined construction decoration",
+  "0x0C2F": "ruined construction decoration",
+  "0x0C10": "ruined construction decoration",
+  "0x0C11": "ruined construction decoration",
+  "0x03B8": "number collision in monster code, not an item",
+  "0x0C9F": "plant-system art (later eras), not an item here",
+  "0x0CB7": "plant-system art (later eras), not an item here",
+  "0x10D9": "Doom decoration (later era), not obtainable here",
+  "0x0EDF": "grave mound piece: only a digging target, not an item",
+  "0x0EE1": "grave mound piece: only a digging target, not an item",
+  "0x0EE2": "grave mound piece: only a digging target, not an item",
+  "0x134F": "boulder piece: AOS plague beast internals, not in this era"
+ },
+ "assemblies": {
+  "0x0CF6": {
+   "name": "fallen log (long)",
+   "parts": [
+    [
+     -1,
+     0,
+     "0x0CF5"
+    ],
+    [
+     0,
+     0,
+     "0x0CF6"
+    ],
+    [
+     1,
+     0,
+     "0x0CF7"
+    ]
+   ]
+  },
+  "0x0CF3": {
+   "name": "fallen log (short)",
+   "parts": [
+    [
+     0,
+     0,
+     "0x0CF3"
+    ],
+    [
+     0,
+     1,
+     "0x0CF4"
+    ]
+   ]
+  },
+  "0x0B41": {
+   "name": "water trough",
+   "parts": [
+    [
+     0,
+     0,
+     "0x0B41"
+    ],
+    [
+     0,
+     1,
+     "0x0B42"
+    ]
+   ]
+  },
+  "0x1350": {
+   "name": "boulder",
+   "parts": [
+    [
+     -1,
+     0,
+     "0x134F"
+    ],
+    [
+     0,
+     0,
+     "0x1350"
+    ],
+    [
+     0,
+     -1,
+     "0x1351"
+    ]
+   ]
+  },
+  "0x1352": {
+   "name": "boulder",
+   "parts": [
+    [
+     0,
+     0,
+     "0x1352"
+    ],
+    [
+     1,
+     0,
+     "0x1353"
+    ],
+    [
+     1,
+     -1,
+     "0x1354"
+    ]
+   ]
+  },
+  "0x1AD8": {
+   "name": "heap of skulls",
+   "parts": [
+    [
+     0,
+     0,
+     "0x1AD8"
+    ],
+    [
+     -1,
+     0,
+     "0x1AD9"
+    ],
+    [
+     -2,
+     0,
+     "0x1ADA"
+    ],
+    [
+     -1,
+     -1,
+     "0x1ADB"
+    ],
+    [
+     0,
+     -1,
+     "0x1ADC"
+    ],
+    [
+     1,
+     -1,
+     "0x1ADF"
+    ],
+    [
+     0,
+     -2,
+     "0x1ADD"
+    ],
+    [
+     1,
+     -2,
+     "0x1ADE"
+    ]
+   ]
+  },
+  "0x0ED8": {
+   "name": "gravestone and grave",
+   "parts": [
+    [
+     0,
+     0,
+     "0x0ED8"
+    ],
+    [
+     0,
+     1,
+     "0x0EE1"
+    ],
+    [
+     0,
+     2,
+     "0x0EDF"
+    ]
+   ]
+  },
+  "0x0EE0": {
+   "name": "grave mound",
+   "parts": [
+    [
+     -1,
+     0,
+     "0x0EE2"
+    ],
+    [
+     0,
+     0,
+     "0x0EE0"
+    ]
+   ]
+  },
+  "0x0836": {
+   "name": "fence run",
+   "parts": [
+    [
+     -1,
+     0,
+     "0x0836"
+    ],
+    [
+     0,
+     0,
+     "0x0836"
+    ],
+    [
+     1,
+     0,
+     "0x0836"
+    ]
+   ]
+  }
+ },
+ "blendThemes": [
+  "farm-vermin",
+  "wild-pasture"
+ ],
+ "flavor": {
+  "deer-and-critters": {
+   "pieces": [
+    [
+     "mushrooms",
+     "0x0D0C"
+    ],
+    [
+     "mushrooms",
+     "0x0D0D"
+    ],
+    [
+     "mushrooms",
+     "0x0D0F"
+    ],
+    [
+     "mushrooms",
+     "0x0D10"
+    ],
+    [
+     "nest",
+     "0x1AD5"
+    ]
+   ]
+  },
+  "farm-vermin": {
+   "pieces": [
+    [
+     "spilled hay",
+     "0x1036"
+    ],
+    [
+     "spilled hay",
+     "0x1037"
+    ],
+    [
+     "splintered wood",
+     "0x0C2F"
+    ]
+   ]
+  },
+  "wild-pasture": {
+   "pieces": [
+    [
+     "spilled hay",
+     "0x1036"
+    ],
+    [
+     "spilled hay",
+     "0x1037"
+    ],
+    [
+     "rock",
+     "0x1368"
+    ],
+    [
+     "mushrooms",
+     "0x0D0D"
+    ]
+   ]
+  },
+  "wolf-meadow": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "rock",
+     "0x1369"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ]
+   ]
+  },
+  "barrow-dead": {
+   "pieces": [
+    [
+     "grave mound",
+     "0x0ED3"
+    ],
+    [
+     "gravestone",
+     "0x0ED5"
+    ],
+    [
+     "bone",
+     "0x1B11"
+    ]
+   ]
+  },
+  "orc-band": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "splintered wood",
+     "0x0C2E"
+    ],
+    [
+     "splintered wood",
+     "0x0C2D"
+    ]
+   ]
+  },
+  "ratman-warren": {
+   "pieces": [
+    [
+     "splintered wood",
+     "0x0C2D"
+    ],
+    [
+     "splintered wood",
+     "0x0C2F"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ]
+   ]
+  },
+  "lizardman-marsh": {
+   "pieces": [
+    [
+     "cattails",
+     "0x0CB7"
+    ],
+    [
+     "cattails",
+     "0x0CB8"
+    ]
+   ]
+  },
+  "woodland-predators": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "nest",
+     "0x1AD5"
+    ],
+    [
+     "mushrooms",
+     "0x0D0C"
+    ]
+   ]
+  },
+  "troll-hills": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "rocks",
+     "0x136A"
+    ],
+    [
+     "rock",
+     "0x136B"
+    ]
+   ]
+  },
+  "gargoyle-heights": {
+   "pieces": [
+    [
+     "rock",
+     "0x1369"
+    ],
+    [
+     "rocks",
+     "0x136A"
+    ],
+    [
+     "rock",
+     "0x136B"
+    ],
+    [
+     "rock",
+     "0x136C"
+    ]
+   ]
+  },
+  "harpy-crags": {
+   "pieces": [
+    [
+     "nest with eggs",
+     "0x1AD4"
+    ],
+    [
+     "nest",
+     "0x1AD5"
+    ],
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "rock",
+     "0x1368"
+    ]
+   ]
+  },
+  "deep-forest": {
+   "pieces": [
+    [
+     "spider egg case",
+     "0x10D9"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ],
+    [
+     "mushroom",
+     "0x0D17"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ]
+   ]
+  },
+  "haunted-wood": {
+   "pieces": [
+    [
+     "grave mound",
+     "0x0ED3"
+    ],
+    [
+     "gravestone",
+     "0x0ED5"
+    ],
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "mushrooms",
+     "0x0D11"
+    ]
+   ]
+  },
+  "wisp-glade": {
+   "pieces": [
+    [
+     "mushrooms",
+     "0x0D0C"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ],
+    [
+     "mushrooms",
+     "0x0D10"
+    ],
+    [
+     "mushrooms",
+     "0x0D11"
+    ]
+   ]
+  }
+ }
+}

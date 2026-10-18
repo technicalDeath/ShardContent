@@ -51,6 +51,7 @@ public static class ShardBootstrap
         HouseReminderService.Configure();
         CraftedGoodsPricing.Configure();
         HousePricing.Configure();
+        WorldSeason.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
         HelpService.Configure();
         ScrollChanceService.Configure();

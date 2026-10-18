@@ -1,0 +1,5005 @@
+[
+  {
+    "$type": "Spawner",
+    "guid": "7dfee8fd-49f0-457d-a88c-f38c65bf2474",
+    "name": "Britain Graveyard: Restless dead (lesser)",
+    "location": [
+      1369,
+      1475,
+      10
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Skeleton",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "HeadlessOne",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0731f9aa-2216-4b25-97f1-bcfa2c54688d",
+    "name": "North Hills: Orc band",
+    "location": [
+      1474,
+      1297,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0e34837e-aee8-4001-872a-373502c74cdb",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1969,
+      1409,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "12609af5-f153-4afa-96da-970e1be4afd0",
+    "name": "North Fields: Wolf meadow",
+    "location": [
+      1445,
+      1365,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "1adc37c9-0eea-45ec-adf2-6825f0af9b46",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1534,
+      1941,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "1d5b7b60-a289-434e-be7a-e3f538e1d9d9",
+    "name": "Barrow Fields: Restless dead (step-up)",
+    "location": [
+      1361,
+      1392,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Spectre",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "216f74af-209f-4943-ac78-cb2703ba7f06",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1266,
+      1982,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2319882c-d94a-4f58-97e7-6dca32e890e2",
+    "name": "North Hills: Orc band",
+    "location": [
+      1244,
+      1374,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "28dec03a-120b-40ca-a03e-482d3f2de528",
+    "name": "North-east Pasture: Wild pasture (horses and game for tamers)",
+    "location": [
+      1640,
+      1431,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Horse",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cow",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2a64edbb-d1e3-4ec8-9cf3-7d8993ebbb7f",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1416,
+      1992,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "32260d9a-6ff8-417d-88e9-b08e0c04fa2c",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1055,
+      1442,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "41fe89de-bbed-4af2-ba54-2d33bb39a64d",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1541,
+      1895,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "48847927-65aa-4abd-8423-86546faa0c80",
+    "name": "Bay Woods: Deer and small game",
+    "location": [
+      1755,
+      1474,
+      0
+    ],
+    "map": "Felucca",
+    "count": 4,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "49a48c0e-c34c-464b-b5b2-5374b434aab5",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1021,
+      1415,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4a88078e-0413-44ec-add5-83f6d71d84a2",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1004,
+      1369,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4b35e54f-77d1-4fe8-80d0-217df211d4e2",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1042,
+      1920,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "516fd39d-d4d2-4916-8c90-49902582100b",
+    "name": "West Foothills: Ratman warren",
+    "location": [
+      1222,
+      1418,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "55af7b2a-3f27-4bf0-9d5e-bcedbdb3b76b",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1089,
+      2033,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "57e9ff50-ef57-4bfe-bd82-399ec6db0def",
+    "name": "North Hills: Orc band",
+    "location": [
+      1375,
+      1330,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5c244d89-f413-49e1-abf4-70086903d0bd",
+    "name": "North-east Pasture: Wild pasture (horses and game for tamers)",
+    "location": [
+      1652,
+      1400,
+      0
+    ],
+    "map": "Felucca",
+    "count": 4,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Horse",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cow",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "653465ba-f89c-4ecf-ac58-20f45a4b1055",
+    "name": "North Hills: Orc band",
+    "location": [
+      1305,
+      1326,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6b364efa-4774-4c6a-afc7-a44d234328fb",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1060,
+      1375,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6f56546f-246a-491b-8b19-a8c668ea73fb",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1898,
+      1265,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 4,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "714bf0dd-48b0-488e-ad59-432e8477b9d5",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1475,
+      1958,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "731e7d09-59ed-48a4-b1d7-f2827a2d05e5",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1504,
+      2007,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "7d1ffadb-f06d-4166-b4e1-549f742c05f3",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1037,
+      1325,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "7e183556-fb83-4823-96e9-9dba1cc69dd9",
+    "name": "North Hills: Orc band",
+    "location": [
+      1240,
+      1317,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8af8ecde-099a-4fbe-9047-af0b8d3f383f",
+    "name": "Bay Marsh: Lizardman marsh",
+    "location": [
+      1383,
+      1949,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Lizardman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "94f97606-ded4-4f36-9529-008c94c705be",
+    "name": "Troll Hills: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1340,
+      1268,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "9df57404-f990-46d9-b66f-dfbbd3496caf",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1986,
+      1463,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a26ea05c-1690-4f53-b10c-b44cc66607ed",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1726,
+      1362,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a309b246-ca7e-4a68-b57e-5a50c9c7d0b1",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1447,
+      2038,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ad6a2169-b01e-47ab-a323-fab15c6fabb6",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1029,
+      1969,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b745f7ae-402e-4da9-b424-31712b0c8b4c",
+    "name": "Far North-east Forest: Deep forest",
+    "location": [
+      1872,
+      1347,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bc0604fa-8a01-4f09-bcce-86e207e4a514",
+    "name": "North Hills: Orc band",
+    "location": [
+      1407,
+      1281,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bc9e19b0-3e29-4bab-b86f-980379e3a230",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1799,
+      1394,
+      0
+    ],
+    "map": "Felucca",
+    "count": 4,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bff6e844-976b-4433-9a12-653c267de42f",
+    "name": "Britain Graveyard: Restless dead (lesser)",
+    "location": [
+      1300,
+      1481,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Skeleton",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "HeadlessOne",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "c8bb9b2d-6144-4bc2-82c9-0479a8d336af",
+    "name": "Barrow Fields: Restless dead (step-up)",
+    "location": [
+      1304,
+      1413,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Spectre",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d5e8e17c-a9b3-420d-b15c-c7ba5057c876",
+    "name": "Troll Hills: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1180,
+      1354,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d9276ac3-f4a9-4614-bcd5-ff08d76b1a27",
+    "name": "North-east Pasture: Wild pasture (horses and game for tamers)",
+    "location": [
+      1692,
+      1463,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Horse",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cow",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d9802f03-9dbb-422c-91f0-6aba14af525e",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1912,
+      1302,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 4,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "da41ea67-2124-4dbe-9f22-66e678652e59",
+    "name": "Bay Marsh: Lizardman marsh",
+    "location": [
+      1435,
+      1917,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Lizardman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e26d2e1a-806c-4929-9f9c-606e861532cc",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1080,
+      1963,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e2a94db5-73b3-4012-be1e-ac122f9ebed2",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1797,
+      1393,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e410df9e-2140-4972-aaed-8e1366658bb4",
+    "name": "West Foothills: Ratman warren",
+    "location": [
+      1225,
+      1477,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e9e020c2-1a4f-4a3f-9f91-4811c7f0ba13",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1983,
+      1517,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e9e1a43f-932f-4501-861d-ab721a87d572",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1812,
+      1314,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 4,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 4,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f0797410-53f9-4af5-976e-332f8d4db4d8",
+    "name": "Far North-east Forest: Deep forest",
+    "location": [
+      1967,
+      1296,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f886f7b8-60a5-45c0-bf80-05032137df23",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1249,
+      2030,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "fd671a3d-e780-4f6f-993b-daa7dc80457b",
+    "name": "Bay Woods: Deer and small game",
+    "location": [
+      1802,
+      1506,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "05fcd31c-d53e-417b-8798-65d1e7c2b5de",
+    "name": "Wildlife (step-up)",
+    "location": [
+      1666,
+      1290,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 6,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "12eea555-de46-4ae2-ad79-fb7b8a3f9053",
+    "name": "Wildlife (beginner)",
+    "location": [
+      1798,
+      1471,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 5,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "18bb4b32-dbcd-416e-aae6-547bb1b13fb1",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1387,
+      2023,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "1a1a9dd9-0073-47da-8ea9-f7b932cad724",
+    "name": "Wildlife (step-up)",
+    "location": [
+      1459,
+      1963,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 6,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "23cb3cb9-b698-4de3-a49f-bd3ed42cac7c",
+    "name": "Wildlife (beginner)",
+    "location": [
+      1229,
+      1655,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 5,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "374ade5f-0b52-4d90-9695-394ffa268943",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1011,
+      1945,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "3fe6b62d-c81a-4440-a608-26c0b40a8f08",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1498,
+      2040,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "47c42859-f7e9-4eac-bc14-7ca42eba61b9",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1958,
+      1305,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4e149dd8-9b15-43fb-9b8e-c7fd5974db3e",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1865,
+      1379,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5de7027a-07d5-405f-aba7-ffa1edb10d69",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1709,
+      1992,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8f29ae6e-ad1a-4e16-9ce6-5ddeec18003f",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1769,
+      1330,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "94f6e27d-8653-4b55-86d0-cc131a38aa4b",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1017,
+      1726,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a0a3a37e-6c7f-4636-9680-fed8a5144063",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1268,
+      2018,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b214fa51-5b5f-466a-8c69-02bfb22af5c7",
+    "name": "Wildlife (step-up)",
+    "location": [
+      1486,
+      1301,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 6,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b9d1f842-8619-4a7f-93ec-2125ef399296",
+    "name": "Wildlife (dangerous)",
+    "location": [
+      1020,
+      1360,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "c0632e64-37a8-4ea1-9c44-189db60d2285",
+    "name": "Wildlife (beginner)",
+    "location": [
+      1231,
+      1462,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 5,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "cb3efa23-3330-4812-aa08-ee1a5d9b6b61",
+    "name": "Wildlife (beginner)",
+    "location": [
+      1351,
+      1359,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 5,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e9a18ee1-4484-4c93-8fb9-7a996468639e",
+    "name": "Wildlife (step-up)",
+    "location": [
+      1377,
+      1911,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 6,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "edaec946-a62e-487f-82af-b30ccc8f0ccf",
+    "name": "Wildlife (beginner)",
+    "location": [
+      1725,
+      1447,
+      0
+    ],
+    "map": "Felucca",
+    "count": 19,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 50,
+    "walkingRange": 50,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 5,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "362c3cc5-8548-43be-8fab-4d981cab5ed1",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1750,
+      1250,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "3af82c44-422a-5ecd-9135-924cc74186fa",
+    "name": "Castle Woods: Deer and small game",
+    "location": [
+      1240,
+      1600,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e3eba4ce-8a58-5054-8bae-8499cd9103cc",
+    "name": "South-west Farmlands: Farm vermin and livestock",
+    "location": [
+      1265,
+      1770,
+      0
+    ],
+    "map": "Felucca",
+    "count": 7,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Rat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Pig",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Sheep",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d807ab0f-d9fc-5854-92bb-c864790b3a33",
+    "name": "Castle Woods: Deer and small game",
+    "location": [
+      1250,
+      1701,
+      0
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 3,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a384f91f-5b19-5ad8-b257-c7c562676eb3",
+    "name": "South-west Farmlands: Farm vermin and livestock",
+    "location": [
+      1191,
+      1780,
+      3
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Rat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Pig",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Sheep",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8926d23e-bf1f-5ef0-95f4-a1e02e96b4e3",
+    "name": "South-west Farmlands: Farm vermin and livestock",
+    "location": [
+      1340,
+      1868,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "GiantRat",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Rat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Pig",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Sheep",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "555c2a2d-a6d0-5be8-a781-835e9d325046",
+    "name": "South-west Farmlands: Farm vermin and livestock",
+    "location": [
+      1301,
+      1869,
+      0
+    ],
+    "map": "Felucca",
+    "count": 4,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Pig",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Sheep",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ae2ac00e-b041-5c58-92aa-17f8a7db5262",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1038,
+      1728,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2edd95f2-04c8-5f63-a109-53b904fb3049",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1014,
+      1796,
+      0
+    ],
+    "map": "Felucca",
+    "count": 6,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6996151f-43a5-59e4-8ab1-1fc0aea232ec",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1428,
+      1470,
+      2
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0ca93234-bcbd-5157-a629-dbcdd488790f",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1252,
+      1382,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b005a3dc-7fa1-57cd-9805-7be9f1603349",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1308,
+      1302,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d570593f-c321-5757-babe-6b980c04bb76",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1652,
+      1406,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "937b0df1-3204-5922-8bb4-dbbdf77a4d90",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1420,
+      1382,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "03282a9a-d550-5da5-b908-02aab4b76a79",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1028,
+      1806,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8fbd8452-36ca-5dc9-9581-e3e265d07869",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1300,
+      1446,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "1d20bace-a0db-5460-857c-92708f61d182",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1412,
+      1294,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d20831df-ef00-5744-815c-f92b4b669ce1",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1788,
+      1398,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bedca2ae-c6c0-5889-aa09-261e4f761348",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1044,
+      1454,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "476913cb-36ec-5286-9f4a-22a8dd34d25c",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1244,
+      1942,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "a1f93f6f-5744-5913-bf6a-e632b0884a6b",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1316,
+      1854,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0c6d4db4-4fdd-52e0-9705-d0a9d006d036",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1012,
+      1654,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5688a21b-6855-5cb1-8b37-796d3016c3fd",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1180,
+      1518,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b64fe061-de4f-5cba-981d-579479e91b0b",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1556,
+      1302,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "42692c43-8c35-5995-8790-81aacebf993f",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1948,
+      1398,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6a5e05c6-ab87-5e49-94ad-ede51051d12e",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1268,
+      1574,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5ce57aa2-1b3a-5504-8461-84022b65d5e1",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1852,
+      1286,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "41b31ab6-e8b6-5a8c-b656-9a97faa5ed95",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1028,
+      1286,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f66139e1-d5bc-5189-b307-7f861e4f6138",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1084,
+      2030,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ba0dbcb9-e61a-5c0c-b602-f59fc1757948",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1092,
+      1950,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bc14a9a3-c653-519d-aa91-aa8578875d28",
+    "name": "Wildlife (dangerous), new forest site",
+    "location": [
+      1196,
+      2030,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e94eb07c-df2b-5feb-908c-634825d87c86",
+    "name": "Wildlife (step-up), new forest site",
+    "location": [
+      1236,
+      1310,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ca7ea954-6877-5212-9486-735a06b51a10",
+    "name": "Wildlife (beginner), new forest site",
+    "location": [
+      1316,
+      1518,
+      0
+    ],
+    "map": "Felucca",
+    "count": 8,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  }
+]

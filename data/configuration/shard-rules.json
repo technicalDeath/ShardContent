@@ -141,6 +141,9 @@
   "housePricing": {
     "smallHouses": 16000
   },
+  "worldSeason": {
+    "felucca": 1
+  },
   "deathRecovery": {
     "playerCorpseMinutes": 10,
     "compassStopRange": 2,

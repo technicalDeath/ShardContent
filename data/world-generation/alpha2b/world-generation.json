@@ -41,7 +41,8 @@
     "Felucca/yew.cfg"
   ],
   "customDecorationFiles": [
-    "britain-bountyboards.cfg"
+    "britain-bountyboards.cfg",
+    "greater-britain-flavor.cfg"
   ],
   "decorationRewrites": [
     {
@@ -68,7 +69,8 @@
   "customSpawnerFiles": [
     "britain-vendor-overrides.json",
     "greater-britain-housing-spawner-relocations.json",
-    "britain-beginner-hunting.json"
+    "britain-beginner-hunting.json",
+    "greater-britain-spawn-areas.json"
   ],
   "spawnerFiles": [
     "BritainSewer.json",
