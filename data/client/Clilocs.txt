@@ -9,3 +9,7 @@
 500955	That being is not damaged. Bandages need someone hurt: a wounded friend, pet or yourself.
 500961	Your fingers slip! Being hit while you bandage makes the bandage heal less.
 500968	You apply the bandages, but they barely help. Healing skill decides how often bandages work, and every bandage you finish can raise it.
+# 1005000 and 1010398 are the stock "You cannot heal yourself / that target in their current state." (Heal and Greater Heal spells, heal potions). In this era
+# the only such state is poison (Mortal Strike came later), so the shard says so (QoL item 33).
+1005000	You cannot heal yourself while poisoned. Cure the poison first.
+1010398	You cannot heal that target while it is poisoned. Cure the poison first.

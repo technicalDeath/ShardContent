@@ -85,6 +85,8 @@ public class ClientDefaultsTests
     [InlineData("500955", "Bandages need someone hurt")]
     [InlineData("500961", "makes the bandage heal less")]
     [InlineData("500968", "Healing skill decides")]
+    [InlineData("1005000", "while poisoned. Cure the poison first")]
+    [InlineData("1010398", "while it is poisoned. Cure the poison first")]
     public void TheClientTextExplainsTheBandageMessages(string id, string expected)
     {
         var lines = File.ReadAllLines(Path.Combine(ClientData, "Clilocs.txt")).Where(static l => l.Length > 0 && l[0] != '#').ToArray();

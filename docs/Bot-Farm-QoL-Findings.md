@@ -210,3 +210,14 @@ All new flags are **off** in source and were on only in the disposable host `wor
   - New client profiles get `enabled_spell_format` true (`data/client/default-profile.json`, pinned in `ClientDefaultsTests`; `Client-Defaults.md` item 16). The profile file reaches `ClassicUO/bin/dist` only by hand, at deploy.
 - **Checks:** unit tests, and full suites run `20261018T012316055Z-eb9001` (shard 1,683, UOContent 1,404).
 - **Batch test to do:** with the flag on and a new profile, a lich or evil mage casting shows "Kal Vas Flam [Flamestrike]" (or similar) over its head in the real client.
+
+## Item 33: healing yourself while poisoned says why (built and live-checked 2026-10-19, client text only, no flag)
+
+Candidate 18 above. The Heal and Greater Heal spells and the heal potions answer a poisoned target with the stock client text 1005000 ("You cannot heal yourself in your current state.") or 1010398 ("You cannot heal that target in their current state."). In this era the only such state is poison (Mortal Strike came later), so the shard's client text (`data/client/Clilocs.txt`) now says so:
+
+- 1005000: "You cannot heal yourself while poisoned. Cure the poison first."
+- 1010398: "You cannot heal that target while it is poisoned. Cure the poison first."
+
+Shortened on 2026-10-19 at the owner's word ("Cure the poison first." is enough; the screenshots show the first, longer wording). No server code changed. `ClientDefaultsTests` pins both lines (run `20261019T115358190Z-927c2c`, 44 passed).
+
+**Live check** (farm host, the owner's go-ahead; real client, new Pure Mage `PoisonT`, poisoned by a staff session, auto-cure ticked off): a Lesser Heal potion drunk while poisoned and hurt shows the new line overhead in red and the potion is kept; the Heal spell cast on yourself while poisoned shows the same line. Shots: `work/player-client/PoisonT/shots/20261019-075942-heal-potion-poisoned2.png`, `20261019-080028-heal-spell-poisoned2.png`. The 1010398 line (Heal on someone else) was not caught on screen: the staff target was not poisoned when the spell landed; it goes through the same client text as 1005000. Installed in `ClassicUO/bin/dist/Data/Client/Clilocs.txt` (old copy in `work/cuo-backups/clilocs-20261019-before-item33`); a player sees it after restarting the client.
