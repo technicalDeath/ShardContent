@@ -22,7 +22,7 @@ public static class Alpha2bWorldGenerationCommands
         CommandSystem.Register("Alpha2bWorldGen", AccessLevel.Owner, OnCommand);
     }
 
-    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit|addspawners CONFIRM-UOR-FELUCCA|adddecorations CONFIRM-UOR-FELUCCA")]
+    [Usage("Alpha2bWorldGen preview|apply CONFIRM-UOR-FELUCCA [rerun]|audit|addspawners CONFIRM-UOR-FELUCCA|adddecorations CONFIRM-UOR-FELUCCA|removeretired CONFIRM-UOR-FELUCCA")]
     [Description("Previews, generates, or audits the era-reviewed Alpha 2b UOR/Felucca world baseline, or adds the canonical spawners or the shard's own decorations an existing world lacks.")]
     private static void OnCommand(CommandEventArgs e)
     {
@@ -45,9 +45,12 @@ public static class Alpha2bWorldGenerationCommands
             case "adddecorations":
                 AddShardDecorations(e);
                 break;
+            case "removeretired":
+                RemoveRetiredDecorations(e);
+                break;
             default:
                 e.Mobile.SendMessage(
-                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit|addspawners {Confirmation}|adddecorations {Confirmation}"
+                    $"Usage: {CommandSystem.Prefix}Alpha2bWorldGen preview|apply {Confirmation} [rerun]|audit|addspawners {Confirmation}|adddecorations {Confirmation}|removeretired {Confirmation}"
                 );
                 break;
         }
@@ -264,6 +267,91 @@ public static class Alpha2bWorldGenerationCommands
 
         AutoSave.Save();
         from.SendMessage("Alpha 2b: the shard's decorations are in place. Saved.");
+    }
+
+    /// <summary>
+    /// <c>[Alpha2bWorldGen removeretired CONFIRM-UOR-FELUCCA</c>: deletes from a world in use the pieces of the manifest's retired decoration files (2026-10-18: the
+    /// greater-Britain flavor objects moved from server items into the map's own statics, so the server items must go). Only a plain <see cref="Static"/> with the
+    /// listed graphic at the listed spot is removed; nothing else is touched, and running it again removes nothing.
+    /// </summary>
+    private static void RemoveRetiredDecorations(CommandEventArgs e)
+    {
+        var from = e.Mobile;
+
+        if (e.GetString(1) != Confirmation || e.Length > 2)
+        {
+            from.SendMessage($"Refusing without the exact confirmation token and nothing after it: {Confirmation}");
+            return;
+        }
+
+        if (World.Saving)
+        {
+            from.SendMessage("Refusing while a world save is active.");
+            return;
+        }
+
+        Alpha2bWorldGenerationConfiguration.Load();
+        var manifest = Alpha2bWorldGenerationConfiguration.Manifest;
+        if (manifest is null)
+        {
+            from.SendMessage($"Alpha 2b configuration is invalid: {Alpha2bWorldGenerationConfiguration.Error}");
+            return;
+        }
+
+        var removed = 0;
+        var listed = 0;
+        try
+        {
+            var folder = Alpha2bWorldGenerationConfiguration.ResolveGeneratedPath(manifest.RetiredDecorationsDirectory);
+            foreach (var name in manifest.RetiredDecorationFiles)
+            {
+                var fileRemoved = 0;
+                var graphic = -1;
+                foreach (var raw in File.ReadLines(Path.Combine(folder, name)))
+                {
+                    var line = raw.Trim();
+                    if (line.Length == 0 || line.StartsWith('#'))
+                    {
+                        continue;
+                    }
+
+                    if (line.StartsWith("Static ", StringComparison.Ordinal))
+                    {
+                        graphic = Convert.ToInt32(line.Split(' ')[1], 16);
+                        continue;
+                    }
+
+                    var p = line.Split(' ');
+                    var spot = new Point3D(int.Parse(p[0]), int.Parse(p[1]), int.Parse(p[2]));
+                    listed++;
+                    var doomed = new List<Item>();
+                    foreach (var item in Map.Felucca.GetItemsAt(spot))
+                    {
+                        if (item.GetType() == typeof(Static) && item.ItemID == graphic && item.Z == spot.Z)
+                        {
+                            doomed.Add(item);
+                        }
+                    }
+
+                    foreach (var item in doomed)
+                    {
+                        item.Delete();
+                        fileRemoved++;
+                    }
+                }
+
+                removed += fileRemoved;
+                from.SendMessage($"Alpha 2b: retired {name}: removed {fileRemoved}.");
+            }
+        }
+        catch (Exception ex)
+        {
+            from.SendMessage($"Alpha 2b removing retired decorations failed: {ex.GetType().Name}: {ex.Message}. The world was not saved; stop the server without saving.");
+            return;
+        }
+
+        AutoSave.Save();
+        from.SendMessage($"Alpha 2b: removed {removed} retired pieces of {listed} listed. Saved.");
     }
 
     /// <summary>

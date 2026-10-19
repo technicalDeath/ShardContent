@@ -22,11 +22,13 @@ import time
 from hunter import HunterBot
 from memory import cell_of
 from miner import MinerBot
+from market import MarketMixin, MinerMarket
 
 
 class BrokeMinerBot(HunterBot):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_market", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
     KEEP = MinerBot.KEEP
+    SHED_LAST = MinerBot.SHED_LAST                        # the product (ingots, ore) is dropped last when the pack is too heavy (drop_excess)
     LOOT_GEAR = ()                                        # a miner hunting vermin for coins does not carry weapons home to sell
     CARVE = False
     LOOT_MATERIALS = False
@@ -40,6 +42,10 @@ class BrokeMinerBot(HunterBot):
     r_sell = MinerBot.r_sell
     r_mine = MinerBot.r_mine
     r_idle = MinerBot.r_idle
+    r_market = MarketMixin.r_market                        # the market (post, match, deals): HunterBot's own older r_market is not it
+    mkt_supply = MinerMarket.mkt_supply                    # the ingots in the pack are the offer
+    mkt_make_supply = MinerMarket.mkt_make_supply          # smelt ahead when a smith wants ingots
+    stall_switch = MinerBot.stall_switch                   # the wider ore search of a stalled miner (stall.py asks the class for it)
 
     PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "scrap_try_at")
     TOOL_WORD = "pickaxe"

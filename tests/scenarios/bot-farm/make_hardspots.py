@@ -16,6 +16,7 @@ import glob
 import json
 import os
 import re
+import spawners
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -63,27 +64,26 @@ def build(data, mobiles):
     low = {k.lower(): k for k in stats}
     circles, used = [], {}
     sdir = os.path.join(data, "BritanniaRenaissance", "Alpha2b", "Spawns")
-    for f in sorted(os.listdir(sdir)):
-        if not f.endswith(".json") or f in SKIP:
+    for f, sp in spawners.canonical(sdir):              # each spawner once, as the server makes it (a re-themed one by its last definition)
+        if f in SKIP:
             continue
-        for sp in json.load(open(os.path.join(sdir, f), encoding="utf-8")):
-            if sp.get("map") != "Felucca" or sp["location"][0] >= 5120:
+        if sp.get("map") != "Felucca" or sp["location"][0] >= 5120:
+            continue
+        hard, soft = [], []
+        for e in sp["entries"]:
+            k = e["name"].lower()
+            if k in HARMLESS:
                 continue
-            hard, soft = [], []
-            for e in sp["entries"]:
-                k = e["name"].lower()
-                if k in HARMLESS:
-                    continue
-                t = tier(low.get(k, e["name"]), stats)
-                if t is not None and t >= 3:
-                    hard.append(e["name"])
-                elif k in SOFT_KINDS:
-                    soft.append(e["name"])
-            if not (hard or soft):
-                continue
-            reach = max(sp.get("homeRange", 0), sp.get("walkingRange", 0)) + 8
-            circles.append(dict(x=sp["location"][0], y=sp["location"][1], r=min(reach, 48), factor=6.0 if hard else 3.0, kinds=sorted(set(hard + soft)), file=f))
-            used[f] = used.get(f, 0) + 1
+            t = tier(low.get(k, e["name"]), stats)
+            if t is not None and t >= 3:
+                hard.append(e["name"])
+            elif k in SOFT_KINDS:
+                soft.append(e["name"])
+        if not (hard or soft):
+            continue
+        reach = max(sp.get("homeRange", 0), sp.get("walkingRange", 0)) + 8
+        circles.append(dict(x=sp["location"][0], y=sp["location"][1], r=min(reach, 48), factor=6.0 if hard else 3.0, kinds=sorted(set(hard + soft)), file=f))
+        used[f] = used.get(f, 0) + 1
     circles.sort(key=lambda c: (c["x"], c["y"], c["file"]))
     return dict(schema=1, note="penalty circles for walkroute.penalty_circles: hard (tier 3+) x6, soft (orc, ratman, shade...) x3", files=used, circles=circles)
 

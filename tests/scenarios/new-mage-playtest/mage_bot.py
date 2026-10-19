@@ -617,7 +617,7 @@ class Bot:
             key = REAGENT_KEYS.get(norm(name))
             if key and key in plan:
                 have = self.regs.get(key, 0)
-                budget = self.c.gold - spent_plan
+                budget = self.c.gold - spent_plan - getattr(self, "PURSE_FLOOR", 0)     # a purse floor (patch_caster_budget.py)
                 want = min(avail, max(0, plan[key] - have), max(0, budget // max(price, 1)))
                 if want > 0:
                     cart += [serial, str(want)]

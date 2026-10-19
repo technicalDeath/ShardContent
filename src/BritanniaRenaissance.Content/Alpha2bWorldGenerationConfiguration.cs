@@ -18,6 +18,8 @@ public sealed record Alpha2bWorldGenerationManifest
     public string TeleportersFile { get; init; } = "";
     public string[] DecorationFiles { get; init; } = [];
     public string[] CustomDecorationFiles { get; init; } = [];
+    public string RetiredDecorationsDirectory { get; init; } = "Retired";
+    public string[] RetiredDecorationFiles { get; init; } = [];
     public Alpha2bDecorationRewrite[] DecorationRewrites { get; init; } = [];
     public Alpha2bDecorationDuplicateCleanup[] DecorationDuplicateCleanup { get; init; } = [];
     public string[] CustomSpawnerFiles { get; init; } = [];

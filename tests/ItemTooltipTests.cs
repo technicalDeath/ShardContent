@@ -151,4 +151,10 @@ public class ItemTooltipTests
         Assert.Empty(ItemTooltipService.LootLines(LootType.Regular));
         Assert.Empty(ItemTooltipService.LootLines(LootType.Cursed));
     }
+
+    [Theory]
+    [InlineData(1, "Stamina from eating: 6-8")]
+    [InlineData(5, "Stamina from eating: 7-9")]
+    [InlineData(20, "Stamina from eating: 10-12")]
+    public void FoodSaysHowMuchStaminaItGives(int fill, string line) => Assert.Equal(line, ItemTooltipService.FoodLine(fill));
 }

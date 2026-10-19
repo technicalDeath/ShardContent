@@ -34,16 +34,19 @@ from bw import BetweenWorldsMixin  # noqa: E402  (Between Worlds plan)
 from ground_rates import GroundRateMixin  # noqa: E402  (measured grounds)
 from spellbook import SpellbookMixin  # noqa: E402  (know and fill the spellbook)
 from far import FarMixin  # noqa: E402  (far service walks, routed and resumable)
+from runes import RuneMixin  # noqa: E402  (runes, Mark and Recall; feature runes)
+from scribe import ScribeMixin  # noqa: E402  (Inscription: scribe and sell scrolls; feature scribe)
 from practice import PracticeMixin  # noqa: E402  (practice from the spells the book holds)
 from party import PartyMixin  # noqa: E402  (parties; feature party)
 from buddy import BuddyMixin  # noqa: E402  (buddy pairs; feature buddy + party)
 from pacing import PacingMixin  # noqa: E402  (pacing; features pacing, pacing_walk)
+from housegoal import HouseGoalMixin  # noqa: E402  (the A1 house goal; feature house_goal)
 from uo import Event  # noqa: E402
 
 
 from stock import CasterStock  # noqa: E402
 from hunt import HuntMixin  # noqa: E402
-class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, FarMixin, SpellbookMixin, FirstTrip, mage_bot.Bot):
+class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -126,7 +129,7 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     # facts a new brain takes over from the last one (BotBase.save_facts / load_facts, facts.json in the bot's folder): a far trip, the held ground, the camp, the throttles
     PERSIST = ("ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "meat_sold_at", "gear_sold_at", "sold_at", "sell_skip_until", "soldout_until",
                "stocked_at", "bank_balance", "banked_at", "shop_at", "home", "camp_step", "home_region", "corpse", "gold_alive", "far", "far_skip", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until",
-               "pasture", "pasture_hold", "book_shopped", "book_try_read", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate")
+               "pasture", "pasture_hold", "book_shopped", "book_try_read", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "scribe")
     PERSIST_SETS = ()
     save_facts = BotBase.save_facts
     load_facts = BotBase.load_facts
@@ -187,6 +190,10 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     def BUTCHER(self):
         return self.where1(("butcher",))
     vendor_list = BotBase.vendor_list
+    read_menu = BotBase.read_menu                            # (scribe.py: the legacy inscription menus)
+    close_menus = BotBase.close_menus
+    index_of = staticmethod(BotBase.index_of)
+    parse_menus = staticmethod(BotBase.parse_menus)
 
     def can_cast(self):
         """Reagents for at least one attack spell (mana aside: that comes back by resting)."""
@@ -345,7 +352,7 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
         and gained Magery only in fights (+2.9 an hour); this turns walking and resting time into practice, the way UO:R mages trained, and the
         reagents it spends send it shopping when they run low."""
         top = self.c.state.get("maxMana") or 40
-        if not self.feature("practice") or self.c.ghost or self.c.mana < self.practice_floor(top) or time.time() - self.facts.get("practice_at", 0) < self.practice_gap() or self.dangers(10) or self.prey(9):
+        if not self.feature("practice") or self.c.ghost or not self.practice_affordable() or self.c.mana < self.practice_floor(top) or time.time() - self.facts.get("practice_at", 0) < self.practice_gap() or self.dangers(10) or self.prey(9):
             return False
         self.refresh_state()
         streak = self.practice_streak()
@@ -732,6 +739,10 @@ if "r_stock" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_resupply"), "r_stock")      # stock.py: reagents to 20, from the bank too
 
 
+if "r_house" not in CasterBot.RULES and "r_bank" in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_bank"), "r_house")                # the house goal: before the bank
+
+
 if "r_break" not in CasterBot.RULES and "r_bank" in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_bank") + 1, "r_break")        # pacing: a break at the bank
 
@@ -751,3 +762,12 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+for _name, _before in (("r_rune_mark", "r_fight"), ("r_rune_buy", "r_resupply")):
+    if _name not in CasterBot.RULES:
+        CasterBot.RULES.insert(CasterBot.RULES.index(_before), _name)      # runes.py: mark a rune when quiet, buy blank runes (feature runes)
+
+
+if "r_scribe" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_hunt"), "r_scribe")      # scribe.py: a scribing session at the Mage shop every half hour (feature scribe)

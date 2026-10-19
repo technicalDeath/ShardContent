@@ -7,6 +7,7 @@ One entry per spawner location within 260 tiles of Britain (Felucca surface): x,
 creature_stats.json (vendors and town animals that are no prey are left to the bot's own scoring: cls names are kept as they are).
 """
 import argparse, glob, json, os, re, sys
+import spawners
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = HERE
@@ -21,24 +22,19 @@ RADIUS = 260
 def build():
     st = json.load(open(os.path.join(HERE if os.path.exists(os.path.join(HERE, "creature_stats.json")) else os.path.join(ROOT, "ShardContent", "tests", "scenarios", "bot-farm"), "creature_stats.json"), encoding="utf-8"))
     spots = {}
-    for f in sorted(glob.glob(os.path.join(SPAWNS, "*.json"))):
-        try:
-            data = json.load(open(f, encoding="utf-8"))
-        except (OSError, ValueError):
+    for _f, s in spawners.canonical(SPAWNS):            # each spawner once, as the server makes it (a re-themed one by its last definition)
+        loc = s.get("location")
+        if not loc or s.get("map") != "Felucca" or loc[0] >= 5120 or max(abs(loc[0] - BRITAIN[0]), abs(loc[1] - BRITAIN[1])) > RADIUS:
             continue
-        for s in data:
-            loc = s.get("location")
-            if not loc or s.get("map") != "Felucca" or loc[0] >= 5120 or max(abs(loc[0] - BRITAIN[0]), abs(loc[1] - BRITAIN[1])) > RADIUS:
+        sp = spots.setdefault((loc[0], loc[1]), {"x": loc[0], "y": loc[1], "home": 0, "kinds": {}})
+        sp["home"] = max(sp["home"], int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))
+        for e in s.get("entries", []):
+            c = re.sub(r"[^a-z]", "", str(e.get("name", "")).lower())
+            if c not in st:
                 continue
-            sp = spots.setdefault((loc[0], loc[1]), {"x": loc[0], "y": loc[1], "home": 0, "kinds": {}})
-            sp["home"] = max(sp["home"], int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))
-            for e in s.get("entries", []):
-                c = re.sub(r"[^a-z]", "", str(e.get("name", "")).lower())
-                if c not in st:
-                    continue
-                h, d = st[c].get("hits") or [0, 0], st[c].get("damage") or [0, 0]
-                k = sp["kinds"].setdefault(c, {"cls": c, "n": 0, "hits": round(sum(h) / 2.0, 1), "dmg": round(sum(d) / 2.0, 1)})
-                k["n"] = max(k["n"], int(e.get("maxCount") or 1))
+            h, d = st[c].get("hits") or [0, 0], st[c].get("damage") or [0, 0]
+            k = sp["kinds"].setdefault(c, {"cls": c, "n": 0, "hits": round(sum(h) / 2.0, 1), "dmg": round(sum(d) / 2.0, 1)})
+            k["n"] = max(k["n"], int(e.get("maxCount") or 1))
     out = []
     for key in sorted(spots):
         sp = spots[key]

@@ -1,7 +1,7 @@
 {
 "schema":1,
 "map":"Felucca",
-"sources":{"BritanniaRenaissance/Alpha2b/teleporters.json":"8818dd2713ee","Decoration":"b960bd8772fa","Locations/felucca.json":"70303c7e8954","PublicMoongate.cs":"748d7e38b5e2","TownsPeople.json":"e4dd4a041ce3","Vendors.json":"1299d18ffbdd","britain-vendor-overrides.json":"86b51e13fd4f","regions.json":"cbfe5df4097d","staidx0.mul":"209319aeff26","statics0.mul":"aac798ae8786","tiledata.mul":"f44860782f48"},
+"sources":{"BritanniaRenaissance/Alpha2b/teleporters.json":"8818dd2713ee","Decoration":"5c51439f4e7a","Locations/felucca.json":"70303c7e8954","PublicMoongate.cs":"748d7e38b5e2","TownsPeople.json":"e4dd4a041ce3","Vendors.json":"1299d18ffbdd","britain-vendor-overrides.json":"86b51e13fd4f","regions.json":"cbfe5df4097d","staidx0.mul":"209319aeff26","statics0.mul":"aac798ae8786","tiledata.mul":"f44860782f48"},
 "regions":[
 {"centre":[1336,1997,0],"kind":"other","name":"Moongates","priority":50,"rects":[[1330,1991,1343,2004],[1494,3767,1506,3778],[2694,685,2709,701],[1823,2943,1834,2954],[761,741,780,762],[638,2062,650,2073],[4459,1276,4475,1292],[3554,2132,3572,2150]],"type":"GuardedRegion"},
 {"centre":[6103,3724,25],"kind":"other","name":"T2A Arena","priority":50,"rects":[[2396,197,2407,220],[5717,428,5755,456],[6085,3674,6108,3698],[6063,3698,6111,3750]],"type":"GuardedRegion"},

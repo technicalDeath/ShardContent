@@ -933,45 +933,6 @@
    "z": 0
   },
   {
-   "danger_gap": 2,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 418,
-   "y": 1665,
-   "z": 0
-  },
-  {
    "danger_gap": -3,
    "home": 30,
    "kinds": [
@@ -1131,45 +1092,6 @@
    "z": 8
   },
   {
-   "danger_gap": -4,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 480,
-   "y": 1641,
-   "z": 0
-  },
-  {
    "danger_gap": 14,
    "home": 50,
    "kinds": [
@@ -1287,45 +1209,6 @@
    "threat": 0,
    "x": 485,
    "y": 1398,
-   "z": 0
-  },
-  {
-   "danger_gap": -4,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 516,
-   "y": 1585,
    "z": 0
   },
   {
@@ -6633,7 +6516,7 @@
    "z": 0
   },
   {
-   "danger_gap": 53,
+   "danger_gap": 20,
    "home": 50,
    "kinds": [
     {
@@ -6993,7 +6876,7 @@
    "z": 0
   },
   {
-   "danger_gap": 1,
+   "danger_gap": -27,
    "home": 50,
    "kinds": [
     {
@@ -7431,34 +7314,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -7470,72 +7329,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -7547,38 +7376,121 @@
    "z": 0
   },
   {
-   "danger_gap": 45,
+   "danger_gap": 24,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1012,
+   "y": 1654,
+   "z": 0
+  },
+  {
+   "danger_gap": 28,
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 2
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 2
+    },
+    {
+     "cls": "DireWolf",
+     "key": "direwolf",
+     "min": 83.1,
+     "n": 2
+    }
+   ],
+   "others": [
+    {
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
+    },
+    {
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
+    }
+   ],
+   "safe": false,
+   "threat": 16.5,
+   "x": 1014,
+   "y": 1796,
+   "z": 0
+  },
+  {
+   "danger_gap": -49,
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -7590,72 +7502,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -7791,34 +7673,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -7830,72 +7688,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -8027,6 +7855,138 @@
    "z": 0
   },
   {
+   "danger_gap": -21,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1028,
+   "y": 1286,
+   "z": 0
+  },
+  {
+   "danger_gap": -36,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1028,
+   "y": 1806,
+   "z": 0
+  },
+  {
    "danger_gap": -11,
    "home": 30,
    "kinds": [
@@ -8034,55 +7994,71 @@
      "cls": "GiantSpider",
      "key": "giantspider",
      "min": 59.1,
-     "n": 9
+     "n": 3
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Lizardman",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ogre",
+     "cls": "Reaper",
      "dmg": 10.0,
-     "hits": 108.5
+     "hits": 84.5
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Spectre",
-     "dmg": 9.0,
-     "hits": 53.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Wisp",
+     "dmg": 17.5,
+     "hits": 126.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 17.5,
    "x": 1029,
    "y": 1969,
+   "z": 0
+  },
+  {
+   "danger_gap": 28,
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 2
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 2
+    },
+    {
+     "cls": "DireWolf",
+     "key": "direwolf",
+     "min": 83.1,
+     "n": 2
+    }
+   ],
+   "others": [
+    {
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
+    },
+    {
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
+    }
+   ],
+   "safe": false,
+   "threat": 16.5,
+   "x": 1038,
+   "y": 1728,
    "z": 0
   },
   {
@@ -8167,55 +8143,96 @@
      "cls": "GiantSpider",
      "key": "giantspider",
      "min": 59.1,
-     "n": 9
+     "n": 3
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Lizardman",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ogre",
+     "cls": "Reaper",
      "dmg": 10.0,
-     "hits": 108.5
+     "hits": 84.5
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Spectre",
-     "dmg": 9.0,
-     "hits": 53.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Wisp",
+     "dmg": 17.5,
+     "hits": 126.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 17.5,
    "x": 1042,
    "y": 1920,
+   "z": 0
+  },
+  {
+   "danger_gap": -48,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1044,
+   "y": 1454,
    "z": 0
   },
   {
@@ -8900,53 +8917,28 @@
      "cls": "GiantSpider",
      "key": "giantspider",
      "min": 59.1,
-     "n": 9
+     "n": 3
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Harpy",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Lizardman",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ogre",
+     "cls": "Reaper",
      "dmg": 10.0,
-     "hits": 108.5
+     "hits": 84.5
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Spectre",
-     "dmg": 9.0,
-     "hits": 53.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Wisp",
+     "dmg": 17.5,
+     "hits": 126.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 17.5,
    "x": 1080,
    "y": 1963,
    "z": 0
@@ -9023,6 +9015,72 @@
    "threat": 17.5,
    "x": 1083,
    "y": 783,
+   "z": 0
+  },
+  {
+   "danger_gap": -55,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1084,
+   "y": 2030,
    "z": 0
   },
   {
@@ -9150,33 +9208,22 @@
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 6
-    },
-    {
      "cls": "GiantSpider",
      "key": "giantspider",
      "min": 59.1,
-     "n": 2
+     "n": 3
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
     },
     {
      "cls": "Wisp",
@@ -9308,6 +9355,72 @@
    "threat": 0,
    "x": 1092,
    "y": 1010,
+   "z": 0
+  },
+  {
+   "danger_gap": -47,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1092,
+   "y": 1950,
    "z": 0
   },
   {
@@ -10299,6 +10412,78 @@
    "z": 1
   },
   {
+   "danger_gap": -15,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1180,
+   "y": 1518,
+   "z": 0
+  },
+  {
    "danger_gap": 27,
    "home": 10,
    "kinds": [
@@ -10329,7 +10514,7 @@
    "z": 0
   },
   {
-   "danger_gap": -45,
+   "danger_gap": 41,
    "home": 80,
    "kinds": [
     {
@@ -10347,7 +10532,7 @@
    "z": 0
   },
   {
-   "danger_gap": -46,
+   "danger_gap": 42,
    "home": 80,
    "kinds": [
     {
@@ -10457,54 +10642,55 @@
    "z": 11
   },
   {
-   "danger_gap": 29,
+   "danger_gap": 94,
    "home": 25,
    "kinds": [
     {
-     "cls": "Hind",
-     "key": "hind",
+     "cls": "Rat",
+     "key": "rat",
+     "min": -0.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Pig",
+     "key": "pig",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Sheep",
+     "key": "sheep",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Slime",
+     "key": "slime",
      "min": 23.1,
      "n": 1
     },
     {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 1
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
      "n": 2
     },
     {
-     "cls": "GreatHart",
-     "key": "greathart",
+     "cls": "Snake",
+     "key": "snake",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GreaterMongbat",
-     "key": "greatermongbat",
-     "min": 71.1,
      "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "OrcishMage",
-     "dmg": 9.0,
-     "hits": 80.0
-    }
-   ],
-   "safe": false,
-   "threat": 9.0,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1191,
    "y": 1780,
    "z": 3
@@ -10582,6 +10768,72 @@
    "x": 1192,
    "y": 958,
    "z": 5
+  },
+  {
+   "danger_gap": -7,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1196,
+   "y": 2030,
+   "z": 0
   },
   {
    "danger_gap": -44,
@@ -10676,7 +10928,7 @@
    "z": 5
   },
   {
-   "danger_gap": -62,
+   "danger_gap": 30,
    "home": 80,
    "kinds": [
     {
@@ -10712,7 +10964,7 @@
    "z": 5
   },
   {
-   "danger_gap": -60,
+   "danger_gap": 28,
    "home": 80,
    "kinds": [
     {
@@ -11062,38 +11314,26 @@
    "z": 1
   },
   {
-   "danger_gap": -29,
+   "danger_gap": 94,
    "home": 50,
    "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 5
+    },
     {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -11105,72 +11345,18 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -11260,34 +11446,22 @@
    "home": 50,
    "kinds": [
     {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 5
+    },
+    {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -11299,72 +11473,18 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -11421,8 +11541,80 @@
    "z": 0
   },
   {
-   "danger_gap": 56,
-   "home": 20,
+   "danger_gap": -53,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1236,
+   "y": 1310,
+   "z": 0
+  },
+  {
+   "danger_gap": -3,
+   "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
@@ -11431,10 +11623,46 @@
      "n": 2
     },
     {
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
+    }
+   ],
+   "others": [
+    {
+     "cls": "Orc",
+     "dmg": 6.0,
+     "hits": 65.0
+    }
+   ],
+   "safe": false,
+   "threat": 6.0,
+   "x": 1240,
+   "y": 1317,
+   "z": 0
+  },
+  {
+   "danger_gap": 69,
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "Mongbat",
+     "key": "mongbat",
+     "min": -18.9,
+     "n": 1
+    },
+    {
      "cls": "Rabbit",
      "key": "rabbit",
      "min": -18.9,
      "n": 3
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
     },
     {
      "cls": "Hind",
@@ -11446,18 +11674,18 @@
      "cls": "GiantRat",
      "key": "giantrat",
      "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
      "n": 2
     }
    ],
-   "others": [
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    }
-   ],
-   "safe": false,
-   "threat": 4.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1240,
    "y": 1600,
    "z": 0
@@ -11502,54 +11730,117 @@
    "z": 5
   },
   {
-   "danger_gap": -12,
+   "danger_gap": -16,
    "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
      "key": "mongbat",
      "min": -18.9,
-     "n": 6
+     "n": 2
     },
     {
-     "cls": "GiantSpider",
-     "key": "giantspider",
-     "min": 59.1,
-     "n": 2
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
      "cls": "Orc",
      "dmg": 6.0,
      "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    },
-    {
-     "cls": "Wisp",
-     "dmg": 17.5,
-     "hits": 126.5
     }
    ],
    "safe": false,
-   "threat": 17.5,
-   "x": 1249,
-   "y": 2030,
+   "threat": 6.0,
+   "x": 1244,
+   "y": 1374,
    "z": 0
   },
   {
-   "danger_gap": 29,
+   "danger_gap": -20,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1244,
+   "y": 1942,
+   "z": 0
+  },
+  {
+   "danger_gap": 161,
    "home": 25,
    "kinds": [
+    {
+     "cls": "Mongbat",
+     "key": "mongbat",
+     "min": -18.9,
+     "n": 1
+    },
     {
      "cls": "Rabbit",
      "key": "rabbit",
@@ -11569,104 +11860,149 @@
      "n": 2
     },
     {
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
+     "n": 1
+    },
+    {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
      "n": 2
     }
    ],
-   "others": [
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    }
-   ],
-   "safe": false,
-   "threat": 6.0,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1250,
    "y": 1701,
    "z": 0
   },
   {
-   "danger_gap": 29,
+   "danger_gap": -52,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1252,
+   "y": 1382,
+   "z": 0
+  },
+  {
+   "danger_gap": 125,
    "home": 15,
    "kinds": [
+    {
+     "cls": "Rat",
+     "key": "rat",
+     "min": -0.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Pig",
+     "key": "pig",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Sheep",
+     "key": "sheep",
+     "min": 11.1,
+     "n": 1
+    },
     {
      "cls": "Slime",
      "key": "slime",
      "min": 23.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "GiantRat",
      "key": "giantrat",
      "min": 29.1,
-     "n": 3
+     "n": 2
     },
     {
      "cls": "Snake",
      "key": "snake",
      "min": 59.1,
-     "n": 2
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    }
-   ],
-   "safe": false,
-   "threat": 4.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1265,
    "y": 1770,
-   "z": 0
-  },
-  {
-   "danger_gap": -12,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 6
-    },
-    {
-     "cls": "GiantSpider",
-     "key": "giantspider",
-     "min": 59.1,
-     "n": 2
-    }
-   ],
-   "others": [
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    },
-    {
-     "cls": "Wisp",
-     "dmg": 17.5,
-     "hits": 126.5
-    }
-   ],
-   "safe": false,
-   "threat": 17.5,
-   "x": 1266,
-   "y": 1982,
    "z": 0
   },
   {
@@ -11744,38 +12080,68 @@
    "z": 0
   },
   {
-   "danger_gap": -61,
-   "home": 50,
+   "danger_gap": 33,
+   "home": 30,
    "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
     {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
+     "n": 1
     },
     {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
     },
     {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1268,
+   "y": 1574,
+   "z": 0
+  },
+  {
+   "danger_gap": -61,
+   "home": 50,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -11787,72 +12153,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -12010,6 +12346,216 @@
    "x": 1295,
    "y": 328,
    "z": 22
+  },
+  {
+   "danger_gap": -27,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1300,
+   "y": 1446,
+   "z": 0
+  },
+  {
+   "danger_gap": 37,
+   "home": 15,
+   "kinds": [
+    {
+     "cls": "Rat",
+     "key": "rat",
+     "min": -0.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Pig",
+     "key": "pig",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Sheep",
+     "key": "sheep",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Slime",
+     "key": "slime",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "Snake",
+     "key": "snake",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1301,
+   "y": 1869,
+   "z": 0
+  },
+  {
+   "danger_gap": -2,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Mongbat",
+     "key": "mongbat",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
+    }
+   ],
+   "others": [
+    {
+     "cls": "Orc",
+     "dmg": 6.0,
+     "hits": 65.0
+    }
+   ],
+   "safe": false,
+   "threat": 6.0,
+   "x": 1305,
+   "y": 1326,
+   "z": 0
+  },
+  {
+   "danger_gap": -36,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1308,
+   "y": 1302,
+   "z": 0
   },
   {
    "danger_gap": -48,
@@ -12206,7 +12752,115 @@
    "z": 0
   },
   {
-   "danger_gap": 28,
+   "danger_gap": -23,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1316,
+   "y": 1518,
+   "z": 0
+  },
+  {
+   "danger_gap": 35,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1316,
+   "y": 1854,
+   "z": 0
+  },
+  {
+   "danger_gap": 76,
    "home": 10,
    "kinds": [
     {
@@ -12224,7 +12878,7 @@
    "z": 0
   },
   {
-   "danger_gap": 17,
+   "danger_gap": 76,
    "home": 10,
    "kinds": [
     {
@@ -12362,7 +13016,7 @@
    "z": 0
   },
   {
-   "danger_gap": -21,
+   "danger_gap": 19,
    "home": 80,
    "kinds": [
     {
@@ -12380,7 +13034,7 @@
    "z": 15
   },
   {
-   "danger_gap": -22,
+   "danger_gap": 17,
    "home": 80,
    "kinds": [
     {
@@ -12416,14 +13070,32 @@
    "z": 15
   },
   {
-   "danger_gap": 4,
+   "danger_gap": 31,
    "home": 20,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 2
+     "cls": "Rat",
+     "key": "rat",
+     "min": -0.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Pig",
+     "key": "pig",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Sheep",
+     "key": "sheep",
+     "min": 11.1,
+     "n": 1
     },
     {
      "cls": "Slime",
@@ -12432,31 +13104,21 @@
      "n": 1
     },
     {
-     "cls": "GreaterMongbat",
-     "key": "greatermongbat",
-     "min": 71.1,
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
+     "n": 2
+    },
+    {
+     "cls": "Snake",
+     "key": "snake",
+     "min": 59.1,
      "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "HeadlessOne",
-     "dmg": 7.5,
-     "hits": 23.0
-    },
-    {
-     "cls": "Lizardman",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    }
-   ],
-   "safe": false,
-   "threat": 7.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1340,
    "y": 1868,
    "z": 0
@@ -12466,34 +13128,22 @@
    "home": 50,
    "kinds": [
     {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 5
+    },
+    {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -12505,72 +13155,18 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -12730,116 +13326,98 @@
    "z": 19
   },
   {
+   "danger_gap": -11,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Mongbat",
+     "key": "mongbat",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
+    }
+   ],
+   "others": [
+    {
+     "cls": "Orc",
+     "dmg": 6.0,
+     "hits": 65.0
+    }
+   ],
+   "safe": false,
+   "threat": 6.0,
+   "x": 1375,
+   "y": 1330,
+   "z": 0
+  },
+  {
    "danger_gap": -42,
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 6
     },
     {
      "cls": "Eagle",
      "key": "eagle",
      "min": 17.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "BlackBear",
      "key": "blackbear",
      "min": 35.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreyWolf",
      "key": "greywolf",
      "min": 53.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
-     "n": 2
+     "n": 3
     }
    ],
    "others": [],
@@ -12850,77 +13428,14 @@
    "z": 0
   },
   {
-   "danger_gap": -17,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    }
-   ],
-   "safe": false,
-   "threat": 12.0,
-   "x": 1383,
-   "y": 1949,
-   "z": 0
-  },
-  {
    "danger_gap": -49,
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -12932,72 +13447,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -13205,42 +13690,200 @@
    "z": 0
   },
   {
-   "danger_gap": -17,
+   "danger_gap": -11,
    "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
      "key": "mongbat",
      "min": -18.9,
-     "n": 5
+     "n": 2
+    },
+    {
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
      "cls": "Orc",
      "dmg": 6.0,
      "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 6.0,
+   "x": 1407,
+   "y": 1281,
+   "z": 0
+  },
+  {
+   "danger_gap": -47,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1412,
+   "y": 1294,
+   "z": 0
+  },
+  {
+   "danger_gap": -17,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "DireWolf",
+     "key": "direwolf",
+     "min": 83.1,
+     "n": 1
+    }
+   ],
+   "others": [
+    {
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
+    },
+    {
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
+    }
+   ],
+   "safe": false,
+   "threat": 16.5,
    "x": 1416,
    "y": 1992,
+   "z": 0
+  },
+  {
+   "danger_gap": -8,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1420,
+   "y": 1382,
    "z": 0
   },
   {
@@ -13403,43 +14046,58 @@
    "z": 0
   },
   {
-   "danger_gap": -19,
+   "danger_gap": -1,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
+     "cls": "Rabbit",
+     "key": "rabbit",
      "min": -18.9,
-     "n": 5
+     "n": 2
+    },
+    {
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    }
-   ],
-   "safe": false,
-   "threat": 12.0,
-   "x": 1435,
-   "y": 1917,
-   "z": 0
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1428,
+   "y": 1470,
+   "z": 2
   },
   {
    "danger_gap": -108,
@@ -13637,40 +14295,84 @@
    "z": 5
   },
   {
+   "danger_gap": 8,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1445,
+   "y": 1365,
+   "z": 0
+  },
+  {
    "danger_gap": -14,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 5
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "DireWolf",
+     "key": "direwolf",
+     "min": 83.1,
+     "n": 1
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 16.5,
    "x": 1447,
    "y": 2038,
    "z": 0
@@ -13680,112 +14382,64 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 6
     },
     {
      "cls": "Eagle",
      "key": "eagle",
      "min": 17.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "BlackBear",
      "key": "blackbear",
      "min": 35.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreyWolf",
      "key": "greywolf",
      "min": 53.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
-     "n": 2
+     "n": 3
     }
    ],
    "others": [],
@@ -13796,42 +14450,33 @@
    "z": 0
   },
   {
-   "danger_gap": -19,
+   "danger_gap": 7,
    "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
      "key": "mongbat",
      "min": -18.9,
-     "n": 5
+     "n": 2
+    },
+    {
+     "cls": "GreaterMongbat",
+     "key": "greatermongbat",
+     "min": 71.1,
+     "n": 1
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
      "cls": "Orc",
      "dmg": 6.0,
      "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
-   "x": 1475,
-   "y": 1958,
+   "threat": 6.0,
+   "x": 1474,
+   "y": 1297,
    "z": 0
   },
   {
@@ -13878,112 +14523,64 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 6
     },
     {
      "cls": "Eagle",
      "key": "eagle",
      "min": 17.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "BlackBear",
      "key": "blackbear",
      "min": 35.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreyWolf",
      "key": "greywolf",
      "min": 53.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
-     "n": 2
+     "n": 3
     }
    ],
    "others": [],
@@ -14072,34 +14669,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -14111,72 +14684,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -14312,36 +14855,38 @@
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 5
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "DireWolf",
+     "key": "direwolf",
+     "min": 83.1,
+     "n": 1
     }
    ],
    "others": [
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "Corpser",
+     "dmg": 16.5,
+     "hits": 101.0
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
+     "cls": "Reaper",
+     "dmg": 10.0,
+     "hits": 84.5
     }
    ],
    "safe": false,
-   "threat": 12.0,
+   "threat": 16.5,
    "x": 1504,
    "y": 2007,
    "z": 0
@@ -14866,84 +15411,6 @@
    "z": 5
   },
   {
-   "danger_gap": -14,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    }
-   ],
-   "safe": false,
-   "threat": 12.0,
-   "x": 1534,
-   "y": 1941,
-   "z": 0
-  },
-  {
-   "danger_gap": -14,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 5
-    }
-   ],
-   "others": [
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Ratman",
-     "dmg": 4.5,
-     "hits": 65.0
-    },
-    {
-     "cls": "Troll",
-     "dmg": 11.0,
-     "hits": 114.5
-    }
-   ],
-   "safe": false,
-   "threat": 12.0,
-   "x": 1541,
-   "y": 1895,
-   "z": 0
-  },
-  {
    "danger_gap": 53,
    "home": 50,
    "kinds": [
@@ -15098,6 +15565,78 @@
    "x": 1550,
    "y": 1658,
    "z": 26
+  },
+  {
+   "danger_gap": 22,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1556,
+   "y": 1302,
+   "z": 0
   },
   {
    "danger_gap": -72,
@@ -16128,61 +16667,55 @@
    "z": 0
   },
   {
-   "danger_gap": -29,
+   "danger_gap": 91,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
+     "cls": "Rabbit",
+     "key": "rabbit",
      "min": -18.9,
-     "n": 3
+     "n": 1
     },
     {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
+     "cls": "Cow",
+     "key": "cow",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "Horse",
+     "key": "horse",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1640,
    "y": 1431,
    "z": 0
@@ -16347,116 +16880,176 @@
    "z": 5
   },
   {
-   "danger_gap": -8,
-   "home": 50,
+   "danger_gap": 75,
+   "home": 30,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
-     "n": 2
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
     },
     {
      "cls": "Cow",
      "key": "cow",
      "min": 11.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Eagle",
-     "key": "eagle",
-     "min": 17.1,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 1
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "Horse",
      "key": "horse",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 1
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1652,
+   "y": 1400,
+   "z": 0
+  },
+  {
+   "danger_gap": 75,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
     },
     {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
+     "cls": "Bird",
+     "key": "bird",
+     "min": -6.9,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
      "min": 59.1,
-     "n": 5
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1652,
+   "y": 1406,
+   "z": 0
+  },
+  {
+   "danger_gap": 4,
+   "home": 50,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 6
     },
     {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
-     "n": 2
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 3
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 3
     }
    ],
    "others": [],
@@ -16536,61 +17129,55 @@
    "z": 6
   },
   {
-   "danger_gap": -8,
+   "danger_gap": 89,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
+     "cls": "Rabbit",
+     "key": "rabbit",
      "min": -18.9,
-     "n": 3
+     "n": 1
     },
     {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
+     "cls": "Cow",
+     "key": "cow",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Goat",
+     "key": "goat",
+     "min": 11.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "Boar",
+     "key": "boar",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "Horse",
+     "key": "horse",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1692,
    "y": 1463,
    "z": 0
@@ -16840,34 +17427,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -16879,72 +17442,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -17385,38 +17918,26 @@
    "z": 5
   },
   {
-   "danger_gap": -50,
+   "danger_gap": 53,
    "home": 50,
    "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 5
+    },
     {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -17428,72 +17949,18 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -17505,61 +17972,49 @@
    "z": 0
   },
   {
-   "danger_gap": 11,
+   "danger_gap": 22,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 2
     },
     {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 2
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 2
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1726,
    "y": 1362,
    "z": 0
@@ -17805,27 +18260,51 @@
    "z": 6
   },
   {
-   "danger_gap": -23,
+   "danger_gap": 47,
    "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
      "key": "mongbat",
      "min": -18.9,
-     "n": 3
-    }
-   ],
-   "others": [
+     "n": 1
+    },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "safe": false,
-   "threat": 6.0,
-   "x": 1750,
-   "y": 1250,
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1755,
+   "y": 1474,
    "z": 0
   },
   {
@@ -17902,34 +18381,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -17941,72 +18396,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -18018,98 +18443,146 @@
    "z": 0
   },
   {
-   "danger_gap": -58,
+   "danger_gap": 14,
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
+     "cls": "Rabbit",
+     "key": "rabbit",
      "min": -18.9,
-     "n": 3
+     "n": 1
     },
     {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "others": [
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1788,
+   "y": 1398,
+   "z": 0
+  },
+  {
+   "danger_gap": 5,
+   "home": 30,
+   "kinds": [
     {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
     },
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
     },
     {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
     },
     {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
     },
     {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
     },
     {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
     }
    ],
-   "safe": false,
-   "threat": 16.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1797,
    "y": 1393,
    "z": 0
   },
   {
-   "danger_gap": -45,
+   "danger_gap": -16,
    "home": 50,
    "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 5
+    },
     {
      "cls": "Bird",
      "key": "bird",
      "min": -6.9,
-     "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "Goat",
      "key": "goat",
      "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "Eagle",
@@ -18121,72 +18594,18 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
-    },
-    {
-     "cls": "TimberWolf",
-     "key": "timberwolf",
-     "min": 23.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "Boar",
      "key": "boar",
      "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
-    },
-    {
-     "cls": "BrownBear",
-     "key": "brownbear",
-     "min": 41.1,
-     "n": 5
-    },
-    {
-     "cls": "Cougar",
-     "key": "cougar",
-     "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
-    },
-    {
-     "cls": "Panther",
-     "key": "panther",
-     "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
-    },
-    {
-     "cls": "GrizzlyBear",
-     "key": "grizzlybear",
-     "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -18195,6 +18614,54 @@
    "threat": 0,
    "x": 1798,
    "y": 1471,
+   "z": 0
+  },
+  {
+   "danger_gap": 3,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BlackBear",
+     "key": "blackbear",
+     "min": 35.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "GreyWolf",
+     "key": "greywolf",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1799,
+   "y": 1394,
    "z": 0
   },
   {
@@ -18318,61 +18785,49 @@
    "z": 0
   },
   {
-   "danger_gap": -13,
+   "danger_gap": 12,
    "home": 30,
    "kinds": [
     {
      "cls": "Mongbat",
      "key": "mongbat",
      "min": -18.9,
-     "n": 3
+     "n": 1
     },
     {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 2
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "GiantRat",
+     "key": "giantrat",
+     "min": 29.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
     }
    ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
+   "others": [],
+   "safe": true,
+   "threat": 0,
    "x": 1802,
    "y": 1506,
    "z": 0
@@ -18444,66 +18899,6 @@
    "threat": 12.0,
    "x": 1804,
    "y": 247,
-   "z": 0
-  },
-  {
-   "danger_gap": -26,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
-    },
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 1812,
-   "y": 1314,
    "z": 0
   },
   {
@@ -18741,12 +19136,6 @@
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
-    },
-    {
      "cls": "DireWolf",
      "key": "direwolf",
      "min": 83.1,
@@ -18768,11 +19157,6 @@
      "cls": "Ogre",
      "dmg": 10.0,
      "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
     },
     {
      "cls": "Reaper",
@@ -18889,6 +19273,72 @@
    "x": 1852,
    "y": 841,
    "z": -1
+  },
+  {
+   "danger_gap": -20,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1852,
+   "y": 1286,
+   "z": 0
   },
   {
    "danger_gap": -80,
@@ -19011,7 +19461,7 @@
    "z": 0
   },
   {
-   "danger_gap": 3,
+   "danger_gap": 21,
    "home": 30,
    "kinds": [
     {
@@ -19019,53 +19469,17 @@
      "key": "mongbat",
      "min": -18.9,
      "n": 3
-    },
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
     }
    ],
    "others": [
     {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
      "cls": "Orc",
      "dmg": 6.0,
      "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
     }
    ],
    "safe": false,
-   "threat": 16.5,
+   "threat": 6.0,
    "x": 1862,
    "y": 1434,
    "z": 0
@@ -19075,34 +19489,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -19114,72 +19504,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -19339,16 +19699,22 @@
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
     },
     {
      "cls": "DireWolf",
      "key": "direwolf",
      "min": 83.1,
-     "n": 7
+     "n": 1
     }
    ],
    "others": [
@@ -19358,34 +19724,9 @@
      "hits": 101.0
     },
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
      "cls": "Reaper",
      "dmg": 10.0,
      "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
     }
    ],
    "safe": false,
@@ -19465,15 +19806,9 @@
    "z": 7
   },
   {
-   "danger_gap": 15,
+   "danger_gap": 21,
    "home": 30,
    "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
-    },
     {
      "cls": "DireWolf",
      "key": "direwolf",
@@ -19496,11 +19831,6 @@
      "cls": "Ogre",
      "dmg": 10.0,
      "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
     },
     {
      "cls": "Reaper",
@@ -19881,126 +20211,6 @@
    "z": 19
   },
   {
-   "danger_gap": -42,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
-    },
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 1898,
-   "y": 1265,
-   "z": 0
-  },
-  {
-   "danger_gap": -41,
-   "home": 30,
-   "kinds": [
-    {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
-    },
-    {
-     "cls": "DireWolf",
-     "key": "direwolf",
-     "min": 83.1,
-     "n": 7
-    }
-   ],
-   "others": [
-    {
-     "cls": "Corpser",
-     "dmg": 16.5,
-     "hits": 101.0
-    },
-    {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
-     "cls": "Reaper",
-     "dmg": 10.0,
-     "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
-    }
-   ],
-   "safe": false,
-   "threat": 16.5,
-   "x": 1912,
-   "y": 1302,
-   "z": 0
-  },
-  {
    "danger_gap": -15,
    "home": 30,
    "kinds": [
@@ -20361,6 +20571,72 @@
    "z": 0
   },
   {
+   "danger_gap": -39,
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
+     "n": 1
+    },
+    {
+     "cls": "Eagle",
+     "key": "eagle",
+     "min": 17.1,
+     "n": 1
+    },
+    {
+     "cls": "Hind",
+     "key": "hind",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "TimberWolf",
+     "key": "timberwolf",
+     "min": 23.1,
+     "n": 1
+    },
+    {
+     "cls": "BrownBear",
+     "key": "brownbear",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Cougar",
+     "key": "cougar",
+     "min": 41.1,
+     "n": 1
+    },
+    {
+     "cls": "Panther",
+     "key": "panther",
+     "min": 53.1,
+     "n": 1
+    },
+    {
+     "cls": "GreatHart",
+     "key": "greathart",
+     "min": 59.1,
+     "n": 1
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 1
+    }
+   ],
+   "others": [],
+   "safe": true,
+   "threat": 0,
+   "x": 1948,
+   "y": 1398,
+   "z": 0
+  },
+  {
    "danger_gap": -29,
    "home": 30,
    "kinds": [
@@ -20389,34 +20665,10 @@
    "home": 50,
    "kinds": [
     {
-     "cls": "Bird",
-     "key": "bird",
-     "min": -6.9,
+     "cls": "Rabbit",
+     "key": "rabbit",
+     "min": -18.9,
      "n": 2
-    },
-    {
-     "cls": "Cow",
-     "key": "cow",
-     "min": 11.1,
-     "n": 2
-    },
-    {
-     "cls": "Goat",
-     "key": "goat",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Pig",
-     "key": "pig",
-     "min": 11.1,
-     "n": 7
-    },
-    {
-     "cls": "Sheep",
-     "key": "sheep",
-     "min": 11.1,
-     "n": 7
     },
     {
      "cls": "Eagle",
@@ -20428,72 +20680,42 @@
      "cls": "Hind",
      "key": "hind",
      "min": 23.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "TimberWolf",
      "key": "timberwolf",
      "min": 23.1,
-     "n": 5
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 7
-    },
-    {
-     "cls": "BlackBear",
-     "key": "blackbear",
-     "min": 35.1,
-     "n": 5
+     "n": 3
     },
     {
      "cls": "BrownBear",
      "key": "brownbear",
      "min": 41.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Cougar",
      "key": "cougar",
      "min": 41.1,
-     "n": 7
-    },
-    {
-     "cls": "GreyWolf",
-     "key": "greywolf",
-     "min": 53.1,
-     "n": 5
+     "n": 2
     },
     {
      "cls": "Panther",
      "key": "panther",
      "min": 53.1,
-     "n": 7
+     "n": 2
     },
     {
      "cls": "GreatHart",
      "key": "greathart",
      "min": 59.1,
-     "n": 2
+     "n": 3
     },
     {
      "cls": "GrizzlyBear",
      "key": "grizzlybear",
      "min": 59.1,
-     "n": 5
-    },
-    {
-     "cls": "Bull",
-     "key": "bull",
-     "min": 71.1,
      "n": 2
     }
    ],
@@ -20509,16 +20731,22 @@
    "home": 30,
    "kinds": [
     {
-     "cls": "Mongbat",
-     "key": "mongbat",
-     "min": -18.9,
-     "n": 3
+     "cls": "GiantSpider",
+     "key": "giantspider",
+     "min": 59.1,
+     "n": 2
+    },
+    {
+     "cls": "GrizzlyBear",
+     "key": "grizzlybear",
+     "min": 59.1,
+     "n": 2
     },
     {
      "cls": "DireWolf",
      "key": "direwolf",
      "min": 83.1,
-     "n": 7
+     "n": 2
     }
    ],
    "others": [
@@ -20528,34 +20756,9 @@
      "hits": 101.0
     },
     {
-     "cls": "Ettin",
-     "dmg": 12.0,
-     "hits": 90.5
-    },
-    {
-     "cls": "Ogre",
-     "dmg": 10.0,
-     "hits": 108.5
-    },
-    {
-     "cls": "Orc",
-     "dmg": 6.0,
-     "hits": 65.0
-    },
-    {
      "cls": "Reaper",
      "dmg": 10.0,
      "hits": 84.5
-    },
-    {
-     "cls": "Skeleton",
-     "dmg": 5.0,
-     "hits": 41.0
-    },
-    {
-     "cls": "Zombie",
-     "dmg": 5.0,
-     "hits": 35.0
     }
    ],
    "safe": false,
@@ -30332,7 +30535,7 @@
    "z": 0
   },
   {
-   "danger_gap": -15,
+   "danger_gap": -12,
    "home": 50,
    "kinds": [
     {
@@ -30866,7 +31069,7 @@
    "z": 0
   },
   {
-   "danger_gap": -2,
+   "danger_gap": 1,
    "home": 15,
    "kinds": [
     {
@@ -30898,66 +31101,6 @@
    "threat": 16.5,
    "x": 4485,
    "y": 1387,
-   "z": 23
-  },
-  {
-   "danger_gap": -7,
-   "home": 10,
-   "kinds": [
-    {
-     "cls": "Rat",
-     "key": "rat",
-     "min": -0.9,
-     "n": 1
-    },
-    {
-     "cls": "Hind",
-     "key": "hind",
-     "min": 23.1,
-     "n": 1
-    },
-    {
-     "cls": "Boar",
-     "key": "boar",
-     "min": 29.1,
-     "n": 1
-    },
-    {
-     "cls": "Horse",
-     "key": "horse",
-     "min": 29.1,
-     "n": 1
-    },
-    {
-     "cls": "Llama",
-     "key": "llama",
-     "min": 35.1,
-     "n": 1
-    },
-    {
-     "cls": "GiantSpider",
-     "key": "giantspider",
-     "min": 59.1,
-     "n": 1
-    },
-    {
-     "cls": "GreatHart",
-     "key": "greathart",
-     "min": 59.1,
-     "n": 1
-    }
-   ],
-   "others": [
-    {
-     "cls": "GiantSerpent",
-     "dmg": 12.0,
-     "hits": 120.5
-    }
-   ],
-   "safe": false,
-   "threat": 12.0,
-   "x": 4493,
-   "y": 1364,
    "z": 23
   },
   {
@@ -31313,63 +31456,6 @@
    "x": 4510,
    "y": 1262,
    "z": 0
-  },
-  {
-   "danger_gap": -6,
-   "home": 10,
-   "kinds": [
-    {
-     "cls": "PolarBear",
-     "key": "polarbear",
-     "min": 35.1,
-     "n": 1
-    },
-    {
-     "cls": "SnowLeopard",
-     "key": "snowleopard",
-     "min": 53.1,
-     "n": 1
-    },
-    {
-     "cls": "WhiteWolf",
-     "key": "whitewolf",
-     "min": 65.1,
-     "n": 1
-    },
-    {
-     "cls": "FrostSpider",
-     "key": "frostspider",
-     "min": 74.7,
-     "n": 1
-    }
-   ],
-   "others": [
-    {
-     "cls": "FrostOoze",
-     "dmg": 6.0,
-     "hits": 15.0
-    },
-    {
-     "cls": "FrostTroll",
-     "dmg": 17.0,
-     "hits": 148.0
-    },
-    {
-     "cls": "IceSerpent",
-     "dmg": 12.0,
-     "hits": 138.5
-    },
-    {
-     "cls": "IceSnake",
-     "dmg": 8.0,
-     "hits": 48.0
-    }
-   ],
-   "safe": false,
-   "threat": 17.0,
-   "x": 4511,
-   "y": 1394,
-   "z": 23
   },
   {
    "danger_gap": -12,

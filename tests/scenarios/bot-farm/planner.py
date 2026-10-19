@@ -23,6 +23,8 @@ import json
 import os
 import time
 
+import farmdb
+
 WINDOW = 600.0
 VERSION = 2              # rates measured before products were valued at cost (v1 scored crafting as a loss) are dropped
 ALPHA = 0.35
@@ -106,23 +108,22 @@ class PlannerMixin:
         return f"v{VERSION}|{getattr(self, 'pname', '?')}|{metric}|{name}"
 
     def plan_shared(self):
+        """The profession-wide rates, from the farm's database (farmdb: atomic, no lost updates); the JSON file is the fallback and an export."""
         try:
-            return json.load(open(SHARED, encoding="utf-8"))
-        except (OSError, ValueError):
-            return {}
+            return farmdb.rate_table("activity", import_json=SHARED)
+        except Exception:
+            try:
+                return json.load(open(SHARED, encoding="utf-8"))
+            except (OSError, ValueError):
+                return {}
 
     def plan_share(self, metric, name, rate):
-        d = self.plan_shared()
         k = self.plan_shared_key(metric, name)
-        old = d.get(k)
-        d[k] = [round(rate if not old else old[0] + ALPHA * (rate - old[0]), 2), (old[1] if old else 0) + 1, int(time.time())]
         try:
-            tmp = SHARED + f".{os.getpid()}.tmp"
-            with open(tmp, "w", encoding="utf-8") as f:
-                json.dump(d, f, indent=0)
-            os.replace(tmp, SHARED)
-        except OSError:
-            pass
+            farmdb.rate_update("activity", k, rate, ALPHA)                 # atomic: the old read-change-rewrite of the JSON file lost concurrent updates
+            farmdb.export_json("activity", SHARED)
+        except Exception as e:
+            self.log(f"planner: shared rate write failed ({type(e).__name__}: {e})")
 
     def plan_estimate(self, metric, name, shared=None):
         """(rate, source) or (None, "unknown")."""

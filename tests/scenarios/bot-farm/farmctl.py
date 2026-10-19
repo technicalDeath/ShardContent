@@ -311,7 +311,7 @@ def c_restart_server(a):
                 subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
                 n += 1
     print(f"stopped {n} bot processes")
-    print(pwsh("Stop-DevServer.ps1").strip().splitlines()[-1:])
+    print(pwsh("Stop-DevServer.ps1", "-DistributionPath", os.path.join(ROOT, "work", "hosts", "farm")).strip().splitlines()[-1:])   # only the farm's own server
     asm = os.path.join(ROOT, "work", "hosts", "farm", "Assemblies")
     if a.deploy_shard or a.deploy_engine:
         backup = os.path.join(ROOT, "work", "hosts", "farm", "Assemblies-backup-" + time.strftime("%Y%m%d-%H%M%S"))

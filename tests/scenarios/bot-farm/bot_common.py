@@ -30,11 +30,13 @@ sys.path.insert(0, os.path.join(ROOT, ".claude", "scripts"))
 from navrey_session import connect  # noqa: E402
 from tele import TeleMixin  # noqa: E402  (generic teleports; needs gazetteer.py / gazetteer.json beside it)
 from far import FarMixin  # noqa: E402  (far service walks, routed and resumable; needs walkroute.py)
+from runes import RuneMixin  # noqa: E402  (runes, Mark and Recall; feature runes)
 from evade import EvadeMixin  # noqa: E402  (r_evade only for real threats; needs fightmodes.json)
 from gotoroute import GotoRouteMixin  # noqa: E402  (goto of over 120 tiles as routed legs; feature goto_routed)
 from party import PartyMixin  # noqa: E402  (parties; feature party; needs Navrey build Lean5+)
 from buddy import BuddyMixin  # noqa: E402  (buddy pairs: rendezvous, staying together, bandaging; feature buddy + party)
 from pacing import PacingMixin  # noqa: E402  (walk in town, pause before talking, a break at the bank; features pacing, pacing_walk)
+from housegoal import HouseGoalMixin  # noqa: E402  (the A1 house goal; feature house_goal, off in the farm world)
 from market import MarketMixin  # noqa: E402  (the bots' market: quantity offers / wants, secure trades; feature trade)
 from uo import Event  # noqa: E402
 from memory import MEMDIR, SharedMemory, cell_center, cell_of  # noqa: E402
@@ -147,7 +149,7 @@ def connect_retry(name, tries=20, wait=1.0):
     raise last
 
 
-class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard):
+class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard):
     RULES: list = []
 
     def __init__(self, name: str, profession: int):
@@ -795,7 +797,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # facts a new brain takes over from the last one (a restart used to drop the held ground, the camp and which gear was looted)
     PERSIST = ("ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
                "sell_skip_until", "soldout_until", "stocked_at", "bank_balance", "banked_at", "fletch_wait", "wood_wait", "shop_at", "chop_fail",
-               "emptied", "home", "camp_step", "home_region", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate")
+               "emptied", "home", "camp_step", "home_region", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at")
     PERSIST_SETS = ("gear_looted", "emptied")
 
     def save_facts(self):
@@ -1016,6 +1018,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     break
             got += 1
         self.note("death", f"The bot walked back to its corpse and took {got} things: {[str(x) for x in contents][:6]}. The death message tells the player to do this soon.", key="corpserun", got=got)
+        if got and hasattr(self, "bw_looted") and self.facts.get("bw"):
+            self.bw_looted("item by item")                                 # the Between Worlds record: the corpse was taken (bw.py)
         self.log(f"recovered {got} things from the corpse")
         self.facts.pop("corpse", None)
         return True
@@ -1032,6 +1036,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                       key="unseenhit")
         self.activity = "fleeing"
         self.on_flee()
+        if hasattr(self, "sewer_flee") and self.sewer_flee():                            # in the sewers: out first, potions only if there is no way out (feature sewer_stay)
+            return True
         for item in self.c.backpack if time.time() - self.facts.get("drank", 0) > 12 else ():
             if item.name == "Yellow Potion":      # a lesser heal potion: yellow, as in the era
                 self.facts["drank"] = time.time()
@@ -1587,7 +1593,70 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     self.log("overloaded and out of stamina: a Refresh potion before the walk to the bank")
                     self.c.use(red.serial)
                     time.sleep(1.5)
+        if self.feature("bank_spread"):
+            return self.bank_spread_walk(bank)
         return self.goto_near(bank[0], bank[1], 4).wait(timeout=90)
+
+    def bank_spot(self, bank):
+        """A spot of this bot's own around the banker: a ring of radius 2-5 picked by the bot's name (feature bank_spread)."""
+        h = sum(ord(ch) * (i + 3) for i, ch in enumerate(self.name))
+        ang = ((h * 47) % 360) * 3.14159265 / 180.0
+        r = 2 + (h % 4)
+        return int(round(bank[0] + r * math.cos(ang))), int(round(bank[1] + r * math.sin(ang)))
+
+    def bank_spread_walk(self, bank):
+        spot = self.bank_spot(bank)
+        res = self.goto_near(spot[0], spot[1], 1).wait(timeout=90)
+        if not str(res).startswith("arrived"):
+            time.sleep(random.uniform(3.0, 5.0))                  # bodies in the way: let them move rather than retry at once
+            res = self.goto_near(spot[0], spot[1], 1).wait(timeout=60)
+        d = max(abs(self.c.x - bank[0]), abs(self.c.y - bank[1]))
+        if not str(res).startswith("arrived") and d <= self.BANK_SPEECH:
+            res = "arrived (speaking from here)"                      # the banker hears from here
+        self.ev("bank_spot", spot=list(spot), result=str(res)[:40], from_banker=d)
+        return res
+
+    OVERLOAD_ESSENTIAL = ("gold", "book", "bandage", "potion", "backpack", "bag", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade",
+                          "ash", "silk", "arrow", "bolt")
+    OVERLOAD_TOOLS = ("tongs", "hammer", "saw", "tool kit", "tinker", "scissors", "pickaxe", "shovel", "hatchet", "axe", "sewing kit", "dovetail",
+                      "mortar", "pen", "skillet", "fishing pole", "dagger", "knife", "lockpick", "instrument", "lute", "harp", "drum", "tambourine")
+
+    BANK_FULL = "container cannot hold more items"
+
+    def bank_box_full(self):
+        """True when the server just refused a deposit because the bank box is full. A pre-AOS bank box holds 125 items, counting what is
+        inside bags, and a crafter whose goods nobody buys fills it: on 2026-10-18 two crafters stood overloaded for over an hour while every
+        deposit came back "That container cannot hold more items." (45 times). Remembered for 30 minutes (facts bank_full_at)."""
+        if any(self.BANK_FULL in l.lower() for l in self.read_journal()):
+            if time.time() - self.facts.get("bank_full_at", 0) > 1800:
+                self.log("the bank box is full (125 items): nothing more goes in until something comes out")
+                self.note("bank", "A bank box holds 125 items; a full one refuses every deposit with \"That container cannot hold more items.\" A crafter whose goods no shop buys fills it and then cannot shed weight by banking.", key="bankfull")
+            self.facts["bank_full_at"] = time.time()
+            return True
+        return time.time() - self.facts.get("bank_full_at", 0) < 1800
+
+    def bank_overload_pass(self, box, share=0.85):
+        """Overloaded after the usual deposit: everything but the essentials and one of each tool goes in, biggest stacks first, to 85% of the limit."""
+        before = self.c.weight
+        kept_tools = set()
+        moved = 0
+        for it in sorted(list(self.c.backpack), key=lambda i: -(i.amount or 1)):
+            if self.c.weight <= self.c.max_weight * share:
+                break
+            low = (it.name or "").lower()
+            if not low or any(w in low for w in self.OVERLOAD_ESSENTIAL):
+                continue
+            tool = next((w for w in self.OVERLOAD_TOOLS if w in low), None)
+            if tool and tool not in kept_tools:
+                kept_tools.add(tool)
+                continue                                                # one of each tool stays: the bot can still work
+            self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)
+            time.sleep(1.4)
+            if self.bank_box_full():
+                break                                                   # the box is full (125 items): drop_excess sheds the cheapest instead
+            moved += 1
+        self.log(f"overloaded: banked {moved} more stacks (products and spares), weight {before} -> {self.c.weight}/{self.c.max_weight}")
+        self.ev("shed", how="bank_products", item="products", qty=max(0, before - self.c.weight), stacks=moved)
 
     def visit_bank(self, why, withdraw=0, reserve=200, extra=()):
         banks = self.bank_xys()
@@ -1619,6 +1688,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 continue
             self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
             time.sleep(1.4)
+        if why == "overloaded" and self.c.weight > self.c.max_weight * 0.85:
+            self.bank_overload_pass(box)                                  # still too heavy to walk: the products and spares go in too (patch_overload_bank.py)
+        elif why == "heavy" and hasattr(self, "products") and self.c.weight > self.c.max_weight * 0.7:
+            self.bank_overload_pass(box, 0.7)                             # a crafter's heavy visit: what nobody bought goes in (patch_craft_weight.py)
         reserve = goals.reserve(self, reserve, why)                      # saving for a goal: the purse stays small
         gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
         if gold and self.c.gold > reserve + 50:
@@ -1756,7 +1829,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             here = next((m for m in self.c.mobiles(within=12) if m.serial == vendor.serial), vendor)
             walked = here.distance > 2
             if walked:
-                self.c.goto(here.x, here.y).wait(timeout=8)       # a vendor answers only within 4 tiles in this era
+                vz = (tuple(getattr(here, "pos", None) or ()) + (None, None, None))[2]
+                self.c.goto(here.x, here.y, vz).wait(timeout=8)   # a vendor answers only within 4 tiles in this era, and on its own floor (the Mage shop's upper
+                                                                  # floor at z 70 heard nothing from Merill at z 30: live, 2026-10-18)
             self.pacing_pause("vendor")                              # a moment in front of the vendor before talking (feature pacing)
             self.c.events.drain()
             self.c.say(f"{vendor.name.split()[0]} {kind}")
@@ -1925,6 +2000,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         try:
             bx, by = self.bank_xys()[0]
             tried = self.facts.get("shed_bank_at", 0)
+            if self.bank_box_full():
+                raise LookupError("bank box full")                    # banking cannot help: go straight to dropping the cheapest
             if max(abs(self.c.x - bx), abs(self.c.y - by)) <= 10 and self.feature("walk_fix") and time.time() - tried > 120:
                 self.facts["shed_bank_at"] = time.time()           # once per 2 min: if banking has not helped by then, drop (the watcher: 105 a minute)
                 self.facts["bank_heavy"] = True                # r_bank (overloaded) banks from here; nothing is thrown away
@@ -1941,6 +2018,29 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if time.time() < self.facts.get("drop_refused_until", 0):
             return False                                  # dropping was refused a moment ago: let r_bank walk to the bank box instead
         stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=rank)
+        if not stacks and self.bank_box_full():
+            # nothing heavy but products, and the bank is full: a player tosses what no shop buys, the least worth first (one of each tool stays)
+            buys = {}
+            try:
+                for v in self.mem.state["world"]["vendors"].values():
+                    for item, price in v.get("buys", {}).items():
+                        buys[item] = max(buys.get(item, 0), price)
+            except Exception:
+                pass
+            def worth(i):                                          # what a known shop pays per piece (0: nobody buys it), biggest pile first
+                return buys.get((i.name or "").lower(), 0), -(i.amount or 1)
+            kept_tools = set()
+            junk = []
+            for i in self.c.backpack:
+                low = (i.name or "").lower()
+                if not low or any(w in low for w in self.OVERLOAD_ESSENTIAL):
+                    continue
+                tool = next((w for w in self.OVERLOAD_TOOLS if w in low), None)
+                if tool and tool not in kept_tools:
+                    kept_tools.add(tool)
+                    continue
+                junk.append(i)
+            stacks = sorted(junk, key=worth)
         if not stacks:
             # overloaded by something that is not material (gear, ammunition): nothing here to drop, so the rules (the bank trip) take the tick
             self.facts["drop_refused_until"] = time.time() + 600
@@ -2022,6 +2122,57 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             guard = getattr(self, "guard_seen", None)
             if guard:
                 guard("ev", kw.get("ev", ""))
+        if typ == "choice" or (typ == "ev" and kw.get("ev") in self.DECISION_EVS):
+            self.decision_record(typ, kw)
+
+    # Choices worth learning from (farmdb decisions): the event and the field that names what was chosen. A "choice" line is one too.
+    DECISION_EVS = {"plan": "to", "caster_ground": "ground", "tame_spot": "spot", "bw_plan": "choice", "pair_start": "partners", "trip_start": "dest",
+                    "sewer_enter": None, "goal_set": "goal", "deal_booked": "item", "far_service": "role", "stall": "action"}
+    DECISION_OPTIONS = ("rates", "score", "value", "kinds", "dist", "eta_min", "corpse_dist", "cost", "price", "qty", "steps")
+
+    def decision_context(self):
+        """What the bot knew when it chose: a small, stable set of numbers the outcome can later be explained by."""
+        ctx = {"mode": getattr(self, "mode", "veteran")}
+        try:
+            c = self.c
+            ctx.update(hp=c.hp, max_hp=c.max_hp, gold=c.gold, weight=c.weight, max_weight=c.max_weight, x=c.x, y=c.y, cell=f"{c.x // 40 * 40},{c.y // 40 * 40}")
+        except Exception:
+            pass
+        f = getattr(self, "facts", {}) or {}
+        ctx["bank"] = f.get("bank_balance")
+        died = f.get("died_at")
+        ctx["mins_since_death"] = round((time.time() - died) / 60, 1) if died else None
+        p = f.get("persona")
+        if isinstance(p, dict):
+            ctx["persona"] = p.get("main")
+        try:
+            ctx["skill"] = round(float(self.working_skill()), 1)
+        except Exception:
+            pass
+        ctx["rule"] = getattr(self, "current_rule", None) or getattr(self, "last_rule", None)
+        return ctx
+
+    def decision_record(self, typ, kw):
+        """Open a decision row in the farm's database (best-effort; never breaks the tick). The episodes that follow fill in its outcome."""
+        try:
+            import farmdb
+            if typ == "choice":
+                kind, chosen = "choice:" + str(kw.get("what", "?"))[:40], kw.get("why")
+            else:
+                ev = kw.get("ev")
+                if ev == "far_service" and kw.get("decided") != "go":
+                    return
+                kind, field = ev, self.DECISION_EVS.get(ev)
+                chosen = kw.get(field) if field else ev
+            opts = {k: kw[k] for k in self.DECISION_OPTIONS if k in kw} or None
+            farmdb.decision_open(self.name, getattr(self, "pname", None), kind, chosen, self.decision_context(), opts)
+        except Exception as e:
+            if time.time() - getattr(self, "_decision_err_at", 0) > 600:
+                self._decision_err_at = time.time()
+                try:
+                    self.log(f"decisions: database write failed ({type(e).__name__}: {e})")
+                except Exception:
+                    pass
 
     def request_unstick(self, why, every=180):
         """Ask for a staff move (what a player does with Help > I'm stuck): a line in wedged.jsonl for unstick.py, at most every `every` seconds, and hold still (r_wedged)."""
@@ -2055,8 +2206,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         dur = now - ep["t0"]
         if dur < 1.5:
             return
-        self.dlog("ep", rule=ep["rule"], act=(ep["act"] or "")[:40], dur=round(dur, 1), gold=self.c.gold - ep["gold0"], kills=self.kills - ep["kills0"], gains=self.total_gains() - ep["gains0"],
-                  hp=self.c.hp - ep["hp0"], died=self.deaths - ep["deaths0"], work=self.work - ep.get("work0", self.work), moved=round(math.hypot(self.c.x - ep["x0"], self.c.y - ep["y0"])))
+        out = dict(gold=self.c.gold - ep["gold0"], kills=self.kills - ep["kills0"], gains=self.total_gains() - ep["gains0"],
+                   hp=self.c.hp - ep["hp0"], died=self.deaths - ep["deaths0"], work=self.work - ep.get("work0", self.work))
+        self.dlog("ep", rule=ep["rule"], act=(ep["act"] or "")[:40], dur=round(dur, 1), **out, moved=round(math.hypot(self.c.x - ep["x0"], self.c.y - ep["y0"])))
+        try:
+            import farmdb
+            farmdb.decision_add(self.name, dict(out, secs=round(dur, 1)), now)      # what this stretch yielded goes to the choices that led to it
+        except Exception:
+            pass
 
     CRITTERS = ("towhee", "sparrow", "swallow", "nightingale", "plover", "thrush", "tern", "warbler", "finch", "starling", "bird", "magpie", "crow",
                 "raven", "pigeon", "gull", "cat", "dog", "squirrel", "rabbit", "jackrabbit", "toad", "frog", "lizard", "mouse")

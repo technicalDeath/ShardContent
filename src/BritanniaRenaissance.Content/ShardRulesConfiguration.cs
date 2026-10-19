@@ -113,6 +113,7 @@ public static class ShardRulesConfiguration
         FastSkillStart.Validate("fastHealing", rules.FastHealing, errors);
         FastSkillStart.Validate("fastMeditation", rules.FastMeditation, errors);
         ExtraVendorBuyers.Validate(rules.ExtraVendorBuyers, errors);
+        ExtraVendorStock.Validate(rules.ExtraVendorStock, errors);
         BackpackWardVendor.Validate(rules.WardVendor, errors);
         BackpackWardCraft.Validate(rules.WardCraft, errors);
         CampingService.Validate(rules.Camping, errors);
@@ -472,6 +473,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("extraVendorBuyers")]
     public ExtraVendorBuyerRules ExtraVendorBuyers { get; set; } = new();
+
+    [JsonPropertyName("extraVendorStock")]
+    public List<ExtraVendorStockEntry> ExtraVendorStock { get; set; } = [];
 
     [JsonPropertyName("featureFlags")]
     public DeferredFeatureFlags FeatureFlags { get; set; } = new();
@@ -1043,6 +1047,15 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("monsterSpellWords")]
     public bool MonsterSpellWords { get; set; }
 
+    /// <summary>A corpse's grid window has a Carve button that carves with the first knife or sword found (command 0xB0); off until the owner says
+    /// activate.</summary>
+    [JsonPropertyName("corpseCarveButton")]
+    public bool CorpseCarveButton { get; set; }
+
+    /// <summary>A player opening a corpse that will vanish in under 2 minutes gives it one more minute, once (owner, 2026-10-18).</summary>
+    [JsonPropertyName("corpseLootExtension")]
+    public bool CorpseLootExtension { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -1124,11 +1137,13 @@ public sealed class DeferredFeatureFlags
         if (OrdinaryAddonDeeds) yield return nameof(OrdinaryAddonDeeds);
         if (CriminalCorpseConfirm) yield return nameof(CriminalCorpseConfirm);
         if (MonsterSpellWords) yield return nameof(MonsterSpellWords);
+        if (CorpseCarveButton) yield return nameof(CorpseCarveButton);
+        if (CorpseLootExtension) yield return nameof(CorpseLootExtension);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !CorpseCarveButton && !CorpseLootExtension && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

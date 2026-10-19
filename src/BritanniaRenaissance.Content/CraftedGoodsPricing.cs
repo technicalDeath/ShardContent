@@ -14,7 +14,9 @@ namespace BritanniaRenaissance.Content;
 /// can make a small profit on crafted items"; docs/Crafted-Goods-Pricing.md). A vendor that buys a crafted item pays at least its material cost times
 /// <see cref="Margin"/>, and a vendor that sells one charges at least <see cref="Spread"/> times that, so buying from a vendor to sell back never pays.
 /// A vendor's resale of goods players sold it already costs 1.9 times what it paid (stock rule). The material cost comes from the server's own craft
-/// recipes (blacksmithing, tailoring, tinkering, carpentry, bowcraft) priced at what vendors charge for the material (<see cref="MaterialPrices"/>).
+/// recipes (blacksmithing, tailoring, tinkering, carpentry, bowcraft) priced at what vendors charge for the material (<see cref="MaterialPrices"/>), and,
+/// since the owner's "Crafted pricing for scrolls" (2026-10-18), the spell scrolls of inscription, priced from the blank scroll and the spell's reagents
+/// (<see cref="ExtraVendorBuyers.ExtraMaterialPrices"/>); a vendor's own scroll shelf then charges at least 1.5 times what it pays, so no loop opens.
 /// Prices are only ever raised to the floors, never lowered, and an item no vendor buys stays unbuyable. Engine hooks: <c>GenericSellInfo.SellPriceAdjust</c>
 /// and <c>GenericBuyInfo.BuyPriceAdjust</c>; the flag is read on every price, so switching it takes effect at once.
 /// </summary>
@@ -121,7 +123,13 @@ public static class CraftedGoodsPricing
     public static Dictionary<Type, int> BuildCosts()
     {
         var costs = new Dictionary<Type, int>();
-        foreach (var system in new[] { DefBlacksmithy.CraftSystem, DefTailoring.CraftSystem, DefTinkering.CraftSystem, DefCarpentry.CraftSystem, DefBowFletching.CraftSystem })
+        var prices = new Dictionary<Type, int>(ExtraVendorBuyers.ExtraMaterialPrices);
+        foreach (var (type, price) in MaterialPrices)
+        {
+            prices[type] = price;
+        }
+
+        foreach (var system in new[] { DefBlacksmithy.CraftSystem, DefTailoring.CraftSystem, DefTinkering.CraftSystem, DefCarpentry.CraftSystem, DefBowFletching.CraftSystem, DefInscription.CraftSystem })
         {
             if (system?.CraftItems == null)
             {
@@ -130,13 +138,15 @@ public static class CraftedGoodsPricing
 
             foreach (var item in system.CraftItems)
             {
-                // a material made from another (boards from logs, cloth cut from a bolt) is a conversion, not a product
-                if (item?.ItemType == null || MaterialPrices.ContainsKey(item.ItemType) || IsKeptAtStock(item.ItemType))
+                // a material made from another (boards from logs, cloth cut from a bolt) is a conversion, not a product; of inscription only the spell scrolls
+                // are priced (runebooks and books keep their stock prices)
+                if (item?.ItemType == null || prices.ContainsKey(item.ItemType) || IsKeptAtStock(item.ItemType) ||
+                    system == DefInscription.CraftSystem && !typeof(SpellScroll).IsAssignableFrom(item.ItemType))
                 {
                     continue;
                 }
 
-                var cost = MaterialCost(item.Resources.Select(r => (r.ItemType, r.Amount)), MaterialPrices);
+                var cost = MaterialCost(item.Resources.Select(r => (r.ItemType, r.Amount)), prices);
                 if (cost > 0 && (!costs.TryGetValue(item.ItemType, out var known) || cost < known))
                 {
                     costs[item.ItemType] = cost;

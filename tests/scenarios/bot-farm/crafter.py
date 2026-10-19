@@ -780,6 +780,8 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             self.log(f"{rule}: skip - {why}")
         return False
 
+    CRAFT_WEIGHT = 0.8                                   # no crafting above this share of the weight limit (patch_craft_weight.py)
+
     def r_craft(self):
         if self.threats(10):
             return self.skip_why("r_craft", f"threat near: {self.threats(10)[0].name}")
@@ -792,6 +794,8 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             return False
         if self.count(self.cfg["mat"]) < 5:
             return self.skip_why("r_craft", f"under 5 {self.cfg['mat']}")
+        if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+            return self.skip_why("r_craft", f"the pack is too heavy ({self.c.weight}/{self.c.max_weight}): sell or bank first")     # patch_craft_weight.py
         if self.menu_map and getattr(self, "explored_at", None) and (self.skill - self.explored_at[1] >= 4 or time.time() - self.explored_at[0] > 1500):
             self.menu_map_backup = self.menu_map
             self.menu_map = {}

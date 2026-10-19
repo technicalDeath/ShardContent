@@ -48,7 +48,7 @@ def norm(s):
 
 def scroll_keys(spell):
     """The shop names a spell's scroll can have: 'Clumsy Scroll', and without the word spell ('Unlock Scroll')."""
-    return {norm(spell) + "scroll", norm(re.sub(r"\bspell\b", "", spell.lower())) + "scroll"}
+    return {norm(spell) + "scroll", norm(re.sub(r"\bspell\b", "", spell.lower())) + "scroll", norm(spell)}      # the client calls some scrolls by the spell alone ("Recall")
 
 
 class SpellbookMixin:
@@ -352,7 +352,7 @@ class SpellbookMixin:
             return True
         # a scroll already in the pack goes into the book first
         for n in list(spell_table()):
-            if not self.spell_ok(n) and self.book_scroll(n) and now - b["tries"].get("add:" + n, 0) > 60:
+            if not self.spell_ok(n) and self.book_scroll(n) and now - b["tries"].get("add:" + n, 0) > 60 and not (getattr(self, "rune_keep_scroll", None) and self.rune_keep_scroll(n)):
                 b["tries"]["add:" + n] = now
                 if self.book_add(n):
                     return True

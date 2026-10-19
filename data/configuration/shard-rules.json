@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "40ae95c5fe87ff71dbb9bf126f61b34935ff5003",
+  "pinnedModernUoCommit": "52648386c20539671b59dbc62f41e15728edebfe",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -178,6 +178,10 @@
       { "item": "BigFish", "price": 10, "vendors": [ "Fisherman" ] }
     ]
   },
+  "extraVendorStock": [
+    { "item": "RecallScroll", "price": 42, "amount": 20, "itemId": 8012, "vendors": [ "Mage" ] },
+    { "item": "MarkScroll", "price": 62, "amount": 20, "itemId": 8025, "vendors": [ "Mage" ] }
+  ],
   "fastMeditation": {
     "bands": [
       { "belowTenths": 200, "minTenths": 50, "maxTenths": 100 },
@@ -316,6 +320,8 @@
     "ordinaryAddonDeeds": true,
     "criminalCorpseConfirm": true,
     "monsterSpellWords": true,
+    "corpseCarveButton": false,
+    "corpseLootExtension": true,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

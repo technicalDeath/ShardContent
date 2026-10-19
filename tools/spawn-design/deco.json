@@ -1,5 +1,5 @@
 {
- "about": "Flavor objects (owner, 2026-10-18): single small standalone pieces scattered through each spawn area, each on clean open ground, never composed into scenes (the scenes were dropped as illogical to look at). No piece may share its art with anything a player can own or pick up (check_deco.py; 'allowed' lists the justified hits), only single-tile art from the classic set, nothing that needs a wall, a tree or a companion piece. 'themes' and 'assemblies' are the dropped scene design, kept for reference.",
+ "about": "Flavor objects (owner, 2026-10-18): single small standalone pieces scattered through each spawn area, each on clean open ground, never composed into scenes (the scenes were dropped as illogical to look at). No piece may share its art with anything a player can own or pick up (check_deco.py; 'allowed' lists the justified hits), only single-tile art from the classic set, nothing that needs a wall, a tree or a companion piece. 'themes' and 'assemblies' are the dropped scene design, kept for reference. Each theme also has a 'color' list (owner, 2026-10-18: 'add some additional items with more color'): wildflowers and red-capped mushrooms, placed on new sites added beside the existing pieces, so a world that has the first pieces gains only the new ones. The flavor objects are written into the map's own statics (owner, 2026-10-18: they must look like the map's decoration, not highlight on hover), so no piece may be impassable or a raised surface: stock house placement refuses a static that is either (HousePlacement.Check), and the owner said they must not block buildable space for houses. check_deco.py refuses such art.",
  "themes": {
   "deer-and-critters": {
    "scene": "Woodland clearing",
@@ -557,7 +557,16 @@
   "0x0EDF": "grave mound piece: only a digging target, not an item",
   "0x0EE1": "grave mound piece: only a digging target, not an item",
   "0x0EE2": "grave mound piece: only a digging target, not an item",
-  "0x134F": "boulder piece: AOS plague beast internals, not in this era"
+  "0x134F": "boulder piece: AOS plague beast internals, not in this era",
+  "0x0C83": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C84": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0CC1": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C86": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C88": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C8E": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C8B": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0CBE": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era",
+  "0x0C94": "wildflower art the later-era plant system also uses for potted plants; that system is not in this era"
  },
  "assemblies": {
   "0x0CF6": {
@@ -778,6 +787,24 @@
      "nest",
      "0x1AD5"
     ]
+   ],
+   "color": [
+    [
+     "campion",
+     "0x0C87"
+    ],
+    [
+     "foxglove",
+     "0x0C8A"
+    ],
+    [
+     "orfluer flowers",
+     "0x0C85"
+    ],
+    [
+     "red poppies",
+     "0x0C86"
+    ]
    ]
   },
   "farm-vermin": {
@@ -794,6 +821,20 @@
      "splintered wood",
      "0x0C2F"
     ]
+   ],
+   "color": [
+    [
+     "poppies",
+     "0x0CBF"
+    ],
+    [
+     "white poppies",
+     "0x0C8D"
+    ],
+    [
+     "scattered flowers",
+     "0x0C48"
+    ]
    ]
   },
   "wild-pasture": {
@@ -807,12 +848,26 @@
      "0x1037"
     ],
     [
-     "rock",
-     "0x1368"
-    ],
-    [
      "mushrooms",
      "0x0D0D"
+    ]
+   ],
+   "color": [
+    [
+     "campion",
+     "0x0C89"
+    ],
+    [
+     "orfluer flowers",
+     "0x0CC0"
+    ],
+    [
+     "white flowers",
+     "0x0C8C"
+    ],
+    [
+     "scattered flowers",
+     "0x0C4A"
     ]
    ]
   },
@@ -823,12 +878,22 @@
      "0x1B12"
     ],
     [
-     "rock",
-     "0x1369"
-    ],
-    [
      "mushrooms",
      "0x0D0E"
+    ]
+   ],
+   "color": [
+    [
+     "poppies",
+     "0x0CBE"
+    ],
+    [
+     "foxglove",
+     "0x0C84"
+    ],
+    [
+     "campion",
+     "0x0C83"
     ]
    ]
   },
@@ -839,12 +904,18 @@
      "0x0ED3"
     ],
     [
-     "gravestone",
-     "0x0ED5"
-    ],
-    [
      "bone",
      "0x1B11"
+    ]
+   ],
+   "color": [
+    [
+     "snowdrops",
+     "0x0C88"
+    ],
+    [
+     "white poppies",
+     "0x0C8D"
     ]
    ]
   },
@@ -859,8 +930,18 @@
      "0x0C2E"
     ],
     [
-     "splintered wood",
-     "0x0C2D"
+     "bone",
+     "0x1B12"
+    ]
+   ],
+   "color": [
+    [
+     "poppies",
+     "0x0CBF"
+    ],
+    [
+     "orfluer flowers",
+     "0x0CC1"
     ]
    ]
   },
@@ -868,15 +949,25 @@
    "pieces": [
     [
      "splintered wood",
-     "0x0C2D"
+     "0x0C2F"
     ],
     [
      "splintered wood",
-     "0x0C2F"
+     "0x0C2E"
     ],
     [
      "bone",
      "0x1B12"
+    ]
+   ],
+   "color": [
+    [
+     "red-capped mushroom",
+     "0x1128"
+    ],
+    [
+     "poppies",
+     "0x0CBF"
     ]
    ]
   },
@@ -889,6 +980,16 @@
     [
      "cattails",
      "0x0CB8"
+    ]
+   ],
+   "color": [
+    [
+     "bulrushes",
+     "0x0C94"
+    ],
+    [
+     "white flowers",
+     "0x0C8B"
     ]
    ]
   },
@@ -906,6 +1007,20 @@
      "mushrooms",
      "0x0D0C"
     ]
+   ],
+   "color": [
+    [
+     "foxglove",
+     "0x0C8A"
+    ],
+    [
+     "red-capped mushroom",
+     "0x1127"
+    ],
+    [
+     "orfluer flowers",
+     "0x0CC0"
+    ]
    ]
   },
   "troll-hills": {
@@ -915,32 +1030,48 @@
      "0x1B12"
     ],
     [
-     "rocks",
-     "0x136A"
+     "bone",
+     "0x1B11"
     ],
     [
-     "rock",
-     "0x136B"
+     "mushrooms",
+     "0x0D0D"
+    ]
+   ],
+   "color": [
+    [
+     "orfluer flowers",
+     "0x0C85"
+    ],
+    [
+     "snowdrops",
+     "0x0C8E"
     ]
    ]
   },
   "gargoyle-heights": {
    "pieces": [
     [
-     "rock",
-     "0x1369"
+     "bone",
+     "0x1B11"
     ],
     [
-     "rocks",
-     "0x136A"
+     "bone",
+     "0x1B12"
     ],
     [
-     "rock",
-     "0x136B"
+     "mushrooms",
+     "0x0D0E"
+    ]
+   ],
+   "color": [
+    [
+     "snowdrops",
+     "0x0C8E"
     ],
     [
-     "rock",
-     "0x136C"
+     "campion",
+     "0x0C87"
     ]
    ]
   },
@@ -957,19 +1088,21 @@
     [
      "bone",
      "0x1B11"
+    ]
+   ],
+   "color": [
+    [
+     "campion",
+     "0x0C87"
     ],
     [
-     "rock",
-     "0x1368"
+     "orfluer flowers",
+     "0x0C85"
     ]
    ]
   },
   "deep-forest": {
    "pieces": [
-    [
-     "spider egg case",
-     "0x10D9"
-    ],
     [
      "mushrooms",
      "0x0D0E"
@@ -982,6 +1115,20 @@
      "bone",
      "0x1B12"
     ]
+   ],
+   "color": [
+    [
+     "red-capped mushroom",
+     "0x1127"
+    ],
+    [
+     "red-capped mushrooms",
+     "0x1128"
+    ],
+    [
+     "mushrooms",
+     "0x0D13"
+    ]
    ]
   },
   "haunted-wood": {
@@ -991,16 +1138,26 @@
      "0x0ED3"
     ],
     [
-     "gravestone",
-     "0x0ED5"
-    ],
-    [
      "bone",
      "0x1B11"
     ],
     [
      "mushrooms",
      "0x0D11"
+    ]
+   ],
+   "color": [
+    [
+     "snowdrops",
+     "0x0C88"
+    ],
+    [
+     "red-capped mushroom",
+     "0x1128"
+    ],
+    [
+     "white poppies",
+     "0x0C8D"
     ]
    ]
   },
@@ -1021,6 +1178,24 @@
     [
      "mushrooms",
      "0x0D11"
+    ]
+   ],
+   "color": [
+    [
+     "red-capped mushroom",
+     "0x1127"
+    ],
+    [
+     "red-capped mushrooms",
+     "0x1128"
+    ],
+    [
+     "white flowers",
+     "0x0C8C"
+    ],
+    [
+     "foxglove",
+     "0x0C84"
     ]
    ]
   }

@@ -34,6 +34,7 @@ public class ClientDefaultsTests
     [InlineData("auto_refresh_potion", true)]
     [InlineData("auto_cure", true)]
     [InlineData("show_d_p_s_with_damage_numbers", false)] // damage numbers without the "(DPS: n)" suffix, which is combat analytics and clutter for a new player
+    [InlineData("mini_map_offered", false)] // the small round map opens once at a new profile's first login (GameScene.OfferMiniMap); existing profiles keep the code default true
     [InlineData("enabled_spell_format", true)] // spoken spell words show the spell's name too, "In Por Ylem [Magic Arrow]" (monsterSpellWords makes creatures speak them)
     [InlineData("enabled_beneficial_criminal_action_query", true)] // "This may flag you criminal!" before a bandage or spell helps a grey, criminal or red player (stock ModernUO flags the helper)
     [InlineData("party_invite_gump", true)]       // an invitation to a party opens an Accept / Decline window, not only a chat line (camp travel needs a party)

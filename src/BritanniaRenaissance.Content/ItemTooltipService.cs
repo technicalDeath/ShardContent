@@ -164,6 +164,12 @@ public static class ItemTooltipService
 
                     yield break;
                 }
+            case Food food:
+                {
+                    // the owner (2026-10-18): food says how much stamina eating it gives (stock Food.FillHunger: 6 to 8 plus a fifth of its fill, while not full)
+                    yield return Line.Text(FoodLine(food.FillFactor));
+                    break;
+                }
             case BaseIngot ingot when !CraftResources.IsStandard(ingot.Resource):
                 {
                     // stock names every ingot "Ingots" and puts the metal on a line of its own; without it dull copper and iron read alike
@@ -281,6 +287,14 @@ public static class ItemTooltipService
         {
             yield return Line.Text(text);
         }
+    }
+
+    /// <summary>What eating a food gives, as stock <c>Food.FillHunger</c> has it: 6 to 8 stamina plus a fifth of its fill, only while the eater is not full.</summary>
+    public static string FoodLine(int fillFactor)
+    {
+        var bonus = Math.Max(0, fillFactor) / 5;
+
+        return $"Stamina from eating: {6 + bonus}-{8 + bonus}";
     }
 
     /// <summary>The line that names a rare metal on its ingots and ore.</summary>

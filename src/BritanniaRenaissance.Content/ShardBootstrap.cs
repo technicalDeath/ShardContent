@@ -77,9 +77,12 @@ public static class ShardBootstrap
         MetalSkillNoticeService.Configure();
         CrateSaleService.Configure();
         ExtraVendorBuyers.Configure();
+        ExtraVendorStock.Configure();
         OrdinaryAddonDeeds.Configure();
         CriminalCorpseConfirm.Configure();
         MonsterSpellWords.Configure();
+        CorpseCarveButton.Configure();
+        CorpseLootExtension.Configure();
         SilverOnlyWeaponLoot.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below
@@ -95,6 +98,7 @@ public static class ShardBootstrap
     {
         KnockedOutService.Initialize();
         TownGuardsService.Initialize();
+        SpawnSpots.Initialize(); // chains onto the spawn-spot hook TownGuardsService sets in Configure
     }
 
     private static void RebindAlpha2AfterStockHandlers()

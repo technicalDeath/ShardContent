@@ -369,7 +369,8 @@ class SharedMemory:
         out.sort(reverse=True)
         return out[:n]
 
-    CAMP_KINDS = ("orc", "ratman", "ettin", "troll", "harpy", "gazer", "gargoyle", "shade", "wraith", "spectre", "zombie", "lich", "ogre", "reaper", "lizardman")
+    # no zombie since the 2026-10-18 spawn redo: the graveyard's lesser dead are a beginner area (patch_camp_tiers.py)
+    CAMP_KINDS = ("orc", "ratman", "ettin", "troll", "harpy", "gazer", "gargoyle", "shade", "wraith", "spectre", "lich", "ogre", "reaper", "lizardman")
 
     def camp_cell(self, cell: str) -> bool:
         """A cell where bots have often seen the kinds that live in camps and kill new characters."""
@@ -513,7 +514,7 @@ class SharedMemory:
 FRONTIER_CENTER = (1470, 1620)      # Britain
 
 
-def fallback_spot(mem, fixed, is_bad, on_fallback=None):
+def fallback_spot(mem, fixed, is_bad, on_fallback=None, camp=None):
     """choose_spot found no candidate. With the area danger map on for this bot: the fixed seed that is least bad (old-rule bad, then blocked, then area risk); else a random seed as before."""
     import random
     spots = [tuple(s) for s in fixed]
@@ -524,6 +525,7 @@ def fallback_spot(mem, fixed, is_bad, on_fallback=None):
         on = False
     if not on:
         return random.choice(spots)
+    camp = camp or mem.camp_cell
 
     def key(p):
         cell = cell_of(*p)
@@ -531,7 +533,7 @@ def fallback_spot(mem, fixed, is_bad, on_fallback=None):
             legacy = mem.dangerous_cell(cell, area=False)
         except TypeError:
             legacy = mem.dangerous_cell(cell)
-        return (bool(is_bad(*p) or legacy or mem.camp_cell(cell)), not mem.usable("spot", cell), round(mem.area_risk(cell), 1), random.random())
+        return (bool(is_bad(*p) or legacy or camp(cell)), not mem.usable("spot", cell), round(mem.area_risk(cell), 1), random.random())
     best = min(spots, key=key)
     if on_fallback:
         k = key(best)
@@ -543,12 +545,14 @@ def fallback_spot(mem, fixed, is_bad, on_fallback=None):
 
 
 
-def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center=None, radius=None, on_fallback=None):
+def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center=None, radius=None, on_fallback=None, camp=None):
     """Pick the next hunting spot: the fixed ring plus the best-known cells in the shared memory; spots for which is_bad(x, y) is true and cells that have killed
     bots are dropped, the rest are ranked by what the memory knows with some chance mixed in so new ground still gets tried. A spot within 20 tiles of
     `here` or of a spot in `recent` (just reached) is left out: arriving somewhere with nothing to fight must move the bot on, not choose the same place
     again (ten bots once stood in one cell for twenty minutes doing exactly that)."""
     import random
+
+    camp = camp or mem.camp_cell                  # the caller's own camp test (a fighter's knows its strength: patch_camp_tiers.py), else the shared one
 
     def near(a, b, r=20):
         return a is not None and b is not None and abs(a[0] - b[0]) <= r and abs(a[1] - b[1]) <= r
@@ -567,7 +571,7 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center
             cands.append((int(center[0] + r * math.cos(ang)), int(center[1] + r * math.sin(ang))))
         cands = [p for p in cands if not near(p, here, 10) and not any(near(p, r, 10) for r in recent) and mem.usable("spot", cell_of(*p))]
         scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands
-                  if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not mem.camp_cell(cell_of(x, y))]
+                  if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not camp(cell_of(x, y))]
         if scored:
             scored.sort(reverse=True)
             return scored[0][1]
@@ -582,8 +586,8 @@ def choose_spot(mem: "SharedMemory", fixed, is_bad, here=None, recent=(), center
         cands.append((int(FRONTIER_CENTER[0] + r * math.cos(ang)), int(FRONTIER_CENTER[1] + r * math.sin(ang))))
     cands = [p for p in cands if not near(p, here) and not any(near(p, r) for r in recent) and mem.usable("spot", cell_of(*p))]
     scored = [(mem.cell_score(cell_of(x, y)) + random.random() * 0.6, (x, y)) for x, y in cands
-              if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not mem.camp_cell(cell_of(x, y))]
+              if not is_bad(x, y) and not mem.dangerous_cell(cell_of(x, y)) and not camp(cell_of(x, y))]
     if not scored:
-        return fallback_spot(mem, fixed, is_bad, on_fallback)
+        return fallback_spot(mem, fixed, is_bad, on_fallback, camp)
     scored.sort(reverse=True)
     return scored[0][1]

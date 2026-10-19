@@ -45,6 +45,8 @@ The owner's running list of what the player client should do out of the box (sta
 
 16. **Spell names over the caster** (owner, 2026-10-17: "Monsters speak + names on"). `enabled_spell_format` true, with the client's own format `{power} [{spell}]`, so spoken spell words read "In Por Ylem [Magic Arrow]" (Options, Combat-Spells, "Enable Overhead Spell Format"). Stock ModernUO speaks words only for player casters; the shard flag `monsterSpellWords` (off until activated) makes creatures speak them too. Not yet checked in the real client (batch test).
 
+17. **The small round map is open for a new player** (owner, 2026-10-18: "have the small circular map ... open by default for new clients"). `mini_map_offered` false in the new-profile defaults; the client (`GameScene.OfferMiniMap`) then opens the mini-map once, 1.5 seconds after the first login, docked in the dark column like the Map button does, and records it, so closing it stays closed. `MiniMapOffered` defaults to true in code, so existing profiles are not touched. With it open, the Map button's first click opens the big map, as before. Not yet checked in the real client (BotFarm Operator).
+
 Looked at and not changed: font and window scale by resolution. The client has no profile option for a whole-UI scale (only the container scale and the tooltip zoom), so it cannot be a default without a client change; the same pass saw nothing else worth changing.
 
 ## Not in a new profile's reach: the owner's own settings

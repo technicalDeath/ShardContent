@@ -1,6 +1,6 @@
 """Builds the spawn-plan map page (one self-contained HTML file) from the radar image, the census and the plan.
 
-  python make_page.py MAP.png CENSUS.json PLAN.json OUT.html [DECO-SITES.json]
+  python make_page.py MAP.png CENSUS.json PLAN.json OUT.html [FLAVOR-SITES.json]
 """
 import base64
 import json
@@ -10,28 +10,42 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
+def main_colour(pix):
+    """The piece's most telling colour for its map dot: its blooms, not its leaves. Leaf pixels (green above red and blue)
+    are set aside when at least a few others remain, then the third that is most colourful or brightest is averaged (a poppy's
+    red, a snowdrop's white); art with hardly any colour (bones, rocks) gets its plain average."""
+    px = [p[:3] for row in pix for p in row if len(p) < 4 or p[3] > 0]
+    if not px:
+        return "#f4ead2"
+    bloom = [c for c in px if not (c[1] > c[0] + 8 and c[1] > c[2] + 8)]
+    if len(bloom) >= max(4, len(px) // 20):
+        px = bloom
+
+    def score(c):
+        return (max(c) - min(c)) + sum(c) // 6
+
+    px.sort(key=score, reverse=True)
+    top = px[: max(1, len(px) // 3)]
+    r, g, b = (sum(c[k] for c in top) // len(top) for k in range(3))
+    return "#%02x%02x%02x" % (r, g, b)
+
+
 def main(argv):
     png, census_path, plan_path, out = argv[:4]
-    deco_sites = json.load(open(argv[4], encoding="utf-8")) if len(argv) > 4 else []
-    deco_file = json.load(open(os.path.join(HERE, "deco.json"), encoding="utf-8"))
-    deco, assemblies = deco_file["themes"], deco_file.get("assemblies", {})
+    deco_sites = json.load(open(argv[4], encoding="utf-8")) if len(argv) > 4 else []   # place_flavor.py's sites
+    deco = json.load(open(os.path.join(HERE, "deco.json"), encoding="utf-8"))["flavor"]
     sys.path.insert(0, os.path.join(HERE, "..", "cosmetic-catalog"))
     import tempfile
     import uoart
     art = {}
     tmp = os.path.join(tempfile.gettempdir(), "spawn-design-art.png")
+    dot = {}
     for t in deco.values():
-        for role in ("anchor", "supports", "accents"):
-            for _, hexid in t[role]:
-                if hexid in art:
-                    continue
-                if hexid in assemblies:  # a multi-piece object is shown whole, laid as the map lays it
-                    parts = uoart.parts_sorted([(int(i, 16), dx, dy, 0) for dx, dy, i in assemblies[hexid]["parts"]])
-                    w, h, rows = uoart.compose(parts)
-                    uoart.write_png(tmp, w, h, rows)
-                else:
-                    uoart.item_png(tmp, int(hexid, 16), scale=1, pad=2)
+        for _, hexid in t["pieces"] + t.get("color", []):
+            if hexid not in art:
+                uoart.item_png(tmp, int(hexid, 16), scale=1, pad=2)
                 art[hexid] = "data:image/png;base64," + base64.b64encode(open(tmp, "rb").read()).decode()
+                dot[hexid] = main_colour(uoart.to_rgba(int(hexid, 16))[2])
     c = json.load(open(census_path, encoding="utf-8"))
     p = json.load(open(plan_path, encoding="utf-8"))
     changes = {ch["id"]: ch for ch in p["changes"]}
@@ -74,8 +88,8 @@ def main(argv):
         "spawners": spawners, "deaths": c["deaths"],
         "areas": [{k: a[k] for k in ("id", "name", "theme", "rects", "tier", "spawners", "dist", "ringException", "deco", "decoNote") if k in a} for a in p["areas"]],
         "themes": {k: {"label": t["label"], "tier": t["tier"], "kinds": t["kinds"], "roster": t["roster"]} for k, t in p["themes"].items()},
-        "rings": p["rings"], "wildKinds": p["wildKinds"], "deco": deco, "decoSites": deco_sites, "art": art,
-        "pieces": {k: len(v["parts"]) for k, v in assemblies.items()},
+        "rings": p["rings"], "wildKinds": p["wildKinds"], "deco": deco, "decoSites": deco_sites, "art": art, "dot": dot,
+
     }
     img = "data:image/png;base64," + base64.b64encode(open(png, "rb").read()).decode()
     # what is already built or decorated, as a see-through overlay (scenes keep clear of it)

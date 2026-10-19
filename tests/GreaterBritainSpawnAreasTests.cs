@@ -83,43 +83,41 @@ public class GreaterBritainSpawnAreasTests
     }
 
     [Fact]
-    public void FlavorObjectsAreSingleEraPiecesSpreadOutAndNeverAPlayerItem()
+    public void FlavorObjectsAreMapStaticsSpreadOutNeverAPlayerItemAndNeverBlocking()
     {
-        // owner, 2026-10-18: single standalone flavor pieces, not scenes, and never the art of something a player can own or pick up
-        // (feathers were his example); the full check against every item class is tools/spawn-design/check_deco.py
-        Assert.Contains("greater-britain-flavor.cfg", Manifest().GetProperty("customDecorationFiles").EnumerateArray().Select(e => e.GetString()));
+        // owner, 2026-10-18: single standalone flavor pieces, never the art of something a player can own or pick up (feathers), drawn as
+        // the map's own statics (no hover highlight), and never blocking a house; the full checks are tools/spawn-design/check_deco.py
+        var manifest = Manifest();
+        Assert.DoesNotContain("greater-britain-flavor.cfg", manifest.GetProperty("customDecorationFiles").EnumerateArray().Select(e => e.GetString()));
+        Assert.Contains("greater-britain-flavor.cfg", manifest.GetProperty("retiredDecorationFiles").EnumerateArray().Select(e => e.GetString()));
+        Assert.True(File.Exists(Path.Combine(Root, "retired", "greater-britain-flavor.cfg")));
+
         var playerItems = new HashSet<int> { 0x0DFA, 0x0DFB, 0x0A55, 0x0A56, 0x09A9, 0x0E3C, 0x1402, 0x1853, 0x0F36, 0x0ED4, 0x0ECA, 0x0ECB, 0x0ECC, 0x1AE0, 0x1AE2, 0x0F34, 0x0F3B, 0x1363, 0x1B09, 0x1B0A };
+        // impassable art (rocks, the standalone gravestone, the egg case, one splintered wood) would block a house and the way
+        var blocking = new HashSet<int> { 0x0C2D, 0x0ED5, 0x10D9, 0x1368, 0x1369, 0x136A, 0x136B, 0x136C };
+        var patch = JsonDocument.Parse(File.ReadAllText(Path.Combine(Root, "..", "..", "map-patches", "greater-britain-flavor-statics.json"))).RootElement;
+        Assert.Equal(0, patch.GetProperty("map").GetInt32());
         var placed = new List<(int X, int Y)>();
-        var graphic = -1;
-        foreach (var raw in File.ReadAllLines(Path.Combine(Root, "greater-britain-flavor.cfg")))
+        foreach (var piece in patch.GetProperty("statics").EnumerateArray())
         {
-            var line = raw.Trim();
-            if (line.Length == 0 || line.StartsWith('#'))
-            {
-                continue;
-            }
-
-            if (line.StartsWith("Static ", StringComparison.Ordinal))
-            {
-                graphic = Convert.ToInt32(line.Split(' ')[1], 16);
-                Assert.True(graphic < 0x2000, $"0x{graphic:X4} is after the era");
-                Assert.DoesNotContain(graphic, playerItems);
-                continue;
-            }
-
-            var p = line.Split(' ').Select(int.Parse).ToArray();
-            placed.Add((p[0], p[1]));
+            var v = piece.EnumerateArray().Select(e => e.GetInt32()).ToArray();
+            Assert.True(v[0] < 0x2000, $"0x{v[0]:X4} is after the era");
+            Assert.DoesNotContain(v[0], playerItems);
+            Assert.DoesNotContain(v[0], blocking);
+            Assert.InRange(v[1], 1000, 1999);
+            Assert.InRange(v[2], 1250, 2049);
+            placed.Add((v[1], v[2]));
         }
 
-        Assert.InRange(placed.Count, 200, 600);
-        // spread out: no two pieces closer than 14 tiles, so nothing reads as a composed group
+        Assert.InRange(placed.Count, 300, 700);
+        // spread out: no two pieces closer than 10 tiles (14 between the first set; the colour pieces keep 10), so nothing reads as a composed group
         for (var i = 0; i < placed.Count; i++)
         {
             for (var j = i + 1; j < placed.Count; j++)
             {
                 var dx = placed[i].X - placed[j].X;
                 var dy = placed[i].Y - placed[j].Y;
-                Assert.True(dx * dx + dy * dy >= 14 * 14, $"{placed[i]} and {placed[j]} are too close");
+                Assert.True(dx * dx + dy * dy >= 10 * 10, $"{placed[i]} and {placed[j]} are too close");
             }
         }
     }

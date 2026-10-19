@@ -163,6 +163,7 @@ class CasterStock:
     """CasterBot: the reagents the held spells use, to 20 each; triggers mage_bot.r_resupply's shop trip when any is under 10."""
 
     TARGET = 20
+    PURSE_FLOOR = 50                                     # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
 
     def reagent_plan(self):
         if not self.feature("stock"):

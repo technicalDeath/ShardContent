@@ -25,6 +25,7 @@ SPARE = 60.0
 WINDOW = 600.0
 AVOID_H = 3.0
 LEAVE = 30
+LEAVE_RISKY = 90          # tiles out of a death area the danger map rates risky for this bot (patch_bw_leave.py)
 RELEASE_AFTER = 20.0     # seconds for r_gear to put the pack's gear on before a "near" bot plays on
 
 
@@ -86,15 +87,33 @@ class BetweenWorldsMixin:
         if not b or b.get("looted"):
             return
         b["looted"] = time.time()
-        b["how"] = how or "item by item"
+        b["how"] = b.get("how") or how or "item by item"                   # a self-loot line already written by bw_credit stays
         try:
             hx, hy = self.home_centre()
             x, y = self.c.x, self.c.y
-            dx, dy = hx - x, hy - y
-            n = max(1, max(abs(dx), abs(dy)))
-            k = min(1.0, LEAVE / n)
+            leave = LEAVE
+            try:
+                risky = self.mem.dangerous_cell(_cell(x, y)) or (hasattr(self, "near_death_spot") and self.near_death_spot(x, y, 15))
+            except Exception:
+                risky = False
+            if risky:
+                leave = LEAVE_RISKY                                 # a death area too strong for us: well out before anything else (patch_bw_leave.py)
             self.activity = "Between Worlds: leaving the corpse area"
-            self.c.goto(int(x + dx * k), int(y + dy * k)).wait(timeout=30)       # out before the 60 s after the opening run out
+            self.log(f"Between Worlds: leaving the corpse area, {leave} tiles toward home" + (" (a risky area)" if risky else ""))
+            gone = 0
+            while gone < leave:
+                x, y = self.c.x, self.c.y
+                dx, dy = hx - x, hy - y
+                n = max(1, max(abs(dx), abs(dy)))
+                if n <= 10:
+                    break
+                step = min(30, leave - gone)
+                k = min(1.0, step / n)
+                self.c.goto(int(x + dx * k), int(y + dy * k)).wait(timeout=30)   # out before the 60 s after the opening run out
+                moved = max(abs(self.c.x - x), abs(self.c.y - y))
+                if moved < 3:
+                    break                                           # blocked: the far walk and the stall sense take it from here
+                gone += moved
         except Exception as e:
             self.log(f"Between Worlds: leaving the corpse area failed ({type(e).__name__})")
 
@@ -102,6 +121,9 @@ class BetweenWorldsMixin:
         b = self.facts.pop("bw", None)
         if not b:
             return
+        sl = getattr(self, "_self_loot", None)
+        if not b.get("how") and sl and sl[1] >= b["t"]:
+            b["how"] = sl[0]                                         # the server's self-loot line came inside the window
         self.ev("bw_result", choice=b["choice"], got_items=b.get("how"), secs=round(now - b["t"]), died=died)
         self.log(f"Between Worlds over: {b['choice']}, " + (f"took back {b['how']}" if b.get("how") else "no corpse taken") + (", died" if died else ""))
 
@@ -124,6 +146,6 @@ class BetweenWorldsMixin:
         if self.c.ghost:
             self.bw_end(now, died=True)
         elif b["choice"] == "corpse" and not b.get("looted") and not self.facts.get("corpse") and now - b["t"] > 5:
-            b["looted"], b["how"] = now, b.get("how") or "item by item or none"      # the corpse run ended without the one-click line
+            self.bw_looted(b.get("how") or "item by item or none")         # the corpse run ended without the one-click line: the walk out too (patch_bw_leave.py)
         elif now - b["t"] > WINDOW + 60 and not self.facts.get("mat_until"):
             self.bw_end(now)

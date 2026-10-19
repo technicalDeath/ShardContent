@@ -10,7 +10,7 @@ What a tamer does now:
    bot died lately, not one marked empty (shared memory, 30 minutes). The value of a kind is the chance that an attempt can still teach: the server's check (AnimalTaming.cs:
    CheckTargetSkill from min - 0.1 to min + 49.9) means no chance below the animal's minimum, no gain from skill min + 49.9 on, and a success chance (skill - min + 0.1) / 50;
    the spot's value = sum of count x value of the kinds in the window, discounted by distance. It travels there (routed legs), then walks about inside the spawner's range looking
-   for animals (4 wander steps), and marks the spot empty when none showed up. ev tame_spot {spot, dist, value, kinds}, tame_spot_empty {spot, wandered}.
+   for animals (up to 10 wander steps over one 10-minute respawn cycle), and marks the spot empty (10 min, longer when it keeps being empty) when none showed up. ev tame_spot {spot, dist, value, kinds}, tame_spot_empty {spot, wandered}.
  * CHOOSES among the animals in sight by success chance, not by hardness: a success chance near 40% (an animal at min about skill - 20); the old order took the hardest first (a
    panther at skill 55.0 is a 4% chance), and the per-attempt chance of a skill gain barely depends on the success chance (b + (1 - p) * 0.2..0.5, b = 1 - skill / 100), so the
    hard ones only cost time. A kind that would be a stronger pet than the one it has goes first when its chance is at least 15%.
@@ -33,8 +33,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 _SPOTS = None
 _CS = None
 GAIN_TOP = 49.9
-WANDER_STEPS = 4
-EMPTY_TTL = 1800
+# The watcher, 2026-10-18: 25 spot visits ended "no worthwhile animal" against 6 tames in three hours. The spots hold 1-3 of each kind,
+# the fighters hunt the same hinds and boars, and most spawners refill in 5-10 minutes; 4 looks (about 2 min) then a 30-minute block for
+# every tamer kept the tamers walking between empty spots. A tamer now stays one respawn cycle and an empty spot is skipped for one cycle.
+WANDER_STEPS = 10
+STAY_SECS = 600
+EMPTY_TTL = 600
 TARGET_P = 0.4
 WILD_DANGER_AVG = 14
 PET_TIERS = ((0, "none"), (40, "small"), (90, "horse-class"), (240, "bear-class"), (450, "strong"), (700, "dire-class"))
@@ -156,6 +160,11 @@ class TameFindMixin:
     def pick_tspot(self):
         skill = self.skill()
         here = (self.c.x, self.c.y)
+        try:
+            home = tuple(self.home_centre())[:2]                      # the rings: near home first (patch_tame_rings.py)
+        except Exception:
+            home = here
+        from memory import cell_of
         best = None
         for s in spots():
             key = f"{s['x']},{s['y']}"
@@ -167,7 +176,10 @@ class TameFindMixin:
             d = max(abs(s["x"] - here[0]), abs(s["y"] - here[1]))
             if d > 400:
                 continue                                          # a walk of that length crosses too much to be worth it
-            score = v * self.spot_evidence(s) * self.spot_risk(s) / (1.0 + d / 150.0)
+            if self.mem.dangerous_cell(cell_of(s["x"], s["y"])):
+                continue                                          # the area danger map: too strong here for this bot
+            far = (d + max(abs(s["x"] - home[0]), abs(s["y"] - home[1]))) / 2.0          # from here and from home alike: a stranded tamer heads back in
+            score = v * self.spot_evidence(s) * self.spot_risk(s) / (1.0 + far / 150.0)
             if best is None or score > best[0]:
                 best = (score, s, d, v)
         return best
@@ -197,10 +209,10 @@ class TameFindMixin:
             return True
         if not st["arrived"]:
             st["arrived"] = now
-        if st["wander"] >= WANDER_STEPS or now - st["arrived"] > 420:
+        if st["wander"] >= WANDER_STEPS or now - st["arrived"] > STAY_SECS:
             n = self.facts.setdefault("tspot_empty_n", {}).get(f"{x},{y}", 0) + 1
             self.facts["tspot_empty_n"][f"{x},{y}"] = n
-            ttl = EMPTY_TTL * min(n, 4)                         # found empty again: 30 min, 1 h, 1.5 h, 2 h
+            ttl = EMPTY_TTL * min(n, 4)                         # found empty again: 10, 20, 30, 40 min
             self.mem.record("blocked", kind="tamespot", key=f"{x},{y}", ttl=ttl)
             self.facts.setdefault("tspot_skip", {})[f"{x},{y}"] = now + ttl          # (the shared memory is read every 20 s: this bot must not pick the spot again meanwhile)
             self.ev("tame_spot_empty", spot=[x, y], wandered=st["wander"])

@@ -61,7 +61,8 @@ public static partial class WelcomeGuide
         bool BlueSelfLoot = false,
         bool KillerGoesHome = false,
         bool Materializing = false,
-        bool SellPriceTooltips = false
+        bool SellPriceTooltips = false,
+        bool CriminalCorpseConfirm = false
     );
 
     public static Context Current =>
@@ -104,7 +105,8 @@ public static partial class WelcomeGuide
             BlueSelfLoot.Enabled,
             KillerGoesHome.Enabled,
             Materializing.Enabled,
-            global::BritanniaRenaissance.Content.SellPriceTooltips.Enabled
+            global::BritanniaRenaissance.Content.SellPriceTooltips.Enabled,
+            global::BritanniaRenaissance.Content.CriminalCorpseConfirm.Enabled
         );
 
     /// <summary>The numbers the pages quote. The defaults are the shipped values.</summary>
@@ -193,7 +195,7 @@ public static partial class WelcomeGuide
         if (c.Theft)
         {
             topics.Add(WardTopic(n));
-            topics.Add(LootProtectionTopic());
+            topics.Add(LootProtectionTopic(c));
         }
 
         topics.Add(PetsTopic(c));
@@ -415,9 +417,23 @@ public static partial class WelcomeGuide
         return new Topic("ward", "Your Backpack Ward", paragraphs);
     }
 
-    private static Topic LootProtectionTopic()
+    private static Topic LootProtectionTopic(Context c)
     {
         var minutes = (int)TheftProtectionService.LootProtectionDuration.TotalMinutes;
+
+        if (c.CriminalCorpseConfirm)
+        {
+            // the repeat-loot refusal stands down while the criminal-act window asks (TheftProtectionService.CanLiftCorpseItem)
+            return new Topic(
+                "loot",
+                "Loot Protection",
+                [
+                    "Taking from a monster corpse that another player has the right to loot, outside the Hot Zones, is a criminal act. You are asked first, " +
+                    "in a window; if you go ahead you become a criminal as usual, and guards in town and other players may then attack you.",
+                    "The same goes for your kills: someone who takes from them is flagged a criminal, and you may fight them. It does not apply in Hot Zones."
+                ]
+            );
+        }
 
         return new Topic(
             "loot",

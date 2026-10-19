@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "pinnedModernUoCommit": "40ae95c5fe87ff71dbb9bf126f61b34935ff5003",
+  "pinnedModernUoCommit": "52648386c20539671b59dbc62f41e15728edebfe",
   "era": "UOR",
   "targetMap": "Felucca",
   "generatedDataRoot": "Data/BritanniaRenaissance/Alpha2b",
@@ -41,7 +41,10 @@
     "Felucca/yew.cfg"
   ],
   "customDecorationFiles": [
-    "britain-bountyboards.cfg",
+    "britain-bountyboards.cfg"
+  ],
+  "retiredDecorationsDirectory": "Retired",
+  "retiredDecorationFiles": [
     "greater-britain-flavor.cfg"
   ],
   "decorationRewrites": [

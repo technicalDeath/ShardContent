@@ -265,7 +265,19 @@ class MarketMixin:
                 return True
             them = next((m for m in self.c.mobiles(within=3) if m.name == other), None)
             if role == "seller" and them:
-                stack = next((i for i in (self.mkt_stacks(item) if item in ITEMS else [i for i in self.c.backpack if i.name.lower() == item]) if (i.amount or 1) >= qty), None)
+                stacks = self.mkt_stacks(item) if item in ITEMS else [i for i in self.c.backpack if i.name.lower() == item]
+                stack = next((i for i in stacks if (i.amount or 1) >= qty), None)
+                if not stack and not st.get("merged") and sum((i.amount or 1) for i in stacks) >= qty:
+                    # Enough in all, but split over several stacks (each smelt makes its own pile): a player drops the piles
+                    # on each other first. The server merges a stack dropped on an identical one. 19 of 29 failed deals on
+                    # 2026-10-18 were "seller has no stack of 20 iron ingot" with the ingots in the pack.
+                    stacks.sort(key=lambda i: -(i.amount or 1))
+                    for extra in stacks[1:]:
+                        self.c.drop(extra.serial, stacks[0].serial, extra.amount or 1)
+                        time.sleep(0.7)
+                    st["merged"] = True
+                    self.log(f"trade: merged {len(stacks)} stacks of {item} into one before handing over {qty}")
+                    return True
                 if not stack:
                     self.mem.record("mkt", kind="unoffer", item=item)
                     return self.mkt_fail(d, role, other, f"seller has no stack of {qty} {item}")

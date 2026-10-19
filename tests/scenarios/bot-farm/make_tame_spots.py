@@ -18,6 +18,7 @@ import glob
 import json
 import os
 import re
+import spawners
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -33,42 +34,37 @@ def build():
     byclass = {v["class"].lower(): (k, v) for k, v in tame.items()}
     spots = {}
     threats = []                                          # every surface spawner with something that hits hard, tameable animals or not: (x, y, home)
-    for f in sorted(glob.glob(os.path.join(SPAWNS, "*.json"))):
-        try:
-            data = json.load(open(f, encoding="utf-8"))
-        except (OSError, ValueError):
+    for _f, s in spawners.canonical(SPAWNS):            # each spawner once, as the server makes it (a re-themed one by its last definition)
+        loc = s.get("location")
+        if not loc or s.get("map") != "Felucca" or loc[0] >= 5120:
             continue
-        for s in data:
-            loc = s.get("location")
-            if not loc or s.get("map") != "Felucca" or loc[0] >= 5120:
-                continue
-            kinds, others = {}, {}
-            hard = False
-            for e in s.get("entries", []):
-                cls = re.sub(r"[^a-z]", "", str(e.get("name", "")).lower())
-                n = int(e.get("maxCount") or 1)
-                if cls in byclass:
-                    key, v = byclass[cls]
-                    k = kinds.setdefault(cls, {"key": key, "cls": v["class"], "min": v["min"], "n": 0})
-                    k["n"] = max(k["n"], n)
-                elif cls in stats:
-                    c = stats[cls]
-                    if sum(c.get("damage") or [0, 0]) / 2.0 >= 6.5 or sum(c.get("hits") or [0, 0]) / 2.0 >= 40:
-                        hard = True
-                    d = c.get("damage") or [0, 0]
-                    h = c.get("hits") or [0, 0]
-                    others[cls] = {"cls": c["class"], "hits": round(sum(h) / 2.0, 1), "dmg": round(sum(d) / 2.0, 1)}
-            if hard:
-                threats.append((loc[0], loc[1], max(int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))))
-            if not kinds:
-                continue
-            key = (loc[0], loc[1])
-            sp = spots.setdefault(key, {"x": loc[0], "y": loc[1], "z": loc[2], "home": 0, "kinds": {}, "others": {}})
-            sp["home"] = max(sp["home"], int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))
-            for cls, k in kinds.items():
-                cur = sp["kinds"].setdefault(cls, dict(k))
-                cur["n"] = max(cur["n"], k["n"])
-            sp["others"].update(others)
+        kinds, others = {}, {}
+        hard = False
+        for e in s.get("entries", []):
+            cls = re.sub(r"[^a-z]", "", str(e.get("name", "")).lower())
+            n = int(e.get("maxCount") or 1)
+            if cls in byclass:
+                key, v = byclass[cls]
+                k = kinds.setdefault(cls, {"key": key, "cls": v["class"], "min": v["min"], "n": 0})
+                k["n"] = max(k["n"], n)
+            elif cls in stats:
+                c = stats[cls]
+                if sum(c.get("damage") or [0, 0]) / 2.0 >= 6.5 or sum(c.get("hits") or [0, 0]) / 2.0 >= 40:
+                    hard = True
+                d = c.get("damage") or [0, 0]
+                h = c.get("hits") or [0, 0]
+                others[cls] = {"cls": c["class"], "hits": round(sum(h) / 2.0, 1), "dmg": round(sum(d) / 2.0, 1)}
+        if hard:
+            threats.append((loc[0], loc[1], max(int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))))
+        if not kinds:
+            continue
+        key = (loc[0], loc[1])
+        sp = spots.setdefault(key, {"x": loc[0], "y": loc[1], "z": loc[2], "home": 0, "kinds": {}, "others": {}})
+        sp["home"] = max(sp["home"], int(s.get("homeRange") or 0), int(s.get("walkingRange") or 0))
+        for cls, k in kinds.items():
+            cur = sp["kinds"].setdefault(cls, dict(k))
+            cur["n"] = max(cur["n"], k["n"])
+        sp["others"].update(others)
     out = []
     for key in sorted(spots):
         sp = spots[key]

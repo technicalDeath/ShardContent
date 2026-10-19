@@ -145,6 +145,18 @@ foreach ($relativePath in $manifest.decorationFiles) {
     })
 }
 
+# Decoration files a world in use had and must shed (2026-10-18: the flavor objects moved from server items into the map's statics).
+# They are never generated; [Alpha2bWorldGen removeretired deletes exactly their pieces from a world that has them.
+if ($manifest.retiredDecorationFiles) {
+    $retiredTarget = Join-Path $generatedRoot $manifest.retiredDecorationsDirectory
+    New-Item -ItemType Directory -Path $retiredTarget -Force | Out-Null
+    foreach ($fileName in $manifest.retiredDecorationFiles) {
+        $source = Join-Path (Join-Path $sourceRoot 'retired') $fileName
+        Copy-Item -LiteralPath $source -Destination (Join-Path $retiredTarget $fileName)
+        $inputs.Add([ordered]@{ kind = 'retired-decoration'; source = "ShardContent/retired/$fileName"; sha256 = Get-FileSha256 $source })
+    }
+}
+
 foreach ($fileName in $manifest.customDecorationFiles) {
     $source = Join-Path $sourceRoot $fileName
     $target = Join-Path $decorationTarget $fileName

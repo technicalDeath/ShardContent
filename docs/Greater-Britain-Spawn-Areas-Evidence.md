@@ -102,3 +102,21 @@ Canonical spawners: 1,557 → 1,583. Preparation report: 61 inputs, 59 outputs.
 ## Dev deploy (2026-10-18, owner: "Deploy all of it to dev")
 
 Snapshot `work/save-snapshots/saves-20261018-103618-before-spawn-areas-season` (18 files, 8.3 MB). `Deploy-Alpha1Baseline.ps1` (it also carried another session's sell-price tooltips with `sellPriceTooltips` on; the owner chose to include it). On the started dev server: audit before 1,481/1,583 exact; `addspawners` added 102 and replaced 76; `adddecorations` placed 316 flavor objects (bounty board already in place); audit passed (410 signs, 385 teleporters, 1,583 spawners, 1,345 doors, 9 moongates, 63 Khaldun items); `[SeasonStatus` summer; both saves logged `Writing world save snapshot done`. README rules updated. The farm host still has the old spawns.
+
+## Colour pieces (2026-10-18, owner: "add some additional items with more color ... the pallets are very monotone")
+
+Each theme gained a `color` list in `deco.json`:
+- pink campion and foxglove, orange orfluer, red and white poppies, white snowdrops and white flowers, scattered petals and bulrushes;
+- red-capped mushrooms, chosen per area (pasture flowers in the pasture, snowdrops at the barrows and the Haunted Wood, bulrushes in the marsh, red-caps in the deep forest and the wisp glade).
+
+`check_deco.py` passes all 102 pieces. The wildflower art the later-era plant system shares is allowed, and the bladed-tool mushrooms (0x0D15, 0x0D16) and the mushroom trap (0x1125, 0x1126) were left out.
+
+`place_flavor.py` keeps the 316 deployed pieces byte for byte and adds 129 colour pieces on new sites, at least 10 tiles from every piece: 445 in all. Generating them showed that `builtmask.py` counted the deployed flavor file as "already decorated", so it now leaves that file out.
+
+On the host, `adddecorations` placed 129 and left the 316 already there. Real-client shots in `work/spawn-design/color-shots/`. The map's dots take each piece's colour (`make_page.py` `main_colour`).
+
+**Deployed to dev** the same day on the owner's word. Snapshot `work/save-snapshots/saves-20261018-115235-before-colour-flavor`, then `Deploy-Alpha1Baseline.ps1`. `adddecorations` placed 129 and left the 316 already there. The audit passed (1,583 spawners), `[SeasonStatus` reads summer, and the save completed.
+
+## Farm host (2026-10-18, by the BotFarm Operator session)
+
+The BotFarm Operator copied the new DLL, config, spawn file and flavor file to `work/hosts/farm` after a Saves snapshot. It then ran `addspawners` (102 added, 76 replaced) and `adddecorations` (all 445 flavor pieces). The audit passed with 1,583 spawners, and the save was logged done at 11:58:32. It regenerated the bots' hunt, tame and hard spots, added `britain_areas.json`, and cleared the bots' learned place memory inside the areas. The dev server was restarted afterwards on the owner's choice.

@@ -17,6 +17,8 @@ import os
 import time
 from collections import Counter
 
+import farmdb
+
 WINDOW = 300.0
 ALPHA = 0.3
 MIN_N = 2
@@ -28,6 +30,7 @@ PASSIVE = ("Meditation", "Resisting Spells", "Focus", "Hiding", "Detecting Hidde
 HERE = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(HERE, "..", "..", "..", "..", "work", "botfarm", "memory", "ground_rates.json")
 _cache = {"t": 0.0, "d": {}}
+TABLE = "ground"
 
 
 def _cell(x, y):
@@ -35,12 +38,16 @@ def _cell(x, y):
 
 
 def load(force=False):
+    """The shared table, from the farm's database (farmdb: atomic, no lost updates); the JSON file is the fallback and a read-only export."""
     now = time.time()
     if force or now - _cache["t"] > 30:
         try:
-            _cache["d"] = json.load(open(PATH, encoding="utf-8"))
-        except (OSError, ValueError):
-            _cache["d"] = {}
+            _cache["d"] = farmdb.rate_table(TABLE, import_json=PATH)
+        except Exception:
+            try:
+                _cache["d"] = json.load(open(PATH, encoding="utf-8"))
+            except (OSError, ValueError):
+                _cache["d"] = {}
         _cache["t"] = now
     return _cache["d"]
 
@@ -102,15 +109,13 @@ class GroundRateMixin:
         d = load(force=True)
         band = self.gr_band()
         key = self.gr_key(band, cell)
-        old = d.get(key)
-        d[key] = [round(value if not old else old[0] + ALPHA * (value - old[0]), 2), (old[1] if old else 0) + 1, int(time.time())]
         try:
-            tmp = PATH + f".{os.getpid()}.tmp"
-            with open(tmp, "w", encoding="utf-8") as f:
-                json.dump(d, f, indent=0)
-            os.replace(tmp, PATH)
-        except OSError:
-            pass
+            d[key] = farmdb.rate_update(TABLE, key, value, ALPHA)            # atomic: two bots writing at once both count (the JSON file lost one)
+            farmdb.export_json(TABLE, PATH)
+        except Exception as e:
+            old = d.get(key)
+            d[key] = [round(value if not old else old[0] + ALPHA * (value - old[0]), 2), (old[1] if old else 0) + 1, int(time.time())]
+            self.log(f"ground rates: database write failed ({type(e).__name__}: {e}); kept in memory only")
         _cache["d"] = d
         self.ev("ground_rate", ground=cell, band=band, value=round(value, 2), n=d[key][1], avg=d[key][0])      # ev() adds its own cell (where the bot stands)
 

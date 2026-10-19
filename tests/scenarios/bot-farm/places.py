@@ -1,7 +1,9 @@
 """Where services and fixtures are, by role (generality step 2): see work/botfarm/patches/patch_places.py. Mixin Places for the brains."""
 from __future__ import annotations
 
+import json
 import math
+import os
 import time
 
 try:
@@ -19,8 +21,35 @@ FALLBACK = {"smith": (1418, 1550), "weaponsmith": (1481, 1584), "armorer": (1481
 FALLBACK_SPOTS = {"dummy": [(1589, 1554), (1528, 1431)], "butte": [(1468, 1579)]}
 # vermin ground near home that was picked by hand (a broke tailor once walked to Britain's north-east edge for coins and met a gargoyle)
 SEED_EARN = {"Britain": [(1300, 1800), (1340, 1720), (1360, 1760)]}
-# the ten patrol points Britain's fighters have always had (hunter.SPOTS); another home gets learned cells and a ring (Places.patrol_spots)
-SEED_SPOTS = {"Britain": [(1380, 1560), (1300, 1520), (1260, 1495), (1450, 1450), (1600, 1500), (1650, 1700), (1450, 1850), (1330, 1650), (1530, 1520), (1560, 1650)]}
+# Britain's patrol points (hunter.SPOTS): the spawners of its beginner and step-up hunting areas (britain_areas.json, make_britain_areas.py; the 2026-10-18
+# spawn redo, patch_britain_areas.py); another home gets learned cells and a ring (Places.patrol_spots). OLD_SPOTS: the hand-picked ten of 2026-10-14,
+# used only when the file is missing.
+OLD_SPOTS = [(1380, 1560), (1300, 1520), (1260, 1495), (1450, 1450), (1600, 1500), (1650, 1700), (1450, 1850), (1330, 1650), (1530, 1520), (1560, 1650)]
+AREA_TIERS = (1, 2)
+PER_AREA = 3
+
+
+def area_spots(path=None, tiers=AREA_TIERS, per_area=PER_AREA, apart=40):
+    """[(x, y)] patrol points from britain_areas.json: each area's middle spawner first, then others at least `apart` tiles from those taken."""
+    try:
+        d = json.load(open(path or os.path.join(os.path.dirname(os.path.abspath(__file__)), "britain_areas.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    out = []
+    for a in d.get("areas", []):
+        if a.get("tier") not in tiers:
+            continue
+        taken = [tuple(a["spot"])]
+        for sp in sorted(a.get("spawners", []), key=lambda s: (s[0], s[1])):
+            if len(taken) >= per_area:
+                break
+            if all(max(abs(sp[0] - x), abs(sp[1] - y)) >= apart for x, y in taken):
+                taken.append((sp[0], sp[1]))
+        out += taken
+    return out
+
+
+SEED_SPOTS = {"Britain": area_spots() or OLD_SPOTS}
 FALLBACK_BANKS = [(1425, 1690), (1650, 1608)]
 RING_RADII = (90, 180)
 VERMIN = ("cow", "chicken", "sheep", "rat", "rabbit", "hind", "pig", "goat", "bird", "giantrat", "sewerrat", "bullfrog", "snake")

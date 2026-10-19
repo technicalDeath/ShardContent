@@ -31,7 +31,32 @@ def load_spots():
         return []
 
 
+_GOLD = None
+
+
+def kind_gold(cls):
+    """Estimated gold a kill of cls carries: kinds with negative karma have loot, about 10 + fame / 20, at most 60; animals none (patch_caster_budget.py)."""
+    global _GOLD
+    if _GOLD is None:
+        try:
+            _GOLD = json.load(open(os.path.join(HERE, "creature_stats.json"), encoding="utf-8"))
+        except (OSError, ValueError):
+            _GOLD = {}
+    c = _GOLD.get(str(cls).lower()) or {}
+    karma, fame = c.get("karma") or 0, c.get("fame") or 0
+    if isinstance(karma, list):
+        karma = sum(karma) / len(karma) if karma else 0
+    if isinstance(fame, list):
+        fame = sum(fame) / len(fame) if fame else 0
+    return 0.0 if karma >= 0 else min(60.0, 10.0 + fame / 20.0)
+
+
 class HuntMixin:
+    def hunt_gold_value(self, kind):
+        """What a fightable kind's gold adds to a spawner's worth: 1.0 per 40 gold for a poor caster (gold + bank < 300), else 0.25 per 40."""
+        poor = (getattr(self.c, "gold", 0) or 0) + ((getattr(self, "facts", None) or {}).get("bank_balance", 0) or 0) < 300
+        return kind_gold(kind["cls"]) / 40.0 * (1.0 if poor else 0.25)
+
     HUNT_SPOTS = None
     HUNT_RANGE = 260                                     # spawner grounds are chosen up to this far (Chebyshev) from Britain
 
@@ -77,6 +102,8 @@ class HuntMixin:
             good = []
             for k in sp["kinds"]:
                 v, c = self.hunt_kind_value(k)
+                if v:
+                    v += self.hunt_gold_value(k)                    # loot pays for the reagents (patch_caster_budget.py)
                 val += v * k["n"]
                 cost += c * k["n"]
                 if v:

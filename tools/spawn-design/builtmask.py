@@ -27,6 +27,19 @@ PLACE_REGIONS = re.compile(r"graveyard|field|moongate", re.I)
 PATH = re.compile(r"^(cobblestones|stone pavers|wooden bridge|wooden plank|dirt path)$")
 
 
+OWN_FILES = {"greater-britain-flavor.cfg"}   # the flavor objects themselves: never count them as something to keep clear of
+
+
+def shard_decoration(rect):
+    """uo_world.load_decoration, less the flavor objects' own file (once deployed, it sits in the same folder)."""
+    real = uo_world.os.listdir
+    uo_world.os.listdir = lambda folder: [f for f in real(folder) if f not in OWN_FILES]
+    try:
+        return uo_world.load_decoration(rect)
+    finally:
+        uo_world.os.listdir = real
+
+
 def tiles_of(census):
     x0, y0, x1, y1 = census["rect"]
     region = uo_world.Region(x0, y0, x1, y1)
@@ -46,7 +59,7 @@ def tiles_of(census):
             built.add((x, y))
             if FARM.search(n):
                 farm.add((x, y))
-    for cls, name, x, y, _ in uo_world.load_decoration((x0, y0, x1, y1)):
+    for cls, name, x, y, _ in shard_decoration((x0, y0, x1, y1)):
         built.add((x, y))
         if FARM.search((name or "") + " " + cls.lower()):
             farm.add((x, y))

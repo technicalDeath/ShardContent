@@ -324,7 +324,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         return townguard.filter_prey(self, [m for _, _, m in sorted(scored, key=lambda s: (s[0], s[1]))])       # inside a guarded region the guards take the monsters (feature town_guards)
 
     def dangers(self, within=8):
-        return [m for m in self.mobs(within) if not self.is_prey(m)]
+        now = time.time()
+        return [m for m in self.mobs(within) if not self.is_prey(m) and self.ignored.get(m.serial, 0) < now]     # an unreachable one is left out (patch_cornered_stuck.py)
 
     # ---- equipment --------------------------------------------------------------------------------------------
 
@@ -403,6 +404,18 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             self.c.goto(*self.flee_point(d)).wait(timeout=6)
             return True
         if d.distance <= 3 and self.hp_pct() > 40:
+            cn = self.facts.get("cornered")
+            now = time.time()
+            if not cn or cn.get("serial") != d.serial:
+                cn = self.facts["cornered"] = {"serial": d.serial, "since": now, "its": d.hits, "mine": self.c.hp}
+            elif now - cn["since"] > 30 and (d.hits or 0) >= (cn["its"] or 0) and self.c.hp >= cn["mine"]:
+                self.ignored[d.serial] = now + 180                 # 30 s with no hit either way: it cannot reach us, nor we it (an alligator in the water)
+                self.facts.pop("cornered", None)
+                self.end_fight("lost")
+                self.log(f"{d.name} cornered us for 30 s but neither side was hurt: ignoring it for 3 minutes")
+                self.dlog("choice", what=f"ignore {self.mkey(d)}", why="cornered 30 s, no hit either way (unreachable)")
+                self.step_away(d, 8)
+                return True
             if not self.c.war_mode:
                 self.c.war(True)
             self.c.attack(d.serial)
@@ -589,7 +602,10 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         c = self.mem.state["world"]["cells"].get(cell)
         if not c:
             return False
-        n = sum(v for k, v in c["sights"].items() if k in self.avoid_types or k in deadly or any(h in k for h in self.HEAVY_CAMP))
+        heavy = self.HEAVY_CAMP
+        if self.skill_values.get(self.main_skill(), 0) >= self.TIER2_SKILL:
+            heavy = tuple(h for h in heavy if h not in self.TIER2_GROUP)          # step-up packs are its ground now; the danger map judges the pack (patch_camp_tiers.py)
+        n = sum(v for k, v in c["sights"].items() if k in self.avoid_types or k in deadly or any(h in k for h in heavy))
         return n >= 4
 
     def worth_kind(self, k, deadly):
@@ -1006,6 +1022,10 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
 
     SEWER_GATOR_SKILL = 50                                   # main weapon skill under which an alligator is a danger (tier 2: 53 hp, ~10 a hit); raise it to keep newbies out longer
 
+    # Owner 2026-10-18: "Please have bots avoid the Britain sewers. It's terrible hunting grounds and 1 lane corridors make it awful to navigate."
+    # No bot goes down, whatever features.json or an ambition grants; a bot that logs in below climbs out (r_sewer_out, why "off"). The code stays for the way out.
+    SEWERS_BANNED = True
+
     def sewer_side(self):
         """The level the sewer spots are on: the gazetteer's side of their coordinates."""
         return self.tele_side_of(*self.SEWER_SPOTS[0])
@@ -1064,7 +1084,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         return not any(max(abs(x - gx), abs(y - gy)) <= reach + 4 for gx, gy, reach in self.SEWER_GATORS)
 
     def sewer_wanted(self):
-        return self.feature("sewers") and self.mode == "newbie"
+        return not self.SEWERS_BANNED and self.feature("sewers") and self.mode == "newbie"
 
     def sewer_skip(self, why):
         if time.time() - self.facts.get("sewer_skip_at", 0) > 300:
@@ -1114,7 +1134,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             return False
         if time.time() - self.facts.get("sewer_entered_at", 0) < 300:
             return False                                      # went down less than 5 minutes ago: not straight back (the 14:20 ping-pong)
-        if self.hp_pct() < 70:
+        if self.hp_pct() < (80 if self.feature("sewer_stay") else 70):                  # (sewer_stay: down only when well)
             return False
         if self.c.weight > self.c.max_weight * 0.8:
             self.sewer_skip("weight")
@@ -1149,6 +1169,18 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         time.sleep(3)
         return True
 
+    def sewer_flee(self):
+        """Feature sewer_stay, called by r_flee: under the flee line in the sewers the flight is the way out (the exit path), not a loop of potions. True when it acted (out, or trying)."""
+        if not self.feature("sewer_stay") or not self.in_sewer() or self.c.ghost or time.time() < self.facts.get("sewer_out_next", 0):
+            return False
+        self.activity = "leaving the sewers (flee)"
+        self.sprint()
+        self.facts.pop("ground", None)
+        self.facts.pop("anchor", None)
+        self.log(f"sewers: fleeing out at hp {self.c.hp}/{self.c.max_hp}")
+        self.sewer_out("flee")
+        return True
+
     def r_sewer_out(self):
         if not self.in_sewer() or self.c.ghost:
             return False
@@ -1158,7 +1190,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         why = None
         if not self.sewer_wanted():
             why = "off"
-        elif self.hp_pct() < 40:
+        elif self.hp_pct() < (50 if self.feature("sewer_stay") else 40):
             why = "hurt"
         else:
             seen = self.facts.setdefault("gators_seen", {})
@@ -1221,7 +1253,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         crowded = self.facts.get("crowded", {})                 # an area the stall sense left (stall.py) or a crowded one: not again for a while
         return choose_spot(self.mem, self.patrol_spots(), lambda x, y: self.near_death_spot(x, y, 60) or crowded.get(cell_of(x, y), 0) > time.time(),
                            here=(self.c.x, self.c.y), recent=recent[-4:],
-                           center=center, radius=radius, on_fallback=lambda spot, why: self.ev("spot_fallback", spot=list(spot), why=why))
+                           center=center, radius=radius, on_fallback=lambda spot, why: self.ev("spot_fallback", spot=list(spot), why=why), camp=self.camp_for_me)
 
     def r_explore(self):
         held = self.facts.get("ground")
@@ -1436,3 +1468,9 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+for _cls in (HunterBot, BardBot):
+    for _name, _before in (("r_rune_mark", "r_fight"), ("r_rune_buy", "r_resupply")):
+        if _name not in _cls.RULES:
+            _cls.RULES.insert(_cls.RULES.index(_before), _name)          # runes.py: mark a rune when quiet, buy blank runes (feature runes; Magery decides who)

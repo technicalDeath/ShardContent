@@ -9,6 +9,7 @@
   "show_d_p_s_with_damage_numbers": false,
   "enabled_beneficial_criminal_action_query": true,
   "enabled_spell_format": true,
+  "mini_map_offered": false,
   "party_invite_gump": true,
   "buff_bar_time": true,
   "cast_spells_by_one_click": true,

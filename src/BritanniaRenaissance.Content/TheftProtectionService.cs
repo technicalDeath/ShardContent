@@ -283,6 +283,13 @@ public static class TheftProtectionService
 
     private static bool CanLiftCorpseItem(Mobile looter, Corpse corpse, Item item)
     {
+        // The owner (2026-10-18): looting another player's monster kill should warn and then let the player go ahead as a criminal, not
+        // refuse. With the criminal-act confirmation on, it asks first (CriminalCorpseConfirm) and the repeat-loot refusal stands down.
+        if (CriminalCorpseConfirm.Enabled)
+        {
+            return true;
+        }
+
         if (!Enabled || OutdoorHotZonePolicy.IsHot(corpse) ||
             corpse.OwnerWasBaseCreature != true || !corpse.IsCriminalAction(looter) ||
             looter.Account is not Account account)

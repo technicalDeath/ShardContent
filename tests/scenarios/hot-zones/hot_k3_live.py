@@ -438,7 +438,7 @@ def persistence_seeds() -> None:
     with open(STATE_FILE, "w") as handle:
         json.dump(state, handle)
     print("phase1 seeds written; saving and restarting the host", flush=True)
-    pwsh("Stop-DevServer.ps1")
+    pwsh("Stop-DevServer.ps1", "-DistributionPath", os.path.join("work", "hosts", "phase-k3"))
     pwsh("Start-DevServer.ps1", "-DistributionPath", os.path.join("work", "hosts", "phase-k3"))
     state["restarted"] = time.time()
     with open(STATE_FILE, "w") as handle:

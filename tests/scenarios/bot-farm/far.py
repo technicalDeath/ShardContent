@@ -225,7 +225,7 @@ class FarMixin:
             return "ghost"
         corpse_run = bool((self.facts.get("corpse") or {}).get("await_far")) and self.feature("materializing") and self.materializing()      # corpse_run: unseen, so walk on
         if corpse_run:
-            return "hurt" if self.hp_pct() < 35 else None
+            return "hurt" if self.hp_pct() < 15 else None
         near = (getattr(self, "threats", None) or self.dangers)(9)          # BotBase.threats: hostiles that can hurt, without the town animals
         if near:
             return "threat: " + str(getattr(near[0], "name", "?"))
@@ -237,6 +237,10 @@ class FarMixin:
         end = time.time() + timeout
         wps = st["wps"]
         dest = tuple(st["dest"])
+        if not st.get("hopped") and getattr(self, "rune_hop", None):
+            st["hopped"] = True                                 # once per trip: a rune near the destination first (runes.py, feature runes); a refusal walks as before
+            if self.rune_hop(dest, st["role"]):
+                st["replan_at"] = 0
         while True:
             here = (self.c.x, self.c.y)
             if cheb(here, dest) <= FAR - 20:                    # the far part is done: the last stretch is the caller's own plain walk to the place

@@ -78,7 +78,7 @@ code { font-family: var(--mono); font-size: 12px }
 <div class="wrap">
   <header>
     <h1>Greater Britain Spawn Plan</h1>
-    <p class="lede">Every creature spawner within about 500 tiles of the Britain bank, as the world generates it today and as this plan would theme it. Click a spawner or an area on the map to see what it holds. Draft for sign-off, 18 October 2026: nothing has been changed in any world yet.</p>
+    <p class="lede">Every creature spawner within about 500 tiles of the Britain bank, as stock world generation made it ("Current") and as the areas now theme it. Click a spawner, an area or a flavor object on the map to see what it holds. Deployed to the dev world on 18 October 2026 (ShardContent <code>efdf65c</code>), with 316 flavor objects and Felucca in summer.</p>
     <div class="rules">
       <div class="rule"><b>Graded by its worst</b>A spawner's grade is its most dangerous creature, passive or not.</div>
       <div class="rule"><b>Rings outward</b>Danger is least at Britain's doorstep and rises with each ring going out.</div>
@@ -91,13 +91,13 @@ code { font-family: var(--mono); font-size: 12px }
     <div class="mapcard">
       <div class="bar">
         <div class="seg" role="group" aria-label="Which spawns to show">
-          <button id="m-plan" aria-pressed="true">Proposed</button>
-          <button id="m-now" aria-pressed="false">Current</button>
+          <button id="m-plan" aria-pressed="true">Live</button>
+          <button id="m-now" aria-pressed="false">Stock (before)</button>
         </div>
         <label><input type="checkbox" id="l-areas" checked> Areas</label>
         <label><input type="checkbox" id="l-rings" checked> Rings</label>
         <label><input type="checkbox" id="l-wild" checked> Wildlife</label>
-        <label><input type="checkbox" id="l-deco" checked> Decoration</label>
+        <label><input type="checkbox" id="l-deco" checked> Flavor objects</label>
         <label><input type="checkbox" id="l-built"> Built and decorated</label>
         <label><input type="checkbox" id="l-deaths"> Bot deaths</label>
         <label><input type="checkbox" id="l-town" checked> Guard zones</label>
@@ -121,7 +121,7 @@ code { font-family: var(--mono); font-size: 12px }
   </section>
 
   <section>
-    <h2>Decoration by theme</h2>
+    <h2>Flavor objects by area</h2>
     <p class="lede" id="deco-lede" style="margin:0 0 10px"></p>
     <div class="decogrid" id="decogrid"></div>
   </section>
@@ -133,14 +133,15 @@ code { font-family: var(--mono); font-size: 12px }
   </section>
 
   <section>
-    <h2>Decisions this needs from you</h2>
+    <h2>What was decided</h2>
     <ol class="qs">
-      <li><b>The graveyard loses its spectres and wraiths.</b> It sits 180 tiles from the bank, the most deaths of any cell (14, nearly all shades). It keeps skeletons, zombies and headless ones; the spectres and wraiths move to the Haunted Wood south-west, about 420-470 tiles out.</li>
-      <li><b>The beginner sites lose their step-up creatures.</b> Graded by their worst, the ratmen, orcs, lizardmen and the orcish mage made them tier 2-3 at Britain's doorstep. In this plan the step-ups live next door instead, in their own areas: ratmen in the West Foothills, orcs in the North Hills, lizardmen in the Bay Marsh. This replaces the 15 October "sprinkle in" ruling.</li>
-      <li><b>Wildlife stays, graded by ring.</b> The stock wildlife spawners each held 19 kinds, grizzly bears with sheep and horses. They stay wildlife with a roster for their ring (deer and small game near town; wolves, bears and big cats further out; grizzlies only in the far wilds), and 24 new sites fill the forests that had none. Horses, goats and boars for tamers come from the North-east Pasture and the farmlands.</li>
-      <li><b>Light decoration goes with each theme.</b> One small scene beside each themed spawner, 4 to 7 plain ground pieces from the original art (an orc camp's fire and bedrolls, graves at the graveyard's edge, a giant's heap of bones, a mushroom ring in the wisp glade). Nothing can be picked up or used. Wall-hung art is left out because there is no wall to hang it on, art that is also a player item (feathers, bedrolls, crates, the skull candle) is left out so nothing looks like loot, multi-piece objects are always placed whole, and scenes keep clear of places that are already decorated (the graveyard gets none; farm scenery blends in beside the farms).</li>
-      <li><b>This pass changes what spawns, not where.</b> Every spawner keeps its place, count, range and delay; only its creature list changes. Thin areas (the graveyard has two spawners) could gain spawners in a later pass.</li>
-      <li><b>How it reaches the worlds.</b> One shard spawn file that reuses the stock GUIDs, so world generation replaces those spawners. No code and no flag, like the house price. Dev and the farm get it with <code>[Alpha2bWorldGen addspawners</code> after a save snapshot.</li>
+      <li><b>The graveyard keeps only the lesser dead.</b> Skeletons, zombies and headless ones. Its spectres and wraiths now walk Barrow Fields just north of it (your map comment), a step-up area and an exception to the rings, and armoured undead walk the Haunted Wood south-west.</li>
+      <li><b>The beginner sites lost their step-up creatures.</b> Graded by their worst, ratmen, orcs and lizardmen made them tier 2 at Britain's doorstep; they live next door in their own areas instead (West Foothills, North Hills, Bay Marsh). This replaced the 15 October "sprinkle in" ruling.</li>
+      <li><b>Your map comments.</b> The woods by the bay are beginner (Bay Woods); west of the mountains is tier 3 (West Mountain Woods, with two new deep-forest spawners) and the east part joined the South-west Farmlands.</li>
+      <li><b>Wildlife stays, graded by ring.</b> The 19 stock wildlife spawners keep their places with a roster for their ring (deer and small game near town; wolves, bears and big cats further out; grizzlies only in the far wilds), and 24 new sites fill the forests that had none.</li>
+      <li><b>Flavor objects, not scenes.</b> Composed scenes looked illogical (debris on a log, a lone fence), so each area has single standalone pieces instead, on clean open ground, never a player item.</li>
+      <li><b>Felucca in summer.</b> Leaves on the trees and flowers in the fields, as Britannia looked before Trammel, instead of the stock Desolation season (<code>worldSeason.felucca</code> in <code>shard-rules.json</code>).</li>
+      <li><b>How it reached the world.</b> A shard spawn file that reuses the stock GUIDs and a flavor decoration file; <code>[Alpha2bWorldGen addspawners</code> and <code>adddecorations</code> put them into the dev world after a save snapshot. The audit passes with 1,583 spawners. The bot farm's host still has the old spawns.</li>
     </ol>
   </section>
 
@@ -233,19 +234,21 @@ for (const s of D.spawners) {
   g.addEventListener("click", e => { e.stopPropagation(); select({ sp: s.id }); });
   nodes.push({ s, g, dot, halo });
 }
-// decoration vignettes: a small marker per scene, drawn under the spawners
+// flavor objects: one small marker per piece, drawn above the spawners so it is never hidden under a dot
 const gDeco = el("g", {});
-svg.insertBefore(gDeco, gNames);  // above the spawners, so a scene marker is never hidden under a dot
+svg.insertBefore(gDeco, gNames);
 D.decoSites.forEach((v, i) => {
   const g = el("g", { style: "cursor:pointer" }, gDeco);
-  el("path", { d: "M0,-8 L7,5 L-7,5 Z", fill: "#f4ead2", stroke: "#3b2a14", "stroke-width": 1.6, "stroke-linejoin": "round", "data-tx": v.x, "data-ty": v.y }, g);
-  el("title", {}, g).textContent = `${D.deco[v.theme].scene} (${v.x}, ${v.y})`;
+  el("circle", { cx: v.x, cy: v.y, "data-r": v.color ? 4 : 3.5, r: 3.5, fill: D.dot[v.id] || "#f4ead2", stroke: "#1b140a", "stroke-width": 1.2 }, g);
+  el("title", {}, g).textContent = `${v.name} (${v.x}, ${v.y})`;
   g.addEventListener("click", e => { e.stopPropagation(); select({ deco: i }); });
 });
 function propsHtml(theme) {
   const t = D.deco[theme];
-  const one = (role, [name, id]) => `<div class="prop ${role}"><div class="art"><img src="${D.art[id]}" alt="${name}"></div>${name}${D.pieces[id] ? ` <span>(${D.pieces[id]} pieces)</span>` : ""}</div>`;
-  return `<div class="props">${t.anchor.map(x => one("anchor", x)).join("")}${t.supports.map(x => one("support", x)).join("")}${t.accents.map(x => one("accent", x)).join("")}</div>`;
+  if (!t) { return ""; }
+  const names = new Map();
+  for (const [name, id] of [...t.pieces, ...(t.color || [])]) { names.set(id, name); }
+  return `<div class="props">${[...names].map(([id, name]) => `<div class="prop"><div class="art"><img src="${D.art[id]}" alt="${name}"></div>${name}</div>`).join("")}</div>`;
 }
 svg.addEventListener("click", () => select(null));
 
@@ -285,14 +288,14 @@ function render() {
       <dl class="kv"><dt>From the bank</dt><dd>${s.dist} tiles</dd><dt>At once</dt><dd>${s.count} creatures, range ${s.home}</dd><dt>Respawn</dt><dd>${s.delay[0]}${s.delay[1] !== s.delay[0] ? " to " + s.delay[1] : ""}</dd>
       <dt>Grade</dt><dd>${s.tier != null ? pill(s.tier) : '<span class="muted">new</span>'}${s.to != null && s.to !== s.tier ? `<span class="arrow">→</span>${pill(s.to)}` : ""}</dd></dl>
       ${s.guarded ? `<p class="muted">Inside the guard zone.</p>` : (guardedRects.some(r => circleHitsRect(s.x, s.y, s.home, r)) ? `<p class="muted">Its range of ${s.home} reaches into the guard zone; the shard refuses any spot inside the zone to a monster that attacks on sight.</p>` : "")}
-      ${s.isNew ? `<h3>Today</h3><p class="muted">Nothing here yet. ${s.wild ? `A new site in forest: ${s.trees} trees within 12 tiles, on a walkable tile, at least 70 tiles from any other wildlife spawner.` : "A new spawner for this area, on walkable forest ground."}</p>` : `<h3>Today</h3>${rosterHtml(s.entries)}`}
-      ${s.next ? `<h3>Proposed: ${nextLabel}</h3>${rosterHtml(s.next)}` : `<p class="muted">Left as it is${s.guarded ? " (town animals inside the guard zone)" : ""}.</p>`}`;
+      ${s.isNew ? `<h3>Stock (before)</h3><p class="muted">Nothing here before. ${s.wild ? `A new site in forest: ${s.trees} trees within 12 tiles, on a walkable tile, at least 70 tiles from any other wildlife spawner.` : "A new spawner for this area, on walkable forest ground."}</p>` : `<h3>Stock (before)</h3>${rosterHtml(s.entries)}`}
+      ${s.next ? `<h3>Live: ${nextLabel}</h3>${rosterHtml(s.next)}` : `<p class="muted">Left as it is${s.guarded ? " (town animals inside the guard zone)" : ""}.</p>`}`;
   } else if (sel && sel.deco != null) {
-    const v = D.decoSites[sel.deco], t = D.deco[v.theme], a = AREA[v.area];
-    box.innerHTML = `<h3>Decoration</h3><h2>${t.scene}</h2><div class="coords">${v.x}, ${v.y} · ${a.name}</div>
-      <p class="muted">${t.story}</p>
-      <h3>Pieces</h3>${propsHtml(v.theme)}
-      <p class="muted">${v.blends ? "Farm scenery: set beside the farm's own buildings, fences and fields so it reads as part of the farm, never on them." : "Set well clear of anything already built or decorated (tick Built and decorated to see what it keeps away from)."} The outlined piece names the place; the others belong with it. A multi-piece object is always placed whole. Set within a few tiles of the spawner${v.also ? "s" : ""} it dresses (${[v.spawner, ...(v.also || [])].join(", ")}), on open walkable ground off the road. Exact tiles are laid and photographed in the real client when this is built.</p>`;
+    const v = D.decoSites[sel.deco], a = AREA[v.area];
+    box.innerHTML = `<h3>Flavor object</h3><h2>${v.name}</h2><div class="coords">${v.x}, ${v.y}, ${v.z} · ${a.name} · ${v.id}</div>
+      <div class="props"><div class="prop"><div class="art"><img src="${D.art[v.id]}" alt="${v.name}"></div>${v.name}</div></div>
+      <p class="muted">A single piece standing on its own, on clean open ground: nothing on its tile or beside it, nothing tall within 3 tiles (so no tree trunk hides it), at least 14 tiles from the next piece, 6 clear of anything already built or decorated. Never the art of something a player can own or pick up.</p>
+      <h3>This area's pieces</h3>${propsHtml(v.theme)}`;
   } else if (sel && sel.zone) {
     if (sel.unguarded) {
       const u = D.unguarded.find(x => x.name === sel.zone);
@@ -314,12 +317,12 @@ function render() {
     const was = [0, 0, 0, 0, 0]; sp.forEach(s => was[s.tier]++);
     box.innerHTML = `<h3>Area</h3><h2>${a.name}</h2><div class="coords">${a.dist ? a.dist[0] + "-" + a.dist[1] + " tiles from the bank" : ""}</div>
       <dl class="kv"><dt>Theme</dt><dd>${th.label}</dd><dt>Grade</dt><dd>${pill(a.tier)}${a.ringException ? ' <span class="muted">(exception to the rings, your ruling)</span>' : ""}</dd><dt>Spawners</dt><dd>${sp.length}, up to ${sp.reduce((n, s) => n + s.count, 0)} creatures</dd><dt>Wildlife</dt><dd>${(w => w.length ? `${w.length} spawner${w.length > 1 ? "s" : ""} (${w.filter(s => s.isNew).length} new), ${[...new Set(w.map(s => TIER[s.to]))].join(", ")}` : "none")(D.spawners.filter(s => s.wild && s.inArea === a.id))}</dd>
-      <dt>Today</dt><dd>${was.map((n, t) => n ? `${pill(t)} ×${n}` : "").filter(Boolean).join(" ")}</dd></dl>
+      <dt>Stock grades</dt><dd>${was.map((n, t) => n ? `${pill(t)} ×${n}` : "").filter(Boolean).join(" ")}</dd></dl>
       <h3>Creatures</h3>${rosterHtml(themeKinds(a.theme).map(k => ({ ...k, m: 0 })))}
-      ${a.deco === false ? `<h3>Decoration</h3><p class="muted">${a.decoNote || "None: the place is already decorated."}</p>` : `<h3>Decoration: ${D.deco[a.theme].scene} ×${D.decoSites.filter(v => v.area === a.id).length}</h3><p class="muted" style="margin:0 0 4px">${D.deco[a.theme].story}</p>${propsHtml(a.theme)}`}`;
+      ${a.deco === false ? `<h3>Flavor objects</h3><p class="muted">${a.decoNote || "None: the place is already decorated."}</p>` : `<h3>Flavor objects ×${D.decoSites.filter(v => v.area === a.id).length}</h3>${propsHtml(a.theme)}`}`;
   } else {
-    box.innerHTML = `<h3>How to read the map</h3><h2>${mode === "plan" ? "The plan" : "Today"}</h2>
-      <p class="muted" style="margin-top:0">${mode === "plan" ? "Coloured areas are the proposed themes, each graded by its most dangerous creature. Dots are spawners in their proposed grade; diamonds are wildlife, which runs through the forests beside the areas; pale triangles are decoration scenes." : "Dots are today's spawners in their grade. Nearly all wild spawners within 300 tiles are graded dangerous, because the stock mixes put trolls, ettins, reapers, gargoyles or grizzly bears among the small game."}</p>
+    box.innerHTML = `<h3>How to read the map</h3><h2>${mode === "plan" ? "Live" : "Stock (before)"}</h2>
+      <p class="muted" style="margin-top:0">${mode === "plan" ? "Coloured areas are the themes, each graded by its most dangerous creature. Dots are spawners in their grade; diamonds are wildlife, which runs through the forests beside the areas; small dots are flavor objects, each in its own colour (wildflowers show pink, orange, red and white)." : "Dots are today's spawners in their grade. Nearly all wild spawners within 300 tiles are graded dangerous, because the stock mixes put trolls, ettins, reapers, gargoyles or grizzly bears among the small game."}</p>
       <p class="muted">The dotted circles mark the rings: the Doorstep inside 300 tiles of the bank, the Near wilds to 400, the Far wilds to 500, the Frontier beyond. The blue area is where the guards answer (Britain and the moongate south of the bay); the dashed area is the unguarded Britain Outskirts. Click either for the rules; "Guard zones" hides them.</p>
       <p class="muted">Click a dot or an area for details. Drag to pan; use + and − to zoom. Tick "Bot deaths" to see where the farm's bots died.</p>`;
   }
@@ -327,7 +330,7 @@ function render() {
 function select(s) { sel = s; paint(); render(); }
 
 // legend
-document.getElementById("legend").innerHTML = TIER.map((t, i) => `<span><span class="sw" style="background:${TC[i]}"></span>${i} ${t}</span>`).join("") + `<span><span class="sw" style="background:#ff2a2a;border-radius:2px"></span>bot deaths (40-tile cell)</span><span><span class="sw" style="background:var(--t1);border-radius:2px;transform:rotate(45deg) scale(.85)"></span>wildlife</span><span><svg width="13" height="12" viewBox="-8 -9 16 15" style="vertical-align:-1px;margin-right:5px"><path d="M0,-8 L7,5 L-7,5 Z" fill="#f4ead2" stroke="#3b2a14" stroke-width="1.6"/></svg>decoration scene</span><span><span class="sw" style="background:#5ab4ff;border-radius:2px"></span>guarded</span><span><span class="sw" style="background:transparent;border:1.5px dashed var(--muted);border-radius:2px"></span>unguarded outskirts</span>`;
+document.getElementById("legend").innerHTML = TIER.map((t, i) => `<span><span class="sw" style="background:${TC[i]}"></span>${i} ${t}</span>`).join("") + `<span><span class="sw" style="background:#ff2a2a;border-radius:2px"></span>bot deaths (40-tile cell)</span><span><span class="sw" style="background:var(--t1);border-radius:2px;transform:rotate(45deg) scale(.85)"></span>wildlife</span><span><span class="sw" style="background:#c84a6a;border-color:#1b140a;width:8px;height:8px"></span>flavor object (dot in its own colour)</span><span><span class="sw" style="background:#5ab4ff;border-radius:2px"></span>guarded</span><span><span class="sw" style="background:transparent;border:1.5px dashed var(--muted);border-radius:2px"></span>unguarded outskirts</span>`;
 
 // modes and layers
 function setMode(m) { mode = m; document.getElementById("m-plan").setAttribute("aria-pressed", m === "plan"); document.getElementById("m-now").setAttribute("aria-pressed", m === "now"); if (m === "now" && !sel) document.getElementById("l-deaths").checked = true; paint(); render(); }
@@ -357,8 +360,8 @@ svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); 
   const changed = D.spawners.filter(s => !s.isNew && s.next && s.next.map(e => e.n).sort().join() !== s.entries.map(e => e.n).sort().join()).length;
   const wildKept = D.spawners.filter(s => s.wild && !s.isNew).length, wildNew = D.spawners.filter(s => s.wild && s.isNew).length;
   document.getElementById("stats").innerHTML = `
-    <div class="stat"><h3>Doorstep today</h3><div class="big">${was[3] + was[4]} of ${near.length}</div>${bars(was)}<span class="muted">wild spawners inside 300 tiles that hold a dangerous creature</span></div>
-    <div class="stat"><h3>Doorstep in the plan</h3><div class="big">${now[3] + now[4]} of ${near.length}</div>${bars(now)}<span class="muted">the same spawners, rethemed to beginner and step-up areas</span></div>
+    <div class="stat"><h3>Doorstep before</h3><div class="big">${was[3] + was[4]} of ${near.length}</div>${bars(was)}<span class="muted">wild spawners inside 300 tiles that hold a dangerous creature</span></div>
+    <div class="stat"><h3>Doorstep now</h3><div class="big">${now[3] + now[4]} of ${near.length}</div>${bars(now)}<span class="muted">the same spawners, rethemed to beginner and step-up areas</span></div>
     <div class="stat"><h3>Bot deaths inside 300 tiles</h3><div class="big">${deaths}</div><span class="muted">of ${D.deaths.reduce((n, d) => n + d.n, 0)} on this map, from the farm's runs</span></div>
     <div class="stat"><h3>Spawners rethemed</h3><div class="big">${changed}</div><span class="muted">in ${D.areas.length} areas and the wildlife; places, counts and delays unchanged</span></div>
     <div class="stat"><h3>Wildlife spawners</h3><div class="big">${wildKept + wildNew}</div><span class="muted">${wildKept} stock ones kept as wildlife, ${wildNew} new in the forests</span></div>`;
@@ -398,11 +401,12 @@ svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); 
   for (const a of D.areas) (used[a.theme] = used[a.theme] || []).push(a);
   const grid = document.getElementById("decogrid");
   for (const [key, t] of Object.entries(D.deco)) {
-    const areas = used[key] || [];
+    const areas = (used[key] || []).filter(a => a.deco !== false);
+    if (!areas.length) { continue; }
     const n = D.decoSites.filter(v => v.theme === key).length;
-    grid.insertAdjacentHTML("beforeend", `<div class="decocard"><h3>${areas.map(a => a.name).join(", ") || "unused"}</h3><h2 style="font-size:18px;margin:0 0 4px">${t.scene}</h2><p class="muted">${t.story} ${n} scene${n === 1 ? "" : "s"}.</p>${propsHtml(key)}</div>`);
+    grid.insertAdjacentHTML("beforeend", `<div class="decocard"><h3>${D.themes[key] ? D.themes[key].label : key}</h3><h2 style="font-size:18px;margin:0 0 4px">${areas.map(a => a.name).join(", ")}</h2><p class="muted">${n} piece${n === 1 ? "" : "s"}, ${D.decoSites.filter(v => v.theme === key && v.color).length} of them colour.</p>${propsHtml(key)}</div>`);
   }
-  document.getElementById("deco-lede").textContent = `${D.decoSites.length} small scenes, one beside each themed spawner, built from plain ground pieces of the original art. The outlined piece names the place (anchor); the others belong with it. Multi-piece objects (boulders, fallen trunks, the trough, the skull heap, graves) are placed whole, fitted as the client's own map fits them. Nothing shares its art with anything a player can own or pick up. Scenes keep clear of places already built or decorated (buildings, fences, graves, crop fields, the cave entrance), and the Britain Graveyard gets none; farm scenery sits beside the farms' own buildings and fields instead. Spawners within 16 tiles in one area share a scene.`;
+  document.getElementById("deco-lede").textContent = `${D.decoSites.length} single pieces scattered across the areas, each standing on its own. ${D.decoSites.filter(v => v.color).length} of them add colour: pink campion and foxglove, orange orfluer, red and white poppies, white snowdrops, bulrushes and red-capped mushrooms, chosen for each area. The rest are mushrooms and nests in the woods, spilled hay and splintered wood on the farms, bones, grave mounds and a gravestone at the barrows and the Haunted Wood, cattails in the marsh, rocks on the heights. Never closer than 10 tiles to the next, on clean open ground with a clear sightline, never the art of a player item. The Britain Graveyard has none; it is decorated already.`;
 })();
 
 setView(); paint(); render();

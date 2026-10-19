@@ -113,6 +113,8 @@ Adding a bot: append it to a plan file, start its client with `farm_launch.py --
 - **The farm host is disposable,** but it holds the port: the dev server (`ModernUO/Distribution`) cannot run at the same time. Do not start a second server.
 - **Secrets:** `work/accounts/*.env` and each session's `.env` hold the bots' passwords. Never print or commit them.
 - **`work/` is never committed.** Code changes go to the ShardContent repository and are committed only when the owner allows it.
+- **No bot goes into the Britain sewers** (owner, 2026-10-18: "terrible hunting grounds and 1 lane corridors make it awful to navigate"). `HunterBot.SEWERS_BANNED` refuses it in code, whatever a `features.json` cohort or an ambition says. Don't re-add a `sewers` cohort. A bot that finds itself below climbs out (`r_sewer_out`, why `off`). `work/botfarm/patches/test_sewer_ban.py` checks this.
+- **Runes, Mark and Recall** (owner, 2026-10-18; feature `runes`, `runes.py`): a bot with enough Magery buys blank runes, marks home and far grounds, and recalls on far walks. Runes are known by serial only, because the Backpack Ward looks the same to the client. Events are `rune_buy`, `rune_mark`, `rune_recall` and `rune_fail`. Tests: `test_runes.py`; the live run is in `work/runes-live/`.
 - **Memory:** keep available memory above about 500 MB. The supervisor sheds bots by itself under 450 MB; when adding bots, check first.
 - The owner wants a short progress line at least every five minutes during long runs, and quality-of-life findings worth acting on go into `ShardContent/docs/To-Do-List.md` only when the owner asks.
 
@@ -125,4 +127,4 @@ Adding a bot: append it to a plan file, start its client with `farm_launch.py --
 & $py ShardContent\tests\scenarios\bot-farm\farmctl.py supervisor start --hours 8
 ```
 
-To stop everything: `farmctl.py supervisor stop`, then stop each client by the PID in its `session.json`, then `Stop-DevServer.ps1`.
+To stop everything: `farmctl.py supervisor stop`, then stop each client by the PID in its `session.json`, then `Stop-DevServer.ps1 -DistributionPath work\hostsarm` (the farm's own server only).

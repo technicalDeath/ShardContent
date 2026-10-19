@@ -32,7 +32,7 @@ CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
-LEAN_CUO = os.path.join(NAVREY, "bin", "Lean7", "cuo.dll")
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean9", "cuo.dll")         # Lean9: Lean7 + ghost doors (Lean8) + kept corpse serials (2026-10-18)
 # NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
 LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11", "NAVREY_RUN": "auto"}
 DEFAULT_CLIENT = "lean"     # the client a bot gets unless its plan entry says "client": "full"

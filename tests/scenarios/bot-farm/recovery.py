@@ -74,6 +74,12 @@ class RecoveryMixin:
 
     # ---- the server's lines --------------------------------------------------------------------------------------------------------------------------
 
+    def bw_credit(self, how):
+        """The open Between Worlds record learns at once what the corpse gave back, so an end line in the same read cannot write \"no corpse taken\"."""
+        b = self.facts.get("bw")
+        if b and not b.get("how"):
+            b["how"] = how
+
     def recovery_line(self, text):
         now = time.time()
         m = CORPSE_RX.search(text)
@@ -91,9 +97,11 @@ class RecoveryMixin:
             return
         if SELF_ALL in text:
             self._self_loot = ("all", now)
+            self.bw_credit("all")
             return
         if SELF_SOME in text:
             self._self_loot = ("some", now)
+            self.bw_credit("some")
             return
         m = CRIM_RX.search(text)
         if m and self.feature("criminal_ghost"):
@@ -150,8 +158,8 @@ class RecoveryMixin:
         ring = self.__dict__.setdefault("_vitals", [])
         if not getattr(self.c, "ghost", False) and (st.get("hits") or 0) > 0:
             ring.append((now, st.get("hits"), st.get("stamina")))     # living ticks only (the watcher: deaths read 0/0)
-        while ring and now - ring[0][0] > 12:
-            ring.pop(0)
+        while len(ring) > 1 and now - ring[0][0] > 12:
+            ring.pop(0)                                       # never the last living tick: a long fight tick outlasts 12 s (patch_vitals_keep_last.py)
         rule = getattr(self, "last_rule", None)
         if rule == "r_flee" and self.__dict__.get("_prev_rule") != "r_flee" and now - self.facts.get("flee_ev_at", 0) > 20:
             self.facts["flee_ev_at"] = now
@@ -318,6 +326,8 @@ class RecoveryMixin:
                     time.sleep(1.2)
             except Exception as e:
                 self.log(f"corpse run: {type(e).__name__}: {e}")
+        if hasattr(self, "bw_looted") and self.facts.get("bw"):
+            self.bw_looted(how or "item by item")                          # the Between Worlds record: the corpse was taken (bw.py)
         self.log(f"corpse run done ({how or 'item by item'})")
         self.facts.pop("corpse", None)
         return True

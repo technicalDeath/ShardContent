@@ -12,7 +12,7 @@ if (-not (Test-Path $f)) { throw 'no rig record (work\decorating\rig.json)' }
 $s = Get-Content $f -Raw | ConvertFrom-Json
 & .\.claude\scripts\Stop-PlayerClient.ps1 -Name $s.camera 2>&1 | Select-Object -Last 1
 & .\.claude\scripts\Stop-NavreySession.ps1 -Name admin 2>&1 | Select-Object -Last 1
-& .\.claude\scripts\Stop-DevServer.ps1 -NoSave 2>&1 | Select-Object -Last 1
+& .\.claude\scripts\Stop-DevServer.ps1 -NoSave -DistributionPath (Join-Path $ws "work\hosts\$($s.host)") 2>&1 | Select-Object -Last 1
 Start-Sleep -Seconds 3
 & .\.claude\scripts\Remove-DisposableHost.ps1 -Name $s.host 2>&1 | Select-Object -Last 1
 Remove-Item $f -ErrorAction SilentlyContinue

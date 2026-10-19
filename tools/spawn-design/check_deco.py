@@ -14,13 +14,17 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", "..", "..", "ModernUO", "Projec
 sys.path.insert(0, os.path.join(HERE, "..", "cosmetic-catalog"))
 import uoart  # noqa: E402
 
+TILES = uoart.tiles()
+_F = {v: k for k, v in uoart.FLAGS.items()}
+IMPASSABLE, SURFACE, BACKGROUND = _F["Impassable"], _F["Surface"], _F["Background"]
+
 
 def main():
     d = json.load(open(os.path.join(HERE, "deco.json"), encoding="utf-8"))
     allowed = {int(k, 16) for k in d.get("allowed", {})}
     used = {}
     for key, t in d.get("flavor", {}).items():
-        for name, hexid in t["pieces"]:
+        for name, hexid in t["pieces"] + t.get("color", []):
             used.setdefault(int(hexid, 16), []).append("%s (flavor %s)" % (name, key))
             if hexid in d.get("assemblies", {}):
                 used[int(hexid, 16)].append("MULTI-PIECE")
@@ -42,6 +46,11 @@ def main():
     bad = 0
     for v, who in sorted(used.items()):
         why = []
+        flavor = any("(flavor " in w for w in who)
+        if flavor and v < len(TILES):
+            t = TILES[v]
+            if t.flags & IMPASSABLE or (t.flags & SURFACE and not t.flags & BACKGROUND):
+                why.append("blocks walking or a house (impassable, or a surface that is not background)")
         if "MULTI-PIECE" in who:
             why.append("multi-piece art cannot stand alone")
         if v >= 0x2000:

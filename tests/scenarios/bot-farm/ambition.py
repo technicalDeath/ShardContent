@@ -5,7 +5,7 @@ decide which of its long-term behaviours it uses:
   A1 home         save: the savings goal (goals.py) is on; milestones: 4,000 / 10,000 / 16,000 (a small house deed on this shard) banked and carried
   A2 livelihood   save; milestones: net worth rising 100 / 250 / 500 gold an hour (over the last two hours)
   A3 mastery      milestones: the working skill at 70 / 80 / 90 / 100
-  A4 adventure    first trips out of the home town and, for a newbie, the sewers (first_trip.py; its own gates still apply: a veteran, an hour played, 300 gold, the kit, the
+  A4 adventure    first trips out of the home town (never the Britain sewers: owner, 2026-10-18) (first_trip.py; its own gates still apply: a veteran, an hour played, 300 gold, the kit, the
                   trip's skill band and hit points, a safe route); milestones: another region seen / a trip completed / a dungeon seen
   A5 possessions  save (the gear goals: the next armour piece it can wear); milestones: worn armour 10 / 20 / 30
   A6 renown, A7 company: the persona carries them (talk and party read them later); no milestones yet (no fame or trade numbers exported)
@@ -28,7 +28,7 @@ MAGE = ("PureMage", "Warlock", "Sorcerer")
 GATHER = ("Fisherman", "Prospector")
 PASSIVE = ("Meditation", "Resisting Spells", "Focus", "Hiding", "Detecting Hidden", "Anatomy", "Evaluating Intelligence", "Spirit Speak", "Healing", "Tactics")
 SAVERS = ("A1", "A2", "A5")
-GRANTS = ("goals", "first_trip", "sewers")
+GRANTS = ("goals", "first_trip")                 # "sewers" dropped: the owner keeps every bot out of the Britain sewers (2026-10-18; HunterBot.SEWERS_BANNED)
 EVERY = 60.0
 WORTH_EVERY = 600.0
 WORTH_WINDOW = 2 * 3600.0

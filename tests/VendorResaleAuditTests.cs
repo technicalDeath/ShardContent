@@ -110,6 +110,16 @@ public class VendorResaleAuditTests
                 }
             }
 
+            // the extra shelves from data (extraVendorStock: the Mage's Recall and Mark scrolls) charge through the same buy-price hook
+            var stock = doc.RootElement.GetProperty("extraVendorStock").Deserialize<List<ExtraVendorStockEntry>>()!;
+            foreach (var e in stock)
+            {
+                if (ExtraVendorStock.ItemType(e.Item) is { } t)
+                {
+                    Charge(t, CraftedGoodsPricing.VendorCharges(e.Price, Cost(t)), string.Join("/", e.Vendors) + " (extra stock)");
+                }
+            }
+
             Assert.True(shops > 50, $"only {shops} shop lists loaded");
 
             var loops = maxPay

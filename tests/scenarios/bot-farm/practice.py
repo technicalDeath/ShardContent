@@ -60,7 +60,14 @@ def wants(bot):
     return [o["key"] for o in options(bot, held_only=False, ready=False) if o["circle"] <= BUY_CIRCLES]
 
 
+PRACTICE_PURSE = 150
+
+
 class PracticeMixin:
+    def practice_affordable(self):
+        """Practice burns reagents and earns nothing: only with gold carried + banked >= PRACTICE_PURSE (patch_caster_budget.py)."""
+        return (self.c.gold or 0) + (self.facts.get("bank_balance", 0) or 0) >= PRACTICE_PURSE
+
     def practice_streak(self):
         return __import__("time").time() - self.facts.get("practice_at", 0) < STREAK_S
 
