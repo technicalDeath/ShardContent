@@ -15,6 +15,7 @@ Events (decisions.jsonl): region_first {region, at} the first time the bot stand
 once) or a trip of the rung ends (3, 4: each time). Trips keep first_trip's own trip_start / trip_arrive / trip_abort / trip_home events (trip_start carries the rung in its trip_kind).
 State: <bot>/ladder.json (survives a restart). Hooks in first_trip.py (patch_ladder.py): trips_allowed, trip_pick's choice, r_trip's once-only flag, trip_end, and the arrival.
 """
+import items  # noqa: E402  (the shared item table)
 import json
 import os
 import time
@@ -180,7 +181,7 @@ class LadderMixin:
 
     def ladder_kit_strict(self):
         if hasattr(self, "bandages"):
-            yellow = sum((i.amount or 1) for i in self.c.backpack if i.name == "Yellow Potion")
+            yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             return self.bandages() >= 15 and yellow >= 3
         return self.trip_kit_ok()
 

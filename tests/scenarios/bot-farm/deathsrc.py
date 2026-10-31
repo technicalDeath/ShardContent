@@ -50,6 +50,22 @@ _NEAR = re.compile(r"(.+?) (0x[0-9A-Fa-f]+) d=(\d+) (\w+) (\d+)%")
 NEAR_HOSTILE = ("Murderer", "Criminal", "Enemy", "Attackable", "Gray", "Grey")
 
 
+_MODES = None
+
+
+def passive(name):
+    """A kind that only fights back (fightmodes.json mode \"Aggressor\": goats, sheep, deer, rats): ranked after the kinds that attack (patch_killer_rank.py)."""
+    global _MODES
+    if _MODES is None:
+        try:
+            import json, os
+            _MODES = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fightmodes.json"), encoding="utf-8"))
+        except Exception:
+            _MODES = {}
+    k = key_of(name)
+    return bool(k) and (_MODES.get(k) or {}).get("mode") == "Aggressor"
+
+
 def near_feed(bot, text):
     """A client-log "[NEAR] on damage: ..." line: who stood within 6 tiles when the bot was hit (hostile notorieties, never a Bot)."""
     i = text.find("on damage:")
@@ -61,7 +77,7 @@ def near_feed(bot, text):
         if m and m.group(4) in NEAR_HOSTILE and not m.group(1).strip().startswith("Bot"):
             found.append((int(m.group(3)), m.group(1).strip()))
     if found:
-        state(bot)["near"].append((time.time(), sorted(found)[0]))
+        state(bot)["near"].append((time.time(), sorted(found, key=lambda f: (passive(f[1]), f[0]))[0]))     # an attacker before a goat (patch_killer_rank.py)
 
 
 def feed(bot, t):
@@ -135,7 +151,7 @@ def source(bot):
         return out(None, "poison", "poison ticks, no attacker", True)
     seen = [(t, d, n) for t, (d, n) in st.get("near", ()) if now - t <= WINDOW]
     if seen:
-        t, d, n = min(seen, key=lambda s: (s[1], -s[0]))       # the nearest, the latest among equals
+        t, d, n = min(seen, key=lambda s: (passive(s[2]), s[1], -s[0]))       # an attacker first, then the nearest, the latest among equals (patch_killer_rank.py)
         return out(key_of(n), f"{n} (beside it when hit)", f"the client's damage line: {n} {d} tiles away {int(now - t)} s before", d <= 2)
     if cue and cue[1] in ("spell", "curse", "paralysis"):
         casters = [s for s in snapshot if _casts(s[2])]
@@ -147,7 +163,7 @@ def source(bot):
             return out(k, f"{n} (a spell?)", f"{cue[1]} cue; the nearest hostile in view, {d} tiles", False)
         return out(None, "an unseen caster", f"{cue[1]} cue, nobody in view", False)
     if snapshot:
-        d, n, k = snapshot[0]
+        d, n, k = min(snapshot, key=lambda s: (passive(s[1]), s[0]))     # an attacker first (patch_killer_rank.py)
         return out(k, f"{n} (nearest in view)", f"nearest hostile {d} tiles away, no damage line names it", False)
     big = max([a for _, a in dmg] or [0])
     if big >= BURST * hp:

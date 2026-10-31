@@ -9,6 +9,7 @@ what came of it, which is the data any learning needs.
 Two tables:
   rates      (tbl, key) -> avg, n, t        an exponential average per key, updated atomically: rate_update(), rate_table()
   decisions  one row per choice: t, bot, prof, kind, chosen, context (JSON: what the bot knew), options (JSON: what it weighed),
+             (kind "task": the decision core's task choices, closed with why / expected / actual by decision_close() at the task's end)
              outcome (JSON: gold, kills, gains, died, work, secs summed over the episodes that followed), closed_t
              decision_open() at the choice, decision_add() from each episode after it, closed when the next choice of the same kind comes or
              after DECISION_TTL. Read them with DuckDB or sqlite3 (work/botfarm-watch/q.py).
@@ -139,6 +140,23 @@ def decision_add(bot, delta, now=None):
             for k in OUTCOME_KEYS:
                 o[k] = round((o.get(k) or 0) + (delta.get(k) or 0), 2)
             c.execute("update decisions set outcome = ? where id = ?", (json.dumps(o, separators=(",", ":")), rid))
+        c.execute("commit")
+    except Exception:
+        c.execute("rollback")
+        raise
+
+
+def decision_close(rid, extra=None, now=None):
+    """A decision's outcome is known (the decision core's task ended): merge `extra` (why, expected, actual, ...) into its outcome and close it."""
+    c = con()
+    now = now or time.time()
+    c.execute("begin immediate")
+    try:
+        row = c.execute("select outcome from decisions where id = ?", (rid,)).fetchone()
+        if row:
+            o = json.loads(row[0] or "{}")
+            o.update(extra or {})
+            c.execute("update decisions set outcome = ?, closed_t = ? where id = ?", (json.dumps(o, separators=(",", ":"), default=str), now, rid))
         c.execute("commit")
     except Exception:
         c.execute("rollback")

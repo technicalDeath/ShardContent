@@ -1,6 +1,8 @@
 """A first trip out of Britain (feature "first_trip"): see work/botfarm/patches/patch_first_trip.py for the why. Mixin for HunterBot and CasterBot."""
 from __future__ import annotations
 
+import items  # noqa: E402  (the shared item table)
+import basics  # noqa: E402  (shared helpers)
 import json
 import os
 import re
@@ -76,22 +78,11 @@ def straight_wps(a, b, step=40):
     return [(round(a[0] + (b[0] - a[0]) * i / n), round(a[1] + (b[1] - a[1]) * i / n)) for i in range(n)] + [(int(b[0]), int(b[1]))]
 
 
-_WR = None
 _CIRCLES = None
 _CIRCLE_PEN = None
 
 
-def _wr():
-    """walkroute, or None where it or its grid cannot be loaded (then trips keep their waypoints)."""
-    global _WR
-    if _WR is None:
-        try:
-            import walkroute
-            walkroute.get()
-            _WR = walkroute
-        except Exception:
-            _WR = False
-    return _WR or None
+_wr = basics.walkroute_mod                   # (basics.py: one copy, one loaded grid)
 
 
 def _circle_penalty(wr):
@@ -149,7 +140,7 @@ class FirstTrip(LadderMixin):
 
     def trip_kit_ok(self):
         if hasattr(self, "bandages"):
-            yellow = sum((i.amount or 1) for i in self.c.backpack if i.name == "Yellow Potion")
+            yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             if self.bandages() < 10 and yellow < 2:
                 return False
             return not (getattr(self, "ranged", False) and self.ammo() < 60)

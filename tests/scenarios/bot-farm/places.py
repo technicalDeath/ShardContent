@@ -5,6 +5,38 @@ import json
 import math
 import os
 import time
+import zlib
+
+SCATTER = 35              # tiles a shared destination is moved by, per bot (patch_scatter; the owner: "perhaps 30-40 tiles. it's a big world to explore")
+SLOT = 600                # seconds a bot keeps the same moved point
+
+
+def scatter(name, x, y, r=SCATTER, slot=SLOT, bad=None):
+    """(x, y) moved by up to r tiles: the same for this bot for `slot` seconds, different from bot to bot; onto a walkable tile where the walk map has one;
+    a moved point that bad(x, y) refuses (a dangerous cell, a city street) is tried again with another offset, and the point itself is kept if none fits."""
+    x, y = int(x), int(y)
+    try:
+        import walkroute
+        walk = walkroute.get()
+    except Exception:
+        walk = None
+    for k in range(6):
+        h = zlib.crc32(f"{name}|{x}|{y}|{int(time.time() // slot)}|{k}".encode())
+        dx, dy = h % (2 * r + 1) - r, (h // (2 * r + 1)) % (2 * r + 1) - r
+        tx, ty = x + dx, y + dy
+        if walk is not None and not walk.walkable(tx, ty):
+            ring = sorted(((abs(a) + abs(b), tx + a, ty + b) for a in range(-4, 5) for b in range(-4, 5)), key=lambda t: t[0])
+            hit = next(((px, py) for _, px, py in ring if walk.walkable(px, py)), None)
+            if hit is None:
+                continue
+            tx, ty = hit
+        try:
+            if bad is not None and bad(tx, ty):
+                continue
+        except Exception:
+            pass
+        return tx, ty
+    return x, y
 
 try:
     import gazetteer as gz
@@ -50,6 +82,24 @@ def area_spots(path=None, tiers=AREA_TIERS, per_area=PER_AREA, apart=40):
 
 
 SEED_SPOTS = {"Britain": area_spots() or OLD_SPOTS}
+_AREA_RECTS = None
+
+
+def area_tier_at(x, y, near=60):
+    """The tier of the Britain hunting area whose nearest spawner lies within `near` tiles of (x, y) (britain_areas.json), else None (patch_ground_tiers.py)."""
+    global _AREA_RECTS
+    if _AREA_RECTS is None:
+        try:
+            d = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "britain_areas.json"), encoding="utf-8"))
+            _AREA_RECTS = [(sp[0], sp[1], a["tier"]) for a in d.get("areas", []) for sp in a.get("spawners", [])]
+        except (OSError, ValueError, KeyError):
+            _AREA_RECTS = []
+    best = None
+    for sx, sy, tier in _AREA_RECTS:
+        d = max(abs(sx - x), abs(sy - y))
+        if d <= near and (best is None or d < best[0]):
+            best = (d, tier)
+    return best[1] if best else None
 FALLBACK_BANKS = [(1425, 1690), (1650, 1608)]
 RING_RADII = (90, 180)
 VERMIN = ("cow", "chicken", "sheep", "rat", "rabbit", "hind", "pig", "goat", "bird", "giantrat", "sewerrat", "bullfrog", "snake")
@@ -218,6 +268,20 @@ class Places:
         r = self.home_refuges() if getattr(self, "home_refuges", None) else []
         return tuple(r[0]) if r else self.where1(("healer",))
 
+    def patrol_tiers(self):
+        """The Britain area tiers a bot of this strength patrols (patch_patrol_tiers.py)."""
+        try:
+            import area_danger
+            vals = dict(getattr(self, "skill_values", {}) or {})
+            if getattr(self, "skill", None) and isinstance(self.skill, (int, float)):
+                vals["Magery"] = max(float(vals.get("Magery", 0) or 0), float(self.skill))
+            s = area_danger.combat_skill(vals)
+        except Exception:
+            return AREA_TIERS
+        if s <= 0:
+            return AREA_TIERS
+        return (1,) if s < 35 else (1, 2) if s < 55 else (2, 3) if s < 75 else (3,)
+
     def patrol_spots(self):
         """The fixed patrol points of a home: its seeds (Britain's ten), else the memory's best hunting cells and a ring around the home centre."""
         hit = self.__dict__.get("_patrol")
@@ -227,6 +291,10 @@ class Places:
         name = h["name"] if h else None
         if name in SEED_SPOTS or (h is None and gz is None):
             spots = list(SEED_SPOTS.get(name, SEED_SPOTS["Britain"]))
+            if name in (None, "Britain"):
+                tiered = area_spots(tiers=self.patrol_tiers())           # by strength (patch_patrol_tiers.py)
+                if tiered:
+                    spots = tiered
         else:
             centre = self.home_centre() if getattr(self, "home_centre", None) else self.places_ref()
             learned = []

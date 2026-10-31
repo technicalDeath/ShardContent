@@ -24,6 +24,8 @@ from collections import defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 W, H = 5120, 4096                                        # the Britannia surface of Felucca (the map is 7168 wide; the rest is dungeons and T2A)
+DOORS_OPEN = False                                       # the dungeon side: a door is not a wall (the client opens doors; the surface grid keeps them as walls as before)
+X0 = 0                                                   # --x0 5120 --width 2048: walkgrid-dungeons.bin, the dungeon side (x stored as x - X0; walkroute.py and the simulator add it back)
 MAP_W, MAP_H = 7168, 4096
 CELL = 4
 M32 = 0xFFFFFFFF
@@ -123,7 +125,11 @@ def load_tiledata(uodata):
     return land, flags, height
 
 
-def build(uodata):
+def build(uodata, x0=0, width=None):
+    global W, X0, DOORS_OPEN
+    X0 = int(x0)
+    DOORS_OPEN = X0 >= 5120
+    W = int(width) if width else W
     m = load_map(uodata)
     land, iflags, iheight = load_tiledata(uodata)
     idx = open(os.path.join(uodata, "staidx0.mul"), "rb").read()
@@ -133,7 +139,7 @@ def build(uodata):
     hb = H // 8
     for bx in range(W // 8):
         for by in range(hb):
-            bi = bx * hb + by
+            bi = (bx + X0 // 8) * hb + by
             off, ln, _ = struct.unpack_from("<iii", idx, bi * 12)
             per = defaultdict(list)
             if off >= 0 and ln > 0:
@@ -150,8 +156,8 @@ def build(uodata):
                     for z, h, f in per.get((cx, cy), ()):
                         bridge = f & 0x400
                         hh = h // 2 if bridge else h
-                        if f & 0x40 and not bridge:
-                            obst.append((z, z + hh))                   # impassable (a wall, a tree; a table is both surface and impassable)
+                        if f & 0x40 and not bridge and not (DOORS_OPEN and f & 0x20000000):
+                            obst.append((z, z + hh))                   # impassable (a wall, a tree; a table is both surface and impassable); a door on the dungeon side is opened (the client does it)
                         elif f & 0x200 or bridge:
                             surfaces.append(z + hh)
                     ok = any(all(not (oz < s + 16 and ot > s) for oz, ot in obst) for s in surfaces)
@@ -177,8 +183,10 @@ def main():
     ap.add_argument("--uodata", default=os.path.join(ROOT, "UOData"))
     ap.add_argument("--out", default=os.path.join(HERE, "walkgrid.bin"))
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--x0", type=int, default=0, help="first x column written (5120 for the dungeon side)")
+    ap.add_argument("--width", type=int, default=None, help="columns written (2048 for the dungeon side)")
     a = ap.parse_args()
-    data = build(a.uodata)
+    data = build(a.uodata, a.x0, a.width)
     if a.check:
         same = os.path.exists(a.out) and open(a.out, "rb").read() == data
         print("walkgrid.bin is up to date" if same else "walkgrid.bin DIFFERS from the inputs: run make_walkgrid.py")

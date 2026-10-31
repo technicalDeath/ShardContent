@@ -47,38 +47,38 @@
    "y": 1825
   },
   {
-   "home": 30,
+   "home": 22,
    "kinds": [
     {
      "cls": "giantrat",
      "dmg": 6.0,
      "hits": 32.5,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "ratman",
      "dmg": 4.5,
      "hits": 65.0,
-     "n": 3
+     "n": 2
     }
    ],
    "x": 1222,
    "y": 1418
   },
   {
-   "home": 30,
+   "home": 10,
    "kinds": [
     {
      "cls": "giantrat",
      "dmg": 6.0,
      "hits": 32.5,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "ratman",
      "dmg": 4.5,
      "hits": 65.0,
-     "n": 3
+     "n": 2
     }
    ],
    "x": 1225,
@@ -226,7 +226,7 @@
    "y": 1600
   },
   {
-   "home": 30,
+   "home": 19,
    "kinds": [
     {
      "cls": "greatermongbat",
@@ -238,7 +238,7 @@
      "cls": "mongbat",
      "dmg": 1.5,
      "hits": 5.0,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "orc",
@@ -459,6 +459,31 @@
    "y": 1574
   },
   {
+   "home": 20,
+   "kinds": [
+    {
+     "cls": "greatermongbat",
+     "dmg": 6.0,
+     "hits": 41.0,
+     "n": 1
+    },
+    {
+     "cls": "mongbat",
+     "dmg": 1.5,
+     "hits": 5.0,
+     "n": 1
+    },
+    {
+     "cls": "orc",
+     "dmg": 6.0,
+     "hits": 65.0,
+     "n": 1
+    }
+   ],
+   "x": 1284,
+   "y": 1366
+  },
+  {
    "home": 30,
    "kinds": [
     {
@@ -582,7 +607,7 @@
    "y": 1869
   },
   {
-   "home": 30,
+   "home": 24,
    "kinds": [
     {
      "cls": "skeleton",
@@ -594,7 +619,7 @@
      "cls": "spectre",
      "dmg": 9.0,
      "hits": 53.0,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "wraith",
@@ -830,7 +855,7 @@
    "y": 1868
   },
   {
-   "home": 30,
+   "home": 10,
    "kinds": [
     {
      "cls": "skeleton",
@@ -842,7 +867,7 @@
      "cls": "spectre",
      "dmg": 9.0,
      "hits": 53.0,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "wraith",
@@ -884,6 +909,68 @@
    ],
    "x": 1369,
    "y": 1475
+  },
+  {
+   "home": 21,
+   "kinds": [
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 1
+    },
+    {
+     "cls": "spectre",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 1
+    },
+    {
+     "cls": "wraith",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 1
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 1
+    }
+   ],
+   "x": 1400,
+   "y": 1366
+  },
+  {
+   "home": 30,
+   "kinds": [
+    {
+     "cls": "skeleton",
+     "dmg": 5.0,
+     "hits": 41.0,
+     "n": 1
+    },
+    {
+     "cls": "spectre",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 1
+    },
+    {
+     "cls": "wraith",
+     "dmg": 9.0,
+     "hits": 53.0,
+     "n": 1
+    },
+    {
+     "cls": "zombie",
+     "dmg": 5.0,
+     "hits": 35.0,
+     "n": 1
+    }
+   ],
+   "x": 1416,
+   "y": 1430
   },
   {
    "home": 30,
@@ -1292,13 +1379,13 @@
    "y": 1447
   },
   {
-   "home": 30,
+   "home": 25,
    "kinds": [
     {
      "cls": "blackbear",
      "dmg": 7.0,
      "hits": 53.0,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "brownbear",
@@ -1316,7 +1403,7 @@
      "cls": "greywolf",
      "dmg": 5.0,
      "hits": 41.0,
-     "n": 2
+     "n": 1
     },
     {
      "cls": "panther",
@@ -1328,7 +1415,7 @@
      "cls": "timberwolf",
      "dmg": 7.0,
      "hits": 41.0,
-     "n": 2
+     "n": 1
     }
    ],
    "x": 1726,

@@ -1,0 +1,44 @@
+{
+ "_note": "The live hour the simulator is calibrated against: 20 core fighters, 2026-10-20 20:59-21:59 (docs/Bot-Farm-Decision-Core-Evidence.md, 'The live hour' and 'Learnings from the hour'). tol: a sim value within [live / tol, live * tol] passes (an absolute band for shares).",
+ "source": "live 2026-10-21 10:35:33-11:35:40, 20 core fighters, 19.0 bot-hours (work/botfarm/sim/live-hour-20261021.json); the 2026-10-20 hour is work/botfarm-watch/hour-20261020-2059.json",
+ "measures": {
+  "kills_per_h": {
+   "live": 9.6,
+   "tol": 1.6
+  },
+  "deaths_per_h": {
+   "live": 0.53,
+   "tol": 2.0
+  },
+  "lost_pct": {
+   "live": 50.5,
+   "band": 12.0
+  },
+  "unmet_share": {
+   "live": 0.12,
+   "band": 0.1
+  },
+  "predicted_over_actual_kills": {
+   "live": 18.0,
+   "tol": 3.0,
+   "note": "before the calibration of 2026-10-21; with it the target is 1.0"
+  }
+ },
+ "lost_by_kind": {
+  "rabbit": 0.86,
+  "rat": 0.81,
+  "giantrat": 0.8,
+  "mongbat": 0.45,
+  "skeleton": 0.4,
+  "boar": 0.36,
+  "goat": 0.31
+ },
+ "deaths_by_cause": {
+  "snake": 3,
+  "wraith": 3,
+  "boar": 1,
+  "eagle": 1,
+  "swallow": 1
+ },
+ "_flee_note": "lost_by_kind is the live share of fights against a kind that end with it escaping (lost + flee), from the 2026-10-21 10:35-11:35 farm hour (20 core fighters, 19.0 bot-hours): the simulator makes each of these kinds flee on its first hit with that probability (world.damage_creature)."
+}

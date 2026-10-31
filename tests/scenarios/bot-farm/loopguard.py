@@ -52,7 +52,7 @@ class LoopGuard:
         now = time.time()
         off = self.facts.setdefault("rule_off", {})
         delay = 0.0
-        if rule not in PROTECTED and rule != "-":
+        if rule not in PROTECTED and rule != "-" and not str(rule).startswith("task"):      # the decision core's steps are only reported: its monitor owns progress (task_core.py)
             prev = off.get(rule)
             if prev and now < prev[0]:
                 delay = prev[1]                       # still backed off (the same burst): no doubling, no extension (four trips in one second gave 480 s)

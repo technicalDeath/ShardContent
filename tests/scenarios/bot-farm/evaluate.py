@@ -48,6 +48,34 @@ def load(minutes):
     return eps, mems
 
 
+def task_section(minutes):
+    """The decision core's tasks (task_end events): endings by bot and why, expected against actual kills, for the core bots in the window."""
+    since = time.time() - minutes * 60
+    per = defaultdict(lambda: defaultdict(int))
+    exp = defaultdict(float)
+    act = defaultdict(float)
+    for p in glob.glob(os.path.join(FARM, "Bot*", "decisions.jsonl")):
+        for line in open(p, encoding="utf-8"):
+            try:
+                e = json.loads(line)
+            except ValueError:
+                continue
+            if e.get("t", 0) < since or e.get("type") != "ev" or e.get("ev") != "task_end":
+                continue
+            b = e["bot"]
+            per[b][f"{e.get('task')}:{e.get('why')}"] += 1
+            if e.get("task") == "hunt":
+                exp[b] += float((e.get("expected") or {}).get("kills", 0) or 0) * float(e.get("work_min", 0) or 0) / 60.0
+                act[b] += float((e.get("actual") or {}).get("kills", 0) or 0)
+    if not per:
+        return []
+    out = ["", "## The decision core's tasks (task_end)", "", "| Bot | Endings | Hunt kills expected | actual |", "| --- | --- | --- | --- |"]
+    for b in sorted(per):
+        ends = ", ".join(f"{k} {n}" for k, n in sorted(per[b].items(), key=lambda kv: -kv[1]))
+        out.append(f"| {b} | {ends} | {exp[b]:.1f} | {act[b]:.0f} |")
+    return out
+
+
 def memory_health(minutes):
     since = time.time() - minutes * 60
     out = []
@@ -182,6 +210,7 @@ def main():
         why = next((x["why"] for x in mems if x["m"] == m and x["final"] == f), "")
         out.append(f"- {m}: table said {'fight' if t else 'avoid'}, memory said {'fight' if f else 'avoid'} ({n}x) - {why}")
     out.append("")
+    out += task_section(a.minutes)
     open(a.out, "w", encoding="utf-8").write("\n".join(out))
     print(f"{len(eps)} episodes, {len(mems)} memory decisions, {len(fixes)} findings -> {a.out}")
 

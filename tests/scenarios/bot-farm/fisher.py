@@ -5,6 +5,7 @@ and the raw food it started with, banks the leftovers.
 """
 from __future__ import annotations
 
+import items  # noqa: E402  (the shared item table)
 import argparse
 import json
 import os
@@ -29,10 +30,21 @@ except (OSError, ValueError):
     pass
 
 
+UNSEEN_TTL = 7 * 86400     # a stand whose water is out of sight (a bridge or deck over it) stays so: the map does not change. At 30 min the fisher came
+                           # back to Britain's bridge at 1522,1484-1498 every half hour and lost three casts a stand each time (2026-10-30)
+BANK_REFILL_MAX = 1200          # Fishing.cs MaxRespawn 20 min: a bank is full again at most 20 min after the first catch from it when full (HarvestBank.Consume sets the clock then, not when it runs out)
+
 class FisherBot(BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_bank", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
+    HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
+    GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_retool", "r_bank", "r_sell", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
+    POLE_PRICE = 15                                       # the Fisherman's fishing pole (patch_fisher_retool)
+    SELL_AT = 40                                          # pieces of catch that make a selling trip worth it (patch_fisher_sell)
+    PROBE_N = 5                                           # steaks cooked as a sample while no buyer of cooked steaks is known (patch_fisher_cook)
+    PROBE_EVERY = 6 * 3600
+    CATCH = ("raw fish steak", "fish steak", "big fish", "fish")
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pole", "dagger", "flour", "water", "pitcher", "cooked", "fish steak",
-            "leg of lamb", "chicken leg", "bread", "pie")
+            "leg of lamb", "chicken leg", "bread", "pie") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -51,6 +63,10 @@ class FisherBot(BotBase):
             try:
                 import fishspot
                 s = self._shore_list = [sh for sh in s if fishspot.has_stand(sh)]           # a canal's water-edge point with no walkable tile near it is no place to fish from
+                if hasattr(fishspot, "bank_shores"):
+                    cx, cy = self.home_centre()
+                    have = {(int(sh[0]) // 8 * 8, int(sh[1]) // 8 * 8) for sh in s}
+                    s = self._shore_list = list(s) + [b for b in fishspot.bank_shores(cx, cy) if (b[0] // 8 * 8, b[1] // 8 * 8) not in have]   # every bank near home (patch_fisher_water)
             except Exception:
                 pass
         return s
@@ -62,12 +78,28 @@ class FisherBot(BotBase):
     def bank_of(x, y):
         return f"{x // 8 * 8},{y // 8 * 8}"          # the server keeps fish per 8x8 block of water
 
+    def bank_caught(self, bank):
+        """A catch: when it came from a full bank (none from it within BANK_REFILL_MAX), the engine's refill clock started with it (HarvestBank.Consume)."""
+        first = self.facts.setdefault("bank_first", {})
+        if time.time() - first.get(bank, 0) > BANK_REFILL_MAX:
+            first[bank] = time.time()
+
+    def bank_refill_ttl(self, bank):
+        """The bank ran dry: blocked until it is surely full again, BANK_REFILL_MAX after its first catch, not after the empty (a bank of 5-15 fish took
+        the fisher a few minutes, and with 14 reachable banks round Britain those minutes left it idle 32-46% of the hour, 2026-10-30)."""
+        t0 = self.facts.setdefault("bank_first", {}).get(bank)
+        if t0 is None or time.time() - t0 >= BANK_REFILL_MAX:
+            return BANK_REFILL_MAX
+        return max(60, int(BANK_REFILL_MAX - (time.time() - t0)))      # kept, not popped: the "not biting" line comes again at every cast (five blocks
+                                                                       # in 8 s, the later four back at 20 min, 2026-10-31); bank_caught starts a new clock
+
     def find_water(self):
         import fishspot
         if fishspot.water() is not None:                                    # the water map: no 121 tile queries
-            unseen = self.facts.get("water_unseen", {})
-            spot = fishspot.nearest_water(self.c.x, self.c.y, fishspot.CAST_RANGE, lambda x, y: self.mem.usable("fish", self.bank_of(x, y))
-                                          and unseen.get(f"{x},{y}", 0) < time.time())
+            unseen = self.facts.setdefault("water_unseen", {})
+            pick = getattr(fishspot, "clear_water", fishspot.nearest_water)      # water it can see from here first (patch_fisher_water)
+            spot = pick(self.c.x, self.c.y, fishspot.CAST_RANGE, lambda x, y: self.mem.usable("fish", self.bank_of(x, y))
+                        and unseen.get(f"{x},{y}", 0) < time.time())
             if spot is None:
                 return None
             z = -5                                                          # deep water is at z -5; the client says if this tile is not
@@ -117,7 +149,84 @@ class FisherBot(BotBase):
                     self.log(f"{f.name} cannot be cut: left alone")
         return True
 
+    def catch_items(self):
+        out = []
+        for i in self.c.backpack:
+            n = (i.name or "").lower()
+            if n in ("raw fish steak", "fish", "big fish", "fish steak") or n.endswith("fish steak"):        # cooked steaks too: the Cook (patch_fisher_cook)
+                out.append(i)
+        return out
+
+    def cooked_pays(self):
+        """A vendor is known to pay more for a cooked fish steak than for a raw one (none does in stock UO:R; patch_fisher_sell)."""
+        try:
+            cooked = [p for p, xy, item in self.mem.vendor_buying("fish steak") if item == "fish steak"]
+            raw = [p for p, xy, item in self.mem.vendor_buying("raw fish steak")]
+        except Exception:
+            return False
+        return bool(cooked) and max(cooked) > (max(raw) if raw else 0)
+
+    def r_retool(self):
+        """The pole wore out (silently): money from the bank if short, then another pole from the Fisherman (patch_fisher_retool)."""
+        if self.pole() or self.threats(10) or time.time() - self.facts.get("retool_at", 0) < 120:
+            return False
+        self.facts["retool_at"] = time.time()
+        self.activity = "buying a fishing pole"
+        if self.c.gold < self.POLE_PRICE and (self.facts.get("bank_balance", 0) or 0) >= self.POLE_PRICE:
+            self.visit_bank("poor", withdraw=100)
+        if self.c.gold < self.POLE_PRICE:
+            self.log(f"no fishing pole and {self.c.gold} gold: not enough for one")
+            return False
+        got = self.shop_at(self.where1(("fisherman", "fisher_guildmaster")), {"fishing pole": 1}, budget=max(self.c.gold - 5, 0))
+        self.log(f"the pole wore out: bought {got}")
+        self.ev("retool", what="fishing pole", got=str(got)[:60])
+        return True
+
+    def r_sell(self):
+        """The catch to the Fisherman: raw steaks (a fish cuts into four), fish, big fish, and cooked steaks where a buyer pays for them (patch_fisher_sell)."""
+        if self.threats(10) or time.time() - self.facts.get("catch_sold_at", 0) < 300:
+            return False
+        items = self.catch_items()
+        n = sum((i.amount or 1) for i in items)
+        if not items or (n < self.SELL_AT and self.c.weight < self.c.max_weight * 0.75):
+            return False
+        self.facts["catch_sold_at"] = time.time()
+        cooked = [i for i in items if (i.name or "").lower() == "fish steak"]
+        if cooked:
+            xy, want = tuple(self.where1(("cook",))), ("fish steak",)                       # the Cook buys cooked steaks (patch_fisher_cook)
+        else:
+            xy, want = tuple(self.where1(("fisherman", "fisher_guildmaster"))), tuple(c for c in self.CATCH if c != "fish steak")
+        far = self.far_front(xy, "sell", 100, n)
+        if far:
+            self.far_after(far, "sell")
+            return True
+        self.activity = f"selling {n} pieces of catch"
+        self.c.goto(*xy).wait(timeout=100)
+        gold0, sold = self.c.gold, 0
+        for v in sorted([m for m in self.c.mobiles(within=8) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")], key=lambda m: m.distance)[:6]:
+            rows = [mm for mm in (re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", l) for l in self.vendor_list(v, "sell")) if mm]
+            if rows:
+                try:                                      # what this vendor pays, for every bot's memory (patch_fisher_cook)
+                    self.mem.record("vendor", xy=f"{xy[0]},{xy[1]}", name="", buys=[[r.group(4).strip().lower(), int(r.group(2))] for r in rows])
+                except Exception:
+                    pass
+            mine = [r for r in rows if int(r.group(2)) > 0 and r.group(4).strip().lower() in want]
+            if mine:
+                self.cmd("sell " + " ".join(f"{r.group(1)} {r.group(3)}" for r in mine), timeout=10)
+                time.sleep(2.5)
+                sold += sum(int(r.group(3)) for r in mine)
+                break
+        got = max(0, self.c.gold - gold0)
+        self.log(f"sold {sold} pieces of catch for {got} gold")
+        self.ev("catch_sold", n=sold, gold=got)
+        return True
+
     def r_cook(self):
+        probe = False
+        if not self.cooked_pays():
+            if time.time() - self.facts.get("cook_probe_at", 0) < self.PROBE_EVERY:
+                return False                              # nobody is known to buy a cooked steak: the raw ones are sold (patch_fisher_sell)
+            probe = True                                  # try a few: does the Cook buy them? (patch_fisher_cook)
         raw = self.raw_food()
         total = sum((i.amount or 1) for i in raw)
         heavy = self.c.weight > self.c.max_weight * 0.75
@@ -141,11 +250,14 @@ class FisherBot(BotBase):
             if not fires:
                 return False
         fire = fires[0]
-        for item in raw[:2]:                                 # at most about 20 cooks a tick, so a tick stays well under the 150 s hang watchdog
+        if probe:
+            self.facts["cook_probe_at"] = time.time()
+            self.log(f"cooking {self.PROBE_N} fish steaks to see whether the Cook buys them")
+        for item in raw[:1 if probe else 2]:                 # at most about 20 cooks a tick, so a tick stays well under the 150 s hang watchdog
             self.c.events.drain()
             self.c.use(item.serial)
             n = 0
-            while n < 10 and self.c.wait_for(Event.TARGET_REQUEST, timeout=5) is not None:
+            while n < (self.PROBE_N if probe else 10) and self.c.wait_for(Event.TARGET_REQUEST, timeout=5) is not None:
                 self.c.target(fire.serial)
                 n += 1
                 time.sleep(2.2)
@@ -169,7 +281,7 @@ class FisherBot(BotBase):
 
     # ---- stay on a shore that works (feature "fisher_stay") ---------------------------------------------------------------
 
-    PERSIST = BotBase.PERSIST + ("good_shores",)        # a restart keeps where the fish were caught
+    PERSIST = BotBase.PERSIST + ("good_shores", "cook_probe_at", "shore_block", "bank_first")        # a restart keeps where the fish were caught, when steaks were last tried, and the stands it blocked
 
     def shore_known(self, key):
         """Fish were caught here, by this bot (facts) or by any fisher (shared memory)."""
@@ -213,6 +325,8 @@ class FisherBot(BotBase):
             self.ev("shore_leave", shore=list(cur), why=why)
             self.cur_shore, self.water = None, None
         cands = [tuple(sh[:2]) for sh in self.shores() if self.shore_why(tuple(sh[:2]), others, mine, False) is None]
+        if self.gather_roam("shores", bool(cands)):
+            return False                                  # the shores near home are used up: work moves to another town (patch_gather_roam)
         if not cands:
             self.activity = "every shore is taken"
             return False
@@ -325,6 +439,8 @@ class FisherBot(BotBase):
                 return False
         elif self.cur_shore is None or not ok(self.cur_shore):
             cands = [tuple(sh[:2]) for sh in self.shores() if ok(tuple(sh[:2]))]
+            if self.gather_roam("shores", bool(cands)):
+                return True                               # the shores near home are used up: work moves to another town (patch_gather_roam)
             if not cands:
                 # every shore taken, crowded or blocked: the old loop came back round to the one that had just failed (BotFisherA tried
                 # 1447,1772 75 times a minute for twelve minutes)
@@ -361,9 +477,17 @@ class FisherBot(BotBase):
             self.water = self.find_water()
             self.log(f"water tile: {self.water}")
             if self.water is None:
-                self.note("fish", "Every water tile in reach of this shore is fished out; the fisherman has to walk along the shore.", key="nowater")
-                self.mem.record("blocked", kind="shore", key=key, ttl=1200)     # as long as a fished-out bank (BotFisherA re-tried every 2 s)
-                mine[key] = time.time() + 1200
+                import fishspot
+                dry = fishspot.water() is not None and fishspot.clear_water(self.c.x, self.c.y, fishspot.CAST_RANGE) is None
+                ttl = UNSEEN_TTL if dry else 1200
+                # no water at all in casting range of the stand (the map does not change): 1440,1757, 1466,1756, 1478,1757 and 1490,1765 stand 8-9
+                # tiles above the bay's water, and each cost a walk and a 20-minute block every round, 48% idle (2026-10-31); fished out: 20 min
+                if not dry:
+                    self.note("fish", "Every water tile in reach of this shore is fished out; the fisherman has to walk along the shore.", key="nowater")
+                else:
+                    self.log(f"no water within {fishspot.CAST_RANGE} tiles of {self.c.x},{self.c.y} on the map: the shore at {shore} is left for {UNSEEN_TTL // 86400} days")
+                self.mem.record("blocked", kind="shore", key=key, ttl=ttl)     # (BotFisherA re-tried a fished-out one every 2 s)
+                mine[key] = time.time() + ttl
                 self.cur_shore = None
                 return True
         pole = self.pole()
@@ -394,16 +518,32 @@ class FisherBot(BotBase):
                     self.log(f"the water at {x},{y} cannot be seen from here: another tile")
                     self.water = None
                     deadline = 0
+                    run = self.__dict__.setdefault("_unseen_run", {})
+                    run[key] = run.get(key, 0) + 1
+                    if run[key] >= 3:
+                        # a stand on a bridge or deck over the water (BotFisherAR at 1524,1482 z 11, a deck at z 25 over water at -5): every tile in range
+                        # is refused, 21 a minute; the client's sight line cannot tell (it is drawn at the player's height), so the stand goes, as a fished-out one
+                        run[key] = 0
+                        import fishspot
+                        for sh in [tuple(t[:2]) for t in self.shores()] + [tuple(shore[:2])]:
+                            if max(abs(sh[0] - self.c.x), abs(sh[1] - self.c.y)) <= fishspot.CAST_RANGE + 2:      # every shore point that casts at the same water
+                                k_ = f"{sh[0]},{sh[1]}"
+                                self.mem.record("blocked", kind="shore", key=k_, ttl=UNSEEN_TTL)
+                                mine[k_] = time.time() + UNSEEN_TTL
+                        self.log(f"three casts in a row from {self.c.x},{self.c.y} could not see the water: this stand is left for {UNSEEN_TTL // 86400} days")
+                        self.cur_shore = None
                     break
                 if "pull out" in l:
+                    self.__dict__.setdefault("_unseen_run", {}).pop(key, None)
                     self.catches += 1
                     self.work += 1
                     self.mem.record("res", kind="fish", key=self.bank_of(x, y), ok=True)
+                    self.bank_caught(self.bank_of(x, y))
                     self.shore_caught(shore)
                     self.note("fish", f"A catch reads: {l[:90]}", key="catchmsg")
                 if "not be biting" in l or "don't seem to be biting" in l:
                     self.mem.record("res", kind="fish", key=self.bank_of(x, y), ok=False, reason="the fish are not biting")
-                    self.mem.record("blocked", kind="fish", key=self.bank_of(x, y), ttl=1200)
+                    self.mem.record("blocked", kind="fish", key=self.bank_of(x, y), ttl=self.bank_refill_ttl(self.bank_of(x, y)))
                     self.note("fish", "'The fish don't seem to be biting here.' means this patch of water is fished out for a while; the player must move along the shore (nothing says how far).", key="notbiting")
                     self.water = None
                     deadline = 0

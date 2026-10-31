@@ -15,6 +15,7 @@ Events (decisions.jsonl): guild_join {guild}, guild_chat {kind, text}.
 """
 from __future__ import annotations
 
+import basics  # noqa: E402  (shared helpers)
 import re
 import time
 
@@ -41,16 +42,7 @@ def _st(bot):
     return bot.__dict__.setdefault("_guildtalk", {"member": None, "not_until": 0.0, "said": [], "joined": False, "look": 0.0})
 
 
-def _emit(bot, name, **kw):
-    try:
-        from memory import cell_of
-        cell = cell_of(bot.c.x, bot.c.y)
-    except Exception:
-        cell = None
-    try:
-        bot.dlog("ev", ev=name, cell=cell, rule=getattr(bot, "current_rule", None) or getattr(bot, "last_rule", None), **kw)
-    except Exception:
-        pass
+_emit = basics.emit                         # (basics.py: one copy for every module)
 
 
 def feed(bot, t):

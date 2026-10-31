@@ -8,6 +8,7 @@ itself. craft_data.json (make_craft_data.py) holds each item's skill window and 
 """
 from __future__ import annotations
 
+import items  # noqa: E402  (the shared item table)
 import argparse
 import json
 import os
@@ -39,13 +40,28 @@ CRAFTS = {
 # where a broke crafter finds vermin for coins: the farms south-west of Britain, inside the town region (the shared memory's cows, chickens and rats)
 # (the vermin ground is Places.earn_spots() now: seeds for a home that has them, else learned cells)
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
+UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2, "leather": 6}    # the shard's vendor prices (CraftedGoodsPricing.MaterialPrices)
+BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTailor, SBWeaver)
+BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
+BOLT_BATCH = 10           # bolts a trip at most: 500 cloth; a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
+TRAIN_RESERVE = 1000      # below this (carried + banked) a crafter makes only what is expected to pay (patch_craft_profit)
+FAIL_LOSS = 0.5           # a failed craft consumes half the materials (ModernUO ConsumeType.Half)
+FLOOR_MARGIN = 1.25       # a shop pays at least the materials x 1.25 for a crafted piece (CraftedGoodsPricing)
+# material a craft gathers itself (carpenters chop, smiths and tinkers dig) is worth what a shop pays for it (SBInfo sell lists): the gold a craft gives up.
+# Bought material (a tailor's cloth) costs what more of it costs, UNIT_PRICE. Charging chopped boards at 3 made every stool, chair and crate a loss for
+# BotCarpBR (a 9-board stool sells for 23), and it stood idle (2026-10-30).
+HELD_VALUE = {"board": 2, "log": 1, "iron ingot": 4}     # SBCarpenter 2/1, SBBlacksmith 4
+RES_PRICE = {"Log": 2, "IronIngot": 5, "Cloth": 2, "Leather": 6}          # CraftedGoodsPricing.MaterialPrices by the craft's resource: the shard's floor
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
 
 
 from market import CrafterDemand, CrafterMarket  # noqa: E402
+from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 
 
-class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
+class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
+    TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
+    HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_market", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
@@ -54,10 +70,11 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
     pickaxe = MinerBot.pick                               # a smith or tinker who has Mining digs its own ore when the shops are sold out (pick() answers menus)
     stand_near = MinerBot.stand_near
     mountains = MinerBot.mountains                        # r_dig runs MinerBot.r_mine on a crafter, which asks self.mountains()
+    far_spot_ok = MinerBot.far_spot_ok
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
-            "hide", "board", "log", "hatchet", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow")
+            "hide", "board", "log", "hatchet", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
 
     def shop_xys(self):
         """The material shops by role, nearest first (the shared memory's learned shops are tried before these by r_restock)."""
@@ -127,6 +144,10 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
     def matname(w, name):
         """A material word against an item name: "=cloth" means exactly "cloth" (uncut cloth, not a bolt of cloth); any other word is a part of the name."""
         n = name.strip().lower()
+        if w in ("board", "log"):
+            # the whole name: "game board" and "backgammon board" are a carpenter's products, and as boards they made BotCarpAR count 50 boards it did
+            # not have, so it never chopped, never bought and never crafted for an hour (2026-10-30)
+            return n in (w, w + "s")
         return n == w[1:] if w.startswith("=") else w in n
 
     @staticmethod
@@ -225,6 +246,20 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         lo, hi = it["min"], it["max"]
         return 1.0 if skill >= hi else 0.0 if skill < lo else (skill - lo) / (hi - lo)
 
+    def may_train(self):
+        """Enough gold to spend some on skill at a loss (patch_craft_profit)."""
+        return self.c.gold + self.facts.get("bank_balance", 0) >= TRAIN_RESERVE
+
+    def craft_ev(self, name, amount, ch):
+        """Expected gold per craft: chance x price - materials used (all on a success, half on a failure); None when every shop refused the piece."""
+        unit = HELD_VALUE.get(self.cfg["mat"], UNIT_PRICE.get(self.cfg["mat"], 3))
+        price = self.sale_price(name)
+        if price == 0:
+            return None
+        if price is None:
+            price = -(-FLOOR_MARGIN * RES_PRICE.get(self.cfg["res"], UNIT_PRICE.get(self.cfg["mat"], 3)) * amount // 1)       # no shop asked yet: the shard's floor
+        return ch * price - unit * amount * (ch + FAIL_LOSS * (1 - ch))
+
     def short_of_money(self):
         return self.c.gold + self.facts.get("bank_balance", 0) < 250
 
@@ -262,6 +297,9 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             pick = (name, {"min": 0, "max": 100, "amount": cost, "resource": self.cfg["res"]}, (seen["ok"] + 1) / (seen["n"] + 2))
             if seen["n"] >= 6 and seen["ok"] == 0:
                 continue                                  # never made one in six tries: too hard for now
+            ev = self.craft_ev(name, cost, pick[2])
+            if not self.may_train() and (ev is None or ev < 0):
+                continue                                  # below the reserve: nothing that is expected to lose material (patch_craft_profit)
             if fallback is None or cost > fallback[0]:
                 fallback = (cost, *pick)
             if seen.get("exc", 0) >= 2 or (seen["n"] >= 8 and seen["gain"] == 0):
@@ -269,14 +307,39 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             prior = 0.3 + 0.7 * cost / top
             value = (seen["gain"] + prior) / (seen["n"] + 1) / cost ** 0.3
             if price:
-                value *= 2                                # broke: a piece a shop is known to buy comes first
+                value *= 2
+            if not self.may_train():
+                value = ev / cost + 0.01 * value             # below the reserve: profit per unit of material first, then what it teaches                                # broke: a piece a shop is known to buy comes first
             if best is None or value > best[0]:
                 best = (value, *pick)
         if best is None and fallback is not None:
             return (0.0, *fallback[1:])                   # everything looks too easy: the dearest piece it can still make
         if best is None and not refused_ok:
             return self.choose_naive(refused_ok=True)     # nothing sellable can be made now: train on what there is
+        if best is None:
+            return self.choose_income_naive(have)
         return best
+
+    def choose_income_naive(self, have):
+        """A newbie with nothing to train on (or nothing it can afford to fail at): the menu piece expected to pay most per unit of material, by its own
+        success record ((ok + 1) / (n + 2)), up to what the pack holds. choose() had this fallback and choose_naive had none: BotCarpBR, Carpentry 67.8 and
+        55 boards, stood 98% of a run on "nothing makeable and challenging" (2026-10-30)."""
+        opts = []
+        for name, path in self.menu_map.items():
+            m = re.search(r"\((\d+) ", path[-1])
+            cost = int(m.group(1)) if m else 1
+            if cost > have or name in self.bad_items or self.sale_price(name) == 0:
+                continue
+            seen = self.mem.craft_stats(self.cfg["craft"], name) or {"n": 0, "ok": 0}
+            ch = (seen["ok"] + 1) / (seen["n"] + 2)
+            ev = self.craft_ev(name, cost, ch)
+            if ev is not None and ev > 0:
+                opts.append((ev / cost, cost, name, ch))
+        if not opts:
+            return None
+        score, cost, name, ch = max(opts)
+        self.log(f"nothing to train on: making {name} for sale ({ch:.0%} by its record, {score:.2f} gold a unit expected)")
+        return (score, name, {"min": 0, "max": 100, "amount": cost, "resource": self.cfg["res"]}, ch)
 
     def choose(self, refused_ok=False, relax=False):
         demand = self.demand_pick()                      # a piece a fighter wants comes first (market.py)
@@ -311,6 +374,11 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
                 key = (0.15 / it["amount"] if seen is None or seen["n"] < 8 else 0, it["min"])          # untried items get a fair chance
             # broke: what a shop buys comes first, the best price per unit of material; otherwise skill gain per unit of material
             key = ((1, round(price / it["amount"], 3)) if price else (0, 0)) + key
+            if not self.may_train():
+                ev = self.craft_ev(name, it["amount"], ch)
+                if ev is None or ev < 0:
+                    continue                              # below the reserve: nothing that is expected to lose material (patch_craft_profit)
+                key = (1, round(ev / it["amount"], 3)) + key[2:]
             if best is None or key > best[0]:
                 best = (key, name, it, ch)
         if best is None and not refused_ok:
@@ -330,12 +398,15 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             if not it or name in self.bad_items or it["resource"] != self.cfg["res"] or it["amount"] > have:
                 continue
             price = self.sale_price(name)
-            if not price:
-                continue
+            if price == 0:
+                continue                                  # every shop asked refused it
+            # (a price never asked is the shard's floor in craft_ev: each craft's shop buys that craft's goods, extraVendorBuyers; skipping the unasked left
+            # BotCarpBR, Carpentry 67.8 with 55 boards and nothing in its window on the era menu, idle 98% of a run, 2026-10-30)
             ch = self.chance(it, self.skill)
-            if ch < 0.5:
-                continue
-            opts.append((price * ch / max(1, it["amount"]), name, it, ch, price))
+            ev = self.craft_ev(name, it["amount"], ch)
+            if ev is None or ev <= 0:
+                continue                                  # what is expected to pay, failures counted (patch_craft_profit)
+            opts.append((ev / max(1, it["amount"]), name, it, ch, price if price else f"about {-(-FLOOR_MARGIN * RES_PRICE.get(self.cfg['res'], 3) * it['amount'] // 1):.0f} (not yet offered)"))
         if not opts:
             return None
         score, name, it, ch, price = max(opts, key=lambda o: o[0])
@@ -398,22 +469,36 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             self.skill = self.skill_values.get(self.cfg["skill"], self.skill)
 
     def r_flee(self):
-        if self.hp_pct() >= 50 or not self.threats(6):
+        th = self.threats(6)
+        if self.hp_pct() >= 50 or not th:
             return False
         self.activity = "fleeing"
-        self.sprint()
-        self.c.goto(*self.facts.setdefault("home", self.home_centre())).wait(timeout=4)
+        if self.cure_due() and self.potion("cure") is not None:
+            return False                                  # r_cure first (basics.py)
+        if self.drink_heal("low health"):
+            return True
+        if self.flee_from(th[0]) == "trapped":            # straight away, not the walk home a far crafter's client cannot plan (basics.py)
+            return self.fight_back(th[0])
         return True
 
     @staticmethod
     def squash(name):
         return re.sub(r"[^a-z]", "", name.lower())
 
+    def menu_names(self):
+        """The lower-case names on this crafter's own craft menu: what it makes, whatever words they share with its material (a carpenter's "game board"
+        holds "board", so the KEEP word test took 40 game boards for material: never sold, never banked, BotCarpAR idle with 354/390 stones, 2026-10-30)."""
+        return {k.lower() for k in (getattr(self, "menu_map", None) or {})}
+
+    def is_material(self, n):
+        mats = (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ()))
+        return n in mats or n in {m + "s" for m in mats}
+
     def is_product(self, name):
         n = name.lower()
-        if n == self.cfg["mat"]:
+        if self.is_material(n):
             return False
-        if n in self.items or n in self.made_names:
+        if n in self.items or n in self.made_names or n in self.menu_names():
             return True
         if not hasattr(self, "_squashed"):
             self._squashed = {self.squash(i) for i in self.items}
@@ -442,7 +527,9 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
     def learn_made(self, before, made=None):
         """Names of what appeared in the pack since `before` (a set of serials) that are not material, tools or kit: the crafted item's real name
         (and, with `made`, the menu item it came from)."""
-        new = {i.name.lower() for i in self.c.backpack if i.serial not in before and i.name and not any(w in i.name.lower() for w in self.KEEP)}
+        menu = self.menu_names()
+        new = {i.name.lower() for i in self.c.backpack if i.serial not in before and i.name and not self.is_material(i.name.lower())
+               and (i.name.lower() in menu or not any(w in i.name.lower() for w in self.KEEP))}
         if made and new - set(self.made_as.get(made, ())):
             self.made_as[made] = sorted(set(self.made_as.get(made, ())) | new)
             json.dump(self.made_as, open(self.made_as_path, "w", encoding="utf-8"))
@@ -602,6 +689,8 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         # a fresh look at the menu needs 40 boards in the pack (r_craft), so 30-39 boards with no menu would otherwise leave the carpenter waiting
         if self.cfg["craft"] != "Carpentry" or self.count(self.cfg["mat"]) >= (30 if self.menu_map else 45) or self.threats(10) or self.hp_pct() < 50:
             return False
+        if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+            return False                                  # too heavy to craft: the wood could not be used (patch_craft_toss.py)
         if (self.c.gold >= 150 and self.facts.get("soldout_until", 0) < time.time() and time.time() >= self.facts.get("stall_gather_until", 0)) or time.time() < self.facts.get("chop_fail", 0):
             return False                                  # still has money and the shop has boards: the shop goes first
         hat = self.c.find("hatchet") or next((i for i in self.c.equipped if "hatchet" in i.name.lower() or "axe" in i.name.lower()), None)
@@ -633,9 +722,7 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             except Exception:
                 inside = []
             for k in inside:
-                self.c.call(f"dropground {k.serial} {k.amount or 1}", timeout=8)
-                time.sleep(0.6)
-                emptied += 1
+                emptied += self.drop_to_ground(k, box=it.serial)
             self.facts["emptied"].add(it.serial)
         if emptied:
             self.log(f"took {emptied} things (keys) out of crafted containers before selling")
@@ -689,12 +776,18 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         """Feature restock_fix: no cut cloth anywhere (the craft menu takes only cut cloth) and a bolt is the one way: spend the whole purse less 5 gold on it, withdrawing from the bank when that makes up the 105."""
         if self.count(self.cfg["mat"]) >= 20 or any("bolt of cloth" in i.name.lower() for i in self.c.backpack):
             return {}
-        if self.c.gold < 105:
-            bal = self.facts.get("bank_balance", 0)
-            if bal + self.c.gold >= 105 and time.time() - self.facts.get("banked_at", 0) > 240:
-                self.activity = "fetching gold for a bolt of cloth"
-                self.visit_bank("a bolt of cloth", withdraw=min(bal, 150))
-            if self.c.gold < 105:
+        # a batch, not one bolt: one 50-cloth bolt a trip kept four tailors walking bank-shop-bank and waiting 57-72% of an hour with thousands banked,
+        # beside shelves of 7-20 bolts (2026-10-30). As many as fit under 70% of the weight limit (BOLT_WEIGHT, BoltOfCloth.cs) and the money pays for.
+        bal = self.facts.get("bank_balance", 0)
+        mw = getattr(self.c, "max_weight", None)
+        room = max(0.0, mw * 0.7 - (getattr(self.c, "weight", 0) or 0)) if mw else BOLT_WEIGHT       # (weight unknown: one bolt, as before)
+        n = max(1, min(BOLT_BATCH, int(room // BOLT_WEIGHT), (self.c.gold + bal - 40) // BOLT_PRICE))
+        if self.c.gold < n * BOLT_PRICE + 5:
+            if bal + self.c.gold >= BOLT_PRICE + 5 and time.time() - self.facts.get("banked_at", 0) > 240:
+                self.activity = f"fetching gold for {n} bolts of cloth"
+                self.visit_bank("bolts of cloth", withdraw=min(bal, n * BOLT_PRICE + 10 - self.c.gold))
+            n = min(n, (self.c.gold - 5) // BOLT_PRICE)
+            if n < 1:
                 self.log("restock: no cut cloth in any shop and not enough gold for a bolt (%d carried, %d banked)" % (self.c.gold, bal))
                 return {}
         shops = []
@@ -705,7 +798,7 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         shops += [s_ for s_ in order if tuple(s_) not in shops]
         for shop in shops[:3]:
             self.shop_walk_s = 60
-            got = self.shop_at(shop, {"bolt of cloth": 1}, budget=self.c.gold - 5)
+            got = self.shop_at(shop, {"bolt of cloth": n}, budget=self.c.gold - 5)
             if got:
                 self.log(f"restock: no cut cloth anywhere: bought {got} with the purse; r_cut makes it 50 cut cloth")
                 return got
@@ -753,7 +846,7 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
                     break
                 self.shop_walk_s = max(20, min(90, left))
             # a reserve of 40, not 120: tailors holding 122 gold had 2 to spend and stood idle for twenty minutes beside cloth at 3 gp
-            got = self.shop_at(shop, self.cfg["wanted"], budget=max(0, self.c.gold - 40))
+            got = self.shop_at(shop, self.restock_wanted(), budget=max(0, self.c.gold - 40))
             if got:
                 break
             if fix:
@@ -782,9 +875,62 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
 
     CRAFT_WEIGHT = 0.8                                   # no crafting above this share of the weight limit (patch_craft_weight.py)
 
+    def restock_wanted(self):
+        """The material to buy, cut to what fits under CRAFT_WEIGHT: BotCarpAdvR bought 49-51 boards to 378-384 of 390 stones, could not craft above 312,
+        banked them and bought again, 360 gold in 12 minutes (2026-10-31)."""
+        import items
+        mw = items.MAT_WEIGHT.get(self.cfg["mat"])
+        if not mw:
+            return dict(self.cfg["wanted"])
+        room = max(0, int((self.c.max_weight * self.CRAFT_WEIGHT - self.c.weight - 5) / mw))
+        return {k: min(v, self.count(self.cfg["mat"]) + room) for k, v in self.cfg["wanted"].items()}
+
+    def held_per_stone(self):
+        """Gold a stone of this crafter's material is worth held (HELD_VALUE, the shop's buy price, over its weight): a piece a shop pays less for per stone
+        is not worth carrying to that shop (toss_old_pieces)."""
+        import items
+        v = HELD_VALUE.get(self.cfg["mat"])
+        return v / items.unit_weight(self.cfg["mat"]) if v else 0.0
+
+    def toss_unsold(self, share=0.7):
+        """Too heavy to craft and the bank box is full: drop products and spares, what no known shop buys first, to share of the limit (patch_craft_toss.py)."""
+        if time.time() - self.facts.get("toss_at", 0) < 120:
+            return False
+        self.facts["toss_at"] = time.time()
+        buys = {}
+        try:
+            for v in self.mem.state["world"]["vendors"].values():
+                for item, price in v.get("buys", {}).items():
+                    buys[item] = max(buys.get(item, 0), price)
+        except Exception:
+            pass
+        mat = str(self.cfg.get("mat", "")).lower()
+        kept, junk = set(), []
+        for i in self.c.backpack:
+            low = (i.name or "").lower()
+            if not low or any(w in low for w in self.OVERLOAD_ESSENTIAL) or (mat and mat in low):
+                continue                                        # the essentials and the craft's own material stay
+            tool = next((w for w in self.OVERLOAD_TOOLS if w in low), None)
+            if tool and tool not in kept:
+                kept.add(tool)
+                continue
+            junk.append(i)
+        junk.sort(key=lambda i: (buys.get((i.name or "").lower(), 0), -(i.amount or 1)))
+        before, n = self.c.weight, 0
+        for it in junk:
+            if self.c.weight <= self.c.max_weight * share:
+                break
+            n += self.drop_to_ground(it)
+        if n:
+            self.activity = "tossing what nobody buys"
+            self.log(f"bank box full and too heavy to craft: tossed {n} stacks nobody buys, weight {before} -> {self.c.weight}/{self.c.max_weight}")
+            self.ev("shed", how="toss", item="products", qty=max(0, before - self.c.weight), stacks=n)
+        return n > 0
+
     def r_craft(self):
-        if self.threats(10):
-            return self.skip_why("r_craft", f"threat near: {self.threats(10)[0].name}")
+        near = self.threats_coming(10)
+        if near:
+            return self.skip_why("r_craft", f"threat near: {near[0].name}")
         if self.hp_pct() < 50:
             return False
         if time.time() < self.facts.get("menu_empty_until", 0):
@@ -795,6 +941,14 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         if self.count(self.cfg["mat"]) < 5:
             return self.skip_why("r_craft", f"under 5 {self.cfg['mat']}")
         if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+            if time.time() - self.facts.get("old_toss_at", 0) > 120:
+                self.facts["old_toss_at"] = time.time()
+                if self.toss_old_pieces():
+                    return True                                  # pieces worth less a stone than the material go, full box or not: BotCarpAdvR carried 37
+                                                                 # board games (185 stones, 37 gold) and never crafted while the box had room (2026-10-31)
+            if self.bank_box_full() and self.toss_unsold():
+                return True                                      # the bank is full and nobody buys it: tossed (patch_craft_toss.py)
+            self.facts["craft_heavy_at"] = time.time()             # r_bank's heavy visit banks what is weighing it down (BotBase.r_bank)
             return self.skip_why("r_craft", f"the pack is too heavy ({self.c.weight}/{self.c.max_weight}): sell or bank first")     # patch_craft_weight.py
         if self.menu_map and getattr(self, "explored_at", None) and (self.skill - self.explored_at[1] >= 4 or time.time() - self.explored_at[0] > 1500):
             self.menu_map_backup = self.menu_map
@@ -891,6 +1045,8 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
         """The shops are out of ingots: a smith or tinker with Mining goes to the hills and digs (the miner's own rule), then r_smelt takes it to the forge."""
         if self.cfg["res"] != "IronIngot" or not self.can_gather() or self.count(self.cfg["mat"]) >= (20 if self.menu_map else 40) or self.threats(10) or self.hp_pct() < 50:
             return False
+        if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+            return False                                  # too heavy to craft: the ore could not be used (patch_craft_toss.py)
         if self.facts.get("soldout_until", 0) < time.time() and self.c.gold >= 40 and time.time() >= self.facts.get("stall_gather_until", 0):
             return False                                  # the shop may have ingots again: r_restock looks first
         if not self.pickaxe():
@@ -899,7 +1055,8 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
             self.facts["pick_fail"] = time.time() + 600
             if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
                 self.visit_bank("pickaxe", withdraw=100)
-            got = self.shop_at(self.where1(("tinker",), item="pickaxe"), {"pickaxe": 1}, budget=max(self.c.gold - 5, 0)) if self.c.gold >= 30 else {}
+            import miner as _miner
+            got = self.shop_at(self.where1(("tinker",), item="pickaxe"), {"pickaxe": _miner.PICK_CARRY}, budget=max(self.c.gold - 5, 0)) if self.c.gold >= 30 else {}
             self.note("dig", f"The {self.pname} needs a pickaxe to dig its own ore while the shops are sold out; bought: {got}", key="crafterpick")
             return bool(got)
         self.facts.setdefault("dig_started", time.time())
@@ -979,93 +1136,10 @@ class CrafterBot(CrafterDemand, CrafterMarket, HunterBot):
                 self.facts["retool_block_until"] = time.time() + 900
         return True
 
-    def coin_value(self, kind):
-        """Gold a kill of this kind pays, from every bot's loot (kloot) over the fights seen: a number, 0.0 for a kind fought 6+ times that never paid, None when not measured."""
-        w = self.mem.state["world"]
-        kl = w["kloot"]
-        fights = sum(g["n"] for g in w["fights"].get(kind, {}).values()) if kind in w["fights"] else 0
-        hit = kl.get(kind) or kl.get(kind + "s")
-        if hit and hit["n"] >= 2:
-            return hit["gold"] / max(fights, hit["n"])
-        if any(k != kind and (k.startswith(kind) or kind.startswith(k)) for k in kl):
-            return None                                   # the loot record may sit under a nearby spelling ("ratmans" for "ratman"): not a known zero
-        return 0.0 if fights >= 6 and not hit else None
-
-    def prey(self, within=9):
-        ps = super().prey(within)
-        if not self._coin_only:
-            return ps
-        keep = []
-        for m in ps:
-            v = self.coin_value(self.mkey(m))
-            if m.distance <= 1 or v is None or v >= 1.0:
-                keep.append(m)
-            else:
-                skipped = self.facts.setdefault("coin_skipped", set())
-                if self.mkey(m) not in skipped:
-                    skipped.add(self.mkey(m))
-                    self.dlog("choice", what=f"skip {self.mkey(m)} for coins", why=f"{v:.1f} gold a kill in the shared memory")
-        return keep
-
-    def scraps(self):
-        """[(name, price, xy, amount)] of pack items some known shop buys at a price: nothing the craft or the trip needs; its material only when the tool is gone and the funds are short."""
-        out = []
-        toolless = not self.tool()
-        for it in self.c.backpack:
-            low = it.name.lower()
-            is_mat = low == self.cfg["mat"] or low in self.cfg.get("mat_alt", ())
-            if any(w in low for w in self.SCRAP_PROTECT) or (is_mat and not (toolless and self.funds() < (self.tool_price() or self.TOOL_PRICE_GUESS))):
-                continue
-            offers = [(p, xy) for p, xy, item in self.mem.vendor_buying(low) if p > 0 and item in (low, low + "s")]
-            if offers:
-                p, xy = offers[0]
-                out.append((low, p, tuple(int(v) for v in xy.split(",")), it.amount or 1))
-        return out
-
     EARN_REACH = 150                                      # tiles from home a broke crafter may go for coins
     EARN_MIN_GOLD = 8                                     # looted gold (decayed) a cell must hold to be a candidate
     EARN_STAND = 120                                      # seconds on a spot without anything to fight before it is called empty
     EARN_EMPTY = 900                                      # and left alone for this long
-
-    def earn_candidates(self):
-        """[(x, y, score)]: the earn spots and the cells within EARN_REACH of home that have paid, minus the empty ones; score = looted gold less 1 per 30 tiles from the bot."""
-        home = self.home_centre()
-        core = self.home_core() if getattr(self, "home_core", None) else (home[0] - 60, home[1] - 60, home[0] + 60, home[1] + 60)
-        cells = self.mem.state["world"]["cells"]
-        cand = {}
-        for x, y in self.earn_spots():
-            cand[(x, y)] = cells[cell_of(x, y)]["gold"] if cell_of(x, y) in cells else 0.0
-        for cell, c in cells.items():
-            if c["gold"] < self.EARN_MIN_GOLD:
-                continue
-            cx, cy = (int(v) for v in cell.split(","))
-            x, y = cx + 20, cy + 20
-            if max(abs(x - home[0]), abs(y - home[1])) > self.EARN_REACH or (core[0] <= x <= core[2] and core[1] <= y <= core[3]):
-                continue
-            if self.mem.dangerous_cell(cell) or self.mem.camp_cell(cell):
-                continue
-            cand[(x, y)] = max(cand.get((x, y), 0.0), c["gold"])
-        empty = self.facts.get("earn_empty", {})
-        now = time.time()
-        out = []
-        for (x, y), g in cand.items():
-            if self.near_death_spot(x, y, 40) or empty.get((x, y), 0) > now:
-                continue
-            out.append((x, y, g - max(abs(x - self.c.x), abs(y - self.c.y)) / 30.0))
-        return out
-
-    def earn_ground(self):
-        """The best candidate by looted gold less distance; the old rotation through the spots when none has paid or all are empty."""
-        cand = self.earn_candidates()
-        if not cand:
-            self.facts.pop("earn_empty", None)                # everything was empty: start over
-            spots = [s for s in self.earn_spots() if not self.near_death_spot(*s, 40) and not self.mem.dangerous_cell(cell_of(*s))] or [self.home_centre()]
-            return spots[int(time.time() // 240) % len(spots)]
-        best = max(cand, key=lambda c: c[2])
-        if best[2] > 0:
-            return best[0], best[1]
-        pool = sorted(cand, key=lambda c: (c[0], c[1]))
-        return pool[int(time.time() // 240) % len(pool)][:2]
 
     def earn_planned(self):
         now = time.time()

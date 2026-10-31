@@ -154,16 +154,32 @@ class FighterStock(StockMixin):
 
 class TamerStock(StockMixin):
     def stock_list(self):
-        if self.skill_values.get("Veterinary", 0) < 20:
-            return []
-        return [("bandage", 30, 15)]
+        """The shared list (heal and cure potions from 200 gold, refresh from 250), bandages only with Veterinary or Healing to use them on: BotTamerAR
+        carried no potion, was poisoned by a snake while taming at 1377,1911, drank a refresh to run and died of the poison (2026-10-31)."""
+        out = StockMixin.stock_list(self)
+        if max(self.skill_values.get("Veterinary", 0), self.skill_values.get("Healing", 0)) < 20:
+            out = [r for r in out if r[0] != "bandage"]
+        return out
 
 
 class CasterStock:
     """CasterBot: the reagents the held spells use, to 20 each; triggers mage_bot.r_resupply's shop trip when any is under 10."""
 
     TARGET = 20
-    PURSE_FLOOR = 50                                     # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
+    PURSE_BASE = 50                                      # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
+
+    @property
+    def PURSE_FLOOR(self):
+        """A scribe keeps a scribing session's money (scribe.RESERVE + 30), other casters 50 (patch_scribe_floor.py)."""
+        try:
+            if self.feature("scribe"):
+                import scribe
+                keep = scribe.RESERVE + 30
+                if (self.c.gold or 0) >= keep:
+                    return keep                              # the session money, once it is there (patch_scribe_floor2.py)
+        except Exception:
+            pass
+        return self.PURSE_BASE
 
     def reagent_plan(self):
         if not self.feature("stock"):

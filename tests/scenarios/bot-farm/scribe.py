@@ -164,27 +164,53 @@ class ScribeMixin:
         return got
 
     def scribe_sell(self, spell):
-        """Sell the scrolls of this session's spell (and any other made scroll), keeping KEEP of Recall and Mark."""
+        """Sell the scrolls of this session's spell above KEEP (Recall 3, Mark 2 stay for runes). Vendors the shared memory has seen buying scrolls are asked
+        first, then everyone near; vendor_list walks up to each and counts only that vendor's own list. Every try is logged (patch_scribe_sell_runescroll)."""
         keep = KEEP.get(spell.lower(), 0)
-        for v in self.scribe_vendors():
+        have = sum((i.amount or 1) for i in self.scribe_scrolls_of(spell))
+        excess = have - keep
+        if excess <= 0:
+            self.log(f"scribe: nothing to sell ({have} {spell}, keeping {keep})")
+            return 0
+        try:
+            known = {v2.get("name") for v2 in self.mem.state["world"]["vendors"].values()
+                     if v2.get("name") and any(p > 0 and norm(spell) in norm(item) for item, p in (v2.get("buys") or {}).items())}
+        except Exception:
+            known = set()
+        people = sorted([m for m in self.c.mobiles(within=12) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")],
+                        key=lambda m: (m.name not in known, m.distance))[:8]
+        for v in people:
             lines = self.vendor_list(v, "sell")
             rows = [m for m in (SHOP_LINE.search(l) for l in lines) if m]
-            if not rows:
-                continue
-            mine = [r for r in rows if norm(r.group(4)) in (norm(spell), norm(spell) + "scroll")]
-            mine = mine[keep:] if keep else mine
+            mine = [r for r in rows if norm(r.group(4)) in (norm(spell), norm(spell) + "scroll") and int(r.group(2)) > 0]
+            self.log(f"scribe: sell list from {v.name}: {len(rows)} rows, {len(mine)} of {spell}")
             if not mine:
+                continue
+            cart, left = [], excess
+            for r in mine:
+                n = min(left, int(r.group(3)))
+                if n > 0:
+                    cart += [r.group(1), str(n)]
+                    left -= n
+            if not cart:
                 return 0
             gold0 = self.c.gold
-            self.cmd("sell " + " ".join(f"{r.group(1)} {r.group(3)}" for r in mine), timeout=10)
+            self.cmd("sell " + " ".join(cart), timeout=10)
             time.sleep(2)
-            return max(0, self.c.gold - gold0)
+            got = max(0, self.c.gold - gold0)
+            self.log(f"scribe: sold {excess - left} {spell} to {v.name} for {got}")
+            return got
+        self.log(f"scribe: no one here bought {spell} ({len(people)} asked; {have} held, keeping {keep})")
         return 0
 
     def scribe_book(self, now):
-        """Recall and Mark into the scribe's own book when a shop here sells them (owner: Mage shops sell Recall/Mark)."""
-        for spell in ("recall", "mark"):
+        """Recall and Mark into the scribe's own book when a shop here sells them (owner: Mage shops sell Recall/Mark), each only once the scribe can
+        inscribe it (Inscription at the circle's window start): before that the scroll is worth more as a scroll, for runes (patch_scribe_sell_runescroll)."""
+        skill = self.scribe_skill()
+        for spell, circle in (("recall", 4), ("mark", 6)):
             if self.spell_ok(spell) or self.facts["scribe"].get("book_try:" + spell, 0) > now - 3600:
+                continue
+            if skill < WINDOW[circle]:
                 continue
             self.facts["scribe"]["book_try:" + spell] = now
             if not self.scribe_scrolls_of(spell):
@@ -249,21 +275,32 @@ class ScribeMixin:
             return None
         return self.read_menu()
 
+    def scribe_skip(self, why):
+        """Log why r_scribe did not run, at most once per 5 minutes (patch_scribe_why.py)."""
+        if time.time() - self.__dict__.get("_scribe_why_at", 0) > 300:
+            self.__dict__["_scribe_why_at"] = time.time()
+            self.log(f"scribe: not now - {why}")
+        return False
+
     def r_scribe(self):
-        if not self.scribe_on() or self.c.ghost or self.dangers(10) or self.hp_pct() < 60:
+        if not self.scribe_on():
             return False
+        if self.c.ghost or self.dangers(10) or self.hp_pct() < 60:
+            return self.scribe_skip("ghost" if self.c.ghost else f"hp {self.hp_pct():.0f}%" if self.hp_pct() < 60 else "danger near")
         now = time.time()
         st = self.facts.setdefault("scribe", {})
         if now - st.get("session_at", 0) < SESSION_GAP:
-            return False
+            return self.scribe_skip(f"next session in {int(SESSION_GAP - (now - st.get('session_at', 0))) // 60} min")
         skill = self.scribe_skill()
         if skill < MIN_INSCRIPTION or self.c.gold < RESERVE + 30:
-            return False
+            return self.scribe_skip(f"Inscription {skill:.1f}, gold {self.c.gold} (needs {MIN_INSCRIPTION:.0f} and {RESERVE + 30})")
         st["session_at"] = now
         xy = tuple(self.mage_shop_xy())
         far = self.far_front(xy, "shop", 90, True)
         if far:
             self.far_after(far, "shop")
+            if str(far).startswith(("moving", "interrupted")):
+                st["session_at"] = now - SESSION_GAP + 60          # the far walk to the Mage is still going: the session starts on arrival (patch_rune_scroll_bank)
             return True
         self.activity = "scribing scrolls"
         self.c.goto(*xy).wait(timeout=90)

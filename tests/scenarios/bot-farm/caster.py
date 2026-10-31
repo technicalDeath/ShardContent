@@ -26,8 +26,11 @@ from first_trip import FirstTrip  # noqa: E402
 from places import Places  # noqa: E402
 
 import mage_bot  # noqa: E402
+import items  # noqa: E402  (the shared item table)
+from basics import BasicsMixin  # noqa: E402  (the shared basics: potions, threats, fleeing, selling)
 from recovery import RecoveryMixin  # noqa: E402  (death recovery and stamina)
 from stall import StallMixin  # noqa: E402  (stall sense)
+from progress import ProgressMixin  # noqa: E402  (the progress check; feature progress_check)
 from ambition import AmbitionMixin  # noqa: E402  (ambitions)
 from planner import PlannerMixin  # noqa: E402  (the planner, measure only)
 from bw import BetweenWorldsMixin  # noqa: E402  (Between Worlds plan)
@@ -36,6 +39,7 @@ from spellbook import SpellbookMixin  # noqa: E402  (know and fill the spellbook
 from far import FarMixin  # noqa: E402  (far service walks, routed and resumable)
 from runes import RuneMixin  # noqa: E402  (runes, Mark and Recall; feature runes)
 from scribe import ScribeMixin  # noqa: E402  (Inscription: scribe and sell scrolls; feature scribe)
+from profit import ProfitMixin  # noqa: E402  (casters who make money: net gold per kill, cheapest kills, carving, leather, learning; feature caster_profit)
 from practice import PracticeMixin  # noqa: E402  (practice from the spells the book holds)
 from party import PartyMixin  # noqa: E402  (parties; feature party)
 from buddy import BuddyMixin  # noqa: E402  (buddy pairs; feature buddy + party)
@@ -46,7 +50,7 @@ from uo import Event  # noqa: E402
 
 from stock import CasterStock  # noqa: E402
 from hunt import HuntMixin  # noqa: E402
-class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, mage_bot.Bot):
+class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, BasicsMixin, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -89,6 +93,14 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
 
     # the decision log is the hunters' one (bot_common.BotBase), borrowed as plain functions
     dlog = BotBase.dlog
+    decision_record = BotBase.decision_record                     # dlog calls these (farmdb decision records; patch_caster_borrow.py)
+    decision_context = BotBase.decision_context
+    DECISION_EVS = BotBase.DECISION_EVS
+    DECISION_OPTIONS = BotBase.DECISION_OPTIONS
+    kill_worth_ok = BotBase.kill_worth_ok                         # note_kill_at calls it
+    goto_near = BotBase.goto_near
+    near_death_spot = BotBase.near_death_spot
+    tele_side_of = BotBase.tele_side_of
     note_attacker = BotBase.note_attacker
     peaceful_person = BotBase.peaceful_person
     open_corpse = BotBase.open_corpse
@@ -98,7 +110,11 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     CRITTER_SKILL = BotBase.CRITTER_SKILL
     BIRDS = BotBase.BIRDS
     critter_skip = BotBase.critter_skip
+    carve_room = BotBase.carve_room
+    CORPSE_NAMES = BotBase.CORPSE_NAMES
+    feathers_pay = BotBase.feathers_pay
     home = BotBase.home
+    home_unsafe = BotBase.home_unsafe                             # home() asks it (patch_home_town)
     home_centre = BotBase.home_centre
     home_refuges = BotBase.home_refuges
     # where things are, by role (places.py): the mage bot's hooks point at the gazetteer instead of Britain's constants
@@ -106,6 +122,7 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     find_places = Places.find_places
     where1 = Places.where1
     patrol_spots = Places.patrol_spots
+    patrol_tiers = Places.patrol_tiers                                         # patrol_spots asks it (patch_patrol_tiers.py)
     healer_xy = Places.healer_xy
     bank_xys = Places.bank_xys
     mage_shop_xy = Places.mage_shop_xy
@@ -119,6 +136,8 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
         BotBase.after_tick(self, acted)
         self.recovery_tail()                                  # the server's death-recovery and stamina lines (recovery.py)
         self.recovery_tick()
+        if self.profit_on():
+            self.profit_settle()
     other_bots = BotBase.other_bots                          # (BotBase's goes through party_filter)
     taken_by_other = BotBase.taken_by_other
     CROWD = BotBase.CROWD
@@ -128,8 +147,8 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
 
     # facts a new brain takes over from the last one (BotBase.save_facts / load_facts, facts.json in the bot's folder): a far trip, the held ground, the camp, the throttles
     PERSIST = ("ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "meat_sold_at", "gear_sold_at", "sold_at", "sell_skip_until", "soldout_until",
-               "stocked_at", "bank_balance", "banked_at", "shop_at", "home", "camp_step", "home_region", "corpse", "gold_alive", "far", "far_skip", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until",
-               "pasture", "pasture_hold", "book_shopped", "book_try_read", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "scribe")
+               "stocked_at", "bank_balance", "banked_at", "shop_at", "home", "camp_step", "home_region", "birth_town", "unsafe_homes", "rehome_walk", "corpse", "gold_alive", "far", "far_skip", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until",
+               "pasture", "pasture_hold", "book_shopped", "book_try_read", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "scribe", "profit_pending", "profit_hold", "leather_sold_at", "profit_field", "fields_worked", "profit_paid_at")
     PERSIST_SETS = ()
     save_facts = BotBase.save_facts
     load_facts = BotBase.load_facts
@@ -138,10 +157,17 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
         others = self.other_bots(within + 4)
         mine = self.fight["serial"] if self.fight else None
         import townguard
-        return townguard.filter_prey(self, [m for m in super().prey(within) if not self.taken_by_other(m, others, mine) and not self.critter_skip(m)])      # not another bot's fight, not a critter; not inside a guarded region (town_guards)
+        return self.profit_prey(townguard.filter_prey(self, [m for m in super().prey(within) if not self.taken_by_other(m, others, mine) and not self.critter_skip(m)]))      # not another bot's fight, not a critter; not inside a guarded region (town_guards)
 
     def mobs(self, within):
-        return [m for m in super().mobs(within) if not self.peaceful_person(m) and not self.killer_spared(m)]      # people are not prey; the killer goes home (killer_home)
+        return [m for m in super().mobs(within) if not self.peaceful_person(m) and not self.killer_spared(m)]
+
+    def dangers(self, within=8):
+        """Non-prey that can hurt: a kind that attacks on sight (creature_stats ai, not AI_Animal), or a creature already in war mode (an animal fighting back).
+        mage_bot's dangers were every non-prey grey, so a hind or a hart turned non-prey by its flee rate sent the caster stepping away (r_avoid, 18% of the
+        casters' last day, 2026-10-29): an animal only fights back."""
+        import task_core
+        return [m for m in super().dangers(within) if task_core.aggressive(BotBase.mkey(m)) or getattr(m, "in_war_mode", False)]      # people are not prey; the killer goes home (killer_home)
 
     def read_journal(self):
         import deathsrc
@@ -154,12 +180,16 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             self.book_journal(t)                              # "You do not have that spell!": that spell is marked missing
         return out
 
+    # goods a shop buys stay in the pack for the Butcher and the Tanner (sell_due): mage_bot's bank visit put away everything not on its list, and 54 visits in the
+    # casters' logs to 2026-10-29 23:00 banked cut leather or raw meat, where no shop ever buys it
+    KEEP = mage_bot.Bot.KEEP + items.GOODS_WORDS
     note_kill_at = BotBase.note_kill_at
     ANCHOR_WAIT = BotBase.ANCHOR_WAIT
     ANCHOR_RADIUS = BotBase.ANCHOR_RADIUS
     anchor_seen = BotBase.anchor_seen
     r_camp = BotBase.r_camp
     revisit_anchor = BotBase.revisit_anchor
+    below_my_tier = BotBase.below_my_tier                                      # revisit_anchor asks it (patch_camp_tiers2.py)
     patrol_visit = BotBase.patrol_visit
     home_range = BotBase.home_range
     track_episode = BotBase.track_episode
@@ -169,6 +199,7 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     where = BotBase.where                                    # (talk: "where are you")
     chatter = BotBase.chatter                                # (talk: the monster warning; the greet / skill / wares lines)
     sprint_check = BotBase.sprint_check
+    RUN_FLOOR, RUN_RESUME = BotBase.RUN_FLOOR, BotBase.RUN_RESUME          # run above 20% of max stamina, not only above half (BotBase.sprint_check)
     set_runmode = BotBase.set_runmode
 
     def go_town(self):
@@ -186,10 +217,40 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             self.mem.record("gain", scope="prof", skill=g.group(1), action=f"fighting {self.fight['key']}", value=float(g.group(3)), m=self.fight["key"])
 
     MEAT_KINDS = ("cow", "bull", "deer", "hart", "hind", "sheep", "goat", "chicken", "pig", "boar", "rabbit", "bird")
-    @property
-    def BUTCHER(self):
-        return self.where1(("butcher",))
     vendor_list = BotBase.vendor_list
+    sell_items = BotBase.sell_items                          # the shared sale at a shop (r_sellmeat, basics.py)
+    visit_bank = BotBase.visit_bank                          # the shared bank visit (goods back out, a full box, the goal's reserve)
+    drop_excess = BotBase.drop_excess                        # the shared shedding when over the weight limit
+    junk_in_pack = BotBase.junk_in_pack                      # r_bank reads it
+    beat = BotBase.beat                                      # the status heartbeat inside a long step (visit_bank, far walks)
+    bank_walk = BotBase.bank_walk                            # the bank visit's own steps and limits (BotBase)
+    bank_spot = BotBase.bank_spot
+    bank_spread_walk = BotBase.bank_spread_walk
+    bank_box_full = BotBase.bank_box_full
+    bank_clear = BotBase.bank_clear
+    bank_overload_pass = BotBase.bank_overload_pass
+    BANK_FULL = BotBase.BANK_FULL
+    BANK_SPEECH = BotBase.BANK_SPEECH
+    CLEAR_N = BotBase.CLEAR_N
+    CLEAR_SHARE = BotBase.CLEAR_SHARE
+    HEAVY_THINGS = BotBase.HEAVY_THINGS
+    OVERLOAD_ESSENTIAL = BotBase.OVERLOAD_ESSENTIAL
+    OVERLOAD_TOOLS = BotBase.OVERLOAD_TOOLS
+    FORGE = BotBase.FORGE
+
+    def r_bank(self):
+        """The shared bank rule (BotBase.r_bank: rich, heavy with junk, overloaded, a purse to bank in town). Over the weight limit first the shared shedding
+        (BotBase.drop_excess: bank from earshot, else the cheapest dropped): a caster cannot take a step overloaded."""
+        if self.c.weight > self.c.max_weight and not self.c.ghost and time.time() - self.facts.get("unload_at", 0) >= 30:
+            self.facts["unload_at"] = time.time()
+            self.drop_excess()
+            return True
+        r = BotBase.r_bank(self)
+        if str(getattr(self, "_far_last", "")).startswith("interrupted"):
+            self.facts["bank_fail"] = time.time()                  # an interrupted far walk was retried every step (BotSorcBR, 2026-10-30)
+        return r
+    note = BotBase.note                                      # sell_items reads these
+    travel = BotBase.travel
     read_menu = BotBase.read_menu                            # (scribe.py: the legacy inscription menus)
     close_menus = BotBase.close_menus
     index_of = staticmethod(BotBase.index_of)
@@ -205,6 +266,26 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             next((i for i in self.c.backpack if i.name.lower() in ("dagger", "butcher knife", "skinning knife")), None)
 
     def r_fight(self):
+        f = self.fight
+        if f:
+            try:
+                import measured
+                g = measured.give_up_s(self, f.get("key"))
+            except Exception:
+                g = None
+            if g and time.time() - f.get("t0", time.time()) > g:
+                # the kind's measured ttk_p90 for the casters, as the fighters let go (2026-10-29: BotMageAdvR chased one chicken with its fists for the whole
+                # window at 7 of 49 stamina, mana untouched)
+                # never reached (no blow, no spell: a chicken in a pen, a rat across a fence): it stays out of reach, so it is left for good, not 300 s
+                reached = bool(f.get("reached"))
+                self.facts.setdefault("ignore_until", {})[f["serial"]] = time.time() + (300 if reached else 86400)
+                if not reached:
+                    self.facts.setdefault("kind_unreached", {}).setdefault(f.get("key") or "?", []).append(time.time())   # profit_prey's reach share
+                self.ev("give_up", prey=f.get("key"), after=round(time.time() - f.get("t0", time.time())), limit=g, reached=reached)
+                self.end_fight("lost")
+                return False
+        if (self.fight or self.prey(9)) and self.drink_refresh():
+            return True
         if self.can_cast():
             return super().r_fight()
         # the farm animals in reach, chosen directly: the mage's own prey test needs a castable spell, so with no reagents nothing was prey
@@ -232,21 +313,26 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
         if t.distance > 1:
             self.c.goto(t.x, t.y).wait(timeout=3)
             return True
+        self.fight["reached"] = True
         self.c.attack(t.serial)
         time.sleep(1.4)
         return True
 
     def r_carve(self):
         """Just killed a farm animal: carve it with the dagger and take the meat."""
-        if self.dangers(8) or self.c.weight > self.c.max_weight * 0.7 or time.time() - self.facts.get("last_kill_at", 0) > 30:
-            return False
+        if self.dangers(8) or time.time() - self.facts.get("last_kill_at", 0) > 30:
+            return False                                  # (the weight is judged per corpse below by its real carve: BotBase.carve_room)
         carved = self.facts.setdefault("carved", set())
-        corpses = [i for i in self.c.containers(within=4) if "corpse" in i.name.lower() and any(k in i.name.lower() for k in self.MEAT_KINDS)
+        corpses = [i for i in self.c.containers(within=10 if self.profit_on() else 4) if "corpse" in i.name.lower()
+                   and (any(k in i.name.lower() for k in self.MEAT_KINDS) or self.profit_on() and self.profit_carve_kind(i.name))
                    and i.serial not in carved]
         blade = self.dagger()
         if not corpses or not blade:
             return False
         corpse = corpses[0]
+        kind_ = items.corpse_kind(corpse.name)
+        if not self.carve_room(kind_):
+            return False                                  # engine weights (a hide 5 stones, leather and meat 1): the fighters skipped 203 of 302 carves on a 70% line (2026-10-29)
         carved.add(corpse.serial)
         if max(abs(self.c.x - corpse.x), abs(self.c.y - corpse.y)) > 1:
             self.c.gotoexact(corpse.x, corpse.y).wait(timeout=6)
@@ -260,9 +346,16 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             carved.discard(corpse.serial)                 # "You must wait to perform another action": not opened, so not known to be ours
             time.sleep(1.0)
             return True
-        self.c.events.drain()
-        self.c.use(blade.serial)
-        if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+        got_cursor = False
+        for attempt in range(2):                              # the server's action delay: a knife used 0.1 s after opening the corpse is refused
+            time.sleep(1.1)                                    # ("You must wait to perform another action", patch_carve_delay)
+            self.c.events.drain()
+            self.c.use(blade.serial)
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is not None:
+                got_cursor = True
+                break
+        if not got_cursor:
+            self.log(f"carve: no knife cursor on {corpse.name} (the server's action delay?)")
             return True
         self.c.target(corpse.serial)
         time.sleep(1.5)
@@ -272,48 +365,23 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             contents = self.c.container(corpse.serial, timeout=5)
         except Exception:
             contents = []
-        value = 0
-        for it in contents:
-            if it.name.lower().startswith("raw "):
-                self.c.get_item(it.serial, it.amount if (it.amount or 0) > 1 else None)
-                time.sleep(1.0)
-                value += (it.amount or 1) * next((p for w, p in (("ribs", 8), ("lamb", 4), ("bird", 4), ("chicken", 3)) if w in it.name.lower()), 3)
+        value, hides = 0, 0
+        if self.profit_on():
+            value, hides = self.profit_take(contents)              # meat, and the hides while the weight allows; cut into leather at once
+            if hides:
+                self.profit_cut()
+                value += items.HIDE_CUT_VALUE * hides
+        else:
+            for it in contents:
+                if it.name.lower().startswith("raw "):
+                    self.c.get_item(it.serial, it.amount if (it.amount or 0) > 1 else None)
+                    time.sleep(1.0)
+                    value += (it.amount or 1) * items.sale_price(it.name)
         if value:
-            kind = re.sub(r"[^a-z]", "", re.sub(r"( corpse| remains)$", "", re.sub(r"^(an?|the) ", "", corpse.name.lower())))
+            kind = items.corpse_kind(corpse.name)
             self.mem.record("loot", cell=cell_of(corpse.x, corpse.y), gold=value, m=kind)
             self.log(f"carved {corpse.name}: meat worth {value} gold")
-            self.ev("carve", corpse=corpse.name, meat_value=value)
-        return True
-
-    def r_sellmeat(self):
-        """Meat to the Butcher: a dozen pieces, or when heavy, or when broke with any."""
-        meat = [i for i in self.c.backpack if i.name.lower().startswith("raw ")]
-        if not meat or self.dangers(10) or time.time() - self.facts.get("meat_sold_at", 0) < 300:
-            return False
-        n = sum((i.amount or 1) for i in meat)
-        if n < 12 and self.c.weight < self.c.max_weight * 0.7 and self.c.gold >= 60:
-            return False
-        self.facts["meat_sold_at"] = time.time()
-        gold0 = self.c.gold
-        far = self.far_front(self.BUTCHER, "sell", 100, n)
-        if far:
-            self.far_after(far, "sell")
-            return True
-        self.c.goto(*self.BUTCHER).wait(timeout=100)
-        for v in [m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]:
-            offers = self.vendor_list(v, "sell")
-            cart = []
-            for line in offers:
-                mm = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
-                if mm and mm.group(4).strip().lower().startswith("raw ") and int(mm.group(2)) > 0:
-                    cart += [mm.group(1), mm.group(3)]
-            if cart:
-                self.cmd("sell " + " ".join(cart), timeout=10)
-                time.sleep(3)
-                break
-        earned = self.c.gold - gold0
-        self.log(f"sold {n} pieces of meat for {earned} gold")
-        self.dlog("choice", what="sell meat", why=f"{n} pieces for {earned} gold")
+            self.ev("carve", corpse=corpse.name, meat_value=value, hides=hides)
         return True
 
     DANGER_KINDS = ("orc", "ratman", "skeleton", "zombie", "lizardman", "headless", "troll", "ettin", "ogre", "gazer", "gargoyle", "shade",
@@ -338,11 +406,15 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             danger = sum(n for k, n in c["sights"].items() if any(d in k for d in self.DANGER_KINDS))
             if danger > 0.25 * meat or self.mem.dangerous_cell(cell):
                 continue
-            best.append((meat, cx, cy))
+            best.append((meat, cx, cy, cell))
         if not best:
             return None
         best.sort(reverse=True)
-        return random.choice(best[:4])[1:]
+        if self.profit_on():
+            top = best[:6]                                    # five casters shared one pasture: the least crowded of the best (patch_pasture_harvest)
+            low = min(self.caster_load(b[3]) for b in top)
+            return random.choice([b for b in top if self.caster_load(b[3]) == low])[1:3]
+        return random.choice(best[:4])[1:3]
 
     PRACTICE = ("Bless", "Arch Cure", "Arch Protection", "Greater Heal", "Magic Reflection", "Reveal")     # harmless on oneself
 
@@ -437,14 +509,12 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             self.fight = {"serial": m.serial, "key": BotBase.mkey(m), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
                           "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(m.x, m.y), "xy": (m.x, m.y), "pct": 100,
                           "corpses0": {c.serial for c in self.c.containers(within=14)}}
+        if self.profit_on():
+            r = self.profit_attack(m)                              # the cheapest way: fists, Poison and follow, the least gold per damage (profit.py)
+            if r is not None:
+                return r
+        self.profit_reached(m)                                     # mage_bot's attack casts at once (its r_fight saw the target in sight)
         return super().attack(m, train)
-
-    def target_died(self, f):
-        x, y = f.get("xy", (None, None))
-        for c in self.c.containers(within=16):
-            if "corpse" in c.name.lower() and c.serial not in f.get("corpses0", set()) and x is not None and abs(c.x - x) <= 2 and abs(c.y - y) <= 2:
-                return True
-        return f.get("pct", 100) <= 25
 
     def end_fight(self, outcome):
         f, self.fight = self.fight, None
@@ -452,7 +522,9 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             return
         if outcome == "kill":
             self.kills += 1
+            self.facts.setdefault("kind_kills", {}).setdefault(f.get("key") or "?", []).append(time.time())             # profit_prey's reach share
             self.note_kill_at(self.c.x, self.c.y)
+            self.profit_killed(f)                                  # what the kill cost; what it brought is measured shortly (profit_settle)
             self.log(f"kill #{self.kills}: {f['key']}")
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
@@ -501,23 +573,6 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
     r_corpse = RecoveryMixin.recovery_corpse_run                      # only with blue_self_loot or materializing on (recovery.py)
     RULES = ["r_dead", "r_corpse", "r_cure"] + [r for r in mage_bot.Bot.RULES if r != "r_dead"]       # no r_camp: camping cut casters' gains to nothing
 
-    def r_cure(self):
-        """Poisoned: cast Cure if there is mana, else drink the Orange potion. A Heal spell fails on a poisoned character ("You cannot heal yourself in your
-        current state."), which is how three casters died in four minutes."""
-        if self.c.ghost or not self.c.poisoned or time.time() - self.facts.get("cured_at", 0) < 6:
-            return False
-        self.facts["cured_at"] = time.time()
-        if self.c.mana >= 6 and self.spell_ok("cure"):
-            self.cast("cure", "self")
-            self.notes.add("poison", "A poisoned caster cures itself first: a Heal spell does not work while poisoned, and the message does not say to cure.", key="cure:spell")
-            return True
-        pot = next((i for i in self.c.backpack if i.name == "Orange Potion"), None)
-        if pot:
-            self.c.use(pot.serial)
-            time.sleep(1.5)
-            return True
-        return False
-
     def label_hook(self, t):
         """The NPC labels ("Ryan the minter") the casters' base drops: talk.py learns who is not a person."""
         import talk
@@ -536,13 +591,54 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             return False
         return super().r_heal()
 
+    def cure_spell(self):
+        """The Cure spell (basics.r_cure's hook): a poisoned caster with nothing next to it cures with mana, and keeps its potions."""
+        if self.c.mana >= 6 and self.spell_ok("cure"):
+            self.cast("cure", "self")
+            self.notes.add("poison", "A poisoned caster cures itself first: a Heal spell does not work while poisoned, and the message does not say to cure.", key="cure:spell")
+            return True
+        return False
+
+    def heal_spell(self):
+        if self.c.mana >= 4 and self.spell_ok("heal") and self.heal_regs():
+            self.log(f"emergency heal at {self.c.hp}")
+            self.cast("heal", "self")
+            return True
+        return False
+
+    def fight_back(self, m):
+        """No way out (basics.flee_from "trapped"): an attack spell, else fists. A slime has 15-19 hit points, a giant rat 26-39 (creature_stats.json)."""
+        self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
+        if self.c.mana >= 4 and self.attack(m):
+            return True
+        self.c.attack(m.serial)
+        return True
+
     def r_flee(self):
-        r = super().r_flee()
-        if r:
-            self.end_fight("flee")
-        return r
+        """Low health with something hostile close, in the shared order (basics.py) with the caster's spells: cure first when due; beside an attacker the Heal
+        potion (its next hit would ruin a spell), else the Heal spell, else the potion; then run, and fight when trapped."""
+        danger = self.dangers(10) or self.prey(3)
+        if self.hp_pct() >= 40 or not danger:
+            return False
+        if self.cure_due() and self.potion("cure") is not None:
+            return False
+        adjacent = self.adjacent_attacker()
+        if adjacent and self.drink_heal("adjacent attacker"):
+            return True
+        if not adjacent and self.heal_spell():
+            return True
+        if self.drink_heal("no spell"):
+            return True
+        self.log(f"fleeing from {danger[0].name} at hp {self.c.hp}")
+        if self.flee_from(danger[0]) == "trapped":
+            return self.fight_back(danger[0])
+        self.end_fight("flee")
+        return True
 
     def r_explore(self):
+        self.profit_hold_spot()                                    # a patrol spot that paid in the last minutes is kept (feature caster_profit)
+        if self.profit_explore():
+            return True                                            # a safe field that pays, worked until it stops paying (patch_safe_fields)
         held = self.facts.get("pasture_hold")
         if not self.can_cast() and held and time.time() < held[2] and (self.cur_spot is None or time.time() - self.spot_since > 240):
             self.cur_spot, self.spot_since = (held[0] + random.randint(-10, 10), held[1] + random.randint(-10, 10)), time.time()
@@ -563,6 +659,13 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             self.cur_spot = self.range_spot() if self.feature("caster_range") else self.revisit_anchor() or choose_spot(self.mem, [tuple(s) for s in self.spots], lambda x, y: any(abs(x - dx) < 70 and abs(y - dy) < 70 for dx, dy in self.facts.get("death_spots", [])),
                                         here=(self.c.x, self.c.y), recent=recent[-4:], center=center, radius=radius)
             self.spot_since = time.time()
+            import places
+            self.cur_spot = places.scatter(getattr(self, "name", ""), *self.cur_spot,          # not the same exact point as every other bot (patch_scatter)
+                                           bad=lambda x, y: self.mem.dangerous_cell(cell_of(x, y)) or (1400 <= x <= 1700 and 1550 <= y <= 1770))
+        if self.cur_spot is not None and self.ground_closed(*self.cur_spot):
+            self.ev("spot_closed", spot=list(self.cur_spot))
+            self.cur_spot = None                              # a losing spawner's reach or the undead box: not a patrol point
+            return False
         x, y = self.cur_spot
         res = self.c.goto(x, y).wait(timeout=4)
         if abs(self.c.x - x) < 4 and abs(self.c.y - y) < 4 or (res and str(res).startswith(("nopath", "blocked"))):
@@ -706,7 +809,12 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             if self.fight is f and time.time() - f["t0"] > 90:
                 self.end_fight("lost")
         super().observe()
-        if time.time() - self.last_status < 10:
+        self.status()
+
+    def status(self, force=False):
+        """status.json (the supervisor's liveness check reads its time): every 10 s from observe, and from BotBase.beat inside a long blocking step (a far
+        walk, a bank visit), as for every brain."""
+        if not force and time.time() - self.last_status < 10:
             return
         self.last_status = time.time()
         s = {
@@ -718,8 +826,7 @@ class CasterBot(HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, Pla
             "bank": self.facts.get("bank_balance", 0), "net_worth": self.c.gold + self.facts.get("bank_balance", 0),
             "region": self.region_name(), "home": (self.home() or {}).get("name"), "features": sorted(self.features), **self.ambition_status(),
         }
-        with open(os.path.join(self.dir, "status.json"), "w", encoding="utf-8") as f:
-            json.dump(s, f)
+        self.write_status_file(s)
         save_bank(self.dir, self.facts.get("bank_balance", 0))
         self.save_facts()
 
@@ -759,11 +866,6 @@ def main():
     a = ap.parse_args()
     CasterBot(a.name, a.profession).run(a.seconds)
 
-
-if __name__ == "__main__":
-    sys.exit(main())
-
-
 for _name, _before in (("r_rune_mark", "r_fight"), ("r_rune_buy", "r_resupply")):
     if _name not in CasterBot.RULES:
         CasterBot.RULES.insert(CasterBot.RULES.index(_before), _name)      # runes.py: mark a rune when quiet, buy blank runes (feature runes)
@@ -771,3 +873,11 @@ for _name, _before in (("r_rune_mark", "r_fight"), ("r_rune_buy", "r_resupply"))
 
 if "r_scribe" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_hunt"), "r_scribe")      # scribe.py: a scribing session at the Mage shop every half hour (feature scribe)
+
+
+if "r_sell_leather" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_sellmeat") + 1, "r_sell_leather")      # profit.py: leather to the Tanner, after the meat (r_far stays right before r_sellmeat)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

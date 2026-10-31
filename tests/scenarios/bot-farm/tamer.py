@@ -18,10 +18,19 @@ from hunter import SPOTS
 from memory import cell_of, choose_spot
 from uo import Event
 from tamefind import TameFindMixin
+from fields import FieldsMixin
+from pethunt import PetHuntMixin                         # the pet kills, the tamer loots (feature pet_hunt)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TAME = json.load(open(os.path.join(HERE, "tame_data.json"), encoding="utf-8"))
 WILD_DANGER = 14      # average damage per hit at which a tame attempt is not worth the bandage bill for a 77 hit point character
+RELEASE_GAP = 120     # full follower slots are freed at most this often (patch_tamer_followers)
+GIVE_UP = 3600        # a release that freed nothing (the pets are out of earshot): not again for this long (patch_step3_fixes)
+OWNED_MAX = 300       # serials of animals this tamer has owned, kept to never tame them again (AnimalTaming.cs: an animal whose Owners list holds the tamer
+                      # is tamed with no skill check, "That wasn't even challenging": no Taming or Lore gain, and a follower slot taken all the same)
+FLIERS = ("eagle", "bird", "hawk", "raven", "crow", "harpy")      # not taken back as a pet: they keep ahead of a walking tamer
+LOST_REACH = 200      # a lost pet last seen within this many tiles is walked back to and released, when the slots are full
+FERAL_AFTER = 11 * 3600   # an unfed pet loses MaxLoyalty / 10 an hour (BaseCreature.LoyaltyTimer) and goes free at 0: its slot is back within about 11 h
 
 
 def norm(t):
@@ -29,10 +38,11 @@ def norm(t):
 
 
 from stock import TamerStock  # noqa: E402
-class TamerBot(TamerStock, TameFindMixin, BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_tame", "r_bank", "r_explore"]
+class TamerBot(PetHuntMixin, FieldsMixin, TamerStock, TameFindMixin, BotBase):
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_loot", "r_pet_hunt", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_tame", "r_bank", "r_explore"]
     PET_MIN = 90               # a horse (98) and up: around Britain the bears and wolves are rare and go to the fighters first
     PET_UPGRADE = 1.3          # trade up only for a clearly stronger animal
+    PERSIST = BotBase.PERSIST + ("pet", "lost_pets", "owned_serials")      # a restart keeps the pet: the pets follow on, the record did not (2026-10-30)
     # its own r_evade: wild animals are what a tamer walks up to, monsters are what it walks away from
     MONSTERS = ("orc", "troll", "skeleton", "zombie", "shade", "wraith", "spectre", "lizardman", "ettin", "ogre", "harpy", "ratman", "gazer",
                 "daemon", "lich", "gargoyle", "headless", "slime", "mongbat", "corpser", "reaper", "brigand")
@@ -97,19 +107,32 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
             return self.candidates_naive()
         out = []
         sk = self.skill()
+        owned = set(self.facts.get("owned_serials") or [])
+        why = self.__dict__.setdefault("_cand_why", {})       # what each animal in view was turned down for, read out when a spot ends empty (tamefind)
         for m in self.c.mobiles(within=16):
-            if m.notoriety == "Innocent" or self.ignored.get(m.serial, 0) > time.time() or not self.mem.usable("tamemob", m.serial):
-                continue
             t = TAME.get(norm(m.name))
-            if not t or t["min"] > sk + 1 or t["min"] < sk - 46:
+            if not t:
+                continue                      # not an animal that can be tamed
+            retake = m.serial == self.__dict__.get("_retake")          # a pet taken back on purpose (retake_pet)
+            if m.notoriety == "Innocent" or (m.serial in owned and not retake) or self.ignored.get(m.serial, 0) > time.time() or not self.mem.usable("tamemob", m.serial):
+                why[norm(m.name) + (": owned" if m.serial in owned else ": ignored/blocked")] = why.get(norm(m.name) + (": owned" if m.serial in owned else ": ignored/blocked"), 0) + 1
+                continue                      # (an animal it owned once teaches nothing and takes a slot: OWNED_MAX)
+            if retake:
+                out.append((t["min"], -m.distance, m, t))
+                continue
+            if t["min"] > sk + 1 or t["min"] < sk - 46:
+                why[norm(m.name) + ": skill window"] = why.get(norm(m.name) + ": skill window", 0) + 1
                 continue                      # unreachable, or so easy that taming it cannot teach anything
             if not self.reachable(m):
+                why[norm(m.name) + ": unreachable"] = why.get(norm(m.name) + ": unreachable", 0) + 1
                 continue
             seen = self.mem.res_stats("tame", norm(m.name))
             if seen and seen["fail"] >= 6 and seen["ok"] == 0:
+                why[norm(m.name) + ": never tamed by bots"] = why.get(norm(m.name) + ": never tamed by bots", 0) + 1
                 continue                      # bots have tried this kind many times and never tamed one: not worth the time
             dmg = (t.get("dmg") or [0, 0])
             if sum(dmg) / 2 > WILD_DANGER and t["min"] > sk - 8:
+                why[norm(m.name) + ": too strong"] = why.get(norm(m.name) + ": too strong", 0) + 1
                 continue
             out.append((t["min"], -m.distance, m, t))
         if self.feature("tame_find"):
@@ -123,12 +146,19 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
         return self.bandage_self()
 
     def r_tame(self):
-        if self.hp_pct() < 55:
-            return False
+        if self.hp_pct() < 55 or self.hunt_due():
+            return False                                  # (taming waits while the pet hunts: pethunt.py)
+        if self.release_spares():
+            return True
         cands = self.candidates()
+        if not cands and self.retake_pet():
+            cands = self.candidates()
         if not cands:
-            return False
+            return self.clear_owned()
         lo, _, m, t = cands[0]
+        freed = self.free_slots_for(m)
+        if freed:
+            return freed is True                          # freed: a turn spent; "full" (pets out of reach): the other rules run (patch_step3_fixes)
         self.activity = f"taming {m.name} (needs {lo})"
         now = time.time()
         self.chases = {s: c for s, c in self.chases.items() if now - c["since"] < 600}
@@ -155,9 +185,7 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
         self.chases.pop(m.serial, None)
         if not self.tame_in_range(m):
             return True                                       # it walked off while we stood: close in again next tick
-        self.c.events.drain()
-        self.c.call("useskill animal taming", timeout=6)
-        if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+        if not self.cursor_after(lambda: self.c.call("useskill animal taming", timeout=6)):      # (basics.cursor_after: the cursor lands before wait_for listens)
             self.note("tame", "Using Animal Taming raised no target cursor.", key="notamecursor")
             time.sleep(2)
             return True
@@ -176,9 +204,17 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
             for l in lines:
                 if re.search(r"accept you as|master|tame|fail|too far|cannot|must wait|already|stable|follower|control", l, re.I):
                     result = l
-            if re.search(r"accept you|fail|cannot|already|too far|no chance|stops", result, re.I):
+            if re.search(r"accept you|even challenging|fail|cannot|already|too far|no chance|stops", result, re.I):
                 break
         self.log(f"tame {m.name} (min {lo}, skill {self.skill():.1f}): {result[:100]}")
+        if re.search(r"accept you|even challenging", result, re.I):
+            owned = [s for s in (self.facts.get("owned_serials") or []) if s != m.serial] + [m.serial]
+            self.facts["owned_serials"] = owned[-OWNED_MAX:]
+        if re.search(r"even challenging", result, re.I):
+            # an animal it owned before: a follower again, with no gain; kept or let go at once, or its slot is lost (5 of 5 full for a day, 2026-10-29/30)
+            self.ev("tame_owned_again", m=m.name)
+            self.after_tame(m)
+            return True
         gained = any(re.search(r"skill in animal taming has increased", l, re.I) for l in list(self.journal)[-12:])
         self.mem.record("res", kind="tamegain", key=norm(m.name), ok=gained)
         self.mem.record("res", kind="tame", key=norm(m.name), ok=bool(re.search(r"accept you", result, re.I)), reason=result[:60])
@@ -191,10 +227,175 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
             self.after_tame(m)
         else:
             self.failed += 1
+            if re.search(r"too many followers", result, re.I):
+                self.facts["slots_full"] = True           # freed at the next tick (patch_tamer_followers)
             unseen = re.search(r"cannot be seen|too far", result, re.I)
             self.ignored[m.serial] = time.time() + (300 if unseen else 60)
             self.note("tame", f"A failed or refused tame says: {result[:100] or 'nothing'}", key=f"tamefail:{result[:30]}")
         self.refresh_skills()
+        return True
+
+    def retake_pet(self):
+        """No pet, nothing to tame, and an animal it owned before in view that is strong enough to keep: take it back. An owned animal is tamed with no
+        skill check (AnimalTaming.cs alreadyOwned, "That wasn't even challenging"), so it is a sure pet; the pet then clears the other released ones
+        (clear_owned) and hunts (pethunt). BotTamerAR had no pet and only its own released animals around it for an hour (2026-10-30)."""
+        if not self.feature("pet_hunt") or self.facts.get("pet") or not hasattr(self, "pet_view"):
+            return False
+        if self.adopt_pet():
+            return False                                  # a pet of its own was following all along: clear_owned can use it now
+        now = time.time()
+        if now - self.__dict__.get("_retake_at", 0) < 30:
+            return False                                  # once in 30 s: an eagle that out-flew the walk was picked, refused (ignored) and picked again
+                                                          # dozens of times a second (5,060 rabbit looks in two minutes, 2026-10-30)
+        self.__dict__["_retake_at"] = now
+        owned = set(self.facts.get("owned_serials") or [])
+        mine = [m for m in self.c.mobiles(within=10) if m.serial in owned and self.pet_strength(m.name) >= self.PET_MIN and self.ignored.get(m.serial, 0) <= now
+                and not any(w in m.name.lower() for w in FLIERS)       # an eagle out-flew the walk to it and was never reached (run 3, 2026-10-30)
+                and self.mem.usable("tamemob", m.serial) and self.reachable(m)]       # the candidate scan's own filters: run 4 picked a cougar the shared memory
+                                                                                    # had blocked, so candidates() dropped it and nothing was tamed
+        if not mine:
+            return False
+        m = max(mine, key=lambda x: (self.pet_strength(x.name), -x.distance))
+        self.__dict__["_retake"] = m.serial
+        self.log(f"tame: no pet, and {m.name} (strength {self.pet_strength(m.name):.0f}), released earlier, is here: taking it back as the pet")
+        self.ev("retake_pet", m=m.name)
+        return True
+
+    SPARE_REACH = 12           # pets hear orders within their perception range (BaseCreature.HandlesOnSpeech, RangePerception 16 for animals)
+
+    def release_spares(self):
+        """Every follower slot is taken and pets of this tamer other than the kept one stand within earshot: "all release" (confirmed), then the
+        strongest is taken back, a sure tame (AnimalTaming.cs alreadyOwned). free_slots_for only runs for a candidate, and with only owned animals about
+        there was none: BotTamerAR held 5 of 5 slots for hours, "no taming for 209 min", with two spare black bears at 2-4 tiles (2026-10-30)."""
+        try:
+            f = int(self.c.state.get("followers") or 0)
+            mx = int(self.c.state.get("maxFollowers") or 5)
+        except Exception:
+            return False
+        if mx <= 0 or f < mx:
+            return False
+        now = time.time()
+        if now - self.__dict__.get("_spares_at", 0) < 60:
+            return False
+        pets = [m for m in self.c.mobiles(within=self.SPARE_REACH) if (getattr(m, "_d", None) or {}).get("isPet")]
+        keep = (self.facts.get("pet") or {}).get("serial")
+        if not [m for m in pets if m.serial != keep]:
+            return False
+        self.__dict__["_spares_at"] = now
+        self.activity = "releasing spare pets"
+        self.log(f"tame: {f} of {mx} follower slots taken, {len(pets)} of its pets in earshot: releasing them all, then taking the strongest back")
+        self.release("all", count=len(pets))
+        time.sleep(1.5)
+        try:
+            after = int(self.c.state.get("followers") or 0)
+        except Exception:
+            after = f
+        best = max(pets, key=lambda x: (self.pet_strength(x.name), -x.distance))
+        owned = [s_ for s_ in (self.facts.get("owned_serials") or []) if s_ not in {m.serial for m in pets}] + [m.serial for m in pets]
+        self.facts["owned_serials"] = owned[-OWNED_MAX:]          # released, they are its own animals: no skill check, cleared by the pet later
+        self.facts.pop("pet", None)
+        self.facts.pop("release_gave_up_until", None)
+        self.__dict__["_retake"] = best.serial
+        self.log(f"tame: followers {f} -> {after}; taking {best.name} back as the pet")
+        self.ev("release_spares", pets=len(pets), before=f, after=after, keep=best.name)
+        return True
+
+    def adopt_pet(self):
+        """No pet on record, but the client shows pets of this character in view (the world file's isPet): adopt the strongest. The pet record did not
+        survive a brain restart while the pets did: BotTamerAR walked with two black bears at 2-3 tiles (5 of 5 follower slots), tried to "take back" one of
+        them twice, and had no pet to clear or hunt with (2026-10-30)."""
+        pets = [m for m in self.c.mobiles(within=14) if (getattr(m, "_d", None) or {}).get("isPet")]
+        if not pets:
+            return False
+        m = max(pets, key=lambda x: (self.pet_strength(x.name), -x.distance))
+        now = time.time()
+        self.facts["pet"] = {"serial": m.serial, "name": m.name, "strength": self.pet_strength(m.name), "since": now, "seen": now}
+        owned = [s_ for s_ in (self.facts.get("owned_serials") or []) if s_ != m.serial] + [m.serial]
+        self.facts["owned_serials"] = owned[-OWNED_MAX:]
+        self.log(f"tame: {m.name} ({m.distance} tiles) is already this tamer's pet: adopted ({len(pets)} pets in view)")
+        self.ev("pet_adopted", m=m.name, pets=len(pets))
+        self.c.say("all guard me")
+        return True
+
+    def clear_owned(self):
+        """Nothing to tame in view, but animals this tamer owned before are: they teach nothing (AnimalTaming.cs alreadyOwned) and no spawner replaces
+        them while they live, as taming unlinked them (BaseSpawner.UnlinkOnTaming). The pet kills one; r_loot carves and loots it. At five spots in 20
+        minutes the animals in view were its own released boars, hinds, cougars and wolves (2026-10-30). True when the pet was sent."""
+        if not self.feature("pet_hunt") or not hasattr(self, "pet_view"):
+            return False
+        pet, pm = self.pet_view()
+        if pm is None:
+            return False
+        now = time.time()
+        if now - self.__dict__.get("_clear_at", 0) < 30:
+            return False
+        owned = set(self.facts.get("owned_serials") or [])
+        mine = [m for m in self.c.mobiles(within=10) if m.serial in owned and m.serial != pet.get("serial") and self.pet_beats([self.mkey(m)])
+                and self.ignored.get(m.serial, 0) <= now]
+        if not mine:
+            return False
+        m = min(mine, key=lambda x: x.distance)
+        self.__dict__["_clear_at"] = now
+        self.ignored[m.serial] = now + 120                   # one order a target; the pet finishes it while the tamer looks on
+        self.pet_order(m)
+        self.activity = f"letting the {pet['name']} clear {m.name}, an animal it owned"
+        self.log(f"tame: sent {pet['name']} at {m.name} ({m.distance} tiles), released earlier: it teaches nothing and keeps the spawn from refilling")
+        self.ev("clear_owned", pet=pet["name"], target=m.name)
+        return True
+
+    def free_slots_for(self, m):
+        """No follower slot for this animal (the client's follower count, or the server said so): release them all. True when it did (patch_tamer_followers)."""
+        try:
+            f = int(self.c.state.get("followers") or 0)
+            mx = int(self.c.state.get("maxFollowers") or 5)
+        except Exception:
+            f, mx = 0, 5
+        need = int((TAME.get(norm(m.name)) or {}).get("slots") or 1)
+        full = self.facts.pop("slots_full", False) or (mx > 0 and f + need > mx)
+        if full and time.time() < self.facts.get("release_gave_up_until", 0):
+            return "full"                                 # the pets are out of earshot: no tame until slots come back (patch_step3_fixes)
+        if not full or time.time() - self.facts.get("released_at", 0) < RELEASE_GAP:
+            return False
+        self.facts["released_at"] = time.time()
+        why = f"{f} of {mx} follower slots in use, {need} needed for {m.name}"
+        self.log(f"tame: {why}: releasing them all")
+        self.release("all", count=max(1, f))
+        self.facts.pop("pet", None)
+        time.sleep(1.5)
+        try:
+            after = int(self.c.state.get("followers") or 0)
+        except Exception:
+            after = f
+        if f and after >= f and self.fetch_lost_pet():
+            return True                                   # walked back to where a lost pet was last seen and released there
+        if f and after >= f:
+            lost = [p for p in (self.facts.get("lost_pets") or []) if time.time() - p["t"] < FERAL_AFTER]
+            wait = GIVE_UP if not lost else max(GIVE_UP, min(p["t"] for p in lost) + FERAL_AFTER - time.time())
+            self.facts["release_gave_up_until"] = time.time() + wait
+            self.log(f"tame: the release freed nothing ({after} of {mx} still): the pets are out of earshot; no taming for {wait // 60:.0f} min")
+            self.ev("pets_out_of_reach", n=after)
+        self.ev("pets_released", n=f, why=why)
+        self.dlog("choice", what="release all pets", why=why)
+        return True
+
+    def fetch_lost_pet(self):
+        """The slots are full and "all release" reached nobody: walk to where the newest lost pet was last seen (within LOST_REACH, on ground this bot
+        may use) and release all there, as a player goes back for a pet left behind. Each lost pet is gone back for once. True when it walked."""
+        now = time.time()
+        lost = [p for p in (self.facts.get("lost_pets") or []) if now - p["t"] < FERAL_AFTER and not p.get("fetched")]
+        near = [p for p in lost if max(abs(p["xy"][0] - self.c.x), abs(p["xy"][1] - self.c.y)) <= LOST_REACH and not self.gather_danger(cell_of(*p["xy"]))]
+        if not near:
+            return False
+        p = max(near, key=lambda p: p["t"])
+        p["fetched"] = now
+        self.activity = f"going back for {p['name']} at {p['xy'][0]},{p['xy'][1]}"
+        res = self.travel(p["xy"][0], p["xy"][1], near=6)
+        before = int(self.c.state.get("followers") or 0)
+        self.release("all", count=max(1, before))
+        time.sleep(1.5)
+        after = int(self.c.state.get("followers") or 0)
+        self.log(f"tame: went back for {p['name']} at {p['xy'][0]},{p['xy'][1]} ({res}): followers {before} -> {after}")
+        self.ev("lost_pet_fetched", m=p["name"], walk=str(res)[:40], before=before, after=after)
         return True
 
     TAME_RANGE = 2                                            # AnimalTaming's target range before AOS
@@ -213,11 +414,19 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
         return (t.get("hits") or 0) * (dmg[0] + dmg[1]) / 2.0
 
     def release(self, name, count=1):
-        """Release a pet by speech ("<name> release", or "all release"). The server answers with a window asking to confirm
-        (ConfirmReleaseGump): Okay is button 2. Unanswered, nothing is released, which is what every "all release" did until now."""
+        """Release a pet by speech, "<name> release". The server answers with a window asking to confirm (ConfirmReleaseGump): Okay is button 2.
+        There is no "all release": release (keyword 0x16D) is only heard named (BaseAI/OnSpeech.cs, WasNamed: the speech starts with the pet's
+        name), so "all" says each name among this tamer's pets in earshot; every pet of that name answers with its own window."""
         self.c.events.drain()
-        self.c.say(f"{name} release")
-        time.sleep(1.5)
+        if name == "all":
+            names = sorted({m.name for m in self.c.mobiles(within=self.SPARE_REACH) if (getattr(m, "_d", None) or {}).get("isPet") and m.name})
+            count = max(count, len(names))
+        else:
+            names = [name]
+        for n_ in names:
+            self.c.say(f"{n_} release")
+            time.sleep(0.6)
+        time.sleep(1.0)
         # one confirm window per pet named; answer each by its serial (with several windows open, gumpresponse will not guess)
         serials, cur = [], None
         try:
@@ -244,11 +453,16 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
         if not pet or self.c.ghost:
             return False
         now = time.time()
-        seen = any(m.serial == pet["serial"] for m in self.c.mobiles(within=18))
+        it = next((m for m in self.c.mobiles(within=18) if m.serial == pet["serial"]), None)
+        seen = it is not None
         if seen:
-            pet["seen"] = now
+            pet["seen"], pet["xy"] = now, [it.x, it.y]
         elif now - pet.get("seen", pet["since"]) > 600:
             self.facts.pop("pet")
+            # alive somewhere it still holds its follower slot until it goes feral (FERAL_AFTER): where it was last seen is kept, to go back and release it
+            lost = [p for p in (self.facts.get("lost_pets") or []) if now - p["t"] < FERAL_AFTER]
+            lost.append({"name": pet["name"], "serial": pet["serial"], "xy": pet.get("xy") or [self.c.x, self.c.y], "t": pet.get("seen", now)})
+            self.facts["lost_pets"] = lost[-5:]
             self.log(f"lost the pet {pet['name']} (not seen for ten minutes)")
             self.note("pet", f"A tamer lost its pet {pet['name']}: not seen for ten minutes (killed, or left behind).", key="petlost")
             return False
@@ -260,9 +474,7 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
 
     def after_tame(self, m):
         """Animal Lore on the new pet; keep it if it is the best fighter tamed yet, else let it go so the next animal can be tamed."""
-        self.c.events.drain()
-        self.c.call("useskill animal lore", timeout=6)
-        if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is not None:
+        if self.cursor_after(lambda: self.c.call("useskill animal lore", timeout=6)):
             self.c.target(m.serial)
             time.sleep(3)
             for l in self.read_journal()[-4:]:
@@ -294,6 +506,8 @@ class TamerBot(TamerStock, TameFindMixin, BotBase):
             self.note("tame", f"Releasing a pet answers: {l[:100]}", key="releasemsg")
 
     def r_explore(self):
+        if self.field_explore():
+            return True                                   # the pet's hunt: a tier-1 area with monsters it beats (pethunt.py)
         if self.feature("tame_find") and self.find_animals():            # the spawner whose animals teach most (tame_spots.json), not the town's patrol spots
             return True
         if getattr(self, "cur_spot", None) is None or time.time() - self.facts.get("spot_since", 0) > self.explore_limit():

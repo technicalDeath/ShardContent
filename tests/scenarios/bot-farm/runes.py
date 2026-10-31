@@ -33,6 +33,10 @@ RUNES_WANT = 3
 BUY_N = 2
 BUY_FLOOR = 60
 BUY_EVERY = 1800
+SCROLL_PRICE = {"recall": 42, "mark": 62}    # the Mage's travel scrolls (extraVendorStock, owner 2026-10-18)
+SCROLL_FLOOR = 250                           # gold a bot keeps after buying one (patch_scribe_sell_runescroll)
+RETRY = 60                                   # a far walk or bank trip still under way: the rule tries again this soon (patch_rune_scroll_bank)
+BANK_KEEPS = 200                             # mage_bot.visit_bank puts everything above this into the box before it withdraws
 PRICE_GUESS = 15                      # stock SBMage: a recall rune 15 gold
 HOME_FAR = 150
 STAY_SECS = 600
@@ -330,13 +334,81 @@ class RuneMixin:
             sellers = self.mem.vendor_selling("rune")
         except Exception:
             sellers = []
-        sellers = [s for s in sellers if "runebook" not in norm(s[2])]
-        if sellers:
-            return tuple(min(sellers, key=lambda s: cheb((self.c.x, self.c.y), tuple(s[1])))[1])
+        spots = []
+        for s in sellers:
+            if "runebook" in norm(s[2]):
+                continue
+            try:
+                spots.append(tuple(int(v) for v in str(s[1]).split(",")))   # the vendors-map key is "x,y" (patch_rune_shop_xy.py)
+            except ValueError:
+                continue
+        if spots:
+            return min(spots, key=lambda xy: cheb((self.c.x, self.c.y), xy))
         return tuple(self.mage_shop_xy())
 
+    def rune_far_retry(self, key, gap, far):
+        """A far walk still under way: the timer that keeps the rule quiet is moved so the rule runs again RETRY s from now, at the shop (patch_rune_scroll_bank)."""
+        if str(far).startswith(("moving", "interrupted")):
+            self.facts[key] = time.time() - gap + RETRY
+
+    def rune_travel_scroll(self):
+        """The travel scroll a bot lacks: no usable way to cast it, but a scroll would reach MIN_CHANCE. Buys one at the Mage when SCROLL_FLOOR gold stays
+        after it, once per BUY_EVERY per spell; True when it acted (patch_scribe_sell_runescroll)."""
+        sk, now = self.rune_magery(), time.time()
+        for spell in ("recall", "mark"):
+            if self.rune_way(spell, now_only=False) is not None or chance(sk, spell, "scroll") < MIN_CHANCE:
+                continue
+            need = SCROLL_FLOOR + SCROLL_PRICE[spell]
+            bank = int(self.facts.get("bank_balance", 0) or 0)
+            if now - self.facts.get("rune_scroll_at:" + spell, 0) < BUY_EVERY or self.c.gold + bank < need:
+                continue
+            key = "rune_scroll_at:" + spell
+            self.facts[key] = now
+            if self.c.gold < need:                                       # the bank holds the rest (patch_rune_scroll_bank)
+                after = self.c.gold if self.c.gold <= BANK_KEEPS + 50 else BANK_KEEPS
+                self.activity = f"fetching gold for a {spell} scroll"
+                done = self.visit_bank("stock", withdraw=need - after)       # (visit_bank takes at most the balance, which then includes its own deposit)
+                if self.c.gold < need:
+                    if not done:
+                        self.facts[key] = now - BUY_EVERY + RETRY            # the bank trip is a far walk still going: back to it soon
+                    else:
+                        self.log(f"runes: the bank trip for a {spell} scroll left {self.c.gold} gold (need {need}); later")
+                        self.ev("rune_buy", item=spell + " scroll", n=0, price=None, **{"from": f"bank short: carried {self.c.gold}, need {need}"})
+                    return True
+            xy = tuple(self.mage_shop_xy())
+            far = self.far_front(xy, "shop", 90, True)
+            if far:
+                self.far_after(far, "shop")
+                self.rune_far_retry(key, BUY_EVERY, far)
+                return True
+            self.activity = f"buying a {spell} scroll"
+            self.c.goto(*xy).wait(timeout=90)
+            people = sorted([m for m in self.c.mobiles(within=10) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")], key=lambda m: m.distance)
+            for v in people[:8]:
+                for line in self.vendor_list(v, "buy"):
+                    m = SHOP_LINE.search(line)
+                    if not m or norm(m.group(4)) not in (spell, spell + "scroll"):
+                        continue
+                    price = int(m.group(2))
+                    if self.c.gold - price < SCROLL_FLOOR:
+                        self.log(f"runes: a {spell} scroll costs {price}; not with {self.c.gold} gold")
+                        return True
+                    self.cmd(f"buy {m.group(1)} 1", timeout=10)
+                    time.sleep(2)
+                    got = 1 if self.rune_scroll(spell) is not None else 0
+                    self.ev("rune_buy", item=spell + " scroll", n=got, price=price, **{"from": v.name})
+                    self.log(f"runes: bought {got} {spell} scroll at {price} from {v.name}")
+                    return True
+            self.ev("rune_buy", item=spell + " scroll", n=0, price=None, **{"from": "none sells it here"})
+            return True
+        return False
+
     def r_rune_buy(self):
-        if not self.rune_on() or not self.rune_quiet() or not self.rune_able():
+        if not self.rune_on() or not self.rune_quiet():
+            return False
+        if self.rune_travel_scroll():
+            return True
+        if not self.rune_able():
             return False
         now = time.time()
         if self.rune_blanks() or self.rune_count() >= RUNES_WANT or now - self.facts.get("rune_buy_at", 0) < BUY_EVERY:
@@ -348,6 +420,7 @@ class RuneMixin:
         far = self.far_front(xy, "shop", 90, True)
         if far:
             self.far_after(far, "shop")
+            self.rune_far_retry("rune_buy_at", BUY_EVERY, far)
             return True
         self.activity = "buying recall runes"
         self.c.goto(*xy).wait(timeout=90)

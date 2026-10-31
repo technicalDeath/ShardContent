@@ -223,8 +223,11 @@ def main():
             bp = brain_pid(name)
             st0 = status_of(name)
             started_at = os.path.getmtime(os.path.join(FARM, name, "brain.pid")) if os.path.exists(os.path.join(FARM, name, "brain.pid")) else 0
-            if farm_launch.is_brain(bp, name, table) and time.time() - started_at > 240 and (not st0 or time.time() - st0["t"] > 240) and not os.path.exists(os.path.join(FARM, name, "pause")):
-                log(f"{name}: brain {bp} has written no status for {int(time.time() - st0['t']) if st0 else 'ever'} s; killing it")
+            st_path = os.path.join(FARM, name, "status.json")
+            # a status.json read mid-write (the brains truncate, then write) is empty; its mtime still says when the brain last wrote it
+            last_t = st0["t"] if st0 else (os.path.getmtime(st_path) if os.path.exists(st_path) else 0)
+            if farm_launch.is_brain(bp, name, table) and time.time() - started_at > 240 and time.time() - last_t > 240 and not os.path.exists(os.path.join(FARM, name, "pause")):
+                log(f"{name}: brain {bp} has written no status for {int(time.time() - last_t) if last_t else 'ever'} s; killing it")
                 subprocess.run(["taskkill", "/PID", str(bp), "/F"], capture_output=True)
             if not farm_launch.is_brain(brain_pid(name), name, table):
                 st = status_of(name)

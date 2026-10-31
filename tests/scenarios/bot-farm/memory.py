@@ -86,7 +86,10 @@ def _empty():
 class SharedMemory:
     area = None                    # the area danger map (area_danger.AreaDanger, feature danger_map), attached by the brain
 
-    def __init__(self, prof: str, bot: str, root: str = MEMDIR):
+    def __init__(self, prof: str, bot: str, root: str | None = None):
+        # MEMDIR is read now, not when Python defined this function: the simulator points memory.MEMDIR at its own folder, and a default bound at import
+        # kept the live path, so every release smoke run wrote its SimCaster fights, loot and deaths into work/botfarm/memory (6,459 lines by 2026-10-30)
+        root = root or MEMDIR
         self.prof = prof
         self.bot = bot
         self.grp = group_of(prof)
@@ -188,6 +191,9 @@ class SharedMemory:
                 c["fights"] += 1
                 if ev["outcome"] == "kill":
                     c["kills"] += 1
+        elif k == "spotkill":                                   # the decision core: a kill at a spot, its respawn clock for every bot (spots.py)
+            c = st["cells"][ev["cell"]]
+            c["last_kill"] = max(float(c.get("last_kill") or 0.0), float(ev["t"]))
         elif k == "sight":
             st["cells"][ev["cell"]]["sights"][ev["m"]] += 1
         elif k == "death":
@@ -283,7 +289,7 @@ class SharedMemory:
     @staticmethod
     def _summ(f):
         n = max(1e-9, f["n"])
-        return {"n": f["n"], "kill": f["kill"], "death": f["death"], "flee": f["flee"], "death_rate": f["death"] / n, "flee_rate": f["flee"] / n,
+        return {"n": f["n"], "kill": f["kill"], "death": f["death"], "flee": f["flee"], "lost": f.get("lost", 0), "death_rate": f["death"] / n, "flee_rate": f["flee"] / n,
                 "avg_ttk": f["ttk"] / n, "avg_dmg": f["dmg"] / n, "avg_dmgpct": f["dmgpct"] / n}
 
     def prey_worth(self, m: str, main: str, min_n: int = 5):
@@ -359,7 +365,7 @@ class SharedMemory:
         """The best-known cells for hunting within radius of near, best first: [(score, cell)]."""
         self.refresh()
         out = []
-        for cell, c in self.state["world"]["cells"].items():
+        for cell, c in list(self.state["world"]["cells"].items()):       # a snapshot: cell_score() refreshes, and a refresh can add cells mid-loop (RuntimeError, sim run 2026-10-19)
             cx, cy = cell_center(cell)
             if abs(cx - near[0]) > radius or abs(cy - near[1]) > radius:
                 continue

@@ -11,6 +11,7 @@ by patch_pacing.py.
 Reaction delays are varied by the pause (2-6 s random) and by talk.py's reply delay (1.2-3.5 s); nothing else is delayed.
 Logouts are the supervisor's: see PACING-LOGOUT-NOTE.md.
 """
+import basics  # noqa: E402  (shared helpers)
 import random
 import time
 
@@ -29,12 +30,7 @@ SLICE = 5.0
 SPRINT_S = 8.0
 
 
-def _cell(bot):
-    try:
-        from memory import cell_of
-        return cell_of(bot.c.x, bot.c.y)
-    except Exception:
-        return None
+_cell = basics.bot_cell                     # (basics.py: one copy for every module)
 
 
 class PacingMixin:

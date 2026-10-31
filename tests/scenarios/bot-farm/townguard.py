@@ -16,6 +16,7 @@ Nothing names a town: the regions come from the gazetteer.
 """
 from __future__ import annotations
 
+import basics  # noqa: E402  (shared helpers)
 import re
 import time
 
@@ -39,12 +40,7 @@ def emit(bot, name, **kw):
         pass
 
 
-def _cell(bot):
-    try:
-        from memory import cell_of
-        return cell_of(bot.c.x, bot.c.y)
-    except Exception:
-        return None
+_cell = basics.bot_cell                     # (basics.py: one copy for every module)
 
 
 def on(bot):

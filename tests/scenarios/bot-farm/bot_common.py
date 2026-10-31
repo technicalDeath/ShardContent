@@ -12,6 +12,8 @@ import json
 import math
 import os
 import random
+import items  # noqa: E402  (the shared item table)
+from basics import BasicsMixin  # noqa: E402  (the shared basics: potions, threats, fleeing, selling)
 import re
 import sys
 import time
@@ -44,6 +46,7 @@ from places import Places  # noqa: E402
 from loopguard import LoopGuard  # noqa: E402
 from recovery import RecoveryMixin  # noqa: E402
 from stall import StallMixin  # noqa: E402
+from progress import ProgressMixin  # noqa: E402  (is what it does moving its ambition? loop breakers; feature progress_check)
 from ambition import AmbitionMixin  # noqa: E402
 from planner import PlannerMixin  # noqa: E402
 from bw import BetweenWorldsMixin  # noqa: E402
@@ -61,6 +64,40 @@ except Exception:          # the data missing: the Britain constants below stay 
 
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
+BIRTH_TOWN = "Britain"                  # every farm bot is made in Britain (startInBritainOnly) (patch_home_town)
+STEP = {"n": (0, -1), "s": (0, 1), "e": (1, 0), "w": (-1, 0), "ne": (1, -1), "nw": (-1, -1), "se": (1, 1), "sw": (-1, 1)}     # the client's walk directions
+ROUTE_DEATH_DAYS = 14   # a long walk to a new home is judged on this many days of deaths: the danger map forgets in 24 h (half-life 3 h), and the pocket at
+                        # 1990-2110 x 960-1050 (slimes, rats, mongbats boxing a walker in) had 12 deaths on 10-21 and 3 by 10-30 noon, yet looked safe at 16:34
+_ROUTE_DEATHS = {"at": 0.0, "cells": {}}
+
+
+def route_deaths():
+    """{cell: [skill or None, ...]} of the bots' deaths in the last ROUTE_DEATH_DAYS, from both memory folders' world.jsonl; read every 30 min."""
+    now = time.time()
+    if now - _ROUTE_DEATHS["at"] < 1800:
+        return _ROUTE_DEATHS["cells"]
+    import memory
+    cells = {}
+    for root in (memory.MEMDIR, memory.MEMDIR + "-newbie"):
+        try:
+            with open(os.path.join(root, "world.jsonl"), encoding="utf-8", errors="ignore") as f:
+                for line in f:
+                    if '"death"' not in line:
+                        continue
+                    try:
+                        e = json.loads(line)
+                    except ValueError:
+                        continue
+                    if e.get("k") == "death" and now - e.get("t", 0) <= ROUTE_DEATH_DAYS * 86400 and e.get("cell") and not str(e.get("bot", "")).startswith("Sim"):
+                        cells.setdefault(e["cell"], []).append(e.get("skill"))
+        except OSError:
+            continue
+    _ROUTE_DEATHS.update(at=now, cells=cells)
+    return cells
+HOME_DEATHS = 2                         # this many of its own deaths ...
+HOME_WINDOW = 7200                      # ... in this many seconds ...
+HOME_REACH = 300                        # ... within this many tiles of the home's centre: the home is unsafe for this bot
+UNSAFE_FOR = 6 * 3600                   # an unsafe home is not taken again for this long
 BANKS = [(1425, 1690), (1650, 1608)]
 # Places in Britain to run to. Everyone used to run to TOWN, beside the healer, and a gazer that followed a fleeing bot in killed it (and the next
 # ghost to be resurrected) on the healer's doorstep: guards act only on criminals and murderers, not on an ordinary monster.
@@ -149,7 +186,7 @@ def connect_retry(name, tries=20, wait=1.0):
     raise last
 
 
-class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard):
+class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard, BasicsMixin):
     RULES: list = []
 
     def __init__(self, name: str, profession: int):
@@ -290,7 +327,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     def do_deal(self, d):
         """One tick of a market deal, as seller or buyer: meet at the bank spot, the seller drops the agreed quantity on the buyer (the trade window opens), the buyer puts the
-        gold in, both accept once the other box holds what was agreed; the outcome is checked by counts (market.py)."""
+        gold in, both accept once the other box holds what was agreed; the outcome is checked by counts (market.py). With the feature trade_tree the deal runs as a
+        py_trees behaviour tree (trade_tree.py, patch_trade_tree): resumable, fails once, merges gold and goods piles, fetches the price from the bank, sees a partner give up."""
+        if self.feature("trade_tree"):
+            import trade_tree
+            return trade_tree.tick(self, d)
         return self.market_deal(d)
 
     def read_journal(self):
@@ -315,6 +356,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             talk.feed(self, t)                                       # labels (who is an NPC) and speech (feature talk), before the ignore list drops them
             if t.startswith(IGNORE_PREFIX):
                 continue
+            mw = re.search(r"Your (.+?) is badly worn", t)
+            if mw:
+                self.facts.setdefault("weapon_worn", {})[mw.group(1).strip().lower()] = time.time()      # the shard's wear notice (a quarter of the durability left)
+            elif re.search(r"\byour .+ (broke|breaks|is destroyed|has been destroyed|was destroyed)\b", t, re.I):
+                self.facts["weapon_broke_at"] = time.time()
             self.journal.append(t)
             out.append(t)
             own = t.startswith(f"[SAY] {self.name}:")
@@ -340,17 +386,6 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     self.note("message", f"{tag}: {body[:140]}", key=f"msg:{k}")
         self.status()
         return out
-
-    def find_gump(self, word):
-        serial = None
-        found = None
-        for line in self.c.call("gumps", timeout=8):
-            m = re.match(r"\[GUMP\] local \S+ server (0x[0-9A-Fa-f]+)", line)
-            if m:
-                serial = m.group(1)
-            elif word in line and serial and not found:
-                found = serial
-        return found
 
     def mobs(self, within):
         """Hostile-looking mobiles that are on this floor: one more than ~14 up or down (a rat in the cellar under Britain) cannot be fought or fought by."""
@@ -387,7 +422,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return 0.0
 
     def near_death_spot(self, x, y, r=60):
-        return any(abs(x - dx) < r and abs(y - dy) < r for dx, dy in self.death_spots)
+        """Within r of a place this bot died in the last DEATH_HALF_LIFE (memory.py: 4 h, "a place that killed bots stays suspect for hours"). A death spot was
+        kept for good before (the Watcher, 2026-10-29): archers carried 6-12 of them, 80-tile boxes that turned away 0.14 of their 0.17 prey a look; ground that
+        stays deadly is closed by the measured losing-spawner rule instead (hunter.in_losing_range). A spot with no recorded time is an old one: it lapses."""
+        import memory
+        times = self.facts.get("death_spot_t") or {}
+        now_ = time.time()
+        return any(abs(x - dx) < r and abs(y - dy) < r for dx, dy in self.death_spots if now_ - float(times.get(f"{dx},{dy}", 0)) < memory.DEATH_HALF_LIFE)
 
     def _wrap_goto(self):
         """Every walk that ends in "nopath" gets one more try after a single step to a free neighbouring tile. From two tiles at the dig spot north
@@ -465,9 +506,22 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.facts["stepped_out_at"] = time.time()
         x0, y0 = self.c.x, self.c.y
         started = time.time()
-        for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw"):
-            if time.time() - started > 45:
-                break
+        # a living mobile's tile takes a player only at full stamina (Mobile.CheckShove: Stam == StamMax, and it costs 10): short of that, a step onto
+        # one never moves. Two miners spent 20-45 s here boxed in by a slime, rats and a mongbat, lost their health, and their tiles went into memory
+        # as stuck ground for 6 h (2026-10-30). Those steps are skipped, and a box of bodies is no stuck tile.
+        try:
+            mx = int((self.c.state or {}).get("maxStam") or 0)
+            full = mx <= 0 or int(self.c.stamina or 0) >= mx
+            bodies = {(m.x, m.y) for m in self.c.mobiles(within=1) if not getattr(m, "ghost", False)}
+        except Exception:
+            full, bodies = True, set()
+        dirs = [d for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw") if full or (x0 + STEP[d][0], y0 + STEP[d][1]) not in bodies]
+        if not dirs:
+            self.log(f"no path from {x0},{y0}: boxed in by {len(bodies)} mobiles at stamina {self.c.stamina}/{mx} (a step onto one needs full stamina)")
+            return False
+        for d in dirs:
+            if time.time() - started > 45 or (bodies and self.hp_pct() < self.flee_below()):
+                break                                  # losing health with bodies around: r_flee and the fight-back get the tick
             for _ in range(2):                         # the first walk in a new direction only turns the character to face it
                 try:
                     self.c.call(f"walk {d}", timeout=1.5)
@@ -480,7 +534,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 self.log(f"no path from {x0},{y0}: stepped {d} to {self.c.x},{self.c.y} and tried again")
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
                 return True
-        self.log(f"no path from {x0},{y0}, and no step in any direction moved the character")
+        self.log(f"no path from {x0},{y0}, and no step in any direction moved the character" + (f" ({len(bodies)} mobiles beside it)" if bodies else ""))
+        if bodies:
+            return False                                  # the bodies may be what held it: the ground is not to blame
         self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=6 * 3600)
         wedges = [t for t in self.facts.get("wedged_at", []) if time.time() - t[0] < 600 and (t[1], t[2]) == (x0, y0)] + [(time.time(), x0, y0)]
         self.facts["wedged_at"] = wedges
@@ -682,6 +738,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 kind, rule = "gold", acted                # the sign does not fit that rule: not its doing
             self.dlog("ev", ev=kind, cell=cell_of(self.c.x, self.c.y), rule=rule or acted, gold=g - prev, carried=g)
             goals.income(self, kind, g - prev)
+            self.progress_flow(kind, g - prev, rule or acted)        # the progress check's buy and sale ledger (progress.py)
         self._gold_prev = g
         try:
             goals.tick(self)                                  # the savings goal (feature goals): once a minute
@@ -718,6 +775,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.stall_tick(acted)                            # no progress for 15 min: say why and change course (stall.py)
         except Exception as e:
             self.log(f"stall: {type(e).__name__}: {e}")
+        try:
+            self.progress_tick(acted)                         # is it moving its ambition? stalled, losing or looping: rethink (progress.py)
+        except Exception as e:
+            self.log(f"progress: {type(e).__name__}: {e}")
         if time.time() - getattr(self, "_features_checked", 0) > 30:
             self._features_checked = time.time()
             try:
@@ -742,18 +803,6 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 out.append(SimpleNamespace(serial=m.group(1), name=m.group(2).strip(), distance=int(m.group(3)), x=int(m.group(4)), y=int(m.group(5)), z=int(m.group(6))))
         return out
 
-    def los(self, serial):
-        """Is there a clear line of sight to this mobile? (the `los` command; a spell or arrow at something behind a wall is lost without a word)"""
-        now = time.time()
-        if now - getattr(self, "_los_at", 0) > 0.8:
-            self._los = {}
-            for l in self.c.call("los 12", timeout=6):
-                m = re.match(r"\s+(YES|no)\s+(0x[0-9A-Fa-f]+)", l)
-                if m:
-                    self._los[m.group(2).upper()] = m.group(1) == "YES"
-            self._los_at = now
-        return self._los.get(serial.upper(), True)
-
     def travel(self, x, y, near=2, tries=8, per=60):
         """Walk to (x, y) in hops: a destination beyond the client's loaded map is reached in several goto calls."""
         if self.far_front((x, y), "travel", per):                  # far: a routed walk in legs, resumed by r_far; the hops below are for near places
@@ -763,11 +812,27 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 return True
             before = (self.c.x, self.c.y)
             res = self.goto_near(x, y, near).wait(timeout=per)
-            if self.c.ghost or self.mobs(5):
+            if self.c.ghost:
                 return False
+            th = self.threats(5)
+            if th:
+                self.ev("travel_abort", x=x, y=y, by=th[0].name)
+                return False                                           # a threat, not a town cat: mobs(5) gave up on any grey animal in Britain's streets, and half the
+                                                                       # meat sales never asked the Butcher (MaceCR 14:33, 2026-10-29: at his door, then off to the Tailor)
             if (self.c.x, self.c.y) == before and str(res).startswith(("nopath", "blocked")):
                 return False
         return max(abs(self.c.x - x), abs(self.c.y - y)) <= near
+
+    def beat(self):
+        """A heartbeat inside a long blocking step (a shop walk, an errand): the status file's time is what the supervisor reads, and a brain that writes none for 240 s is
+        killed (BotMaceBR twice, 2026-10-21: one resupply errand of four minutes). Rate-limited to one write a 15 s."""
+        if time.time() - self.__dict__.get("_beat_at", 0) < 15:
+            return
+        self.__dict__["_beat_at"] = time.time()
+        try:
+            self.status(force=True)
+        except Exception:
+            pass
 
     def status(self, force=False):
         if not force and time.time() - self.last_status < 10:
@@ -787,18 +852,27 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             "region": self.region_name(), "home": (self.home() or {}).get("name"),
             **getattr(self, "status_extra", {}), **self.ambition_status(),
         }
-        with open(os.path.join(self.dir, "status.json"), "w", encoding="utf-8") as f:
-            json.dump(s, f)
+        self.write_status_file(s)
         with open(self.totals_path, "w", encoding="utf-8") as f:
             json.dump({"kills": s["kills"], "deaths": s["deaths"], "gains": gains, "uptime": s["uptime"]}, f)
         save_bank(self.dir, self.facts.get("bank_balance", 0))
         self.save_facts()
 
     # facts a new brain takes over from the last one (a restart used to drop the held ground, the camp and which gear was looted)
-    PERSIST = ("ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
+    PERSIST = ("death_spot_t", "shop_sold", "shop_fail", "ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
                "sell_skip_until", "soldout_until", "stocked_at", "bank_balance", "banked_at", "fletch_wait", "wood_wait", "shop_at", "chop_fail",
-               "emptied", "home", "camp_step", "home_region", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at")
+               "emptied", "home", "camp_step", "home_region", "birth_town", "unsafe_homes", "rehome_walk", "field", "fields_rested", "roam_rested", "unsafe_count", "stand_fails", "owned_serials", "lost_pets", "fists", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "deals", "deals_over", "task", "core_goal", "core_bans", "rung", "rung_kills", "arrow_use")
     PERSIST_SETS = ("gear_looted", "emptied")
+
+    # the decision core (task_core.py, feature task_core): the reflexes stay first and unchanged; a brain class with the core (HunterBot) replaces every rule
+    # below them by core_tick() while core_active() says so. BotBase itself has no core.
+    REFLEXES = ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: the shared Refresh rule (basics.py)
+
+    def core_active(self):
+        return False
+
+    def core_tick(self):
+        return None
 
     def save_facts(self):
         out = {}
@@ -855,6 +929,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             dx_, dy_ = self.death_xy()
             self.log(f"ghost at {self.c.x},{self.c.y}, died at {dx_},{dy_}; war mode at death = {self.c.war_mode}")
             self.death_spots.append((dx_, dy_))
+            self.facts.setdefault("death_spot_t", {})[f"{dx_},{dy_}"] = time.time()
             if deathloop.on(self):
                 deathloop.note_death(self, dx_, dy_)
             src = deathsrc.source(self)
@@ -948,8 +1023,18 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if info["gold"] < 60 and not mat and not self.feature("blue_self_loot"):
             self.facts.pop("corpse")
             return False
-        info["tries"] += 1
         x, y = info["xy"]
+        try:
+            import task_core
+            ref = task_core.corpse_refusal(self, x, y) if self.core_active() else None
+        except Exception:
+            ref = None
+        if ref:
+            self.ev("corpse_run_skipped" if ref[0] == "provisioned" else "corpse_run_refused", why=ref[0], dist=ref[1], killer=ref[2], xy=[x, y])
+            self.log(f"not going back to the corpse at {x},{y}: {ref[0]} ({ref[1]} tiles from home, killer {ref[2] or '?'})")
+            self.facts.pop("corpse", None)
+            return False
+        info["tries"] += 1
         if not self.bw_corpse_go() and not self.far_worth_corpse((x, y), info["gold"]):      # a Between Worlds corpse plan goes (bw.py)
             self.facts.pop("corpse", None)                           # 100 gold under a corpse 1,000 tiles away is not worth the walk
             return False
@@ -1038,24 +1123,22 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.on_flee()
         if hasattr(self, "sewer_flee") and self.sewer_flee():                            # in the sewers: out first, potions only if there is no way out (feature sewer_stay)
             return True
-        for item in self.c.backpack if time.time() - self.facts.get("drank", 0) > 12 else ():
-            if item.name == "Yellow Potion":      # a lesser heal potion: yellow, as in the era
-                self.facts["drank"] = time.time()
-                self.c.use(item.serial)
-                self.log("drank a yellow potion at low health")
-                self.ev("consumable_used", item="yellow potion", hp=self.hp_pct())
-                self.note("combat", "At low health the only way to tell the Heal potion is by its color (yellow); nothing in the pack says so.", key="potioncolor")
-                time.sleep(1.5)
-                return True
+        if self.cure_due() and self.potion("cure") is not None:
+            return False                                  # r_cure first: a Heal potion is refused while poisoned (basics.py)
+        if self.drink_heal("low health"):                 # the shared rule: never while poisoned, one every 10 s (BaseHealPotion.Delay)
+            self.log(f"drank a Heal potion at low health (hp {self.c.hp})")
+            self.note("combat", "At low health the only way to tell the Heal potion is by its color (yellow); nothing in the pack says so.", key="potioncolor")
+            time.sleep(1.5)
+            return True
         if self.skill_values.get("Healing", 0) >= 30 and self.bandage_self():
             return True
         threat = threats[0] if threats else None
         if threat:
             self.log(f"fleeing from {threat.name} at hp {self.c.hp}")
             self.chatter("warn", cooldown=600, m=threat.name, where=self.where())
-        self.sprint()
         self.call_guards(threat)
-        self.c.goto(*self.flee_point(threat)).wait(timeout=4)
+        if self.flee_from(threat, first=self.flee_point(threat)) == "trapped" and threat is not None:
+            return self.fight_back(threat)                # no way out (basics.py): fight it
         return True
 
     def on_flee(self):
@@ -1070,9 +1153,32 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if self.facts.get("runmode") != "always":
             self.set_runmode("always")
 
+    RUN_FLOOR = 0.2      # run while stamina is at least this share of its max. Running costs 1 stamina in 16 steps (PlayerMobile.StepsMax 16), plus 1 a step
+                         # below 10% (stamina.additionalLossWhenBelow 0.1), and is refused only at 0 (stamina.cannotRunWhenFatigued): twice that line keeps a
+                         # flight's margin (18 tiles is about 1 stamina, a hit at most 3 under stamina relief). The client's own "auto" walks below half,
+                         # which held carpenters and rangers to 0.35-0.38 s a tile against 0.14-0.18 for the rest (2026-10-30)
+    RUN_RESUME = 0.3     # ... and starts again above this, so a bot near the line does not switch each tick
+
     def sprint_check(self):
-        if self.facts.get("runmode") == "always" and time.time() - self.facts.get("sprint_at", 0) > 8:
-            self.set_runmode("auto")
+        now = time.time()
+        mode = self.facts.get("runmode")
+        if mode == "never":
+            return                                                       # walking on purpose (pacing in town, a recovery walk)
+        if mode == "always" and now - self.facts.get("sprint_at", 0) <= 8:
+            return                                                       # a flight runs whatever the stamina
+        try:
+            mx = int((self.c.state or {}).get("maxStam") or 0)
+            st = int(self.c.stamina or 0)
+        except Exception:
+            mx = st = 0
+        if not mx or now < self.facts.get("walk_until", 0):
+            want = "auto"
+        elif mode == "always":
+            want = "always" if st >= self.RUN_FLOOR * mx else "auto"
+        else:
+            want = "always" if st >= self.RUN_RESUME * mx else "auto"
+        if want != mode:
+            self.set_runmode(want)
 
     def set_runmode(self, mode):
         try:
@@ -1103,23 +1209,253 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     def home(self):
         """The bot's home town (a gazetteer region): remembered, else the town it stands in, else the nearest town; None when it cannot tell yet
         (no gazetteer, or first seen below ground)."""
+        hub = None
+        try:                                              # Britain is the hub (owner, 2026-10-21): a core fighter's home is never anywhere else (MaceBR's home became Trinsic and it hunted among spiders and skeletal knights)
+            if gz is not None and getattr(self, "core_active", lambda: False)() and not (getattr(self, "HOME_DANGER_MOVES", False) or getattr(self, "GATHER_ROAMS", False)):
+                hub = gz.region(BIRTH_TOWN)
+        except Exception:
+            hub = None
+        if hub:
+            cur = getattr(self, "_home", None) or gz.region(self.facts.get("home_region") or "")
+            if (cur and cur.get("name") != hub["name"]) or (self.facts.get("home_region") not in (None, hub["name"])):
+                if time.time() - self.__dict__.get("_home_refused_at", 0) > 600:
+                    self.__dict__["_home_refused_at"] = time.time()
+                    try:
+                        self.ev("home_move_refused", wanted=(cur or {}).get("name") or self.facts.get("home_region"), kept=hub["name"])
+                    except Exception:
+                        pass
+            self.facts["home_region"] = hub["name"]
+            self.facts.setdefault("birth_town", hub["name"])
+            self._home = hub
+            return hub
         h = getattr(self, "_home", None)
         if h:
             return h
         if gz is None:
             return None
         name = self.facts.get("home_region")
+        if "birth_town" not in self.facts and name:
+            self.facts["birth_town"] = BIRTH_TOWN if name != BIRTH_TOWN and gz.region(BIRTH_TOWN) else name
         h = gz.region(name) if name else None
         if not h:
             here = gz.home_region(self.c.x, self.c.y)
+            if here and here.get("kind") == "town" and self.home_unsafe(here["name"]) and gz.region(self.facts.get("birth_town") or BIRTH_TOWN):
+                here = gz.region(self.facts.get("birth_town") or BIRTH_TOWN)      # not a town it left for its deaths (patch_home_town)
             if here and here.get("kind") == "town":
                 h = here
             elif self.c.x < 5120:                         # on the surface: the nearest town; below ground, wait until it is back up
                 h = gz.nearest_town(self.c.x, self.c.y)[0]
         if h:
             self.facts["home_region"] = h["name"]
+            self.facts.setdefault("birth_town", h["name"])          # a new bot: born where it first stands
             self._home = h
         return h
+
+    HOME_DANGER_MOVES = False                             # crafters, miners and fishers move house when their home keeps killing them (patch_home_town)
+
+    ROAM_AFTER = 1260                                     # no free gathering spot near home this long: work moves to another town (patch_gather_roam). An emptied ore bank
+                                                          # refills 10-20 min after (Mining.cs MinRespawn/MaxRespawn): at 600 s the miners left Britain just before its banks came back
+    ROAM_REST = 7200                                      # a town left for want of spots is not taken again for this long
+    ROAM_MIN = 6                                          # a town needs this many spots of the kind
+    ROAM_RISK = 0.25                                      # a town whose spots average more danger than this (the area map, this bot's skill) is left out (patch_roam_safe)
+    ROAM_SAMPLE = 12                                      # spots sampled per town for that
+    ROAM_HEAVY = 0.7                                      # over this share of its weight limit the move waits: sell, smelt or bank first
+
+    ROAM_WINDOW = 3600.0       # the no-free-spot time gather_roam counts decays with this time constant (s)
+
+    def gather_roam(self, kind, free):
+        """Every spot of this kind ("mountains", "shores") near home taken, blocked or worked out for ROAM_AFTER s: the work moves to the mainland town with
+        the most spots for the walk. free: a spot was found now (the clock stops). True when the home moved (patch_gather_roam)."""
+        now = time.time()
+        since = self.__dict__.setdefault("_roam_since", {})       # the brain's own clock, not facts: the 8.7 days the farm was off counted as "no free spot" and both
+        self.facts.pop("roam_since", None)                         # miners left for Cove a minute after the 2026-10-30 start, and died on the way
+        # seconds with no free spot over about the last hour (decaying, time constant ROAM_WINDOW), not one unbroken stretch: Britain's dock has 5-6 fish
+        # banks, each full again within 20 min of its first catch, so a free one came up every few minutes, the old clock never reached ROAM_AFTER and the
+        # fisher stood idle about half of every hour (2026-10-31)
+        acc = self.__dict__.setdefault("_roam_idle", {})
+        last, total = acc.get(kind, (now, 0.0))
+        dt = min(max(0.0, now - last), 120.0)
+        total = total * math.exp(-dt / self.ROAM_WINDOW) + (0.0 if free else dt)
+        acc[kind] = (now, total)
+        if free:
+            since.pop(kind, None)
+            return False
+        since.setdefault(kind, now)
+        if total < self.ROAM_AFTER or gz is None or not getattr(self, "GATHER_ROAMS", False):     # miners and fishers only (patch_step3_fixes)
+            return False
+        w, mw = getattr(self.c, "weight", 0) or 0, getattr(self.c, "max_weight", 0) or 0
+        if mw and w > mw * self.ROAM_HEAVY:
+            return False                                  # not across the wilds with a full pack: sell, smelt or bank first (patch_roam_safe)
+        since.pop(kind, None)
+        acc.pop(kind, None)
+        h = self.home()
+        old = h["name"] if h else None
+        rested = {k: t for k, t in (self.facts.get("roam_rested") or {}).items() if t > now}
+        if old:
+            rested[old] = now + self.ROAM_REST
+        self.facts["roam_rested"] = rested
+        import geo
+        cands = []
+        for t in gz.towns():
+            if t["name"] == old or t["name"] in rested or self.home_unsafe(t["name"]) or t["centre"][0] >= gz.SURFACE_X:
+                continue
+            try:
+                spots = geo.regional(kind, t, [], 300)
+                if kind == "shores":
+                    import fishspot
+                    spots = [s for s in spots if fishspot.has_stand(s)]
+                spots = self.roam_spots(kind, t, spots)
+            except Exception:
+                continue
+            if len(spots) < self.ROAM_MIN:
+                continue
+            d = max(abs(t["centre"][0] - self.c.x), abs(t["centre"][1] - self.c.y))
+            try:
+                from memory import cell_of
+                step = max(1, len(spots) // self.ROAM_SAMPLE)
+                sample = spots[::step][:self.ROAM_SAMPLE]
+                risk = sum(self.gather_risk(cell_of(s[0], s[1])) for s in sample) / max(1, len(sample))
+            except Exception:
+                risk = 0.0
+            if risk > self.ROAM_RISK:
+                continue                                  # a town it would not survive (patch_roam_safe)
+            cands.append((len(spots) / (1.0 + d / 500.0) * (1.0 - risk), t, len(spots), d))
+        best = None
+        try:
+            import walkroute
+            walk = walkroute.get()
+        except Exception:
+            walk = None
+        refused = []
+        for c in sorted(cands, key=lambda c: -c[0])[:4]:
+            if walk is None:
+                best = c
+                break
+            try:
+                pen = self.far_penalty() if hasattr(self, "far_penalty") else None
+                r = walk.plan((self.c.x, self.c.y), (int(c[1]["centre"][0]), int(c[1]["centre"][1])), pen)
+            except Exception:
+                r = None
+            if r is None:
+                continue                                  # an island town has no land route from here
+            bad = self.route_danger(r)
+            if bad:
+                refused.append(f"{c[1]['name']} ({bad})")
+                continue
+            best = c
+            break
+        if not best:
+            self.log(f"gather: no free {kind} spot near {old}, and no other town to go to" + (f": the way to {', '.join(refused)}" if refused else ""))
+            return False
+        _, t, n, d = best
+        why = f"no free {kind} spot near {old} for {int(total) // 60} min of the last hour or so; {t['name']} has {n}, {d} tiles away"
+        self.facts["home_region"] = t["name"]
+        self._home = t
+        for k in ("_mountain_list", "_shore_list"):
+            self.__dict__.pop(k, None)
+        self.facts.pop("home", None)
+        self.facts["rehome_walk"] = True
+        self.log(f"gather: {why}: moving work to {t['name']}")
+        try:
+            self.ev("rehome", **{"from": old, "to": t["name"], "why": why})
+            self.dlog("choice", what="move work", why=why)
+        except Exception:
+            pass
+        return True
+
+    def roam_spots(self, kind, town, spots):
+        """The spots of `kind` a move to `town` would give this brain (a brain that works a smaller radius narrows them: miner.py)."""
+        return spots
+
+    def route_danger(self, r):
+        """'' when a gatherer may walk the planned route (walkroute.plan's dict), else the first cell it must not use (gather_danger: the area danger map at
+        this bot's skill). Every miner move from Britain crossed one (Gargoyles at 1806,1273, Ogres at 2498,767) and cost two deaths a move, 10-19 to 10-30."""
+        from memory import cell_of
+        if getattr(self, "mem", None) is None:
+            return ""                                     # no memory, no map: nothing to judge by
+        seen = set()
+        for x, y in (r.get("path") or [])[::8]:
+            cell = cell_of(int(x), int(y))
+            if cell in seen:
+                continue
+            seen.add(cell)
+            if self.gather_danger(cell):
+                return f"crosses {cell}"
+            if gz is not None and gz.in_town(int(x), int(y)):
+                continue                                  # a guarded town is no killing ground: 1440,1600 beside Britain's healer holds 17 deaths (ghosts
+                                                          # come back there) and refused every walk out of Britain (2026-10-30)
+            n = self.cell_deaths(cell)
+            if n >= HOME_DEATHS:
+                return f"crosses {cell}, where {n} bots no stronger died in {ROUTE_DEATH_DAYS} days"
+        return ""
+
+    def cell_deaths(self, cell):
+        """Deaths in the cell over ROUTE_DEATH_DAYS by bots no stronger than this one (within the danger map's SKILL_MARGIN). Also a gatherer's spot test:
+        BotSmithBR was boxed in and killed by skeletons at the dig spot 1359,1453, in a cell with 11 such deaths, which the 24-hour map had forgotten."""
+        import area_danger
+        mine = area_danger.combat_skill(getattr(self, "skill_values", {}))
+        return sum(1 for sk in route_deaths().get(cell, ()) if sk is None or sk <= mine + area_danger.SKILL_MARGIN)
+
+    def home_unsafe(self, name):
+        return self.facts.get("unsafe_homes", {}).get(name, 0) > time.time()
+
+    def home_danger(self):
+        """An unsafe home (HOME_DEATHS of its own deaths in HOME_WINDOW s within HOME_REACH tiles of it): the home moves to the birth town, else to the
+        nearest other town not left lately, and a walk there is queued. True when it moved."""
+        if not self.HOME_DANGER_MOVES or gz is None or time.time() - self.facts.get("home_checked", 0) < 60:
+            return False
+        self.facts["home_checked"] = time.time()
+        h = self.home()
+        if not h:
+            return False
+        cx, cy = self.home_centre()
+        now = time.time()
+        near = [d for d in self.facts.get("death_log", []) if now - d[0] <= HOME_WINDOW and max(abs(d[1] - cx), abs(d[2] - cy)) <= HOME_REACH]
+        if len(near) < HOME_DEATHS:
+            return False
+        old = h["name"]
+        unsafe = {k: t for k, t in self.facts.get("unsafe_homes", {}).items() if t > now}
+        times = self.facts.setdefault("unsafe_count", {})
+        times[old] = times.get(old, 0) + 1
+        unsafe[old] = now + UNSAFE_FOR * min(32, 2 ** (times[old] - 1))     # each time it kills again, twice as long: the miners went back to Cove and to Minoc every
+                                                                            # 6 h, and each time it cost two deaths (5 moves to Cove, 4 to Minoc, 10-19 to 10-21)
+        self.facts["unsafe_homes"] = unsafe
+        birth = gz.region(self.facts.get("birth_town") or BIRTH_TOWN)
+        towns = [t for t in gz.towns() if t["name"] != old and t["name"] not in unsafe and t["centre"][0] < gz.SURFACE_X]
+        towns.sort(key=lambda t: (not (birth and t["name"] == birth["name"]), max(abs(t["centre"][0] - self.c.x), abs(t["centre"][1] - self.c.y))))
+        new, refused = None, []
+        for t in towns[:4]:
+            # the way there must be ground this bot may walk: BotSmithBR moved from Britain to Cove after two deaths there and died to a gargoyle on the
+            # 680-tile walk (1997,1337, 2026-10-30); a home with no safe way to it is worse than the home it has
+            try:
+                import walkroute
+                r = walkroute.get().plan((self.c.x, self.c.y), (int(t["centre"][0]), int(t["centre"][1])), self.far_penalty() if hasattr(self, "far_penalty") else None)
+            except Exception:
+                r = None
+            bad = "no land route" if r is None else self.route_danger(r)
+            if bad:
+                refused.append(f"{t['name']} ({bad})")
+                continue
+            new = t
+            break
+        if not new:
+            unsafe.pop(old, None)
+            self.facts["unsafe_homes"] = unsafe
+            self.log(f"home: {len(near)} deaths near {old}, but no other town has a safe way to it ({', '.join(refused) or 'none listed'}): staying")
+            self.facts["home_checked"] = time.time() + 1740          # the next look in 30 min, not every minute (four route plans a look)
+            return False
+        why = f"{len(near)} deaths in the last {HOME_WINDOW // 3600} h within {HOME_REACH} tiles of {old}"
+        self.facts["home_region"] = new["name"]
+        self._home = new
+        self.facts.pop("home", None)                      # the crafter's flee spot, taken from the old home
+        self.facts["rehome_walk"] = True
+        self.log(f"home: {why}; moving home to {new['name']} (not {old} again for {int(unsafe[old] - now) // 3600} h)")
+        try:
+            self.ev("rehome", **{"from": old, "to": new["name"], "why": why})
+            self.dlog("choice", what="move home", why=f"{why}: {new['name']}")
+        except Exception:
+            pass
+        return True
 
     def home_centre(self):
         h = self.home()
@@ -1238,6 +1574,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if not a:
             return False
         now = time.time()
+        if self.below_my_tier(a["x"], a["y"]):
+            self.facts.pop("anchor")
+            self.dlog("choice", what="leave camp", why=f"{a['x']},{a['y']} is ground for weaker players (area tier below mine)")
+            return False                                  # patch_camp_tiers2.py
         ev = a["kills"] + a.get("evidence", 0)
         wait = 360 if ev >= 3 else (240 if ev >= 2 else 150)
         if now - a["last"] > wait:
@@ -1264,11 +1604,26 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             time.sleep(3.5)
         return True
 
+    def below_my_tier(self, x, y):
+        """(x, y) lies in a Britain hunting area of a lower tier than this bot patrols (patch_camp_tiers2.py)."""
+        fn = getattr(self, "patrol_tiers", None)
+        if fn is None:
+            return False
+        try:
+            floor = min(fn())
+            if floor <= 1:
+                return False
+            from places import area_tier_at
+            t = area_tier_at(x, y)
+            return t is not None and t < floor
+        except Exception:
+            return False
+
     def revisit_anchor(self):
         """A camp that paid (2 kills or more), left at least six minutes ago so its spawn is back: the next patrol point, before a new place."""
         now = time.time()
         left = self.facts.get("anchors_left", [])
-        ok = [a for a in left if now - a[2] > 360 and a[3] >= 2]
+        ok = [a for a in left if now - a[2] > 360 and a[3] >= 2 and not self.below_my_tier(a[0], a[1])]
         if not ok:
             return None
         a = min(ok, key=lambda a: abs(a[0] - self.c.x) + abs(a[1] - self.c.y))
@@ -1300,6 +1655,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if self.in_sewer():
             return self.home_refuges()[0]                 # a flight from below: the walk home leaves the level through a teleporter (tele_cross)
         dest = self.refuge_from(threat)
+        try:
+            import task_core
+            dest = task_core.box_exit(self, int(dest[0]), int(dest[1]))      # never flee into the undead box (a bot under 120 hit points)
+        except Exception:
+            pass
         if threat is None or max(abs(dest[0] - self.c.x), abs(dest[1] - self.c.y)) <= 60:
             return dest
         dx, dy = self.c.x - threat.x, self.c.y - threat.y
@@ -1313,7 +1673,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if abs(vx) + abs(vy) < 0.3:
             vx, vy = -ty, tx                              # the threat stands between the bot and town: step aside first
         k = max(abs(vx), abs(vy), 1e-6)
-        return self.c.x + round(12 * vx / k), self.c.y + round(12 * vy / k)
+        fx, fy = self.c.x + round(12 * vx / k), self.c.y + round(12 * vy / k)
+        try:
+            import task_core
+            fx, fy = task_core.box_exit(self, int(fx), int(fy))
+        except Exception:
+            pass
+        return fx, fy
 
     def call_guards(self, threat):
         """A player chased into town shouts for the guards. Whether they come for a monster is exactly what is worth finding out."""
@@ -1331,30 +1697,15 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.note("guards", f"Chased into Britain by {threat.name}, the bot shouted 'guards': {'a guard came' if guard else 'no guard came'}"
                             f"{'' if guard else ', and the monster kept on (guards act only on criminals and murderers)'}.", key=f"guards:{self.mkey(threat)}:{guard}")
 
-    def r_cure(self):
-        """Poisoned: cure before anything else. The Orange potion is the Cure potion (five come in the starting kit, from the shard's poison relief); a
-        bandage cures only at Healing 60 or more in this era; a heal spell or a Yellow potion does not stop poison. Never drink Orange for hit points."""
-        if self.c.ghost or not self.c.poisoned or time.time() - self.facts.get("cured_at", 0) < 8:
-            return False
-        self.facts["cured_at"] = time.time()
-        self.activity = "curing poison"
-        pot = next((i for i in self.c.backpack if i.name == "Orange Potion"), None)
-        if pot:
-            self.c.use(pot.serial)
-            time.sleep(1.5)
-            self.ev("consumable_used", item="orange potion", hp=self.hp_pct())
-            self.note("poison", f"Poisoned, the {self.pname} drank an Orange potion (Cure); still poisoned: {self.c.poisoned}. Nothing in the pack names it a Cure potion.", key="cure:orange")
-            return True
-        if self.skill_values.get("Healing", 0) >= 60 and self.c.find("bandage"):
-            return self.bandage_self()
-        self.note("poison", f"A poisoned {self.pname} with no Cure potion left and too little Healing can only run to a healer or wait it out.", key="cure:none")
-        return False
-
     # ---- dressing: after a resurrection the starting gear is back in the pack, not on the body ----------------------------------------------
     WEAPONS = {"Archer": ("bow", "crossbow"), "Ranger": ("bow", "crossbow"), "Bard": ("bow", "crossbow"), "MaceFighter": ("club", "mace", "hammer", "staff"),
                "Fencer": ("kryss", "spear", "fork", "dagger"), "Swordsman": ("katana", "sword", "scimitar", "cutlass", "axe"), "Warlock": ("katana", "sword", "scimitar")}
     ARMOR = ("tunic", "leggings", "sleeves", "gloves", "gorget", "helm", "cap", "coif", "shield", "chest", "arms", "legs")
     CLOTHES = ("shirt", "pants", "shoes", "boots", "doublet", "skirt", "kilt")
+    # the layer a piece takes, by the word in its name (the client's layer names, lower case): a layer already worn is dressed, whatever the piece's name
+    LAYER_OF = {"tunic": "innertorso", "chest": "innertorso", "leggings": "pants", "legs": "pants", "pants": "pants", "skirt": "pants", "kilt": "pants", "sleeves": "arms",
+                "arms": "arms", "gloves": "gloves", "gorget": "neck", "helm": "helmet", "cap": "helmet", "coif": "helmet", "shield": "twohanded", "shirt": "shirt",
+                "doublet": "shirt", "shoes": "shoes", "boots": "shoes"}
 
     def r_gear(self):
         """Put the gear in the pack back on: a resurrected character comes back in a death robe with its weapon and armour in the backpack, and fights
@@ -1374,6 +1725,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 todo.append(weapon)
         for it in self.c.backpack:
             low = it.name.lower()
+            layer = next((l for w, l in self.LAYER_OF.items() if w in low), None)
+            if layer and layer in worn:
+                continue                                   # that layer is dressed (leather leggings over long pants swapped every minute; sim run 2026-10-19)
             if any(a in low for a in self.ARMOR) and low not in names:
                 todo.append(it)
             elif any(c in low for c in self.CLOTHES) and low not in names and not any(c in n for n in names for c in self.CLOTHES if c in low):
@@ -1424,15 +1778,38 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.c.goto(*self.flee_point(m)).wait(timeout=8)     # away from it, and toward town, not out into the wilds
         return True
 
+    @staticmethod
+    def bandage_seconds(dex):
+        """How long a bandage on oneself takes, pre-AOS: 9.4 + 0.6 x (120 - Dex) / 10 seconds (UOContent Items/Skill Items/Misc/Bandage.cs, BandageContext.BeginHeal)."""
+        return 9.4 + 0.6 * (120 - max(0, min(120, int(dex or 0)))) / 10.0
+
     def bandage_self(self):
+        """Bandage oneself and wait for the server's answer in the journal for the engine's bandage time plus 3 s. A new bandage while one is on cancels the first
+        (BandageContext.BeginHeal stops the old context), so it never starts another inside that time (the Watcher, 2026-10-29: the old wait listened for
+        BANDAGE_DONE events the farm's client never sends, gave up at 12 s, and 93 of 105 bandages were 'no answer', each one restarting the clock)."""
         b = self.c.find("bandage")
         if not b or self.hp_pct() > 80:
             return False
-        self.c.events.drain()
+        secs = self.bandage_seconds((self.c.state or {}).get("dex"))
+        if time.time() - self.facts.get("bandage_at", 0) < secs + 1:
+            time.sleep(1.0)
+            return True                                    # one is on: let it finish
+        self.facts["bandage_at"] = time.time()
+        self.read_journal()
+        before = self.c.hp
         self.c.use_on(b.serial, "self")
-        ev = self.c.wait_for([Event.BANDAGE_DONE, Event.BANDAGE_FAILED], timeout=12)
-        self.log(f"bandage: {ev.text[:60] if ev else 'no answer'}")
-        self.ev("consumable_used", item="bandage", hp=self.hp_pct(), ok=bool(ev))
+        deadline = time.time() + secs + 3
+        text = ""
+        while time.time() < deadline:
+            time.sleep(1.0)
+            for l in self.read_journal():
+                if re.search(r"bandage|heal|must wait|not damaged|fingers slip", l, re.I):
+                    text = l
+            if re.search(r"barely help|finish applying|you heal|cannot|not damaged|interrupt|stop|must wait|slip", text, re.I) and "begin" not in text.lower():
+                break
+        ok = bool(re.search(r"barely help|finish applying|you heal", text, re.I))
+        self.log(f"bandage ({secs:.1f} s): {text[:70] or 'no answer'} -> {before} to {self.c.hp}")
+        self.ev("consumable_used", item="bandage", hp=self.hp_pct(), ok=ok, gained=int(self.c.hp or 0) - int(before or 0))
         return True
 
     def open_corpse(self, corpse):
@@ -1473,8 +1850,23 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 if tries[corpse.serial] >= 3 or str(res).startswith("nopath"):
                     self.facts["looted"].add(corpse.serial)
                 return True
+        return self.loot_corpse(corpse)
+
+    LOOT_NEVER = ()                                       # (the Watcher first said robes, boots, cloaks sell nowhere; the shared vendor lists show they do: 40, 75, 35)
+    CORPSE_NAMES = {"deer": ("hind", "greathart"), "hare": ("rabbit",)}              # corpse name -> the profit table's keys (creature_stats 'name' is the living creature's: a hind's corpse reads "deer")
+    LOOT_CLOTHES = ("robe", "cloak", "boots", "hat", "sash", "empty bottle")      # light things that sell: looted while the pack is under 70% of its weight
+
+    def loot_corpse(self, corpse):
+        """Standing at a corpse: open it, carve it when a blade is carried and the kind carves, take what is worth taking (r_loot's second half; the
+        hunt tree (hunt_tree.py) loots the bot's own kills through this)."""
         self.facts["looted"].add(corpse.serial)
         opened, forbidden = self.open_corpse(corpse)
+        kind_key = items.corpse_kind(corpse.name)
+        if not opened:
+            try:                                              # why a loot step took nothing (the Watcher, 2026-10-21)
+                self.ev("loot_empty", prey=kind_key, opened=bool(opened), forbidden=bool(forbidden))
+            except Exception:
+                pass
         if not opened and not forbidden:
             # "You must wait to perform another action": the corpse did not open, so the server has not said whether taking from it is a crime.
             # Carving it anyway made BotFencerBR a criminal (another bot's fresh kill): open it again in a moment, at most three times
@@ -1494,13 +1886,45 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if any(0x203B <= (it.graphic or 0) <= 0x204D for it in contents):
             self.log(f"{corpse.name} has hair or a beard in it: a person's corpse, left alone")
             return True
-        if getattr(self, "CARVE", False) and any(k in corpse.name.lower() for k in self.CARVE_KINDS) and self.c.weight < self.c.max_weight * 0.7:
+        carves = False
+        if getattr(self, "CARVE", False):
+            try:                                              # a kind carves when the profit table (the engine's loot data) has meat or hides for it, not only the old name list
+                import profit
+                for k_ in (kind_key,) + self.CORPSE_NAMES.get(kind_key, ()):          # a corpse reads "deer" or "hare", the table's keys are hind/greathart and rabbit
+                    e_ = profit.table().get(k_)
+                    if e_ and (float(e_.get("meat") or 0) > 0 or float(e_.get("hides") or 0) > 0):
+                        carves = True
+            except Exception:
+                carves = False
+            carves = carves or any(k in corpse.name.lower() for k in self.CARVE_KINDS)
+        why_not = None
+        last_line = ""
+        room = self.carve_room(kind_key)
+        if not getattr(self, "CARVE", False) or not carves:
+            why_not = "not_carvable"
+        elif not room:
+            why_not = "heavy"
+        else:
             blade = self.carving_blade()
-            if blade:
-                # a blade on the corpse: the meat goes into the corpse, then it is looted like the rest (G13b)
-                self.c.events.drain()
-                self.c.use(blade.serial)
-                if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is not None:
+            if not blade:
+                why_not = "no_blade"
+            else:
+                # a blade on the corpse: the meat goes into the corpse, then it is looted like the rest (G13b). The corpse was opened a moment ago: the shard's action delay answers
+                # "You must wait to perform another action" to a use too soon after (no cursor), so wait for the delay and try again, up to three times.
+                got_cursor = False
+                attempt = 0
+                for attempt in range(3):
+                    time.sleep(1.1 + 0.6 * attempt)
+                    self.c.events.drain()
+                    self.c.use(blade.serial)
+                    if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is not None:
+                        got_cursor = True
+                        break
+                    lines = self.read_journal()
+                    last_line = (lines[-1] if lines else "")[:80]
+                    if not any("must wait" in l.lower() for l in lines):
+                        break
+                if got_cursor:
                     self.c.target(corpse.serial)
                     time.sleep(1.5)
                     self.read_journal()
@@ -1508,19 +1932,58 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                         contents = self.c.container(corpse.serial, timeout=5) or contents
                     except Exception:
                         pass
+                    try:
+                        self.ev("carve", prey=kind_key, meat=sum((it.amount or 1) for it in contents if "raw " in it.name.lower()),
+                                hides=sum((it.amount or 1) for it in contents if "hide" in it.name.lower()), tries=attempt + 1, blade=(blade.name or "")[:20])
+                    except Exception:
+                        pass
+                else:
+                    why_not = "no_cursor"
+        if why_not:
+            try:
+                self.ev("carve_skipped", prey=kind_key, why=why_not, line=(last_line if why_not == "no_cursor" else ""))
+            except Exception:
+                pass
+        scissors = next((i for i in self.c.backpack if "scissors" in (i.name or "").lower()), None)
+        if getattr(self, "CARVE", False) and self.core_active() and scissors is not None and not self.threats(8):
+            cut = 0
+            for pile in [i for i in contents if "hide" in (i.name or "").lower()][:3]:
+                # the owner (2026-10-29): hides are cut on the corpse and the leather picked up: the engine allows it before AOS (Hides.Scissor checks the
+                # backpack only under Core.AOS) and drops the leather in the same container (Item.ScissorHelper); a hide weighs 5 stones, its leather 1
+                self.c.events.drain()
+                self.c.use(scissors.serial)
+                if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+                    break
+                self.c.target(pile.serial)
+                time.sleep(1.2)
+                self.read_journal()
+                cut += 1
+            if cut:
+                try:
+                    contents = self.c.container(corpse.serial, timeout=5) or contents
+                except Exception:
+                    pass
+                self.ev("cut_on_corpse", prey=kind_key, piles=cut, leather=sum((it.amount or 1) for it in contents if (it.name or "").lower().endswith("leather")))
         if not contents:
             self.note("loot", "An empty corpse still opens by itself.", key="emptycorpse")
+            try:
+                self.ev("loot_empty", prey=kind_key, opened=True, forbidden=False, contents=0)
+            except Exception:
+                pass
             return True
         worth = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire",
                  "emerald", "diamond", "amber", "citrine", "tourmaline", "arrow", "bolt", "feather") + (self.MATERIALS if self.LOOT_MATERIALS else ())
         # weapons and armour to sell, while there is room for them (a fighter's living: G13); carved meat for the Butcher (G13b)
         gear = getattr(self, "LOOT_GEAR", ()) if self.c.weight < self.c.max_weight * 0.7 else ()
         worth += (("amethyst", "star sapphire") if self.feature("livelihood") else ())
-        worth += gear + (("raw ",) if getattr(self, "CARVE", False) and self.c.weight < self.c.max_weight * 0.7 else ())
+        worth += (self.LOOT_CLOTHES if self.c.weight < self.c.max_weight * 0.7 else ())
+        worth += gear + (("raw ",) if getattr(self, "CARVE", False) and room else ())
+        if getattr(self, "CARVE", False) and self.core_active() and room:
+            worth += ("hide", "cut up leather")                                 # a core bot's sell errand cuts hides into leather for the Tanner (owner, 2026-10-20); the rule list's r_lighten drops them
         meat_value = 0
         gold0 = self.c.gold
         for it in contents:
-            if not any(w in it.name.lower() for w in worth):
+            if not any(w in it.name.lower() for w in worth) or any(w in it.name.lower() for w in self.LOOT_NEVER):
                 continue
             for attempt in range(4):
                 time.sleep(0.9 if attempt == 0 else 1.2)
@@ -1532,15 +1995,36 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.stats["loot"][it.name] = self.stats["loot"].get(it.name, 0) + (it.amount or 1)
             if any(w in it.name.lower() for w in gear):
                 self.facts.setdefault("gear_looted", set()).add(it.serial)
-            if it.name.lower().startswith("raw "):
-                meat_value += (it.amount or 1) * next((p for w, p in (("ribs", 8), ("lamb", 4), ("bird", 4), ("chicken", 3)) if w in it.name.lower()), 3)
+            if items.is_meat(it.name):
+                meat_value += (it.amount or 1) * items.sale_price(it.name)
         self.log(f"looted {corpse.name}: {[str(x) for x in contents]}")
+        if getattr(self, "CARVE", False) and self.core_active() and any("hide" in (i.name or "").lower() for i in self.c.backpack)                 and any("scissors" in (i.name or "").lower() for i in self.c.backpack) and not self.threats(8):
+            try:
+                import errands
+                errands.cut_hides(self, {"scissors_tried": True})        # a hide weighs 5 stones, its leather 1 (Hides.cs, Leathers.cs): cut at once, not at the Tanner
+            except Exception:
+                pass
         if meat_value:
             self.ev("carve", corpse=corpse.name, meat_value=meat_value)
         if self.c.gold - gold0 + meat_value > 0:
             # gold, and what the carved meat will fetch at the Butcher: what a kill of this kind is worth (G12's gold term)
-            self.mem.record("loot", cell=cell_of(corpse.x, corpse.y), gold=self.c.gold - gold0 + meat_value, m=re.sub(r"[^a-z]", "", re.sub(r"( corpse| remains)$", "", re.sub(r"^(an?|the) ", "", corpse.name.lower()))))
+            self.mem.record("loot", cell=cell_of(corpse.x, corpse.y), gold=self.c.gold - gold0 + meat_value, m=items.corpse_kind(corpse.name))
         return True
+
+    def carve_room(self, kind_key):
+        """Room in the pack for a carve of this kind: the weight now, plus its hides at 5 stones and its meat at 1 (Hides.cs DefaultWeight 5.0, CookableFood 1.0; the
+        profit table's counts), within the most the character can carry. The old line was 70% of the limit, worn armour included: 203 of 302 melee carves were
+        skipped as "heavy" in two hours (the Watcher, 2026-10-29), most with hides that are cut into 1-stone leather straight after."""
+        try:
+            import profit
+            e = profit.table().get(kind_key) or {}
+            for k_ in self.CORPSE_NAMES.get(kind_key, ()):
+                e = e or profit.table().get(k_) or {}
+            per_hide = items.unit_weight("leather") if any("scissors" in (i.name or "").lower() for i in self.c.backpack) else items.unit_weight("hides")      # cut on the corpse: leather
+            need = per_hide * float(e.get("hides") or 0) + items.unit_weight("raw ribs") * float(e.get("meat") or 0)
+        except Exception:
+            need = 20.0
+        return self.c.weight + need <= self.c.max_weight
 
     def junk_in_pack(self):
         keep = self.KEEP
@@ -1553,14 +2037,19 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             "ingot", "ore", "board", "log", "hide", "leather", "cloth", "feather", "shaft", "tool", "hammer", "tongs", "saw", "pickaxe", "shovel", "pole", "kit",
             "mortar", "needle", "sewing", "fish", "instrument", "lute", "drum", "harp", "tambourine", "bow", "crossbow", "mace", "club", "kryss", "katana", "sword",
             "shield", "armor", "tunic", "robe", "hat", "cap", "boots", "gloves", "sleeves", "leggings", "gorget", "helm", "pants", "shirt", "cloak", "sash", "apron",
-            "skirt", "kilt", "sandals", "shoes", "fork", "knife", "axe", "staff", "spear", "halberd", "cleaver", "scimitar", "broadsword", "longsword", "hatchet")
+            "skirt", "kilt", "sandals", "shoes", "fork", "knife", "axe", "staff", "spear", "halberd", "cleaver", "scimitar", "broadsword", "longsword", "hatchet") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
 
     def r_bank(self):
         """Rich (450+ gold) or too heavy with leftovers: bank the gold above a reserve."""
         if self.threats(10) or self.hp_pct() < 60 or time.time() - self.facts.get("bank_fail", 0) < 180 or time.time() - self.facts.get("banked_at", 0) < 240:
             return False
         rich = self.c.gold >= self.RICH_GOLD
-        heavy = self.c.weight > self.c.max_weight * 0.8 and bool(self.junk_in_pack())
+        made = hasattr(self, "is_product") and any(self.is_product(i.name) for i in self.c.backpack)
+        unsold = made and (time.time() < self.facts.get("sell_skip_until", 0) or not self.products())      # selling paused, or every piece struck as unsold
+        unsold = unsold or time.time() - self.facts.get("craft_heavy_at", 0) < 300      # r_craft refused the weight (pieces from an older menu are no "product")
+        # (a crafter heavy with what no shop bought: r_sell waits out sell_skip_until and r_craft refuses a heavy pack, so only a bank visit, whose heavy
+        # pass banks the unsold products, breaks it; BotCarpAR stood 18 min with 40 game boards and 20 backgammon boards at 354/390, 2026-10-30)
+        heavy = self.c.weight > self.c.max_weight * 0.8 and (bool(self.junk_in_pack()) or unsold)
         overloaded = self.facts.get("bank_heavy") and self.c.weight > self.c.max_weight * 0.9
         # a player banks the surplus before going out again and carries 50-100: bots that carried their 500 lost it at every death
         core = self.home_core()                           # the city itself, not the farmland in the town region
@@ -1588,10 +2077,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 self.log(f"overloaded ({self.c.weight}/{self.c.max_weight}): banking from here, {max(abs(self.c.x - bank[0]), abs(self.c.y - bank[1]))} tiles from the banker")
                 return "arrived"
             if self.c.stamina <= 2:
-                red = next((i for i in self.c.backpack if i.name == "Red Potion"), None)
+                red = self.potion("refresh")
                 if red is not None:
                     self.log("overloaded and out of stamina: a Refresh potion before the walk to the bank")
-                    self.c.use(red.serial)
+                    self.drink(red)
                     time.sleep(1.5)
         if self.feature("bank_spread"):
             return self.bank_spread_walk(bank)
@@ -1635,6 +2124,67 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return True
         return time.time() - self.facts.get("bank_full_at", 0) < 1800
 
+    CLEAR_N = 12                                          # stacks a full bank box is cleared of per visit (patch_bank_clear)
+    CLEAR_SHARE = 0.8                                     # sellable stacks come out into the pack only up to this share of the weight limit
+
+    def toss_old_pieces(self):
+        """The box is full and a crafter is still too heavy to craft: pieces it made under an older menu whose names hold its material word but are not
+        the material ("game board", "backgammon board" for a carpenter) and that no shop is recorded buying go on the ground. BotCarpAdvR carried 56 of
+        them (only barkeepers and innkeepers buy them, 1 gold each, SBBarkeeper/SBInnKeeper) and banked one piece a visit for an hour (2026-10-30)."""
+        words = (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ()))
+        tossed = 0
+        for it in list(self.c.backpack):
+            low = (it.name or "").lower()
+            if not any(w in low for w in words) or self.is_material(low):
+                continue
+            held = self.held_per_stone() if hasattr(self, "held_per_stone") else 0.0
+            if any(p > 0 and p / items.unit_weight(low) >= held for p, xy, item in self.mem.vendor_buying(low) if item == low):
+                continue                                                  # a shop pays for it, at least what the material is worth a stone: sold, not thrown away
+                                                                          # (a board game: 1 gold for 5 stones, against a carpenter's boards at 2 a stone)
+            if not self.drop_to_ground(it):
+                continue
+            tossed += 1
+            if self.c.weight <= self.c.max_weight * self.CLEAR_SHARE:
+                break
+        if tossed:
+            self.log(f"bank box full and still heavy: threw out {tossed} old pieces no shop buys, weight now {self.c.weight}/{self.c.max_weight}")
+            self.ev("shed", how="toss_old_pieces", item="old pieces", qty=tossed)
+        return tossed
+
+    def bank_clear(self, box):
+        """The bank box is full: throw out what no shop buys (biggest stacks first), then take out what a shop buys for the next selling trip.
+        Returns (tossed, taken) (patch_bank_clear)."""
+        try:
+            items = list(self.c.container(box, timeout=6))
+        except Exception:
+            return 0, 0
+
+        def price(it):
+            n = (it.name or "").lower()
+            try:
+                return max([p for p, xy, item in self.mem.vendor_buying(n) if item == n] or [0])
+            except Exception:
+                return 0
+        cand = [i for i in items if (i.name or "") and not any(w in (i.name or "").lower() for w in self.OVERLOAD_ESSENTIAL)]
+        worthless = sorted([i for i in cand if price(i) <= 0], key=lambda i: -(i.amount or 1))
+        sellable = sorted([i for i in cand if price(i) > 0], key=lambda i: -(price(i) * (i.amount or 1)))
+        tossed = taken = 0
+        for it in worthless[:self.CLEAR_N]:
+            if not self.drop_to_ground(it, box=box):
+                continue
+            tossed += 1
+        for it in sellable:
+            if tossed + taken >= self.CLEAR_N or self.c.weight >= self.c.max_weight * self.CLEAR_SHARE:
+                break
+            self.c.get_item(it.serial, it.amount if (it.amount or 1) > 1 else None)
+            time.sleep(1.2)
+            taken += 1
+        self.log(f"bank box full: threw out {tossed} stacks nobody buys, took out {taken} to sell (box had {len(items)} items)")
+        self.ev("bank_cleared", tossed=tossed, taken=taken, items=len(items))
+        if tossed or taken:
+            self.facts["bank_full_at"] = 0                # room again: the next deposit tries (a refusal marks it full again)
+        return tossed, taken
+
     def bank_overload_pass(self, box, share=0.85):
         """Overloaded after the usual deposit: everything but the essentials and one of each tool goes in, biggest stacks first, to 85% of the limit."""
         before = self.c.weight
@@ -1659,6 +2209,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.ev("shed", how="bank_products", item="products", qty=max(0, before - self.c.weight), stacks=moved)
 
     def visit_bank(self, why, withdraw=0, reserve=200, extra=()):
+        self.beat()
         banks = self.bank_xys()
         self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
         res = self.far_front(banks[0], "bank", 90, self.c.gold + (self.facts.get("bank_balance", 0) if withdraw else 0))      # a withdrawal is worth what is banked
@@ -1682,9 +2233,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         box = m.group(1)
         self.note("bank", "The bank box opens when the player says 'bank' near a banker; gold goes in by dragging it onto the box, and comes out by saying 'withdraw <amount>'.", key="howbank")
         self.c.open_backpack()
+        deed = self.house_state().get("deed_serial") if hasattr(self, "house_state") else None     # a house deed is named just "deed": KEEP cannot hold it (SorcAR banked a 16,000-gold one, 2026-10-30)
         for it in list(self.c.backpack):
             low = it.name.lower()
-            if (any(w in low for w in self.KEEP) and not any(w in low for w in extra)) or low == "backpack" or "bandage" in low:
+            if (any(w in low for w in self.KEEP) and not any(w in low for w in extra)) or low == "backpack" or "bandage" in low or it.serial == deed:
                 continue
             self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
             time.sleep(1.4)
@@ -1692,6 +2244,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.bank_overload_pass(box)                                  # still too heavy to walk: the products and spares go in too (patch_overload_bank.py)
         elif why == "heavy" and hasattr(self, "products") and self.c.weight > self.c.max_weight * 0.7:
             self.bank_overload_pass(box, 0.7)                             # a crafter's heavy visit: what nobody bought goes in (patch_craft_weight.py)
+        if self.bank_box_full():
+            self.bank_clear(box)                                          # a full box takes nothing, gold included: make room (patch_bank_clear)
+            if hasattr(self, "toss_old_pieces") and hasattr(self, "is_material") and self.c.weight > self.c.max_weight * self.CLEAR_SHARE:
+                self.toss_old_pieces()                                    # (crafters only)
+        elif why != "overloaded":
+            self.bank_goods_out(box)                                      # goods banked before come back out for the shops (basics.py)
+        if hasattr(self, "house_deed_from_bank"):
+            self.house_deed_from_bank(box)                                # a house deed an earlier visit banked comes back for placing (housegoal.py)
         reserve = goals.reserve(self, reserve, why)                      # saving for a goal: the purse stays small
         gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
         if gold and self.c.gold > reserve + 50:
@@ -1717,14 +2277,18 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.facts["banked_at"] = time.time()
         return True
 
+    SHOP_NEAR = 8          # a vendor list is filed under the shop only when the bot stands this close to it (goto_near asks 4; vendors stray a few tiles)
+
     def shop_at(self, xy, wanted: dict, budget=None):
         """Walk to a shop, find the vendor by trying every person there ("<name> buy"), buy what `wanted` lists ({substring: target amount}). Returns what was bought."""
+        self.beat()
         res = self.far_front(xy, "shop", 90)
         if res:
             self.far_after(res, "shop")
             self.facts["shop_list_opened"] = False
             return {}
         res = self.goto_near(xy[0], xy[1], 4).wait(timeout=self.__dict__.pop("shop_walk_s", 90) if self.feature("restock_fix") else 90)
+        self.beat()
         self.log(f"to the shop at {xy}: {res}")
         if self.feature("restock_fix") and str(res).startswith(("nopath", "blocked", "timeout")):
             self.facts.setdefault("shop_nopath", {})[tuple(xy)] = time.time() + 600       # the next restock begins at another shop of the role
@@ -1760,7 +2324,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             mm = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", l)
             if mm:
                 rows.append([mm.group(4).strip(), int(mm.group(2)), int(mm.group(3))])
-        if rows:
+        at_shop = max(abs(self.c.x - xy[0]), abs(self.c.y - xy[1])) <= self.SHOP_NEAR
+        if rows and at_shop:                                # a walk that ended short asked whoever stood there: their list is not this shop's
             self.mem.record("vendor", xy=f"{xy[0]},{xy[1]}", name=vendor_name, stock=rows)
         json.dump(shops, open(os.path.join(FARM, "shops.json"), "w", encoding="utf-8"), indent=1)
         have = {}
@@ -1785,6 +2350,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                         bought[name] = n
                         got[sub] = got.get(sub, 0) + n * units
                     break
+        if not self.facts["shop_had_wanted"] and at_shop:
+            # no list at this shop offered anything wanted: off this shop in the shared memory (the "sold out" mark, memory.py), else a stale record sends
+            # every bot back - one list mis-filed at 1467,1686 (Neoma the Tinker's, 40 tiles away) sent BotMinerAR there for a pickaxe every 5 min (2026-10-31)
+            self.mem.record("vendor", xy=f"{xy[0]},{xy[1]}", name="", stock=[[sub.lstrip("="), 0, 0] for sub in wanted])
         if not cart and self.feature("restock_fix"):
             try:
                 self.log(self.shop_why(xy, stock, wanted, gold, have))
@@ -1818,6 +2387,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     def wants(sub, name):
         """Does a shop line's item name match a `wanted` key? "=arrow" means exactly "arrow"; any other key is a part of the name."""
         n = name.strip().lower()
+        if sub in ("board", "log"):
+            # the whole name: a carpenter restocking "board" bought 10 Backgammon Boards and 3 Checker Boards at the Carpenter (2026-10-30), the start
+            # of the 50 board games that stalled BotCarpAR (crafter.matname has the same rule)
+            return n in (sub, sub + "s")
         return n == sub[1:] if sub.startswith("=") else sub in n
 
     def vendor_list(self, vendor, kind):
@@ -1865,11 +2438,17 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                  if v2.get("name") and any(p > 0 and any(w in item for w in words) for item, p in v2["buys"].items())}
         people = sorted([m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")],
                         key=lambda m: (m.name not in known, m.distance))
+        fallback = []
         for v in people:
             offers = self.vendor_list(v, "sell")
             if any("gp" in l for l in offers):
-                break
+                if any(re.search(r"(\d+)gp\s+x\d+\s+(.+)", l) and any(w in re.search(r"(\d+)gp\s+x\d+\s+(.+)", l).group(2).lower() for w in words)
+                       and int(re.search(r"(\d+)gp", l).group(1)) > 0 for l in offers):
+                    break                                          # this vendor pays for something wanted (Noella at the tailor's paid nothing for a robe, Chantal 40)
+                fallback = fallback or offers
             offers = []
+        else:
+            offers = fallback
         if not offers:
             self.note("sell", "Saying '<vendor> sell' near the vendor opened no list of what the vendor buys.", key="nosell")
             return 0
@@ -2014,7 +2593,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         last = tuple(getattr(self, "SHED_LAST", ()))
         def rank(i):
             n = i.name.lower()
-            return any(w in n for w in last), next((k for k, w in enumerate(self.HEAVY_THINGS) if w in n), 99), -(i.amount or 1)
+            # the least gold a stone first (items.py: a shop's price over the piece's weight; material no shop buys 0), then the old material order. By the
+            # material order alone an archer a few stones over dropped 48 cut leather, 5 gold a stone, before its meat (2026-10-30)
+            return any(w in n for w in last), items.sale_price(n) / items.unit_weight(n), next((k for k, w in enumerate(self.HEAVY_THINGS) if w in n), 99), -(i.amount or 1)
         if time.time() < self.facts.get("drop_refused_until", 0):
             return False                                  # dropping was refused a moment ago: let r_bank walk to the bank box instead
         stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=rank)
@@ -2047,11 +2628,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.facts["bank_heavy"] = True
             return False
         left = 0
+        need = max(1.0, float(over))                      # stones to shed: only that much of a stack goes, not the whole stack
         for it in stacks[:3]:
-            amt = it.amount or 1
-            self.c.call(f"dropground {it.serial} {amt}", timeout=8)
-            time.sleep(1.5)
-            still = any(i.serial == it.serial for i in self.c.backpack)
+            if need <= 0:
+                break
+            amt = min(int(it.amount or 1), int(math.ceil(need / items.unit_weight(it.name)))) if items.is_goods(it.name) else (it.amount or 1)
+            need -= amt * items.unit_weight(it.name)
+            still = not self.drop_to_ground(it, amt)
             left += still
             self.log(f"{'tried to drop' if still else 'dropped'} {amt} {it.name} to get under the weight limit")
             if not still:
@@ -2083,12 +2666,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if self.mobs(10) or (self.hp_pct() >= self.REST_BELOW and not self.tired()):
             return False
         if self.tired() and time.time() - self.facts.get("refreshed_at", 0) > 60:
-            red = next((i for i in self.c.backpack if i.name == "Red Potion"), None)     # Refresh: red, as in the era
+            red = self.potion("refresh")     # Refresh: red, as in the era (items.POTION_NAMES)
             if red:
                 self.facts["refreshed_at"] = time.time()
-                self.c.use(red.serial)
+                ok = self.drink(red)
                 self.log(f"drank a Refresh potion at stamina {self.c.stamina}")
-                self.ev("consumable_used", item="red potion", hp=self.hp_pct())
+                self.ev("consumable_used", item="red potion", hp=self.hp_pct(), ok=ok)
                 time.sleep(1.5)
                 return True
         if self.tired():
@@ -2221,9 +2804,26 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     BIRDS = ("towhee", "sparrow", "swallow", "nightingale", "plover", "thrush", "tern", "warbler", "finch", "starling", "bird", "magpie", "crow",
              "raven", "pigeon", "gull")
 
+    def feathers_pay(self, k):
+        """A kind whose carve gives feathers (the engine's Feathers, profit.table) and whose measured fight pays for this bot's group (measured.net > 0): birds are
+        prey again (the Watcher, 2026-10-29: melee kill 83% of 443 bird fights in a median 1.4 s with no death; 25 feathers at 1 gold and the meat, 28 gold a carve)."""
+        try:
+            import profit
+            import measured
+            if not (profit.table().get(k) or {}).get("feathers"):
+                return False
+            n = measured.net(self, k)
+            return n is not None and n > 0
+        except Exception:
+            return False
+
     def critter_skip(self, m):
-        """A small critter (a bird, a cat, a squirrel...) is no prey from CRITTER_SKILL on, unless it is on top of the bot (patch_critters.py)."""
+        """A small critter (a bird, a cat, a squirrel...) is no prey from CRITTER_SKILL on, unless it is on top of the bot (patch_critters.py), or a feathered kind
+        that pays (feathers_pay)."""
         if (m.distance or 0) <= 1:
+            return False
+        key = re.sub(r"[^a-z]", "", (getattr(m, "species", None) or re.sub(r"^(an?|the) ", "", (m.name or "").lower())).lower())    # as mkey (HunterBot's): casters have none
+        if self.feathers_pay(key):
             return False
         n = (m.name or "").lower()
         caster = (getattr(self, "pname", "") or "") in ("PureMage", "Warlock", "Sorcerer")
@@ -2235,25 +2835,6 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except Exception:
             skill = 0
         return skill >= self.CRITTER_SKILL
-
-    HARMLESS = ("rat", "cat", "dog", "bird", "chicken", "rabbit", "sheep", "cow", "pig", "goat", "hind", "deer", "crow", "magpie", "sparrow", "swallow",
-                "nightingale", "plover", "thrush", "tern", "warbler", "squirrel", "toad", "frog", "lizard", "gull", "raven", "finch", "towhee", "starling")
-
-    def threats(self, within):
-        """Hostiles that can hurt a working character: mobs() without the town animals (a rat beside the forge is no reason to stop working; the
-        Fisherman once stood idle for twenty minutes because two rats were near)."""
-        out = []
-        for m in self.mobs(within):
-            n = m.name.lower()
-            if n.startswith(("a ", "an ")) and any(re.search(r"\b" + re.escape(w) + r"\b", n) for w in self.HARMLESS) and not any(w in n for w in ("giant", "dire", "plague", "rat man", "ratman")):
-                continue
-            out.append(m)
-        return out
-
-    @staticmethod
-    def mkey(m):
-        """The memory's name for a kind of monster: its body species when the client knows it ("orc" for a personally named orc), else its name without the article."""
-        return re.sub(r"[^a-z]", "", (m.species or re.sub(r"^(an?|the) ", "", m.name.lower())).lower())
 
     def observe(self):
         self.sprint_check()
@@ -2289,7 +2870,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except Exception:
             pass
         pause = os.path.join(self.dir, "pause")
-        hang_file = open(os.path.join(self.dir, "hang.txt"), "w")
+        hang = os.path.join(self.dir, "hang.txt")
+        try:
+            if os.path.getsize(hang) > 0:
+                os.replace(hang, os.path.join(self.dir, "hang.prev.txt"))     # the last brain's stack, kept: the "w" below used to wipe it at every restart
+        except OSError:
+            pass
+        hang_file = open(hang, "w")
         while time.time() < end:
             faulthandler.dump_traceback_later(150, repeat=False, file=hang_file)      # a tick that takes over 150 s leaves its stack in hang.txt
             if os.path.exists(pause):              # `touch work/botfarm/<name>/pause` hands the character to a human or a test script
@@ -2306,7 +2893,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     continue
                 acted = None
                 t_rules = time.time()
+                core = self.core_active()                      # the decision core (task_core.py): only the reflexes, then the core's own tick
                 for name in self.far_rules():                  # the brain's RULES with r_far (a far walk under way) before the economy rules
+                    if core and name not in self.REFLEXES:
+                        continue
                     if self.stall_skip(name):
                         continue                       # the stall sense backed it off (stall.py)
                     if self.recovery_skip(name):
@@ -2317,6 +2907,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     if getattr(self, name)():
                         acted = name
                         break
+                if acted is None and core:
+                    self.current_rule = "task_core"
+                    acted = self.core_tick()
                 self.guard_spin(acted, time.time() - t_rules)
                 self.guard_client()                            # the server's refusals in the client's own log (loopguard.py)
                 self.recovery_tick()

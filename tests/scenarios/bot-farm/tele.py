@@ -265,6 +265,10 @@ class TeleMixin:
                 return "teleported"
             prev = cur
             self.tele_trail_note()
+            try:
+                self.status()                                  # a long walk is no hang: the status stays fresh (rate-limited to 10 s) so the supervisor's 240 s watchdog
+            except Exception:                                  # leaves it be; the sell errand's walks blocked one tick past 240 s and the bot was killed mid-walk (the
+                pass                                           # Watcher, 2026-10-29: 3-7 watchdog kills every 10 min, a stack in hang.txt in tele_wait < sell_items)
             if str(res) != "timeout":
                 return res
             nav = getattr(self.c, "nav", None)

@@ -64,6 +64,71 @@ def nearest_water(x, y, r=CAST_RANGE, usable=None):
     return w.nearest(x, y, r, usable) if w else None
 
 
+def line(a, b):
+    """The tiles of a straight line from a to b (Bresenham), both ends included."""
+    (x0, y0), (x1, y1) = a, b
+    dx, dy = abs(x1 - x0), -abs(y1 - y0)
+    sx, sy = (1 if x0 < x1 else -1), (1 if y0 < y1 else -1)
+    err, out = dx + dy, []
+    while True:
+        out.append((x0, y0))
+        if (x0, y0) == (x1, y1):
+            return out
+        e2 = 2 * err
+        if e2 >= dy:
+            err += dy
+            x0 += sx
+        if e2 <= dx:
+            err += dx
+            y0 += sy
+
+
+def clear_water(x, y, r=CAST_RANGE, usable=None):
+    """The water tile to cast at from (x, y): within r, its line from (x, y) over water only (a ledge or the bank's lip in between is what makes the server
+    say "cannot be seen"), nearest first; one with land in between only when no clear one is left (patch_fisher_water)."""
+    w = water()
+    if not w:
+        return None
+    clear, blocked = [], []
+    for dx in range(-r, r + 1):
+        for dy in range(-r, r + 1):
+            p = (x + dx, y + dy)
+            if (dx or dy) and w.is_water(*p) and (usable is None or usable(*p)):
+                d = (dx * dx + dy * dy, max(abs(dx), abs(dy)))
+                (clear if all(w.is_water(*t) for t in line((x, y), p)[1:-1]) else blocked).append((d, p))
+    for group in (clear, blocked):
+        if group:
+            return min(group)[1]
+    return None
+
+
+_BANKS = {}
+
+
+def bank_shores(cx, cy, r=250, wr_module=None):
+    """[(x, y)]: one water tile per 8x8 fish bank within r of (cx, cy) with a walkable tile within STAND_RANGE of it (patch_fisher_water); cached."""
+    key = (int(cx), int(cy), int(r))
+    if key in _BANKS:
+        return _BANKS[key]
+    w = water()
+    try:
+        walk = (wr_module or __import__("walkroute")).get()
+    except Exception:
+        walk = None
+    out, seen = [], set()
+    if w and walk:
+        for x in range(int(cx) - r, int(cx) + r):
+            for y in range(int(cy) - r, int(cy) + r):
+                b = (x // 8 * 8, y // 8 * 8)
+                if b in seen or not w.is_water(x, y):
+                    continue
+                if any(walk.walkable(x + dx, y + dy) for dx in range(-STAND_RANGE, STAND_RANGE + 1) for dy in range(-STAND_RANGE, STAND_RANGE + 1)):
+                    seen.add(b)
+                    out.append((x, y))
+    _BANKS[key] = out
+    return out
+
+
 def has_stand(shore, wr_module=None):
     """Cheap pre-filter: is any tile within STAND_RANGE of the shore point walkable at all? (Most of Vesper's canal points have none.) True where there is no map data."""
     try:

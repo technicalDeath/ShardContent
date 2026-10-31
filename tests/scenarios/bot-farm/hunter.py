@@ -8,6 +8,7 @@ work/botfarm/<name>/knowledge.json: the places and the kinds of monster that kil
 """
 from __future__ import annotations
 
+import items  # noqa: E402  (the shared item table)
 import argparse
 import json
 import math
@@ -20,6 +21,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bot_common import ROOT, TOWN, BotBase  # noqa: E402
+from fields import FieldsMixin  # noqa: E402  (whole hunting areas, one then the next; feature fields)
 from memory import cell_center, cell_of, choose_spot  # noqa: E402
 from first_trip import FirstTrip  # noqa: E402
 from places import SEED_SPOTS  # noqa: E402
@@ -44,6 +46,8 @@ SWING_SECONDS = 2.0
 ENGAGED = 0.7
 ARMOR_CUT = {"Mace Fighter": 0.3, "Fencer": 0.3, "Swordsman": 0.3, "Archer": 0.15, "Ranger": 0.15, "Bard": 0.15, "Warlock": 0.05}
 ARCHERS = ("Archer", "Ranger", "Bard")
+ARROW_PRICE = 2           # the Bowyer's arrows (patch_ammo_broke)
+REARM = 10                # arrows from which a bot fighting with its hands takes the bow out again
 FACILITIES = {"melee": "dummy", "ranged": "butte"}          # the fixture to try, by role: places.spots_for finds the nearest ones
 
 
@@ -53,11 +57,59 @@ from weaponup import WeaponMixin  # noqa: E402
 
 from stock import FighterStock  # noqa: E402
 from livelihood import LivelihoodMixin  # noqa: E402
-class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+
+_REACH = {}
+
+
+def spawn_reaches(kind, cell):
+    """True when a surface spawner of this kind (shard spawner data, spots.spawner_spots) reaches the 40-tile memory cell: its home range plus the creatures'
+    notice range (task_core.PULL_CLEAR, 14) plus half a cell from the cell's centre. A camp counts only sightings a live spawner can still make: sightings never
+    decay, and 41 of 61 camp cells in live14 (2026-10-29) rested on trolls, shades, ratmen and ettins that no spawner within reach holds. True on any error."""
+    key = (kind, cell)
+    hit = _REACH.get(key)
+    if hit is not None:
+        return hit
+    try:
+        import spots
+        import task_core
+        x, y = (int(v) for v in cell.split(","))
+        cx, cy = x + 20, y + 20
+        import measured
+        fam = lambda k: measured.FAMILY.get(k, k)              # the client names a spectre's body "shade" (Spectre, Wraith and Shade are one creature in the engine)
+        hit = any((kind == k or kind in k or k in kind or fam(k) == fam(kind)) and max(abs(o["x"] - cx), abs(o["y"] - cy)) <= max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR + 20
+                  for o in spots.spawner_spots() for k in o["kinds"])
+    except Exception:
+        hit = True
+    if len(_REACH) > 20000:
+        _REACH.clear()
+    _REACH[key] = hit
+    return hit
+
+def in_losing_range(bot, x, y):
+    """True when (x, y) lies within the home range (shard spawner data) of a surface spawner whose kinds, together, lose gold for the bot's group
+    (spots.deadly_spawners: measured.net summed below zero). A spot near one stays open; a creature standing inside one is not prey."""
+    try:
+        import spots
+        import task_core
+        reach = task_core.PULL_CLEAR                           # its creatures notice a bot this far beyond their home range (DefaultRangePerception 16 less monsterAggro 2):
+        return any(max(abs(o["x"] - x), abs(o["y"] - y)) <= max(int(o.get("home") or 10), 1) + reach for o, _ in spots.deadly_spawners(bot))   # RangerBR died 8 tiles off one
+    except Exception:
+        return False
+
+class HunterBot(FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
     REST_BELOW = 65
+    TASK_CORE = True                       # the decision core (task_core.py) under the feature task_core; CrafterBot (which inherits this class) sets it False
+
+    def core_active(self):
+        import task_core
+        return task_core.on(self)
+
+    def core_tick(self):
+        import task_core
+        return task_core.tick(self)
 
     def r_lighten(self):
         """A fighter over three quarters of its weight with crafting material in the pack (hides from the cows it killed, mostly) leaves the heaviest of
@@ -66,7 +118,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             return False                                  # drops refused a moment ago (overloaded): r_bank takes it from here
         # an archer with Bowcraft starts with boards for its own shafts and arrows (the starter kit fills 85% of the weight limit): keep them
         fletcher = self.skill_values.get("Bowcraft/Fletching", 0) >= 25
-        mats = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.MATERIALS)
+        mats = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.MATERIALS) and not items.is_goods(i.name)      # leather and hides sell (items.py): the sale takes them, not the ground
                        and not (fletcher and any(w in i.name.lower() for w in ("board", "feather", "shaft")))),
                       key=lambda i: next(k for k, w in enumerate(self.MATERIALS) if w in i.name.lower()))
         mats += [i for i in self.c.backpack if i.name.lower() == "arrow fletching"][1:]
@@ -75,9 +127,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         self.activity = "dropping dead weight"
         refused = 0
         for it in mats[:3]:
-            self.c.call(f"dropground {it.serial} {it.amount or 1}", timeout=8)
-            time.sleep(1.2)
-            if any(i.serial == it.serial for i in self.c.backpack):
+            if not self.drop_to_ground(it):
                 refused += 1
                 continue
             self.log(f"left {it.amount or 1} {it.name} on the ground (weight {self.c.weight}/{self.c.max_weight})")
@@ -129,11 +179,36 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
 
     NEWBIE_HARMLESS = ("rat", "rabbit", "bird", "cat", "dog", "chicken", "cow", "sheep", "pig", "goat", "hind", "deer", "crow", "magpie", "sparrow", "toad", "frog")
 
+    def avoids(self, key, ground=False):
+        """A kind on the learned-avoid list (r_dead adds the killer and any "a ..." creature within 4 tiles of a death, for good) that has no measured record
+        for the bot's group. A kind with one (measured.entry: 20+ fights, kill and death rates) is judged by the measured expected value instead: one death beside
+        an eagle had banned eagles, greatharts, boars and goats for good, and every cell with eagles was a camp (the Watcher, 2026-10-29: 2,420 eagle sightings
+        made BotFairArcherVR's wilds camps; greatharts kill 60% of ranged fights at a 1.6% solo death rate)."""
+        if key not in self.avoid_types:
+            return False
+        if ground:
+            try:
+                import task_core
+                import measured
+                n_ = measured.net(self, key)
+                if task_core.aggressive(key) and (n_ is None or n_ < 0):
+                    return True                                # ground choice (camps, spots): a kind that attacks on sight (creature_stats ai, not AI_Animal), unmeasured
+            except Exception:                                  # or losing gold by its measured value against its solo death cost, keeps the list: lifting it reopened the
+                return True                                    # graveyard ground, 4 archer deaths in 24 min (live6, 2026-10-29); giant rats, zombies (and for melee mongbats,
+                                                               # slimes, ratmen, lizardmen) measure positive and made 30-40% of the camp cells in live8
+        try:
+            import measured
+            if measured.entry(self, key) is not None:
+                return False
+        except Exception:
+            pass
+        return True
+
     def _assess_naive(self, m):
         """What a new player goes by: the name, and what has happened to newbies before. Anything called 'a something' is worth a try until it kills one."""
         n = m.name.lower()
         key = self.mkey(m)
-        if key in self.avoid_types:
+        if self.avoids(key):
             return {"known": False, "fight": False, "reason": "newbie: it killed me before"}
         if any(w in n for w in self.NEWBIE_HARMLESS):
             return {"known": False, "fight": True, "reason": "newbie: looks harmless"}
@@ -145,9 +220,9 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         mon = self.k.monster(m)
         if mon is None:
             n = m.name.lower()
-            ok = n.startswith(("a ", "an ")) and not any(w in n for w in DANGEROUS_WORDS) and norm(m.name) not in self.avoid_types
+            ok = n.startswith(("a ", "an ")) and not any(w in n for w in DANGEROUS_WORDS) and not self.avoids(norm(m.name))
             return {"known": False, "fight": ok, "reason": "not in the monster table, " + ("an animal by its name" if ok else "dangerous by its name or by experience")}
-        if norm(mon.get("class") or mon.get("name") or "") in self.avoid_types:
+        if self.avoids(norm(mon.get("class") or mon.get("name") or "")):
             return {"known": True, "fight": False, "reason": "it has killed this bot before", "monster": mon}
         hits = (mon["hits"][0] + mon["hits"][1]) / 2.0
         ttk = hits / self.my_dps()
@@ -194,15 +269,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         self.fight = {"serial": t.serial, "key": self.mkey(t), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
                       "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(t.x, t.y), "xy": (t.x, t.y), "pct": 100,
                       "near": sum(1 for o in self.mobs(14) if o.serial != t.serial and max(abs(o.x - t.x), abs(o.y - t.y)) <= 10),
-                      "corpses0": {c.serial for c in self.c.containers(within=14)}}
-
-    def target_died(self, f):
-        """The fight's own target died, not just any corpse in view: a new corpse where the target last stood, or the target gone when last seen badly hurt."""
-        x, y = f.get("xy", (None, None))
-        for c in self.c.containers(within=16):
-            if "corpse" in c.name.lower() and c.serial not in f.get("corpses0", set()) and x is not None and abs(c.x - x) <= 2 and abs(c.y - y) <= 2:
-                return True
-        return f.get("pct", 100) <= 25
+                      "corpses0": {c.serial for c in self.c.containers(within=14)}, "ammo0": (self.ammo() if self.bow_kind() else None)}
 
     def end_fight(self, outcome):
         f, self.fight = self.fight, None
@@ -211,6 +278,16 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         if outcome == "kill":
             self.kills += 1
             self.note_kill_at(*(f.get("xy") or (self.c.x, self.c.y)), kind=f["key"])
+            try:
+                if f.get("ammo0") is not None:                     # arrows spent on this kill, by kind: the cost side of a bow user's worth (task_core.arrow_cost)
+                    used = int(f["ammo0"]) - int(self.ammo())
+                    if 0 <= used <= 60:
+                        au = self.facts.setdefault("arrow_use", {})
+                        n_, tot_ = au.get(f["key"], (0, 0.0))
+                        au[f["key"]] = (n_ + 1, tot_ + used)
+                        self.ev("arrows_used", prey=f["key"], n=used)
+            except Exception:
+                pass
         ttk = time.time() - f["t0"]
         if (ttk < 0.3 or outcome == "lost" and ttk < 3) and outcome != "death":
             return
@@ -251,6 +328,15 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
     def is_prey(self, m):
         if self.sewer_avoid(m):
             return False                                       # the sewers: an alligator below skill 50 is a danger
+        if m.distance > 1:
+            try:
+                import measured
+                import spots as _sp
+                k_ = self.mkey(m)
+                if measured.entry(self, k_) is None and (any(h in k_ for h in _sp.HEAVY_UNMEASURED) or _sp.heavy_by_stats(k_)):
+                    return False                               # an unmeasured heavy kind is a danger, not prey, on sight too: dangers() counts it and the flight
+            except Exception:                                  # starts in time (BotArcherCR's "a gazer: worth a try", 19:51, 2026-10-29; the Operator's catch)
+                pass
         if self.feature("danger_model") and m.distance > 1 and not self.danger_ok(m):
             return False                                       # learned risk for this skill band and pack (danger.py)
         if not self.feature("danger_model") and m.distance > 1 and self.mkey(m) in self.TIER2_GROUP:
@@ -277,6 +363,10 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
     # what a fight is worth, per minute: weapon-skill gains, secondary gains (less as those skills pass 50), gold (more while short), less risk
     W_MAIN, W_SEC, W_GOLD, W_GOLD_SHORT, W_RISK = 1.0, 0.3, 0.05, 0.15, 8.0
     WORTH_FLOOR = 1.5          # below this a known kind is not worth a fight (cats are a chase, birds give nothing)
+    PETS_NEVER = ("cat", "dog", "bird", "magpie", "crow", "raven", "sparrow", "pigeon", "chicken", "finch", "nightingale", "gull")     # never prey (patch_fighter_prey)
+    VERMIN = ("rat", "sewerrat", "giantrat", "mongbat", "rabbit", "jackrabbit", "slime", "snake")    # prey only for a beginner
+    VERMIN_SKILL = 45.0        # weapon skill from which vermin are left alone: better targets pay more
+    LOW_VALUE = 10.0           # an unmeasured kind whose engine loot is worth less than this starts at the floor, not WORTH_UNKNOWN
     WORTH_UNKNOWN = 6.0        # a kind not yet measured is worth trying (the Britain step-ups: orcs, ratmen, lizardmen)
     WEAPON_SKILLS = ("Archery", "Swordsmanship", "Mace Fighting", "Fencing", "Wrestling")
 
@@ -309,9 +399,45 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         others = self.other_bots(within + 4)
         mine = getattr(self, "target", None)
         ps = [m for m in self.mobs(within) if self.is_prey(m) and self.ignored.get(m.serial, 0) < time.time()
-              and (m.distance <= 2 or self.safe_ground(m)) and not self.taken_by_other(m, others, mine) and not self.critter_skip(m)]
+              and (m.distance <= 2 or self.safe_ground(m)) and not self.taken_by_other(m, others, mine) and not self.critter_skip(m)
+              and (m.distance <= 1 or not self.skip_kind(self.mkey(m)))]          # pets and outgrown vermin: only when on top of it (patch_fighter_prey)
+        if self.facts.get("fists"):
+            ps = [m for m in ps if m.distance <= 1 or self.fist_prey(self.mkey(m))]   # fighting with its hands: what fists kill (patch_ammo_broke)
         scored = []
+        core = False
+        try:
+            core = bool(self.core_active())
+        except Exception:
+            core = False
         for m in ps:
+            if core:
+                # the decision core: the measured expected value (measured.py: kill_pct x (gold + extras + realise x carve) less the solo death cost), per minute
+                # of the kind's measured median fight (ttk_p50). The old worth (WORTH_FLOOR 1.5, gold and skill only, no carving) skipped hinds 186 times, goats 163,
+                # great harts 166, cows 66: the very animals whose leather and meat now pay (the Watcher, 2026-10-29: the pick funnel saw 0.07-0.18 prey of 2.7-3.4 in view)
+                try:
+                    import measured
+                    k_ = self.mkey(m)
+                    n_ = measured.net(self, k_)
+                except Exception:
+                    n_ = None
+                if n_ is None and m.distance > 1:
+                    try:
+                        import spots as _sp
+                        if any(h in k_ for h in _sp.HEAVY_UNMEASURED) or _sp.heavy_by_stats(k_):
+                            continue                               # an unmeasured heavy kind is no prey on sight: BotRangerBR took a gazer for "worth a try" and died (19:12, 2026-10-29)
+                    except Exception:
+                        pass
+                if n_ is not None:
+                    if n_ <= 0 and m.distance > 1:
+                        continue
+                    if m.distance > 1 and in_losing_range(self, m.x, m.y):
+                        continue                               # it stands where a losing spawner's creatures roam: not followed in (BardAR and FairArcherVR died at 1280,1400, 2026-10-29)
+                    e_ = measured.entry(self, k_) or {}
+                    secs = max(1.0, float(e_.get("ttk_p50") or 10.0))
+                    w = n_ / (secs / 60.0)
+                    stick = 3.0 if m.serial == getattr(self, "target", None) else 1.0
+                    scored.append((-w * stick / (1 + m.distance / 6.0), m.distance, m))
+                    continue
             w = self.worth(m)
             if w is not None and w < self.WORTH_FLOOR and m.distance > 1:
                 skipped = self.facts.setdefault("skipped_kinds", set())
@@ -320,7 +446,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
                     self.dlog("choice", what=f"skip {self.mkey(m)}", why=f"worth {w:.1f} per minute, under {self.WORTH_FLOOR}")
                 continue                                   # still fought when it is on top of us (distance 1)
             stick = 3.0 if m.serial == getattr(self, "target", None) else 1.0
-            scored.append((-(w if w is not None else self.WORTH_UNKNOWN) * stick / (1 + m.distance / 6.0), m.distance, m))
+            scored.append((-(w if w is not None else self.unknown_worth(self.mkey(m))) * stick / (1 + m.distance / 6.0), m.distance, m))
         return townguard.filter_prey(self, [m for _, _, m in sorted(scored, key=lambda s: (s[0], s[1]))])       # inside a guarded region the guards take the monsters (feature town_guards)
 
     def dangers(self, within=8):
@@ -392,7 +518,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         self.facts["avoided_until"] = time.time() + 45      # a commitment: once it runs, it does not turn back to hunt for a while
         a = self.assess(d)
         hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
-        hopeless = hopeless or self.mkey(d) in self.avoid_types or self.near_death_spot(self.c.x, self.c.y, 15)
+        hopeless = hopeless or self.avoids(self.mkey(d)) or self.near_death_spot(self.c.x, self.c.y, 15)
         if hopeless and d.distance <= 6:
             # learned from a Mace Fighter killed by a wraith while "cornered": against a caster or something that out-damages us, standing to fight is death;
             # run for the town guards at once, before the health is gone
@@ -438,15 +564,11 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         healing = self.skill_values.get("Healing", 0)
         if self.c.poisoned and healing < 60:
             return False                      # r_cure handles poison; a bandage only cures from Healing 60
-        if pct < 45 and (healing < 30 or threats) and time.time() - self.facts.get("drank", 0) > 12:
-            pot = next((i for i in self.c.backpack if i.name == "Yellow Potion"), None)
-            if pot:
-                self.facts["drank"] = time.time()
-                before = self.c.hp
-                self.c.use(pot.serial)
-                time.sleep(2)
+        if pct < 45 and (healing < 30 or threats):
+            before = self.c.hp
+            if self.drink_heal("heal"):                   # the shared rule (basics.py): one every 10 s, never while poisoned
+                time.sleep(1.2)
                 self.log(f"drank a Yellow Potion at {before}/{self.c.max_hp}: now {self.c.hp}")
-                self.ev("consumable_used", item="yellow potion", hp=self.hp_pct())
                 self.note("potions", f"The Yellow Potion (the only way to tell the Heal potion is its color) raised hit points {before} -> {self.c.hp}.", key="yellow")
                 return True
         if self.bandages() == 0 or threats and pct >= 30:
@@ -497,6 +619,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         if not ps:
             self.target = None
             return False
+        self.fists_check()                                # out of arrows and money: the hands; arrows again: the bow (patch_ammo_broke)
         if self.ranged and self.ammo() == 0:
             self.note("combat", f"The {self.pname} ran out of ammunition mid-hunt; nothing warns the player before the last arrow.", key="noammo")
             return False
@@ -523,10 +646,13 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             self.c.goto(t.x, t.y).wait(timeout=3)
             return True
         if self.ranged:
-            if t.distance <= 1:
-                self.step_away(t, 4)
-                return True
-            if t.distance > 8:
+            try:
+                import hunt_tree
+                reach = hunt_tree.weapon_reach(self)          # a bow fires from 10, a crossbow from 8 (Bow/Crossbow.DefMaxRange)
+            except Exception:
+                reach = 8
+            # no step away from an adjacent target: BaseRanged has no minimum range, and each step resets the stationary delay before the next shot (2026-10-29)
+            if t.distance > reach:
                 self.c.goto(t.x, t.y).wait(timeout=2)
                 return True
         else:
@@ -539,53 +665,81 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
 
     LOOT_GEAR = ("bow", "crossbow", "mace", "club", "kryss", "katana", "sword", "cutlass", "scimitar", "axe", "spear", "fork", "hammer", "maul", "staff",
                  "dagger", "knife", "shield", "helm", "coif", "tunic", "leggings", "sleeves", "gloves", "gorget", "arms", "chainmail", "ringmail", "platemail",
-                 "studded", "boots")
+                 "studded")
     @property
     def GEAR_SHOPS(self):                                # the Blacksmith (armour and weapons), the Weaponsmith / Armorer, the Cobbler (boots)
         return self.find_places(("smith", "weaponsmith", "armorer", "cobbler"), n=4, per=1)
     CARVE = True
     CARVE_KINDS = ("cow", "bull", "deer", "hart", "hind", "sheep", "goat", "chicken", "pig", "boar", "rabbit", "bear", "bird")
     BLADES = ("sword", "kryss", "katana", "cutlass", "scimitar", "dagger", "knife", "axe", "cleaver")
-    @property
-    def BUTCHER(self):
-        return self.where1(("butcher",))
-    KEEP = BotBase.KEEP + ("raw ",)                 # meat waits for the Butcher, not the bank box
+    KEEP = BotBase.KEEP + items.GOODS_WORDS                 # meat waits for the Butcher, not the bank box
+
+    # ---- camp travel (item 5): a party member's blue travel fire as a leg of the journey planner (travel.py) -------------------------------------------------
+    CAMP_FIRE_LIFE = 1800        # seconds a published fire is believed to burn
+
+    def camp_fires(self):
+        """[{x, y, by, t}] the blue travel fires of this bot's party members: what each partner published in its buddy.json ("fire": where and when it lit one,
+        facts["camp_fire"]). Live, camp_travel_to checks the [CampTravel list for the lighter's name before it travels. [] without a party or a fire."""
+        try:
+            import buddy
+            names = set(self.party_names()) if hasattr(self, "party_names") else set()
+            now = time.time()
+            out = []
+            for p in buddy.peers(self.name):
+                f = p.get("fire")
+                if f and p["name"] in names and now - float(f.get("t", 0) or 0) < self.CAMP_FIRE_LIFE:
+                    out.append({"x": int(f["x"]), "y": int(f["y"]), "by": p["name"], "t": float(f["t"])})
+            return out
+        except Exception:
+            return []
+
+    def camp_travel_to(self, fire):
+        """[CampTravel: the list of secure fires (lighter's name, distance); pick the lighter's entry, confirm, check the jump. True when the bot moved."""
+        before = (int(self.c.x), int(self.c.y))
+        try:
+            self.c.say("[CampTravel")
+        except Exception:
+            return False
+        time.sleep(1.5)
+        serial, idx = None, None
+        try:
+            lines = self.c.call("gumps", timeout=8)
+        except Exception:
+            lines = []
+        cur = None
+        for line in lines:
+            if line.startswith("[GUMP] local") and "server" in line:
+                cur = line.split("server")[1].split()[0]
+            low = line.lower()
+            if cur and fire.get("by", "").lower() in low and "[button" in low:
+                try:
+                    idx = int(low.split("[button")[1].split("]")[0])
+                    serial = cur
+                except ValueError:
+                    pass
+                break
+        if serial is None or idx is None:
+            self.log(f"camp travel: no fire of {fire.get('by')} on the list")
+            return False
+        try:
+            self.c.call(f"gumpresponse {idx} gump:{serial}", timeout=8)
+            time.sleep(1.5)
+            conf = self.find_gump("Travel")
+            if conf:
+                self.c.call(f"gumpresponse 1 gump:{conf}", timeout=8)
+            time.sleep(3.0)
+        except Exception as e:
+            self.log(f"camp travel: {type(e).__name__}: {e}")
+            return False
+        after = (int(self.c.x), int(self.c.y))
+        moved = max(abs(after[0] - before[0]), abs(after[1] - before[1])) > 20
+        self.ev("camp_travel", to=fire.get("by"), moved=moved, land=[after[0], after[1]])
+        return moved
 
     def carving_blade(self):
         """Something to carve with: the blade in hand (a sword, a kryss, an axe), else a dagger, knife or cleaver in the pack."""
         return next((i for i in self.c.equipped if any(b in i.name.lower() for b in self.BLADES)), None) or \
             next((i for i in self.c.backpack if any(b in i.name.lower() for b in ("dagger", "knife", "cleaver"))), None)
-
-    def sale_due(self, key):
-        """Twenty minutes since the last sale of this kind, or, for a bot that never sold, twenty minutes played in all (the totals' uptime plus
-        this brain): counting from the brain's start reset the timer at every restart and no fighter ever reached it."""
-        last = self.facts.get(key)
-        if last:
-            return time.time() - last > 1200
-        return self.base.get("uptime", 0) + time.time() - self.started > 1200
-
-    def r_sellmeat(self):
-        """Carved meat to the Butcher: a dozen pieces, or when heavy, or when down to the last 60 gold."""
-        meat = [i for i in self.c.backpack if i.name.lower().startswith("raw ")]
-        if not meat or self.mobs(10) or time.time() - self.facts.get("meat_sold_at", 0) < 300:
-            return False
-        n = sum((i.amount or 1) for i in meat)
-        due = self.sale_due("meat_sold_at")             # twenty minutes out with meat in the pack: sell it
-        if n < 6 and self.c.weight < self.c.max_weight * 0.7 and self.c.gold >= 60 and not due:
-            return False
-        self.facts["meat_sold_at"] = time.time()
-        self.activity = "selling meat to the Butcher"
-        gold0 = self.c.gold
-        self.sell_items(self.BUTCHER, ("raw ",))
-        earned = self.c.gold - gold0
-        self.log(f"sold {n} pieces of meat for {earned} gold")
-        self.dlog("choice", what="sell meat", why=f"{n} pieces for {earned} gold")
-        self.note("loot", f"A {self.pname} carved its kills and sold {n} pieces of raw meat to the Butcher for {earned} gold.", key="meatsold")
-        if earned <= 0:
-            for it in meat:
-                self.c.call(f"dropground {it.serial} {it.amount or 1}", timeout=8)
-                time.sleep(1.0)
-        return True
 
     TOWN_CORE = (1400, 1540, 1700, 1770)          # the city itself (its east side too, where town cats and dogs drew 40% of the first grounds)
     TOWN_PETS = ("cat", "dog", "bird", "magpie", "crow", "raven", "sparrow", "pigeon")
@@ -605,16 +759,124 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         heavy = self.HEAVY_CAMP
         if self.skill_values.get(self.main_skill(), 0) >= self.TIER2_SKILL:
             heavy = tuple(h for h in heavy if h not in self.TIER2_GROUP)          # step-up packs are its ground now; the danger map judges the pack (patch_camp_tiers.py)
-        n = sum(v for k, v in c["sights"].items() if k in self.avoid_types or k in deadly or any(h in k for h in heavy))
+        n = sum(v for k, v in c["sights"].items() if (self.avoids(k, ground=True) or k in deadly or any(h in k for h in heavy)) and spawn_reaches(k, cell))
         return n >= 4
+
+    def bow_kind(self):
+        """A ranged profession (archer, ranger, bard), whether or not the bow is in hand now."""
+        return getattr(self, "pname", None) in ARCHERS
+
+    def the_bow(self):
+        return next((i for i in list(self.c.equipped) + list(self.c.backpack) if any(w in (i.name or "").lower() for w in ("crossbow", "bow"))
+                     and "bowl" not in (i.name or "").lower()), None)
+
+    BROKE_HITS, BROKE_DAMAGE, BROKE_CARVE = 30, 4, 40     # a broke bot's livestock: a cow (18 hit points, 1 to 4 damage, carve 124), a goat, a sheep, a pig, a hind (live round 2026-10-21)
+
+    def fist_prey(self, k):
+        """What a bot with no weapon in hand can kill: the vermin and the engine table's fistable kinds, and the livestock a broke bot lives on (hits up to BROKE_HITS, damage up
+        to BROKE_DAMAGE, worth carving)."""
+        if k in self.VERMIN:
+            return True
+        try:
+            import profit
+            e = profit.table().get(k)
+            if not e:
+                return False
+            if profit.fistable(e):
+                return True
+            hits = max(e.get("hits") or [99]) if isinstance(e.get("hits"), list) else float(e.get("hits") or 99)
+            dmg = max(e.get("damage") or [99]) if isinstance(e.get("damage"), list) else float(e.get("damage") or 99)
+            return hits <= self.BROKE_HITS and dmg <= self.BROKE_DAMAGE and (float(e.get("carve") or 0) >= self.BROKE_CARVE or float(e.get("gold") or 0) > 0)
+        except Exception:
+            return False
+
+    def wield_bridge(self):
+        """A bot hunting with its hands (fist mode, or no weapon of its skill) takes a dagger or knife from its pack into its hand: any blade hits harder than bare fists and carves.
+        Once a minute; never over a weapon already in hand, and never a weapon r_gear was told to leave."""
+        if time.time() - self.__dict__.get("_bridge_at", 0) < 60:
+            return False
+        self.__dict__["_bridge_at"] = time.time()
+        if not (self.facts.get("fists") or self.weapon_state() in ("none", "wrong")):
+            return False
+        if self.own_weapon_in_pack() is not None:
+            return False                                       # its own weapon is in the pack: rewield_own, not a dagger
+        if any((i.layer or "").lower().replace(" ", "") in ("onehanded", "twohanded") for i in self.c.equipped):
+            return False
+        failed = self.facts.get("gear_failed", {})
+        blade = next((i for i in self.c.backpack if any(w in (i.name or "").lower() for w in ("dagger", "knife", "cleaver")) and failed.get(i.serial, 0) < time.time()), None)
+        if blade is None:
+            return False
+        try:
+            self.c.call(f"equip {blade.serial}", timeout=6)
+            self.ev("bridge_weapon", item=blade.name)
+            self.log(f"fighting with its hands: the {blade.name} into the hand")
+            return True
+        except Exception:
+            return False
+
+    def fists_check(self):
+        """Out of arrows and unable to buy any: the bow into the pack, fight with the hands; REARM arrows or more: the bow back in hand (patch_ammo_broke)."""
+        if not self.bow_kind():
+            return
+        ammo = self.ammo()
+        broke = self.c.gold < ARROW_PRICE and (self.facts.get("bank_balance", 0) or 0) < ARROW_PRICE
+        if not self.facts.get("fists") and ammo == 0 and broke:
+            bow = next((i for i in self.c.equipped if any(w in (i.name or "").lower() for w in ("crossbow", "bow")) and "bowl" not in (i.name or "").lower()), None)
+            if bow is not None:
+                self.c.unequip(bow.serial)
+                self.facts.setdefault("gear_failed", {})[bow.serial] = time.time() + 10 ** 9      # r_gear must not put it back on (the simulator caught it doing so: a bow with no arrows swings nothing)
+                time.sleep(0.8)
+            self.facts["fists"] = True
+            self.ranged = False
+            self.log("out of arrows and money: the bow goes into the pack, fighting with the hands until arrows can be bought")
+            self.ev("fist_mode", on=True, why="no arrows, no gold")
+        elif self.facts.get("fists") and ammo >= REARM:
+            bow = self.the_bow()
+            if bow is not None:
+                self.facts.get("gear_failed", {}).pop(bow.serial, None)
+                self.wield(bow)
+            self.facts["fists"] = False
+            self.ranged = True
+            self.log(f"{ammo} arrows: the bow is back in hand")
+            self.ev("fist_mode", on=False, why=f"{ammo} arrows")
+        elif self.facts.get("fists"):
+            self.ranged = False                            # a restart keeps the mode (facts), the attribute comes from the profession
+
+    def skip_kind(self, k):
+        """A pet, or vermin this fighter has outgrown: not worth hunting (patch_fighter_prey)."""
+        if k in self.PETS_NEVER:
+            return not self.feathers_pay(k)                    # birds and chickens carve feathers and pay by their measured fights; cats and dogs stay out
+        if self.facts.get("fists"):
+            return False                                   # with its hands, the vermin are what it can earn from (patch_ammo_broke)
+        try:
+            if k in self.VERMIN and self.skill_values.get(self.main_skill(), 0) >= self.VERMIN_SKILL:
+                import measured
+                n_ = measured.net(self, k)
+                return n_ is None or n_ <= 0                  # outgrown vermin that still pay by their measured fights stay prey: melee took rabbits at 692 gold a
+            return False                                      # fight-minute and giant rats at 329, above boars (274), in live14-15 (the Watcher, 2026-10-29)
+        except Exception:
+            return False
+
+    def unknown_worth(self, k):
+        """The worth of a kind not measured yet: the floor when the engine's loot table says it drops little, else WORTH_UNKNOWN (patch_fighter_prey)."""
+        try:
+            import profit
+            e = profit.table().get(k)
+            if e is not None:
+                v = profit.value(e) if getattr(self, "CARVE", False) else float(e.get("gold") or 0) + sum(profit.EXTRA_VALUE.get(x, 0) for x in e.get("extras") or ())
+                if v < self.LOW_VALUE:
+                    return self.WORTH_FLOOR
+        except Exception:
+            pass
+        return self.WORTH_UNKNOWN
 
     def worth_kind(self, k, deadly):
         """G12's worth of a kind seen on the map, for choosing ground: 0 for what has killed bots like this one or looks dangerous unmeasured."""
-        if k in self.avoid_types or k in deadly:
+        if self.avoids(k, ground=True) or k in deadly or self.skip_kind(k):
             return 0.0
         w = self.mem.prey_worth(k, self.main_skill())
         if not w:
-            return 0.0 if any(d in k for d in DANGEROUS_WORDS) else self.WORTH_UNKNOWN
+            return 0.0 if any(d in k for d in DANGEROUS_WORDS) else self.unknown_worth(k)
         secs = [self.skill_values.get(s, 0) for s in ("Tactics", "Anatomy")]
         sec_w = self.W_SEC * min(1.0, max(0.1, (80 - sum(secs) / len(secs)) / 30))
         short = self.c.gold < 200
@@ -636,6 +898,11 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         recent = self.facts.get("spots_reached", [])[-3:]
         now = time.time()
         scored = []
+        try:
+            from places import area_tier_at
+            floor = min(self.patrol_tiers())                              # the lowest area tier this bot hunts (patch_ground_tiers.py)
+        except Exception:
+            area_tier_at, floor = None, 0
         for cell, c in list(self.mem.state["world"]["cells"].items()):
             x, y = cell_center(cell)
             if max(abs(x - center[0]), abs(y - center[1])) > radius:
@@ -647,6 +914,10 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
                 continue                                  # any part of the city: its centre test let 1520,1760 through
             if any(abs(x - rx) < 20 and abs(y - ry) < 20 for rx, ry in recent):
                 continue
+            if area_tier_at is not None and floor > 1:
+                t = area_tier_at(x, y)
+                if t is not None and t < floor:
+                    continue                              # ground for weaker players: rabbits teach this bot nothing (patch_ground_tiers.py)
             if self.mem.dangerous_cell(cell) or self.camp_for_me(cell) or self.near_death_spot(x, y, 40):
                 continue
             if self.facts.get("crowded", {}).get(cell, 0) > now or self.ground_load(cell) > self.ground_cap(cell):
@@ -710,8 +981,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         self.dlog("choice", what="sell looted gear", why=f"{len(gear)} pieces for {earned} gold, {len(unsold)} unsold")
         self.note("loot", f"A {self.pname} sold weapons and armour looted from monsters for {earned} gold.", key="gearsold")
         for it in unsold:
-            self.c.call(f"dropground {it.serial} {it.amount or 1}", timeout=8)
-            time.sleep(1.0)
+            self.drop_to_ground(it)
             self.facts["gear_looted"].discard(it.serial)
         return True
 
@@ -727,7 +997,11 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         "Necklace": [("platemail gorget", 40, 30, -1)],
     }
     WORN_AR = (("plate", 40), ("chainmail", 28), ("ringmail", 22), ("helm", 30), ("bascinet", 30), ("bone", 30), ("studded", 16), ("leather", 13))
-    UPGRADE_RESERVE = 250      # gold kept for arrows, bandages and potions after an upgrade
+    @property
+    def UPGRADE_RESERVE(self):
+        """Gold kept for supplies after an upgrade (fix D, the Watcher 2026-10-21: the upgrade errand spent the money for arrows): the potions to their full marks (5 Heal, 3 Refresh,
+        3 Cure at 15), 30 bandages at 5, an archer's 100 arrows at 2, and 100 over."""
+        return 100 + 11 * 15 + 30 * 5 + (200 if self.bow_kind() else 0)
 
     def worn_ar(self, layer):
         it = next((i for i in self.c.equipped if i.layer == layer), None)
@@ -746,6 +1020,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             for name, ar, need, dex in options:
                 if ar <= cur or need > strength or (self.ranged and dex < -2):
                     continue
+                if time.time() - self.facts.get("upgrade_unwearable", {}).get(name, 0) < 86400:
+                    continue                               # bought once and could not be put on: not again for a day (the tunic loop, 2026-10-29)
                 offers = [o for o in self.mem.vendor_selling(name) if o[2] == name]
                 if not offers or offers[0][0] > money:
                     continue
@@ -759,6 +1035,10 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         """G2: once every ten minutes, with gold beyond the reserve (pack and bank), buy the best armour upgrade and wear it."""
         if self.mobs(10) or self.hp_pct() < 70 or time.time() - self.facts.get("upgrade_at", 0) < 600:
             return False
+        if self.bow_kind() and self.ammo() < 50:
+            return False                                   # ammunition first: no armour while an archer has fewer than 50 arrows (fix D)
+        if self.weapon_state() in ("none", "wrong", "worn"):
+            return False                                   # a working weapon before armour (the weapon batch, 2026-10-21)
         self.facts["upgrade_at"] = time.time()
         money = self.c.gold + self.facts.get("bank_balance", 0) - self.UPGRADE_RESERVE
         best = goals.upgrade_choice(self, money) if goals.active(self) else self.next_upgrade(money)       # saving for a gear piece: only that piece
@@ -782,11 +1062,15 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             self.visit_bank("upgrade", withdraw=price + 60, reserve=0)
         if self.c.gold < price:
             return True
+        before = {i.serial for i in self.c.backpack}
         got = self.shop_at(xy, {"=" + name: 1}, budget=price + 5)
         if not got:
             self.note("gear", f"A {self.pname} went to buy a {name} for {price} gold at {xy} and came back without it.", key=f"upgradefail:{name}")
             return True
-        new = next((i for i in self.c.backpack if i.name.lower() == name), None)
+        # the piece by its serial, not its name: the client names items from its graphic table ("platemail"), the shop by the server's name ("Platemail
+        # Tunic"), so the name match found nothing, nothing was put on and the same tunic was bought again every ten minutes (the Watcher, 2026-10-29:
+        # BotFencerBR bought it 10 times in one night, BotSwordBR 5, BotFairSwordNR 4: 4,617 gold)
+        new = next((i for i in self.c.backpack if i.name.lower() == name), None) or             next((i for i in self.c.backpack if i.serial not in before and (i.amount or 1) == 1), None)
         _, old = self.worn_ar(layer)
         if new:
             if old:
@@ -800,7 +1084,13 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             except Exception:
                 pass
             time.sleep(0.8)
-        worn = any(i.name.lower() == name for i in self.c.equipped)
+        worn = bool(new) and any(i.serial == new.serial for i in self.c.equipped)
+        if not worn:
+            self.facts.setdefault("upgrade_unwearable", {})[name] = time.time()      # not bought again for a day: next_upgrade skips it (see there)
+            try:
+                self.ev("upgrade_not_worn", item=name, price=price, found=bool(new))
+            except Exception:
+                pass
         self.facts.setdefault("upgrades", []).append((round(time.time()), name, price))
         self.log(f"upgrade: bought a {name} for {price} gold (armour {cur} -> {ar}); worn {worn}")
         self.note("gear", f"A {self.pname} bought a {name} for {price} gold and {'wore it' if worn else 'could not put it on'}.", key=f"upgrade:{name}:{worn}")
@@ -838,6 +1128,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
 
     def fletcher(self):
         """An archer whose template makes its own arrows (Archer: Archery, Lumberjacking and Bowcraft)."""
+        if self.facts.get("fletch_force"):
+            return self.bow_kind() and self.skill_values.get("Bowcraft/Fletching", 0) >= 25       # the core's fletch errand (fix C): a bot in fist mode too, whatever the cohort
         return self.ranged and self.skill_values.get("Bowcraft/Fletching", 0) >= 25 and self.feature("fletch")     # A/B: features.json
 
     def fletch_stock(self):
@@ -948,8 +1240,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             return False
         low_ammo = self.ranged and self.ammo() < 25 and self.can_make_arrows() < 25   # an archer who can make arrows makes them (r_fletch)
         low_band = self.bandages() < 8
-        heals = sum(1 for i in self.c.backpack if i.name == "Yellow Potion")
-        refreshes = sum(1 for i in self.c.backpack if i.name == "Red Potion")
+        heals = self.potion_count("heal")
+        refreshes = self.potion_count("refresh")
         want = {}
         if self.c.gold >= 200 and heals < 3 and goals.idle_ok(self, 100):
             want["=yellow potion"] = 3                     # Heal, yellow as in the era
@@ -957,6 +1249,14 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             want["=red potion"] = 2                        # Refresh, red
         if not (low_ammo or low_band or want):
             return False
+        if self.bow_kind() and self.ammo() == 0 and self.c.gold >= ARROW_PRICE and self.c.gold < 40:
+            # out of arrows: the livelihood first, every coin on arrows (the 40-gold rule left archers at 31-39 gold with none; patch_ammo_broke)
+            self.facts["shop_at"] = time.time()
+            self.activity = "buying arrows with the last coins"
+            got = self.shop_at(self.FLETCH_SHOP, {"=arrow": 150}, budget=self.c.gold)
+            self.log(f"out of arrows with {self.c.gold} gold: bought {got}")
+            self.fists_check()
+            return True
         if self.c.gold < 40:
             if self.facts["bank_balance"] >= 40 and time.time() - self.facts.get("banked_at", 0) > 240:
                 self.activity = "fetching gold"
@@ -969,7 +1269,7 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             self.note("shop", f"Ammunition sold at the Bowyer: bought {got}.", key="arrows")
         if low_band or want:
             if low_band:
-                want["bandage"] = 40
+                want["bandage"] = 25
             got = self.shop_at(self.where1(("healer",)), want, budget=self.c.gold // 2)
             self.note("shop", f"At the Healer: bought {got}.", key="healershop")
         return True
@@ -1224,6 +1524,19 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         self.sewer_out(why)
         return True
 
+    def spot_in_city(self, x, y):
+        """Inside a town's own city rectangle (the one that holds the town's centre): no place to hunt or explore (patch_spot_out_of_town)."""
+        try:
+            import gazetteer as g
+            for t in g.towns():
+                cx, cy = t["centre"][0], t["centre"][1]
+                for r in t["rects"]:
+                    if r[0] <= cx < r[2] and r[1] <= cy < r[3] and r[0] <= x < r[2] and r[1] <= y < r[3]:
+                        return True
+        except Exception:
+            pass
+        return False
+
     def next_spot(self):
         if self.sewer_wanted() and self.in_sewer():
             s = self.sewer_spot()
@@ -1233,6 +1546,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         if back:
             return back
         held = self.facts.get("ground")
+        if held and self.spot_in_city(held["x"], held["y"]):
+            self.facts["ground"] = held = None                # a hunting ground in the city streets: not one (patch_spot_out_of_town)
         if held and time.time() < held["until"] and max(abs(self.c.x - held["x"]), abs(self.c.y - held["y"])) <= 20 and self.crowded_here():
             self.mark_crowded(held["x"], held["y"], "hunting ground")
             self.facts["ground"] = held = None
@@ -1241,6 +1556,8 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         if random.random() < 0.85:
             g = self.best_ground(near=60) if time.time() - self.facts.get("pushed_at", 0) < 120 else None
             g = g or self.best_ground()
+            if g and self.spot_in_city(g[1], g[2]):
+                g = None                                      # the city streets: rats and pets, no hunting ground (patch_spot_out_of_town)
             if g:
                 self.dlog("choice", what="hunting ground", why=f"cell {g[3]} score {g[0]:.1f}")
                 self.facts["ground"] = {"x": g[1], "y": g[2], "until": time.time() + 300}
@@ -1251,11 +1568,14 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
         if self.mode != "newbie":
             center, radius = self.home_centre(), max(radius, 380)      # the owner: new country further out, not the same farms
         crowded = self.facts.get("crowded", {})                 # an area the stall sense left (stall.py) or a crowded one: not again for a while
-        return choose_spot(self.mem, self.patrol_spots(), lambda x, y: self.near_death_spot(x, y, 60) or crowded.get(cell_of(x, y), 0) > time.time(),
+        return choose_spot(self.mem, self.patrol_spots(), lambda x, y: self.near_death_spot(x, y, 60) or crowded.get(cell_of(x, y), 0) > time.time()
+                           or self.spot_in_city(x, y),
                            here=(self.c.x, self.c.y), recent=recent[-4:],
                            center=center, radius=radius, on_fallback=lambda spot, why: self.ev("spot_fallback", spot=list(spot), why=why), camp=self.camp_for_me)
 
     def r_explore(self):
+        if self.field_explore():
+            return True                                   # a whole hunting area, worked until it is empty or stops paying (fields.py)
         held = self.facts.get("ground")
         if held and time.time() < held["until"] and max(abs(self.c.x - held["x"]), abs(self.c.y - held["y"])) <= 12 and not self.crowded_here():
             # on its hunting ground with nothing to fight: a player stands and watches for the next spawn, with a step now and then; the
@@ -1268,7 +1588,9 @@ class HunterBot(LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, First
             self.c.goto(held["x"] + random.randint(-3, 3), held["y"] + random.randint(-3, 3)).wait(timeout=5)
             return True
         if self.cur_spot is None or time.time() - self.spot_since > self.explore_limit():
-            self.cur_spot = self.next_spot()
+            import places
+            self.cur_spot = places.scatter(getattr(self, "name", ""), *self.next_spot(),       # not the same exact point as every other bot (patch_scatter)
+                                           bad=lambda x, y: self.spot_in_city(x, y) or self.mem.dangerous_cell(cell_of(x, y)))
             self.spot_since = time.time()
         x, y = self.cur_spot
         self.activity = f"exploring toward {x},{y}"
@@ -1465,12 +1787,11 @@ def main():
     bot.refresh_skills()
     bot.run(a.seconds)
 
-
-if __name__ == "__main__":
-    sys.exit(main())
-
-
 for _cls in (HunterBot, BardBot):
     for _name, _before in (("r_rune_mark", "r_fight"), ("r_rune_buy", "r_resupply")):
         if _name not in _cls.RULES:
             _cls.RULES.insert(_cls.RULES.index(_before), _name)          # runes.py: mark a rune when quiet, buy blank runes (feature runes; Magery decides who)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -539,7 +539,7 @@
     [
      1304,
      1413,
-     30,
+     24,
      [
       "skeleton",
       "spectre",
@@ -550,6 +550,28 @@
     [
      1361,
      1392,
+     10,
+     [
+      "skeleton",
+      "spectre",
+      "wraith",
+      "zombie"
+     ]
+    ],
+    [
+     1400,
+     1366,
+     21,
+     [
+      "skeleton",
+      "spectre",
+      "wraith",
+      "zombie"
+     ]
+    ],
+    [
+     1416,
+     1430,
      30,
      [
       "skeleton",
@@ -596,6 +618,15 @@
    "spawners": [
     [
      1180,
+     1466,
+     23,
+     [
+      "giantrat",
+      "ratman"
+     ]
+    ],
+    [
+     1180,
      1518,
      30,
      [
@@ -612,9 +643,18 @@
      ]
     ],
     [
+     1204,
+     1526,
+     26,
+     [
+      "giantrat",
+      "ratman"
+     ]
+    ],
+    [
      1222,
      1418,
-     30,
+     22,
      [
       "giantrat",
       "ratman"
@@ -623,7 +663,7 @@
     [
      1225,
      1477,
-     30,
+     10,
      [
       "giantrat",
       "ratman"
@@ -666,6 +706,16 @@
    "ring": 305,
    "spawners": [
     [
+     1332,
+     1926,
+     23,
+     [
+      "lizardman",
+      "slime",
+      "snake"
+     ]
+    ],
+    [
      1377,
      1911,
      50,
@@ -685,7 +735,17 @@
     [
      1383,
      1949,
-     30,
+     15,
+     [
+      "lizardman",
+      "slime",
+      "snake"
+     ]
+    ],
+    [
+     1420,
+     1954,
+     18,
      [
       "lizardman",
       "slime",
@@ -695,7 +755,7 @@
     [
      1435,
      1917,
-     30,
+     19,
      [
       "lizardman",
       "slime",
@@ -708,193 +768,6 @@
     1911
    ],
    "theme": "lizardman-marsh",
-   "tier": 2
-  },
-  {
-   "id": "north-hills",
-   "label": "Orc band",
-   "name": "North Hills",
-   "rects": [
-    [
-     1230,
-     1280,
-     1500,
-     1360
-    ],
-    [
-     1230,
-     1360,
-     1290,
-     1400
-    ]
-   ],
-   "ring": 305,
-   "spawners": [
-    [
-     1236,
-     1310,
-     30,
-     [
-      "blackbear",
-      "brownbear",
-      "cougar",
-      "eagle",
-      "greathart",
-      "greywolf",
-      "hind",
-      "panther",
-      "rabbit",
-      "timberwolf"
-     ]
-    ],
-    [
-     1240,
-     1317,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1244,
-     1374,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1252,
-     1382,
-     30,
-     [
-      "blackbear",
-      "brownbear",
-      "cougar",
-      "eagle",
-      "greathart",
-      "greywolf",
-      "hind",
-      "panther",
-      "rabbit",
-      "timberwolf"
-     ]
-    ],
-    [
-     1305,
-     1326,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1308,
-     1302,
-     30,
-     [
-      "blackbear",
-      "brownbear",
-      "cougar",
-      "eagle",
-      "greathart",
-      "greywolf",
-      "hind",
-      "panther",
-      "rabbit",
-      "timberwolf"
-     ]
-    ],
-    [
-     1351,
-     1359,
-     50,
-     [
-      "bird",
-      "boar",
-      "eagle",
-      "goat",
-      "greathart",
-      "hind",
-      "rabbit"
-     ]
-    ],
-    [
-     1375,
-     1330,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1407,
-     1281,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1412,
-     1294,
-     30,
-     [
-      "blackbear",
-      "brownbear",
-      "cougar",
-      "eagle",
-      "greathart",
-      "greywolf",
-      "hind",
-      "panther",
-      "rabbit",
-      "timberwolf"
-     ]
-    ],
-    [
-     1474,
-     1297,
-     30,
-     [
-      "greatermongbat",
-      "mongbat",
-      "orc"
-     ]
-    ],
-    [
-     1486,
-     1301,
-     50,
-     [
-      "blackbear",
-      "brownbear",
-      "cougar",
-      "eagle",
-      "greathart",
-      "greywolf",
-      "hind",
-      "panther",
-      "rabbit",
-      "timberwolf"
-     ]
-    ]
-   ],
-   "spot": [
-    1375,
-    1330
-   ],
-   "theme": "orc-band",
    "tier": 2
   },
   {
@@ -931,7 +804,16 @@
     [
      1475,
      1958,
-     30,
+     10,
+     [
+      "giantrat",
+      "ratman"
+     ]
+    ],
+    [
+     1484,
+     1902,
+     25,
      [
       "giantrat",
       "ratman"
@@ -940,7 +822,7 @@
     [
      1534,
      1941,
-     30,
+     23,
      [
       "giantrat",
       "ratman"
@@ -949,7 +831,25 @@
     [
      1541,
      1895,
-     30,
+     20,
+     [
+      "giantrat",
+      "ratman"
+     ]
+    ],
+    [
+     1568,
+     1978,
+     25,
+     [
+      "giantrat",
+      "ratman"
+     ]
+    ],
+    [
+     1580,
+     1906,
+     19,
      [
       "giantrat",
       "ratman"
@@ -961,6 +861,253 @@
     1941
    ],
    "theme": "ratman-warren",
+   "tier": 2
+  },
+  {
+   "id": "north-hills",
+   "label": "Orc band",
+   "name": "North Hills",
+   "rects": [
+    [
+     1230,
+     1280,
+     1500,
+     1360
+    ],
+    [
+     1230,
+     1360,
+     1290,
+     1400
+    ]
+   ],
+   "ring": 336,
+   "spawners": [
+    [
+     1236,
+     1310,
+     30,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "eagle",
+      "greathart",
+      "greywolf",
+      "hind",
+      "panther",
+      "rabbit",
+      "timberwolf"
+     ]
+    ],
+    [
+     1240,
+     1317,
+     19,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1244,
+     1374,
+     19,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1252,
+     1382,
+     30,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "eagle",
+      "greathart",
+      "greywolf",
+      "hind",
+      "panther",
+      "rabbit",
+      "timberwolf"
+     ]
+    ],
+    [
+     1280,
+     1282,
+     25,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1284,
+     1366,
+     20,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1305,
+     1326,
+     19,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1308,
+     1302,
+     30,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "eagle",
+      "greathart",
+      "greywolf",
+      "hind",
+      "panther",
+      "rabbit",
+      "timberwolf"
+     ]
+    ],
+    [
+     1340,
+     1310,
+     19,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1351,
+     1359,
+     50,
+     [
+      "bird",
+      "boar",
+      "eagle",
+      "goat",
+      "greathart",
+      "hind",
+      "rabbit"
+     ]
+    ],
+    [
+     1375,
+     1330,
+     18,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1407,
+     1281,
+     23,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1412,
+     1294,
+     30,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "eagle",
+      "greathart",
+      "greywolf",
+      "hind",
+      "panther",
+      "rabbit",
+      "timberwolf"
+     ]
+    ],
+    [
+     1420,
+     1326,
+     18,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1456,
+     1330,
+     18,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1474,
+     1297,
+     10,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ],
+    [
+     1486,
+     1301,
+     50,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "eagle",
+      "greathart",
+      "greywolf",
+      "hind",
+      "panther",
+      "rabbit",
+      "timberwolf"
+     ]
+    ],
+    [
+     1492,
+     1338,
+     18,
+     [
+      "greatermongbat",
+      "mongbat",
+      "orc"
+     ]
+    ]
+   ],
+   "spot": [
+    1340,
+    1310
+   ],
+   "theme": "orc-band",
    "tier": 2
   },
   {
@@ -984,6 +1131,19 @@
    "ring": 363,
    "spawners": [
     [
+     1642,
+     1344,
+     28,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "greywolf",
+      "panther",
+      "timberwolf"
+     ]
+    ],
+    [
      1666,
      1290,
      50,
@@ -1001,9 +1161,35 @@
      ]
     ],
     [
+     1698,
+     1252,
+     24,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "greywolf",
+      "panther",
+      "timberwolf"
+     ]
+    ],
+    [
      1726,
      1362,
-     30,
+     25,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "greywolf",
+      "panther",
+      "timberwolf"
+     ]
+    ],
+    [
+     1750,
+     1406,
+     24,
      [
       "blackbear",
       "brownbear",
@@ -1033,7 +1219,7 @@
     [
      1797,
      1393,
-     30,
+     10,
      [
       "blackbear",
       "brownbear",
@@ -1046,7 +1232,20 @@
     [
      1799,
      1394,
-     30,
+     10,
+     [
+      "blackbear",
+      "brownbear",
+      "cougar",
+      "greywolf",
+      "panther",
+      "timberwolf"
+     ]
+    ],
+    [
+     1838,
+     1434,
+     27,
      [
       "blackbear",
       "brownbear",
@@ -1063,6 +1262,74 @@
    ],
    "theme": "woodland-predators",
    "tier": 2
+  },
+  {
+   "id": "troll-hills",
+   "label": "Hill giants (trolls, ettins, ogres)",
+   "name": "Troll Hills",
+   "rects": [
+    [
+     1150,
+     1250,
+     1230,
+     1380
+    ],
+    [
+     1230,
+     1250,
+     1360,
+     1280
+    ]
+   ],
+   "ring": 372,
+   "spawners": [
+    [
+     1180,
+     1354,
+     10,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1216,
+     1348,
+     18,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1232,
+     1252,
+     28,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1340,
+     1268,
+     21,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ]
+   ],
+   "spot": [
+    1216,
+    1348
+   ],
+   "theme": "troll-hills",
+   "tier": 3
   },
   {
    "id": "south-woods",
@@ -1082,7 +1349,7 @@
      1980
     ]
    ],
-   "ring": 388,
+   "ring": 424,
    "spawners": [
     [
      1387,
@@ -1103,7 +1370,7 @@
     [
      1416,
      1992,
-     30,
+     19,
      [
       "corpser",
       "direwolf",
@@ -1115,7 +1382,7 @@
     [
      1447,
      2038,
-     30,
+     25,
      [
       "corpser",
       "direwolf",
@@ -1143,7 +1410,43 @@
     [
      1504,
      2007,
-     30,
+     16,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1540,
+     2038,
+     21,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1652,
+     2034,
+     27,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1668,
+     1982,
+     21,
      [
       "corpser",
       "direwolf",
@@ -1170,58 +1473,10 @@
     ]
    ],
    "spot": [
-    1504,
-    2007
+    1540,
+    2038
    ],
    "theme": "deep-forest",
-   "tier": 3
-  },
-  {
-   "id": "troll-hills",
-   "label": "Hill giants (trolls, ettins, ogres)",
-   "name": "Troll Hills",
-   "rects": [
-    [
-     1150,
-     1250,
-     1230,
-     1380
-    ],
-    [
-     1230,
-     1250,
-     1360,
-     1280
-    ]
-   ],
-   "ring": 394,
-   "spawners": [
-    [
-     1180,
-     1354,
-     30,
-     [
-      "ettin",
-      "ogre",
-      "troll"
-     ]
-    ],
-    [
-     1340,
-     1268,
-     30,
-     [
-      "ettin",
-      "ogre",
-      "troll"
-     ]
-    ]
-   ],
-   "spot": [
-    1180,
-    1354
-   ],
-   "theme": "troll-hills",
    "tier": 3
   },
   {
@@ -1238,6 +1493,30 @@
    ],
    "ring": 445,
    "spawners": [
+    [
+     1002,
+     1700,
+     14,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1010,
+     1824,
+     14,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
     [
      1014,
      1796,
@@ -1283,9 +1562,33 @@
      ]
     ],
     [
+     1030,
+     1692,
+     14,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
      1038,
      1728,
      20,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1038,
+     1828,
+     14,
      [
       "corpser",
       "direwolf",
@@ -1317,9 +1620,21 @@
    "ring": 446,
    "spawners": [
     [
+     1218,
+     1994,
+     23,
+     [
+      "bonemagi",
+      "skeletalknight",
+      "skeleton",
+      "spectre",
+      "wraith"
+     ]
+    ],
+    [
      1249,
      2030,
-     30,
+     11,
      [
       "bonemagi",
       "skeletalknight",
@@ -1331,7 +1646,7 @@
     [
      1266,
      1982,
-     30,
+     18,
      [
       "bonemagi",
       "skeletalknight",
@@ -1354,6 +1669,42 @@
       "panther",
       "rabbit",
       "timberwolf"
+     ]
+    ],
+    [
+     1298,
+     1962,
+     18,
+     [
+      "bonemagi",
+      "skeletalknight",
+      "skeleton",
+      "spectre",
+      "wraith"
+     ]
+    ],
+    [
+     1326,
+     2046,
+     30,
+     [
+      "bonemagi",
+      "skeletalknight",
+      "skeleton",
+      "spectre",
+      "wraith"
+     ]
+    ],
+    [
+     1330,
+     1982,
+     18,
+     [
+      "bonemagi",
+      "skeletalknight",
+      "skeleton",
+      "spectre",
+      "wraith"
      ]
     ]
    ],
@@ -1379,9 +1730,27 @@
    "ring": 478,
    "spawners": [
     [
+     1002,
+     1302,
+     16,
+     [
+      "gazer",
+      "harpy"
+     ]
+    ],
+    [
      1004,
      1369,
-     30,
+     10,
+     [
+      "gazer",
+      "harpy"
+     ]
+    ],
+    [
+     1006,
+     1334,
+     14,
      [
       "gazer",
       "harpy"
@@ -1406,7 +1775,7 @@
     [
      1021,
      1415,
-     30,
+     14,
      [
       "gazer",
       "harpy"
@@ -1415,7 +1784,7 @@
     [
      1037,
      1325,
-     30,
+     14,
      [
       "gazer",
       "harpy"
@@ -1438,9 +1807,18 @@
      ]
     ],
     [
+     1054,
+     1302,
+     14,
+     [
+      "gazer",
+      "harpy"
+     ]
+    ],
+    [
      1055,
      1442,
-     30,
+     17,
      [
       "gazer",
       "harpy"
@@ -1449,7 +1827,25 @@
     [
      1060,
      1375,
-     30,
+     13,
+     [
+      "gazer",
+      "harpy"
+     ]
+    ],
+    [
+     1062,
+     1342,
+     15,
+     [
+      "gazer",
+      "harpy"
+     ]
+    ],
+    [
+     1078,
+     1410,
+     18,
      [
       "gazer",
       "harpy"
@@ -1475,12 +1871,12 @@
      1340
     ]
    ],
-   "ring": 507,
+   "ring": 489,
    "spawners": [
     [
      1750,
      1250,
-     30,
+     14,
      [
       "gargoyle",
       "gazer"
@@ -1503,9 +1899,27 @@
      ]
     ],
     [
+     1778,
+     1252,
+     14,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
      1787,
      1280,
-     30,
+     14,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1806,
+     1252,
+     14,
      [
       "gargoyle",
       "gazer"
@@ -1514,7 +1928,34 @@
     [
      1812,
      1314,
-     30,
+     17,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1822,
+     1280,
+     16,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1838,
+     1336,
+     17,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1842,
+     1252,
+     15,
      [
       "gargoyle",
       "gazer"
@@ -1537,9 +1978,45 @@
      ]
     ],
     [
+     1858,
+     1300,
+     14,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1866,
+     1272,
+     14,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1882,
+     1316,
+     14,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
      1898,
      1265,
-     30,
+     11,
+     [
+      "gargoyle",
+      "gazer"
+     ]
+    ],
+    [
+     1906,
+     1336,
+     15,
      [
       "gargoyle",
       "gazer"
@@ -1548,7 +2025,7 @@
     [
      1912,
      1283,
-     30,
+     10,
      [
       "gargoyle",
       "gazer"
@@ -1557,7 +2034,7 @@
     [
      1912,
      1302,
-     30,
+     10,
      [
       "gargoyle",
       "gazer"
@@ -1565,8 +2042,8 @@
     ]
    ],
    "spot": [
-    1852,
-    1286
+    1822,
+    1280
    ],
    "theme": "gargoyle-heights",
    "tier": 3
@@ -1586,9 +2063,49 @@
    "ring": 539,
    "spawners": [
     [
+     1942,
+     1402,
+     13,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1954,
+     1442,
+     18,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1954,
+     1490,
+     16,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1954,
+     1522,
+     14,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
      1969,
      1409,
-     30,
+     13,
      [
       "ettin",
       "ogre",
@@ -1598,7 +2115,7 @@
     [
      1983,
      1517,
-     30,
+     14,
      [
       "ettin",
       "ogre",
@@ -1608,7 +2125,27 @@
     [
      1986,
      1463,
-     30,
+     14,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1998,
+     1434,
+     15,
+     [
+      "ettin",
+      "ogre",
+      "troll"
+     ]
+    ],
+    [
+     1998,
+     1490,
+     14,
      [
       "ettin",
       "ogre",
@@ -1641,7 +2178,7 @@
      1340
     ]
    ],
-   "ring": 581,
+   "ring": 550,
    "spawners": [
     [
      1865,
@@ -1662,7 +2199,7 @@
     [
      1872,
      1347,
-     30,
+     16,
      [
       "corpser",
       "direwolf",
@@ -1688,6 +2225,18 @@
      ]
     ],
     [
+     1954,
+     1358,
+     22,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
      1958,
      1305,
      50,
@@ -1706,7 +2255,31 @@
     [
      1967,
      1296,
-     30,
+     10,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1996,
+     1252,
+     26,
+     [
+      "corpser",
+      "direwolf",
+      "giantspider",
+      "grizzlybear",
+      "reaper"
+     ]
+    ],
+    [
+     1998,
+     1346,
+     22,
      [
       "corpser",
       "direwolf",
@@ -1717,8 +2290,8 @@
     ]
    ],
    "spot": [
-    1958,
-    1305
+    1954,
+    1358
    ],
    "theme": "deep-forest",
    "tier": 3
@@ -1738,6 +2311,17 @@
    "ring": 502,
    "spawners": [
     [
+     1010,
+     1882,
+     18,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
      1011,
      1945,
      50,
@@ -1754,9 +2338,31 @@
      ]
     ],
     [
+     1014,
+     2010,
+     18,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
+     1018,
+     2046,
+     18,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
      1029,
      1969,
-     30,
+     13,
      [
       "corpser",
       "giantspider",
@@ -1767,7 +2373,40 @@
     [
      1042,
      1920,
-     30,
+     17,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
+     1046,
+     1886,
+     17,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
+     1050,
+     2010,
+     18,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
+     1054,
+     2046,
+     18,
      [
       "corpser",
       "giantspider",
@@ -1778,7 +2417,7 @@
     [
      1080,
      1963,
-     30,
+     17,
      [
       "corpser",
       "giantspider",
@@ -1803,9 +2442,20 @@
      ]
     ],
     [
+     1086,
+     1998,
+     17,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
+     ]
+    ],
+    [
      1089,
      2033,
-     30,
+     17,
      [
       "corpser",
       "giantspider",
@@ -1827,6 +2477,17 @@
       "panther",
       "rabbit",
       "timberwolf"
+     ]
+    ],
+    [
+     1146,
+     2030,
+     28,
+     [
+      "corpser",
+      "giantspider",
+      "reaper",
+      "wisp"
      ]
     ],
     [

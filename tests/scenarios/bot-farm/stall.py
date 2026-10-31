@@ -61,6 +61,8 @@ class StallMixin:
     def stall_tick(self, acted):
         if not self.feature("stall_sense"):
             return
+        if getattr(self, "core_active", None) and self.core_active():
+            return                                                          # the decision core's monitor owns progress (task_core.py)
         st = self.__dict__.setdefault("_stall", {})
         now = time.time()
         if not st.get("purged"):

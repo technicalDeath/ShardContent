@@ -128,7 +128,7 @@ class BuddyMixin:
         errand = b.get("errand_at")
         doc = {"t": now, "pos": [int(self.c.x), int(self.c.y)], "rule": rule, "skill": round(self.party_skill(), 1), "ghost": bool(self.c.ghost),
                "party": self.buddy_party(), "errand": errand if errand and now - errand >= ERRAND_AFTER else 0, "back_at": b.get("back_at", 0),
-               "seeking": not self.buddy_party()}
+               "seeking": not self.buddy_party(), "core": self.buddy_core(), "fire": self.facts.get("camp_fire")}
         path = os.path.join(farm_dir(), self.name, "buddy.json")
         try:
             with open(path + ".tmp", "w", encoding="utf-8") as f:
@@ -136,6 +136,13 @@ class BuddyMixin:
             os.replace(path + ".tmp", path)
         except OSError:
             pass
+
+    def buddy_core(self):
+        """The decision core's running hunt or shared tour, for a partner to join (task_core.tour2_candidates): None without one."""
+        t = self.facts.get("task") if isinstance(self.facts, dict) else None
+        if not t or t.get("task") not in ("hunt", "tour2"):
+            return None
+        return {k: t.get(k) for k in ("task", "area", "spots", "tour", "side", "tier", "expected", "budget", "judge", "score", "role") if t.get(k) is not None}
 
     def buddy_pair_events(self, b, now):
         names = self.buddy_party()

@@ -18,6 +18,7 @@ Events: bw_plan {choice, corpse_dist, eta_min, window_left}; bw_result {choice, 
 """
 from __future__ import annotations
 
+import basics  # noqa: E402  (shared helpers)
 import time
 
 BW_SPEED = 75.0          # tiles a minute on a routed walk: the 526-538 tile healer walks took 6.7 min once the flip-flop was fixed (the watcher)
@@ -29,12 +30,7 @@ LEAVE_RISKY = 90          # tiles out of a death area the danger map rates risky
 RELEASE_AFTER = 20.0     # seconds for r_gear to put the pack's gear on before a "near" bot plays on
 
 
-def _cell(x, y):
-    try:
-        from memory import cell_of
-        return cell_of(x, y)
-    except Exception:
-        return f"{int(x) // 40 * 40},{int(y) // 40 * 40}"
+_cell = basics.cell_at                      # (basics.py: one copy for every module)
 
 
 class BetweenWorldsMixin:

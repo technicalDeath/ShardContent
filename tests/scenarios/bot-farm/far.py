@@ -21,6 +21,7 @@ What a far service walk is now (a target more than FAR = 120 tiles away; nearer 
 far_goto returns "arrived", "moving", "interrupted: <why>", "skipped: <why>", "timeout: far budget" or "nopath: far"; callers stop on the first four (far_after).
 Without walkroute / its grid the walk is the old plain goto.
 """
+import basics  # noqa: E402  (shared helpers)
 import json
 import os
 import time
@@ -37,7 +38,6 @@ THROTTLES = {
     "sell": ("sold_at", "meat_sold_at", "gear_sold_at", "sell_skip_until", "market_at"),
     "bank": ("bank_fail",),
 }
-_WR = None
 _PEN = None
 
 
@@ -45,16 +45,7 @@ def cheb(a, b):
     return max(abs(a[0] - b[0]), abs(a[1] - b[1]))
 
 
-def _wr():
-    global _WR
-    if _WR is None:
-        try:
-            import walkroute
-            walkroute.get()
-            _WR = walkroute
-        except Exception:
-            _WR = False
-    return _WR or None
+_wr = basics.walkroute_mod                   # (basics.py: one copy, one loaded grid)
 
 
 def _circle_pen(wr):
@@ -101,7 +92,21 @@ class FarMixin:
                 own = wr.penalty_circles([(int(x), int(y), 40, 4.0) for x, y in spots[-6:]]) if spots else {}
             except Exception:
                 own = {}
-            got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own))
+            box = {}
+            try:
+                import task_core
+                if task_core.box_bot(self):                          # the undead box north of Britain: a bot under 120 hit points walks round it (RangerAR died inside, 2026-10-21)
+                    x0, y0, x1, y1 = task_core.UNDEAD_BOX
+                    box = wr.penalty_circles([(cx, 1400, 50, 12.0) for cx in range(x0 + 20, x1, 40)] + [((x0 + x1) // 2, (y0 + y1) // 2, 100, 12.0)])
+            except Exception:
+                box = {}
+            kill = {}
+            try:                                                      # spawners holding a kind that kills this group (measured): walks go round their home range
+                import spots as _sp
+                kill = wr.penalty_circles([(o["x"], o["y"], max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR, 8.0) for o, _k in _sp.deadly_spawners(self)])   # its creatures notice a walker 14 tiles past the home range (perception 16 - aggro 2), as the spot and prey rules count it (2026-10-29)
+            except Exception:
+                kill = {}
+            got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own, box, kill))
         return got[1]
 
     def far_worth(self, role, xy, value=None):
@@ -122,7 +127,11 @@ class FarMixin:
             return heavy or (value or 0) >= need, f"{value or 0} items, {need} needed for {d} tiles" + (", pack heavy" if heavy else "")
         if role == "shop":
             gather = getattr(self, "can_gather", None)
-            if getattr(self, "current_rule", "") == "r_restock" and callable(gather) and gather() and value is not True:
+            # (only when gathering may run now: with the planner on "craft" the gather rules are off, and BotSmithBR and BotCarpAR stood waiting with
+            # neither material nor a walk to the shop, 70-80% of an hour, 2026-10-30)
+            steered = callable(getattr(self, "planner_acts", None)) and self.planner_acts()
+            may_gather = not steered or getattr(self, "plan_current", lambda: "gather")() == "gather"
+            if getattr(self, "current_rule", "") == "r_restock" and callable(gather) and gather() and may_gather and value is not True:
                 return False, "it can gather the material near home"                     # a crafter restocking prefers to chop, dig or fish
             return True, "it cannot work without the shop"
         if role == "travel":
@@ -157,7 +166,8 @@ class FarMixin:
         here = (self.c.x, self.c.y)
         d = cheb(here, xy)
         wr = _wr()
-        if d <= FAR or wr is None or wr.get().snap(*xy, 30) is None or wr.get().snap(here[0], here[1], 30) is None:
+        other_side = (xy[0] >= 5120) != (here[0] >= 5120)          # a dungeon end: the land grid's plan cannot cross sides (walkroute knows the dungeon grid since item 5), the goto wrapper's teleporter crossing does
+        if d <= FAR or other_side or wr is None or wr.get().snap(*xy, 30) is None or wr.get().snap(here[0], here[1], 30) is None:
             self._far_last = ""
             st0 = self.facts.get("far")
             if st0 and d <= FAR and cheb(st0["dest"], xy) <= 12:
@@ -217,6 +227,9 @@ class FarMixin:
         self.facts["far"] = st
         return st
 
+    def far_threat_coming(self, m):
+        return self.threat_coming(m)                      # basics.BasicsMixin.threat_coming (shared with crafting)
+
     def far_check(self, st):
         """Why the trip must stop now, or None: a hostile near, a hurt bot, a ghost (except on the way to a healer)."""
         if st["role"] == "healer":
@@ -227,6 +240,7 @@ class FarMixin:
         if corpse_run:
             return "hurt" if self.hp_pct() < 15 else None
         near = (getattr(self, "threats", None) or self.dangers)(9)          # BotBase.threats: hostiles that can hurt, without the town animals
+        near = [m for m in near if self.far_threat_coming(m)]
         if near:
             return "threat: " + str(getattr(near[0], "name", "?"))
         if self.hp_pct() < 60:
@@ -328,6 +342,15 @@ class FarMixin:
         return False
 
     def r_far(self):
+        if getattr(self, "home_danger", None):
+            self.home_danger()                            # a home that keeps killing it: move house (patch_home_town)
+        if self.facts.get("rehome_walk") and not self.c.ghost:
+            self.facts.pop("rehome_walk", None)
+            h = self.home() if getattr(self, "home", None) else None
+            if h and not self.in_britain():               # in_britain: in its home town (the name is from the Britain-only days)
+                res = self.far_goto(self.home_centre(), "travel", timeout=4)
+                self.log(f"home: walking to {h['name']} ({res})")
+                return True
         st = self.facts.get("far")
         if not st or self.c.ghost and st["role"] != "healer":
             return False

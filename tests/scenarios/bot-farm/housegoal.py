@@ -160,6 +160,17 @@ class HouseGoalMixin:
         if self.house_deed():
             st["phase"] = "site"
             return True
+        if st.get("deed_serial"):
+            # bought, but not in the pack: an earlier bank visit put it in the box (every deed is named just "deed"; SorcAR's sat there 3 hours and it tried to buy a second, 2026-10-30)
+            if not self.visit_bank("deed"):
+                return self.house_fail(st, "the bank visit for the deed failed", rest=300)
+            self.c.open_backpack()
+            time.sleep(1.0)
+            if self.house_deed():
+                st["phase"] = "site"
+                return True
+            self.log(f"house: the deed {st['deed_serial']} is in neither the pack nor the bank box")
+            self.house_emit("house_deed_lost", serial=st.pop("deed_serial"))
         if self.facts.get("bank_balance", 0) < DEED_COST:
             return self.house_fail(st, f"the bank holds {self.facts.get('bank_balance', 0)}, the deed costs {DEED_COST}")
         shops = self.find_places(("architect",), n=1) or self.find_places(("broker",), n=1)
@@ -194,6 +205,24 @@ class HouseGoalMixin:
             st["phase"] = "site"
             return True
         return self.house_fail(st, "the purchase gave no deed")
+
+    def house_deed_from_bank(self, box):
+        """At a bank visit: the deed bought for the house, if a visit before put it in the box, comes back to the pack. Only while it is still to be placed."""
+        st = self.house_state()
+        want = st.get("deed_serial")
+        if not want or st.get("phase") not in ("buy", "site") or self.house_deed():
+            return False
+        try:
+            got = next((i for i in self.c.container(box, timeout=6) if i.serial == want), None)
+        except Exception:
+            return False
+        if not got:
+            return False
+        self.c.get_item(got.serial, None)
+        time.sleep(1.2)
+        self.log(f"house: took the deed {want} back out of the bank box")
+        self.house_emit("house_deed_unbanked", serial=want)
+        return True
 
     # ---- site -------------------------------------------------------------------------------------------------------------------------------------
 

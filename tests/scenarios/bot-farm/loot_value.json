@@ -1,0 +1,7204 @@
+{
+ "about": "Writes loot_value.json: what a kill of each creature is worth, from the server's own classes (owner 2026-10-19: casters are too poor; \"carving corpses to get",
+ "kinds": {
+  "abscess": {
+   "carve": 0,
+   "class": "Abscess",
+   "damage": [
+    26.0,
+    31.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3000.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    7470.0,
+    7540.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "abysmalhorror": {
+   "carve": 0,
+   "class": "AbysmalHorror",
+   "damage": [
+    13.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    6000.0,
+    6000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "acidelemental": {
+   "carve": 0,
+   "class": "AcidElemental",
+   "damage": [
+    9.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    196.0,
+    213.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "agapiteelemental": {
+   "carve": 0,
+   "class": "AgapiteElemental",
+   "damage": [
+    28.0,
+    28.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "airelemental": {
+   "carve": 0,
+   "class": "AirElemental",
+   "damage": [
+    8.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    93.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "alligator": {
+   "carve": 8,
+   "class": "Alligator",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ancientlich": {
+   "carve": 0,
+   "class": "AncientLich",
+   "damage": [
+    15.0,
+    27.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    560.0,
+    595.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "ancientwyrm": {
+   "carve": 152,
+   "class": "AncientWyrm",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Barbed",
+   "hides": 40,
+   "hits": [
+    658.0,
+    711.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "animatetimer": {
+   "carve": 8,
+   "class": "AnimateTimer",
+   "damage": [
+    13.0,
+    24.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    350.0,
+    400.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "antlion": {
+   "carve": 0,
+   "class": "AntLion",
+   "damage": [
+    7.0,
+    21.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    162.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "arcanedaemon": {
+   "carve": 0,
+   "class": "ArcaneDaemon",
+   "damage": [
+    12.0,
+    16.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    101.0,
+    115.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "arcticogrelord": {
+   "carve": 0,
+   "class": "ArcticOgreLord",
+   "damage": [
+    20.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    476.0,
+    552.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "bakekitsune": {
+   "carve": 40,
+   "class": "BakeKitsune",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 830.0,
+   "hide_type": "Barbed",
+   "hides": 10,
+   "hits": [
+    301.0,
+    350.0
+   ],
+   "meat": 5,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "balron": {
+   "carve": 8,
+   "class": "Balron",
+   "damage": [
+    22.0,
+    29.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1355.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    592.0,
+    711.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "barracoon": {
+   "carve": 0,
+   "class": "Barracoon",
+   "damage": [
+    25.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4200.0,
+    4200.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "betrayer": {
+   "carve": 8,
+   "class": "Betrayer",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    241.0,
+    300.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "bird": {
+   "carve": 3,
+   "class": "Bird",
+   "damage": [
+    0.0,
+    0.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    10.0,
+    10.0
+   ],
+   "meat": 1,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "blackbear": {
+   "carve": 68,
+   "class": "BlackBear",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "blacksoleninfiltratorqueen": {
+   "carve": 0,
+   "class": "BlackSolenInfiltratorQueen",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    162.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "blacksoleninfiltratorwarrior": {
+   "carve": 0,
+   "class": "BlackSolenInfiltratorWarrior",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    96.0,
+    107.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "blacksolenqueen": {
+   "carve": 0,
+   "class": "BlackSolenQueen",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    162.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "blacksolenwarrior": {
+   "carve": 0,
+   "class": "BlackSolenWarrior",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    96.0,
+    107.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bloodelemental": {
+   "carve": 0,
+   "class": "BloodElemental",
+   "damage": [
+    17.0,
+    27.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    316.0,
+    369.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "boar": {
+   "carve": 16,
+   "class": "Boar",
+   "damage": [
+    3.0,
+    6.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    15.0,
+    15.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bogle": {
+   "carve": 0,
+   "class": "Bogle",
+   "damage": [
+    7.0,
+    11.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "bogling": {
+   "carve": 38,
+   "class": "Bogling",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bogthing": {
+   "carve": 0,
+   "class": "BogThing",
+   "damage": [
+    10.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    481.0,
+    540.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "bonedemon": {
+   "carve": 0,
+   "class": "BoneDemon",
+   "damage": [
+    34.0,
+    36.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 4200.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3600.0,
+    3600.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "boneknight": {
+   "carve": 0,
+   "class": "BoneKnight",
+   "damage": [
+    8.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    150.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bonemagi": {
+   "carve": 0,
+   "class": "BoneMagi",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "brigand": {
+   "carve": 0,
+   "class": "Brigand",
+   "damage": [
+    10.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    86.0,
+    100.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bronzeelemental": {
+   "carve": 0,
+   "class": "BronzeElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "brownbear": {
+   "carve": 68,
+   "class": "BrownBear",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bull": {
+   "carve": 155,
+   "class": "Bull",
+   "damage": [
+    4.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 15,
+   "hits": [
+    50.0,
+    64.0
+   ],
+   "meat": 10,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bullfrog": {
+   "carve": 28,
+   "class": "BullFrog",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 4,
+   "hits": [
+    28.0,
+    42.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "bunnyhole": {
+   "carve": 13,
+   "class": "BunnyHole",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1135.0,
+   "hide_type": "Regular",
+   "hides": 1,
+   "hits": [
+    2000.0,
+    2000.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "cat": {
+   "carve": 8,
+   "class": "Cat",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    6.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "centaur": {
+   "carve": 8,
+   "class": "Centaur",
+   "damage": [
+    13.0,
+    24.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Spined",
+   "hides": 8,
+   "hits": [
+    130.0,
+    172.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "chaosdaemon": {
+   "carve": 0,
+   "class": "ChaosDaemon",
+   "damage": [
+    12.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    91.0,
+    110.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "chaosdragoon": {
+   "carve": 0,
+   "class": "ChaosDragoon",
+   "damage": [
+    24.0,
+    26.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    176.0,
+    225.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "chaosdragoonelite": {
+   "carve": 0,
+   "class": "ChaosDragoonElite",
+   "damage": [
+    29.0,
+    34.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    276.0,
+    350.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "chicken": {
+   "carve": 3,
+   "class": "Chicken",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3.0,
+    3.0
+   ],
+   "meat": 1,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "coil": {
+   "carve": 248,
+   "class": "Coil",
+   "damage": [
+    19.0,
+    28.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 48,
+   "hits": [
+    628.0,
+    1291.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "copperelemental": {
+   "carve": 0,
+   "class": "CopperElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "corporealbrume": {
+   "carve": 0,
+   "class": "CorporealBrume",
+   "damage": [
+    21.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1150.0,
+    1250.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "corpser": {
+   "carve": 0,
+   "class": "Corpser",
+   "damage": [
+    10.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    94.0,
+    108.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lesser"
+  },
+  "corrosiveslime": {
+   "carve": 0,
+   "class": "CorrosiveSlime",
+   "damage": [
+    1.0,
+    5.0
+   ],
+   "extras": [
+    "gems"
+   ],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    15.0,
+    19.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "cougar": {
+   "carve": 58,
+   "class": "Cougar",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "cow": {
+   "carve": 124,
+   "class": "Cow",
+   "damage": [
+    1.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    18.0,
+    18.0
+   ],
+   "meat": 8,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "crane": {
+   "carve": 8,
+   "class": "Crane",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    26.0,
+    35.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "crystaldaemon": {
+   "carve": 0,
+   "class": "CrystalDaemon",
+   "damage": [
+    16.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    200.0,
+    220.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "crystalelemental": {
+   "carve": 0,
+   "class": "CrystalElemental",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    150.0,
+    150.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "crystallatticeseeker": {
+   "carve": 0,
+   "class": "CrystalLatticeSeeker",
+   "damage": [
+    13.0,
+    19.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 2100.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    350.0,
+    550.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "crystalvortex": {
+   "carve": 0,
+   "class": "CrystalVortex",
+   "damage": [
+    15.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    350.0,
+    400.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "cursed": {
+   "carve": 0,
+   "class": "Cursed",
+   "damage": [
+    5.0,
+    13.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    91.0,
+    120.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "cusidhe": {
+   "carve": 74,
+   "class": "CuSidhe",
+   "damage": [
+    21.0,
+    28.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    1010.0,
+    1275.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "cyclops": {
+   "carve": 32,
+   "class": "Cyclops",
+   "damage": [
+    7.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    202.0,
+    231.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "daemon": {
+   "carve": 8,
+   "class": "Daemon",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 515.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    286.0,
+    303.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "darkguardian": {
+   "carve": 0,
+   "class": "DarkGuardian",
+   "damage": [
+    43.0,
+    48.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    150.0,
+    180.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "darknightcreeper": {
+   "carve": 0,
+   "class": "DarknightCreeper",
+   "damage": [
+    22.0,
+    26.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4000.0,
+    4000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "darkwisp": {
+   "carve": 0,
+   "class": "DarkWisp",
+   "damage": [
+    17.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    135.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "deathwatchbeetle": {
+   "carve": 40,
+   "class": "DeathwatchBeetle",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "potions",
+    "scrolls"
+   ],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 8,
+   "hits": [
+    121.0,
+    145.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "deathwatchbeetlehatchling": {
+   "carve": 40,
+   "class": "DeathwatchBeetleHatchling",
+   "damage": [
+    2.0,
+    8.0
+   ],
+   "extras": [
+    "potions",
+    "scrolls"
+   ],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 8,
+   "hits": [
+    51.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "deepseaserpent": {
+   "carve": 8,
+   "class": "DeepSeaSerpent",
+   "damage": [
+    6.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    255.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "delaytimer": {
+   "carve": 0,
+   "class": "DelayTimer",
+   "damage": [
+    25.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2302.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4800.0,
+    4800.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "demonknight": {
+   "carve": 0,
+   "class": "DemonKnight",
+   "damage": [
+    17.0,
+    21.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    30000.0,
+    30000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "desertostard": {
+   "carve": 24,
+   "class": "DesertOstard",
+   "damage": [
+    5.0,
+    11.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    71.0,
+    88.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "devourer": {
+   "carve": 24,
+   "class": "Devourer",
+   "damage": [
+    22.0,
+    26.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    650.0,
+    650.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "direwolf": {
+   "carve": 8,
+   "class": "DireWolf",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Spined",
+   "hides": 7,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "dog": {
+   "carve": 8,
+   "class": "Dog",
+   "damage": [
+    4.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    17.0,
+    22.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "dolphin": {
+   "carve": 8,
+   "class": "Dolphin",
+   "damage": [
+    3.0,
+    6.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    15.0,
+    27.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "doppleganger": {
+   "carve": 38,
+   "class": "Doppleganger",
+   "damage": [
+    8.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    101.0,
+    120.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "dragon": {
+   "carve": 152,
+   "class": "Dragon",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Barbed",
+   "hides": 20,
+   "hits": [
+    478.0,
+    495.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "draintimer": {
+   "carve": 0,
+   "class": "DrainTimer",
+   "damage": [
+    13.0,
+    20.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    541.0,
+    600.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "drake": {
+   "carve": 80,
+   "class": "Drake",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Horned",
+   "hides": 20,
+   "hits": [
+    241.0,
+    258.0
+   ],
+   "meat": 10,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "dreadspider": {
+   "carve": 0,
+   "class": "DreadSpider",
+   "damage": [
+    5.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    132.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "dullcopperelemental": {
+   "carve": 0,
+   "class": "DullCopperElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "eagle": {
+   "carve": 3,
+   "class": "Eagle",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    20.0,
+    27.0
+   ],
+   "meat": 1,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "earthelemental": {
+   "carve": 0,
+   "class": "EarthElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    93.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "efreet": {
+   "carve": 0,
+   "class": "Efreet",
+   "damage": [
+    11.0,
+    13.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    196.0,
+    213.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "eldergazer": {
+   "carve": 0,
+   "class": "ElderGazer",
+   "damage": [
+    8.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    178.0,
+    195.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "elfbrigand": {
+   "carve": 0,
+   "class": "ElfBrigand",
+   "damage": [
+    10.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    86.0,
+    100.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "eliteninja": {
+   "carve": 0,
+   "class": "EliteNinja",
+   "damage": [
+    12.0,
+    20.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    251.0,
+    350.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "enslavedgargoyle": {
+   "carve": 8,
+   "class": "EnslavedGargoyle",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    186.0,
+    212.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "etherealwarrior": {
+   "carve": 0,
+   "class": "EtherealWarrior",
+   "damage": [
+    13.0,
+    19.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 915.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    352.0,
+    471.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ettin": {
+   "carve": 32,
+   "class": "Ettin",
+   "damage": [
+    7.0,
+    17.0
+   ],
+   "extras": [
+    "magic",
+    "potions"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    82.0,
+    99.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "evilmage": {
+   "carve": 8,
+   "class": "EvilMage",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    49.0,
+    63.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "evilmagelord": {
+   "carve": 8,
+   "class": "EvilMageLord",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    49.0,
+    63.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "executioner": {
+   "carve": 0,
+   "class": "Executioner",
+   "damage": [
+    8.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 577.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    386.0,
+    400.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "exodusminion": {
+   "carve": 0,
+   "class": "ExodusMinion",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    511.0,
+    570.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "exodusoverseer": {
+   "carve": 0,
+   "class": "ExodusOverseer",
+   "damage": [
+    13.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    331.0,
+    390.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "expirepolymorphtimer": {
+   "carve": 0,
+   "class": "ExpirePolymorphTimer",
+   "damage": [
+    25.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4200.0,
+    4200.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "fandancer": {
+   "carve": 0,
+   "class": "FanDancer",
+   "damage": [
+    12.0,
+    17.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    351.0,
+    430.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "feraltreefellow": {
+   "carve": 0,
+   "class": "FeralTreefellow",
+   "damage": [
+    26.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1170.0,
+    1320.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ferret": {
+   "carve": 8,
+   "class": "Ferret",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    45.0,
+    50.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "firebeetle": {
+   "carve": 128,
+   "class": "FireBeetle",
+   "damage": [
+    7.0,
+    20.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    200.0,
+    200.0
+   ],
+   "meat": 16,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "fireelemental": {
+   "carve": 0,
+   "class": "FireElemental",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    93.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "firegargoyle": {
+   "carve": 8,
+   "class": "FireGargoyle",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    211.0,
+    240.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "fleshgolem": {
+   "carve": 0,
+   "class": "FleshGolem",
+   "damage": [
+    18.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    106.0,
+    120.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "fleshrenderer": {
+   "carve": 0,
+   "class": "FleshRenderer",
+   "damage": [
+    16.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4500.0,
+    4500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "forestostard": {
+   "carve": 24,
+   "class": "ForestOstard",
+   "damage": [
+    8.0,
+    14.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    71.0,
+    88.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "frenziedostard": {
+   "carve": 24,
+   "class": "FrenziedOstard",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    71.0,
+    110.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "frostspider": {
+   "carve": 0,
+   "class": "FrostSpider",
+   "damage": [
+    6.0,
+    16.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 65.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "frosttroll": {
+   "carve": 16,
+   "class": "FrostTroll",
+   "damage": [
+    14.0,
+    20.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    140.0,
+    156.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gaman": {
+   "carve": 155,
+   "class": "Gaman",
+   "damage": [
+    6.0,
+    11.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 15,
+   "hits": [
+    131.0,
+    160.0
+   ],
+   "meat": 10,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gargoyle": {
+   "carve": 8,
+   "class": "Gargoyle",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "gems",
+    "magic",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    88.0,
+    105.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gargoyledestroyer": {
+   "carve": 8,
+   "class": "GargoyleDestroyer",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "gems",
+    "magic",
+    "scrolls"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    482.0,
+    485.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gargoyleenforcer": {
+   "carve": 8,
+   "class": "GargoyleEnforcer",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    482.0,
+    485.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gazer": {
+   "carve": 8,
+   "class": "Gazer",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "potions"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    75.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gazerlarva": {
+   "carve": 8,
+   "class": "GazerLarva",
+   "damage": [
+    2.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    36.0,
+    47.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ghoul": {
+   "carve": 0,
+   "class": "Ghoul",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "giantblackwidow": {
+   "carve": 0,
+   "class": "GiantBlackWidow",
+   "damage": [
+    5.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "giantrat": {
+   "carve": 38,
+   "class": "GiantRat",
+   "damage": [
+    4.0,
+    8.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    26.0,
+    39.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "giantserpent": {
+   "carve": 32,
+   "class": "GiantSerpent",
+   "damage": [
+    7.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Spined",
+   "hides": 15,
+   "hits": [
+    112.0,
+    129.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "giantspider": {
+   "carve": 0,
+   "class": "GiantSpider",
+   "damage": [
+    5.0,
+    13.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "gianttoad": {
+   "carve": 0,
+   "class": "GiantToad",
+   "damage": [
+    5.0,
+    17.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gibberling": {
+   "carve": 0,
+   "class": "Gibberling",
+   "damage": [
+    12.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    85.0,
+    99.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gnaw": {
+   "carve": 172,
+   "class": "Gnaw",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 28,
+   "hits": [
+    817.0,
+    857.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "goat": {
+   "carve": 56,
+   "class": "Goat",
+   "damage": [
+    3.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 8,
+   "hits": [
+    12.0,
+    12.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "goldenelemental": {
+   "carve": 0,
+   "class": "GoldenElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "golemcontroller": {
+   "carve": 0,
+   "class": "GolemController",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    90.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gorefiend": {
+   "carve": 0,
+   "class": "GoreFiend",
+   "damage": [
+    15.0,
+    21.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    97.0,
+    111.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "gorilla": {
+   "carve": 38,
+   "class": "Gorilla",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    38.0,
+    51.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "greaterdragon": {
+   "carve": 152,
+   "class": "GreaterDragon",
+   "damage": [
+    24.0,
+    33.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 2100.0,
+   "hide_type": "Barbed",
+   "hides": 30,
+   "hits": [
+    1000.0,
+    2000.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "greatermongbat": {
+   "carve": 38,
+   "class": "GreaterMongbat",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "greathart": {
+   "carve": 123,
+   "class": "GreatHart",
+   "damage": [
+    5.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 15,
+   "hits": [
+    27.0,
+    41.0
+   ],
+   "meat": 6,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "greywolf": {
+   "carve": 38,
+   "class": "GreyWolf",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "grizzlybear": {
+   "carve": 96,
+   "class": "GrizzlyBear",
+   "damage": [
+    8.0,
+    13.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 16,
+   "hits": [
+    76.0,
+    93.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "grobu": {
+   "carve": 0,
+   "class": "Grobu",
+   "damage": [
+    15.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1235.0,
+    1299.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "guile": {
+   "carve": 0,
+   "class": "Guile",
+   "damage": [
+    14.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1013.0,
+    1058.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "harpy": {
+   "carve": 12,
+   "class": "Harpy",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 4,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "harrower": {
+   "carve": 0,
+   "class": "Harrower",
+   "damage": null,
+   "extras": [
+    "magic"
+   ],
+   "gold": 1552.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    900.0,
+    1000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "harrowertentacles": {
+   "carve": 0,
+   "class": "HarrowerTentacles",
+   "damage": [
+    13.0,
+    20.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    541.0,
+    600.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "headlessone": {
+   "carve": 8,
+   "class": "HeadlessOne",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    16.0,
+    30.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hellcat": {
+   "carve": 0,
+   "class": "HellCat",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 10,
+   "hits": [
+    48.0,
+    67.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hellhound": {
+   "carve": 8,
+   "class": "HellHound",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    66.0,
+    125.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hind": {
+   "carve": 80,
+   "class": "Hind",
+   "damage": [
+    4.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 8,
+   "hits": [
+    15.0,
+    29.0
+   ],
+   "meat": 5,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hirebard": {
+   "carve": 0,
+   "class": "HireBard",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    16.0,
+    16.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hirebardarcher": {
+   "carve": 0,
+   "class": "HireBardArcher",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    16.0,
+    16.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hireranger": {
+   "carve": 0,
+   "class": "HireRanger",
+   "damage": [
+    13.0,
+    24.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    91.0,
+    91.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hiryu": {
+   "carve": 428,
+   "class": "Hiryu",
+   "damage": [
+    20.0,
+    30.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Regular",
+   "hides": 60,
+   "hits": [
+    901.0,
+    1100.0
+   ],
+   "meat": 16,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "horse": {
+   "carve": 74,
+   "class": "Horse",
+   "damage": [
+    3.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    28.0,
+    45.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "hydra": {
+   "carve": 352,
+   "class": "Hydra",
+   "damage": [
+    21.0,
+    26.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 40,
+   "hits": [
+    1480.0,
+    1500.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "iceelemental": {
+   "carve": 0,
+   "class": "IceElemental",
+   "damage": [
+    10.0,
+    21.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    94.0,
+    111.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "icefiend": {
+   "carve": 8,
+   "class": "IceFiend",
+   "damage": [
+    8.0,
+    19.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 630.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    226.0,
+    243.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "iceserpent": {
+   "carve": 32,
+   "class": "IceSerpent",
+   "damage": [
+    7.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 15,
+   "hits": [
+    130.0,
+    147.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "icesnake": {
+   "carve": 8,
+   "class": "IceSnake",
+   "damage": [
+    4.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    42.0,
+    54.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ilhenir": {
+   "carve": 0,
+   "class": "Ilhenir",
+   "damage": [
+    21.0,
+    28.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 4200.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    9000.0,
+    9000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "imp": {
+   "carve": 8,
+   "class": "Imp",
+   "damage": [
+    10.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 6,
+   "hits": [
+    55.0,
+    70.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "impaler": {
+   "carve": 0,
+   "class": "Impaler",
+   "damage": [
+    31.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    5000.0,
+    5000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "internaltimer": {
+   "carve": 0,
+   "class": "InternalTimer",
+   "damage": [
+    1.0,
+    8.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    95.0,
+    123.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "irk": {
+   "carve": 0,
+   "class": "Irk",
+   "damage": [
+    14.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1006.0,
+    1064.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "jackrabbit": {
+   "carve": 13,
+   "class": "JackRabbit",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 1,
+   "hits": [
+    9.0,
+    9.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "juggernaut": {
+   "carve": 8,
+   "class": "Juggernaut",
+   "damage": [
+    12.0,
+    19.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    181.0,
+    240.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "jukalord": {
+   "carve": 8,
+   "class": "JukaLord",
+   "damage": [
+    10.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    241.0,
+    300.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "jukamage": {
+   "carve": 8,
+   "class": "JukaMage",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    121.0,
+    180.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "jukawarrior": {
+   "carve": 8,
+   "class": "JukaWarrior",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    210.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "kappa": {
+   "carve": 0,
+   "class": "Kappa",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    180.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "kazekemono": {
+   "carve": 0,
+   "class": "KazeKemono",
+   "damage": [
+    15.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 915.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    251.0,
+    330.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "kirin": {
+   "carve": 24,
+   "class": "Kirin",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Horned",
+   "hides": 10,
+   "hits": [
+    191.0,
+    210.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "kraken": {
+   "carve": 0,
+   "class": "Kraken",
+   "damage": [
+    19.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    454.0,
+    468.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ladyjennifyr": {
+   "carve": 0,
+   "class": "LadyJennifyr",
+   "damage": [
+    15.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1113.0,
+    1285.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ladylissith": {
+   "carve": 0,
+   "class": "LadyLissith",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    245.0,
+    375.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ladymarai": {
+   "carve": 0,
+   "class": "LadyMarai",
+   "damage": [
+    15.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    694.0,
+    846.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ladyofthesnow": {
+   "carve": 0,
+   "class": "LadyOfTheSnow",
+   "damage": [
+    13.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    596.0,
+    625.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ladysabrix": {
+   "carve": 0,
+   "class": "LadySabrix",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    233.0,
+    361.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lavalizard": {
+   "carve": 0,
+   "class": "LavaLizard",
+   "damage": [
+    6.0,
+    24.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    76.0,
+    90.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lavaserpent": {
+   "carve": 32,
+   "class": "LavaSerpent",
+   "damage": [
+    10.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Spined",
+   "hides": 15,
+   "hits": [
+    232.0,
+    249.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lavasnake": {
+   "carve": 8,
+   "class": "LavaSnake",
+   "damage": [
+    1.0,
+    8.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    28.0,
+    32.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lesserhiryu": {
+   "carve": 428,
+   "class": "LesserHiryu",
+   "damage": [
+    18.0,
+    23.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 60,
+   "hits": [
+    401.0,
+    600.0
+   ],
+   "meat": 16,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "leviathan": {
+   "carve": 0,
+   "class": "Leviathan",
+   "damage": [
+    25.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2625.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    1500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "leviathanbreath": {
+   "carve": 0,
+   "class": "LeviathanBreath",
+   "damage": [
+    25.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2625.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    1500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lich": {
+   "carve": 0,
+   "class": "Lich",
+   "damage": [
+    24.0,
+    26.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    103.0,
+    120.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "lichlord": {
+   "carve": 0,
+   "class": "LichLord",
+   "damage": [
+    11.0,
+    13.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    250.0,
+    303.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "lizardman": {
+   "carve": 8,
+   "class": "Lizardman",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "llama": {
+   "carve": 68,
+   "class": "Llama",
+   "damage": [
+    3.0,
+    5.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    15.0,
+    27.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "lordoaks": {
+   "carve": 0,
+   "class": "LordOaks",
+   "damage": [
+    21.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3750.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3000.0,
+    3000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "lurg": {
+   "carve": 0,
+   "class": "Lurg",
+   "damage": [
+    16.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3034.0,
+    3189.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "malefic": {
+   "carve": 0,
+   "class": "Malefic",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    600.0,
+    747.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mantraeffervescence": {
+   "carve": 0,
+   "class": "MantraEffervescence",
+   "damage": [
+    21.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    150.0,
+    250.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "masterjonath": {
+   "carve": 0,
+   "class": "MasterJonath",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    766.0,
+    920.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mastermikael": {
+   "carve": 0,
+   "class": "MasterMikael",
+   "damage": [
+    11.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    789.0,
+    1014.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mastertheophilus": {
+   "carve": 0,
+   "class": "MasterTheophilus",
+   "damage": [
+    15.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    663.0,
+    876.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "meercaptain": {
+   "carve": 0,
+   "class": "MeerCaptain",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    66.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "meereternal": {
+   "carve": 0,
+   "class": "MeerEternal",
+   "damage": [
+    11.0,
+    13.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    250.0,
+    303.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "meermage": {
+   "carve": 0,
+   "class": "MeerMage",
+   "damage": [
+    24.0,
+    26.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    103.0,
+    120.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "meerwarrior": {
+   "carve": 0,
+   "class": "MeerWarrior",
+   "damage": [
+    12.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    52.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mephitis": {
+   "carve": 0,
+   "class": "Mephitis",
+   "damage": [
+    21.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3000.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3000.0,
+    3000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "meraktus": {
+   "carve": 66,
+   "class": "Meraktus",
+   "damage": [
+    16.0,
+    30.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    4100.0,
+    4200.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "miasma": {
+   "carve": 0,
+   "class": "Miasma",
+   "damage": [
+    20.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3000.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    750.0,
+    2000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "minotaur": {
+   "carve": 0,
+   "class": "Minotaur",
+   "damage": [
+    11.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    301.0,
+    340.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "minotaurcaptain": {
+   "carve": 0,
+   "class": "MinotaurCaptain",
+   "damage": [
+    11.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    401.0,
+    440.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "minotaurscout": {
+   "carve": 0,
+   "class": "MinotaurScout",
+   "damage": [
+    11.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    354.0,
+    383.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mldryad": {
+   "carve": 8,
+   "class": "MLDryad",
+   "damage": [
+    11.0,
+    20.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    304.0,
+    321.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "moloch": {
+   "carve": 0,
+   "class": "Moloch",
+   "damage": [
+    15.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    171.0,
+    200.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "mongbat": {
+   "carve": 8,
+   "class": "Mongbat",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "moundofmaggots": {
+   "carve": 0,
+   "class": "MoundOfMaggots",
+   "damage": [
+    3.0,
+    9.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    61.0,
+    70.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "mountaingoat": {
+   "carve": 76,
+   "class": "MountainGoat",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    20.0,
+    33.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "mummy": {
+   "carve": 0,
+   "class": "Mummy",
+   "damage": [
+    13.0,
+    23.0
+   ],
+   "extras": [
+    "gems",
+    "magic",
+    "potions"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    208.0,
+    222.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lesser"
+  },
+  "neira": {
+   "carve": 0,
+   "class": "Neira",
+   "damage": [
+    25.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2302.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4800.0,
+    4800.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "nightmare": {
+   "carve": 40,
+   "class": "Nightmare",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 410.0,
+   "hide_type": "Barbed",
+   "hides": 10,
+   "hits": [
+    298.0,
+    315.0
+   ],
+   "meat": 5,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ogre": {
+   "carve": 16,
+   "class": "Ogre",
+   "damage": [
+    9.0,
+    11.0
+   ],
+   "extras": [
+    "magic",
+    "potions"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    100.0,
+    117.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ogrelord": {
+   "carve": 16,
+   "class": "OgreLord",
+   "damage": [
+    20.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    476.0,
+    552.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "oni": {
+   "carve": 0,
+   "class": "Oni",
+   "damage": [
+    14.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    401.0,
+    530.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ophidianarchmage": {
+   "carve": 8,
+   "class": "OphidianArchmage",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    169.0,
+    183.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ophidianknight": {
+   "carve": 16,
+   "class": "OphidianKnight",
+   "damage": [
+    16.0,
+    19.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    266.0,
+    342.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "ophidianmage": {
+   "carve": 8,
+   "class": "OphidianMage",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    109.0,
+    123.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ophidianmatriarch": {
+   "carve": 0,
+   "class": "OphidianMatriarch",
+   "damage": [
+    11.0,
+    13.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 515.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    250.0,
+    303.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "ophidianwarrior": {
+   "carve": 8,
+   "class": "OphidianWarrior",
+   "damage": [
+    5.0,
+    11.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    128.0,
+    155.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "orc": {
+   "carve": 8,
+   "class": "Orc",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "orcbomber": {
+   "carve": 0,
+   "class": "OrcBomber",
+   "damage": [
+    1.0,
+    8.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    95.0,
+    123.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "orcbrute": {
+   "carve": 16,
+   "class": "OrcBrute",
+   "damage": [
+    20.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    476.0,
+    552.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "orccaptain": {
+   "carve": 8,
+   "class": "OrcCaptain",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    67.0,
+    87.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "orcishlord": {
+   "carve": 8,
+   "class": "OrcishLord",
+   "damage": [
+    4.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    95.0,
+    123.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "orcishmage": {
+   "carve": 8,
+   "class": "OrcishMage",
+   "damage": [
+    4.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    70.0,
+    90.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "packanimalbackpackentry": {
+   "carve": 74,
+   "class": "PackAnimalBackpackEntry",
+   "damage": [
+    5.0,
+    11.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    61.0,
+    80.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "packhorse": {
+   "carve": 74,
+   "class": "PackHorse",
+   "damage": [
+    5.0,
+    11.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    61.0,
+    80.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "packllama": {
+   "carve": 8,
+   "class": "PackLlama",
+   "damage": [
+    2.0,
+    6.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    50.0,
+    50.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "panther": {
+   "carve": 58,
+   "class": "Panther",
+   "damage": [
+    4.0,
+    12.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    37.0,
+    51.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "patchworkskeleton": {
+   "carve": 0,
+   "class": "PatchworkSkeleton",
+   "damage": [
+    18.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "pestilentbandage": {
+   "carve": 0,
+   "class": "PestilentBandage",
+   "damage": [
+    13.0,
+    23.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    415.0,
+    445.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "phoenix": {
+   "carve": 3,
+   "class": "Phoenix",
+   "damage": [
+    25.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    340.0,
+    383.0
+   ],
+   "meat": 1,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "pig": {
+   "carve": 8,
+   "class": "Pig",
+   "damage": [
+    2.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    12.0,
+    12.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "pixie": {
+   "carve": 8,
+   "class": "Pixie",
+   "damage": [
+    9.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "scrolls"
+   ],
+   "gold": 0.0,
+   "hide_type": "Spined",
+   "hides": 5,
+   "hits": [
+    13.0,
+    18.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "plaguebeast": {
+   "carve": 0,
+   "class": "PlagueBeast",
+   "damage": [
+    20.0,
+    24.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    318.0,
+    404.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "plaguespawn": {
+   "carve": 0,
+   "class": "PlagueSpawn",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "gems"
+   ],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    121.0,
+    180.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "poisonelemental": {
+   "carve": 0,
+   "class": "PoisonElemental",
+   "damage": [
+    12.0,
+    18.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    256.0,
+    309.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "polarbear": {
+   "carve": 96,
+   "class": "PolarBear",
+   "damage": [
+    7.0,
+    12.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 16,
+   "hits": [
+    70.0,
+    84.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "predatorhellcat": {
+   "carve": 0,
+   "class": "PredatorHellCat",
+   "damage": [
+    5.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Spined",
+   "hides": 10,
+   "hits": [
+    97.0,
+    131.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "protector": {
+   "carve": 0,
+   "class": "Protector",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    350.0,
+    450.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "putrefier": {
+   "carve": 0,
+   "class": "Putrefier",
+   "damage": [
+    27.0,
+    34.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3010.0,
+    4092.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "pyre": {
+   "carve": 0,
+   "class": "Pyre",
+   "damage": [
+    30.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1783.0,
+    1939.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "quagmire": {
+   "carve": 0,
+   "class": "Quagmire",
+   "damage": [
+    10.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    91.0,
+    105.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "rabbit": {
+   "carve": 13,
+   "class": "Rabbit",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 1,
+   "hits": [
+    4.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "raginggrizzlybear": {
+   "carve": 192,
+   "class": "RagingGrizzlyBear",
+   "damage": [
+    18.0,
+    23.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 32,
+   "hits": [
+    751.0,
+    930.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "raiju": {
+   "carve": 0,
+   "class": "RaiJu",
+   "damage": [
+    12.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    201.0,
+    280.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "raptor": {
+   "carve": 56,
+   "class": "Raptor",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Horned",
+   "hides": 11,
+   "hits": [
+    343.0,
+    400.0
+   ],
+   "meat": 7,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "rat": {
+   "carve": 8,
+   "class": "Rat",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    6.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ratman": {
+   "carve": 0,
+   "class": "Ratman",
+   "damage": [
+    4.0,
+    5.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Spined",
+   "hides": 8,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ratmanarcher": {
+   "carve": 0,
+   "class": "RatmanArcher",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Spined",
+   "hides": 8,
+   "hits": [
+    88.0,
+    108.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ratmanmage": {
+   "carve": 8,
+   "class": "RatmanMage",
+   "damage": [
+    7.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Spined",
+   "hides": 8,
+   "hits": [
+    88.0,
+    108.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ravager": {
+   "carve": 0,
+   "class": "Ravager",
+   "damage": [
+    15.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    161.0,
+    175.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "reaper": {
+   "carve": 0,
+   "class": "Reaper",
+   "damage": [
+    9.0,
+    11.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    40.0,
+    129.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "reddeath": {
+   "carve": 0,
+   "class": "RedDeath",
+   "damage": [
+    25.0,
+    29.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1540.0,
+    1605.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "redsoleninfiltratorqueen": {
+   "carve": 0,
+   "class": "RedSolenInfiltratorQueen",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    162.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "redsoleninfiltratorwarrior": {
+   "carve": 0,
+   "class": "RedSolenInfiltratorWarrior",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    96.0,
+    107.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "redsolenqueen": {
+   "carve": 0,
+   "class": "RedSolenQueen",
+   "damage": [
+    10.0,
+    15.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    162.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "redsolenwarrior": {
+   "carve": 0,
+   "class": "RedSolenWarrior",
+   "damage": [
+    5.0,
+    15.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    96.0,
+    107.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "rend": {
+   "carve": 0,
+   "class": "Rend",
+   "damage": [
+    26.0,
+    33.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    5176.0,
+    6100.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "reptalon": {
+   "carve": 90,
+   "class": "Reptalon",
+   "damage": [
+    21.0,
+    28.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    833.0,
+    931.0
+   ],
+   "meat": 5,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "restlesssoul": {
+   "carve": 0,
+   "class": "RestlessSoul",
+   "damage": [
+    1.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    16.0,
+    24.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "revenantlion": {
+   "carve": 0,
+   "class": "RevenantLion",
+   "damage": [
+    18.0,
+    24.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    251.0,
+    280.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "ridablellama": {
+   "carve": 68,
+   "class": "RidableLlama",
+   "damage": [
+    3.0,
+    5.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    15.0,
+    27.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "ridgeback": {
+   "carve": 8,
+   "class": "Ridgeback",
+   "damage": [
+    3.0,
+    5.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    41.0,
+    54.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "rikktor": {
+   "carve": 0,
+   "class": "Rikktor",
+   "damage": [
+    28.0,
+    55.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3000.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    3000.0,
+    3000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "ronin": {
+   "carve": 0,
+   "class": "Ronin",
+   "damage": [
+    17.0,
+    25.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    301.0,
+    400.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "rottingcorpse": {
+   "carve": 0,
+   "class": "RottingCorpse",
+   "damage": [
+    8.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1200.0,
+    1200.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "runebeetle": {
+   "carve": 0,
+   "class": "RuneBeetle",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    301.0,
+    360.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "saliva": {
+   "carve": 0,
+   "class": "Saliva",
+   "damage": [
+    20.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    409.0,
+    842.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "sandvortex": {
+   "carve": 0,
+   "class": "SandVortex",
+   "damage": [
+    3.0,
+    16.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    51.0,
+    62.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "satyr": {
+   "carve": 8,
+   "class": "Satyr",
+   "damage": [
+    13.0,
+    24.0
+   ],
+   "extras": [],
+   "gold": 0.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    350.0,
+    400.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "savage": {
+   "carve": 8,
+   "class": "Savage",
+   "damage": [
+    23.0,
+    27.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    96.0,
+    115.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "savagerider": {
+   "carve": 8,
+   "class": "SavageRider",
+   "damage": [
+    29.0,
+    34.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    151.0,
+    170.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "savageridgeback": {
+   "carve": 8,
+   "class": "SavageRidgeback",
+   "damage": [
+    3.0,
+    5.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    41.0,
+    54.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "savageshaman": {
+   "carve": 8,
+   "class": "SavageShaman",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    126.0,
+    145.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "scorpion": {
+   "carve": 8,
+   "class": "Scorpion",
+   "damage": [
+    5.0,
+    10.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    50.0,
+    63.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "seaserpent": {
+   "carve": 0,
+   "class": "SeaSerpent",
+   "damage": [
+    7.0,
+    13.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Horned",
+   "hides": 10,
+   "hits": [
+    110.0,
+    127.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "semidar": {
+   "carve": 0,
+   "class": "Semidar",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    1500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "semidardrainlife": {
+   "carve": 0,
+   "class": "SemidarDrainLife",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 3525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    1500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "serado": {
+   "carve": 0,
+   "class": "Serado",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 3525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    9000.0,
+    9000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "serpentinedragon": {
+   "carve": 152,
+   "class": "SerpentineDragon",
+   "damage": [
+    5.0,
+    12.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Barbed",
+   "hides": 20,
+   "hits": [
+    480.0,
+    480.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "sewerrat": {
+   "carve": 8,
+   "class": "SewerRat",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    6.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "shade": {
+   "carve": 0,
+   "class": "Shade",
+   "damage": [
+    7.0,
+    11.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "shadowironelemental": {
+   "carve": 0,
+   "class": "ShadowIronElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "shadowknight": {
+   "carve": 0,
+   "class": "ShadowKnight",
+   "damage": [
+    20.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    2000.0,
+    2000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "shadowwyrm": {
+   "carve": 152,
+   "class": "ShadowWyrm",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Barbed",
+   "hides": 20,
+   "hits": [
+    558.0,
+    599.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "sheep": {
+   "carve": 12,
+   "class": "Sheep",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    12.0,
+    12.0
+   ],
+   "meat": 3,
+   "meat_type": "LambLeg",
+   "poison_immune": null
+  },
+  "silk": {
+   "carve": 0,
+   "class": "Silk",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    279.0,
+    378.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "silvani": {
+   "carve": 0,
+   "class": "Silvani",
+   "damage": [
+    27.0,
+    38.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    600.0,
+    600.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "silverserpent": {
+   "carve": 8,
+   "class": "SilverSerpent",
+   "damage": [
+    5.0,
+    21.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    97.0,
+    216.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "sirpatrick": {
+   "carve": 0,
+   "class": "SirPatrick",
+   "damage": [
+    15.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    616.0,
+    884.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "sirpatrickdrainlife": {
+   "carve": 0,
+   "class": "SirPatrickDrainLife",
+   "damage": [
+    15.0,
+    25.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    616.0,
+    884.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "skeletaldragon": {
+   "carve": 152,
+   "class": "SkeletalDragon",
+   "damage": [
+    29.0,
+    35.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 2100.0,
+   "hide_type": "Barbed",
+   "hides": 20,
+   "hits": [
+    558.0,
+    599.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "skeletalknight": {
+   "carve": 0,
+   "class": "SkeletalKnight",
+   "damage": [
+    8.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    150.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "skeletalmage": {
+   "carve": 0,
+   "class": "SkeletalMage",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "skeleton": {
+   "carve": 0,
+   "class": "Skeleton",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lesser"
+  },
+  "skitteringhopper": {
+   "carve": 0,
+   "class": "SkitteringHopper",
+   "damage": [
+    3.0,
+    5.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    31.0,
+    45.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "slime": {
+   "carve": 0,
+   "class": "Slime",
+   "damage": [
+    1.0,
+    5.0
+   ],
+   "extras": [
+    "gems"
+   ],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    15.0,
+    19.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lesser"
+  },
+  "slith": {
+   "carve": 98,
+   "class": "Slith",
+   "damage": [
+    6.0,
+    24.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 10,
+   "hits": [
+    84.0,
+    85.0
+   ],
+   "meat": 6,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "snake": {
+   "carve": 8,
+   "class": "Snake",
+   "damage": [
+    1.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    15.0,
+    19.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Lesser"
+  },
+  "snowelemental": {
+   "carve": 0,
+   "class": "SnowElemental",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    196.0,
+    213.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "snowleopard": {
+   "carve": 48,
+   "class": "SnowLeopard",
+   "damage": [
+    3.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 8,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "spectre": {
+   "carve": 0,
+   "class": "Spectre",
+   "damage": [
+    7.0,
+    11.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "spellbinder": {
+   "carve": 0,
+   "class": "Spellbinder",
+   "damage": [
+    3.0,
+    6.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    36.0,
+    50.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "spellbinderai": {
+   "carve": 0,
+   "class": "SpellbinderAI",
+   "damage": [
+    3.0,
+    6.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    36.0,
+    50.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "spite": {
+   "carve": 0,
+   "class": "Spite",
+   "damage": [
+    14.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1013.0,
+    1052.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "squirrel": {
+   "carve": 8,
+   "class": "Squirrel",
+   "damage": [
+    1.0,
+    2.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    42.0,
+    50.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "stainedooze": {
+   "carve": 0,
+   "class": "StainedOoze",
+   "damage": [
+    21.0,
+    28.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 4200.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    9000.0,
+    9000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "stonegargoyle": {
+   "carve": 0,
+   "class": "StoneGargoyle",
+   "damage": [
+    11.0,
+    17.0
+   ],
+   "extras": [
+    "gems",
+    "magic",
+    "potions"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    148.0,
+    165.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "stoneharpy": {
+   "carve": 8,
+   "class": "StoneHarpy",
+   "damage": [
+    8.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    178.0,
+    192.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "stoneslith": {
+   "carve": 8,
+   "class": "StoneSlith",
+   "damage": [
+    6.0,
+    24.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Spined",
+   "hides": 12,
+   "hits": [
+    154.0,
+    166.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "strongmongbat": {
+   "carve": 38,
+   "class": "StrongMongbat",
+   "damage": [
+    5.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    4.0,
+    6.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "succubus": {
+   "carve": 8,
+   "class": "Succubus",
+   "damage": [
+    18.0,
+    28.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 1050.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    312.0,
+    353.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "swampdragon": {
+   "carve": 252,
+   "class": "SwampDragon",
+   "damage": [
+    3.0,
+    4.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 20,
+   "hits": [
+    121.0,
+    180.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "swamptentacle": {
+   "carve": 0,
+   "class": "SwampTentacle",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    58.0,
+    72.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Greater"
+  },
+  "swoop": {
+   "carve": 0,
+   "class": "Swoop",
+   "damage": [
+    20.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    2000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "tangle": {
+   "carve": 0,
+   "class": "Tangle",
+   "damage": [
+    15.0,
+    28.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    2468.0,
+    2733.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "teleporttimer": {
+   "carve": 0,
+   "class": "TeleportTimer",
+   "damage": null,
+   "extras": [
+    "magic"
+   ],
+   "gold": 1552.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    900.0,
+    1000.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "terathanavenger": {
+   "carve": 16,
+   "class": "TerathanAvenger",
+   "damage": [
+    18.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    296.0,
+    372.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "terathandrone": {
+   "carve": 32,
+   "class": "TerathanDrone",
+   "damage": [
+    6.0,
+    12.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    22.0,
+    39.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "terathanmatriarch": {
+   "carve": 0,
+   "class": "TerathanMatriarch",
+   "damage": [
+    11.0,
+    14.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 515.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    190.0,
+    243.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "terathanwarrior": {
+   "carve": 32,
+   "class": "TerathanWarrior",
+   "damage": [
+    7.0,
+    17.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    100.0,
+    129.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "thrasher": {
+   "carve": 248,
+   "class": "Thrasher",
+   "damage": [
+    20.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2100.0,
+   "hide_type": "Regular",
+   "hides": 48,
+   "hits": [
+    260.0,
+    984.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "timberwolf": {
+   "carve": 33,
+   "class": "TimberWolf",
+   "damage": [
+    5.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 5,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "titan": {
+   "carve": 32,
+   "class": "Titan",
+   "damage": [
+    13.0,
+    16.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 630.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    322.0,
+    351.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "tormentedminotaur": {
+   "carve": 0,
+   "class": "TormentedMinotaur",
+   "damage": [
+    16.0,
+    30.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 5250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    4000.0,
+    4200.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "toxicslith": {
+   "carve": 48,
+   "class": "ToxicSlith",
+   "damage": [
+    6.0,
+    24.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 210.0,
+   "hide_type": "Horned",
+   "hides": 11,
+   "hits": [
+    197.0,
+    215.0
+   ],
+   "meat": 6,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "treefellow": {
+   "carve": 0,
+   "class": "Treefellow",
+   "damage": [
+    12.0,
+    16.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    132.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "troglodyte": {
+   "carve": 0,
+   "class": "Troglodyte",
+   "damage": [
+    11.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    302.0,
+    340.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "troll": {
+   "carve": 16,
+   "class": "Troll",
+   "damage": [
+    8.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 105.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    106.0,
+    123.0
+   ],
+   "meat": 2,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "tropicalbird": {
+   "carve": 3,
+   "class": "TropicalBird",
+   "damage": [
+    0.0,
+    0.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    10.0,
+    10.0
+   ],
+   "meat": 1,
+   "meat_type": "Bird",
+   "poison_immune": null
+  },
+  "tsukiwolf": {
+   "carve": 157,
+   "class": "TsukiWolf",
+   "damage": [
+    14.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 25,
+   "hits": [
+    376.0,
+    450.0
+   ],
+   "meat": 4,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "twaulo": {
+   "carve": 8,
+   "class": "Twaulo",
+   "damage": [
+    19.0,
+    24.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1605.0,
+   "hide_type": "Spined",
+   "hides": 8,
+   "hits": [
+    7500.0,
+    7500.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  },
+  "unfrozenmummy": {
+   "carve": 0,
+   "class": "UnfrozenMummy",
+   "damage": [
+    16.0,
+    20.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1500.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    1500.0,
+    1500.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "unicorn": {
+   "carve": 24,
+   "class": "Unicorn",
+   "damage": [
+    16.0,
+    22.0
+   ],
+   "extras": [
+    "magic",
+    "potions",
+    "scrolls"
+   ],
+   "gold": 305.0,
+   "hide_type": "Horned",
+   "hides": 10,
+   "hits": [
+    191.0,
+    210.0
+   ],
+   "meat": 3,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "valoriteelemental": {
+   "carve": 0,
+   "class": "ValoriteElemental",
+   "damage": [
+    28.0,
+    28.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "vampirebat": {
+   "carve": 0,
+   "class": "VampireBat",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [],
+   "gold": 13.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    55.0,
+    66.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "veriteelemental": {
+   "carve": 0,
+   "class": "VeriteElemental",
+   "damage": [
+    9.0,
+    16.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 305.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    136.0,
+    153.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "virulent": {
+   "carve": 0,
+   "class": "Virulent",
+   "damage": [
+    15.0,
+    22.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 2250.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    616.0,
+    740.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "vorpalbunny": {
+   "carve": 13,
+   "class": "VorpalBunny",
+   "damage": [
+    1.0,
+    1.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 1135.0,
+   "hide_type": "Regular",
+   "hides": 1,
+   "hits": [
+    2000.0,
+    2000.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "wailingbanshee": {
+   "carve": 0,
+   "class": "WailingBanshee",
+   "damage": [
+    10.0,
+    14.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    90.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "walrus": {
+   "carve": 68,
+   "class": "Walrus",
+   "damage": [
+    4.0,
+    10.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 12,
+   "hits": [
+    14.0,
+    17.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "wandererofthevoid": {
+   "carve": 0,
+   "class": "WandererOfTheVoid",
+   "damage": [
+    11.0,
+    13.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 525.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    351.0,
+    400.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "waterelemental": {
+   "carve": 0,
+   "class": "WaterElemental",
+   "damage": [
+    7.0,
+    9.0
+   ],
+   "extras": [
+    "magic",
+    "potions"
+   ],
+   "gold": 157.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    76.0,
+    93.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "whitewolf": {
+   "carve": 38,
+   "class": "WhiteWolf",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [],
+   "gold": 0,
+   "hide_type": "Regular",
+   "hides": 6,
+   "hits": [
+    34.0,
+    48.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "whitewyrm": {
+   "carve": 152,
+   "class": "WhiteWyrm",
+   "damage": [
+    17.0,
+    25.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1155.0,
+   "hide_type": "Barbed",
+   "hides": 20,
+   "hits": [
+    433.0,
+    456.0
+   ],
+   "meat": 19,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "wisp": {
+   "carve": 0,
+   "class": "Wisp",
+   "damage": [
+    17.0,
+    18.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 410.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    118.0,
+    135.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "wraith": {
+   "carve": 0,
+   "class": "Wraith",
+   "damage": [
+    7.0,
+    11.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    46.0,
+    60.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "wyvern": {
+   "carve": 80,
+   "class": "Wyvern",
+   "damage": [
+    8.0,
+    19.0
+   ],
+   "extras": [
+    "magic",
+    "scrolls"
+   ],
+   "gold": 157.5,
+   "hide_type": "Horned",
+   "hides": 20,
+   "hits": [
+    125.0,
+    141.0
+   ],
+   "meat": 10,
+   "meat_type": "Ribs",
+   "poison_immune": "Deadly"
+  },
+  "yamandon": {
+   "carve": 100,
+   "class": "Yamandon",
+   "damage": [
+    19.0,
+    35.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1800.0,
+   "hide_type": "Regular",
+   "hides": 20,
+   "hits": [
+    1601.0,
+    1800.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Lethal"
+  },
+  "yomotsuelder": {
+   "carve": 8,
+   "class": "YomotsuElder",
+   "damage": [
+    19.0,
+    27.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 1575.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    801.0,
+    900.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "yomotsupriest": {
+   "carve": 8,
+   "class": "YomotsuPriest",
+   "damage": [
+    8.0,
+    10.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 830.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    486.0,
+    530.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "yomotsuwarrior": {
+   "carve": 8,
+   "class": "YomotsuWarrior",
+   "damage": [
+    8.0,
+    10.0
+   ],
+   "extras": [
+    "gems",
+    "magic"
+   ],
+   "gold": 610.0,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    486.0,
+    530.0
+   ],
+   "meat": 1,
+   "meat_type": "Ribs",
+   "poison_immune": null
+  },
+  "zombie": {
+   "carve": 0,
+   "class": "Zombie",
+   "damage": [
+    3.0,
+    7.0
+   ],
+   "extras": [
+    "magic"
+   ],
+   "gold": 52.5,
+   "hide_type": "Regular",
+   "hides": 0,
+   "hits": [
+    28.0,
+    42.0
+   ],
+   "meat": 0,
+   "meat_type": "Ribs",
+   "poison_immune": "Regular"
+  }
+ },
+ "leather": 5,
+ "meat": {
+  "Bird": 3,
+  "LambLeg": 4,
+  "Ribs": 8
+ },
+ "pack_gold": {
+  "Average": 105.0,
+  "FilthyRich": 525.0,
+  "Meager": 52.5,
+  "Poor": 13.0,
+  "Rich": 305.0,
+  "SuperBoss": 750.0,
+  "UltraRich": 750.0
+ }
+}

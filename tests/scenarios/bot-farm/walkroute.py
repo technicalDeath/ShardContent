@@ -34,19 +34,38 @@ def cheb(a, b):
     return max(abs(a[0] - b[0]), abs(a[1] - b[1]))
 
 
+SURFACE_X = 5120                                        # x at or beyond this is the dungeon side of the map: walkgrid-dungeons.bin (make_walkgrid.py --x0 5120 --width 2048)
+DUNGEON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "walkgrid-dungeons.bin")
+
+
 class WalkMap:
-    def __init__(self, path=DEFAULT_PATH):
+    def __init__(self, path=DEFAULT_PATH, x0=0):
         raw = open(path, "rb").read()
         assert raw[:5] == b"WGRD1", "not a walkgrid file"
         self.W, self.H, n = struct.unpack_from("<HHI", raw, 5)
         self.bits = zlib.decompress(raw[13:13 + n])
         self.coarse = zlib.decompress(raw[13 + n:])
         self.CH = self.H // CELL
+        self.x0 = int(x0)                                   # the first x column this grid holds (5120 for the dungeon side)
         assert len(self.bits) == self.W * self.H // 8 and len(self.coarse) == (self.W // CELL) * self.CH
+
+    def side_map(self, x):
+        """The grid that holds column x: this one, or the dungeon side's (loaded once) for x beyond the surface; None when neither does."""
+        if self.x0 <= x < self.x0 + self.W:
+            return self
+        if self.x0 == 0 and x >= SURFACE_X:
+            return dungeon()
+        return None
 
     # ---- tiles ----------------------------------------------------------------------------------------------------------------------------------
 
     def walkable(self, x, y):
+        m = self.side_map(x)
+        if m is None:
+            return False
+        if m is not self:
+            return m.walkable(x, y)
+        x -= self.x0
         if not (0 <= x < self.W and 0 <= y < self.H):
             return False
         i = x * self.H + y
@@ -61,6 +80,12 @@ class WalkMap:
         return None
 
     def open_cell(self, cx, cy):
+        m = self.side_map(cx * CELL)
+        if m is None:
+            return 0
+        if m is not self:
+            return m.open_cell(cx, cy)
+        cx -= self.x0 // CELL
         if not (0 <= cx < self.W // CELL and 0 <= cy < self.CH):
             return 0
         return self.coarse[cx * self.CH + cy]
@@ -195,6 +220,11 @@ class WalkMap:
         return dp(list(path))
 
     def plan(self, frm, to, penalty=None, step=40, tol=10, width=3):
+        a, b = self.side_map(int(frm[0])), self.side_map(int(to[0]))
+        if a is None or b is None or a is not b:
+            return None                                     # the two ends are on different sides of the map (the surface and a dungeon): a teleporter, not a walk (travel.py)
+        if a is not self:
+            return a.plan(frm, to, penalty, step, tol, width)
         s, g = self.snap(frm[0], frm[1]), self.snap(to[0], to[1])
         if not s or not g:
             return None
@@ -317,6 +347,20 @@ def get(path=None):
     if _default is None:
         _default = WalkMap()
     return _default
+
+
+_dungeon = None
+
+
+def dungeon(path=DUNGEON_PATH):
+    """The dungeon side's grid (x 5120 to 7167), loaded once; None when the file is not there (every dungeon tile then counts as blocked)."""
+    global _dungeon
+    if _dungeon is None:
+        try:
+            _dungeon = WalkMap(path, x0=SURFACE_X)
+        except (OSError, AssertionError):
+            _dungeon = False
+    return _dungeon or None
 
 
 def walkable(x, y): return get().walkable(x, y)

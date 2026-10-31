@@ -198,7 +198,18 @@ class RecoveryMixin:
         if self.materializing():
             find = getattr(self, "find_gump", None)
             serial = find(MAT_GUMP) if find else None
-            if serial:
+            heal_rule = str(getattr(self, "last_rule", "") or "")
+            healing = heal_rule in ("r_heal",) or heal_rule.endswith(":rest") or "rest" in str(getattr(self, "activity", "") or "")
+            try:
+                clear = not self.mobs(14)                  # no hostile within the aggro scan (DefaultRangePerception 16 less monsterAggro 2)
+            except Exception:
+                clear = False
+            if serial and healing and clear and self.hp_pct() < 80:
+                # healing while Between Worlds: the bandage is the action, and refusing it left the bot on regeneration alone (BotBardAdvR, 2026-10-29:
+                # 12 bandages in 5 minutes, each refused, +2 hit points each, about 0.08 a second against a bandage's 0.9). With nothing within 14 tiles, come back.
+                self.c.call(f"gumpresponse 1 gump:{serial}", timeout=6)
+                self.dlog("ev", ev="materialize_for_heal", hp=self.hp_pct())
+            elif serial:
                 # an action the brain did not mean to end it with: CANCEL keeps the bot Between Worlds; counted as before
                 self.c.call(f"gumpresponse 0 gump:{serial}", timeout=6)
                 self.facts["mat_refused_n"] = self.facts.get("mat_refused_n", 0) + 1
@@ -292,7 +303,10 @@ class RecoveryMixin:
         res = self.far_goto((x, y), "corpse", 90, value=300) if hasattr(self, "far_goto") else self.c.goto(x, y).wait(timeout=90)
         if str(res).startswith(("moving", "interrupted")):
             info["tries"] = 0                                         # a far walk under way (r_far goes on with it): try again when there
-            return True
+            info["await_far"] = True                                  # far_check's corpse run: unseen (materializing), it walks on hurt, as BotBase.r_corpse's walk does
+            # interrupted (hurt below 60%, or a danger near) is no step taken: the tick goes to the healing rules. Returning True here spun BotMageAdvR
+            # through 27k ticks after its resurrection, never healing (2026-10-30)
+            return not str(res).startswith("interrupted")
         me = (self.name or "").lower()
         corpses = [i for i in self.c.containers(within=8) if "corpse" in (i.name or "").lower() and (me in (i.name or "").lower() or not (i.name or "").lower().startswith(("a ", "an ")))]
         if not corpses and hasattr(self, "ground_items"):

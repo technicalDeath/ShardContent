@@ -19,15 +19,24 @@ from __future__ import annotations
 
 import time
 
+from earn import EarnMixin
 from hunter import HunterBot
 from memory import cell_of
 from miner import MinerBot
 from market import MarketMixin, MinerMarket
 
 
-class BrokeMinerBot(HunterBot):
+class BrokeMinerBot(EarnMixin, HunterBot):
+    HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
+    GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_market", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
     KEEP = MinerBot.KEEP
+
+    def earn_tool(self):
+        return self.pick()                                # the broke miner's tool is its pickaxe (earn.py)
+
+    def earn_material(self, low):
+        return "ingot" in low
     SHED_LAST = MinerBot.SHED_LAST                        # the product (ingots, ore) is dropped last when the pack is too heavy (drop_excess)
     LOOT_GEAR = ()                                        # a miner hunting vermin for coins does not carry weapons home to sell
     CARVE = False
@@ -37,6 +46,8 @@ class BrokeMinerBot(HunterBot):
     pick = MinerBot.pick
     ore = MinerBot.ore
     mountains = MinerBot.mountains
+    far_spot_ok = MinerBot.far_spot_ok                    # a bank past miner.DIG_REACH needs a safe walk (the range west of Britain)
+    roam_spots = MinerBot.roam_spots                      # a move counts only the hills it can dig (miner.DIG_REACH, a place to stand)
     stand_near = MinerBot.stand_near
     INGOT_BUYER = MinerBot.INGOT_BUYER
     r_sell = MinerBot.r_sell
@@ -108,87 +119,6 @@ class BrokeMinerBot(HunterBot):
         return True
 
     # ---- earning ---------------------------------------------------------------------------------------------------------------------------
-
-    def coin_value(self, kind):
-        """Gold a kill of this kind pays, from every bot's loot over the fights seen; 0.0 for a kind fought 6+ times that never paid, None when not measured."""
-        w = self.mem.state["world"]
-        kl = w["kloot"]
-        fights = sum(g["n"] for g in w["fights"].get(kind, {}).values()) if kind in w["fights"] else 0
-        hit = kl.get(kind) or kl.get(kind + "s")
-        if hit and hit["n"] >= 2:
-            return hit["gold"] / max(fights, hit["n"])
-        if any(k != kind and (k.startswith(kind) or kind.startswith(k)) for k in kl):
-            return None
-        return 0.0 if fights >= 6 and not hit else None
-
-    def prey(self, within=9):
-        ps = super().prey(within)
-        if not self._coin_only:
-            return ps
-        keep = []
-        for m in ps:
-            v = self.coin_value(self.mkey(m))
-            if m.distance <= 1 or v is None or v >= 1.0:
-                keep.append(m)
-            else:
-                skipped = self.facts.setdefault("coin_skipped", set())
-                if self.mkey(m) not in skipped:
-                    skipped.add(self.mkey(m))
-                    self.dlog("choice", what=f"skip {self.mkey(m)} for coins", why=f"{v:.1f} gold a kill in the shared memory")
-        return keep
-
-    def scraps(self):
-        """[(name, price, xy, amount)] of pack items some known shop buys at a price; ingots only when the pickaxe is gone and the funds are short."""
-        out = []
-        toolless = not self.pick()
-        for it in self.c.backpack:
-            low = it.name.lower()
-            is_ingot = "ingot" in low
-            if any(w in low for w in self.SCRAP_PROTECT) or (is_ingot and not (toolless and self.funds() < (self.tool_price() or self.TOOL_PRICE_GUESS))):
-                continue
-            offers = [(p, xy) for p, xy, item in self.mem.vendor_buying(low) if p > 0 and item in (low, low + "s")]
-            if offers:
-                p, xy = offers[0]
-                out.append((low, p, tuple(int(v) for v in xy.split(",")), it.amount or 1))
-        return out
-
-    def earn_candidates(self):
-        home = self.home_centre()
-        core = self.home_core() if getattr(self, "home_core", None) else (home[0] - 60, home[1] - 60, home[0] + 60, home[1] + 60)
-        cells = self.mem.state["world"]["cells"]
-        cand = {}
-        for x, y in self.earn_spots():
-            cand[(x, y)] = cells[cell_of(x, y)]["gold"] if cell_of(x, y) in cells else 0.0
-        for cell, c in cells.items():
-            if c["gold"] < self.EARN_MIN_GOLD:
-                continue
-            cx, cy = (int(v) for v in cell.split(","))
-            x, y = cx + 20, cy + 20
-            if max(abs(x - home[0]), abs(y - home[1])) > self.EARN_REACH or (core[0] <= x <= core[2] and core[1] <= y <= core[3]):
-                continue
-            if self.mem.dangerous_cell(cell) or self.mem.camp_cell(cell):
-                continue
-            cand[(x, y)] = max(cand.get((x, y), 0.0), c["gold"])
-        empty = self.facts.get("earn_empty", {})
-        now = time.time()
-        out = []
-        for (x, y), g in cand.items():
-            if self.near_death_spot(x, y, 40) or empty.get((x, y), 0) > now or self.mem.dangerous_cell(cell_of(x, y)):
-                continue
-            out.append((x, y, g - max(abs(x - self.c.x), abs(y - self.c.y)) / 30.0))
-        return out
-
-    def earn_ground(self):
-        cand = self.earn_candidates()
-        if not cand:
-            self.facts.pop("earn_empty", None)
-            spots = [s for s in self.earn_spots() if not self.near_death_spot(*s, 40) and not self.mem.dangerous_cell(cell_of(*s))] or [self.home_centre()]
-            return spots[int(time.time() // 240) % len(spots)]
-        best = max(cand, key=lambda c: c[2])
-        if best[2] > 0:
-            return best[0], best[1]
-        pool = sorted(cand, key=lambda c: (c[0], c[1]))
-        return pool[int(time.time() // 240) % len(pool)][:2]
 
     def r_earn(self):
         """No pickaxe (or no place to dig) and not enough money: sell scraps, then hunt the vermin that pay."""

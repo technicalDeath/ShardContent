@@ -33,7 +33,10 @@ UNDER = 70
 AVOID_EVERY = 1800.0
 READ_EVERY = 20.0
 SAMPLES = ((0, 0), (-14, -14), (14, -14), (-14, 14), (14, 14))
-COMBAT = ("Swordsmanship", "Mace Fighting", "Fencing", "Archery", "Wrestling", "Magery")
+COMBAT = ("Swordsmanship", "Mace Fighting", "Fencing", "Archery", "Magery")
+# not Wrestling: it is the skill of fists, 1-8 damage before AOS (Fists.cs OldMin/OldMaxDamage), where danger.loss's damage term is fitted to the bots'
+# weapons (Katana 5-26, Kryss, Club: about 15.5 a hit). Crafters raise it in bare-handed scraps: BotSmithBR at Wrestling 43.7 (weapons 8-12) was read
+# as a skill-44 fighter, sent to dig beside an Orc spawner (0.51 death chance at 30, 0.13 at 40) and killed by a spectre (2026-10-30).
 SKIP_FILES = ("SeaLife.json",)
 GRID = 64
 GATHER_CEILING = 0.5                                       # a gatherer may use a cell up to this risk (about one weighted death); the least risky cell is taken
@@ -186,7 +189,7 @@ class AreaDanger:
             ds = d["skill"]
             f = (1.0 if skill <= ds + SKILL_MARGIN else 0.3) if ds is not None else (1.0 if skill < UNDER else 0.3)
             f *= killer_weight(d.get("killers"), skill)
-            w += f * d.get("w", 1.0) * 0.5 ** ((now - d["t"]) / HALF_LIFE)
+            w += f * d.get("w", 1.0) * 0.5 ** max(0.0, (now - d["t"]) / HALF_LIFE)     # (a death stamped a hair after now weighs 1, not 1.00001)
         return w
 
     # ---- the question --------------------------------------------------------------------------------------------------------------------------

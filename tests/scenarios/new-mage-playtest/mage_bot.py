@@ -45,6 +45,8 @@ SPELLS = {
 SAFE_PREY = ("rat", "cat", "magpie", "nightingale", "crow", "rabbit", "hind", "sheep", "chicken", "pig", "goat", "cow", "gull", "bird", "dog", "lizard", "toad", "frog", "squirrel", "snake")
 DANGEROUS = ("bear", "wolf", "orc", "ettin", "lizardman", "troll", "mongbat", "skeleton", "zombie", "gazer", "scorpion", "spider", "ogre", "harpy")
 
+SPEND_SHARE = 0.5                         # a restock spends at most this share of the gold above the purse floor (patch_reagent_budget)
+RESUPPLY_BACKOFF = 300                    # a buy that changed nothing: r_resupply rests this long (patch_resupply_loop.py)
 PLAN = {"BlackPearl": 24, "SulfurousAsh": 16, "Garlic": 14, "Ginseng": 14, "SpidersSilk": 14, "MandrakeRoot": 8}
 WORTH_CARRYING = ("gold", "pearl", "moss", "garlic", "ginseng", "mandrake", "nightshade", "ash", "silk", "potion", "scroll", "bandage", "gem", "ruby", "sapphire", "emerald", "diamond", "amber", "citrine", "tourmaline", "star ", "jewel", "ring", "necklace", "bracelet")
 HEALER = (1472, 1611)      # data/client/UORekindled-Britain.csv: "Healer (resurrects you)"
@@ -455,9 +457,13 @@ class Bot:
             self.notes.add("loot", "An empty corpse still opens by itself; nothing says it was worthless before it opens.", key="emptycorpse")
             return True
         loot = self.stats.setdefault("loot", {})
+        harvest = []
         for it in contents:
             low = it.name.lower()
             worth = any(w in low for w in WORTH_CARRYING)
+            if not worth and ("hide" in low or "raw " in low) and getattr(self, "profit_on", lambda: False)():
+                harvest.append(it)                 # hides and meat pay (caster_profit): taken below with the action delay waited out (patch_pasture_harvest)
+                continue
             if not worth:
                 self.log(f"  leaving {it.name} (not worth the weight for a mage)")
                 self.notes.add("loot", f"Corpses of orcs, lizardmen and the like hold mostly equipment and parts a mage has no use for ({it.name}); only gold, reagents, potions, scrolls and gems are worth taking.", key=f"junk:{low[:20]}")
@@ -476,6 +482,11 @@ class Bot:
             took = self.c.gold - before if "gold" in low else (it.amount or 1)
             loot[it.name] = loot.get(it.name, 0) + max(took, 1)
             self.log(f"  took {it.name}" + (f" (gold {before} -> {self.c.gold})" if "gold" in low else ""))
+        if harvest:
+            meat, hides = self.profit_take(harvest)
+            if hides:
+                self.profit_cut()
+            self.log(f"  took the harvest: meat worth {meat}, {hides} hides")
         self.save_stats()
         self.notes.add("loot", f"A {corpse.name} held: {[str(x) for x in contents]}", key=f"loot:{corpse.name}")
         return True
@@ -540,13 +551,27 @@ class Bot:
                     pass
         return counts
 
+    def reagents_used(self):
+        """The reagent keys of the spells this caster has cast (stats["casts"] and the game data); empty before the first cast (patch_reagent_budget)."""
+        out = set()
+        spells = getattr(getattr(self, "k", None), "spells", None) or {}
+        for name, n in ((getattr(self, "stats", None) or {}).get("casts") or {}).items():
+            s = spells.get(str(name).lower())
+            if s and n:
+                out.update(s.get("reagents") or ())
+        return out
+
     def reagent_plan(self):
         return PLAN                                   # (CasterBot with the feature stock: the reagents its spells use, 20 each)
 
     def r_resupply(self):
         """Out of reagents (or once after the first hunt): walk to the mage shop, open the vendor's list and buy what casting uses."""
+        if time.time() < self.facts.get("resupply_backoff_until", 0):
+            return False                          # the last buy changed nothing: not again at once (patch_resupply_loop.py)
         fail = self.facts.get("last_fail")
         out_of_regs = bool(fail and fail[0] == "reagents" and time.time() - fail[2] < 60)
+        if not out_of_regs and hasattr(self, "can_cast") and self.c.gold >= 60 and not self.can_cast():
+            out_of_regs = True                    # no attack spell has its reagents: it never casts, so it never fails a cast (patch_pasture_harvest)
         if not out_of_regs:
             if self.facts.get("shopped") or self.kills < 3:
                 return False
@@ -555,6 +580,8 @@ class Bot:
                 return False          # the starter kit is still mostly there: no trip needed
         if self.dangers(10) or self.hp_pct() < 60:
             return False
+        if self.c.gold <= getattr(self, "PURSE_FLOOR", 0):
+            return False                          # nothing to spend above the purse floor: no trip (patch_scribe_floor2.py)
         if self.c.gold < 60:
             self.facts["need_gold"] = True         # too poor to buy: the bank may hold some (r_bank takes it out)
             if self.facts.get("bank_balance", 0) >= 60:
@@ -573,10 +600,13 @@ class Bot:
         stock = []
         for vendor in [m for m in self.c.mobiles(within=6) if m.notoriety == "Innocent" and m.name]:
             self.log(f"vendor candidate: {vendor.name} at {vendor.distance} tiles")
-            self.c.events.drain()
-            self.c.say(f"{vendor.name.split()[0]} buy")
-            time.sleep(2.5)
-            stock = self.cmd("shop", timeout=10)
+            if hasattr(self, "vendor_list"):
+                stock = self.vendor_list(vendor, "buy")          # only this vendor's own answer: Navrey's `shop` keeps the last list it got (patch_resupply_loop.py)
+            else:
+                self.c.events.drain()
+                self.c.say(f"{vendor.name.split()[0]} buy")
+                time.sleep(2.5)
+                stock = self.cmd("shop", timeout=10)
             if len(stock) >= 2:
                 break
         self.log(f"shop listing: {len(stock)} lines; first: {stock[:3]}")
@@ -605,8 +635,14 @@ class Bot:
                 self.notes.add("money", f"Selling potions, scrolls and camp items brought gold to {self.c.gold}.", key="soldstarter")
         self.refresh_state(force=True)
         cart = []
+        planned = []
+        before = dict(self.regs)
         spent_plan = 0
         plan = self.reagent_plan()
+        used = self.reagents_used()
+        if used:
+            plan = {k: v for k, v in plan.items() if k in used}       # only what its spells use (patch_reagent_budget)
+        cap = max(0, int((self.c.gold - getattr(self, "PURSE_FLOOR", 0)) * SPEND_SHARE))
         # what a hunt uses, from the server numbers: Fireball (black pearl) is the cheapest damage per gold the mage can cast reliably at Magery 50 to 60,
         # Magic Arrow (ash) the fallback, Heal (garlic, ginseng, spider silk) the upkeep, Lightning (mandrake + ash) the stretch spell
         for line in stock:
@@ -617,18 +653,31 @@ class Bot:
             key = REAGENT_KEYS.get(norm(name))
             if key and key in plan:
                 have = self.regs.get(key, 0)
-                budget = self.c.gold - spent_plan - getattr(self, "PURSE_FLOOR", 0)     # a purse floor (patch_caster_budget.py)
+                budget = min(self.c.gold - spent_plan - getattr(self, "PURSE_FLOOR", 0), cap - spent_plan)     # a purse floor, and half of the rest kept (patch_reagent_budget)
                 want = min(avail, max(0, plan[key] - have), max(0, budget // max(price, 1)))
                 if want > 0:
                     cart += [serial, str(want)]
                     spent_plan += want * price
                     self.log(f"  buying {want} {name} at {price}gp (have {have}, plan {plan[key]})")
-                    if hasattr(self, "ev"):
-                        self.ev("restock", item=name.lower(), qty=want, price=price, **{"from": "shop"})
+                    planned.append((key, name, want, price))
         if cart:
             self.cmd("buy " + " ".join(cart), timeout=10)
             time.sleep(3)
-            self.notes.add("shop", f"Bought reagents; gold {self.c.gold}; reagents now {self.reagent_counts()}", key="bought")
+            self.refresh_state(force=True)
+            got = 0
+            for key, name, want, price in planned:
+                n = self.regs.get(key, 0) - before.get(key, 0)
+                if n > 0:
+                    got += n
+                    if hasattr(self, "ev"):
+                        self.ev("restock", item=name.lower(), qty=n, price=price, **{"from": "shop"})      # what arrived, not what was asked
+            if got:
+                self.notes.add("shop", f"Bought reagents; gold {self.c.gold}; reagents now {self.reagent_counts()}", key="bought")
+            else:
+                self.facts["resupply_backoff_until"] = time.time() + RESUPPLY_BACKOFF
+                self.log(f"resupply: the buy changed nothing ({len(planned)} reagents asked, gold {self.c.gold}); not again for {RESUPPLY_BACKOFF} s")
+                if hasattr(self, "ev"):
+                    self.ev("stock_miss", item="reagents", why=f"buy changed nothing: {len(planned)} asked, gold {self.c.gold}")
         return True
     def r_train(self):
         """Once after shopping: ask the Mages' Guildmaster (the other person at the Mage shop) what he can teach."""
@@ -888,7 +937,8 @@ class Bot:
                     self.notes.add("stuck", "No rule handled the situation.", key=f"stuck:{self.tick_no // 50}")
                     time.sleep(1)
             except Exception as e:
-                self.log(f"EXCEPTION {type(e).__name__}: {e}")
+                import traceback                              # the tail places it (patch_caster_traceback.py)
+                self.log(f"EXCEPTION {type(e).__name__}: {e}\n{traceback.format_exc()[-400:]}")
                 self.notes.add("bot", f"Exception in tick: {type(e).__name__}: {e}", key=f"exc:{type(e).__name__}:{e}")
                 time.sleep(1)
         self.log(f"done: ticks {self.tick_no}, kills {self.kills}, deaths {self.deaths}")

@@ -262,7 +262,9 @@ def upgrade_choice(bot, money):
         return bot.next_upgrade(money)
     item = g["meta"].get("item")
     for opt in gear_options(bot):
-        if opt[2] == item and opt[3] + UPGRADE_KEEP <= have(bot):
+        if time.time() - bot.facts.get("upgrade_unwearable", {}).get(opt[2], 0) < 86400:
+            continue                                       # bought and could not be worn: not the goal's buy for a day (2026-10-29)
+        if opt[2] == item and opt[3] + UPGRADE_KEEP <= have(bot) and opt[3] <= money:          # and within `money`, which the caller has already cut by the supply reserve (MaceBR bought a 218-gold piece with 329 in hand)
             return opt
     return None
 

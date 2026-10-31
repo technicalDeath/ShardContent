@@ -10,6 +10,7 @@ Events (decisions.jsonl): market_talk {kind: offer | ask | price, item}, and the
 """
 from __future__ import annotations
 
+import basics  # noqa: E402  (shared helpers)
 import random
 import re
 import time
@@ -67,16 +68,7 @@ def plural(item):
     return item if item.endswith("s") else item + "s"
 
 
-def _emit(bot, name, **kw):
-    try:
-        from memory import cell_of
-        cell = cell_of(bot.c.x, bot.c.y)
-    except Exception:
-        cell = None
-    try:
-        bot.dlog("ev", ev=name, cell=cell, rule=getattr(bot, "current_rule", None) or getattr(bot, "last_rule", None), **kw)
-    except Exception:
-        pass
+_emit = basics.emit                         # (basics.py: one copy for every module)
 
 
 def _hourly(st, now):

@@ -174,8 +174,11 @@ class TameFindMixin:
             if v <= 0:
                 continue
             d = max(abs(s["x"] - here[0]), abs(s["y"] - here[1]))
-            if d > 400:
-                continue                                          # a walk of that length crosses too much to be worth it
+            if d > 400 or max(abs(s["x"] - home[0]), abs(s["y"] - home[1])) > 400:
+                continue                                          # a walk of that length crosses too much to be worth it; from home too, or each pick
+                                                                  # drifts further out (BotTamerAR: Britain -> 1882,1150 -> 2289,917, dead on the way, 2026-10-30)
+            if not self.tspot_route_ok(s, here):
+                continue                                          # the walk crosses ground this tamer may not use (route_danger, 14 days of deaths)
             if self.mem.dangerous_cell(cell_of(s["x"], s["y"])):
                 continue                                          # the area danger map: too strong here for this bot
             far = (d + max(abs(s["x"] - home[0]), abs(s["y"] - home[1]))) / 2.0          # from here and from home alike: a stranded tamer heads back in
@@ -183,6 +186,22 @@ class TameFindMixin:
             if best is None or score > best[0]:
                 best = (score, s, d, v)
         return best
+
+    def tspot_route_ok(self, s, here):
+        """The walk from here to the spot passes route_danger (as a gatherer's move of home does). Cached per spot for 30 min; True without map data."""
+        cache = self.__dict__.setdefault("_tspot_route", {})
+        key = (s["x"], s["y"], here[0] // 40, here[1] // 40)
+        hit = cache.get(key)
+        if hit and time.time() - hit[0] < 1800:
+            return hit[1]
+        try:
+            import walkroute
+            r = walkroute.get().plan(here, (s["x"], s["y"]), self.far_penalty() if hasattr(self, "far_penalty") else None)
+            ok = r is None or not self.route_danger(r)            # (no plan: the travel itself will say)
+        except Exception:
+            ok = True
+        cache[key] = (time.time(), ok)
+        return ok
 
     def find_animals(self):
         """r_explore for a tamer with the feature on: go to the spawner whose animals teach most, look about, mark it empty when nothing is there. False when the data has no spot
@@ -216,7 +235,9 @@ class TameFindMixin:
             self.mem.record("blocked", kind="tamespot", key=f"{x},{y}", ttl=ttl)
             self.facts.setdefault("tspot_skip", {})[f"{x},{y}"] = now + ttl          # (the shared memory is read every 20 s: this bot must not pick the spot again meanwhile)
             self.ev("tame_spot_empty", spot=[x, y], wandered=st["wander"])
-            self.log(f"tame: no worthwhile animal at {x},{y} after {st['wander']} looks: next spot")
+            why = self.__dict__.pop("_cand_why", {}) or {}
+            self.log(f"tame: no worthwhile animal at {x},{y} after {st['wander']} looks: next spot"
+                     + (f" (turned down: {', '.join(f'{k} x{v}' for k, v in sorted(why.items(), key=lambda kv: -kv[1])[:6])})" if why else " (no tameable animal in view)"))
             self.facts.pop("tspot", None)
             return True
         # walk about inside the spawner's range: a point on a ring at 40-90% of its home range, a different one each time

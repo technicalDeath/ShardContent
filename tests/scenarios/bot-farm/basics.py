@@ -1,0 +1,493 @@
+"""The basic game mechanics every brain shares (the owner, 2026-10-30: "I want all bots of all brain types to have shared and standard intelligence and
+behavior for basic game mechanics").
+
+BotBase (the fighters, bards, crafters, broke miners, fishers, miners and tamers) and CasterBot (the mages, built on new-mage-playtest/mage_bot.py) both
+inherit BasicsMixin. A brain overrides a hook (cure_spell, heal_spell, fight_back), never the rule itself. Before this each brain had its own copy and the
+copies drifted: the fighters drank a Heal potion every 12 s while poisoned (refused by the engine), cured beside a slime that poisons again on half its hits,
+and fled to a town refuge hundreds of tiles off; the casters stopped every far walk for a hind (BotBase.threats counted every animal).
+
+What lives here, each with its source:
+- potions: which item is which (items.POTION_NAMES), drinking with a free hand (BasePotion.HasFreeHand), the Heal potion's 10 s delay and its refusal while
+  poisoned (BaseHealPotion.Delay, "You can not heal yourself in your current state."), the Cure rule beside a poisoner (BaseCreature.HitPoisonChance 0.5;
+  pre-AOS Lesser poison at most 4 a tick for 10 ticks, PoisonKinds.cs), the Refresh potion when out of breath near a threat (RefreshPotion +25% of maximum)
+- threats: a mobile that can hurt (an attack-on-sight kind, task_core.aggressive from the engine's AI, or anything in war mode)
+- fleeing: 18 tiles straight away (a running player 0.2 s a tile, movement.delay.runFoot; a giant rat 0.45, a slime 0.6, npc-speeds.json; a creature notices
+  within 16 tiles, BaseCreature.DefaultRangePerception), then the two right angles; "trapped" when none is open, and the bot fights back
+- the selling decision: the goods' worth at the shops (items.py) against errands.sell_value, a heavy pack, or a bot nearly broke
+- small shared helpers: the status file, line of sight, finding a gump, a fight's target dying, the memory's kind key
+"""
+from __future__ import annotations
+
+import json
+import os
+import re
+import time
+
+import items
+
+HARMLESS = ("rat", "cat", "dog", "bird", "chicken", "rabbit", "sheep", "cow", "pig", "goat", "hind", "deer", "crow", "magpie", "sparrow", "swallow",
+            "nightingale", "plover", "thrush", "tern", "warbler", "squirrel", "toad", "frog", "lizard", "gull", "raven", "finch", "towhee", "starling")
+
+
+class BasicsMixin:
+    HARMLESS = HARMLESS
+
+    HEAL_POTION_DELAY = 10.0             # BaseHealPotion.Delay: one Heal potion every 10 s
+    CURE_RECHECK = 6.0                   # a drink takes about 1.5 s with its waits; the poison state is read again after this
+    POISON_ALL = 40                      # all a Lesser poison can still do (4 a tick, 10 ticks): above it a bot fights the poisoner first, cures after
+    REFRESH_BELOW = 0.25                 # a Refresh gives +25% of the maximum (RefreshPotion): drunk below a quarter, it never overfills
+    REFRESH_EVERY = 20.0
+    FLEE_TILES = 18
+    SELL_HEAVY = 0.85                    # the pack share at which a sell trip is due whatever it holds (BotBase.bank_overload_pass share)
+    SELL_BROKE = 60                      # gold under which a bot sells what it has (reagents and repairs cost about this much)
+
+    def __init_subclass__(cls, **kw):
+        """Every brain gets the standard rules: r_refresh right after r_cure."""
+        super().__init_subclass__(**kw)
+        rules = cls.__dict__.get("RULES")
+        if isinstance(rules, list) and "r_cure" in rules and "r_refresh" not in rules:
+            rules.insert(rules.index("r_cure") + 1, "r_refresh")
+
+    # ---- names ------------------------------------------------------------------------------------------------------------------------------------------
+
+    @staticmethod
+    def mkey(m):
+        """The memory's name for a kind of monster: its body species when the client knows it ("orc" for a personally named orc), else its name without the article."""
+        return re.sub(r"[^a-z]", "", (m.species or re.sub(r"^(an?|the) ", "", m.name.lower())).lower())
+
+    # ---- threats -----------------------------------------------------------------------------------------------------------------------------------------
+
+    def can_hurt(self, m):
+        """A kind that attacks on sight (not AI_Animal: task_core.aggressive, from the engine's constructors), or anything already in war mode."""
+        if getattr(m, "in_war_mode", False):
+            return True
+        try:
+            import task_core
+            return task_core.aggressive(self.mkey(m))
+        except Exception:
+            return True
+
+    def threats(self, within):
+        """Mobiles near that can hurt a working character: a hind or a town cat is none, an orc or a wolf fighting back is."""
+        out = []
+        for m in self.mobs(within):
+            n = (m.name or "").lower()
+            if not getattr(m, "in_war_mode", False) and n.startswith(("a ", "an ")) and any(re.search(r"\b" + re.escape(w) + r"\b", n) for w in self.HARMLESS) \
+                    and not any(w in n for w in ("giant", "dire", "plague", "rat man", "ratman")):
+                continue
+            if self.can_hurt(m):
+                out.append(m)
+        return out
+
+    STILL_THREAT_S = 30        # a hostile in view this long that never came within STILL_NEAR and is no closer is not coming (its AI looks for targets about
+    STILL_NEAR = 4             # every second): BotMinerBR stood 28 minutes by a giant rat that never came, BotTinkBR skipped crafting 20 (2026-10-31)
+
+    def threat_coming(self, m):
+        """Does this hostile stop work or a walk: new in view, within STILL_NEAR, or nearer than when first seen; not one that has kept its distance STILL_THREAT_S."""
+        seen = self.__dict__.setdefault("_threat_seen", {})
+        now = time.time()
+        d = getattr(m, "distance", 0) or 0
+        key = getattr(m, "serial", None) or id(m)
+        first = seen.get(key)
+        if not first or now - first[0] > 300:
+            seen[key] = (now, d)
+            return True
+        return d <= self.STILL_NEAR or d < first[1] or now - first[0] < self.STILL_THREAT_S
+
+    def threats_coming(self, within):
+        return [m for m in self.threats(within) if self.threat_coming(m)]
+
+    def adjacent_attacker(self):
+        """Something that can hurt standing next to the bot: its next blow ruins a spell (Spell.OnCasterHurt) and a bandage's care, and undoes a cure."""
+        try:
+            return any(m.distance <= 1 for m in self.threats(2))
+        except Exception:
+            return False
+
+    # ---- potions -----------------------------------------------------------------------------------------------------------------------------------------
+
+    def potion(self, kind):
+        return next((i for i in self.c.backpack if items.potion_kind(i.name) == kind), None)
+
+    def potion_count(self, kind):
+        return sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == kind)
+
+    def drink(self, item):
+        """Drink a potion the way the era makes a player do it: the engine refuses a potion without a free hand (BasePotion.HasFreeHand, "You must have a free
+        hand to drink a potion."): a bow, or a weapon and a shield, fill both hands. The two-handed-layer piece goes to the pack, the potion is drunk, the piece
+        goes back in hand. True when the potion left the pack (the Watcher, 2026-10-29: archers had logged 20 refused Cure potions each before a snake killed them)."""
+        name = item.name
+        before = sum((i.amount or 1) for i in self.c.backpack if i.name == name)
+        one = next((w for w in self.c.equipped if (w.layer or "").replace(" ", "").lower() == "onehanded"), None)
+        two = next((w for w in self.c.equipped if (w.layer or "").replace(" ", "").lower() == "twohanded"), None)
+        moved = two if two is not None and (one is not None or "shield" not in (two.name or "").lower()) else None
+        if moved is not None:
+            self.c.unequip(moved.serial)
+            time.sleep(0.7)
+        self.c.use(item.serial)
+        time.sleep(0.7)
+        if moved is not None:
+            try:
+                self.c.call(f"equip {moved.serial}", timeout=6)
+            except Exception:
+                pass
+            time.sleep(0.4)
+        after = sum((i.amount or 1) for i in self.c.backpack if i.name == name)
+        ok = after < before
+        if moved is not None:
+            self.ev("drink_hand_freed", item=name, freed=moved.name, ok=ok)
+        return ok
+
+    def drink_heal(self, why=""):
+        """The Heal potion: never while poisoned (it is refused), at most one every 10 s. True when drunk."""
+        if self.c.poisoned:
+            return False
+        now = time.time()
+        if now - max(self.facts.get("heal_pot_at", 0), self.facts.get("drank", 0)) < self.HEAL_POTION_DELAY:
+            return False
+        pot = self.potion("heal")
+        if pot is None:
+            return False
+        self.facts["heal_pot_at"] = self.facts["drank"] = now
+        ok = self.drink(pot)
+        self.ev("consumable_used", item="yellow potion", hp=self.hp_pct(), ok=ok, why=why)
+        return ok
+
+    def drink_cure(self, why=""):
+        pot = self.potion("cure")
+        if pot is None:
+            return False
+        ok = self.drink(pot)
+        self.ev("consumable_used", item="orange potion", hp=self.hp_pct(), ok=ok, why=why)
+        return ok
+
+    def drink_refresh(self, why=""):
+        """The Refresh potion below a quarter of the maximum stamina, at most one every 20 s. True when drunk."""
+        try:
+            mx = int(self.c.state.get("maxStam") or 0)
+        except Exception:
+            mx = 0
+        if mx <= 0 or self.c.stamina >= self.REFRESH_BELOW * mx or time.time() - self.facts.get("refresh_pot_at", 0) < self.REFRESH_EVERY:
+            return False
+        pot = self.potion("refresh")
+        if pot is None:
+            return False
+        self.facts["refresh_pot_at"] = time.time()
+        ok = self.drink(pot)
+        self.ev("consumable_used", item="red potion", stam=self.c.stamina, ok=ok, why=why)
+        return ok
+
+    def cure_due(self):
+        """Poisoned and worth curing now: not while what stands next to it still has more to give than the poison can take (it poisons again on half its hits)."""
+        if self.c.ghost or not self.c.poisoned or time.time() - self.facts.get("cured_at", 0) < self.CURE_RECHECK:
+            return False
+        return not (self.adjacent_attacker() and self.c.hp > self.POISON_ALL)
+
+    # hooks a brain fills in: a caster's spells
+    def cure_spell(self):
+        return False
+
+    def heal_spell(self):
+        return False
+
+    def r_cure(self):
+        """Poisoned: cure before anything else (a Heal potion or spell does nothing while poisoned). Beside an attacker the potion (a hit ruins a spell), else
+        the Cure spell, else the potion, else a bandage from Healing 60 (the era's bandage cures only from there)."""
+        if not self.cure_due():
+            return False
+        self.facts["cured_at"] = time.time()
+        self.activity = "curing poison"
+        adjacent = self.adjacent_attacker()
+        if adjacent and self.drink_cure("adjacent attacker"):
+            return True
+        if not adjacent and self.cure_spell():
+            return True
+        if self.drink_cure("no spell"):
+            return True
+        if (getattr(self, "skill_values", {}) or {}).get("Healing", 0) >= 60 and self.c.find("bandage") and getattr(self, "bandage_self", None):
+            return self.bandage_self()
+        if getattr(self, "note", None):
+            self.note("poison", f"A poisoned {getattr(self, 'pname', 'bot')} with no Cure potion and too little Healing can only run to a healer or wait it out.", key="cure:none")
+        return False
+
+    def r_refresh(self):
+        """Out of breath with something that can hurt it near, or in a fight: the Refresh potion (a tired bot swings slower, 15000 / ((Stam + 100) x speed),
+        and cannot run from a losing fight)."""
+        if self.c.ghost:
+            return False
+        if not (getattr(self, "fight", None) or self.threats(10)):
+            return False
+        return self.drink_refresh("out of breath")
+
+    # ---- fleeing -----------------------------------------------------------------------------------------------------------------------------------------
+
+    def flee_from(self, m, first=None):
+        """Run from m: to `first` when given (a refuge close by), else FLEE_TILES straight away, else at right angles. Returns the walk's result, or "trapped"
+        when no way is open (a fenced pocket: two casters died at 1180-1195,1778 still "fleeing")."""
+        if getattr(self, "sprint", None):
+            self.sprint()
+        tries = []
+        if first is not None:
+            tries.append((int(first[0]), int(first[1])))
+        if m is not None:
+            dx, dy = self.c.x - m.x, self.c.y - m.y
+            sx, sy = (1 if dx >= 0 else -1), (1 if dy >= 0 else -1)
+            tries += [(self.c.x + ux * self.FLEE_TILES, self.c.y + uy * self.FLEE_TILES) for ux, uy in ((sx, sy), (sx, -sy), (-sx, sy))]
+        for x, y in tries:
+            res = str(self.c.goto(x, y).wait(timeout=8))
+            if not res.startswith(("nopath", "blocked")):
+                self.ev("flee", away_from=self.mkey(m) if m is not None else None, res=res[:20], hp=self.c.hp)
+                return res
+        self.ev("flee", away_from=self.mkey(m) if m is not None else None, res="trapped", hp=self.c.hp)
+        return "trapped"
+
+    def fight_back(self, m):
+        """No way out: fight it (a caster casts: CasterBot overrides)."""
+        self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
+        if not self.c.war_mode:
+            self.c.war(True)
+        self.c.attack(m.serial)
+        time.sleep(1.2)
+        return True
+
+    # ---- selling -----------------------------------------------------------------------------------------------------------------------------------------
+
+    def sell_due(self):
+        """A trip to sell pays: the goods carried at the shops' prices (items.py) reach errands.sell_value (r x sqrt(2T / p), T the trip home), or the pack is
+        heavy, or the bot is nearly broke."""
+        try:
+            import errands
+            v = items.goods_value(self.c.backpack)
+            return v >= errands.sell_value(self) or self.c.weight >= self.c.max_weight * self.SELL_HEAVY or self.c.gold < self.SELL_BROKE
+        except Exception:
+            return self.c.weight >= self.c.max_weight * self.SELL_HEAVY
+
+    @property
+    def BUTCHER(self):
+        return self.where1(("butcher",))
+
+    def sale_due(self, key):
+        """Twenty minutes since the last sale of this kind, or, for a bot that never sold, twenty minutes played in all (the totals' uptime plus this brain):
+        counting from the brain's start reset the timer at every restart and no fighter ever reached it."""
+        last = self.facts.get(key)
+        if last:
+            return time.time() - last > 1200
+        return (getattr(self, "base", {}) or {}).get("uptime", 0) + time.time() - getattr(self, "started", time.time()) > 1200
+
+    def r_sellmeat(self):
+        """Carved meat to the Butcher when a sell trip pays (sell_due), or twenty minutes out with meat in the pack. Meat no Butcher would buy is left on the
+        ground only after the sale was tried at the shop: the fighters' copy dropped it whenever the sale returned nothing, a far walk just begun included."""
+        meat = [i for i in self.c.backpack if items.is_meat(i.name)]
+        if not meat or self.threats(10) or time.time() - self.facts.get("meat_sold_at", 0) < 300:
+            return False
+        if not (self.sell_due() or self.sale_due("meat_sold_at")):
+            return False
+        n = sum((i.amount or 1) for i in meat)
+        self.facts["meat_sold_at"] = time.time()
+        self.activity = "selling meat to the Butcher"
+        earned = self.sell_items(self.BUTCHER, ("raw ",))
+        pending = getattr(self, "far_pending", lambda: False)()
+        if pending:
+            return True                                    # a far walk to the Butcher is under way (r_far carries it)
+        self.log(f"sold {n} pieces of meat for {earned} gold")
+        if getattr(self, "dlog", None):
+            self.dlog("choice", what="sell meat", why=f"{n} pieces for {earned} gold")
+        if earned <= 0 and self.c.find("raw ") is not None and max(abs(self.c.x - self.BUTCHER[0]), abs(self.c.y - self.BUTCHER[1])) <= 4:
+            for it in [i for i in self.c.backpack if items.is_meat(i.name)]:
+                self.drop_to_ground(it)
+        return True
+
+    GOODS_OUT_SHARE = 0.8                # goods come out of the box up to this share of the weight limit (BotBase.CLEAR_SHARE); a sell trip is due at 0.85
+
+    def bank_goods_out(self, box):
+        """At a bank visit, goods earlier visits banked (leather, hides, meat, feathers: the casters' KEEP lacked them until 2026-10-29) come back out for the
+        shops, each stack cut to the room left at its weight a piece (taking whole stacks put a caster at 348 of 250 stones, unable to walk)."""
+        if self.facts.get("goods_unbanked") and time.time() - self.facts["goods_unbanked"] < 6 * 3600:
+            return self.bank_products_out(box)            # (the goods came out lately; a crafter's products still may)
+        try:
+            goods = [i for i in self.c.container(box, timeout=6) if items.is_goods(i.name)]
+        except Exception:
+            return 0
+        room = self.c.max_weight * self.GOODS_OUT_SHARE - self.c.weight      # counted down here: the client's weight lags a take
+        taken, left = 0, 0
+        for it in sorted(goods, key=lambda i: -(i.amount or 1)):
+            u = items.unit_weight(it.name)
+            n = min(int(it.amount or 1), int(room // u))
+            if n <= 0:
+                left += 1
+                continue
+            self.c.get_item(it.serial, n if (it.amount or 1) > 1 else None)
+            time.sleep(1.2)
+            taken += 1
+            room -= n * u
+            if n < int(it.amount or 1):
+                left += 1
+        if not left:
+            self.facts["goods_unbanked"] = time.time()
+        if goods:
+            self.log(f"bank: took out {taken} of {len(goods)} stacks of goods to sell ({left} left in the box)")
+            self.ev("goods_unbanked", taken=taken, stacks=len(goods), left=left)
+        return taken + self.bank_products_out(box)
+
+    PRODUCTS_OUT_SHARE = 0.5             # a crafter's banked products come out only while the pack is under half its limit: room is kept for material
+
+    def bank_products_out(self, box):
+        """A crafter's products banked on heavy visits come back out to sell when a shop is known to pay for them. BotCarpAdvR's box held 60 quarter
+        staffs (15 gold at the Carpenter) and 22 wooden boxes (25): about 1,450 gold that nothing took out, as the goods step knew only leather, meat,
+        hides and feathers (2026-10-30). At most CLEAR_N stacks a visit, the weight read again after each take."""
+        if not hasattr(self, "is_product") or self.c.weight >= self.c.max_weight * self.PRODUCTS_OUT_SHARE:
+            return 0
+        try:
+            stock = [i for i in self.c.container(box, timeout=6) if self.is_product(i.name)]
+        except Exception:
+            return 0
+        priced = [i for i in stock if any(p > 0 for p, xy, item in self.mem.vendor_buying(i.name.lower()) if item == i.name.lower())]
+        taken = 0
+        for it in priced[:getattr(self, "CLEAR_N", 12)]:
+            if self.c.weight >= self.c.max_weight * self.PRODUCTS_OUT_SHARE:
+                break
+            self.c.get_item(it.serial, None)
+            time.sleep(1.2)
+            taken += 1
+        if taken:
+            self.log(f"bank: took out {taken} of {len(priced)} banked products a shop pays for, to sell (weight {self.c.weight}/{self.c.max_weight})")
+            self.ev("products_unbanked", taken=taken, priced=len(priced))
+        return taken
+
+    # ---- small shared helpers ----------------------------------------------------------------------------------------------------------------------------
+
+    DROP_TILES = ((0, 0), (1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1))
+
+    def drop_to_ground(self, it, amount=None, box=None):
+        """Put a stack (or `amount` of it) on the ground, and know it went: the engine refuses a ground drop when the tile's 20 height slots above its surface
+        are full (Item.DropToWorld, m_OpenSlots), and the refusal is silent - the item comes back. Every bot shed on the same bank floor tile, so BotCarpAdvR
+        "threw out" 60 board games four times in an hour and still weighed 370 of 390 (2026-10-30). The own tile first, then the eight around it (InRange 2).
+        `box` is the container the item sits in when it is not the backpack. Returns True once the amount there went down."""
+        amt = int(amount or it.amount or 1)
+
+        def held():
+            try:
+                pool = self.c.container(box, timeout=5) if box else self.c.backpack
+            except Exception:
+                return None
+            return sum(int(i.amount or 1) for i in pool if i.serial == it.serial)
+        before = held()
+        for dx, dy in self.DROP_TILES:
+            try:
+                self.c.call(f"dropground {it.serial} {amt} {self.c.x + dx} {self.c.y + dy}", timeout=8)
+            except Exception:
+                continue
+            time.sleep(0.8)
+            now = held()
+            if before is None or now is None or now < before:
+                return True
+        return False
+
+    def cursor_after(self, act, timeout=4.0):
+        """Run act() (a useskill, a use, a speech order) and wait for the server's target cursor without losing it. Client.wait_for drains the log before it
+        listens, and after a synchronous call() the cursor has often landed already: BotTamerAR's "Tame which animal?" came 3 ms after useskill's [CMD-END],
+        was never answered, and every try for hours ended in the 30 s skill delay (AnimalTaming.OnUse) with nothing tamed (2026-10-30). True when it came."""
+        from uo import Event
+        self.c.events.drain()
+        act()
+        end = time.time() + timeout
+        while time.time() < end:
+            for e in self.c.events.poll():
+                if e.kind == Event.TARGET_REQUEST:
+                    return True
+            time.sleep(0.05)
+        return False
+
+    def write_status_file(self, s):
+        """status.json, written whole: to a temp file, then swapped in (the supervisor read a half-written file as "no status" and killed two healthy brains,
+        2026-10-30). A swap refused while a reader holds the file is retried, then the file is written in place as before."""
+        path = os.path.join(self.dir, "status.json")
+        tmp = path + ".tmp"
+        try:
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(s, f)
+            for _ in range(5):
+                try:
+                    os.replace(tmp, path)
+                    return
+                except PermissionError:
+                    time.sleep(0.05)
+        except Exception:
+            pass
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(s, f)
+
+    def los(self, serial):
+        """Is there a clear line of sight to this mobile? (the `los` command; a spell or arrow at something behind a wall is lost without a word)"""
+        now = time.time()
+        if now - getattr(self, "_los_at", 0) > 0.8:
+            self._los = {}
+            for line in self.c.call("los 12", timeout=6):
+                mm = re.match(r"\s+(YES|no)\s+(0x[0-9A-Fa-f]+)", line)
+                if mm:
+                    self._los[mm.group(2).upper()] = mm.group(1) == "YES"
+            self._los_at = now
+        return self._los.get(serial.upper(), True)
+
+    def find_gump(self, word):
+        serial = None
+        found = None
+        for line in self.c.call("gumps", timeout=8):
+            mm = re.match(r"\[GUMP\] local \S+ server (0x[0-9A-Fa-f]+)", line)
+            if mm:
+                serial = mm.group(1)
+            elif word in line and serial and not found:
+                found = serial
+        return found
+
+    def target_died(self, f):
+        """The fight's own target died, not just any corpse in view: a new corpse where the target last stood, or the target gone when last seen badly hurt."""
+        x, y = f.get("xy", (None, None))
+        for c in self.c.containers(within=16):
+            if "corpse" in c.name.lower() and c.serial not in f.get("corpses0", set()) and x is not None and abs(c.x - x) <= 2 and abs(c.y - y) <= 2:
+                return True
+        return f.get("pct", 100) <= 25
+
+
+# ---- module helpers several brains' modules shared as copies ----------------------------------------------------------------------------------------------
+
+def cell_at(x, y):
+    """memory.cell_of, else the 40-tile cell by hand (the memory module not loaded)."""
+    try:
+        from memory import cell_of
+        return cell_of(x, y)
+    except Exception:
+        return f"{int(x) // 40 * 40},{int(y) // 40 * 40}"
+
+
+def bot_cell(bot):
+    try:
+        from memory import cell_of
+        return cell_of(bot.c.x, bot.c.y)
+    except Exception:
+        return None
+
+
+_WR = None
+
+
+def walkroute_mod():
+    """walkroute with its grid loaded, or None where it or its grid cannot be loaded (callers keep their plain walks)."""
+    global _WR
+    if _WR is None:
+        try:
+            import walkroute
+            walkroute.get()
+            _WR = walkroute
+        except Exception:
+            _WR = False
+    return _WR or None
+
+
+def emit(bot, name, **kw):
+    """A structured event through the bot's decision log, with its cell and rule (guildtalk.py, marketvoice.py)."""
+    try:
+        bot.dlog("ev", ev=name, cell=bot_cell(bot), rule=getattr(bot, "current_rule", None) or getattr(bot, "last_rule", None), **kw)
+    except Exception:
+        pass
+

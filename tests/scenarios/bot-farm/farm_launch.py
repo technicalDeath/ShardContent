@@ -32,9 +32,13 @@ CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
-LEAN_CUO = os.path.join(NAVREY, "bin", "Lean9", "cuo.dll")         # Lean9: Lean7 + ghost doors (Lean8) + kept corpse serials (2026-10-18)
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean12", "cuo.dll")        # Lean12: Lean9 + heap compaction (Agent/MemoryTrim.cs) + lazy string dictionary, 32-byte file index, capped path cache, sparse sprite caches and no pixel picker in lean mode (2026-10-20)
 # NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
-LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11", "NAVREY_RUN": "auto"}
+# DOTNET_GCgen0size caps the gen0 budget (it otherwise scales with the CPU cache and kept ~50 MB committed and empty); FNA3D_D3D11_USE_WARP puts
+# the never-drawn D3D11 device on Windows' software rasterizer, so the NVIDIA driver (~55 MB, 29 threads per client) never loads. Measured
+# 2026-10-20, 12 minutes in world, same route: Lean9 226 MB private bytes (median) -> Lean11 with these 129.5 MB (-43%); Lean12 125 MB against Lean11 132 MB in a later run (about -45% overall). docs/Bot-Farm-Client-Memory.md
+LEAN_ENV = {"NAVREY_LEAN": "1", "FNA3D_FORCE_DRIVER": "D3D11", "NAVREY_RUN": "auto",
+            "DOTNET_GCgen0size": "0x1000000", "FNA3D_D3D11_USE_WARP": "1"}
 DEFAULT_CLIENT = "lean"     # the client a bot gets unless its plan entry says "client": "full"
 DOTNET = os.path.join(ROOT, "dotnet", "dotnet.exe")
 SETTINGS = os.path.join(NAVREY, "settings.json")

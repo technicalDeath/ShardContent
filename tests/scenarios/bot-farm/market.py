@@ -31,6 +31,10 @@ DEAL_LIFE = 420
 COOL_FAIL = 600
 COOL_OK = 300
 HOLD_EXTRA = 30
+HOLD_MAX = 600            # a miner keeps its ingots for a smith this long at most, unless a trade went through within HOLD_TRADE_FRESH: with smiths about,
+HOLD_TRADE_FRESH = 1800   # two of three miners sold nothing in an hour (31-49% of it in r_market, deals timing out), against 620-684 gold at the shop the hour
+                          # before (2026-10-30)
+MEET_RANGE = 150      # an offer or want is for this bot only when its meeting spot is this near its own bank spot (patch_ingot_market)
 
 
 class MarketMixin:
@@ -40,6 +44,11 @@ class MarketMixin:
         word = ITEMS[item]["word"]
         buy = [p for p, xy, i in self.mem.vendor_buying(word) if p > 0]
         sell = [p for p, xy, i, q in self.mem.vendor_selling(word) if p > 0]
+        import items
+        for alias in items.SHELF_NAMES.get(word, ()):
+            sell += [p for p, xy, i, q in self.mem.vendor_selling(alias) if p > 0 and i == alias]     # whole name: "ingots" must not catch "dull copper ingots"
+        if not sell:
+            sell = [items.SHOP_SELLS[word]] if word in items.SHOP_SELLS else []          # the engine's shelf price when no bot has looked
         return (max(buy) if buy else None), (min(sell) if sell else None)
 
     def mkt_floor(self, item):
@@ -104,7 +113,19 @@ class MarketMixin:
 
     def mkt_open(self, table, item, not_from, fresh=FRESH):
         now = time.time()
-        return [o for o in table.values() if o["item"] == item and o["bot"] != not_from and now - o["t"] < fresh and o.get("qty", 1) > 0 and not self.mkt_busy(o["bot"], now)]
+        return [o for o in table.values() if o["item"] == item and o["bot"] != not_from and now - o["t"] < fresh and o.get("qty", 1) > 0 and not self.mkt_busy(o["bot"], now)
+                and self.mkt_near(o)]
+
+    def mkt_near(self, o):
+        """The post's meeting spot is in this bot's town: a deal there is a walk to its own bank, not across the land (patch_ingot_market)."""
+        meet = o.get("meet")
+        if not meet:
+            return True
+        try:
+            mine = tuple(self.MEET)
+            return max(abs(int(meet[0]) - int(mine[0])), abs(int(meet[1]) - int(mine[1]))) <= MEET_RANGE
+        except Exception:
+            return True
 
     # ---- posting -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,8 +145,8 @@ class MarketMixin:
                 self.mkt_log_post("offer_posted", f"o:{item}", item, qty, ask, posted)
             elif posted.pop(f"o:{item}", None):
                 self.mem.record("mkt", kind="unoffer", item=item)
-            qty, ceil = demand.get(item, 0), self.mkt_ceiling(item)
-            if qty >= ITEMS[item]["min_qty"] and ceil is not None:
+            qty, ceil, floor = demand.get(item, 0), self.mkt_ceiling(item), self.mkt_floor(item)
+            if qty >= ITEMS[item]["min_qty"] and ceil is not None and (floor is None or ceil >= floor):     # ingots: shop buys 4, shelf 5, so ceiling 4 < floor 5 and no want (the walk to meet costs more than the 1 gold)
                 self.mem.record("mkt", kind="want", item=item, price=ceil, qty=qty, meet=meet)
                 self.mkt_log_post("want_posted", f"w:{item}", item, qty, ceil, posted)
             elif posted.pop(f"w:{item}", None):
@@ -217,8 +238,20 @@ class MarketMixin:
         if not self.feature("trade"):
             return False
         wants = self.mkt_view()[1]
-        ws = self.mkt_open(wants, item, self.name)
-        return bool(ws) and self.mkt_count(item) <= sum(w.get("qty", 1) for w in ws) + HOLD_EXTRA
+        try:
+            floor = self.mkt_floor(item)
+        except Exception:
+            floor = None                                  # (no price lists to judge by: every open want counts, as before)
+        ws = [w for w in self.mkt_open(wants, item, self.name) if floor is None or w.get("price", 0) >= floor]     # a want under this bot's floor is no sale
+        hold = bool(ws) and self.mkt_count(item) <= sum(w.get("qty", 1) for w in ws) + HOLD_EXTRA
+        now = time.time()
+        if not hold:
+            self.facts.pop("hold_since", None)
+            return False
+        since = self.facts.setdefault("hold_since", now)
+        if now - since > HOLD_MAX and now - self.facts.get("trade_ok_at", 0) > HOLD_TRADE_FRESH:
+            return False                                  # held long enough with no trade coming through: the NPC's 4 now beats a smith's 6 later
+        return True
 
     # ---- the deal ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -253,6 +286,7 @@ class MarketMixin:
                     return self.mkt_fail(d, role, other, f"{role}: the window closed without the goods")
                 self.mem.record("mkt", kind="done", id=d["id"], why="")
                 self.ev("trade", item=item, qty=qty, price=unit, total=total, role=role, **{"with": other})
+                self.facts["trade_ok_at"] = time.time()
                 self.log(f"trade done: {qty} {item} for {total} gold with {other}")
                 self.note("trade", f"{d['seller']} sold {qty} {item} to {d['buyer']} for {total} gold through the secure-trade window.", key="trade:ok")
                 self.facts["deal_cool_until"] = time.time() + COOL_OK
