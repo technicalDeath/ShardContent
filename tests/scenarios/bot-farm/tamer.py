@@ -20,6 +20,7 @@ from uo import Event
 from tamefind import TameFindMixin
 from fields import FieldsMixin
 from pethunt import PetHuntMixin                         # the pet kills, the tamer loots (feature pet_hunt)
+from tamerarms import TamerArmsMixin                     # the tamer shoots beside its pet (feature tamer_weapon)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TAME = json.load(open(os.path.join(HERE, "tame_data.json"), encoding="utf-8"))
@@ -39,8 +40,8 @@ def norm(t):
 
 from stock import TamerStock  # noqa: E402
 from wear import GathererArmor  # noqa: E402  (leather and studded armour, feature gather_armor)
-class TamerBot(PetHuntMixin, FieldsMixin, TamerStock, TameFindMixin, GathererArmor, BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_loot", "r_pet_hunt", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_upgrade", "r_tame", "r_bank", "r_explore"]
+class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMixin, GathererArmor, BotBase):
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_loot", "r_pet_hunt", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_tamer_arms", "r_upgrade", "r_tame", "r_bank", "r_explore"]
     PET_MIN = 90               # a horse (98) and up: around Britain the bears and wolves are rare and go to the fighters first
     PET_UPGRADE = 1.3          # trade up only for a clearly stronger animal
     PERSIST = BotBase.PERSIST + ("pet", "lost_pets", "owned_serials")      # a restart keeps the pet: the pets follow on, the record did not (2026-10-30)

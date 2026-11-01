@@ -826,6 +826,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except Exception as e:
             self.log(f"ladder: {type(e).__name__}: {e}")
         try:
+            import skillplan
+            skillplan.tick(self)                              # the profession's 700-point plan: skill locks (skillplan.py, feature skill_plan)
+        except Exception as e:
+            self.log(f"skill plan: {type(e).__name__}: {e}")
+        try:
             self.pacing_tick()                                # the walk mode in towns (pacing.py)
         except Exception as e:
             self.log(f"pacing: {type(e).__name__}: {e}")

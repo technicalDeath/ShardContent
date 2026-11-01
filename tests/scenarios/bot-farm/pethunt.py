@@ -210,6 +210,8 @@ class PetHuntMixin:
             if now - h.get("ordered", 0) > REORDER:
                 self.pet_order(cur)
                 h["ordered"] = now
+            if hasattr(self, "tamer_shoot"):
+                self.tamer_shoot(cur)                     # the tamer's own bow on the same target (tamerarms.py, feature tamer_weapon)
             if cur.distance > FOLLOW:
                 self.c.goto(cur.x, cur.y).wait(timeout=3)
             else:

@@ -332,7 +332,7 @@ class TameFindMixin:
 
     def r_pet_heal(self):
         """Bandage the pet (Veterinary 20+) when it is under 55% and near."""
-        if not self.feature("tame_find") or self.c.ghost or self.skill_values.get("Veterinary", 0) < 20 or self.mobs(4):
+        if not self.feature("tame_find") or self.c.ghost or (self.skill_values.get("Veterinary", 0) < 20 and not self.feature("tamer_weapon")) or self.mobs(4):
             return False
         pet, pm = self.pet_view()
         if not pet or pm is None or time.time() - pet.get("healed_at", 0) < 15:
