@@ -55,6 +55,11 @@ class TamerArmsMixin:
         self.facts["tamer_arms_at"] = now
         if (self.c.gold or 0) < cost and self.facts.get("bank_balance", 0) > 0:
             self.visit_bank("a bow and arrows", withdraw=min(self.facts["bank_balance"], cost + 20))
+        if (self.c.gold or 0) < cost:
+            # the bank walk can be refused (far.py: too poor for a long walk), and then the shop walk was made with 30 gold for nothing (BotTamerAR,
+            # 252 tiles to the Bowyer, "bought {}", 2026-11-01): no shop without the money in the pack
+            self.log(f"tamer arms: {self.c.gold} gold carried, {cost} needed: not now")
+            return False
         where = self.where1(("bowyer",), item="arrow")
         if not where:
             self.log("tamer arms: no Bowyer known")

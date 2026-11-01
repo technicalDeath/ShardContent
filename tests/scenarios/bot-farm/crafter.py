@@ -63,7 +63,7 @@ from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
     LOOT_GEAR = ()                                        # a crafter hunting vermin for coins does not carry weapons home to sell
@@ -1325,6 +1325,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     def r_wander(self):
         self.activity = "waiting"
+        if self.hide_practice():                          # idle and safe: Hiding practised (basics.py, skill plan)
+            return True
         time.sleep(3)
         return True
 

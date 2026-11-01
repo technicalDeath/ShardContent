@@ -66,7 +66,7 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
     SHED_LAST = ("ingot", "ore")                          # the product: dropped only when nothing else is left (drop_excess)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_packy", "r_market", "r_stock", "r_upgrade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_evade", "r_heal", "r_packy", "r_market", "r_stock", "r_upgrade", "r_retool", "r_sell", "r_bank", "r_mine", "r_idle"]
     # (r_stock: heal and cure potions, stock.PotionStock. A miner has no Healing and no potions, and after a hit it stood fleeing from rabbits and giant
     # rats at a third of its hit points for minutes, 32% of BotMinerAR's hour idle; r_flee drinks a Heal potion when it has one, 2026-10-31)
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
@@ -327,6 +327,8 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
         return "look for ore up to 350 tiles out for 30 min (the near hills are taken or worked out)", ("r_mine",)
 
     def r_idle(self):
+        if self.hide_practice():                          # idle and safe: Hiding practised (basics.py, skill plan)
+            return True
         time.sleep(3)
         return True
 

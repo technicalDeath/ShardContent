@@ -222,6 +222,11 @@ class PackAnimalMixin:
             if m is None or m.distance > PACK_NEAR:
                 self.packy_why("unload: the horse did not come within reach at the forge")
                 return False
+        if self.c.war_mode:
+            # a double-click on a mobile in war mode is an attack, not "open": the miner attacked its own horse at the forge and no pack opened (BotMinerBR,
+            # left in war mode by its last fight, 2026-11-01: "double-clicking the horse at 2 tiles opened no pack" twice)
+            self.c.war(False)
+            time.sleep(0.4)
         self.c.events.drain()
         self.c.use(m.serial)
         pack = None

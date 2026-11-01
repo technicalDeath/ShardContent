@@ -45,6 +45,68 @@ class BasicsMixin:
         placed = st.get("phase") in ("lock", "furnish", "done") and st.get("where")
         return int(_goals.HOUSE_COST) if placed or st.get("deed_serial") else 0
 
+    def r_heal(self):
+        """Bandage oneself after a fight (the shared fallback; fighters, tamers and casters have their own): under 65% of hit points with nothing within 3
+        tiles, while the skill plan holds Healing or Healing is already 20+. The gatherers and crafters had no heal at all: a miner at a third of its hit
+        points stood fleeing rabbits for minutes (2026-10-31). docs/Bot-Farm-Skill-Plans.md."""
+        import skillplan
+        if self.c.ghost or self.hp_pct() >= 65 or self.mobs(3) or not self.c.find("bandage"):
+            return False
+        if self.skill_values.get("Healing", 0) < 20 and not skillplan.wants(self, "Healing"):
+            return False
+        return self.bandage_self()
+
+    HIDE_GAP = 10.0           # Hiding.cs: the next try 10 s after one (1 s after "You can't seem to hide right now")
+    HIDE_STILL = 30.0         # s to stand hidden while the threat is in view (moving reveals: no Stealth in any plan)
+    HIDE_PRACTICE = 60.0      # s between practice tries while idle and safe
+
+    def hide_on(self):
+        import skillplan
+        return self.feature("skill_plan") and (skillplan.wants(self, "Hiding") or self.skill_values.get("Hiding", 0) >= 20)
+
+    def try_hide(self):
+        """Use Hiding and read the answer: True when hidden (501240 "You have hidden yourself well")."""
+        self.facts["hide_at"] = time.time()
+        self.read_journal()
+        self.c.call("useskill hiding", timeout=6)
+        end = time.time() + 2.5
+        while time.time() < end:
+            time.sleep(0.5)
+            for l in self.read_journal():
+                if re.search(r"hidden yourself", l, re.I):
+                    return True
+                if re.search(r"can't seem to hide|cannot hide", l, re.I):
+                    return False
+        return False
+
+    def r_hide(self):
+        """Hide from a threat coming close instead of running from it (docs/Bot-Farm-Skill-Plans.md): a miner of the era hid at the forge and in the hills.
+        Hiding.cs: it works only before the monster has made this character its target, and its chance is the skill (0-100), so the threat is met at 4-10
+        tiles; once hidden the bot stands still (a step reveals it) while the threat is in view, at most HIDE_STILL s. A failed try falls through to r_evade."""
+        if self.c.ghost or not self.hide_on() or time.time() - self.facts.get("hide_at", 0) < self.HIDE_GAP:
+            return False
+        near = self.threats(10)
+        if not near or any(getattr(m, "distance", 9) <= 3 for m in near):
+            return False
+        if not self.try_hide():
+            return False
+        self.activity = f"hidden from {near[0].name}"
+        self.ev("hid", threat=near[0].name, dist=near[0].distance)
+        until = time.time() + self.HIDE_STILL
+        while time.time() < until and self.threats(14) and not self.c.ghost:
+            time.sleep(1.0)
+        return True
+
+    def hide_practice(self):
+        """Hiding practised while idle and safe (the skill only rises with use; nothing is near to make it fail for want of cover)."""
+        if (self.c.ghost or not self.hide_on() or self.threats(16) or time.time() - self.facts.get("hide_practice_at", 0) < self.HIDE_PRACTICE
+                or time.time() - self.facts.get("hide_at", 0) < self.HIDE_GAP):
+            return False
+        self.facts["hide_practice_at"] = time.time()
+        ok = self.try_hide()
+        self.ev("hide_practice", ok=ok)
+        return True
+
     def net_worth(self):
         """Carried gold, the bank balance and the house holdings (house_worth)."""
         return (self.c.gold or 0) + self.facts.get("bank_balance", 0) + self.house_worth()

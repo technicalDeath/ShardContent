@@ -41,7 +41,7 @@ BANK_REFILL_MAX = 1200          # Fishing.cs MaxRespawn 20 min: a bank is full a
 class FisherBot(GathererArmor, BotBase):
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_upgrade", "r_retool", "r_bank", "r_sell", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_evade", "r_heal", "r_upgrade", "r_retool", "r_bank", "r_sell", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
     POLE_PRICE = 15                                       # the Fisherman's fishing pole (patch_fisher_retool)
     SELL_AT = 40                                          # pieces of catch that make a selling trip worth it (patch_fisher_sell)
     PROBE_N = 5                                           # steaks cooked as a sample while no buyer of cooked steaks is known (patch_fisher_cook)
@@ -655,6 +655,8 @@ class FisherBot(GathererArmor, BotBase):
         return (f"another shore (left {shore[0]},{shore[1]} for 30 min)" if shore else "another shore"), ("r_fish",)
 
     def r_idle(self):
+        if self.hide_practice():                          # idle and safe: Hiding practised (basics.py, skill plan)
+            return True
         time.sleep(3)
         return True
 

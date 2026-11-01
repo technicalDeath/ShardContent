@@ -112,7 +112,7 @@ def tick(bot, now=None):
 
 def wants(bot, skill):
     """True when the bot's plan holds this skill and it is still below its target (behaviour code: worth practising)."""
-    st = bot.facts.get("skill_plan") or {}
+    st = (getattr(bot, "facts", None) or {}).get("skill_plan") or {}
     return skill in (st.get("missing") or {})
 
 

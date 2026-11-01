@@ -159,8 +159,9 @@ class PotionStock(StockMixin):
         """The shared list (heal and cure potions from 200 gold, refresh from 250), bandages only with Veterinary or Healing to use them on: BotTamerAR
         carried no potion, was poisoned by a snake while taming at 1377,1911, drank a refresh to run and died of the poison (2026-10-31)."""
         out = StockMixin.stock_list(self)
-        if max(self.skill_values.get("Veterinary", 0), self.skill_values.get("Healing", 0)) < 20:
-            out = [r for r in out if r[0] != "bandage"]
+        import skillplan
+        if max(self.skill_values.get("Veterinary", 0), self.skill_values.get("Healing", 0)) < 20 and not (skillplan.wants(self, "Healing") or skillplan.wants(self, "Veterinary")):
+            out = [r for r in out if r[0] != "bandage"]           # (a skill plan with Healing or Veterinary: bandages from 0, or the skill never starts, 2026-11-01)
         return out
 
 
