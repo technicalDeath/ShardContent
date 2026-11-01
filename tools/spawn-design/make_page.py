@@ -1,6 +1,10 @@
-"""Builds the spawn-plan map page (one self-contained HTML file) from the radar image, the census and the plan.
+"""Builds the spawn-plan page (one self-contained HTML file, a tab per plan) from each plan's radar image, census, plan and
+flavor sites, listed with the plan's own text in a config file.
 
-  python make_page.py MAP.png CENSUS.json PLAN.json OUT.html [FLAVOR-SITES.json]
+  python make_page.py CONFIG.json OUT.html
+
+CONFIG: [{"key", "name", "status", "lede" (HTML), "decidedTitle", "decided": [HTML, ...], "labels": {"plan", "stock"},
+          "map": PNG, "census": JSON, "plan": JSON, "flavor": JSON}, ...]; paths relative to the workspace.
 """
 import base64
 import json
@@ -30,9 +34,8 @@ def main_colour(pix):
     return "#%02x%02x%02x" % (r, g, b)
 
 
-def main(argv):
-    png, census_path, plan_path, out = argv[:4]
-    deco_sites = json.load(open(argv[4], encoding="utf-8")) if len(argv) > 4 else []   # place_flavor.py's sites
+def build_plan(png, census_path, plan_path, flavor_path):
+    deco_sites = json.load(open(flavor_path, encoding="utf-8")) if flavor_path else []   # place_flavor.py's sites
     deco = json.load(open(os.path.join(HERE, "deco.json"), encoding="utf-8"))["flavor"]
     sys.path.insert(0, os.path.join(HERE, "..", "cosmetic-catalog"))
     import tempfile
@@ -51,6 +54,7 @@ def main(argv):
     changes = {ch["id"]: ch for ch in p["changes"]}
     kinds = {k["name"]: k for t in p["themes"].values() for k in t["kinds"]}
     kinds.update({k["name"]: k for lst in p["wildKinds"].values() for k in lst})
+    kinds.setdefault("WanderingHealer", {"name": "WanderingHealer", "tier": 0, "hits": None, "dmg": None, "casts": False, "passive": True})
     in_area = {w["id"]: w["inArea"] for w in p["wildlife"]}
 
     def nx(entries):
@@ -66,19 +70,20 @@ def main(argv):
             "home": s["home"], "delay": s["delay"], "tier": s["tier"], "dist": s["dist"], "guarded": s["guarded"],
             "entries": [{"n": e["name"], "m": e["max"], "t": e["tier"], "p": e["passive"], "h": e["hits"], "d": e["dmg"],
                          "c": e["casts"]} for e in s["entries"]],
-            "area": ch and ch["area"], "to": ch and ch["to"],
+            "area": ch and ch["area"], "to": ch and ch["to"], "nextHome": ch and ch.get("home") != s["home"] and ch.get("home") or None,
+            "nextCount": ch and ch.get("count") != s["count"] and ch.get("count") or None,
             "next": ch and nx(ch["entries"]), "wild": s["file"] == "WildLife.json", "inArea": in_area.get(s["id"]),
         })
     cx, cy = c["townCentre"]
     for n in p.get("added", []):
-        spawners.append({"id": n["id"], "file": "new", "label": "New spawner", "x": n["x"], "y": n["y"], "count": n["count"],
+        spawners.append({"id": n["id"], "file": "new", "label": "Wandering healer" if n.get("healer") else "Split group of %s" % n["splitFrom"] if n.get("splitFrom") else "New spawner", "x": n["x"], "y": n["y"], "count": n["count"],
                          "home": n["home"], "delay": ["00:10:00", "00:20:00"], "tier": None,
                          "dist": round(((n["x"] - c["townCentre"][0]) ** 2 + (n["y"] - c["townCentre"][1]) ** 2) ** .5),
                          "guarded": False, "entries": [], "area": n["area"], "to": n["to"], "next": nx(n["entries"]),
                          "wild": False, "isNew": True, "inArea": None})
     for w in p["wildlife"]:
         if w["new"]:
-            spawners.append({"id": w["id"], "file": "new", "label": "New forest wildlife", "x": w["x"], "y": w["y"], "count": w["count"],
+            spawners.append({"id": w["id"], "file": "new", "label": "Wild horses, %s" % w["horse"] if w.get("horse") and w["new"] else "New forest wildlife", "x": w["x"], "y": w["y"], "count": w["count"],
                              "home": w["home"], "delay": ["00:05:00", "00:10:00"], "tier": None,
                              "dist": round(((w["x"] - cx) ** 2 + (w["y"] - cy) ** 2) ** .5),
                              "guarded": False, "entries": [], "area": None, "to": w["tier"], "next": nx(w["entries"]),
@@ -88,10 +93,10 @@ def main(argv):
         "spawners": spawners, "deaths": c["deaths"],
         "areas": [{k: a[k] for k in ("id", "name", "theme", "rects", "tier", "spawners", "dist", "ringException", "deco", "decoNote") if k in a} for a in p["areas"]],
         "themes": {k: {"label": t["label"], "tier": t["tier"], "kinds": t["kinds"], "roster": t["roster"]} for k, t in p["themes"].items()},
-        "rings": p["rings"], "wildKinds": p["wildKinds"], "deco": deco, "decoSites": deco_sites, "art": art, "dot": dot,
+        "rings": p["rings"], "ringEdges": p.get("ringEdges", [300, 400, 500]), "wildKinds": p["wildKinds"], "deco": deco, "decoSites": deco_sites, "art": art, "dot": dot,
 
     }
-    img = "data:image/png;base64," + base64.b64encode(open(png, "rb").read()).decode()
+    data["map"] = "data:image/png;base64," + base64.b64encode(open(png, "rb").read()).decode()
     # what is already built or decorated, as a see-through overlay (scenes keep clear of it)
     import builtmask
     _, built, _, _, _ = builtmask.tiles_of(c)
@@ -99,10 +104,25 @@ def main(argv):
     rows = [[(255, 70, 60, 150) if (x, y) in built else (0, 0, 0, 0) for x in range(x0, x1)] for y in range(y0, y1)]
     uoart.write_png(tmp, x1 - x0, y1 - y0, rows)
     data["builtImg"] = "data:image/png;base64," + base64.b64encode(open(tmp, "rb").read()).decode()
+    return data
+
+
+def main(argv):
+    config = json.load(open(argv[0], encoding="utf-8"))
+    ws = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
+    plans = []
+    for c in config:
+        data = build_plan(*(os.path.join(ws, c[k]) for k in ("map", "census", "plan", "flavor")))
+        data.update({k: c[k] for k in ("key", "name", "status", "lede", "decidedTitle", "decided", "labels")})
+        data["clearing"] = []  # map statics taken out for house space (tools/map-patch/clear_road_edges.py patches)
+        for path in c.get("clearing", []):
+            cp = json.load(open(os.path.join(ws, path), encoding="utf-8"))
+            data["clearing"].append({"rect": cp["rect"], "radius": cp["radius"], "trees": sorted({(r[1], r[2]) for r in cp["remove"]})})
+        plans.append(data)
     html = open(os.path.join(HERE, "page-template.html"), encoding="utf-8").read()
-    html = html.replace("__MAP__", img).replace("__DATA__", json.dumps(data, separators=(",", ":")))
-    open(out, "w", encoding="utf-8").write(html)
-    print("wrote", out, len(html) // 1024, "KB")
+    html = html.replace("__DATA__", json.dumps(plans, separators=(",", ":")))
+    open(argv[1], "w", encoding="utf-8").write(html)
+    print("wrote", argv[1], len(html) // 1024, "KB,", len(plans), "plans")
 
 
 if __name__ == "__main__":

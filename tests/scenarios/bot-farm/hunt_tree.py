@@ -284,6 +284,7 @@ class Travel(Step):
                 st["issued"] = int(st.get("issued", 0)) + 1
                 if st["issued"] >= ISSUE_RETRY:
                     b.log(f"hunt tree: no path to {wp} three times: unreachable")
+                    self.door_unreachable(j, st)
                     return c.fail("travel", "unreachable")
                 try:
                     b.step_out()
@@ -293,6 +294,7 @@ class Travel(Step):
             st["issued"] = int(st.get("issued", 0)) + 1
             if st["issued"] >= ISSUE_RETRY:
                 b.log(f"hunt tree: the walk to {wp} ended at {here} three times: unreachable")
+                self.door_unreachable(j, st)
                 return c.fail("travel", "unreachable")
         else:
             st["issued"] = 0
@@ -309,6 +311,30 @@ class Travel(Step):
             if wps is None:
                 return None
             return {"kind": "walk", "minutes": cheb(here, dest) * 1.3 / 55.0, "walk_minutes": None, "dest": list(dest), "legs": [{"kind": "walk", "to": list(dest), "wps": [list(p) for p in wps]}]}
+
+    DOOR_BLOCK = 6 * 3600     # s a teleporter entry the client could not walk to stays out of every bot's plans
+
+    def door_unreachable(self, j, st):
+        """The walk that failed led to a teleporter (the next leg hops): that entry is blocked for every bot (shared memory, tele_entry), so the next plan
+        takes another door. tele_route picks the entry nearest the bot, and Covetous's mountain entries (2384,836, 2420,883, 2455,858, 2544,850) lie on ground
+        the walk grid calls open and the client cannot walk: BotFenceAdvR and BotSwordBR never got in; through the main door (2498-2500,916) a hand test
+        did at once (2026-10-31). A player who cannot reach one door takes the next."""
+        try:
+            nxt = j["legs"][st["seg"] + 1]
+        except (IndexError, KeyError, TypeError):
+            return
+        if nxt.get("kind") != "tele" or not nxt.get("t"):
+            return
+        sx, sy = nxt["t"]["src"][0], nxt["t"]["src"][1]
+        b = self.ctx.bot
+        key = f"{sx},{sy}"
+        b.facts.setdefault("tele_bad", {})[key] = time.time() + self.DOOR_BLOCK
+        try:
+            b.mem.record("blocked", kind="tele_entry", key=key, ttl=self.DOOR_BLOCK)
+        except Exception:
+            pass
+        b.log(f"hunt tree: the teleporter at {key} cannot be walked to: blocked for every bot for {self.DOOR_BLOCK // 3600} h")
+        b.ev("door_unreachable", entry=[sx, sy], to=nxt.get("to_side"))
 
     def load_seg(self, st):
         seg = st["journey"]["legs"][st["seg"]]
@@ -470,6 +496,9 @@ def worth_it(b, m):
             return False                                        # measured kill/death rates of the bot's group: an archer in fist mode chased rabbits for 40 s (BotArchAdvR, 12:06, 2026-10-21)
         if b.facts.get("fists") or _tc.unarmed(b):
             return b.fist_prey(b.mkey(m))
+        if getattr(b, "ranged", False) and b.ammo() <= 0:
+            return False                                        # a bow with no arrows swings nothing (BaseRanged.OnSwing needs ammo): BotFairArcherVR took on a lizardman,
+                                                                # a hart and a hind on its way to the shop with none, and died boxed in (2026-11-01)
         n_ = measured.net(b, b.mkey(m))
         if n_ is not None:
             return n_ > 0

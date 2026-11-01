@@ -73,7 +73,7 @@ def covering(x, y):
     return [cs[i] for i in _INDEX.get((int(x) // GRID, int(y) // GRID), ()) if (x - cs[i]["x"]) ** 2 + (y - cs[i]["y"]) ** 2 <= cs[i]["r"] ** 2]
 
 
-def spawn_risk(x, y, skill):
+def spawn_risk(x, y, skill, worn=None):
     """(death chance of the worst spawner kind at the point for this skill, that kind's name or "")."""
     cover = covering(x, y)
     if not cover:
@@ -82,7 +82,7 @@ def spawn_risk(x, y, skill):
     best = (0.0, "")
     for c in cover:
         for k in c.get("kinds", ()):
-            die = danger.prior(k.lower(), skill, near)["die"]
+            die = danger.prior(k.lower(), skill, near, worn)["die"]
             if die > best[0]:
                 best = (die, k)
     return best
@@ -95,19 +95,19 @@ def roam(x, y, killers):
     return max(r) if r else DEATH_SPREAD
 
 
-def killer_weight(killers, skill):
+def killer_weight(killers, skill, worn=None):
     """How much a death says to a bot of this skill: the worst killer's death chance for it (danger.prior) against the prey bar, between 0.2 and 1; 1 when no
     killer was named."""
     if not killers:
         return 1.0
     bar = danger.MODES["prey"][0]
-    worst = max(danger.prior(k, skill, 0)["die"] for k in killers)
+    worst = max(danger.prior(k, skill, 0, worn)["die"] for k in killers)
     return max(0.2, min(1.0, worst / bar))
 
 
 class AreaDanger:
-    def __init__(self, mem, skill_fn=None, enabled=None, on_avoid=None):
-        self.mem, self.skill_fn, self._enabled, self.on_avoid = mem, skill_fn, enabled, on_avoid
+    def __init__(self, mem, skill_fn=None, enabled=None, on_avoid=None, worn_fn=None):
+        self.mem, self.skill_fn, self._enabled, self.on_avoid, self.worn_fn = mem, skill_fn, enabled, on_avoid, worn_fn
         self.deaths, self.offsets, self.read_at = [], {}, 0.0
         self.cache, self.avoided = {}, {}
 
@@ -122,6 +122,13 @@ class AreaDanger:
             return float(self.skill_fn())
         except Exception:
             return 40.0
+
+    def worn(self):
+        """{layer: armour rating} the bot wears, for a bot whose armour is reckoned (wear.py, feature gather_armor); None keeps the fitted cut."""
+        try:
+            return self.worn_fn() if self.worn_fn else None
+        except Exception:
+            return None
 
     # ---- the deaths of both memory folders --------------------------------------------------------------------------------------------------------
 
@@ -180,7 +187,7 @@ class AreaDanger:
         self.deaths = [d for d in self.deaths if now - d["t"] <= DEATH_WINDOW]
         self.cache.clear()
 
-    def death_weight(self, x, y, skill):
+    def death_weight(self, x, y, skill, worn=None):
         """The decayed, spread, skill-weighed deaths that reach the point."""
         now, w = time.time(), 0.0
         for d in self.deaths:
@@ -188,7 +195,7 @@ class AreaDanger:
                 continue
             ds = d["skill"]
             f = (1.0 if skill <= ds + SKILL_MARGIN else 0.3) if ds is not None else (1.0 if skill < UNDER else 0.3)
-            f *= killer_weight(d.get("killers"), skill)
+            f *= killer_weight(d.get("killers"), skill, worn)
             w += f * d.get("w", 1.0) * 0.5 ** max(0.0, (now - d["t"]) / HALF_LIFE)     # (a death stamped a hair after now weighs 1, not 1.00001)
         return w
 
@@ -198,7 +205,8 @@ class AreaDanger:
         """"" when the cell is fine for this skill, else the reason (spawner kind and death chance, or the death weight)."""
         self.refresh()
         skill = self.skill() if skill is None else skill
-        key = (cell, int(skill // 5))
+        worn = self.worn()
+        key = (cell, int(skill // 5), tuple(sorted(worn.items())) if worn is not None else None)
         hit = self.cache.get(key)
         if hit is not None:
             return hit
@@ -207,11 +215,11 @@ class AreaDanger:
         bar = danger.MODES["prey"][0]
         for dx, dy in SAMPLES:
             x, y = cx + CELL // 2 + dx, cy + CELL // 2 + dy
-            die, kind = spawn_risk(x, y, skill)
+            die, kind = spawn_risk(x, y, skill, worn)
             if die > bar:
                 why = f"spawner of {kind}: {die:.0%} death chance at skill {skill:.0f}"
                 break
-            dw = self.death_weight(x, y, skill)
+            dw = self.death_weight(x, y, skill, worn)
             if dw >= DEATH_THRESHOLD:
                 why = f"{dw:.1f} recent deaths reach it"
                 break
@@ -225,7 +233,8 @@ class AreaDanger:
         self.refresh()
         skill = self.skill() if skill is None else skill
         cache = self.__dict__.setdefault("rcache", {})
-        key = (cell, int(skill // 5), self.read_at)
+        worn = self.worn()
+        key = (cell, int(skill // 5), self.read_at, tuple(sorted(worn.items())) if worn is not None else None)
         hit = cache.get(key)
         if hit is not None:
             return hit
@@ -235,7 +244,7 @@ class AreaDanger:
         worst = 0.0
         for dx, dy in SAMPLES:
             x, y = cx + CELL // 2 + dx, cy + CELL // 2 + dy
-            worst = max(worst, spawn_risk(x, y, skill)[0], 1.0 - 0.5 ** self.death_weight(x, y, skill))
+            worst = max(worst, spawn_risk(x, y, skill, worn)[0], 1.0 - 0.5 ** self.death_weight(x, y, skill, worn))
         cache[key] = worst
         return worst
 

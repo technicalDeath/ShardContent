@@ -20,16 +20,18 @@ from __future__ import annotations
 import time
 
 from earn import EarnMixin
+from packy import PackAnimalMixin
 from hunter import HunterBot
 from memory import cell_of
+from wear import GATHER_ARMOR, GathererArmor  # noqa: E402
 from miner import MinerBot
 from market import MarketMixin, MinerMarket
 
 
-class BrokeMinerBot(EarnMixin, HunterBot):
+class BrokeMinerBot(EarnMixin, PackAnimalMixin, HunterBot):
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_market", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_packy", "r_market", "r_stock", "r_upgrade", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
     KEEP = MinerBot.KEEP
 
     def earn_tool(self):
@@ -46,6 +48,26 @@ class BrokeMinerBot(EarnMixin, HunterBot):
     pick = MinerBot.pick
     ore = MinerBot.ore
     mountains = MinerBot.mountains
+    far_cands = MinerBot.far_cands
+    stock_list = MinerBot.stock_list                      # a miner's potions (stock.PotionStock), not a fighter's list with ammunition
+    buy_dig_tools = MinerBot.buy_dig_tools                # shovels first (miner.SHOVEL_CARRY)
+    FAR_PLANS, FAR_FOUND = MinerBot.FAR_PLANS, MinerBot.FAR_FOUND
+    on_evade, EVADE_SKIP, EVADE_NEAR = MinerBot.on_evade, MinerBot.EVADE_SKIP, MinerBot.EVADE_NEAR     # a dig spot near a monster walked away from is left
+    # the gatherer's light armour (wear.py, feature gather_armor): the miners run as this class, so MinerBot.r_sell's errand call found no armor_errand
+    # and raised at every sale (2026-11-01); HunterBot's "weapon first" is set aside for the call (a miner's tool is no weapon)
+    ARMOR_BUY = GATHER_ARMOR
+    SHOP_FROM, ERRAND_PIECES = GathererArmor.SHOP_FROM, GathererArmor.ERRAND_PIECES
+    armor_errand, in_town_now = GathererArmor.armor_errand, GathererArmor.in_town_now
+
+    def r_upgrade(self):
+        if not self.feature("gather_armor"):
+            return False
+        self.__dict__["weapon_state"] = lambda: "ok"
+        try:
+            return GathererArmor.r_upgrade(self)
+        finally:
+            self.__dict__.pop("weapon_state", None)
+
     far_spot_ok = MinerBot.far_spot_ok                    # a bank past miner.DIG_REACH needs a safe walk (the range west of Britain)
     roam_spots = MinerBot.roam_spots                      # a move counts only the hills it can dig (miner.DIG_REACH, a place to stand)
     stand_near = MinerBot.stand_near
@@ -58,7 +80,7 @@ class BrokeMinerBot(EarnMixin, HunterBot):
     mkt_make_supply = MinerMarket.mkt_make_supply          # smelt ahead when a smith wants ingots
     stall_switch = MinerBot.stall_switch                   # the wider ore search of a stalled miner (stall.py asks the class for it)
 
-    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "scrap_try_at")
+    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "scrap_try_at", "packy", "packy_lost_at", "packy_try_at")
     TOOL_WORD = "pickaxe"
     TOOL_PRICE_GUESS = 20                                 # a pickaxe no bot has seen on a shelf
     TOOL_RESERVE = 3
@@ -81,7 +103,8 @@ class BrokeMinerBot(EarnMixin, HunterBot):
     # ---- the tool --------------------------------------------------------------------------------------------------------------------------
 
     def tool_price(self):
-        prices = [p for p, xy, item, qty in self.mem.vendor_selling(self.TOOL_WORD) if p > 0]
+        """The cheapest shelf price of a dig tool: a shovel (12 at the Tinker) or a pickaxe."""
+        prices = [p for w in ("shovel", self.TOOL_WORD) for p, xy, item, qty in self.mem.vendor_selling(w) if p > 0]
         return min(prices) if prices else None
 
     def funds(self):
@@ -108,9 +131,12 @@ class BrokeMinerBot(EarnMixin, HunterBot):
         self.facts["retool_at"] = now
         self.activity = "buying a pickaxe"
         self.note("mine", "The pickaxe wore out after a short while of mining; no warning came before the last swing, and the player must find who sells another.", key="pickworn")
-        if self.c.gold < price + self.TOOL_RESERVE and self.facts.get("bank_balance", 0) > 0:
-            self.visit_bank("tool", withdraw=min(self.facts["bank_balance"], price + self.TOOL_RESERVE - self.c.gold + 10))
-        got = self.shop_at(self.where1(("tinker",), item="pickaxe"), {self.TOOL_WORD: 1}, budget=max(self.c.gold - 1, 0))
+        import miner as _miner
+        shovels = any(p > 0 for p, xy, item, qty in self.mem.vendor_selling("shovel"))
+        want = price * (_miner.SHOVEL_CARRY if shovels else _miner.PICK_CARRY) + self.TOOL_RESERVE      # a set of tools (miner.SHOVEL_CARRY / PICK_CARRY), not one: a tool lasts under a minute
+        if self.c.gold < want and self.facts.get("bank_balance", 0) > 0:     # at the harvest repeat's pace (2026-10-31)
+            self.visit_bank("tool", withdraw=min(self.facts["bank_balance"], want - self.c.gold + 10))
+        got = self.buy_dig_tools(self.where1(("tinker",), item="shovel"), max(self.c.gold - 1, 0))
         self.note("shop", f"Pickaxe bought: {got}", key="newpick")
         if not got:
             self.facts["retool_soldout_until"] = time.time() + 300 if self.c.gold >= price else 0

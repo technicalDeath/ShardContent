@@ -25,6 +25,7 @@ public static class NewPlayerTipsService
     public const string FirstPet = "firstPet";
     public const string Overloaded = "overloaded";
     public const string Winded = "winded";
+    public const string OutOfKindling = "outOfKindling";
 
     /// <summary>Gold in the pack at which the bank tip is said.</summary>
     public const int GoldTipThreshold = 2000;
@@ -40,6 +41,7 @@ public static class NewPlayerTipsService
         [Tired] = "You are low on stamina. If it runs out you cannot run, so you cannot get away from the fight. Drink a Refresh potion, or step out of the fight for a moment to get it back.",
         [GoldInPack] = "Gold in your pack can be stolen; gold in your bank box cannot. Say bank next to a banker to put it away.",
         [FirstPet] = "Your new pet gets hungry. Feed it food it likes now and then (double-click the food, then click the pet), or it will wander off after about ten hours.",
+        [OutOfKindling] = "That was your last Kindling. A provisioner sells more, or use a bladed item such as a dagger on a tree to cut some.",
         [FirstResurrection] = "Your belongings are on your corpse: go back for it soon, before it turns to bones. Your starting gear is in your pack, not on you, so put it on again.",
     };
 
@@ -68,6 +70,7 @@ public static class NewPlayerTipsService
 
         Server.Timer.StartTimer(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0), Poll);
         CommandSystem.Register("Tips", AccessLevel.Player, OnTips);
+        Kindling.StackUsedUp += OnKindlingStackUsedUp;
     }
 
     // ---- the decisions
@@ -89,6 +92,9 @@ public static class NewPlayerTipsService
     public static bool IsWinded(int stam, int stamMax, bool inCombat) => !inCombat && stamMax > 0 && stam * 10 <= stamMax;
 
     public static bool CarriesALotOfGold(int gold) => gold >= GoldTipThreshold;
+
+    /// <summary>A stack of Kindling was used up lighting or feeding a fire, and none is left in the pack.</summary>
+    public static bool IsOutOfKindling(int kindlingLeft) => kindlingLeft <= 0;
 
     /// <summary>Whether a tip is said now: the flag on, an ordinary player, tips not switched off and this one not shown before.</summary>
     public static bool ShouldShow(bool enabled, bool ordinaryPlayer, bool tipsOff, bool alreadyShown) => enabled && ordinaryPlayer && !tipsOff && !alreadyShown;
@@ -184,6 +190,15 @@ public static class NewPlayerTipsService
         if (player.Weapon is BaseRanged ranged && IsOutOfAmmunition(true, player.Warmode, HasAmmunition(player, ranged)))
         {
             Show(player, OutOfArrows);
+        }
+    }
+
+    private static void OnKindlingStackUsedUp(Mobile from)
+    {
+        if (Enabled && from is PlayerMobile { Deleted: false, AccessLevel: AccessLevel.Player } player &&
+            IsOutOfKindling(player.Backpack?.GetAmount(typeof(Kindling)) ?? 0))
+        {
+            Show(player, OutOfKindling);
         }
     }
 

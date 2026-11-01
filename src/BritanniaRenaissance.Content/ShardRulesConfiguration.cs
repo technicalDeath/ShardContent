@@ -109,6 +109,8 @@ public static class ShardRulesConfiguration
         StaminaReliefService.Validate(rules.StaminaRelief, errors);
         DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
         HousePricing.Validate(rules.HousePricing, errors);
+        ShopPrices.Validate(rules.ShopPrices, errors);
+        MonsterAggro.Validate(rules.MonsterAggro, errors);
         WorldSeason.Validate(rules.WorldSeason, errors);
         FastSkillStart.Validate("fastHealing", rules.FastHealing, errors);
         FastSkillStart.Validate("fastMeditation", rules.FastMeditation, errors);
@@ -461,6 +463,12 @@ public sealed class ShardRules
 
     [JsonPropertyName("housePricing")]
     public HousePricingRules HousePricing { get; set; } = new();
+
+    [JsonPropertyName("shopPrices")]
+    public Dictionary<string, ShopPriceRule> ShopPrices { get; set; } = new();
+
+    [JsonPropertyName("monsterAggro")]
+    public MonsterAggroRules MonsterAggro { get; set; } = new();
 
     [JsonPropertyName("worldSeason")]
     public WorldSeasonRules WorldSeason { get; set; } = new();
@@ -1038,6 +1046,11 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("ordinaryAddonDeeds")]
     public bool OrdinaryAddonDeeds { get; set; }
 
+    /// <summary>A following pet keeps up with a running master before AOS too (docs/Pack-Animals-Evidence.md, owner 2026-11-01); off until the
+    /// owner says activate.</summary>
+    [JsonPropertyName("petsKeepUp")]
+    public bool PetsKeepUp { get; set; }
+
     /// <summary>Looting, using, carving or stealing from a corpse that is not yours to loot asks first (QoL item 32); off until the owner says
     /// activate.</summary>
     [JsonPropertyName("criminalCorpseConfirm")]
@@ -1135,6 +1148,7 @@ public sealed class DeferredFeatureFlags
         if (SellCratesWithKeys) yield return nameof(SellCratesWithKeys);
         if (ExtraVendorBuyers) yield return nameof(ExtraVendorBuyers);
         if (OrdinaryAddonDeeds) yield return nameof(OrdinaryAddonDeeds);
+        if (PetsKeepUp) yield return nameof(PetsKeepUp);
         if (CriminalCorpseConfirm) yield return nameof(CriminalCorpseConfirm);
         if (MonsterSpellWords) yield return nameof(MonsterSpellWords);
         if (CorpseCarveButton) yield return nameof(CorpseCarveButton);
@@ -1143,7 +1157,7 @@ public sealed class DeferredFeatureFlags
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !CriminalCorpseConfirm && !MonsterSpellWords && !CorpseCarveButton && !CorpseLootExtension && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !PetsKeepUp && !CriminalCorpseConfirm && !MonsterSpellWords && !CorpseCarveButton && !CorpseLootExtension && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

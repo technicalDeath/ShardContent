@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "pinnedModernUoCommit": "52648386c20539671b59dbc62f41e15728edebfe",
+  "pinnedModernUoCommit": "e6991719315080308692e70f98cc5bec9eaa7909",
   "era": "UOR",
   "targetMap": "Felucca",
   "generatedDataRoot": "Data/BritanniaRenaissance/Alpha2b",
@@ -73,6 +73,7 @@
     "britain-vendor-overrides.json",
     "greater-britain-housing-spawner-relocations.json",
     "britain-beginner-hunting.json",
+    "cove-spawn-areas.json",
     "greater-britain-spawn-areas.json"
   ],
   "spawnerFiles": [

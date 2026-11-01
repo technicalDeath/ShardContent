@@ -36,6 +36,11 @@ PER_TILES = 900
 
 
 def main(argv):
+    patch_name = "greater-britain-flavor-statics.json"
+    if "--patch" in argv:  # another plan's patch file (vesper-minoc-flavor-statics.json)
+        i = argv.index("--patch")
+        patch_name = argv[i + 1]
+        argv = argv[:i] + argv[i + 2:]
     census = json.load(open(argv[0], encoding="utf-8"))
     plan = json.load(open(argv[1], encoding="utf-8"))
     flavor = json.load(open(os.path.join(HERE, "deco.json"), encoding="utf-8"))["flavor"]
@@ -108,7 +113,7 @@ def main(argv):
                       "applied to statics0.mul/staidx0.mul (and the x pair) by tools/map-patch/apply_statics_patch.py. Do not edit by hand.",
              "map": 0, "statics": [[int(s["id"], 16), s["x"], s["y"], s["z"], 0] for s in sorted(sites, key=lambda s: (s["x"], s["y"]))]}
     os.makedirs(PATCHES, exist_ok=True)
-    json.dump(patch, open(os.path.join(PATCHES, "greater-britain-flavor-statics.json"), "w", encoding="utf-8", newline="\n"), separators=(",", ":"))
+    json.dump(patch, open(os.path.join(PATCHES, patch_name), "w", encoding="utf-8", newline="\n"), separators=(",", ":"))
     json.dump(sites, open(argv[2], "w", encoding="utf-8"), indent=1)
     print("pieces", len(sites))
     for r in report:

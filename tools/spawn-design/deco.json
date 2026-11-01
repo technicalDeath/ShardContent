@@ -1198,6 +1198,76 @@
      "0x0C84"
     ]
    ]
+  },
+  "mountain-peaks": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ],
+    [
+     "mushrooms",
+     "0x0D0F"
+    ]
+   ],
+   "color": [
+    [
+     "snowdrops",
+     "0x0C8E"
+    ],
+    [
+     "campion",
+     "0x0C87"
+    ]
+   ]
+  },
+  "swamp-vermin": {
+   "pieces": [
+    [
+     "cattails",
+     "0x0CB8"
+    ],
+    [
+     "mushrooms",
+     "0x0D0E"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ]
+   ],
+   "color": [
+    [
+     "bulrushes",
+     "0x0C94"
+    ],
+    [
+     "white flowers",
+     "0x0C8B"
+    ]
+   ]
+  },
+  "sand-flats": {
+   "pieces": [
+    [
+     "bone",
+     "0x1B11"
+    ],
+    [
+     "bone",
+     "0x1B12"
+    ]
+   ],
+   "color": [
+    [
+     "orfluer flowers",
+     "0x0C85"
+    ]
+   ]
   }
  }
 }

@@ -11,6 +11,7 @@ says no tile near S can be walked to from here (the caller blocks that shore at 
 nearest_water(x, y, r): the water tile nearest to a standing point within r (watergrid.bin from make_watergrid.py: the deep-water land tiles 0xA8-0xAB), with an optional filter
 (a fished-out bank); instant, where the old find_water asked the client for 121 tiles.
 """
+import json
 import os
 import struct
 import zlib
@@ -164,3 +165,57 @@ def stand_for(shore, here, wr_module=None):
         if r is not None and cheb(r["path"][-1], t) <= 1 and (best is None or r["steps"] < best[0]):
             best = (r["steps"], t)
     return best[1] if best else False
+
+
+# ---- the world's fishing stands and static water (make_fishstands.py, make_watergrid.py) -------------------------------------------------------------------
+
+_STANDS = None
+_STATIC = None
+
+
+def world_stands():
+    """[(bank_x, bank_y, stand_x, stand_y, water_x, water_y)]: one stand per fish bank on the whole Felucca surface (fishstands.json), [] without the file.
+    A fisher anywhere finds its water here by distance and route from where it is, not from a town's list (owner, 2026-10-31)."""
+    global _STANDS
+    if _STANDS is None:
+        try:
+            _STANDS = [tuple(r) for r in json.load(open(os.path.join(HERE, "fishstands.json"), encoding="utf-8"))["stands"]]
+        except (OSError, ValueError, KeyError):
+            _STANDS = []
+    return _STANDS
+
+
+def stands_near(x, y, r):
+    """The world stands within r of (x, y) (Chebyshev, by the stand tile), nearest first."""
+    out = [s for s in world_stands() if max(abs(s[2] - x), abs(s[3] - y)) <= r]
+    out.sort(key=lambda s: max(abs(s[2] - x), abs(s[3] - y)))
+    return out
+
+
+def static_water(x, y):
+    """(z, graphic) when (x, y) is water only by a static (a river, a pond, much of the coast: Fishing.cs waterStaticTiles), else None. The cast then
+    targets that static (targettile x y z graphic); land water is targeted as land (graphic 0)."""
+    global _STATIC
+    if _STATIC is None:
+        import array
+        keys, zs, gs = array.array("I"), array.array("b"), array.array("H")
+        try:
+            raw = open(os.path.join(HERE, "waterstatics.bin"), "rb").read()
+            assert raw[:4] == b"WST1"
+            n = struct.unpack_from("<I", raw, 4)[0]
+            body = zlib.decompress(raw[8:])
+            rows = sorted(struct.unpack_from("<HHbH", body, i * 7) for i in range(n))
+            for sx, sy, sz, sg in rows:
+                keys.append(sx * 4096 + sy)
+                zs.append(sz)
+                gs.append(sg)
+        except (OSError, AssertionError, zlib.error, struct.error):
+            pass
+        _STATIC = (keys, zs, gs)
+    import bisect
+    keys, zs, gs = _STATIC
+    k = x * 4096 + y
+    i = bisect.bisect_left(keys, k)
+    if i < len(keys) and keys[i] == k:
+        return int(zs[i]), int(gs[i])
+    return None

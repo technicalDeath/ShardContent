@@ -37,7 +37,7 @@ public class NewPlayerTipsTests
     [Fact]
     public void EveryTipHasPlainShortWordingWithoutTheOldName()
     {
-        foreach (var id in new[] { OutOfArrows, BadlyHurt, FirstDeath, FirstResurrection, Tired, GoldInPack, FirstPet, BadlyHurtPotion, Overloaded, Winded })
+        foreach (var id in new[] { OutOfArrows, BadlyHurt, FirstDeath, FirstResurrection, Tired, GoldInPack, FirstPet, BadlyHurtPotion, Overloaded, Winded, OutOfKindling })
         {
             Assert.True(Texts.TryGetValue(id, out var text), id);
             Assert.InRange(text.Length, 40, 220);
@@ -92,6 +92,18 @@ public class NewPlayerTipsTests
     [InlineData(3, 33, true, false)]    // in a fight the tired tip speaks
     [InlineData(0, 0, false, false)]
     public void WindedNeedsAnEmptyTankOutsideAFight(int stam, int max, bool combat, bool expected) => Assert.Equal(expected, IsWinded(stam, max, combat));
+
+    [Theory]
+    [InlineData(0, true)]
+    [InlineData(3, false)]   // another stack is still in the pack
+    public void TheKindlingTipNeedsThePackEmptyOfKindling(int left, bool expected) => Assert.Equal(expected, IsOutOfKindling(left));
+
+    [Fact]
+    public void TheKindlingTipSaysWhereToGetMore()
+    {
+        Assert.Contains("provisioner", Texts[OutOfKindling]);
+        Assert.Contains("on a tree", Texts[OutOfKindling]);
+    }
 
     [Fact]
     public void TheFlagShipsOffAndIsListedWhenOn()

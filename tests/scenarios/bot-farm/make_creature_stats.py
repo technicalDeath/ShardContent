@@ -59,7 +59,7 @@ def creatures():
                 if not fn.endswith(".cs"):
                     continue
                 t = read(os.path.join(dirpath, fn))
-                m = re.search(r"class (\w+)\s*:\s*BaseCreature", t)
+                m = re.search(r"class (\w+)\s*:\s*(?:BaseCreature|BaseMount)\b", t)      # a mount is a creature too (Horse: AI_Animal, Aggressor)
                 if not m:
                     continue
                 dmg = rng(t, r"SetDamage")
@@ -90,11 +90,30 @@ def creatures():
                     "fame": int(fame.group(1)) if fame else 0, "karma": int(karma.group(1)) if karma else 0,
                 }
                 out[m.group(1).lower()] = entry
-                if name:
-                    key = re.sub(r"[^a-z]", "", re.sub(r"^(an?|the) ", "", name.group(1).lower()))
+                names = [name.group(1)] if name else []
+                for lst in re.findall(r'NameList\.RandomName\("([^"]+)"\)', t):   # a bird is "a woodpecker" or "a tern" (Data/names.json), never "a bird"
+                    names += [n for n in namelist(lst) if re.match(r"(an?) ", n)]    # a kind ("a tern"), never a proper name ("Abigail": an orc's or a person's)
+                for nm in names:
+                    key = re.sub(r"[^a-z]", "", re.sub(r"^(an?|the) ", "", nm.lower()))
                     if key and key not in out:
                         out[key] = entry                                  # the name without article, spaces: the brains' mkey() for a creature whose species is unknown
     return out
+
+
+_NAMES = {}
+
+
+def namelist(kind):
+    """The names the engine draws for NameList.RandomName(kind) (Distribution/Data/names.json); [] when it cannot be read."""
+    if not _NAMES:
+        try:
+            data = json.load(open(os.path.join(ROOT, "ModernUO", "Distribution", "Data", "names.json"), encoding="utf-8-sig"))
+            for e in (data if isinstance(data, list) else [{"type": k, "names": v} for k, v in data.items()]):
+                _NAMES[e.get("type") or e.get("Type")] = e.get("names") or e.get("Names") or []
+        except Exception as ex:
+            print("names.json:", ex)
+            _NAMES["_none"] = []
+    return list(_NAMES.get(kind) or [])
 
 
 def main():

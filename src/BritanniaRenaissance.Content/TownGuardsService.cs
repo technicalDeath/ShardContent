@@ -112,7 +112,11 @@ public static class TownGuardsService
                 .Select(r => new Rectangle3D(new Point3D(r.X1, r.Y1, Region.MinZ), new Point3D(r.X2, r.Y2, Region.MaxZ)))
                 .ToArray();
 
-            var region = new NoHousingRegion(area.Name, map, UnguardedPriority, rects);
+            // owner, 2026-10-20: "Let houses in the Outskirts": an area marked allowHousing is a plain region, so stock house
+            // placement's region rule passes there; the rest stay no-housing like the towns they were cut from
+            Region region = area.AllowHousing
+                ? new BaseRegion(area.Name, map, UnguardedPriority, rects)
+                : new NoHousingRegion(area.Name, map, UnguardedPriority, rects);
             region.Register();
             Unguarded.Add(region);
 
@@ -150,7 +154,7 @@ public static class TownGuardsService
         {
             foreach (var region in Unguarded)
             {
-                yield return $"Unguarded area '{region.Name}' on {region.Map}: {region.Area.Length} rectangle(s).";
+                yield return $"Unguarded area '{region.Name}' on {region.Map}: {region.Area.Length} rectangle(s), houses {(region is NoHousingRegion ? "not allowed" : "allowed")}.";
             }
         }
 
@@ -206,6 +210,11 @@ public sealed class UnguardedArea
     /// <summary>The ends are not included, as in Data/regions.json.</summary>
     [JsonPropertyName("rectangles")]
     public List<UnguardedRectangle> Rectangles { get; set; } = [];
+
+    /// <summary>Houses may be placed here (stock rules otherwise forbid them in a town's region). The Britain Outskirts, on the
+    /// owner's ruling of 2026-10-20.</summary>
+    [JsonPropertyName("allowHousing")]
+    public bool AllowHousing { get; set; }
 }
 
 public sealed class UnguardedRectangle

@@ -41,6 +41,23 @@ WITHDRAW = 300                  # carried gold under the cost of what is wanted 
 PRICE = {"bandage": 3, "=yellow potion": 15, "=red potion": 15, "=orange potion": 15}
 
 
+ALCHEMIST_TRIES = 3
+
+
+def alchemists(b):
+    """The alchemists the gazetteer knows, nearest first, within FAR_SHOP of the bot."""
+    try:
+        import gazetteer as gz
+        pts = [(int(p["x"]), int(p["y"])) for p in gz.get().by_role.get("alchemist", ())]
+    except Exception:
+        return []
+    here = (int(b.c.x), int(b.c.y))
+    return sorted((p for p in pts if max(abs(p[0] - here[0]), abs(p[1] - here[1])) <= FAR_SHOP), key=lambda p: max(abs(p[0] - here[0]), abs(p[1] - here[1])))
+
+
+FAR_SHOP = 250
+
+
 def weapon_shops(b):
     """Standing spots of Britain's weapon sellers (the gazetteer's smith, weaponsmith, bowyer), and the spots that did not sell a weapon lately."""
     try:
@@ -51,11 +68,15 @@ def weapon_shops(b):
     return shops, bad
 
 
+AMMO_SHOPS = (("bowyer",), ("provisioner",))   # a Provisioner sells arrows and bolts too (SBProvisioner: Arrow 2 gold, Bolt 5, 20 a restock)
+SOLD_OUT_S = 3600                              # a shelf that is sold out comes back at the vendor's next restock (BaseVendor.RestockDelay 1 h), doubled (GenericBuyInfo.OnRestock)
+
+
 def ammo_shop(b):
-    """The Bowyer's standing spot, skipping a Bowyer that failed twice in a row lately (ammo_bad_shop, 30 min)."""
+    """The Bowyer's standing spot, else a Provisioner's, skipping a shop sold out lately or that failed twice in a row (ammo_bad_shop)."""
     bad = {tuple(int(v) for v in k.split(",")) for k, until in (b.facts.get("ammo_bad_shop") or {}).items() if until > time.time()}
     try:
-        for p in b.find_places(("bowyer",), n=6, item="arrow"):
+        for p in b.find_places(AMMO_SHOPS, n=8, item="arrow"):
             if tuple(p) not in bad and not any(max(abs(p[0] - q[0]), abs(p[1] - q[1])) <= 6 for q in bad):
                 return tuple(p)
     except Exception:
@@ -90,6 +111,9 @@ def trip_stock_wanted(bot):
     tiers below paid, and money for the whole kit with 250 over. Otherwise the ordinary marks."""
     try:
         import task_core
+        if not bot.feature("ladder"):
+            return False                                  # only a bot that goes down (feature ladder) buys the dungeon kit: all twenty core fighters did, and Britain's
+                                                          # shelves (10-15 Heal and Cure a vendor an hour; two Cure sellers seen) were bare for the four that go (2026-11-01)
         if float(bot.skill_values.get(bot.main_skill(), 0) or 0) < task_core.KIT["skill"]:
             return False
         paid = sum(float((bot.facts.get("rung_kills") or {}).get(str(t), 0) or 0) for t in (2, 3))
@@ -731,6 +755,12 @@ class Act(Step):
         rest = {item: full - carried(b, item) for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
         if rest:
             visit(b.where1(("alchemist",)), rest)                  # one visit: Cure, and whatever the healer did not have
+        # sold out: the next alchemists, nearest first, as a player walks on to the next shop (Britain has four; the nearest two were bare)
+        for xy in alchemists(b)[:ALCHEMIST_TRIES]:
+            rest = {item: full - carried(b, item) for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
+            if not rest:
+                break
+            visit(xy, rest)
         bmark = next((m for m in marks(b) if m[0] == "bandage"), ("bandage", 20, 30, ()))
         short = bmark[2] - int(b.bandages())
         if CLOTH_BANDAGES and int(b.bandages()) < bmark[1] and not st.get("cloth_tried"):          # the healer could not fill the need: the tailor
@@ -808,8 +838,9 @@ class Act(Step):
         if gold < 4:
             b.facts["errand_reason"] = "no gold after the bank"
             return False
+        shop = ammo_shop(b)
         try:
-            b.shop_at(ammo_shop(b), {ammo_item(b): 150}, budget=max(4, int(gold * 0.85)))
+            b.shop_at(shop, {ammo_item(b): 150}, budget=max(4, int(gold * 0.85)))
         except Exception as e:
             b.log(f"errand ammo: {type(e).__name__}: {e}")
             b.facts["errand_reason"] = f"shop error {type(e).__name__}"
@@ -823,7 +854,11 @@ class Act(Step):
             b.facts.pop("ammo_unmet_money", None)
         else:
             b.facts["errand_reason"] = f"shop gave nothing: list opened {b.facts.get('shop_list_opened')}, had wanted {b.facts.get('shop_had_wanted')}, gold {b.c.gold}"
-            b.ev("ammo_unmet", step="shop", list_opened=b.facts.get("shop_list_opened"), had_wanted=b.facts.get("shop_had_wanted"), shop=list(ammo_shop(b)), gold=int(b.c.gold or 0),
+            if b.facts.get("shop_list_opened") and not b.facts.get("shop_had_wanted"):
+                # the list opened without arrows on it: sold out until the vendor restocks. A player walks on to the next shop that sells them, not back here in
+                # four minutes (BotFairArcherVR asked the one Bowyer five times in 40 minutes, then hunted with none and died, 2026-11-01)
+                b.facts.setdefault("ammo_bad_shop", {})[f"{shop[0]},{shop[1]}"] = time.time() + SOLD_OUT_S
+            b.ev("ammo_unmet", step="shop", list_opened=b.facts.get("shop_list_opened"), had_wanted=b.facts.get("shop_had_wanted"), shop=list(shop), gold=int(b.c.gold or 0),
                  bank=int(b.facts.get("bank_balance", 0) or 0), arrows=b.ammo())
             b.log(f"errand ammo: nothing bought (arrows {b.ammo()}, gold {b.c.gold}, bank {b.facts.get('bank_balance', 0)})")
         return ok

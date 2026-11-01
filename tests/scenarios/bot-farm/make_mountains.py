@@ -127,8 +127,21 @@ def cell(data, x, y):
     return g, z
 
 
-def build(x0, y0, x1, y1, centre=(1470, 1620)):
-    """The mineable mountain-edge tiles (one per 8 x 8 ore bank) in a box, nearest `centre` first."""
+FOOT = 2              # a mineable land tile that is not rock counts when rock lies within this many tiles: a mountain's foot (Mining.cs lists those
+                      # dirt, grass, forest and snow blends too); farther off it is a stray tile in a town or a field (one sits in Britain at 1501,1622)
+
+
+def foot_ids(data, x, y, ids, rock):
+    """True when (x, y) is a mineable non-rock tile at a mountain's foot."""
+    g, _z = cell(data, x, y)
+    if g not in ids or g in rock:
+        return False
+    return any(cell(data, x + dx, y + dy)[0] in rock for dx in range(-FOOT, FOOT + 1) for dy in range(-FOOT, FOOT + 1))
+
+
+def build(x0, y0, x1, y1, centre=(1470, 1620), foot=True):
+    """The mineable mountain-edge tiles (one per 8 x 8 ore bank) in a box, nearest `centre` first. foot: a bank with no rock edge to stand by
+    still counts by a mineable tile at a mountain's foot (it is itself walkable ground, mined from beside it)."""
     ids = mine_ids()
     rock = rock_ids(ids)
     data = load_map()
@@ -149,6 +162,17 @@ def build(x0, y0, x1, y1, centre=(1470, 1620)):
                     break
             if stand:
                 banks.setdefault((x // 8, y // 8), [x, y, z, g, stand[0], stand[1]])
+    if foot:
+        for x in range(x0, x1 + 1):
+            for y in range(y0, y1 + 1):
+                if (x // 8, y // 8) in banks or not foot_ids(data, x, y, ids, rock):
+                    continue
+                g, z = cell(data, x, y)
+                for dx, dy in ((0, 1), (1, 0), (-1, 0), (0, -1)):
+                    ng, nz = cell(data, x + dx, y + dy)
+                    if ng not in rock and abs(nz - z) <= 20 and ng not in range(0xA8, 0xAC) and ng not in range(0x136, 0x138):
+                        banks[(x // 8, y // 8)] = [x, y, z, g, x + dx, y + dy]
+                        break
     return sorted(banks.values(), key=lambda t: abs(t[0] - centre[0]) + abs(t[1] - centre[1]))
 
 

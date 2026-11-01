@@ -75,9 +75,21 @@ class BasicsMixin:
             if not getattr(m, "in_war_mode", False) and n.startswith(("a ", "an ")) and any(re.search(r"\b" + re.escape(w) + r"\b", n) for w in self.HARMLESS) \
                     and not any(w in n for w in ("giant", "dire", "plague", "rat man", "ratman")):
                 continue
+            if getattr(m, "in_war_mode", False) and (getattr(m, "distance", 0) or 0) > self.ANIMAL_REACH and self._animal(m):
+                continue                                          # an animal fights only what attacked it (AI_Animal, FightMode.Aggressor): one in war mode
+                                                                  # away from the bot is fighting someone else (a cow at a newbie's sword, 2026-11-01)
             if self.can_hurt(m):
                 out.append(m)
         return out
+
+    ANIMAL_REACH = 2          # an animal fighting this bot stands next to it
+
+    def _animal(self, m):
+        try:
+            import task_core
+            return not task_core.aggressive(self.mkey(m)) and bool(task_core._CS.get(self.mkey(m)))
+        except Exception:
+            return False
 
     STILL_THREAT_S = 30        # a hostile in view this long that never came within STILL_NEAR and is no closer is not coming (its AI looks for targets about
     STILL_NEAR = 4             # every second): BotMinerBR stood 28 minutes by a giant rat that never came, BotTinkBR skipped crafting 20 (2026-10-31)
@@ -241,6 +253,20 @@ class BasicsMixin:
         self.ev("flee", away_from=self.mkey(m) if m is not None else None, res="trapped", hp=self.c.hp)
         return "trapped"
 
+    # armour by the worn piece's name (the client names it from its graphic): Items/Armor ArmorBase, pre-AOS
+    ARMOR_WORDS = (("plate", 40), ("chainmail", 28), ("ringmail", 22), ("close helm", 30), ("norse helm", 30), ("helmet", 30), ("bascinet", 18), ("bone", 30),
+                   ("studded", 16), ("leather", 13))
+
+    def worn_profile(self):
+        """{layer: armour rating} of the armour worn on the body parts a hit can land on (danger.HIT_SHARE), for the risk of an armoured gatherer."""
+        out = {}
+        for it in getattr(self.c, "equipped", None) or []:
+            n = (getattr(it, "name", "") or "").lower()
+            ar = next((v for w, v in self.ARMOR_WORDS if w in n), 0)
+            if ar and getattr(it, "layer", None) in ("Necklace", "Gloves", "Arms", "Helmet", "Pants", "Torso"):
+                out[it.layer] = max(out.get(it.layer, 0), ar)
+        return out
+
     def fight_back(self, m):
         """No way out: fight it (a caster casts: CasterBot overrides)."""
         self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
@@ -297,13 +323,18 @@ class BasicsMixin:
                 self.drop_to_ground(it)
         return True
 
+    GOODS_SALE_RULES = ("r_sellmeat", "r_sell_leather")      # the rules that sell goods (meat at the Butcher, leather and hides at the Tanner)
     GOODS_OUT_SHARE = 0.8                # goods come out of the box up to this share of the weight limit (BotBase.CLEAR_SHARE); a sell trip is due at 0.85
 
     def bank_goods_out(self, box):
         """At a bank visit, goods earlier visits banked (leather, hides, meat, feathers: the casters' KEEP lacked them until 2026-10-29) come back out for the
         shops, each stack cut to the room left at its weight a piece (taking whole stacks put a caster at 348 of 250 stones, unable to walk)."""
+        if not any(r in (getattr(self, "RULES", None) or ()) for r in self.GOODS_SALE_RULES):
+            return self.bank_material_out(box) + self.bank_products_out(box)      # no rule of this trade sells goods: out of the box they only weigh. BotSmithAR
+                                                                                  # took 32 piles of hides (160 stones) out at every visit, never sold them and
+                                                                                  # banked again as "heavy" (2026-11-01)
         if self.facts.get("goods_unbanked") and time.time() - self.facts["goods_unbanked"] < 6 * 3600:
-            return self.bank_products_out(box)            # (the goods came out lately; a crafter's products still may)
+            return self.bank_material_out(box) + self.bank_products_out(box)      # (the goods came out lately; a crafter's material and products still may)
         try:
             goods = [i for i in self.c.container(box, timeout=6) if items.is_goods(i.name)]
         except Exception:
@@ -327,15 +358,29 @@ class BasicsMixin:
         if goods:
             self.log(f"bank: took out {taken} of {len(goods)} stacks of goods to sell ({left} left in the box)")
             self.ev("goods_unbanked", taken=taken, stacks=len(goods), left=left)
-        return taken + self.bank_products_out(box)
+        return taken + self.bank_material_out(box) + self.bank_products_out(box)
+
+    def bank_material_out(self, box):
+        """A crafter's own material in the box comes out before any is bought (CrafterBot); 0 for the other trades."""
+        return 0
 
     PRODUCTS_OUT_SHARE = 0.5             # a crafter's banked products come out only while the pack is under half its limit: room is kept for material
+    # out of gold, a player takes all the stock he can carry to the shop: BotTailAdvR had 84 sellable hats in its box and 40 gold, took 12 a visit and stood
+    # idle between (8 of 11 minutes, 2026-10-31). Then the goods' share of the weight limit, and up to POOR_PRODUCTS pieces
+    POOR_GOLD = 100
+    POOR_PRODUCTS = 60
+    POOR_OUT_SHARE = 0.6                 # under the crafters' heavy line (CRAFT_WEIGHT), so the stock taken out can be carried to the shop and crafting goes on
 
     def bank_products_out(self, box):
         """A crafter's products banked on heavy visits come back out to sell when a shop is known to pay for them. BotCarpAdvR's box held 60 quarter
         staffs (15 gold at the Carpenter) and 22 wooden boxes (25): about 1,450 gold that nothing took out, as the goods step knew only leather, meat,
         hides and feathers (2026-10-30). At most CLEAR_N stacks a visit, the weight read again after each take."""
-        if not hasattr(self, "is_product") or self.c.weight >= self.c.max_weight * self.PRODUCTS_OUT_SHARE:
+        # a heavy or overloaded visit only puts in: taking stock back out there looped (BotSmithAdvR at 296/362 banked as heavy and took 14 pieces out again,
+        # every few minutes, 2026-11-01)
+        poor = self.c.gold < self.POOR_GOLD and self.__dict__.get("_bank_why") not in ("heavy", "overloaded")
+        share = self.POOR_OUT_SHARE if poor else self.PRODUCTS_OUT_SHARE
+        limit = self.POOR_PRODUCTS if poor else getattr(self, "CLEAR_N", 12)
+        if not hasattr(self, "is_product") or self.c.weight >= self.c.max_weight * share:
             return 0
         try:
             stock = [i for i in self.c.container(box, timeout=6) if self.is_product(i.name)]
@@ -343,8 +388,8 @@ class BasicsMixin:
             return 0
         priced = [i for i in stock if any(p > 0 for p, xy, item in self.mem.vendor_buying(i.name.lower()) if item == i.name.lower())]
         taken = 0
-        for it in priced[:getattr(self, "CLEAR_N", 12)]:
-            if self.c.weight >= self.c.max_weight * self.PRODUCTS_OUT_SHARE:
+        for it in priced[:limit]:
+            if self.c.weight >= self.c.max_weight * share:
                 break
             self.c.get_item(it.serial, None)
             time.sleep(1.2)

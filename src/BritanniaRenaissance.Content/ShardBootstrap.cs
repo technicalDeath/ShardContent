@@ -52,6 +52,8 @@ public static class ShardBootstrap
         SellPriceTooltips.Configure();
         CraftedGoodsPricing.Configure();
         HousePricing.Configure();
+        ShopPrices.Configure();
+        MonsterAggro.Configure();
         WorldSeason.Configure();
         PoisonReliefService.Configure(); // issues starter potions: before StarterWeightBudget.Register
         HelpService.Configure();
@@ -79,6 +81,7 @@ public static class ShardBootstrap
         ExtraVendorBuyers.Configure();
         ExtraVendorStock.Configure();
         OrdinaryAddonDeeds.Configure();
+        PetsKeepUp.Configure();
         CriminalCorpseConfirm.Configure();
         MonsterSpellWords.Configure();
         CorpseCarveButton.Configure();

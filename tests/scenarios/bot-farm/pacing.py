@@ -75,8 +75,8 @@ class PacingMixin:
                 self.set_runmode("never")
                 b["walking"] = True
         elif not town and b.get("walking"):
-            if self.facts.get("runmode") == "never":
-                self.set_runmode("auto")
+            if self.facts.get("runmode") == "never" and now >= self.facts.get("walk_until", 0):
+                self.set_runmode("auto")                  # (not inside recovery.py's "too tired" walk: running again there drew the server's line 172 times, BotSmithBR)
             b["walking"] = False
 
     # ---- the pause before talking ----------------------------------------------------------------------------------------------------------------

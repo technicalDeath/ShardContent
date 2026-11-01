@@ -195,6 +195,15 @@ class FirstTrip(LadderMixin):
 
     # ---- the rule ---------------------------------------------------------------------------------------------------------
 
+    def trip_core_lets(self, name):
+        """Under the decision core (task_core) only the reflexes run, so a ladder bot's r_trip never did (2026-11-01: three of the four ladder bots run the core).
+        A ladder bot keeps r_trip, and r_fight while a trip is under way: the order a bot without the core has (the outing waits behind fights)."""
+        if name == "r_trip":
+            return self.ladder_on()
+        if name == "r_fight":
+            return bool(self.ladder_on() and self.trip_load().get("trip"))
+        return False
+
     def r_trip(self):
         st = self.trip_load()
         t = st["trip"]

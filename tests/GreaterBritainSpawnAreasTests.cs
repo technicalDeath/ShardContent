@@ -26,13 +26,13 @@ public class GreaterBritainSpawnAreasTests
 
     private static JsonElement Manifest() => JsonDocument.Parse(File.ReadAllText(Path.Combine(Root, "world-generation.json"))).RootElement;
 
-    private static (int X, int Y) At(JsonElement s)
+    internal static (int X, int Y) At(JsonElement s)
     {
         var l = s.GetProperty("location").EnumerateArray().Select(v => v.GetInt32()).ToArray();
         return (l[0], l[1]);
     }
 
-    private static IEnumerable<string> Names(JsonElement s) => s.GetProperty("entries").EnumerateArray().Select(e => e.GetProperty("name").GetString()!);
+    internal static IEnumerable<string> Names(JsonElement s) => s.GetProperty("entries").EnumerateArray().Select(e => e.GetProperty("name").GetString()!);
 
     [Fact]
     public void ManifestListsTheAreasLast()
@@ -81,6 +81,64 @@ public class GreaterBritainSpawnAreasTests
             Assert.True(s.GetProperty("entries").EnumerateArray().Sum(e => e.GetProperty("maxCount").GetInt32()) >= s.GetProperty("count").GetInt32());
         }
     }
+
+    // tier 0-1 creatures (harmless and beginner) may cluster; anything step-up or harder spawns in groups of at most 3
+    internal static readonly HashSet<string> Beginner = new(StringComparer.Ordinal)
+    {
+        "Rabbit", "Hind", "GreatHart", "Eagle", "Bird", "Mongbat", "GiantRat", "Rat", "Snake", "Slime", "Pig", "Sheep", "Goat",
+        "Horse", "Boar", "Cow", "Chicken", "Dog", "Cat", "Skeleton", "Zombie", "HeadlessOne", "GreyWolf", "TimberWolf", "BlackBear", "Cougar"
+    };
+
+    internal static void AssertSpreadInGroupsOfThree(IEnumerable<JsonElement> spawners, params string[] clusterNamePrefixes)
+    {
+        // owner, 2026-10-19: "Rather than spawns with '7 max' ... have 3 spawns with 3 max and 1 with 1 max", "this should only apply to
+        // step-up, dangerous and deadly"; wildlife and the named exceptions (the orc keep) keep their spawners whole
+        foreach (var s in spawners)
+        {
+            var name = s.GetProperty("name").GetString()!;
+            if (name.StartsWith("Wildlife", StringComparison.Ordinal) || clusterNamePrefixes.Any(p => name.StartsWith(p, StringComparison.Ordinal)))
+            {
+                continue;
+            }
+
+            if (!Names(s).All(Beginner.Contains))
+            {
+                Assert.True(s.GetProperty("count").GetInt32() <= 3, $"{name} at {At(s)} holds {s.GetProperty("count").GetInt32()}");
+            }
+        }
+    }
+
+    [Fact]
+    public void WanderingHealersRoamTwentyTilesAndStaySixtyApart()
+    {
+        // owner, 2026-10-20: "include wandering healer spawns in each of the greater Britain named areas ... wandering zones of like 20
+        // tiles. But never put any closer to each other than 60 tiles"
+        var healers = Spawners().Where(s => Names(s).Contains("WanderingHealer")).ToList();
+        Assert.True(healers.Count >= 15);
+        Assert.All(healers, s => Assert.Equal(20, s.GetProperty("homeRange").GetInt32()));
+        Assert.All(healers, s => Assert.Equal(["WanderingHealer"], Names(s)));
+        for (var i = 0; i < healers.Count; i++)
+        {
+            for (var j = i + 1; j < healers.Count; j++)
+            {
+                var (ax, ay) = At(healers[i]);
+                var (bx, by) = At(healers[j]);
+                Assert.True((ax - bx) * (ax - bx) + (ay - by) * (ay - by) >= 60 * 60, $"healers at {At(healers[i])} and {At(healers[j])}");
+            }
+        }
+    }
+
+    [Fact]
+    public void WildHorsesRunInEveryDirectionFromTheBank()
+    {
+        // owner, 2026-10-20: "at least 8 horses (one in each cardinal direction: north, north west, north east, etc.)"
+        var directions = Spawners().Where(s => s.GetProperty("name").GetString()!.StartsWith("Wildlife", StringComparison.Ordinal) && Names(s).Contains("Horse"))
+            .Select(At).Select(p => (int)Math.Round(Math.Atan2(p.Y - BankY, p.X - BankX) / (Math.PI / 4)) & 7).ToHashSet();
+        Assert.Equal(8, directions.Count);
+    }
+
+    [Fact]
+    public void StepUpAndHarderSpawnersHoldAtMostThree() => AssertSpreadInGroupsOfThree(Spawners());
 
     [Fact]
     public void FlavorObjectsAreMapStaticsSpreadOutNeverAPlayerItemAndNeverBlocking()

@@ -2,7 +2,7 @@
 strength, supplies, a way back and the OUTCOME of the rung before it (never a timer). Mixin for HunterBot and CasterBot, written into the bot-farm folder by patch_ladder.py; it rides on first_trip.py
 (routes, the walk, the abort rules, the arrival look) and replaces only its "who goes where, and how often".
 
-  rung 1  Britain's ring     hunt within RING (70) tiles of the home centre: ok after 15 kills there, nothing died on it in the last 30 minutes, main skill >= 25
+  rung 1  Britain's ring     hunt within RING (70) tiles of the home centre: ok after 15 kills there or beyond it, nothing died on it in the last 30 minutes, main skill >= 25
   rung 2  the outskirts      hunt beyond the ring, outside every town and dungeon: ok after 10 kills, again no death in 30 minutes, main skill >= 40, rung 1 ok
   rung 3  another town       a trip to a town (the gazetteer's: the vetted Skara Brae and Trinsic seeds, then straight-line trips to the nearest others) once rung 2 is ok, main skill >= 50, the
                              kit (bandages or Heal potions, ammunition for archers), 300 gold carried or banked, hit points for the trip, a planned land route that passes no death cell, a refuge in
@@ -137,9 +137,12 @@ class LadderMixin:
     def ladder_rung_check(self, st, now):
         power = self.trip_power()
         changed = False
-        if "1" not in st["ok"] and st["ring_kills"] >= RING_KILLS and self.ladder_quiet(st, now) and power >= POWER[1]:
+        # a kill beyond the ring counts for the ring too: a bot that hunts the outskirts without dying has outgrown it (2026-11-01: the four ladder bots had
+        # 5-9 ring kills against 170-900 beyond it, so rung 1, and every rung after it, never passed)
+        done1 = st["ring_kills"] + st["out_kills"]
+        if "1" not in st["ok"] and done1 >= RING_KILLS and self.ladder_quiet(st, now) and power >= POWER[1]:
             st["ok"]["1"] = now
-            self.ev("rung", n=1, result="ok", dest="ring", why=f"{st['ring_kills']} kills on the ring", power=round(power, 1))
+            self.ev("rung", n=1, result="ok", dest="ring", why=f"{done1} kills on the ring or beyond it", power=round(power, 1))
             self.log("ladder: rung 1 (Britain's ring) done")
             changed = True
         if "1" in st["ok"] and "2" not in st["ok"] and st["out_kills"] >= OUT_KILLS and self.ladder_quiet(st, now) and power >= POWER[2]:

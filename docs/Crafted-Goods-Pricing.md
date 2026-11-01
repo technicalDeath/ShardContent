@@ -65,3 +65,15 @@ Measured by the watching session from the bots' sale lines. Bot faults and sold-
    - Spread 1.5 makes NPC-bought finished goods 3 to 7 times dearer than before (a shirt 12 → 30, a cloak 8 → 53). Players who buy clothing or weapons from NPCs pay more. That is the intended shift to crafters, but it is a visible change.
 3. **Not covered:** alchemy, inscription, cooking and cartography are left out for now (potions and scrolls are sensitive economy items). Should they follow the same rule?
 4. **Ore** still has no NPC buyer (tuning note 4). That is the era's rule: a Blacksmith buys iron ingots at 4 gold, so a miner smelts first. This change does not address gatherers.
+
+## Per-item shop prices in data (2026-10-31)
+
+The owner chose to price the pickaxe like a shovel. A pickaxe digs exactly as a shovel does: Mining, 50 uses, 4 iron ingots at Tinkering, 100 uses when exceptional. It is also the weakest axe as a weapon: 1-15 damage at speed 35, 11 stones, worse than a 16-gold club. Yet stock asks 25 gold for it against the shovel's 12, a tax on new miners who don't know better.
+
+- **The data:** `shopPrices` in `shard-rules.json` sets an item's shelf price and buy-back by type name: `"Pickaxe": {"shelf": 12, "buyBack": 6}`, the shovel's numbers at the Tinker and the Miner.
+- **No flag:** the table is the switch, and an empty table is stock.
+- **How it applies:** the price is applied after the crafted-goods and house rules, through the same engine hooks (`GenericBuyInfo.BuyPriceAdjust`, `GenericSellInfo.SellPriceAdjust`, chained in `CraftedGoodsPricing.Configure`).
+- **Validation:** a buy-back at or above its shelf price is refused, since buying and selling back would then pay.
+- **Staff check:** `[ShopPriceStatus`.
+- **Code:** `ShopPrices.cs`, tests `tests/ShopPricesTests.cs`.
+- **State:** built and unit-tested in a worktree at HEAD; not deployed. The full tree doesn't build against the deployed engine at the moment, because another session's `NewPlayerTipsService.cs` needs the `Kindling.StackUsedUp` hook in uncommitted ModernUO source.

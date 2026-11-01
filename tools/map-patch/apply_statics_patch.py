@@ -4,6 +4,9 @@ sees them (owner, 2026-10-18).
 
   python apply_statics_patch.py PRISTINE-DIR OUT-DIR PATCH.json [PATCH.json ...]
 
+A patch has "statics" to add ([graphic, x, y, z, hue]) and/or "remove" ([graphic, x, y, z]): map statics taken out, such as the
+trees cleared along a road for house space (2026-10-20). A block that loses statics is rewritten the same way, at the end.
+
 Reads statics{m}.mul / staidx{m}.mul (and the statics{m}x.mul / staidx{m}x.mul pair when present) from PRISTINE-DIR, the
 untouched client files, and writes patched copies to OUT-DIR. Each touched 8x8 block gets its original statics plus the new
 ones, appended as a fresh block record at the end of the statics file with its index entry pointing there; untouched blocks
@@ -22,17 +25,27 @@ import sys
 HEIGHT_BLOCKS = {0: 512, 1: 512, 2: 200, 3: 320, 4: 181, 5: 256}
 
 
-def patch_pair(src_dir, out_dir, idx_name, mul_name, height_blocks, pieces):
+def patch_pair(src_dir, out_dir, idx_name, mul_name, height_blocks, pieces, removes=()):
     idx = bytearray(open(os.path.join(src_dir, idx_name), "rb").read())
     mul = bytearray(open(os.path.join(src_dir, mul_name), "rb").read())
-    by_block = {}
+    by_block, gone = {}, {}
     for graphic, x, y, z, hue in pieces:
         by_block.setdefault((x >> 3) * height_blocks + (y >> 3), []).append((graphic, x & 7, y & 7, z, hue))
-    added = 0
+    for graphic, x, y, z in removes:
+        block = (x >> 3) * height_blocks + (y >> 3)
+        by_block.setdefault(block, [])
+        gone.setdefault(block, set()).add((graphic, x & 7, y & 7, z))
+    added = removed = 0
     for block, new in sorted(by_block.items()):
         lookup, length, extra = struct.unpack_from("<III", idx, block * 12)
         have = b"" if lookup == 0xFFFFFFFF or length in (0, 0xFFFFFFFF) else bytes(mul[lookup:lookup + length])
-        present = {struct.unpack_from("<HBBb", have, k) for k in range(0, len(have) - 6, 7)}
+        kept = b""
+        for k in range(0, len(have) - 6, 7):
+            if struct.unpack_from("<HBBb", have, k) in gone.get(block, ()):
+                removed += 1
+            else:
+                kept += have[k:k + 7]
+        present = {struct.unpack_from("<HBBb", kept, k) for k in range(0, len(kept) - 6, 7)}
         extra_bytes = b""
         for graphic, bx, by, z, hue in new:
             if (graphic, bx, by, z) in present:
@@ -40,31 +53,34 @@ def patch_pair(src_dir, out_dir, idx_name, mul_name, height_blocks, pieces):
             extra_bytes += struct.pack("<HBBbH", graphic, bx, by, z, hue)
             present.add((graphic, bx, by, z))
             added += 1
-        if not extra_bytes:
+        if not extra_bytes and len(kept) == len(have):
             continue
-        data = have + extra_bytes
+        data = kept + extra_bytes
         offset = len(mul)
         mul += data
         struct.pack_into("<III", idx, block * 12, offset, len(data), 0 if extra == 0xFFFFFFFF else extra)
     os.makedirs(out_dir, exist_ok=True)
     open(os.path.join(out_dir, idx_name), "wb").write(idx)
     open(os.path.join(out_dir, mul_name), "wb").write(mul)
-    return added, hashlib.sha256(mul).hexdigest()[:16], hashlib.sha256(idx).hexdigest()[:16]
+    return added, removed, hashlib.sha256(mul).hexdigest()[:16], hashlib.sha256(idx).hexdigest()[:16]
 
 
 def main(argv):
     src, out = argv[0], argv[1]
-    by_map = {}
+    by_map, rm_map = {}, {}
     for path in argv[2:]:
         p = json.load(open(path, encoding="utf-8"))
-        by_map.setdefault(p["map"], []).extend(tuple(s) for s in p["statics"])
-    for m, pieces in by_map.items():
+        by_map.setdefault(p["map"], []).extend(tuple(s) for s in p.get("statics", []))
+        rm_map.setdefault(p["map"], []).extend(tuple(s) for s in p.get("remove", []))  # [graphic, x, y, z]: map statics taken out
+    for m in sorted(set(by_map) | set(rm_map)):
+        pieces, removes = by_map.get(m, []), rm_map.get(m, [])
         for suffix in ("", "x"):
             idx_name, mul_name = "staidx%d%s.mul" % (m, suffix), "statics%d%s.mul" % (m, suffix)
             if not os.path.exists(os.path.join(src, idx_name)):
                 continue
-            added, mul_hash, idx_hash = patch_pair(src, out, idx_name, mul_name, HEIGHT_BLOCKS[m], pieces)
-            print("%s: %d of %d pieces added (statics sha256 %s, index %s)" % (mul_name, added, len(pieces), mul_hash, idx_hash))
+            added, removed, mul_hash, idx_hash = patch_pair(src, out, idx_name, mul_name, HEIGHT_BLOCKS[m], pieces, removes)
+            print("%s: %d of %d pieces added, %d of %d removed (statics sha256 %s, index %s)" %
+                  (mul_name, added, len(pieces), removed, len(removes), mul_hash, idx_hash))
 
 
 if __name__ == "__main__":

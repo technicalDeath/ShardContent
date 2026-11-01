@@ -1124,6 +1124,9 @@ assert errands.marks(kt) is errands.RESTOCK, "no money for the kit"
 kt.c.gold, kt.facts["bank_balance"] = 100, 1500
 assert errands.marks(kt) is errands.RESTOCK, "money but no rung and no kills below it"
 kt.facts["rung_kills"] = {"2": 12.0}
+assert errands.marks(kt) is errands.RESTOCK, "no ladder: the kit is for a bot that goes down (2026-11-01)"
+_kf = kt.feature
+kt.feature = lambda n: n == "ladder" or _kf(n)
 m_ = {x[0]: (x[1], x[2]) for x in errands.marks(kt)}
 assert m_["bandage"] == (50, 50) and m_["=yellow potion"] == (10, 10) and m_["=orange potion"] == (15, 15), m_
 kt.bandages = lambda: 0
@@ -1733,9 +1736,10 @@ cr.feature = lambda f: True
 assert cr.core_active() is False, "crafters are excluded by class"
 for k in ("task", "core_goal", "core_bans"):
     assert k in bot_common.BotBase.PERSIST
-# the run loop: with the core on, only the reflexes run and the core ticks; with it off, nothing changes
+# the run loop: with the core on, only the reflexes (and what core_lets passes: a ladder bot's trip) run and the core ticks; with it off, nothing changes
 src = open(os.path.join(D, "bot_common.py"), encoding="utf-8").read()
-assert "if core and name not in self.REFLEXES:" in src and "acted = self.core_tick()" in src
+assert "if core and name not in self.REFLEXES and not self.core_lets(name):" in src and "acted = self.core_tick()" in src
+assert fighter(name="BotLets").core_lets("r_sell") is False
 # the stall sense, the progress check and the loop guard's back-offs are off for core bots; the loop guard's server-refusal reading stays
 st = fighter(name="BotStall")
 st.stall_measure = lambda: (0, 0, 0, {})

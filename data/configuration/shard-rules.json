@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "52648386c20539671b59dbc62f41e15728edebfe",
+  "pinnedModernUoCommit": "e6991719315080308692e70f98cc5bec9eaa7909",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -141,6 +141,15 @@
   "housePricing": {
     "smallHouses": 16000
   },
+  "shopPrices": {
+    "Pickaxe": {
+      "shelf": 12,
+      "buyBack": 6
+    }
+  },
+  "monsterAggro": {
+    "rangeReduction": 2
+  },
   "worldSeason": {
     "felucca": 1
   },
@@ -175,7 +184,8 @@
       { "item": "BoneHelm", "price": 20, "vendors": [ "Armorer", "Blacksmith", "BlacksmithGuildmaster" ] },
       { "item": "Feather", "price": 1, "vendors": [ "Bowyer" ] },
       { "item": "Shaft", "price": 1, "vendors": [ "Bowyer" ] },
-      { "item": "BigFish", "price": 10, "vendors": [ "Fisherman" ] }
+      { "item": "BigFish", "price": 10, "vendors": [ "Fisherman" ] },
+      { "item": "FishSteak", "price": 3, "vendors": [ "Cook" ] }
     ]
   },
   "extraVendorStock": [
@@ -193,7 +203,7 @@
   },
   "townGuards": {
     "unguardedAreas": [
-      { "name": "Britain Outskirts", "map": "Felucca", "rectangles": [
+      { "name": "Britain Outskirts", "map": "Felucca", "allowHousing": true, "rectangles": [
         { "x1": 1093, "y1": 1538, "x2": 1288, "y2": 1907 },
         { "x1": 1288, "y1": 1841, "x2": 1416, "y2": 1907 }
       ] },
@@ -318,9 +328,10 @@
     "sellCratesWithKeys": true,
     "extraVendorBuyers": true,
     "ordinaryAddonDeeds": true,
+    "petsKeepUp": true,
     "criminalCorpseConfirm": true,
     "monsterSpellWords": true,
-    "corpseCarveButton": false,
+    "corpseCarveButton": true,
     "corpseLootExtension": true,
     "expeditions": false,
     "pilgrimage": false,

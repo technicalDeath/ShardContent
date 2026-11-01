@@ -229,6 +229,41 @@ def plan_journey(bot, dest, here=None):
 
 # ---- the non-walk legs, one tick at a time -------------------------------------------------------------------------------------------------------------
 
+def gate_choice(lines, want):
+    """(serial, ("radio" | "button", index)) for the town `want` in the moongate's window among the open windows Navrey's "gumps" printed, or
+    (serial, None) when the gate's window lacks it, or (None, None) with no gate window. Navrey prints a control on one line and its label on the
+    next ("[radio 1]" then "Britain"), and other windows may be open too: a gate's list once went unread because "Between Worlds" was listed last
+    and its serial was taken, with a "[radio" and the name looked for on one line (BotFisherAR, 2026-10-31)."""
+    blocks, cur = [], None
+    for line in lines:
+        if line.startswith("[GUMP] local") and "server" in line:
+            cur = {"serial": line.split("server")[1].split()[0], "rows": []}
+            blocks.append(cur)
+        elif cur is not None:
+            row = line.strip()
+            if row.startswith("[GUMP]"):
+                row = row[6:].strip()                         # (a row printed with the window's tag in front)
+            cur["rows"].append(row)
+    gate = next((b for b in blocks if any("destination" in r.lower() for r in b["rows"]) or any(r.lower().startswith("[radio") for r in b["rows"])), None)
+    if gate is None:
+        return None, None
+    want = want.lower().strip()
+    last = None
+    for r in gate["rows"]:
+        low = r.lower()
+        if low.startswith("[radio") or low.startswith("[button"):
+            try:
+                last = ("radio" if low.startswith("[radio") else "button", int(low.split()[1].rstrip("]")))
+            except (ValueError, IndexError):
+                last = None
+            rest = low.split("]", 1)[1].strip() if "]" in low else ""
+            if want and rest == want:
+                return gate["serial"], last                   # (a control and its label on one line, as older builds printed it)
+        elif want and low == want and last is not None:
+            return gate["serial"], last
+    return gate["serial"], None
+
+
 def gate_step(bot, leg, st):
     """At the gate: step in, answer the list with the destination town, check the jump. Returns "done", "running" or a failure reason."""
     here = (int(bot.c.x), int(bot.c.y))
@@ -250,38 +285,21 @@ def gate_step(bot, leg, st):
             return "no path onto the gate"
         st.setdefault("gate_t0", time.time())
         return "running"
-    serial = None
     lines = []
     try:
         lines = bot.c.call("gumps", timeout=8)
     except Exception:
         lines = []
-    for line in lines:
-        if line.startswith("[GUMP] local") and "server" in line:
-            serial = line.split("server")[1].split()[0]
+    serial, idx = gate_choice(lines, leg.get("to_name") or "")
     if serial is None:
         st["gate_waits"] = st.get("gate_waits", 0) + 1
         if st["gate_waits"] > 6:
             return "the gate gave no list"
         time.sleep(1.0)
         return "running"
-    want = (leg.get("to_name") or "").lower()
-    idx = None
-    for line in lines:
-        low = line.lower()
-        if want and want in low and "[button" in low:
-            try:
-                idx = int(low.split("[button")[1].split("]")[0])
-            except ValueError:
-                idx = None
-            break
-        if want and want in low and "[radio" in low:
-            try:
-                idx = int(low.split("[radio")[1].split("]")[0])
-            except ValueError:
-                idx = None
-            st["gate_radio"] = True
-            break
+    if idx is not None and idx[0] == "radio":
+        st["gate_radio"] = True
+    idx = idx[1] if idx is not None else None
     before = here
     try:
         if idx is not None and st.get("gate_radio"):

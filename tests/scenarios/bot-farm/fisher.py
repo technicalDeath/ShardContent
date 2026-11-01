@@ -14,13 +14,14 @@ import sys
 import time
 
 from bot_common import BotBase
+from wear import GathererArmor  # noqa: E402  (leather and studded armour, feature gather_armor)
 from memory import cell_of
 from uo import Event
 
 SHORE = (1453, 1756)
 SHORES = [(1453, 1756), (1440, 1757), (1466, 1756), (1478, 1757), (1490, 1765), (1447, 1772)]   # tried in turn when the fish near one stop biting
 LAKE_SHORES = tuple(SHORES)                      # the hard-coded lake south of Britain, before the map shores are added
-WATER_LAND = (0xA8, 0xA9, 0xAA, 0xAB)
+WATER_LAND = (0xA8, 0xA9, 0xAA, 0xAB, 0x136, 0x137)      # Fishing.cs _waterLandTiles
 try:
     # an edge tile of deep water per 8 x 8 fishing bank around Britain (make_shores.py, from the map): the river and bay north of town, the
     # lake, the coast. Three fishers shared six spots on one stretch of the lake, fished it out and cycled them every two seconds.
@@ -32,12 +33,15 @@ except (OSError, ValueError):
 
 UNSEEN_TTL = 7 * 86400     # a stand whose water is out of sight (a bridge or deck over it) stays so: the map does not change. At 30 min the fisher came
                            # back to Britain's bridge at 1522,1484-1498 every half hour and lost three casts a stand each time (2026-10-30)
+SHORE_REACH = 200        # tiles from home: the stands a fisher works without a far walk (miner.DIG_REACH, the same reach for a gatherer)
+SHORE_FAR = 460          # tiles from home: the far stands it may walk to by a safe route when the near ones are used (miner.FAR_REACH)
+FAR_PLANS = 3            # new route plans a far_shores call may make (about 0.7 s each); the rest wait for the next call
 BANK_REFILL_MAX = 1200          # Fishing.cs MaxRespawn 20 min: a bank is full again at most 20 min after the first catch from it when full (HarvestBank.Consume sets the clock then, not when it runs out)
 
-class FisherBot(BotBase):
+class FisherBot(GathererArmor, BotBase):
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_retool", "r_bank", "r_sell", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_evade", "r_upgrade", "r_retool", "r_bank", "r_sell", "r_unload", "r_cut", "r_cook", "r_fish", "r_idle"]
     POLE_PRICE = 15                                       # the Fisherman's fishing pole (patch_fisher_retool)
     SELL_AT = 40                                          # pieces of catch that make a selling trip worth it (patch_fisher_sell)
     PROBE_N = 5                                           # steaks cooked as a sample while no buyer of cooked steaks is known (patch_fisher_cook)
@@ -55,9 +59,17 @@ class FisherBot(BotBase):
         self.cooked = 0
 
     def shores(self):
-        """The shore spots for this bot's home: Britain's list as before, or the home's own (geo.py, made on demand), nearest first."""
+        """The fishing stands within SHORE_REACH of this bot's home from the world index (fishspot.world_stands, every fish bank on the map with a stand),
+        nearest the home first; without the index, Britain's list or the home's own (geo.py) as before."""
         s = self.__dict__.get("_shore_list")
         if s is None:
+            import fishspot
+            cx, cy = self.home_centre()
+            near = fishspot.stands_near(cx, cy, SHORE_REACH)
+            if near:
+                self._shore_bank = {(st[2], st[3]): f"{st[0]},{st[1]}" for st in near}
+                s = self._shore_list = [(st[2], st[3]) for st in near]
+                return s
             import geo
             s = self._shore_list = geo.regional("shores", self.home(), SHORES)
             try:
@@ -73,6 +85,10 @@ class FisherBot(BotBase):
 
     def raw_food(self):
         return [i for i in self.c.backpack if i.name.lower().startswith("raw ") or i.name.lower() in ("fish", "big fish", "small fish")]
+
+    def shore_bank(self, sh):
+        """The fish bank a shore point casts into: the world index's bank for its stand, else the point's own 8x8 block."""
+        return (self.__dict__.get("_shore_bank") or {}).get((int(sh[0]), int(sh[1]))) or self.bank_of(int(sh[0]), int(sh[1]))
 
     @staticmethod
     def bank_of(x, y):
@@ -102,13 +118,16 @@ class FisherBot(BotBase):
                         and unseen.get(f"{x},{y}", 0) < time.time())
             if spot is None:
                 return None
+            st = fishspot.static_water(spot[0], spot[1])
+            if st is not None:
+                return (spot[0], spot[1], st[0], st[1])                    # water drawn as a static (a river, much of the coast): the cast targets that static
             z = -5                                                          # deep water is at z -5; the client says if this tile is not
             for l in self.c.call(f"tiles {spot[0]} {spot[1]}", timeout=5):
                 m = re.match(r"\s+land\s+0x([0-9A-Fa-f]+)\s+z=(-?\d+)", l)
                 if m and int(m.group(1), 16) in WATER_LAND:
                     z = int(m.group(2))
                     break
-            return (spot[0], spot[1], z)
+            return (spot[0], spot[1], z, 0)
         near = []
         for x in range(self.c.x - 5, self.c.x + 6):
             for y in range(self.c.y - 5, self.c.y + 6):
@@ -281,7 +300,8 @@ class FisherBot(BotBase):
 
     # ---- stay on a shore that works (feature "fisher_stay") ---------------------------------------------------------------
 
-    PERSIST = BotBase.PERSIST + ("good_shores", "cook_probe_at", "shore_block", "bank_first")        # a restart keeps where the fish were caught, when steaks were last tried, and the stands it blocked
+    PERSIST = BotBase.PERSIST + ("good_shores", "cook_probe_at", "shore_block", "bank_first")
+    HOME_NEEDS = ("fisherman", "bank")                     # the catch is sold to a Fisherman (SBFisherman) and the gold banked: home is a town that has both        # a restart keeps where the fish were caught, when steaks were last tried, and the stands it blocked
 
     def shore_known(self, key):
         """Fish were caught here, by this bot (facts) or by any fisher (shared memory)."""
@@ -307,13 +327,26 @@ class FisherBot(BotBase):
             return "blocked"
         if not self.mem.usable("shore", key_):
             return "claimed"
-        if not self.mem.usable("fish", self.bank_of(*sh)):
+        if not self.mem.usable("fish", self.shore_bank(sh)):
             return "fish_bank"
         if any(max(abs(m.x - sh[0]), abs(m.y - sh[1])) <= 3 and not (current and self.name < m.name) for m in others):
             return "others"
         if self.gather_danger(cell_of(*sh)):
             return "danger"
         return None
+
+    EVADE_SKIP = 600          # s a shore is left after a monster near it was walked away from
+    EVADE_NEAR = 15
+
+    def on_evade(self, m):
+        """The shore near the monster just walked away from is left for EVADE_SKIP: kept, r_fish walked straight back to it past the same slime (BotFisherAR:
+        429 of 537 evades were followed at once by r_fish, 2026-10-31)."""
+        cur = getattr(self, "cur_shore", None)
+        if cur is None or max(abs(m.x - cur[0]), abs(m.y - cur[1])) > self.EVADE_NEAR:
+            return
+        self.facts.setdefault("shore_block", {})[f"{cur[0]},{cur[1]}"] = time.time() + self.EVADE_SKIP
+        self.ev("shore_evaded", shore=list(cur), m=self.mkey(m))
+        self.cur_shore, self.water = None, None
 
     def pick_shore(self, others, mine):
         """Keep the shore while it is fine; else the next one by tier (known good, the lake, a new one). False when there is none to try now."""
@@ -325,6 +358,10 @@ class FisherBot(BotBase):
             self.ev("shore_leave", shore=list(cur), why=why)
             self.cur_shore, self.water = None, None
         cands = [tuple(sh[:2]) for sh in self.shores() if self.shore_why(tuple(sh[:2]), others, mine, False) is None]
+        far = False
+        if not cands:
+            cands = self.far_shores(others, mine)                   # past SHORE_REACH: the coast further out, by a route the danger rules accept
+            far = bool(cands)
         if self.gather_roam("shores", bool(cands)):
             return False                                  # the shores near home are used up: work moves to another town (patch_gather_roam)
         if not cands:
@@ -341,11 +378,47 @@ class FisherBot(BotBase):
                 self.activity = "waiting to try a new shore"
                 return False
             self.facts["shore_explore_at"] = time.time()
-            pool, tier = [sh for sh in cands if max(abs(sh[0] - 1470), abs(sh[1] - 1620)) <= 150] or cands, "explore"
+            hx, hy = self.home_centre()
+            pool, tier = [sh for sh in cands if max(abs(sh[0] - hx), abs(sh[1] - hy)) <= 150] or cands, "far" if far else "explore"
         self.cur_shore = min(pool, key=lambda sh: abs(sh[0] - self.c.x) + abs(sh[1] - self.c.y))
         self.water = None
         self.ev("shore_pick", shore=list(self.cur_shore), tier=tier, dist=max(abs(self.cur_shore[0] - self.c.x), abs(self.cur_shore[1] - self.c.y)))
         return True
+
+    def far_shores(self, others, mine):
+        """Stands between SHORE_REACH and SHORE_FAR of home that can be fished and walked to: the route from home is planned as a far walk is and must
+        pass route_danger (as a miner's far bank must, far_spot_ok); at most FAR_PLANS new plans a call (about 0.7 s each), cached 30 minutes. Nearest
+        the bot first, so a fisher anywhere works outward along the coast from where it is."""
+        import fishspot
+        cx, cy = self.home_centre()
+        cache = self.__dict__.setdefault("_far_stand_ok", {})
+        banks = self.__dict__.setdefault("_shore_bank", {})
+        rows = [st for st in fishspot.stands_near(cx, cy, SHORE_FAR) if max(abs(st[2] - cx), abs(st[3] - cy)) > SHORE_REACH]
+        rows.sort(key=lambda st: max(abs(st[2] - self.c.x), abs(st[3] - self.c.y)))
+        out, plans = [], 0
+        for st in rows:
+            sh = (st[2], st[3])
+            banks.setdefault(sh, f"{st[0]},{st[1]}")
+            if self.shore_why(sh, others, mine, False) is not None:
+                continue
+            hit = cache.get(sh)
+            if hit is None or time.time() - hit[0] > 1800:
+                if plans >= FAR_PLANS:
+                    break
+                plans += 1
+                ok = False
+                try:
+                    import walkroute
+                    r = walkroute.get().plan((cx, cy), sh, self.far_penalty() if hasattr(self, "far_penalty") else None)
+                    ok = r is not None and not self.route_danger(r)
+                except Exception:
+                    ok = False
+                cache[sh] = hit = (time.time(), ok)
+            if hit[1]:
+                out.append(sh)
+                if len(out) >= 8:
+                    break
+        return out
 
     def shore_walk(self, shore, near=4, tries=8, per=60):
         """BotBase.travel with the reason it failed: "ok", "nopath" (the planner found no path: stop at the first), "blocked" (something in the way,
@@ -384,6 +457,10 @@ class FisherBot(BotBase):
 
     # ---- a place to stand (fishspot.py): a reachable tile with water in range, not the water's edge --------------------------------------------------------
 
+    def is_index_stand(self, shore):
+        """Is this shore point a stand from the world index (water in cast range of the tile itself)?"""
+        return (int(shore[0]), int(shore[1])) in (self.__dict__.get("_shore_bank") or {})
+
     def fish_goal(self, shore):
         """(x, y) of a reachable walkable tile within 3 tiles of the shore point; False when none can be walked to from here; None where there is no map data (the old walk)."""
         import fishspot
@@ -392,7 +469,17 @@ class FisherBot(BotBase):
         hit = cache.get(key)
         if hit and time.time() - hit[1] < 1800:
             return hit[0]
-        res = fishspot.stand_for(shore, (self.c.x, self.c.y))
+        res = None
+        if self.is_index_stand(shore):
+            try:
+                import walkroute
+                r = walkroute.get().plan((self.c.x, self.c.y), (int(shore[0]), int(shore[1])))
+                if r is not None and fishspot.cheb(r["path"][-1], shore) <= 1:
+                    res = (int(shore[0]), int(shore[1]))                # the index stand itself: its water is in cast range of that tile
+            except Exception:
+                res = None
+        if res is None:
+            res = fishspot.stand_for(shore, (self.c.x, self.c.y))
         cache[key] = (res, time.time())
         if res is not None:
             self.ev("fish_stand", shore=list(shore), stand=list(res) if res else None)
@@ -475,10 +562,16 @@ class FisherBot(BotBase):
             return True
         if self.water is None:
             self.water = self.find_water()
+            if self.water is None and self.is_index_stand(shore) and (self.c.x, self.c.y) != tuple(shore[:2]):
+                # the walk stops within 2 of the stand, and water 4 from the stand can be 6 from there: onto the stand itself and look again
+                self.c.gotoexact(int(shore[0]), int(shore[1])).wait(timeout=10)
+                self.water = self.find_water()
             self.log(f"water tile: {self.water}")
             if self.water is None:
                 import fishspot
-                dry = fishspot.water() is not None and fishspot.clear_water(self.c.x, self.c.y, fishspot.CAST_RANGE) is None
+                # dry only when the map shows no water in reach of the stand as well as of the bot: three good stands were left for 7 days because the bot
+                # stood 2-3 tiles off them (2026-10-31)
+                dry = fishspot.water() is not None and fishspot.clear_water(self.c.x, self.c.y, fishspot.CAST_RANGE) is None                     and fishspot.clear_water(int(shore[0]), int(shore[1]), fishspot.CAST_RANGE) is None
                 ttl = UNSEEN_TTL if dry else 1200
                 # no water at all in casting range of the stand (the map does not change): 1440,1757, 1466,1756, 1478,1757 and 1490,1765 stand 8-9
                 # tiles above the bay's water, and each cost a walk and a 20-minute block every round, 48% idle (2026-10-31); fished out: 20 min
@@ -502,8 +595,9 @@ class FisherBot(BotBase):
             self.note("fish", "Double-clicking the pole raised no target cursor.", key="nocursor")
             time.sleep(2)
             return True
-        x, y, z = self.water
-        self.c.call(f"targettile {x} {y} {z} 0", timeout=8)
+        x, y, z = self.water[:3]
+        g = self.water[3] if len(self.water) > 3 else 0
+        self.c.call(f"targettile {x} {y} {z} {g}", timeout=8)
         deadline = time.time() + 30
         while time.time() < deadline:
             if self.c.weight > self.c.max_weight * 0.88:

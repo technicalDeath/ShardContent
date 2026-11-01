@@ -436,7 +436,8 @@
           1300,
           1720
         ]
-      ]
+      ],
+      "horses": 2
     },
     {
       "id": "west-woods",
@@ -859,5 +860,172 @@
     "walkingRange": 20,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00"
-  }
+  },
+  "healers": {
+    "home": 20,
+    "sites": [
+      {
+        "area": "west-woods",
+        "x": 1020,
+        "y": 1761,
+        "z": 0
+      },
+      {
+        "area": "bay-woods",
+        "x": 1790,
+        "y": 1495,
+        "z": 0
+      },
+      {
+        "area": "east-shore-giants",
+        "x": 1996,
+        "y": 1402,
+        "z": 0
+      },
+      {
+        "area": "barrow-fields",
+        "x": 1352,
+        "y": 1401,
+        "z": 0
+      },
+      {
+        "area": "graveyard",
+        "x": 1282,
+        "y": 1526,
+        "z": 0
+      },
+      {
+        "area": "troll-hills",
+        "x": 1161,
+        "y": 1354,
+        "z": 0
+      },
+      {
+        "area": "bay-marsh",
+        "x": 1392,
+        "y": 1919,
+        "z": 0
+      },
+      {
+        "area": "haunted-wood",
+        "x": 1202,
+        "y": 2046,
+        "z": 0
+      },
+      {
+        "area": "deep-forest-ne",
+        "x": 1935,
+        "y": 1252,
+        "z": 0
+      },
+      {
+        "area": "harpy-crags",
+        "x": 1020,
+        "y": 1449,
+        "z": 44
+      },
+      {
+        "area": "gargoyle-heights",
+        "x": 1742,
+        "y": 1300,
+        "z": 0
+      },
+      {
+        "area": "south-road",
+        "x": 1596,
+        "y": 1871,
+        "z": -15
+      },
+      {
+        "area": "west-foothills",
+        "x": 1152,
+        "y": 1537,
+        "z": 0
+      },
+      {
+        "area": "ne-pasture",
+        "x": 1588,
+        "y": 1442,
+        "z": 1
+      },
+      {
+        "area": "north-fields",
+        "x": 1452,
+        "y": 1490,
+        "z": 8
+      },
+      {
+        "area": "north-hills",
+        "x": 1496,
+        "y": 1282,
+        "z": 0
+      },
+      {
+        "area": "ne-woods",
+        "x": 1838,
+        "y": 1378,
+        "z": 0
+      },
+      {
+        "area": "castle-woods",
+        "x": 1236,
+        "y": 1716,
+        "z": 0
+      },
+      {
+        "area": "south-woods",
+        "x": 1753,
+        "y": 2036,
+        "z": 0
+      },
+      {
+        "area": "wisp-glade",
+        "x": 1002,
+        "y": 1975,
+        "z": 0
+      },
+      {
+        "area": "farmlands",
+        "x": 1164,
+        "y": 1875,
+        "z": 1
+      }
+    ]
+  },
+  "wildHorses": [
+    {
+      "direction": "east",
+      "x": 1748,
+      "y": 1561,
+      "z": 25
+    },
+    {
+      "direction": "south-east",
+      "wildlife": "5de7027a"
+    },
+    {
+      "direction": "south",
+      "wildlife": "18bb4b32"
+    },
+    {
+      "direction": "south-west",
+      "wildlife": "bc14a9a3"
+    },
+    {
+      "direction": "west",
+      "wildlife": "bedca2ae"
+    },
+    {
+      "direction": "north-west",
+      "wildlife": "0ca93234"
+    },
+    {
+      "direction": "north",
+      "wildlife": "b214fa51"
+    },
+    {
+      "direction": "north-east",
+      "wildlife": "8f29ae6e"
+    }
+  ]
 }

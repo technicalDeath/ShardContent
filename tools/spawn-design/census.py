@@ -1,7 +1,7 @@
 """Spawn census of a rectangle of Felucca: every generated spawner in it, each creature's danger tier, the guard zones,
 and where the bot farm's bots died and what they fought. Writes one JSON file for the spawn map page.
 
-  python census.py X0 Y0 X1 Y1 OUT.json
+  python census.py X0 Y0 X1 Y1 OUT.json [--centre X Y]
 
 Inputs: the deployed generated spawn data (ModernUO/Distribution/Data/BritanniaRenaissance/Alpha2b/Spawns), the
 bot farm's creature stats and fight modes (tests/scenarios/bot-farm), regions.json and shard-rules.json (guard zones),
@@ -39,6 +39,8 @@ TIER_OVERRIDE = {
     "shade": 2, "spectre": 2, "wraith": 2, "bonemagi": 2, "skeletalmage": 2,
     # Armoured skeletons hit like an ettin with a troll's hit points: dangerous, not deadly.
     "boneknight": 3, "skeletalknight": 3,
+    # Earth elementals hit up to 16 but are slow and ogre-sized: dangerous, like the ettin.
+    "earthelemental": 3,
 }
 TIER_NAMES = ["harmless", "beginner", "step-up", "dangerous", "deadly"]
 
@@ -173,6 +175,10 @@ def bot_records(rect):
 def main(argv):
     rect = [int(v) for v in argv[:4]]
     out = argv[4]
+    global TOWN_CENTRE
+    if "--centre" in argv:  # the plan's ring centre (default the Britain bank)
+        i = argv.index("--centre")
+        TOWN_CENTRE = (int(argv[i + 1]), int(argv[i + 2]))
     stats = json.load(open(os.path.join(BOTS, "creature_stats.json")))
     modes = json.load(open(os.path.join(BOTS, "fightmodes.json")))
     towns, other, unguarded = guard_zones(rect)

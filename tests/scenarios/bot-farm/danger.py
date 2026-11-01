@@ -85,8 +85,48 @@ def _avg(r, default):
     return (r[0] + r[1]) / 2.0 if r else default
 
 
-def loss(kind, skill, near=0):
-    """Fraction of the bot's hit points lost killing this kind and `near` more of it in turn, or None when the kind is not in the table."""
+# where a hit lands and what the armour there takes (pre-AOS): BaseWeapon.AbsorbDamage picks the body part (neck 7%, hands 7%, arms 14%, head 15%, legs 22%,
+# chest 35%) and the piece there absorbs ArmorRating/2 + ArmorRating/2 x random (BaseArmor.OnHit), never below 0 left
+HIT_SHARE = (("Necklace", 0.07), ("Gloves", 0.07), ("Arms", 0.14), ("Helmet", 0.15), ("Pants", 0.22), ("Torso", 0.35))
+_ARMOR_CACHE = {}
+
+
+def armor_left(c, worn):
+    """The share of a creature's damage that gets through `worn` ({layer: armour rating}), averaged over its damage range and the body part hit; 1.0 bare.
+    c: the creature_stats entry (or its damage range). What reaches the armour is the creature's damage scaled by its Tactics and Strength (ScaleDamageOld:
+    + (Tactics - 50)% and + Str / 5 %) and then halved, pre-AOS, because the defender is a player (BaseWeapon.ComputeDamage); the armour takes its share after
+    that (OnHit: ComputeDamage, then AbsorbDamage)."""
+    if not worn:
+        return 1.0
+    if isinstance(c, dict):
+        dmg, tac, st = c.get("damage"), _avg(c.get("tactics"), 50.0), _avg(c.get("str"), 50.0)
+    else:
+        dmg, tac, st = c, 50.0, 50.0
+    lo, hi = (int(dmg[0]), int(dmg[1])) if dmg else (1, 3)
+    scale = (1 + (tac - 50.0) / 100.0) * (1 + st / 500.0)
+    key = (lo, hi, round(scale, 2), tuple(sorted(worn.items())))
+    hit = _ARMOR_CACHE.get(key)
+    if hit is not None:
+        return hit
+    before = after = 0.0
+    for raw in range(lo, max(lo, hi) + 1):
+        d = int(raw * scale) // 2
+        for layer, share in HIT_SHARE:
+            ar = worn.get(layer, 0) or 0
+            half = ar / 2.0
+            left = sum(max(0, d - int(half + half * (k + 0.5) / 20.0)) for k in range(20)) / 20.0
+            before += share * d
+            after += share * left
+    out = after / before if before else 1.0
+    if len(_ARMOR_CACHE) > 2000:
+        _ARMOR_CACHE.clear()
+    _ARMOR_CACHE[key] = out
+    return out
+
+
+def loss(kind, skill, near=0, worn=None):
+    """Fraction of the bot's hit points lost killing this kind and `near` more of it in turn, or None when the kind is not in the table. worn ({layer: armour
+    rating}) replaces the fitted armour cut (EX arp) with what that armour takes by the engine's rule (armor_left); None keeps the fit (the fighters')."""
     c = stats().get(kind or "")
     if not c:
         return None
@@ -102,14 +142,20 @@ def loss(kind, skill, near=0):
     kill_s = _avg(c["hits"], 50.0) / (p_hit * w_eff / EX["swing"])
     p_c = min(1.0, max(0.02, (wr + 20) / (2.0 * (skill + 20))))
     swing_c = min(3.0, max(1.0, 3000.0 / (_avg(c.get("dex"), 60.0) + 100)))
-    dps = p_c * _avg(c["damage"], 3.0) * (1 - EX["arp"]) * extra / swing_c
+    base = p_c * _avg(c["damage"], 3.0) / swing_c
+    if worn is None:
+        dps = base * (1 - EX["arp"]) * extra
+    else:
+        # armour takes only the blow: a spell, a breath and poison go past it (pre-AOS armour is AbsorbDamage on a weapon hit), so their share of
+        # the exchange (extra - 1, the cast, breath and poison factors) is not cut
+        dps = base * armor_left(c, worn) + base * (extra - 1.0)
     turns = 1 + 1.4 * near + 0.5 * near * (near - 1)
     return dps * kill_s * turns / (EX["hp0"] + EX["hp1"] * skill)
 
 
-def stats_prior(kind, skill, near=0):
+def stats_prior(kind, skill, near=0, worn=None):
     """{win, die, flee} from the exchange estimate, or None for a kind that is not in the table."""
-    f = loss(kind, skill, near)
+    f = loss(kind, skill, near, worn)
     if f is None:
         return None
     die = EX["floor"] + (EX["dmax"] - EX["floor"]) / (1.0 + (EX["f50"] / max(f, 1e-6)) ** EX["k"])
@@ -117,10 +163,10 @@ def stats_prior(kind, skill, near=0):
     return {"die": die, "flee": flee, "win": max(0.0, 1.0 - die - flee)}
 
 
-def prior(kind, skill, near=0):
+def prior(kind, skill, near=0, worn=None):
     """{win, die, flee} before any fight record: the exchange estimate for a kind in creature_stats.json (for `near` companions), else for a bot fighting alone the species
     lists as a prior only (the cautious 15% for a kind never met)."""
-    sp = stats_prior(kind, skill, near)
+    sp = stats_prior(kind, skill, near, worn)
     if sp:
         return sp
     k = kind or ""

@@ -78,9 +78,9 @@ public static class CraftedGoodsPricing
         }
 
         _configured = true;
-        GenericSellInfo.SellPriceAdjust = (type, price) => Enabled ? VendorPays(price, CostOf(type)) : price;
-        // the one buy-price hook carries both shard price rules: crafted goods (behind its flag) and the house prices (data only, HousePricing)
-        GenericBuyInfo.BuyPriceAdjust = (type, price) => HousePricing.Adjust(type, Enabled ? VendorCharges(price, CostOf(type)) : price);
+        // each price hook carries every shard price rule: crafted goods (behind its flag), then the data-only ones (HousePricing, ShopPrices)
+        GenericSellInfo.SellPriceAdjust = (type, price) => ShopPrices.BuyBack(type, Enabled ? VendorPays(price, CostOf(type)) : price);
+        GenericBuyInfo.BuyPriceAdjust = (type, price) => ShopPrices.Shelf(type, HousePricing.Adjust(type, Enabled ? VendorCharges(price, CostOf(type)) : price));
         CommandSystem.Register("CraftPricingStatus", AccessLevel.GameMaster, OnStatus);
     }
 

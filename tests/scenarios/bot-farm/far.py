@@ -59,6 +59,10 @@ def _circle_pen(wr):
     return _PEN
 
 
+
+JOURNEY_FROM = 150    # tiles: a far walk this long asks the travel planner first (travel.GATE_SAVE: a gate must save this much)
+TELE_CLEAR = 3        # tiles round a known teleporter that a far walk's plan avoids (a cost, not a wall: a walk that wants the teleporter still gets there)
+
 class FarMixin:
     _far_last = ""
     _far_pen = None
@@ -106,7 +110,13 @@ class FarMixin:
                 kill = wr.penalty_circles([(o["x"], o["y"], max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR, 8.0) for o, _k in _sp.deadly_spawners(self)])   # its creatures notice a walker 14 tiles past the home range (perception 16 - aggro 2), as the spot and prey rules count it (2026-10-29)
             except Exception:
                 kill = {}
-            got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own, box, kill))
+            tele = {}
+            try:                                                      # a teleporter tile on the way sends the walker elsewhere: BotFisherAR, walking Vesper to Britain,
+                import bot_common as _bc                              # crossed 2618,977 and landed on Buccaneer's Den with no land route back (2026-10-31)
+                tele = wr.penalty_circles([(tx, ty, TELE_CLEAR, 50.0) for tx, ty in _bc.teleporter_tiles()])
+            except Exception:
+                tele = {}
+            got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own, box, kill, tele))
         return got[1]
 
     def far_worth(self, role, xy, value=None):
@@ -212,7 +222,11 @@ class FarMixin:
             return None
         return res or "moving"
 
-    def far_plan(self, role, xy, d):
+    def far_plan(self, role, xy, d, journey=True):
+        if journey and d >= JOURNEY_FROM:
+            st = self.far_journey(role, xy, d)
+            if st is not None:
+                return st
         wr = _wr()
         try:
             r = wr.get().plan((self.c.x, self.c.y), xy, self.far_penalty())
@@ -226,6 +240,62 @@ class FarMixin:
               "budget": max(12, r["steps"] // 25) * 60 * (2 if role == "healer" else 1), "fails": 0, "replan_at": 0}
         self.facts["far"] = st
         return st
+
+    def far_journey(self, role, xy, d):
+        """A far walk the travel planner beats (travel.plan_journey: a public moongate, a marked rune, a party's camp fire): its legs, walked in far_run, or None
+        when walking is the cheapest. BotFisherAR, homed in Vesper, walked 1,449 tiles of wilds toward Britain's Fisherman (a grizzly, a slime and two bears
+        later it ran back) past Vesper's moongate, which lands 230 tiles from that shop (2026-10-31): every far service walk now asks the planner first."""
+        try:
+            import travel
+            j = travel.plan_journey(self, xy)
+        except Exception as e:
+            self.log(f"far walk: journey planning failed ({type(e).__name__}: {e})")
+            return None
+        if not j or j.get("kind") == "walk" or not j.get("legs"):
+            return None
+        legs = j["legs"]
+        first = legs[0]
+        st = {"dest": [xy[0], xy[1]], "role": role, "wps": first.get("wps") or [[self.c.x, self.c.y]], "i": 0, "t0": time.time(),
+              "steps": int(sum(len(l.get("wps") or []) for l in legs) * 25), "from": [self.c.x, self.c.y],
+              "budget": max(12, int(j["minutes"] * 2)) * 60 * (2 if role == "healer" else 1), "fails": 0, "replan_at": 0,
+              "legs": legs, "seg": 0, "gst": {}}
+        self.facts["far"] = st
+        self.log(f"far {role} walk to {xy}: {j['kind']} journey, {j['minutes']} min against {j.get('walk_minutes')} on foot ({len(legs)} legs)")
+        self.ev("journey", dest=list(xy), how=j["kind"], minutes=j["minutes"], walk_minutes=j.get("walk_minutes"), legs=len(legs), role=role, options=j.get("options"))
+        return st
+
+    def far_journey_step(self, st):
+        """The journey's current leg when it is not a walk (or a walk to the next leg that is done): "moving" while it runs, a failure string, or None for a
+        walk leg still to walk (far_run walks it). A failed leg blocks that kind (travel.block) and the trip is planned again on foot from here."""
+        import travel
+        seg = st["legs"][st["seg"]]
+        last = st["seg"] >= len(st["legs"]) - 1
+        if seg["kind"] == "walk":
+            if not last and cheb((self.c.x, self.c.y), tuple(seg["to"])) <= FAR - 20:
+                return self.far_next_leg(st)              # near the gate (or the next leg's start): the leg's own step takes the last stretch
+            return None
+        res = travel.STEPS[seg["kind"]](self, seg, st.setdefault("gst", {}))
+        if res == "done":
+            return self.far_next_leg(st)
+        if res == "running":
+            self.facts["far"] = st
+            return "moving"
+        travel.block(self, seg["kind"], res)
+        self.log(f"far walk: the {seg['kind']} leg failed ({res}); on foot from here")
+        nst = self.far_plan(st["role"], tuple(st["dest"]), cheb((self.c.x, self.c.y), tuple(st["dest"])), journey=False)
+        return "moving" if nst else "nopath: far"
+
+    def far_next_leg(self, st):
+        st["seg"] += 1
+        st["gst"] = {}
+        if st["seg"] < len(st["legs"]):
+            nxt = st["legs"][st["seg"]]
+            if nxt.get("wps"):
+                st["wps"], st["i"], st["replan_at"], st["fails"] = nxt["wps"], 0, 0, 0
+        else:
+            st.pop("legs", None)
+        self.facts["far"] = st
+        return "moving"
 
     def far_threat_coming(self, m):
         return self.threat_coming(m)                      # basics.BasicsMixin.threat_coming (shared with crafting)
@@ -249,8 +319,17 @@ class FarMixin:
 
     def far_run(self, st, timeout):
         end = time.time() + timeout
+        if st.get("legs"):
+            if self.far_check(st) is None:
+                r = self.far_journey_step(st)
+                if r is not None:
+                    return r
+            st = self.facts.get("far") or st
         wps = st["wps"]
         dest = tuple(st["dest"])
+        if st.get("legs") and st["seg"] < len(st["legs"]) - 1:
+            dest = tuple(st["legs"][st["seg"]]["to"])          # a walk to the gate (or the next leg's start), not yet the place itself
+            st["hopped"] = True
         if not st.get("hopped") and getattr(self, "rune_hop", None):
             st["hopped"] = True                                 # once per trip: a rune near the destination first (runes.py, feature runes); a refusal walks as before
             if self.rune_hop(dest, st["role"]):
@@ -258,6 +337,8 @@ class FarMixin:
         while True:
             here = (self.c.x, self.c.y)
             if cheb(here, dest) <= FAR - 20:                    # the far part is done: the last stretch is the caller's own plain walk to the place
+                if st.get("legs") and st["seg"] < len(st["legs"]) - 1:
+                    return self.far_next_leg(st)            # only the walk to the next leg is done
                 self.facts.pop("far", None)
                 return "arrived"
             if time.time() - st["t0"] > st["budget"]:

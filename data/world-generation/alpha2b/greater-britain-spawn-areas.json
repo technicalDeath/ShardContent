@@ -43,12 +43,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Orc",
@@ -57,7 +57,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -77,21 +77,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 13,
+    "walkingRange": 13,
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Ettin",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -155,21 +155,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 23,
+    "walkingRange": 23,
     "entries": [
       {
         "name": "Ratman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "GiantRat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -184,16 +184,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Spectre",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -223,16 +223,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "01:00:00",
     "maxDelay": "01:00:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 18,
+    "walkingRange": 18,
     "entries": [
       {
         "name": "SkeletalKnight",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -242,17 +242,17 @@
       },
       {
         "name": "Spectre",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Wraith",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Skeleton",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -267,12 +267,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 19,
+    "walkingRange": 19,
     "entries": [
       {
         "name": "Orc",
@@ -281,7 +281,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -355,12 +355,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 19,
+    "walkingRange": 19,
     "entries": [
       {
         "name": "Corpser",
@@ -399,21 +399,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 17,
+    "walkingRange": 17,
     "entries": [
       {
         "name": "Harpy",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -428,21 +428,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 20,
+    "walkingRange": 20,
     "entries": [
       {
         "name": "Ratman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "GiantRat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -506,21 +506,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 14,
+    "walkingRange": 14,
     "entries": [
       {
         "name": "Harpy",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -535,21 +535,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Harpy",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -564,31 +564,31 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 17,
+    "walkingRange": 17,
     "entries": [
       {
         "name": "Wisp",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Corpser",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Reaper",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -603,21 +603,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 22,
+    "walkingRange": 22,
     "entries": [
       {
         "name": "Ratman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "GiantRat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -632,31 +632,31 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "01:00:00",
     "maxDelay": "01:00:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 17,
+    "walkingRange": 17,
     "entries": [
       {
         "name": "Wisp",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Corpser",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Reaper",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -671,12 +671,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 18,
+    "walkingRange": 18,
     "entries": [
       {
         "name": "Orc",
@@ -685,7 +685,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -759,12 +759,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 19,
+    "walkingRange": 19,
     "entries": [
       {
         "name": "Orc",
@@ -773,7 +773,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -793,21 +793,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 13,
+    "walkingRange": 13,
     "entries": [
       {
         "name": "Harpy",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -822,21 +822,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 11,
+    "walkingRange": 11,
     "entries": [
       {
         "name": "Gargoyle",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       }
     ]
@@ -851,21 +851,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Ratman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "GiantRat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -880,12 +880,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 16,
+    "walkingRange": 16,
     "entries": [
       {
         "name": "Corpser",
@@ -924,21 +924,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 14,
+    "walkingRange": 14,
     "entries": [
       {
         "name": "Harpy",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -953,12 +953,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 19,
+    "walkingRange": 19,
     "entries": [
       {
         "name": "Orc",
@@ -967,7 +967,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -987,16 +987,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 15,
+    "walkingRange": 15,
     "entries": [
       {
         "name": "Lizardman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
@@ -1021,21 +1021,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 21,
+    "walkingRange": 21,
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Ettin",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1055,21 +1055,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 14,
+    "walkingRange": 14,
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Ettin",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1089,16 +1089,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 25,
+    "walkingRange": 25,
     "entries": [
       {
         "name": "BlackBear",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1118,12 +1118,12 @@
       },
       {
         "name": "TimberWolf",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GreyWolf",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -1138,12 +1138,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 25,
+    "walkingRange": 25,
     "entries": [
       {
         "name": "Corpser",
@@ -1182,31 +1182,31 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 13,
+    "walkingRange": 13,
     "entries": [
       {
         "name": "Wisp",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Corpser",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Reaper",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -1221,12 +1221,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 16,
+    "walkingRange": 16,
     "entries": [
       {
         "name": "Corpser",
@@ -1265,12 +1265,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 23,
+    "walkingRange": 23,
     "entries": [
       {
         "name": "Orc",
@@ -1279,7 +1279,7 @@
       },
       {
         "name": "Mongbat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1299,12 +1299,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 4,
+    "count": 3,
     "minDelay": "01:00:00",
     "maxDelay": "01:00:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "BlackBear",
@@ -1374,6 +1374,35 @@
   },
   {
     "$type": "Spawner",
+    "guid": "c119e387-73ae-4d7f-8104-a4eb9618a34b",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1787,
+      1280,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
     "guid": "c8bb9b2d-6144-4bc2-82c9-0479a8d336af",
     "name": "Barrow Fields: Restless dead (step-up)",
     "location": [
@@ -1382,16 +1411,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 24,
+    "walkingRange": 24,
     "entries": [
       {
         "name": "Spectre",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1421,21 +1450,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Ettin",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1509,21 +1538,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Gargoyle",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       }
     ]
@@ -1538,16 +1567,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 19,
+    "walkingRange": 19,
     "entries": [
       {
         "name": "Lizardman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
@@ -1572,31 +1601,31 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 17,
+    "walkingRange": 17,
     "entries": [
       {
         "name": "Wisp",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Corpser",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Reaper",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -1611,12 +1640,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "BlackBear",
@@ -1660,21 +1689,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Ratman",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "GiantRat",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -1689,21 +1718,21 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 14,
+    "walkingRange": 14,
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Ettin",
-        "maxCount": 3,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1723,21 +1752,50 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 17,
+    "walkingRange": 17,
     "entries": [
       {
         "name": "Gargoyle",
-        "maxCount": 4,
+        "maxCount": 2,
         "probability": 100
       },
       {
         "name": "Gazer",
-        "maxCount": 4,
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ee6239d0-b83b-434d-831f-b5b533dfbb7d",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1912,
+      1283,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 10,
+    "walkingRange": 10,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
         "probability": 100
       }
     ]
@@ -1752,12 +1810,12 @@
       0
     ],
     "map": "Felucca",
-    "count": 7,
+    "count": 3,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 10,
+    "walkingRange": 10,
     "entries": [
       {
         "name": "Corpser",
@@ -1771,17 +1829,17 @@
       },
       {
         "name": "DireWolf",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GrizzlyBear",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -1796,16 +1854,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 3,
     "minDelay": "01:00:00",
     "maxDelay": "01:00:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 11,
+    "walkingRange": 11,
     "entries": [
       {
         "name": "SkeletalKnight",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
@@ -1815,17 +1873,17 @@
       },
       {
         "name": "Spectre",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Wraith",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "Skeleton",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -2012,7 +2070,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 19,
+    "count": 20,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -2062,6 +2120,11 @@
       {
         "name": "Panther",
         "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -2455,7 +2518,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 19,
+    "count": 20,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -2505,6 +2568,11 @@
       {
         "name": "Panther",
         "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -2519,7 +2587,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 19,
+    "count": 20,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -2569,6 +2637,11 @@
       {
         "name": "Panther",
         "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -2711,7 +2784,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 19,
+    "count": 20,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -2765,6 +2838,11 @@
       },
       {
         "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -3075,16 +3153,16 @@
       0
     ],
     "map": "Felucca",
-    "count": 5,
+    "count": 3,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
-    "homeRange": 30,
-    "walkingRange": 30,
+    "homeRange": 14,
+    "walkingRange": 14,
     "entries": [
       {
         "name": "Gargoyle",
-        "maxCount": 3,
+        "maxCount": 2,
         "probability": 100
       },
       {
@@ -3104,7 +3182,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 10,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -3138,6 +3216,11 @@
       },
       {
         "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -3207,7 +3290,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 9,
+    "count": 10,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -3241,6 +3324,11 @@
       },
       {
         "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -3418,11 +3506,11 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 20,
+    "homeRange": 10,
     "walkingRange": 20,
     "entries": [
       {
@@ -3437,17 +3525,17 @@
       },
       {
         "name": "DireWolf",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GrizzlyBear",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -3462,11 +3550,11 @@
       0
     ],
     "map": "Felucca",
-    "count": 6,
+    "count": 3,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00",
     "team": 0,
-    "homeRange": 20,
+    "homeRange": 14,
     "walkingRange": 20,
     "entries": [
       {
@@ -3481,17 +3569,2314 @@
       },
       {
         "name": "DireWolf",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GrizzlyBear",
-        "maxCount": 2,
+        "maxCount": 1,
         "probability": 100
       },
       {
         "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8f7dc6e3-2959-5292-818a-880bbeb5747a",
+    "name": "Barrow Fields: Restless dead (step-up)",
+    "location": [
+      1416,
+      1430,
+      2
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "fc4d49b4-c1d8-5a5b-b71e-9ac6a881574e",
+    "name": "Barrow Fields: Restless dead (step-up)",
+    "location": [
+      1400,
+      1366,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 21,
+    "walkingRange": 21,
+    "entries": [
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Zombie",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "955c1cc5-871b-5a8a-8ecf-5f5f6e6ff766",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1038,
+      1828,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "73e276ea-f12f-5b13-a53d-400d51e77e68",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1030,
+      1692,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "06256ef2-049c-591e-a18e-16c346c3a979",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1002,
+      1700,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f88b2c28-1ccf-51d9-b06a-09b33e61ae13",
+    "name": "West Mountain Woods: Deep forest",
+    "location": [
+      1010,
+      1824,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:10:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "80fc88da-dd19-5f5e-b940-5aa02d04b02c",
+    "name": "West Foothills: Ratman warren",
+    "location": [
+      1204,
+      1526,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 26,
+    "walkingRange": 26,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8433e7be-a5b6-5c65-8a22-0b99709b1a8c",
+    "name": "West Foothills: Ratman warren",
+    "location": [
+      1180,
+      1466,
+      23
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 23,
+    "walkingRange": 23,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "03d0af02-6032-591b-8ed9-e75322c4c38c",
+    "name": "North Hills: Orc band",
+    "location": [
+      1280,
+      1282,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "fabb3299-a418-50c9-bdd0-1e2ccf7fa87f",
+    "name": "North Hills: Orc band",
+    "location": [
+      1420,
+      1326,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d21ff1d7-423c-558c-b2ee-ad706a7eab32",
+    "name": "North Hills: Orc band",
+    "location": [
+      1284,
+      1366,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "89247003-380e-5f27-afb6-da1d9f0ef2b3",
+    "name": "North Hills: Orc band",
+    "location": [
+      1340,
+      1310,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 19,
+    "walkingRange": 19,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "70f7890d-876b-53b7-a339-c2e340d5c560",
+    "name": "North Hills: Orc band",
+    "location": [
+      1492,
+      1338,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "68f1ab9b-ac61-5300-82e0-23fdd71fdad5",
+    "name": "North Hills: Orc band",
+    "location": [
+      1456,
+      1330,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Orc",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Mongbat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreaterMongbat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "c9fa3bbc-15f0-588f-b6fb-c541d233a0ac",
+    "name": "Bay Marsh: Lizardman marsh",
+    "location": [
+      1332,
+      1926,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 23,
+    "walkingRange": 23,
+    "entries": [
+      {
+        "name": "Lizardman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "da80f347-a9d9-5f2d-bfd0-b572e7a635de",
+    "name": "Bay Marsh: Lizardman marsh",
+    "location": [
+      1420,
+      1954,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Lizardman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Snake",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Slime",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "59a0e394-a19b-5f42-a087-d0b78809b475",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1484,
+      1902,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "54120977-b972-57f8-b89e-7f1eeb5c4fff",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1568,
+      1978,
+      -15
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 25,
+    "walkingRange": 25,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "edf0eef8-f50b-5e4d-b21a-111b5b99aa6f",
+    "name": "South Road: Ratman warren",
+    "location": [
+      1580,
+      1906,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 19,
+    "walkingRange": 19,
+    "entries": [
+      {
+        "name": "Ratman",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantRat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "74a74a7d-2f35-5e35-91ce-45310f58b8bf",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1642,
+      1344,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 28,
+    "walkingRange": 28,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "59278fec-e46a-5173-81f6-1f9ed58555b2",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1838,
+      1434,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 27,
+    "walkingRange": 27,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6830c17b-1529-5e22-8fa5-961d48b859dd",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1698,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 24,
+    "walkingRange": 24,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2e2312c1-1740-54b9-b09f-aade2396d019",
+    "name": "North-east Woods: Woodland predators",
+    "location": [
+      1750,
+      1406,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 24,
+    "walkingRange": 24,
+    "entries": [
+      {
+        "name": "BlackBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BrownBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Cougar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "TimberWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreyWolf",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ed6931cc-2967-529d-8db2-8cf55e4d5052",
+    "name": "Troll Hills: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1232,
+      1252,
+      51
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 28,
+    "walkingRange": 28,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "7c26670c-0498-5598-906b-9e5ae7e9c631",
+    "name": "Troll Hills: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1216,
+      1348,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f9e18cff-29ae-5cea-a5f6-b4573ebada7f",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1002,
+      1302,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 16,
+    "walkingRange": 16,
+    "entries": [
+      {
+        "name": "Harpy",
         "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "94ae9973-b00d-5f63-b151-235db54b48c2",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1078,
+      1410,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "c031de5f-918e-5921-afa2-b295bb0a0985",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1062,
+      1342,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "29690533-9f32-53db-b5a8-1bb9b6adf95e",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1006,
+      1334,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4fa58ddb-a222-5fe5-8fcb-5cc24af2e579",
+    "name": "Harpy Crags: Harpy crags",
+    "location": [
+      1054,
+      1302,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Harpy",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "92629326-3f15-52bd-b3e4-93b057ff9a4c",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1842,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "93d9acfa-f9b9-5fa8-be78-9326beb6dc5b",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1858,
+      1300,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "931b0e95-7a23-51d6-934b-e85bbbb5ba8a",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1906,
+      1336,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "09d0f3c7-754e-535e-823a-1d40e870d760",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1822,
+      1280,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 16,
+    "walkingRange": 16,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "128f7e9e-e353-5fba-a8ac-9728ee69b3e0",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1838,
+      1336,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 17,
+    "walkingRange": 17,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e4570d80-1774-5482-9802-0a33d6009cd8",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1806,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 2,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5d6beb0c-b86f-5859-aa13-223a5fb6cac1",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1866,
+      1272,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8ab6084d-8c5a-5da2-9574-8bb5dd58536f",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1882,
+      1316,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8cff0793-4bbc-5b9e-8f5d-3a7c02f2460e",
+    "name": "Gargoyle Heights: Gargoyles and gazers",
+    "location": [
+      1778,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Gargoyle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Gazer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "cc6b49dd-ce10-58b8-8204-88d7a69e22bf",
+    "name": "Far North-east Forest: Deep forest",
+    "location": [
+      1998,
+      1346,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 22,
+    "walkingRange": 22,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "cc45e15b-f0a8-5146-8ec0-39365a9b878f",
+    "name": "Far North-east Forest: Deep forest",
+    "location": [
+      1996,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 26,
+    "walkingRange": 26,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "474f95f9-10ca-54b1-b706-c4a657afda42",
+    "name": "Far North-east Forest: Deep forest",
+    "location": [
+      1954,
+      1358,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 22,
+    "walkingRange": 22,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "0acf21d3-7984-5fa1-9ecc-8313cec92376",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1954,
+      1490,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 16,
+    "walkingRange": 16,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "11a5a344-122a-5839-8cfb-05586ee95959",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1954,
+      1442,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "72ab1415-2c14-5139-bd42-ce44643e9c0d",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1998,
+      1434,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 15,
+    "walkingRange": 15,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "3880aed8-e43b-549e-9c9f-86403ee20c90",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1998,
+      1490,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "c93446b7-cc5a-5fb2-8f51-38a61613c61c",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1954,
+      1522,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 14,
+    "walkingRange": 14,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f80a62f0-f729-5b0b-88d7-c141aa4beb44",
+    "name": "East Shore: Hill giants (trolls, ettins, ogres)",
+    "location": [
+      1942,
+      1402,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 13,
+    "walkingRange": 13,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ettin",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Ogre",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "5bce4b1c-1a1c-533b-bc78-b8a74855a582",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1652,
+      2034,
+      1
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 27,
+    "walkingRange": 27,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f636f6b7-da45-5ec0-8bdd-d8f8b0d0eb76",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1668,
+      1982,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 21,
+    "walkingRange": 21,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "eb9e759c-ad31-531d-b2dd-0313ed4652ac",
+    "name": "South Woods: Deep forest",
+    "location": [
+      1540,
+      2038,
+      0
+    ],
+    "map": "Felucca",
+    "count": 2,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 21,
+    "walkingRange": 21,
+    "entries": [
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "DireWolf",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GrizzlyBear",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "984c6449-526e-5ad3-be8c-a6fdbcf377a6",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1326,
+      2046,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "ee48c97a-1937-5b8e-b9fe-1eadec573552",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1330,
+      1982,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "55b3ac82-dee4-54a1-949e-8f87c2bf3394",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1218,
+      1994,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 23,
+    "walkingRange": 23,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "54a782d8-b1e8-546c-be8b-5ae2f2c969e1",
+    "name": "Haunted Wood: Restless dead (greater)",
+    "location": [
+      1298,
+      1962,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "SkeletalKnight",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "BoneMagi",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Spectre",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Wraith",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Skeleton",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "59c5ce4b-f748-5c26-a19d-96bcb7cf82d2",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1018,
+      2046,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f72ebaa1-318b-591d-b295-bb9c95b0d895",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1146,
+      2030,
+      19
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 28,
+    "walkingRange": 28,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2363562f-0348-584e-b418-8516732c121e",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1010,
+      1882,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "6d6cc452-6e64-5893-88ce-29ca484caa8a",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1050,
+      2010,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "b3fdce76-70ee-59b3-8918-c5b5db45051d",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1014,
+      2010,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "bb72e6e3-c249-5604-82d5-a23a8e592814",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1054,
+      2046,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 18,
+    "walkingRange": 18,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "9ec31a94-3597-516d-9686-3f08b6c990c2",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1086,
+      1998,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 17,
+    "walkingRange": 17,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "dff3eb27-26c4-5b40-a48f-ac88f719768f",
+    "name": "Wisp Glade: Wisp glade",
+    "location": [
+      1046,
+      1886,
+      0
+    ],
+    "map": "Felucca",
+    "count": 3,
+    "minDelay": "00:20:00",
+    "maxDelay": "00:20:00",
+    "team": 0,
+    "homeRange": 17,
+    "walkingRange": 17,
+    "entries": [
+      {
+        "name": "Wisp",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GiantSpider",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Corpser",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Reaper",
+        "maxCount": 1,
         "probability": 100
       }
     ]
@@ -3560,7 +5945,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 8,
+    "count": 9,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -3614,6 +5999,11 @@
       },
       {
         "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -4062,7 +6452,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 8,
+    "count": 9,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -4111,6 +6501,11 @@
       },
       {
         "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -4825,7 +7220,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 8,
+    "count": 9,
     "minDelay": "00:05:00",
     "maxDelay": "00:10:00",
     "team": 0,
@@ -4874,6 +7269,11 @@
       },
       {
         "name": "Panther",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
         "maxCount": 1,
         "probability": 100
       }
@@ -4997,6 +7397,569 @@
       },
       {
         "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4d99fb7e-d4db-54a0-9b97-93bb9aac4f57",
+    "name": "Wildlife (beginner), wild horses to the east",
+    "location": [
+      1748,
+      1561,
+      25
+    ],
+    "map": "Felucca",
+    "count": 9,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Rabbit",
+        "maxCount": 2,
+        "probability": 100
+      },
+      {
+        "name": "Hind",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "GreatHart",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Bird",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Eagle",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Boar",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Goat",
+        "maxCount": 1,
+        "probability": 100
+      },
+      {
+        "name": "Horse",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "dd76a6fc-a987-58f6-8aa4-89ff249deb56",
+    "name": "Wandering healer",
+    "location": [
+      1020,
+      1761,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "9532fbf8-9dae-5ef5-88af-69c64b64f34a",
+    "name": "Wandering healer",
+    "location": [
+      1790,
+      1495,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "9eaa28ee-f721-5ff2-b6ee-e5219b48351e",
+    "name": "Wandering healer",
+    "location": [
+      1996,
+      1402,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "d5d6aeba-8f27-546b-8d49-f5d1b6b79bb2",
+    "name": "Wandering healer",
+    "location": [
+      1352,
+      1401,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "e41ab4f4-7aff-549b-83f5-223cc0eff76a",
+    "name": "Wandering healer",
+    "location": [
+      1282,
+      1526,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "89015181-4622-5406-8eba-78ca32a1e46d",
+    "name": "Wandering healer",
+    "location": [
+      1161,
+      1354,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4853d3b6-31f3-55f5-82a4-a891dc442d43",
+    "name": "Wandering healer",
+    "location": [
+      1392,
+      1919,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "33651adb-403b-5efa-bbd2-1907594fff50",
+    "name": "Wandering healer",
+    "location": [
+      1202,
+      2046,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "4b63ef0d-9eb4-5846-a530-f33cd01ab14e",
+    "name": "Wandering healer",
+    "location": [
+      1935,
+      1252,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "2fa8706e-2086-5ff0-aaa1-eda7caf8785a",
+    "name": "Wandering healer",
+    "location": [
+      1020,
+      1449,
+      44
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8e30e84a-dbb6-599a-8a5e-c10061f8b7a4",
+    "name": "Wandering healer",
+    "location": [
+      1742,
+      1300,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "f7f051d4-2d0e-5eca-925a-b8615011d5a8",
+    "name": "Wandering healer",
+    "location": [
+      1596,
+      1871,
+      -15
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "eed844b0-6b29-5725-90f6-4aa58c4758be",
+    "name": "Wandering healer",
+    "location": [
+      1152,
+      1537,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "79feddc1-b97f-58a3-b1c7-a3078667cdd9",
+    "name": "Wandering healer",
+    "location": [
+      1588,
+      1442,
+      1
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "8c19abc9-6c19-5833-8adb-f7253501dca2",
+    "name": "Wandering healer",
+    "location": [
+      1452,
+      1490,
+      8
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "7a8203e4-302c-5622-8848-f74fba13db79",
+    "name": "Wandering healer",
+    "location": [
+      1496,
+      1282,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "71973744-3d0a-53ad-9e5f-c3be7376c24c",
+    "name": "Wandering healer",
+    "location": [
+      1838,
+      1378,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "803971f2-0c55-5914-9613-8faf38cb76a8",
+    "name": "Wandering healer",
+    "location": [
+      1236,
+      1716,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "18689b7c-2563-527b-b11b-ae476720b70c",
+    "name": "Wandering healer",
+    "location": [
+      1753,
+      2036,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "85dcb066-371b-58e8-9434-1624129bcc6f",
+    "name": "Wandering healer",
+    "location": [
+      1002,
+      1975,
+      0
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
+        "maxCount": 1,
+        "probability": 100
+      }
+    ]
+  },
+  {
+    "$type": "Spawner",
+    "guid": "cb0d95bf-8152-5a7d-a8f2-40ac2e70ba88",
+    "name": "Wandering healer",
+    "location": [
+      1164,
+      1875,
+      1
+    ],
+    "map": "Felucca",
+    "count": 1,
+    "minDelay": "00:05:00",
+    "maxDelay": "00:10:00",
+    "team": 0,
+    "homeRange": 20,
+    "walkingRange": 20,
+    "entries": [
+      {
+        "name": "WanderingHealer",
         "maxCount": 1,
         "probability": 100
       }

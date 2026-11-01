@@ -152,7 +152,9 @@ class FighterStock(StockMixin):
         return ("crossbow bolt" if bolt else "arrow", 150, 60)
 
 
-class TamerStock(StockMixin):
+class PotionStock(StockMixin):
+    """A bot that does not fight for a living (a tamer, a miner): the shared potions, bandages only with the skill to use them."""
+
     def stock_list(self):
         """The shared list (heal and cure potions from 200 gold, refresh from 250), bandages only with Veterinary or Healing to use them on: BotTamerAR
         carried no potion, was poisoned by a snake while taming at 1377,1911, drank a refresh to run and died of the poison (2026-10-31)."""
@@ -161,6 +163,10 @@ class TamerStock(StockMixin):
             out = [r for r in out if r[0] != "bandage"]
         return out
 
+
+
+class TamerStock(PotionStock):
+    pass
 
 class CasterStock:
     """CasterBot: the reagents the held spells use, to 20 each; triggers mage_bot.r_resupply's shop trip when any is under 10."""

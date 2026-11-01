@@ -1,0 +1,61 @@
+[
+  {
+    "key": "greater-britain",
+    "name": "Greater Britain",
+    "status": "change proposed",
+    "map": "work/spawn-design/greater-britain-proposed.png",
+    "census": "work/spawn-design/census.json",
+    "plan": "work/spawn-design/plan.json",
+    "flavor": "work/spawn-design/flavor-sites.json",
+    "labels": {
+      "plan": "Proposed",
+      "stock": "Stock (before)"
+    },
+    "lede": "Every creature spawner within about 500 tiles of the Britain bank, as stock world generation made it (&ldquo;Stock&rdquo;) and as the areas now theme it. Click a spawner, an area or a flavor object to see what it holds. Live on dev and the bot farm since 18 October 2026, with the flavor objects as map statics and Felucca in summer. <b>Proposed changes, 19-20 October 2026:</b> the step-up, dangerous and deadly spawners spread out into groups of at most three, a wandering healer in every area, wild horses on every side, and a roadside clearing in the Britain Outskirts (below). The map shows those proposals; nothing has been changed in any world yet.",
+    "decidedTitle": "What was decided, and the change proposed",
+    "decided": [
+      "<b>Proposed: monsters spread out (your ruling, 19 October).</b> Every step-up, dangerous or deadly spawner holding more than three creatures becomes groups of at most three (7 becomes 3, 3 and 1): the first group stays on the spawner's spot and the others are spread over the whole area: each goes to the emptiest walkable spot left in it, at least 16 tiles from any other spawner and never nearer the centre than its grade allows. Each group roams half way to its nearest neighbour (10 to 30 tiles), so the area is covered evenly and you seldom meet more than three at once. Totals stay the same. Beginner areas and the wildlife keep their spawners whole. Here: 47 spawners become 110 groups (63 new spawn spots).",
+      "<b>Wandering healers in every area (your request, 20 October).</b> Each of the 21 areas gets one wandering healer spawner, roaming 20 tiles, on walkable ground outside the guard zones; no two are closer than 60 tiles (the nearest pair is 124 apart). The stock wildlife mix had healers, and the themed rosters had dropped them.",
+      "<b>Wild horses on all eight sides (your request).</b> In each direction from the bank (north, north-east, east, south-east, south, south-west, west, north-west) the wildlife spawner at the middle distance gets a horse; east, where the bay leaves no wildlife spawner, gets a new wildlife site at 1748, 1561 with one. The wild-pasture areas keep their horses too, and both Castle Woods spawners gain one (your follow-up), so 13 spawners hold horses. On the map the eight wildlife ones are diamonds, shown with the Wildlife box ticked.",
+      "<b>Roadside clearing, an experiment (your map comment).</b> In the south strip of the Britain Outskirts (x 1288-1416, y 1841-1907), every tree within 10 tiles of a road is taken out of the map's statics, trunk and leaves: 138 trees (crosses on the map). Nothing else there stopped a house: fallen logs, rocks, brambles and grass do not, and the one man-made blocker (a post) stays. The ground keeps its own land art; the server and every player need the patched map files.",
+      "<b>The graveyard keeps only the lesser dead.</b> Skeletons, zombies and headless ones. Its spectres and wraiths walk Barrow Fields just north of it (your map comment), a step-up area and an exception to the rings, and armoured undead walk the Haunted Wood south-west.",
+      "<b>The beginner sites lost their step-up creatures.</b> Graded by their worst, ratmen, orcs and lizardmen made them tier 2 at Britain's doorstep; they live next door in their own areas instead (West Foothills, North Hills, Bay Marsh).",
+      "<b>Your map comments.</b> The woods by the bay are beginner (Bay Woods); west of the mountains is tier 3 (West Mountain Woods, with two new deep-forest spawners) and the east part joined the South-west Farmlands.",
+      "<b>Wildlife stays, graded by ring.</b> The 19 stock wildlife spawners keep their places with a roster for their ring, and 24 new sites fill the forests that had none.",
+      "<b>Flavor objects as map statics.</b> Single standalone pieces (composed scenes looked illogical), written into the map's own statics files so they look like the map's decoration and never highlight on hover; none blocks a house or the way. The old server-item pieces were removed with <code>[Alpha2bWorldGen removeretired</code>.",
+      "<b>Felucca in summer.</b> Leaves on the trees, as Britannia looked before Trammel (<code>worldSeason.felucca</code>).",
+      "<b>Fixes found on the way.</b> No creature spawns on a roof (the graveyard zombie), and the Sage Advice mage shop spawns on its floor, not 15 below it."
+    ],
+    "clearing": [
+      "work/road-clearing/britain-outskirts-road-clearing.json"
+    ]
+  },
+  {
+    "key": "cove",
+    "name": "Cove",
+    "status": "signed off",
+    "map": "work/spawn-design/cove/map.png",
+    "census": "work/spawn-design/cove/census.json",
+    "plan": "work/spawn-design/cove/plan.json",
+    "flavor": "work/spawn-design/cove/flavor-sites.json",
+    "labels": {
+      "plan": "Proposed",
+      "stock": "Today"
+    },
+    "lede": "The same ring plan around Cove (2243, 1178): every creature spawner within about 600 tiles, as it stands today and as the proposed areas would theme it. Where this plan meets Greater Britain's, Britain's wins: every spawner inside Britain's plan (south-west of Cove, from x 2000 west and y 1250 south) is left as Britain's plan has it, and its panel says so. Draft for your sign-off, 19 October 2026 (second pass: tougher orc fort, smaller rings): nothing has been changed in any world.",
+    "decidedTitle": "Decisions this needs from you",
+    "decided": [
+      "<b>The centre, the rings and Britain.</b> Cove's rings are smaller than Britain's (your second pass): beginner areas within about 180 tiles of Cove's town, step-up to about 280, dangerous to about 400, the Frontier beyond. Greater Britain's plan wins where the two meet: its spawners south-west of Cove are untouched. Cove itself stays as it is (town animals only).",
+      "<b>Spread out: monsters spread out (your ruling, 19 October).</b> Every step-up, dangerous or deadly spawner holding more than three creatures becomes groups of at most three (7 becomes 3, 3 and 1): the first group stays on the spawner's spot and the others are spread over the whole area: each goes to the emptiest walkable spot left in it, at least 16 tiles from any other spawner and never nearer the centre than its grade allows. Each group roams half way to its nearest neighbour (10 to 30 tiles), so the area is covered evenly and you seldom meet more than three at once. Totals stay the same. Beginner areas and the wildlife keep their spawners whole. Here: 31 spawners become 81 groups (50 new spawn spots); the orc keep is the exception and keeps its packs, as the tougher outlier you asked for.",
+      "<b>The swamp west of the bay becomes swamp vermin.</b> Eleven stock spawners each mixed acid elementals, alligators, corpsers, giant serpents, lizardmen, wisps, mongbats and ratmen, nearly all inside 300 tiles of Cove. The swamp becomes snakes, slimes, giant rats and mongbats (beginner), with lizardmen only along its northern edge (step-up).",
+      "<b>The orc fort, a tougher outlier (your ruling).</b> The front half, behind the north gate that faces Cove, holds plain orcs (step-up, 10 at once). The rear half is the keep: orcish lords and mages with a few orcs, dangerous, 16 at once on two spawners (one new), kept in packs. Each half's spawners keep their creatures inside it (range 12 and 10, was 30 and 15). These are all the orcs of the era: the orc captain, bomber and brute are later additions the shard leaves out.",
+      "<b>Cove's graveyard loses its lich.</b> It keeps skeletons, zombies and headless ones (beginner), as Britain's graveyard does; the Covetous Hills to the north take the step-up undead (spectres, wraiths).",
+      "<b>The sand flats are sorted.</b> Giant spiders, scorpions and earth elementals with ratmen become one sand-flats theme (scorpions, giant spiders, an earth elemental), dangerous, about 400-500 tiles out. Earth elementals are graded dangerous rather than deadly (slow, ogre-sized), like ettins.",
+      "<b>The east escalates instead of being all animals.</b> East of Cove the open plain is now three bands: deer and small game near town (Cove East Plains, beginner), ratmen in the middle (Ratman Plains, step-up, 3 new spawners), trolls, ettins and ogres beyond 300 tiles (Troll Plains, dangerous, 3 new), then the East Coast Forest's deep-forest creatures (dangerous, 2 new). The wildlife rings shrink with the rest, so the east's animals beyond 280 tiles are the deep-woods roster (wolves, bears, grizzlies, cats).",
+      "<b>The north and the far edges.</b> The stock mixes south of Minoc become Minoc South Hills (trolls, ettins, ogres); the north-west peaks keep air elementals with ettins and ogres; the woods west of Cove take bears, cats and wolves.",
+      "<b>New themed spawners where areas had none:</b> 11 in all (two in the Cove East Plains, three each in the Ratman and Troll Plains, two in the East Coast Forest, one in the orc keep), on walkable ground off the roads.",
+      "<b>Wildlife and flavor as in Britain.</b> The 23 stock wildlife spawners keep their places with ring rosters, 15 new forest sites are added (the 9 that fell inside Britain's plan were dropped), and 503 single flavor pieces (none blocking) would go into the map's statics; the graveyards and the orc fort get none.",
+      "<b>How it would reach the worlds.</b> A Cove shard spawn file and map patch, then <code>[Alpha2bWorldGen addspawners</code> after a save snapshot and the patched map files for clients, as for Britain."
+    ]
+  }
+]

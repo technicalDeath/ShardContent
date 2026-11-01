@@ -63,6 +63,15 @@ public class TownGuardsTests
     }
 
     [Fact]
+    public void HousesAreAllowedInTheBritainOutskirtsOnly()
+    {
+        // owner, 2026-10-20: "Let houses in the Outskirts"; the Moonglow Zoo stays no-housing like the rest of the towns
+        var areas = Shipped().TownGuards.UnguardedAreas;
+        Assert.True(areas.Single(a => a.Name == "Britain Outskirts").AllowHousing);
+        Assert.All(areas.Where(a => a.Name != "Britain Outskirts"), a => Assert.False(a.AllowHousing));
+    }
+
+    [Fact]
     public void BadAreasAreRefused()
     {
         var errors = new List<string>();

@@ -1,4 +1,4 @@
-<title>Greater Britain Spawn Plan</title>
+<title>Rekindled Spawn Plans</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -18,6 +18,13 @@ h1 { font-family: var(--display); font-weight: 600; font-size: 30px; margin: 0; 
 h2 { font-family: var(--display); font-weight: 600; font-size: 21px; margin: 0 0 10px }
 h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; font-weight: 600 }
 .lede { color: var(--muted); max-width: 70ch; margin: 6px 0 0 }
+.find { display: inline-flex; align-items: center; gap: 6px }
+.find input { font: inherit; font-size: 13px; padding: 4px 8px; width: 13em; max-width: 100%; border: 1px solid var(--line); border-radius: 6px; background: var(--bg, transparent); color: inherit }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; border-bottom: 1px solid var(--line) }
+.tabs button { font: inherit; font-weight: 600; font-size: 15px; background: transparent; color: var(--muted); border: 0; border-bottom: 3px solid transparent; padding: 8px 14px 9px; cursor: pointer; margin-bottom: -1px }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent) }
+.tabs .status { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-left: 6px; padding: 1px 6px; border-radius: 99px; background: var(--chip); color: var(--muted) }
+#plan-root { display: flex; flex-direction: column; gap: 20px }
 .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 14px }
 .rule { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 13px }
 .rule b { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--accent) }
@@ -77,22 +84,26 @@ code { font-family: var(--mono); font-size: 12px }
 
 <div class="wrap">
   <header>
-    <h1>Greater Britain Spawn Plan</h1>
-    <p class="lede">Every creature spawner within about 500 tiles of the Britain bank, as stock world generation made it ("Current") and as the areas now theme it. Click a spawner, an area or a flavor object on the map to see what it holds. Deployed to the dev world on 18 October 2026 (ShardContent <code>efdf65c</code>), with 316 flavor objects and Felucca in summer.</p>
+    <h1>Rekindled Spawn Plans</h1>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <p class="lede" id="plan-lede"></p>
     <div class="rules">
       <div class="rule"><b>Graded by its worst</b>A spawner's grade is its most dangerous creature, passive or not.</div>
-      <div class="rule"><b>Rings outward</b>Danger is least at Britain's doorstep and rises with each ring going out.</div>
+      <div class="rule"><b>Rings outward</b>Danger is least at the centre's doorstep and rises with each ring going out.</div>
       <div class="rule"><b>Areas hold themes</b>A theme belongs to an area of several spawners, never a lone spawner.</div>
       <div class="rule"><b>Coherent</b>One kind of place per area: no ettin, orc, mongbat and reaper side by side.</div>
     </div>
   </header>
 
+  <div id="plan-root"></div>
+
+<template id="plan-tpl">
   <section class="stage">
     <div class="mapcard">
       <div class="bar">
         <div class="seg" role="group" aria-label="Which spawns to show">
-          <button id="m-plan" aria-pressed="true">Live</button>
-          <button id="m-now" aria-pressed="false">Stock (before)</button>
+          <button id="m-plan" aria-pressed="true"></button>
+          <button id="m-now" aria-pressed="false"></button>
         </div>
         <label><input type="checkbox" id="l-areas" checked> Areas</label>
         <label><input type="checkbox" id="l-rings" checked> Rings</label>
@@ -102,22 +113,23 @@ code { font-family: var(--mono); font-size: 12px }
         <label><input type="checkbox" id="l-deaths"> Bot deaths</label>
         <label><input type="checkbox" id="l-town" checked> Guard zones</label>
         <label><input type="checkbox" id="l-names" checked> Names</label>
+        <label class="find"><input type="search" id="f-name" placeholder="Find a creature or spawner" aria-label="Show only spawners holding this name" autocomplete="off"><span id="f-count" class="muted"></span></label>
         <div class="zoom"><button id="z-in" aria-label="Zoom in">+</button><button id="z-out" aria-label="Zoom out">−</button><button id="z-reset" aria-label="Reset view">⟲</button></div>
       </div>
-      <div class="mapbox"><svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of greater Britain with spawners"></svg></div>
+      <div class="mapbox"><svg id="map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map with spawners"></svg></div>
       <div class="legend" id="legend"></div>
     </div>
     <aside class="inspector" id="insp" aria-live="polite"></aside>
   </section>
 
   <section>
-    <h2>What changes near town</h2>
+    <h2>What changes near the centre</h2>
     <div class="stats" id="stats"></div>
   </section>
 
   <section>
-    <h2>Areas, from Britain outward</h2>
-    <div class="tablebox"><table id="areas"><thead><tr><th>Area</th><th>Theme</th><th>Grade</th><th>Creatures (hit points, damage a hit)</th><th>Spawners</th><th>Tiles from bank</th></tr></thead><tbody></tbody></table></div>
+    <h2>Areas, from the centre outward</h2>
+    <div class="tablebox"><table id="areas"><thead><tr><th>Area</th><th>Theme</th><th>Grade</th><th>Creatures (hit points, damage a hit)</th><th>Spawners</th><th>Tiles from centre</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section>
@@ -133,24 +145,20 @@ code { font-family: var(--mono); font-size: 12px }
   </section>
 
   <section>
-    <h2>What was decided</h2>
-    <ol class="qs">
-      <li><b>The graveyard keeps only the lesser dead.</b> Skeletons, zombies and headless ones. Its spectres and wraiths now walk Barrow Fields just north of it (your map comment), a step-up area and an exception to the rings, and armoured undead walk the Haunted Wood south-west.</li>
-      <li><b>The beginner sites lost their step-up creatures.</b> Graded by their worst, ratmen, orcs and lizardmen made them tier 2 at Britain's doorstep; they live next door in their own areas instead (West Foothills, North Hills, Bay Marsh). This replaced the 15 October "sprinkle in" ruling.</li>
-      <li><b>Your map comments.</b> The woods by the bay are beginner (Bay Woods); west of the mountains is tier 3 (West Mountain Woods, with two new deep-forest spawners) and the east part joined the South-west Farmlands.</li>
-      <li><b>Wildlife stays, graded by ring.</b> The 19 stock wildlife spawners keep their places with a roster for their ring (deer and small game near town; wolves, bears and big cats further out; grizzlies only in the far wilds), and 24 new sites fill the forests that had none.</li>
-      <li><b>Flavor objects, not scenes.</b> Composed scenes looked illogical (debris on a log, a lone fence), so each area has single standalone pieces instead, on clean open ground, never a player item.</li>
-      <li><b>Felucca in summer.</b> Leaves on the trees and flowers in the fields, as Britannia looked before Trammel, instead of the stock Desolation season (<code>worldSeason.felucca</code> in <code>shard-rules.json</code>).</li>
-      <li><b>How it reached the world.</b> A shard spawn file that reuses the stock GUIDs and a flavor decoration file; <code>[Alpha2bWorldGen addspawners</code> and <code>adddecorations</code> put them into the dev world after a save snapshot. The audit passes with 1,583 spawners. The bot farm's host still has the old spawns.</li>
-    </ol>
+    <h2 id="decided-h"></h2>
+    <ol class="qs" id="decided"></ol>
   </section>
+
+</template>
 
   <p class="foot">Sources: the generated spawn data as deployed (<code>Distribution/Data/BritanniaRenaissance/Alpha2b/Spawns</code>, last record per GUID wins, as world generation does), creature hit points and damage from the stock classes, bot deaths from the bot farm's shared memory (runs 1 and 2b, 40-tile cells). Tiers: 0 harmless, 1 beginner (up to about 60 hit points and 10 a hit), 2 step-up (60-75 hit points, or poison), 3 dangerous (75-130 hit points, or casts), 4 deadly. The sea and the farms' cats, dogs and chickens are left as they are. Tools: <code>ShardContent/tools/spawn-design</code>.</p>
 </div>
 
 <script>
-const D = __DATA__;
-const MAP = "__MAP__";
+const PLANS = __DATA__;
+let BOOT = null;
+function boot(D) {
+const MAP = D.map;
 const TIER = ["harmless", "beginner", "step-up", "dangerous", "deadly"];
 const TC = ["var(--t0)", "var(--t1)", "var(--t2)", "var(--t3)", "var(--t4)"];
 const TH = ["#9aa3a8", "#4fb862", "#e8c62f", "#ee8424", "#e0393c"];
@@ -199,9 +207,11 @@ function circleHitsRect(x, y, r, [a, b, c, d]) { const nx = Math.max(a, Math.min
 
 // rings at the boundaries between Doorstep / Near wilds / Far wilds / Frontier
 const [cx, cy] = D.centre;
-[[300, "Doorstep"], [400, "Near wilds"], [500, "Far wilds"], [620, "Frontier"]].forEach(([r, name], i) => {
+const [E0, E1, E2] = D.ringEdges;
+[[E0, "Doorstep"], [E1, "Near wilds"], [E2, "Far wilds"], [E2 + 120, "Frontier"]].forEach(([r, name], i) => {
   if (i < 3) el("circle", { cx, cy, r, fill: "none", stroke: "rgba(255,255,255,.75)", "stroke-width": 1.4, "stroke-dasharray": "2 6" }, gRings);
-  const lab = el("text", { x: cx + (i === 0 ? 0 : (r - 50) * .70), y: cy - (i === 0 ? 0 : (r - 50) * .71), "text-anchor": "middle", fill: "#fff", "data-fs": 13, "font-family": "IBM Plex Sans, sans-serif", "font-weight": 600, "paint-order": "stroke", stroke: "rgba(0,0,0,.7)", "stroke-width": 3 }, gRings);
+  const mid = i === 0 ? 0 : (r + [0, E0, E1, E2][i]) / 2;
+  const lab = el("text", { x: cx + mid * .70, y: cy - mid * .71, "text-anchor": "middle", fill: "#fff", "data-fs": 13, "font-family": "IBM Plex Sans, sans-serif", "font-weight": 600, "paint-order": "stroke", stroke: "rgba(0,0,0,.7)", "stroke-width": 3 }, gRings);
   lab.textContent = i === 0 ? "" : name.toUpperCase();
 });
 el("circle", { cx, cy, r: 5, fill: "#fff", stroke: "#000" }, gRings);
@@ -234,6 +244,17 @@ for (const s of D.spawners) {
   g.addEventListener("click", e => { e.stopPropagation(); select({ sp: s.id }); });
   nodes.push({ s, g, dot, halo });
 }
+// trees cleared along the roads for house space (proposed): the strip outlined, each cleared tree a cross
+const gClear = el("g", { "pointer-events": "none" });
+svg.insertBefore(gClear, gSp);
+for (const cl of D.clearing || []) {
+  const [a, b, c2, d] = cl.rect;
+  el("rect", { x: a, y: b, width: c2 - a, height: d - b, fill: "rgba(255,236,150,.12)", stroke: "#ffe27a", "stroke-width": 1.6, "stroke-dasharray": "3 4" }, gClear);
+  label((a + c2) / 2, b - 6, `ROADSIDE CLEARING: ${cl.trees.length} TREES OUT`, "#ffe27a", gClear);
+  for (const [x, y] of cl.trees) {
+    el("path", { d: `M${x - 1.6} ${y - 1.6}L${x + 1.6} ${y + 1.6}M${x + 1.6} ${y - 1.6}L${x - 1.6} ${y + 1.6}`, stroke: "#ffe27a", "stroke-width": 1.1 }, gClear);
+  }
+}
 // flavor objects: one small marker per piece, drawn above the spawners so it is never hidden under a dot
 const gDeco = el("g", {});
 svg.insertBefore(gDeco, gNames);
@@ -255,18 +276,26 @@ svg.addEventListener("click", () => select(null));
 function tierOf(s) { return mode === "plan" && s.to != null ? s.to : s.tier; }
 function paint() {
   const wildOn = document.getElementById("l-wild").checked;
+  const q = document.getElementById("f-name").value.trim().toLowerCase().replace(/\s+/g, "");
+  let found = 0;
   for (const { s, g, dot, halo } of nodes) {
-    g.style.display = (s.isNew && mode === "now") || (s.wild && !wildOn) ? "none" : "";
+    const names = (mode === "plan" && s.next ? s.next : s.entries).map(e => e.n).concat([s.label || ""]);
+    const hit = !q || names.some(n => n.toLowerCase().replace(/\s+/g, "").includes(q));
+    const hidden = (s.isNew && mode === "now") || (s.wild && !wildOn) || !hit;
+    g.style.display = hidden ? "none" : "";
+    if (q && !hidden) found++;
     dot.setAttribute("fill", TH[tierOf(s)]);
     const on = sel && (sel.sp === s.id || (sel.area && s.area === sel.area));
     dot.setAttribute("stroke", on ? "#fff" : "#0b1a24");
     halo.setAttribute("opacity", sel && sel.sp === s.id ? .9 : 0);
   }
+  document.getElementById("f-count").textContent = q ? `${found} spawner${found === 1 ? "" : "s"}` : "";
   gAreas.style.display = mode === "plan" && document.getElementById("l-areas").checked ? "" : "none";
   gNames.style.display = mode === "plan" && document.getElementById("l-names").checked && document.getElementById("l-areas").checked ? "" : "none";
   gRings.style.display = document.getElementById("l-rings").checked ? "" : "none";
   gDeaths.style.display = document.getElementById("l-deaths").checked ? "" : "none";
   gDeco.style.display = mode === "plan" && document.getElementById("l-deco").checked ? "" : "none";
+  gClear.style.display = mode === "plan" ? "" : "none";
   gBuilt.style.display = document.getElementById("l-built").checked ? "" : "none";
   gTown.style.display = document.getElementById("l-town").checked ? "" : "none";
   document.querySelectorAll(".area").forEach(g => g.querySelectorAll("rect").forEach(r => r.setAttribute("fill-opacity", sel && sel.area === g.dataset.id ? .42 : .22)));
@@ -285,11 +314,11 @@ function render() {
     const nextLabel = s.wild ? `Wildlife, ${TIER[s.to]} roster` : a && D.themes[a.theme].label;
     box.innerHTML = `<h3>${s.wild ? "Wildlife spawner" : "Spawner"}</h3><h2>${title}</h2>
       <div class="coords">${s.x}, ${s.y} · ${s.file} · ${s.id}</div>
-      <dl class="kv"><dt>From the bank</dt><dd>${s.dist} tiles</dd><dt>At once</dt><dd>${s.count} creatures, range ${s.home}</dd><dt>Respawn</dt><dd>${s.delay[0]}${s.delay[1] !== s.delay[0] ? " to " + s.delay[1] : ""}</dd>
+      <dl class="kv"><dt>From the centre</dt><dd>${s.dist} tiles</dd><dt>At once</dt><dd>${s.count} creatures${s.nextCount && mode === "plan" ? " (proposed " + s.nextCount + ")" : ""}, range ${s.home}${s.nextHome && mode === "plan" ? " (proposed " + s.nextHome + ")" : ""}</dd><dt>Respawn</dt><dd>${s.delay[0]}${s.delay[1] !== s.delay[0] ? " to " + s.delay[1] : ""}</dd>
       <dt>Grade</dt><dd>${s.tier != null ? pill(s.tier) : '<span class="muted">new</span>'}${s.to != null && s.to !== s.tier ? `<span class="arrow">→</span>${pill(s.to)}` : ""}</dd></dl>
       ${s.guarded ? `<p class="muted">Inside the guard zone.</p>` : (guardedRects.some(r => circleHitsRect(s.x, s.y, s.home, r)) ? `<p class="muted">Its range of ${s.home} reaches into the guard zone; the shard refuses any spot inside the zone to a monster that attacks on sight.</p>` : "")}
-      ${s.isNew ? `<h3>Stock (before)</h3><p class="muted">Nothing here before. ${s.wild ? `A new site in forest: ${s.trees} trees within 12 tiles, on a walkable tile, at least 70 tiles from any other wildlife spawner.` : "A new spawner for this area, on walkable forest ground."}</p>` : `<h3>Stock (before)</h3>${rosterHtml(s.entries)}`}
-      ${s.next ? `<h3>Live: ${nextLabel}</h3>${rosterHtml(s.next)}` : `<p class="muted">Left as it is${s.guarded ? " (town animals inside the guard zone)" : ""}.</p>`}`;
+      ${s.isNew ? `<h3>${D.labels.stock}</h3><p class="muted">Nothing here yet. ${s.wild ? `A new site in forest: ${s.trees} trees within 12 tiles, on a walkable tile, at least 70 tiles from any other wildlife spawner.` : "A new spawner for this area, on walkable forest ground."}</p>` : `<h3>${D.labels.stock}</h3>${rosterHtml(s.entries)}`}
+      ${s.next ? `<h3>${D.labels.plan}: ${nextLabel}</h3>${rosterHtml(s.next)}` : `<p class="muted">Left as it is${s.guarded ? " (town animals inside the guard zone)" : ""}.</p>`}`;
   } else if (sel && sel.deco != null) {
     const v = D.decoSites[sel.deco], a = AREA[v.area];
     box.innerHTML = `<h3>Flavor object</h3><h2>${v.name}</h2><div class="coords">${v.x}, ${v.y}, ${v.z} · ${a.name} · ${v.id}</div>
@@ -307,7 +336,7 @@ function render() {
       const inside = D.spawners.filter(inZone).length;
       const reach = D.spawners.filter(s => s.area && !inZone(s) && z.rects.some(r => circleHitsRect(s.x, s.y, s.home, r)));
       box.innerHTML = `<h3>Guard zone</h3><h2>${z.name}</h2><div class="coords">${z.rects.length} rectangle${z.rects.length > 1 ? "s" : ""} · ${z.rects.reduce((n, [a, b, c, d]) => n + (c - a) * (d - b), 0).toLocaleString()} tiles</div>
-        <p class="muted">${z.name === "Britain" ? "Britain's town region, less the unguarded Britain Outskirts. Its crop fields and small rooms are child regions: they keep the guards inside the zone and lose them in the Outskirts." : "A stock guarded region around the moongate."}</p>
+        <p class="muted">${z.name === "Moongates" ? "A stock guarded region around the moongate." : z.name === "Britain" ? "Britain's town region, less the unguarded Britain Outskirts. Its crop fields and small rooms are child regions: they keep the guards inside the zone and lose them in the Outskirts." : z.name + "'s town region, where the guards answer."}</p>
         <p class="muted">Here a "guards" call kills a criminal, a murderer, or any monster that attacks on sight, whoever struck first; no guard comes unasked (<code>townGuardsKillMonsters</code>, on). No monster that attacks on sight may spawn on a spot inside.</p>
         <dl class="kv"><dt>Creature spawners inside</dt><dd>${inside}${inside ? " (town animals)" : ""}</dd><dt>Wild ranges reaching in</dt><dd>${reach.length ? reach.map(s => (s.area ? AREA[s.area].name : s.label) + " " + s.x + "," + s.y).join("; ") : "none"}</dd></dl>`;
     }
@@ -315,15 +344,15 @@ function render() {
     const a = AREA[sel.area], th = D.themes[a.theme];
     const sp = D.spawners.filter(s => s.area === a.id);
     const was = [0, 0, 0, 0, 0]; sp.forEach(s => was[s.tier]++);
-    box.innerHTML = `<h3>Area</h3><h2>${a.name}</h2><div class="coords">${a.dist ? a.dist[0] + "-" + a.dist[1] + " tiles from the bank" : ""}</div>
+    box.innerHTML = `<h3>Area</h3><h2>${a.name}</h2><div class="coords">${a.dist ? a.dist[0] + "-" + a.dist[1] + " tiles from the centre" : ""}</div>
       <dl class="kv"><dt>Theme</dt><dd>${th.label}</dd><dt>Grade</dt><dd>${pill(a.tier)}${a.ringException ? ' <span class="muted">(exception to the rings, your ruling)</span>' : ""}</dd><dt>Spawners</dt><dd>${sp.length}, up to ${sp.reduce((n, s) => n + s.count, 0)} creatures</dd><dt>Wildlife</dt><dd>${(w => w.length ? `${w.length} spawner${w.length > 1 ? "s" : ""} (${w.filter(s => s.isNew).length} new), ${[...new Set(w.map(s => TIER[s.to]))].join(", ")}` : "none")(D.spawners.filter(s => s.wild && s.inArea === a.id))}</dd>
       <dt>Stock grades</dt><dd>${was.map((n, t) => n ? `${pill(t)} ×${n}` : "").filter(Boolean).join(" ")}</dd></dl>
       <h3>Creatures</h3>${rosterHtml(themeKinds(a.theme).map(k => ({ ...k, m: 0 })))}
       ${a.deco === false ? `<h3>Flavor objects</h3><p class="muted">${a.decoNote || "None: the place is already decorated."}</p>` : `<h3>Flavor objects ×${D.decoSites.filter(v => v.area === a.id).length}</h3>${propsHtml(a.theme)}`}`;
   } else {
-    box.innerHTML = `<h3>How to read the map</h3><h2>${mode === "plan" ? "Live" : "Stock (before)"}</h2>
-      <p class="muted" style="margin-top:0">${mode === "plan" ? "Coloured areas are the themes, each graded by its most dangerous creature. Dots are spawners in their grade; diamonds are wildlife, which runs through the forests beside the areas; small dots are flavor objects, each in its own colour (wildflowers show pink, orange, red and white)." : "Dots are today's spawners in their grade. Nearly all wild spawners within 300 tiles are graded dangerous, because the stock mixes put trolls, ettins, reapers, gargoyles or grizzly bears among the small game."}</p>
-      <p class="muted">The dotted circles mark the rings: the Doorstep inside 300 tiles of the bank, the Near wilds to 400, the Far wilds to 500, the Frontier beyond. The blue area is where the guards answer (Britain and the moongate south of the bay); the dashed area is the unguarded Britain Outskirts. Click either for the rules; "Guard zones" hides them.</p>
+    box.innerHTML = `<h3>How to read the map</h3><h2>${mode === "plan" ? D.labels.plan : D.labels.stock}</h2>
+      <p class="muted" style="margin-top:0">${mode === "plan" ? "Coloured areas are the themes, each graded by its most dangerous creature. Dots are spawners in their grade; diamonds are wildlife, which runs through the forests beside the areas; small dots are flavor objects, each in its own colour (wildflowers show pink, orange, red and white)." : "Dots are today's spawners in their grade. Most wild spawners near the centre are graded dangerous, because the stock mixes put trolls, ettins, reapers, gargoyles or grizzly bears among the small game."}</p>
+      <p class="muted">The dotted circles mark the rings around the plan's centre (the white dot): the Doorstep inside ${D.ringEdges[0]} tiles, the Near wilds to ${D.ringEdges[1]}, the Far wilds to ${D.ringEdges[2]}, the Frontier beyond. The blue areas are where the guards answer (towns and moongates); a dashed area is an unguarded part of a town. Click either for the rules; "Guard zones" hides them.</p>
       <p class="muted">Click a dot or an area for details. Drag to pan; use + and − to zoom. Tick "Bot deaths" to see where the farm's bots died.</p>`;
   }
 }
@@ -337,6 +366,7 @@ function setMode(m) { mode = m; document.getElementById("m-plan").setAttribute("
 document.getElementById("m-plan").onclick = () => setMode("plan");
 document.getElementById("m-now").onclick = () => setMode("now");
 ["l-areas", "l-rings", "l-deaths", "l-town", "l-names", "l-wild", "l-deco", "l-built"].forEach(id => document.getElementById(id).onchange = paint);
+document.getElementById("f-name").oninput = paint;
 
 // pan and zoom
 function zoom(f, px = .5, py = .5) { const nw = Math.min(W, Math.max(120, view.w * f)), nh = nw * H / W; view.x += (view.w - nw) * px; view.y += (view.h - nh) * py; view.w = nw; view.h = nh; clamp(); setView(); }
@@ -347,23 +377,23 @@ document.getElementById("z-reset").onclick = () => { Object.assign(view, { x: X0
 svg.addEventListener("wheel", e => { e.preventDefault(); const r = svg.getBoundingClientRect(); zoom(e.deltaY < 0 ? .85 : 1 / .85, (e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); }, { passive: false });
 let drag = null, moved = false;
 svg.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }; moved = false; });
-window.addEventListener("pointermove", e => { if (!drag) return; const r = svg.getBoundingClientRect(), k = view.w / r.width; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; svg.classList.add("drag"); } view.x = drag.vx - dx * k; view.y = drag.vy - dy * k; clamp(); setView(); });
-window.addEventListener("pointerup", () => { drag = null; svg.classList.remove("drag"); });
+window.addEventListener("pointermove", e => { if (!drag) return; const r = svg.getBoundingClientRect(), k = view.w / r.width; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; svg.classList.add("drag"); } view.x = drag.vx - dx * k; view.y = drag.vy - dy * k; clamp(); setView(); }, { signal: BOOT.signal });
+window.addEventListener("pointerup", () => { drag = null; svg.classList.remove("drag"); }, { signal: BOOT.signal });
 svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); moved = false; } }, true);
 
 // near-town stats: wild spawners inside 300 tiles, before and after
 (function () {
-  const near = D.spawners.filter(s => !s.guarded && (s.area || (s.wild && !s.isNew)) && s.dist < 300);
+  const near = D.spawners.filter(s => !s.guarded && (s.area || (s.wild && !s.isNew)) && s.dist < D.ringEdges[0]);
   const bars = arr => { const n = arr.reduce((a, b) => a + b, 0); return `<div class="bars">${arr.map((v, t) => v ? `<span style="width:${100 * v / n}%;background:${TC[t]}"></span>` : "").join("")}</div>`; };
   const was = [0, 0, 0, 0, 0], now = [0, 0, 0, 0, 0]; near.forEach(s => { was[s.tier]++; now[s.to]++; });
-  const deaths = D.deaths.filter(d => Math.hypot(d.x + 20 - cx, d.y + 20 - cy) < 300).reduce((n, d) => n + d.n, 0);
+  const deaths = D.deaths.filter(d => Math.hypot(d.x + 20 - cx, d.y + 20 - cy) < D.ringEdges[0]).reduce((n, d) => n + d.n, 0);
   const changed = D.spawners.filter(s => !s.isNew && s.next && s.next.map(e => e.n).sort().join() !== s.entries.map(e => e.n).sort().join()).length;
   const wildKept = D.spawners.filter(s => s.wild && !s.isNew).length, wildNew = D.spawners.filter(s => s.wild && s.isNew).length;
   document.getElementById("stats").innerHTML = `
-    <div class="stat"><h3>Doorstep before</h3><div class="big">${was[3] + was[4]} of ${near.length}</div>${bars(was)}<span class="muted">wild spawners inside 300 tiles that hold a dangerous creature</span></div>
+    <div class="stat"><h3>Doorstep before</h3><div class="big">${was[3] + was[4]} of ${near.length}</div>${bars(was)}<span class="muted">wild spawners inside ${D.ringEdges[0]} tiles that hold a dangerous creature</span></div>
     <div class="stat"><h3>Doorstep now</h3><div class="big">${now[3] + now[4]} of ${near.length}</div>${bars(now)}<span class="muted">the same spawners, rethemed to beginner and step-up areas</span></div>
-    <div class="stat"><h3>Bot deaths inside 300 tiles</h3><div class="big">${deaths}</div><span class="muted">of ${D.deaths.reduce((n, d) => n + d.n, 0)} on this map, from the farm's runs</span></div>
-    <div class="stat"><h3>Spawners rethemed</h3><div class="big">${changed}</div><span class="muted">in ${D.areas.length} areas and the wildlife; places, counts and delays unchanged</span></div>
+    <div class="stat"><h3>Bot deaths inside ${D.ringEdges[0]} tiles</h3><div class="big">${deaths}</div><span class="muted">of ${D.deaths.reduce((n, d) => n + d.n, 0)} on this map, from the farm's runs</span></div>
+    <div class="stat"><h3>Spawners rethemed</h3><div class="big">${changed}</div><span class="muted">in ${D.areas.length} areas and the wildlife, with the split groups of the bigger spawners</span></div>
     <div class="stat"><h3>Wildlife spawners</h3><div class="big">${wildKept + wildNew}</div><span class="muted">${wildKept} stock ones kept as wildlife, ${wildNew} new in the forests</span></div>`;
 })();
 
@@ -371,7 +401,8 @@ svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); 
 (function () {
   const tb = document.querySelector("#areas tbody");
   const ringOf = a => a.tier <= 1 ? 0 : a.tier;
-  const names = ["The Doorstep (tier 1, inside about 300 tiles)", "", "The Near wilds (tier 2, about 280-400)", "The Far wilds (tier 3, about 380-600)", "The Frontier (tier 4, 500 and beyond)"];
+  const [E0, E1, E2] = D.ringEdges;
+  const names = [`The Doorstep (tier 1, inside about ${E0} tiles)`, "", `The Near wilds (tier 2, about ${E0}-${E1})`, `The Far wilds (tier 3, about ${E1}-${E2})`, `The Frontier (tier 4, ${E2} and beyond)`];
   let last = -1;
   for (const a of [...D.areas].sort((p, q) => p.tier - q.tier || (p.dist ? p.dist[0] : 0) - (q.dist ? q.dist[0] : 0))) {
     if (ringOf(a) !== last) { last = ringOf(a); tb.insertAdjacentHTML("beforeend", `<tr class="ring"><td colspan="6">${names[last]}</td></tr>`); }
@@ -385,7 +416,8 @@ svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); 
 })();
 
 (function () {
-  const where = ["", "Doorstep (inside about 300 tiles) and tier-1 areas", "Near wilds (300-400) and tier-2 areas", "Far wilds and the Frontier (400 and beyond)"];
+  const [E0, E1] = D.ringEdges;
+  const where = ["", `Doorstep (inside about ${E0} tiles) and tier-1 areas`, `Near wilds (${E0}-${E1}) and tier-2 areas`, `Far wilds and the Frontier (${E1} and beyond)`];
   const label = ["", "Deer and small game", "Woodland", "Deep woods"];
   const tb = document.querySelector("#wild tbody");
   for (const t of [1, 2, 3]) {
@@ -406,8 +438,40 @@ svg.addEventListener("click", e => { if (moved) { e.stopImmediatePropagation(); 
     const n = D.decoSites.filter(v => v.theme === key).length;
     grid.insertAdjacentHTML("beforeend", `<div class="decocard"><h3>${D.themes[key] ? D.themes[key].label : key}</h3><h2 style="font-size:18px;margin:0 0 4px">${areas.map(a => a.name).join(", ")}</h2><p class="muted">${n} piece${n === 1 ? "" : "s"}, ${D.decoSites.filter(v => v.theme === key && v.color).length} of them colour.</p>${propsHtml(key)}</div>`);
   }
-  document.getElementById("deco-lede").textContent = `${D.decoSites.length} single pieces scattered across the areas, each standing on its own. ${D.decoSites.filter(v => v.color).length} of them add colour: pink campion and foxglove, orange orfluer, red and white poppies, white snowdrops, bulrushes and red-capped mushrooms, chosen for each area. The rest are mushrooms and nests in the woods, spilled hay and splintered wood on the farms, bones, grave mounds and a gravestone at the barrows and the Haunted Wood, cattails in the marsh, rocks on the heights. Never closer than 10 tiles to the next, on clean open ground with a clear sightline, never the art of a player item. The Britain Graveyard has none; it is decorated already.`;
+  document.getElementById("deco-lede").textContent = `${D.decoSites.length} single pieces scattered across the areas, each standing on its own. ${D.decoSites.filter(v => v.color).length} of them add colour: pink campion and foxglove, orange orfluer, red and white poppies, white snowdrops, bulrushes and red-capped mushrooms, chosen for each area. The rest are mushrooms and nests in the woods, spilled hay and splintered wood on the farms, bones, grave mounds and a gravestone at the barrows and the Haunted Wood, cattails in the marsh, rocks on the heights. Never closer than 10 tiles to the next, on clean open ground with a clear sightline, never the art of a player item. Graveyards that are decorated already have none.`;
 })();
 
+document.getElementById("m-plan").textContent = D.labels.plan;
+document.getElementById("m-now").textContent = D.labels.stock;
+document.getElementById("decided-h").textContent = D.decidedTitle;
+document.getElementById("decided").innerHTML = D.decided.map(x => `<li>${x}</li>`).join("");
 setView(); paint(); render();
+}
+
+function show(key) {
+  const D = PLANS.find(p => p.key === key) || PLANS[0];
+  if (BOOT) { BOOT.abort(); }
+  BOOT = new AbortController();
+  const root = document.getElementById("plan-root");
+  root.innerHTML = "";
+  root.appendChild(document.getElementById("plan-tpl").content.cloneNode(true));
+  document.getElementById("plan-lede").innerHTML = D.lede;
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.key === D.key ? "true" : "false"));
+  try { localStorage.setItem("spawn-plan-tab", D.key); } catch (e) { }
+  boot(D);
+}
+(function () {
+  const tabs = document.getElementById("tabs");
+  for (const p of PLANS) {
+    const b = document.createElement("button");
+    b.setAttribute("role", "tab");
+    b.dataset.key = p.key;
+    b.innerHTML = `${p.name}<span class="status">${p.status}</span>`;
+    b.onclick = () => show(p.key);
+    tabs.appendChild(b);
+  }
+  let start = location.hash.replace("#", "");
+  if (!PLANS.some(p => p.key === start)) { try { start = localStorage.getItem("spawn-plan-tab") || ""; } catch (e) { start = ""; } }
+  show(start);
+})();
 </script>

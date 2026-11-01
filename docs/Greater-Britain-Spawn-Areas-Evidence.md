@@ -120,3 +120,36 @@ On the host, `adddecorations` placed 129 and left the 316 already there. Real-cl
 ## Farm host (2026-10-18, by the BotFarm Operator session)
 
 The BotFarm Operator copied the new DLL, config, spawn file and flavor file to `work/hosts/farm` after a Saves snapshot. It then ran `addspawners` (102 added, 76 replaced) and `adddecorations` (all 445 flavor pieces). The audit passed with 1,583 spawners, and the save was logged done at 11:58:32. It regenerated the bots' hunt, tame and hard spots, added `britain_areas.json`, and cleared the bots' learned place memory inside the areas. The dev server was restarted afterwards on the owner's choice.
+
+## Flavor objects as map statics (2026-10-18/19)
+
+The owner, on seeing the server-item pieces:
+
+> "The deco you placed appears as objects in the world that highlight when you hover them ... I need the deco you added to appear the same way as the regular map deco"
+
+He chose writing them into the map, adding "make sure to not block buildable space for houses".
+
+- **Not blocking.** Stock house placement (`HousePlacement.Check`) refuses a static that is impassable, or a surface that isn't background. So the rocks, the standalone gravestone, the spider egg case and splintered wood 0x0C2D were dropped; `check_deco.py` now refuses such art, and Gargoyle Heights took bones, mushrooms and flowers. The other 100 pieces block neither a house nor walking, and the server needs no patch.
+- **The patch.** `place_flavor.py` writes `data/map-patches/greater-britain-flavor-statics.json` (445 pieces). `tools/map-patch/apply_statics_patch.py` writes them into copies of `statics0.mul`/`staidx0.mul` and the x pair: each touched block is appended whole at the end of the file with its index updated, and untouched blocks keep their bytes.
+- **Files on disk.** The pristine originals are in `work/uodata-pristine`. `work/uodata-patched` is a full data folder that hard-links every other file to `UOData`. Read-back: all 445 pieces found, and 3,000 random other tiles are unchanged.
+- **Retiring the server items.** The old server-item file moved to `data/world-generation/alpha2b/retired/` (manifest `retiredDecorationFiles`). `[Alpha2bWorldGen removeretired CONFIRM-UOR-FELUCCA` deletes exactly those pieces: a plain Static with the listed graphic at the listed spot.
+- **Live farm, 2026-10-19, on the owner's "test on the botfarm server that is live":**
+  - `removeretired` removed 445 of 445 and saved. The farm snapshot came after it, by mistake; the 12:25 automatic backup holds the state before.
+  - A stray copy of the old file in the farm's Decoration folder was deleted.
+  - `addspawners` replaced the Sage Advice spawner. The audit passed: 1,583 spawners.
+- **Real client.** It ran with the new `Start-PlayerClient.ps1 -UoPath work\uodata-patched`, after the Operator paused three bot clients to free graphics devices. The pieces draw as part of the map, and hovering one shows no highlight or name. Shots in `work/spawn-design/statics-shots/`.
+- **Not done yet:**
+  - Dev still has its 445 server items (`removeretired` not run there).
+  - The workspace `UOData` is unpatched.
+  - Players need the patched statics files with their client data.
+
+### Rolled out (2026-10-19, owner: "Swap UOData + ship files")
+
+- In a window the BotFarm Operator scheduled (farm server and all bot clients stopped, nothing holding `UOData`), the four statics files in the workspace `UOData` were replaced with the patched copies. Before the swap they matched the pristine originals, which stay in `work/uodata-pristine`; after it, all four hashes matched the patched copies.
+- Dev:
+  - Snapshot `work/save-snapshots/saves-20261019-124216-before-removeretired`.
+  - `removeretired` removed 445 of 445.
+  - `addspawners` replaced the Sage Advice spawner (z 35).
+  - The audit passed (1,583 spawners), `[SeasonStatus` reads summer, and the save completed before the stop.
+- Player files: `work/client-release/map-patch` holds the four patched files and a README with checksums. Publishing them with the client download is the owner's step; the site has no download page yet.
+- The tools now take the pristine map as their base: set `UO_ROOT=work/uodata-pristine` when re-running `place_flavor.py` or `apply_statics_patch.py`, and always patch from pristine.

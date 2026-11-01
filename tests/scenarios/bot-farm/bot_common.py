@@ -186,6 +186,40 @@ def connect_retry(name, tries=20, wait=1.0):
     raise last
 
 
+
+
+def town_with(needs, x, y):
+    """The nearest surface town (gazetteer region) holding a place for every role in `needs`, or None."""
+    try:
+        towns = [t for t in gz.towns() if t["centre"][0] < 5120]
+        have = {}
+        for p in gz.get().places:
+            reg = p.get("region")
+            if reg:
+                have.setdefault(reg, set()).update(p.get("roles") or [])
+        ok = [t for t in towns if all(r in have.get(t["name"], ()) for r in needs)]
+        return min(ok, key=lambda t: max(abs(t["centre"][0] - x), abs(t["centre"][1] - y))) if ok else None
+    except Exception:
+        return None
+
+_TELE = None
+
+
+def teleporter_tiles():
+    """[(x, y)]: the surface tiles a step onto sends a walker elsewhere, from the generated gazetteer's transitions (teleporters and their kin)."""
+    global _TELE
+    if _TELE is None:
+        out = []
+        try:
+            for t in gz.get().trans or []:
+                src = t.get("src") or []
+                if len(src) >= 2 and (t.get("src_side") or "surface") == "surface" and int(src[0]) < 5120:
+                    out.append((int(src[0]), int(src[1])))
+        except Exception:
+            out = []
+        _TELE = sorted(set(out))
+    return _TELE
+
 class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard, BasicsMixin):
     RULES: list = []
 
@@ -218,7 +252,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.mem.area = area_danger.AreaDanger(
             self.mem, skill_fn=lambda: area_danger.combat_skill(getattr(self, "skill_values", {})),
             enabled=lambda: self.feature("danger_map") and getattr(self, "current_rule", "") not in ("r_trip", "r_far"),
-            on_avoid=lambda cell, why: self.ev("area_avoid", area=cell, why=why))
+            on_avoid=lambda cell, why: self.ev("area_avoid", area=cell, why=why),
+            worn_fn=lambda: self.worn_profile() if self.feature("gather_armor") else None)    # an armoured gatherer's own armour in the risk (wear.py)
         self.journal = deque(maxlen=300)
         self.tick_no = 0
         self.last_rule = ""
@@ -446,12 +481,17 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             routed = bot.goto_routed(x, y, near)         # more than 120 tiles: routed legs (feature goto_routed); the client planner gives up around 150-200
             if routed is not None:
                 return routed
-            walk = orig(x, y, z)
+            walk = bot.goto_avoiding("goto", orig, x, y, z)
             first_wait = walk.wait
 
             def wait(timeout=300.0, poll=0.1):
                 end = time.time() + timeout
-                res = bot.tele_wait(first_wait, timeout, poll)          # a jump of the position is a teleport: cancel the walk at once
+                if getattr(bot, "packy_leading", None) and bot.packy_leading(x, y):
+                    # a pack horse along: at its pace, stopping for it (packy.py, feature packy_lead)
+                    res = bot.packy_lead(lambda t: bot.tele_wait(first_wait, t, poll),
+                                         lambda: (lambda w: (lambda t: bot.tele_wait(w.wait, t, poll)))(bot.goto_avoiding("goto", orig, x, y, z)), timeout)
+                else:
+                    res = bot.tele_wait(first_wait, timeout, poll)          # a jump of the position is a teleport: cancel the walk at once
                 if str(res).startswith("nopath") and bot.step_out():
                     left = max(end - time.time(), 0.0) if bot.feature("walk_fix") else timeout       # (walk_fix: the second walk gets what is left of the caller's timeout)
                     if left >= 1.0:
@@ -469,7 +509,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             stub = bot.tele_cross(x, y)
             if stub is not None:
                 return stub
-            walk = orig_exact(x, y, z)
+            walk = bot.goto_avoiding("gotoexact", orig_exact, x, y, z)
             first_wait = walk.wait
 
             def wait(timeout=300.0, poll=0.1):
@@ -479,6 +519,30 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return walk
 
         self.c.gotoexact = gotoexact
+
+    TELE_AVOID_NEAR = 40       # teleporter tiles within this many tiles of the bot or the walk's end go on the walk's avoid list
+    TELE_AVOID_AT = 2          # ... unless the walk ends this close to one: then it is the teleporter the walk is for
+
+    def goto_avoiding(self, kind, orig, x, y, z=None):
+        """The client walk to (x, y), told to keep off the known teleporter tiles near the way (Navrey's goto avoid:<x>,<y>,<r>): the walk map knows no
+        teleporters, and a leg over one sends the walker elsewhere (BotFisherAR to Buccaneer's Den, 2026-10-31). A walk that ends at a teleporter is
+        not stopped from using it."""
+        try:
+            tiles = teleporter_tiles()
+        except Exception:
+            tiles = []
+        av = []
+        for tx, ty in tiles:
+            if max(abs(tx - x), abs(ty - y)) <= self.TELE_AVOID_AT:
+                return orig(x, y, z)                       # the walk is for this teleporter
+            if min(max(abs(tx - x), abs(ty - y)), max(abs(tx - self.c.x), abs(ty - self.c.y))) <= self.TELE_AVOID_NEAR:
+                av.append((tx, ty))
+        send = getattr(getattr(self.c, "commands", None), "send", None)
+        if not av or send is None:
+            return orig(x, y, z)
+        from uo.client import Walk
+        send(f"{kind} {x} {y}" + ("" if z is None else f" {z}") + "".join(f" avoid:{tx},{ty},1" for tx, ty in av[:12]))
+        return Walk(self.c, (x, y))
 
     def far_arrival(self, res, x, y, near=2):
         """A goto that says \"arrived\" with the bot more than `near` tiles from (x, y) stopped at the closest reachable tile: that is a failure (\"nopath: closest X,Y\")."""
@@ -868,6 +932,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # below them by core_tick() while core_active() says so. BotBase itself has no core.
     REFLEXES = ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: the shared Refresh rule (basics.py)
 
+    def core_lets(self, name):
+        """A rule below the reflexes that still runs under the decision core: first_trip's trip_core_lets (the ladder's trips), else none."""
+        f = getattr(self, "trip_core_lets", None)
+        try:
+            return bool(f and f(name))
+        except Exception:
+            return False
+
     def core_active(self):
         return False
 
@@ -879,7 +951,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         for k in self.PERSIST:
             if k in self.facts:
                 v = self.facts[k]
-                out[k] = sorted(v) if isinstance(v, set) else v[-20:] if isinstance(v, list) else v     # the brains read only the newest
+                cap = (getattr(self, "PERSIST_CAPS", None) or {}).get(k, 20)
+                out[k] = sorted(v) if isinstance(v, set) else v[-cap:] if isinstance(v, list) else v     # the brains read only the newest (a brain may keep more of a list)
         try:
             with open(self.facts_path + ".tmp", "w", encoding="utf-8") as f:
                 json.dump(out, f)
@@ -1237,6 +1310,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if "birth_town" not in self.facts and name:
             self.facts["birth_town"] = BIRTH_TOWN if name != BIRTH_TOWN and gz.region(BIRTH_TOWN) else name
         h = gz.region(name) if name else None
+        needs = getattr(self, "HOME_NEEDS", ())                       # (a brain that borrows home(), the caster, has no class attribute of its own)
+        if not h and needs and self.c.x < 5120:
+            h = town_with(needs, self.c.x, self.c.y)
+            if h and max(abs(h["centre"][0] - self.c.x), abs(h["centre"][1] - self.c.y)) > 120:
+                self.facts["rehome_walk"] = True                   # go there first (r_far's far travel walk: by moongate when the planner finds one cheaper);
+                                                                    # the fisher thrown to Vesper took Britain as home and set off for a Britain shore on foot           # a trade that needs a buyer lives where the buyer is (see HOME_NEEDS)
         if not h:
             here = gz.home_region(self.c.x, self.c.y)
             if here and here.get("kind") == "town" and self.home_unsafe(here["name"]) and gz.region(self.facts.get("birth_town") or BIRTH_TOWN):
@@ -1250,6 +1329,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.facts.setdefault("birth_town", h["name"])          # a new bot: born where it first stands
             self._home = h
         return h
+
+    HOME_NEEDS = ()            # gazetteer roles a bot's trade needs in its home town (a fisher: the fisherman who buys the catch, a bank). A bot with no home
+                               # yet takes the nearest town that has them all, not the one it stands in: BotFisherAR, thrown to Vesper with no fish buyer
+                               # nearer than Britain's, walked 1,449 tiles of wilds to sell and died twice in two hours (2026-10-31). () = the town it stands in
 
     HOME_DANGER_MOVES = False                             # crafters, miners and fishers move house when their home keeps killing them (patch_home_town)
 
@@ -1774,9 +1857,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         m = near[0]
         self.activity = f"walking away from {m.name}"
         self.note("danger", f"A {m.name} came within {m.distance} tiles of a working {self.pname}; a gatherer or crafter can only walk away and come back later.", key=f"evade:{self.mkey(m)}")
+        self.on_evade(m)
         self.sprint()
         self.c.goto(*self.flee_point(m)).wait(timeout=8)     # away from it, and toward town, not out into the wilds
         return True
+
+    def on_evade(self, m):
+        """A trade's work spot near the monster just walked away from is left for a while (MinerBot); by default nothing."""
 
     @staticmethod
     def bandage_seconds(dex):
@@ -2186,11 +2273,18 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         return tossed, taken
 
     def bank_overload_pass(self, box, share=0.85):
-        """Overloaded after the usual deposit: everything but the essentials and one of each tool goes in, biggest stacks first, to 85% of the limit."""
+        """Overloaded after the usual deposit: everything but the essentials and one of each tool goes in, heaviest stacks first, to 85% of the limit.
+        Heaviest by stones, not by count, and a crafter's own material last: "biggest stack" by count put BotSmithAR's 244 iron ingots (24 stones) in the
+        box first on heavy visits, and it then bought ingots at the shop with 244 of its own banked (2026-11-01)."""
         before = self.c.weight
         kept_tools = set()
         moved = 0
-        for it in sorted(list(self.c.backpack), key=lambda i: -(i.amount or 1)):
+        own = getattr(self, "own_material", None)
+
+        def order(i):
+            mine = bool(own and own(i))
+            return (mine, -(i.amount or 1) * items.unit_weight(i.name))
+        for it in sorted(list(self.c.backpack), key=order):
             if self.c.weight <= self.c.max_weight * share:
                 break
             low = (it.name or "").lower()
@@ -2210,6 +2304,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     def visit_bank(self, why, withdraw=0, reserve=200, extra=()):
         self.beat()
+        self.__dict__["_bank_why"] = why                     # (basics.bank_products_out: a heavy visit only puts in)
         banks = self.bank_xys()
         self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
         res = self.far_front(banks[0], "bank", 90, self.c.gold + (self.facts.get("bank_balance", 0) if withdraw else 0))      # a withdrawal is worth what is banked
@@ -2275,6 +2370,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             time.sleep(2.5)
             self.facts["bank_balance"] -= take
         self.facts["banked_at"] = time.time()
+        errand = getattr(self, "armor_errand", None)
+        if errand is not None and why not in ("upgrade", "overloaded"):
+            try:
+                errand()                                           # in town anyway: the armour a working player buys on the bank trip (wear.py)
+            except Exception as e:
+                self.log(f"armour errand failed ({type(e).__name__}: {e})")
         return True
 
     SHOP_NEAR = 8          # a vendor list is filed under the shop only when the bot stands this close to it (goto_near asks 4; vendors stray a few tiles)
@@ -2595,7 +2696,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             n = i.name.lower()
             # the least gold a stone first (items.py: a shop's price over the piece's weight; material no shop buys 0), then the old material order. By the
             # material order alone an archer a few stones over dropped 48 cut leather, 5 gold a stone, before its meat (2026-10-30)
-            return any(w in n for w in last), items.sale_price(n) / items.unit_weight(n), next((k for k, w in enumerate(self.HEAVY_THINGS) if w in n), 99), -(i.amount or 1)
+            # coloured metal goes before the iron: the client names it after the graphic ("iron ore", "iron ingot"), but no shop buys it (S\blacksmith buys
+            # IronIngot only) and the bots' market takes plain ingots only. About one dig in five is coloured at 100 Mining (Mining.cs veins; BotMinerBR
+            # 271 of 1,240 digs, 2026-10-31)
+            price = -1 if getattr(i, "hue", 0) and re.search(r"\b(ore|ingots?)\b", n) else items.sale_price(n) / items.unit_weight(n)
+            return any(w in n for w in last), price, next((k for k, w in enumerate(self.HEAVY_THINGS) if w in n), 99), -(i.amount or 1)
         if time.time() < self.facts.get("drop_refused_until", 0):
             return False                                  # dropping was refused a moment ago: let r_bank walk to the bank box instead
         stacks = sorted((i for i in self.c.backpack if any(w in i.name.lower() for w in self.HEAVY_THINGS) and "bandage" not in i.name.lower()), key=rank)
@@ -2609,7 +2714,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             except Exception:
                 pass
             def worth(i):                                          # what a known shop pays per piece (0: nobody buys it), biggest pile first
-                return buys.get((i.name or "").lower(), 0), -(i.amount or 1)
+                low = (i.name or "").lower()
+                if getattr(i, "hue", 0) and re.search(r"\b(ore|ingots?)\b", low):
+                    # coloured metal: the client names it after the graphic ("iron ore", "iron ingot"), but no shop buys it (SBBlacksmith buys IronIngot
+                    # only) and the bots' market takes plain ingots only, so it goes before the iron. About one dig in five is coloured at 100 Mining
+                    # (Mining.cs veins; BotMinerBR 271 of 1,240 digs, 2026-10-31)
+                    return -1, -(i.amount or 1)
+                return buys.get(low, 0), -(i.amount or 1)
             kept_tools = set()
             junk = []
             for i in self.c.backpack:
@@ -2895,7 +3006,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 t_rules = time.time()
                 core = self.core_active()                      # the decision core (task_core.py): only the reflexes, then the core's own tick
                 for name in self.far_rules():                  # the brain's RULES with r_far (a far walk under way) before the economy rules
-                    if core and name not in self.REFLEXES:
+                    if core and name not in self.REFLEXES and not self.core_lets(name):
                         continue
                     if self.stall_skip(name):
                         continue                       # the stall sense backed it off (stall.py)

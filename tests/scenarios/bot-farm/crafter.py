@@ -19,6 +19,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from bot_common import BotBase  # noqa: E402
+from wear import GATHER_ARMOR, GathererArmor  # noqa: E402  (light armour for working trades)
 from hunter import HunterBot  # noqa: E402
 from memory import cell_of  # noqa: E402
 from miner import MinerBot  # noqa: E402
@@ -62,7 +63,7 @@ from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_market", "r_bank", "r_retool", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
     LOOT_GEAR = ()                                        # a crafter hunting vermin for coins does not carry weapons home to sell
@@ -71,6 +72,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     stand_near = MinerBot.stand_near
     mountains = MinerBot.mountains                        # r_dig runs MinerBot.r_mine on a crafter, which asks self.mountains()
     far_spot_ok = MinerBot.far_spot_ok
+    far_cands = MinerBot.far_cands
+    FAR_PLANS, FAR_FOUND = MinerBot.FAR_PLANS, MinerBot.FAR_FOUND
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
@@ -259,6 +262,46 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         if price is None:
             price = -(-FLOOR_MARGIN * RES_PRICE.get(self.cfg["res"], UNIT_PRICE.get(self.cfg["mat"], 3)) * amount // 1)       # no shop asked yet: the shard's floor
         return ch * price - unit * amount * (ch + FAIL_LOSS * (1 - ch))
+
+    # armour as a working player wears it (wear.py, feature gather_armor): light leather and studded, not the fighters' metal (ore, logs and cloth are
+    # carried weight); a crafter's dagger is no "weapon first" reason to go without (HunterBot.r_upgrade asks weapon_state, for this call only)
+    ARMOR_BUY = GATHER_ARMOR
+    SHOP_FROM = GathererArmor.SHOP_FROM
+    ERRAND_PIECES = GathererArmor.ERRAND_PIECES
+    armor_errand = GathererArmor.armor_errand
+    in_town_now = GathererArmor.in_town_now
+
+    def r_upgrade(self):
+        if not self.feature("gather_armor"):
+            return False
+        self.__dict__["weapon_state"] = lambda: "ok"
+        try:
+            return GathererArmor.r_upgrade(self)          # in town, real threats only (wear.py)
+        finally:
+            self.__dict__.pop("weapon_state", None)
+
+    OWN_ORE_MINING = 50       # Mining enough to dig and smelt iron for itself (Mining.cs: iron from 0, smelting iron needs no more)
+    OWN_ORE_FOR = 900         # s the shelves are passed by once training is on its own ore
+
+    def trains_on_own_ore(self):
+        """A veteran smith or tinker that can mine and has money to train with digs its own ore instead of buying ingots, as a player with the Mining for it
+        does. A piece sells for 1.25 x its material (CraftedGoodsPricing) and a failure loses half the material, so a craft from ingots bought at 5 pays
+        only at 2-in-3 success or better (3.75 x chance - 2.5 gold an ingot); the pieces that teach sit nearer 50%. BotSmithAR spent 10,850 gold on ingots
+        and sold for about 9,200; BotTinkAR spent 12,465 (2026-10-31), both with Mining 89-92. Money is no condition: dug ore costs nothing, and a smith
+        short of gold is the one a player sends to the hills. With may_train as a condition BotSmithAR (299 gold, Mining 91) bought the few ingots it could
+        afford, dug only when the shelf was bare, and smelted one ore at a time between shop walks (2026-11-01)."""
+        if getattr(self, "mode", None) != "veteran" or not self.can_gather():
+            return False
+        # a carpenter the same with its own wood (r_chop): boards bought at 3 make pieces that sell at 1.25 x 3, a loss at the skill's edge; BotCarpAdvR,
+        # Lumberjacking 100 and 54,745 gold, bought the shelf's few boards and stood idle 5 of 13 minutes waiting for more (2026-10-31)
+        gather = "Mining" if self.cfg.get("res") == "IronIngot" else "Lumberjacking" if self.cfg.get("craft") == "Carpentry" else None
+        if gather is None or self.skill_values.get(gather, 0) < self.OWN_ORE_MINING:
+            return False
+        if time.time() >= self.facts.get("soldout_until", 0):
+            self.facts["soldout_until"] = time.time() + self.OWN_ORE_FOR      # r_dig's own test: no shop to look at first
+            self.log(f"material: training on its own {'ore' if gather == 'Mining' else 'wood'} ({gather} {self.skill_values.get(gather, 0):.0f}); bought material loses on pieces made at the skill's edge")
+            self.ev("own_ore", skill=gather, value=round(self.skill_values.get(gather, 0), 1))
+        return True
 
     def short_of_money(self):
         return self.c.gold + self.facts.get("bank_balance", 0) < 250
@@ -804,12 +847,54 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 return got
         return {}
 
+    def own_material(self, it):
+        """A stack of this craft's own material, as count() counts it (plain iron for a smith)."""
+        words = (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ()))
+        return any(self.matname(w, it.name or "") for w in words) and self.plain(it)
+
+    MAT_BANK_GAP = 300        # s between bank walks for banked material
+
+    def bank_material_out(self, box):
+        """At a bank visit, the craft's own material in the box comes out (up to three restocks' worth, within half the weight limit), before any is
+        bought: BotSmithAR had 244 iron ingots banked and walked to the shops for 5 (2026-11-01). The box's count is kept (facts bank_material) for r_restock."""
+        need = 40 if self.cfg["craft"] != "Tailoring" else 60
+        try:
+            stacks = [i for i in self.c.container(box, timeout=6) if self.own_material(i)]
+        except Exception:
+            return 0
+        banked = sum(int(i.amount or 1) for i in stacks)
+        have = self.count(self.cfg["mat"])
+        taken = 0
+        room = self.c.max_weight * self.PRODUCTS_OUT_SHARE - self.c.weight
+        for it in sorted(stacks, key=lambda i: -(i.amount or 1)):
+            want = 3 * need - have - taken
+            u = items.unit_weight(it.name)
+            n = min(int(it.amount or 1), want, int(room // u))
+            if n <= 0:
+                break
+            self.c.get_item(it.serial, n if (it.amount or 1) > 1 else None)
+            time.sleep(1.2)
+            taken += n
+            room -= n * u
+        self.facts["bank_material"] = banked - taken
+        if taken:
+            self.log(f"bank: took out {taken} {self.cfg['mat']} of {banked} banked (now {have + taken} in the pack)")
+            self.ev("material_unbanked", taken=taken, banked=banked)
+        return 1 if taken else 0
+
     def r_restock(self):
         need = 40 if self.cfg["craft"] != "Tailoring" else 60
         if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
             return False
+        if self.facts.get("bank_material", 0) > 0 and time.time() - self.facts.get("mat_bank_at", 0) > self.MAT_BANK_GAP                 and self.c.weight < self.c.max_weight * self.PRODUCTS_OUT_SHARE * 0.9:     # room to carry it out, or the walk takes nothing
+            self.facts["mat_bank_at"] = time.time()
+            self.activity = "taking material from the bank"
+            self.visit_bank("material")                      # its own banked material before a shop or the hills (bank_material_out)
+            return True
         if self.facts.get("soldout_until", 0) > time.time() and self.can_gather():
             return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look
+        if self.trains_on_own_ore():
+            return False                                  # training: on its own ore, not on bought ingots (r_dig runs)
         self.facts["stocked_at"] = time.time()
         self.activity = "buying material"
         if self.c.gold < 60 and self.facts["bank_balance"] >= 60:
@@ -1056,7 +1141,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
                 self.visit_bank("pickaxe", withdraw=100)
             import miner as _miner
-            got = self.shop_at(self.where1(("tinker",), item="pickaxe"), {"pickaxe": _miner.PICK_CARRY}, budget=max(self.c.gold - 5, 0)) if self.c.gold >= 30 else {}
+            got = _miner.MinerBot.buy_dig_tools(self, self.where1(("tinker",), item="shovel"), max(self.c.gold - 5, 0)) if self.c.gold >= 30 else {}
             self.note("dig", f"The {self.pname} needs a pickaxe to dig its own ore while the shops are sold out; bought: {got}", key="crafterpick")
             return bool(got)
         self.facts.setdefault("dig_started", time.time())
