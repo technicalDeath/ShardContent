@@ -57,3 +57,15 @@ Magery for Recall is left out of the non-casters. Every bot would need reagents,
 6. **Fletching** for the archers.
 
 Each step is gated (`farm_release.py --check`), run on a canary for 30 minutes, and measured in gold an hour and skill points.
+
+## Status, 2026-11-01 13:25
+
+| Step | State |
+| --- | --- |
+| 1. Plans and locks | **Live on all bots** since 13:11 (`skill_plan`; tree 2bcc717fe8af). Dead weight is locked down: Meditation and Wrestling on fighters, Discordance on bards, Fletching and Tinkering on a carpenter. Hiding is set up where the plan holds it. |
+| 2. Tamer fights beside its pet | **Live on BotTamerAR** (`tamer_weapon`): buys a bow and arrows once it carries the gold (no shop walk without it), shoots the pet's target, and bandages the pet from Veterinary 0. Its pet hunt also works tier-2 areas the pet can hold, and when poor it looks for a stronger pet (a grizzly beats orcs, a brown bear does not). |
+| 3. Self-Healing | **Live** for miners, fishers and crafters (`basics.r_heal`); bandages are bought from Healing 0 when the plan holds Healing. |
+| 4. Hiding | **Live** for miners, fishers and crafters (`basics.r_hide`, practised when idle). Engine rules (`Hiding.cs`): it fails while a monster within (100 − skill)/2 + 8 tiles has the bot as its target, the chance is the skill, and the next try is 10 s later. |
+| 5. Tools from Tinkering | Not built. It needs the crafters' Tinkering menu inside the gatherer brain, and the saving is a few gold a pickaxe. |
+| 6. Fletching | **Already built** (`r_fletch`, `r_wood`), now on for all five archers. |
+| Fighters' Hiding, the carpenter's axe, bard provocation for loot | Next. |

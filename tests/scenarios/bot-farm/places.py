@@ -256,7 +256,11 @@ class Places:
         if gz is None:
             return FALLBACK["forge"]
         anchor = self.where1(("smith",), near=ref, default=ref)
-        f = gz.near("forge", anchor[0], anchor[1], n=1, same_side=True)
+        f = gz.near("forge", anchor[0], anchor[1], n=6, same_side=True)
+        facts = getattr(self, "facts", None) or {}
+        if facts.get("packy"):                            # a horse miner: not a forge whose door shuts the horse in (packy.packy_mark_trap)
+            traps = facts.get("horse_trap") or {}
+            f = [x for x in f if traps.get(f"{x['x']},{x['y']}", 0) <= time.time()] or f
         return (f[0]["x"], f[0]["y"]) if f else self.where1(("smith",), near=ref, default=ref)
 
     def mage_shop_xy(self):

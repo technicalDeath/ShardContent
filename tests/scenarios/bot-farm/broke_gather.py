@@ -80,7 +80,7 @@ class BrokeMinerBot(EarnMixin, PackAnimalMixin, HunterBot):
     mkt_make_supply = MinerMarket.mkt_make_supply          # smelt ahead when a smith wants ingots
     stall_switch = MinerBot.stall_switch                   # the wider ore search of a stalled miner (stall.py asks the class for it)
 
-    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "scrap_try_at", "packy", "packy_lost_at", "packy_try_at")
+    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "scrap_try_at", "packy", "packy_lost_at", "packy_try_at", "horse_trap", "horse_trap_seen")
     TOOL_WORD = "pickaxe"
     TOOL_PRICE_GUESS = 20                                 # a pickaxe no bot has seen on a shelf
     TOOL_RESERVE = 3

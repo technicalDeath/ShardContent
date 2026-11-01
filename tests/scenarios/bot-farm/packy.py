@@ -41,6 +41,8 @@ LOAD_SETTLE = 2.0               # s for the client's weight to settle after the 
 LOAD_GAP = 8.0                  # s between loads
 LEAD_SLICE = 3.0
 LEAD_WAIT = 25.0                # s to wait for it to catch up before going on without it (r_packy then walks back for it)
+TRAP_NEAR = 10                  # tiles from a forge where a horse left behind counts against it
+TRAP_DAYS = 7                   # as the fishers' blocked stands (fisher.py)
 LEAD_MIN = 3                    # tiles: a shorter walk is not led. Was 12: a far walk goes in legs of 9-36 tiles, each its own goto, and every leg under 12 ran,
                                 # so the horse was left behind on the long walks it was bought for (2026-11-01: 32 walks back for it in 3 h, nearly all after one)
 BACK_WAIT = 8.0                 # s a horse walked back to is waited for after 'all come', before the bot walks right up to it
@@ -317,6 +319,26 @@ class PackAnimalMixin:
         self.c.say("all follow me")
         return m2 is not None and m2.distance <= CALL_NEAR
 
+    def packy_mark_trap(self, x, y):
+        """A horse that does not follow out of a building beside a forge is shut in by its door (a pet cannot open one; the client opens doors for the
+        miner and they close behind it): BotMinerBR's horse stayed at 1418-1420,1548-1557 by the smithy forge at 1424,1558 eight times in half an hour
+        (2026-11-01). The second time within TRAP_NEAR of a forge marks that forge a trap for TRAP_DAYS; a horse miner smelts at another (places.forge_xy)."""
+        try:
+            import gazetteer as gz
+            f = gz.near("forge", x, y, n=1)
+        except Exception:
+            return
+        if not f or max(abs(f[0]["x"] - x), abs(f[0]["y"] - y)) > TRAP_NEAR:
+            return
+        key = f"{f[0]['x']},{f[0]['y']}"
+        seen = self.facts.setdefault("horse_trap_seen", {})
+        seen[key] = seen.get(key, 0) + 1
+        if seen[key] >= 2:
+            self.facts.setdefault("horse_trap", {})[key] = time.time() + TRAP_DAYS * 86400
+            seen.pop(key, None)
+            self.log(f"pack horse: the forge at {key} shuts the horse in; another forge for {TRAP_DAYS} days")
+            self.ev("packy_trap", forge=key)
+
     def packy_back_for(self, m):
         """Once a walk: back to the horse and call it in (packy_call_in). True when it is at heel again."""
         self.__dict__["_packy_backed"] = True
@@ -359,6 +381,8 @@ class PackAnimalMixin:
                     # walked back to at once, while it is still near where it stopped (it stands still past 16 tiles and never follows again): going on
                     # without it left it for good (2026-10-31: 3-4 losses a horse in 3 h). Once a walk; then the walk goes on and r_packy fetches it later
                     self.ev("packy_behind", dist=m.distance if m is not None else None, at=[self.c.x, self.c.y])
+                    if m is not None:
+                        self.packy_mark_trap(m.x, m.y)
                     back = m is not None and not self.__dict__.get("_packy_backed") and self.packy_back_for(m)
                     self.log(f"pack horse: it did not catch up ({m.distance if m is not None else 'out of'} tiles {'off' if m is not None else 'view'} "
                              f"at {self.c.x},{self.c.y}); {'walked back for it' if back else 'the walk goes on without it (it is walked back for)'}")

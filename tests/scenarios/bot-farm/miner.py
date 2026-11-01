@@ -62,7 +62,7 @@ from stock import PotionStock  # noqa: E402
 from packy import PackAnimalMixin  # noqa: E402
 
 class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase):
-    PERSIST = BotBase.PERSIST + ("packy", "packy_lost_at", "packy_try_at")      # the pack horse outlives a brain restart (packy.py)
+    PERSIST = BotBase.PERSIST + ("packy", "packy_lost_at", "packy_try_at", "horse_trap", "horse_trap_seen")      # the pack horse (and the forges that shut it in) outlive a brain restart (packy.py)
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
     GATHER_ROAMS = True                                   # its work moves to another town when the ground near home is used up (patch_step3_fixes)
     SHED_LAST = ("ingot", "ore")                          # the product: dropped only when nothing else is left (drop_excess)
