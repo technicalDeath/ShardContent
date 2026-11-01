@@ -912,7 +912,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             "skills": dict(sorted(self.skill_values.items(), key=lambda kv: -kv[1])[:6]), "tick": self.tick_no,
             "all_skills": {k: v for k, v in sorted(self.skill_values.items()) if v > 0}, "mode": self.mode,
             "features": sorted(getattr(self, "features", ())),
-            "bank": self.facts.get("bank_balance", 0), "net_worth": self.c.gold + self.facts.get("bank_balance", 0),
+            "bank": self.facts.get("bank_balance", 0), "net_worth": self.net_worth(), "house_worth": self.house_worth(),
             "region": self.region_name(), "home": (self.home() or {}).get("name"),
             **getattr(self, "status_extra", {}), **self.ambition_status(),
         }

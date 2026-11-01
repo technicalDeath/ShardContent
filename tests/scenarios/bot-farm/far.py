@@ -184,6 +184,9 @@ class FarMixin:
                 self.facts.pop("far", None)
                 self.far_arrived(st0)
             return str(self.c.goto(*xy).wait(timeout=timeout))
+        bring = getattr(self, "packy_bring", None)
+        if bring is not None:
+            bring()                                               # a pack horse comes along on a long walk (packy.py)
         key = f"{role}|{xy[0] // 20},{xy[1] // 20}"
         skips = self.facts.setdefault("far_skip", {})
         if skips.get(key, 0) > time.time():

@@ -128,6 +128,38 @@ class PackAnimalMixin:
             self.ev("packy_bought", price=price)
         return True
 
+    def packy_bring(self):
+        """Before a long walk (far.py far_goto): the horse comes along. In view but not at heel: called in. Out of view: walked back for where it was
+        last seen, at most once a FETCH_GAP. A real miner never leaves a loaded horse alone in the hills: BotMineAdvR evaded away from its horse, set
+        off for the bank without it, and the horse was gone with about 369 stones of ore when it came back (2026-11-01)."""
+        if not self.feature("pack_animal") or self.c.ghost or self.__dict__.get("_packy_calling"):
+            return False
+        rec = self.facts.get("packy")
+        if not rec:
+            return False
+        m = self.packy_mobile()
+        if m is not None:
+            return m.distance <= CALL_NEAR or self.packy_call_in(m)
+        now = time.time()
+        xy = rec.get("xy")
+        if (not xy or now - rec.get("seen", 0) >= PACK_LOST_S or now - rec.get("fetch_at", 0) < FETCH_GAP
+                or max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y)) > FETCH_REACH):
+            return False
+        rec["fetch_at"] = now
+        self.__dict__["_packy_calling"] = True
+        try:
+            self.activity = f"fetching the pack horse at {xy[0]},{xy[1]} before a long walk"
+            res = self.travel(xy[0], xy[1], near=6)
+            m = self.packy_mobile()
+            if m is not None:
+                rec["seen"], rec["called"] = time.time(), time.time()
+                self.c.say("all follow me")
+            self.log(f"pack horse: fetched before a long walk at {xy[0]},{xy[1]} ({res}): {'found' if m is not None else 'not there'}")
+            self.ev("packy_fetched", found=m is not None, before="far")
+            return m is not None
+        finally:
+            self.__dict__["_packy_calling"] = False
+
     def packy_load(self):
         """The ore in the miner's own pack onto the horse, while it has room. True when anything went on."""
         if not self.feature("pack_animal"):

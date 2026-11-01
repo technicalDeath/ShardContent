@@ -823,7 +823,7 @@ class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWor
             "weight": [self.c.weight, self.c.max_weight], "ghost": self.c.ghost, "kills": self.kills, "deaths": self.deaths,
             "gains": {k.split(":")[0]: v for k, v in self.stats.get("gains", {}).items()}, "skills": self.stats.get("skill_gains", {}), "tick": self.tick_no,
             "all_skills": {k: v for k, v in sorted(self.stats.get("skill_gains", {}).items()) if v > 0},
-            "bank": self.facts.get("bank_balance", 0), "net_worth": self.c.gold + self.facts.get("bank_balance", 0),
+            "bank": self.facts.get("bank_balance", 0), "net_worth": self.net_worth(), "house_worth": self.house_worth(),
             "region": self.region_name(), "home": (self.home() or {}).get("name"), "features": sorted(self.features), **self.ambition_status(),
         }
         self.write_status_file(s)

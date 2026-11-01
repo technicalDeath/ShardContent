@@ -30,6 +30,25 @@ HARMLESS = ("rat", "cat", "dog", "bird", "chicken", "rabbit", "sheep", "cow", "p
 
 
 class BasicsMixin:
+
+    def house_worth(self):
+        """Gold a bot's house holdings are worth: a small house deed bought (in the pack or the bank) or a house placed from it counts at the shard's
+        small house price (goals.HOUSE_COST, housePricing.smallHouses: the Architect's price, the deed's house value and the Real Estate Broker's
+        buy-back, HouseDeed.ValueAdjust). Owner, 2026-11-01: "Have net worth include house and house deeds"."""
+        try:
+            st = self.house_state() if hasattr(self, "house_state") else None
+        except Exception:
+            st = None
+        if not st:
+            return 0
+        import goals as _goals
+        placed = st.get("phase") in ("lock", "furnish", "done") and st.get("where")
+        return int(_goals.HOUSE_COST) if placed or st.get("deed_serial") else 0
+
+    def net_worth(self):
+        """Carried gold, the bank balance and the house holdings (house_worth)."""
+        return (self.c.gold or 0) + self.facts.get("bank_balance", 0) + self.house_worth()
+
     HARMLESS = HARMLESS
 
     HEAL_POTION_DELAY = 10.0             # BaseHealPotion.Delay: one Heal potion every 10 s
