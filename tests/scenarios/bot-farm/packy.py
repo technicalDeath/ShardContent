@@ -77,6 +77,7 @@ class PackAnimalMixin:
             if (xy and now - rec.get("seen", 0) > FETCH_AFTER and now - rec.get("fetch_at", 0) > FETCH_GAP
                     and max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y)) <= FETCH_REACH):
                 rec["fetch_at"] = now
+                self.packy_mark_trap(xy[0], xy[1])        # left behind beside a forge: a door shut it in (BotMinerBR at 1417,1550, 2026-11-01 16:37)
                 self.activity = f"going back for the pack horse at {xy[0]},{xy[1]}"
                 res = self.travel(xy[0], xy[1], near=6)
                 m = self.packy_mobile()
