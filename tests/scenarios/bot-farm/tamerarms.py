@@ -32,7 +32,7 @@ class TamerArmsMixin:
         return None
 
     def tamer_arrows(self):
-        return sum((i.amount or 1) for i in self.c.backpack if re.search(r"\barrows?\b", (i.name or "").lower()))
+        return sum((i.amount or 1) for i in self.c.backpack if re.fullmatch(r"arrows?", (i.name or "").strip().lower()))      # not "Arrow Fletching" (a tool)
 
     def r_tamer_arms(self):
         if not self.feature("tamer_weapon") or self.c.ghost or self.mobs(10):
@@ -43,12 +43,14 @@ class TamerArmsMixin:
         bow, arrows = self.tamer_bow(), self.tamer_arrows()
         want = {}
         if bow is None:
-            want = {"bow": 1, "arrow": ARROWS_BUY}
+            want = {"=bow": 1, "=arrow": ARROWS_BUY}
         elif arrows < ARROWS_MIN:
-            want = {"arrow": ARROWS_BUY}
+            want = {"=arrow": ARROWS_BUY}
         if not want:
             return False
-        cost = (BOW_PRICE if "bow" in want else 0) + ARROW_PRICE * want["arrow"]
+        # exact names ("=", shop_at): "arrow" alone matched the Bowyer's "Arrow Fletching" (a fletcher's tool) and the tamer bought 20 of those as arrows
+        # (2026-11-01 16:58)
+        cost = (BOW_PRICE if "=bow" in want else 0) + ARROW_PRICE * want["=arrow"]
         funds = (self.c.gold or 0) + self.facts.get("bank_balance", 0)
         if funds < cost + ARMS_RESERVE:
             return False

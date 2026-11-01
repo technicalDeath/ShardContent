@@ -41,7 +41,8 @@ CRAFTS = {
 # where a broke crafter finds vermin for coins: the farms south-west of Britain, inside the town region (the shared memory's cows, chickens and rats)
 # (the vermin ground is Places.earn_spots() now: seeds for a home that has them, else learned cells)
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
-UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2, "leather": 6}    # the shard's vendor prices (CraftedGoodsPricing.MaterialPrices)
+UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2, "leather": 6,    # the shard's vendor prices (CraftedGoodsPricing.MaterialPrices)
+              "cut up leather": 3}       # a leather-mode tailor's leather: a hide at the Furtrader (SBFurtrader Hides 3) cuts into one (Hides.Scissor)
 BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTailor, SBWeaver)
 BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
 BOLT_BATCH = 10           # bolts a trip at most: 500 cloth; a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
@@ -53,6 +54,34 @@ FLOOR_MARGIN = 1.25       # a shop pays at least the materials x 1.25 for a craf
 # BotCarpBR (a 9-board stool sells for 23), and it stood idle (2026-10-30).
 HELD_VALUE = {"board": 2, "log": 1, "iron ingot": 4}     # SBCarpenter 2/1, SBBlacksmith 4
 RES_PRICE = {"Log": 2, "IronIngot": 5, "Cloth": 2, "Leather": 6}          # CraftedGoodsPricing.MaterialPrices by the craft's resource: the shard's floor
+# ---- leather mode: a tailor past the cloth ladder -------------------------------------------------------------------------------------------------------
+# The era's Tailoring menu (T2A TailoringMenu.cs, names as its FormatItemName gives them): targeting cloth offers ERA_CLOTH, targeting leather or hides
+# offers ERA_LEATHER. In craft_data.json (DefTailoring) the cloth pieces top out at 78.9 (robe) and the leather and studded ones teach on to 119 (studded
+# chest), so four tailors at 75-79 stopped gaining and made floppy hats for sale (2026-11-01). A UOR tailor there buys hides, cuts them with scissors and
+# sews leather armour, which both teaches and sells (the Tanner buys it: SBTanner).
+ERA_CLOTH = ("skull cap", "bandana", "floppy hat", "cap", "wide brim hat", "straw hat", "tall straw hat", "wizards hat", "bonnet", "feathered hat", "tricorne hat",
+             "jester hat", "doublet", "shirt", "fancy shirt", "tunic", "surcoat", "plain dress", "short pants", "long pants", "kilt", "skirt", "cloak", "robe",
+             "jester suit", "fancy dress", "body sash", "half apron", "full apron")
+ERA_LEATHER = ("sandals", "shoes", "boots", "thigh boots", "leather chest", "leather gorget", "leather gloves", "leather cap", "leather arms", "leather legs",
+               "studded chest", "studded gorget", "studded gloves", "studded arms", "studded legs", "female leather chest", "female studded chest",
+               "leather bustier arms", "studded bustier arms", "leather shorts", "leather skirt")
+# the menu's name -> the piece's name in the pack and on the Tanner's lists, where they differ (the item id's name: the Tanner's shelf at 1431,1612 in the
+# shared memory, each matched to its SBTanner row by price under crafted-goods pricing, e.g. leather chest 12 leather -> 1.5 x 1.25 x 72 = 135 "leather tunic").
+# "leather tunic" holds a KEEP word, so learn_made would never have learned it and the tunics would never have been carried to the Tanner.
+LEATHER_PACK = {"leather chest": "leather tunic", "leather legs": "leather leggings", "leather arms": "leather sleeves", "studded chest": "studded tunic",
+                "studded legs": "studded leggings", "studded arms": "studded sleeves", "female studded chest": "studded armor",
+                "female leather chest": "female leather armor", "leather bustier arms": "leather bustier", "studded bustier arms": "studded bustier"}
+# the leather-mode overrides, laid over a COPY of CRAFTS[18] (CRAFTS dicts are shared by every tailor and must never change). The pack calls leather
+# "cut up leather" and hides "pile of hides" ("pil of hides" cut short: the farm's logs); hides are material too (CraftItem.m_TypesTable makes Hides count
+# as Leather, and TailoringMenu opens the leather menu on either). Hides: Furtrader 3 gp x40 (SBFurtrader), Leatherworker 4 gp x999 (SBLeatherWorker);
+# the Tanner sells leather itself, "cut leather" 6 gp x20 (SBTanner; its shelf name in the shared memory). The Tanner buys the armour (SBTanner sell list,
+# raised to 1.25 x 6 gold a leather by CraftedGoodsPricing), the Cobbler the footwear (SBCobbler). The sewing kit and scissors stay the Tailor's (SBTailor).
+LEATHER = dict(mat="cut up leather", mat_alt=("hide",), res="Leather", shop_roles=("furtrader", "leatherworker"), tool_roles=("tailor", "weaver"),
+               wanted={"hide": 40}, sell_roles=("tanner", "cobbler"), maxcost=14)    # 14: the dearest piece on the era menu, studded chest (DefTailoring)
+LEATHER_LOW = 28          # restock under two studded chests' worth (14 leather each, DefTailoring)
+LEATHER_BATCH = 40        # leather and hides held after a restock at most: the Furtrader's shelf of 40 hides (SBFurtrader; refilled hourly, GenericBuyInfo.OnRestock)
+LEATHER_SHELF = 6         # the Tanner's leather, the fallback when no hides are left (SBTanner Leather 6)
+TEACH_CHANCE = 0.45       # choose()'s own floor: a piece made at under 45% is not picked to train on
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
 
 
@@ -83,8 +112,17 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         """The material shops by role, nearest first (the shared memory's learned shops are tried before these by r_restock)."""
         return self.find_places(self.cfg["shop_roles"], n=3, per=2) or [self.home_centre()]
 
+    def tool_shop_xy(self):
+        """Where the craft's tool is sold: the material shop, except in leather mode (the Furtrader sells hides, the sewing kit is the Tailor's)."""
+        roles = self.cfg.get("tool_roles")
+        found = self.find_places(roles, n=1, per=1) if roles else []
+        return found[0] if found else self.shop_xys()[0]
+
     def buyer_xy(self):
-        return self.where1(self.cfg["sell_roles"])
+        roles = self.cfg["sell_roles"]
+        if self.leather_on() and not any(self.leather_good(i.name) for i in self.products()):
+            roles = CRAFTS[18]["sell_roles"]               # only pieces from the cloth days left: they go to the Tailor, not the Tanner
+        return self.where1(roles)
 
     def station_xy(self):
         by = self.cfg.get("station_by")
@@ -130,6 +168,177 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.facts["bad_buyers"] = json.load(open(self.bad_buyers_path, encoding="utf-8"))
         except (OSError, ValueError):
             self.facts["bad_buyers"] = {}
+        if self.facts.get("leather_mode") and self.cfg.get("craft") == "Tailoring":
+            self.enter_leather(None)                        # a restarted brain keeps sewing leather (facts leather_mode is in PERSIST)
+
+    # ---- leather mode (a tailor past the cloth ladder) ------------------------------------------------------------------------------
+
+    def leather_on(self):
+        return (getattr(self, "cfg", None) or {}).get("res") == "Leather" and self.cfg.get("craft") == "Tailoring"
+
+    @staticmethod
+    def leather_good(name):
+        """A leather or studded piece (or footwear) of the era menu, by its menu name or its name in the pack."""
+        n = (name or "").strip().lower()
+        return n in ERA_LEATHER or n in LEATHER_PACK.values()
+
+    def teaches(self, names, skill):
+        """The first of these menu items in choose()'s window at this skill (the chance at least TEACH_CHANCE, the skill under the item's max), else None."""
+        for name in names:
+            it = self.items.get(name)
+            if it and it["max"] > skill and self.chance(it, skill) >= TEACH_CHANCE:
+                return name
+        return None
+
+    def leather_check(self):
+        """A tailor switches to leather once no cloth piece of the era menu is in its window and some leather piece is. The whole era list (ERA_CLOTH), not
+        the learned menu: the menu lists only what the pack's cloth allows, so 15 cloth would hide the robe (16 cloth, teaching to 78.9) and switch early."""
+        if self.cfg.get("craft") != "Tailoring" or self.leather_on() or not self.skill:
+            return False
+        if self.teaches(ERA_CLOTH, self.skill):
+            return False
+        lea = self.teaches(ERA_LEATHER, self.skill)
+        if not lea:
+            return False
+        self.enter_leather(f"no cloth piece of the era menu teaches at {self.skill:.1f}; {lea} does")
+        return True
+
+    def enter_leather(self, why):
+        """Leather mode: the material, shops and buyers of LEATHER on a copy of the cfg, the leather menu learned on its own (menu_map_leather.json: the
+        cloth menu's paths start at "Build Hats", the leather menu's at "Build Leather Armor"). why None: a restart taking it over, nothing logged."""
+        self.cfg = dict(self.cfg, **LEATHER)               # a copy: CRAFTS[18] is shared by every tailor and must not change
+        self.menu_map_path = os.path.join(self.dir, "menu_map_leather.json")
+        try:
+            self.menu_map = json.load(open(self.menu_map_path, encoding="utf-8"))
+        except (OSError, ValueError):
+            self.menu_map = {}
+        self.menu_map_backup = {}                          # the cloth menu is no fallback for leather
+        self.__dict__.pop("explored_at", None)
+        self.__dict__.pop("_squashed", None)
+        self.bad_items.clear()
+        self.last_made = None                              # "make last" would sew the last cloth piece again
+        self.facts.pop("menu_empty_until", None)
+        self.facts["stocked_at"] = 0
+        if why is None:
+            return
+        self.facts.pop("soldout_until", None)              # a bare cloth shelf says nothing about hides
+        self.facts["leather_mode"] = {"t": round(time.time()), "skill": round(self.skill, 1)}
+        self.log(f"leather mode: {why}; buying hides and cutting them into leather from now on")
+        self.ev("leather_mode", skill=round(self.skill, 1))
+        self.dlog("choice", what="switch to leather", why=why)
+        self.note("craft", f"A tailor at {self.skill:.0f} gains nothing more from cloth: the era menu's cloth pieces stop teaching at 78.9 and only leather and "
+                           "studded armour teach on; the menu shows the leather pieces only when leather or hides are targeted.", key="leathermode")
+
+    def leather_held(self):
+        return sum((i.amount or 1) for i in self.c.backpack if self.matname("cut up leather", i.name or ""))
+
+    def hides_held(self):
+        return sum((i.amount or 1) for i in self.c.backpack if items.is_hide(i.name))
+
+    SCISSORS_GAP = 600        # s between walks to buy scissors
+
+    def cut_hides(self):
+        """Scissors on every pile of hides: one leather a hide, the whole pile at once (Hides.Scissor, Item.ScissorHelper), 5 stones down to 1 (Hides.cs,
+        Leathers.cs DefaultWeight). No scissors: the Tailor sells them (SBTailor Scissors 11), tried once in SCISSORS_GAP. Returns the leather made, or
+        None with no scissors."""
+        sc = self.c.find("scissors")
+        if sc is None:
+            if time.time() - self.facts.get("scissors_at", 0) < self.SCISSORS_GAP or self.c.gold < 20:
+                return None
+            self.facts["scissors_at"] = time.time()
+            self.activity = "buying scissors"
+            self.shop_at(self.tool_shop_xy(), {"scissors": 1}, budget=min(30, max(0, self.c.gold - 5)))
+            sc = self.c.find("scissors")
+            if sc is None:
+                return None
+        before = self.leather_held()
+        self.activity = "cutting hides into leather"
+        for _ in range(6):
+            pile = next((i for i in self.c.backpack if items.is_hide(i.name)), None)
+            if pile is None:
+                break
+            self.c.events.drain()
+            self.c.use(sc.serial)
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
+                break
+            self.c.target(pile.serial)
+            time.sleep(1.2)
+            for l in self.read_journal():
+                self.note("craft", f"Cutting hides with scissors says: {l[:100]}", key="cuthidemsg")
+        made = self.leather_held() - before
+        if made:
+            self.log(f"cut hides into {made} leather")
+            self.ev("cut_hides", leather=made)
+        return made
+
+    def leather_shops(self, word, roles):
+        """Shops for hides or leather: those seen with it on the shelf, cheapest first (the shared memory), then the gazetteer's by role, nearest first."""
+        shops = []
+        for price, xy, item, qty in self.mem.vendor_selling(word):
+            xy = tuple(int(v) for v in xy.split(","))
+            if price > 0 and xy not in shops:
+                shops.append(xy)
+        for xy in self.find_places(roles, n=3, per=2):
+            if all(max(abs(xy[0] - s[0]), abs(xy[1] - s[1])) > 2 for s in shops):
+                shops.append(tuple(xy))
+        return shops[:3]
+
+    def leather_room(self, per):
+        """Pieces of `per` stones that fit under CRAFT_WEIGHT (the restock_wanted rule)."""
+        return max(0, int((self.c.max_weight * self.CRAFT_WEIGHT - self.c.weight - 5) // per))
+
+    def leather_restock(self):
+        """Leather mode's r_restock: hides from the Furtrader (cut at once, so the next buy fits: a hide 5 stones, its leather 1), up to LEATHER_BATCH
+        leather and hides in all; when no shop has hides, the Tanner's leather. Shelves seen bare are left alone until soldout_until (20 minutes)."""
+        if time.time() < self.facts.get("soldout_until", 0):
+            return False
+        self.facts["stocked_at"] = time.time()
+        self.activity = "buying hides"
+        if self.c.gold < 60 and self.facts.get("bank_balance", 0) >= 60:
+            self.visit_bank("poor", withdraw=400)
+        if self.c.gold < 40:
+            self.note("money", f"The {self.pname} has run out of leather and money at once; there is no way to see the shortfall coming.", key="broke")
+            return False
+        got, opened = {}, False
+        for shop in self.leather_shops("hide", self.cfg["shop_roles"]):
+            for _ in range(3):                                   # buy what fits, cut it, buy again while the shelf and the purse last
+                n = min(LEATHER_BATCH - self.leather_held() - self.hides_held(), self.leather_room(items.unit_weight("hides")))
+                if n <= 0:
+                    break
+                g = self.shop_at(shop, {"hide": self.hides_held() + n}, budget=max(0, self.c.gold - 40))    # shop_at counts the hides carried
+                opened = opened or bool(self.facts.get("shop_list_opened"))
+                if not g:
+                    break
+                for k, v in g.items():
+                    got[k] = got.get(k, 0) + v
+                if not self.cut_hides():
+                    break                                        # no scissors: the hides are sewn as they are (CraftItem.m_TypesTable)
+            if got:
+                break
+        if not got:
+            for shop in self.leather_shops("cut leather", ("tanner",)):
+                n = min(LEATHER_BATCH - self.leather_held() - self.hides_held(), self.leather_room(items.unit_weight("cut up leather")),
+                        max(0, self.c.gold - 40) // LEATHER_SHELF)
+                if n <= 0:
+                    break
+                got = self.shop_at(shop, {"cut leather": n}, budget=max(0, self.c.gold - 40))    # the pack's "cut up leather" is not counted by that key
+                opened = opened or bool(self.facts.get("shop_list_opened"))
+                if got:
+                    break
+        if not got and self.far_pending():
+            return True                                  # a far walk under way, or not worth it: that is no bare shelf
+        if not got:
+            self.facts["soldout_until"] = time.time() + (1200 if opened else 180)
+            self.note("shop", "No shop had hides or leather left for the tailor.", key="soldout:hides")
+        else:
+            self.log(f"restock: bought {got}; {self.leather_held()} leather and {self.hides_held()} hides in the pack")
+        return True
+
+    def restock_need(self):
+        """Material under which r_restock buys more (and bank_material_out's unit)."""
+        if self.leather_on():
+            return LEATHER_LOW
+        return 40 if self.cfg["craft"] != "Tailoring" else 60
 
     # ---- the menu -------------------------------------------------------------------------------------------
 
@@ -309,6 +518,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def sale_price(self, name):
         """The best price a shop has been seen to pay for this item; 0 if every shop that was offered it refused; None if no shop has been asked."""
         names = {name.lower()} | set(self.made_as.get(name, ()))      # the menu's name and the name it has in the pack
+        if name.lower() in LEATHER_PACK:
+            names.add(LEATHER_PACK[name.lower()])                     # known before the first one is made: "leather chest" is a "leather tunic"
         offers = [p for n in names for p, xy, item in self.mem.vendor_buying(n) if item == n]
         if not offers:
             return None
@@ -385,6 +596,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         return (score, name, {"min": 0, "max": 100, "amount": cost, "resource": self.cfg["res"]}, ch)
 
     def choose(self, refused_ok=False, relax=False):
+        if not (refused_ok or relax) and self.leather_check():
+            return None                                   # just switched to leather: the leather menu is learned first (r_craft, next tick)
         demand = self.demand_pick()                      # a piece a fighter wants comes first (market.py)
         if demand:
             return demand
@@ -510,6 +723,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.facts["skills_at"] = time.time()
             self.refresh_skills()
             self.skill = self.skill_values.get(self.cfg["skill"], self.skill)
+            self.leather_check()                          # before r_restock buys cloth a tailor past the cloth ladder no longer needs
 
     def r_flee(self):
         th = self.threats(6)
@@ -530,8 +744,12 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     def menu_names(self):
         """The lower-case names on this crafter's own craft menu: what it makes, whatever words they share with its material (a carpenter's "game board"
-        holds "board", so the KEEP word test took 40 game boards for material: never sold, never banked, BotCarpAR idle with 354/390 stones, 2026-10-30)."""
-        return {k.lower() for k in (getattr(self, "menu_map", None) or {})}
+        holds "board", so the KEEP word test took 40 game boards for material: never sold, never banked, BotCarpAR idle with 354/390 stones, 2026-10-30).
+        In leather mode also the pieces' pack names (LEATHER_PACK): "leather tunic" holds the KEEP word "leather"."""
+        names = {k.lower() for k in (getattr(self, "menu_map", None) or {})}
+        if self.leather_on():
+            names |= set(LEATHER_PACK.values())
+        return names
 
     def is_material(self, n):
         mats = (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ()))
@@ -597,7 +815,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         self.activity = "selling what I made"
         self.empty_products(stock)
         gold0 = self.c.gold
-        buyer = self.buyer_xy()
+        buyer = default_buyer = self.buyer_xy()
         # the shop that pays most for what is in the pack, from what other bots saw; it must buy most of the kinds carried (one pickaxe is not a reason
         # to carry 24 tinker goods to the Miner), and a shop that bought nothing last time is skipped for half an hour
         kinds = {it.name.lower() for it in stock}
@@ -672,7 +890,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             time.sleep(3)
         time.sleep(2)
         gained = self.c.gold - gold0
-        if gained <= 0 and buyer != self.buyer_xy():
+        if gained <= 0 and buyer != default_buyer:
             self.facts["bad_buyers"][f"{buyer[0]},{buyer[1]}"] = time.time() + 3600
             json.dump(self.facts["bad_buyers"], open(self.bad_buyers_path, "w", encoding="utf-8"))
         if gained <= 0:
@@ -701,14 +919,18 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         self.note("craft", f"The {self.cfg['tool']} wore out after about {self.made + self.fails} crafts; the player has to work out where to buy a new one.", key="toolworn")
         if self.c.gold < 40 and self.facts["bank_balance"] >= 40:
             self.visit_bank("poor", withdraw=300)
-        got = self.shop_at(self.shop_xys()[0], {self.cfg.get("tool_buy", self.cfg["tool"]): 1}, budget=max(self.c.gold - 5, 0))
+        got = self.shop_at(self.tool_shop_xy(), {self.cfg.get("tool_buy", self.cfg["tool"]): 1}, budget=max(self.c.gold - 5, 0))
         self.bad_items.clear()
         self.note("shop", f"New tool bought: {got}", key="newtool")
         return True
 
     def r_cut(self):
         """Tailors: cloth is sold in bolts too; scissors turn a bolt into 50 cut cloth. Only a bolt: scissors on cut or folded cloth make bandages,
-        and the craft menu takes folded cloth as it is."""
+        and the craft menu takes folded cloth as it is. In leather mode, hides too: scissors make each one leather (cut_hides)."""
+        if self.leather_on() and self.hides_held() and not self.threats(10):
+            made = self.cut_hides()
+            if made is not None:
+                return True                               # cut (or a walk for scissors) took the tick; no scissors at all: the hides are sewn as they are
         bolts = [i for i in self.c.backpack if i.name.lower() in ("bolt of cloth", "bolts of cloth")]
         if not bolts or self.cfg["craft"] != "Tailoring" or self.threats(10):
             return False
@@ -857,7 +1079,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def bank_material_out(self, box):
         """At a bank visit, the craft's own material in the box comes out (up to three restocks' worth, within half the weight limit), before any is
         bought: BotSmithAR had 244 iron ingots banked and walked to the shops for 5 (2026-11-01). The box's count is kept (facts bank_material) for r_restock."""
-        need = 40 if self.cfg["craft"] != "Tailoring" else 60
+        need = self.restock_need()
         try:
             stacks = [i for i in self.c.container(box, timeout=6) if self.own_material(i)]
         except Exception:
@@ -883,7 +1105,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         return 1 if taken else 0
 
     def r_restock(self):
-        need = 40 if self.cfg["craft"] != "Tailoring" else 60
+        need = self.restock_need()
         if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
             return False
         if self.facts.get("bank_material", 0) > 0 and time.time() - self.facts.get("mat_bank_at", 0) > self.MAT_BANK_GAP                 and self.c.weight < self.c.max_weight * self.PRODUCTS_OUT_SHARE * 0.9:     # room to carry it out, or the walk takes nothing
@@ -891,6 +1113,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.activity = "taking material from the bank"
             self.visit_bank("material")                      # its own banked material before a shop or the hills (bank_material_out)
             return True
+        if self.leather_on():
+            return self.leather_restock()                 # hides from the Furtrader, cut with scissors; the Tanner's leather when none are left
         if self.facts.get("soldout_until", 0) > time.time() and self.can_gather():
             return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look
         if self.trains_on_own_ore():
@@ -1177,7 +1401,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     # ---- a broke crafter (feature "broke_plan", patch_crafter_broke.py) -----------------------------------------------------------------------------
 
-    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "earn_sell_at", "scrap_try_at")
+    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "earn_sell_at", "scrap_try_at",
+                                   "leather_mode", "scissors_at")      # a tailor past the cloth ladder stays on leather after a restart
     TOOL_PRICE_GUESS = 20                                 # a tool whose price no bot has seen on a shelf
     TOOL_RESERVE = 3                                      # gold left over after the tool
     SCRAP_PROTECT = ("gold", "book", "bandage", "potion", "recall", "rune", "bedroll", "kindling", "backpack", "bag", "candle", "scroll", "tongs", "hammer", "tool", "kit", "saw",
@@ -1212,7 +1437,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         self.note("craft", f"The {self.cfg['tool']} wore out after about {self.made + self.fails} crafts; the player has to work out where to buy a new one.", key="toolworn")
         if self.c.gold < price + self.TOOL_RESERVE and self.facts.get("bank_balance", 0) > 0:
             self.visit_bank("tool", withdraw=min(self.facts["bank_balance"], price + self.TOOL_RESERVE - self.c.gold + 10))
-        got = self.shop_at(self.shop_xys()[0], {self.cfg.get("tool_buy", self.cfg["tool"]): 1}, budget=max(self.c.gold - 1, 0))
+        got = self.shop_at(self.tool_shop_xy(), {self.cfg.get("tool_buy", self.cfg["tool"]): 1}, budget=max(self.c.gold - 1, 0))
         self.bad_items.clear()
         self.note("shop", f"New tool bought: {got}", key="newtool")
         if not got:
