@@ -37,6 +37,7 @@ FETCH_GAP = 300                 # s between walks back for it
 # well inside the 16 tiles past which it stands still
 LEAD_GAP = 10
 FOLLOW_RANGE = 16              # tiles: past this a following pet stands still (BaseAI.FollowTarget, RangePerception)
+LOAD_SETTLE = 2.0               # s for the client's weight to settle after the last drop of a load
 LOAD_GAP = 8.0                  # s between loads
 LEAD_SLICE = 3.0
 LEAD_WAIT = 25.0                # s to wait for it to catch up before going on without it (r_packy then walks back for it)
@@ -88,7 +89,9 @@ class PackAnimalMixin:
             self.log(f"pack horse: not seen for {int((now - rec.get('seen', now)) // 60)} min: lost, with about {rec.get('load', 0):.0f} stones of ore")
             self.ev("packy_lost", load=round(rec.get("load", 0)))
             self.facts.pop("packy", None)
-            self.facts["packy_lost_at"] = now
+            # the loss dates from when it was last seen: a horse lost the day before (a record kept over a farm stop) held the next one back a whole
+            # PACK_BUY_GAP after the restart (both miners bought theirs an hour into the run, 2026-11-01)
+            self.facts["packy_lost_at"] = min(now, rec.get("seen", now) + PACK_LOST_S)
         if now - self.facts.get("packy_lost_at", 0) < PACK_BUY_GAP or now - self.facts.get("packy_try_at", 0) < 1800:
             return False
         prices = [p for p, xy, item, qty in self.mem.vendor_selling(PACK_WORD) if p > 0]
@@ -142,18 +145,20 @@ class PackAnimalMixin:
             if m is None or m.distance > PACK_NEAR:
                 return False
         moved, stones = 0, 0.0
+        start = float(self.c.weight)
         for p in sorted(self.ore_piles(), key=lambda i: bool(getattr(i, "hue", 0))):     # iron first: no shop buys coloured metal (bot_common.drop_excess)
-            if rec.get("load", 0) >= PACK_CAP * PACK_FILL:
+            if rec.get("load", 0) + (start - float(self.c.weight)) >= PACK_CAP * PACK_FILL:
                 break
-            before = self.c.weight
             self.c.call(f"drop {p.serial} {m.serial}", timeout=8)
             time.sleep(0.8)
             if not any(i.serial == p.serial for i in self.c.backpack):
-                w = max(0.0, float(before - self.c.weight))
-                rec["load"] = rec.get("load", 0.0) + w
-                stones += w
                 moved += 1
         if moved:
+            # the weight the client shows lags each drop by about a second, so a per-drop difference undercounted (2-7 piles of ore logged as 24-54
+            # stones while a stack of 20 iron ore went on, 2026-11-01): the whole load is measured once the weight has settled
+            time.sleep(LOAD_SETTLE)
+            stones = max(0.0, start - float(self.c.weight))
+            rec["load"] = rec.get("load", 0.0) + stones
             rec["loaded_at"] = time.time()
             self.facts["packy"] = rec
             self.log(f"pack horse: loaded {moved} piles of ore ({stones:.0f} stones; it carries about {rec['load']:.0f})")

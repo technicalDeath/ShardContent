@@ -98,6 +98,8 @@ def _circle_penalty(wr):
     return _CIRCLE_PEN
 
 
+ROUTE_V = "fp1"                  # the route cache version: bumped when the route penalty changes
+
 class FirstTrip(LadderMixin):
     # ---- state: work/botfarm/<bot>/trip.json ------------------------------------------------------------------------------
 
@@ -334,7 +336,14 @@ class FirstTrip(LadderMixin):
     # ---- walkable routes (walkroute.py): see patch_first_trip_walk.py -----------------------------------------------------------------------
 
     def trip_penalty(self):
-        """The route cost: cells where bots died (shared memory) merged with the strong spawners' circles; the memory part is rebuilt every 10 minutes."""
+        """The route cost: the far walks' own (far.py far_penalty: deaths in memory, the strong spawners, this bot's death spots, the undead box,
+        spawners whose kind kills this group, teleporter tiles), so a trip and a long walk judge the ground alike. BotFenceAdvR's Skara Brae trip was
+        routed past a skeletal knight's spawn that far walks go round, and it died there (2026-11-01). Without far.py: deaths and strong spawners."""
+        if hasattr(self, "far_penalty"):
+            try:
+                return self.far_penalty()
+            except Exception as e:
+                self.log(f"first trip: far_penalty failed ({type(e).__name__}: {e}); the trip's own penalty")
         wr = _wr()
         got = getattr(self, "_trip_pen", None)
         if got is None or time.time() - got[0] > 600:
@@ -377,7 +386,7 @@ class FirstTrip(LadderMixin):
             return dict(trip, route="straight")
         st = self.trip_load()
         routes = st.setdefault("routes", {})
-        key = f"{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"
+        key = f"{ROUTE_V}|{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"   # (ROUTE_V: routes planned before far_penalty are not reused)
         r = routes.get(key)
         if r is None:
             r = routes[key] = self.trip_plan(trip)

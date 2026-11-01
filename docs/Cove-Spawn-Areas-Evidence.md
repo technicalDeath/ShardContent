@@ -104,3 +104,31 @@ The map files for clients: `apply_statics_patch.py work/uodata-pristine OUT grea
 - Not deployed:
   - The shard DLL can't be built in the workspace until the new-player tips work gets its engine hook, so the test host ran a DLL built from a scratch copy.
   - This reverses the stock no-houses-in-town rule for this one area, so the README rules need a line when it goes live.
+
+## Map statics rollout plan (2026-11-01, owner: "Plan it first")
+
+**What changes.** Four map files: `statics0.mul`, `staidx0.mul`, `statics0x.mul` and `staidx0x.mul`.
+- They are built from the pristine originals (`work/uodata-pristine`) with three patches:
+  - Greater Britain flavor: 445 pieces, live since 2026-10-19.
+  - Cove flavor: 503 pieces.
+  - The Britain Outskirts roadside clearing: 270 statics removed.
+- `apply_statics_patch.py`: 948 of 948 added, 270 of 270 removed, in both the plain and the x pair.
+- Built copies: `work/map-statics-20261101/statics`. A full client data folder that hard-links every other file: `work/map-statics-20261101/uodata`.
+
+**Who reads them.** The dev server, the farm server (both `dataDirectories` = the workspace `UOData`), the player client (`ClassicUO/bin/dist/settings*.json` `ultimaonlinedirectory` = `UOData`) and every Navrey bot client.
+
+**Real-client check** (character RoadEye, client on the built folder, 2026-11-01): shots in `work/player-client/RoadEye/shots/20261101-*`.
+- East of Cove's wall: rocks, pebbles and a mushroom, drawn as map art.
+- The Outskirts strip at 1356, 1875: the trees and their leaves are gone. Grass, rocks, logs and brambles stay, as on 2026-10-20. The faint grey shapes are the map's own rocks that the trees hid; they are in the 2026-10-19 "before" shot too.
+
+**Rollout, in one window:**
+1. Stop the farm (supervisor, every bot client, the farm server) and the dev server. Nothing may hold `UOData`.
+2. Snapshot the dev and farm saves, and copy the four current `UOData` files to `work/uodata-before-20261101`.
+3. Copy the four built files into `UOData`, and check the hashes.
+4. Start dev, then `[Alpha2bWorldGen audit`, then save and stop. Start the farm and restart its bots.
+5. Players' files: put the four files in `work/client-release/map-patch` with a README of checksums, as on 2026-10-19. Shipping them with the client download is the owner's step.
+6. Add a README rules line: houses can now fit along the cleared Outskirts road.
+
+**Roll back:** stop as in step 1, then copy the four files back from `work/uodata-before-20261101`.
+
+**Not checked:** walking through the cleared strip with the patched server. The server reads the same files after the swap, and stock house placement over the strip was surveyed on 2026-10-20 (441 valid centres against 116).
