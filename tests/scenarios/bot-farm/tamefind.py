@@ -183,9 +183,27 @@ class TameFindMixin:
                 continue                                          # the area danger map: too strong here for this bot
             far = (d + max(abs(s["x"] - home[0]), abs(s["y"] - home[1]))) / 2.0          # from here and from home alike: a stranded tamer heads back in
             score = v * self.spot_evidence(s) * self.spot_risk(s) / (1.0 + far / 150.0)
-            if best is None or score > best[0]:
-                best = (score, s, d, v)
-        return best
+            up = self.spot_upgrade(s, skill)
+            if best is None or (up, score) > (best[4], best[0]):
+                best = (score, s, d, v, up)
+        return best[:4] if best else None
+
+    def spot_upgrade(self, s, skill):
+        """1 when this tamer is poor (pet_hunt, under pethunt.BROKE carried and banked) and the spot holds a kind it can tame (a 15% chance or better, as
+        rank_candidates) that beats its pet by PET_UPGRADE: then a hunting pet comes before skill, as a broke tamer would choose. BotTamerAR, Taming 76,
+        kept a brown bear (414) that only beats rats and mongbats, while grizzly bears (887) were in reach (2026-11-01)."""
+        if not self.feature("pet_hunt"):
+            return 0
+        import pethunt
+        if (self.c.gold or 0) + self.facts.get("bank_balance", 0) >= pethunt.BROKE:
+            return 0
+        pet = self.facts.get("pet")
+        cur = pet["strength"] if pet else 0
+        for k in s["kinds"]:
+            st = pethunt.kind_power(k["key"])
+            if st and st >= self.PET_MIN and st > cur * self.PET_UPGRADE and success_chance(k["min"], skill) >= 0.15:
+                return 1
+        return 0
 
     def tspot_route_ok(self, s, here):
         """The walk from here to the spot passes route_danger (as a gatherer's move of home does). Cached per spot for 30 min; True without map data."""

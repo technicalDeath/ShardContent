@@ -197,6 +197,16 @@ class PackAnimalMixin:
             self.ev("packy_loaded", piles=moved, stones=round(stones))
         return moved > 0
 
+    def packy_why(self, msg):
+        """A failed horse step, logged (at most once a minute per message) and as an event: an unload that returned nothing left 1,450 stones on the
+        horse without a word (BotMinerBR at the forge, 2026-11-01)."""
+        seen = self.__dict__.setdefault("_packy_why", {})
+        if time.time() - seen.get(msg, 0) < 60:
+            return
+        seen[msg] = time.time()
+        self.log(f"pack horse: {msg}")
+        self.ev("packy_fail", why=msg)
+
     def packy_unload(self):
         """At the forge: the next load of ore out of the horse's pack into the miner's own, up to its CLEAR_SHARE of the weight limit. True when any came."""
         if not self.feature("pack_animal"):
@@ -210,6 +220,7 @@ class PackAnimalMixin:
             self.c.goto(m.x, m.y).wait(timeout=15)
             m = self.packy_mobile()
             if m is None or m.distance > PACK_NEAR:
+                self.packy_why("unload: the horse did not come within reach at the forge")
                 return False
         self.c.events.drain()
         self.c.use(m.serial)
@@ -221,13 +232,19 @@ class PackAnimalMixin:
                 mm = re.search(r"Opened (0x[0-9A-Fa-f]+)", e.text)
                 if mm:
                     pack = mm.group(1)
+        if pack is None and rec.get("pack"):
+            pack = rec["pack"]                            # the pack opened before: the client may keep it open, so no new "Opened" line comes
         if pack is None:
+            self.packy_why(f"unload: double-clicking the horse at {m.distance} tiles opened no pack")
             return False
+        rec["pack"] = pack
         try:
             inside = [i for i in self.c.container(pack, timeout=6) if re.search(r"\bore\b", (i.name or "").lower())]
-        except Exception:
+        except Exception as e:
+            self.packy_why(f"unload: the horse's pack {pack} could not be listed ({type(e).__name__}: {e})")
             return False
         if not inside:
+            self.packy_why(f"unload: no ore in the horse's pack {pack} (record said about {rec.get('load', 0):.0f} stones)")
             rec["load"] = 0.0
             return False
         room = self.c.max_weight * self.CLEAR_SHARE - self.c.weight

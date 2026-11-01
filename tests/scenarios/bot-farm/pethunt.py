@@ -130,7 +130,21 @@ class PetHuntMixin:
         return self.hunt_due()
 
     def field_tiers(self):
-        return (1,)
+        # tier 2 too (orcs, ratmen, lizardmen: about 60 gold a kill, the engine's loot tables) once the pet is strong enough: field_spawner below vetoes
+        # any area holding an aggressive kind the pet does not beat. On tier 1 alone a brown bear found rats and mongbats (13 gold) and the tamer
+        # stayed at about 200 gold, too poor for armour (owner, 2026-11-01: "bottamerar has no armor")
+        return (1, 2)
+
+    def field_spawner(self, sp, deadly):
+        import fields
+        v, bad = fields.FieldsMixin.field_spawner(self, sp, deadly)
+        if bad:
+            return v, bad
+        import task_core
+        for k in sp[3]:
+            if task_core.aggressive(k) and not self.pet_beats([k]):
+                return 0.0, True                          # it would go for the tamer, and the pet cannot stop it
+        return v, bad
 
     def worth_kind(self, k, deadly):
         if k in deadly or not self.pet_beats([k]):
