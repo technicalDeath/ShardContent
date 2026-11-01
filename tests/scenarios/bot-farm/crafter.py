@@ -789,8 +789,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         """Names of what appeared in the pack since `before` (a set of serials) that are not material, tools or kit: the crafted item's real name
         (and, with `made`, the menu item it came from)."""
         menu = self.menu_names()
-        new = {i.name.lower() for i in self.c.backpack if i.serial not in before and i.name and not self.is_material(i.name.lower())
-               and (i.name.lower() in menu or not any(w in i.name.lower() for w in self.KEEP))}
+        fresh = [i for i in self.c.backpack if i.serial not in before and i.name and not self.is_material(i.name.lower())
+                 and (i.name.lower() in menu or not any(w in i.name.lower() for w in self.KEEP))]
+        self.__dict__.setdefault("_made_serials", set()).update(i.serial for i in fresh)       # what this bot made (r_sell: refusals count only for these)
+        new = {i.name.lower() for i in fresh}
         if made and new - set(self.made_as.get(made, ())):
             self.made_as[made] = sorted(set(self.made_as.get(made, ())) | new)
             json.dump(self.made_as, open(self.made_as_path, "w", encoding="utf-8"))
@@ -876,7 +878,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 buys[m.group(4).strip().lower()] = int(m.group(2))
             if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0:
                 cart += [m.group(1), m.group(3)]
-        refused = {k for k in kinds if k not in buys}
+        # a refusal counts only for a kind this bot made and carries: a newbied starter dagger is on no vendor's list, and was recorded as "dagger: 0" at
+        # all three Britain smiths, so no smith made daggers again (2026-11-01)
+        made = self.__dict__.get("_made_serials") or set()
+        refused = {k for k in kinds if k not in buys and any(it.serial in made for it in stock if it.name.lower() == k)}
         if refused and not (matched or answered >= 2):
             self.log(f"only {v.name} answered at {buyer} and buys none of it: no refusal recorded for the shop")
             refused = set()

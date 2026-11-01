@@ -58,6 +58,7 @@ from weaponup import WeaponMixin  # noqa: E402
 
 from stock import FighterStock  # noqa: E402
 from livelihood import LivelihoodMixin  # noqa: E402
+from rangerpet import RangerPetMixin  # noqa: E402  (a ranger's tamed companion; feature ranger_pet)
 
 _REACH = {}
 
@@ -97,7 +98,7 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
@@ -1776,6 +1777,11 @@ for _cls in (HunterBot, BardBot):
 for _cls in (HunterBot, BardBot):
     if "r_wedged" not in _cls.RULES:
         _cls.RULES.insert(_cls.RULES.index("r_hunt"), "r_wedged")        # standing still while a staff move is awaited
+
+
+for _name, _before in (("r_ranger_pet", "r_loot"), ("r_ranger_pet_heal", "r_loot"), ("r_ranger_tame", "r_fight")):
+    if _name not in HunterBot.RULES:
+        HunterBot.RULES.insert(HunterBot.RULES.index(_before), _name)      # rangerpet.py: orders (speech only), the pet's bandage, taming one when calm
 
 
 def main():

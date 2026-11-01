@@ -70,7 +70,7 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
     # (r_stock: heal and cure potions, stock.PotionStock. A miner has no Healing and no potions, and after a hit it stood fleeing from rabbits and giant
     # rats at a third of its hit points for minutes, 32% of BotMinerAR's hour idle; r_flee drinks a Heal potion when it has one, 2026-10-31)
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "pickaxe", "hatchet", "shovel", "dagger", "gem", "ruby", "sapphire", "emerald",
-            "diamond", "amber", "citrine", "tourmaline", "star ") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
+            "diamond", "amber", "citrine", "tourmaline", "star ", "tongs", "smith's hammer") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py); tongs: minersmith.py
 
     def __init__(self, name, profession):
         super().__init__(name, profession)
@@ -209,8 +209,18 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
         if self.mkt_hold("iron ingot"):
             self.activity = "keeping ingots for a smith"          # a smith wants them at more than the NPC pays: r_market sells them
             return True
+        made = []
+        if self.feature("miner_smith"):
+            try:
+                import minersmith                         # (here, not at the top: minersmith imports crafter, which imports this module)
+                made = minersmith.smith(self)             # at the anvil beside the forge: ingots into goods when that pays over selling them
+            except Exception as e:
+                self.log(f"miner-smith: {type(e).__name__}: {e}")
         self.activity = "selling ingots"
-        earned = self.sell_items(self.INGOT_BUYER, ("ingot",))
+        buyer = self.INGOT_BUYER
+        earned = self.sell_items(buyer, ("ingot",) + tuple(made))      # the goods go to the same Blacksmith (SBBlacksmith buys shields, weapons, armour)
+        if made:
+            minersmith.after_sale(self, buyer)
         self.note("sell", f"A Blacksmith buys the smelted ingots: {earned} gold for a load ({self.ore()} ore and ingots left).", key="ingotsell")
         if not earned:
             self.note("sell", "Raw ore sells to no NPC (the Miner buys none), and a full pack of ore brings nothing until the miner learns to smelt it at a forge.", key="orenosale")
