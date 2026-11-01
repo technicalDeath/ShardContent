@@ -3,6 +3,9 @@
 3050001	Execute
 # 3050002 is the About entry that item help adds to the menu of an item the player holds (HelpService.HelpEntryNumber).
 3050002	About
+# 3050003 is the label of the shard's action entries in an item's context menu (WorldActions.EntryNumber); the client puts in each entry's real text and its
+# reason from command 0xB2 when it has them, so this shows only if they never came.
+3050003	Action
 # 500621 is the stock "The camp is now secure." (Campfire.cs), shown to each player standing within 7 tiles of a fire when their own 30 seconds are up.
 # The shard adds how to log off safely there: the safe logout is the Bedroll's (first double-click unrolls it, the second asks to log out), and nothing else at a camp skips the normal logout wait.
 500621	The camp is now secure. To log off safely, put your Bedroll down by the fire, double-click it to unroll it, double-click it again and choose Continue.

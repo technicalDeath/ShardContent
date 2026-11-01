@@ -333,6 +333,7 @@
     "monsterSpellWords": true,
     "corpseCarveButton": true,
     "corpseLootExtension": true,
+    "worldActions": false,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,

@@ -86,6 +86,7 @@ public static class ShardBootstrap
         MonsterSpellWords.Configure();
         CorpseCarveButton.Configure();
         CorpseLootExtension.Configure();
+        WorldActions.Configure();
         SilverOnlyWeaponLoot.Configure();
         FurnishersService.Configure();
         StarterWeightBudget.Register(); // after every starter issuer; stays ahead of the Elf observer below

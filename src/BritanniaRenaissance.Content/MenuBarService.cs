@@ -21,6 +21,7 @@ public static class MenuBarService
     public const ushort AutoUse = 1 << 4;
     public const ushort Tooltips = 1 << 5;
     public const ushort AutoPickup = 1 << 6;
+    public const ushort Actions = 1 << 7;
 
     private static bool _configured;
 
@@ -51,6 +52,12 @@ public static class MenuBarService
         if (flags.AutoPickup)
         {
             mask |= AutoPickup;
+        }
+
+        // and the left-click actions menu, which is the client's own menu
+        if (flags.WorldActions)
+        {
+            mask |= Actions;
         }
 
         if (!flags.MenuBar)
