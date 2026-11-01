@@ -9,6 +9,7 @@ work/botfarm/<name>/knowledge.json: the places and the kinds of monster that kil
 from __future__ import annotations
 
 import items  # noqa: E402  (the shared item table)
+from shields import ShieldMixin  # noqa: E402  (a shield for a one-handed fighter, skill plans)
 import argparse
 import json
 import math
@@ -96,8 +97,8 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_bank", "r_facility", "r_hunt",
+class HunterBot(ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
     REST_BELOW = 65
@@ -1610,7 +1611,7 @@ class HunterBot(FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, Fighter
 
 class BardBot(HunterBot):
     """A bard also practises its instrument skills: Peacemaking at its own feet, Discordance and Provocation on monsters when some are near."""
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_music", "r_instrument", "r_lighten", "r_resupply", "r_upgrade", "r_bank", "r_facility",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_music", "r_instrument", "r_lighten", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility",
              "r_hunt", "r_rest", "r_camp", "r_sewer_in", "r_explore"]
 
     def instrument(self):

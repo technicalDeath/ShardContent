@@ -937,8 +937,15 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # below them by core_tick() while core_active() says so. BotBase itself has no core.
     REFLEXES = ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: the shared Refresh rule (basics.py)
 
+    # rules below the reflexes that still run under the decision core: each has its own limits (r_music every 22 s at 60%+ health, r_fletch under 200
+    # arrows, r_wood under 120 arrows and every so often, r_shield once a half-hour); under the core they never ran, so the bards never played and the
+    # archers never fletched (no event in 4 hours, 2026-11-01)
+    CORE_SKILL_RULES = ("r_music", "r_fletch", "r_wood", "r_shield")
+
     def core_lets(self, name):
         """A rule below the reflexes that still runs under the decision core: first_trip's trip_core_lets (the ladder's trips), else none."""
+        if name in self.CORE_SKILL_RULES and hasattr(self, name):
+            return True                                   # skill rules with their own limits: the core had suppressed them (no music, fletching or shield, 2026-11-01)
         f = getattr(self, "trip_core_lets", None)
         try:
             return bool(f and f(name))
@@ -2312,7 +2319,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.__dict__["_bank_why"] = why                     # (basics.bank_products_out: a heavy visit only puts in)
         banks = self.bank_xys()
         self.log(f"bank trip ({why}): gold {self.c.gold}, weight {self.c.weight}/{self.c.max_weight}")
-        res = self.far_front(banks[0], "bank", 90, self.c.gold + (self.facts.get("bank_balance", 0) if withdraw else 0))      # a withdrawal is worth what is banked
+        res = self.far_front(banks[0], "bank", 90, True if withdraw else self.c.gold)      # a withdrawal for a purchase always goes (far.far_worth)
         if res:
             self.far_after(res, "bank")
             return False

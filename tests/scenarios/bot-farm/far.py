@@ -127,6 +127,10 @@ class FarMixin:
         if role == "corpse":
             ok = (value or 0) >= 300 and d <= 800
             return ok, f"{value or 0} gold on the corpse, {d} tiles away"
+        if role == "bank" and value is True:
+            # a withdrawal for a purchase the bot is about to make (visit_bank with withdraw): the purchase is the purpose, and its own rule decided it.
+            # The deposit floor below refused BotTamerAR its own 170 banked gold for a bow, 206 tiles off, all afternoon (2026-11-01)
+            return True, "a withdrawal for a purchase"
         if role == "bank":
             need = max(250, d // 2)                                                # 400 left a saver's purse unbanked (goals)
             heavy = self.c.weight >= 0.8 * self.c.max_weight                       # a full pack is worth the walk too (a heavy fisher idled 15 min)
