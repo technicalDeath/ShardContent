@@ -256,3 +256,17 @@ Cleanup:
 - PoisonT's Animal Taming was set back to 8.9 base.
 
 Not yet exercised live: Feed and Heal with real food and bandages, bandaging another player, and an untamable creature's greyed Tame.
+
+## Pet friend entries explained
+
+The owner asked why a horse offers "Add Friend". It is the stock pet command, the menu form of "<name> friend". A first try renamed the two entries in the client text; the owner said to revert that and give them a tooltip instead.
+
+The stock labels stay. On your own pet's menu, the server now sends a tooltip for each entry with command 0xB2:
+- Add Friend (3006110): "Choose another player who may also tell it to follow, stop and stay, and feed it. It stays yours." For a pack horse or pack llama, "and open its pack" is added.
+- Remove Friend (3006099): "Choose one of its friends to take that back."
+
+These are what a pet friend may do in the stock code: the friend orders (`BaseAI.IsFriendOrder`), feeding (`BaseCreature.CheckFeed`) and a pack animal's pack (`PackAnimal.CheckAccess`). Only the owner rides, releases or transfers the pet.
+
+Before this, the client fork put a 0xB2 tooltip only on a greyed entry. It now puts one on any entry that has one (`PopupMenuGump.cs`). The test is `ThePetFriendEntriesSayWhatAFriendMayDo`.
+
+Real-client check on the farm (shard DLL md5 55A48D0DCA7789FD33F20E5C28ECE61A, client cuo.dll md5 29F3875E51726F2C669CF8EC7D4992A5): `20261101-165526-friend-tip-menu.png` shows the stock labels back. `165535-friend-tip-add.png` and `165547-friend-tip-remove.png` show the two tooltips on hover. The test horse was deleted.

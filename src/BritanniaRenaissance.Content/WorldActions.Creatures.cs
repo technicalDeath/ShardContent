@@ -53,6 +53,20 @@ public static partial class WorldActions
     public const string YoungCannotHeal = "As a young player, you may not heal older players.";
     public const string TooFarToBandage = "Too far away. Stand next to them.";
 
+    /// <summary>The stock pet menu's Add Friend and Remove Friend (BaseAI ContextMenu.cs passes 3006110 and 3006099).</summary>
+    public const int StockAddFriendNumber = 3006110;
+    public const int StockRemoveFriendNumber = 3006099;
+
+    /// <summary>
+    /// What Add Friend and Remove Friend do, as their tooltip (owner, 2026-11-01: "give it a tooltip that explains what it does"): a pet friend may give
+    /// the friend orders (BaseAI.IsFriendOrder: follow, stop, stay), feed it (BaseCreature.CheckFeed) and open a pack animal's pack (PackAnimal.CheckAccess),
+    /// but only the owner rides, releases or transfers it.
+    /// </summary>
+    public static string FriendTooltip(bool add, bool packAnimal) =>
+        add
+            ? $"Choose another player who may also tell it to follow, stop and stay, and feed it{(packAnimal ? " and open its pack" : "")}. It stays yours."
+            : "Choose one of its friends to take that back.";
+
     /// <summary>"You need 35.1 Animal Taming to tame this."</summary>
     public static string NeedTaming(double minimum) => $"You need {minimum:0.0} Animal Taming to tame this.";
 
@@ -104,6 +118,11 @@ public static partial class WorldActions
                 var reason = TameReasonFor(player, creature);
                 list[i].Enabled = reason is null;
                 texts.Add((i, new WorldAction(0, "Tame", reason)));
+            }
+            else if (list[i].Number is StockAddFriendNumber or StockRemoveFriendNumber)
+            {
+                var add = list[i].Number == StockAddFriendNumber;
+                texts.Add((i, new WorldAction(0, add ? "Add Friend" : "Remove Friend", FriendTooltip(add, mobile is PackHorse or PackLlama))));
             }
         }
 

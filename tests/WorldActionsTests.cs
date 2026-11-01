@@ -290,6 +290,21 @@ public class WorldActionsTests
         // BaseCreature.TameEntry passes 6130; the engine keeps numbers below 0x8000 as 3000000 + n, and the menu is searched by that
         Assert.Equal(WorldActions.StockTameNumber, new Server.ContextMenus.ContextMenuEntry(6130).Number);
 
+    [Fact]
+    public void ThePetFriendEntriesSayWhatAFriendMayDo()
+    {
+        // the stock entries pass these numbers as they are (BaseAI ContextMenu.cs), so the menu is searched by them
+        Assert.Equal(WorldActions.StockAddFriendNumber, new Server.ContextMenus.ContextMenuEntry(3006110).Number);
+        Assert.Equal(WorldActions.StockRemoveFriendNumber, new Server.ContextMenus.ContextMenuEntry(3006099).Number);
+
+        Assert.Equal(
+            "Choose another player who may also tell it to follow, stop and stay, and feed it. It stays yours.",
+            WorldActions.FriendTooltip(true, false)
+        );
+        Assert.Contains("and feed it and open its pack.", WorldActions.FriendTooltip(true, true));
+        Assert.Equal("Choose one of its friends to take that back.", WorldActions.FriendTooltip(false, false));
+    }
+
     [Theory]
     [InlineData(false, true, false, false, true, null)]
     [InlineData(true, false, true, true, false, WorldActions.Polymorphed)]
