@@ -69,3 +69,16 @@ Each step is gated (`farm_release.py --check`), run on a canary for 30 minutes, 
 | 5. Tools from Tinkering | Not built. It needs the crafters' Tinkering menu inside the gatherer brain, and the saving is a few gold a pickaxe. |
 | 6. Fletching | **Already built** (`r_fletch`, `r_wood`), now on for all five archers. |
 | Fighters' Hiding, the carpenter's axe, bard provocation for loot | Next. |
+
+## Second pass, 2026-11-01 evening (owner: "faster and more meaningful progress ... using more skills")
+
+Measured first: the plan skills that rose less than 0.3 in four hours while still under 80, by profession. The causes, and what changed:
+
+| Stuck skill | Cause | Change |
+| --- | --- | --- |
+| Parrying (all nine melee fighters) | no shield: Parrying blocks and rises only with one | `shields.py` `r_shield`: a one-handed fighter buys the best shield it can afford with 300 gold to spare (heater 231 gold, armour 23; metal kite 123/16; wooden kite 70/12; buckler 50/7; SBBlacksmith, ArmorBase) and wears it. Two swordsmen bought heaters within ten minutes. |
+| Provocation, Peacemaking (bards); Bowcraft/Fletching, Lumberjacking (archers) | the decision core (`task_core`) runs only the reflex rules, so `r_music`, `r_fletch` and `r_wood` never ran: no event in four hours | `BotBase.CORE_SKILL_RULES`: the core lets these (and `r_shield`) run; each has its own limits |
+| Tailoring at 75-79 (all four tailors) | above 78.9 only leather items teach (`craft_data.json`), and the tailors worked only cloth; at 79.1 they made floppy hats at 100% | leather mode in `crafter.py`: hides from the Furtrader (3 gold) or Leatherworker (4), cut with scissors, leather and studded armour in the window, sold to the Tanner |
+| Archery, Veterinary (tamer) | no bow: its bank walk was refused, and then it bought "Arrow Fletching" for arrows | a withdrawal for a purchase passes the long-walk rule; arrows are bought by exact name |
+| Hiding, Healing (gatherers and crafters) | live since 13:23 and starting from 0 | practising; measured over the next runs |
+| Resisting Spells | rises only when spells hit you | left alone |
