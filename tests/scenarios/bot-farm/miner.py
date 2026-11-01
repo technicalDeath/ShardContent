@@ -137,6 +137,19 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
         cache[key] = (time.time(), ok)
         return ok
 
+    def horse_unsafe(self, t):
+        """A dig spot where a monster that attacks on sight could reach the pack horse: within an aggressive spawner's home range plus task_core.PULL_CLEAR
+        (its creatures notice a mobile that far beyond their range). Both horses were lost in the western hills, at 1190,1435 and 1173,1358, each with
+        700-800 stones of ore, while the miner evaded and the horse fought on (2026-11-01): a miner with a pack animal works quieter ground."""
+        cache = self.__dict__.setdefault("_horse_unsafe", {})
+        key = (t[0], t[1])
+        if key not in cache:
+            import spots as _sp
+            import task_core
+            cache[key] = any(max(abs(o["x"] - t[0]), abs(o["y"] - t[1])) <= max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR
+                             and any(task_core.aggressive(k) for k in o["kinds"]) for o in _sp.spawner_spots())
+        return cache[key]
+
     def roam_spots(self, kind, town, spots):
         """The spots a move to `town` would really give: the ones r_mine digs (within DIG_REACH of the centre, with a place to stand). Vesper had 8
         mountain tiles within 300, none within 200, and the miners moved there and could never dig (2026-10-21)."""
@@ -237,6 +250,9 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
                     and self.cell_deaths(cell_of(t[0], t[1])) < HOME_DEATHS and DIG_REACH < max(abs(t[0] - self.work_centre()[0]), abs(t[1] - self.work_centre()[1])) <= FAR_REACH and self.far_spot_ok(t))
         if self.spot is None or not (ok(self.spot) or ok_far(self.spot)):
             cands = [t for t in self.mountains() if ok(t)] or self.far_cands(ok_far)
+            if self.facts.get("packy"):
+                calm = [t for t in cands if not self.horse_unsafe(t)]
+                cands = calm or cands                     # a loaded horse is kept off monster ground; with no calm spot, the usual choice
             if self.gather_roam("mountains", bool(cands)):
                 return True                               # the hills near home are used up: work moves to another town (patch_gather_roam)
             if not cands:

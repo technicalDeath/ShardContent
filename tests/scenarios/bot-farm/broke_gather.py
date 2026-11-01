@@ -69,6 +69,7 @@ class BrokeMinerBot(EarnMixin, PackAnimalMixin, HunterBot):
             self.__dict__.pop("weapon_state", None)
 
     far_spot_ok = MinerBot.far_spot_ok                    # a bank past miner.DIG_REACH needs a safe walk (the range west of Britain)
+    horse_unsafe = MinerBot.horse_unsafe                  # a horse miner keeps off monster ground (miner.py)
     roam_spots = MinerBot.roam_spots                      # a move counts only the hills it can dig (miner.DIG_REACH, a place to stand)
     stand_near = MinerBot.stand_near
     INGOT_BUYER = MinerBot.INGOT_BUYER

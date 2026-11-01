@@ -236,8 +236,9 @@ class TameFindMixin:
             score, s, d, v = best
             skill = self.skill()
             st = self.facts["tspot"] = {"x": s["x"], "y": s["y"], "home": s["home"], "since": now, "wander": 0, "arrived": 0}
-            self.ev("tame_spot", spot=[s["x"], s["y"]], dist=d, value=round(v, 2), kinds=[k["key"] for k in s["kinds"] if kind_value(k["min"], skill) > 0][:8])
-            self.log(f"tame: going to the animals at {s['x']},{s['y']} ({d} tiles; skill {skill:.1f})")
+            up = self.spot_upgrade(s, skill)
+            self.ev("tame_spot", spot=[s["x"], s["y"]], dist=d, value=round(v, 2), kinds=[k["key"] for k in s["kinds"] if kind_value(k["min"], skill) > 0][:8], upgrade=up)
+            self.log(f"tame: going to the animals at {s['x']},{s['y']} ({d} tiles; skill {skill:.1f}{'; a stronger hunting pet there' if up else ''})")
         x, y = st["x"], st["y"]
         d = max(abs(self.c.x - x), abs(self.c.y - y))
         self.activity = f"looking for animals at {x},{y}"
