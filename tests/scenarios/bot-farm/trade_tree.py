@@ -64,6 +64,8 @@ class Ctx:
 
     def stacks(self):
         b = self.bot
+        if self.d.get("serial"):
+            return [i for i in b.c.backpack if str(i.serial) == str(self.d["serial"])]     # this very piece (a coloured one, colours.py)
         try:
             return b.mkt_stacks(self.item)
         except KeyError:

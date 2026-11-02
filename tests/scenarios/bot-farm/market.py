@@ -300,6 +300,8 @@ class MarketMixin:
             them = next((m for m in self.c.mobiles(within=3) if m.name == other), None)
             if role == "seller" and them:
                 stacks = self.mkt_stacks(item) if item in ITEMS else [i for i in self.c.backpack if i.name.lower() == item]
+                if d.get("serial"):
+                    stacks = [i for i in stacks if str(i.serial) == str(d["serial"])]       # this very piece (a coloured one, colours.py), not any of its name
                 stack = next((i for i in stacks if (i.amount or 1) >= qty), None)
                 if not stack and not st.get("merged") and sum((i.amount or 1) for i in stacks) >= qty:
                     # Enough in all, but split over several stacks (each smelt makes its own pile): a player drops the piles
@@ -425,6 +427,17 @@ class FighterMarket(MarketMixin):
         known = sum(1 for n in names if self.mem.vendor_selling(n))
         self.ev("window_shop", shop=[xy[0], xy[1]], pieces_priced=known, of=len(names))
         return True
+
+    def core_lets(self, name):
+        """Under the decision core a fighter never ran r_market, so a deal it booked was never met (feature colour_craft: coloured armour is bought
+        through the market). r_market runs while a deal for this bot is open."""
+        if name == "r_market" and self.feature("colour_craft"):
+            try:
+                if self.mem.deal_for(self.name):
+                    return True
+            except Exception:
+                pass
+        return super().core_lets(name)
 
     def fighter_want(self):
         """Every ten minutes, with money beyond the reserve: the armour piece next_upgrade would buy is posted as a want at one gold under the shop's price, so a smith that can make it does."""

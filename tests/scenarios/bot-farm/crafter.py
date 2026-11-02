@@ -92,13 +92,14 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 
 
 from market import CrafterDemand, CrafterMarket  # noqa: E402
+from colours import ColourSmith  # noqa: E402  (coloured armour for the fighters; feature colour_craft)
 from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 
 
-class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
+class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_craft", "r_smelt", "r_dig", "r_earn",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_colour", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
     LOOT_GEAR = ()                                        # a crafter hunting vermin for coins does not carry weapons home to sell
@@ -400,6 +401,11 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         """The stack to target: the first material name with a stack big enough for the item being made (self._need), else the largest of any name
         (the first-name rule picked 9 cut cloth over 111 uncut cloth, and every 12-cloth craft failed)."""
         need = getattr(self, "_need", None) or 1
+        hue = self.__dict__.get("_colour_hue")
+        if hue:
+            # a coloured piece (colours.r_colour): the stack of that metal, which the smithing menu then works (BlacksmithMenu: the resource targeted)
+            stacks = [i for i in self.c.backpack if int(getattr(i, "hue", 0) or 0) == hue and "ingot" in (i.name or "").lower() and (i.amount or 1) >= need]
+            return max(stacks, key=lambda i: i.amount or 1) if stacks else None
         biggest = None
         for n in (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ())):
             stacks = [i for i in self.c.backpack if self.matname(n, i.name) and self.plain(i)]
@@ -876,7 +882,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def products(self):
         strikes = self.facts.setdefault("unsold", {})
         now = time.time()
-        keep = self.working_tools()
+        keep = self.working_tools() | self.colour_kept()             # coloured pieces on offer to the fighters (colours.py) are not NPC goods
         return [i for i in self.c.backpack if self.is_product(i.name) and str(i.serial) not in keep
                 and not (strikes.get(str(i.serial), [0, 0])[0] >= 2 and now - strikes[str(i.serial)][1] < 21600 and strikes[str(i.serial)][1] >= UNSOLD_VALID_FROM)]
 

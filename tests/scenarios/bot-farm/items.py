@@ -53,6 +53,32 @@ def is_feather(name):
     return "feather" in (name or "").lower()
 
 
+# coloured materials and what they add to a piece of armour. The hue tells them apart (the client names a coloured ingot "iron ingot" and spined leather
+# "cut up leather"): CraftResources hues (ResourceInfo.cs, the pre-AOS leather table); the skill to work them (DefBlacksmithy / DefTailoring AddSubRes);
+# the armour rating each piece made of them gains (BaseArmor.ArmorRating, Core.UOR: "Colored armor does not give a bonus until UOR+").
+# hue: (name, craft skill, skill needed, armour bonus)
+COLOURS = {
+    0x973: ("dull copper", "Blacksmithy", 65.0, 2), 0x966: ("shadow iron", "Blacksmithy", 70.0, 4), 0x96D: ("copper", "Blacksmithy", 75.0, 6),
+    0x972: ("bronze", "Blacksmithy", 80.0, 8), 0x8A5: ("gold", "Blacksmithy", 85.0, 10), 0x979: ("agapite", "Blacksmithy", 90.0, 12),
+    0x89F: ("verite", "Blacksmithy", 95.0, 14), 0x8AB: ("valorite", "Blacksmithy", 99.0, 16),
+    0x283: ("spined", "Tailoring", 65.0, 10), 0x227: ("horned", "Tailoring", 80.0, 13), 0x1C1: ("barbed", "Tailoring", 99.0, 16),
+}
+
+
+def colour(item):
+    """(name, craft skill, skill needed, armour bonus) of a coloured material or a piece made of one, by its hue; None for anything else."""
+    try:
+        return COLOURS.get(int(getattr(item, "hue", 0) or 0))
+    except (TypeError, ValueError):
+        return None
+
+
+def colour_bonus(item):
+    """The armour rating a piece gains from its material (BaseArmor.ArmorRating under UOR), 0 for an uncoloured one."""
+    c = colour(item)
+    return c[3] if c else 0
+
+
 def no_buyer(item):
     """Leather or hides with a hue: spined, horned or barbed (CraftResources: spined 0x283 = 643), which the client names like the plain ones. No vendor
     on this shard buys them (SBTanner buys Leather, SBFurtrader and SBLeatherWorker Hides, the plain types only), so they are carried for nothing:

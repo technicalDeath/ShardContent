@@ -59,6 +59,7 @@ from weaponup import WeaponMixin  # noqa: E402
 from stock import FighterStock  # noqa: E402
 from livelihood import LivelihoodMixin  # noqa: E402
 from rangerpet import RangerPetMixin  # noqa: E402  (a ranger's tamed companion; feature ranger_pet)
+from colours import ColourBuyer  # noqa: E402  (coloured armour from the smiths; feature colour_craft)
 
 _REACH = {}
 
@@ -98,7 +99,7 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
@@ -1059,7 +1060,7 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
         if not it:
             return 0, None
         n = it.name.lower()
-        return next((ar for w, ar in self.WORN_AR if w in n), 10), it
+        return next((ar for w, ar in self.WORN_AR if w in n), 10) + items.colour_bonus(it), it        # + the coloured metal's or leather's armour (items.COLOURS)
 
     def next_upgrade(self, money):
         """The best armour buy now: the most armour (weighted by how much of the body the slot covers) per gold, among the pieces this bot is
@@ -1080,7 +1081,8 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
                 score = (ar - cur) * self.SLOT_SHARE[layer] / max(price, 1)
                 if best is None or score > best[0]:
                     best = (score, layer, name, price, xy, cur, ar)
-        return best
+        pick = getattr(self, "colour_pick", None)            # a coloured piece a smith offers, when it gives more armour per gold (colours.py); the miners
+        return pick(best, money) if pick else best          # borrow next_upgrade without ColourBuyer
 
     def r_upgrade(self):
         """G2: once every ten minutes, with gold beyond the reserve (pack and bank), buy the best armour upgrade and wear it."""
@@ -1096,6 +1098,8 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
         if not best:
             return False
         _, layer, name, price, xy, cur, ar = best
+        if getattr(self, "colour_book", None) and self.colour_book(name):
+            return True                                    # a coloured piece from a smith: the deal is booked, r_market meets the seller
         self.activity = f"buying a {name}"
         self.dlog("choice", what=f"upgrade {layer}: {name}", why=f"{price} gold for armour {cur} -> {ar}; money {money + self.UPGRADE_RESERVE}")
         offer = self.mem.best_offer(name, below=price, not_from=self.name)
@@ -1154,6 +1158,8 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
 
     def wear_bought(self, name):
         """Put on a piece bought from a player, in place of what that layer had."""
+        if getattr(self, "colour_wear", None) and self.colour_wear():
+            return                                          # a coloured piece, by its serial (colours.py)
         new = next((i for i in self.c.backpack if i.name.lower() == name), None)
         layer = next((l for l, opts in self.ARMOR_BUY.items() if any(o[0] == name for o in opts)), None)
         if new and not layer and self.facts.get("weapon_pending", {}).get("name") == name:
