@@ -132,6 +132,12 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             if retake:
                 out.append((t["min"], -m.distance, m, t))
                 continue
+            kept = self.facts.get("pet")
+            if kept and m.serial != kept.get("serial") and norm(m.name) == norm(kept.get("name") or ""):
+                why[norm(m.name) + ": same name as the pet"] = why.get(norm(m.name) + ": same name as the pet", 0) + 1
+                continue                      # speech names pets by their name: a second brown bear tamed beside the kept one is let go with "release"
+                                              # for both (after_tame), and the pet goes with it: BotTamerAR lost its brown bear (strength 414) so at
+                                              # 22:37 and hunted nothing for an hour (2026-11-01)
             if t["min"] > sk + 1 or t["min"] < sk - 46:
                 why[norm(m.name) + ": skill window"] = why.get(norm(m.name) + ": skill window", 0) + 1
                 continue                      # unreachable, or so easy that taming it cannot teach anything
@@ -384,9 +390,9 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             return False
         self.facts["released_at"] = time.time()
         why = f"{f} of {mx} follower slots in use, {need} needed for {m.name}"
-        self.log(f"tame: {why}: releasing them all")
-        self.release("all", count=max(1, f))
-        self.facts.pop("pet", None)
+        pet = self.facts.get("pet")
+        self.log(f"tame: {why}: releasing them all" + (f" but {pet['name']}, the kept pet" if pet else ""))
+        self.release("all", count=max(1, f), keep=(pet or {}).get("name"))
         time.sleep(1.5)
         try:
             after = int(self.c.state.get("followers") or 0)
@@ -433,6 +439,12 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             return False
         return max(abs(cur.x - self.c.x), abs(cur.y - self.c.y)) <= self.TAME_RANGE
 
+    def lost_pets_hold_slots(self):
+        """Pets left out of earshot hold follower slots until they go feral (FERAL_AFTER). Then the last slot is better spent on a pet that hunts than on
+        training tames let go at once: with four slots held so, BotTamerAR let every new pet go as "a training tame" and killed nothing for an hour (2026-11-01)."""
+        now = time.time()
+        return any(now - p.get("t", 0) < FERAL_AFTER for p in (self.facts.get("lost_pets") or [])) or now < self.facts.get("release_gave_up_until", 0)
+
     def slot_to_spare(self, counted=False):
         """True when a pet can be kept and a slot still stays free for taming. counted: the animal just tamed is in the count already."""
         try:
@@ -456,7 +468,7 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
 
     CONFIRM_WAIT = 5.0         # s to wait for the release confirm windows
 
-    def release(self, name, count=1):
+    def release(self, name, count=1, keep=None):
         """Release a pet by speech, "<name> release". The server answers with a window asking to confirm (ConfirmReleaseGump): Okay is button 2.
         There is no "all release": release (keyword 0x16D) is only heard named (BaseAI/OnSpeech.cs, WasNamed: the speech starts with the pet's
         name), so "all" names each of this tamer's pets in earshot. The window is a Singleton (ConfirmReleaseGump.Singleton): a second pet's window
@@ -464,7 +476,8 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         A player answers one window and then names the next pet: one pet a turn, as many turns as pets."""
         self.c.events.drain()
         if name == "all":
-            turns = [m.name for m in self.c.mobiles(within=self.SPARE_REACH) if (getattr(m, "_d", None) or {}).get("isPet") and m.name]
+            turns = [m.name for m in self.c.mobiles(within=self.SPARE_REACH) if (getattr(m, "_d", None) or {}).get("isPet") and m.name
+                     and not (keep and m.name.lower() == keep.lower())]              # keep: the kept pet's name, not named (free_slots_for)
             turns = sorted(turns)[:max(count, len(turns))]
         else:
             turns = [name] * max(1, count)
@@ -539,7 +552,7 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         pet = self.facts.get("pet")
         strength = self.pet_strength(m.name)
         keep = strength >= self.PET_MIN and (pet is None or strength > pet["strength"] * self.PET_UPGRADE)
-        if keep and pet is None and not self.slot_to_spare(counted=True):
+        if keep and pet is None and not self.slot_to_spare(counted=True) and not self.lost_pets_hold_slots():
             keep = False                                  # a first pet kept in the last slot leaves none to tame with: it goes, as a training tame
         if keep:
             if pet and pet["name"].lower() != m.name.lower():

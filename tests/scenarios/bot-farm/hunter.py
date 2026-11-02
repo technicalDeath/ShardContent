@@ -1737,9 +1737,12 @@ class BardBot(HunterBot):
                  and getattr(o, "notoriety", "") not in ("Innocent", "Ally")]
         if not other:
             return False
-        res = self.play("provocation", [m.serial, other[0].serial])
-        self.log(f"music (provoking at the fight's start): {m.name} onto {other[0].name}: {str(res)[-90:]}")
-        self.ev("provoke", target=m.name, onto=other[0].name)
+        import provoke
+        sk = self.skill_values
+        a, b, d, gains = provoke.best_pair([m], other, float(sk.get("Provocation", 0) or 0), float(sk.get("Musicianship", 0) or 0))
+        res = self.play("provocation", [a.serial, b.serial])
+        self.log(f"music (provoking at the fight's start): {a.name} onto {b.name} (difficulty {d:.0f}{', can gain' if gains else ''}): {str(res)[-90:]}")
+        self.ev("provoke", target=a.name, onto=b.name, diff=round(d, 1), gains=gains)
         return True
 
     def r_music(self):
@@ -1758,8 +1761,14 @@ class BardBot(HunterBot):
         other = [m for m in self.mobs(rng) if hostile and m.serial != hostile[0].serial and not (m.name or "").startswith("Bot")
                  and getattr(m, "notoriety", "") not in ("Innocent", "Ally")]
         if hostile and other:
+            # the pair whose difficulty lets Provocation gain, the surer first (provoke.best_pair: Provocation.cs, BaseInstrument.GetBaseDifficulty)
+            import provoke
+            others = [m for m in self.mobs(rng) if not (m.name or "").startswith("Bot") and getattr(m, "notoriety", "") not in ("Innocent", "Ally")]
+            sk = self.skill_values
+            a, b, d, gains = provoke.best_pair(hostile, others, float(sk.get("Provocation", 0) or 0), float(sk.get("Musicianship", 0) or 0)) or (hostile[0], other[0], 0.0, False)
             self.activity = "provoking"
-            res = self.play("provocation", [hostile[0].serial, other[0].serial])
+            self.ev("provoke", target=a.name, onto=b.name, diff=round(d, 1), gains=gains)
+            res = self.play("provocation", [a.serial, b.serial])
             self.note("music", f"Provocation on two monsters says: {res[-120:]}", key="provmsg")
         elif hostile:
             return False                                  # one creature and nothing to set it on: the bow does the work

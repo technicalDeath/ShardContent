@@ -83,6 +83,8 @@ class PetHuntMixin:
             return False
         pet = self.hunt_pet()
         mins = BROKE_MINS if self.hunt_worth() < BROKE else HUNT_MINS
+        if time.time() < self.facts.get("release_gave_up_until", 0):
+            mins = CYCLE // 60                            # no slot to tame with until the pets left out of earshot go feral: the pet hunts all hour
         phase = (time.time() + zlib.crc32(str(getattr(self, "name", "")).encode())) % CYCLE
         due = bool(pet) and phase < mins * 60
         if due != bool(self.facts.get("hunting")):
