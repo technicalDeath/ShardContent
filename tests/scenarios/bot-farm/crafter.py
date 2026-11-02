@@ -751,19 +751,38 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return self.fight_back(th[0])
         return True
 
-    IDLE_TOWN = 40            # tiles from the nearest bank beyond which an idle crafter walks back to wait (BotTailorBR waited on a house site at 1347,1433 by
-                              # undead ground: a zombie and then a spectre found it there five times in five minutes, 2026-11-01)
+    IDLE_CLEAR = 32           # as housegoal.HOUSE_CLEAR: a creature at its home's edge sees a bot standing about (perception 16) and chases it as far again; the
+                              # zombie that found BotTailorBR at 1347,1433 came from a spawner 42 tiles off (home 24)
 
     def idle_to_town(self):
-        """Nothing to do and away from town: wait by the bank, where the guards are, not where the last errand ended."""
+        """Nothing to do on monster ground (an attack-on-sight spawner's home range plus IDLE_CLEAR reaches the spot): wait by the bank, where the guards
+        are. Anywhere quieter it waits where it is: a carpenter by the woods chops again there when its chop rest ends (BotCarpAdvR, walked to the bank by the
+        first version of this rule, found no tree there and stood 7 minutes; and inside Britain, 94 tiles from a bank, the walk ran 21 times a minute, 2026-11-01)."""
+        now = time.time()
+        if now < self.__dict__.get("_idle_town_at", 0):
+            return False
+        self.__dict__["_idle_town_at"] = now + 120
+        try:
+            import gazetteer as gz
+            if gz.in_town(self.c.x, self.c.y):
+                return False
+        except Exception:
+            pass
+        try:
+            import spots as _sp
+            import task_core
+            hostile = any(max(abs(o["x"] - self.c.x), abs(o["y"] - self.c.y)) <= max(int(o.get("home") or 10), 1) + self.IDLE_CLEAR
+                          and any(task_core.aggressive(k) for k in o["kinds"]) for o in _sp.spawner_spots())
+        except Exception:
+            hostile = False
+        if not hostile:
+            return False
         try:
             bx, by = min(self.bank_xys(), key=lambda b: max(abs(self.c.x - b[0]), abs(self.c.y - b[1])))
         except Exception:
             return False
-        if max(abs(self.c.x - bx), abs(self.c.y - by)) <= self.IDLE_TOWN:
-            return False
         self.activity = "going back to town to wait"
-        self.log(f"idle at {self.c.x},{self.c.y}, {max(abs(self.c.x - bx), abs(self.c.y - by))} tiles from the bank: waiting in town")
+        self.log(f"idle at {self.c.x},{self.c.y} on monster ground, {max(abs(self.c.x - bx), abs(self.c.y - by))} tiles from the bank: waiting in town")
         self.goto_near(bx, by, 6).wait(timeout=90)
         return True
 
@@ -1009,9 +1028,42 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.facts["chop_fail"] = time.time() + 600
             return bool(self.c.gold >= 30)
         got = self.chop_trees(hat)
+        if not got and got is not None and self.walk_to_wood():
+            return True                                   # the trees by it are cut: on to the next wood, and chop there on the next tick
         if not got:
             self.facts["chop_fail"] = time.time() + 600
         return bool(got)
+
+    WOOD_REACH = 300          # tiles a carpenter walks for wood when the trees within near_trees' 60 are spent
+
+    def walk_to_wood(self):
+        """The nearest tree no bot found bare lately, 60 to WOOD_REACH tiles off and off monster ground (IDLE_CLEAR): walk there, as a woodcutter goes on to the next
+        stand. BotCarpAdvR, Lumberjacking 100, found no workable tree near the bank and stood 7 minutes (2026-11-01 20:29-20:36)."""
+        here = (self.c.x, self.c.y)
+        try:
+            import spots as _sp
+            import task_core
+            hostile = [o for o in _sp.spawner_spots() if any(task_core.aggressive(k) for k in o["kinds"])]
+        except Exception:
+            hostile = []
+        for t in sorted(self.all_trees(), key=lambda t: max(abs(t[0] - here[0]), abs(t[1] - here[1]))):
+            d = max(abs(t[0] - here[0]), abs(t[1] - here[1]))
+            if d <= 60:
+                continue
+            if d > self.WOOD_REACH:
+                break
+            if self.facts.get(("tree", t[0], t[1]), 0) > time.time() or not self.mem.usable("tree", f"{t[0]},{t[1]}"):
+                continue
+            if any(max(abs(o["x"] - t[0]), abs(o["y"] - t[1])) <= max(int(o.get("home") or 10), 1) + self.IDLE_CLEAR for o in hostile):
+                continue
+            self.activity = f"walking to the wood at {t[0]},{t[1]}"
+            self.log(f"no workable tree within 60 tiles: walking {d} tiles to the wood at {t[0]},{t[1]}")
+            if hasattr(self, "far_goto"):
+                self.far_goto((t[0], t[1]), "travel", timeout=90)
+            else:
+                self.goto_near(t[0], t[1], 2).wait(timeout=90)
+            return True
+        return False
 
     def empty_products(self, stock):
         """Take what is inside a crafted crate, box or chest out of it (a lockable one holds its key): a vendor buys only an empty container."""
