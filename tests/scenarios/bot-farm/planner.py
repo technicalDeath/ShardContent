@@ -95,8 +95,10 @@ class PlannerMixin:
     def plan_current(self):
         now = time.time()
         for name, key in self.CHOICES.items():
-            if key and now < self.facts.get(key, 0):
-                return name
+            if key and now < self.facts.get(key, 0) and self.plan_feasible(name):
+                return name                               # (a window for what cannot be done now is passed over: a gather window opened while BotTinkBR's
+                                                          # digging still counted, then can_gather turned false on its coloured ingots, and it neither dug
+                                                          # nor crafted, 2026-11-02 04:07-04:15)
         return self.DEFAULT_CHOICE
 
     def plan_feasible(self, name):
