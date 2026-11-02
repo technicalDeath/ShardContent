@@ -1668,7 +1668,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
 
     # ---- a broke crafter (feature "broke_plan", patch_crafter_broke.py) -----------------------------------------------------------------------------
 
-    PERSIST = HunterBot.PERSIST + ("retool_block_until", "retool_soldout_until", "earn_sell_at", "scrap_try_at",
+    PERSIST = HunterBot.PERSIST + ("colour_made", "retool_block_until", "retool_soldout_until", "earn_sell_at", "scrap_try_at",
                                    "leather_mode", "scissors_at")      # a tailor past the cloth ladder stays on leather after a restart
     TOOL_PRICE_GUESS = 20                                 # a tool whose price no bot has seen on a shelf
     TOOL_RESERVE = 3                                      # gold left over after the tool

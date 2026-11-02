@@ -971,7 +971,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.save_facts()
 
     # facts a new brain takes over from the last one (a restart used to drop the held ground, the camp and which gear was looted)
-    PERSIST = ("death_spot_t", "shop_sold", "shop_fail", "ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
+    PERSIST = ("colour_buy", "death_spot_t", "shop_sold", "shop_fail", "ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
                "sell_skip_until", "soldout_until", "stocked_at", "bank_balance", "banked_at", "fletch_wait", "wood_wait", "shop_at", "chop_fail",
                "emptied", "home", "camp_step", "home_region", "birth_town", "unsafe_homes", "rehome_walk", "field", "fields_rested", "roam_rested", "unsafe_count", "stand_fails", "owned_serials", "lost_pets", "fists", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "deals", "deals_over", "task", "core_goal", "core_bans", "rung", "rung_kills", "arrow_use", "tamer_arms_at", "shield_at", "kit_short_until", "ammo_bad_shop")
     PERSIST_SETS = ("gear_looted", "emptied")

@@ -142,6 +142,20 @@ class ColourSmith:
         held = {str(i.serial) for i in self.c.backpack}
         for s in [s for s in made if s not in held]:
             made.pop(s, None)
+        # a coloured armour piece in the pack with no record (a brain from before the record was kept across restarts): adopted, so it is offered and
+        # not sold to an NPC at the iron price. Pack names: the menu's own (made_as) or the shop name the client also uses ("plate helm")
+        names = {shop: menu for menu, (layer, shop) in PIECES.items()}
+        for menu, packs in (getattr(self, "made_as", None) or {}).items():
+            if menu in PIECES:
+                for pn in packs:
+                    names[pn] = menu
+        for i in self.c.backpack:
+            c = items.colour(i)
+            menu = names.get((i.name or "").lower())
+            if c and c[1] == "Blacksmithy" and menu and str(i.serial) not in made:
+                layer, shop_name = PIECES[menu]
+                made[str(i.serial)] = {"menu": menu, "hue": int(i.hue), "metal": c[0], "bonus": c[3], "shop_name": shop_name, "layer": layer,
+                                       "name": (i.name or "").lower(), "t": time.time()}
         return made
 
     def colour_kept(self):
