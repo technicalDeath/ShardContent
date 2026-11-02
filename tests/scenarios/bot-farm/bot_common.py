@@ -2377,6 +2377,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         kept_tools = set()
         moved = 0
         own = getattr(self, "own_material", None)
+        try:
+            kept_colour = self.colour_kept() if hasattr(self, "colour_kept") else set()     # a smith's coloured pieces on offer (colours.py) stay with it
+        except Exception:
+            kept_colour = set()
 
         def order(i):
             mine = bool(own and own(i))
@@ -2385,7 +2389,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if self.c.weight <= self.c.max_weight * share:
                 break
             low = (it.name or "").lower()
-            if not low or any(w in low for w in self.OVERLOAD_ESSENTIAL):
+            if not low or any(w in low for w in self.OVERLOAD_ESSENTIAL) or str(it.serial) in kept_colour:
                 continue
             tool = next((w for w in self.OVERLOAD_TOOLS if w in low), None)
             if tool and tool not in kept_tools:

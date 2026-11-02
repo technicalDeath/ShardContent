@@ -254,9 +254,12 @@ class ColourSmith:
 
     def r_colour(self):
         """Make one coloured armour piece (the best metal and piece colour_choice names), and offer what is held."""
-        if not self.colour_on() or self.threats(10) or self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+        if not self.colour_on():
             return False
-        self.colour_offer()
+        self.colour_offer()                               # before the checks: offers last OFFER_FRESH, and a smith heavy most of the time (375/450 at 16:38) let them
+                                                          # lapse while the fighters chose their next task (2026-11-02)
+        if self.threats(10) or self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
+            return False
         if time.time() - self.facts.get("colour_try_at", 0) < 60:
             return False
         ch = self.colour_choice()
