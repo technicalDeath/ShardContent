@@ -81,6 +81,7 @@ def dense_path(wps):
     return out + [tuple(wps[-1])] if wps else out
 
 
+ENDS_FREE = 25          # tiles at each end of a trip's path left out of trip_threat: a destination (Britain's moongate at 1336,1997 beside Haunted Wood) is gone to anyway
 AVOID_TRIES = 4          # re-plans of a trip round the cells route_danger flags before the trip is refused
 AVOID_FACTOR = 50.0      # the cost a flagged cell's tiles get in that re-plan: high enough that any way round wins
 
@@ -111,7 +112,7 @@ def _circle_penalty(wr):
     return _CIRCLE_PEN
 
 
-ROUTE_V = "fp2"                  # the route cache version: bumped when the route penalty changes (fp2, 2026-11-02: re-planned round route_danger's cells, trip_avoid)
+ROUTE_V = "fp3"                  # the route cache version: bumped when the route penalty changes (fp2, 2026-11-02: re-planned round route_danger's cells, trip_avoid)
 
 class FirstTrip(LadderMixin):
     # ---- state: work/botfarm/<bot>/trip.json ------------------------------------------------------------------------------
@@ -395,21 +396,44 @@ class FirstTrip(LadderMixin):
         return {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
                 "secs": round(time.time() - t0, 2), "t": round(time.time())}
 
+    def trip_threat(self, path):
+        """(why, x, y, radius) of the first thing on the path a trip must not pass, else None: route_danger's cell (where bots died), or the reach of a
+        losing spawner (spots.deadly_spawners: its home range + the creatures' notice range, task_core.PULL_CLEAR, as spots.way_clear judges a tour's way).
+        route_danger knows only deaths: the Skara Brae route planned round them still passed the bone magi spawner at 1298,1962, and BotArchAdvR died
+        there again (2026-11-02 03:30)."""
+        import re as _re
+        if path:
+            (sx, sy), (ex, ey) = path[0], path[-1]
+            path = [p for p in path if max(abs(p[0] - sx), abs(p[1] - sy)) > ENDS_FREE and max(abs(p[0] - ex), abs(p[1] - ey)) > ENDS_FREE]
+        try:
+            bad = self.route_danger({"path": path})
+        except Exception:
+            bad = ""
+        m = _re.search(r"crosses (-?\d+),(-?\d+)", bad or "")
+        if m:
+            return bad, int(m.group(1)) + 20, int(m.group(2)) + 20, 40
+        try:
+            import spots
+            import task_core
+            losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR, k) for o, k in spots.deadly_spawners(self)]
+        except Exception:
+            losing = []
+        for x, y in path[::4]:
+            for ox, oy, r, k in losing:
+                if abs(ox - x) <= r and abs(oy - y) <= r:
+                    return f"passes the {k} spawner at {ox},{oy}", ox, oy, r
+        return None
+
     def trip_avoid(self, wr, wps, trip, pen, new, route):
         """Walk round what route_danger flags, as a player goes round a lair: re-plan the whole trip with the flagged cells' tiles at AVOID_FACTOR, up to
         AVOID_TRIES times. Returns (waypoints, route); the last plan when it never comes clear (trip_route_dangerous then refuses it)."""
-        import re as _re
         circles = []
         for _ in range(AVOID_TRIES):
-            try:
-                bad = self.route_danger({"path": dense_path([tuple(p) for p in new])})
-            except Exception:
+            th = self.trip_threat(dense_path([tuple(p) for p in new]))
+            if not th:
                 return new, route
-            m = _re.search(r"crosses (-?\d+),(-?\d+)", bad or "")
-            if not m:
-                return new, route
-            cx, cy = int(m.group(1)) + 20, int(m.group(2)) + 20          # the 40-tile cell's centre
-            circles.append((cx, cy, 40, AVOID_FACTOR))
+            _, cx, cy, rad = th
+            circles.append((cx, cy, rad + 5, AVOID_FACTOR))
             try:
                 p2 = wr.penalty_merge(pen, wr.penalty_circles(circles)) if pen else wr.penalty_circles(circles)
                 pts = [wps[0]] + ([tuple(trip["exit"])] if trip.get("exit") else []) + [wps[-1]]
@@ -465,10 +489,8 @@ class FirstTrip(LadderMixin):
         if mem is None:
             return False
         wps = [tuple(int(v) for v in p[:2]) for p in trip.get("wps") or []]
-        try:
-            bad = self.route_danger({"path": dense_path(wps)}) if len(wps) >= 2 else ""
-        except Exception:
-            bad = ""
+        th = self.trip_threat(dense_path(wps)) if len(wps) >= 2 else None
+        bad = th[0] if th else ""
         if bad:
             seen = self.__dict__.setdefault("_trip_bad_logged", {})
             if time.time() - seen.get(trip.get("dest"), 0) > 1800:
