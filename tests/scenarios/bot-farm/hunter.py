@@ -912,6 +912,10 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
         try:
             import danger
             import task_core
+            c = danger.stats().get(k) or {}
+            if not c or c.get("casts") or c.get("breath"):
+                return False                              # spells and breath are not what armour absorbs (the prior's exchange is a melee one): two gazers and a
+                                                          # gargoyle killed BotHealAdvR 452 tiles out (2026-10-29), and the prior calls a gazer 1.1% at Swordsmanship 99
             return danger.acceptable(task_core.kind_risk(self, k, 3), "prey")
         except Exception:
             return False

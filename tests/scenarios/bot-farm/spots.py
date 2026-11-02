@@ -468,6 +468,9 @@ def deadly_spawners(bot):
         # data; the Watcher, 2026-10-29: one kind over a cut-off used to close every spot in its range, which closed nearly all tier-1 ground to the archers)
         nets = [(measured.net(bot, k), k) for k in o["kinds"]]
         heavy = [k for n, k in nets if n is None and (any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k))]
+        prior_ok = getattr(bot, "prior_ok", None)
+        if heavy and callable(prior_ok):
+            heavy = [k for k in heavy if not prior_ok(k)]              # feature prior_worth: a heavy kind the danger prior accepts at tier 3 is not a losing spawner
         if heavy:
             out.append((o, heavy[0]))                             # an unmeasured kind of the hunter's HEAVY_CAMP list: a gazer, a gargoyle, an ettin (BotHealAdvR died to two gazers
             continue                                              # and a gargoyle 452 tiles out with REACH 480, 2026-10-29: no fights on record, so the sum below skipped them)

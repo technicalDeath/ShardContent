@@ -125,6 +125,19 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             roles = CRAFTS[18]["sell_roles"]               # only pieces from the cloth days left: they go to the Tailor, not the Tanner
         return self.where1(roles)
 
+    def at_station(self, st):
+        """An anvil and a forge each within 2 tiles (DefBlacksmithy.CheckAnvilAndForge, range 2), by the gazetteer; without it, on the station tile or
+        beside it. "Within 2 of the station" (the midpoint between them) let BotSmithAR stand at 1344,1777, 3 tiles from the anvil at 1346,1774: every
+        craft "nomenu", once a minute for an hour (2026-11-02)."""
+        x, y = self.c.x, self.c.y
+        try:
+            import gazetteer as gz
+            def near(kind):
+                return any(max(abs(p["x"] - x), abs(p["y"] - y)) <= 2 for p in gz.near(kind, x, y, n=3, same_side=True))
+            return near("anvil") and near("forge")
+        except Exception:
+            return abs(x - st[0]) <= 1 and abs(y - st[1]) <= 1
+
     def station_xy(self):
         by = self.cfg.get("station_by")
         return self.station_near(by) if by else None
@@ -1440,13 +1453,13 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return self.skip_why("r_craft", f"nothing makeable and challenging at skill {self.skill:.1f} (menu {len(self.menu_map)} items, bad {sorted(self.bad_items)[:6]})")
         _, name, it, ch = pick
         st = self.station_xy()
-        if st and (abs(self.c.x - st[0]) > 2 or abs(self.c.y - st[1]) > 2):
+        if st and not self.at_station(st):
             self.activity = "walking to the forge"
             if max(abs(self.c.x - st[0]), abs(self.c.y - st[1])) > 100 and hasattr(self, "far_goto"):
                 self.far_goto(st, "forge", timeout=90)    # a far smithy is a far walk (one plain walk ended short and the smith crafted where it stood)
             else:
                 self.c.gotoexact(*st).wait(timeout=100)
-            if abs(self.c.x - st[0]) > 2 or abs(self.c.y - st[1]) > 2:
+            if not self.at_station(st):
                 # not at the anvil yet: no craft here (the menu opens only beside the anvil and forge). BotSmithAdvR smelted at a far forge and tried 39 items
                 # in 2.5 minutes, each "nomenu", striking every one off (2026-11-01 20:46-20:48)
                 return self.skip_why("r_craft", f"not at the forge yet ({self.c.x},{self.c.y}, forge {st[0]},{st[1]})")
