@@ -17,7 +17,7 @@ from bot_common import BotBase
 from hunter import SPOTS, HunterBot
 from memory import cell_of, choose_spot
 from uo import Event
-from tamefind import TameFindMixin
+from tamefind import TAME_RES, TameFindMixin
 from fields import FieldsMixin
 from pethunt import PetHuntMixin                         # the pet kills, the tamer loots (feature pet_hunt)
 from tamerarms import TamerArmsMixin                     # the tamer shoots beside its pet (feature tamer_weapon)
@@ -134,7 +134,7 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
                 continue
             if not self.reachable(m):
                 continue
-            seen = self.mem.res_stats("tame", norm(m.name))
+            seen = self.mem.res_stats(TAME_RES, norm(m.name))
             if seen and seen["fail"] >= 4 and seen["ok"] == 0:
                 continue
             taught = self.mem.res_stats("tamegain", norm(m.name))
@@ -175,7 +175,7 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             if not self.reachable(m):
                 why[norm(m.name) + ": unreachable"] = why.get(norm(m.name) + ": unreachable", 0) + 1
                 continue
-            seen = self.mem.res_stats("tame", norm(m.name))
+            seen = self.mem.res_stats(TAME_RES, norm(m.name))
             if seen and seen["fail"] >= 6 and seen["ok"] == 0:
                 why[norm(m.name) + ": never tamed by bots"] = why.get(norm(m.name) + ": never tamed by bots", 0) + 1
                 continue                      # bots have tried this kind many times and never tamed one: not worth the time
@@ -193,6 +193,18 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         if self.hp_pct() >= 65 or self.mobs(3) or not self.c.find("bandage"):
             return False
         return self.bandage_self()
+
+    def tame_rolled(self, result, t):
+        """True when the engine rolled this tame: accepted, "You fail to tame the creature." or "too angry" (AnimalTaming.cs), at a skill at or above the
+        kind's MinTameSkill (below it the engine refuses before any roll, line 206). Only these go to the shared TAME_RES verdict: six great hart
+        tries at 58.1-58.5 (min 59.1), all with no answer read, barred the kind as "never tamed by bots" from BotTamerAR at 79.5, where the engine
+        gives it (79.5 - 59.1 + 0.1) / 50 = 41% and gains to 109 (2026-11-02)."""
+        if not re.search(r"accept you|fail to tame|too angry", result or "", re.I):
+            return False
+        try:
+            return self.skill() >= float((t or {}).get("min", 0) or 0)
+        except Exception:
+            return False
 
     def r_tame(self):
         if self.hp_pct() < 55 or self.hunt_due():
@@ -271,8 +283,9 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             self.after_tame(m)
             return True
         gained = any(re.search(r"skill in animal taming has increased", l, re.I) for l in list(self.journal)[-12:])
-        self.mem.record("res", kind="tamegain", key=norm(m.name), ok=gained)
-        self.mem.record("res", kind="tame", key=norm(m.name), ok=bool(re.search(r"accept you", result, re.I)), reason=result[:60])
+        if self.tame_rolled(result, t):
+            self.mem.record("res", kind="tamegain", key=norm(m.name), ok=gained)      # a refused try teaches nothing and says nothing of the kind
+            self.mem.record("res", kind=TAME_RES, key=norm(m.name), ok=bool(re.search(r"accept you", result, re.I)), reason=result[:60])
         if re.search(r"accept you", result, re.I):
             self.work += 1
             self.tamed += 1

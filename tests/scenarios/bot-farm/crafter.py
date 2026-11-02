@@ -645,10 +645,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             price = price if short else None
             seen = self.mem.craft_stats(self.cfg["craft"], name)
             if seen and seen["n"] >= 8:
-                # what bots of this craft have actually got out of it: skill gains per unit of material (the formula only knows the window)
-                ch = max(0.05, seen["ok"] / seen["n"])
-                if ch < 0.3 and it["min"] > self.skill - 15:
-                    continue
+                # what bots of this craft have actually got out of it: skill gains per unit of material, to rank the items. The success chance stays the
+                # engine's own for this skill ((skill - min) / (max - min) over the item's window, CraftItem): the shared record mixes every skill, and its
+                # 20% over 1,279 robe tries, mostly by tailors below 60, dropped the robe for BotTailAdvR at 66.8 (52%), the only cloth piece still
+                # teaching there, so it sewed floppy hats and skull caps that teach nothing (2026-11-02)
                 key = (round((seen["gain"] / seen["n"]) / it["amount"], 4), it["min"])
             else:
                 key = (0.15 / it["amount"] if seen is None or seen["n"] < 8 else 0, it["min"])          # untried items get a fair chance
@@ -1250,6 +1250,9 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         The gap is for a restock that came back short; bare shelves have their own soldout_until. With the gap after every restock BotFairTailorVR sewed
         for 10 s and stood 3 minutes, the cloth tailors 40 s and 3 minutes: tailors 59-82% of the hour in r_wander (2026-11-02 04:40-05:40)."""
         held = self.leather_held() if self.leather_on() else self.count(self.cfg["mat"])
+        if self.cfg.get("craft") == "Tailoring" and not self.leather_on():
+            # bolts bought are cut by r_cut after this: 50 cloth each (BoltOfCloth.Scissor, ScissorHelper(from, new Cloth(), 50))
+            held += 50 * sum((i.amount or 1) for i in self.c.backpack if (i.name or "").lower() in ("bolt of cloth", "bolts of cloth"))
         if held >= self.restock_need():
             self.facts["stocked_at"] = time.time() - self.RESTOCK_GAP
             return True

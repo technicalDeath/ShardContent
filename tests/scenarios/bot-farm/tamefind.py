@@ -33,6 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 _SPOTS = None
 _CS = None
 GAIN_TOP = 49.9
+TAME_RES = "tame_rolled"   # the shared tame verdict, rolled tries only (tamer.tame_rolled); the old "tame" key also held tries the engine refused below MinTameSkill
 # The watcher, 2026-10-18: 25 spot visits ended "no worthwhile animal" against 6 tames in three hours. The spots hold 1-3 of each kind,
 # the fighters hunt the same hinds and boars, and most spawners refill in 5-10 minutes; 4 looks (about 2 min) then a 30-minute block for
 # every tamer kept the tamers walking between empty spots. A tamer now stays one respawn cycle and an empty spot is skipped for one cycle.
@@ -115,7 +116,7 @@ class TameFindMixin:
         w = 0.35 + 0.65 * math.exp(-(((p - TARGET_P) / 0.3) ** 2))
         s = self.kind_strength(k["key"])
         w *= 2.0 if s >= 90 else (0.3 if s < 40 else 1.0)
-        seen = self.mem.res_stats("tame", k["key"])
+        seen = self.mem.res_stats(TAME_RES, k["key"])               # rolled tries only (tamer.tame_rolled)
         if seen and seen["fail"] >= 6 and seen["ok"] == 0:
             return 0.0
         return w
