@@ -186,7 +186,15 @@ class WindowOpen(Step):
             if not pile:
                 return c.fail(self.name, f"seller has no pile of {c.qty} {c.item} at the meeting")
             if them and time.time() - c.st.get("dropped_at", 0) >= DROP_EVERY:
+                if c.st.get("drops", 0) and them.distance > 1:
+                    # the last drop opened no window: step up beside the buyer first. The server refuses a drop on a player more than 2 tiles off
+                    # with no message (Item.DropToMobile: InRange 2, CanSee, InLOS), and the clients' view of two tiles apart can be three on the
+                    # server: BotSmithAR's bronze helm bounced back off BotSwordBR 32 times in 6 minutes and both sides timed out (2026-11-02 18:44-18:50)
+                    sx = them.x + (b.c.x > them.x) - (b.c.x < them.x)
+                    sy = them.y + (b.c.y > them.y) - (b.c.y < them.y)
+                    b.c.gotoexact(sx, sy).wait(timeout=WALK_TIMEOUT)
                 c.st["dropped_at"] = time.time()
+                c.st["drops"] = c.st.get("drops", 0) + 1
                 b.c.drop(pile.serial, them.serial, c.qty)
                 time.sleep(2)
         else:
