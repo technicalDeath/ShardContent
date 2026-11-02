@@ -2519,7 +2519,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             have[it.name.lower()] = have.get(it.name.lower(), 0) + (it.amount or 1)
         cart, spent, bought, got = [], 0, {}, {}
         gold = self.c.gold if budget is None else min(budget, self.c.gold)
-        for line in stock:
+
+        def _price(line):
+            mm = re.search(r"\s(\d+)gp\s", line)
+            return int(mm.group(1)) if mm else 1 << 30
+        # the cheapest line first, as a player buys: a vendor resells what players sold it (ModernUO BaseVendor's buy pack) at a higher price beside its
+        # own stock, and the list order put the Tanner's resale leather first: BotTailAdvR paid 9-21 a piece (990 gold for 105) against 6 on the
+        # shelf (2026-11-02 10:07-10:14)
+        for line in sorted(stock, key=_price):
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
             if not m:
                 continue

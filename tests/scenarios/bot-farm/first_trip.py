@@ -197,10 +197,20 @@ class FirstTrip(LadderMixin):
             return None
         return next((t for t in self.trips_for_home(home) if t["dest"].lower() == want), None)
 
+    def trip_busy(self):
+        """Something near that stops a trip from starting: under trip_run only what can hurt it (basics.threats: an attack-on-sight kind or anything in war
+        mode), as a player sets out with deer and bears about; otherwise any mobile within 10. With any mobile, 16 restarted ladder fighters started no
+        trip and logged no refusal in 30 minutes (hunting, and Britain's bears in town), 2026-11-02 09:52-10:21."""
+        try:
+            return bool(self.threats(10)) if self.trip_run_on() else bool(self.mobs(10))
+        except Exception:
+            return True
+
     def trip_pick(self, home=None):
         """(trip, forced) for a bot that may go now, else (None, False)."""
         home = home or self.trip_home_region()
-        if not home or self.c.ghost or self.hp_pct() < 90 or self.mobs(10) or self.c.weight >= self.c.max_weight * 0.7:
+        busy = self.trip_busy()
+        if not home or self.c.ghost or self.hp_pct() < 90 or busy or self.c.weight >= self.c.max_weight * 0.7:
             return None, False
         t = self.trip_forced(home)
         if t:
