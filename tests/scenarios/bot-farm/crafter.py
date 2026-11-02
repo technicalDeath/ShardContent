@@ -311,8 +311,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return False
         self.facts["stocked_at"] = time.time()
         self.activity = "buying hides"
-        if self.c.gold < 60 and self.facts.get("bank_balance", 0) >= 60:
-            self.visit_bank("poor", withdraw=400)
+        if self.c.gold < self.purse_floor() and self.facts.get("bank_balance", 0) >= self.purse_floor():
+            self.visit_bank("poor", withdraw=self.purse_fill())
         if self.c.gold < 40:
             self.note("money", f"The {self.pname} has run out of leather and money at once; there is no way to see the shortfall coming.", key="broke")
             return False
@@ -1246,6 +1246,26 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     RESTOCK_GAP = 200         # s after a restock before the next one
 
+    def purse_floor(self):
+        """Gold a restock needs carried: the 40 the shop walk keeps back, plus restock_need of material at the shop price (UNIT_PRICE, the shard's
+        vendor prices): cloth 160, leather 124, ingots 240. At a flat 60 BotTailAdvR carried 63 with 13,630 banked, bought 31 cloth, made one robe and
+        went back to skull caps (2026-11-02 06:24)."""
+        mat = "cut up leather" if self.leather_on() else self.cfg["mat"]
+        return 40 + self.restock_need() * UNIT_PRICE.get(mat, 3)
+
+    def purse_fill(self):
+        """What a bank visit for the purse takes out: five restocks' worth (at least the old 400), so the next restocks need no bank walk each."""
+        return max(400, 5 * self.purse_floor())
+
+    def too_heavy_to_restock(self):
+        """The weight room under CRAFT_WEIGHT cannot bring the material up to restock_need: the shop walk would buy nothing ("owns 52 of 52": BotTailorBR
+        walked to three cloth shops in two minutes, 2026-11-02 06:24-06:26). The products go to the buyer first."""
+        mw = items.MAT_WEIGHT.get(self.cfg["mat"])
+        if not mw or self.leather_on() or not self.products():
+            return False
+        room = max(0.0, (self.c.max_weight * self.CRAFT_WEIGHT - self.c.weight - 5) / mw)
+        return self.count(self.cfg["mat"]) + room < self.restock_need()
+
     def restock_filled(self):
         """A restock that left restock_need or more material in the pack lifts RESTOCK_GAP, so the next one follows as soon as that is sewn or forged.
         The gap is for a restock that came back short; bare shelves have their own soldout_until. With the gap after every restock BotFairTailorVR sewed
@@ -1274,6 +1294,11 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.activity = "taking material from the bank"
             self.visit_bank("material")                      # its own banked material before a shop or the hills (bank_material_out)
             return True
+        if self.too_heavy_to_restock():
+            self.facts["sold_at"] = 0
+            self.facts["stocked_at"] = time.time()
+            self.skip_why("r_restock", "no room for a restock's material under the craft weight: selling what it made first")
+            return False
         if self.leather_on():
             return self.leather_restock()                 # hides from the Furtrader, cut with scissors; the Tanner's leather when none are left
         if self.facts.get("soldout_until", 0) > time.time() and self.can_gather():
@@ -1282,8 +1307,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return False                                  # training: on its own ore, not on bought ingots (r_dig runs)
         self.facts["stocked_at"] = time.time()
         self.activity = "buying material"
-        if self.c.gold < 60 and self.facts["bank_balance"] >= 60:
-            self.visit_bank("poor", withdraw=400)
+        if self.c.gold < self.purse_floor() and self.facts["bank_balance"] >= self.purse_floor():
+            self.visit_bank("poor", withdraw=self.purse_fill())
         if self.c.gold < 40:
             self.note("money", f"The {self.pname} has run out of material and money at once; there is no way to see the shortfall coming.", key="broke")
             return False
