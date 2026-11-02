@@ -92,6 +92,7 @@ def name_match(word, item):
 
 class SharedMemory:
     area = None                    # the area danger map (area_danger.AreaDanger, feature danger_map), attached by the brain
+    market_mem = None              # share_market: the memory whose market this one trades in
 
     def __init__(self, prof: str, bot: str, root: str | None = None):
         # MEMDIR is read now, not when Python defined this function: the simulator points memory.MEMDIR at its own folder, and a default bound at import
@@ -110,8 +111,18 @@ class SharedMemory:
 
     # ---- writing ----------------------------------------------------------------------------------------------
 
+    def share_market(self, other: "SharedMemory"):
+        """Trade in other's market: offers, wants and deals are written to and read from its world file, all else stays here. Newbie bots learn
+        apart, but every player sees every player's wares: the newbie fighters BotSwordBR and BotFencerBR saw none of BotSmithAR's coloured plate
+        (veteran) for three hours, and raised no upgrade (2026-11-02)."""
+        self.market_mem = other
+        other.refresh(force=True)
+        self.state["world"]["market"] = other.state["world"]["market"]
+
     def record(self, k: str, /, scope: str = "world", **data):
-        ev = {"t": round(time.time(), 1), "bot": self.bot, "prof": self.prof, "k": k, **data}
+        if k == "mkt" and self.market_mem is not None and scope == "world":
+            return self.market_mem.record(k, **data)
+        ev ={"t": round(time.time(), 1), "bot": self.bot, "prof": self.prof, "k": k, **data}
         line = (json.dumps(ev, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
         fd = os.open(self.paths[scope], os.O_APPEND | os.O_WRONLY | os.O_CREAT)
         try:
@@ -150,9 +161,15 @@ class SharedMemory:
             self.offset[scope] += end + 1
             for line in chunk[: end + 1].splitlines():
                 try:
-                    self._fold(scope, json.loads(line))
+                    ev = json.loads(line)
+                    if self.market_mem is not None and scope == "world" and ev.get("k") == "mkt":
+                        continue                          # this folder's own old market: the shared one is read below
+                    self._fold(scope, ev)
                 except (ValueError, KeyError):
                     pass
+        if self.market_mem is not None:
+            self.market_mem.refresh(force=force, every=every)
+            self.state["world"]["market"] = self.market_mem.state["world"]["market"]
 
     @staticmethod
     def _decay_cell(c: dict, t: float):

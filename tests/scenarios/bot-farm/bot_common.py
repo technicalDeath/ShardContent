@@ -270,6 +270,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.mode = os.environ.get("BOT_MODE", "veteran")
         self.mem = SharedMemory(self.pname, name, root=MEMDIR + ("-newbie" if self.mode == "newbie" else ""))
         self.mem.news = SharedMemory(self.pname, name, root=MEMDIR + ("" if self.mode == "newbie" else "-newbie"))    # fresh deaths: news for all
+        if self.mode == "newbie" and self.feature("one_market"):
+            self.mem.share_market(self.mem.news)          # one economy: a newbie trades with veterans, and learns apart (memory.share_market)
         # the area danger map (feature danger_map): off while a trip or a far walk runs, which have their own route penalty
         self.mem.area = area_danger.AreaDanger(
             self.mem, skill_fn=lambda: area_danger.combat_skill(getattr(self, "skill_values", {})),

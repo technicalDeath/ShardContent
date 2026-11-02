@@ -261,6 +261,14 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         result = ""
         while time.time() < deadline:
             time.sleep(1.5)
+            if self.hp_pct() < 55:
+                # the engine's taming timer checks range, not the tamer's wounds (AnimalTaming.cs): hit while it stood, BotTamerAR went from 59% to
+                # 28% on a grizzly and from 59% to 13% on a snake, both times with lizardmen beside it, and died (2026-11-02). Below the floor this
+                # rule starts at, it stops waiting and the flight rules run.
+                self.log(f"tame: hurt to {self.hp_pct():.0f}% while taming {m.name}: stopping")
+                self.ev("tame_hurt", m=m.name, hp=round(self.hp_pct()))
+                result = "stopped: hurt"
+                break
             lines = self.read_journal()
             for l in lines:
                 if re.search(r"accept you as|even challenging|master|tame|fail|too far|cannot|must wait|already|stable|follower|control", l, re.I):

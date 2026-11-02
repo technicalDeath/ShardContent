@@ -229,6 +229,10 @@ class TameFindMixin:
         st = self.facts.get("tspot")
         if st and now - st["since"] > 1500:
             st = None                                            # a spot is worked for at most 25 minutes at a time
+        if st and self.near_death_spot(st["x"], st["y"], 100):
+            st = None                                            # pick_tspot's own rule, for a spot chosen before the death: BotTamerAR, killed by
+                                                                 # lizardmen at 1436,1907, walked back to its spot at 1459,1963 and died there again
+                                                                 # 13 minutes later (2026-11-02)
         if not st or self.tspot_blocked(f"{st['x']},{st['y']}"):
             best = self.pick_tspot()
             if not best:
