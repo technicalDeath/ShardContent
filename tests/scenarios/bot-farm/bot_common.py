@@ -379,8 +379,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         return out
 
     def box_items(self, box):
+        """A trade box's items, named without the hue tail (basics.box_contents): the client lists a hued piece as 'plate helm (hue 0x0972
+        "Metals #17")', so the settle counts found 0 of the bronze plate helm BotSmithAR had put in and the first coloured trade failed (2026-11-02 18:20)."""
         try:
-            return self.c.container(box, timeout=6)
+            return self.box_contents(box, timeout=6)
         except Exception:
             return []
 
@@ -2432,8 +2434,15 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.note("bank", "The bank box opens when the player says 'bank' near a banker; gold goes in by dragging it onto the box, and comes out by saying 'withdraw <amount>'.", key="howbank")
         self.c.open_backpack()
         deed = self.house_state().get("deed_serial") if hasattr(self, "house_state") else None     # a house deed is named just "deed": KEEP cannot hold it (SorcAR banked a 16,000-gold one, 2026-10-30)
+        try:
+            on_offer = self.colour_kept() if hasattr(self, "colour_kept") else set()
+        except Exception:
+            on_offer = set()                                    # a smith's coloured pieces on offer stay in the pack, as in bank_overload_pass: BotSmithAR banked
+                                                                # the bronze plate helm BotFencerBR had booked, and the deal failed "seller holds 0" (2026-11-02 18:26)
         for it in list(self.c.backpack):
             low = it.name.lower()
+            if str(it.serial) in on_offer:
+                continue
             if (any(w in low for w in self.KEEP) and not any(w in low for w in extra)) or low == "backpack" or "bandage" in low or it.serial == deed:
                 continue
             self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)   # without an amount Navrey moves one of a stack
