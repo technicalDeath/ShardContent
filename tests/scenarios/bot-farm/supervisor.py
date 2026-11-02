@@ -117,6 +117,25 @@ def client_pid(name):
         return 0
 
 
+CLIENT_STALE = 180      # s without a fresh state file (updatedAtMs) from a live client: its writer has stopped (the client writes it many times a second)
+CLIENT_SETTLE = 240     # s after the client's launch before the check applies (login and character load)
+
+
+def client_stale(name):
+    """A live client whose cuostate.json has not been refreshed for CLIENT_STALE s, CLIENT_SETTLE s or more after its launch."""
+    d = os.path.join(farm_launch.SESSIONS, name)
+    try:
+        launched = os.path.getmtime(os.path.join(d, "session.json"))
+    except OSError:
+        return False
+    if time.time() - launched < CLIENT_SETTLE:
+        return False
+    s = farm_launch.read_state(os.path.join(d, "cuostate.json"))
+    if not s or not s.get("updatedAtMs"):
+        return False                                    # mid-write or not in the world yet: no verdict
+    return time.time() - s["updatedAtMs"] / 1000.0 > CLIENT_STALE
+
+
 def status_of(name):
     try:
         return json.load(open(os.path.join(FARM, name, "status.json"), encoding="utf-8"))
@@ -218,6 +237,15 @@ def main():
             if not farm_launch.is_client(client_pid(name), name, table):
                 log(f"{name}: client is gone; restarting it")
                 pending[name] = pool.submit(farm_launch.start, name, prof, b.get("create"), client=b.get("client"))
+                restarts[name] = restarts.get(name, 0) + 1
+                continue
+            if client_stale(name):
+                # the client lives but its state file stopped: the brain reads a frozen world (BotWarAdvR stood "at" the bank for 10 minutes, its client log
+                # showing it 10 tiles away, 2026-11-02 08:35-08:45). Both go; the next pass starts the client again ("client is gone") and then the brain
+                log(f"{name}: client {client_pid(name)} has written no state for {CLIENT_STALE}+ s; stopping it and its brain")
+                for pid, ok in ((brain_pid(name), farm_launch.is_brain(brain_pid(name), name, table)), (client_pid(name), farm_launch.is_client(client_pid(name), name, table))):
+                    if ok and pid:
+                        subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True)
                 restarts[name] = restarts.get(name, 0) + 1
                 continue
             bp = brain_pid(name)
