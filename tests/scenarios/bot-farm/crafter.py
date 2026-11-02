@@ -850,11 +850,32 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         # made before the names were learned: "chair" is the tail of the menu's "wooden chair" (never a kit word: the starter bag stays)
         return not any(w in n for w in self.KEEP) and any(it.endswith(" " + n) for it in self.items)
 
+    def working_tools(self):
+        """Serials of the tools this crafter works with, one of each, never sold as products: its craft tool, and a shovel or pickaxe when it digs its
+        own ore. A tinker makes shovels and tinker's tools, so is_product called them goods: BotTinkAR bought a shovel for 55-88 gold, sold it for 9 at
+        the next sale, had nothing to dig with and bought another, every 10 minutes, idle 71% of the hour (2026-11-02 07:13-08:12)."""
+        cfg = getattr(self, "cfg", None) or {}
+        keep, names = set(), [n for n in [cfg.get("tool")] + list(cfg.get("tool_alt", ())) if n]
+        for n in names:
+            it = next((i for i in self.c.backpack if (i.name or "").lower() == n.lower() or n.lower() in (i.name or "").lower()), None)
+            if it is not None:
+                keep.add(str(it.serial))
+        try:
+            digs = cfg.get("res") == "IronIngot" and self.can_gather()
+        except Exception:
+            digs = False
+        if digs:
+            it = next((i for i in self.c.backpack if re.search(r"\b(pickaxe|shovel)\b", (i.name or "").lower())), None)
+            if it is not None:
+                keep.add(str(it.serial))
+        return keep
+
     def products(self):
         strikes = self.facts.setdefault("unsold", {})
         now = time.time()
-        return [i for i in self.c.backpack if self.is_product(i.name) and not (strikes.get(str(i.serial), [0, 0])[0] >= 2 and now - strikes[str(i.serial)][1] < 21600
-                                                                               and strikes[str(i.serial)][1] >= UNSOLD_VALID_FROM)]
+        keep = self.working_tools()
+        return [i for i in self.c.backpack if self.is_product(i.name) and str(i.serial) not in keep
+                and not (strikes.get(str(i.serial), [0, 0])[0] >= 2 and now - strikes[str(i.serial)][1] < 21600 and strikes[str(i.serial)][1] >= UNSOLD_VALID_FROM)]
 
     def strike_unsold(self, stock):
         """A product no answered vendor listed, or that stayed in the pack after the sell (a newbied starter dagger), gets a strike; two leave it out."""
