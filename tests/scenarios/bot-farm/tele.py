@@ -259,6 +259,14 @@ class TeleMixin:
         while True:
             left = end - time.time()
             res = first_wait(timeout=LOOK if left > LOOK else max(left, 0.05), poll=poll)
+            if getattr(self.c, "ghost", False) and getattr(self, "current_rule", "r_dead") != "r_dead":
+                # died mid-walk: stop where the corpse is, so r_dead sees it (death_xy). A walk left running carried BotSmithAdvR's ghost 283 tiles to the
+                # bank before the death was noticed; the death was recorded there and the corpse run found nothing (2026-11-02 09:13-09:16)
+                try:
+                    self.c.cancel_walk()
+                except Exception:
+                    pass
+                return "stopped: ghost"
             cur = (self.c.x, self.c.y)
             if cheb(cur, prev) > JUMP_TILES:
                 self.tele_jumped(prev, cur, "walk")

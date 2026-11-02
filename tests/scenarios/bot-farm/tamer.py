@@ -333,6 +333,38 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
 
     SPARE_REACH = 12           # pets hear orders within their perception range (BaseCreature.HandlesOnSpeech, RangePerception 16 for animals)
 
+    DEFEND_EVERY = 10          # s between "all kill" orders while losing a fight
+
+    def pets_defend(self, threat=None):
+        """Losing a fight with its pets in earshot: send them at the attacker ("all kill", then the target), as a tamer does, instead of running alone.
+        BotTamerAR "fled" from Milug for 42 s without moving, boxed in by four mobiles, with a cougar (238) and a black bear (322) beside it, and died
+        (2026-11-02 09:52-09:53). True when the order went out."""
+        if time.time() - self.__dict__.get("_defend_at", 0) < self.DEFEND_EVERY:
+            return False
+        try:
+            threats = [threat] if threat is not None else sorted(self.mobs(8), key=lambda m: m.distance)
+            pets = [m for m in self.c.mobiles(within=self.SPARE_REACH) if (getattr(m, "_d", None) or {}).get("isPet")]
+        except Exception:
+            return False
+        if not threats or not pets:
+            return False
+        t = threats[0]
+        self.__dict__["_defend_at"] = time.time()
+        self.log(f"tame: {len(pets)} pets sent at {t.name}, which is beating me (hp {self.c.hp})")
+        self.ev("pets_defend", target=t.name, pets=len(pets), hp=self.c.hp)
+        try:
+            self.pet_order(t)
+        except Exception:
+            return False
+        return True
+
+    def on_flee(self):
+        self.pets_defend()
+
+    def fight_back(self, m):
+        self.pets_defend(m)
+        return BotBase.fight_back(self, m)
+
     def release_spares(self):
         """Every follower slot is taken and pets of this tamer other than the kept one stand within earshot: "all release" (confirmed), then the
         strongest is taken back, a sure tame (AnimalTaming.cs alreadyOwned). free_slots_for only runs for a candidate, and with only owned animals about
