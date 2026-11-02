@@ -102,6 +102,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     mountains = MinerBot.mountains                        # r_dig runs MinerBot.r_mine on a crafter, which asks self.mountains()
     far_spot_ok = MinerBot.far_spot_ok
     far_cands = MinerBot.far_cands
+    horse_unsafe = MinerBot.horse_unsafe                  # MinerBot.r_mine asks it when a pack horse is kept (test_borrow_calls)
     FAR_PLANS, FAR_FOUND = MinerBot.FAR_PLANS, MinerBot.FAR_FOUND
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
@@ -1196,6 +1197,12 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         return 1 if taken else 0
 
     def r_restock(self):
+        try:
+            hs = self.house_state() if hasattr(self, "house_state") else {}
+            if hs.get("phase") == "site" and self.house_deed():
+                return False                              # a deed in the pack is placed first: BotTailorBR walked 400 tiles back from its site for a sewing kit (2026-11-01 21:08)
+        except Exception:
+            pass
         need = self.restock_need()
         if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
             return False

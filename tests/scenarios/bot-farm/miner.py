@@ -62,6 +62,21 @@ def has_stand(t):
 from stock import PotionStock  # noqa: E402
 from packy import PackAnimalMixin  # noqa: E402
 
+
+def claimed_near(bot, t, near=3):
+    """Another bot holds a claim on a mountain tile within `near` tiles of t: neighbouring tiles share the same standing places. A module function: the
+    smiths' and tinkers' dig borrows this code (CrafterBot has no MinerBot methods)."""
+    try:
+        now = time.time()
+        for key, r in (bot.mem.state["world"]["res"].get("ore") or {}).items():
+            if r.get("claim_until", 0) > now and r.get("claim_by") != bot.mem.bot:
+                x, y = (int(v) for v in key.split(","))
+                if max(abs(x - t[0]), abs(y - t[1])) <= near:
+                    return True
+    except Exception:
+        return False
+    return False
+
 class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase):
     PERSIST = BotBase.PERSIST + ("packy", "packy_lost_at", "packy_try_at", "horse_trap", "horse_trap_seen")      # the pack horse (and the forges that shut it in) outlive a brain restart (packy.py)
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
@@ -137,19 +152,6 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
             ok = False
         cache[key] = (time.time(), ok)
         return ok
-
-    def claimed_near(self, t, near=3):
-        """Another bot holds a claim on a mountain tile within `near` tiles of t: neighbouring tiles share the same standing places."""
-        try:
-            now = time.time()
-            for key, r in (self.mem.state["world"]["res"].get("ore") or {}).items():
-                if r.get("claim_until", 0) > now and r.get("claim_by") != self.mem.bot:
-                    x, y = (int(v) for v in key.split(","))
-                    if max(abs(x - t[0]), abs(y - t[1])) <= near:
-                        return True
-        except Exception:
-            return False
-        return False
 
     def horse_unsafe(self, t):
         """A dig spot where a monster that attacks on sight could reach the pack horse: within an aggressive spawner's home range plus task_core.PULL_CLEAR
@@ -291,7 +293,7 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
                 self.mem.refresh()                            # once: claimed_near reads the shared memory as it stands
             except Exception:
                 pass
-            free = [t for t in cands if not self.claimed_near(t)]
+            free = [t for t in cands if not claimed_near(self, t)]
             cands = free or cands
             self.spot = min(cands, key=lambda t: (max(abs(t[0] - self.c.x), abs(t[1] - self.c.y)) // SPOT_BAND, round(self.gather_risk(cell_of(t[0], t[1])), 1),
                                                   abs(t[0] - self.c.x) + abs(t[1] - self.c.y)))

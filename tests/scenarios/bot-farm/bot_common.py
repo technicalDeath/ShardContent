@@ -2171,6 +2171,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         # pass banks the unsold products, breaks it; BotCarpAR stood 18 min with 40 game boards and 20 backgammon boards at 354/390, 2026-10-30)
         heavy = self.c.weight > self.c.max_weight * 0.8 and (bool(self.junk_in_pack()) or unsold)
         overloaded = self.facts.get("bank_heavy") and self.c.weight > self.c.max_weight * 0.9
+        if heavy and not overloaded and time.time() - self.facts.get("bank_full_at", 0) < 1800:
+            # the box is full: a heavy-pack visit only takes products out to sell, and the pack comes back heavier. The shops first (r_sell); BotCarpBR banked
+            # "heavy" four times in 12 minutes against a full box before it sold (2026-11-01 21:16-21:28)
+            heavy = False
         # a player banks the surplus before going out again and carries 50-100: bots that carried their 500 lost it at every death
         core = self.home_core()                           # the city itself, not the farmland in the town region
         purse = self.c.gold > goals.purse_limit(self, 250) and core[0] <= self.c.x < core[2] and core[1] <= self.c.y < core[3] and time.time() - self.facts.get("banked_at", 0) > 600
