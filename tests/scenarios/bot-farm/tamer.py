@@ -47,6 +47,7 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
     # an animal by its coins alone (pethunt.kind_loot): a great hart (carve 123), a grizzly (96), a hind (80), bears (68) and cougars (58) were worth 0, the
     # animal fields all "worth 0", and the bear was sent at rats and slimes the fighters had cleared: 1-2 kills an hour. The loot code skipped every carve
     # ("not_carvable": a TamerBot had no CARVE) though it carries a dagger and a skinning knife. The carving parts are the fighters' own (HunterBot).
+    CUTS_HIDES = True          # hides cut on the corpse (5 stones each, the leather 1): uncut, the tamer dropped 46 piles of hides in half an hour (03:00-03:25)
     CARVE_KINDS = HunterBot.CARVE_KINDS
     BLADES = HunterBot.BLADES
     carving_blade = HunterBot.carving_blade

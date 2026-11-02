@@ -2097,7 +2097,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             except Exception:
                 pass
         scissors = next((i for i in self.c.backpack if "scissors" in (i.name or "").lower()), None)
-        if getattr(self, "CARVE", False) and self.core_active() and scissors is not None and not self.threats(8):
+        if getattr(self, "CARVE", False) and (self.core_active() or self.CUTS_HIDES) and scissors is not None and not self.threats(8):
             cut = 0
             for pile in [i for i in contents if "hide" in (i.name or "").lower()][:3]:
                 # the owner (2026-10-29): hides are cut on the corpse and the leather picked up: the engine allows it before AOS (Hides.Scissor checks the
@@ -2150,7 +2150,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if items.is_meat(it.name):
                 meat_value += (it.amount or 1) * items.sale_price(it.name)
         self.log(f"looted {corpse.name}: {[str(x) for x in contents]}")
-        if getattr(self, "CARVE", False) and self.core_active() and any("hide" in (i.name or "").lower() for i in self.c.backpack)                 and any("scissors" in (i.name or "").lower() for i in self.c.backpack) and not self.threats(8):
+        if getattr(self, "CARVE", False) and (self.core_active() or self.CUTS_HIDES) and any("hide" in (i.name or "").lower() for i in self.c.backpack)                 and any("scissors" in (i.name or "").lower() for i in self.c.backpack) and not self.threats(8):
             try:
                 import errands
                 errands.cut_hides(self, {"scissors_tried": True})        # a hide weighs 5 stones, its leather 1 (Hides.cs, Leathers.cs): cut at once, not at the Tanner
@@ -2184,6 +2184,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     RICH_GOLD = 900
 
+    CUTS_HIDES = False         # a brain outside the core that cuts hides into leather on the corpse as the core fighters do (TamerBot, feature tamer_carve)
     KEEP = ("book", "gold", "dagger", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "pearl", "moss", "garlic", "ginseng", "mandrake",
             "nightshade", "ash", "silk", "bandage", "gem", "ruby", "sapphire", "emerald", "diamond", "amber", "citrine", "tourmaline", "star ", "check", "arrow", "bolt",
             "ingot", "ore", "board", "log", "hide", "leather", "cloth", "feather", "shaft", "tool", "hammer", "tongs", "saw", "pickaxe", "shovel", "pole", "kit",
