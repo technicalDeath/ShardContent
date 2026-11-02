@@ -211,7 +211,8 @@ class FirstTrip(LadderMixin):
         home = home or self.trip_home_region()
         busy = self.trip_busy()
         if not home or self.c.ghost or self.hp_pct() < 90 or busy or self.c.weight >= self.c.max_weight * 0.7:
-            return None, False
+            return self.trip_why("not in town" if not home else "a ghost" if self.c.ghost else f"hp {self.hp_pct()}% (90 needed)" if self.hp_pct() < 90
+                                 else "a threat near" if busy else f"pack {self.c.weight}/{self.c.max_weight} (under 70% needed)"), False
         t = self.trip_forced(home)
         if t:
             return t, True
@@ -220,16 +221,33 @@ class FirstTrip(LadderMixin):
         self.facts["trip_check_at"] = time.time()
         played = (getattr(self, "base", {}).get("uptime", 0) + time.time() - self.started) / 60.0
         if played < 60 or self.c.gold + self.facts.get("bank_balance", 0) < 300 or not self.trip_kit_ok():
-            return None, False
+            return self.trip_why("played under an hour" if played < 60 else "under 300 gold" if self.c.gold + self.facts.get("bank_balance", 0) < 300
+                                 else "no kit (10 bandages or 2 Heal potions; 60 arrows for a bow)"), False
         power = self.trip_power()
         ok = [t for t in self.trips_allowed(home) if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t)]
         if not ok:
-            return None, False
+            return self.trip_why("no trip passes the skill, health and route checks"), False
         if self.ladder_on():
             return self.ladder_choose(ok), False
         return ok[zlib.crc32(self.name.encode()) % len(ok)], False
 
     # ---- the rule ---------------------------------------------------------------------------------------------------------
+
+    TRIP_WHY_EVERY = 300       # s between "first trip: not now" lines
+
+    def trip_why(self, why):
+        """Why a ladder bot due a trip did not set out, logged and recorded (event trip_wait) at most every TRIP_WHY_EVERY s. 16 ladder fighters started
+        no trip and logged nothing for an hour (2026-11-02 09:52-11:10): the gates were silent. Returns None."""
+        now = time.time()
+        if now - self.__dict__.get("_trip_why_at", 0) >= self.TRIP_WHY_EVERY or why != self.__dict__.get("_trip_why"):
+            if now - self.__dict__.get("_trip_why_at", 0) >= 60:
+                self.__dict__["_trip_why_at"], self.__dict__["_trip_why"] = now, why
+                try:
+                    self.log(f"first trip: not now: {why}")
+                    self.ev("trip_wait", why=why)
+                except Exception:
+                    pass
+        return None
 
     def trip_core_lets(self, name):
         """Under the decision core (task_core) only the reflexes run, so a ladder bot's r_trip never did (2026-11-01: three of the four ladder bots run the core).
@@ -248,6 +266,7 @@ class FirstTrip(LadderMixin):
                 return False
             home = self.trip_home_region()
             if not home or not self.trips_allowed(home):
+                self.trip_why("not in town" if not home else "the ladder offers no trip now")
                 return False
             trip, forced = self.trip_pick(home)
             if not trip:
