@@ -30,6 +30,7 @@ RESERVE_AFTER = 200         # the purse a bot keeps when it buys the furnishing
 DEED_WANTS = ("small brick house", "field stone house")
 RINGS = (60, 80, 100, 120, 140, 160, 180, 200, 230, 260)
 SPACING = 6
+SMALL_DEED_OFFSET = (0, 4, 0)   # HouseDeed Offset of all six small house deeds (Multis/Deeds.cs: StonePlaster, FieldStone, SmallBrick, Wood, WoodPlaster, ThatchedRoof)
 SEED_REACH = 400            # tiles from the home town centre: the surveyed sites farther away are not tried
 TRIED_APART = 10            # a site this close to a refused one is skipped (the refusal is local)
 TRIES_PER_HOUR = 12
@@ -355,13 +356,23 @@ class HouseGoalMixin:
         res = self.goto_near(x, y, 3).wait(timeout=90)
         if not str(res).startswith("arrived"):
             return True                                               # not reachable: the next site on the next step
+        # the surveyed centre's ground height: stand on it (HousingSurvey checked centre (x, y, Map.GetAverageZ)); a mobile inside the footprint is moved
+        # out by the placement (HousePlacement.Check toMove)
+        try:
+            self.c.gotoexact(x, y).wait(timeout=20)
+        except Exception:
+            pass
+        z = self.c.state.get("charPosZ", 0)
         from uo import Event
         self.c.events.drain()
         self.c.use(deed.serial)
         self.c.wait_for(Event.TARGET_REQUEST, timeout=2)                 # (the house placement cursor does not announce itself in the log: the answer is sent either way)
         time.sleep(0.5)
-        z = self.c.state.get("charPosZ", 0)
-        self.c.call(f"targettile {x} {y} {z}", timeout=6)
+        # the deed places its centre at target - Offset (HouseDeed.OnPlacement; every small house deed has Offset 0,4,0, Multis/Deeds.cs), so the target is the
+        # surveyed centre plus the offset. Targeting the centre itself put every house 4 tiles north of its surveyed spot, at the bot's own height: BotTailorBR
+        # was refused at six surveyed sites in 13 minutes ("not on valid terrain", 2026-11-01)
+        ox, oy, oz = SMALL_DEED_OFFSET
+        self.c.call(f"targettile {x + ox} {y + oy} {z + oz}", timeout=6)
         time.sleep(3.0)
         lines = self.read_journal()
         self.c.open_backpack()
