@@ -1254,6 +1254,15 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         if self.c.gold < 40:
             self.note("money", f"The {self.pname} has run out of material and money at once; there is no way to see the shortfall coming.", key="broke")
             return False
+        cheapest = self.cheapest_material()
+        spend = max(0, self.c.gold - 40) + (self.facts.get("bank_balance", 0) or 0)
+        if cheapest is not None and cheapest > spend and self.products():
+            # the cheapest material any shelf has shown costs more than it can spend: what it made goes to the buyer first. BotTailorBR walked to three
+            # cloth shops with 57 to spend on 100-gold bolts and 14 surcoats in the pack, again and again (2026-11-02 00:19-00:22)
+            self.facts["sold_at"] = 0
+            self.facts["stocked_at"] = time.time()
+            self.skip_why("r_restock", f"the cheapest material is {cheapest} gold, {spend} to spend: selling what it made first")
+            return False
         word = next(iter(self.cfg["wanted"]))
         shops = []
         for price, xy, item, qty in self.mem.vendor_selling(word):      # cheapest first, from what any bot has seen on the shelves
@@ -1301,6 +1310,18 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.note("shop", f"No shop had {word} left: the {self.pname}s and other crafters empty the shelves faster than they refill.", key=f"soldout:{word}")
         self.note("shop", f"Material bought for the {self.pname}: {got}", key="bought")
         return True
+
+    def cheapest_material(self):
+        """The lowest shelf price any bot has seen for any of the material this crafter buys (cfg wanted), or None when no shelf showed one."""
+        best = None
+        for word in self.cfg.get("wanted", {}):
+            try:
+                for price, xy, item, qty in self.mem.vendor_selling(word):
+                    if price > 0 and (best is None or price < best):
+                        best = price
+            except Exception:
+                continue
+        return best
 
     def skip_why(self, rule, why):
         """One line per declined work rule and reason, at most every 10 minutes: an idle crafter says why."""
