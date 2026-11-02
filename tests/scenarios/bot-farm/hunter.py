@@ -895,12 +895,26 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
             return 0.0
         w = self.mem.prey_worth(k, self.main_skill())
         if not w:
-            return 0.0 if any(d in k for d in DANGEROUS_WORDS) else self.unknown_worth(k)
+            return 0.0 if any(d in k for d in DANGEROUS_WORDS) and not self.prior_ok(k) else self.unknown_worth(k)
         secs = [self.skill_values.get(s, 0) for s in ("Tactics", "Anatomy")]
         sec_w = self.W_SEC * min(1.0, max(0.1, (80 - sum(secs) / len(secs)) / 30))
         short = self.c.gold < 200
         return max(0.0, self.W_MAIN * w["main"] + sec_w * w["sec"] + (self.W_GOLD_SHORT if short else self.W_GOLD) * w["gold"] / max(0.05, w["min_per_kill"])
                    - self.W_RISK * w["dmgpct"])
+
+    def prior_ok(self, k):
+        """Feature prior_worth: an unmeasured dangerous kind is worth its loot-table value when the danger model's prior (danger.stats_prior, from the
+        creature's own numbers) accepts it at tier 3, a pack kind as two companions (task_core.kind_risk). Without it a kind nobody fought was never fought, so
+        never measured: tier 3 stayed shut to grandmaster fighters while twenty bots shared the tier-1 and tier-2 spawns (BotMaceAdvR 6 kills an hour,
+        36 minutes of it roaming; a lone troll at Mace 90 is a 2.5% death for 105 gold, an ettin 1.5% for 157, a ratman 1% for 52; 2026-11-02)."""
+        if not self.feature("prior_worth"):
+            return False
+        try:
+            import danger
+            import task_core
+            return danger.acceptable(task_core.kind_risk(self, k, 3), "prey")
+        except Exception:
+            return False
 
     def best_ground(self, near=None):
         """The best hunting ground in range: the cell whose sighted kinds are worth most to this bot, plus its recent kills, less crowding and
