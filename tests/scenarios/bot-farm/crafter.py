@@ -1725,6 +1725,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def plan_feasible(self, name):
         if name == "gather":
             return self.can_gather() and self.count(self.cfg["mat"]) < (30 if self.cfg["craft"] == "Carpentry" else 20)
+        if name == "earn":
+            return self.short_of_money()                  # (stall_switch: vermin for coins only when short of money)
         return True
 
     def stall_switch(self, n):
@@ -1736,7 +1738,11 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             ways.append("menu")
         if self.can_gather() and mat < (30 if self.cfg["craft"] == "Carpentry" else 20):
             ways.append("gather")
-        ways.append("earn")
+        if self.short_of_money():
+            ways.append("earn")                           # vermin for coins is a broke crafter's way: BotTailAdvR, 13,877 banked, hunted rats for 25 minutes
+                                                          # after a stall that was the hide shelves running dry (2026-11-02 04:19-04:45)
+        if not ways:
+            return f"wait for material ({mat} {self.cfg['mat']}): the shelves restock", ("r_restock",)
         if not (ways[0] == "menu" and n == 1):
             plan = self.plan_for_stall()                  # the planner's next best activity, when it knows one (planner.py)
             if plan:
