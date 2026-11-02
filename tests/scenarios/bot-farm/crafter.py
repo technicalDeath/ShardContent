@@ -755,6 +755,16 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     IDLE_CLEAR = 32           # as housegoal.HOUSE_CLEAR: a creature at its home's edge sees a bot standing about (perception 16) and chases it as far again; the
                               # zombie that found BotTailorBR at 1347,1433 came from a spawner 42 tiles off (home 24)
 
+    def monster_ground(self, x, y):
+        """An attack-on-sight spawner's creatures reach (x, y): within its home range plus IDLE_CLEAR."""
+        try:
+            import spots as _sp
+            import task_core
+            return any(max(abs(o["x"] - x), abs(o["y"] - y)) <= max(int(o.get("home") or 10), 1) + self.IDLE_CLEAR
+                       and any(task_core.aggressive(k) for k in o["kinds"]) for o in _sp.spawner_spots())
+        except Exception:
+            return False
+
     def idle_to_town(self):
         """Nothing to do on monster ground (an attack-on-sight spawner's home range plus IDLE_CLEAR reaches the spot): wait by the bank, where the guards
         are. Anywhere quieter it waits where it is: a carpenter by the woods chops again there when its chop rest ends (BotCarpAdvR, walked to the bank by the
@@ -1601,6 +1611,13 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return True
         self.note("money", f"The {self.pname} has no money for {'a new ' + self.cfg['tool'] if not self.tool() else 'material'} and nothing to sell, so it hunts the vermin that pay (rats), not cats and birds.", key="earnhunt")
         self.activity = "broke: hunting for coins"
+        ex, ey = self.earn_ground()
+        if self.monster_ground(self.c.x, self.c.y) and not self.monster_ground(ex, ey) and max(abs(self.c.x - ex), abs(self.c.y - ey)) > 6:
+            # off monster ground before hunting for coins: BotTailorBR hunted giant rats beside the ratman, ogre and troll camp in the west hills after each
+            # corpse run and died there five times in an hour (2026-11-01 22:16-23:02)
+            self.activity = f"broke: leaving monster ground for {ex},{ey}"
+            self.goto_near(ex, ey, 4).wait(timeout=90)
+            return True
         self._coin_only = True
         try:
             for rule in ("r_loot", "r_heal", "r_fight", "r_hunt"):
