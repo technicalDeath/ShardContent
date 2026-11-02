@@ -1279,7 +1279,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if taken:
             self.log(f"bank: took out {taken} {self.cfg['mat']} of {banked} banked (now {have + taken} in the pack)")
             self.ev("material_unbanked", taken=taken, banked=banked)
-        return 1 if taken else 0
+        colour = self.bank_colour_out(box)                   # a smith's coloured ingots for armour (colours.py, feature colour_craft)
+        return 1 if taken or colour else 0
 
     RESTOCK_GAP = 200         # s after a restock before the next one
 

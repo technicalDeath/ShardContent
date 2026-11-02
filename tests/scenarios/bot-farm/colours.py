@@ -160,6 +160,35 @@ class ColourSmith:
                 out.append((c[3], int(i.hue), c[0], i))
         return sorted(out, key=lambda t: (-t[0], -(t[3].amount or 1)))
 
+    COLOUR_TAKE = 60           # coloured ingots taken out of the bank at a visit: two plate pieces' worth (a plate legs is 20, a failure costs half)
+
+    def bank_colour_out(self, box):
+        """At a bank visit, with fewer than STOCK pieces held: the coloured ingots this smith can work come out, best metal first, up to COLOUR_TAKE in
+        all (hues read from the client's reply, basics.box_contents). The smiths' coloured ingots sit in the bank (the overloaded shed puts them there),
+        so a smith with 21 bronze in the pack and more banked made one piece and stopped (2026-11-02 15:06-15:21). Returns how many were taken."""
+        if not self.colour_on() or len(self.colour_stock()) >= STOCK:
+            return 0
+        try:
+            stacks = [i for i in self.box_contents(box, timeout=6) if items.colour(i) and items.colour(i)[1] == "Blacksmithy"
+                      and "ingot" in (i.name or "").lower() and self.skill >= items.colour(i)[2]]
+        except Exception:
+            return 0
+        held = sum((i.amount or 1) for i in self.c.backpack if items.colour(i) and "ingot" in (i.name or "").lower())
+        want = self.COLOUR_TAKE - held
+        taken = 0
+        for st in sorted(stacks, key=lambda i: (-items.colour(i)[3], -(i.amount or 1))):
+            if want <= 0:
+                break
+            n = min(int(st.amount or 1), want)
+            self.c.get_item(st.serial, n if (st.amount or 1) > 1 else None)
+            time.sleep(1.2)
+            taken += n
+            want -= n
+        if taken:
+            self.log(f"colour: took {taken} coloured ingots out of the bank for armour")
+            self.ev("colour_unbanked", taken=taken)
+        return taken
+
     def colour_choice(self):
         """(menu name, hue, metal, bonus) to make next, or None: the piece worth most to a fighter (its armour plus the metal's, by the slot's share) that the
         smith makes at MIN_CHANCE or better, has the ingots for, and does not already hold."""

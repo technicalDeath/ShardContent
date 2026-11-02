@@ -1265,6 +1265,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return True                                   # (not with an attacker in reach: each hit makes a bandage slip, Bandage.cs. BotFenceAdvR bandaged four
                                                           # times beside a ratman pack, every one slipping, 36 to 1 hit points in 52 s, and died, 2026-11-02 04:49)
         threat = threats[0] if threats else None
+        if threat and self.flee_stuck(threat):
+            # three flights in FLEE_STUCK_S that left it on the same tile, an attacker beside it: boxed in, so it fights. A flight that failed
+            # without "trapped" (a short walk, no step open) ran on until death: BotTamerAR stood on 1479,1356 for 70 s "fleeing" from a mongbat and
+            # Zilge with 5 mobiles beside it (2026-11-02 14:56-14:57), as it had on 1432,1364 at 09:53
+            self.log(f"fleeing from {threat.name} has not moved me in {self.FLEE_STUCK_S} s: fighting back at hp {self.c.hp}")
+            return self.fight_back(threat)
         if threat:
             self.log(f"fleeing from {threat.name} at hp {self.c.hp}")
             self.chatter("warn", cooldown=600, m=threat.name, where=self.where())
@@ -1275,6 +1281,23 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     def on_flee(self):
         pass
+
+    FLEE_STUCK_N = 3          # flights from the same tile ...
+    FLEE_STUCK_S = 20         # ... within this many seconds, an attacker within 2 tiles: boxed in (r_flee fights back)
+
+    def flee_stuck(self, threat):
+        """True when the last FLEE_STUCK_N flights all started on the same tile within FLEE_STUCK_S s and the threat is beside the bot."""
+        now = time.time()
+        st = self.facts.get("flee_stuck")
+        here = [self.c.x, self.c.y]
+        if not st or now - st["t0"] > self.FLEE_STUCK_S or max(abs(here[0] - st["xy"][0]), abs(here[1] - st["xy"][1])) > 1:
+            self.facts["flee_stuck"] = {"xy": here, "t0": now, "n": 1}
+            return False
+        st["n"] += 1
+        if st["n"] >= self.FLEE_STUCK_N and (getattr(threat, "distance", 9) or 9) <= 2:
+            self.facts.pop("flee_stuck", None)
+            return True
+        return False
 
     def sprint(self):
         """Run whatever the stamina, for the next few seconds: a flight. The client drops to a walk by itself only when stamina is gone;
