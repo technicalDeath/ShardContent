@@ -1260,8 +1260,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.note("combat", "At low health the only way to tell the Heal potion is by its color (yellow); nothing in the pack says so.", key="potioncolor")
             time.sleep(1.5)
             return True
-        if self.skill_values.get("Healing", 0) >= 30 and self.bandage_self():
-            return True
+        adjacent = [m for m in threats if (getattr(m, "distance", 9) or 9) <= 2]
+        if self.skill_values.get("Healing", 0) >= 30 and not adjacent and self.bandage_self():
+            return True                                   # (not with an attacker in reach: each hit makes a bandage slip, Bandage.cs. BotFenceAdvR bandaged four
+                                                          # times beside a ratman pack, every one slipping, 36 to 1 hit points in 52 s, and died, 2026-11-02 04:49)
         threat = threats[0] if threats else None
         if threat:
             self.log(f"fleeing from {threat.name} at hp {self.c.hp}")
