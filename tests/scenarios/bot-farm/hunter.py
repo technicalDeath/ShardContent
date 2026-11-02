@@ -531,6 +531,19 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         if not ds:
             return False
         d = ds[0]
+        now = time.time()
+        st = self.facts.get("avoid_stuck")
+        if not st or st.get("serial") != d.serial or max(abs(self.c.x - st["xy"][0]), abs(self.c.y - st["xy"][1])) > 2:
+            st = self.facts["avoid_stuck"] = {"serial": d.serial, "since": now, "xy": [self.c.x, self.c.y], "dist": d.distance, "hp": self.c.hp}
+        elif now - st["since"] > self.AVOID_STUCK and d.distance >= st["dist"] and (self.c.hp or 0) >= (st.get("hp") or 0):     # and unhurt: one that reaches us hurts
+            # stepping away has not moved it, and the danger has come no closer: it cannot reach us (water, a wall). BotSmithAR "ran from" a giant rat for 16
+            # minutes at 1145,1761, every step away aimed at a tile it could not reach, digging nothing (2026-11-02 10:00-10:16);
+            # before the hopeless branch too: BotSmithAdvR rated a giant rat hopeless ("~77 damage taken of 100") and ran on one tile for 15 minutes (15:59-16:14)
+            self.ignored[d.serial] = now + 180
+            self.facts.pop("avoid_stuck", None)
+            self.log(f"{d.name} kept us stepping away for {int(now - st['since'])} s without coming closer: ignoring it for 3 minutes")
+            self.dlog("choice", what=f"ignore {self.mkey(d)}", why="avoided 60 s, no closer, no step away possible")
+            return False
         self.facts["avoided_until"] = time.time() + 45      # a commitment: once it runs, it does not turn back to hunt for a while
         a = self.assess(d)
         hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
@@ -565,18 +578,6 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
             self.note("combat", f"A {d.name} caught up with a new {self.pname} at {self.c.x},{self.c.y} ({'inside Britain' if 1420 <= self.c.x <= 1650 and 1540 <= self.c.y <= 1720 else 'in the wilds'}): it cannot be outrun and the player must fight it with starting gear.", key=f"followed:{d.name}")
             time.sleep(1.2)
             return True
-        now = time.time()
-        st = self.facts.get("avoid_stuck")
-        if not st or st.get("serial") != d.serial or max(abs(self.c.x - st["xy"][0]), abs(self.c.y - st["xy"][1])) > 2:
-            st = self.facts["avoid_stuck"] = {"serial": d.serial, "since": now, "xy": [self.c.x, self.c.y], "dist": d.distance}
-        elif now - st["since"] > self.AVOID_STUCK and d.distance >= st["dist"]:
-            # stepping away has not moved it, and the danger has come no closer: it cannot reach us (water, a wall). BotSmithAR "ran from" a giant rat for 16
-            # minutes at 1145,1761, every step away aimed at a tile it could not reach, digging nothing (2026-11-02 10:00-10:16)
-            self.ignored[d.serial] = now + 180
-            self.facts.pop("avoid_stuck", None)
-            self.log(f"{d.name} kept us stepping away for {int(now - st['since'])} s without coming closer: ignoring it for 3 minutes")
-            self.dlog("choice", what=f"ignore {self.mkey(d)}", why="avoided 60 s, no closer, no step away possible")
-            return False
         self.activity = f"avoiding {d.name}"
         seen = self.__dict__.setdefault("_avoid_ev", {})
         if time.time() - seen.get(d.serial, 0) > 60:
