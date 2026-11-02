@@ -80,7 +80,9 @@ LEATHER_PACK = {"leather chest": "leather tunic", "leather legs": "leather leggi
 LEATHER = dict(mat="cut up leather", mat_alt=("hide",), res="Leather", shop_roles=("furtrader", "leatherworker"), tool_roles=("tailor", "weaver"),
                wanted={"hide": 40}, sell_roles=("tanner", "cobbler"), maxcost=14)    # 14: the dearest piece on the era menu, studded chest (DefTailoring)
 LEATHER_LOW = 28          # restock under two studded chests' worth (14 leather each, DefTailoring)
-LEATHER_BATCH = 40        # leather and hides held after a restock at most: the Furtrader's shelf of 40 hides (SBFurtrader; refilled hourly, GenericBuyInfo.OnRestock)
+LEATHER_BATCH = 999       # leather and hides held after a restock at most: the shelf's ceiling. SBFurtrader starts at 40 hides, but a sold-out shelf doubles
+                          # at each hourly restock up to 999 (GenericBuyInfo.OnRestock), so weight (leather_room) and gold are the real limits: at 40 a
+                          # restock was 5 leather shorts, 10 s of sewing, and BotFairTailorVR bought 40, 40 and 36 hides at one shop in 7 minutes (2026-11-02)
 LEATHER_SHELF = 6         # the Tanner's leather, the fallback when no hides are left (SBTanner Leather 6)
 TEACH_CHANCE = 0.45       # choose()'s own floor: a piece made at under 45% is not picked to train on
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
@@ -316,7 +318,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             return False
         got, opened = {}, False
         for shop in self.leather_shops("hide", self.cfg["shop_roles"]):
-            for _ in range(3):                                   # buy what fits, cut it, buy again while the shelf and the purse last
+            for _ in range(5):                                   # buy what fits, cut it, buy again while the shelf and the purse last (5 cuts reach CRAFT_WEIGHT)
                 n = min(LEATHER_BATCH - self.leather_held() - self.hides_held(), self.leather_room(items.unit_weight("hides")))
                 if n <= 0:
                     break
@@ -353,6 +355,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 self.ev("leather_hunt", until=round(self.facts["soldout_until"]))
         else:
             self.log(f"restock: bought {got}; {self.leather_held()} leather and {self.hides_held()} hides in the pack")
+            self.restock_filled()
         return True
 
     def restock_need(self):
@@ -1217,7 +1220,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         bought: BotSmithAR had 244 iron ingots banked and walked to the shops for 5 (2026-11-01). The box's count is kept (facts bank_material) for r_restock."""
         need = self.restock_need()
         try:
-            stacks = [i for i in self.c.container(box, timeout=6) if self.own_material(i)]
+            stacks = [i for i in self.box_contents(box, timeout=6) if self.own_material(i)]     # with hues: coloured ingots are not plain iron (box_contents)
         except Exception:
             return 0
         banked = sum(int(i.amount or 1) for i in stacks)
@@ -1240,6 +1243,18 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.ev("material_unbanked", taken=taken, banked=banked)
         return 1 if taken else 0
 
+    RESTOCK_GAP = 200         # s after a restock before the next one
+
+    def restock_filled(self):
+        """A restock that left restock_need or more material in the pack lifts RESTOCK_GAP, so the next one follows as soon as that is sewn or forged.
+        The gap is for a restock that came back short; bare shelves have their own soldout_until. With the gap after every restock BotFairTailorVR sewed
+        for 10 s and stood 3 minutes, the cloth tailors 40 s and 3 minutes: tailors 59-82% of the hour in r_wander (2026-11-02 04:40-05:40)."""
+        held = self.leather_held() if self.leather_on() else self.count(self.cfg["mat"])
+        if held >= self.restock_need():
+            self.facts["stocked_at"] = time.time() - self.RESTOCK_GAP
+            return True
+        return False
+
     def r_restock(self):
         try:
             hs = self.house_state() if hasattr(self, "house_state") else {}
@@ -1248,7 +1263,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         except Exception:
             pass
         need = self.restock_need()
-        if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < 200:
+        if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < self.RESTOCK_GAP:
             return False
         if self.facts.get("bank_material", 0) > 0 and time.time() - self.facts.get("mat_bank_at", 0) > self.MAT_BANK_GAP                 and self.c.weight < self.c.max_weight * self.PRODUCTS_OUT_SHARE * 0.9:     # room to carry it out, or the walk takes nothing
             self.facts["mat_bank_at"] = time.time()
@@ -1323,6 +1338,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.facts["soldout_until"] = time.time() + (1200 if opened else 180)
             self.note("shop", f"No shop had {word} left: the {self.pname}s and other crafters empty the shelves faster than they refill.", key=f"soldout:{word}")
         self.note("shop", f"Material bought for the {self.pname}: {got}", key="bought")
+        if got:
+            self.restock_filled()
         return True
 
     def cheapest_material(self):

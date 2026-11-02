@@ -423,6 +423,39 @@ class BasicsMixin:
     GOODS_SALE_RULES = ("r_sellmeat", "r_sell_leather")      # the rules that sell goods (meat at the Butcher, leather and hides at the Tanner)
     GOODS_OUT_SHARE = 0.8                # goods come out of the box up to this share of the weight limit (BotBase.CLEAR_SHARE); a sell trip is due at 0.85
 
+    HUE_TAIL = re.compile(r"\s*\(hue 0x([0-9A-Fa-f]+)[^)]*\)\s*$")
+
+    def box_contents(self, box, timeout=6):
+        """c.container with each stack's hue. The client's reply carries it (CommandEngine DescribeItem: "iron ingot x361 (hue 0x0972 ...)"), but
+        Navrey's Python parser keeps only serial, name and amount, so every banked coloured ingot read as plain iron: BotTinkBR took 118, 104 and 120
+        "iron ingots" out in 5 minutes, all coloured, banked them again when overloaded, and stood "under 5 iron ingot" with 402 in the pack
+        (2026-11-02 05:40-05:45). Falls back to c.container on any error."""
+        try:
+            from uo.client import serial_of
+            from uo.entities import Item
+            lines = self.c.call(f"container {serial_of(box)}", timeout=timeout)
+        except Exception:
+            return self.c.container(box, timeout=timeout)
+        out = []
+        for line in lines:
+            text = line.strip()
+            is_box = text.startswith("[container]")
+            for tag in ("[container]", "[item]"):
+                if text.startswith(tag):
+                    text = text[len(tag):].strip()
+            if not text.startswith("0x"):
+                continue
+            parts = text.split(None, 1)
+            name, amount, hue = (parts[1] if len(parts) > 1 else ""), 1, 0
+            m = self.HUE_TAIL.search(name)
+            if m:
+                hue, name = int(m.group(1), 16), name[:m.start()]
+            head, sep, tail = name.rpartition(" x")
+            if sep and tail.strip().isdigit():
+                name, amount = head, int(tail.strip())
+            out.append(Item({"serial": parts[0], "name": name.strip(), "amount": amount, "hue": hue, "isContainer": is_box}))
+        return out
+
     def bank_goods_out(self, box):
         """At a bank visit, goods earlier visits banked (leather, hides, meat, feathers: the casters' KEEP lacked them until 2026-10-29) come back out for the
         shops, each stack cut to the room left at its weight a piece (taking whole stacks put a caster at 348 of 250 stones, unable to walk)."""
