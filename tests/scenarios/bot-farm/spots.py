@@ -20,6 +20,10 @@ REACH = 320                     # surface spawners this far from home. Widened s
                                 # spawners with a paying kind release about 503 creatures an hour and the 20 bots took about 300 (roam 88%); 500 tiles hold 184 spawners
                                 # (928 an hour). Britain stays the hub (the owner, 2026-10-20): the bots walk out and come back to sell. 480 was tried 18:43-19:53: four deaths in the
                                 # gazer and gargoyle pocket north-east (1750-1840 x 1205-1250) and the undead box; back to 320 while the memory cells' bypass is fixed
+REACH_WIDE = 375                # feature reach_wide (A/B, 2026-11-02): this far for the bots that have it. The north-east gazer and gargoyle pocket where REACH 480
+                                # cost four deaths (1750-1840 x 1205-1250) begins 379 tiles from Britain's centre (y 1250 against 1629), so 375 leaves it out while
+                                # taking in South Woods (5 spawners at 353-378), Far North-east Forest (2 at 370-377) and Troll Hills' far side: twenty fighters
+                                # shared the spawns within 320 and roamed 36-73% of their time looking for prey (01:00-01:40)
 DUNGEON_REACH = 900             # a dungeon whose surface door is this far from home, or from a public moongate (a gate leg of the journey from Britain), is a journey a player
                                 # makes (Despise is 540 tiles from Britain's bank). Surface ground stays within REACH of home: Britain is the hub (the owner, 2026-10-20:
                                 # "drop 'towns beyond britain' for now ... they all should be journeying to/from there")
@@ -311,7 +315,7 @@ def memory_spots(bot, taken):
     try:
         from memory import cell_center
         home = bot.home_centre()
-        cells = bot.mem.hunting_cells(near=home, radius=REACH, n=20)
+        cells = bot.mem.hunting_cells(near=home, radius=reach_of(bot), n=20)
     except Exception:
         return out
     for score, cell in cells:
@@ -359,6 +363,13 @@ def way_clear(hx, hy, x, y, losing):
     return True
 
 
+def reach_of(bot):
+    try:
+        return REACH_WIDE if bot.feature("reach_wide") else REACH
+    except Exception:
+        return REACH
+
+
 def all_spots(bot):
     """This bot's spots: within REACH of home, on the surface, not in a city, their tier in the bot's tiers (cached SPOT_CACHE_S)."""
     import task_core
@@ -382,10 +393,11 @@ def all_spots(bot):
         losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + _tc.PULL_CLEAR) for o, _k in deadly_spawners(bot)]
     except Exception:
         losing = []
-    base = [s for s in spawner_spots() if max(abs(s["x"] - hx), abs(s["y"] - hy)) <= REACH and not behind_box(bot, hx, hy, s["x"], s["y"])
+    reach = reach_of(bot)
+    base = [s for s in spawner_spots() if max(abs(s["x"] - hx), abs(s["y"] - hy)) <= reach and not behind_box(bot, hx, hy, s["x"], s["y"])
             and way_clear(hx, hy, s["x"], s["y"], losing)]
     mem_cells = [s for s in memory_spots(bot, [(s["x"], s["y"]) for s in base])
-                 if max(abs(s["x"] - hx), abs(s["y"] - hy)) <= REACH and not behind_box(bot, hx, hy, s["x"], s["y"]) and way_clear(hx, hy, s["x"], s["y"], losing)]
+                 if max(abs(s["x"] - hx), abs(s["y"] - hy)) <= reach and not behind_box(bot, hx, hy, s["x"], s["y"]) and way_clear(hx, hy, s["x"], s["y"], losing)]
     # the memory's hunting cells pass the same tests as the spawners: BotArcherCR toured "cell1840,1160", 539 tiles out, through the gargoyle band, and died at
     # 1834,1205 (19:52, 2026-10-29): the cells were added after the spawner filters
     for s in base + mem_cells:
