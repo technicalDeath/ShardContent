@@ -593,6 +593,12 @@ def needs(bot, hunting=False):
             spots = []
         if spots:
             out.append(("train", 0.9, spots[0], BUDGET["train"], f"{bot.main_skill()} {skill:.0f}"))
+    if getattr(bot, "feature", None) and bot.feature("colour_craft") and now - bot.__dict__.get("_upgrade_gates_at", 0) > 600:
+        bot.__dict__["_upgrade_gates_at"] = now                       # the colour_craft canary raised no upgrade for two hours: what its gates say, live
+        try:
+            bot.log(f"errand upgrade gates: since last {int(now - f.get('upgrade_at', 0))} s, hp {bot.hp_pct():.0f}, weapon {wstate}, archer {archer}, ammo {ammo}")
+        except Exception:
+            pass
     if now - f.get("upgrade_at", 0) > 600 and bot.hp_pct() >= 70 and not (archer and ammo < 50) and wstate == "ok":          # fix D: ammunition first, then armour; and a working weapon before either
         try:
             import goals
@@ -606,6 +612,9 @@ def needs(bot, hunting=False):
                     bot.log(f"errand upgrade: the choice failed: {type(e).__name__}: {e}")
                 except Exception:
                     pass
+        if bot.feature("colour_craft") and now - bot.__dict__.get("_upgrade_best_at", 0) > 600:
+            bot.__dict__["_upgrade_best_at"] = now
+            bot.log(f"errand upgrade: the choice is {best[2:4] if best else None} (money {money})")
         skip = f.get("upgrade_skip") or {}
         if best and now < skip.get(best[2], 0):
             best = None                                              # M3: an upgrade that came back unmet twice rests 30 minutes

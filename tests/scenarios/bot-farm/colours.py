@@ -71,6 +71,14 @@ class ColourBuyer:
             if ar <= cur or need > strength or (getattr(self, "ranged", False) and dex < -2) or price <= 0 or price > money:
                 continue
             out.append(((ar - cur) * self.SLOT_SHARE[layer] / max(price, 1), layer, o["item"], price, tuple(o.get("meet") or self.MEET), cur, ar, o))
+        if now - self.__dict__.get("_colour_seen_at", 0) > 600:
+            self.__dict__["_colour_seen_at"] = now                   # what the buyer sees, live (the canary raised no upgrade for two hours)
+            seen = [o for o in offers if o.get("hue")]
+            try:
+                self.log(f"colour: {len(seen)} coloured offers in the market ({sum(1 for o in seen if now - float(o.get('t', 0) or 0) <= OFFER_FRESH)} fresh), "
+                         f"{len(out)} I would buy (money {money})")
+            except Exception:
+                pass
         return out
 
     def colour_pick(self, best, money):
