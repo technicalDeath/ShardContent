@@ -64,6 +64,15 @@ def cheb(a, b):
     return max(abs(a[0] - b[0]), abs(a[1] - b[1]))
 
 
+
+def _far_tiles():
+    """far.FAR: the distance from which a walk is a far walk (the planner's, with moongates and runes)."""
+    try:
+        import far
+        return far.FAR
+    except Exception:
+        return 120
+
 class HouseGoalMixin:
     # ---- state --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -325,6 +334,14 @@ class HouseGoalMixin:
         if site is None:
             return self.house_fail(st, "no candidate site left", rest=3600)
         x, y = site
+        d = cheb((self.c.x, self.c.y), (x, y))
+        if d > _far_tiles() and hasattr(self, "far_goto"):
+            # a far site is travelled to as any far place is (far.far_goto: the planner takes a moongate or a rune), and counts as tried only once there:
+            # BotTailorBR, homed in Yew, walked from Britain's shops toward its site at 687,916 through the troll and ogre hills and died at 1158,1358
+            # (2026-11-01 19:25), while its shop trips took the moongate
+            res = self.far_goto((x, y), "travel", timeout=4)
+            self.log(f"house: the site {x},{y} is {d} tiles away: travelling there ({res})")
+            return True
         st.setdefault("tried", []).append([x, y])
         st["tries_at"].append(now)
         st["tries"] = st.get("tries", 0) + 1

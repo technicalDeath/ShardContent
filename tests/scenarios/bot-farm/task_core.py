@@ -94,6 +94,7 @@ CALIB_TABLE = "task_calib"      # 1. measured / expected per task kind, group an
 CALIB_SEED = {"kills": 0.056, "gold": 0.005, "skill": 0.3}       # the hour: 137 kills against 2,455 expected, 491 gold against 95,975; skill not measured (a guess)
 CALIB_N = 2.0                   # the seed counts as this many tasks before the bot's own measurements outweigh it
 CALIB_MIN, CALIB_MAX = 0.002, 2.0
+DISPLACED = 120                 # tiles from every spot of an arrived hunt beyond which the bot was taken away (far.FAR: from there a walk is a far walk)
 HOUSE_GOLD = 16000              # a small house deed (shard-rules.json housePricing.smallHouses): the gold goal of a bot that has reached everything else
 EXPECT_CAP = {"kills": 18.0, "gold": 120.0, "skill": 3.0}      # an hour's yield no bot of the farm has reached (live hour: 8.8 kills, 18 gold a bot-hour on average): the largest priors were 37 kills and 2,400 gold
 NO_PREY = ("snake",)                    # 2. no loot, and its poison killed three of the nine: fought only when it is on the bot. The horse is prey again (2026-10-29): it
@@ -1313,6 +1314,13 @@ def monitor(bot, task, g, rng=None):
         return "switch"
     if not task.get("arrived"):
         return None                                                  # the tree judges the walk (unreachable)
+    sp = task.get("spots") or []
+    if sp and min(max(abs(bot.c.x - s[0]), abs(bot.c.y - s[1])) for s in sp) > DISPLACED:
+        # an errand took the bot back to town after it arrived, and the roam's short walks cannot cover a far walk: BotArchAdvR stood 11 minutes at the
+        # Bowyer, 190-211 tiles from its tour's spots, its roam asking for a route 21 times a minute (2026-11-01 19:27-19:42). The task ends (no ban) and
+        # the next one travels properly
+        bot.log(f"core: {task['area']} is {min(max(abs(bot.c.x - s[0]), abs(bot.c.y - s[1])) for s in sp)} tiles off after arriving: the hunt ends, travel again")
+        return "displaced"
     worked = t - task["arrived"]
     judge = task.get("judge") or task["measure"]
     exp, act = expected_so_far(task), actual(bot, task)[judge]

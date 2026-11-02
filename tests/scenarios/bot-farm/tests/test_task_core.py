@@ -309,6 +309,8 @@ assert row[0] == "task" and row[1] == f"hunt:{opts[0]['area']}" and len(json.loa
 # not arrived: the monitor waits for the tree
 assert task_core.monitor(b, task, g) is None
 task["arrived"] = now()
+if task.get("spots"):
+    b.c.x, b.c.y = task["spots"][0][0], task["spots"][0][1]      # arrived means there (task_core.DISPLACED ends a hunt whose bot was taken far away)
 clock[0] += task_core.MONITOR_S
 assert task_core.monitor(b, task, g) is None                       # inside the grace
 # under the expected yield: one extension, then failed "yield"
