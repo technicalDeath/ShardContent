@@ -94,6 +94,7 @@ CALIB_TABLE = "task_calib"      # 1. measured / expected per task kind, group an
 CALIB_SEED = {"kills": 0.056, "gold": 0.005, "skill": 0.3}       # the hour: 137 kills against 2,455 expected, 491 gold against 95,975; skill not measured (a guess)
 CALIB_N = 2.0                   # the seed counts as this many tasks before the bot's own measurements outweigh it
 CALIB_MIN, CALIB_MAX = 0.002, 2.0
+MIN_STAY_S = HUNT_BUDGET / 2      # work on a hunt before a bank or sell need (pack under 90%) may end it
 DISPLACED = 120                 # tiles from every spot of an arrived hunt beyond which the bot was taken away (far.FAR: from there a walk is a far walk)
 HOUSE_GOLD = 16000              # a small house deed (shard-rules.json housePricing.smallHouses): the gold goal of a bot that has reached everything else
 EXPECT_CAP = {"kills": 18.0, "gold": 120.0, "skill": 3.0}      # an hour's yield no bot of the farm has reached (live hour: 8.8 kills, 18 gold a bot-hour on average): the largest priors were 37 kills and 2,400 gold
@@ -1301,6 +1302,15 @@ def monitor(bot, task, g, rng=None):
     if task["task"] not in ("hunt", "tour2"):
         return "done" if t - task["t0"] >= task["budget"] else None
     press = pressing_need(bot)
+    if press is not None and press["task"] in ("bank", "sell") and t - (task.get("arrived") or t) < MIN_STAY_S:
+        try:
+            heavy = bot.c.weight >= bot.c.max_weight * 0.9
+        except Exception:
+            heavy = True
+        if not heavy:
+            # a purse or a part-full pack waits for the hunt's first MIN_STAY_S of work: 9 of 17 switches in 20:35-21:05 went to the bank or a shop after tours
+            # of 7-9 minutes with packs 53-64% full, while tours that ran their course made 0.52 kills a minute against 0.27 for those cut short (2026-11-01)
+            press = None
     if press is not None:
         bot.__dict__["_core_next"] = press
         bot.ev("task_switch", **{"from": task["area"], "to": press["task"], "why": press["detail"]})

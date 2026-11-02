@@ -77,7 +77,9 @@ def ammo_shop(b):
     """The Bowyer's standing spot, else a Provisioner's, skipping a shop sold out lately or that failed twice in a row (ammo_bad_shop)."""
     bad = {tuple(int(v) for v in k.split(",")) for k, until in (b.facts.get("ammo_bad_shop") or {}).items() if until > time.time()}
     try:
-        for p in b.find_places(AMMO_SHOPS, n=8, item="arrow"):
+        # the exact ammunition name ("=arrow"): "arrow" matched every mage's shop by its Magic Arrow scroll, and BotRangerBR walked to four of them in turn, each
+        # marked empty only after the walk (2026-11-01 20:38-21:09)
+        for p in b.find_places(AMMO_SHOPS, n=8, item=ammo_item(b)):
             if tuple(p) not in bad and not any(max(abs(p[0] - q[0]), abs(p[1] - q[1])) <= 6 for q in bad):
                 return tuple(p)
     except Exception:
