@@ -920,6 +920,13 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             self.far_after(res, "sell")
             return True
         res = self.c.goto(*buyer).wait(timeout=100)
+        if str(res).startswith("nopath") and not self.threats(10):
+            # once more from where the walk stopped, after a step aside: BotFairTailorNR and BotTailorBR stopped 27 tiles short of the Tailor on the
+            # bank street ("nopath: closest 1440,1691"), the sale was dropped and the surcoats went back to the bank, 98 of them (2026-11-02 06:43-06:51)
+            self.step_out()
+            res2 = self.c.goto(*buyer).wait(timeout=60)
+            self.log(f"to the buyer {buyer}: {res}; tried again from {self.c.x},{self.c.y}: {res2}")
+            res = res2
         self.log(f"to the buyer {buyer}: {res}; carrying {len(stock)} products")
         import talk
         if talk.on(self) and stock:
