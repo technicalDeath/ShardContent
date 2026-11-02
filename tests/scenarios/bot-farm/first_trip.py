@@ -72,6 +72,19 @@ def _gz():
         return None
 
 
+def dense_path(wps):
+    """Every tile along the waypoints (route_danger samples a path, and trip waypoints are 40 tiles apart)."""
+    out = []
+    for (ax, ay), (bx, by) in zip(wps, wps[1:]):
+        n = max(abs(bx - ax), abs(by - ay), 1)
+        out.extend((ax + (bx - ax) * i // n, ay + (by - ay) * i // n) for i in range(n))
+    return out + [tuple(wps[-1])] if wps else out
+
+
+AVOID_TRIES = 4          # re-plans of a trip round the cells route_danger flags before the trip is refused
+AVOID_FACTOR = 50.0      # the cost a flagged cell's tiles get in that re-plan: high enough that any way round wins
+
+
 def straight_wps(a, b, step=40):
     """Waypoints every `step` tiles on the line from a to b (both included): the client's planner walks each leg."""
     n = max(1, -(-cheb(a[0], a[1], b[0], b[1]) // step))
@@ -98,7 +111,7 @@ def _circle_penalty(wr):
     return _CIRCLE_PEN
 
 
-ROUTE_V = "fp1"                  # the route cache version: bumped when the route penalty changes
+ROUTE_V = "fp2"                  # the route cache version: bumped when the route penalty changes (fp2, 2026-11-02: re-planned round route_danger's cells, trip_avoid)
 
 class FirstTrip(LadderMixin):
     # ---- state: work/botfarm/<bot>/trip.json ------------------------------------------------------------------------------
@@ -377,8 +390,39 @@ class FirstTrip(LadderMixin):
         except Exception as e:
             self.log(f"first trip: planning {trip['dest']} failed ({type(e).__name__}: {e}); keeping its waypoints")
             return {"wps": [list(p) for p in wps], "route": "straight", "steps": steps_of(wps)}
+        if new and hasattr(self, "route_danger"):
+            new, route = self.trip_avoid(wr, wps, trip, pen, new, route)
         return {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
-                "secs": round(time.time() - t0, 2)}
+                "secs": round(time.time() - t0, 2), "t": round(time.time())}
+
+    def trip_avoid(self, wr, wps, trip, pen, new, route):
+        """Walk round what route_danger flags, as a player goes round a lair: re-plan the whole trip with the flagged cells' tiles at AVOID_FACTOR, up to
+        AVOID_TRIES times. Returns (waypoints, route); the last plan when it never comes clear (trip_route_dangerous then refuses it)."""
+        import re as _re
+        circles = []
+        for _ in range(AVOID_TRIES):
+            try:
+                bad = self.route_danger({"path": dense_path([tuple(p) for p in new])})
+            except Exception:
+                return new, route
+            m = _re.search(r"crosses (-?\d+),(-?\d+)", bad or "")
+            if not m:
+                return new, route
+            cx, cy = int(m.group(1)) + 20, int(m.group(2)) + 20          # the 40-tile cell's centre
+            circles.append((cx, cy, 40, AVOID_FACTOR))
+            try:
+                p2 = wr.penalty_merge(pen, wr.penalty_circles(circles)) if pen else wr.penalty_circles(circles)
+                pts = [wps[0]] + ([tuple(trip["exit"])] if trip.get("exit") else []) + [wps[-1]]
+                again = []
+                for a, b in zip(pts, pts[1:]):
+                    r = wr.plan(a, b, p2)
+                    if r is None:
+                        return new, route
+                    again.extend(r["waypoints"] if not again else r["waypoints"][1:])
+            except Exception:
+                return new, route
+            new, route = again, "planned round " + ",".join(f"{c[0]},{c[1]}" for c in circles)
+        return new, route
 
     def trip_routed(self, home, trip):
         """The trip with walkable waypoints, planned once per (home, destination, exit) and kept in trip.json; None when there is no land route."""
@@ -396,14 +440,43 @@ class FirstTrip(LadderMixin):
         return dict(trip, wps=[tuple(p) for p in r["wps"]], route=r["route"], route_steps=r["steps"], route_secs=r.get("secs"))
 
     def trip_ok_route(self, home, trip):
-        """True when the trip has a land route and the routed waypoints pass no cell where bots die."""
+        """True when the trip has a land route and the routed waypoints pass no cell where bots die. A kept route that has turned dangerous (deaths since it
+        was planned) is planned again round them, at most once an hour."""
         routed = self.trip_routed(home, trip)
-        return routed is not None and not self.trip_route_dangerous(routed)
+        if routed is None:
+            return False
+        if not self.trip_route_dangerous(routed):
+            return True
+        st = self.trip_load()
+        key = f"{ROUTE_V}|{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"
+        r = (st.get("routes") or {}).get(key)
+        if r is not None and time.time() - float(r.get("t", 0) or 0) > 3600:
+            st["routes"].pop(key, None)
+            routed = self.trip_routed(home, trip)
+            return routed is not None and not self.trip_route_dangerous(routed)
+        return False
 
     def trip_route_dangerous(self, trip):
-        """An unvetted (straight-line) route that passes a cell where bots have died more than they killed is not taken; vetted seeds were checked offline."""
+        """The routed path crosses ground the gatherers' own test refuses (route_danger on every tile: 3+ recent deaths around a cell, the danger map at
+        this bot's skill, 2+ deaths of bots no stronger in 14 days), vetted seeds included: they were checked offline once, but the deaths since count.
+        BotArchAdvR died on the Skara Brae seed at Haunted Wood (1236,1976) and BotWarAdvR on the Cove route in the gazer pocket (1786,1258), both first
+        trips (2026-11-02 01:24 and 03:02); route_danger flags both routes (1240,1920 and 1720,1200). An unvetted route also by the waypoints, as before."""
         mem = getattr(self, "mem", None)
-        if mem is None or trip.get("vetted", True):
+        if mem is None:
+            return False
+        wps = [tuple(int(v) for v in p[:2]) for p in trip.get("wps") or []]
+        try:
+            bad = self.route_danger({"path": dense_path(wps)}) if len(wps) >= 2 else ""
+        except Exception:
+            bad = ""
+        if bad:
+            seen = self.__dict__.setdefault("_trip_bad_logged", {})
+            if time.time() - seen.get(trip.get("dest"), 0) > 1800:
+                seen[trip.get("dest")] = time.time()
+                self.log(f"first trip: {trip.get('dest')} refused: the route {bad}")
+                self.ev("trip_skip", dest=trip.get("dest"), why=f"route {bad}")
+            return True
+        if trip.get("vetted", True):
             return False
         from memory import cell_of
         return any(mem.dangerous_cell(cell_of(x, y)) for x, y in trip["wps"])

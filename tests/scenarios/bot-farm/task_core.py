@@ -639,7 +639,10 @@ def provisioned_watch(bot):
         pass
 
 
-CORPSE_RUN_CAP = 200            # tiles from home beyond which a corpse run is refused (no source yet: the Watcher's choice; the tour distance cap was removed 2026-10-21, it collapsed the hunt)
+CORPSE_RUN_CAP = 375            # tiles from home beyond which a corpse run is refused: the farthest ground a bot works (spots.REACH_WIDE), so a death on its own ground
+                                # is gone back for. Was 200 ("the Watcher's choice", no source) against tours out to 320: five deaths on 2026-11-01/02 at 234-371 tiles
+                                # left the whole kit on the corpse (BotWarAdvR: bow, 50 bandages and every potion; 32,278 banked bought them again). The killer and
+                                # repeat-death refusals below still hold, and Between Worlds hides a returning player until it acts
 DEATH_ROBE_HUE = 2301           # UOContent Items/Clothing/OuterTorso.cs DeathRobe: Hue 2301, LootType Newbied, one per resurrection: not for sale
 ARROW_GOLD = 2.0                # an arrow's price, for the cost of a kill
 ARROW_DEFAULT = 2.0             # arrows a kill costs when this bot has not measured the kind (the Watcher's measure: 1.6-2.3 on tier-1 prey)
