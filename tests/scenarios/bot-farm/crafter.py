@@ -1328,6 +1328,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         return n > 0
 
     def r_craft(self):
+        if time.time() < self.__dict__.get("_nomenu_until", 0):
+            return False                                  # the craft menu did not open a moment ago (see craft's "nomenu")
         # a harmless animal (basics.HARMLESS: cow, sheep, warbler ...) is no reason to stop, even in war mode: it fights only what attacked it (AI_Animal,
         # FightMode.Aggressor) and a cow hits for 1-4. 40 skips in an hour named a cow, a warbler or a giant rat beside crafters (the Anomaly sweep, 2026-11-01)
         near = [m for m in self.threats_coming(10) if not self.harmless_animal(m)]
@@ -1382,7 +1384,14 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         st = self.station_xy()
         if st and (abs(self.c.x - st[0]) > 2 or abs(self.c.y - st[1]) > 2):
             self.activity = "walking to the forge"
-            self.c.gotoexact(*st).wait(timeout=100)
+            if max(abs(self.c.x - st[0]), abs(self.c.y - st[1])) > 100 and hasattr(self, "far_goto"):
+                self.far_goto(st, "forge", timeout=90)    # a far smithy is a far walk (one plain walk ended short and the smith crafted where it stood)
+            else:
+                self.c.gotoexact(*st).wait(timeout=100)
+            if abs(self.c.x - st[0]) > 2 or abs(self.c.y - st[1]) > 2:
+                # not at the anvil yet: no craft here (the menu opens only beside the anvil and forge). BotSmithAdvR smelted at a far forge and tried 39 items
+                # in 2.5 minutes, each "nomenu", striking every one off (2026-11-01 20:46-20:48)
+                return self.skip_why("r_craft", f"not at the forge yet ({self.c.x},{self.c.y}, forge {st[0]},{st[1]})")
         self.activity = f"making {name}"
         self.log(f"making {name}: skill {self.skill:.1f} window {it['min']}-{it['max']} chance {ch:.0%} cost {it['amount']}")
         result = None
@@ -1405,9 +1414,12 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 self.note("craft", f"A failed craft says: {result[-110:]}", key="failmsg")
             if (result or "").startswith(("nomenu", "menu refused")):
                 self.last_made = None
-                self.menu_map = {} if n == 0 and self.count(self.cfg["mat"]) >= it["amount"] else self.menu_map
-                self.bad_items.add(name)
-                break
+                if result != "nomenu":
+                    self.menu_map = {} if n == 0 and self.count(self.cfg["mat"]) >= it["amount"] else self.menu_map
+                    self.bad_items.add(name)              # the menu opened without this item: struck off
+                else:
+                    self.__dict__["_nomenu_until"] = time.time() + 60   # (a menu that did not open at all says nothing about the item: the tool, the
+                break                                                  # target or the place) a minute's rest, not every item in turn
             if re.search(r"not yet crafted", result or "", re.I):
                 self.last_made = None                    # make-last works only after a success: the next try goes through the menu
                 continue
