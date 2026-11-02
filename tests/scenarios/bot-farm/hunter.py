@@ -1735,15 +1735,19 @@ class BardBot(HunterBot):
         if time.time() - self.facts.get("music_at", 0) < 22 or self.hp_pct() < 60:
             return False
         self.facts["music_at"] = time.time()
-        hostile = [m for m in self.mobs(8) if self.is_prey(m)]
-        if len(hostile) >= 2:
+        rng = 8 + int(float(getattr(self, "skill_values", {}).get("Provocation", 0) or 0) // 15)      # BaseInstrument.GetBardRange: 8 + skill / 15, for both targets
+        hostile = [m for m in self.mobs(rng) if self.is_prey(m)]
+        # provocation: the prey onto any other creature in range, as the era's bard does (both fight, the bard's share of the damage gives loot rights,
+        # Publish 5). It needed two prey in range, which a bard hunting one animal at a time almost never had: Provocation (32.5 and 52.1) gained nothing in two hours, and the
+        # one-prey case played Discordance, a later-era skill the plan locks down (2026-11-01)
+        other = [m for m in self.mobs(rng) if hostile and m.serial != hostile[0].serial and not (m.name or "").startswith("Bot")
+                 and getattr(m, "notoriety", "") not in ("Innocent", "Ally")]
+        if hostile and other:
             self.activity = "provoking"
-            res = self.play("provocation", [hostile[0].serial, hostile[1].serial])
+            res = self.play("provocation", [hostile[0].serial, other[0].serial])
             self.note("music", f"Provocation on two monsters says: {res[-120:]}", key="provmsg")
         elif hostile:
-            self.activity = "discording"
-            res = self.play("discordance", [hostile[0].serial])
-            self.note("music", f"Discordance says: {res[-120:]}", key="discmsg")
+            return False                                  # one creature and nothing to set it on: the bow does the work
         elif not self.mobs(10):
             self.activity = "peacemaking"
             res = self.play("peacemaking", ["self"])

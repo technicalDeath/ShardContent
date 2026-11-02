@@ -1040,6 +1040,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def walk_to_wood(self):
         """The nearest tree no bot found bare lately, 60 to WOOD_REACH tiles off and off monster ground (IDLE_CLEAR): walk there, as a woodcutter goes on to the next
         stand. BotCarpAdvR, Lumberjacking 100, found no workable tree near the bank and stood 7 minutes (2026-11-01 20:29-20:36)."""
+        if time.time() - self.__dict__.get("_wood_walk_at", 0) < 60:
+            return False                                  # one wood walk a minute
         here = (self.c.x, self.c.y)
         try:
             import spots as _sp
@@ -1059,10 +1061,13 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 continue
             self.activity = f"walking to the wood at {t[0]},{t[1]}"
             self.log(f"no workable tree within 60 tiles: walking {d} tiles to the wood at {t[0]},{t[1]}")
-            if hasattr(self, "far_goto"):
-                self.far_goto((t[0], t[1]), "travel", timeout=90)
-            else:
-                self.goto_near(t[0], t[1], 2).wait(timeout=90)
+            self.__dict__["_wood_walk_at"] = time.time()
+            # beside the tree, not onto it: a tree's tile is not walkable, so a walk to the tile itself came back at once and the same tree was chosen
+            # several times a second (BotCarpAdvR, 21 times in a minute, 2026-11-01 21:53)
+            self.goto_near(t[0], t[1], 2).wait(timeout=90)
+            if max(abs(self.c.x - t[0]), abs(self.c.y - t[1])) >= d:
+                self.facts[("tree", t[0], t[1])] = time.time() + 900          # it could not get nearer: another wood next time
+                return False
             return True
         return False
 
