@@ -80,3 +80,7 @@ The audit log records each trim (`starter weight-budget`: stacks trimmed, load b
 - **Warriors need nothing.** The Warrior-folder templates carry about 95 stones of 229 (studded leather set 19, Bascinet 5, shield 5, a weapon 2 to 9, bandages 5, plus the usual kit). An earlier version of this plan called Warriors heavy at 183 of 187; that came from stock profession 1, a forged-packet test start (Alchemy and Anatomy at 50, 75 Bottles and a reagent bag) that the creation screen never offers.
 - **Bank delivery** (the third option) is not built and stays available if the owner wants the full quantities back.
 - Not pushed and not deployed; the owner decides when.
+
+## 2026-11-01: measured against the stock limit
+
+The carry limit went up to 100 + 3.5 x Str (`docs/Carry-Weight-Evidence.md`). The owner kept the starting kits as they were, so the budget is now 85% of the *stock* limit (`PlayerMobile.StockMaxWeight`, 40 + 3.5 x Str), not of the raised one; every kit is what it was, and the extra 60 stones are headroom. The audit line names both: `load 326 -> 194 of stock limit 229 (carry limit 289)`.

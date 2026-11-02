@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "24c3a9e54ecfd6b0bc891d51a52de604a2c93f88",
+  "pinnedModernUoCommit": "614a0fda9461c1eb5b9bf3c8e24c7bd1ae4d1673",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -140,6 +140,11 @@
   },
   "housePricing": {
     "smallHouses": 16000
+  },
+  "carryWeight": {
+    "base": 100,
+    "perStrength": 3.5,
+    "playerBackpackMaxWeight": 550
   },
   "shopPrices": {
     "Pickaxe": {

@@ -11,7 +11,9 @@ namespace BritanniaRenaissance.Content;
 /// Carpentry, Fletching, Alchemy with Cooking) began far over their carry limit, where every step drains stamina and
 /// movement stops at zero. After every starter issuer has run, a character whose load is above a share of its limit has its
 /// bulk supply stacks scaled down together until it fits (docs/Starter-Weight-Budget.md). Nothing else is touched, a
-/// character already within the budget is untouched, and no stack grows or disappears.
+/// character already within the budget is untouched, and no stack grows or disappears. The share is of the stock limit
+/// (<c>PlayerMobile.StockMaxWeight</c>, 40 + 3.5 x Str), not the shard's raised one (<see cref="CarryWeight"/>): the owner kept
+/// the starting kits as they were when the limit went up (2026-11-01), so the extra room is all headroom.
 /// </summary>
 public static class StarterWeightBudget
 {
@@ -155,7 +157,8 @@ public static class StarterWeightBudget
         }
 
         var before = Mobile.BodyWeight + player.TotalWeight;
-        var amounts = Plan(rules, player.MaxWeight, Mobile.BodyWeight, player.TotalWeight, stacks);
+        var limit = player.StockMaxWeight;
+        var amounts = Plan(rules, limit, Mobile.BodyWeight, player.TotalWeight, stacks);
         var trimmed = 0;
 
         for (var i = 0; i < items.Count; i++)
@@ -173,7 +176,7 @@ public static class StarterWeightBudget
                 "starter",
                 "weight-budget",
                 player,
-                details: $"{trimmed} supply stack(s) trimmed; load {before} -> {Mobile.BodyWeight + player.TotalWeight} of limit {player.MaxWeight}"
+                details: $"{trimmed} supply stack(s) trimmed; load {before} -> {Mobile.BodyWeight + player.TotalWeight} of stock limit {limit} (carry limit {player.MaxWeight})"
             );
         }
     }

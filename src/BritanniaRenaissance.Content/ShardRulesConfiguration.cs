@@ -109,6 +109,7 @@ public static class ShardRulesConfiguration
         StaminaReliefService.Validate(rules.StaminaRelief, errors);
         DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
         HousePricing.Validate(rules.HousePricing, errors);
+        CarryWeight.Validate(rules.CarryWeight, errors);
         ShopPrices.Validate(rules.ShopPrices, errors);
         MonsterAggro.Validate(rules.MonsterAggro, errors);
         WorldSeason.Validate(rules.WorldSeason, errors);
@@ -464,6 +465,9 @@ public sealed class ShardRules
     [JsonPropertyName("housePricing")]
     public HousePricingRules HousePricing { get; set; } = new();
 
+    [JsonPropertyName("carryWeight")]
+    public CarryWeightRules CarryWeight { get; set; } = new();
+
     [JsonPropertyName("shopPrices")]
     public Dictionary<string, ShopPriceRule> ShopPrices { get; set; } = new();
 
@@ -784,7 +788,7 @@ public sealed class CampTravelRules
 
 /// <summary>
 /// The weight budget for new characters' starting supplies (see <see cref="StarterWeightBudget"/>). A character whose load is
-/// above <c>maxLoadPercent</c> of its carry limit has its bulk supply stacks scaled down together to fit, each keeping at
+/// above <c>maxLoadPercent</c> of its stock carry limit (40 + 3.5 x Str, whatever <c>carryWeight</c> sets) has its bulk supply stacks scaled down together to fit, each keeping at
 /// least <c>minimumUnits</c>. <c>enabled</c> false leaves the supplies at the quantities the Phase H rulings listed.
 /// </summary>
 public sealed class StarterWeightRules
