@@ -1597,14 +1597,22 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def funds(self):
         return self.c.gold + max(0, self.facts.get("bank_balance", 0))
 
+    PACK_MAX_ITEMS = 125                                  # Container.GlobalMaxItems: a pack holding this many takes nothing more, gold from the banker included
+
     def retool_planned(self):
         if self.tool() or self.threats(10):
             return False
         now = time.time()
+        if len(self.c.backpack) >= self.PACK_MAX_ITEMS - 2 and self.products():
+            # a full pack takes no withdrawn gold: what it made goes to the buyer first. BotTinkAR, 125 items with 110 unsold products, walked 250 tiles to the
+            # bank for a tool every few minutes and the banker's gold never reached it (2026-11-02 02:13-02:58)
+            self.facts["sold_at"] = 0
+            self.facts.pop("sell_skip_until", None)
+            return False
         price = self.tool_price() or self.TOOL_PRICE_GUESS
         funds = self.funds()
-        if now < self.facts.get("retool_soldout_until", 0) or now - self.facts.get("retool_at", 0) < 120:
-            return False
+        if now < self.facts.get("retool_soldout_until", 0) or now - self.facts.get("retool_at", 0) < 120 or now < self.facts.get("retool_block_until", 0):
+            return False                                  # (the block holds whatever the funds: a withdrawal that failed set it, and the next try came 2 minutes later)
         if funds < price:
             if now >= self.facts.get("retool_block_until", 0):
                 self.facts["retool_block_until"] = now + 900
