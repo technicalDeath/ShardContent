@@ -1435,6 +1435,9 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             if re.search(r"not yet crafted", result or "", re.I):
                 self.last_made = None                    # make-last works only after a success: the next try goes through the menu
                 continue
+            if result == "notool":
+                self.log("craft stopped: the tool is gone (worn out): r_retool")
+                break                                     # the rest of the batch would fail too, each counted (11 failed, last "notool", BotCarpAR 2026-11-01)
             if re.search(r"no ?mat|cannot|too heavy|not have|must|don't have the resources", result or "", re.I) and not ok:
                 self.log(f"craft stopped: {result}")
                 if "tool" in (result or "").lower() or "silence" in result:
