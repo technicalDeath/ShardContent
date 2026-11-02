@@ -189,6 +189,27 @@ def connect_retry(name, tries=20, wait=1.0):
 
 
 
+HOME_BASICS = ("bank", "healer")      # what every home town must hold (a bank for the gold, a healer for the ghost)
+_ROLES = {}
+
+
+def town_roles(name):
+    """The gazetteer roles of the places in a region (cached)."""
+    if not _ROLES:
+        try:
+            for p in gz.get().places:
+                reg = p.get("region")
+                if reg:
+                    _ROLES.setdefault(reg, set()).update(p.get("roles") or [])
+        except Exception:
+            return set()
+    return _ROLES.get(name, set())
+
+
+def town_holds(name, needs):
+    return all(r in town_roles(name) for r in needs)
+
+
 def town_with(needs, x, y):
     """The nearest surface town (gazetteer region) holding a place for every role in `needs`, or None."""
     try:
@@ -1346,6 +1367,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if "birth_town" not in self.facts and name:
             self.facts["birth_town"] = BIRTH_TOWN if name != BIRTH_TOWN and gz.region(BIRTH_TOWN) else name
         h = gz.region(name) if name else None
+        birth = gz.region(self.facts.get("birth_town") or BIRTH_TOWN)
+        if h and birth and h["name"] != birth["name"] and not town_holds(h["name"], HOME_BASICS) and town_holds(birth["name"], HOME_BASICS):
+            self.log(f"home: {h['name']} has no bank or healer; home is {birth['name']} again")
+            self.facts["rehome_walk"] = True
+            h = birth                                     # a home kept from before the rule above (BotTailorBR: Yew)
         needs = getattr(self, "HOME_NEEDS", ())                       # (a brain that borrows home(), the caster, has no class attribute of its own)
         if not h and needs and self.c.x < 5120:
             h = town_with(needs, self.c.x, self.c.y)
@@ -1540,7 +1566,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                                                                             # 6 h, and each time it cost two deaths (5 moves to Cove, 4 to Minoc, 10-19 to 10-21)
         self.facts["unsafe_homes"] = unsafe
         birth = gz.region(self.facts.get("birth_town") or BIRTH_TOWN)
-        towns = [t for t in gz.towns() if t["name"] != old and t["name"] not in unsafe and t["centre"][0] < gz.SURFACE_X]
+        # a home has a bank, a healer and what the trade needs: on this shard only Britain has any of them, and BotTailorBR, moved to Yew for two
+        # deaths near Britain, walked or gated back to Britain's shop, bank and healer again and again and died on the way seven times (2026-11-01)
+        needs = HOME_BASICS + tuple(getattr(self, "HOME_NEEDS", ()) or ())
+        towns = [t for t in gz.towns() if t["name"] != old and t["name"] not in unsafe and t["centre"][0] < gz.SURFACE_X and town_holds(t["name"], needs)]
         towns.sort(key=lambda t: (not (birth and t["name"] == birth["name"]), max(abs(t["centre"][0] - self.c.x), abs(t["centre"][1] - self.c.y))))
         new, refused = None, []
         for t in towns[:4]:
@@ -2388,6 +2417,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if hasattr(self, "house_deed_from_bank"):
             self.house_deed_from_bank(box)                                # a house deed an earlier visit banked comes back for placing (housegoal.py)
         reserve = goals.reserve(self, reserve, why)                      # saving for a goal: the purse stays small
+        if reserve and hasattr(self, "material_reserve"):
+            reserve = max(reserve, self.material_reserve())               # a crafter short of material keeps what it will spend on it (crafter.py)
         gold = [i for i in self.c.backpack if "gold" in i.name.lower()]
         if gold and self.c.gold > reserve + 50:
             self.c.drop(gold[0].serial, box, self.c.gold - reserve)

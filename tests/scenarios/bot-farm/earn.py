@@ -79,16 +79,54 @@ class EarnMixin:
         now = time.time()
         out = []
         for (x, y), g in cand.items():
-            if self.near_death_spot(x, y, 40) or empty.get((x, y), 0) > now or self.mem.dangerous_cell(cell_of(x, y)):
+            if self.near_death_spot(x, y, 40) or empty.get((x, y), 0) > now or self.mem.dangerous_cell(cell_of(x, y)) or self.earn_deadly(x, y):
                 continue
             out.append((x, y, g - max(abs(x - self.c.x), abs(y - self.c.y)) / 30.0))
         return out
 
     def earn_ground(self):
+        """Where to hunt for coins. A bot standing more than EARN_REACH from its home earns around the town nearest it instead, as a broke player does
+        where he is: BotTailorBR's home was Yew from 19:08 (two deaths near Britain), and after each corpse run in Britain it set off broke on a
+        600-tile walk toward Yew through the west-hills camp and died there again, seven times by 23:40 (2026-11-01)."""
+        town = self.earn_town()
+        if town is None:
+            return self._earn_ground()
+        saved = self.__dict__.get("_home")
+        self._home = town
+        try:
+            return self._earn_ground()
+        finally:
+            self._home = saved
+
+    def earn_town(self):
+        """The nearest town with a bank and a healer when the bot is more than EARN_REACH from its home on the surface, else None (earn around home)."""
+        try:
+            hx, hy = self.home_centre()
+            if self.c.x >= 5120 or max(abs(self.c.x - hx), abs(self.c.y - hy)) <= self.EARN_REACH:
+                return None
+            from bot_common import HOME_BASICS, town_with
+            t = town_with(HOME_BASICS, self.c.x, self.c.y)
+            return t if t and t.get("centre") else None
+        except Exception:
+            return None
+
+    def earn_deadly(self, x, y):
+        """Several bots died around it lately, whatever the fighters kill there (memory.deaths_near, bot_common.GATHER_DEATHS)."""
+        f = getattr(self.mem, "deaths_near", None)
+        if f is None:
+            return False
+        from bot_common import GATHER_DEATHS
+        try:
+            return f(cell_of(x, y)) >= GATHER_DEATHS
+        except Exception:
+            return False
+
+    def _earn_ground(self):
         cand = self.earn_candidates()
         if not cand:
             self.facts.pop("earn_empty", None)
-            spots = [s for s in self.earn_spots() if not self.near_death_spot(*s, 40) and not self.mem.dangerous_cell(cell_of(*s))] or [self.home_centre()]
+            spots = [s for s in self.earn_spots() if not self.near_death_spot(*s, 40) and not self.mem.dangerous_cell(cell_of(*s))
+                     and not self.earn_deadly(*s)] or [self.home_centre()]
             return spots[int(time.time() // 240) % len(spots)]
         best = max(cand, key=lambda c: c[2])
         if best[2] > 0:

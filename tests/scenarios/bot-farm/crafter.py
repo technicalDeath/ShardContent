@@ -1146,6 +1146,16 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         r = danger.risk(self.mem, self.mkey(m), self.skill_values.get(self.main_skill(), 0), 0)
         return {"known": False, "fight": danger.acceptable(r, "prey"), "reason": f"newbie: unknown kind, risk die {r['die']:.0%} flee {r['flee']:.0%} ({r['src']})"}
 
+    def material_reserve(self):
+        """Gold a bank visit leaves in the purse for the material this crafter is short of: a tailor sewing cloth with under 20 cut cloth keeps the price
+        of the bolts it will buy (tailor_bolt's batch). The purse trip banked all but 100 just before the shop (2026-11-01, BotFairTailorNR)."""
+        if self.cfg.get("craft") != "Tailoring" or self.facts.get("leather_mode") or self.count(self.cfg["mat"]) >= 20:
+            return 0
+        mw = getattr(self.c, "max_weight", None)
+        room = max(0.0, mw * 0.7 - (getattr(self.c, "weight", 0) or 0)) if mw else BOLT_WEIGHT
+        n = max(1, min(BOLT_BATCH, int(room // BOLT_WEIGHT)))
+        return n * BOLT_PRICE + 10
+
     def tailor_bolt(self, order):
         """Feature restock_fix: no cut cloth anywhere (the craft menu takes only cut cloth) and a bolt is the one way: spend the whole purse less 5 gold on it, withdrawing from the bank when that makes up the 105."""
         if self.count(self.cfg["mat"]) >= 20 or any("bolt of cloth" in i.name.lower() for i in self.c.backpack):
@@ -1157,7 +1167,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         room = max(0.0, mw * 0.7 - (getattr(self.c, "weight", 0) or 0)) if mw else BOLT_WEIGHT       # (weight unknown: one bolt, as before)
         n = max(1, min(BOLT_BATCH, int(room // BOLT_WEIGHT), (self.c.gold + bal - 40) // BOLT_PRICE))
         if self.c.gold < n * BOLT_PRICE + 5:
-            if bal + self.c.gold >= BOLT_PRICE + 5 and time.time() - self.facts.get("banked_at", 0) > 240:
+            if bal + self.c.gold >= BOLT_PRICE + 5 and time.time() - self.facts.get("bolt_fetch_at", 0) > 240:
+                # (a gap between withdrawals for bolts, not since any bank visit: a deposit a minute earlier left BotFairTailorNR with 100 carried
+                # and 13,295 banked saying "not enough gold for a bolt" 88 times an hour, 2026-11-01)
+                self.facts["bolt_fetch_at"] = time.time()
                 self.activity = f"fetching gold for {n} bolts of cloth"
                 self.visit_bank("bolts of cloth", withdraw=min(bal, n * BOLT_PRICE + 10 - self.c.gold))
             n = min(n, (self.c.gold - 5) // BOLT_PRICE)
