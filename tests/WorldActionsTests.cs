@@ -331,6 +331,34 @@ public class WorldActionsTests
     public void BandagingSomeoneSaysWhyItCannotBeDone(bool hasBandage, bool hurt, bool young, bool inRange, string? expected) =>
         Assert.Equal(expected, WorldActions.BandageReason(hasBandage, hurt, WorldActions.ItIsNotHurt, young, inRange));
 
+    [Theory]
+    [InlineData(false, false, false, true, null)]
+    [InlineData(true, true, true, false, WorldActions.CriminalAtGate)]
+    [InlineData(false, true, true, false, WorldActions.FightingAtGate)]
+    [InlineData(false, false, true, false, WorldActions.CastingAtGate)]
+    [InlineData(false, false, false, false, WorldActions.TooFarFromGate)]
+    public void APublicMoongateSaysWhyItCannotBeUsed(bool criminal, bool fighting, bool casting, bool inRange, string? expected) =>
+        Assert.Equal(expected, WorldActions.TravelReason(criminal, fighting, casting, inRange));
+
+    [Theory]
+    [InlineData(true, false, false, true, null)]
+    [InlineData(false, true, true, false, WorldActions.NoEmptyVessel)]
+    [InlineData(true, true, true, false, WorldActions.NotYourCow)]
+    [InlineData(true, false, true, false, WorldActions.CowMilkedOut)]
+    [InlineData(true, false, false, false, WorldActions.TooFarToMilk)]
+    public void MilkingACowSaysWhyItCannotBeDone(bool hasVessel, bool someoneElses, bool milkedOut, bool inRange, string? expected) =>
+        Assert.Equal(expected, WorldActions.MilkReason(hasVessel, someoneElses, milkedOut, inRange));
+
+    [Fact]
+    public void ACowHasMilkAgainADayAfterItRanDry()
+    {
+        var now = new DateTime(2026, 11, 1, 12, 0, 0);
+
+        Assert.True(WorldActions.MilkedOut(0, now.AddHours(-23), now));
+        Assert.False(WorldActions.MilkedOut(0, now.AddHours(-25), now));
+        Assert.False(WorldActions.MilkedOut(2, now, now));
+    }
+
     [Fact]
     public void TheFlagIsOffUntilTheOwnerSaysActivate()
     {

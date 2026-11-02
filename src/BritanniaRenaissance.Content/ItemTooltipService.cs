@@ -28,15 +28,9 @@ public static class ItemTooltipService
     private const int CraftedBy = 1050043;
     private const int Exceptional = 1060636;
     private const int Blessed = 1038021;
-    private const int Damage = 1061168;
-    private const int Speed = 1061167;
-    private const int Range = 1061169;
-    private const int StrengthRequirement = 1061170;
-    private const int TwoHanded = 1061171;
-    private const int OneHanded = 1061824;
 
     /// <summary>The line the newbied starter items carry.</summary>
-    public const string NewbiedText = "newbied: kept when you die";
+    public const string NewbiedText = "Newbied: kept on death";
 
     private static bool _configured;
 
@@ -105,7 +99,7 @@ public static class ItemTooltipService
             Write(list, line);
         }
 
-        item.AddWeightProperty(list);
+        list.Add(WeightLine(item.PileWeight + item.TotalWeight));
 
         return true;
     }
@@ -163,6 +157,12 @@ public static class ItemTooltipService
                     }
 
                     yield break;
+                }
+            case BankCheck check:
+                {
+                    // the stock list says what a check is worth; the shard's list replaces it, so it says so here
+                    yield return Line.Text(WorthLine(check.Worth));
+                    break;
                 }
             case Food food:
                 {
@@ -294,17 +294,20 @@ public static class ItemTooltipService
     {
         var bonus = Math.Max(0, fillFactor) / 5;
 
-        return $"Stamina from eating: {6 + bonus}-{8 + bonus}";
+        return $"Stamina: +{6 + bonus}-{8 + bonus}";
     }
+
+    /// <summary>"Weight: 7": the weight in stones, a pile or a bag's contents included (the sum the stock Item.AddWeightProperty prints).</summary>
+    public static string WeightLine(int weight) => $"Weight: {weight}";
+
+    /// <summary>"Worth: 1,000gp": what a bank check pays out.</summary>
+    public static string WorthLine(int worth) => $"Worth: {worth:N0}gp";
 
     /// <summary>The line that names a rare metal on its ingots and ore.</summary>
     public static string MetalLine(string metal) => $"Metal: {metal}";
 
     /// <summary>The sentence a crafting tool's tooltip carries.</summary>
-    public static string ToolLine(bool fletcher) =>
-        fletcher
-            ? "A tool, not ammunition: double-click it to make arrows, bolts and bows."
-            : "A tool: double-click it to open its crafting menu.";
+    public static string ToolLine(bool fletcher) => fletcher ? "Makes arrows, bolts and bows" : "Double-click to craft";
 
     private static bool IsUnidentifiedMagic(Item item) =>
         item switch
@@ -446,49 +449,54 @@ public static class ItemTooltipService
         }
     }
 
-    /// <summary>A weapon's numbers as the stock list prints them (the same client texts), without anything an item of that kind does not have by itself.</summary>
+    /// <summary>
+    /// A weapon's numbers in the shard's own short words (owner, 2026-11-01: "Weapon Damage" -> Damage, "Weapon Speed" -> Speed, "Skill Required" -> Skill),
+    /// without anything an item of that kind does not have by itself.
+    /// </summary>
     public static IEnumerable<Line> WeaponLines(int minDamage, int maxDamage, float speed, int maxRange, int strength, bool twoHanded, SkillName skill)
     {
-        yield return new Line(Damage, $"{minDamage}\t{maxDamage}");
-        yield return new Line(Speed, $"{speed}");
+        yield return Line.Text($"Damage: {minDamage}-{maxDamage}");
+        yield return Line.Text($"Speed: {speed}");
 
         if (maxRange > 1)
         {
-            yield return new Line(Range, $"{maxRange}");
+            yield return Line.Text($"Range: {maxRange}");
         }
 
         if (strength > 0)
         {
-            yield return new Line(StrengthRequirement, $"{strength}");
+            yield return Line.Text(StrengthLine(strength));
         }
 
-        yield return new Line(twoHanded ? TwoHanded : OneHanded);
+        yield return Line.Text(twoHanded ? "Two-handed" : "One-handed");
 
-        if (SkillText(skill) is { } skillLine)
+        if (SkillLabel(skill) is { } name)
         {
-            yield return new Line(skillLine);
+            yield return Line.Text($"Skill: {name}");
         }
     }
 
     /// <summary>The armor rating of the kind (not what a material, a quality or a magic level adds) and the Strength it needs.</summary>
     public static IEnumerable<Line> ArmorLines(int armorRating, int strength)
     {
-        yield return Line.Text($"armor rating {armorRating}");
+        yield return Line.Text($"Armor: {armorRating}");
 
         if (strength > 0)
         {
-            yield return new Line(StrengthRequirement, $"{strength}");
+            yield return Line.Text(StrengthLine(strength));
         }
     }
 
-    /// <summary>The stock "skill required" texts for the four combat skills of this era.</summary>
-    public static int? SkillText(SkillName skill) =>
+    public static string StrengthLine(int strength) => $"Strength: {strength}";
+
+    /// <summary>The four combat skills of this era, named as the stock "skill required" texts name them.</summary>
+    public static string? SkillLabel(SkillName skill) =>
         skill switch
         {
-            SkillName.Swords  => 1061172,
-            SkillName.Macing  => 1061173,
-            SkillName.Fencing => 1061174,
-            SkillName.Archery => 1061175,
+            SkillName.Swords  => "Swordsmanship",
+            SkillName.Macing  => "Mace Fighting",
+            SkillName.Fencing => "Fencing",
+            SkillName.Archery => "Archery",
             _                 => null
         };
 }

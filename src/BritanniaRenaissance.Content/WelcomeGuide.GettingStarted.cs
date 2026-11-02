@@ -526,7 +526,7 @@ public static partial class WelcomeGuide
         {
             p.Add(HeadingMark + "What things sell for");
             p.Add(
-                "Hover over something to see which shop pays the most for it and how much, for example Value: 3gp at Butcher (3gp each, if it is a stack). " +
+                "Hover over something to see which shop pays the most for it and how much, for example Value: 3gp (Butcher), or Value: 3gp each (Butcher) for a stack. " +
                 "Nothing is shown when no shop buys it, or when what it is worth is still unknown (a weapon or armor piece you have not identified)."
             );
         }

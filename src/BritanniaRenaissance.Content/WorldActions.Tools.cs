@@ -62,7 +62,7 @@ public static partial class WorldActions
                     actions.Add(new WorldAction(CraftId, label, CraftReason(tool.UsesRemaining <= 0, smithyMissing, hasMaterials, missing)));
                     break;
                 }
-            case BaseAxe { HarvestSystem: Lumberjacking }:
+            case BaseAxe { HarvestSystem: Lumberjacking } or BasePoleArm { HarvestSystem: Lumberjacking }:
                 {
                     actions.Add(new WorldAction(ChopToolId, "Chop a tree", null));
                     break;
@@ -153,7 +153,7 @@ public static partial class WorldActions
                 }
             case ChopToolId:
                 {
-                    // the axe must be in the hands for any serious wood chopping
+                    // the axe or pole arm must be in the hands for any serious wood chopping
                     if (item.Parent != player && !Equip(player, item))
                     {
                         return true;

@@ -162,6 +162,11 @@ public static partial class WorldActions
 
         if (mobile is BaseCreature creature)
         {
+            if (creature is Cow cow)
+            {
+                actions.Add(MilkAction(player, cow));
+            }
+
             if (creature.Controlled && creature.ControlMaster == player)
             {
                 AddPetActions(player, creature, actions);
@@ -273,6 +278,11 @@ public static partial class WorldActions
             case DismountId:
                 {
                     BaseMount.Dismount(player);
+                    break;
+                }
+            case MilkId when mobile is Cow cow:
+                {
+                    Milk(player, cow);
                     break;
                 }
         }

@@ -23,9 +23,9 @@ Only for items a player could pick up, that are locked down or secure in a house
 
 | Item | Lines |
 | --- | --- |
-| Any item | the stock name line (with an amount), "newbied: kept when you die" or "blessed" when it is, and its weight (a bag's contents included) |
+| Any item | the stock name line (with an amount), "Newbied: kept on death" or "blessed" when it is, and its weight (a bag's contents included) |
 | A weapon (not a wand) | the maker and "exceptional" when the single-click label also says them, then damage, speed, range if it shoots, Strength needed, one or two hands, the combat skill: the **numbers of the kind** (a Katana's 5 to 26), never the one in the hand |
-| Armor and shields | the same, then "armor rating N" of the kind and the Strength needed (the client shows Strength in red when yours is lower) |
+| Armor and shields | the same, then "Armor: N" of the kind and the Strength needed (the client shows Strength in red when yours is lower) |
 | A wand | name and weight only: its charges and its spell are what Item Identification tells |
 
 **What is never said:** resist and attribute bonuses, poison and its charges, how worn a piece is (Arms Lore and the combat bar's gauge), a material's armor bonus, and, until Item Identification has been used, anything magical. A magic weapon or armor nobody has identified also loses its maker and quality, and gets a plain name line, because its single-click label says only "unidentified"; the stock name line of armor says "exceptional" and the metal.
@@ -50,3 +50,50 @@ ModernUO: `Projects/Server/Items/Item.cs`, `Projects/UOContent.Tests/Tests/Items
 - Mobile tooltips (names, health, pets' details) stay off.
 - Not exercised: a tooltip in a locked-down house item, a corpse's contents, the grid container view, and a second character.
 - The same combat-bar change put "stones (weight)" on the weight readout.
+
+
+## Shorter wording (2026-11-01)
+
+The owner asked for a conciseness pass ("Weapon Damage" -> Damage, "Weapon Speed" -> Speed, "Skill Required" -> Skill), approved the plan, and asked to keep "Crafted by". The shard now writes its own short lines instead of the client's stock texts 1061167-1061175 and 1061824. Changing those stock numbers in the client would change that text wherever else it appears.
+
+| Before | After |
+| --- | --- |
+| Weapon Damage 2 - 36 | Damage: 2-36 |
+| Weapon Speed 46 | Speed: 46 |
+| Range 8 | Range: 8 |
+| Strength Requirement 30 | Strength: 30 |
+| Two-handed Weapon / One-handed Weapon | Two-handed / One-handed |
+| Skill Required: Fencing | Skill: Fencing |
+| armor rating 30 | Armor: 30 |
+| newbied: kept when you die | Newbied: kept on death |
+| Stamina from eating: 6-8 | Stamina: +6-8 |
+| A tool: double-click it to open its crafting menu. | Double-click to craft |
+| A tool, not ammunition: double-click it to make arrows, bolts and bows. | Makes arrows, bolts and bows |
+| Value: 75gp at Blacksmith (`SellPriceTooltips`) | Value: 75gp (Blacksmith) |
+| Weight: 7 Stones (stock `AddWeightProperty`) | Weight: 7 |
+| A bank check: no worth (the shard's list had replaced the stock one) | Worth: 1,000gp |
+| Craft menu (client): Chance to raise your skill / Chance to make it | Gain / Success |
+| Spells (client): Chance to raise Magery / Chance to cast it | Gain / Cast |
+
+"Crafted by", "Exceptional", "Blessed", "Metal: …", the identified magic words and "N charges" are unchanged.
+
+The client wording is in `MenuGump.cs` and `SpellChances.cs`. The rebuilt `cuo.dll` (md5 8F27964AF0FA0C3D4937F4C56DBB24AF) is in `bin/dist`; the old one is in `work/cuo-backups/cuo-20261101-194040-before-tooltips.dll`. The owner's running client was left alone, and the old file was moved aside as `cuo.dll.old-20261101-194040`.
+
+Tests: the full shard suite passes 1,910/1,910 (run `20261102T003909599Z-b7917f`).
+
+On the owner's spear and crossbow "missing value": fresh ones show it on the farm (75gp at Blacksmith, 25gp at Bowyer). The value line is left out on purpose for newbied or blessed items, Low-quality weapons and armor, and unidentified magic.
+
+Real-client check on the farm (shard DLL md5 5B0711B80D8B089748F763AE798A6848, client cuo.dll md5 8F27964AF0FA0C3D4937F4C56DBB24AF; PoisonT, shots in `work/player-client/PoisonT/shots/`):
+
+| Shot | Shows |
+| --- | --- |
+| `20261101-200526-tt2-spear.png` | Spear: Damage: 2-36, Speed: 46, Strength: 30, Two-handed, Skill: Fencing, Value: 75gp (Blacksmith), Weight: 7 |
+| `20261101-200533-tt2-crossbow.png` | Crossbow, with Range: 8 and Value: 25gp (Bowyer) |
+| `20261101-200539-tt2-plate.png` | Platemail tunic: Armor: 40, Strength: 60 |
+| `20261101-200547-tt2-apple.png` | 5 apples: Stamina: +6-8, Value: 1gp each (Inn Keeper) |
+| `20261101-200556-tt2-sewingkit.png` | Sewing kit: Double-click to craft |
+| `20261101-200613-tt2-check.png` | Bank check: Worth: 1,000gp, Blessed |
+| `20261101-200716-tt2-craftitem.png` | Tailoring menu, doublet (8 cloth): Gain: 100%, Success: 68% |
+| `20261101-200636-tt2-spell.png` | Clumsy on the spell hotbar: Gain: 0%, Cast: 100% |
+
+The client capitalizes each word of a tooltip, so "each" shows as "Each".

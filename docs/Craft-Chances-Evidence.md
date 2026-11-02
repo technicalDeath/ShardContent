@@ -11,8 +11,10 @@ Flag: `featureFlags.craftChances`. It is **off** in the source config and held f
 
 When a player hovers an item on a craft menu page (the old T2A picture menus: blacksmith, tailoring, carpentry, tinkering, bowcraft, alchemy, cartography, inscription), the tooltip shows the item's name and materials, as before, followed by two lines:
 
-- Chance to raise your skill: N%
-- Chance to make it: N%
+- Gain: N% (the chance to raise your skill)
+- Success: N% (the chance to make it)
+
+Shortened 2026-11-01 from "Chance to raise your skill" and "Chance to make it" (the owner's tooltip pass, `Item-Tooltips-Evidence.md`).
 
 Category pages, repair and smelt entries carry no numbers. Crafting itself is unchanged.
 
@@ -56,8 +58,10 @@ Category pages, repair and smelt entries carry no numbers. Crafting itself is un
 After the craft menu, the owner (2026-10-17): "Also add this info to spell tooltips", and then "Also test the hotbar and loose spell shortcut icons".
 
 - **What a player sees.** Every Magery spell tooltip ends with two lines:
-  - "Chance to raise Magery: N%"
-  - "Chance to cast it: N%"
+  - "Gain: N%" (the chance to raise Magery)
+  - "Cast: N%" (the chance to cast it)
+
+  Shortened 2026-11-01 from "Chance to raise Magery" and "Chance to cast it".
 
   The tooltip can be in three places:
   - the spell icon in the spellbook;

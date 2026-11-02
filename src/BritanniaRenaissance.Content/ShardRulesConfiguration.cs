@@ -947,7 +947,7 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("houseReminder")]
     public bool HouseReminder { get; set; }
 
-    /// <summary>An item's tooltip says which vendor pays the most for it and how much, "Value: 3gp at Butcher" (docs/Tooltip-Sell-Price-Plan.md); on by default on the owner's word (2026-10-18).</summary>
+    /// <summary>An item's tooltip says which vendor pays the most for it and how much, "Value: 3gp (Butcher)" (docs/Tooltip-Sell-Price-Plan.md); on by default on the owner's word (2026-10-18).</summary>
     [JsonPropertyName("sellPriceTooltips")]
     public bool SellPriceTooltips { get; set; }
 

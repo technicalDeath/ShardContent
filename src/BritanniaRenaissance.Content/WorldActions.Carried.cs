@@ -86,6 +86,7 @@ public static partial class WorldActions
 
         AddGearActions(player, item, actions);
         AddMiscActions(player, item, actions);
+        AddEverydayActions(player, item, actions);
 
         if (item is ILockable lockable)
         {
@@ -208,7 +209,7 @@ public static partial class WorldActions
         }
 
         if (action >= CraftId && (PerformTool(player, item, action) || PerformGear(player, item, action) || PerformMagic(player, item, action) ||
-                                  PerformMisc(player, item, action)))
+                                  PerformMisc(player, item, action) || PerformEveryday(player, item, action)))
         {
             return;
         }

@@ -105,11 +105,14 @@ public static partial class WorldActions
 
     // ---- the tools: one in the hands first, then the first in the pack
 
-    /// <summary>The axe a chop would use. A pickaxe mines and a war axe harvests nothing, so neither counts.</summary>
-    public static BaseAxe? FindAxe(Mobile m) =>
-        Held(m) is BaseAxe { HarvestSystem: Lumberjacking } held
-            ? held
-            : m.Backpack?.FindItemByType<BaseAxe>(predicate: static axe => axe.HarvestSystem is Lumberjacking);
+    /// <summary>
+    /// The axe a chop would use: an axe or a pole arm (BasePoleArm chops as an axe does, wave 5). A pickaxe mines and a war axe harvests nothing, so neither
+    /// counts.
+    /// </summary>
+    public static Item? FindAxe(Mobile m) =>
+        Held(m) is { } held && IsChopper(held) ? held : m.Backpack?.FindItemByType<Item>(predicate: static item => IsChopper(item));
+
+    public static bool IsChopper(Item item) => item is BaseAxe { HarvestSystem: Lumberjacking } or BasePoleArm { HarvestSystem: Lumberjacking };
 
     /// <summary>A pickaxe or a shovel: either mines from the pack or the hands.</summary>
     public static Item? FindMiningTool(Mobile m) =>

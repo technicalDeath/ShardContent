@@ -270,3 +270,55 @@ These are what a pet friend may do in the stock code: the friend orders (`BaseAI
 Before this, the client fork put a 0xB2 tooltip only on a greyed entry. It now puts one on any entry that has one (`PopupMenuGump.cs`). The test is `ThePetFriendEntriesSayWhatAFriendMayDo`.
 
 Real-client check on the farm (shard DLL md5 55A48D0DCA7789FD33F20E5C28ECE61A, client cuo.dll md5 29F3875E51726F2C669CF8EC7D4992A5): `20261101-165526-friend-tip-menu.png` shows the stock labels back. `165535-friend-tip-add.png` and `165547-friend-tip-remove.png` show the two tooltips on hover. The test horse was deleted.
+
+## Wave 5: everyday things (built 2026-11-01, on the owner's list)
+
+The owner chose eight items from the gap survey: "fill for containers that hold liquid, chop for pole arms, wool/cotton/flax/yarn, moongates, docked boat (launch), bank check, shepherd's crook, cow (milk)". The code is in `WorldActions.Everyday.cs`. Each action runs the stock use, and the menu only says in advance what that use would refuse.
+
+| Item | Menu | Greyed with |
+| --- | --- | --- |
+| An empty pitcher, mug, goblet or other fillable vessel in the pack | "Fill with water" when a trough, tub, barrel or bucket with water is within 2 tiles and in sight. "Fill with milk" when a cow that can be milked is that close. Either one fills the vessel at once (`BaseBeverage.Fill_OnTarget`). | "Fill": "Stand next to a trough, tub, barrel or bucket of water, or a cow." |
+| A halberd, bardiche or other pole arm | "Chop a tree", the same as an axe: it goes into the hands first. A tree's own Chop wood now counts a pole arm as an axe (`FindAxe`, `IsChopper`). | The tree's existing reasons. "Requires an axe." keeps the owner's wording. |
+| Wool, cotton or flax in the pack | "Spin on the wheel", with a free wheel picked first. | "Needs a spinning wheel within 3 tiles." / "That spinning wheel is being used." |
+| Yarn or thread in the pack | "Weave on the loom". | "Needs a loom within 3 tiles." |
+| A public moongate | "Travel", which opens the stock list of destinations. | In the stock order: "Criminals cannot use the moongate.", "You cannot use the moongate during a fight.", "You are too busy casting to use the moongate.", "Too far away. Stand next to the gate." |
+| A Gate Travel gate | "Enter the gate", which goes through the stock confirmation. | "This moongate does not seem to go anywhere.", casting, too far. |
+| A docked boat in the pack | "Launch the boat", which shows the stock placing cursor. | |
+| A bank check | "Cash it (N gold)". | "Put it in your bank box first." Without account gold, a check is cashed from the bank box. With account gold, the reason is "Put it in your backpack first." |
+| A shepherd's crook, carried or held | "Herd an animal", which shows the stock herding cursors. | |
+| A cow (its own menu) | "Milk", which fills the first empty vessel in the pack. | In order: "Requires an empty pitcher, mug or goblet.", "This is someone else's cow.", "This cow has no milk left. Try again in a day.", "Too far away. Stand within 2 tiles." |
+
+Notes:
+- Milking a cow came with Mondain's Legacy (cliloc 1080xxx). Stock ModernUO offers it in every era, and the owner asked for it.
+- The stock `Cow.TryMilk` does not stop when the cow is out of reach. The menu's reach check stands in for that.
+- A boat deed was not on the owner's list, so it has no Place entry yet.
+
+Tests: `APublicMoongateSaysWhyItCannotBeUsed`, `MilkingACowSaysWhyItCannotBeDone` and `ACowHasMilkAgainADayAfterItRanDry`. The WorldActions filter passes 122/122 (run `20261101T233225292Z-108ce7`).
+
+### Real-client check of wave 5 (2026-11-01, farm host, PoisonT at Britain's smithy, z 30)
+
+Run on the farm's shard DLL md5 4B4066534EEC645FF1C2BE0FC6E3CF87. Staff placed a water trough, a spinning wheel, a loom, a public moongate and a cow beside PoisonT, and put the hand items in the pack.
+
+The first staging used `[go x y 0` and landed everything below this courtyard, whose floor is z 30. Fill then stayed greyed, because PoisonT had no line of sight to it. That was a staging mistake, not a bug: the props were deleted and placed again with `[go x y`. The scripts are `work/world-actions-w5/stage.py` and `restage.py`.
+
+| Shot (`work/player-client/PoisonT/shots/`) | Shows |
+| --- | --- |
+| `20261101-191847-w5-wool.png` | Wool: "Spin on the wheel". Clicked, it spun into yarn ("You put the balls of yarn in your backpack"). |
+| `20261101-191857-w5-crook.png` | Shepherd's crook: Wield, Herd an animal. |
+| `20261101-192122-w5-fill-entry.png` | Before the fix to the staging: Fill greyed with "Stand next to a trough, tub, barrel or bucket of water, or a cow." |
+| `20261101-192420-w5-fill-menu.png` | Empty pitcher near the trough and cow: Fill with water, Fill with milk. |
+| `20261101-192432-w5-filled.png` | Fill with water clicked: "You fill the container with water", and the item is now a pitcher of water. |
+| `20261101-192455-w5-milk-reason.png` | Cow with no empty vessel carried: Tame, and Milk greyed with "Requires an empty pitcher, mug or goblet." |
+| `20261101-192520-w5-milked.png` | An empty mug added, then Milk clicked: "You fill the container with milk", and the mug is now a ceramic mug of milk. |
+| `20261101-192535-w5-gate.png` | Public moongate next to PoisonT: Travel. Not clicked. |
+| `20261101-192540-w5-halberd2.png` | Halberd: Chop a tree, then Wield. |
+| `20261101-192556-w5-check-reason.png` | Bank check in the backpack: "Cash it (1,000 gold)" greyed with "Put it in your bank box first." |
+
+Cleanup: the trough, wheel, loom, moongate and cow were deleted with `[Area delete where <type>`, one object each.
+
+Not exercised live:
+- Weave on the loom from yarn.
+- Moongate Travel clicked, and a Gate Travel gate.
+- Launch a docked boat. One can't be added directly; it only comes from dry-docking a boat.
+- Cashing a check in the bank box.
+- Herding through to an animal.

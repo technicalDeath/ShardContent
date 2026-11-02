@@ -15,9 +15,8 @@ public class ItemTooltipTests
     [Fact]
     public void AToolSaysWhatItIsFor()
     {
-        Assert.Contains("not ammunition", ItemTooltipService.ToolLine(true));
-        Assert.Contains("make arrows", ItemTooltipService.ToolLine(true));
-        Assert.Contains("crafting menu", ItemTooltipService.ToolLine(false));
+        Assert.Equal("Makes arrows, bolts and bows", ItemTooltipService.ToolLine(true));
+        Assert.Equal("Double-click to craft", ItemTooltipService.ToolLine(false));
         Assert.DoesNotContain("uses", ItemTooltipService.ToolLine(false), StringComparison.OrdinalIgnoreCase);   // wear is never on a tooltip
     }
 
@@ -60,11 +59,11 @@ public class ItemTooltipTests
     // ---- what a weapon says
 
     [Fact]
-    public void AKatanaSaysItsKindsNumbersInTheStockTexts()
+    public void AKatanaSaysItsKindsNumbersInShortWords()
     {
         // Katana: 5-26, speed 58, Strength 10, one-handed, Swordsmanship (the numbers the About page used to list)
         Assert.Equal(
-            "1061168:5\t26 | 1061167:58 | 1061170:10 | 1061824: | 1061172:",
+            "Damage: 5-26 | Speed: 58 | Strength: 10 | One-handed | Skill: Swordsmanship",
             Describe(ItemTooltipService.WeaponLines(5, 26, 58f, 1, 10, false, SkillName.Swords))
         );
     }
@@ -72,23 +71,23 @@ public class ItemTooltipTests
     [Fact]
     public void ABowAlsoSaysItsRangeAndThatItNeedsBothHands() =>
         Assert.Equal(
-            "1061168:9\t41 | 1061167:20 | 1061169:10 | 1061170:20 | 1061171: | 1061175:",
+            "Damage: 9-41 | Speed: 20 | Range: 10 | Strength: 20 | Two-handed | Skill: Archery",
             Describe(ItemTooltipService.WeaponLines(9, 41, 20f, 10, 20, true, SkillName.Archery))
         );
 
     [Fact]
     public void AWeaponThatNeedsNoStrengthLeavesThatLineOut() =>
-        Assert.DoesNotContain("1061170", Describe(ItemTooltipService.WeaponLines(1, 8, 30f, 1, 0, false, SkillName.Wrestling)));
+        Assert.DoesNotContain("Strength", Describe(ItemTooltipService.WeaponLines(1, 8, 30f, 1, 0, false, SkillName.Wrestling)));
 
     [Theory]
-    [InlineData(SkillName.Swords, 1061172)]
-    [InlineData(SkillName.Macing, 1061173)]
-    [InlineData(SkillName.Fencing, 1061174)]
-    [InlineData(SkillName.Archery, 1061175)]
-    public void TheSkillIsNamedForTheFourCombatSkills(SkillName skill, int number) => Assert.Equal(number, ItemTooltipService.SkillText(skill));
+    [InlineData(SkillName.Swords, "Swordsmanship")]
+    [InlineData(SkillName.Macing, "Mace Fighting")]
+    [InlineData(SkillName.Fencing, "Fencing")]
+    [InlineData(SkillName.Archery, "Archery")]
+    public void TheSkillIsNamedForTheFourCombatSkills(SkillName skill, string name) => Assert.Equal(name, ItemTooltipService.SkillLabel(skill));
 
     [Fact]
-    public void ASkillThatIsNoCombatSkillHasNoSkillLine() => Assert.Null(ItemTooltipService.SkillText(SkillName.Wrestling));
+    public void ASkillThatIsNoCombatSkillHasNoSkillLine() => Assert.Null(ItemTooltipService.SkillLabel(SkillName.Wrestling));
 
     // ---- what armor says, and the loot type
 
@@ -138,10 +137,10 @@ public class ItemTooltipTests
 
     [Fact]
     public void ArmorSaysItsKindsRatingAndStrengthOnly() =>
-        Assert.Equal("armor rating 40 | 1061170:60", Describe(ItemTooltipService.ArmorLines(40, 60)));
+        Assert.Equal("Armor: 40 | Strength: 60", Describe(ItemTooltipService.ArmorLines(40, 60)));
 
     [Fact]
-    public void ArmorThatNeedsNoStrengthSaysOnlyItsRating() => Assert.Equal("armor rating 2", Describe(ItemTooltipService.ArmorLines(2, 0)));
+    public void ArmorThatNeedsNoStrengthSaysOnlyItsRating() => Assert.Equal("Armor: 2", Describe(ItemTooltipService.ArmorLines(2, 0)));
 
     [Fact]
     public void NewbiedItemsSayTheyAreKeptWhenYouDieAndBlessedOnesSayBlessed()
@@ -153,8 +152,15 @@ public class ItemTooltipTests
     }
 
     [Theory]
-    [InlineData(1, "Stamina from eating: 6-8")]
-    [InlineData(5, "Stamina from eating: 7-9")]
-    [InlineData(20, "Stamina from eating: 10-12")]
+    [InlineData(1, "Stamina: +6-8")]
+    [InlineData(5, "Stamina: +7-9")]
+    [InlineData(20, "Stamina: +10-12")]
     public void FoodSaysHowMuchStaminaItGives(int fill, string line) => Assert.Equal(line, ItemTooltipService.FoodLine(fill));
+
+    [Fact]
+    public void WeightAndACheckSWorthAreShort()
+    {
+        Assert.Equal("Weight: 7", ItemTooltipService.WeightLine(7));
+        Assert.Equal("Worth: 1,000gp", ItemTooltipService.WorthLine(1000));
+    }
 }
