@@ -1065,8 +1065,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
             # beside the tree, not onto it: a tree's tile is not walkable, so a walk to the tile itself came back at once and the same tree was chosen
             # several times a second (BotCarpAdvR, 21 times in a minute, 2026-11-01 21:53)
             self.goto_near(t[0], t[1], 2).wait(timeout=90)
-            if max(abs(self.c.x - t[0]), abs(self.c.y - t[1])) >= d:
-                self.facts[("tree", t[0], t[1])] = time.time() + 900          # it could not get nearer: another wood next time
+            if max(abs(self.c.x - t[0]), abs(self.c.y - t[1])) > 10:
+                # it did not get there (the walk ended at the "closest reachable" tile: BotCarpAR stopped 53 tiles short of 1368,1548 and waited 11 minutes
+                # with no boards, 2026-11-01 22:10): another wood next time
+                self.facts[("tree", t[0], t[1])] = time.time() + 900
                 return False
             return True
         return False
