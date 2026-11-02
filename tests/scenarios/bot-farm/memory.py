@@ -454,6 +454,21 @@ class SharedMemory:
             return True
         return deaths >= 2.0 and deaths > kills * 0.5
 
+    def deaths_near(self, cell: str) -> float:
+        """Decayed deaths (DEATH_HALF_LIFE) of any bot in the cell and the eight around it, whatever was killed there: a camp that kills gatherers stays a
+        camp however many kills the fighters make in it (the west-hills camp killed six bots in an hour, 2026-11-01 22:12-23:13)."""
+        self.refresh()
+        x, y = (int(v) for v in cell.split(","))
+        now = time.time()
+        total = 0.0
+        for dx in (-CELL, 0, CELL):
+            for dy in (-CELL, 0, CELL):
+                c = self.state["world"]["cells"].get(f"{x + dx},{y + dy}")
+                if c:
+                    self._decay_cell(c, now)
+                    total += c["deaths"]
+        return total
+
     def vendor_selling(self, word: str):
         """Shops that sell something whose name contains word ("=word": named exactly that, so "=arrow" is not a Magic Arrow scroll): [(price, xy, item,
         qty)], cheapest first."""

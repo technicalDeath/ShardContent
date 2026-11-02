@@ -64,6 +64,7 @@ except Exception:          # the data missing: the Britain constants below stay 
 
 HEALER = (1472, 1611)
 TOWN = (1470, 1620)
+GATHER_DEATHS = 3.0             # decayed deaths of any bot in a 3x3-cell neighbourhood that close it to gatherers and crafters (memory.deaths_near)
 BIRTH_TOWN = "Britain"                  # every farm bot is made in Britain (startInBritainOnly) (patch_home_town)
 STEP = {"n": (0, -1), "s": (0, 1), "e": (1, 0), "w": (-1, 0), "ne": (1, -1), "nw": (-1, -1), "se": (1, 1), "sw": (-1, 1)}     # the client's walk directions
 ROUTE_DEATH_DAYS = 14   # a long walk to a new home is judged on this many days of deaths: the danger map forgets in 24 h (half-life 3 h), and the pocket at
@@ -445,6 +446,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     def gather_danger(self, cell):
         """A gatherer must not use this cell: dangerous by the old rule, or above the area danger map ceiling (the map ranks, it does not refuse a hill; patch_gather_risk.py)."""
         try:
+            if self.mem.deaths_near(cell) >= GATHER_DEATHS:
+                return True                               # several deaths of any bot around it lately, whatever the fighters kill there (memory.deaths_near)
             return bool(self.mem.dangerous_cell(cell, area=False) or not self.mem.area_ok(cell))
         except (TypeError, AttributeError):                        # a memory without the map
             return bool(self.mem.dangerous_cell(cell))
