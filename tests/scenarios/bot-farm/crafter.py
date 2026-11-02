@@ -31,7 +31,7 @@ DATA = json.load(open(os.path.join(HERE, "craft_data.json"), encoding="utf-8"))
 CRAFTS = {
     16: dict(craft="Blacksmith", skill="Blacksmithy", tool="tongs", mat="iron ingot", res="IronIngot", station_by="smith", shop_roles=("tinker",), wanted={"ingot": 60},
              sell_roles=("smith", "weaponsmith", "armorer"), maxcost=14),
-    18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station_by=None, shop_roles=("tailor", "weaver"), wanted={"cut cloth": 120, "bolt of cloth": 100},
+    18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station_by=None, shop_roles=("tailor", "weaver"), wanted={"cut cloth": 120, "bolt of cloth": 500},
              sell_roles=("tailor", "weaver"), maxcost=20),
     # the Carpenter at 1430,1597 sells boards (3 gp) and buys the work; the Tinker the carpenters used to go to sells none
     17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station_by=None, shop_roles=("carpenter",), wanted={"board": 60}, sell_roles=("carpenter",), maxcost=15),
@@ -46,7 +46,7 @@ UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2,
 UNSOLD_VALID_FROM = 1793605500   # 2026-11-02 02:45: strikes from before this were sales of 100+ entries the server dropped (basics.SELL_MAX), not refusals
 BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTailor, SBWeaver)
 BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
-BOLT_BATCH = 10           # bolts a trip at most: 500 cloth; a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
+BOLT_BATCH = 10           # bolts a trip at most: 500 cloth (CRAFTS[18] wanted "bolt of cloth" 500: at 100, two bolts a walk, 7 surcoats, 2026-11-02); a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
 TRAIN_RESERVE = 1000      # below this (carried + banked) a crafter makes only what is expected to pay (patch_craft_profit)
 FAIL_LOSS = 0.5           # a failed craft consumes half the materials (ModernUO ConsumeType.Half)
 FLOOR_MARGIN = 1.25       # a shop pays at least the materials x 1.25 for a crafted piece (CraftedGoodsPricing)
@@ -330,8 +330,9 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                     got[k] = got.get(k, 0) + v
                 if not self.cut_hides():
                     break                                        # no scissors: the hides are sewn as they are (CraftItem.m_TypesTable)
-            if got:
-                break
+            if got and self.leather_held() + self.hides_held() >= self.restock_need():
+                break                                            # still short: the next Furtrader, as a player whose shop ran out walks on (BotFairTailorVR
+                                                                 # got the 20 hides one shelf had and stood 3 minutes on 20 leather, 2026-11-02)
         if not got:
             for shop in self.leather_shops("cut leather", ("tanner",)):
                 n = min(LEATHER_BATCH - self.leather_held() - self.hides_held(), self.leather_room(items.unit_weight("cut up leather")),
