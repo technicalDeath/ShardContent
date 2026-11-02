@@ -786,6 +786,14 @@ class Fight(Step):
             self.finish(t)
             return Status.SUCCESS
         d = cheb(c.here(), (m.x, m.y))
+        if not t.get("opened"):
+            t["opened"] = True
+            hook = getattr(b, "fight_open", None)          # a brain's own opening move (the bard's provocation), once per target
+            if hook is not None:
+                try:
+                    hook(m)
+                except Exception:
+                    pass
         try:
             import measured
             t.setdefault("fight_start", now)

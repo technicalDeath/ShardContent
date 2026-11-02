@@ -1727,6 +1727,21 @@ class BardBot(HunterBot):
             self.dlog("ev", ev="tool_missing", tool="instrument")
         return True
 
+    def fight_open(self, m):
+        """A fight begins: provoke its target onto another creature in bard range (BaseInstrument.GetBardRange 8 + Provocation/15), as the era's bard opens a
+        fight (both fight each other; the bard's share of the damage gives loot rights, Publish 5). No other creature near: the bow alone."""
+        if not self.instrument():
+            return False
+        rng = 8 + int(float(getattr(self, "skill_values", {}).get("Provocation", 0) or 0) // 15)
+        other = [o for o in self.mobs(rng) if o.serial != m.serial and not (o.name or "").startswith("Bot")
+                 and getattr(o, "notoriety", "") not in ("Innocent", "Ally")]
+        if not other:
+            return False
+        res = self.play("provocation", [m.serial, other[0].serial])
+        self.log(f"music (provoking at the fight's start): {m.name} onto {other[0].name}: {str(res)[-90:]}")
+        self.ev("provoke", target=m.name, onto=other[0].name)
+        return True
+
     def r_music(self):
         if self.feature("bard_instrument") and self.facts.get("no_instrument") and not self.instrument():
             return False                                                    # nothing to play (r_instrument buys one)

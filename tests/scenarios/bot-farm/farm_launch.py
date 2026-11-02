@@ -32,7 +32,7 @@ CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
-LEAN_CUO = os.path.join(NAVREY, "bin", "Lean12", "cuo.dll")        # Lean12: Lean9 + heap compaction (Agent/MemoryTrim.cs) + lazy string dictionary, 32-byte file index, capped path cache, sparse sprite caches and no pixel picker in lean mode (2026-10-20)
+LEAN_CUO = os.path.join(NAVREY, "bin", "Lean13", "cuo.dll")        # Lean13: Lean12 + the shard's carry limit from 0xB3 (Agent/CarryWeight.cs, BotFarm QoL, 2026-11-01); was        # Lean12: Lean9 + heap compaction (Agent/MemoryTrim.cs) + lazy string dictionary, 32-byte file index, capped path cache, sparse sprite caches and no pixel picker in lean mode (2026-10-20)
 # NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
 # DOTNET_GCgen0size caps the gen0 budget (it otherwise scales with the CPU cache and kept ~50 MB committed and empty); FNA3D_D3D11_USE_WARP puts
 # the never-drawn D3D11 device on Windows' software rasterizer, so the NVIDIA driver (~55 MB, 29 threads per client) never loads. Measured
