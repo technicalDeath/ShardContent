@@ -83,6 +83,9 @@ LEATHER_LOW = 28          # restock under two studded chests' worth (14 leather 
 LEATHER_BATCH = 999       # leather and hides held after a restock at most: the shelf's ceiling. SBFurtrader starts at 40 hides, but a sold-out shelf doubles
                           # at each hourly restock up to 999 (GenericBuyInfo.OnRestock), so weight (leather_room) and gold are the real limits: at 40 a
                           # restock was 5 leather shorts, 10 s of sewing, and BotFairTailorVR bought 40, 40 and 36 hides at one shop in 7 minutes (2026-11-02)
+TANNER_LEATHER = "of leather"   # the Tanner's shelf line is "Pieces Of Leather" (SBTanner Leather 6 gp): the key "cut leather" matched nothing, and with the
+                                # Furtrader's hides sold out BotTailAdvR made nothing for 36 minutes beside it (2026-11-02 08:36-09:12). "of leather" is not
+                                # in the pack's "cut up leather", so the pack is still not counted against the purchase
 LEATHER_SHELF = 6         # the Tanner's leather, the fallback when no hides are left (SBTanner Leather 6)
 TEACH_CHANCE = 0.45       # choose()'s own floor: a piece made at under 45% is not picked to train on
 OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wore out|enough|too heavy|cannot|must|not have|put .* in|exceptional", re.I)
@@ -334,12 +337,12 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
                 break                                            # still short: the next Furtrader, as a player whose shop ran out walks on (BotFairTailorVR
                                                                  # got the 20 hides one shelf had and stood 3 minutes on 20 leather, 2026-11-02)
         if not got:
-            for shop in self.leather_shops("cut leather", ("tanner",)):
+            for shop in self.leather_shops(TANNER_LEATHER, ("tanner",)):
                 n = min(LEATHER_BATCH - self.leather_held() - self.hides_held(), self.leather_room(items.unit_weight("cut up leather")),
                         max(0, self.c.gold - 40) // LEATHER_SHELF)
                 if n <= 0:
                     break
-                got = self.shop_at(shop, {"cut leather": n}, budget=max(0, self.c.gold - 40))    # the pack's "cut up leather" is not counted by that key
+                got = self.shop_at(shop, {TANNER_LEATHER: n}, budget=max(0, self.c.gold - 40))    # the pack's "cut up leather" is not counted by that key
                 opened = opened or bool(self.facts.get("shop_list_opened"))
                 if got:
                     break
