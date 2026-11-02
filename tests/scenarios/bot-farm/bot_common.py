@@ -2509,6 +2509,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         json.dump(shops, open(os.path.join(FARM, "shops.json"), "w", encoding="utf-8"), indent=1)
         have = {}
         for it in self.c.backpack:
+            if "ingot" in (it.name or "").lower() and getattr(it, "hue", 0):
+                continue                                  # the client calls every ingot "iron ingot": a coloured one is not iron owned. BotTinkBR, 1,029
+                                                          # coloured and 4 of iron, "owned" 1,033 against 50 and bought none (2026-11-02 04:28)
             have[it.name.lower()] = have.get(it.name.lower(), 0) + (it.amount or 1)
         cart, spent, bought, got = [], 0, {}, {}
         gold = self.c.gold if budget is None else min(budget, self.c.gold)
