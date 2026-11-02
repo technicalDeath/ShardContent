@@ -156,10 +156,23 @@ class PetHuntMixin:
                 return 0.0, True                          # it would go for the tamer, and the pet cannot stop it
         return v, bad
 
+    def pet_loot(self, k):
+        """kind_loot, plus the carve at task_core.CARVE_REALIZE when this tamer carves (feature tamer_carve) and has a blade."""
+        v = kind_loot(k)
+        blade = getattr(self, "carving_blade", None)
+        if getattr(self, "CARVE", False) and blade is not None and blade() is not None:
+            try:
+                import profit
+                import task_core
+                v += float((profit.table().get(k) or {}).get("carve") or 0) * task_core.CARVE_REALIZE
+            except Exception:
+                pass
+        return v
+
     def worth_kind(self, k, deadly):
         if k in deadly or not self.pet_beats([k]):
             return 0.0
-        v = kind_loot(k)
+        v = self.pet_loot(k)
         return v if v >= LOW else 0.0
 
     def ground_load(self, cell):
@@ -172,7 +185,7 @@ class PetHuntMixin:
         out = []
         for m in self.mobs(within):
             k = self.mkey(m)
-            if not self.pet_beats([k]) or kind_loot(k) < LOW:
+            if not self.pet_beats([k]) or self.pet_loot(k) < LOW:
                 continue
             if any(max(abs(o.x - m.x), abs(o.y - m.y)) <= 3 for o in others):
                 continue                                  # another bot's fight: its kill and its loot

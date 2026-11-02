@@ -14,7 +14,7 @@ import sys
 import time
 
 from bot_common import BotBase
-from hunter import SPOTS
+from hunter import SPOTS, HunterBot
 from memory import cell_of, choose_spot
 from uo import Event
 from tamefind import TameFindMixin
@@ -41,10 +41,40 @@ def norm(t):
 from stock import TamerStock  # noqa: E402
 from wear import GathererArmor  # noqa: E402  (leather and studded armour, feature gather_armor)
 class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMixin, GathererArmor, BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_loot", "r_pet_hunt", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_tamer_arms", "r_upgrade", "r_tame", "r_bank", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_loot", "r_pet_hunt", "r_pet_fight", "r_evade", "r_heal", "r_pet_heal", "r_pet", "r_stock", "r_tamer_arms", "r_upgrade", "r_tame", "r_sellgoods", "r_bank", "r_explore"]
+
+    # feature tamer_carve (2026-11-02): the tamer carves what its pet kills and sells it, as a tamer of the era lived on hides and meat. The pet hunt valued
+    # an animal by its coins alone (pethunt.kind_loot): a great hart (carve 123), a grizzly (96), a hind (80), bears (68) and cougars (58) were worth 0, the
+    # animal fields all "worth 0", and the bear was sent at rats and slimes the fighters had cleared: 1-2 kills an hour. The loot code skipped every carve
+    # ("not_carvable": a TamerBot had no CARVE) though it carries a dagger and a skinning knife. The carving parts are the fighters' own (HunterBot).
+    CARVE_KINDS = HunterBot.CARVE_KINDS
+    BLADES = HunterBot.BLADES
+    carving_blade = HunterBot.carving_blade
+
+    @property
+    def CARVE(self):
+        return self.feature("tamer_carve")
+
+    def r_sellgoods(self):
+        """Carved goods (meat, hides cut into leather, feathers) to the shops that buy them, with the fighters' sell errand (errands.Act.do_sell): when the
+        trip pays or the pack is heavy (basics.sell_due), or twenty minutes after the last sale."""
+        if not self.CARVE:
+            return False
+        import errands
+        import items
+        if not any(items.is_goods(i.name) for i in self.c.backpack) or self.threats(10) or time.time() - self.facts.get("goods_sold_at", 0) < 300:
+            return False
+        if not (self.sell_due() or self.sale_due("goods_sold_at")):
+            return False
+        self.facts["goods_sold_at"] = time.time()
+        self.activity = "selling carved goods"
+        gold0 = self.c.gold
+        errands.Act.do_sell(None, self, {}, {"task": "sell"})
+        self.log(f"sold carved goods: gold {gold0} -> {self.c.gold}")
+        return True
     PET_MIN = 90               # a horse (98) and up: around Britain the bears and wolves are rare and go to the fighters first
     PET_UPGRADE = 1.3          # trade up only for a clearly stronger animal
-    PERSIST = BotBase.PERSIST + ("pet", "lost_pets", "owned_serials")      # a restart keeps the pet: the pets follow on, the record did not (2026-10-30)
+    PERSIST = BotBase.PERSIST + ("pet", "lost_pets", "owned_serials", "goods_sold_at")      # a restart keeps the pet: the pets follow on, the record did not (2026-10-30)
     PERSIST_CAPS = {"owned_serials": OWNED_MAX}           # saved lists keep their newest 20: the 300 owned animals came back as 20 at each restart, and the
                                                           # tamer re-tamed its old animals ("wasn't even challenging") 19-24 times a half-hour (2026-11-01)
     # its own r_evade: wild animals are what a tamer walks up to, monsters are what it walks away from
