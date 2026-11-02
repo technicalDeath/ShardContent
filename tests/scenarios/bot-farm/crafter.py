@@ -1512,15 +1512,10 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         """Can this crafter make its own material? A carpenter chops logs; a smith or tinker with some Mining digs ore and smelts it (iron smelts from 25 Mining)."""
         if self.cfg["craft"] == "Carpentry":
             return True
-        if self.cfg["res"] != "IronIngot" or self.skill_values.get("Mining", 0) < 30:
-            return False
-        coloured = sum((i.amount or 1) for i in self.c.backpack if "ingot" in (i.name or "").lower() and getattr(i, "hue", 0))
-        batch = int(next(iter(self.cfg.get("wanted", {}).values()), 50) or 50)
-        if coloured >= batch and self.count(self.cfg["mat"]) < 5:
-            # its digging turns out metal it does not work: BotTinkBR, Mining 92, held 1,029 coloured ingots (bronze 637, dull copper 351) and 4 of iron,
-            # and the restock would not walk to the shop because "it can gather the material near home" (2026-11-02 03:34-04:00)
-            return False
-        return True
+        return self.cfg["res"] == "IronIngot" and self.skill_values.get("Mining", 0) >= 30
+        # (not false for a pack of coloured ingots: they pile up over hours while the digging still yields plain iron. Turning gathering off for them
+        # stopped all five metal crafters' digging, and the shelves' 16 ingots could not feed them: items made fell from 1,350 to 227 an hour for
+        # BotTinkAR, 2026-11-02 04:07-05:12)
 
     def r_smelt(self):
         """Ore in the pack and the craft wants ingots: carry it to the forge and smelt it (double-click the ore, target the forge)."""
