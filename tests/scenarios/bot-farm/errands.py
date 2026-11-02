@@ -112,7 +112,9 @@ def trip_stock_wanted(bot):
     try:
         import task_core
         if not bot.feature("ladder"):
-            return False                                  # only a bot that goes down (feature ladder) buys the dungeon kit: all twenty core fighters did, and Britain's
+            return False
+        if time.time() < float(bot.facts.get("kit_short_until", 0) or 0):
+            return False                                  # the shelves could not fill the kit: after their restock (KIT_RETRY_S)                                  # only a bot that goes down (feature ladder) buys the dungeon kit: all twenty core fighters did, and Britain's
                                                           # shelves (10-15 Heal and Cure a vendor an hour; two Cure sellers seen) were bare for the four that go (2026-11-01)
         if float(bot.skill_values.get(bot.main_skill(), 0) or 0) < task_core.KIT["skill"]:
             return False
@@ -146,6 +148,7 @@ def restock_wants(bot):
     return out
 
 ERRAND_NEAR = 3
+KIT_RETRY_S = 3600              # BaseVendor.RestockDelay: a vendor restocks an hour after its last restock, when next opened
 REST_AT = 50                    # the rest errand below this health (the hunt tree rests itself between 50 and 65 with nothing about)
 REST_TO = 75
 TRAIN_CAP = 30.0
@@ -776,6 +779,12 @@ class Act(Step):
             b.log(f"errand resupply: nothing bought (bandages {b.bandages()}, gold {b.c.gold}, bank {b.facts.get('bank_balance', 0)}): unmet")
         elif left:
             b.log(f"errand resupply: still short of {', '.join(k.strip('=') for k in left)}")
+        if left and trip_stock_wanted(b):
+            # the dungeon kit cannot be filled now (Britain's four Cure shelves held 10 each when every core fighter began to want 15): the kit waits for the
+            # shelves to restock (BaseVendor.RestockDelay, one hour) and the bot hunts on its ordinary marks meanwhile, as a player does. BotArchAdvR,
+            # BotFairArcherNR and BotRangerAR looped sell, bank and resupply instead of hunting (2026-11-01 19:44-19:53)
+            b.facts["kit_short_until"] = time.time() + KIT_RETRY_S
+            b.log(f"errand resupply: the dungeon kit is short ({', '.join(k.strip('=') for k in left)}): hunting on the ordinary marks for {KIT_RETRY_S // 60} min")
         b.facts["restock_failed_at"] = 0 if after > before else time.time()
         return after > before
 
