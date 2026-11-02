@@ -44,6 +44,7 @@ SHOVEL_CARRY = 8     # shovels bought at a time: 5 stones each, 40 in all, about
 PICK_CARRY = 3       # pickaxes bought at a time: 50 uses each (Pickaxe.cs), about 10 minutes of mining, and the trip back from the western range took
                      # about 5 minutes (283 tiles, 2026-10-31), some 55 gold of a miner's hour against 25 gold and 11 stones for a spare
 DIG_REACH = 200       # r_mine digs within this many tiles of the work centre (350 while mine_wide); a module name, as the smith runs MinerBot.r_mine too
+CLAIM_WALK_S = 600              # a chosen dig spot is claimed this long for the walk there (the claim at the first swing lasts 240 s)
 FAR_REACH = 460       # ... and up to this far where the walk passes far_spot_ok: the safe banks of the range west of Britain are 445 tiles from its centre
 
 
@@ -136,6 +137,19 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
             ok = False
         cache[key] = (time.time(), ok)
         return ok
+
+    def claimed_near(self, t, near=3):
+        """Another bot holds a claim on a mountain tile within `near` tiles of t: neighbouring tiles share the same standing places."""
+        try:
+            now = time.time()
+            for key, r in (self.mem.state["world"]["res"].get("ore") or {}).items():
+                if r.get("claim_until", 0) > now and r.get("claim_by") != self.mem.bot:
+                    x, y = (int(v) for v in key.split(","))
+                    if max(abs(x - t[0]), abs(y - t[1])) <= near:
+                        return True
+        except Exception:
+            return False
+        return False
 
     def horse_unsafe(self, t):
         """A dig spot where a monster that attacks on sight could reach the pack horse: within an aggressive spawner's home range plus task_core.PULL_CLEAR
@@ -273,8 +287,17 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
                 return False
             # nearest first in SPOT_BAND bands, the risk only between spots about as near: every candidate has passed the danger and death checks, and ranked by
             # risk first BotMinerBR walked 300-550 tiles between the western range, the south-west hills and 1722,1603 for 1-2 minutes of digging each (2026-10-31)
+            try:
+                self.mem.refresh()                            # once: claimed_near reads the shared memory as it stands
+            except Exception:
+                pass
+            free = [t for t in cands if not self.claimed_near(t)]
+            cands = free or cands
             self.spot = min(cands, key=lambda t: (max(abs(t[0] - self.c.x), abs(t[1] - self.c.y)) // SPOT_BAND, round(self.gather_risk(cell_of(t[0], t[1])), 1),
                                                   abs(t[0] - self.c.x) + abs(t[1] - self.c.y)))
+            # claimed from the choice, for the walk there, not only from the first swing: five gatherers chose the same spot north of Britain (1455-1456,
+            # 1512-1526) in four minutes and boxed each other in, one for 8.5 minutes (2026-11-01 21:03-21:16)
+            self.mem.record("claim", kind="ore", key=f"{self.spot[0]},{self.spot[1]}", ttl=CLAIM_WALK_S)
         tx, ty, tz, g = self.spot
         if max(abs(self.c.x - tx), abs(self.c.y - ty)) > 2:
             self.activity = f"walking to the hills at {tx},{ty}"
