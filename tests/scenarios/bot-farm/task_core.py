@@ -94,6 +94,7 @@ CALIB_TABLE = "task_calib"      # 1. measured / expected per task kind, group an
 CALIB_SEED = {"kills": 0.056, "gold": 0.005, "skill": 0.3}       # the hour: 137 kills against 2,455 expected, 491 gold against 95,975; skill not measured (a guess)
 CALIB_N = 2.0                   # the seed counts as this many tasks before the bot's own measurements outweigh it
 CALIB_MIN, CALIB_MAX = 0.002, 2.0
+HOUSE_GOLD = 16000              # a small house deed (shard-rules.json housePricing.smallHouses): the gold goal of a bot that has reached everything else
 EXPECT_CAP = {"kills": 18.0, "gold": 120.0, "skill": 3.0}      # an hour's yield no bot of the farm has reached (live hour: 8.8 kills, 18 gold a bot-hour on average): the largest priors were 37 kills and 2,400 gold
 NO_PREY = ("snake",)                    # 2. no loot, and its poison killed three of the nine: fought only when it is on the bot. The horse is prey again (2026-10-29): it
                                         # carves 10 hides and 3 ribs (profit table, 74), and 150 measured fights have no death (ranged 67% kills, melee 90%)
@@ -197,7 +198,7 @@ def goal(bot):
     cands = goal_candidates(bot)
     if g:
         done = measure_value(bot, g["measure"]) >= g["target"]
-        gone = not any(c["id"] == g["id"] for c in cands)
+        gone = bool(cands) and not any(c["id"] == g["id"] for c in cands)       # no candidates at all: the fallback goal stays (it is never among them)
         old = t - g.get("set_at", t) > GOAL_LIFE
         if done or gone or old:
             why = "done" if done else "gone" if gone else "renewed"
@@ -205,6 +206,13 @@ def goal(bot):
             g = None
     if not g:
         c = cands[0] if cands else {"id": "skill:100", "kind": "skill", "measure": "skill", "target": 100.0, "name": "mastery"}
+        if measure_value(bot, c["measure"]) >= c["target"]:
+            # everything reached (the skill at 100, past the last gold step, no gear to buy): the next small house's price in gold (housePricing.smallHouses
+            # 16,000) beyond what it has. The mastery fallback was met the moment it was set and re-picked every tick: BotFairSwordNR wrote it 21,267 times
+            # (Swordsmanship 100, 29,848 gold banked, 2026-11-01)
+            v = measure_value(bot, "gold")
+            nxt = (int(v // HOUSE_GOLD) + 1) * HOUSE_GOLD
+            c = {"id": f"bank:{nxt}", "kind": "bank", "measure": "gold", "target": float(nxt), "name": f"{nxt} gold banked and carried"}
         g = dict(c, set_at=t, start=round(measure_value(bot, c["measure"]), 1))
         bot.facts["core_goal"] = g
         bot.ev("core_goal", goal=g["name"], measure=g["measure"], target=g["target"], start=g["start"])
