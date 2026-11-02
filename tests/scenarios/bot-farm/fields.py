@@ -150,7 +150,19 @@ class FieldsMixin:
             if why is None:
                 import places
                 return places.scatter(getattr(self, "name", ""), *f["spots"][f.get("i", 0)][:2], r=6)
-            self.facts.setdefault("fields_rested", {})[f["name"]] = now
+            rest = REST
+            if why.startswith("empty"):
+                # an empty field is back once its spawners respawn (their longest delay, spots.spawner_spots "mx" from the spawner's maxDelay), not after a
+                # flat 30 minutes: with three fields open to its brown bear, BotTamerAR rested each after 77 s and ran out ("others: none"), 0 kills an hour
+                # (2026-11-01 22:24-22:50)
+                try:
+                    import spots as _sp
+                    idx = {(int(s["x"]), int(s["y"])): s for s in _sp.spawner_spots()}
+                    mx = max(float(idx[(int(s[0]), int(s[1]))]["mx"]) for s in f["spots"] if (int(s[0]), int(s[1])) in idx)
+                    rest = min(REST, max(120.0, mx))
+                except Exception:
+                    rest = REST
+            self.facts.setdefault("fields_rested", {})[f["name"]] = now - (REST - rest)     # (rested while now - t < REST: for `rest` seconds)
             self.facts["field"] = None
             self.log(f"fields: leaving {f['name']}: {why}")
             self.ev("field_left", field=f["name"], why=why, mins=round((now - f["t"]) / 60, 1))
