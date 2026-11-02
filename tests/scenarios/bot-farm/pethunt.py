@@ -29,6 +29,14 @@ BROKE = 1000
 CYCLE = 3600
 PET_HUNT_MIN = 90
 RATIO = 0.6
+# feature pet_mend (2026-11-02): the pet is bandaged back to MEND_TO between fights (tamefind.r_pet_heal), so every fight starts near full, and a kind up to
+# RATIO_MEND of its strength is taken. In the exchange the pet loses about s_monster / s_pet of its hit points (it kills in H_m / D_p seconds and takes
+# D_m a second): a ratman (292) costs a brown bear (414) 71%, which regeneration alone (1 hit point every 11 s pre-AOS, RegenRates.DefaultHitsRate) would
+# take 11 minutes to restore, and a bandage at Veterinary 14 / Animal Lore 90 heals about 29 at 24% (Bandage.cs pre-AOS: (Vet + 10) / 100, Lore / 5 +
+# Vet / 5 + 3 to Lore / 5 + Vet / 2 + 10). On RATIO alone a bear was kept to rats and birds that the fighters had already cleared: 1 kill an hour,
+# 12 of 17 minutes walking to empty fields (anomaly sweep 00:14). pet_kill events carry the pet's hit points after the kill, the measure of this A/B.
+RATIO_MEND = 0.8
+MEND_TO = 85
 LOW = 10.0
 SEEN = 120
 REACH = 14
@@ -111,7 +119,7 @@ class PetHuntMixin:
             if s is None:
                 return False
             total += s
-        return total <= pet.get("strength", 0) * RATIO
+        return total <= pet.get("strength", 0) * (RATIO_MEND if self.feature("pet_mend") else RATIO)
 
     def pet_handles(self, mons):
         """With the feature, a group the pet beats together (strengths summed) is the pet's too, not only a lone monster."""
@@ -196,7 +204,7 @@ class PetHuntMixin:
                     return False                          # it walked out of sight
                 self.kills += 1
                 self.note_kill_at(corpse.x, corpse.y, h["kind"])
-                self.ev("pet_kill", pet=pet["name"], target=h["name"], secs=round(now - h["t"]))
+                self.ev("pet_kill", pet=pet["name"], target=h["name"], secs=round(now - h["t"]), pet_hp=round(getattr(pm, "hp_pct", 0) or 0))
                 self.log(f"pet hunt: {pet['name']} killed {h['name']} in {now - h['t']:.0f} s")
                 self.c.say("all guard me")
                 if max(abs(self.c.x - corpse.x), abs(self.c.y - corpse.y)) > 6:
@@ -219,6 +227,8 @@ class PetHuntMixin:
             else:
                 time.sleep(1.0)
             return True
+        if self.feature("pet_mend") and self.pet_hurt(pm):
+            return False                                  # no new fight until r_pet_heal has it back to MEND_TO
         prey = [m for m in self.prey(REACH) if self.ignored.get(m.serial, 0) <= now]
         if not prey:
             return False
@@ -231,6 +241,19 @@ class PetHuntMixin:
         if m.distance > FOLLOW:
             self.c.goto(m.x, m.y).wait(timeout=3)
         return True
+
+    def pet_hurt(self, pm):
+        """The pet under MEND_TO, a bandage at hand and nothing hostile within 4 tiles (r_pet_heal's own conditions): asked once in 10 s."""
+        if self.mobs(4) or not self.c.find("bandage"):
+            return False
+        if time.time() - self.__dict__.get("_hp_asked", 0) > 10:
+            self.__dict__["_hp_asked"] = time.time()
+            try:
+                self.c.call(f"hp {pm.serial}", timeout=4)
+            except Exception:
+                pass
+            pm = next((x for x in self.c.mobiles(within=18) if x.serial == pm.serial), pm)
+        return (getattr(pm, "hp_pct", 100) or 100) < MEND_TO
 
     def pet_order(self, m):
         from uo import Event

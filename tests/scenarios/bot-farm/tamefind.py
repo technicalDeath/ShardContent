@@ -333,10 +333,11 @@ class TameFindMixin:
 
     def r_pet_heal(self):
         """Bandage the pet (Veterinary 20+) when it is under 55% and near."""
-        if not self.feature("tame_find") or self.c.ghost or (self.skill_values.get("Veterinary", 0) < 20 and not self.feature("tamer_weapon")) or self.mobs(4):
+        if not self.feature("tame_find") or self.c.ghost or (self.skill_values.get("Veterinary", 0) < 20 and not self.feature("tamer_weapon") and not self.feature("pet_mend")) or self.mobs(4):
             return False
         pet, pm = self.pet_view()
-        if not pet or pm is None or time.time() - pet.get("healed_at", 0) < 15:
+        gap = 1 if self.feature("pet_mend") else 15             # (the bandage itself takes 3-5 s pre-AOS by Dex, Bandage.cs GetDelay, and is waited for below)
+        if not pet or pm is None or time.time() - pet.get("healed_at", 0) < gap:
             return False
         bandage = self.c.find("bandage")
         if not bandage:
@@ -346,7 +347,8 @@ class TameFindMixin:
         except Exception:
             pass
         cur = next((x for x in self.c.mobiles(within=18) if x.serial == pet["serial"]), pm)
-        if cur.hp_pct >= 55:
+        import pethunt
+        if cur.hp_pct >= (pethunt.MEND_TO if self.feature("pet_mend") else 55):
             return False
         pet["healed_at"] = time.time()
         if cur.distance > 1:
