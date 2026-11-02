@@ -2465,6 +2465,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if self.feature("restock_fix") and str(res).startswith(("nopath", "blocked", "timeout")):
             self.facts.setdefault("shop_nopath", {})[tuple(xy)] = time.time() + 600       # the next restock begins at another shop of the role
         self.facts["shop_had_wanted"] = False                  # did the list offer a wanted item at all (r_restock: sold out, or nothing needed)
+        if max(abs(self.c.x - xy[0]), abs(self.c.y - xy[1])) > self.SHOP_NEAR:
+            # the walk ended short: whoever stands here is not this shop's vendor. Asking them read an armourer's list for the Tailor's shop, and the restock
+            # marked cloth sold out at the Tailor in the shared memory (BotTailorBR, 11 times in 13 minutes, walks ending 38-97 tiles short, 2026-11-02 02:01)
+            self.facts["shop_list_opened"] = False
+            self.facts.setdefault("shop_nopath", {})[tuple(xy)] = time.time() + 600
+            return {}
         stock = []
         vendor_name = ""
         # A shop often has two vendors (the Tailor and a Weaver, the Armorer and the Weaponsmith) who sell different things: ask each until one
