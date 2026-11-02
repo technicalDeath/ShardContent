@@ -689,12 +689,20 @@ CORPSE_REPEAT_R = 60            # tiles: an earlier death of this bot this near 
 CORPSE_REPEAT_S = 3600.0
 
 
+def killer_kind(name):
+    """A recorded killer's kind: "a bone mage (beside it when hit)" -> "bonemage". The death cause's note in brackets made it "bonemagebesideitwhenhit",
+    which no measured kind matches (BotArchAdvR, 2026-11-02 01:24)."""
+    import re
+    n = re.sub(r"\s*\(.*\)\s*$", "", str(name or "").lower())
+    return norm_kind(re.sub(r"^(an?|the)\s+", "", n.strip()))
+
+
 def corpse_refusal(bot, x, y):
     """(why, dist, killer) when a corpse run to (x, y) is refused, else None. A provisioned bot makes none (its kit is replaced and the corpse holds nothing worth the risk); every
     core bot refuses a corpse beyond CORPSE_RUN_CAP from home, a killer whose measured death_pct is at the group's cut-off, a killer that has killed this bot before, and ground where
     this bot died within the last hour."""
     try:
-        killer = norm_kind(__import__("re").sub(r"^(an?|the)\s+", "", (((bot.facts.get("killer") or {}).get("name")) or "").lower()))
+        killer = killer_kind((bot.facts.get("killer") or {}).get("name"))
     except Exception:
         killer = ""
     try:
@@ -714,7 +722,7 @@ def corpse_refusal(bot, x, y):
         pass
     deaths = sorted(own_death_spots(bot), key=lambda d: float(d[3]))
     earlier = deaths[:-1]                                         # the last one is this death
-    if killer and any(killer in norm_kind(d[2]) or norm_kind(d[2]) in killer for d in earlier if norm_kind(d[2])):
+    if killer and any(killer in killer_kind(d[2]) or killer_kind(d[2]) in killer for d in earlier if killer_kind(d[2])):
         return "that killer has killed it before", dist, killer
     t = now()
     if any(t - float(d[3]) < CORPSE_REPEAT_S and max(abs(d[0] - x), abs(d[1] - y)) <= CORPSE_REPEAT_R for d in earlier):
