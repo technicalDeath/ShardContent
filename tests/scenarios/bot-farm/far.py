@@ -335,7 +335,12 @@ class FarMixin:
         wps = st["wps"]
         dest = tuple(st["dest"])
         if st.get("legs") and st["seg"] < len(st["legs"]) - 1:
-            dest = tuple(st["legs"][st["seg"]]["to"])          # a walk to the gate (or the next leg's start), not yet the place itself
+            seg = st["legs"][st["seg"]]
+            # a walk to the gate (or the next leg's start), not yet the place itself; a gate, recall or camp leg has no "to" (travel.plan_journey): its "at"
+            # or landing (KeyError 'to' every 2 s on BotTailorBR's house trek, 2026-11-01 20:13)
+            to = seg.get("to") or seg.get("at") or seg.get("land")
+            if to:
+                dest = tuple(to)
             st["hopped"] = True
         if not st.get("hopped") and getattr(self, "rune_hop", None):
             st["hopped"] = True                                 # once per trip: a rune near the destination first (runes.py, feature runes); a refusal walks as before

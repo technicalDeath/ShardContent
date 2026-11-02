@@ -249,7 +249,13 @@ class HouseGoalMixin:
     def house_candidates(self):
         """Sites around the home town, nearest first: outside every town and NoHousing region and the shard's unguarded areas, on the home side of the map."""
         import gazetteer as gz
-        home = self.home()
+        # around the hub, Britain (the owner, 2026-10-21: "Britain is the hub"), where every bot's shops and buyers are, not a home it moved to: BotTailorBR, homed
+        # in Yew after deaths, bought its cloth in Britain and died on four of its treks between the two (2026-11-01)
+        try:
+            from bot_common import BIRTH_TOWN
+            home = gz.region(BIRTH_TOWN) or self.home()
+        except Exception:
+            home = self.home()
         cx, cy = (home["centre"][0], home["centre"][1]) if home else (self.c.x, self.c.y)
         side = gz.side(cx, cy)
         try:
