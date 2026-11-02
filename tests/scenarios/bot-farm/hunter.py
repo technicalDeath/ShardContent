@@ -453,7 +453,18 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
 
     def dangers(self, within=8):
         now = time.time()
-        return [m for m in self.mobs(within) if not self.is_prey(m) and self.ignored.get(m.serial, 0) < now]     # an unreachable one is left out (patch_cornered_stuck.py)
+        return [m for m in self.mobs(within) if not self.is_prey(m) and self.ignored.get(m.serial, 0) < now     # an unreachable one is left out (patch_cornered_stuck.py)
+                and not self.passive_animal(m)]
+
+    def passive_animal(self, m):
+        """An animal that fights only what attacked it (task_core.aggressive_kind: fightmodes.json "Aggressor") and is not fighting this bot now (war mode beside it)."""
+        try:
+            import task_core
+            if task_core.aggressive_kind(self.mkey(m)):
+                return False
+        except Exception:
+            return False
+        return not (getattr(m, "in_war_mode", False) and (getattr(m, "distance", 99) or 99) <= 2)
 
     # ---- equipment --------------------------------------------------------------------------------------------
 
@@ -552,6 +563,10 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
             time.sleep(1.2)
             return True
         self.activity = f"avoiding {d.name}"
+        seen = self.__dict__.setdefault("_avoid_ev", {})
+        if time.time() - seen.get(d.serial, 0) > 60:
+            seen[d.serial] = time.time()
+            self.ev("avoid", target=d.name, species=self.mkey(d), dist=d.distance, war=bool(getattr(d, "in_war_mode", False)))
         if self.k.monster(d) is not None:
             self.note("danger", f"Hostile {d.name!r} within {d.distance} tiles of a new {self.pname}: nothing warns the player.", key=f"danger:{d.name}")
         self.step_away(d, 8)
@@ -739,9 +754,11 @@ class HunterBot(RangerPetMixin, ShieldMixin, FieldsMixin, LivelihoodMixin, Fight
         return moved
 
     def carving_blade(self):
-        """Something to carve with: the blade in hand (a sword, a kryss, an axe), else a dagger, knife or cleaver in the pack."""
+        """Something to carve with: the blade in hand (a sword, a kryss, an axe), else any sword or knife in the pack: a sword or knife carves from the pack
+        (BaseSword / BaseKnife OnDoubleClick: a BladedItemTarget, no equip check). BotFenceAdvR fought with a pitchfork (a spear: no carving) and never carved
+        with the katana in its pack (2026-11-01)."""
         return next((i for i in self.c.equipped if any(b in i.name.lower() for b in self.BLADES)), None) or \
-            next((i for i in self.c.backpack if any(b in i.name.lower() for b in ("dagger", "knife", "cleaver"))), None)
+            next((i for i in self.c.backpack if any(b in i.name.lower() for b in self.BLADES if b != "axe")), None)
 
     TOWN_CORE = (1400, 1540, 1700, 1770)          # the city itself (its east side too, where town cats and dogs drew 40% of the first grounds)
     TOWN_PETS = ("cat", "dog", "bird", "magpie", "crow", "raven", "sparrow", "pigeon")

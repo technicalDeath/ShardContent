@@ -256,7 +256,7 @@ class HouseGoalMixin:
             if any(x1 - 8 <= x <= x2 + 8 and y1 - 8 <= y <= y2 + 8 for x1, y1, x2, y2 in unguarded):
                 continue
             try:
-                if self.near_death_spot(x, y, 40) or self.mem.dangerous_cell(__import__("memory").cell_of(x, y)):
+                if self.near_death_spot(x, y, 40) or self.mem.dangerous_cell(__import__("memory").cell_of(x, y)) or self.site_hostile(x, y):
                     continue
             except Exception:
                 pass
@@ -275,7 +275,7 @@ class HouseGoalMixin:
                 if any(x1 - 8 <= x <= x2 + 8 and y1 - 8 <= y <= y2 + 8 for x1, y1, x2, y2 in unguarded):
                     continue
                 try:
-                    if self.near_death_spot(x, y, 40) or self.mem.dangerous_cell(__import__("memory").cell_of(x, y)):
+                    if self.near_death_spot(x, y, 40) or self.mem.dangerous_cell(__import__("memory").cell_of(x, y)) or self.site_hostile(x, y):
                         continue
                 except Exception:
                     pass
@@ -283,6 +283,23 @@ class HouseGoalMixin:
                     continue                                                  # a house needs a solid surface under all of its foundation (the server refused sea shore and slopes)
                 out.append((x, y))
         return sorted(out, key=lambda p: cheb(p, (cx, cy)))                      # nearest first
+
+    HOUSE_CLEAR = 32
+
+    def site_hostile(self, x, y):
+        """A house site an attack-on-sight spawner's creatures reach: within its home range plus HOUSE_CLEAR (a creature at its home's edge sees the bot at
+        BaseCreature.DefaultRangePerception 16 and chases it as far again). The spawner at 1304,1413 (home 24) reached BotTailorBR's site 42 tiles off, 18 past
+        its home's edge, beyond the horse rule's PULL_CLEAR of 14."""
+        cache = self.__dict__.setdefault("_site_hostile", {})
+        if (x, y) not in cache:
+            try:
+                import spots as _sp
+                import task_core
+                cache[(x, y)] = any(max(abs(o["x"] - x), abs(o["y"] - y)) <= max(int(o.get("home") or 10), 1) + self.HOUSE_CLEAR
+                                    and any(task_core.aggressive(k) for k in o["kinds"]) for o in _sp.spawner_spots())
+            except Exception:
+                cache[(x, y)] = False
+        return cache[(x, y)]
 
     def house_site(self, st):
         deed = self.house_deed()

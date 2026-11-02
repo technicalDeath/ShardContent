@@ -108,9 +108,11 @@ class StockMixin:
             last = plan[-1]
             rest = cost - (last["target"] - last["have"]) * last["price"]
             afford = (min(money, money) - rest) // max(last["price"], 1) if ok(rest) else 0
-            if afford >= max(3, (last["target"] - last["have"]) // 3):
+            if afford >= max(3, (last["target"] - last["have"]) // 3) and last["have"] + int(afford) < last["target"]:
                 last["target"] = last["have"] + int(afford)          # a part of it: all the money buys
                 continue
+            # (a part only when it is smaller: money covered the whole of it while the goal fund (idle_ok) did not, the target stayed the same and the loop
+            # never ended; the supervisor killed BotTamerAR's brain every 15 minutes, 16 times, 2026-11-01)
             plan.pop()
             self.ev("stock_miss", item=last["item"], why=f"cost {cost} over money {money}")
         if not plan:

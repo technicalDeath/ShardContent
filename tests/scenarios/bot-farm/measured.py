@@ -142,7 +142,7 @@ def announce(bot):
     if _state.get("announce") and bot.__dict__.get("_mp_made") != _state["made"]:
         bot.__dict__["_mp_made"] = _state["made"]
         try:
-            bot.ev("measured_params", made=_state["made"], kinds=len(_state["data"].get("ranged") or {}) + len(_state["data"].get("melee") or {}), rule="expected value",
+            bot.ev("measured_params", made=_state["made"], kinds=len(_state["data"].get("ranged") or {}) + len(_state["data"].get("melee") or {}), model="expected value",
                    kit_ranged=round(kit_cost("ranged")), kit_melee=round(kit_cost("melee")), min_fights=PARAMS["min_fights"])
         except Exception:
             pass

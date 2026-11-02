@@ -599,6 +599,16 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
                 return True
         self.log(f"no path from {x0},{y0}, and no step in any direction moved the character" + (f" ({len(bodies)} mobiles beside it)" if bodies else ""))
+        if not bodies and not self.c.ghost:
+            # overloaded: "You are too fatigued to move" is seen only when the journal is read (recovery.py sets fatigued_at), and a far walk's three legs of
+            # step-outs read none: BotMinerAR stood 4 minutes at 1177,1491 with a load of ore (2026-11-01 18:42-18:46). Shed here, then the walk goes on
+            try:
+                self.read_journal()
+            except Exception:
+                pass
+            if (self.c.weight > self.c.max_weight or time.time() - self.facts.get("fatigued_at", 0) < 15) and self.drop_excess():
+                self.log(f"no path from {x0},{y0}: overloaded, weight shed to {self.c.weight}/{self.c.max_weight}")
+                return True
         if bodies:
             return False                                  # the bodies may be what held it: the ground is not to blame
         self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=6 * 3600)
@@ -717,6 +727,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if not self.wield(hat):
                 self.note("chop", "The hatchet could not be wielded (the hands are full?), and an axe chops only when it is equipped.", key="nowield")
                 return None
+            self.harvest_peace()
             self.c.events.drain()
             self.c.use(hat.serial)
             if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:
@@ -750,6 +761,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     break
             return True
         return False
+
+    def harvest_peace(self):
+        """Out of war mode before a harvest: the shard's gather repeat stops in war mode (HarvestRepeatService.CheckCancel, StopReason.WarMode), so a
+        fighter that chopped in war mode got one swing a visit, 10 logs or none (all five archers, Lumberjacking 45, 2026-11-01). A real player
+        leaves war mode to gather; the fight rules put it back on when a fight starts."""
+        if self.c.war_mode:
+            self.c.war(False)
+            time.sleep(0.5)
 
     def wield(self, tool):
         """Hold a tool in the hands (an axe chops only when equipped): whatever is in the hands goes back in the pack first."""
@@ -930,7 +949,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # facts a new brain takes over from the last one (a restart used to drop the held ground, the camp and which gear was looted)
     PERSIST = ("death_spot_t", "shop_sold", "shop_fail", "ground", "anchor", "anchors_left", "crowded", "pushed_at", "spots_reached", "gear_looted", "meat_sold_at", "gear_sold_at", "sold_at",
                "sell_skip_until", "soldout_until", "stocked_at", "bank_balance", "banked_at", "fletch_wait", "wood_wait", "shop_at", "chop_fail",
-               "emptied", "home", "camp_step", "home_region", "birth_town", "unsafe_homes", "rehome_walk", "field", "fields_rested", "roam_rested", "unsafe_count", "stand_fails", "owned_serials", "lost_pets", "fists", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "deals", "deals_over", "task", "core_goal", "core_bans", "rung", "rung_kills", "arrow_use")
+               "emptied", "home", "camp_step", "home_region", "birth_town", "unsafe_homes", "rehome_walk", "field", "fields_rested", "roam_rested", "unsafe_count", "stand_fails", "owned_serials", "lost_pets", "fists", "corpse", "gold_alive", "far", "skill_gap", "killer", "killer_until", "mat_until", "mat_from", "walk_until", "goal", "goals_done", "inc_log", "death_log", "res_at", "res_from", "died_at", "stall_off", "stall_earn_until", "stall_gather_until", "persona", "worth_ring", "regions_seen", "dungeon_seen", "milestones", "trips_done", "act_rates", "plan_v", "plan_explored_at", "bw", "walk_rate", "runes", "rune_blanks", "rune_stay", "rune_buy_at", "deals", "deals_over", "task", "core_goal", "core_bans", "rung", "rung_kills", "arrow_use", "tamer_arms_at", "shield_at")
     PERSIST_SETS = ("gear_looted", "emptied")
 
     # the decision core (task_core.py, feature task_core): the reflexes stay first and unchanged; a brain class with the core (HunterBot) replaces every rule
@@ -940,7 +959,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # rules below the reflexes that still run under the decision core: each has its own limits (r_music every 22 s at 60%+ health, r_fletch under 200
     # arrows, r_wood under 120 arrows and every so often, r_shield once a half-hour); under the core they never ran, so the bards never played and the
     # archers never fletched (no event in 4 hours, 2026-11-01)
-    CORE_SKILL_RULES = ("r_music", "r_fletch", "r_wood", "r_shield")
+    CORE_SKILL_RULES = ("r_music", "r_instrument", "r_fletch", "r_wood", "r_shield")      # (r_instrument: a bard's worn-out instrument replaced; both bards had none, 2026-11-01)
 
     def core_lets(self, name):
         """A rule below the reflexes that still runs under the decision core: first_trip's trip_core_lets (the ladder's trips), else none."""
@@ -1031,7 +1050,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             json.dump({"death_spots": self.death_spots}, open(self.know_path, "w", encoding="utf-8"))
             self.note("death", f"A {self.pname} died.", key=f"death:{self.deaths}", pos=[self.c.x, self.c.y], last=list(self.journal)[-4:])
             threats = getattr(self, "recent_threats", [])
-            killer = threats[0][1] if threats else src["label"]
+            # deathsrc's sure source first: BotTailorBR was "killed by a great hart" 8 tiles off while the damage line named a wraith beside it (2026-11-01 19:06),
+            # so it learned to avoid nothing
+            killer = src["label"] if src.get("sure") and src.get("key") else (threats[0][1] if threats else src["label"])
             self.log(f"DEAD at {self.c.x},{self.c.y} (killed by {killer}); walking to the healer")
             self.facts["killer"] = {"name": str(killer), "t": time.time()}
             self.facts.pop("killer_until", None)

@@ -248,7 +248,8 @@ def smith(bot):
             name, it, ch, ev, per, teaches, why = pick
             bot.log(f"miner-smith: making {name} ({why}): Blacksmithy {h.skill:.1f}, window {it['min']}-{it['max']}, chance {ch:.0%}, "
                     f"{ev:+.1f} gold a craft over selling the ingots ({per:+.2f} an ingot used), {have} ingots")
-            bot.ev("smith_plan", item=name, chance=round(ch, 3), ev=round(ev, 2), per_ingot=round(per, 3), why=why, ingots=have)
+            bot.ev("smith_plan", item=name, chance=round(ch, 3), gain=round(ev, 2),        # not "ev": dlog's own key (TypeError, every plan, 2026-11-01)
+                   per_ingot=round(per, 3), why=why, ingots=have)
             first_try = True
         name, it, ch, ev = pick[0], pick[1], pick[2], pick[3]
         if pick[-1] == "training" and bot.c.gold + bot.facts.get("bank_balance", 0) + gold_expected + ev < _cr.TRAIN_RESERVE:

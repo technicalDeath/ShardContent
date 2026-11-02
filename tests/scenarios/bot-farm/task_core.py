@@ -776,7 +776,7 @@ def box_watch(bot, acted=None):
     task = bot.facts.get("task") or {}
     try:
         bot.ev("box_entered" if inside else "box_left", task=task.get("task"), step=task.get("step"),
-               rule=getattr(bot, "current_rule", None), xy=[int(bot.c.x), int(bot.c.y)], max_hp=int(bot.c.max_hp), ghost=bool(bot.c.ghost), walking_to=str(task.get("area") or "")[:40])
+               xy=[int(bot.c.x), int(bot.c.y)], max_hp=int(bot.c.max_hp), ghost=bool(bot.c.ghost), walking_to=str(task.get("area") or "")[:40])
     except Exception:
         pass
 
@@ -1202,7 +1202,9 @@ def end_task(bot, task, why):
     deaths = counters(bot)["deaths"] - task["start"]["deaths"]
     if task["task"] in ("hunt", "tour2") and task.get("arrived"):
         record_rates(bot, "hunt", task["area"], hours, act)
-        record_calib(bot, "hunt", task.get("expected") or {}, act, hours)
+        # tour_rank: the estimate is an hour of the whole tour, walk included (spots.tours: minutes = walk + legs + fights), so the calibration compares the
+        # actual with it over the same hours; over the work hours alone the ratio read 0.89 for archers making a third of their estimate (2026-11-01)
+        record_calib(bot, "hunt", task.get("expected") or {}, act, hours + (float(task.get("walk_min") or 0.0) / 60.0 if bot.feature("tour_rank") else 0.0))
         record_tier_kills(bot, task.get("tier") or 1, act.get("kills", 0))        # the rung below pays for the next (rung_update)
         rung_update(bot)
     supply = task["task"] in ("resupply", "ammo", "arm", "fletch", "gather")

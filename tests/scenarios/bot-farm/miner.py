@@ -294,6 +294,7 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
                 return True
         self.activity = "mining"
         self.mem.record("claim", kind="ore", key=f"{tx},{ty}", ttl=240)
+        self.harvest_peace()                               # bot_common: the gather repeat stops in war mode
         self.c.events.drain()
         self.c.use(tool.serial)
         if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:

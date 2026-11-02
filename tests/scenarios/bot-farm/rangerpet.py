@@ -509,7 +509,7 @@ class RangerPetMixin:
                 walk_s = 60.0 * d / 55.0                           # task_core.WALK_RATE, the farm's median
             trip = {"x": s["x"], "y": s["y"], "home": s.get("home", 10), "kind": kind, "since": now, "arrived": 0, "wander": 0, "spot": f"{s['x']},{s['y']}",
                     "until": now + walk_s + tamefind.STAY_SECS}
-            self.ev("ranger_pet_trip", spot=[s["x"], s["y"]], kind=kind, strength=round(strength), dist=d, budget_min=round((trip["until"] - now) / 60, 1))
+            self.ev("ranger_pet_trip", spot=[s["x"], s["y"]], species=kind, strength=round(strength), dist=d, budget_min=round((trip["until"] - now) / 60, 1))
             self.log(f"ranger pet: going for a {kind} (strength {strength:.0f}) at {s['x']},{s['y']} ({d} tiles)")
             self.dlog("choice", what=f"tame a companion {kind}", why=f"strength {strength:.0f}, {d} tiles")
         self.rp_state()["trip"] = trip
@@ -534,7 +534,7 @@ class RangerPetMixin:
         if far and trip.get("spot") and list(far.get("dest") or []) == [trip["x"], trip["y"]]:
             self.facts.pop("far", None)                           # the routed walk to the spot (travel/far_goto): r_far must not resume it
         self.__dict__.pop("_rp_best", None)
-        self.ev("ranger_pet_trip_end", why=why, mins=round(dur / 60, 1), next_min=round(nxt / 60, 1), spot=trip.get("spot"), kind=trip.get("kind"))
+        self.ev("ranger_pet_trip_end", why=why, mins=round(dur / 60, 1), next_min=round(nxt / 60, 1), spot=trip.get("spot"), species=trip.get("kind"))
         self.log(f"ranger pet: trip for a {trip.get('kind')} ended ({why}) after {dur / 60:.1f} min" + (f"; next in {nxt / 60:.0f} min" if nxt else ""))
 
     def rp_trip_walk(self, trip):

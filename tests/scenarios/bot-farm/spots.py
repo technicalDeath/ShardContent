@@ -29,6 +29,7 @@ CROWD_OK = 3
 SURFACE_X = 5120
 CELL_COVER = 20                 # a memory cell this close to a spawner spot is that spawner
 SPOT_CACHE_S = 600
+RANK_CAP = 3.0                  # tour_rank: a tour's estimate counts in its score up to this many times EXPECT_CAP (one wild draw does not win everything)
 VISIT_KILLS = 2.0               # kills a visit a spot of enough creatures yields before any record (a player clears two and moves on)
 DUE_SOON = 120.0                # a respawn due within this many seconds is worth the wait at the spot
 # item 5 (docs/Bot-Farm-Capability-Plan-2026-10-20.md, "The world beyond Britain"): the dungeon rungs as tiers above 3. Level 1 of the seven rung dungeons is
@@ -674,9 +675,14 @@ def tours(bot, g, rng, banned=(), relax=0):
         hours = minutes / 60.0
         die = sum(vals[i][1]["die"] * vals[i][2] for i in tour) / max(kills, 1e-6)
         exp = {"kills": kills / hours, "gold": sum(vals[i][2] * vals[i][1]["gold"] for i in tour) / hours, "skill": sum(vals[i][2] * vals[i][1]["skill"] for i in tour) / hours}
-        exp = {m: min(task_core.EXPECT_CAP.get(m, 1e9), v * task_core.calib(bot, "hunt", m)) for m, v in exp.items()}     # learning 1: measured against expected, per task kind, group and measure; capped
+        raw = {m: v * task_core.calib(bot, "hunt", m) for m, v in exp.items()}
+        exp = {m: min(task_core.EXPECT_CAP.get(m, 1e9), v) for m, v in raw.items()}     # learning 1: measured against expected, per task kind, group and measure; capped
         judge = task_core.judge_measure(measure, exp)
-        progress = exp[judge] * hours
+        # tour_rank: the score from the estimate before the cap (up to RANK_CAP times it). With the capped figure every tour at the cap scored
+        # 18 x minutes/60 / minutes = 0.3, the ties went to the safest or nearest, and the archers and fighters circled the same few spots by town whatever
+        # their records said (0.290-0.297 for every choice, 2026-11-01). The capped figure stays the monitor's expectation.
+        rank = raw if bot.feature("tour_rank") else exp
+        progress = min(rank[judge], RANK_CAP * task_core.EXPECT_CAP.get(judge, 1e9)) * hours
         if measure == "gold":
             progress -= die * kills * float(bot.c.gold or 0) * 0.5
         cost = minutes + die * kills * task_core.DEATH_MIN

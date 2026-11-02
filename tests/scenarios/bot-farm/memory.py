@@ -83,6 +83,13 @@ def _empty():
     }
 
 
+
+def name_match(word, item):
+    """A shop row's name against a wanted word: "=arrow" exactly (any case), "arrow" anywhere in it."""
+    if word.startswith("="):
+        return item.strip().lower() == word[1:].lower()
+    return word in item
+
 class SharedMemory:
     area = None                    # the area danger map (area_danger.AreaDanger, feature danger_map), attached by the brain
 
@@ -448,23 +455,24 @@ class SharedMemory:
         return deaths >= 2.0 and deaths > kills * 0.5
 
     def vendor_selling(self, word: str):
-        """Shops that sell something whose name contains word: [(price, xy, item, qty)], cheapest first."""
+        """Shops that sell something whose name contains word ("=word": named exactly that, so "=arrow" is not a Magic Arrow scroll): [(price, xy, item,
+        qty)], cheapest first."""
         self.refresh()
         out = []
         for xy, v in self.state["world"]["vendors"].items():
             for item, (price, qty) in v["stock"].items():
-                if word in item and qty > 0:
+                if name_match(word, item) and qty > 0:
                     out.append((price, xy, item, qty))
         out.sort()
         return out
 
     def vendor_buying(self, word: str):
-        """Shops that buy something whose name contains word: [(price, xy, item)], best price first."""
+        """Shops that buy something whose name contains word ("=word": named exactly that): [(price, xy, item)], best price first."""
         self.refresh()
         out = []
         for xy, v in self.state["world"]["vendors"].items():
             for item, price in v["buys"].items():
-                if word in item:
+                if name_match(word, item):
                     out.append((price, xy, item))
         out.sort(reverse=True)
         return out

@@ -589,6 +589,7 @@ class FisherBot(GathererArmor, BotBase):
             return False
         self.activity = "fishing"
         before = self.skill_values.get("Fishing", 0)
+        self.harvest_peace()                               # bot_common: the gather repeat stops in war mode
         self.c.events.drain()
         self.c.use(pole.serial)
         if self.c.wait_for(Event.TARGET_REQUEST, timeout=4) is None:

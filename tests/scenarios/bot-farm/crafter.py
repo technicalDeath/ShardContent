@@ -330,6 +330,12 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         if not got:
             self.facts["soldout_until"] = time.time() + (1200 if opened else 180)
             self.note("shop", "No shop had hides or leather left for the tailor.", key="soldout:hides")
+            if opened:
+                # the hunter-tailor of the era (Tailoring, Swordsmanship, Tactics, Anatomy, Healing, Tracking: docs/Bot-Farm-Skill-Plans.md) kills and
+                # carves its own hides while the shops restock: BotFairTailorVR wandered 16 minutes "under 5 cut up leather" (2026-11-01). r_earn hunts
+                # with the hunter's rules while stall_earn_until holds, for the same 20 minutes the shelves are left alone
+                self.facts["stall_earn_until"] = self.facts["soldout_until"]
+                self.ev("leather_hunt", until=round(self.facts["soldout_until"]))
         else:
             self.log(f"restock: bought {got}; {self.leather_held()} leather and {self.hides_held()} hides in the pack")
         return True
@@ -737,6 +743,27 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         if self.flee_from(th[0]) == "trapped":            # straight away, not the walk home a far crafter's client cannot plan (basics.py)
             return self.fight_back(th[0])
         return True
+
+    IDLE_TOWN = 40            # tiles from the nearest bank beyond which an idle crafter walks back to wait (BotTailorBR waited on a house site at 1347,1433 by
+                              # undead ground: a zombie and then a spectre found it there five times in five minutes, 2026-11-01)
+
+    def idle_to_town(self):
+        """Nothing to do and away from town: wait by the bank, where the guards are, not where the last errand ended."""
+        try:
+            bx, by = min(self.bank_xys(), key=lambda b: max(abs(self.c.x - b[0]), abs(self.c.y - b[1])))
+        except Exception:
+            return False
+        if max(abs(self.c.x - bx), abs(self.c.y - by)) <= self.IDLE_TOWN:
+            return False
+        self.activity = "going back to town to wait"
+        self.log(f"idle at {self.c.x},{self.c.y}, {max(abs(self.c.x - bx), abs(self.c.y - by))} tiles from the bank: waiting in town")
+        self.goto_near(bx, by, 6).wait(timeout=90)
+        return True
+
+    def harmless_animal(self, m):
+        n = (m.name or "").lower()
+        return n.startswith(("a ", "an ")) and any(re.search(r"\b" + re.escape(w) + r"\b", n) for w in self.HARMLESS) \
+            and not any(w in n for w in ("giant", "dire", "plague", "rat man", "ratman"))
 
     @staticmethod
     def squash(name):
@@ -1242,7 +1269,9 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         return n > 0
 
     def r_craft(self):
-        near = self.threats_coming(10)
+        # a harmless animal (basics.HARMLESS: cow, sheep, warbler ...) is no reason to stop, even in war mode: it fights only what attacked it (AI_Animal,
+        # FightMode.Aggressor) and a cow hits for 1-4. 40 skips in an hour named a cow, a warbler or a giant rat beside crafters (the Anomaly sweep, 2026-11-01)
+        near = [m for m in self.threats_coming(10) if not self.harmless_animal(m)]
         if near:
             return self.skip_why("r_craft", f"threat near: {near[0].name}")
         if self.hp_pct() < 50:
@@ -1555,6 +1584,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     def r_wander(self):
         self.activity = "waiting"
+        if self.idle_to_town():
+            return True
         if self.hide_practice():                          # idle and safe: Hiding practised (basics.py, skill plan)
             return True
         time.sleep(3)
