@@ -27,7 +27,8 @@ PIECES = {
 OFFER_FRESH = 900          # s an offer counts (memory's market freshness)
 STOCK = 3                  # coloured pieces a smith holds unsold before making more
 STOCK_DAYS = 0.25          # a coloured piece unsold this long (days) goes to the NPC as an ordinary product
-MIN_CHANCE = 0.6           # a piece made at under this success chance wastes coloured ingots (a failure loses some, CraftItem)
+MIN_CHANCE = 0.25          # the floor of a coloured piece's success chance (a failure consumes half the material, CraftItem; colour_choice ranks by
+                           # armour per expected ingot)
 
 
 def shop_entry(bot, shop_name):
@@ -181,7 +182,17 @@ class ColourSmith:
                 e = shop_entry(table, shop_name)
                 if not e:
                     continue
-                value = (e[1] + bonus) * share[layer]
+                # worth only what it adds over the best iron piece of the slot, which any fighter can buy at a shop: a bronze chain chest (28 + 8 = 36)
+                # is worth nothing to a fighter in iron plate (40). BotSmithAR made one for two fighters in full plate (2026-11-02 15:06)
+                iron_best = max(o[1] for o in table.ARMOR_BUY.get(layer, [])) if table.ARMOR_BUY.get(layer) else 0
+                value = (e[1] + bonus - iron_best) * share[layer]
+                if value <= 0:
+                    continue
+                # per coloured ingot it is expected to use: a failure consumes half the material (CraftItem, ConsumeType.Half), so a piece made at chance p
+                # costs amount x (1 + (1 - p) / (2p)) on average. Coloured ingots have no other use, so the hard plate pieces (a smith at 84 makes plate
+                # gorgets at 56%, legs at 31%) are worth making; the floor keeps the hardest from eating the pile
+                p = self.chance(it, self.skill)
+                value /= it["amount"] * (1 + (1 - p) / (2 * p))
                 if best is None or value > best[0]:
                     best = (value, menu, hue, metal, bonus)
         return best[1:] if best else None
@@ -209,6 +220,17 @@ class ColourSmith:
         if not ch:
             return False
         menu, hue, metal, bonus = ch
+        st = self.station_xy()
+        if st and not self.at_station(st):
+            # the smithing menu opens only beside an anvil and a forge: "You must be near an anvil and a forge to smith items." (BotSmithAR's first try,
+            # 2026-11-02 15:05). The walk r_craft makes, then no craft until it is there
+            self.activity = "walking to the forge"
+            if max(abs(self.c.x - st[0]), abs(self.c.y - st[1])) > 100 and hasattr(self, "far_goto"):
+                self.far_goto(st, "forge", timeout=90)
+            else:
+                self.c.gotoexact(*st).wait(timeout=100)
+            if not self.at_station(st):
+                return True
         self.facts["colour_try_at"] = time.time()
         it = self.items[menu]
         before = {str(i.serial) for i in self.c.backpack}
