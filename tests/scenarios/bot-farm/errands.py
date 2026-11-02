@@ -165,8 +165,12 @@ PROVISIONED_SKIPS = ("resupply", "ammo", "arm", "upgrade", "rune_buy")          
 GATHER_FUNDS = 100              # a bot with fewer gold than this (carried and banked), and no way to hunt for coin, chops logs and sells them (the Watcher, 2026-10-21)
 GATHER_LOGS = 30                # logs wanted before the walk to the Carpenter
 GATHER_REST = 900.0             # a gather errand that found no tree or no buyer rests this long
-BUDGET = {"gather": 900.0, "ammo": 240.0, "arm": 300.0, "fletch": 240.0, "sell": 300.0, "resupply": 360.0, "bank": 120.0, "rest": 300.0, "train": 600.0, "upgrade": 180.0, "loot": 120.0, "rune_buy": 180.0}
-ERRANDS = ("gather", "ammo", "arm", "fletch", "sell", "resupply", "bank", "rest", "train", "upgrade", "camp", "loot", "rune_buy")
+BUDGET = {"gather": 900.0, "ammo": 240.0, "arm": 300.0, "fletch": 240.0, "sell": 300.0, "resupply": 360.0, "bank": 120.0, "rest": 300.0, "train": 600.0, "upgrade": 180.0, "loot": 120.0, "rune_buy": 180.0, "blade": 180.0}
+ERRANDS = ("gather", "ammo", "arm", "fletch", "sell", "resupply", "bank", "rest", "train", "upgrade", "camp", "loot", "rune_buy", "blade")
+# a hunter with nothing to carve with buys a knife (2026-11-02): BotFairArcherVR skipped 27 carves an hour ("no_blade") and BotFencerBR 15, every hide and
+# side of meat left on the corpse. The skinning and butcher knives are 20 gold at the Britain shops on record (a dagger 29); BLADES holds "knife".
+BLADE_BUY = ("skinning knife", "butcher knife", "dagger")
+BLADE_RETRY_S = 1800
 
 
 # ---- the needs ------------------------------------------------------------------------------------------------------------------------------------
@@ -395,6 +399,19 @@ def cloth_bandages(b, st, need):
     return made
 
 
+def blade_offer(bot):
+    """(price, (x, y), name) of the cheapest knife on a shelf any bot has seen (BLADE_BUY), or None."""
+    best = None
+    for word in BLADE_BUY:
+        try:
+            for price, xy, item, qty in bot.mem.vendor_selling("=" + word):
+                if price > 0 and qty != 0 and (best is None or price < best[0]):
+                    best = (price, tuple(int(v) for v in xy.split(",")), word)
+        except Exception:
+            continue
+    return best
+
+
 def needs(bot, hunting=False):
     """[(task, urgency, dest (x, y) or None, budget_s, detail)] this bot's state raises now; hunting=True while a hunt task runs (camp and loot are then the hunt's)."""
     out = []
@@ -567,6 +584,13 @@ def needs(bot, hunting=False):
             best = None                                              # M3: an upgrade that came back unmet twice rests 30 minutes
         if best:
             out.append(("upgrade", 1.6, tuple(best[4]), BUDGET["upgrade"], f"{best[2]} for {best[3]}"))
+    try:
+        if getattr(bot, "CARVE", False) and now - f.get("blade_try_at", 0) > BLADE_RETRY_S and bot.carving_blade() is None:
+            offer = blade_offer(bot)
+            if offer and gold + (f.get("bank_balance", 0) or 0) >= offer[0] + 50:
+                out.append(("blade", 1.1, offer[1], BUDGET["blade"], f"no blade to carve with: a {offer[2]} for {offer[0]} gold"))
+    except Exception:
+        pass
     try:
         import runes as runes_mod
         if (bot.rune_on() and bot.rune_able() and not bot.rune_blanks() and bot.rune_count() < runes_mod.RUNES_WANT
@@ -1046,6 +1070,19 @@ class Act(Step):
                     n[want[2]] = 0
                     b.log(f"errand upgrade: the {want[2]} came back unmet twice: not for 30 minutes")
         return ok
+
+    def do_blade(self, b, st, task):
+        b.facts["blade_try_at"] = time.time()
+        offer = blade_offer(b)
+        if not offer:
+            return False
+        price, xy, word = offer
+        if (b.c.gold or 0) < price + 5 and (b.facts.get("bank_balance", 0) or 0) > 0:
+            b.visit_bank("a knife", withdraw=price + 20, reserve=0)
+        got = b.shop_at(xy, {"=" + word: 1}, budget=price + 5)
+        b.log(f"errand blade: {'bought' if got else 'did not get'} a {word} at {xy} for about {price} gold")
+        b.ev("blade_bought" if got else "blade_unmet", item=word, price=price)
+        return bool(got)
 
     def do_rune_buy(self, b, st, task):
         b.facts["rune_buy_at"] = 0
