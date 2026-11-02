@@ -220,6 +220,26 @@ def drop_death_robes(bot):
     return n
 
 
+def drop_unsellable(bot):
+    """Spined (horned, barbed) leather and hides in the pack (items.no_buyer: no vendor here buys them) are dropped on the ground; event
+    unsellable_dropped. Returns how many."""
+    n = 0
+    for i in list(bot.c.backpack):
+        if items.no_buyer(i):
+            try:
+                if bot.drop_to_ground(i):
+                    n += int(i.amount or 1)
+            except Exception:
+                break
+    if n:
+        bot.ev("unsellable_dropped", n=n, what="hued leather or hides")
+        try:
+            bot.log(f"dropped {n} spined leather and hides: no vendor buys them")
+        except Exception:
+            pass
+    return n
+
+
 REAGENT_WORDS = ("black pearl", "blood moss", "garlic", "ginseng", "mandrake", "nightshade", "sulfurous ash", "spider's silk", "empty bottle")
 SELL_VALUE = 300                # held loot worth this much at the known prices raises the sell errand. Derived (the Watcher, 2026-10-29): a trip costs T = 4.5 min (295 min over 65
                                 # sells, 13:31-16:00) of hunting worth r = 6 gold a minute (+360 a bot-hour net), and carried loot is lost at p = 0.0037 deaths a minute (provisioned bots
@@ -259,14 +279,15 @@ def held_value(bot):
     1.0; until 2026-10-30 a guessed feather 1.5, meat 7, hide 3, leather 4), reagent 3, gem 40, gear 15, robes 9."""
     gear, meat, gems = _loot_to_sell(bot)
     hides, leather, feathers = _carved(bot)
-    goods = sum(float(i.amount or 1) * items.sale_price(i.name) for i in bot.c.backpack if items.is_meat(i.name) or items.is_leather(i.name) or items.is_feather(i.name))
+    goods = sum(float(i.amount or 1) * items.sale_price(i.name) for i in bot.c.backpack
+                if (items.is_meat(i.name) or items.is_leather(i.name) or items.is_feather(i.name)) and not items.no_buyer(i))
     return goods + hides * items.HIDE_CUT_VALUE + _reagents(bot) * 3 + gems * 40 + gear * 15 + _clothes_value(bot)
 
 
 def _carved(bot):
     """(hides, leather, feathers) in the pack: a low-skill hunter's income (hides cut into leather at the Tanner, feathers at the Bowyer)."""
-    hides = sum((i.amount or 1) for i in bot.c.backpack if items.is_hide(i.name))
-    leather = sum((i.amount or 1) for i in bot.c.backpack if items.is_leather(i.name))
+    hides = sum((i.amount or 1) for i in bot.c.backpack if items.is_hide(i.name) and not items.no_buyer(i))
+    leather = sum((i.amount or 1) for i in bot.c.backpack if items.is_leather(i.name) and not items.no_buyer(i))
     feathers = sum((i.amount or 1) for i in bot.c.backpack if items.is_feather(i.name))
     return hides, leather, feathers
 

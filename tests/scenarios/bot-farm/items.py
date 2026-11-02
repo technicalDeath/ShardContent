@@ -53,6 +53,18 @@ def is_feather(name):
     return "feather" in (name or "").lower()
 
 
+def no_buyer(item):
+    """Leather or hides with a hue: spined, horned or barbed (CraftResources: spined 0x283 = 643), which the client names like the plain ones. No vendor
+    on this shard buys them (SBTanner buys Leather, SBFurtrader and SBLeatherWorker Hides, the plain types only), so they are carried for nothing:
+    ratmen, lizardmen, dire wolves, alligators and giant serpents give spined hides (HideType.Spined, no era gate). BotHealAdvR carried 217 of them,
+    408 of 408 stones, and its trips waited on the weight (2026-11-02 09:00)."""
+    try:
+        n = item.name
+        return (is_leather(n) or is_hide(n)) and int(getattr(item, "hue", 0) or 0) != 0
+    except Exception:
+        return False
+
+
 def is_goods(name):
     return is_leather(name) or is_hide(name) or is_meat(name) or is_feather(name)
 

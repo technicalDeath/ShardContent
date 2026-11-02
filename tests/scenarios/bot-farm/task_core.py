@@ -763,6 +763,7 @@ def drop_robes_tick(bot):
         bot.__dict__["_robe_tick"] = now()
         import errands
         errands.drop_death_robes(bot)
+        errands.drop_unsellable(bot)                  # spined leather and hides: no vendor buys them (items.no_buyer)
     except Exception:
         pass
 
