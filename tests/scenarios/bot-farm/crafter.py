@@ -733,6 +733,13 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
 
     def r_flee(self):
         th = self.threats(6)
+        if th and self.hp_pct() < 90:
+            # something it would hunt (is_prey: a giant rat, a snake) biting it from the next tile: hit back, as a player does, instead of bandaging under its
+            # teeth until half health. BotTailorBR went 81 -> 40 in two minutes to a giant rat it had filed as "looks harmless" (2026-11-01 20:08-20:10)
+            biter = next((m for m in th if (getattr(m, "distance", 9) or 9) <= 1 and getattr(m, "in_war_mode", False) and self.is_prey(m)), None)
+            if biter is not None:
+                self.activity = f"fighting back at {biter.name}"
+                return self.fight_back(biter)
         if self.hp_pct() >= 50 or not th:
             return False
         self.activity = "fleeing"

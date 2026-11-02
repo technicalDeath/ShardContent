@@ -69,6 +69,7 @@ def weapon_shops(b):
 
 
 AMMO_SHOPS = (("bowyer",), ("provisioner",))   # a Provisioner sells arrows and bolts too (SBProvisioner: Arrow 2 gold, Bolt 5, 20 a restock)
+FLETCH_MATS = 50                               # shafts and feathers a fletcher buys when the arrows are sold out (about 250 gold at 3 + 2)
 SOLD_OUT_S = 3600                              # a shelf that is sold out comes back at the vendor's next restock (BaseVendor.RestockDelay 1 h), doubled (GenericBuyInfo.OnRestock)
 
 
@@ -81,6 +82,9 @@ def ammo_shop(b):
                 return tuple(p)
     except Exception:
         pass
+    fs = tuple(b.FLETCH_SHOP)
+    if any(max(abs(fs[0] - q[0]), abs(fs[1] - q[1])) <= 6 for q in bad):
+        return None                                   # every ammunition shop known was found empty within the hour (SOLD_OUT_S)
     return b.FLETCH_SHOP
 
 
@@ -486,7 +490,10 @@ def needs(bot, hunting=False):
             dest_a = ammo_shop(bot)
         except Exception:
             dest_a = None
-        out.append(("ammo", 3.0 if ammo == 0 else 2.0, dest_a, BUDGET["ammo"], f"{ammo} arrows, {money} gold with the bank"))
+        if dest_a is not None or ammo == 0:
+            # every shop found empty within the hour and arrows still carried: it hunts with them until a shelf restocks. BotBardBR broke off four tours in
+            # 25 minutes for Bowyers that had none (15, 13, 13 and 10 arrows, 28,205 gold banked; 2026-11-01 19:39-19:54)
+            out.append(("ammo", 3.0 if ammo == 0 else 2.0, dest_a or tuple(bot.FLETCH_SHOP), BUDGET["ammo"], f"{ammo} arrows, {money} gold with the bank"))
     if (bandages < 8 or wants) and money >= 40 and now - f.get("shop_at", 0) > 300:
         urg = 3.0 if bandages == 0 else 2.0 if bandages < 8 else 0.8
         try:
@@ -841,13 +848,13 @@ class Act(Step):
         money = (b.c.gold or 0) + (b.facts.get("bank_balance", 0) or 0)
         b.facts["ammo_unmet_money"] = money
         if (b.c.gold or 0) < 100 and (b.facts.get("bank_balance", 0) or 0) > 0:
-            b.visit_bank("ammunition", withdraw=min(int(b.facts.get("bank_balance", 0) or 0), 150), reserve=0)
+            b.visit_bank("ammunition", withdraw=min(int(b.facts.get("bank_balance", 0) or 0), 300 if b.fletcher() else 150), reserve=0)   # a fletcher may buy materials instead (FLETCH_MATS)
             b.beat()
         gold = int(b.c.gold or 0)
         if gold < 4:
             b.facts["errand_reason"] = "no gold after the bank"
             return False
-        shop = ammo_shop(b)
+        shop = ammo_shop(b) or tuple(b.FLETCH_SHOP)      # out of arrows altogether: the Bowyer anyway (a shelf may have restocked)
         try:
             b.shop_at(shop, {ammo_item(b): 150}, budget=max(4, int(gold * 0.85)))
         except Exception as e:
@@ -867,6 +874,20 @@ class Act(Step):
                 # the list opened without arrows on it: sold out until the vendor restocks. A player walks on to the next shop that sells them, not back here in
                 # four minutes (BotFairArcherVR asked the one Bowyer five times in 40 minutes, then hunted with none and died, 2026-11-01)
                 b.facts.setdefault("ammo_bad_shop", {})[f"{shop[0]},{shop[1]}"] = time.time() + SOLD_OUT_S
+                if b.fletcher():
+                    # no arrows on the shelf, but shafts and feathers are (SBRangedWeapon: Shaft 3, Feather 2): a fletcher buys the makings at the same counter
+                    # and makes its own (hunter.r_fletch). 8 of 10 ammo errands bought nothing in 19:33-20:03 (2026-11-01) with every Britain Bowyer out of arrows
+                    made0 = b.can_make_arrows()
+                    try:
+                        b.shop_at(shop, {"=shaft": FLETCH_MATS, "=feather": FLETCH_MATS}, budget=max(4, int((b.c.gold or 0) * 0.85)))
+                    except Exception as e:
+                        b.log(f"errand ammo: the makings: {type(e).__name__}: {e}")
+                    if b.can_make_arrows() > made0:
+                        b.facts["fletch_wait"] = 0
+                        b.log(f"errand ammo: no arrows on the shelf: bought the makings of {b.can_make_arrows()} (shafts and feathers) to fletch")
+                        b.ev("ammo_makings", can_make=b.can_make_arrows(), arrows=b.ammo())
+                        b.facts.pop("ammo_unmet_money", None)
+                        return True
             b.ev("ammo_unmet", step="shop", list_opened=b.facts.get("shop_list_opened"), had_wanted=b.facts.get("shop_had_wanted"), shop=list(shop), gold=int(b.c.gold or 0),
                  bank=int(b.facts.get("bank_balance", 0) or 0), arrows=b.ammo())
             b.log(f"errand ammo: nothing bought (arrows {b.ammo()}, gold {b.c.gold}, bank {b.facts.get('bank_balance', 0)})")
