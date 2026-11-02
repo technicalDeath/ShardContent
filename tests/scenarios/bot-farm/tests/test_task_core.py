@@ -948,18 +948,25 @@ fd.facts["bank_balance"] = 400
 assert not [n for n in errands.needs(fd) if n[0] == "upgrade"], "money under the reserve: no armour"
 # the bank first: more than CARRY_TIER2 carried and a hunt on tier 2+ ground
 fd.facts["bank_balance"] = 100
-fd.c.gold = 250
+fd.c.gold = task_core.CARRY_TIER2 + 150
 real_cands = task_core.candidates
 t2c_ = {"task": "hunt", "area": "tour spX", "spots": [[1300, 1500, 1.0, "spX"]], "tour": ["spX"], "score": 0.5, "draw": 1.0, "mean": 1.0, "expected": {"kills": 5.0, "gold": 10.0, "skill": 0.1},
         "walk_min": 3.0, "die": 0.05, "n": 0, "tier": 2, "side": "surface", "minutes": 20.0, "budget": 600.0, "judge": "kills", "kinds": ["orc"], "load": 0}
 task_core.candidates = lambda bot, g, rng=None, rested=False, relax=0: [dict(t2c_)]
 fd.facts.pop("banked_at", None)
 task_core.tick(fd)
-assert fd.facts["task"]["task"] == "bank" and any(e[0] == "task_start" and e[1]["why"] == "bank first" for e in fd.evs), fd.facts["task"]
+assert fd.facts["task"]["task"] == "bank", fd.facts["task"]        # over CARRY_TIER2 it banks ("bank first", or the purse errand's "need" at 2,000+)
 fd.facts["task"] = None
 fd.facts["banked_at"] = now()
+fd.evs.clear()
 task_core.tick(fd)
-assert fd.facts["task"]["task"] == "hunt", "banked a minute ago: the hunt"
+assert not any(e[0] == "task_start" and e[1]["why"] == "bank first" for e in fd.evs), "banked a minute ago: no bank first"
+fd.facts["task"] = None
+fd.facts.pop("banked_at", None)
+fd.c.gold = 250
+fd.evs.clear()
+task_core.tick(fd)
+assert not any(e[0] == "task_start" and e[1]["why"] == "bank first" for e in fd.evs[-3:]), [e for e in fd.evs[-3:]]   # 250 carried: under CARRY_TIER2 (2026-11-02), no "bank first"
 fd.facts["task"] = None
 fd.facts["banked_at"] = 0
 fd.c.gold = 110
