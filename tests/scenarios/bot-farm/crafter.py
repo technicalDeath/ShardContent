@@ -992,11 +992,14 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return True
         cart = []
         buys = {}
+        # the pieces products() keeps back stay out of the cart too: the cart is built from the vendor's list by name, so it sold the coloured pieces on
+        # offer to the fighters at the iron price (BotSmithAR's bronze plate helm, 2026-11-02 16:58) and a tinker's own shovel
+        keep = {str(s_).lower() for s_ in (self.working_tools() | self.colour_kept())}
         for line in offers:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
             if m:
                 buys[m.group(4).strip().lower()] = int(m.group(2))
-            if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0:
+            if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0 and m.group(1).lower() not in keep:
                 cart += [m.group(1), m.group(3)]
         # a refusal counts only for a kind this bot made and carries: a newbied starter dagger is on no vendor's list, and was recorded as "dagger: 0" at
         # all three Britain smiths, so no smith made daggers again (2026-11-01)

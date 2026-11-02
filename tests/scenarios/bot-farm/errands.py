@@ -598,8 +598,14 @@ def needs(bot, hunting=False):
             import goals
             money = gold + (f.get("bank_balance", 0) or 0) - getattr(bot, "UPGRADE_RESERVE", 250)
             best = goals.upgrade_choice(bot, money) if goals.active(bot) else bot.next_upgrade(money)
-        except Exception:
+        except Exception as e:
             best = None
+            if now - bot.__dict__.get("_upgrade_err_at", 0) > 600:              # said, not swallowed: two colour_craft fighters raised no upgrade for an
+                bot.__dict__["_upgrade_err_at"] = now                            # hour with a better coloured piece on offer (2026-11-02 16:00-17:05)
+                try:
+                    bot.log(f"errand upgrade: the choice failed: {type(e).__name__}: {e}")
+                except Exception:
+                    pass
         skip = f.get("upgrade_skip") or {}
         if best and now < skip.get(best[2], 0):
             best = None                                              # M3: an upgrade that came back unmet twice rests 30 minutes
