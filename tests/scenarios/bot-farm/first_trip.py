@@ -39,6 +39,16 @@ SOFT_POWER = 70
 CASTER_EXTRA = 5            # a caster needs this much more skill than a fighter for the same trip
 SLICE = 20                  # seconds of walking per tick
 REACHED = 8                 # tiles from a waypoint that count as reaching it
+# feature trip_run (owner, 2026-11-02: "Cant they run past the monsters and keep a distance from them", and "drinking any necessary potion on the run").
+# A running player takes 0.2 s a tile (movement.delay.runFoot 200); the monsters on the routes out of Britain take 0.3-0.6 (npc-speeds.json: air elemental
+# Fast 0.3; bone mage, gazer, reaper, corpser, ratman, orc Medium 0.45; earth elemental Slow 0.6), so a runner outpaces every one of them. The trip deaths
+# of 2026-11-02 were bots that stopped: one bandaged (an 11.8 s bandage) beside a bone mage, one at 66 of 81 among spectres, wraiths and a bone mage.
+TRIP_HOT = 14               # tiles: a monster's notice range here (BaseCreature.DefaultRangePerception 16 less monsterAggro.rangeReduction 2, task_core.PULL_CLEAR)
+TRIP_HOT_SLICE = 2          # s of walking per tick with a monster in notice range: the danger check and the potions come round every 2 s, not every 20
+TRIP_HOLD = ("r_heal", "r_cure", "r_fight", "r_avoid", "r_flee", "r_hide", "r_rest", "r_loot", "r_corpse", "r_carve")   # rules that stand still
+HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs MinHeal/MaxHeal): drunk on the run once 20 are missing, so none is wasted
+RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
+TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
 
 
 def cheb(ax, ay, bx, by):
@@ -416,6 +426,9 @@ class FirstTrip(LadderMixin):
             import spots
             import task_core
             losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR, k) for o, k in spots.deadly_spawners(self)]
+            if self.trip_run_on():
+                # a running trip passes a melee lair (nothing there catches a runner, TRIP_HOT's note); only a caster's or breather's reach is a wall
+                losing = [o for o in losing if self.trip_caster(o[3])]
         except Exception:
             losing = []
         for x, y in path[::4]:
@@ -572,6 +585,87 @@ class FirstTrip(LadderMixin):
                 return f"{self.trip_desc(m)} (die {r['die']:.0%}, flee {r['flee']:.0%}, n {r['n']:.0f}, pack {near})"
         return None
 
+    def trip_run_on(self):
+        return bool(getattr(self, "feature", None)) and self.feature("trip_run")
+
+    def trip_walking(self):
+        """A trip under way on the road (out or home), the character alive."""
+        try:
+            t = self.trip_load().get("trip")
+        except Exception:
+            return False
+        return bool(t) and t.get("phase") in ("out", "home") and not self.c.ghost
+
+    def trip_near(self):
+        """The monsters that can hurt it within notice range (TRIP_HOT)."""
+        try:
+            near = list(self.dangers(TRIP_HOT)) if hasattr(self, "dangers") else []
+        except Exception:
+            near = []
+        try:
+            for m in self.threats(TRIP_HOT):
+                if all(m.serial != o.serial for o in near):
+                    near.append(m)
+        except Exception:
+            pass
+        return near
+
+    @staticmethod
+    def trip_caster(kind):
+        """A kind that hurts at range: spells or breath (creature_stats, danger.stats), what a runner cannot outpace."""
+        try:
+            import danger
+            c = danger.stats().get(kind) or {}
+            return bool(c.get("casts") or c.get("breath"))
+        except Exception:
+            return False
+
+    def trip_skip(self, name):
+        """Feature trip_run: while a trip walks, the rules that stand still wait: no fight on the road, and with a monster in notice range no bandage,
+        no side-step, no flight off the route (the trip runs on, or back, with the potions drunk on the run: trip_potions)."""
+        if name not in TRIP_HOLD or not self.trip_run_on() or not self.trip_walking():
+            return False
+        if name == "r_fight":
+            return True
+        return bool(self.trip_near())
+
+    def trip_turn_back(self):
+        """Why a running trip turns back, else None: a caster or breather in notice range (a runner does not outpace a spell), a pack (TRIP_PACK), or
+        under half health with a monster near. Melee monsters alone are run past."""
+        near = self.trip_near()
+        casters = [m for m in near if self.trip_caster(self.mkey(m))]
+        if casters:
+            return f"caster near: {casters[0].name} at {casters[0].distance} tiles"
+        if len(near) >= TRIP_PACK:
+            return f"pack near: {len(near)} ({', '.join(sorted({m.name for m in near}))[:60]})"
+        if near and self.hp_pct() < 50:
+            return f"hurt with {near[0].name} near"
+        return None
+
+    def trip_potions(self):
+        """On the run, as a player drinks while running: Cure when poisoned (beside an attacker too: there is no standing still to wait it out), Heal once
+        HEAL_MISSING are gone (not while poisoned: refused), Refresh below RUN_STAM. Returns the potions drunk."""
+        drunk = []
+        now = time.time()
+        if self.c.poisoned and now - self.facts.get("cured_at", 0) >= self.CURE_RECHECK and self.potion("cure") is not None:
+            self.facts["cured_at"] = now
+            if self.drink_cure("on the run"):
+                drunk.append("cure")
+        if not self.c.poisoned and self.c.max_hp - self.c.hp >= HEAL_MISSING and self.drink_heal("on the run"):
+            drunk.append("heal")
+        try:
+            mx = int(self.c.state.get("maxStam") or 0)
+        except Exception:
+            mx = 0
+        if mx > 0 and self.c.stamina < RUN_STAM * mx and now - self.facts.get("refresh_pot_at", 0) >= self.REFRESH_EVERY:
+            pot = self.potion("refresh")
+            if pot is not None:
+                self.facts["refresh_pot_at"] = now
+                if self.drink(pot):
+                    drunk.append("refresh")
+                    self.ev("consumable_used", item="red potion", stam=self.c.stamina, ok=True, why="on the run")
+        return drunk
+
     def trip_step(self, t, trip):
         wps = trip["wps"]
         now = time.time()
@@ -593,6 +687,11 @@ class FirstTrip(LadderMixin):
                 danger = None
             why = ("hurt" if self.hp_pct() < 60 else f"danger: {danger}" if danger else f"hard kind: {hard}" if hard else f"soft kind: {soft}" if soft else "overweight" if self.c.weight >= self.c.max_weight * 0.9
                    else "too slow" if phase == "out" and now - t["t0"] > limit_of(trip) * 60 else None)
+            if self.trip_run_on() and phase == "out":
+                # run past what cannot catch a runner; turn back for a caster, a pack, or half health with something near. The kind lists and the learned
+                # risk were judged standing (a melee monster beside a standing bot), so on the run only "hurt", "overweight" and "too slow" stand from them
+                turn = self.trip_turn_back()
+                why = f"run: {turn}" if turn else (why if why in ("hurt", "overweight", "too slow") else None)
             if why:
                 self.trip_abort(why)
                 return True
@@ -643,7 +742,18 @@ class FirstTrip(LadderMixin):
             self.trip_abort("no progress")
             return True
         self.activity = f"first trip: {'to' if phase == 'out' else 'home from'} {t['dest']}"
-        res = str(self.goto_near(x, y, REACHED).wait(timeout=SLICE))
+        slice_s = SLICE
+        if self.trip_run_on() and self.trip_near():
+            self.activity += " (running past)"
+            if hasattr(self, "sprint"):
+                self.sprint()                                   # run whatever the stamina (bot_common.sprint)
+            drunk = self.trip_potions()
+            if drunk:
+                self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}")
+            slice_s = TRIP_HOT_SLICE
+        res = str(self.goto_near(x, y, REACHED).wait(timeout=slice_s))
+        if res.startswith("timeout") and slice_s == TRIP_HOT_SLICE:
+            return True                                         # still running: the next tick checks the danger and the potions again
         if res.startswith(("nopath", "blocked")):
             t["fails"] += 1
             if t["fails"] >= 3:

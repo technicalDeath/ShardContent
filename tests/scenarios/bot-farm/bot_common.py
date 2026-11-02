@@ -3098,6 +3098,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                         continue                       # materializing: this rule would end it (recovery.py)
                     if self.guard_off(name):
                         continue                       # the loop guard backed this rule off (loopguard.py)
+                    if getattr(self, "trip_skip", None) and self.trip_skip(name):
+                        continue                       # a trip running past monsters: no rule that stands still (first_trip.trip_skip, feature trip_run)
                     self.current_rule = name
                     if getattr(self, name)():
                         acted = name
