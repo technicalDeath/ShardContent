@@ -381,6 +381,22 @@ class BasicsMixin:
             return time.time() - last > 1200
         return (getattr(self, "base", {}) or {}).get("uptime", 0) + time.time() - getattr(self, "started", time.time()) > 1200
 
+    SELL_MAX = 99                        # entries a sale may hold: the server drops a sale of 100 or more without a word (IncomingVendorPackets, VendorSellReply:
+                                         # count >= 100). BotTinkAR offered 110 tongs, shovels and hatchets in one sale, sold none, and wrote off tongs as unsellable
+
+    def sell_cart(self, cart, vendor=None):
+        """Sell [serial, amount, serial, amount, ...] in sales of at most SELL_MAX entries. The server closes the vendor's list after each sale, so the list is
+        opened again (vendor_list) before the next one."""
+        n = self.SELL_MAX * 2
+        first = True
+        while cart:
+            part, cart = cart[:n], cart[n:]
+            if not first and vendor is not None:
+                self.vendor_list(vendor, "sell")
+            self.cmd("sell " + " ".join(part), timeout=10)
+            time.sleep(3)
+            first = False
+
     def r_sellmeat(self):
         """Carved meat to the Butcher when a sell trip pays (sell_due), or twenty minutes out with meat in the pack. Meat no Butcher would buy is left on the
         ground only after the sale was tried at the shop: the fighters' copy dropped it whenever the sale returned nothing, a far walk just begun included."""

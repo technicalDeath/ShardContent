@@ -2616,17 +2616,19 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                  if v2.get("name") and any(p > 0 and any(w in item for w in words) for item, p in v2["buys"].items())}
         people = sorted([m for m in self.c.mobiles(within=7) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")],
                         key=lambda m: (m.name not in known, m.distance))
-        fallback = []
+        fallback, fallback_v, seller = [], None, None
         for v in people:
             offers = self.vendor_list(v, "sell")
             if any("gp" in l for l in offers):
                 if any(re.search(r"(\d+)gp\s+x\d+\s+(.+)", l) and any(w in re.search(r"(\d+)gp\s+x\d+\s+(.+)", l).group(2).lower() for w in words)
                        and int(re.search(r"(\d+)gp", l).group(1)) > 0 for l in offers):
+                    seller = v
                     break                                          # this vendor pays for something wanted (Noella at the tailor's paid nothing for a robe, Chantal 40)
-                fallback = fallback or offers
+                if not fallback:
+                    fallback, fallback_v = offers, v
             offers = []
         else:
-            offers = fallback
+            offers, seller = fallback, fallback_v
         if not offers:
             self.note("sell", "Saying '<vendor> sell' near the vendor opened no list of what the vendor buys.", key="nosell")
             return 0
@@ -2644,8 +2646,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if m and any(w in m.group(4).lower() for w in words) and int(m.group(2)) > 0:
                 cart += [m.group(1), m.group(3)]
         if cart:
-            self.cmd("sell " + " ".join(cart), timeout=10)
-            time.sleep(3)
+            self.sell_cart(cart, seller)
         earned = max(self.c.gold - gold0, 0)
         self.log(f"sold {len(cart) // 2} stacks for {earned} gold")
         return earned

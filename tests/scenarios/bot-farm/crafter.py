@@ -43,6 +43,7 @@ CRAFTS = {
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
 UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2, "leather": 6,    # the shard's vendor prices (CraftedGoodsPricing.MaterialPrices)
               "cut up leather": 3}       # a leather-mode tailor's leather: a hide at the Furtrader (SBFurtrader Hides 3) cuts into one (Hides.Scissor)
+UNSOLD_VALID_FROM = 1793605500   # 2026-11-02 02:45: strikes from before this were sales of 100+ entries the server dropped (basics.SELL_MAX), not refusals
 BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTailor, SBWeaver)
 BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
 BOLT_BATCH = 10           # bolts a trip at most: 500 cloth; a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
@@ -848,7 +849,8 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     def products(self):
         strikes = self.facts.setdefault("unsold", {})
         now = time.time()
-        return [i for i in self.c.backpack if self.is_product(i.name) and not (strikes.get(str(i.serial), [0, 0])[0] >= 2 and now - strikes[str(i.serial)][1] < 21600)]
+        return [i for i in self.c.backpack if self.is_product(i.name) and not (strikes.get(str(i.serial), [0, 0])[0] >= 2 and now - strikes[str(i.serial)][1] < 21600
+                                                                               and strikes[str(i.serial)][1] >= UNSOLD_VALID_FROM)]
 
     def strike_unsold(self, stock):
         """A product no answered vendor listed, or that stayed in the pack after the sell (a newbied starter dagger), gets a strike; two leave it out."""
@@ -968,8 +970,7 @@ class CrafterBot(EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
         if buys:
             self.mem.record("vendor", xy=f"{buyer[0]},{buyer[1]}", name=v.name, buys=[[k, p] for k, p in buys.items()])   # (a) the others learn what this shop buys
         if cart:
-            self.cmd("sell " + " ".join(cart), timeout=10)
-            time.sleep(3)
+            self.sell_cart(cart, v)
         time.sleep(2)
         gained = self.c.gold - gold0
         if gained <= 0 and buyer != default_buyer:
