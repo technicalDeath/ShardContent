@@ -353,6 +353,19 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             return False
         self.__dict__["_spares_at"] = now
         self.activity = "releasing spare pets"
+        kept = next((m for m in pets if m.serial == keep), None)
+        if kept is not None and any((m.name or "").lower() == (kept.name or "").lower() for m in pets if m.serial != keep):
+            kept = None                                  # a spare of the kept pet's name: release is heard by name, so only "all" and a retake free it
+        if kept is not None:
+            # the kept pet stays: "all release" named it too, and the retake that should have followed lost to tame_find's walk to the next spot, so
+            # BotTamerAR let its brown bear (strength 414) go and kept a black bear (322) four minutes later (2026-11-02 06:15-06:19)
+            self.log(f"tame: {f} of {mx} follower slots taken, {len(pets) - 1} spare pets in earshot: releasing them, keeping {kept.name}")
+            self.release("all", count=len(pets) - 1, keep=kept.name)
+            spares = [m for m in pets if m.serial != keep]
+            owned = [s_ for s_ in (self.facts.get("owned_serials") or []) if s_ not in {m.serial for m in spares}] + [m.serial for m in spares]
+            self.facts["owned_serials"] = owned[-OWNED_MAX:]
+            self.ev("release_spares", pets=len(pets), before=f, after=None, keep=kept.name)
+            return True
         self.log(f"tame: {f} of {mx} follower slots taken, {len(pets)} of its pets in earshot: releasing them all, then taking the strongest back")
         self.release("all", count=len(pets))
         time.sleep(1.5)
