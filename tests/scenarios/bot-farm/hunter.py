@@ -1740,6 +1740,8 @@ class BardBot(HunterBot):
         import provoke
         sk = self.skill_values
         a, b, d, gains = provoke.best_pair([m], other, float(sk.get("Provocation", 0) or 0), float(sk.get("Musicianship", 0) or 0))
+        if not gains:
+            return False                                  # a pair the skill cannot gain on is no help either: "a cow onto a cow" (2026-11-01)
         res = self.play("provocation", [a.serial, b.serial])
         self.log(f"music (provoking at the fight's start): {a.name} onto {b.name} (difficulty {d:.0f}{', can gain' if gains else ''}): {str(res)[-90:]}")
         self.ev("provoke", target=a.name, onto=b.name, diff=round(d, 1), gains=gains)
@@ -1766,6 +1768,8 @@ class BardBot(HunterBot):
             others = [m for m in self.mobs(rng) if not (m.name or "").startswith("Bot") and getattr(m, "notoriety", "") not in ("Innocent", "Ally")]
             sk = self.skill_values
             a, b, d, gains = provoke.best_pair(hostile, others, float(sk.get("Provocation", 0) or 0), float(sk.get("Musicianship", 0) or 0)) or (hostile[0], other[0], 0.0, False)
+            if not gains:
+                return False                              # nothing here it can gain on: the bow does the work
             self.activity = "provoking"
             self.ev("provoke", target=a.name, onto=b.name, diff=round(d, 1), gains=gains)
             res = self.play("provocation", [a.serial, b.serial])
