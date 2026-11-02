@@ -112,8 +112,9 @@ ERRAND_UNMET_REST = 240.0        # supply errands (resupply, arm, fletch) that e
 CARRY_TIER2 = 2000              # fix D: gold carried above this goes to the bank before a hunt on tier 2 or higher ground (the bank keeps 100 in the pack). Was 120:
                                 # BotFairSwordNR walked to the bank 5 times an hour and BotWarAdvR twice in 9 minutes (2026-11-02 00:00-01:00). The core fighters died
                                 # 2 times in 117.4 hunting hours (0.017 an hour, 2026-11-01 13:00-01:00), so a 15-minute tour risks 0.43% of what it carries, and a
-                                # 2.5-minute bank walk costs about 87 gold at 2,076 gold an hour (the 00:30-01:00 window): banking first pays from about 20,000 carried.
-                                # A tenth of that, for a death rate ten times this one; r_bank's purse limit still banks a large purse
+                                # 2.5-minute bank walk costs about 42 gold at about 1,000 gold an hour (the fighters' net worth an hour, night runner, median 965):
+                                # banking first pays from about 9,700 carried. A fifth of that, for a death rate five times this one; r_bank's purse limit still banks
+                                # a large purse
 UNDEAD_BOX = (1320, 1360, 1480, 1440)    # the undead ground north of Britain (wraiths, spectres): four bots died there in the 2026-10-20 hour
 UNDEAD_HP = 120                 # a bot with fewer maximum hit points than this keeps out of the box, whether or not it has died there yet
 TOUR2_BONUS = 1.25              # the shared tour (item 5): a tour of tier 4 or more with a buddy at hand scores this much more, and its death risk TOUR2_DIE of the lone one's
