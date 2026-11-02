@@ -1526,11 +1526,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if cell in seen:
                 continue
             seen.add(cell)
-            if self.gather_danger(cell):
-                return f"crosses {cell}"
             if gz is not None and gz.in_town(int(x), int(y)):
                 continue                                  # a guarded town is no killing ground: 1440,1600 beside Britain's healer holds 17 deaths (ghosts
-                                                          # come back there) and refused every walk out of Britain (2026-10-30)
+                                                          # come back there) and refused every walk out of Britain (2026-10-30). Before gather_danger too: its
+                                                          # decayed deaths around a cell (c29fd46) closed 1440,1640 and refused every trip out of Britain at its
+                                                          # first step (BotHealAdvR, "the route crosses 1440,1640", 2026-11-02 09:21)
+            if self.gather_danger(cell):
+                return f"crosses {cell}"
             n = self.cell_deaths(cell)
             if n >= HOME_DEATHS:
                 return f"crosses {cell}, where {n} bots no stronger died in {ROUTE_DEATH_DAYS} days"
