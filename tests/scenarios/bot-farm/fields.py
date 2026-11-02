@@ -81,6 +81,14 @@ class FieldsMixin:
             deadly = self.mem.deadly_kinds()
         except Exception:
             deadly = set()
+        # each spawner's value weighted by the share of its creatures back since any bot's last kill there (spots.availability: the memory's last kill and
+        # the spawner's respawn window). Without it the tamer chose fields the fighters had just cleared, left each "empty" after EMPTY seconds and walked
+        # 300-500 tiles to the next: BotTamerAR, 0 kills in an hour with a brown bear of strength 414 (2026-11-01 21:12-22:12)
+        try:
+            import spots as _sp
+            idx = {(int(s["x"]), int(s["y"])): s for s in _sp.spawner_spots()}
+        except Exception:
+            _sp, idx = None, {}
         out = {}
         for a in areas():
             if a.get("tier") not in tiers:
@@ -91,6 +99,12 @@ class FieldsMixin:
                 if bad:
                     veto = True
                     break
+                s = idx.get((int(sp[0]), int(sp[1])))
+                if s is not None and _sp is not None:
+                    try:
+                        v *= _sp.availability(self, dict(s, cell=cell_of(sp[0], sp[1])))
+                    except Exception:
+                        pass
                 spots.append((sp[0], sp[1], round(v, 2)))
                 load = max(load, self.ground_load(cell_of(sp[0], sp[1])))
                 dist = min(dist, max(abs(here[0] - sp[0]), abs(here[1] - sp[1])))
