@@ -1887,80 +1887,6 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         """A patrol point reached: prey in sight keeps the range tight, three empty points in a row widen it a step."""
         self.facts["empty_visits"] = 0 if prey_seen else self.facts.get("empty_visits", 0) + 1
 
-    @staticmethod
-    def kind_casts(kind):
-        """A kind that hurts at range, spells or breath (creature_stats via danger.stats), as first_trip.trip_caster."""
-        try:
-            import danger
-            c = danger.stats().get(kind) or {}
-            return bool(c.get("casts") or c.get("breath"))
-        except Exception:
-            return False
-
-    def walk_threats(self):
-        """detour.Threat for each monster in notice range this bot does not fight (dangers: not its prey, not a passive animal), casters marked."""
-        import detour
-        try:
-            near = list(self.dangers(detour.NOTICE)) if hasattr(self, "dangers") else list(self.threats(detour.NOTICE))
-        except Exception:
-            near = []
-        out = []
-        for m in near:
-            if getattr(m, "x", None) is None or getattr(m, "y", None) is None:
-                continue
-            try:
-                kind = self.mkey(m)
-            except Exception:
-                kind = ""
-            out.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(kind), getattr(m, "name", "") or ""))
-        return out
-
-    def caster_lair_home(self):
-        """forbidden(point) for detour.py: inside the home range of a caster lair this bot loses to (spots.deadly_spawners), cached a minute."""
-        got = self.__dict__.get("_lair_homes")
-        if got is None or time.time() - got[0] > 60:
-            try:
-                import spots
-                homes = [(o["x"], o["y"], max(int(o.get("home") or 10), 1)) for o, k in spots.deadly_spawners(self) if self.kind_casts(k)]
-            except Exception:
-                homes = []
-            got = self.__dict__["_lair_homes"] = (time.time(), homes)
-        homes = got[1]
-        return lambda p: any(abs(p[0] - x) <= r and abs(p[1] - y) <= r for x, y, r in homes)
-
-    def walk_detour(self, target):
-        """The next point of any walk (a far walk's leg, a hunt journey's waypoint) when monsters this bot does not fight are in notice range: the best
-        short leg round them (detour.plan_leg), or, with a caster inside its reach, a committed escape until out of every caster's notice (owner,
-        2026-11-03: "make sure all bots utilize the new detour logic"). None when the way on is clear. The leg is walked by the caller."""
-        try:
-            import detour
-            import walkroute
-            wr = walkroute.get()
-        except Exception:
-            return None
-        threats = self.walk_threats()
-        esc = self.__dict__.setdefault("_walk_escape", {"on": False})
-        if not threats:
-            esc["on"] = False
-            return None
-        here = (int(self.c.x), int(self.c.y))
-        casters = [th for th in threats if th.caster]
-        if casters and detour.clearance_at(here, casters) < 0:
-            esc["on"] = True
-        elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in casters):
-            esc["on"] = False
-        forbid = self.caster_lair_home()
-        if esc["on"]:
-            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
-        else:
-            leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=forbid)
-        if leg is not None and time.time() - self.__dict__.get("_walk_detour_logged", 0) > 10:
-            self.__dict__["_walk_detour_logged"] = time.time()
-            self.log(f"walk: {leg.kind} to {leg.to[0]},{leg.to[1]} (clearance {leg.clearance}, gain {leg.progress}) round "
-                     + ", ".join(f"{th.name} at {detour.cheb(here, (th.x, th.y))}" for th in threats)[:90])
-            self.ev("walk_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress)
-        return leg
-
     def flee_point(self, threat):
         """Where to run: a town refuge when one is close, otherwise straight away from the threat. Far out (a veteran archer 300 tiles west of
         town) the walk to a town refuge planned "nopath" every tick, and the bot stood still and died fleeing."""
@@ -1982,9 +1908,11 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             ths = self.walk_threats()
             if all((th.x, th.y) != (int(threat.x), int(threat.y)) for th in ths):
                 ths.append(detour.Threat(int(threat.x), int(threat.y), self.kind_casts(self.mkey(threat)), getattr(threat, "name", "") or ""))
-            leg = detour.escape_leg((int(self.c.x), int(self.c.y)), ths, walkroute.get().leg_clear, prefer=tuple(self.home_centre()),
-                                    forbidden=self.caster_lair_home())
+            here = (int(self.c.x), int(self.c.y))
+            leg = detour.escape_leg(here, ths, walkroute.get().leg_clear, prefer=tuple(self.home_centre()),
+                                    forbidden=self.detour_forbid(here, self.caster_lair_home()))
             if leg is not None:
+                self.detour_note(here, leg)
                 try:
                     import task_core
                     return task_core.box_exit(self, int(leg.to[0]), int(leg.to[1]))

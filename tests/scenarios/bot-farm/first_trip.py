@@ -802,12 +802,15 @@ class FirstTrip(LadderMixin):
             esc.update(on=True, clear=0)                        # a caster inside its reach: run from it, not along the route past it
         elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in casters):
             esc.update(on=False, clear=0)                       # every caster already past its notice range: the escape is over
+        forbid = self.detour_forbid(here, self.trip_lair_home()) if hasattr(self, "detour_forbid") else self.trip_lair_home()
         if esc["on"]:
-            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=self.trip_lair_home())
+            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
         else:
-            leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=self.trip_lair_home())
+            leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=forbid)
         if leg is None:
             return False
+        if hasattr(self, "detour_note"):
+            self.detour_note(here, leg)                         # how the walk goes decides whether this leg end is barred next time
         now = time.time()
         if now - self.__dict__.get("_detour_logged", 0) > 10:
             self.__dict__["_detour_logged"] = now
