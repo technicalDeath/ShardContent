@@ -154,7 +154,8 @@ def restock_wants(bot):
     return out
 
 ERRAND_NEAR = 3
-KIT_RETRY_S = 3600              # BaseVendor.RestockDelay: a vendor restocks an hour after its last restock, when next opened
+KIT_RETRY_S = 1800              # BaseVendor.RestockDelay: a vendor restocks 30 minutes after its last restock, when next opened (vendorStock.restockMinutes in
+                                # shard-rules.json, 2026-11-02; the stock hour before)
 REST_AT = 50                    # the rest errand below this health (the hunt tree rests itself between 50 and 65 with nothing about)
 REST_TO = 75
 TRAIN_CAP = 30.0
@@ -380,10 +381,11 @@ def cloth_bandages(b, st, need):
         try:
             owned = sum((i.amount or 1) for i in b.c.backpack if (i.name or "").lower() in ("cut cloth", "cloth"))
             if owned < need:
-                b.shop_at(shop, {"=cut cloth": need - owned}, budget=budget_for(need - owned))
+                b.shop_at(shop, {"=cut cloth": need}, budget=budget_for(need - owned))          # (the amount to own: shop_at counts the cut cloth held)
             owned = sum((i.amount or 1) for i in b.c.backpack if (i.name or "").lower() in ("cut cloth", "cloth"))
             if owned < need:
-                b.shop_at(shop, {"=cloth": need - owned}, budget=budget_for(need - owned))
+                cut = sum((i.amount or 1) for i in b.c.backpack if (i.name or "").lower() == "cut cloth")
+                b.shop_at(shop, {"=cloth": need - cut}, budget=budget_for(need - owned))      # (shop_at counts only the plain cloth held)
         except Exception as e:
             b.log(f"errand resupply: cloth: {type(e).__name__}: {e}")
         if any((i.name or "").lower() in ("cut cloth", "cloth") for i in b.c.backpack):
@@ -824,15 +826,18 @@ class Act(Step):
             except Exception as e:
                 b.log(f"errand resupply: the withdrawal: {type(e).__name__}: {e}")
             b.beat()
-        healer = {item: full - carried(b, item) for item, low, full, roles in marks(b) if "healer" in roles and item != "=orange potion" and carried(b, item) < low}
+        # shop_at takes the amount to OWN ({substring: target}, it buys target minus what the pack holds): the amount to buy shrank the kit's
+        # top-up to nothing (BotHealAdvR, 9 of 15 Cure and 6 of 10 Heal, asked the healer for 4 Heal, owned 6, bought none beside 60 on the shelf,
+        # and 6 Cure at three alchemists, owned 9: "still short of orange potion" 276 times, 2026-11-01/02)
+        healer = {item: full for item, low, full, roles in marks(b) if "healer" in roles and item != "=orange potion" and carried(b, item) < low}
         if healer:
             visit(b.where1(("healer",)), healer, share=0.7)        # one visit: bandages, Heal, Refresh
-        rest = {item: full - carried(b, item) for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
+        rest = {item: full for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
         if rest:
             visit(b.where1(("alchemist",)), rest)                  # one visit: Cure, and whatever the healer did not have
         # sold out: the next alchemists, nearest first, as a player walks on to the next shop (Britain has four; the nearest two were bare)
         for xy in alchemists(b)[:ALCHEMIST_TRIES]:
-            rest = {item: full - carried(b, item) for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
+            rest = {item: full for item, low, full, roles in marks(b) if carried(b, item) < low and "alchemist" in roles}
             if not rest:
                 break
             visit(xy, rest)
