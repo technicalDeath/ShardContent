@@ -610,6 +610,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         dirs = [d for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw") if full or (x0 + STEP[d][0], y0 + STEP[d][1]) not in bodies]
         if not dirs:
             self.log(f"no path from {x0},{y0}: boxed in by {len(bodies)} mobiles at stamina {self.c.stamina}/{mx} (a step onto one needs full stamina)")
+            self.facts["boxed_at"] = time.time()          # no step open at all: r_flee fights at once, as after "no step in any direction" (BotFencerBR, boxed
+                                                          # in by 8 at 2030,996, fought only from 9 hit points after three more flights, 2026-11-03 01:20)
             return False
         for d in dirs:
             if time.time() - started > 45 or (bodies and self.hp_pct() < self.flee_below()):
