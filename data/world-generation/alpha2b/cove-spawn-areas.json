@@ -267,7 +267,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -276,11 +276,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -709,7 +704,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -718,11 +713,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -952,7 +942,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -961,11 +951,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -1059,7 +1044,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -1068,11 +1053,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -1093,7 +1073,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -1102,11 +1082,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -3500,7 +3475,7 @@
       5
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -3509,11 +3484,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -4141,7 +4111,7 @@
       5
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -4150,11 +4120,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -4175,7 +4140,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:10:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -4184,11 +4149,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -4585,7 +4545,7 @@
       -15
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -4594,11 +4554,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -4721,7 +4676,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -4730,11 +4685,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -4904,11 +4854,6 @@
         "probability": 100
       },
       {
-        "name": "Ettin",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
         "name": "Ogre",
         "maxCount": 1,
         "probability": 100
@@ -4993,7 +4938,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -5002,11 +4947,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -5040,11 +4980,6 @@
         "probability": 100
       },
       {
-        "name": "Ettin",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
         "name": "Ogre",
         "maxCount": 1,
         "probability": 100
@@ -5061,7 +4996,7 @@
       0
     ],
     "map": "Felucca",
-    "count": 3,
+    "count": 2,
     "minDelay": "00:20:00",
     "maxDelay": "00:20:00",
     "team": 0,
@@ -5070,11 +5005,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },
@@ -5104,11 +5034,6 @@
     "entries": [
       {
         "name": "Troll",
-        "maxCount": 1,
-        "probability": 100
-      },
-      {
-        "name": "Ettin",
         "maxCount": 1,
         "probability": 100
       },

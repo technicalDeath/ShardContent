@@ -132,3 +132,33 @@ The map files for clients: `apply_statics_patch.py work/uodata-pristine OUT grea
 **Roll back:** stop as in step 1, then copy the four files back from `work/uodata-before-20261101`.
 
 **Not checked:** walking through the cleared strip with the patched server. The server reads the same files after the swap, and stock house placement over the strip was surveyed on 2026-10-20 (441 valid centres against 116).
+
+## Fewer ettins by Covetous, 2026-11-03
+
+**The owner's ruling:** "There is a large group of ettins nearby the entrance in the grove. Bots will need to quickly run past them. In fact, there are too many there. Modify the spawn so there are less ettins (half of what there are today)." The same message chose Covetous as the bot ladder's dungeon ("I ran to Covetous with no problem yesterday").
+
+**What was there.** On the farm world, 25 ettins stood between x 2200-2750 and y 600-1100. They came from the 30 hill-giant camps of the `troll-hills` theme:
+- 24 in Minoc South Hills, north of Covetous;
+- 6 in Troll Plains, south-east of the main entrance, the nearest at 2548,946.
+
+Each camp is Troll 1, Ettin 1, Ogre 1, with a count of 2 or 3, so it holds at most one ettin. No other spawner near Covetous holds ettins. The stock Spawner (213) at 2349,722 holds 1 creature.
+
+**The change.** In `data/world-generation/alpha2b/cove-spawn-areas.json`:
+- Every other camp in map order (y, then x) lost its Ettin entry. That's 15 of 30: 12 in Minoc South Hills, 3 in Troll Plains.
+- Each changed camp's count was capped at the kinds it has left, which took 12 counts from 3 to 2. The trolls and ogres stay as they were.
+- The rule is noted on both areas in `tools/spawn-design/areas-cove.json` (`ettinsHalved`), so a rebuild from the plan can apply it again.
+- Script: the scratchpad's `halve_ettins.py`, whose rule is the one stated here.
+
+**Checks.** A Python check of the test rules this change could touch: all 148 spawners can fill their counts, and GUIDs and places are unchanged. The C# test run was blocked by another session's uncommitted build break (`ActionProgressBars.cs` needs engine hooks that aren't built).
+
+**Farm world, 10:05:**
+1. Saves snapshot: `work/save-snapshots/farm-saves-20261103-100457-before-ettins-halved`.
+2. The new file copied into `work/hosts/farm` (backup `.bak-20261103-before-ettins`).
+3. `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` added the 15 changed camps and replaced their 15 stale ones.
+4. The audit passed: 1,744 spawners.
+5. Ettins in the box after: 15. Trolls: 29. Ogres: 26.
+
+**Dev world:**
+- The file is in the dev distribution's data (backup `.bak-20261103-before-ettins`).
+- The dev world itself still has the old camps. When the dev server next runs, it needs `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` after a Saves snapshot.
+- Dev can't run while the farm holds port 2593.
