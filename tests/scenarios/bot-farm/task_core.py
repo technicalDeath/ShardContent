@@ -1099,7 +1099,11 @@ def tiers(bot):
     if cautious(bot) or bot.facts.get("fists") or unarmed(bot):
         return {min(out)}                                      # no bandages and the restock failed: the lowest ground only, until the pack is stocked again
     r = rung_update(bot)
-    if r and rung_ready(bot):
+    if r and rung_ready(bot) and bot.feature("dungeon_tours"):
+        # (feature dungeon_tours, 2026-11-03: off for every bot until the journeys are fixed. With kits filling the rungs opened, and in some 30
+        # dungeon tours no bot reached a door: Covetous's door at 2384,837 cannot be walked to, and the tele journeys through the Britain moongate
+        # cross the undead ground south of Britain. Three died on the way: BotFairSwordNR 22:54, BotFencerBR 01:20, BotRangerAR 01:59 to a
+        # skeletal knight beside a bone mage and a spectre at 1359,1929. The rung bookkeeping, kills and kit, goes on.)
         out |= {RUNG_TIERS[k] for k in range(1, r + 1)}
     return out
 

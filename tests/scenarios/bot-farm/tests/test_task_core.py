@@ -1089,6 +1089,9 @@ print("round 3 fixes OK")
 rr = fighter(name="BotRungReady", skill=88.0)
 rr.c.backpack = [NS(name="Yellow Potion", serial="0xq1", amount=10, hue=0), NS(name="Red Potion", serial="0xq2", amount=2, hue=0), NS(name="Bandage", serial="0xq3", amount=50, hue=0), NS(name="Orange Potion", serial="0xq1c", amount=15, hue=0)]
 rr.facts["rung"] = 1
+assert 4 not in task_core.tiers(rr), "without the feature dungeon_tours (off for every bot since 2026-11-03) no dungeon tier is offered"
+rr.features.add("dungeon_tours")
+rr.__dict__.pop("_spots", None)
 assert 4 in task_core.tiers(rr) and task_core.rung_ready(rr)
 rr.c.hp = 50
 rr.__dict__.pop("_spots", None)
@@ -1583,7 +1586,7 @@ print("travel OK")
 
 # ---- item 5, the world beyond Britain: the rungs, the dungeon spots, the teleporter leg, the other towns, the shared tour ---------------------------------
 import gazetteer as gz
-rg = fighter(name="BotRung", skill=82.0)
+rg = fighter(name="BotRung", skill=82.0, features=("task_core", "fields", "dungeon_tours"))      # the dungeon tiers need the feature (2026-11-03)
 rg.tele_allow = lambda side, seconds=900: rg.facts.setdefault("tele_ok", {}).__setitem__(side, now() + seconds)
 assert task_core.rung(rg) == 0 and not task_core.kit(rg)[0] and max(task_core.tiers(rg)) <= 3
 rg.c.backpack = [NS(name="Yellow Potion", serial="0xP1", amount=10, hue=0), NS(name="Red Potion", serial="0xP2", amount=2, hue=0), NS(name="Bandage", serial="0xB1", amount=50, hue=0), NS(name="Orange Potion", serial="0xP1c", amount=15, hue=0)]
@@ -1673,7 +1676,7 @@ assert spots.door_reachable(1296, 1080, (1470, 1620)) and not spots.door_reachab
 print("hub OK")
 
 # the shared tour: with a party member or buddy within TOUR2_NEAR, every tour of tier 4 or more comes again as a "tour2" at TOUR2_BONUS the score and less risk
-t2 = fighter(name="BotTour2", skill=82.0)
+t2 = fighter(name="BotTour2", skill=82.0, features=("task_core", "fields", "dungeon_tours"))
 t2.c.backpack = list(rg.c.backpack)
 t2.facts["rung"], t2.facts["rung_kills"] = 1, {"3": 20}
 t2.tele_allow = lambda side, seconds=900: None
