@@ -52,6 +52,7 @@ public static class ShardBootstrap
         SellPriceTooltips.Configure();
         CraftedGoodsPricing.Configure();
         HousePricing.Configure();
+        VendorStock.Configure();
         CarryWeight.Configure();
         ShopPrices.Configure();
         MonsterAggro.Configure();

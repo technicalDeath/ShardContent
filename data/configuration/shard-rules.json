@@ -141,6 +141,17 @@
   "housePricing": {
     "smallHouses": 16000
   },
+  "vendorStock": {
+    "restockMinutes": 30,
+    "stockMultipliers": {
+      "LesserCurePotion": 4,
+      "LesserHealPotion": 3,
+      "RefreshPotion": 2,
+      "Bandage": 10,
+      "Arrow": 5,
+      "Bolt": 5
+    }
+  },
   "carryWeight": {
     "base": 100,
     "perStrength": 3.5,

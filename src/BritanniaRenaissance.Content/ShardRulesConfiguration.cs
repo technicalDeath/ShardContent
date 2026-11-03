@@ -109,6 +109,7 @@ public static class ShardRulesConfiguration
         StaminaReliefService.Validate(rules.StaminaRelief, errors);
         DeathRecoveryRules.Validate(rules.DeathRecovery, errors);
         HousePricing.Validate(rules.HousePricing, errors);
+        VendorStock.Validate(rules.VendorStock, errors);
         CarryWeight.Validate(rules.CarryWeight, errors);
         ShopPrices.Validate(rules.ShopPrices, errors);
         MonsterAggro.Validate(rules.MonsterAggro, errors);
@@ -464,6 +465,9 @@ public sealed class ShardRules
 
     [JsonPropertyName("housePricing")]
     public HousePricingRules HousePricing { get; set; } = new();
+
+    [JsonPropertyName("vendorStock")]
+    public VendorStockRules VendorStock { get; set; } = new();
 
     [JsonPropertyName("carryWeight")]
     public CarryWeightRules CarryWeight { get; set; } = new();
