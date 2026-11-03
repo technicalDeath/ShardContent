@@ -3166,6 +3166,19 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         if self.tick_no % 40 == 0:
             self.log(f"tick {self.tick_no} hp {self.c.hp}/{self.c.max_hp} mana {self.c.mana} at ({self.c.x},{self.c.y}) gold {self.c.gold} weight {self.c.weight}/{self.c.max_weight} kills {self.kills} deaths {self.deaths}")
 
+    LEAVE_GRACE = 120.0     # s a brain may run past its time while unsafe_to_leave: a fight's length (the longest the bots rated on 2026-11-02 was a skeletal
+                            # knight, ~78 s to kill) or a flight to safety. Every brain of a supervisor run ends at the same moment (start_brain --for the
+                            # time left), and the next run starts them about a minute later: BotTamerAR's brain stopped at 03:14:34 with a greater mongbat
+                            # on it, the next started at 03:15:47, and it died at 8 hit points (2026-11-03). The next supervisor starts no second brain
+                            # while this one runs (farm_launch.is_brain)
+
+    def unsafe_to_leave(self):
+        """A brain at its time does not stop in the middle of danger: a hostile within notice range, health under the flee line, or a fight on."""
+        try:
+            return bool(self.threats(14)) or self.hp_pct() < self.flee_below() or bool(getattr(self, "fight", None))
+        except Exception:
+            return False
+
     def run(self, seconds):
         end = time.time() + seconds
         self.log(f"start: {self.pname}")
@@ -3181,7 +3194,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except OSError:
             pass
         hang_file = open(hang, "w")
-        while time.time() < end:
+        while time.time() < end or (time.time() < end + self.LEAVE_GRACE and self.unsafe_to_leave()):
             faulthandler.dump_traceback_later(150, repeat=False, file=hang_file)      # a tick that takes over 150 s leaves its stack in hang.txt
             if os.path.exists(pause):              # `touch work/botfarm/<name>/pause` hands the character to a human or a test script
                 self.activity = "paused"
