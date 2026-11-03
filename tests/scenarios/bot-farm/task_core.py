@@ -1376,18 +1376,25 @@ def monitor(bot, task, g, rng=None):
         rate_h = max(act / max(work_hours(task), 1e-6), float(task["expected"].get(judge, 0.0)) * (0.5 if worked >= GRACE_S else 1.0))
         running = rate_h / 60.0 * (1.0 + COMMIT) + 1e-6
         opts = [c for c in candidates(bot, g, rng) if c["area"] != task["area"]]
-        best = max(opts, key=lambda c: score_for(c, judge)) if opts else None
-        if best and score_for(best, judge) > running * 1.5 + 0.01:
-            bot.ev("task_switch", **{"from": task["area"], "to": best["area"], "why": f"{score_for(best, judge):.3f} against {running:.3f} {judge} a minute here"})
-            bot.log(f"core: switching from {task['area']} ({running:.3f} {judge} a minute) to {best['area']} ({score_for(best, judge):.3f})")
+        sr = bool(bot.feature("switch_rate"))                      # a candidate's yield over the walk plus the budget (score_for)
+        best = max(opts, key=lambda c: score_for(c, judge, sr)) if opts else None
+        if best and score_for(best, judge, sr) > running * 1.5 + 0.01:
+            bot.ev("task_switch", **{"from": task["area"], "to": best["area"], "why": f"{score_for(best, judge, sr):.3f} against {running:.3f} {judge} a minute here",
+                                     "switch_rate": sr})
+            bot.log(f"core: switching from {task['area']} ({running:.3f} {judge} a minute) to {best['area']} ({score_for(best, judge, sr):.3f})")
             bot.__dict__["_core_next"] = best
             return "switch"
     return None
 
 
-def score_for(cand, measure):
-    """A candidate's expected progress a minute on a given measure (the running task's judge), for the switch comparison."""
+def score_for(cand, measure, budget_time=False):
+    """A candidate's expected progress a minute on a given measure (the running task's judge), for the switch comparison. With budget_time
+    (feature switch_rate): the budget's yield over the walk plus the budget it is worked for. Without, over the tour's own loop (cand["minutes"],
+    8 minutes at least), which overrates a tour shorter than the budget by budget/minutes: switch targets claimed 0.40-0.54 kills a minute
+    against an expectation capped at 0.30, and the 8 traced switches delivered 0.21, less than the tours left (2026-11-02)."""
     exp = float((cand.get("expected") or {}).get(measure, 0.0) or 0.0) * HUNT_BUDGET / 3600.0
+    if budget_time:
+        return exp / max(float(cand.get("walk_min", 0.0) or 0.0) + HUNT_BUDGET / 60.0, 1.0)
     return exp / max(float(cand.get("minutes") or (cand.get("walk_min", 0.0) + HUNT_BUDGET / 60.0)), 1.0)
 
 
