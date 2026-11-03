@@ -157,6 +157,11 @@ public static partial class WorldActions
 
         if (!mobile.Alive)
         {
+            if (mobile is PlayerMobile ghost)
+            {
+                actions.Add(ResurrectAction(player, ghost));
+            }
+
             return actions;
         }
 
@@ -165,6 +170,14 @@ public static partial class WorldActions
             if (creature is Cow cow)
             {
                 actions.Add(MilkAction(player, cow));
+            }
+
+            AddWave6MobileActions(player, creature, actions);
+
+            if (creature.Controlled && creature.ControlMaster != player && creature.ControlMaster is not null)
+            {
+                // a friend's or guildmate's pet takes a bandage as any patient does (BandageContext.BeginHeal: CanBeBeneficial)
+                actions.Add(new WorldAction(BandageId, "Heal with a bandage", BandageReasonFor(player, creature, ItIsNotHurt)));
             }
 
             if (creature.Controlled && creature.ControlMaster == player)
@@ -254,6 +267,11 @@ public static partial class WorldActions
         }
 
         if (chosen is not { } offered || Refused(player, offered.Reason))
+        {
+            return;
+        }
+
+        if (PerformWave6Mobile(player, mobile, action))
         {
             return;
         }

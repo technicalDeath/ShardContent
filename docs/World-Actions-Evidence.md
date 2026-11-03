@@ -322,3 +322,109 @@ Not exercised live:
 - Launch a docked boat. One can't be added directly; it only comes from dry-docking a boat.
 - Cashing a check in the bank box.
 - Herding through to an animal.
+
+## Logs: Cut into boards (built 2026-11-02, on the owner's "the right click menu for logs is missing a context menu action to turn them into boards")
+
+- Logs in the pack now offer **Cut into boards** first, before the carpentry and fletching entries.
+- It runs the stock axe-on-logs: `Log.Axe` → `TryCreateBoards`, the path `HarvestTarget` takes when an axe targets logs. Special woods keep their stock skill check.
+- The axe is taken up into the hands first if it is in the pack, as Chop does; stock raises the axe's cursor only with the axe held.
+- Greyed with "Requires an axe." when there is none. A pole arm chops trees but is not an axe to the logs, which is stock.
+- `BoardsId` 132, in `WorldActions.Misc.cs`.
+
+| Check | Result |
+| --- | --- |
+| Real client, disposable host `progress` (port 2594): hatchet in hand, 70 logs and 101 boards in the pack; click the logs, choose Cut into boards | 171 boards, the logs gone, weight 338 → 268 |
+
+Shots (real client): `work/player-client/ProgChop/shots/20261102-145330-logmenu.png` (the menu), `20261102-145342-boards.png` (after).
+
+Seen in passing: while the pointer stays on the item just clicked, the item's hover tooltip opens over the top of its actions menu (the menu opens beside the pointer). Moving onto the menu clears it, so it is left as is.
+
+## Gaps found 2026-11-02 (read-only sweep, on the owner's "look for other gaps as well")
+
+Stock pre-AOS uses with no menu entry, or a wrong one, ranked by how often a player meets them. Nothing here is built. Paths are under `ModernUO/Projects/UOContent`.
+
+1. **Craft tools: no "Make another <last item>".** The T2A tool cursor on the tool repeats the last make (`Engines/Craft/T2A/T2ACraftToolTarget.cs`), and the welcome guide teaches it. Also wrong: the smith's hammer is greyed "Requires ingots." although the smith menu always offers Repair and Smelt (checked: `WorldActions.Tools.cs:33`).
+2. **Loose item in your house: no Lock down / Release / Secure / Unsecure.** These are speech words in stock (`Regions/HouseRegion.cs`, `BaseHouse.cs`), and the house reminder tells players to say them.
+3. **Unmarked recall rune: no "Mark this rune here"** (`Spells/Sixth/Mark.cs`).
+4. **Drag-drop uses:**
+   - scroll into a spellbook that lacks the spell: "Add to your spellbook";
+   - marked rune: "Add to your runebook";
+   - Recall scroll: "Recharge your runebook" (`Spellbook.cs`, `Runebook.cs`).
+5. **Weapon or armour: no Repair / Melt down** (`Engines/Craft/Core/Repair.cs`, `Resmelt.cs`). Needs a hammer or tongs, an anvil and a forge.
+6. **Skills used on things:**
+   - Item Identification "Identify" on weapons and armour (matters for unidentified loot);
+   - Arms Lore;
+   - Animal Lore on creatures;
+   - Taste ID on food, potions and kegs;
+   - Remove Trap on trapped containers.
+7. **Explosion potion: no "Throw"** (`BaseExplosionPotion.cs`).
+8. **House addon, strongbox, trash barrel: no "Take down (back into its deed)"** (an axe on `IChoppable`).
+9. **Sheep: no "Shear"** (a blade on `Sheep : ICarvable`).
+10. **Fish: no "Cut into fish steaks"** (`Fish : ICarvable`).
+11. **Player ghost: no "Resurrect with a bandage"** (80 Healing and 80 Anatomy pre-AOS, `Bandage.cs`). A ghost's menu is empty today.
+12. **Beverages:**
+    - no Drink or "Pour into" for a full pitcher;
+    - an empty one is greyed "Stand next to a trough..." although a full pitcher in the pack can fill it (`Beverage.cs`).
+13. **Potion keg: no "Fill a bottle" or "Pour your potions in"** (`PotionKeg.cs`).
+14. **Poison potion: no "Poison a weapon or food"** (`Skills/Poisoning.cs`).
+15. **Boat deed: no "Place the boat"** (deferred earlier).
+16. **Rare:**
+    - bandaging a friend's or guildmate's pet;
+    - wheat into the flour mill;
+    - sextant and clock;
+    - the blade's label could mention shearing and steaks;
+    - an axe destroying furniture: keep that off the menu.
+
+## Wave 6 (built 2026-11-02, on the owner's pick from the gap list: "1, 2, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 7")
+
+Built in `WorldActions.Wave6.cs`, plus the craft tools in `WorldActions.Tools.cs`. Gaps 3 (Mark a rune) and 4 (drag-drop into books) were not picked. Each entry runs the stock use, either directly or by answering the stock cursor with the thing clicked.
+
+- **Craft tools:**
+  - after something has been made, **Make another <item>** (the T2A Make Last: `T2ACraftToolTarget` with the tool itself);
+  - the smith's hammer is no longer greyed "Requires ingots.", because the smith menu always has Repair and Smelt.
+- **House** (a co-owner standing inside, with the item on the house floor):
+  - **Lock down**, **Release**, **Secure** (containers) and **Unsecure** run the stock `LockdownTarget` / `SecureTarget`;
+  - **Take down** puts an addon (or a strongbox or trash barrel) back into its deed: an axe in hand, the stock `IChoppable.OnChop`, owner only (co-owner for the barrel).
+- **Weapon or armour in the pack:**
+  - **Repair**, and **Melt down** for metal ones: `Repair.Do` / `Resmelt.Do`;
+  - greyed "Requires a smith's hammer or tongs." or with the smithy reason.
+- **Lore skills**, offered only to someone with the skill above 0 (at 0 the check cannot succeed):
+  - **Identify** (Item Identification) and **Examine the workmanship** (Arms Lore) on weapons and armour;
+  - **Taste to identify** on food, potions and kegs;
+  - **Disarm a trap** on any trappable container, trapped or not, so the menu never gives a hidden trap away;
+  - **Study this animal** (Animal Lore) on a creature.
+- **Potions:**
+  - an explosion potion offers **Throw**;
+  - a poison potion offers **Poison a weapon or food**, which runs the Poisoning skill answered with the potion; its second cursor is the player's.
+- **Blade uses** (the stock `BladedItemTarget`):
+  - fish: **Cut into fish steaks**;
+  - a sheep: **Shear**, greyed until its wool has grown back, or when out of reach (2 tiles);
+  - the blade's own entry now reads "Carve, shear or cut kindling".
+- **Ghosts and pets:**
+  - a player's ghost: **Resurrect with a bandage**, greyed below 80 Healing and 80 Anatomy;
+  - a friend's or guildmate's pet now gets **Heal with a bandage** too.
+- **Beverages:**
+  - a full one: **Drink**, and **Pour into the empty <vessel>** when one is in the pack;
+  - an empty one: **Fill with <ale/water/...>** from a full one in the pack; it is no longer greyed "Stand next to a trough..." when it could be filled from the pack.
+- **Potion keg:** **Fill a bottle** (greyed empty keg, no bottle, out of reach) and **Pour in your <potion>s** when the pack holds the kind it holds.
+- **Other items:** a boat deed: **Place the boat**; wheat: **Put in the flour mill** (a mill within 4); a sextant: **Find your position**; a clock: **Check the time**.
+
+| Check | Result |
+| --- | --- |
+| Unit: resurrect at 80/80, lore skills only above 0 (`WorldActionsTests`); world-actions, progress-bar and drag tests | 140 pass |
+| Real client, host `progress`: saw after making a wooden shield | "Make another wooden shield" offered; choosing it made a second (boards 162 → 153) |
+| Real client: fish | "Cut into fish steaks" → 4 raw fish steaks |
+| Real client: sheep beside you (frozen for the shot) | "Shear" → "You place the gathered wool into your backpack." |
+| Real client: pitcher of ale and an empty glass pitcher | full: Drink, "Pour into the empty glass pitcher"; empty: "Fill with ale" |
+| Real client: lesser explosion potion; dagger | Throw; dagger: "Carve, shear or cut kindling", Wield, Repair and Melt down greyed (no smith's hammer, no smithy) |
+
+Not exercised live (code and unit checks only):
+- the house entries and Take down (no house on the test host);
+- Repair and Melt down at a real smithy;
+- the lore skills (the test character has none);
+- poison, keg, boat deed, mill, sextant, clock;
+- ghost resurrection and the friend's-pet bandage.
+
+Shots: `work/player-client/ProgChop/shots/20261102-155350-makeanother.png`, `20261102-pitchers-crop.png`, `20261102-potion-dagger-crop.png`, `20261102-155203-sheepmenu2.png`, `20261102-155213-sheared.png`, `20261102-155055-fishmenu.png`.
+
+Seen in passing: a menu opened at the right edge of the window can run off it ("Make another wooden shield" was cut). That comes from where the client places menus, not from this change.

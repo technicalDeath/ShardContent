@@ -359,6 +359,20 @@ public class WorldActionsTests
         Assert.False(WorldActions.MilkedOut(2, now, now));
     }
 
+    [Theory]
+    [InlineData(80.0, 80.0, true)]
+    [InlineData(79.9, 100.0, false)]
+    [InlineData(100.0, 79.9, false)]
+    public void ABandageResurrectsAt80HealingAnd80Anatomy(double healing, double anatomy, bool expected) =>
+        Assert.Equal(expected, WorldActions.CanResurrect(healing, anatomy));
+
+    [Fact]
+    public void ALoreSkillIsOfferedOnlyToSomeoneWhoHasIt()
+    {
+        Assert.False(WorldActions.HasSkill(0.0));
+        Assert.True(WorldActions.HasSkill(0.1));
+    }
+
     [Fact]
     public void TheFlagIsOffUntilTheOwnerSaysActivate()
     {

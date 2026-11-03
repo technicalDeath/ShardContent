@@ -3,6 +3,7 @@ using Server.Collections;
 using Server.ContextMenus;
 using Server.Engines.Craft;
 using Server.Engines.Craft.T2A;
+using Server.Engines.Harvest;
 using Server.Items;
 using Server.Mobiles;
 using Server.Multis;
@@ -13,7 +14,7 @@ namespace BritanniaRenaissance.Content;
 
 /// <summary>
 /// Wave 3b, resources and other things (owner, 2026-11-01): materials open the craft menu of the tool they go with (ingots, cloth and leather, logs,
-/// shafts, reagents and bottles, blank scrolls, blank maps); a bedroll on the ground is unrolled or rolled up (which offers the safe logout in a secure camp);
+/// shafts, reagents and bottles, blank scrolls, blank maps), and logs are cut into boards with an axe (2026-11-02); a bedroll on the ground is unrolled or rolled up (which offers the safe logout in a secure camp);
 /// a message in a bottle is opened and its SOS read; a fishing net cast; a house or addon deed placed; a training dummy, pickpocket dip or archery butte
 /// practised on; food fed to one of your pets; and the stock treasure map entries say why they are greyed.
 /// </summary>
@@ -31,6 +32,7 @@ public static partial class WorldActions
     public const byte FeedPetId = 129;
     public const byte CartographyId = 130;
     public const byte FletchFromId = 131;
+    public const byte BoardsId = 132;
 
     public const string BedrollOnGround = "Put the bedroll on the ground first.";
     public const string AlreadyOwnHouse = "You already own a house, you may not place another!";
@@ -77,6 +79,12 @@ public static partial class WorldActions
                 }
             case Log or Board when carried:
                 {
+                    // owner, 2026-11-02: logs offer the stock axe-on-logs (Log.Axe), as a player who targets them with an axe would
+                    if (item is Log)
+                    {
+                        actions.Add(new WorldAction(BoardsId, "Cut into boards", FindBoardAxe(player) is null ? NoAxe : null));
+                    }
+
                     AddCraftFrom(player, actions, DefCarpentry.CraftSystem, "Carpentry with these", "Requires a carpentry tool, such as a saw.");
                     AddCraftFrom(player, actions, DefBowFletching.CraftSystem, "Make bows and arrows", "Requires fletching tools.", id: FletchFromId);
                     break;
@@ -234,6 +242,11 @@ public static partial class WorldActions
         return null;
     }
 
+    /// <summary>An axe that cuts logs: in the hands first, else in the pack (a pole arm chops trees but is no axe to the logs).</summary>
+    private static BaseAxe? FindBoardAxe(Mobile m) =>
+        Held(m) is BaseAxe { HarvestSystem: Lumberjacking } held ? held :
+            m.Backpack?.FindItemByType<BaseAxe>(predicate: static axe => axe.HarvestSystem is Lumberjacking);
+
     private static bool PerformMisc(PlayerMobile player, Item item, byte action)
     {
         switch (action)
@@ -248,6 +261,16 @@ public static partial class WorldActions
             case CartographyId:
                 {
                     player.UseSkill(SkillName.Cartography);
+                    return true;
+                }
+            case BoardsId when item is Log log && FindBoardAxe(player) is { } axe:
+                {
+                    // stock needs the axe in hand to raise its cursor; the target then runs Log.Axe (HarvestTarget)
+                    if ((axe.Parent == player || TakeUp(player, axe)) && log.Axe(player, axe))
+                    {
+                        player.PlaySound(0x13E);
+                    }
+
                     return true;
                 }
             case CraftFromId or FletchFromId:

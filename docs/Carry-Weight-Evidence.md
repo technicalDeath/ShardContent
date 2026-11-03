@@ -28,7 +28,11 @@ Limits by Strength: Str 10 75 -> 135, 40 180 -> 240, 50 215 -> 275, 54 229 -> 28
   - The login copy alone did not reach the bar in the real client; the request is what made it work, as with the top bar's 0xA8.
   - `Game/Data/CarryWeight.cs` holds the values, and the status handler uses them. Stock servers never send it, so stock behaviour stays.
   - The server's sum is whole-number tenths too, so both sides agree.
-- **Navrey is not changed.** It still works out the stock limit, so bots see 229 where the server allows 289. They use fractions of that number, so they stay on the safe side but carry less than they could. Changing Navrey is a follow-up.
+- **Navrey (committed `670d4c999`, not pushed).** `Agent/CarryWeight.cs`, called each frame from `AgentHost`.
+  - It wraps the 0xBF handler at runtime (as `Narrator` does) and reads the base and tenths from the whole packet.
+  - It asks with 0xB3 once the world is up and puts the shard limit back in `WeightMax` after any status packet sets the stock one.
+  - It clears on logout. A server that never answers leaves the stock sum.
+  - It is in the farm build `bin/Lean13`, not yet in `bin/Debug`, which `Start-NavreySession` test sessions run. Rebuild that when no session has it loaded (`navrey-test` skill). Until then a test session's `maxWeight` is the stock sum.
 
 ## Evidence
 
@@ -45,19 +49,20 @@ Limits by Strength: Str 10 75 -> 135, 40 180 -> 240, 50 215 -> 275, 54 229 -> 28
 | Live: Archer Str 54 starting kit | `load 326 -> 194 of stock limit 229 (carry limit 289)`. The bot Archers made this morning on the old build: `327 -> 194 of limit 229`. Same kit (74 Boards, 37 Feathers). |
 | Real client (`player-client-shots`): new Archer | combat bar and Status window `194/289` (were `194/229`) |
 | Real client: one stone over | message `290 / 289`, bar red `290/289`, Status `290/289` |
+| Farm (2026-11-01, after the 21:48 redeploy): `[CarryWeightStatus` | `100 + 3.5 x Str; worn backpack holds 550`; Str 100 limit 450 (stock 390). The bots' state files still said 390: Navrey worked out the stock sum itself |
+| Navrey with `Agent/CarryWeight.cs` (scratch build, one headless client on the farm) | state file `str=100 maxWeight=450` |
+| Farm on `Navrey/bin/Lean13` (22:50, full client restart; read by the Watcher) | BotCarpAR `str 100, maxWeight 450` a few seconds after entering the world. The first reads after login show 390 until the 0xB3 answer arrives, which errs on the safe side |
 
 Screenshots: `work/player-client/CarryArch/shots/20261101-191516-status-window.png`, `20261101-191603-overloaded.png`.
 Live driver: `work/carry-weight/live_check.py`.
 
 ## State (2026-11-01)
 
-- **Built and verified. Not deployed, not committed.**
-  - `ModernUO/Distribution`'s UOContent was rebuilt with the hooks so ShardContent compiles. With no shard code calling them, the hooks do nothing, and no server had it loaded.
-  - The dev server's shard DLL and config are unchanged.
-  - The new `cuo.dll` is not yet in `ClassicUO/bin/dist`.
-- **To deploy:**
+- **Committed, not pushed:** ModernUO `614a0fda9` (hooks), ShardContent `1ab1bf8` (pin bumped to it), ClassicUO `80200c1df` (0xB3).
+- **Live on the farm host** since the 21:48 redeploy.
+- **Not deployed to dev.** The dev server's shard DLL and config are unchanged, and the new `cuo.dll` is not yet in `ClassicUO/bin/dist`.
+- **Navrey** reads 0xB3 in `Agent/CarryWeight.cs`, uncommitted. It wraps the 0xBF handler at runtime the way `Narrator` does, asks once in the world, and puts the shard limit back each frame after a status packet. The farm runs it from `Navrey/bin/Lean13`, built by the Watcher.
+- **To deploy to dev:**
   1. Run the normal deploy.
   2. Copy the rebuilt `cuo.dll`/`cuo.pdb` into `ClassicUO/bin/dist`, with a backup under `work/cuo-backups`.
   3. Add a README rules line.
-  4. When committing, bump `pinnedModernUoCommit`.
-- **The farm host** needs the same engine, shard DLL and config. Its bots keep the stock view until Navrey learns 0xB3.

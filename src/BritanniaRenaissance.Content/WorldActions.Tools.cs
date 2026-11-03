@@ -23,6 +23,7 @@ public static partial class WorldActions
     public const byte LockpickId = 66;
     public const byte KeyId = 67;
     public const byte CopyKeyId = 68;
+    public const byte MakeLastId = 69;
 
     public const string WornOut = "This tool is worn out.";
     public const string NeedSmithy = "You must be near an anvil and a forge to smith.";
@@ -30,7 +31,8 @@ public static partial class WorldActions
     /// <summary>The craft menu's name, the materials it needs (any one of them), and what the reason says when none is carried.</summary>
     private static readonly (Func<CraftSystem> System, string Label, Type[] Materials, string Missing)[] Crafts =
     [
-        (static () => DefBlacksmithy.CraftSystem, "Smith", [typeof(BaseIngot)], "Requires ingots."),
+        // no materials: the smith menu always offers Repair and Smelt (BlacksmithMenu)
+        (static () => DefBlacksmithy.CraftSystem, "Smith", [], ""),
         (static () => DefTailoring.CraftSystem, "Tailor", [typeof(Cloth), typeof(UncutCloth), typeof(BoltOfCloth), typeof(BaseLeather)], "Requires cloth or leather."),
         (static () => DefTinkering.CraftSystem, "Tinker", [typeof(BaseIngot), typeof(Log)], "Requires ingots or logs."),
         (static () => DefCarpentry.CraftSystem, "Carpentry", [typeof(Log), typeof(Board)], "Requires logs."),
@@ -58,8 +60,16 @@ public static partial class WorldActions
                         smithyMissing = !(anvil && forge);
                     }
 
-                    var hasMaterials = HasAny(player, materials) && (system != DefAlchemy.CraftSystem || player.Backpack?.FindItemByType<Bottle>() is not null);
+                    var hasMaterials = (materials.Length == 0 || HasAny(player, materials)) &&
+                                       (system != DefAlchemy.CraftSystem || player.Backpack?.FindItemByType<Bottle>() is not null);
                     actions.Add(new WorldAction(CraftId, label, CraftReason(tool.UsesRemaining <= 0, smithyMissing, hasMaterials, missing)));
+
+                    // owner, 2026-11-02: the T2A Make Last (the tool's cursor on the tool itself, T2ACraftToolTarget) as an entry of its own
+                    if (system.GetContext(player)?.LastMade is { } last)
+                    {
+                        actions.Add(new WorldAction(MakeLastId, $"Make another {CraftName(last)}", tool.UsesRemaining <= 0 ? WornOut : smithyMissing ? NeedSmithy : null));
+                    }
+
                     break;
                 }
             case BaseAxe { HarvestSystem: Lumberjacking } or BasePoleArm { HarvestSystem: Lumberjacking }:
@@ -80,8 +90,8 @@ public static partial class WorldActions
                 }
             case BaseKnife or BaseSword:
                 {
-                    // a blade asks what to use it on: a corpse to carve, a tree for kindling
-                    actions.Add(new WorldAction(BladeId, "Carve or cut kindling", null));
+                    // a blade asks what to use it on: a corpse to carve, a sheep to shear, fish to cut, a tree for kindling
+                    actions.Add(new WorldAction(BladeId, "Carve, shear or cut kindling", null));
                     break;
                 }
             case Scissors:
@@ -120,6 +130,11 @@ public static partial class WorldActions
         return null;
     }
 
+    /// <summary>A craft entry's name in lower case, as it reads in the menu ("Make another dagger").</summary>
+    private static string CraftName(CraftItem craft) =>
+        (craft.NameString ?? (craft.NameNumber > 0 ? HelpGenerators.ClilocText(craft.NameNumber) : null) ?? HelpGenerators.Spaced(craft.ItemType.Name))
+        .ToLowerInvariant();
+
     private static bool HasAny(PlayerMobile player, Type[] types)
     {
         foreach (var type in types)
@@ -149,6 +164,12 @@ public static partial class WorldActions
                         tool.OnDoubleClick(player);
                     }
 
+                    return true;
+                }
+            case MakeLastId when item is BaseTool tool:
+                {
+                    // the stock Make Last: the tool's own cursor answered with the tool (the stock check and every stock message apply)
+                    new T2ACraftToolTarget(tool, tool.CraftSystem).Invoke(player, tool);
                     return true;
                 }
             case ChopToolId:

@@ -1082,6 +1082,21 @@ public sealed class DeferredFeatureFlags
     [JsonPropertyName("worldActions")]
     public bool WorldActions { get; set; }
 
+    /// <summary>A progress bar over your own character while a timed action runs, coloured by the kind of action (owner, 2026-11-02; command 0xB4);
+    /// off until the owner says activate.</summary>
+    [JsonPropertyName("actionProgressBars")]
+    public bool ActionProgressBars { get; set; }
+
+    /// <summary>Dragging a weapon, shield or tool onto your own paperdoll with full hands puts what is in the way into the pack and equips it (owner,
+    /// 2026-11-02; engine hook <c>IncomingItemPackets.EquipRequestHandler</c>); off until the owner says activate.</summary>
+    [JsonPropertyName("dragIntoHands")]
+    public bool DragIntoHands { get; set; }
+
+    /// <summary>What a harvest gave floats up from your character with its picture, "Logs +5" (owner, 2026-11-02; engine event
+    /// <c>HarvestSystem.ResourceGained</c>, command 0xB5); off until the owner says activate.</summary>
+    [JsonPropertyName("gatheredItemPopups")]
+    public bool GatheredItemPopups { get; set; }
+
     [JsonPropertyName("expeditions")]
     public bool Expeditions { get; set; }
 
@@ -1167,11 +1182,14 @@ public sealed class DeferredFeatureFlags
         if (CorpseCarveButton) yield return nameof(CorpseCarveButton);
         if (CorpseLootExtension) yield return nameof(CorpseLootExtension);
         if (WorldActions) yield return nameof(WorldActions);
+        if (ActionProgressBars) yield return nameof(ActionProgressBars);
+        if (DragIntoHands) yield return nameof(DragIntoHands);
+        if (GatheredItemPopups) yield return nameof(GatheredItemPopups);
         if (Expeditions) yield return nameof(Expeditions);
         if (Pilgrimage) yield return nameof(Pilgrimage);
         if (RoadSpeed) yield return nameof(RoadSpeed);
         if (RetentionContent) yield return nameof(RetentionContent);
-        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !PetsKeepUp && !CriminalCorpseConfirm && !MonsterSpellWords && !CorpseCarveButton && !CorpseLootExtension && !WorldActions && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
+        if (!SafeWorld && !AutomaticMurderAdjudication && !TheftProtection && !KnockedOut && !HotZones && !CoolZones && !HousingGeography && !Alpha3StartingStats && !Alpha3StarterScissors && !Alpha3StarterBag && !Alpha3StarterGold && !Alpha3StarterCraftMaterials && !Alpha3StarterCombatGear && !SkillBank && !FaintMemories && !PetRestrictions && !SkillGainCurve && !HythlothHotZone && !HarvestAutoRepeat && !ActionAutoRepeat && !CampingStarterKit && !CampingFires && !CampingTravel && !HotZoneTravelWarning && !CampTravelBlueFire && !GuildChat && !NoviceCombat && !PoisonRelief && !HelpGumps && !ScrollSuccessChance && !PotionBar && !MenuBar && !CombatBar && !WearNotice && !AutoUse && !DamageNumbers && !HealNumbers && !ItemTooltips && !StartInBritainOnly && !Furnishers && !NewPlayerTips && !AutoPickup && !HouseReminder && !SellPriceTooltips && !CraftedGoodsPricing && !TownGuardsKillMonsters && !StaminaRelief && !StaminaNumbers && !GhostHealerReminder && !CorpseTimerNotice && !LongerPlayerCorpses && !CorpseCompass && !BlueSelfLoot && !KillerGoesHome && !Materializing && !CriminalGhostNotice && !CraftChances && !SpellChances && !FastHealing && !FastMeditation && !MeditationTip && !MetalSkillNotice && !SellCratesWithKeys && !ExtraVendorBuyers && !OrdinaryAddonDeeds && !PetsKeepUp && !CriminalCorpseConfirm && !MonsterSpellWords && !CorpseCarveButton && !CorpseLootExtension && !WorldActions && !ActionProgressBars && !DragIntoHands && !GatheredItemPopups && !Expeditions && !Pilgrimage && !RoadSpeed && !RetentionContent)
         {
             yield return "none";
         }

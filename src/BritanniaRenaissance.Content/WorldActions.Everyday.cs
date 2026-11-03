@@ -82,7 +82,8 @@ public static partial class WorldActions
                         actions.Add(new WorldAction(FillMilkId, "Fill with milk", null));
                     }
 
-                    if (water is null && cow is null)
+                    // a full beverage in the pack fills it too (wave 6, Fill with ...)
+                    if (water is null && cow is null && FullBeverage(player, (BaseBeverage)item) is null)
                     {
                         actions.Add(new WorldAction(FillId, "Fill", NoLiquidNear));
                     }

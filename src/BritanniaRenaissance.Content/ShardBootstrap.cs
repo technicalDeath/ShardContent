@@ -38,6 +38,9 @@ public static class ShardBootstrap
         PetRestrictionService.Configure();
         SkillGainCurveService.Configure();
         HarvestRepeatService.Configure();
+        ActionProgressBars.Configure();
+        DragIntoHands.Configure();
+        GatheredItemPopups.Configure();
         ActionRepeatService.Configure();
         CampingService.Configure();
         CampTravelService.Configure();

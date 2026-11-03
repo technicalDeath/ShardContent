@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pinnedModernUoCommit": "614a0fda9461c1eb5b9bf3c8e24c7bd1ae4d1673",
+  "pinnedModernUoCommit": "67b29ab34f6a7ddb88f291b8e99c6ff66c52d1ed",
   "world": {
     "era": "UOR",
     "enabledMaps": ["Felucca"]
@@ -350,6 +350,9 @@
     "corpseCarveButton": true,
     "corpseLootExtension": true,
     "worldActions": false,
+    "actionProgressBars": false,
+    "dragIntoHands": false,
+    "gatheredItemPopups": false,
     "expeditions": false,
     "pilgrimage": false,
     "roadSpeed": false,
