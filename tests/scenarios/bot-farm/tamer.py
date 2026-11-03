@@ -73,7 +73,9 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         errands.Act.do_sell(None, self, {}, {"task": "sell"})
         self.log(f"sold carved goods: gold {gold0} -> {self.c.gold}")
         return True
-    PET_MIN = 90               # a horse (98) and up: around Britain the bears and wolves are rare and go to the fighters first
+    REST_BELOW = 86            # the hurt-stop line in r_tame (55) plus the most one tame has cost (59% to 28% on a grizzly, 2026-11-02): a tame
+                               # started here ends above the stop line even then
+    PET_MIN = 90              # a horse (98) and up: around Britain the bears and wolves are rare and go to the fighters first
     PET_UPGRADE = 1.3          # trade up only for a clearly stronger animal
     PERSIST = BotBase.PERSIST + ("pet", "lost_pets", "owned_serials", "goods_sold_at")      # a restart keeps the pet: the pets follow on, the record did not (2026-10-30)
     PERSIST_CAPS = {"owned_serials": OWNED_MAX}           # saved lists keep their newest 20: the 300 owned animals came back as 20 at each restart, and the
@@ -207,8 +209,8 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
             return False
 
     def r_tame(self):
-        if self.hp_pct() < 55 or self.hunt_due():
-            return False                                  # (taming waits while the pet hunts: pethunt.py)
+        if self.hp_pct() < self.REST_BELOW or self.hunt_due():
+            return False                                  # (taming waits while the pet hunts: pethunt.py); hurt, r_explore rests first (rest_first)
         if self.release_spares():
             return True
         cands = self.candidates()
@@ -684,7 +686,20 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         for l in self.read_journal():
             self.note("tame", f"Releasing a pet answers: {l[:100]}", key="releasemsg")
 
+    def rest_first(self):
+        """Under REST_BELOW a tamer starts no tame and walks nowhere (not to animals, not to the pet's field): it stands and bandages. BotTamerAR set out
+        for animals 358 tiles off at 38% straight after fleeing a black bear, began a tame at about 59%, stopped hurt at 52% and walked 90 tiles on to the
+        next animals; a snake killed it on the way (2026-11-03 03:30). r_flee and r_evade come earlier in RULES, so a threat still sends it away."""
+        if self.hp_pct() >= self.REST_BELOW:
+            return False
+        self.activity = f"resting before work (health {self.hp_pct():.0f}%)"
+        if not self.bandage_self():
+            time.sleep(3)
+        return True
+
     def r_explore(self):
+        if self.rest_first():
+            return True
         if self.field_explore():
             return True                                   # the pet's hunt: a tier-1 area with monsters it beats (pethunt.py)
         if self.feature("tame_find") and self.find_animals():            # the spawner whose animals teach most (tame_spots.json), not the town's patrol spots
