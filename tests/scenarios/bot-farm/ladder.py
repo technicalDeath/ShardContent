@@ -294,6 +294,13 @@ class LadderMixin:
         st = self.ladder_state()
         now = time.time()
         dest = t["dest"]
+        if t.get("aborted") == "restart" and how != "death":
+            # a new brain drops the outing it did not start (first_trip.trip_abort("restart")): that says nothing of the road, so no pass, no
+            # failure, no fleet block. BotFairArcherVR's 'rung 3 failed at Trinsic (restart)' was the operator's restart (2026-11-02 23:48).
+            st["last_trip_end"] = now
+            self.log(f"ladder: rung {rung} trip to {dest} ended by a restart: not counted")
+            self.ladder_save()
+            return
         ok = how == "home" and bool(completed) and not t.get("aborted") and not t.get("enter_failed") and (rung != 4 or t.get("entered"))
         why = "" if ok else (t.get("aborted") or ("could not enter" if t.get("enter_failed") else how))
         st["last_trip_end"] = now

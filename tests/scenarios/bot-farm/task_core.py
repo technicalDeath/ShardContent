@@ -1542,6 +1542,15 @@ def tick(bot):
         pass
     task = bot.facts.get("task")
     rng = bot.__dict__.setdefault("_core_rng", random.Random(f"{bot.name}|{int(now() // 3600)}"))
+    if task and not bot.__dict__.get("_core_resume_checked"):
+        # once per brain: a saved hunt on a tier this bot may no longer hunt is dropped. Switching dungeon_tours off stopped only new picks: BotArcherCR
+        # and BotBardAdvR carried on their saved dungeon tours after the restart, one for 8 more minutes (2026-11-03 02:24-02:31).
+        bot.__dict__["_core_resume_checked"] = True
+        # (dungeon tiers only: a surface tier can be missing for a moment at start, cautious() before the pack is read)
+        if task.get("task") in ("hunt", "tour2") and (task.get("tier") or 1) > MAX_TIER and (task.get("tier") or 1) not in tiers(bot):
+            bot.log(f"core: the saved task at {task.get('area')} (tier {task.get('tier')}) is no longer allowed: dropped")
+            end_task(bot, task, "not allowed")
+            task = None
     if task:
         why = monitor(bot, task, g, rng)
         if why:
