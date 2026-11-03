@@ -1273,6 +1273,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         threat = threats[0] if threats else None
         if threat and self.fight_committed(threat):
             return self.fight_back(threat)                # boxed in a moment ago: keep swinging, no new flight (fight_committed)
+        if threat and self.prey_beside(threats, threat):
+            # the one attacker beside it is prey by the bot's own assessment and costs less to kill than the hit points left: kill it, as a player
+            # does a snake. Fleeing from it while it hits and re-poisons ruins every bandage and Cure: BotFairSwordNR fled 90 s from a snake, a giant
+            # rat and a slime (all "prey"), drank 11 Cure potions, slipped 5 bandages and died with war mode off (2026-11-02 22:53-22:54)
+            self.log(f"{threat.name} beside me is prey ({self.__dict__.get('_prey_taken', '?')} to kill it, hp {self.c.hp}): fighting it")
+            self.facts["fight_until"] = time.time() + self.FLEE_STUCK_S
+            return self.fight_back(threat)
         if threat and (getattr(threat, "distance", 9) or 9) <= 2 and time.time() - float(self.facts.get("boxed_at", 0) or 0) < self.FLEE_STUCK_S:
             # the step-out tried every direction and none moved the character, an attacker beside it: no flight can work, so the fight starts now,
             # not after three more flights. BotSwordBR, stuck on 1587,1867 with a giant spider re-poisoning it (10 Cure potions in 150 s), fought
@@ -1301,6 +1308,33 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     FLEE_STUCK_N = 3          # flights from the same tile ...
     FLEE_STUCK_S = 20         # ... within this many seconds, an attacker within 2 tiles: boxed in (r_flee fights back)
+
+    def prey_beside(self, threats, threat):
+        """True when threat is the only attacker within 2 tiles, stands beside the bot, and the bot's own assessment (assess: the table corrected by
+        memory) says fight, with the damage taken to kill it no more than 0.6 of the hit points left: the r_avoid rule's own line for a hopeless
+        fight (hunter, taken > 0.6 x hp). A newbie has no table: its taken is the shared memory's average share of hit points lost against the
+        kind, times its maximum; a kind never met has no estimate and is not fought this way. Never for a pack or a kind rated danger."""
+        if not hasattr(self, "assess") or (getattr(threat, "distance", 9) or 9) > 1:
+            return False
+        if sum(1 for m in threats if (getattr(m, "distance", 9) or 9) <= 2) != 1:
+            return False
+        try:
+            a = self.assess(threat) or {}
+        except Exception:
+            return False
+        if not a.get("fight"):
+            return False
+        taken = a.get("taken")
+        if taken is None:
+            try:
+                stats, _src = self.mem.fight_stats(self.mkey(threat))
+                taken = float(stats["avg_dmgpct"]) * float(self.c.max_hp or 0) if stats else None
+            except Exception:
+                taken = None
+        if taken is None:
+            return False
+        self.__dict__["_prey_taken"] = round(float(taken))
+        return float(taken) <= 0.6 * float(self.c.hp or 0)
 
     def fight_committed(self, threat):
         """True for FLEE_STUCK_S s after flee_stuck found the bot boxed in, while the attacker is still beside it: the fight goes on with no new
