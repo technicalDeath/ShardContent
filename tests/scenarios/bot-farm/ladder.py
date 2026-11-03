@@ -8,7 +8,7 @@ strength, supplies, a way back and the OUTCOME of the rung before it (never a ti
                              kit (bandages or Heal potions, ammunition for archers), 300 gold carried or banked, hit points for the trip, a planned land route that passes no death cell, a refuge in
                              the destination town (where it can be healed and resurrected) and one at home. REPEATABLE: the town it has seen least (then the nearest) after TOWN_GAP (45 min) from the
                              last trip; after a failed trip it rests TOWN_FAIL (60 min) times its failures, and after FAIL_LIMIT (3) failures at the same strength it waits for 5 more skill.
-  rung 4  Despise, level 1   (feature ladder_dungeon) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the Despise
+  rung 4  Covetous, level 1 (feature ladder_dungeon; Despise until 2026-11-03) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the dungeon's
                              entrance (the gazetteer's dungeon entrance on the surface), step through, look around DUNGEON_STAY (8) minutes at the landing, and walk out. At most one visit per
                              DUNGEON_GAP (3 h). A casualty or an abort is a failed rung. The step through the door is the one new action; the rest is first_trip's walk and abort rules.
 Events (decisions.jsonl): region_first {region, at} the first time the bot stands in a named region (a town or dungeon); rung {n, result: ok | fail, dest, why, minutes} when a rung is passed (1, 2:
@@ -40,7 +40,8 @@ POWER = {1: 25, 2: 40, 3: 50, 4: 65}
 TOWN_GAP = 2700
 TOWN_FAIL = 3600
 FAIL_LIMIT = 3
-DUNGEON = "Despise"
+DUNGEON = "Covetous"          # owner 2026-11-03: Covetous ("I ran to Covetous with no problem yesterday"); Despise's door sits in a troll lair
+DUNGEON_DOOR = (2499, 916)    # its main entrance; the nearest door from Britain, 2384,837, cannot be walked to (the dungeon tours, 2026-11-02)
 DUNGEON_STAY = 8
 DUNGEON_GAP = 10800
 DUNGEON_HP = 80
@@ -211,6 +212,7 @@ class LadderMixin:
             start = tuple(refuges[0]) if refuges else (home["centre"][0], home["centre"][1])
             side = gz.side(*start)
             doors = [p for p in gz.near("dungeon_entrance", start[0], start[1], n=40, same_side=True) if p.get("dungeon") == DUNGEON and p.get("side") == side]
+            doors.sort(key=lambda p: cheb(DUNGEON_DOOR, (int(p["x"]), int(p["y"]))))          # the chosen door first, then the nearest to it
             if doors:
                 d = doors[0]
                 end = (int(d["x"]), int(d["y"]))

@@ -119,6 +119,43 @@ class FarMixin:
             got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own, box, kill, tele))
         return got[1]
 
+    def runner_penalty(self):
+        """far_penalty for a running trip (first_trip, feature trip_run): the casters' lairs only, out to their home range (first_trip.RUN_EDGE), and no
+        cost for deaths in memory; the undead box, this bot's death spots and teleporter tiles as far_penalty. A runner outpaces melee, so the melee
+        lairs (the sand flats' earth elementals) and the snake cells must not push it round into casters: BotHealAdvR's Covetous trip, planned round
+        all of them, ran into the North-west Peaks' air elementals and was refused (2026-11-03)."""
+        got = self.__dict__.get("_run_pen")
+        if got is None or time.time() - got[0] > 600:
+            wr = _wr()
+            import first_trip
+            import spots as _sp
+            import task_core
+            parts = [_circle_pen(wr)]
+            try:
+                spots_ = list(getattr(self, "death_spots", None) or []) + [tuple(p) for p in self.facts.get("death_spots", [])]
+                if spots_:
+                    parts.append(wr.penalty_circles([(int(x), int(y), 40, 4.0) for x, y in spots_[-6:]]))
+            except Exception:
+                pass
+            try:
+                if task_core.box_bot(self):
+                    x0, y0, x1, y1 = task_core.UNDEAD_BOX
+                    parts.append(wr.penalty_circles([(cx, 1400, 50, 12.0) for cx in range(x0 + 20, x1, 40)] + [((x0 + x1) // 2, (y0 + y1) // 2, 100, 12.0)]))
+            except Exception:
+                pass
+            try:
+                parts.append(wr.penalty_circles([(o["x"], o["y"], max(int(o.get("home") or 10), 1) + first_trip.RUN_EDGE, 8.0)
+                                                 for o, k in _sp.deadly_spawners(self) if self.trip_caster(k)]))
+            except Exception:
+                pass
+            try:
+                import bot_common as _bc
+                parts.append(wr.penalty_circles([(tx, ty, TELE_CLEAR, 50.0) for tx, ty in _bc.teleporter_tiles()]))
+            except Exception:
+                pass
+            got = self.__dict__["_run_pen"] = (time.time(), wr.penalty_merge(*parts))
+        return got[1]
+
     def far_worth(self, role, xy, value=None):
         """(go, why) for a service walk of more than FAR tiles."""
         d = cheb((self.c.x, self.c.y), xy)

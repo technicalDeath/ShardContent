@@ -1597,9 +1597,10 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         """The spots of `kind` a move to `town` would give this brain (a brain that works a smaller radius narrows them: miner.py)."""
         return spots
 
-    def route_danger(self, r):
+    def route_danger(self, r, passable=None):
         """'' when a gatherer may walk the planned route (walkroute.plan's dict), else the first cell it must not use (gather_danger: the area danger map at
-        this bot's skill). Every miner move from Britain crossed one (Gargoyles at 1806,1273, Ogres at 2498,767) and cost two deaths a move, 10-19 to 10-30."""
+        this bot's skill). Every miner move from Britain crossed one (Gargoyles at 1806,1273, Ogres at 2498,767) and cost two deaths a move, 10-19 to 10-30.
+        passable(cell): a cell it may cross whatever the deaths (first_trip.trip_cell_passable: a running trip past ground that shows no caster)."""
         from memory import cell_of
         if getattr(self, "mem", None) is None:
             return ""                                     # no memory, no map: nothing to judge by
@@ -1614,6 +1615,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                                                           # come back there) and refused every walk out of Britain (2026-10-30). Before gather_danger too: its
                                                           # decayed deaths around a cell (c29fd46) closed 1440,1640 and refused every trip out of Britain at its
                                                           # first step (BotHealAdvR, "the route crosses 1440,1640", 2026-11-02 09:21)
+            if passable is not None and passable(cell):
+                continue
             if self.gather_danger(cell):
                 return f"crosses {cell}"
             n = self.cell_deaths(cell)
@@ -2022,8 +2025,31 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         """How long a bandage on oneself takes, pre-AOS: 9.4 + 0.6 x (120 - Dex) / 10 seconds (UOContent Items/Skill Items/Misc/Bandage.cs, BandageContext.BeginHeal)."""
         return 9.4 + 0.6 * (120 - max(0, min(120, int(dex or 0)))) / 10.0
 
+    def bandage_start(self, why=""):
+        """Put a bandage on oneself and go on at once: walking or running does not stop a bandage on oneself (BandageContext checks only the range to
+        the patient, and one is always in range of oneself; a hit makes the fingers slip, which only lessens the heal). bandage_self waits for the
+        answer and the brain stands still that long, 12.6 s at Dex 66: BotWarAdvR and BotHealAdvR bandaged that way beside a gargoyle and a gazer,
+        lost 30 and 41 hit points standing, and died (2026-11-03 14:35, 14:38). Shares bandage_at with bandage_self, so neither cancels the other's
+        bandage. True when one was put on."""
+        try:
+            b = self.c.find("bandage")
+        except Exception:
+            return False
+        if not b:
+            return False
+        secs = self.bandage_seconds((self.c.state or {}).get("dex"))
+        if time.time() - self.facts.get("bandage_at", 0) < secs + 1:
+            return False                                    # one is on
+        self.facts["bandage_at"] = time.time()
+        try:
+            self.c.use_on(b.serial, "self")
+        except Exception:
+            return False
+        self.ev("consumable_used", item="bandage", hp=self.hp_pct(), ok=None, why=why or "moving")
+        return True
+
     def bandage_self(self):
-        """Bandage oneself and wait for the server's answer in the journal for the engine's bandage time plus 3 s. A new bandage while one is on cancels the first
+        """Bandage oneself and wait for the server's answer in the journal for the engine's bandage time plus 1 s. A new bandage while one is on cancels the first
         (BandageContext.BeginHeal stops the old context), so it never starts another inside that time (the Watcher, 2026-10-29: the old wait listened for
         BANDAGE_DONE events the farm's client never sends, gave up at 12 s, and 93 of 105 bandages were 'no answer', each one restarting the clock)."""
         b = self.c.find("bandage")
@@ -2037,7 +2063,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.read_journal()
         before = self.c.hp
         self.c.use_on(b.serial, "self")
-        deadline = time.time() + secs + 3
+        deadline = time.time() + secs + 1                 # the bandage's own time (Dex), and a second for its answer: it ends at the answer (owner, 2026-11-03)
         text = ""
         while time.time() < deadline:
             time.sleep(1.0)

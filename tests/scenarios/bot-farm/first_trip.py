@@ -49,6 +49,7 @@ TRIP_HOLD = ("r_heal", "r_cure", "r_fight", "r_avoid", "r_flee", "r_hide", "r_re
 HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs MinHeal/MaxHeal): drunk on the run once 20 are missing, so none is wasted
 RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
 TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
+TRIP_CASTERS = 2            # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
 
 
 def cheb(ax, ay, bx, by):
@@ -94,6 +95,8 @@ def dense_path(wps):
 ENDS_FREE = 25          # tiles at each end of a trip's path left out of trip_threat: a destination (Britain's moongate at 1336,1997 beside Haunted Wood) is gone to anyway
 AVOID_TRIES = 4          # re-plans of a trip round the cells route_danger flags before the trip is refused
 AVOID_FACTOR = 50.0      # the cost a flagged cell's tiles get in that re-plan: high enough that any way round wins
+RUN_EDGE = 0            # (14 from 14:48 to 15:4x while the escape was fixed; owner: survive by skill, not by avoiding) tiles past a caster lair's home range a running trip keeps clear (owner 2026-11-03, "Run past gargoyle edge"): every route from
+                        # Britain to Covetous passes the gargoyles at 1906,1336 or the North-west Peaks' air elementals within their home range + 14
 
 
 def straight_wps(a, b, step=40):
@@ -392,6 +395,11 @@ class FirstTrip(LadderMixin):
         """The route cost: the far walks' own (far.py far_penalty: deaths in memory, the strong spawners, this bot's death spots, the undead box,
         spawners whose kind kills this group, teleporter tiles), so a trip and a long walk judge the ground alike. BotFenceAdvR's Skara Brae trip was
         routed past a skeletal knight's spawn that far walks go round, and it died there (2026-11-01). Without far.py: deaths and strong spawners."""
+        if hasattr(self, "runner_penalty") and self.trip_run_on():
+            try:
+                return self.runner_penalty()                   # a running trip: the casters' home ranges only (far.runner_penalty)
+            except Exception as e:
+                self.log(f"first trip: runner_penalty failed ({type(e).__name__}: {e}); far_penalty")
         if hasattr(self, "far_penalty"):
             try:
                 return self.far_penalty()
@@ -463,8 +471,12 @@ class FirstTrip(LadderMixin):
         if path:
             (sx, sy), (ex, ey) = path[0], path[-1]
             path = [p for p in path if max(abs(p[0] - sx), abs(p[1] - sy)) > ENDS_FREE and max(abs(p[0] - ex), abs(p[1] - ey)) > ENDS_FREE]
+        run = self.trip_run_on()
         try:
-            bad = self.route_danger({"path": path})
+            try:
+                bad = self.route_danger({"path": path}, passable=self.trip_cell_passable) if run else self.route_danger({"path": path})
+            except TypeError:
+                bad = self.route_danger({"path": path})       # a route_danger without passable (a test's stand-in): the plain rule
         except Exception:
             bad = ""
         m = _re.search(r"crosses (-?\d+),(-?\d+)", bad or "")
@@ -473,9 +485,10 @@ class FirstTrip(LadderMixin):
         try:
             import spots
             import task_core
-            losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR, k) for o, k in spots.deadly_spawners(self)]
-            if self.trip_run_on():
-                # a running trip passes a melee lair (nothing there catches a runner, TRIP_HOT's note); only a caster's or breather's reach is a wall
+            losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + (RUN_EDGE if run else task_core.PULL_CLEAR), k) for o, k in spots.deadly_spawners(self)]
+            if run:
+                # a running trip passes a melee lair (nothing there catches a runner, TRIP_HOT's note); only a caster's or breather's reach is a wall,
+                # and only its home range (RUN_EDGE): the run turns back if one comes within notice range on the way (trip_run)
                 losing = [o for o in losing if self.trip_caster(o[3])]
         except Exception:
             losing = []
@@ -658,6 +671,8 @@ class FirstTrip(LadderMixin):
                     near.append(m)
         except Exception:
             pass
+        if near:
+            self.__dict__["_trip_near_at"] = time.time()
         return near
 
     @staticmethod
@@ -670,6 +685,16 @@ class FirstTrip(LadderMixin):
         except Exception:
             return False
 
+    def trip_cell_passable(self, cell):
+        """A running trip crosses a cell of deaths whose sightings show no caster: the cells at 2000-2040,960-1000 hold snakes, rats, slimes and
+        mongbats, and BotFairSwordNR and BotFencerBR died there stopped (a snake fight, boxed in with a broken weapon, 2026-11-02/03), not running.
+        A cell no bot has looked at is not passable."""
+        try:
+            sights = (self.mem.state["world"]["cells"].get(cell) or {}).get("sights") or {}
+        except Exception:
+            return False
+        return bool(sights) and not any(self.trip_caster(k) for k in sights)
+
     def trip_skip(self, name):
         """Feature trip_run: while a trip walks, the rules that stand still wait: no fight on the road, and with a monster in notice range no bandage,
         no side-step, no flight off the route (the trip runs on, or back, with the potions drunk on the run: trip_potions)."""
@@ -677,20 +702,125 @@ class FirstTrip(LadderMixin):
             return False
         if name == "r_fight":
             return True
-        return bool(self.trip_near())
+        if self.trip_near():
+            return True
+        if name == "r_heal" and time.time() - self.__dict__.get("_trip_near_at", 0) < self.trip_bandage_s():
+            return True                                         # r_heal's bandage_self stands still this long, and a monster just out of range is
+                                                                # back before it ends; trip_potions bandages on the run instead (bandage_start)
+        return False
 
-    def trip_turn_back(self):
-        """Why a running trip turns back, else None: a caster or breather in notice range (a runner does not outpace a spell), a pack (TRIP_PACK), or
-        under half health with a monster near. Melee monsters alone are run past."""
+    def trip_bandage_s(self):
+        """The seconds a self-bandage keeps the bot standing: pre-AOS 9.4 + 0.6 x (120 - Dex) / 10 (Bandage.cs, BandageContext.BeginHeal)."""
+        try:
+            dex = int(self.c.state.get("dex") or self.c.state.get("dexterity") or 50)
+        except Exception:
+            dex = 50
+        return 9.4 + 0.6 * (120 - max(0, min(dex, 120))) / 10
+
+    def trip_turn_back(self, target=None):
+        """Why a running trip turns back, else None: under half health with a monster near; or TRIP_CASTERS casters or breathers in notice range at
+        once, or a pack (TRIP_PACK), when the detour finds no clear way on toward target (the next route point): a leg out of every threat's reach
+        that still gains (trip_way_on). One caster is run past at a distance (trip_detour), as a player at full health with potions runs past it
+        (owner, 2026-11-03): BotHealAdvR turned back at full health for one gargoyle at 8 tiles, then for three orcs it could have outrun."""
         near = self.trip_near()
-        casters = [m for m in near if self.trip_caster(self.mkey(m))]
-        if casters:
-            return f"caster near: {casters[0].name} at {casters[0].distance} tiles"
-        if len(near) >= TRIP_PACK:
-            return f"pack near: {len(near)} ({', '.join(sorted({m.name for m in near}))[:60]})"
         if near and self.hp_pct() < 50:
             return f"hurt with {near[0].name} near"
-        return None
+        casters = [m for m in near if self.trip_caster(self.mkey(m))]
+        why = None
+        if len(casters) >= TRIP_CASTERS:
+            why = f"casters near: {', '.join(sorted({m.name for m in casters}))[:60]}"
+        elif len(near) >= TRIP_PACK:
+            why = f"pack near: {len(near)} ({', '.join(sorted({m.name for m in near}))[:60]})"
+        if why and target is not None and self.trip_way_on(near, target):
+            return None                                            # a clear leg on: run past them (trip_detour runs it)
+        return why
+
+    def trip_way_on(self, near, target):
+        """True when the way on to target is clear of every threat's reach, or the detour has a leg that stays out of it and still gains."""
+        try:
+            import detour
+            wr = _wr()
+            threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+                       for m in near if getattr(m, "x", None) is not None and getattr(m, "y", None) is not None]
+            here, goal = (int(self.c.x), int(self.c.y)), (int(target[0]), int(target[1]))
+            if not detour.needs_detour(here, goal, threats):
+                return True
+            leg = detour.plan_leg(here, goal, threats, wr.leg_clear, forbidden=self.trip_lair_home())
+            if leg is None or leg.progress <= 0:
+                return False
+            if leg.clearance >= 0:
+                return True
+            # healthy (not yet a Heal potion's worth missing, HEAL_MISSING) with a Heal potion in the pack: run on along a leg that gains and comes
+            # no closer to any threat than now, as a player at full health runs past two casters (owner, 2026-11-03). BotHealAdvR at 94/94 broke off
+            # at 1929,1306 for a gargoyle at 9 and a gazer at 10: the corridor north runs along the gazer pocket, and no leg there ends 12 clear.
+            healthy = (self.c.max_hp - self.c.hp) < HEAL_MISSING and self.potion("heal") is not None
+            return healthy and leg.dip == 0
+        except Exception:
+            return False
+
+    def trip_lair_home(self):
+        """forbidden(point) for detour.py: inside the home range of a caster lair this bot loses to (spots.deadly_spawners), cached a minute. A
+        detour bends out round a wandering caster, never into the camp it came from."""
+        got = self.__dict__.get("_lair_homes")
+        if got is None or time.time() - got[0] > 60:
+            try:
+                import spots
+                homes = [(o["x"], o["y"], max(int(o.get("home") or 10), 1)) for o, k in spots.deadly_spawners(self) if self.trip_caster(k)]
+            except Exception:
+                homes = []
+            got = self.__dict__["_lair_homes"] = (time.time(), homes)
+        homes = got[1]
+        return lambda p: any(abs(p[0] - x) <= r and abs(p[1] - y) <= r for x, y, r in homes)
+
+    def trip_detour(self, t, wps, target):
+        """One slice of a running trip with monsters in notice range: when the straight way to the next route point comes inside a threat's need
+        (detour.py: a caster's spell range + 2, a melee monster's reach + 1), run the best short leg round them instead, out (or home) whichever
+        way the trip is going, and rejoin the route at the nearest of the next few points after it. True when a detour leg took the slice."""
+        try:
+            import detour
+            wr = _wr()
+        except Exception:
+            return False
+        threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+                   for m in self.trip_near() if getattr(m, "x", None) is not None and getattr(m, "y", None) is not None]
+        if not threats:
+            self.__dict__.pop("_escape", None)                  # nothing in notice range: the escape, if any, is over
+            return False
+        here = (int(self.c.x), int(self.c.y))
+        casters = [th for th in threats if th.caster]
+        esc = self.__dict__.setdefault("_escape", {"on": False, "clear": 0})
+        if casters and detour.clearance_at(here, casters) < 0:
+            esc.update(on=True, clear=0)                        # a caster inside its reach: run from it, not along the route past it
+        elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in casters):
+            esc.update(on=False, clear=0)                       # every caster already past its notice range: the escape is over
+        if esc["on"]:
+            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=self.trip_lair_home())
+        else:
+            leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=self.trip_lair_home())
+        if leg is None:
+            return False
+        now = time.time()
+        if now - self.__dict__.get("_detour_logged", 0) > 10:
+            self.__dict__["_detour_logged"] = now
+            near = ", ".join(f"{th.name} at {detour.cheb(here, (th.x, th.y))}" for th in threats)[:90]
+            self.log(f"first trip: {leg.kind} to {leg.to[0]},{leg.to[1]} (clearance {leg.clearance}, gain {leg.progress}) round {near}")
+            self.ev("trip_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress,
+                    threats=[[th.name, th.x, th.y, th.caster] for th in threats][:6])
+        self.goto_near(leg.to[0], leg.to[1], 1).wait(timeout=TRIP_HOT_SLICE)
+        if esc["on"]:
+            far_off = all(detour.cheb((int(self.c.x), int(self.c.y)), (th.x, th.y)) >= detour.NOTICE + 2 for th in casters) if casters else True
+            esc["clear"] = esc["clear"] + 1 if far_off else 0
+            if esc["clear"] >= 2:
+                esc.update(on=False, clear=0)                   # out of their notice two legs running: back to the route
+        # rejoin: the nearest of the next few route points the trip is heading for
+        idx = t["i"]
+        step = 1 if t.get("phase") == "out" else -1
+        ahead = [i for i in range(idx, idx + step * 4, step) if 0 <= i < len(wps)]
+        best = min(ahead, key=lambda i: cheb(self.c.x, self.c.y, *wps[i]))
+        if best != idx:
+            t.update(i=best, best=1e9, best_at=time.time(), fails=0)
+            self.trip_save()
+        return True
 
     def trip_potions(self):
         """On the run, as a player drinks while running: Cure when poisoned (beside an attacker too: there is no standing still to wait it out), Heal once
@@ -703,6 +833,9 @@ class FirstTrip(LadderMixin):
                 drunk.append("cure")
         if not self.c.poisoned and self.c.max_hp - self.c.hp >= HEAL_MISSING and self.drink_heal("on the run"):
             drunk.append("heal")
+        if self.c.max_hp - self.c.hp >= HEAL_MISSING and hasattr(self, "bandage_start") and self.bandage_start("on the run"):
+            drunk.append("bandage")                       # put on while running (bot_common.bandage_start): the walk goes on
+                                                          # (the owner, 2026-11-03: "you can bandage while moving")
         try:
             mx = int(self.c.state.get("maxStam") or 0)
         except Exception:
@@ -740,8 +873,15 @@ class FirstTrip(LadderMixin):
             if self.trip_run_on() and phase == "out":
                 # run past what cannot catch a runner; turn back for a caster, a pack, or half health with something near. The kind lists and the learned
                 # risk were judged standing (a melee monster beside a standing bot), so on the run only "hurt", "overweight" and "too slow" stand from them
-                turn = self.trip_turn_back()
+                turn = self.trip_turn_back(target=wps[min(t["i"], len(wps) - 1)])
                 why = f"run: {turn}" if turn else (why if why in ("hurt", "overweight", "too slow") else None)
+            if why and phase == "stay" and why != "hurt" and not why.startswith("run: "):
+                # there already: a danger walking in ends the visit, not the trip (BotWarAdvR, in Minoc at 2499,658, aborted for an ogre that walked
+                # up, and the town it had reached counted as a failed rung, 2026-11-03 13:18)
+                self.log(f"first trip: leaving {t['dest']} early ({why})")
+                t.update(phase="home", i=len(wps) - 1, best=1e9, best_at=now, fails=0, skips=0, left_early=why)
+                self.trip_save()
+                return True
             if why:
                 self.trip_abort(why)
                 return True
@@ -801,6 +941,8 @@ class FirstTrip(LadderMixin):
             if drunk:
                 self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}")
             slice_s = TRIP_HOT_SLICE
+            if self.trip_detour(t, wps, (x, y)):
+                return True                                     # a short leg round the threats this slice; the route is rejoined after it
         res = str(self.goto_near(x, y, REACHED).wait(timeout=slice_s))
         if res.startswith("timeout") and slice_s == TRIP_HOT_SLICE:
             return True                                         # still running: the next tick checks the danger and the potions again
