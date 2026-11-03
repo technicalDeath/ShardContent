@@ -1224,7 +1224,9 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
 
     @property
     def FLETCH_SHOP(self):                               # the Bowyer: fletcher's tools ("Arrow Fletching") and arrows
-        return self.where1(("bowyer",), item="arrow")
+        return self.where1(("bowyer",), item="=arrow")     # exact: "arrow" also matched every mage's Magic Arrow scroll, and BotArcherCR walked to the
+                                                           # mage shop at 1498,1659 for fletcher's tools every 30 min, bought nothing, and hunted on 1 arrow
+                                                           # with 19 shafts and 144 feathers in its pack (2026-11-03; errands.ammo_shop's same fix, 11-01)
 
     def fletcher(self):
         """An archer whose template makes its own arrows (Archer: Archery, Lumberjacking and Bowcraft)."""
