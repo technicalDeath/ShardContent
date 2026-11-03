@@ -55,3 +55,8 @@ Restock is lazy in the engine: a vendor restocks when someone opens its buy list
 | 21:24:14-42 | **First full kit.** BotFairSwordNR bought 5 Heal and 2 Refresh at the healer, then 7 Cure at an alchemist. Its pack: 15 Cure, 10 Heal, 3 Refresh, 50 bandages, every kit mark met. The resupply ended "done" in 2.9 min with no "short" line. BotRangerBR (7 Cure) and BotMaceAdvR (5 Heal) the same minute |
 
 **The login rush:** a client the server turned away keeps writing a fresh state with `connected` false, so the supervisor's stale check (state age only) never relaunches it. The supervisor change (`test_client_disconnected`) also counts 60 s of connected-false as stale.
+
+## Deployed to dev (2026-11-03)
+
+Pushed and deployed to dev with the progress-bar deploy (pin `67b29ab34`), after the snapshot
+`work/save-snapshots/saves-20261103-121627-before-progress-bars-deploy`. The README has a Shop stock line.

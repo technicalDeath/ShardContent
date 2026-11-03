@@ -184,3 +184,12 @@ Built with the flags OFF in source; nothing committed or deployed.
 - Seen in passing: the heal number ("+32") floats up from the head through the stack, as it did through the single bar The owner chose to leave it as it is (2026-11-03).
 
 **Spellcasting gets no bar** (owner, 2026-11-03: "let's also skip spellcasting - no bars for it"), so phases 1-3 are the whole feature.
+
+## Deployed (2026-11-03)
+
+Owner, 2026-11-03: "you can commit, deploy, push, etc". Committed and pushed: ModernUO `67b29ab34` (the timed-action events and the equip
+request handler), ShardContent `766a954` (pin bumped to it), ClassicUO `da3966573`. Full verification before the commits: UOContent 1,412
+passed, shard 1,953 passed (run `20261103T171433959Z-657dc3`). Deployed to dev with `actionProgressBars`, `gatheredItemPopups` and
+`dragIntoHands` OFF, after the snapshot `work/save-snapshots/saves-20261103-121627-before-progress-bars-deploy`; a disposable copy of the
+deployed dev world loaded cleanly (57,867 items, 13,078 mobiles). The new `cuo.dll` is in `ClassicUO/bin/dist`; the old one is in
+`work/cuo-backups/cuo-20261103-121722-before-progress-bars`. The farm host was not touched. Turning the bars on is the owner's call.

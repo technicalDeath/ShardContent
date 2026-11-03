@@ -66,3 +66,9 @@ Live driver: `work/carry-weight/live_check.py`.
   1. Run the normal deploy.
   2. Copy the rebuilt `cuo.dll`/`cuo.pdb` into `ClassicUO/bin/dist`, with a backup under `work/cuo-backups`.
   3. Add a README rules line.
+
+## Deployed to dev (2026-11-03)
+
+Pushed and deployed to dev with the progress-bar deploy (pin `67b29ab34`), after the snapshot
+`work/save-snapshots/saves-20261103-121627-before-progress-bars-deploy`. The new `cuo.dll` is in `ClassicUO/bin/dist` and the README has a
+Carrying line. Navrey `670d4c999` is pushed.
