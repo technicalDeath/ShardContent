@@ -249,7 +249,16 @@ class LadderMixin:
         # a failed trip counts against its town as a visit does: BotHealAdvR, never let into Trinsic (0 visits), chose it over Minoc and Vesper (1 each)
         # three times and turned back each time at 1570,2152 (a pack, then a reaper twice, 2026-11-02 15:59-19:13); a player tries another road
         dest_fails = st.get("dest_fails") or {}
-        return min(ok, key=lambda t: (st["visits"].get(t["dest"], 0) + dest_fails.get(t["dest"], 0), ft.steps_of(t["wps"])))
+        mem = getattr(self, "mem", None)
+
+        def fleet_blocked(dest):
+            try:
+                return mem is not None and not mem.usable("trip_dest", dest)
+            except Exception:
+                return False
+        # a town another bot was just turned back from comes last for everyone (ladder_trip_end's fleet block, TOWN_FAIL): every Trinsic trip met the
+        # troll and ettin camp by 1516,2125 or the reaper by 1570,2152, and each ladder bot found it out twice for itself (2026-11-02 21:2x-23:23)
+        return min(ok, key=lambda t: (fleet_blocked(t["dest"]), st["visits"].get(t["dest"], 0) + dest_fails.get(t["dest"], 0), ft.steps_of(t["wps"])))
 
     def ladder_again(self):
         """r_trip's once-only flag does not hold for a ladder bot: another trip after TOWN_GAP minutes."""
@@ -300,6 +309,11 @@ class LadderMixin:
             st["fails"][str(rung)] = st["fails"].get(str(rung), 0) + 1
             st["fail_power"][str(rung)] = round(self.trip_power(), 1)
             st.setdefault("dest_fails", {})[dest] = st.get("dest_fails", {}).get(dest, 0) + 1      # (ladder_choose)
+            if rung == 3 and how != "death" and getattr(self, "mem", None) is not None:
+                try:
+                    self.mem.record("blocked", kind="trip_dest", key=dest, ttl=TOWN_FAIL)    # the road is news to every ladder bot for the rest's length
+                except Exception:
+                    pass
             if how == "death":
                 st["last_death"] = now
         self.ev("rung", n=rung, result="ok" if ok else "fail", dest=dest, why=why, minutes=round((now - t["t0"]) / 60, 1))

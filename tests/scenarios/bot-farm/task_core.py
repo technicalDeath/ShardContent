@@ -67,6 +67,11 @@ CAMP_MIN, CAMP_MAX = 0.0, 0.0    # standing at a spawner for its respawn: none. 
 SPAWNS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "..", "ModernUO", "Distribution", "Data", "BritanniaRenaissance", "Alpha2b", "Spawns")
 WALK_RATE = 55.0                # tiles a minute when the bot has no measured rate yet (the farm's median)
 ROUTE_FACTOR = 1.3              # straight distance to route length when walkroute has no grid for the spot
+PLAN_BUDGET_S = 2.0             # s of route planning a choice may spend (candidates -> route_length): past it the rest take the straight guess and are planned
+                                # at later ticks. A dungeon tour plans a route to every entrance of its dungeon (3-5 s each across the map, longest when there
+                                # is none), and BotArchAdvR's brain stood 2 min 35 s in walkroute.plan from candidates, at full health, while a snake killed it
+                                # (2026-11-02 23:29-23:31; the dungeon rungs opened when kits began to fill). 2 s: the cadence of a walking bot's danger and
+                                # potion checks (first_trip.TRIP_HOT_SLICE)
 SPREAD = 0.7                    # the Thompson draw's relative spread: sd = SPREAD x mean / sqrt(n + PRIOR_N)
 PRIOR_N = 1.0
 ALPHA = 0.3                     # the rate tables' exponential average step
@@ -1046,6 +1051,8 @@ def route_length(bot, dest):
         return hit[1]
     straight = max(abs(here[0] - dest[0]), abs(here[1] - dest[1]))
     length = straight * ROUTE_FACTOR
+    if time.time() - float(bot.__dict__.get("_plan_t0", time.time()) or time.time()) > PLAN_BUDGET_S:
+        return length                                              # the choice's planning budget is spent: the straight guess, not cached (planned at a later tick)
     try:
         import walkroute
         try:
@@ -1111,6 +1118,7 @@ def candidates(bot, g, rng=None, rested=False, relax=0):
     """The hunt candidates for the goal g: tours of spots (spots.tours), the banned spots left out (rested=True: only the hour bans hold; relax: spots.RELAX_MAX). Best first."""
     import spots
     rng = rng or random
+    bot.__dict__["_plan_t0"] = time.time()                       # route_length's planning budget for this choice (PLAN_BUDGET_S)
     b = bans(bot)
     if rested:
         b = {k: until for k, until in b.items() if until - now() > RESTED_SOON}
