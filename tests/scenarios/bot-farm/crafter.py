@@ -258,10 +258,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
 
     SCISSORS_GAP = 600        # s between walks to buy scissors
 
-    def cut_hides(self):
-        """Scissors on every pile of hides: one leather a hide, the whole pile at once (Hides.Scissor, Item.ScissorHelper), 5 stones down to 1 (Hides.cs,
-        Leathers.cs DefaultWeight). No scissors: the Tailor sells them (SBTailor Scissors 11), tried once in SCISSORS_GAP. Returns the leather made, or
-        None with no scissors."""
+    def have_scissors(self):
+        """The scissors in the pack; none: the Tailor sells them (SBTailor Scissors 11), tried once in SCISSORS_GAP. None when there are still none."""
         sc = self.c.find("scissors")
         if sc is None:
             if time.time() - self.facts.get("scissors_at", 0) < self.SCISSORS_GAP or self.c.gold < 20:
@@ -270,8 +268,15 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             self.activity = "buying scissors"
             self.shop_at(self.tool_shop_xy(), {"scissors": 1}, budget=min(30, max(0, self.c.gold - 5)))
             sc = self.c.find("scissors")
-            if sc is None:
-                return None
+        return sc
+
+    def cut_hides(self):
+        """Scissors on every pile of hides: one leather a hide, the whole pile at once (Hides.Scissor, Item.ScissorHelper), 5 stones down to 1 (Hides.cs,
+        Leathers.cs DefaultWeight). No scissors: the Tailor sells them (SBTailor Scissors 11), tried once in SCISSORS_GAP. Returns the leather made, or
+        None with no scissors."""
+        sc = self.have_scissors()
+        if sc is None:
+            return None
         before = self.leather_held()
         self.activity = "cutting hides into leather"
         for _ in range(6):
@@ -1061,9 +1066,10 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         bolts = [i for i in self.c.backpack if i.name.lower() in ("bolt of cloth", "bolts of cloth")]
         if not bolts or self.cfg["craft"] != "Tailoring" or self.threats(10):
             return False
-        sc = self.c.find("scissors")
+        sc = self.have_scissors()
         if not sc:
-            return False
+            return False                                  # (have_scissors buys them: BotTailorBR lost its pair, held 36 bolts it could not cut and
+                                                          # waited 42 minutes of an hour, "under 5 cut cloth", 2026-11-03)
         self.activity = "cutting cloth"
         for b in bolts:
             self.c.events.drain()
