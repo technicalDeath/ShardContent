@@ -49,7 +49,8 @@ TRIP_HOLD = ("r_heal", "r_cure", "r_fight", "r_avoid", "r_flee", "r_hide", "r_re
 HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs MinHeal/MaxHeal): drunk on the run once 20 are missing, so none is wasted
 RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
 TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
-TRIP_CASTERS = 2            # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
+DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
+TRIP_CASTERS = 2           # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
 
 
 def cheb(ax, ay, bx, by):
@@ -284,6 +285,14 @@ class FirstTrip(LadderMixin):
                     pass
                 return False
             trip = routed
+            if (trip.get("kind") == "dungeon" and int(self.c.gold or 0) > DUNGEON_PURSE and hasattr(self, "visit_bank")
+                    and time.time() - self.__dict__.get("_dungeon_banked_at", 0) > 600):
+                # gold has no use in a dungeon and is lost with the corpse (owner, 2026-11-03: "bots going to dungeons dont need to bring gold"): bank it
+                # first; the trip is picked again at the next tick. The rung's DUNGEON_WORTH counts the bank, so this never closes it.
+                self.__dict__["_dungeon_banked_at"] = time.time()
+                self.log(f"first trip: banking {self.c.gold} gold before {trip['dest']}")
+                self.visit_bank("dungeon", reserve=0)
+                return True
             try:
                 os.remove(os.path.join(self.dir, "trip_now"))
             except OSError:

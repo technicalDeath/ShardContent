@@ -298,6 +298,10 @@ class Travel(Step):
                 return c.fail("travel", "unreachable")
         else:
             st["issued"] = 0
+        leg = b.walk_detour(wp) if hasattr(b, "walk_detour") else None
+        if leg is not None:
+            c.issue(*leg.to)                                  # a danger it does not fight near the way: a short leg round it first (bot_common.walk_detour)
+            return Status.RUNNING
         c.issue(*wp)
         return Status.RUNNING
 

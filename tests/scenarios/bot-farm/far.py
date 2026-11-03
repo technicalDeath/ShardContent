@@ -394,6 +394,16 @@ class FarMixin:
                 self.facts.pop("far", None)
                 self.far_log(st["role"], dest, cheb(here, dest), "abort", "out of time")
                 return "timeout: far budget"
+            nxt = wps[min(st.get("i", 0), len(wps) - 1)]
+            leg = self.walk_detour(nxt) if hasattr(self, "walk_detour") and not self.c.ghost else None
+            if leg is not None:
+                # a danger it does not fight in notice range: a short leg round it (bot_common.walk_detour), the walk goes on after it, as a player
+                # walks round a camp instead of stopping at it (far_check's "threat" stop, then the flee rules)
+                self.c.goto(int(leg.to[0]), int(leg.to[1])).wait(timeout=min(2.0, max(0.5, end - time.time())))
+                if time.time() >= end:
+                    self.facts["far"] = st
+                    return "moving"
+                continue
             why = self.far_check(st)
             if why:
                 self.facts["far"] = st
