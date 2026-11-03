@@ -627,6 +627,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
                 return True
         self.log(f"no path from {x0},{y0}, and no step in any direction moved the character" + (f" ({len(bodies)} mobiles beside it)" if bodies else ""))
+        if bodies:
+            self.facts["boxed_at"] = time.time()          # every direction tried and none moved it, with bodies about: r_flee fights at once (fight_committed)
         if not bodies and not self.c.ghost:
             # overloaded: "You are too fatigued to move" is seen only when the journal is read (recovery.py sets fatigued_at), and a far walk's three legs of
             # step-outs read none: BotMinerAR stood 4 minutes at 1177,1491 with a load of ore (2026-11-01 18:42-18:46). Shed here, then the walk goes on
@@ -1271,6 +1273,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         threat = threats[0] if threats else None
         if threat and self.fight_committed(threat):
             return self.fight_back(threat)                # boxed in a moment ago: keep swinging, no new flight (fight_committed)
+        if threat and (getattr(threat, "distance", 9) or 9) <= 2 and time.time() - float(self.facts.get("boxed_at", 0) or 0) < self.FLEE_STUCK_S:
+            # the step-out tried every direction and none moved the character, an attacker beside it: no flight can work, so the fight starts now,
+            # not after three more flights. BotSwordBR, stuck on 1587,1867 with a giant spider re-poisoning it (10 Cure potions in 150 s), fought
+            # only from 11 hit points and died 9 s later (2026-11-02 22:26-22:27)
+            self.log(f"boxed in beside {threat.name}: fighting back at hp {self.c.hp}")
+            self.facts["fight_until"] = time.time() + self.FLEE_STUCK_S
+            self.facts.pop("boxed_at", None)
+            return self.fight_back(threat)
         if threat and self.flee_stuck(threat):
             # three flights in FLEE_STUCK_S that left it on the same tile, an attacker beside it: boxed in, so it fights. A flight that failed
             # without "trapped" (a short walk, no step open) ran on until death: BotTamerAR stood on 1479,1356 for 70 s "fleeing" from a mongbat and
