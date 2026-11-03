@@ -767,10 +767,13 @@ class Act(Step):
                 try:
                     left = b.gear_loot()
                     for it in left:
-                        b.drop_to_ground(it)
-                        b.facts.get("gear_looted", set()).discard(it.serial)
+                        if hasattr(b, "gear_unsold"):
+                            b.gear_unsold(it)                     # spare armour waits for the bank, looted gear is dropped (hunter.gear_unsold)
+                        else:
+                            b.drop_to_ground(it)
+                            b.facts.get("gear_looted", set()).discard(it.serial)
                     if left:
-                        b.log(f"errand sell: dropped {len(left)} pieces no shop took")
+                        b.log(f"errand sell: {len(left)} pieces no shop took (spare armour to the bank, the rest dropped)")
                 except Exception:
                     pass
         b.facts["sold_task_at"] = time.time()

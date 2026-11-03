@@ -2439,9 +2439,15 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except Exception:
             on_offer = set()                                    # a smith's coloured pieces on offer stay in the pack, as in bank_overload_pass: BotSmithAR banked
                                                                 # the bronze plate helm BotFencerBR had booked, and the deal failed "seller holds 0" (2026-11-02 18:26)
+        spare_bank = self.facts.get("spare_bank") or []
         for it in list(self.c.backpack):
             low = it.name.lower()
             if str(it.serial) in on_offer:
+                continue
+            if str(it.serial) in spare_bank:
+                self.c.drop(it.serial, box, None)                 # spare armour no shop took (hunter.gear_unsold): KEEP names helms and gorgets, so it goes in by serial
+                time.sleep(1.4)
+                spare_bank.remove(str(it.serial))
                 continue
             if (any(w in low for w in self.KEEP) and not any(w in low for w in extra)) or low == "backpack" or "bandage" in low or it.serial == deed:
                 continue

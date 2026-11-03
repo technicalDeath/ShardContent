@@ -1001,8 +1001,44 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         return len(bots)
 
     def gear_loot(self):
+        """Looted weapons and armour, and the spare armour an upgrade left in the pack (spare_armour): what the gear sales take to the shops."""
         looted = self.facts.get("gear_looted", set())
-        return [i for i in self.c.backpack if i.serial in looted]
+        out = [i for i in self.c.backpack if i.serial in looted]
+        seen = {i.serial for i in out}
+        return out + [i for i in self.spare_armour() if i.serial not in seen]
+
+    SPARE_LAYERS = (("gorget", "Necklace"), ("helm", "Helmet"), ("coif", "Helmet"), ("bascinet", "Helmet"), ("gloves", "Gloves"), ("arms", "Arms"),
+                    ("sleeves", "Arms"), ("legs", "Pants"), ("leggings", "Pants"), ("tunic", "Torso"), ("chest", "Torso"), ("platemail", "Torso"),
+                    ("ringmail", "Torso"), ("chainmail", "Torso"))         # a pack piece's layer by its client name ("platemail" alone is the tunic)
+
+    def spare_armour(self):
+        """Armour in the pack no better than what its layer wears: the piece an upgrade took off, sold or banked (owner, 2026-11-02: "They can bank
+        the old pieces or sell them"). BotSwordBR and BotFencerBR carried the iron helm and gorget their coloured pieces replaced, and the norse helm and
+        studded gorget of earlier upgrades, all kept by KEEP ("helm", "gorget") and in no gear sale. Not for crafters (their plate is stock), not the
+        piece a coloured deal just brought (colour_wear puts it on), not one already marked for the bank."""
+        if getattr(self, "products", None) or not self.c.equipped:
+            return []
+        skip = {str((self.facts.get("colour_buy") or {}).get("serial"))} | {str(s) for s in self.facts.get("spare_bank") or ()}
+        out = []
+        for i in self.c.backpack:
+            n = (i.name or "").lower()
+            layer = next((l for w, l in self.SPARE_LAYERS if w in n), None)
+            if not layer or str(i.serial) in skip or not any(w in n for w, _ in self.WORN_AR):
+                continue
+            cur, worn = self.worn_ar(layer)
+            if worn and next((a for w, a in self.WORN_AR if w in n), 10) + items.colour_bonus(i) <= cur:
+                out.append(i)
+        return out
+
+    def gear_unsold(self, it):
+        """A piece no shop took: spare armour waits for the bank (visit_bank); looted gear is left on the ground (it is only weight)."""
+        if any(s.serial == it.serial for s in self.spare_armour()):
+            bank = self.facts.setdefault("spare_bank", [])
+            if str(it.serial) not in bank:
+                bank.append(str(it.serial))
+            return
+        self.drop_to_ground(it)
+        self.facts.get("gear_looted", set()).discard(it.serial)
 
     def r_sellgear(self):
         """Looted weapons and armour to the shops that buy them: with three pieces or more, when heavy, or when down to the last 60 gold.
@@ -1034,8 +1070,7 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         self.dlog("choice", what="sell looted gear", why=f"{len(gear)} pieces for {earned} gold, {len(unsold)} unsold")
         self.note("loot", f"A {self.pname} sold weapons and armour looted from monsters for {earned} gold.", key="gearsold")
         for it in unsold:
-            self.drop_to_ground(it)
-            self.facts["gear_looted"].discard(it.serial)
+            self.gear_unsold(it)
         return True
 
     # the era's armour (Items/Armor, pre-AOS values): per paperdoll layer, (shop name, armour value, strength needed, dexterity cost); the
