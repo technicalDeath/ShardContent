@@ -210,21 +210,23 @@ def goal(bot):
     cands = goal_candidates(bot)
     if g:
         done = measure_value(bot, g["measure"]) >= g["target"]
-        gone = bool(cands) and not any(c["id"] == g["id"] for c in cands)       # no candidates at all: the fallback goal stays (it is never among them)
+        gone = bool(cands) and not g.get("fallback") and not any(c["id"] == g["id"] for c in cands)      # a fallback is never among them: it stays
+        # (a fallback counted "gone" at once and was set again every tick: BotFairSwordNR "goal 64000 gold banked and carried" once a second, 1,441 lines
+        # and 248 loop-guard firings in 15 min, 2026-11-02 23:59-00:14)
         old = t - g.get("set_at", t) > GOAL_LIFE
         if done or gone or old:
             why = "done" if done else "gone" if gone else "renewed"
             bot.ev("core_goal_end", goal=g["name"], why=why, value=round(measure_value(bot, g["measure"]), 1), target=g["target"])
             g = None
     if not g:
-        c = cands[0] if cands else {"id": "skill:100", "kind": "skill", "measure": "skill", "target": 100.0, "name": "mastery"}
+        c = cands[0] if cands else {"id": "skill:100", "kind": "skill", "measure": "skill", "target": 100.0, "name": "mastery", "fallback": True}
         if measure_value(bot, c["measure"]) >= c["target"]:
             # everything reached (the skill at 100, past the last gold step, no gear to buy): the next small house's price in gold (housePricing.smallHouses
             # 16,000) beyond what it has. The mastery fallback was met the moment it was set and re-picked every tick: BotFairSwordNR wrote it 21,267 times
             # (Swordsmanship 100, 29,848 gold banked, 2026-11-01)
             v = measure_value(bot, "gold")
             nxt = (int(v // HOUSE_GOLD) + 1) * HOUSE_GOLD
-            c = {"id": f"bank:{nxt}", "kind": "bank", "measure": "gold", "target": float(nxt), "name": f"{nxt} gold banked and carried"}
+            c = {"id": f"bank:{nxt}", "kind": "bank", "measure": "gold", "target": float(nxt), "name": f"{nxt} gold banked and carried", "fallback": True}
         g = dict(c, set_at=t, start=round(measure_value(bot, c["measure"]), 1))
         bot.facts["core_goal"] = g
         bot.ev("core_goal", goal=g["name"], measure=g["measure"], target=g["target"], start=g["start"])
