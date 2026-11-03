@@ -1099,8 +1099,15 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         if not best:
             return False
         _, layer, name, price, xy, cur, ar = best
-        if getattr(self, "colour_book", None) and self.colour_book(name):
-            return True                                    # a coloured piece from a smith: the deal is booked, r_market meets the seller
+        if getattr(self, "colour_book", None):
+            colour = self.__dict__.get("_colour_pick")
+            if self.colour_book(name):
+                return True                                # a coloured piece from a smith: the deal is booked, r_market meets the seller
+            if colour and colour.get("item") == name:
+                # not booked (short of gold: the bank walk failed): the shop path below would walk to the smith's meeting point as to a shop, buy
+                # nothing and end "done" (BotSwordBR's platemail gorget, 19:01-19:03, 2026-11-02). Look again in five minutes, as a deal that falls through
+                self.facts["upgrade_at"] = time.time() - 300
+                return True
         self.activity = f"buying a {name}"
         self.dlog("choice", what=f"upgrade {layer}: {name}", why=f"{price} gold for armour {cur} -> {ar}; money {money + self.UPGRADE_RESERVE}")
         offer = self.mem.best_offer(name, below=price, not_from=self.name)
