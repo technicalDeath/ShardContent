@@ -193,3 +193,10 @@ passed, shard 1,953 passed (run `20261103T171433959Z-657dc3`). Deployed to dev w
 `dragIntoHands` OFF, after the snapshot `work/save-snapshots/saves-20261103-121627-before-progress-bars-deploy`; a disposable copy of the
 deployed dev world loaded cleanly (57,867 items, 13,078 mobiles). The new `cuo.dll` is in `ClassicUO/bin/dist`; the old one is in
 `work/cuo-backups/cuo-20261103-121722-before-progress-bars`. The farm host was not touched. Turning the bars on is the owner's call.
+
+## Enabled (2026-11-03)
+
+Owner, 2026-11-03: "Turn all three on". `actionProgressBars`, `gatheredItemPopups` and `dragIntoHands` are on in
+`data/configuration/shard-rules.json` and deployed to dev, after the snapshot
+`work/save-snapshots/saves-20261103-142450-before-progress-bars-on`. Full shard suite before the deploy: 1,953 passed (run
+`20261103T192430653Z-2e9edf`). The README rules section has a line for each. `worldActions` stays off, and the farm host was not touched.
