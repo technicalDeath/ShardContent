@@ -1264,7 +1264,9 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
             self.activity = "buying fletcher's tools"
             got = self.shop_at(self.FLETCH_SHOP, {"=arrow fletching": 1}, budget=20)
             self.log(f"bought fletcher's tools at the Bowyer: {got}")
-            return True
+            if got:
+                self.facts["fletch_wait"] = 0                 # the wait is for a failed buy: BotArcherCR bought its tools at 04:30 and sat 30 min on 19 shafts
+            return True                                   # and 144 feathers before the first fletch (2026-11-03)
         self.activity = f"fletching {want.lower()}"
         self.close_menus()
         self.read_journal()
