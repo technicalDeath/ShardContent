@@ -28,7 +28,9 @@ from typing import Callable, Iterable, List, Optional, Sequence, Tuple
 SPELL_RANGE = 10
 NOTICE = 14
 CASTER_CLEAR = SPELL_RANGE + 2            # out of spell range with one step to spare
-MELEE_CLEAR = 2                           # a melee monster hits from the next tile; one step more
+MELEE_CLEAR = 5                           # a Medium melee monster (0.45 s a tile, npc-speeds.json: orcs, trolls, scorpions, ratmen) covers 4.4 tiles in
+                                          # one 2 s leg; 2 let BotFairSwordVR run into three earth elementals and a scorpion at 1 tile (99 -> 11 hp,
+                                          # 2026-11-03 18:08)
 STEP = 10
 ANGLES = (0, 20, -20, 40, -40, 60, -60, 90, -90, 120, -120, 150, -150, 180)
 CLEAR_CAP = 8                             # clearance beyond this many tiles counts the same: past it, progress decides
