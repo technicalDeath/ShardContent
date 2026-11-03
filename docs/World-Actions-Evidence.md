@@ -428,3 +428,11 @@ Not exercised live (code and unit checks only):
 Shots: `work/player-client/ProgChop/shots/20261102-155350-makeanother.png`, `20261102-pitchers-crop.png`, `20261102-potion-dagger-crop.png`, `20261102-155203-sheepmenu2.png`, `20261102-155213-sheared.png`, `20261102-155055-fishmenu.png`.
 
 Seen in passing: a menu opened at the right edge of the window can run off it ("Make another wooden shield" was cut). That comes from where the client places menus, not from this change.
+
+## On the farm (2026-11-03)
+
+Owner, 2026-11-03: "No need to test world actions, you cna enable them on the farm". `worldActions` was already true in the farm host's own `shard-rules.json` (since 2026-11-01), but the farm server running since 2026-11-02 20:47 had the 11-02 20:44 shard DLL, built before the last wave 6 changes were committed. Wave 6 is in the build committed and pushed 2026-11-03 (ModernUO `67b29ab34`, ShardContent `766a954`). The farm server restart onto that build was handed to the BotFarm Watcher, who runs the farm, for its next safe point (a 2-hour run was under way). Done at 16:33:55 the same day: the farm runs today's Distribution build (its shard DLL is byte-identical to dev's), saves snapshot `work/save-snapshots/farm-saves-20261103-163349-before-build-update`, old DLLs in `work/hosts/farm/Assemblies-backup-20261103-163349-build-update`, farm `shard-rules.json` unchanged. Then OFF in the source config and on dev.
+
+## On in dev (2026-11-03)
+
+Owner, 2026-11-03: "Turn wolrd actions on in dev". `worldActions` is true in `data/configuration/shard-rules.json` and deployed to dev, after the snapshot `work/save-snapshots/saves-20261103-163226-before-world-actions-on`. Focused tests (world actions, configuration, client defaults): 216 passed (run `20261103T213151303Z-4d560c`). The player client in `ClassicUO/bin/dist` already has the menu code (ClassicUO `da3966573`) and the shard's client text. The README rules section has a line. The flag change is not committed. The dev server was not running, so it takes effect at its next start.

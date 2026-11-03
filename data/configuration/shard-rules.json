@@ -349,7 +349,7 @@
     "monsterSpellWords": true,
     "corpseCarveButton": true,
     "corpseLootExtension": true,
-    "worldActions": false,
+    "worldActions": true,
     "actionProgressBars": true,
     "dragIntoHands": true,
     "gatheredItemPopups": true,
