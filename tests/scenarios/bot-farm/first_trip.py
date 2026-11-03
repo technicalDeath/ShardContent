@@ -435,6 +435,25 @@ class FirstTrip(LadderMixin):
         return {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
                 "secs": round(time.time() - t0, 2), "t": round(time.time())}
 
+    def trip_end_threat(self, end):
+        """(why, x, y, radius) when the trip's end lies in the reach of a spawner this bot loses to, melee or not, else None: for a trip that ends
+        out of town (a dungeon's door; trip_route_dangerous asks it for every trip but a town's). A trip stops at its end to go in, so run-past's
+        "nothing catches a runner" does not hold there, and trip_threat's path check leaves the last ENDS_FREE tiles out. BotHealAdvR's first trip to
+        Despise met nine at the door from the troll spawner at 1325,1071 (Outdoors, home 30), was boxed in by seven trolls and chased 60 tiles to 3
+        hit points (2026-11-02 21:37-21:48)."""
+        if not end:
+            return None
+        try:
+            import spots
+            import task_core
+            for o, k in spots.deadly_spawners(self):
+                r = max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR
+                if abs(o["x"] - end[0]) <= r and abs(o["y"] - end[1]) <= r:
+                    return f"its end at {end[0]},{end[1]} is in the {k} spawner's reach at {o['x']},{o['y']}", o["x"], o["y"], r
+        except Exception:
+            return None
+        return None
+
     def trip_threat(self, path):
         """(why, x, y, radius) of the first thing on the path a trip must not pass, else None: route_danger's cell (where bots died), or the reach of a
         losing spawner (spots.deadly_spawners: its home range + the creatures' notice range, task_core.PULL_CLEAR, as spots.way_clear judges a tour's way).
@@ -531,7 +550,9 @@ class FirstTrip(LadderMixin):
         if mem is None:
             return False
         wps = [tuple(int(v) for v in p[:2]) for p in trip.get("wps") or []]
-        th = self.trip_threat(dense_path(wps)) if len(wps) >= 2 else None
+        end = tuple(int(v) for v in trip["enter"][:2]) if trip.get("enter") else (wps[-1] if wps else None)
+        th = self.trip_end_threat(end) if trip.get("kind") != "town" else None      # a town's end is guarded ground, gone to whatever stands by its gate
+        th = th or (self.trip_threat(dense_path(wps)) if len(wps) >= 2 else None)
         bad = th[0] if th else ""
         if bad:
             seen = self.__dict__.setdefault("_trip_bad_logged", {})

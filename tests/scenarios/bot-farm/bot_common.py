@@ -1269,11 +1269,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return True                                   # (not with an attacker in reach: each hit makes a bandage slip, Bandage.cs. BotFenceAdvR bandaged four
                                                           # times beside a ratman pack, every one slipping, 36 to 1 hit points in 52 s, and died, 2026-11-02 04:49)
         threat = threats[0] if threats else None
+        if threat and self.fight_committed(threat):
+            return self.fight_back(threat)                # boxed in a moment ago: keep swinging, no new flight (fight_committed)
         if threat and self.flee_stuck(threat):
             # three flights in FLEE_STUCK_S that left it on the same tile, an attacker beside it: boxed in, so it fights. A flight that failed
             # without "trapped" (a short walk, no step open) ran on until death: BotTamerAR stood on 1479,1356 for 70 s "fleeing" from a mongbat and
             # Zilge with 5 mobiles beside it (2026-11-02 14:56-14:57), as it had on 1432,1364 at 09:53
             self.log(f"fleeing from {threat.name} has not moved me in {self.FLEE_STUCK_S} s: fighting back at hp {self.c.hp}")
+            self.facts["fight_until"] = time.time() + self.FLEE_STUCK_S
             return self.fight_back(threat)
         if threat:
             self.log(f"fleeing from {threat.name} at hp {self.c.hp}")
@@ -1288,6 +1291,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     FLEE_STUCK_N = 3          # flights from the same tile ...
     FLEE_STUCK_S = 20         # ... within this many seconds, an attacker within 2 tiles: boxed in (r_flee fights back)
+
+    def fight_committed(self, threat):
+        """True for FLEE_STUCK_S s after flee_stuck found the bot boxed in, while the attacker is still beside it: the fight goes on with no new
+        flight. Each flight dropped the fight for a walk that went nowhere, and the bot swung once every 3 s: BotHealAdvR, a troll on it near
+        Despise, "fleeing ... fighting back ... fleeing" from 34 to 9 hit points in 45 s (2026-11-02 21:43-21:44). An attacker that stepped away
+        ends it (a flight may work again)."""
+        return time.time() < float(self.facts.get("fight_until", 0) or 0) and (getattr(threat, "distance", 9) or 9) <= 2
 
     def flee_stuck(self, threat):
         """True when the last FLEE_STUCK_N flights all started on the same tile within FLEE_STUCK_S s and the threat is beside the bot."""
