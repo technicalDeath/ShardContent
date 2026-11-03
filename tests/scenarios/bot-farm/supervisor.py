@@ -119,6 +119,8 @@ def client_pid(name):
 
 CLIENT_STALE = 180      # s without a fresh state file (updatedAtMs) from a live client: its writer has stopped (the client writes it many times a second)
 CLIENT_SETTLE = 240     # s after the client's launch before the check applies (login and character load)
+CLIENT_OFFLINE = 60     # s of fresh states saying connected False before the client counts as stale (a brief drop is not)
+_offline_since = {}     # name: when its state first said connected False
 
 
 def client_stale(name):
@@ -133,7 +135,15 @@ def client_stale(name):
     s = farm_launch.read_state(os.path.join(d, "cuostate.json"))
     if not s or not s.get("updatedAtMs"):
         return False                                    # mid-write or not in the world yet: no verdict
-    return time.time() - s["updatedAtMs"] / 1000.0 > CLIENT_STALE
+    if time.time() - s["updatedAtMs"] / 1000.0 > CLIENT_STALE:
+        return True
+    if s.get("connected") is False:
+        # a fresh state from a client the server dropped: it runs on, and its bot walks for minutes with "no step in any direction moved the
+        # character" (13 clients after the farm restart's login rush, 2026-11-02 20:51)
+        since = _offline_since.setdefault(name, time.time())
+        return time.time() - since > CLIENT_OFFLINE
+    _offline_since.pop(name, None)
+    return False
 
 
 def status_of(name):
@@ -226,7 +236,12 @@ def main():
             if fut is not None:
                 if not fut.done():
                     continue
-                res = fut.result()
+                try:
+                    res = fut.result()
+                except Exception as e:
+                    # one launch that failed must not end the supervisor: a PermissionError on a client log held by an unrecorded second client
+                    # ended five supervisors in ten minutes, and every bot lost its relaunches (2026-11-02 21:00-21:09)
+                    res = {"name": name, "ok": False, "note": f"{type(e).__name__}: {e}"[:200]}
                 log(f"{name}: client restart -> {res}")
                 pending.pop(name)
                 if not res.get("ok"):

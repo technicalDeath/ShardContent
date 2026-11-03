@@ -153,7 +153,12 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
         # cuocmd.pid is Navrey's agent lock; no client of this bot is running here, so whatever PID it names is stale (or reused by another program),
         # and a live stale PID would make the new client refuse to read its command file
         if os.path.exists(p):
-            os.remove(p)
+            try:
+                os.remove(p)
+            except PermissionError:
+                # held open: a client of this bot is running that no record names (a second supervisor's launch); a second client on the
+                # account would knock the first off, so no launch (2026-11-02 21:00: BotSmithBR's cuolog)
+                return {"name": name, "ok": False, "note": f"{os.path.basename(p)} is held by a running process: another client of this bot is up"}
     lean = (client or DEFAULT_CLIENT) == "lean" and os.path.exists(LEAN_CUO)
     cuo = LEAN_CUO if lean else CUO
     env = dict(os.environ, DOTNET_ROOT=os.path.dirname(DOTNET), DOTNET_GCConserveMemory="9", DOTNET_TieredPGO="0")
