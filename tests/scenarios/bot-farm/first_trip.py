@@ -53,6 +53,7 @@ TRIP_PACK = 3               # this many dangers in notice range turn the trip ba
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
 DUNGEON_HUNT_S = 2400        # s a dungeon trip hunts inside (feature dungeon_hunt): two of the core's hunt budgets (task_core.HUNT_BUDGET 1200), so the hunt
                              # pays at least the walk there and back (Covetous: 8-10 min each way, 2026-11-03/04)
+LEFT_INSIDE_GAP = 120        # s between tries at leaving a dungeon with no trip under way (trip_left_inside): tele_to_side tries 150 s itself
 RETURN_S = 300               # s the stairs back to a dungeon's landing may take (trip_return_leg): Despise's farthest lizardman spawner is ~120 tiles from
                              # its stair (24 s at a run, Movement.cs runFoot 200 ms), so the cap leaves room for fights on the way
 STAY_SAVE_S = 60             # s between the stay's saves: well inside TRIP_RESUME_S
@@ -302,6 +303,8 @@ class FirstTrip(RideMixin, LadderMixin):
     def r_trip(self):
         st = self.trip_load()
         t = st["trip"]
+        if not t and self.ladder_on() and self.trip_left_inside():
+            return True
         if not t:
             if st["done"] and not os.path.exists(os.path.join(self.dir, "trip_now")) and not self.ladder_again():
                 return False
@@ -1019,8 +1022,9 @@ class FirstTrip(RideMixin, LadderMixin):
         except Exception:
             here_side = side
         try:
-            import task_core
-            ready = task_core.rung_ready(self)
+            # the kit the road home needs (ladder_kit_strict: 15 bandages, 3 Heal potions), not the entry gate (task_core.rung_ready: 50 bandages and 90%
+            # health): one bandage used, and BotHealAdvR's hunt ended "kit or health low" with 49 bandages and 10 Heal potions at 86% (2026-11-04 12:57)
+            ready = self.ladder_kit_strict() if hasattr(self, "ladder_kit_strict") else True
         except Exception:
             ready = True
         task = self.facts.get("task") or {}
@@ -1031,7 +1035,7 @@ class FirstTrip(RideMixin, LadderMixin):
         elif here_side != dh["side"]:
             why = "out of the dungeon"
         elif not ready:
-            why = "kit or health low"
+            why = "kit low"
         elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest"):
             why = f"a {task.get('task')} errand"
         if why:
@@ -1047,6 +1051,42 @@ class FirstTrip(RideMixin, LadderMixin):
             return None
         self.activity = f"hunting {side}"
         return False
+
+    def trip_left_inside(self):
+        """True when it acted: a ladder bot on a rung dungeon's side with no trip under way crosses back to the surface (tele.tele_to_side), at most once a
+        LEFT_INSIDE_GAP. BotHealAdvR's trip ended "stranded" on Despise's upper floor and it stood at the landing "waiting for an open hunting area" (the
+        core sees only the surface's spots from there; 68 banned), 2026-11-04 12:59-13:13."""
+        try:
+            gz = _gz()
+            side = gz.side(int(self.c.x), int(self.c.y)) if gz else "surface"
+        except Exception:
+            return False
+        if side == "surface" or self.c.ghost or not hasattr(self, "tele_to_side"):
+            return False
+        try:
+            import spots
+            if side not in spots.RUNG_DUNGEONS:
+                return False
+        except Exception:
+            return False
+        now = time.time()
+        if now - float(self.__dict__.get("_left_inside_at", 0) or 0) < LEFT_INSIDE_GAP:
+            return False
+        self.__dict__["_left_inside_at"] = now
+        self.activity = f"leaving {side}"
+        self.facts.pop("dungeon_hunt", None)
+        ok = self.tele_to_side("surface")
+        self.log(f"first trip: no trip under way inside {side}: leaving for the surface ({'out' if ok else 'not out yet'})")
+        self.ev("dungeon_left", side=side, ok=bool(ok))
+        return True
+
+    def trip_home_from(self, trip, wps):
+        """The waypoint the walk home starts at: the last, but for a dungeon trip the one before its door. The door's surface tiles are teleporters both
+        ways (Despise: 1296,1080-1082 to 5588,630-632 and back, teleporters.json), so a walk home to the door from the landing crossed out onto it and
+        stepped back in, and three nopaths ended BotFairSwordVR's trip "stranded" a tile outside (2026-11-04 12:28); the goto wrappers cross out on
+        their own (tele.tele_cross) toward the next waypoint."""
+        last = len(wps) - 1
+        return max(0, last - 1) if trip.get("enter") and last > 0 else last
 
     def trip_return_plan(self, t, dh, now):
         """After a dungeon hunt on another level than the landing: t["ret"], the inner teleporters (stairs) back to the landing (travel.plan_journey's
@@ -1095,7 +1135,18 @@ class FirstTrip(RideMixin, LadderMixin):
             self.goto_near(x, y, 1).wait(timeout=SLICE)
             return True
         import travel
-        res = travel.STEPS[leg["kind"]](self, leg, r.setdefault("st", {}))
+        if leg["kind"] == "tele":
+            # the stair itself: travel.tele_step refuses a hop to a dungeon side when the bot is not ready to ENTER one (task_core.rung_ready), and so
+            # refused BotHealAdvR's stair back to the landing at 86% health ("not ready for the dungeon", 2026-11-04 12:58)
+            try:
+                self.tele_allow(leg["to_side"])
+                self.tele_hop(leg["t"])
+            except Exception as e:
+                self.log(f"first trip: the stair back: {type(e).__name__}: {e}")
+            land = tuple(leg["land"])
+            res = "done" if cheb(self.c.x, self.c.y, land[0], land[1]) <= max(2, cheb(leg["t"]["src"][0], leg["t"]["src"][1], land[0], land[1]) // 2) else "did not jump"
+        else:
+            res = travel.STEPS[leg["kind"]](self, leg, r.setdefault("st", {}))
         if res == "done":
             r.update(seg=r["seg"] + 1, wp=0, st={})
         elif res != "running":
@@ -1181,7 +1232,7 @@ class FirstTrip(RideMixin, LadderMixin):
                 # there already: a danger walking in ends the visit, not the trip (BotWarAdvR, in Minoc at 2499,658, aborted for an ogre that walked
                 # up, and the town it had reached counted as a failed rung, 2026-11-03 13:18)
                 self.log(f"first trip: leaving {t['dest']} early ({why})")
-                t.update(phase="home", i=len(wps) - 1, best=1e9, best_at=now, fails=0, skips=0, left_early=why)
+                t.update(phase="home", i=self.trip_home_from(trip, wps), best=1e9, best_at=now, fails=0, skips=0, left_early=why)
                 self.trip_save()
                 return True
             if why:
@@ -1198,7 +1249,7 @@ class FirstTrip(RideMixin, LadderMixin):
                 # Trinsic stay was 10 min old at the 00:36 rollover and the trip was dropped (2026-11-04)
                 self.trip_save()
             if now >= t["stay_until"]:
-                t.update(phase="home", i=len(wps) - 1, best=1e9, best_at=now, fails=0, skips=0)
+                t.update(phase="home", i=self.trip_home_from(trip, wps), best=1e9, best_at=now, fails=0, skips=0)
                 self.trip_save()
             else:
                 time.sleep(3)
