@@ -548,6 +548,14 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         a = self.assess(d)
         hopeless = bool((a.get("monster") or {}).get("casts")) or a.get("taken", 0) > 0.6 * max(1, self.c.hp)
         hopeless = hopeless or self.avoids(self.mkey(d)) or self.near_death_spot(self.c.x, self.c.y, 15)
+        if d.distance <= 2 and (now - float(self.facts.get("boxed_at", 0) or 0) < self.FLEE_STUCK_S or self.fight_committed(d)):
+            # boxed in (the step-out tried every direction and none moved the character): no run can work, so it fights, as r_flee does. In the hopeless
+            # branch below BotWarAdvR "ran from a troll" on one tile with four trolls beside it, never swinging, 78 to 62 hit points in 50 s at 1336,1090
+            # (2026-11-04 10:46-10:47)
+            self.log(f"boxed in beside {d.name}: fighting back at hp {self.c.hp} (no step away moves the character)")
+            self.facts["fight_until"] = now + self.FLEE_STUCK_S
+            self.facts.pop("boxed_at", None)
+            return self.fight_back(d)
         if hopeless and d.distance <= 6:
             # learned from a Mace Fighter killed by a wraith while "cornered": against a caster or something that out-damages us, standing to fight is death;
             # run for the town guards at once, before the health is gone

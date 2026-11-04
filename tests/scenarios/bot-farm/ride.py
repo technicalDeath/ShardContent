@@ -33,7 +33,9 @@ RIDE_RESERVE = 500               # gold kept after the purchase: ladder.DUNGEON_
 MOUNT_RUN_S = 0.1                # Movement.cs runMount: seconds a tile mounted, running (casterpass.RUN_S on foot)
 RIDE_LOST_S = 1800               # s out of view after a death: gone. The horse waits where the bot died; the corpse it goes back for lasts 10 minutes and its bones
                                  # 7 more (longerPlayerCorpses, corpseTimerNotice), so a bot that has not found it by then is not coming back for it
-RIDE_TRY_GAP = 1800              # s between purchases tried (a sold-out stall, a walk that did not get there)
+RIDE_TRY_GAP = 1800              # s between purchases tried at the stall (a sold-out stall, a line the shop did not show)
+RIDE_SHORT_GAP = 300             # s before the next try when the bank walk did not bring the price: the walk was cut short (a fight, loot on the way), not the
+                                 # stall's answer. BotHealAdvR's bank walk stopped for a deer and two slimes and the next try waited 30 min (2026-11-04 10:45)
 FETCH_REACH = 300                # tiles: a horse farther off than this is not walked back for (packy.FETCH_REACH)
 FETCH_GAP = 300                  # s between walks back for it
 
@@ -143,6 +145,8 @@ class RideMixin:
         if self.c.gold < HORSE_PRICE + 10 and self.facts.get("bank_balance", 0) > 0:
             self.visit_bank("horse", withdraw=min(self.facts["bank_balance"], HORSE_PRICE + 50))
         if self.c.gold < HORSE_PRICE:
+            self.facts["ride_try_at"] = now - RIDE_TRY_GAP + RIDE_SHORT_GAP
+            self.log(f"ride: the bank walk did not bring the price ({self.c.gold} gold): again in {RIDE_SHORT_GAP // 60} min")
             return True
         where = self.where1(("animal_trainer",), item="horse")
         if not where:

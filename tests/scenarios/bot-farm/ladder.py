@@ -292,6 +292,17 @@ class LadderMixin:
             self.log(f"ladder: stepping through the door failed ({type(e).__name__}: {e})")
         time.sleep(1.5)
         after = gz.side(self.c.x, self.c.y) if gz else before
+        if gz and after == before and hasattr(self, "tele_hop"):
+            # the walk stopped beside the door: at Despise Navrey "arrived" at 1297,1080 for 1296,1081 and the bot never stood on the teleporter
+            # (BotWarAdvR, 2026-11-04 10:44:55). tele_hop ends with a plain step onto the entry (tele_step_dir), as at the Britain sewer hatches
+            tr = next((x for x in gz.get().trans if (int(x["src"][0]), int(x["src"][1])) == (int(enter[0]), int(enter[1])) and x.get("src_side") == before), None)
+            if tr is not None:
+                try:
+                    self.tele_allow(tr["dst_side"])
+                    self.tele_hop(tr)
+                except Exception as e:
+                    self.log(f"ladder: the step onto the door failed ({type(e).__name__}: {e})")
+                after = gz.side(self.c.x, self.c.y)
         t["entered"] = bool(gz and after != before)
         self.log(f"ladder: the door at {enter[0]},{enter[1]}: {'entered ' + str(after) if t['entered'] else 'did not take the bot'}")
         if not t["entered"]:
