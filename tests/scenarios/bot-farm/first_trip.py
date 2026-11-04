@@ -795,6 +795,8 @@ class FirstTrip(LadderMixin):
         if not threats:
             self.__dict__.pop("_escape", None)                  # nothing in notice range: the escape, if any, is over
             return False
+        if hasattr(self, "note_casters"):
+            self.note_casters(threats)                          # a caster seen on the road steers every bot's routes (basics.live_caster_penalty)
         here = (int(self.c.x), int(self.c.y))
         casters = [th for th in threats if th.caster]
         esc = self.__dict__.setdefault("_escape", {"on": False, "clear": 0})

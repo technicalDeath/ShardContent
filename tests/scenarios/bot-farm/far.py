@@ -117,7 +117,8 @@ class FarMixin:
             except Exception:
                 tele = {}
             got = self._far_pen = (time.time(), wr.penalty_merge(mine, _circle_pen(wr), own, box, kill, tele))
-        return got[1]
+        live = self.live_caster_penalty(_wr()) if hasattr(self, "live_caster_penalty") else {}
+        return _wr().penalty_merge(got[1], live) if live else got[1]       # the casters any bot saw in the last 20 min, fresh at every plan
 
     def runner_penalty(self):
         """far_penalty for a running trip (first_trip, feature trip_run): the casters' lairs only, out to their home range (first_trip.RUN_EDGE), and no
@@ -154,7 +155,8 @@ class FarMixin:
             except Exception:
                 pass
             got = self.__dict__["_run_pen"] = (time.time(), wr.penalty_merge(*parts))
-        return got[1]
+        live = self.live_caster_penalty(_wr()) if hasattr(self, "live_caster_penalty") else {}
+        return _wr().penalty_merge(got[1], live) if live else got[1]
 
     def far_worth(self, role, xy, value=None):
         """(go, why) for a service walk of more than FAR tiles."""

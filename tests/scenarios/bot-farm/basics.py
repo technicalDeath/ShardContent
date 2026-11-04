@@ -340,6 +340,7 @@ class BasicsMixin:
             except Exception:
                 kind = ""
             out.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(kind), getattr(m, "name", "") or ""))
+        self.note_casters(out)                                 # every bot's routes bend round what this one sees (live_caster_penalty)
         return out
 
     def caster_lair_home(self):
@@ -444,6 +445,62 @@ class BasicsMixin:
         if shed:
             self.log(f"overloaded ({before}/{limit}, every step refused): put down {', '.join(shed)[:120]} -> {self.c.weight}/{limit}")
             self.ev("shed", how="overload", items=shed[:8], before=before, after=int(self.c.weight or 0), limit=limit)
+
+    CASTER_SEEN_TTL = 1200          # s a caster sighting steers every bot's routes: the giant camps' and most spawners' maxDelay is 00:20:00 (cove-spawn-areas.json),
+                                    # so a caster seen there is back within that even if someone killed it
+    CASTER_SEEN_GRID = 8            # tiles a sighting is rounded to: one record per spot, not per step
+
+    def note_casters(self, threats):
+        """A caster in notice range goes into the shared memory (kind caster_seen, a 'blocked' record that lasts CASTER_SEEN_TTL), at most once per spot
+        and bot every 5 minutes: every bot's route planning then bends round it (live_caster_penalty). The bots found the Trinsic road's reaper at
+        1570,2152 one by one, five aborted trips by four bots, each a fresh discovery (2026-11-02/03)."""
+        mem = getattr(self, "mem", None)
+        if mem is None:
+            return
+        now = time.time()
+        seen = self.__dict__.setdefault("_casters_noted", {})
+        g = self.CASTER_SEEN_GRID
+        for th in threats:
+            if not getattr(th, "caster", False):
+                continue
+            key = f"{th.x // g * g + g // 2},{th.y // g * g + g // 2}"
+            if now - seen.get(key, 0) < 300:
+                continue
+            seen[key] = now
+            try:
+                mem.record("blocked", kind="caster_seen", key=key, ttl=self.CASTER_SEEN_TTL, m=th.name)
+            except Exception:
+                pass
+
+    def casters_seen(self):
+        """[(x, y)] of the caster sightings still in force (any bot's, note_casters)."""
+        mem = getattr(self, "mem", None)
+        if mem is None:
+            return []
+        try:
+            mem.refresh()
+            rows = mem.state["world"]["res"].get("caster_seen", {})
+        except Exception:
+            return []
+        now = time.time()
+        out = []
+        for key, r in rows.items():
+            if r.get("blocked_until", 0) > now:
+                try:
+                    x, y = (int(v) for v in key.split(","))
+                    out.append((x, y))
+                except ValueError:
+                    pass
+        return out
+
+    def live_caster_penalty(self, wr):
+        """A route cost round every live caster sighting: its spell reach and a step (detour.CASTER_CLEAR), at a caster lair's weight (8, far.py)."""
+        try:
+            import detour
+            pts = self.casters_seen()
+            return wr.penalty_circles([(x, y, detour.CASTER_CLEAR, 8.0) for x, y in pts]) if pts else {}
+        except Exception:
+            return {}
 
     def detour_note(self, here, leg):
         """Remember the leg just chosen, for detour_forbid's look at how the walk went."""
