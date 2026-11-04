@@ -131,6 +131,11 @@ class RecoveryMixin:
             self.facts["mat_refused_n"] = self.facts.get("mat_refused_n", 0) + 1
             self.dlog("ev", ev="materialize_refused", rule=getattr(self, "current_rule", None), n=self.facts["mat_refused_n"])
             return
+        if "mount is too fatigued" in text:
+            # the horse's running steps are spent (StaminaSystem.ProcessMountMovement, BaseMount.StepsMax 3840): the rider walks it (ride.py), and sheds
+            # nothing. It matched the overload line below, and BotFairArcherVR dropped its fletching and meat "to get under the weight limit" (2026-11-04)
+            self.facts["mount_tired_at"] = now
+            return
         if "too fatigued to move" in text:
             self.facts["fatigued_at"] = now                    # overweight: the run loop sheds weight (BotBase.drop_excess)
             return

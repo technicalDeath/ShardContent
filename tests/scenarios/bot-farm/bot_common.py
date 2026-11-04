@@ -1365,6 +1365,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.facts["sprint_at"] = time.time()
         if time.time() < self.facts.get("walk_until", 0):
             return                                                       # too tired to run (stamina_relief): walk
+        if getattr(self, "mount_tired", lambda: False)():
+            return                                                       # the horse cannot run (ride.py): its running steps are blocked, a walk is not
         if self.facts.get("runmode") != "always":
             self.set_runmode("always")
 
@@ -1377,6 +1379,12 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     def sprint_check(self):
         now = time.time()
         mode = self.facts.get("runmode")
+        if getattr(self, "mount_tired", lambda: False)():
+            if mode != "never":
+                self.set_runmode("never")                                # a tired horse walks (ride.py); the client's "auto" goes by the rider's stamina
+            return
+        if mode == "never" and getattr(self, "mount_rested", lambda: False)():
+            self.set_runmode("auto")                                     # the horse has had its walk: running again
         if mode == "never":
             return                                                       # walking on purpose (pacing in town, a recovery walk)
         if mode == "always" and now - self.facts.get("sprint_at", 0) <= 8:

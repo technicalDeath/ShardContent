@@ -33,6 +33,11 @@ RIDE_RESERVE = 500               # gold kept after the purchase: ladder.DUNGEON_
 MOUNT_RUN_S = 0.1                # Movement.cs runMount: seconds a tile mounted, running (casterpass.RUN_S on foot)
 RIDE_LOST_S = 1800               # s out of view after a death: gone. The horse waits where the bot died; the corpse it goes back for lasts 10 minutes and its bones
                                  # 7 more (longerPlayerCorpses, corpseTimerNotice), so a bot that has not found it by then is not coming back for it
+MOUNT_TIRED_S = 600              # s a tired horse is walked: running mounted adds a step a tile and the horse regains one a second only while it does not
+                                 # run (StaminaSystem.ProcessMountMovement / RegenSteps, BaseMount.StepsMax 3840, IdleTimePerStepsGain 1 s); past the cap every
+                                 # running step is refused ("Your mount is too fatigued to move", 500108) while a walking one is not. BotFairArcherVR's run to Cove
+                                 # made 25 tiles a minute for 40 minutes on a spent horse (2026-11-04 10:54-11:36); walked, a horse goes at 0.2 s a tile (walkMount),
+                                 # a foot runner's pace, and 600 s of it buys back a minute of running
 RIDE_TRY_GAP = 1800              # s between purchases tried at the stall (a sold-out stall, a line the shop did not show)
 RIDE_SHORT_GAP = 300             # s before the next try when the bank walk did not bring the price: the walk was cut short (a fight, loot on the way), not the
                                  # stall's answer. BotHealAdvR's bank walk stopped for a deer and two slimes and the next try waited 30 min (2026-11-04 10:45)
@@ -49,11 +54,26 @@ class RideMixin:
             return False
 
     def run_s(self):
-        """Seconds a tile this bot runs at: mounted or on foot (Movement.cs)."""
+        """Seconds a tile this bot runs at: mounted or on foot (Movement.cs); a tired horse walks at the foot runner's 0.2."""
         try:
-            return MOUNT_RUN_S if self.c.mounted else 0.2
+            return MOUNT_RUN_S if self.c.mounted and not self.mount_tired() else 0.2
         except Exception:
             return 0.2
+
+    def mount_tired(self):
+        """Riding a horse whose running steps were spent within MOUNT_TIRED_S (recovery.py notes the server's line as mount_tired_at)."""
+        try:
+            return bool(self.c.mounted) and time.time() - float(self.facts.get("mount_tired_at", 0) or 0) < MOUNT_TIRED_S
+        except Exception:
+            return False
+
+    def mount_rested(self):
+        """The walk a tired horse was given is over (the run mode goes back to auto once)."""
+        t = float(self.facts.get("mount_tired_at", 0) or 0)
+        if t and time.time() - t >= MOUNT_TIRED_S:
+            self.facts["mount_tired_at"] = 0
+            return True
+        return False
 
     def ride_mobile(self, within=18):
         """Its own mount in view (isPet and a mount's name), nearest first, else None."""
