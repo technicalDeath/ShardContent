@@ -552,6 +552,7 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
             # learned from a Mace Fighter killed by a wraith while "cornered": against a caster or something that out-damages us, standing to fight is death;
             # run for the town guards at once, before the health is gone
             self.activity = f"running from {d.name}"
+            self.facts["hunt_fled"] = {"t": time.time(), "by": self.mkey(d)}      # hunt_tree.tick ends the hunt there: the ground is left, not re-entered
             self.end_fight("flee")
             self.dlog("choice", what="run to town", why=f"{d.name}: {a.get('reason', '')}"[:120])
             self.sprint()

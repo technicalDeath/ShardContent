@@ -1092,6 +1092,16 @@ def tick(bot, task):
         entry = bot.__dict__["_core_tree"] = (ctx, build(ctx))
     ctx, root = entry
     ctx.why = ""
+    fled = bot.facts.get("hunt_fled")
+    if fled and float(fled.get("t", 0)) >= float(task.get("t0", 0)):
+        # it ran from something it cannot fight (hunter.r_avoid: a caster, or one that out-damages it): the hunt there ends and the ground rests
+        # (task_core.REST_S "danger"), as a player leaves; the roam walked BotMaceAdvR back to the graveyard edge three times in 21 s, into a spectre
+        # and a bone mage, dead in 60 s from full health (2026-11-03 23:11)
+        bot.facts.pop("hunt_fled", None)
+        bot.log(f"hunt tree: ran from {fled.get('by')} at {task.get('area')}: the hunt there ends")
+        return ctx.step, "danger"
+    if time.time() < float(bot.facts.get("avoided_until", 0) or 0):
+        return "wait", ""                                   # r_avoid's commitment (hunter.r_avoid): no roam back toward what it just stepped away from
     root.tick_once()
     if root.status == Status.FAILURE and ctx.why:
         return ctx.step, ctx.why

@@ -49,7 +49,8 @@ ON_TRACK = 0.5
 UNDER = 0.15                    # below this share of the expected yield the task is failed outright (else "under": one extension)
 DEATHS_FAIL = 2
 BAN_S = 3600.0
-REST_S = {"empty": 1800.0, "stale": 600.0, "crowded": 900.0, "unreachable": 3600.0, "yield": BAN_S, "deaths": BAN_S, "unmet": 1800.0}
+REST_S = {"empty": 1800.0, "stale": 600.0, "crowded": 900.0, "unreachable": 3600.0, "yield": BAN_S, "deaths": BAN_S, "unmet": 1800.0,
+          "danger": 1200.0}               # fled from what it cannot fight: a spawner's maxDelay 00:20:00 (basics.CASTER_SEEN_TTL)
 PRESSING = 2.0                  # an errand this urgent (no bandages, no arrows, overloaded) interrupts a running hunt
 WAIT_S = 120.0
 RESTED_SOON = 1200.0            # with nothing open, an area whose rest ends within this many seconds (stale, crowded, empty) is a candidate again; the hour bans are not
