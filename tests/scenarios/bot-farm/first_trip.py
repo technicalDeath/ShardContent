@@ -221,7 +221,11 @@ class FirstTrip(LadderMixin):
                 return bool(self.mobs(10))
             import detour
             here = (int(self.c.x), int(self.c.y))
-            for m in self.threats(10):
+            # its dangers (hunter.dangers: not its prey, not a passive animal), as the detours see them: threats() holds anything in war mode, and the
+            # animals a ladder fighter hunts by town are in war mode with it, so a rabbit at 3, a goat at 1 and a chicken at 2 kept BotRangerBR in Britain
+            # (2026-11-03 22:00-22:12)
+            near = self.dangers(10) if hasattr(self, "dangers") else self.threats(10)
+            for m in near:
                 th = detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "", detour.poisons(self.mkey(m)))
                 if detour.clearance_at(here, [th]) < 0:
                     # inside its reach (a caster's spell range + 2, a melee monster's MELEE_CLEAR): wait. Further off, a runner sets out and runs past it
