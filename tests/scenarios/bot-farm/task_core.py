@@ -1108,6 +1108,8 @@ def tiers(bot):
     if cautious(bot) or bot.facts.get("fists") or unarmed(bot):
         return {min(out)}                                      # no bandages and the restock failed: the lowest ground only, until the pack is stocked again
     r = rung_update(bot)
+    if bot.facts.get("dungeon_hunt"):
+        return {RUNG_TIERS[1]}                                 # a dungeon trip's hunt inside (first_trip.trip_dungeon_hunt): level 1's tier only
     if r and rung_ready(bot) and bot.feature("dungeon_tours"):
         # (feature dungeon_tours, 2026-11-03: off for every bot until the journeys are fixed. With kits filling the rungs opened, and in some 30
         # dungeon tours no bot reached a door: Covetous's door at 2384,837 cannot be walked to, and the tele journeys through the Britain moongate

@@ -131,26 +131,27 @@ def dense(path: Sequence[Tuple[int, int]]) -> List[Tuple[int, int]]:
     return out or list(path)
 
 
-def exposure_s(tiles: Sequence[Tuple[int, int]], at: Tuple[int, int], move: Optional[float]) -> float:
-    """Seconds a runner on these tiles stays inside a caster's spell range: the tiles inside it, plus for a chaser the time it keeps up after the nearest."""
+def exposure_s(tiles: Sequence[Tuple[int, int]], at: Tuple[int, int], move: Optional[float], run_s: float = RUN_S) -> float:
+    """Seconds a runner on these tiles stays inside a caster's spell range: the tiles inside it, plus for a chaser the time it keeps up after the nearest.
+    `run_s` the runner's seconds a tile (RUN_S on foot, ride.MOUNT_RUN_S mounted)."""
     inside = [max(abs(p[0] - at[0]), abs(p[1] - at[1])) for p in tiles]
     n = sum(1 for d in inside if d <= SPELL_RANGE)
     if not n:
         return 0.0
-    secs = n * RUN_S
+    secs = n * run_s
     if move is not None:
-        gain = 1.0 / RUN_S - 1.0 / move                   # tiles a second the runner gains
+        gain = 1.0 / run_s - 1.0 / move                   # tiles a second the runner gains
         dmin = min(inside)
         secs += (SPELL_RANGE - dmin) / gain if gain > 0 else 30.0
     return secs
 
 
 def pass_damage(tiles: Sequence[Tuple[int, int]], casters: Iterable[Tuple[str, dict, Tuple[int, int]]], rs: float,
-                stats: Tuple[float, float, float]) -> Tuple[float, float, float]:
+                stats: Tuple[float, float, float], run_s: float = RUN_S) -> Tuple[float, float, float]:
     """(expected damage, seconds exposed in all, the largest single spell) for running these tiles past these casters (kind, entry, position)."""
     total, secs, top = 0.0, 0.0, 0.0
     for kind, entry, at in casters:
-        e = exposure_s(tiles, at, move_s(kind, entry))
+        e = exposure_s(tiles, at, move_s(kind, entry), run_s)
         if e <= 0:
             continue
         dmg, hit = per_cast(entry, rs, stats)
@@ -163,27 +164,27 @@ def pass_damage(tiles: Sequence[Tuple[int, int]], casters: Iterable[Tuple[str, d
 UNCURABLE = 10 ** 6                          # a contact with a monster whose poison the bot's cures cannot answer: never "affordable" (detour.POISON_CLEAR)
 
 
-def melee_contact(tiles: Sequence[Tuple[int, int]], at: Tuple[int, int], move: Optional[float]) -> bool:
+def melee_contact(tiles: Sequence[Tuple[int, int]], at: Tuple[int, int], move: Optional[float], run_s: float = RUN_S) -> bool:
     """True when a melee monster at `at` can stand beside some tile of the runner's path by the time the runner gets there (tile i at i x RUN_S s; the
     monster closes at 1 / move tiles a second, npc-speeds.json; one that never moves only beside the path itself)."""
     for i, p in enumerate(tiles):
         d = max(abs(p[0] - at[0]), abs(p[1] - at[1]))
         if d <= 1:
             return True
-        if move is not None and d - 1 <= (i * RUN_S) / move:
+        if move is not None and d - 1 <= (i * run_s) / move:
             return True
     return False
 
 
 def pass_cost(tiles: Sequence[Tuple[int, int]], monsters: Iterable[Tuple[str, dict, Tuple[int, int], bool, bool]], rs: float,
-              stats: Tuple[float, float, float]) -> Tuple[float, float, float]:
+              stats: Tuple[float, float, float], run_s: float = RUN_S) -> Tuple[float, float, float]:
     """(expected damage, seconds in spell range, the largest single blow) for running these tiles past these monsters (kind, entry, position, caster,
     uncurable poison): casters as pass_damage; a melee monster that can reach the path costs one swing at its mean damage (the runner, 0.2 s a tile
     against 0.45 or 0.6, is past before a second), a contact with an uncurable poisoner UNCURABLE."""
     casters = [(k, e, at) for k, e, at, c, _p in monsters if c]
-    total, secs, top = pass_damage(tiles, casters, rs, stats)
+    total, secs, top = pass_damage(tiles, casters, rs, stats, run_s)
     for kind, entry, at, caster, poison in monsters:
-        if caster or not melee_contact(tiles, at, move_s(kind, entry)):
+        if caster or not melee_contact(tiles, at, move_s(kind, entry), run_s):
             continue
         lo_hi = entry.get("damage") or [0, 0]
         total += UNCURABLE if poison else _mid(lo_hi, 0.0)

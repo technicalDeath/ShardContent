@@ -10,6 +10,7 @@ import time
 import zlib
 
 from ladder import LadderMixin
+from ride import RideMixin
 
 BRITAIN_CENTER = (1475, 1645)
 HARD_KINDS = ("ettin", "ogre", "troll", "corpser", "wisp", "acid elemental", "giant serpent", "gargoyle", "orcish lord", "dragon", "drake", "wyrm",
@@ -50,6 +51,10 @@ HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs
 RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
 TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
+DUNGEON_HUNT_S = 2400        # s a dungeon trip hunts inside (feature dungeon_hunt): two of the core's hunt budgets (task_core.HUNT_BUDGET 1200), so the hunt
+                             # pays at least the walk there and back (Covetous: 8-10 min each way, 2026-11-03/04)
+RETURN_S = 300               # s the stairs back to a dungeon's landing may take (trip_return_leg): Despise's farthest lizardman spawner is ~120 tiles from
+                             # its stair (24 s at a run, Movement.cs runFoot 200 ms), so the cap leaves room for fights on the way
 STAY_SAVE_S = 60             # s between the stay's saves: well inside TRIP_RESUME_S
 DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
 ESCAPE_HOLD_N = 4            # escapes within ESCAPE_HOLD_S on the way out that turn a trip back: BotArchAdvR ran 15 escape and detour legs in 2 minutes
@@ -134,7 +139,7 @@ def _circle_penalty(wr):
 
 ROUTE_V = "fp3"                  # the route cache version: bumped when the route penalty changes (fp2, 2026-11-02: re-planned round route_danger's cells, trip_avoid)
 
-class FirstTrip(LadderMixin):
+class FirstTrip(RideMixin, LadderMixin):
     # ---- state: work/botfarm/<bot>/trip.json ------------------------------------------------------------------------------
 
     def trip_path(self):
@@ -288,6 +293,8 @@ class FirstTrip(LadderMixin):
         A ladder bot keeps r_trip, and r_fight while a trip is under way: the order a bot without the core has (the outing waits behind fights)."""
         if name == "r_trip":
             return self.ladder_on()
+        if name == "r_ride":
+            return self.ride_on()                                   # riding (ride.py) under the core too
         if name == "r_fight":
             return bool(self.ladder_on() and self.trip_load().get("trip"))
         return False
@@ -353,6 +360,7 @@ class FirstTrip(LadderMixin):
 
     def trip_end(self, how, completed):
         t = self._trip["trip"]
+        self.facts.pop("dungeon_hunt", None)                    # (a dungeon hunt ends with its trip, home, stranded or dead)
         if how == "death":
             self.ev("trip_abort", why="death", at=[self.c.x, self.c.y], dest=t["dest"], phase=t["phase"])
         elif how == "stranded":
@@ -482,18 +490,23 @@ class FirstTrip(LadderMixin):
         return {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
                 "secs": round(time.time() - t0, 2), "t": round(time.time())}
 
-    def trip_end_threat(self, end):
+    def trip_end_threat(self, end, door=False):
         """(why, x, y, radius) when the trip's end lies in the reach of a spawner this bot loses to, melee or not, else None: for a trip that ends
         out of town (a dungeon's door; trip_route_dangerous asks it for every trip but a town's). A trip stops at its end to go in, so run-past's
         "nothing catches a runner" does not hold there, and trip_threat's path check leaves the last ENDS_FREE tiles out. BotHealAdvR's first trip to
         Despise met nine at the door from the troll spawner at 1325,1071 (Outdoors, home 30), was boxed in by seven trolls and chased 60 tiles to 3
-        hit points (2026-11-02 21:37-21:48)."""
+        hit points (2026-11-02 21:37-21:48). A dungeon's door (`door`) is a teleporter: a running trip steps on it without stopping and nothing follows
+        it through (Teleporter.cs: no creatures), so there only a caster's reach stops it, as on the road (trip_threat); BotHealAdvR's walk in 2026-11-02 was
+        before the run (trip_run), the pass costing and the pack escape of 2026-11-03/04."""
         if not end:
             return None
+        run_door = door and self.trip_run_on()
         try:
             import spots
             import task_core
             for o, k in spots.deadly_spawners(self):
+                if run_door and not self.trip_caster(k):
+                    continue
                 r = max(int(o.get("home") or 10), 1) + task_core.PULL_CLEAR
                 if abs(o["x"] - end[0]) <= r and abs(o["y"] - end[1]) <= r:
                     return f"its end at {end[0]},{end[1]} is in the {k} spawner's reach at {o['x']},{o['y']}", o["x"], o["y"], r
@@ -603,7 +616,7 @@ class FirstTrip(LadderMixin):
             return False
         wps = [tuple(int(v) for v in p[:2]) for p in trip.get("wps") or []]
         end = tuple(int(v) for v in trip["enter"][:2]) if trip.get("enter") else (wps[-1] if wps else None)
-        th = self.trip_end_threat(end) if trip.get("kind") != "town" else None      # a town's end is guarded ground, gone to whatever stands by its gate
+        th = self.trip_end_threat(end, door=bool(trip.get("enter"))) if trip.get("kind") != "town" else None      # a town's end is guarded ground, gone to whatever stands by its gate
         th = th or (self.trip_threat(dense_path(wps)) if len(wps) >= 2 else None)
         bad = th[0] if th else ""
         if bad:
@@ -827,9 +840,10 @@ class FirstTrip(LadderMixin):
             st = self.c.state or {}
             stats = tuple(float(st.get(k) or 50) for k in ("str", "dex", "int"))
             rs = float(self.skill_values.get("Resisting Spells", 0.0) or 0.0) if hasattr(self, "skill_values") else 0.0
-            on = casterpass.pass_cost(casterpass.dense([here] + list(ahead)), cs, rs, stats)
+            run_s = self.run_s() if hasattr(self, "run_s") else casterpass.RUN_S         # mounted, half the time in reach (ride.py)
+            on = casterpass.pass_cost(casterpass.dense([here] + list(ahead)), cs, rs, stats, run_s)
             # no route behind: the trip has only just set out, and turning back costs nothing
-            back = casterpass.pass_cost(casterpass.dense([here] + list(behind)), cs, rs, stats) if behind else (0.0, 0.0, 0.0)
+            back = casterpass.pass_cost(casterpass.dense([here] + list(behind)), cs, rs, stats, run_s) if behind else (0.0, 0.0, 0.0)
             pots = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             ok = casterpass.affordable(self.c.hp, pots, *on) or on[0] <= back[0]
             now = time.time()
@@ -979,6 +993,117 @@ class FirstTrip(LadderMixin):
             self.trip_save()
         return True
 
+    def trip_dungeon_hunt(self, t, now):
+        """Feature dungeon_hunt: inside the dungeon, the stay is a hunt (owner, 2026-11-04: "have the bots actually hunt in the dungeon, not just stand there
+        as a trip"). The decision core hunts that dungeon's level 1 (task_core.tiers adds the rung's tier, spots.all_spots holds the spots to that side and
+        tier) for DUNGEON_HUNT_S; the trip waits (False). Returns None once the hunt is over (the time, the bot off the side, the kit or health, or the core
+        on an errand: a full pack or an empty kit is sold or bought in town), and the stay then ends: the walk home crosses out through the dungeon's own
+        teleporters (tele.py) to the door and goes home along the route."""
+        side = t.get("dest")
+        dh = self.facts.get("dungeon_hunt")
+        if dh is None:
+            if t.get("dungeon_hunted"):
+                return None
+            dh = self.facts["dungeon_hunt"] = {"side": side, "t0": now, "until": now + DUNGEON_HUNT_S, "landing": [int(self.c.x), int(self.c.y)]}
+            t["dungeon_hunted"] = True
+            t["stay_until"] = dh["until"]
+            if hasattr(self, "tele_allow"):
+                self.tele_allow(side, seconds=DUNGEON_HUNT_S + 600)
+            self.__dict__.pop("_spots", None)                   # the spot list is cached: the dungeon's spots come in at once
+            self.trip_save()
+            self.log(f"first trip: hunting {side} level 1 for {int(DUNGEON_HUNT_S // 60)} min")
+            self.ev("dungeon_hunt", side=side, minutes=round(DUNGEON_HUNT_S / 60))
+        why = None
+        try:
+            here_side = _gz().side(int(self.c.x), int(self.c.y)) if _gz() else side
+        except Exception:
+            here_side = side
+        try:
+            import task_core
+            ready = task_core.rung_ready(self)
+        except Exception:
+            ready = True
+        task = self.facts.get("task") or {}
+        if now >= float(dh.get("until", 0)):
+            why = "its time"
+        elif self.c.ghost:
+            why = "a death"
+        elif here_side != dh["side"]:
+            why = "out of the dungeon"
+        elif not ready:
+            why = "kit or health low"
+        elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest"):
+            why = f"a {task.get('task')} errand"
+        if why:
+            self.facts.pop("dungeon_hunt", None)
+            self.__dict__.pop("_spots", None)
+            t["stay_until"] = now
+            if why not in ("a death", "out of the dungeon"):
+                self.trip_return_plan(t, dh, now)
+            self.trip_save()
+            mins = (now - float(dh.get("t0", now))) / 60.0
+            self.log(f"first trip: the {side} hunt ends ({why}) after {mins:.0f} min")
+            self.ev("dungeon_hunt_end", side=side, why=why, minutes=round(mins, 1), back_by=len((t.get("ret") or {}).get("legs") or []))
+            return None
+        self.activity = f"hunting {side}"
+        return False
+
+    def trip_return_plan(self, t, dh, now):
+        """After a dungeon hunt on another level than the landing: t["ret"], the inner teleporters (stairs) back to the landing (travel.plan_journey's
+        plan_inner), walked a leg a tick before the walk home (trip_return_leg). tele.tele_route knows only the side, so from another level the walk to the
+        door has no path: Despise's lizardmen are up the stair at 5573,629 from its landing (5503,570, teleporters.json)."""
+        land = dh.get("landing")
+        if not land:
+            return
+        try:
+            import spots
+            import travel
+            hops = spots.inner_hops(dh["side"], (int(self.c.x), int(self.c.y)), tuple(land))
+            j = travel.plan_journey(self, tuple(land)) if hops else None
+        except Exception as e:
+            self.log(f"first trip: the way back to the landing: {type(e).__name__}: {e}")
+            return
+        if j and j.get("legs"):
+            t["ret"] = {"legs": j["legs"], "seg": 0, "wp": 0, "t0": now, "st": {}}
+            self.log(f"first trip: back to the {dh['side']} landing by {len(hops)} stair{'s' if len(hops) != 1 else ''}")
+
+    def trip_return_leg(self, t):
+        """One tick of t["ret"] (trip_return_plan): True when it acted, False once it is done or dropped (the walk home then runs as before). A walk leg
+        goes a waypoint at a time; a stair leg is travel's tele step. RETURN_S caps it: a stair it cannot take leaves the old walk home."""
+        r = t.get("ret") or {}
+        legs = r.get("legs") or []
+        now = time.time()
+        if r.get("seg", 0) >= len(legs) or now - float(r.get("t0", now)) > RETURN_S:
+            if r.get("seg", 0) < len(legs):
+                self.log(f"first trip: the way back to the {t['dest']} landing took over {RETURN_S} s: the walk home as it stands")
+            t.pop("ret", None)
+            self.trip_save()
+            return False
+        leg = legs[r["seg"]]
+        self.activity = f"first trip: back to the {t['dest']} landing"
+        if leg["kind"] == "walk":
+            wps = leg.get("wps") or [leg["to"]]
+            k = min(int(r.get("wp", 0)), len(wps) - 1)
+            x, y = int(wps[k][0]), int(wps[k][1])
+            if cheb(self.c.x, self.c.y, x, y) <= 2:
+                if k >= len(wps) - 1:
+                    r.update(seg=r["seg"] + 1, wp=0, st={})
+                else:
+                    r["wp"] = k + 1
+                self.trip_save()
+                return True
+            self.goto_near(x, y, 1).wait(timeout=SLICE)
+            return True
+        import travel
+        res = travel.STEPS[leg["kind"]](self, leg, r.setdefault("st", {}))
+        if res == "done":
+            r.update(seg=r["seg"] + 1, wp=0, st={})
+        elif res != "running":
+            self.log(f"first trip: the stair back to the {t['dest']} landing: {res}; the walk home as it stands")
+            t.pop("ret", None)
+        self.trip_save()
+        return True
+
     def trip_drink_on_run(self):
         """trip_potions with the slice's walk already under way: the client walks on while the brain drinks (Navrey's goto returns at once). Drunk before the
         walk, a Cure stood the runner 1.4 s and a fighter with a shield 2-3 s more for the hand swap (basics.drink), and a cure, a heal and a bandage in one
@@ -1031,7 +1156,7 @@ class FirstTrip(LadderMixin):
             if not (home_now and home_now["name"] == t["home"]):
                 t["in_home"] = False
                 self.trip_exit_seen(t)
-        if phase in ("out", "stay"):
+        if phase in ("out", "stay") and not (phase == "stay" and self.facts.get("dungeon_hunt")):
             if self.feature("danger_model"):
                 hard, soft, danger = None, None, self.trip_danger()                       # learned risk instead of the kind lists
             else:
@@ -1064,6 +1189,10 @@ class FirstTrip(LadderMixin):
                 return True
         if phase == "stay":
             self.activity = f"looking around {t['dest']}"
+            if t.get("entered") and self.feature("dungeon_hunt") and self.trip_dungeon_hunt(t, now) is False:
+                if now - float(self._trip.get("saved_at") or 0) > STAY_SAVE_S:
+                    self.trip_save()
+                return False                                    # the decision core hunts the dungeon's level 1 (trip_dungeon_hunt)
             if now - float(self._trip.get("saved_at") or 0) > STAY_SAVE_S:
                 # the stay saves the trip again now and then, so a restart during it resumes (trip_load: TRIP_RESUME_S): saved only on arrival, BotFenceAdvR's
                 # Trinsic stay was 10 min old at the 00:36 rollover and the trip was dropped (2026-11-04)
@@ -1075,6 +1204,8 @@ class FirstTrip(LadderMixin):
                 time.sleep(3)
             return True
         # a walk (out along the waypoints, home along them reversed): one slice per tick
+        if phase == "home" and t.get("ret") and self.trip_return_leg(t):
+            return True                                         # the stairs back to a dungeon's landing first (trip_return_plan)
         idx = t["i"]
         x, y = wps[idx]
         d = cheb(self.c.x, self.c.y, x, y)

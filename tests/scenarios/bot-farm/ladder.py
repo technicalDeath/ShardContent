@@ -8,7 +8,7 @@ strength, supplies, a way back and the OUTCOME of the rung before it (never a ti
                              kit (bandages or Heal potions, ammunition for archers), 300 gold carried or banked, hit points for the trip, a planned land route that passes no death cell, a refuge in
                              the destination town (where it can be healed and resurrected) and one at home. REPEATABLE: the town it has seen least (then the nearest) after TOWN_GAP (45 min) from the
                              last trip; after a failed trip it rests TOWN_FAIL (60 min) times its failures, and after FAIL_LIMIT (3) failures at the same strength it waits for 5 more skill.
-  rung 4  Covetous, level 1 (feature ladder_dungeon; Despise until 2026-11-03) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the dungeon's
+  rung 4  Despise, level 1 (feature ladder_dungeon; Covetous 2026-11-03/04) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the dungeon's
                              entrance (the gazetteer's dungeon entrance on the surface), step through, look around DUNGEON_STAY (8) minutes at the landing, and walk out. At most one visit per
                              DUNGEON_GAP (3 h). A casualty or an abort is a failed rung. The step through the door is the one new action; the rest is first_trip's walk and abort rules.
 Events (decisions.jsonl): region_first {region, at} the first time the bot stands in a named region (a town or dungeon); rung {n, result: ok | fail, dest, why, minutes} when a rung is passed (1, 2:
@@ -43,8 +43,10 @@ FAIL_LIMIT = 3
 SKILL_CAP = 100               # a skill's cap in this era (no power scrolls): a rest 'until 5 more skill' past it never ends
 MASTERY_FROM = 80            # from 80 a skill rises by Mastery's daily allowance (2.0 / 1.4 / 1.0 / 0.8 a day, docs/Mastery-Layered-Evidence.md): 5 more
                              # takes days, so a failure there rests by time too (BotArchAdvR failed at 95 and waited for 100)
-DUNGEON = "Covetous"          # owner 2026-11-03: Covetous ("I ran to Covetous with no problem yesterday"); Despise's door sits in a troll lair
-DUNGEON_DOOR = (2499, 916)    # its main entrance; the nearest door from Britain, 2384,837, cannot be walked to (the dungeon tours, 2026-11-02)
+DUNGEON = "Despise"           # owner 2026-11-04: "Despise is probably the better beginner dungeon to send bots to" (its upper floor is lizardmen,
+                              # Despise.json); Covetous 2026-11-03/04 (main door 2499,916). The troll camp at Despise's door (1325,1071, Outdoors) is run past
+                              # (first_trip.trip_end_threat: a teleporter door is stepped on at a run)
+DUNGEON_DOOR = (1296, 1081)   # its one surface entrance (teleporters.json 1296,1080-1082 -> 5588,630-632)
 DUNGEON_STAY = 8
 DUNGEON_GAP = 10800
 DUNGEON_HP = 80

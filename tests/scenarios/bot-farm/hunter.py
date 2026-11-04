@@ -1907,6 +1907,8 @@ for _cls in (HunterBot, BardBot):
 for _cls in (HunterBot, BardBot):
     if "r_trip" not in _cls.RULES:
         _cls.RULES.insert(_cls.RULES.index("r_fight") + 1, "r_trip")          # first_trip: the outing waits behind fights, flights and heals
+    if "r_ride" not in _cls.RULES:
+        _cls.RULES.insert(_cls.RULES.index("r_trip") + 1, "r_ride")          # ride.py: between outings (r_trip stays right after r_fight)
 
 
 for _cls in (HunterBot, BardBot):

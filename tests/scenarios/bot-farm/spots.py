@@ -373,6 +373,13 @@ def reach_of(bot):
 def all_spots(bot):
     """This bot's spots: within REACH of home, on the surface, not in a city, their tier in the bot's tiers (cached SPOT_CACHE_S)."""
     import task_core
+    dh = (bot.facts or {}).get("dungeon_hunt") if hasattr(bot, "facts") else None
+    if dh:
+        # a dungeon trip's hunt (first_trip.trip_dungeon_hunt): that dungeon's level-1 spots only, so the core neither wanders deeper nor walks out to hunt;
+        # and none holding a heavy kind (HEAVY_UNMEASURED, heavy_by_stats): Despise's "level 1" by the grid is two floors, the lizardmen (57, upstairs from
+        # the landing) and the ettins and earth elementals below them (Despise.json)
+        return [dict(s, cell=cell_of(s["x"], s["y"])) for s in dungeon_spots() if s["side"] == dh.get("side") and s["tier"] == TIER_RUNG1
+                and not any(any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k) for k in s["kinds"])]
     cautious = (task_core.cautious(bot), task_core.rung_ready(bot))
     hit = bot.__dict__.get("_spots")
     if hit and time.time() - hit[0] < SPOT_CACHE_S and (len(hit) < 3 or hit[2] == cautious):         # a bot that runs out of heals (or restocks) gets its tiers again at once, not after ten minutes
