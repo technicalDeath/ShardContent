@@ -2285,10 +2285,20 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         for it in contents:
             if not any(w in it.name.lower() for w in worth) or any(w in it.name.lower() for w in self.LOOT_NEVER):
                 continue
+            amount = it.amount if (it.amount or 0) > 1 else None
+            if items.is_goods(it.name):
+                # goods (leather, hides, meat, feathers) only as many as fit under the limit, less the shed's margin (basics.OVERLOAD_MARGIN): the whole
+                # stack took BotFencerBR to 442 of 390, and pack_upkeep put 57 cut leather on the ground (2026-11-03 22:31). A player takes what he can carry
+                room = self.c.max_weight - getattr(self, "OVERLOAD_MARGIN", 5) - self.c.weight
+                fit = int(room // max(items.unit_weight(it.name), 0.01))
+                if fit <= 0:
+                    continue
+                if (it.amount or 1) > fit:
+                    amount = fit
             for attempt in range(4):
                 time.sleep(0.9 if attempt == 0 else 1.2)
                 self.c.events.drain()
-                self.c.get_item(it.serial, it.amount if (it.amount or 0) > 1 else None)
+                self.c.get_item(it.serial, amount)
                 time.sleep(1.0)
                 if not any("must wait" in l.lower() for l in self.read_journal()):
                     break
