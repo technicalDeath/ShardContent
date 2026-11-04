@@ -50,6 +50,7 @@ HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs
 RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
 TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
+STAY_SAVE_S = 60             # s between the stay's saves: well inside TRIP_RESUME_S
 DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
 TRIP_CASTERS = 2           # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
 PASS_TILES = 40              # tiles of the route ahead (and behind) a pass past casters is costed over: twice a spell's range (casterpass.SPELL_RANGE),
@@ -1027,6 +1028,10 @@ class FirstTrip(LadderMixin):
                 return True
         if phase == "stay":
             self.activity = f"looking around {t['dest']}"
+            if now - float(self._trip.get("saved_at") or 0) > STAY_SAVE_S:
+                # the stay saves the trip again now and then, so a restart during it resumes (trip_load: TRIP_RESUME_S): saved only on arrival, BotFenceAdvR's
+                # Trinsic stay was 10 min old at the 00:36 rollover and the trip was dropped (2026-11-04)
+                self.trip_save()
             if now >= t["stay_until"]:
                 t.update(phase="home", i=len(wps) - 1, best=1e9, best_at=now, fails=0, skips=0)
                 self.trip_save()
