@@ -40,6 +40,7 @@ POWER = {1: 25, 2: 40, 3: 50, 4: 65}
 TOWN_GAP = 2700
 TOWN_FAIL = 3600
 FAIL_LIMIT = 3
+SKILL_CAP = 100               # a skill's cap in this era (no power scrolls): a rest 'until 5 more skill' past it never ends
 DUNGEON = "Covetous"          # owner 2026-11-03: Covetous ("I ran to Covetous with no problem yesterday"); Despise's door sits in a troll lair
 DUNGEON_DOOR = (2499, 916)    # its main entrance; the nearest door from Britain, 2384,837, cannot be walked to (the dungeon tours, 2026-11-02)
 DUNGEON_STAY = 8
@@ -162,7 +163,11 @@ class LadderMixin:
             return True
         last = st.get("last_trip_end", 0)
         if fails >= FAIL_LIMIT:
-            return self.trip_power() >= st["fail_power"].get(str(rung), 0) + 5
+            need = st["fail_power"].get(str(rung), 0) + 5
+            if need <= SKILL_CAP:
+                return self.trip_power() >= need
+            # failed at the cap: no skill is left to gain, so the rest is the time one (what is left to get better is the brain). BotFenceAdvR
+            # failed Trinsic and Skara Brae at 100 before the detour (2026-11-03 00:29-02:41) and was offered no trip for 17 hours
         return now - last >= TOWN_FAIL * fails
 
     def ladder_retreat(self, home, trip):
