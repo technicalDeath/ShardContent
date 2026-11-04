@@ -339,7 +339,7 @@ class BasicsMixin:
                 kind = self.mkey(m)
             except Exception:
                 kind = ""
-            out.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(kind), getattr(m, "name", "") or ""))
+            out.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(kind), getattr(m, "name", "") or "", detour.poisons(kind)))
         self.note_casters(out)                                 # every bot's routes bend round what this one sees (live_caster_penalty)
         return out
 
@@ -539,7 +539,7 @@ class BasicsMixin:
                 here = (int(self.c.x), int(self.c.y))
                 ths = self.walk_threats()
                 if all((th.x, th.y) != (int(m.x), int(m.y)) for th in ths):
-                    ths.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(self.mkey(m)), getattr(m, "name", "") or ""))
+                    ths.append(detour.Threat(int(m.x), int(m.y), self.kind_casts(self.mkey(m)), getattr(m, "name", "") or "", detour.poisons(self.mkey(m))))
                 leg = detour.escape_leg(here, ths, walkroute.get().leg_clear, forbidden=self.detour_forbid(here, self.caster_lair_home()))
                 if leg is not None:
                     self.detour_note(here, leg)

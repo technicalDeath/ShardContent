@@ -1908,7 +1908,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             import walkroute
             ths = self.walk_threats()
             if all((th.x, th.y) != (int(threat.x), int(threat.y)) for th in ths):
-                ths.append(detour.Threat(int(threat.x), int(threat.y), self.kind_casts(self.mkey(threat)), getattr(threat, "name", "") or ""))
+                ths.append(detour.Threat(int(threat.x), int(threat.y), self.kind_casts(self.mkey(threat)), getattr(threat, "name", "") or "",
+                                         detour.poisons(self.mkey(threat))))
             here = (int(self.c.x), int(self.c.y))
             forbid = self.detour_forbid(here, self.caster_lair_home())
             if near_refuge:
@@ -2793,13 +2794,16 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     def sell_items(self, xy, words):
         """Walk to a buyer, find the vendor that opens a sell list, sell every pack item whose name has one of `words`. Returns gold earned (0 if it could not sell)."""
+        self.__dict__["_sell_unreached"] = False               # True when it returns 0 because the walk never got there (errands' sell: not a refusal)
         res = self.far_front(xy, "sell", 100, sum((i.amount or 1) for i in self.c.backpack if any(w in i.name.lower() for w in words)))
         if res:
             self.far_after(res, "sell")
+            self.__dict__["_sell_unreached"] = True
             return 0
         gold0 = self.c.gold
         res = self.c.goto(*xy).wait(timeout=100)
         if not self.travel(xy[0], xy[1], near=3):
+            self.__dict__["_sell_unreached"] = True
             return 0
         offers = []
         # the vendors the shared memory has seen buying any of these first: asking every person at a shop cluster took two and a half minutes

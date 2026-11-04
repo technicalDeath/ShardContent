@@ -222,7 +222,7 @@ class FirstTrip(LadderMixin):
             import detour
             here = (int(self.c.x), int(self.c.y))
             for m in self.threats(10):
-                th = detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+                th = detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "", detour.poisons(self.mkey(m)))
                 if detour.clearance_at(here, [th]) < 0:
                     # inside its reach (a caster's spell range + 2, a melee monster's MELEE_CLEAR): wait. Further off, a runner sets out and runs past it
                     # (trip_detour), as a player does: 'a threat near' was the first refusal in town, 72-140 times a day for BotSwordBR, BotMaceCR,
@@ -839,7 +839,7 @@ class FirstTrip(LadderMixin):
         try:
             import detour
             wr = _wr()
-            threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+            threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "", detour.poisons(self.mkey(m)))
                        for m in near if getattr(m, "x", None) is not None and getattr(m, "y", None) is not None]
             here, goal = (int(self.c.x), int(self.c.y)), (int(target[0]), int(target[1]))
             if not detour.needs_detour(here, goal, threats):
@@ -880,7 +880,7 @@ class FirstTrip(LadderMixin):
             wr = _wr()
         except Exception:
             return False
-        threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+        threats = [detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "", detour.poisons(self.mkey(m)))
                    for m in self.trip_near() if getattr(m, "x", None) is not None and getattr(m, "y", None) is not None]
         if not threats:
             self.__dict__.pop("_escape", None)                  # nothing in notice range: the escape, if any, is over
@@ -915,7 +915,9 @@ class FirstTrip(LadderMixin):
             self.log(f"first trip: {leg.kind} to {leg.to[0]},{leg.to[1]} (clearance {leg.clearance}, gain {leg.progress}) round {near}")
             self.ev("trip_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress,
                     threats=[[th.name, th.x, th.y, th.caster] for th in threats][:6])
-        self.goto_near(leg.to[0], leg.to[1], 1).wait(timeout=TRIP_HOT_SLICE)
+        walk = self.goto_near(leg.to[0], leg.to[1], 1)
+        self.trip_drink_on_run()                                # with the leg under way (trip_drink_on_run)
+        walk.wait(timeout=TRIP_HOT_SLICE)
         if esc["on"]:
             watch = threats if esc.get("hurt") else casters
             far_off = all(detour.cheb((int(self.c.x), int(self.c.y)), (th.x, th.y)) >= detour.NOTICE + 2 for th in watch) if watch else True
@@ -931,6 +933,19 @@ class FirstTrip(LadderMixin):
             t.update(i=best, best=1e9, best_at=time.time(), fails=0)
             self.trip_save()
         return True
+
+    def trip_drink_on_run(self):
+        """trip_potions with the slice's walk already under way: the client walks on while the brain drinks (Navrey's goto returns at once). Drunk before the
+        walk, a Cure stood the runner 1.4 s and a fighter with a shield 2-3 s more for the hand swap (basics.drink), and a cure, a heal and a bandage in one
+        tick 4-5 s: a scorpion seen at 11 tiles was beside BotFairSwordVR 12 s later (2026-11-03 20:39)."""
+        try:
+            drunk = self.trip_potions()
+        except Exception as e:
+            self.log(f"first trip: drinking on the run failed ({type(e).__name__}: {e})")       # the leg runs on whatever a drink did
+            return []
+        if drunk:
+            self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}")
+        return drunk
 
     def trip_potions(self):
         """On the run, as a player drinks while running: Cure when poisoned (beside an attacker too: there is no standing still to wait it out), Heal once
@@ -1054,13 +1069,13 @@ class FirstTrip(LadderMixin):
             self.activity += " (running past)"
             if hasattr(self, "sprint"):
                 self.sprint()                                   # run whatever the stamina (bot_common.sprint)
-            drunk = self.trip_potions()
-            if drunk:
-                self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}")
             slice_s = TRIP_HOT_SLICE
             if self.trip_detour(t, wps, (x, y)):
                 return True                                     # a short leg round the threats this slice; the route is rejoined after it
-        res = str(self.goto_near(x, y, REACHED).wait(timeout=slice_s))
+        walk = self.goto_near(x, y, REACHED)
+        if slice_s == TRIP_HOT_SLICE:
+            self.trip_drink_on_run()                            # with the walk under way
+        res = str(walk.wait(timeout=slice_s))
         if res.startswith("timeout") and slice_s == TRIP_HOT_SLICE:
             return True                                         # still running: the next tick checks the danger and the potions again
         if res.startswith(("nopath", "blocked")):

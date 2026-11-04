@@ -27,6 +27,7 @@ from hunt_tree import Ctx, Step, cheb
 
 UNMET_REST = 1800.0
 NOBUY_S = 1800.0
+UNREACHED_S = 300            # s a shop the walk did not reach is left out: the sell need's own gap between sales (needs: sold_task_at, 300 s)
 # what a fighter keeps in its pack, and how many (the owner, 2026-10-20: "make sure resupply adds ALL items a bot could use not just bandages"): bandages, the three
 # potions the era shows by colour (Heal yellow, Refresh red, Cure orange; the rung's price of entry is 3 Heal and 2 Refresh), and an archer's ammunition (the old
 # rule's own Bowyer trip). Each item is wanted below its LOW mark and bought up to its FULL mark; the shops are tried in order until each is met.
@@ -755,7 +756,9 @@ class Act(Step):
             now_ = time.time()
             shops = [xy for xy in shops if now_ - float(bad.get(f"{xy[0]},{xy[1]}", 0)) > NOBUY_S]
             shops.sort(key=lambda xy: -int(good.get(f"{xy[0]},{xy[1]}", 0)))
+            refused = 0
             for xy in shops[:2]:
+                b.__dict__["_sell_unreached"] = False
                 try:
                     earned = b.sell_items(xy, words)
                 except Exception as e:
@@ -768,10 +771,20 @@ class Act(Step):
                     rec = b.facts.setdefault("shop_sold", {}).setdefault(label, {})
                     rec[key] = int(rec.get(key, 0)) + 1
                     break
-                b.facts.setdefault("shop_fail", {}).setdefault(label, {})[key] = time.time()
+                if b.__dict__.get("_sell_unreached"):
+                    # the walk never got there (a far walk refused, or "N tiles short (closest reachable)"): no refusal, so the shop is left out for
+                    # UNREACHED_S only and the category is not shelved. BotMaceAdvR's two walks to the Tanner ended 66 and 15 tiles short in Britain, the
+                    # leather was shelved 30 min, and it hunted on with 228 cut leather, dropping it at the limit (2026-11-03 20:53-21:17)
+                    b.facts.setdefault("shop_fail", {}).setdefault(label, {})[key] = time.time() - NOBUY_S + UNREACHED_S
+                else:
+                    refused += 1
+                    b.facts.setdefault("shop_fail", {}).setdefault(label, {})[key] = time.time()
             else:
-                b.facts.setdefault("sell_nobuy", {})[label] = time.time()       # no shop took this category: the need is not raised for it again for NOBUY_S
-                b.log(f"errand sell: no shop took the {label} (tried {len(shops[:2])}): not again for {int(NOBUY_S / 60)} min")
+                if refused:
+                    b.facts.setdefault("sell_nobuy", {})[label] = time.time()   # a shop took none of this category: not raised again for NOBUY_S
+                    b.log(f"errand sell: no shop took the {label} (tried {len(shops[:2])}, {refused} refused): not again for {int(NOBUY_S / 60)} min")
+                else:
+                    b.log(f"errand sell: no shop for the {label} was reached (tried {len(shops[:2])}): the next sale tries again")
             if label == "gear":
                 try:
                     left = b.gear_loot()

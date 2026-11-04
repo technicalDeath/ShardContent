@@ -28,6 +28,11 @@ from typing import Callable, Iterable, List, Optional, Sequence, Tuple
 SPELL_RANGE = 10
 NOTICE = 14
 CASTER_CLEAR = SPELL_RANGE + 2            # out of spell range with one step to spare
+POISON_CLEAR = 9                          # a monster whose poison the shops' Lesser Cure cannot cure (pre-AOS 25% for Greater, 0 for Deadly and Lethal,
+                                          # LesserCurePotion.cs _oldLevelInfo; a poisoned player cannot drink a Heal potion): two of a Medium chaser's 2 s legs
+                                          # (4.4 tiles each), so a drink or a short leg still leaves one. A scorpion (Greater 80%, Deadly 20%, Scorpion.cs:57)
+                                          # took BotFairSwordVR from 71 to 0 through five Cure potions (2026-11-03 20:39-20:40)
+POISON_LEVELS = ("Greater", "Deadly", "Lethal")
 MELEE_CLEAR = 5                           # a Medium melee monster (0.45 s a tile, npc-speeds.json: orcs, trolls, scorpions, ratmen) covers 4.4 tiles in
                                           # one 2 s leg; 2 let BotFairSwordVR run into three earth elementals and a scorpion at 1 tile (99 -> 11 hp,
                                           # 2026-11-03 18:08)
@@ -45,10 +50,11 @@ class Threat:
     y: int
     caster: bool
     name: str = ""
+    poison: bool = False                  # its poison is beyond the bot's cures (poisons())
 
     @property
     def need(self) -> int:
-        return CASTER_CLEAR if self.caster else MELEE_CLEAR
+        return CASTER_CLEAR if self.caster else POISON_CLEAR if self.poison else MELEE_CLEAR
 
 
 @dataclass(frozen=True)
@@ -58,6 +64,15 @@ class Leg:
     clearance: int                        # at the leg's end: the least (distance to a threat - what that threat needs)
     progress: int                         # tiles gained toward the way on (negative: away)
     dip: int = 0                          # how much closer than now the leg comes to a threat's need on the way (0: never closer)
+
+
+def poisons(kind: str) -> bool:
+    """True for a kind whose hit poison is Greater or worse (creature_stats.json "poison", danger.stats)."""
+    try:
+        import danger
+        return str((danger.stats().get(kind) or {}).get("poison")) in POISON_LEVELS
+    except Exception:
+        return False
 
 
 def cheb(a: Point, b: Point) -> int:
