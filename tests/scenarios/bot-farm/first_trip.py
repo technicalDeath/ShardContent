@@ -49,6 +49,7 @@ TRIP_HOLD = ("r_heal", "r_cure", "r_fight", "r_avoid", "r_flee", "r_hide", "r_re
 HEAL_MISSING = 20           # a pre-AOS Heal potion restores 6-20 (HealPotion.cs MinHeal/MaxHeal): drunk on the run once 20 are missing, so none is wasted
 RUN_STAM = 0.5              # a Refresh (+25% of the maximum, RefreshPotion.cs) on the run below half stamina, where Navrey's "auto" would drop to a walk
 TRIP_PACK = 3               # this many dangers in notice range turn the trip back, whatever their kind
+TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
 DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
 TRIP_CASTERS = 2           # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
 
@@ -150,10 +151,18 @@ class FirstTrip(LadderMixin):
             else:
                 t = self._trip["trip"] = None
         if t and t.get("phase") in ("out", "stay"):
-            self.trip_abort("restart")                   # a new brain does not carry on an outing it did not start
+            age = time.time() - float(self._trip.get("saved_at") or 0)
+            if age <= TRIP_RESUME_S and not getattr(self.c, "ghost", False):
+                # a restart (a rollover, a safe restart) a moment ago: the character is where the last brain left it, so the trip goes on. Aborted,
+                # BotFairSwordVR's trips ended at Vesper itself and by the gazer pocket (2026-11-03 15:20, 13:48), each a trip lost
+                t.update(best=1e9, best_at=time.time(), fails=0, deaths0=getattr(self, "deaths", 0))
+                self.log(f"first trip: resumed to {t.get('dest')} after a restart ({age:.0f} s since the last brain saved it)")
+            else:
+                self.trip_abort("restart")               # an old outing (the brain was down a while) is not carried on
         return self._trip
 
     def trip_save(self):
+        self._trip["saved_at"] = time.time()            # (trip_load resumes an outing saved within TRIP_RESUME_S)
         try:
             with open(self.trip_path() + ".tmp", "w", encoding="utf-8") as f:
                 json.dump(self._trip, f)
@@ -732,8 +741,8 @@ class FirstTrip(LadderMixin):
         that still gains (trip_way_on). One caster is run past at a distance (trip_detour), as a player at full health with potions runs past it
         (owner, 2026-11-03): BotHealAdvR turned back at full health for one gargoyle at 8 tiles, then for three orcs it could have outrun."""
         near = self.trip_near()
-        if near and self.hp_pct() < 50:
-            return f"hurt with {near[0].name} near"
+        if near and self.hp_pct() < 50 and not self.trip_mend_left():
+            return f"hurt with {near[0].name} near"            # with a heal left trip_detour runs out of reach and the potions mend on the run
         casters = [m for m in near if self.trip_caster(self.mkey(m))]
         why = None
         if len(casters) >= TRIP_CASTERS:
@@ -743,6 +752,18 @@ class FirstTrip(LadderMixin):
         if why and target is not None and self.trip_way_on(near, target):
             return None                                            # a clear leg on: run past them (trip_detour runs it)
         return why
+
+    def trip_mend_left(self):
+        """A heal still in the pack: a Heal potion, or a bandage (put on while running, bot_common.bandage_start)."""
+        try:
+            if self.potion("heal") is not None:
+                return True
+        except Exception:
+            pass
+        try:
+            return hasattr(self, "bandages") and self.bandages() > 0
+        except Exception:
+            return False
 
     def trip_way_on(self, near, target):
         """True when the way on to target is clear of every threat's reach, or the detour has a leg that stays out of it and still gains."""
@@ -800,10 +821,15 @@ class FirstTrip(LadderMixin):
         here = (int(self.c.x), int(self.c.y))
         casters = [th for th in threats if th.caster]
         esc = self.__dict__.setdefault("_escape", {"on": False, "clear": 0})
+        hurt = self.hp_pct() < 60
         if casters and detour.clearance_at(here, casters) < 0:
-            esc.update(on=True, clear=0)                        # a caster inside its reach: run from it, not along the route past it
-        elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in casters):
-            esc.update(on=False, clear=0)                       # every caster already past its notice range: the escape is over
+            esc.update(on=True, clear=0, hurt=False)            # a caster inside its reach: run from it, not along the route past it
+        elif hurt and detour.clearance_at(here, threats) < 0:
+            esc.update(on=True, clear=0, hurt=True)             # hurt with a monster in reach: out of every reach first, mending on the run
+        elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in (threats if esc.get("hurt") else casters)):
+            esc.update(on=False, clear=0)                       # every one it ran from already past its notice range: the escape is over
+        elif esc["on"] and esc.get("hurt") and not hurt and not casters and detour.clearance_at(here, threats) >= 0:
+            esc.update(on=False, clear=0)                       # mended and out of reach: back to the route
         forbid = self.detour_forbid(here, self.trip_lair_home()) if hasattr(self, "detour_forbid") else self.trip_lair_home()
         if esc["on"]:
             leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
@@ -822,7 +848,8 @@ class FirstTrip(LadderMixin):
                     threats=[[th.name, th.x, th.y, th.caster] for th in threats][:6])
         self.goto_near(leg.to[0], leg.to[1], 1).wait(timeout=TRIP_HOT_SLICE)
         if esc["on"]:
-            far_off = all(detour.cheb((int(self.c.x), int(self.c.y)), (th.x, th.y)) >= detour.NOTICE + 2 for th in casters) if casters else True
+            watch = threats if esc.get("hurt") else casters
+            far_off = all(detour.cheb((int(self.c.x), int(self.c.y)), (th.x, th.y)) >= detour.NOTICE + 2 for th in watch) if watch else True
             esc["clear"] = esc["clear"] + 1 if far_off else 0
             if esc["clear"] >= 2:
                 esc.update(on=False, clear=0)                   # out of their notice two legs running: back to the route
@@ -889,6 +916,12 @@ class FirstTrip(LadderMixin):
                 # risk were judged standing (a melee monster beside a standing bot), so on the run only "hurt", "overweight" and "too slow" stand from them
                 turn = self.trip_turn_back(target=wps[min(t["i"], len(wps) - 1)])
                 why = f"run: {turn}" if turn else (why if why in ("hurt", "overweight", "too slow") else None)
+            if why == "hurt" and self.trip_run_on() and self.trip_mend_left():
+                # hurt with a heal left: mend on the way (bandage and potions on the run, r_heal standing when nothing is near), out of every
+                # monster's reach first (trip_detour's hurt escape), as a player does; the walk home ran the same gauntlet back. BotFairSwordVR turned
+                # back from Cove at 2035,845 with 5 drinks gone (18:07) and BotWarAdvR from Trinsic at 1734,2599 (17:02), both with potions left (owner,
+                # 2026-11-03: "bandage, use potions, and run past ... not fall back to assuming its too dangerous")
+                why = None
             if why and phase == "stay" and why != "hurt" and not why.startswith("run: "):
                 # there already: a danger walking in ends the visit, not the trip (BotWarAdvR, in Minoc at 2499,658, aborted for an ogre that walked
                 # up, and the town it had reached counted as a failed rung, 2026-11-03 13:18)
