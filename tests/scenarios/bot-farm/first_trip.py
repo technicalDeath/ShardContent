@@ -52,6 +52,8 @@ TRIP_PACK = 3               # this many dangers in notice range turn the trip ba
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
 DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
 TRIP_CASTERS = 2           # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
+PASS_TILES = 40              # tiles of the route ahead (and behind) a pass past casters is costed over: twice a spell's range (casterpass.SPELL_RANGE),
+                             # in and out of the reach of a caster beside the road
 
 
 def cheb(ax, ay, bx, by):
@@ -735,7 +737,7 @@ class FirstTrip(LadderMixin):
             dex = 50
         return 9.4 + 0.6 * (120 - max(0, min(dex, 120))) / 10
 
-    def trip_turn_back(self, target=None):
+    def trip_turn_back(self, target=None, ahead=None, behind=None):
         """Why a running trip turns back, else None: under half health with a monster near; or TRIP_CASTERS casters or breathers in notice range at
         once, or a pack (TRIP_PACK), when the detour finds no clear way on toward target (the next route point): a leg out of every threat's reach
         that still gains (trip_way_on). One caster is run past at a distance (trip_detour), as a player at full health with potions runs past it
@@ -744,14 +746,69 @@ class FirstTrip(LadderMixin):
         if near and self.hp_pct() < 50 and not self.trip_mend_left():
             return f"hurt with {near[0].name} near"            # with a heal left trip_detour runs out of reach and the potions mend on the run
         casters = [m for m in near if self.trip_caster(self.mkey(m))]
+        try:
+            import casterpass
+            # a reaper or a corpser never moves (DisallowAllMoves): past its reach it is no member of a pack that could box the runner in
+            pack = [m for m in near if not (self.mkey(m) in casterpass.IMMOBILE and (getattr(m, "distance", 9) or 9) > 2)]
+        except Exception:
+            pack = near
         why = None
         if len(casters) >= TRIP_CASTERS:
             why = f"casters near: {', '.join(sorted({m.name for m in casters}))[:60]}"
-        elif len(near) >= TRIP_PACK:
-            why = f"pack near: {len(near)} ({', '.join(sorted({m.name for m in near}))[:60]})"
+        elif len(pack) >= TRIP_PACK:
+            why = f"pack near: {len(pack)} ({', '.join(sorted({m.name for m in pack}))[:60]})"
         if why and target is not None and self.trip_way_on(near, target):
             return None                                            # a clear leg on: run past them (trip_detour runs it)
+        if why and why.startswith("casters") and ahead and self.trip_pass_ok(casters, ahead, behind or []):
+            return None                                            # the pass is affordable, or cheaper than turning back (casterpass)
         return why
+
+    def trip_route_slice(self, wps, i, step, tiles=PASS_TILES):
+        """The route's points from waypoint i on in the direction step, until they reach `tiles` tiles of walk (the costed pass, casterpass)."""
+        out, walked, prev = [], 0, (int(self.c.x), int(self.c.y))
+        while 0 <= i < len(wps) and walked < tiles:
+            p = (int(wps[i][0]), int(wps[i][1]))
+            walked += cheb(prev[0], prev[1], p[0], p[1])
+            out.append(p)
+            prev = p
+            i += step
+        return out
+
+    def trip_pass_ok(self, casters, ahead, behind):
+        """True when running on past these casters is affordable (casterpass.affordable: the expected damage, with the Heal potions drinkable on the way,
+        leaves the largest of their spells in hand) or costs no more than turning back along the route behind. A caster not in the stats table cannot
+        be costed: no verdict (the old rule stands). BotFairArcherVR turned back from Skara Brae for two reapers at 9 and 12 tiles at 1035,1983 and ran
+        home through the same reach (2026-11-03 20:40); reapers never move."""
+        try:
+            import casterpass
+            import danger
+            table = danger.stats()
+            here = (int(self.c.x), int(self.c.y))
+            cs = []
+            for m in casters:
+                e = table.get(self.mkey(m))
+                if not e or getattr(m, "x", None) is None:
+                    return False
+                cs.append((self.mkey(m), e, (int(m.x), int(m.y))))
+            st = self.c.state or {}
+            stats = tuple(float(st.get(k) or 50) for k in ("str", "dex", "int"))
+            rs = float(self.skill_values.get("Resisting Spells", 0.0) or 0.0) if hasattr(self, "skill_values") else 0.0
+            on = casterpass.pass_damage(casterpass.dense([here] + list(ahead)), cs, rs, stats)
+            # no route behind: the trip has only just set out, and turning back costs nothing
+            back = casterpass.pass_damage(casterpass.dense([here] + list(behind)), cs, rs, stats) if behind else (0.0, 0.0, 0.0)
+            pots = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
+            ok = casterpass.affordable(self.c.hp, pots, *on) or on[0] <= back[0]
+            now = time.time()
+            if now - self.__dict__.get("_pass_logged", 0) > 10:
+                self.__dict__["_pass_logged"] = now
+                self.log(f"first trip: passing {len(cs)} casters costs ~{on[0]:.0f} hp in {on[1]:.0f} s (back ~{back[0]:.0f}), hp {self.c.hp}, "
+                         f"{pots} Heal potions, largest spell {on[2]:.0f}: {'go on' if ok else 'turn back'}")
+                self.ev("trip_pass", on=round(on[0], 1), back=round(back[0], 1), secs=round(on[1], 1), top=round(on[2], 1), hp=self.c.hp, pots=pots,
+                        go=ok, casters=[c[0] for c in cs])
+            return ok
+        except Exception as e:
+            self.log(f"first trip: pass cost failed ({type(e).__name__}: {e})")
+            return False
 
     def trip_mend_left(self):
         """A heal still in the pack: a Heal potion, or a bandage (put on while running, bot_common.bandage_start)."""
@@ -914,7 +971,8 @@ class FirstTrip(LadderMixin):
             if self.trip_run_on() and phase == "out":
                 # run past what cannot catch a runner; turn back for a caster, a pack, or half health with something near. The kind lists and the learned
                 # risk were judged standing (a melee monster beside a standing bot), so on the run only "hurt", "overweight" and "too slow" stand from them
-                turn = self.trip_turn_back(target=wps[min(t["i"], len(wps) - 1)])
+                turn = self.trip_turn_back(target=wps[min(t["i"], len(wps) - 1)], ahead=self.trip_route_slice(wps, t["i"], 1),
+                                           behind=self.trip_route_slice(wps, t["i"] - 1, -1))
                 why = f"run: {turn}" if turn else (why if why in ("hurt", "overweight", "too slow") else None)
             if why == "hurt" and self.trip_run_on() and self.trip_mend_left():
                 # hurt with a heal left: mend on the way (bandage and potions on the run, r_heal standing when nothing is near), out of every
