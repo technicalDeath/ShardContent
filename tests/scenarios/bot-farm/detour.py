@@ -40,6 +40,9 @@ MELEE_CLEAR = 5                           # a Medium melee monster (0.45 s a til
                                           # one 2 s leg; 2 let BotFairSwordVR run into three earth elementals and a scorpion at 1 tile (99 -> 11 hp,
                                           # 2026-11-03 18:08)
 STEP = 10
+PACK = 3                                  # this many in view with one already in reach: escape out of every reach, not a leg on past them (first_trip.TRIP_PACK).
+                                          # BotFairArcherVR, at full health, took a 'detour ... clearance 1, gain 9' with a ratman beside it and three more in view, ran
+                                          # into three giant spiders and the ratmen at 1591,2586, was boxed in and died from 92 in 24 s (2026-11-04 02:16:53-02:17:34)
 ANGLES = (0, 20, -20, 40, -40, 60, -60, 90, -90, 120, -120, 150, -150, 180)
 CLEAR_CAP = 8                             # clearance beyond this many tiles counts the same: past it, progress decides
 SAMPLE = 2                                # tiles between the points of a leg its clearance is measured at

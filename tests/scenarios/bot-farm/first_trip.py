@@ -904,6 +904,8 @@ class FirstTrip(LadderMixin):
             esc.update(on=True, clear=0, hurt=False)            # a caster inside its reach: run from it, not along the route past it
         elif hurt and detour.clearance_at(here, threats) < 0:
             esc.update(on=True, clear=0, hurt=True)             # hurt with a monster in reach: out of every reach first, mending on the run
+        elif len(threats) >= detour.PACK and detour.clearance_at(here, threats) < 0:
+            esc.update(on=True, clear=0, hurt=True)             # a pack in view and one of it in reach: out of every reach first (detour.PACK), whatever the health
         elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in (threats if esc.get("hurt") else casters)):
             esc.update(on=False, clear=0)                       # every one it ran from already past its notice range: the escape is over
         elif esc["on"] and esc.get("hurt") and not hurt and not casters and detour.clearance_at(here, threats) >= 0:
