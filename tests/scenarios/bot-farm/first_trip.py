@@ -1075,9 +1075,34 @@ class FirstTrip(RideMixin, LadderMixin):
         self.__dict__["_left_inside_at"] = now
         self.activity = f"leaving {side}"
         self.facts.pop("dungeon_hunt", None)
+        self.trip_stairs_to_exit(side)
         ok = self.tele_to_side("surface")
         self.log(f"first trip: no trip under way inside {side}: leaving for the surface ({'out' if ok else 'not out yet'})")
         self.ev("dungeon_left", side=side, ok=bool(ok))
+        return True
+
+    def trip_stairs_to_exit(self, side):
+        """The inner stairs to the level of the exit tele_route picks (spots.inner_hops), each taken with tele_hop: tele_route knows only sides, so from
+        another level it walks at an exit that no walk reaches. BotHealAdvR, on Despise's lizardman floor (component 5) with the exits in the landing
+        hall (component 1, the stair at 5504,569 between), tried 5588,630-632 every two minutes for 50 minutes (2026-11-04 13:28-14:13)."""
+        try:
+            import spots
+            route = self.tele_route((int(self.c.x), int(self.c.y)), "surface")
+            if not route:
+                return False
+            src = (int(route[0]["src"][0]), int(route[0]["src"][1]))
+            hops = spots.inner_hops(side, (int(self.c.x), int(self.c.y)), src) or []
+        except Exception as e:
+            self.log(f"first trip: the stairs to the way out: {type(e).__name__}: {e}")
+            return False
+        for h in hops:
+            self.tele_allow(side)
+            self.tele_hop(h)
+            dst = (int(h["dst"][0]), int(h["dst"][1]))
+            if cheb(self.c.x, self.c.y, dst[0], dst[1]) > max(2, cheb(h["src"][0], h["src"][1], dst[0], dst[1]) // 2):
+                self.log(f"first trip: the stair at {h['src'][0]},{h['src'][1]} did not take the bot (at {self.c.x},{self.c.y})")
+                return False
+            self.log(f"first trip: up or down the stair at {h['src'][0]},{h['src'][1]} toward the way out of {side}")
         return True
 
     def trip_home_from(self, trip, wps):
