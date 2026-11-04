@@ -2060,6 +2060,18 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         """How long a bandage on oneself takes, pre-AOS: 9.4 + 0.6 x (120 - Dex) / 10 seconds (UOContent Items/Skill Items/Misc/Bandage.cs, BandageContext.BeginHeal)."""
         return 9.4 + 0.6 * (120 - max(0, min(120, int(dex or 0)))) / 10.0
 
+    def bandage_useless(self):
+        """True while poisoned without Healing and Anatomy 60: a bandage on a poisoned patient only tries to cure, and below 60/60 it fails outright, no
+        cure and no heal (Bandage.cs BandageContext.EndHeal: checkSkills = healing >= 60.0 && anatomy >= 60.0). BotFairSwordVR (Healing 55.9) put six on
+        while poisoned crossing the pass (2026-11-04 01:05-01:07), each one also blocking a useful bandage for its 9-12 s."""
+        try:
+            if not getattr(self.c, "poisoned", False):
+                return False
+            sv = getattr(self, "skill_values", {}) or {}
+            return not (float(sv.get("Healing", 0) or 0) >= 60.0 and float(sv.get("Anatomy", 0) or 0) >= 60.0)
+        except Exception:
+            return False
+
     def bandage_start(self, why=""):
         """Put a bandage on oneself and go on at once: walking or running does not stop a bandage on oneself (BandageContext checks only the range to
         the patient, and one is always in range of oneself; a hit makes the fingers slip, which only lessens the heal). bandage_self waits for the
@@ -2070,8 +2082,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             b = self.c.find("bandage")
         except Exception:
             return False
-        if not b:
-            return False
+        if not b or self.bandage_useless():
+            return False                                    # (poisoned below 60/60: the Cure potion's business)
         secs = self.bandage_seconds((self.c.state or {}).get("dex"))
         if time.time() - self.facts.get("bandage_at", 0) < secs + 1:
             return False                                    # one is on
@@ -2088,8 +2100,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         (BandageContext.BeginHeal stops the old context), so it never starts another inside that time (the Watcher, 2026-10-29: the old wait listened for
         BANDAGE_DONE events the farm's client never sends, gave up at 12 s, and 93 of 105 bandages were 'no answer', each one restarting the clock)."""
         b = self.c.find("bandage")
-        if not b or self.hp_pct() > 80:
-            return False
+        if not b or self.hp_pct() > 80 or self.bandage_useless():
+            return False                                    # (bandage_useless: poisoned below 60/60, it neither cures nor heals)
         secs = self.bandage_seconds((self.c.state or {}).get("dex"))
         if time.time() - self.facts.get("bandage_at", 0) < secs + 1:
             time.sleep(1.0)
