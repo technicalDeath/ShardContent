@@ -26,7 +26,8 @@ from __future__ import annotations
 import time
 
 RIDE_NAMES = ("a horse", "a ridable llama", "a desert ostard", "a forest ostard", "a frenzied ostard")    # BaseMount kinds of the era (Horse.cs, RidableLlama.cs, *Ostard.cs)
-HORSE_KEY = "=a horse"           # the shop line exactly ("a pack horse" is a pack animal, not a mount)
+HORSE_KEY = "=horse [live]"      # the shop line exactly: Navrey names a vendor's animal by its body ("Horse [live]", uo-buy-items); "Pack Horse [live]" is no mount.
+                                 # "=a horse" matched nothing: BotWarAdvR stood at the Animal Trainer and bought none (2026-11-04 10:17)
 HORSE_PRICE = 550                # SBAnimalTrainer.cs:17
 RIDE_RESERVE = 500               # gold kept after the purchase: ladder.DUNGEON_WORTH, so a horse never holds back the dungeon trip it is for
 MOUNT_RUN_S = 0.1                # Movement.cs runMount: seconds a tile mounted, running (casterpass.RUN_S on foot)
