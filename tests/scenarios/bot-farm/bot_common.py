@@ -591,6 +591,14 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except TypeError:
             return self.c.goto(x, y)
 
+    def tele_entries_near(self, x, y, r=2):
+        """{(x, y)} of teleporter entries within r tiles (the gazetteer's transitions, both ways)."""
+        try:
+            import gazetteer
+            return {(int(t["src"][0]), int(t["src"][1])) for t in gazetteer.get().trans if abs(int(t["src"][0]) - x) <= r and abs(int(t["src"][1]) - y) <= r}
+        except Exception:
+            return set()
+
     def step_out(self):
         """One step in the first direction that moves the character; at most once every 20 seconds."""
         if time.time() - self.facts.get("stepped_out_at", 0) < 20:
@@ -608,6 +616,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         except Exception:
             full, bodies = True, set()
         dirs = [d for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw") if full or (x0 + STEP[d][0], y0 + STEP[d][1]) not in bodies]
+        doors = self.tele_entries_near(x0, y0)
+        if doors:
+            # never onto a teleporter's entry: a step out from a dungeon door's arrival tile (Despise's 1296,1080, itself an entry, teleporters.json) went
+            # south onto 1296,1081 and back into the dungeon, four jumps in 40 s and a trip ended "stranded" (BotWarAdvR, 2026-11-04 14:32). The steps
+            # away from the entries come first
+            dirs = sorted([d for d in dirs if (x0 + STEP[d][0], y0 + STEP[d][1]) not in doors],
+                          key=lambda d: -min(max(abs(x0 + STEP[d][0] - ex), abs(y0 + STEP[d][1] - ey)) for ex, ey in doors))
         if not dirs:
             self.log(f"no path from {x0},{y0}: boxed in by {len(bodies)} mobiles at stamina {self.c.stamina}/{mx} (a step onto one needs full stamina)")
             self.facts["boxed_at"] = time.time()          # no step open at all: r_flee fights at once, as after "no step in any direction" (BotFencerBR, boxed
