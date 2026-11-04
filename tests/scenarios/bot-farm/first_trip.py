@@ -52,6 +52,8 @@ TRIP_PACK = 3               # this many dangers in notice range turn the trip ba
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
 STAY_SAVE_S = 60             # s between the stay's saves: well inside TRIP_RESUME_S
 DUNGEON_PURSE = 50          # gold a dungeon trip may carry: visit_bank puts in only what is over its reserve + 50
+ESCAPE_HOLD_N = 4            # escapes within ESCAPE_HOLD_S on the way out that turn a trip back: BotArchAdvR ran 15 escape and detour legs in 2 minutes
+ESCAPE_HOLD_S = 60.0         # in a camp astride the Trinsic road before it died (2026-11-04 04:06-04:08); a clean pass of a pocket takes one or two
 TRIP_CASTERS = 2           # this many casters in notice range at once turn the trip back; one is run past out of its spell range (detour.py)
 PASS_TILES = 40              # tiles of the route ahead (and behind) a pass past casters is costed over: twice a spell's range (casterpass.SPELL_RANGE),
                              # in and out of the reach of a caster beside the road
@@ -928,14 +930,23 @@ class FirstTrip(LadderMixin):
         elif hurt and detour.clearance_at(here, threats) < 0:
             esc.update(on=True, clear=0, hurt=True)             # hurt with a monster in reach: out of every reach first, mending on the run
         elif len(threats) >= detour.PACK and detour.clearance_at(here, threats) < 0:
-            esc.update(on=True, clear=0, hurt=True)             # a pack in view and one of it in reach: out of every reach first (detour.PACK), whatever the health
+            esc.update(on=True, clear=0, hurt=True, pack=True)  # a pack in view and one of it in reach: out of every reach first (detour.PACK), whatever the health
         elif esc["on"] and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in (threats if esc.get("hurt") else casters)):
             esc.update(on=False, clear=0)                       # every one it ran from already past its notice range: the escape is over
-        elif esc["on"] and esc.get("hurt") and not hurt and not casters and detour.clearance_at(here, threats) >= 0:
-            esc.update(on=False, clear=0)                       # mended and out of reach: back to the route
+        elif esc["on"] and esc.get("hurt") and not esc.get("pack") and not hurt and not casters and detour.clearance_at(here, threats) >= 0:
+            esc.update(on=False, clear=0)                       # mended and out of reach: back to the route (a pack's escape runs on past its notice:
+                                                                # ended at its reach, the route led back into the chasing pack, escape after escape, and
+                                                                # BotArchAdvR died in a ratman and giant-spider camp by the Trinsic road, 2026-11-04 04:06-04:08)
         forbid = self.detour_forbid(here, self.trip_lair_home()) if hasattr(self, "detour_forbid") else self.trip_lair_home()
         if esc["on"]:
             leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
+            if leg is not None and t.get("phase") == "out":
+                held = [x for x in self.__dict__.get("_escapes_at", []) if time.time() - x < ESCAPE_HOLD_S] + [time.time()]
+                self.__dict__["_escapes_at"] = held
+                if len(held) >= ESCAPE_HOLD_N:
+                    # escape after escape on the way out: monsters hold the road, so the trip turns back (to be walked home round them by these legs)
+                    self.__dict__["_escapes_at"] = []
+                    self.trip_abort(f"run: the way is held ({len(held)} escapes in {int(ESCAPE_HOLD_S)} s)")
         else:
             leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=forbid)
         if leg is None:

@@ -377,8 +377,8 @@ class BasicsMixin:
             esc.update(on=True, pack=False)
         elif len(threats) >= detour.PACK and detour.clearance_at(here, threats) < 0:
             esc.update(on=True, pack=True)                     # a pack in view and one of it in reach: out of every reach first (detour.PACK)
-        elif esc["on"] and esc.get("pack") and detour.clearance_at(here, threats) >= 0:
-            esc.update(on=False, pack=False)                   # out of every reach: back to the walk
+        elif esc["on"] and esc.get("pack") and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in threats):
+            esc.update(on=False, pack=False)                   # past every one's notice: back to the walk (at its reach, the walk led back in)
         elif esc["on"] and not esc.get("pack") and all(detour.cheb(here, (th.x, th.y)) >= detour.NOTICE + 2 for th in casters):
             esc["on"] = False
         forbid = self.detour_forbid(here, self.caster_lair_home())
