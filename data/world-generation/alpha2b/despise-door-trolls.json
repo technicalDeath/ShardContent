@@ -1,0 +1,26 @@
+[
+  {
+    "$type": "Spawner",
+    "guid": "409e129c-f95e-4a05-aff8-e2d577aede77",
+    "name": "Spawner (213)",
+    "location": [
+      1325,
+      1071,
+      0
+    ],
+    "map": "Felucca",
+    "count": 5,
+    "minDelay": "01:00:00",
+    "maxDelay": "01:00:00",
+    "team": 0,
+    "homeRange": 30,
+    "walkingRange": 30,
+    "entries": [
+      {
+        "name": "Troll",
+        "maxCount": 5,
+        "probability": 100
+      }
+    ]
+  }
+]

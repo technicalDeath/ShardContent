@@ -162,3 +162,27 @@ Each camp is Troll 1, Ettin 1, Ogre 1, with a count of 2 or 3, so it holds at mo
 - The file is in the dev distribution's data (backup `.bak-20261103-before-ettins`).
 - The dev world itself still has the old camps. When the dev server next runs, it needs `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` after a Saves snapshot.
 - Dev can't run while the farm holds port 2593.
+
+## Fewer trolls at Despise's door, 2026-11-04
+
+**The owner's ruling:** "Halve the trolls", for the troll camp at Despise's door. The same morning he made Despise the bots' beginner dungeon again ("Despise is probably the better beginner dungeon to send bots to").
+
+**What was there.** One stock spawner, `Outdoors.json` Spawner (213) at 1325,1071: 10 trolls, home range 30, 29 tiles from the door at 1296,1081. It is the only spawner within 45 tiles of the door. Two bots met it there:
+- BotHealAdvR's first Despise trip (2026-11-02) was boxed in by seven trolls.
+- BotWarAdvR, on foot (2026-11-04 10:44-10:56), took three escapes on the way in and was boxed in by four trolls on the way out. Its lowest was 35/90.
+
+**The change.** `data/world-generation/alpha2b/despise-door-trolls.json` holds one spawner:
+- It has the stock spawner's guid (`409e129c-f95e-4a05-aff8-e2d577aede77`) and place, so the generator's rule (one spawner per guid and per place, later files win) replaces the stock one.
+- Its count and the Troll entry's maxCount are both 5. Everything else is unchanged.
+- It is listed in `customSpawnerFiles` before `cove-spawn-areas.json`.
+- `tests/DespiseDoorTrollsTests.cs` pins it: the guid, the place, the count, and that no other custom file takes them. With the Cove, Greater Britain, beginner and world-generation tests, 37 pass.
+
+**Farm world, 15:11:**
+1. Saves snapshot: `work/save-snapshots/farm-saves-20261104-151006-before-despise-trolls`.
+2. The file copied into `work/hosts/farm`, and its manifest line added (backup `.bak-20261104-before-despise-trolls`).
+3. `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` added the camp and replaced the stale one. The old camp's trolls went with it (`BaseSpawner.OnDelete` removes its spawns).
+4. The audit passed: 1,744 spawners.
+
+**Dev world:**
+- The file and the manifest line are in the dev distribution's data (backup `.bak-20261104-before-despise-trolls`).
+- The dev world itself still has the 10-troll camp. When the dev server next runs, it needs `[Alpha2bWorldGen addspawners CONFIRM-UOR-FELUCCA` after a Saves snapshot.
