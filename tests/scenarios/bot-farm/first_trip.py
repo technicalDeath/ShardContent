@@ -939,7 +939,7 @@ class FirstTrip(LadderMixin):
                                                                 # BotArchAdvR died in a ratman and giant-spider camp by the Trinsic road, 2026-11-04 04:06-04:08)
         forbid = self.detour_forbid(here, self.trip_lair_home()) if hasattr(self, "detour_forbid") else self.trip_lair_home()
         if esc["on"]:
-            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
+            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid, fixed=fixed)
             if leg is not None and t.get("phase") == "out":
                 held = [x for x in self.__dict__.get("_escapes_at", []) if time.time() - x < ESCAPE_HOLD_S] + [time.time()]
                 self.__dict__["_escapes_at"] = held

@@ -383,7 +383,13 @@ class BasicsMixin:
             esc["on"] = False
         forbid = self.detour_forbid(here, self.caster_lair_home())
         if esc["on"]:
-            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid)
+            try:
+                import casterpass
+                fixed = {(int(m.x), int(m.y)) for m in (self.dangers(detour.NOTICE) if hasattr(self, "dangers") else [])
+                         if getattr(m, "x", None) is not None and self.mkey(m) in casterpass.IMMOBILE}
+            except Exception:
+                fixed = set()
+            leg = detour.escape_leg(here, threats, wr.leg_clear, forbidden=forbid, fixed=fixed)
         else:
             leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=forbid)
         if leg is not None:

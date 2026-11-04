@@ -167,12 +167,16 @@ def plan_leg(here: Point, goal: Point, threats: Sequence[Threat], walkable_leg: 
 
 
 def escape_leg(here: Point, threats: Sequence[Threat], walkable_leg: Callable[[Point, Point], bool], prefer: Optional[Point] = None,
-               forbidden: Optional[Callable[[Point], bool]] = None) -> Optional[Leg]:
+               forbidden: Optional[Callable[[Point], bool]] = None, fixed: Optional[set] = None) -> Optional[Leg]:
     """The fastest way out of reach: the fan round the direction away from the threats (their centre, casters counted twice), scored by clearance
     alone; prefer (a refuge, the way home) breaks ties. None when no leg is walkable."""
     if not threats:
         return None
-    w = [(t, 2 if t.caster else 1) for t in threats]
+    # the way out is away from what can follow: a monster that never moves (fixed, casterpass.IMMOBILE) steers it only while the bot is inside its
+    # reach. Two reapers to the north pushed BotFairArcherVR's escapes south, leg after leg, into a giant-spider camp (2026-11-04 04:50-04:51); the
+    # fixed ones still count in every leg's clearance below
+    steer = [t for t in threats if not fixed or (t.x, t.y) not in fixed or clearance_at(here, [t]) < 0] or list(threats)
+    w = [(t, 2 if t.caster else 1) for t in steer]
     cx = sum(t.x * k for t, k in w) / sum(k for _, k in w)
     cy = sum(t.y * k for t, k in w) / sum(k for _, k in w)
     away = heading_to((round(cx), round(cy)), here) if (round(cx), round(cy)) != here else (1.0, 0.0)
