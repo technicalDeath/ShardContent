@@ -3187,6 +3187,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         return skill >= self.CRITTER_SKILL
 
     def observe(self):
+        self.pack_upkeep()                                   # the pack seen, and an overload shed (basics.BasicsMixin)
         self.sprint_check()
         if self.c.ghost and not self.facts.get("ghost_said"):
             self.facts["ghost_said"] = self.chatter("ghost", cooldown=0)

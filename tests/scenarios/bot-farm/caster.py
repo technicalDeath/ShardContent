@@ -780,6 +780,7 @@ class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWor
 
     def observe(self):
         self.activity = self.last_rule or ""
+        self.pack_upkeep()                                   # the pack seen, and an overload shed (basics.BasicsMixin)
         self.sprint_check()
         self.track_episode()
         if time.time() - self.last_presence > 60 and not self.c.ghost:

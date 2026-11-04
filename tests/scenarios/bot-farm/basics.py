@@ -390,6 +390,61 @@ class BasicsMixin:
             self.ev("walk_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress)
         return leg
 
+    SHED_GOODS = ("cut up leather", "hides", "pile of hide", "raw ", "ribs", "feather", "fish steak", "bacon", "ham")    # loot that may go on the ground
+    SHED_NEVER = ("tunic", "sleeves", "gloves", "leggings", "gorget", "cap", "skirt", "bustier", "armor", "armour", "shield", "helm", "boots")  # worn gear
+    OVERLOAD_MARGIN = 5             # stones under the carry limit an overloaded bot sheds down to
+
+    def pack_upkeep(self):
+        """Every tick, cheaply (both checks rate-limited):
+        - a pack the client has not opened since login is opened: until then the client lists only part of it, and the bot banks and sells only what it
+          sees. BotBardBR, after the farm server's restart, saw 4 of 48 items, carried 150 cut leather and 38 ribs it never knew of, and stood 2 h
+          over its limit at the Britain bank (370 of 359, every step "carrying too much weight") (2026-11-03 16:47-19:13);
+        - over the carry limit, which stops every step: loot goods (SHED_GOODS: leather, hides, meat, feathers) go on the ground, the cheapest a shop
+          pays for first, until OVERLOAD_MARGIN under it, as a player drops meat to move again. Gear, kit, gold and tools are never shed here."""
+        if self.c.ghost:
+            return
+        now = time.time()
+        st = self.c.state or {}
+        if not st.get("backpackOpened") and now - self.__dict__.get("_pack_open_at", 0) > 60:
+            self.__dict__["_pack_open_at"] = now
+            bp = st.get("backpackID")
+            if bp:
+                try:
+                    self.c.use(bp)
+                    self.log("opened the backpack: the client had not listed it since login")
+                except Exception:
+                    pass
+            return
+        try:
+            weight, limit = int(self.c.weight or 0), int(self.c.max_weight or 0)
+        except Exception:
+            return
+        if not limit or weight <= limit or now - self.__dict__.get("_overload_at", 0) < 20:
+            return
+        self.__dict__["_overload_at"] = now
+        goods = [i for i in self.c.backpack if any(w in (i.name or "").lower() for w in self.SHED_GOODS)
+                 and not any(w in (i.name or "").lower() for w in self.SHED_NEVER)]
+
+        def price(i):
+            try:
+                return max([p for p, xy, item in self.mem.vendor_buying((i.name or "").lower()) if p > 0] or [0])
+            except Exception:
+                return 0
+        def unit(i):
+            return 0.1 if "feather" in (i.name or "").lower() else 1.0     # a feather 0.1 stone, leather, hides and meat 1 (their DefaultWeight)
+        goods.sort(key=lambda i: (price(i), -unit(i)))
+        before, shed = weight, []
+        for it in goods:
+            over = int(self.c.weight or 0) - (limit - self.OVERLOAD_MARGIN)
+            if over <= 0:
+                break
+            n = min(int(it.amount or 1), int(-(-over // unit(it))))         # only what takes it under: BotBardBR put down all 150 leather for 16 over
+            if self.drop_to_ground(it, amount=n):
+                shed.append(f"{it.name} x{n}")
+        if shed:
+            self.log(f"overloaded ({before}/{limit}, every step refused): put down {', '.join(shed)[:120]} -> {self.c.weight}/{limit}")
+            self.ev("shed", how="overload", items=shed[:8], before=before, after=int(self.c.weight or 0), limit=limit)
+
     def detour_note(self, here, leg):
         """Remember the leg just chosen, for detour_forbid's look at how the walk went."""
         self.__dict__["_detour_last"] = (tuple(here), tuple(leg.to), time.time())
