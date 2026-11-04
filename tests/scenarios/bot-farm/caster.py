@@ -231,6 +231,7 @@ class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWor
     bank_overload_pass = BotBase.bank_overload_pass
     BANK_FULL = BotBase.BANK_FULL
     BANK_SPEECH = BotBase.BANK_SPEECH
+    BOX_PRODUCT_CAP = BotBase.BOX_PRODUCT_CAP
     CLEAR_N = BotBase.CLEAR_N
     CLEAR_SHARE = BotBase.CLEAR_SHARE
     HEAVY_THINGS = BotBase.HEAVY_THINGS

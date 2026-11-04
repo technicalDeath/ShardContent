@@ -362,14 +362,23 @@ class MinerBot(MinerMarket, PotionStock, PackAnimalMixin, GathererArmor, BotBase
     def on_evade(self, m):
         """The dig spot near the monster is left for EVADE_SKIP: kept, r_mine walked straight back to it past the same monster (10-19 runs of three or more
         evade-mine turns each in the miners' logs, 2026-10-31; a tamer died the same way)."""
-        spot = getattr(self, "spot", None)
-        if not spot or not hasattr(self, "blocked"):
+        if not hasattr(self, "blocked"):
             return
-        tx, ty = spot[0], spot[1]
-        if max(abs(m.x - tx), abs(m.y - ty)) <= self.EVADE_NEAR:
-            self.blocked[(tx, ty)] = max(self.blocked.get((tx, ty), 0), time.time() + self.EVADE_SKIP)
-            self.ev("dig_spot_evaded", spot=[tx, ty], m=self.mkey(m))
+        # every spot within EVADE_NEAR of the monster, not the one being dug: BotMineAdvR left 1176,1404 for an ogre and walked to 1169,1396, 8 tiles
+        # on in the same hills, past the same ogre (2026-11-03 20:14)
+        until = time.time() + self.EVADE_SKIP
+        try:
+            near = [t for t in self.mountains() if max(abs(m.x - t[0]), abs(m.y - t[1])) <= self.EVADE_NEAR]
+        except Exception:
+            near = []
+        for t in near:
+            self.blocked[(t[0], t[1])] = max(self.blocked.get((t[0], t[1]), 0), until)
+        spot = getattr(self, "spot", None)
+        if spot and max(abs(m.x - spot[0]), abs(m.y - spot[1])) <= self.EVADE_NEAR:
+            self.blocked[(spot[0], spot[1])] = max(self.blocked.get((spot[0], spot[1]), 0), until)
             self.spot = None
+        if near or self.spot is None:
+            self.ev("dig_spot_evaded", spot=list(spot[:2]) if spot else None, m=self.mkey(m), spots=len(near))
 
     def stall_switch(self, n):
         """The miner's way out of a stall (stall.py): every spot near is taken, worked out or blocked, so it looks for ore further out, as a

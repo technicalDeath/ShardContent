@@ -1898,8 +1898,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             dest = task_core.box_exit(self, int(dest[0]), int(dest[1]))      # never flee into the undead box (a bot under 120 hit points)
         except Exception:
             pass
-        if threat is None or max(abs(dest[0] - self.c.x), abs(dest[1] - self.c.y)) <= 60:
+        if threat is None:
             return dest
+        near_refuge = max(abs(dest[0] - self.c.x), abs(dest[1] - self.c.y)) <= 60
         try:
             # away from every danger in view, not the one threat only, never into a caster lair, home breaking ties (detour.escape_leg): the straight
             # line from one threat can run into the next camp (2026-11-03, owner: "all bots utilize the new detour logic")
@@ -1909,8 +1910,19 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if all((th.x, th.y) != (int(threat.x), int(threat.y)) for th in ths):
                 ths.append(detour.Threat(int(threat.x), int(threat.y), self.kind_casts(self.mkey(threat)), getattr(threat, "name", "") or ""))
             here = (int(self.c.x), int(self.c.y))
-            leg = detour.escape_leg(here, ths, walkroute.get().leg_clear, prefer=tuple(self.home_centre()),
-                                    forbidden=self.detour_forbid(here, self.caster_lair_home()))
+            forbid = self.detour_forbid(here, self.caster_lair_home())
+            if near_refuge:
+                to = (int(dest[0]), int(dest[1]))
+                if not detour.needs_detour(here, to, ths):
+                    return dest
+                # a refuge near, but the straight way to it runs into a threat: a leg toward it round them, else out of reach. BotMineAdvR's flights
+                # from an ogre and giant rats by its dig spot at 1176,1404 ran straight for the Britain refuge, into the camp at 1240-1280,1360-1400,
+                # where 8 mobiles boxed it in (2026-11-03 20:14-20:16)
+                leg = detour.plan_leg(here, to, ths, walkroute.get().leg_clear, forbidden=forbid)
+                if leg is None:
+                    leg = detour.escape_leg(here, ths, walkroute.get().leg_clear, prefer=to, forbidden=forbid)
+            else:
+                leg = detour.escape_leg(here, ths, walkroute.get().leg_clear, prefer=tuple(self.home_centre()), forbidden=forbid)
             if leg is not None:
                 self.detour_note(here, leg)
                 try:
@@ -1920,6 +1932,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     return leg.to
         except Exception:
             pass
+        if near_refuge:
+            return dest
         dx, dy = self.c.x - threat.x, self.c.y - threat.y
         n = max(abs(dx), abs(dy), 1)
         ax, ay = dx / n, dy / n
@@ -2475,6 +2489,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.facts["bank_full_at"] = 0                # room again: the next deposit tries (a refusal marks it full again)
         return tossed, taken
 
+    BOX_PRODUCT_CAP = 100       # box items past which a product a shop buys is not banked: a bank box holds 125 (Container.GlobalMaxItems), and 25 stay
+                                # for materials and valuables; BotSmithBR filled all 125 with sellable pieces and then could neither bank nor craft
+
     def bank_overload_pass(self, box, share=0.85):
         """Overloaded after the usual deposit: everything but the essentials and one of each tool goes in, heaviest stacks first, to 85% of the limit.
         Heaviest by stones, not by count, and a crafter's own material last: "biggest stack" by count put BotSmithAR's 244 iron ingots (24 stones) in the
@@ -2491,6 +2508,17 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         def order(i):
             mine = bool(own and own(i))
             return (mine, -(i.amount or 1) * items.unit_weight(i.name))
+        try:
+            in_box = len(list(self.c.container(box, timeout=6)))
+        except Exception:
+            in_box = 0
+
+        def sells(i):
+            n = (i.name or "").lower()
+            try:
+                return any(p > 0 for p, xy, item in self.mem.vendor_buying(n) if item == n)
+            except Exception:
+                return False
         for it in sorted(list(self.c.backpack), key=order):
             if self.c.weight <= self.c.max_weight * share:
                 break
@@ -2501,6 +2529,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             if tool and tool not in kept_tools:
                 kept_tools.add(tool)
                 continue                                                # one of each tool stays: the bot can still work
+            if in_box + moved >= self.BOX_PRODUCT_CAP and not (own and own(it)) and sells(it):
+                continue                                                # a shop buys it: the selling trip, not the box (BOX_PRODUCT_CAP)
             self.c.drop(it.serial, box, it.amount if (it.amount or 1) > 1 else None)
             time.sleep(1.4)
             if self.bank_box_full():
