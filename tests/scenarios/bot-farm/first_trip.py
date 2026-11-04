@@ -809,7 +809,7 @@ class FirstTrip(LadderMixin):
                 e = table.get(k)
                 if not e or getattr(m, "x", None) is None:
                     return False
-                cs.append((k, e, (int(m.x), int(m.y)), bool(self.trip_caster(k)), detour.poisons(k)))
+                cs.append((k, e, (int(m.x), int(m.y)), bool(self.trip_caster(k)), detour.uncurable(k)))
             st = self.c.state or {}
             stats = tuple(float(st.get(k) or 50) for k in ("str", "dex", "int"))
             rs = float(self.skill_values.get("Resisting Spells", 0.0) or 0.0) if hasattr(self, "skill_values") else 0.0

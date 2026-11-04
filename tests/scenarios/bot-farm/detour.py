@@ -32,7 +32,10 @@ POISON_CLEAR = 9                          # a monster whose poison the shops' Le
                                           # LesserCurePotion.cs _oldLevelInfo; a poisoned player cannot drink a Heal potion): two of a Medium chaser's 2 s legs
                                           # (4.4 tiles each), so a drink or a short leg still leaves one. A scorpion (Greater 80%, Deadly 20%, Scorpion.cs:57)
                                           # took BotFairSwordVR from 71 to 0 through five Cure potions (2026-11-03 20:39-20:40)
-POISON_LEVELS = ("Greater", "Deadly", "Lethal")
+POISON_LEVELS = ("Regular", "Greater", "Deadly", "Lethal")    # kept POISON_CLEAR off: a Lesser Cure clears Regular only half the time (0.50) and each bite
+                                                               # poisons again: giant spiders took BotFenceAdvR 78 -> 31 through seven cures on the Skara
+                                                               # Brae road (2026-11-03 23:28-23:29)
+UNCURABLE_LEVELS = ("Greater", "Deadly", "Lethal")            # a contact never affordable (casterpass.UNCURABLE): 25% and 0% with a Lesser Cure
 MELEE_CLEAR = 5                           # a Medium melee monster (0.45 s a tile, npc-speeds.json: orcs, trolls, scorpions, ratmen) covers 4.4 tiles in
                                           # one 2 s leg; 2 let BotFairSwordVR run into three earth elementals and a scorpion at 1 tile (99 -> 11 hp,
                                           # 2026-11-03 18:08)
@@ -66,13 +69,18 @@ class Leg:
     dip: int = 0                          # how much closer than now the leg comes to a threat's need on the way (0: never closer)
 
 
-def poisons(kind: str) -> bool:
-    """True for a kind whose hit poison is Greater or worse (creature_stats.json "poison", danger.stats)."""
+def poisons(kind: str, levels=POISON_LEVELS) -> bool:
+    """True for a kind whose hit poison is at one of these levels (creature_stats.json "poison", danger.stats): Regular or worse by default."""
     try:
         import danger
-        return str((danger.stats().get(kind) or {}).get("poison")) in POISON_LEVELS
+        return str((danger.stats().get(kind) or {}).get("poison")) in levels
     except Exception:
         return False
+
+
+def uncurable(kind: str) -> bool:
+    """True for a kind whose poison the shops' Lesser Cure clears a quarter of the time or never (Greater or worse)."""
+    return poisons(kind, UNCURABLE_LEVELS)
 
 
 def cheb(a: Point, b: Point) -> int:
