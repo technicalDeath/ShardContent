@@ -62,6 +62,8 @@ BOW_RANGE, CROSSBOW_RANGE = 10, 8   # Bow.DefMaxRange 10, Crossbow.DefMaxRange 8
                                     # (the owner, 2026-10-29: "A real player would walk just into engagement range to pull a single monster")
 
 
+AVOID_WAIT_S = 45.0              # s of r_avoid's commitment (hunter.r_avoid: avoided_until = now + 45) a hunt waits before it leaves the ground
+
 def weapon_reach(bot):
     try:
         w = next((i for i in bot.c.equipped if getattr(i, "layer", "") in ("OneHanded", "TwoHanded")), None)
@@ -1100,8 +1102,19 @@ def tick(bot, task):
         bot.facts.pop("hunt_fled", None)
         bot.log(f"hunt tree: ran from {fled.get('by')} at {task.get('area')}: the hunt there ends")
         return ctx.step, "danger"
+    st = getattr(ctx, "st", None)
     if time.time() < float(bot.facts.get("avoided_until", 0) or 0):
-        return "wait", ""                                   # r_avoid's commitment (hunter.r_avoid): no roam back toward what it just stepped away from
+        # r_avoid's commitment (hunter.r_avoid): no roam back toward what it just stepped away from. A danger that keeps renewing it past one whole
+        # commitment holds this ground, so the hunt moves on: BotMaceCR waited 30+ minutes, r_avoid <-> wait every 3 s, beside a lizardman (00:17)
+        if isinstance(st, dict):
+            since = st.setdefault("avoid_wait_since", time.time())
+            if time.time() - since > AVOID_WAIT_S:
+                st.pop("avoid_wait_since", None)
+                bot.log(f"hunt tree: kept off {task.get('area')} by a danger for {int(time.time() - since)} s: the hunt there ends")
+                return ctx.step, "danger"
+        return "wait", ""
+    if isinstance(st, dict):
+        st.pop("avoid_wait_since", None)
     root.tick_once()
     if root.status == Status.FAILURE and ctx.why:
         return ctx.step, ctx.why
