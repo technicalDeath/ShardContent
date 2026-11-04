@@ -5,7 +5,7 @@ step) standing where that code's own walk is a step or two. The NEEDS decide whe
 (task, urgency, destination, budget) the bot's state raises; urgency 1.0 is "as good as the best hunt", 2.0 twice as pressing. A done errand is
 judged by its act (the need met: event task_end why "done" or "unmet"); an unmet errand rests that task UNMET_REST.
 
-    sell      loot to sell: 3+ gear pieces, 6+ meat, gems, or heavy with any of it; urgency 1.2, 1.8 when over 70% weight
+    sell      loot to sell: 3+ gear pieces, 6+ meat, gems, or heavy with any of it; urgency 1.2, 1.8 when over 70% weight, 2.0 (PRESSING) over 90%
     resupply  bandages under 8 (urgency 2.0; 3.0 at none), an archer's ammunition under 25 (2.0; 3.0 at none), potions wanted with gold to spare (0.8)
     bank      gold over the purse limit (goals.purse_limit): 1.0 at the limit, up to 2.0 at twice it; overloaded with leftovers: 2.0
     rest      health under REST_AT with no hostile about, or out of breath: 1.5 (no walk; bandages, then standing)
@@ -502,7 +502,14 @@ def needs(bot, hunting=False):
                 dest = bot.where1(("jeweler", "jeweller", "gem"))
         except Exception:
             dest = None
-        out.append(("sell", 1.8 if heavy else 1.2, dest, BUDGET["sell"], f"{gear} gear, {meat} meat, {gems} gems, {hides} hides, {leather} leather, {feathers} feathers, {robes} robes"))
+        try:
+            full = bot.c.weight > bot.c.max_weight * 0.9
+        except Exception:
+            full = False
+        # over 90% (the monitor's heavy line, task_core.monitor, and the bank's overload) the sale interrupts the hunt (task_core.PRESSING): at 1.8 a full
+        # pack never did, and BotBardAdvR toured on at 300/306 for 7 minutes, looting leather and putting it down again at the limit three times
+        # (basics.pack_upkeep, 2026-11-03 19:52-20:31) until the tour's budget ran out
+        out.append(("sell", 2.0 if full else 1.8 if heavy else 1.2, dest, BUDGET["sell"], f"{gear} gear, {meat} meat, {gems} gems, {hides} hides, {leather} leather, {feathers} feathers, {robes} robes"))
     try:
         bandages = bot.bandages()
     except Exception:

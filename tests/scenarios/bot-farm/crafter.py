@@ -1344,6 +1344,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if self.too_heavy_to_restock():
             self.facts["sold_at"] = 0
             self.facts["stocked_at"] = time.time()
+            self.facts["restock_heavy_at"] = time.time()   # far_worth("sell") goes whatever the item count: this restock waits on that sale
             self.skip_why("r_restock", "no room for a restock's material under the craft weight: selling what it made first")
             return False
         if self.leather_on():

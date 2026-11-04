@@ -62,6 +62,8 @@ def _circle_pen(wr):
 
 JOURNEY_FROM = 150    # tiles: a far walk this long asks the travel planner first (travel.GATE_SAVE: a gate must save this much)
 TELE_CLEAR = 3        # tiles round a known teleporter that a far walk's plan avoids (a cost, not a wall: a walk that wants the teleporter still gets there)
+RESTOCK_WAITS_S = 400 # s: a restock refused for weight this recently makes any sell walk worth it (far_worth); twice crafter.RESTOCK_GAP (200 s),
+                      # as the restock re-stamps it every gap while it still waits
 
 class FarMixin:
     _far_last = ""
@@ -176,6 +178,11 @@ class FarMixin:
             return heavy or (value or 0) >= need, f"{value or 0} gold carried, {need} needed for {d} tiles" + (", pack heavy" if heavy else "")
         if role == "sell":
             heavy = self.c.weight >= 0.85 * self.c.max_weight
+            if time.time() - float((self.facts or {}).get("restock_heavy_at", 0) or 0) < RESTOCK_WAITS_S:
+                # the restock refused for want of room (crafter.too_heavy_to_restock: "selling what it made first"), so the products must go, however few:
+                # with the two rules waiting on each other BotSmithBR, its pack at 359-384 of 450, stood 29 minutes in r_wander ("10 items, 12 needed
+                # for 139 tiles", 2026-11-03 20:01-20:31)
+                heavy = True
             need = max(12, d // 30)
             return heavy or (value or 0) >= need, f"{value or 0} items, {need} needed for {d} tiles" + (", pack heavy" if heavy else "")
         if role == "shop":

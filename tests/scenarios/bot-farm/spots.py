@@ -693,12 +693,17 @@ def tours(bot, g, rng, banned=(), relax=0):
         raw = {m: v * task_core.calib(bot, "hunt", m) for m, v in exp.items()}
         exp = {m: min(task_core.EXPECT_CAP.get(m, 1e9), v) for m, v in raw.items()}     # learning 1: measured against expected, per task kind, group and measure; capped
         judge = task_core.judge_measure(measure, exp)
+        if judge == "kills" and measure != "kills" and bot.feature("judge_gold"):
+            # feature judge_gold: a goal the hunt cannot move (a skill above 80 gains by Mastery's day, judge_measure) is hunted for gold, as a player
+            # with nothing to raise in an hour hunts for money, not for the count. By kills, BotRangerAR (Archery 91) toured the chicken and rat fields
+            # south-west of Britain at 40 gold an hour from its tours (2026-11-03: 3-5 kills and 0.0 skill a 12-minute tour)
+            judge = "gold"
         # tour_rank: the score from the estimate before the cap (up to RANK_CAP times it). With the capped figure every tour at the cap scored
         # 18 x minutes/60 / minutes = 0.3, the ties went to the safest or nearest, and the archers and fighters circled the same few spots by town whatever
         # their records said (0.290-0.297 for every choice, 2026-11-01). The capped figure stays the monitor's expectation.
         rank = raw if bot.feature("tour_rank") else exp
         progress = min(rank[judge], RANK_CAP * task_core.EXPECT_CAP.get(judge, 1e9)) * hours
-        if measure == "gold":
+        if measure == "gold" or judge == "gold":
             progress -= die * kills * float(bot.c.gold or 0) * 0.5
         cost = minutes + die * kills * task_core.DEATH_MIN
         out.append({"task": "hunt", "area": f"tour {seed['id']}", "spots": [[vals[i][0]["x"], vals[i][0]["y"], round(vals[i][2], 2), i] for i in tour], "tour": list(tour),
