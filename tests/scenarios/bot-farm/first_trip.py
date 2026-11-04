@@ -217,7 +217,19 @@ class FirstTrip(LadderMixin):
         mode), as a player sets out with deer and bears about; otherwise any mobile within 10. With any mobile, 16 restarted ladder fighters started no
         trip and logged no refusal in 30 minutes (hunting, and Britain's bears in town), 2026-11-02 09:52-10:21."""
         try:
-            return bool(self.threats(10)) if self.trip_run_on() else bool(self.mobs(10))
+            if not self.trip_run_on():
+                return bool(self.mobs(10))
+            import detour
+            here = (int(self.c.x), int(self.c.y))
+            for m in self.threats(10):
+                th = detour.Threat(int(m.x), int(m.y), bool(self.trip_caster(self.mkey(m))), getattr(m, "name", "") or "")
+                if detour.clearance_at(here, [th]) < 0:
+                    # inside its reach (a caster's spell range + 2, a melee monster's MELEE_CLEAR): wait. Further off, a runner sets out and runs past it
+                    # (trip_detour), as a player does: 'a threat near' was the first refusal in town, 72-140 times a day for BotSwordBR, BotMaceCR,
+                    # BotFencerBR and BotRangerBR, four fighters at 94-100 that never once set out (2026-11-03)
+                    self.__dict__["_busy_by"] = f"{th.name} at {detour.cheb(here, (th.x, th.y))}"
+                    return True
+            return False
         except Exception:
             return True
 
@@ -227,7 +239,7 @@ class FirstTrip(LadderMixin):
         busy = self.trip_busy()
         if not home or self.c.ghost or self.hp_pct() < 90 or busy or self.c.weight >= self.c.max_weight * 0.7:
             return self.trip_why("not in town" if not home else "a ghost" if self.c.ghost else f"hp {self.hp_pct()}% (90 needed)" if self.hp_pct() < 90
-                                 else "a threat near" if busy else f"pack {self.c.weight}/{self.c.max_weight} (under 70% needed)"), False
+                                 else f"a threat near ({self.__dict__.get('_busy_by', '?')})" if busy else f"pack {self.c.weight}/{self.c.max_weight} (under 70% needed)"), False
         t = self.trip_forced(home)
         if t:
             return t, True

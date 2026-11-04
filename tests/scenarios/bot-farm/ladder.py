@@ -41,6 +41,8 @@ TOWN_GAP = 2700
 TOWN_FAIL = 3600
 FAIL_LIMIT = 3
 SKILL_CAP = 100               # a skill's cap in this era (no power scrolls): a rest 'until 5 more skill' past it never ends
+MASTERY_FROM = 80            # from 80 a skill rises by Mastery's daily allowance (2.0 / 1.4 / 1.0 / 0.8 a day, docs/Mastery-Layered-Evidence.md): 5 more
+                             # takes days, so a failure there rests by time too (BotArchAdvR failed at 95 and waited for 100)
 DUNGEON = "Covetous"          # owner 2026-11-03: Covetous ("I ran to Covetous with no problem yesterday"); Despise's door sits in a troll lair
 DUNGEON_DOOR = (2499, 916)    # its main entrance; the nearest door from Britain, 2384,837, cannot be walked to (the dungeon tours, 2026-11-02)
 DUNGEON_STAY = 8
@@ -164,7 +166,7 @@ class LadderMixin:
         last = st.get("last_trip_end", 0)
         if fails >= FAIL_LIMIT:
             need = st["fail_power"].get(str(rung), 0) + 5
-            if need <= SKILL_CAP:
+            if need <= SKILL_CAP and need - 5 < MASTERY_FROM:
                 return self.trip_power() >= need
             # failed at the cap: no skill is left to gain, so the rest is the time one (what is left to get better is the brain). BotFenceAdvR
             # failed Trinsic and Skara Brae at 100 before the detour (2026-11-03 00:29-02:41) and was offered no trip for 17 hours
