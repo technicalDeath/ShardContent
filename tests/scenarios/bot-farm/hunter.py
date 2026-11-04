@@ -615,9 +615,39 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
                 return True
         if self.bandages() == 0 or threats and pct >= 30:
             return False
+        if not threats and self.feature("bandage_clear"):
+            near = self.bandage_reacher()
+            if near is not None:
+                seen = self.__dict__.setdefault("_bandage_held", {})
+                if time.time() - seen.get(near[0], 0) > 60:
+                    seen[near[0]] = time.time()
+                    self.log(f"not bandaging: {near[0]} at {near[1]} tiles reaches me in the {near[2]:.1f} s a bandage takes")
+                return False
         self.activity = "bandaging"
         self.bandage_self_force()
         return True
+
+    def bandage_reacher(self):
+        """(name, tiles, seconds) of an attack-on-sight monster in notice range that can reach the bot before a self-bandage ends, else None. Pre-AOS a
+        self-bandage takes 9.4 + 0.6 x (120 - Dex) / 10 s (Bandage.cs BandageContext.BeginHeal: 10.6 s at 100 Dex) and every hit taken makes it slip (Slip),
+        so a monster that notices the bot (task_core.PULL_CLEAR) and steps a tile in its activeMove (npc-speeds.json, casterpass.move_s) arrives first.
+        BotWarAdvR bandaged six times in 3 minutes with trolls 4-7 tiles off, each "barely" helping, 69 to 35 hit points at Despise's door (2026-11-04 10:52-10:55)."""
+        try:
+            import casterpass
+            import task_core
+            dex = float((self.c.state or {}).get("dex") or 50)
+            secs = 9.4 + 0.6 * max(0.0, 120.0 - dex) / 10.0
+            task_core.aggressive("cow")                               # loads the creature table
+            for m in sorted(self.mobs(task_core.PULL_CLEAR), key=lambda m: m.distance):
+                k = self.mkey(m)
+                if not task_core.aggressive_kind(k):
+                    continue
+                move = casterpass.move_s(k, task_core._CS.get(k) or {})
+                if move is not None and (m.distance - 1) * move <= secs:
+                    return m.name, m.distance, secs
+        except Exception:
+            return None
+        return None
 
     def bandage_self_force(self):
         b = self.c.find("bandage")

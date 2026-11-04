@@ -1128,7 +1128,10 @@ def bans(bot):
 
 
 def ban(bot, task, area, why, secs=None):
-    bans(bot)[f"{task}|{area}"] = now() + (secs if secs is not None else REST_S.get(why, BAN_S))
+    until = now() + (secs if secs is not None else REST_S.get(why, BAN_S))
+    bans(bot)[f"{task}|{area}"] = until
+    if why == "danger":
+        bans(bot)[f"danger|{area}"] = until               # kept through the "rested" fallback (candidates), as the hour bans are
 
 
 def candidates(bot, g, rng=None, rested=False, relax=0):
@@ -1138,8 +1141,11 @@ def candidates(bot, g, rng=None, rested=False, relax=0):
     bot.__dict__["_plan_t0"] = time.time()                       # route_length's planning budget for this choice (PLAN_BUDGET_S)
     b = bans(bot)
     if rested:
-        b = {k: until for k, until in b.items() if until - now() > RESTED_SOON}
-    banned = {k.split("|", 1)[1] for k in b if k.startswith("spot|")}
+        # a "danger" rest (REST_S 1200 s, fled from what it cannot fight) is no soon-ending rest: it is exactly RESTED_SOON long, so the rested
+        # fallback dropped it the moment it was set and the spot came straight back. BotWarAdvR took "tour sp1556,1302" 25 times in 4 minutes,
+        # each ended "ran from troll ... (danger)" 1-3 s later, drifted into an orc camp at 1381,1336 and died there (2026-11-04 10:59-11:05)
+        b = {k: until for k, until in b.items() if until - now() > RESTED_SOON or k.startswith("danger|")}
+    banned = {k.split("|", 1)[1] for k in b if k.startswith(("spot|", "danger|"))}
     try:
         if provisioned(bot) and bot.bow_kind() and bot.ammo() == 0:
             bot.__dict__["_spot_why"] = {"no arrows: top-up": 1}  # the no-ground report names it (it read as an empty reason, 2026-10-29)
