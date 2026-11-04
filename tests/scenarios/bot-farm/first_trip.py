@@ -771,8 +771,8 @@ class FirstTrip(LadderMixin):
             why = f"pack near: {len(pack)} ({', '.join(sorted({m.name for m in pack}))[:60]})"
         if why and target is not None and self.trip_way_on(near, target):
             return None                                            # a clear leg on: run past them (trip_detour runs it)
-        if why and why.startswith("casters") and ahead and self.trip_pass_ok(casters, ahead, behind or []):
-            return None                                            # the pass is affordable, or cheaper than turning back (casterpass)
+        if why and ahead and self.trip_pass_ok(near, ahead, behind or []):
+            return None                                            # the pass is affordable, or cheaper than turning back (casterpass.pass_cost)
         return why
 
     def trip_route_slice(self, wps, i, step, tiles=PASS_TILES):
@@ -786,34 +786,38 @@ class FirstTrip(LadderMixin):
             i += step
         return out
 
-    def trip_pass_ok(self, casters, ahead, behind):
+    def trip_pass_ok(self, monsters, ahead, behind):
         """True when running on past these casters is affordable (casterpass.affordable: the expected damage, with the Heal potions drinkable on the way,
         leaves the largest of their spells in hand) or costs no more than turning back along the route behind. A caster not in the stats table cannot
         be costed: no verdict (the old rule stands). BotFairArcherVR turned back from Skara Brae for two reapers at 9 and 12 tiles at 1035,1983 and ran
-        home through the same reach (2026-11-03 20:40); reapers never move."""
+        home through the same reach (2026-11-03 20:40); reapers never move. A pack is costed the same way, every monster in view (casterpass.pass_cost: a
+        melee monster that can reach the road costs a swing): BotArchAdvR turned back from Trinsic for an orc and an ettin, both slower than a runner
+        (2026-11-03 21:40)."""
         try:
             import casterpass
             import danger
             table = danger.stats()
             here = (int(self.c.x), int(self.c.y))
+            import detour
             cs = []
-            for m in casters:
-                e = table.get(self.mkey(m))
+            for m in monsters:
+                k = self.mkey(m)
+                e = table.get(k)
                 if not e or getattr(m, "x", None) is None:
                     return False
-                cs.append((self.mkey(m), e, (int(m.x), int(m.y))))
+                cs.append((k, e, (int(m.x), int(m.y)), bool(self.trip_caster(k)), detour.poisons(k)))
             st = self.c.state or {}
             stats = tuple(float(st.get(k) or 50) for k in ("str", "dex", "int"))
             rs = float(self.skill_values.get("Resisting Spells", 0.0) or 0.0) if hasattr(self, "skill_values") else 0.0
-            on = casterpass.pass_damage(casterpass.dense([here] + list(ahead)), cs, rs, stats)
+            on = casterpass.pass_cost(casterpass.dense([here] + list(ahead)), cs, rs, stats)
             # no route behind: the trip has only just set out, and turning back costs nothing
-            back = casterpass.pass_damage(casterpass.dense([here] + list(behind)), cs, rs, stats) if behind else (0.0, 0.0, 0.0)
+            back = casterpass.pass_cost(casterpass.dense([here] + list(behind)), cs, rs, stats) if behind else (0.0, 0.0, 0.0)
             pots = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             ok = casterpass.affordable(self.c.hp, pots, *on) or on[0] <= back[0]
             now = time.time()
             if now - self.__dict__.get("_pass_logged", 0) > 10:
                 self.__dict__["_pass_logged"] = now
-                self.log(f"first trip: passing {len(cs)} casters costs ~{on[0]:.0f} hp in {on[1]:.0f} s (back ~{back[0]:.0f}), hp {self.c.hp}, "
+                self.log(f"first trip: passing {len(cs)} {'casters' if all(c[3] for c in cs) else 'monsters'} costs ~{on[0]:.0f} hp in {on[1]:.0f} s (back ~{back[0]:.0f}), hp {self.c.hp}, "
                          f"{pots} Heal potions, largest spell {on[2]:.0f}: {'go on' if ok else 'turn back'}")
                 self.ev("trip_pass", on=round(on[0], 1), back=round(back[0], 1), secs=round(on[1], 1), top=round(on[2], 1), hp=self.c.hp, pots=pots,
                         go=ok, casters=[c[0] for c in cs])

@@ -146,14 +146,22 @@ def now():
 # ---- the goal ------------------------------------------------------------------------------------------------------------------------------------
 
 def measure_value(bot, measure):
-    """Where the bot stands on a measure: main-skill points, gold carried and banked, kills (lifetime: the totals plus this brain's)."""
+    """Where the bot stands on a measure: main-skill points, gold carried and banked with the loot held at its sale value, kills (lifetime: the totals plus this
+    brain's)."""
     if measure == "skill":
         try:
             return float(bot.skill_values.get(bot.main_skill(), 0.0) or 0.0)
         except Exception:
             return 0.0
     if measure == "gold":
-        return float((bot.c.gold or 0) + (bot.facts.get("bank_balance", 0) or 0))
+        try:
+            import errands
+            held = float(errands.held_value(bot))
+        except Exception:
+            held = 0.0
+        # the loot held counts at the shops' prices (errands.held_value): a hunt's gold is mostly hides and meat until the sale, which only turns held
+        # value into coin. Coins and bank alone, every gold-judged tour read 'yield': BotRangerAR, 3 kills, 'gold 0', ended after 8 min (2026-11-03 21:23)
+        return float((bot.c.gold or 0) + (bot.facts.get("bank_balance", 0) or 0)) + held
     base = getattr(bot, "base", {}) or {}
     return float((base.get("kills", 0) or 0) + (getattr(bot, "kills", 0) or 0))
 
