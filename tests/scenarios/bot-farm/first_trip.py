@@ -778,7 +778,18 @@ class FirstTrip(LadderMixin):
             return None                                            # a clear leg on: run past them (trip_detour runs it)
         if why and ahead and self.trip_pass_ok(near, ahead, behind or []):
             return None                                            # the pass is affordable, or cheaper than turning back (casterpass.pass_cost)
+        if why is None and ahead and casters and any((int(m.x), int(m.y)) in self.trip_fixed_spots() for m in casters):
+            if not self.trip_pass_ok(near, ahead, behind or []):
+                why = "caster near: passing it costs too much"     # a caster that never moves on the road, and the pass not affordable: back (trip_detour)
         return why
+
+    def trip_fixed_spots(self):
+        """{(x, y)} of the monsters in notice range that never move (casterpass.IMMOBILE: reapers, corpsers)."""
+        try:
+            import casterpass
+            return {(int(m.x), int(m.y)) for m in self.trip_near() if getattr(m, "x", None) is not None and self.mkey(m) in casterpass.IMMOBILE}
+        except Exception:
+            return set()
 
     def trip_route_slice(self, wps, i, step, tiles=PASS_TILES):
         """The route's points from waypoint i on in the direction step, until they reach `tiles` tiles of walk (the costed pass, casterpass)."""
@@ -900,7 +911,19 @@ class FirstTrip(LadderMixin):
         casters = [th for th in threats if th.caster]
         esc = self.__dict__.setdefault("_escape", {"on": False, "clear": 0})
         hurt = self.hp_pct() < 60
-        if casters and detour.clearance_at(here, casters) < 0:
+        fixed = self.trip_fixed_spots()
+        movers = [th for th in casters if (th.x, th.y) not in fixed]
+        if not esc["on"] and not hurt and fixed:
+            # a caster that never moves (a reaper, casterpass.IMMOBILE) is run past along the route, the shortest time in its range, when the pass is
+            # affordable (trip_pass_ok; trip_turn_back turns back when it is not): running from it only brings the route back into its range. BotFenceAdvR
+            # escaped out of a reaper's range and back in for 70 s by the Trinsic road and died, 87 -> 0 (2026-11-04 02:54:50-02:56:03)
+            rest = [th for th in threats if (th.x, th.y) not in fixed]
+            if not detour.needs_detour(here, (int(target[0]), int(target[1])), rest):
+                step = 1 if t.get("phase") == "out" else -1
+                monsters = [m for m in self.trip_near() if getattr(m, "x", None) is not None]
+                if self.trip_pass_ok(monsters, self.trip_route_slice(wps, t["i"], step), self.trip_route_slice(wps, t["i"] - step, -step)):
+                    return False                                # the straight way on: trip_step walks the route
+        if movers and detour.clearance_at(here, movers) < 0:
             esc.update(on=True, clear=0, hurt=False)            # a caster inside its reach: run from it, not along the route past it
         elif hurt and detour.clearance_at(here, threats) < 0:
             esc.update(on=True, clear=0, hurt=True)             # hurt with a monster in reach: out of every reach first, mending on the run
