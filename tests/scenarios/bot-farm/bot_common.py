@@ -1001,7 +1001,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
 
     # the decision core (task_core.py, feature task_core): the reflexes stay first and unchanged; a brain class with the core (HunterBot) replaces every rule
     # below them by core_tick() while core_active() says so. BotBase itself has no core.
-    REFLEXES = ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: the shared Refresh rule (basics.py)
+    REFLEXES = ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_dungeon_out", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: the shared Refresh rule (basics.py); r_dungeon_out: a dungeon hunt's way out of a pack (first_trip.py)
 
     # rules below the reflexes that still run under the decision core: each has its own limits (r_music every 22 s at 60%+ health, r_fletch under 200
     # arrows, r_wood under 120 arrows and every so often, r_shield once a half-hour); under the core they never ran, so the bards never played and the

@@ -1735,7 +1735,7 @@ print("shared tour OK")
 # ---- the wiring -------------------------------------------------------------------------------------------------------------------------------------
 
 assert hunter.HunterBot.TASK_CORE is True and crafter.CrafterBot.TASK_CORE is False and hunter.BardBot.TASK_CORE is True
-assert bot_common.BotBase.REFLEXES == ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: basics.py
+assert bot_common.BotBase.REFLEXES == ("r_dead", "r_corpse", "r_gear", "r_cure", "r_refresh", "r_dungeon_out", "r_flee", "r_avoid", "r_sewer_out", "r_heal")      # r_refresh: basics.py; r_dungeon_out: first_trip.py (2026-11-04)
 assert hunter.HunterBot.RULES[:len(bot_common.BotBase.REFLEXES)] == list(bot_common.BotBase.REFLEXES), hunter.HunterBot.RULES[:9]
 assert bot_common.BotBase.core_active(NS()) is False and bot_common.BotBase.core_tick(NS()) is None
 on = fighter(name="BotOn")

@@ -858,6 +858,8 @@ if "r_break" not in CasterBot.RULES and "r_bank" in CasterBot.RULES:
 
 if "r_trip" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_fight") + 1, "r_trip")      # first_trip
+if "r_dungeon_out" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_flee"), "r_dungeon_out")     # first_trip: a dungeon hunt's way out of a pack
 if "r_ride" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_trip") + 1, "r_ride")      # ride.py: between outings (r_trip stays right after r_fight)
 CasterBot.PERSIST = CasterBot.PERSIST + tuple(k for k in ("ride", "ride_try_at") if k not in CasterBot.PERSIST)

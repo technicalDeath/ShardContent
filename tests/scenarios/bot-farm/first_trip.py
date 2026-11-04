@@ -53,6 +53,10 @@ TRIP_PACK = 3               # this many dangers in notice range turn the trip ba
 TRIP_RESUME_S = 300          # a trip saved this recently is resumed by a new brain: today's rollover gaps reached 161 s and LEAVE_GRACE runs 120 s on
 DUNGEON_HUNT_S = 2400        # s a dungeon trip hunts inside (feature dungeon_hunt): two of the core's hunt budgets (task_core.HUNT_BUDGET 1200), so the hunt
                              # pays at least the walk there and back (Covetous: 8-10 min each way, 2026-11-03/04)
+RETREAT_NEAR = 4             # tiles: a pack this close (detour.PACK of them) sends a dungeon hunter through the stair (r_dungeon_out)
+RETREAT_REACH = 80           # tiles to the stair at most: at a run (0.2 s a tile on foot, 0.1 mounted) against a Medium chaser's 0.45 the bot gains 2.8 tiles a
+                             # second, so 80 tiles is 16-8 s of running with the pack falling behind; Despise's farthest lizardman spawner is ~120 from its stair
+RETREAT_GAP = 30             # s between retreats (a pack waiting on the far side of the landing does not bounce the bot)
 LEFT_INSIDE_GAP = 120        # s between tries at leaving a dungeon with no trip under way (trip_left_inside): tele_to_side tries 150 s itself
 RETURN_S = 300               # s the stairs back to a dungeon's landing may take (trip_return_leg): Despise's farthest lizardman spawner is ~120 tiles from
                              # its stair (24 s at a run, Movement.cs runFoot 200 ms), so the cap leaves room for fights on the way
@@ -296,6 +300,8 @@ class FirstTrip(RideMixin, LadderMixin):
             return self.ladder_on()
         if name == "r_ride":
             return self.ride_on()                                   # riding (ride.py) under the core too
+        if name == "r_dungeon_out":
+            return bool(self.facts.get("dungeon_hunt"))            # a dungeon hunt's way out of a pack (r_dungeon_out), ahead of r_flee
         if name == "r_fight":
             return bool(self.ladder_on() and self.trip_load().get("trip"))
         return False
@@ -1080,6 +1086,69 @@ class FirstTrip(RideMixin, LadderMixin):
         self.log(f"first trip: no trip under way inside {side}: leaving for the surface ({'out' if ok else 'not out yet'})")
         self.ev("dungeon_left", side=side, ok=bool(ok))
         return True
+
+    def r_dungeon_out(self):
+        """During a dungeon hunt (feature dungeon_hunt), a pack closing in: run for the nearest teleporter of this level and step through it, as a player
+        leaves a room by the stairs; the monsters stay behind (Teleporter.cs: no creatures), and the far side heals in peace (Despise's landing hall has
+        no spawner) before the core walks back up. DETOUR_PACK monsters within RETREAT_NEAR tiles start it (detour.PACK, the trips' pack escape), or two
+        beside the bot below half health. BotFairSwordVR, five lizardmen beside it on Despise's upper floor, drank 14 Heal potions in 3 minutes and its
+        hunt ended "kit low" after 4 (2026-11-04 17:09-17:12); BotWarAdvR, meeting them one at a time, took 47 in 40 minutes on 4 drinks."""
+        dh = self.facts.get("dungeon_hunt")
+        if not dh or self.c.ghost:
+            return False
+        now = time.time()
+        if now - float(self.__dict__.get("_retreat_at", 0) or 0) < RETREAT_GAP:
+            return False
+        try:
+            import detour
+            near = self.mobs(RETREAT_NEAR)
+            close = [m for m in near if (getattr(m, "distance", 9) or 9) <= 1]
+            pack = len(near) >= detour.PACK or (len(close) >= 2 and self.hp_pct() < 50)
+        except Exception:
+            return False
+        if not pack:
+            return False
+        side = dh.get("side")
+        tr = self.trip_stair_near(side)
+        if tr is None:
+            return False
+        self.__dict__["_retreat_at"] = now
+        self.activity = f"out of a pack by the stair at {tr['src'][0]},{tr['src'][1]}"
+        if hasattr(self, "sprint"):
+            self.sprint()
+        before = (int(self.c.x), int(self.c.y))
+        try:
+            self.tele_allow(tr["dst_side"])
+            self.tele_hop(tr)
+        except Exception as e:
+            self.log(f"first trip: the stair out of the pack: {type(e).__name__}: {e}")
+        dst = (int(tr["dst"][0]), int(tr["dst"][1]))
+        ok = cheb(self.c.x, self.c.y, dst[0], dst[1]) <= 3
+        self.log(f"first trip: {len(near)} monsters within {RETREAT_NEAR} tiles at {before[0]},{before[1]} (hp {self.c.hp}): "
+                 f"{'through' if ok else 'not through'} the teleporter at {tr['src'][0]},{tr['src'][1]}")
+        self.ev("dungeon_retreat", side=side, n=len(near), hp=self.c.hp, at=list(before), stair=[int(tr["src"][0]), int(tr["src"][1])], ok=ok)
+        return True
+
+    def trip_stair_near(self, side):
+        """The nearest teleporter entry on this level (same walkable component, spots.component) within RETREAT_REACH tiles: an inner stair or the way out."""
+        try:
+            import gazetteer
+            import spots
+            here = (int(self.c.x), int(self.c.y))
+            comp = spots.component(here[0], here[1], side)
+            best = None
+            for t in gazetteer.get().trans:
+                if t.get("src_side") != side:
+                    continue
+                sx, sy = int(t["src"][0]), int(t["src"][1])
+                d = cheb(here[0], here[1], sx, sy)
+                if d > RETREAT_REACH or (comp is not None and spots.component(sx, sy, side) != comp):
+                    continue
+                if best is None or d < best[0]:
+                    best = (d, t)
+            return best[1] if best else None
+        except Exception:
+            return None
 
     def trip_stairs_to_exit(self, side):
         """The inner stairs to the level of the exit tele_route picks (spots.inner_hops), each taken with tele_hop: tele_route knows only sides, so from
