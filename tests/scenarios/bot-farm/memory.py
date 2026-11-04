@@ -365,6 +365,16 @@ class SharedMemory:
                 out[m] = round(f["death"], 1)
         return out
 
+    def deaths_anywhere(self, m: str):
+        """(deaths, fights) of every bot group against kind m, world-wide, decayed (FIGHT_HALF_LIFE): what the farm as a whole has seen of it."""
+        self.refresh()
+        d = n = 0.0
+        for f in (self.state["world"]["fights"].get(m) or {}).values():
+            _decay(f, FIGHT_KEYS, time.time(), FIGHT_HALF_LIFE)
+            d += f.get("death", 0.0)
+            n += f.get("n", 0.0)
+        return d, n
+
     def cell_score(self, cell: str) -> float:
         """How good a map cell is for hunting: kills and gold per fight, with deaths counted heavily; unknown cells score neutral so they get tried."""
         self.refresh()

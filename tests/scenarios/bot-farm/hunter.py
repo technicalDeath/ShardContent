@@ -207,12 +207,47 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
             pass
         return True
 
+    WORD_SHARE = 0.2          # a death in this share of the farm's fights with a kind makes it a danger to a newbie (memory.deadly_kinds' own share)
+    WORD_MIN = 0.5            # one death within memory.FIGHT_HALF_LIFE (2 h): decayed below a half, it is older news
+
+    def word_of_mouth(self, key):
+        """What a new player hears from others: a kind that has killed bots of any group lately, in both shared memories (the newbies' own and the
+        veterans', mem.news: bot_common keeps them apart), decayed by FIGHT_HALF_LIFE; its engine family too (measured.FAMILY: a spectre is a shade). A
+        death within the last half-life (WORD_MIN) in at least WORD_SHARE of the fights makes it a danger. Owner, 2026-11-04: "New bots shouldnt only
+        learn from their own deaths": BotFencerBR died to a skeletal knight at the Skara Brae graveyard (16:35), and 21 minutes later BotMaceCR, also a
+        newbie, took a skeletal knight, a spectre and a bone mage there for "never met one, worth a try" and died; both memories held deaths to all
+        three. A zombie (1.6% of melee fights) or a skeleton (5.6%) stays worth a try."""
+        mems = [x for x in (getattr(self, "mem", None), getattr(getattr(self, "mem", None), "news", None)) if x is not None and hasattr(x, "deaths_anywhere")]
+        if not mems:
+            return ""
+        try:
+            import measured
+            fam = measured.FAMILY.get(key)
+        except Exception:
+            fam = None
+        for k in (key, fam):
+            if not k:
+                continue
+            d = n = 0.0
+            for mm in mems:
+                try:
+                    d_, n_ = mm.deaths_anywhere(k)
+                except Exception:
+                    continue
+                d, n = d + d_, n + n_
+            if d >= self.WORD_MIN and d >= self.WORD_SHARE * max(n, 1e-9):
+                return f"{d:.1f} deaths in {n:.1f} fights lately{'' if k == key else ' with its kind, ' + k}"
+        return ""
+
     def _assess_naive(self, m):
         """What a new player goes by: the name, and what has happened to newbies before. Anything called 'a something' is worth a try until it kills one."""
         n = m.name.lower()
         key = self.mkey(m)
         if self.avoids(key):
             return {"known": False, "fight": False, "reason": "newbie: it killed me before"}
+        told = self.word_of_mouth(key)
+        if told:
+            return {"known": False, "fight": False, "reason": f"newbie: it has killed other players ({told})"}
         if any(w in n for w in self.NEWBIE_HARMLESS):
             return {"known": False, "fight": True, "reason": "newbie: looks harmless"}
         return {"known": False, "fight": n.startswith(("a ", "an ")), "reason": "newbie: never met one, worth a try" if n.startswith(("a ", "an ")) else "newbie: a person, leave it"}
