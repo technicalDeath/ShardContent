@@ -77,6 +77,8 @@ ATTACK_EVERY = 2.5
 FIGHT_FROM = 9                  # a target this close on the road is taken; the fight itself is booked (begin_fight) when it is engaged, in reach
 LOOT_WALK_S = 15.0
 CORPSE_KEEP = 300.0
+LOOT_THREAT_REACH = 2   # tiles: a hostile this near puts the loot off (the reach of its next swing, a step and a hit); one further off does not
+LOOT_HURT = 50          # % health below which any hostile in view puts the loot off
 REST_BELOW = 65
 DEBUG = bool(os.environ.get("TASK_CORE_DEBUG"))
 ENGAGE_HP = 50                  # no new target is taken under this health unless it is on top of the bot
@@ -986,8 +988,13 @@ class Loot(Step):
         st["corpses"] = pend
         if not pend:
             return Status.SUCCESS
-        if b.threats(7):
+        th = b.threats(7)
+        if th and (min((getattr(m, "distance", 9) or 9) for m in th) <= LOOT_THREAT_REACH or b.hp_pct() < LOOT_HURT):
             return Status.SUCCESS                           # the corpse waits; the next cycle fights what came
+        # one further off is no reason to walk away from the corpse: opening it and taking the gold is two commands, and a monster that comes is
+        # fought the next tick. "Any within 7" left corpses whenever one stood about: in Britain's graveyard there always is, the bot is not let fight it
+        # inside the town (town_guards), the cycle went on to the next spot, and the corpse fell out of the 10-tile list unopened. BotFairSwordNR's
+        # zombie at 1405,1527 kept its gold for the owner to find (2026-11-04 20:26)
         c.step = "loot"
         p = pend[0]
         corpse = next((i for i in b.c.containers(within=10) if i.serial == p[0]), None)

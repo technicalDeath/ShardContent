@@ -1,0 +1,23 @@
+{
+  "_note": "Tunables of rating.py (the fight rating: the bot's numbers against the monster's, by the engine's pre-AOS rules). A change here is read by every brain within its next rating, no restart. Owner, 2026-11-04: 'if the rating is determined to be too tight or loose or specific inputs, that can be adjusted'.",
+  "engage_max_cost": 0.5,
+  "_engage_max_cost": "the predicted hit points lost / hit points now (plus Heal potions drinkable in the fight), at or under which a bot takes the fight. Lower: more careful.",
+  "max_ttk_s": 90.0,
+  "_max_ttk_s": "a fight with one monster longer than this is not started (a pack: this x its size)",
+  "scale": {
+    "bot_dps": 1.0,
+    "monster_melee": 1.0,
+    "monster_spells": 1.0,
+    "poison": 1.0,
+    "armor": 1.0
+  },
+  "_scale": "multipliers on each input: bot_dps on the bot's damage a second, monster_melee and monster_spells on what it takes from blows and spells, poison on the poison ticks, armor on the bot's armour rating",
+  "potions": {
+    "count": true,
+    "heal_avg": 13.0,
+    "every_s": 10.0
+  },
+  "_potions": "Heal potions the bot carries count as hit points, one per every_s seconds of the fight at heal_avg each (HealPotion 6-20 pre-AOS, a 10 s shared delay)",
+  "kinds": {},
+  "_kinds": "per creature kind, e.g. {\"shade\": {\"lost\": 1.5}}: a multiplier on the predicted hit points lost, for a kind the model rates too kindly or too harshly"
+}

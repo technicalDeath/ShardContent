@@ -271,8 +271,60 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         fight = taken < 0.5 * self.c.hp and not casts and mon["hits"][1] <= 140
         return {"known": True, "fight": fight, "monster": mon, "taken": round(taken), "reason": f"~{ttk:.0f}s to kill, ~{taken:.0f} damage taken of {self.c.hp}" + (", casts spells" if casts else "")}
 
+    RATING_JOIN = 14          # tiles: an attack-on-sight monster this near the target joins the fight (task_core.PULL_CLEAR, its notice range)
+
+    def rated(self, m):
+        """assess() under feature rating: the fight with this one monster rated from the bot's numbers and its own (rating.rate), or None for a kind the
+        creature table does not know (the old estimate then stands)."""
+        try:
+            import rating
+            r = rating.rate(self, self.mkey(m))
+        except Exception as e:
+            self.log(f"rating: {self.mkey(m)}: {type(e).__name__}: {e}")
+            return None
+        if r is None:
+            return None
+        return {"known": True, "fight": r["engage"], "taken": r["lost"], "reason": r["why"], "rating": r, "monster": self.k.monster(m) or {}}
+
+    def rated_prey(self, m):
+        """Feature rating: prey when the fight it starts rates as one to take: this monster and every attack-on-sight one within RATING_JOIN tiles of it
+        (rating.rate_pack). None for a kind the creature table does not know. Cached 8 s per mobile, as is_prey's assess."""
+        a = self.facts.setdefault("assess", {})
+        cached = a.get(("r", m.serial))
+        now = time.time()
+        if cached and now - cached[0] < 8:
+            return cached[1]
+        try:
+            import rating
+            import task_core
+            kinds = [self.mkey(m)]
+            for o in self.mobs((getattr(m, "distance", 0) or 0) + self.RATING_JOIN):
+                if o.serial == m.serial or max(abs(o.x - m.x), abs(o.y - m.y)) > self.RATING_JOIN:
+                    continue
+                k = self.mkey(o)
+                if task_core.aggressive_kind(k) and rating.creature(k):
+                    kinds.append(k)
+            r = rating.rate_pack(self, kinds)
+        except Exception as e:
+            self.log(f"rating: {self.mkey(m)}: {type(e).__name__}: {e}")
+            return None
+        if r is None:
+            return None
+        a[("r", m.serial)] = (now, r["engage"])
+        seen = self.facts.setdefault("rated_seen", {})
+        key = (self.mkey(m), r["n"])
+        if now - seen.get(key, 0) > 600:
+            seen[key] = now
+            self.log(f"rated {m.name!r}: {'fight' if r['engage'] else 'leave it'} - {r['why']}")
+            self.dlog("choice", what=f"{'fight' if r['engage'] else 'leave'} {self.mkey(m)}", why=r["why"][:160])
+        return r["engage"]
+
     def assess(self, m):
         """The table's estimate, corrected by what bots like this one have actually met: a kind that has killed them is a danger, a kind they beat cheaply is prey."""
+        if self.feature("rating"):
+            r = self.rated(m)
+            if r is not None:
+                return r                                       # feature rating: the rating decides, no memory override (calibrate rating.json instead)
         a = self._assess_table(m)
         b = self._assess_memory(m, a)
         if b["fight"] != a["fight"]:
@@ -366,6 +418,10 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
     def is_prey(self, m):
         if self.sewer_avoid(m):
             return False                                       # the sewers: an alligator below skill 50 is a danger
+        if self.feature("rating"):
+            r = self.rated_prey(m)
+            if r is not None:
+                return r                                       # feature rating: the fight's rating decides (rating.py, rating.json)
         if m.distance > 1:
             try:
                 import measured
