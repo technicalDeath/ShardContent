@@ -51,6 +51,8 @@ BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTail
 BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
 BOLT_BATCH = 10           # bolts a trip at most: 500 cloth (CRAFTS[18] wanted "bolt of cloth" 500: at 100, two bolts a walk, 7 surcoats, 2026-11-02); a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
 TRAIN_RESERVE = 1000      # below this (carried + banked) a crafter makes only what is expected to pay (patch_craft_profit)
+TRIED = re.compile(r"You failed|You fail", re.I)   # a failed try's line (CraftItem 1044043 "You failed to create the item..."); with
+                                                  # OUTCOME's create lines, the only replies that are a try
 FAIL_LOSS = 0.5           # a failed craft consumes half the materials (ModernUO ConsumeType.Half)
 FLOOR_MARGIN = 1.25       # a shop pays at least the materials x 1.25 for a crafted piece (CraftedGoodsPricing)
 # material a craft gathers itself (carpenters chop, smiths and tinkers dig) is worth what a shop pays for it (SBInfo sell lists): the gold a craft gives up.
@@ -1708,14 +1710,16 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             result = self.craft_once(name, first=(n == 0 or self.last_made != name))
             self.last_made = name
             ok = bool(re.search(r"You create|You make|put .* in|exceptional", result or "", re.I))
+            tried = ok or bool(TRIED.search(result or ""))  # a real outcome: silence, notool or a refused menu was no try (BotFairTailorVR, 2026-11-05)
             self.made += ok
             self.work += ok
-            self.fails += not ok
+            self.fails += tried and not ok
             if ok and n < 3:
                 self.learn_made(before, made=name)
-            self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)),
-                            skill=round(float(self.skill or 0.0), 1),
-                            exc=bool(re.search(r"exceptional", result or "", re.I)))
+            if tried:
+                self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)),
+                                skill=round(float(self.skill or 0.0), 1),
+                                exc=bool(re.search(r"exceptional", result or "", re.I)))
             if re.search(r"fail", result or "", re.I):
                 self.note("craft", f"A failed craft says: {result[-110:]}", key="failmsg")
             if (result or "").startswith(("nomenu", "menu refused")):
