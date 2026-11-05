@@ -15,7 +15,8 @@ The engine's rules (ModernUO, Core.AOS false; UOTD and LBR off, expansion.json; 
                a creature's VirtualArmor takes VA x s / 2 .. VA x s with s by body share, 0.75 x 0.2245 x VA on average; a hit does at least 1  AbsorbDamage
   hit points   a creature's SetHits under 1000 is x 100 / 60 (BaseCreature.SetHits pre-AOS)
   spells       a caster's expected damage a second: casterpass.per_cast / casterpass.interval (MageAI)
-  poison       pre-AOS ticks: clamp(1 + hits x pct, min, max) every interval, 10 ticks (PoisonKinds.cs); the shop's Lesser Cure cures Lesser 75%,
+  poison       pre-AOS ticks: clamp(1 + hits x pct, min, max) every interval, 10 ticks (PoisonKinds.cs), from a landed blow half the time
+               (BaseCreature.HitPoisonChance 0.5); the shop's Lesser Cure cures Lesser 75%,
                Regular 50%, Greater 25%, Deadly and Lethal 0% (LesserCurePotion)
 
     rate(bot, kind) -> {"engage", "cost", "ttk", "lost", "budget", "dps_out", "dps_in", "why", ...}
@@ -33,6 +34,7 @@ FISTS = {"min": 1, "max": 8, "speed": 30, "skill": "Wrestling"}     # Fists.cs: 
 POISON = {"Lesser": (4, 26, 2.5, 3.0), "Regular": (5, 26, 3.125, 3.0), "Greater": (6, 26, 6.25, 3.0), "Deadly": (7, 26, 12.5, 4.0), "Lethal": (9, 26, 25.0, 5.0)}
 CURE = {"Lesser": 0.75, "Regular": 0.5, "Greater": 0.25, "Deadly": 0.0, "Lethal": 0.0}     # LesserCurePotion pre-AOS
 POISON_TICKS = 10
+POISON_CHANCE = 0.5          # BaseCreature.HitPoisonChance: a landed blow of a poisoner poisons half the time (OnGaveMeleeAttack)
 DEFAULTS = {
     "engage_max_cost": 0.5,       # predicted hit points lost / hit points now, at or under which the bot engages (the old assess rule's 0.5 x hp)
     "max_ttk_s": 90.0,            # a fight longer than this is no fight to start
@@ -194,7 +196,9 @@ def rate(bot, kind, numbers=None):
         mn, mx, pct, every = POISON[pz]
         tick = max(mn, min(mx, 1 + me["hp"] * pct / 100.0))
         fail = 1.0 - (CURE.get(pz, 0.0) if me["cures"] > 0 else 0.0)
-        lost += tick * POISON_TICKS * fail * float(sc.get("poison", 1.0))
+        swings = ttk / swing_s(_mid(e.get("dex"), 50.0), 30.0, False)
+        poisoned = 1.0 - (1.0 - POISON_CHANCE * p_in) ** max(0.0, swings)       # a landed blow poisons with HitPoisonChance 0.5 (BaseCreature)
+        lost += tick * POISON_TICKS * fail * poisoned * float(sc.get("poison", 1.0))
     kmul = float(((cfg.get("kinds") or {}).get(kind) or {}).get("lost", 1.0))
     lost *= kmul
     budget = me["hp"]
