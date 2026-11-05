@@ -99,7 +99,7 @@ from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_restock", "r_colour", "r_craft", "r_smelt", "r_dig", "r_earn",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_cures", "r_restock", "r_colour", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
     LOOT_GEAR = ()                                        # a crafter hunting vermin for coins does not carry weapons home to sell
@@ -772,6 +772,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             biter = next((m for m in th if (getattr(m, "distance", 9) or 9) <= 1 and getattr(m, "in_war_mode", False) and self.is_prey(m)), None)
             if biter is not None:
                 self.activity = f"fighting back at {biter.name}"
+                if self.feature("craft_guard"):
+                    return self.hold_fight(biter)
                 return self.fight_back(biter)
         if self.hp_pct() >= 50 or not th:
             return False
@@ -782,6 +784,89 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return True
         if self.flee_from(th[0]) == "trapped":            # straight away, not the walk home a far crafter's client cannot plan (basics.py)
             return self.fight_back(th[0])
+        return True
+
+    HOLD_S = 45               # longest stay on one biter when no rating is known; with one, HOLD_TTK x its time to kill
+    HOLD_TTK = 1.5            # real fights ran ~1.4x the rating's time to kill, the walk up included (rating_check.py, 2026-11-04)
+    HOLD_MAX_S = 90           # rating.json max_ttk_s: no fight the rating would take lasts longer
+
+    def hold_cap(self, m):
+        try:
+            import rating
+            r = rating.rate(self, self.mkey(m))
+            if r and r.get("ttk"):
+                return min(self.HOLD_MAX_S, max(self.HOLD_S, self.HOLD_TTK * float(r["ttk"])))
+        except Exception:
+            pass
+        return self.HOLD_S
+    HOLD_STEP_S = 0.8
+
+    def hold_fight(self, m):
+        """Feature craft_guard: stay on a biter until it dies, leaves the next tile, or the fight stops rating as one to take from the health left. One swing
+        a tick let the next rule walk away under its teeth: BotSmithAdvR fought back at a snake six times, killed nothing and died of its poison (2026-11-05
+        00:49-00:52, Lesser poison, no Cure potion)."""
+        self.fight_back(m)
+        end = time.time() + self.hold_cap(m)
+        why = "time"
+        while time.time() < end:
+            self.beat()
+            time.sleep(self.HOLD_STEP_S)
+            cur = next((x for x in self.c.mobiles(within=4) if x.serial == m.serial), None)
+            if cur is None or getattr(cur, "is_dead", False):
+                why = "dead"
+                break
+            if (getattr(cur, "distance", 9) or 9) > 1:
+                why = "left"
+                break
+            if not self.hold_worth(cur):
+                why = "rating"
+                break
+            if self.hp_pct() < 35 and not self.c.poisoned:
+                self.drink_heal("holding a fight")
+            if not self.c.war_mode:
+                self.c.war(True)
+            self.c.attack(cur.serial)
+        self.ev("hold_fight", at=self.mkey(m), end=why, hp=self.c.hp)
+        self.log(f"held the fight with {m.name}: {why}, hp {self.c.hp}")
+        return True
+
+    def hold_worth(self, m):
+        """Still a fight to take from the health left: the rating (rating.rate, current hit points) under feature rating, else is_prey."""
+        if self.feature("rating"):
+            r = self.rated(m)
+            if r is not None:
+                return bool(r["fight"])
+        return bool(self.is_prey(m))
+
+    CURE_KEEP = 2             # errands.RESTOCK's low mark for the Cure potion (learning 2: snake poison killed three of nine with none)
+    CURE_BUY = 3
+    CURE_PRICE = 15           # errands.PRICE["=orange potion"]
+    CURE_NEAR = 60            # a seller within this many tiles: bought on a town visit, never a trip of its own
+    CURE_RETRY_S = 1800       # errands.KIT_RETRY_S: shelves empty until the vendor's restock
+
+    def cures(self):
+        return sum((i.amount or 1) for i in (self.c.backpack or []) if "orange" in (i.name or "").lower() or "cure potion" in (i.name or "").lower())
+
+    def r_cures(self):
+        """Feature craft_guard: a crafter in town with fewer than CURE_KEEP Cure potions buys CURE_BUY at the nearest Alchemist or Healer. A crafter
+        bitten by a snake or giant spider with none can only wait the poison out (BotSmithAdvR, 2026-11-05 00:52)."""
+        if not self.feature("craft_guard") or self.cures() >= self.CURE_KEEP or self.c.ghost:
+            return False
+        if time.time() < float(self.facts.get("cure_try_at", 0) or 0) or (self.c.gold or 0) < self.CURE_PRICE * self.CURE_BUY or self.threats(10):
+            return False
+        spots = [q for q in self.find_places((("alchemist",), ("healer",)), item="=orange potion", n=3, per=1)
+                 if max(abs(q[0] - self.c.x), abs(q[1] - self.c.y)) <= self.CURE_NEAR]
+        if not spots:
+            return False
+        self.facts["cure_try_at"] = time.time() + self.CURE_RETRY_S
+        self.activity = "buying Cure potions"
+        got = {}
+        for q in spots:
+            got = self.shop_at(q, {"=orange potion": self.CURE_BUY}) or {}
+            if self.cures() >= self.CURE_KEEP:
+                break
+        self.log(f"cure potions: {self.cures()} carried after {got}")
+        self.ev("cure_stock", n=self.cures(), bought=sum(got.values()) if got else 0)
         return True
 
     IDLE_CLEAR = 32           # as housegoal.HOUSE_CLEAR: a creature at its home's edge sees a bot standing about (perception 16) and chases it as far again; the
