@@ -19,7 +19,7 @@ The engine's rules (ModernUO, Core.AOS false; UOTD and LBR off, expansion.json; 
                mana 4/6/9/11/14/20/40/50 by circle, regained at RegenRates' pre-AOS rate from (Int + Meditation) / 2; casterpass's fizzle, scalar and resist
   poison       pre-AOS ticks: clamp(1 + hits x pct, min, max) every interval, 10 ticks (PoisonKinds.cs), from a landed blow half the time
                (BaseCreature.HitPoisonChance 0.5); the shop's Lesser Cure cures Lesser 75%,
-               Regular 50%, Greater 25%, Deadly and Lethal 0% (LesserCurePotion)
+               Regular 50%, Greater 15%, Deadly and Lethal 0% (LesserCurePotion _oldLevelInfo; AOS has Greater 25%)
 
     rate(bot, kind) -> {"engage", "cost", "ttk", "lost", "budget", "dps_out", "dps_in", "why", ...}
 """
@@ -34,7 +34,7 @@ SHARES = (0.07, 0.07, 0.14, 0.15, 0.22, 0.35)                       # BaseArmor.
 VA_SHARE = 0.14 * 0.07 + 0.14 * 0.14 + 0.15 * 0.15 + 0.22 * 0.22 + 0.35 * 0.35     # a creature's VirtualArmor scalar by body part, weighted
 FISTS = {"min": 1, "max": 8, "speed": 30, "skill": "Wrestling"}     # Fists.cs: OldMinDamage 1, OldMaxDamage 8, OldSpeed 30
 POISON = {"Lesser": (4, 26, 2.5, 3.0), "Regular": (5, 26, 3.125, 3.0), "Greater": (6, 26, 6.25, 3.0), "Deadly": (7, 26, 12.5, 4.0), "Lethal": (9, 26, 25.0, 5.0)}
-CURE = {"Lesser": 0.75, "Regular": 0.5, "Greater": 0.25, "Deadly": 0.0, "Lethal": 0.0}     # LesserCurePotion pre-AOS
+CURE = {"Lesser": 0.75, "Regular": 0.5, "Greater": 0.15, "Deadly": 0.0, "Lethal": 0.0}     # LesserCurePotion pre-AOS (_oldLevelInfo; 0.25 is AOS)
 POISON_TICKS = 10
 POISON_CHANCE = 0.5          # BaseCreature.HitPoisonChance: a landed blow of a poisoner poisons half the time (OnGaveMeleeAttack)
 DEFAULTS = {

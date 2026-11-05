@@ -28,14 +28,14 @@ from typing import Callable, Iterable, List, Optional, Sequence, Tuple
 SPELL_RANGE = 10
 NOTICE = 14
 CASTER_CLEAR = SPELL_RANGE + 2            # out of spell range with one step to spare
-POISON_CLEAR = 9                          # a monster whose poison the shops' Lesser Cure cannot cure (pre-AOS 25% for Greater, 0 for Deadly and Lethal,
+POISON_CLEAR = 9                          # a monster whose poison the shops' Lesser Cure cannot cure (pre-AOS 15% for Greater, 0 for Deadly and Lethal,
                                           # LesserCurePotion.cs _oldLevelInfo; a poisoned player cannot drink a Heal potion): two of a Medium chaser's 2 s legs
                                           # (4.4 tiles each), so a drink or a short leg still leaves one. A scorpion (Greater 80%, Deadly 20%, Scorpion.cs:57)
                                           # took BotFairSwordVR from 71 to 0 through five Cure potions (2026-11-03 20:39-20:40)
 POISON_LEVELS = ("Regular", "Greater", "Deadly", "Lethal")    # kept POISON_CLEAR off: a Lesser Cure clears Regular only half the time (0.50) and each bite
                                                                # poisons again: giant spiders took BotFenceAdvR 78 -> 31 through seven cures on the Skara
                                                                # Brae road (2026-11-03 23:28-23:29)
-UNCURABLE_LEVELS = ("Greater", "Deadly", "Lethal")            # a contact never affordable (casterpass.UNCURABLE): 25% and 0% with a Lesser Cure
+UNCURABLE_LEVELS = ("Greater", "Deadly", "Lethal")            # a contact never affordable (casterpass.UNCURABLE): 15% and 0% with a Lesser Cure
 MELEE_CLEAR = 5                           # a Medium melee monster (0.45 s a tile, npc-speeds.json: orcs, trolls, scorpions, ratmen) covers 4.4 tiles in
                                           # one 2 s leg; 2 let BotFairSwordVR run into three earth elementals and a scorpion at 1 tile (99 -> 11 hp,
                                           # 2026-11-03 18:08)
