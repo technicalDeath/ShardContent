@@ -1044,6 +1044,19 @@ class FirstTrip(RideMixin, LadderMixin):
             why = "kit low"
         elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest"):
             why = f"a {task.get('task')} errand"
+        elif task.get("task") == "wait":
+            # nothing open to hunt in the dungeon: past the core's own wait (task_core.WAIT_S), the hunt is over and the bot goes home, not stand at the
+            # landing until its time (BotHealAdvR, "no hunt area is open" from 19:40 to the hunt's end at 20:18)
+            dh.setdefault("wait_since", now)
+            try:
+                import task_core
+                wait_s = task_core.WAIT_S
+            except Exception:
+                wait_s = 120.0
+            if now - float(dh["wait_since"]) > wait_s:
+                why = "nothing open"
+        else:
+            dh.pop("wait_since", None)
         if why:
             self.facts.pop("dungeon_hunt", None)
             self.__dict__.pop("_spots", None)

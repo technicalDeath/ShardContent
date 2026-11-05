@@ -347,7 +347,10 @@ def recall_step(bot, leg, st):
 def tele_step(bot, leg, st):
     """At the teleporter's entry (the walk leg before brought the bot there): tele_hop onto it, check the side changed. Returns "done" or a failure reason."""
     here = (int(bot.c.x), int(bot.c.y))
-    if leg.get("to_side") not in (None, "surface"):
+    if leg.get("to_side") not in (None, "surface") and side_of(*here) != leg.get("to_side"):
+        # the gate is for going IN: a stair between two levels of the dungeon the bot is already in is no entry. Back from the landing hall after a
+        # retreat at 89% health, BotHealAdvR's stair up was refused ("not ready for the dungeon"), every lizardman spot became unreachable and it
+        # waited 40 minutes at the landing (2026-11-04 19:40-20:18)
         try:
             import task_core
             if not task_core.rung_ready(bot):            # M1: at the gate the stock or the health is gone: turn back and restock, do not go in
