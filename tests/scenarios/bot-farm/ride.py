@@ -84,9 +84,13 @@ class RideMixin:
         return min(mine, key=lambda m: m.distance) if mine else None
 
     def ride_wanted(self):
-        """Buy a mount: a ladder bot past the outskirts rung, whose next outings are the long trips (towns, the dungeon)."""
+        """Buy a mount: a ladder bot past the outskirts rung, whose next outings are the long trips (towns, the dungeon); a fighter off the ladder as soon
+        as it can pay (r_ride's HORSE_PRICE + RIDE_RESERVE), as a Renaissance player rode everywhere once they could afford one (owner 2026-11-05, horses
+        for every fighter: "Both, all fighters")."""
         try:
-            return bool(self.ladder_on() and self.ladder_state()["ok"].get("2"))
+            if not self.ladder_on():
+                return True
+            return bool(self.ladder_state()["ok"].get("2"))
         except Exception:
             return False
 
