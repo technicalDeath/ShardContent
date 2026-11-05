@@ -249,6 +249,8 @@ class Travel(Step):
             b.log(f"hunt tree: journey to {task['area']} ({dx},{dy}): {j['kind']}, {j['minutes']} min (walk {j.get('walk_minutes')}), {len(j['legs'])} legs")
         j = st["journey"]
         seg = j["legs"][st["seg"]]
+        if seg["kind"] == "walk" and self.off_leg(here, seg, st):
+            return Status.RUNNING
         if seg["kind"] != "walk":
             import travel
             res = travel.STEPS[seg["kind"]](b, seg, st)
@@ -308,6 +310,30 @@ class Travel(Step):
             return Status.RUNNING
         c.issue(*wp)
         return Status.RUNNING
+
+    LEG_REPLANS = 3           # replans of one task's journey for a component change; past them the walk's own nopath count decides
+
+    def off_leg(self, here, seg, st):
+        """True (the journey dropped, planned again next tick) when, inside a dungeon, this walk leg ends in another walkable component than the bot
+        stands in (spots.component): a reflex took the bot through an inner stair, and the leg can no longer be walked."""
+        if here[0] < 5120 or int(st.get("leg_replans", 0)) >= self.LEG_REPLANS:
+            return False
+        end = seg.get("to") or ((seg.get("wps") or [None])[-1])
+        if not end:
+            return False
+        try:
+            import spots
+            a, z = spots.component(here[0], here[1]), spots.component(int(end[0]), int(end[1]))
+        except Exception:
+            return False
+        if a is None or z is None or a == z:
+            return False
+        st["leg_replans"] = int(st.get("leg_replans", 0)) + 1
+        st["journey"] = None
+        b = self.ctx.bot
+        b.log(f"hunt tree: at {here[0]},{here[1]} (component {a}), the walk leg ends in component {z}: planned again from here")
+        b.ev("leg_replanned", at=list(here), comp=a, leg_comp=z)
+        return True
 
     def journey(self, here, dest):
         try:
