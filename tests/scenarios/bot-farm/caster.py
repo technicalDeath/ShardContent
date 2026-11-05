@@ -475,7 +475,14 @@ class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWor
             return f"veto: no spell to cast and it has {mon['hits'][1]} hit points"
         return None
 
+    RATING_JOIN = 14          # tiles: an attack-on-sight monster this near the target joins the fight (hunter.HunterBot.RATING_JOIN)
+
     def is_prey(self, m):
+        if self.feature("rating"):
+            import hunter
+            rated = hunter.HunterBot.rated_prey(self, m)        # feature rating: the rated fight decides, spells and mana included (rating.spell_plan)
+            if rated is not None:
+                return rated
         r = super().is_prey(m)
         key = BotBase.mkey(m)
         final, why = r, ""

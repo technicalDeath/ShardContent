@@ -15,6 +15,8 @@ The engine's rules (ModernUO, Core.AOS false; UOTD and LBR off, expansion.json; 
                a creature's VirtualArmor takes VA x s / 2 .. VA x s with s by body share, 0.75 x 0.2245 x VA on average; a hit does at least 1  AbsorbDamage
   hit points   a creature's SetHits under 1000 is x 100 / 60 (BaseCreature.SetHits pre-AOS)
   spells       a caster's expected damage a second: casterpass.per_cast / casterpass.interval (MageAI)
+  a bot mage  its best damage spell (spell_plan): (3 + circle) x 0.25 s to cast and 0.75 s to recover (MagerySpell.CastDelayBase, Spell.NextSpellDelay),
+               mana 4/6/9/11/14/20/40/50 by circle, regained at RegenRates' pre-AOS rate from (Int + Meditation) / 2; casterpass's fizzle, scalar and resist
   poison       pre-AOS ticks: clamp(1 + hits x pct, min, max) every interval, 10 ticks (PoisonKinds.cs), from a landed blow half the time
                (BaseCreature.HitPoisonChance 0.5); the shop's Lesser Cure cures Lesser 75%,
                Regular 50%, Greater 25%, Deadly and Lethal 0% (LesserCurePotion)
@@ -138,6 +140,11 @@ def absorbed_hit(dmg_lo, dmg_hi, ar_lo, ar_hi, steps=12):
     return tot / (steps * steps)
 
 
+class NS_:
+    def __init__(self, d):
+        self.name = (d or {}).get("name")
+
+
 def bot_numbers(bot):
     st = bot.c.state or {}
     sk = getattr(bot, "skill_values", {}) or {}
@@ -147,8 +154,64 @@ def bot_numbers(bot):
             "ar": float(st.get("physicalResistance") or 0), "weapon": w, "skill": float(sk.get(w["skill"], 0.0) or 0.0),
             "tactics": float(sk.get("Tactics", 0.0) or 0.0), "anatomy": float(sk.get("Anatomy", 0.0) or 0.0),
             "lumber": float(sk.get("Lumberjacking", 0.0) or 0.0), "resist": float(sk.get("Resisting Spells", 0.0) or 0.0),
+            "magery": float(sk.get("Magery", 0.0) or 0.0), "evalint": float(sk.get("Evaluating Intelligence", 0.0) or 0.0),
+            "meditation": float(sk.get("Meditation", 0.0) or 0.0), "int": float(st.get("int") or 50), "mana": float(st.get("mana") or st.get("int") or 50),
+            "book": any("spellbook" in (i.name or "").lower() for i in list(getattr(bot.c, "backpack", None) or []) + [NS_(e) for e in st.get("equipped") or []]),
             "heals": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "yellow" in (i.name or "").lower() or "heal potion" in (i.name or "").lower()),
             "cures": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "orange" in (i.name or "").lower() or "cure potion" in (i.name or "").lower())}
+
+
+CAST_RECOVERY = 0.75             # s between spells pre-AOS (Spell.NextSpellDelay; GetCastRecovery's AOS formula is off)
+MANA = (4, 6, 9, 11, 14, 20, 40, 50)                                     # MagerySpell._manaTable by circle
+BOT_SPELLS = (("magic arrow", 4, 7, 0, 0.75), ("harm", 1, 15, 1, 0.75), ("fireball", 10, 16, 2, 0.75), ("lightning", 12, 20, 3, 0.75),
+              ("energy bolt", 24, 41, 5, 0.75), ("explosion", 23, 44, 5, 0.75), ("flamestrike", 27, 48, 6, 0.6))      # casterpass.SPELLS' damage spells
+
+
+def mana_regen(me):
+    """Mana a second pre-AOS (RegenRates.Mobile_ManaRegenRate): one point every 7 - 239p/2400 + 19p^2/48000 s, p = (Int + Meditation) / 2; armour adds to it."""
+    p = (me.get("int", 50.0) + me.get("meditation", 0.0)) * 0.5
+    sec = 7.0 if p <= 0 else (7.0 - 239.0 * p / 2400.0 + 19.0 * p * p / 48000.0) if p <= 100 else 1.0 if p < 120 else 0.75
+    return 1.0 / max(0.25, sec)
+
+
+def spell_plan(me, e, hits):
+    """(seconds to kill, the spell, damage a cast, seconds a cast) for the bot's best damage spell against this creature, mana included: full speed while
+    the pool lasts, then as fast as its regeneration pays for it. None when it casts nothing that hurts. A cast: (3 + circle) x 0.25 s plus CAST_RECOVERY;
+    it fizzles unless (Magery - 10 x circle) / 40 succeeds; damage x casterpass.scalar(EvalInt, Magery, its Resist), x the resisted factor at
+    casterpass.resist_chance."""
+    if me.get("magery", 0.0) < 20 or not me.get("book"):
+        return None
+    try:
+        import casterpass
+    except Exception:
+        return None
+    rs = _mid(e.get("resist"))
+    sc = max(0.0, casterpass.scalar(me.get("evalint", 0.0), me["magery"], rs))
+    regen = mana_regen(me)
+    pool = max(0.0, me.get("mana", 0.0))
+    best = None
+    for name, lo, hi, c, rf in BOT_SPELLS:
+        ok = casterpass.success(me["magery"], c)
+        if ok <= 0:
+            continue
+        pr = casterpass.resist_chance(rs, me["magery"], c)
+        dmg = ok * (lo + hi) / 2.0 * sc * (1 - pr + pr * rf)
+        if dmg <= 0:
+            continue
+        t_cast = (3 + c) * 0.25 + CAST_RECOVERY
+        cost = MANA[c]
+        dps, need = dmg / t_cast, cost / t_cast
+        if need <= regen:
+            ttk = hits / dps
+        else:
+            t1 = pool / (need - regen)                           # until the pool is gone
+            if dps * t1 >= hits:
+                ttk = hits / dps
+            else:
+                ttk = t1 + (hits - dps * t1) / (regen / cost * dmg)
+        if best is None or ttk < best[0]:
+            best = (ttk, name, dmg, t_cast)
+    return best
 
 
 def rate(bot, kind, numbers=None):
@@ -171,6 +234,12 @@ def rate(bot, kind, numbers=None):
     dps_out = p_out * per_hit_out / swing_s(me["stam"], float(w["speed"]), True) * float(sc.get("bot_dps", 1.0))
     hits = creature_hits(e)
     ttk = hits / dps_out if dps_out > 0 else float("inf")
+    how = f"{w.get('key', 'fists')}"
+    plan = spell_plan(me, e, hits)
+    if plan and plan[0] / max(1e-9, float(sc.get("bot_dps", 1.0))) < ttk:
+        ttk = plan[0] / max(1e-9, float(sc.get("bot_dps", 1.0)))       # a mage: its best spell, mana included (spell_plan)
+        dps_out = hits / ttk
+        how = f"{plan[1]} ({plan[2]:.1f} a cast every {plan[3]:.2f}s)"
     # its blows on the bot
     p_in = hit_chance(_mid(e.get("wrestling")), me["skill"], False)
     dmg = e.get("damage") or [0, 0]
@@ -207,10 +276,10 @@ def rate(bot, kind, numbers=None):
         budget += min(me["heals"], ttk / float(pot.get("every_s", 10.0))) * float(pot.get("heal_avg", 13.0))
     cost = lost / budget if budget > 0 else float("inf")
     engage = cost <= float(cfg.get("engage_max_cost", 0.5)) and ttk <= float(cfg.get("max_ttk_s", 90.0))
-    why = (f"rating {cost:.2f} (lose ~{lost:.0f} of {budget:.0f}; {ttk:.0f}s to kill at {p_out:.0%} x {per_hit_out:.1f} per {swing_s(me['stam'], float(w['speed']), True):.1f}s; "
+    why = (f"rating {cost:.2f} (lose ~{lost:.0f} of {budget:.0f}; {ttk:.0f}s to kill with {how}; "
            f"it hits {p_in:.0%} x {per_hit_in:.1f}" + (f" + spells {spells_in:.1f}/s" if spells_in else "") + (f" + {pz} poison" if pz in POISON else "") + ")")
     return {"engage": engage, "cost": round(cost, 3), "ttk": round(ttk, 1), "lost": round(lost, 1), "budget": round(budget, 1), "dps_out": round(dps_out, 2),
-            "dps_in": round(dps_in, 2), "p_out": round(p_out, 3), "p_in": round(p_in, 3), "hits": round(hits, 1), "why": why}
+            "dps_in": round(dps_in, 2), "p_out": round(p_out, 3), "p_in": round(p_in, 3), "hits": round(hits, 1), "how": how, "why": why}
 
 
 def rate_pack(bot, kinds, numbers=None):
