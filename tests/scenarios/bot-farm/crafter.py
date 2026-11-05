@@ -96,6 +96,13 @@ from colours import ColourSmith  # noqa: E402  (coloured armour for the fighters
 from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
 
 
+def kept_word(n, keep):
+    """A KEEP word in the name as a whole word (a plural allowed): "kit" is a tool kit or a sewing kit, never a kite shield. As a substring it kept
+    BotSmithBR's 37 wooden kite shields out of every sale and the bank (185 stones; idle 72% of an hour, 2026-11-05 01:12-02:12). A module function:
+    minersmith borrows is_product and learn_made onto a MinerBot, which has no kept_word method."""
+    return any(re.search(r"\b" + re.escape(w) + r"(s|es)?\b", n) for w in keep)
+
+
 class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
@@ -945,9 +952,12 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if not hasattr(self, "_squashed"):
             self._squashed = {self.squash(i) for i in self.items}
         if self.squash(n) in self._squashed or self.squash(n) in {self.squash(m) for m in self.made_names}:
-            return not any(w in n for w in self.KEEP)
+            return not kept_word(n, self.KEEP)
         # made before the names were learned: "chair" is the tail of the menu's "wooden chair" (never a kit word: the starter bag stays)
-        return not any(w in n for w in self.KEEP) and any(it.endswith(" " + n) for it in self.items)
+        return not kept_word(n, self.KEEP) and any(it.endswith(" " + n) for it in self.items)
+
+    def kept_word(self, n):
+        return kept_word(n, self.KEEP)
 
     def working_tools(self):
         """Serials of the tools this crafter works with, one of each, never sold as products: its craft tool, and a shovel or pickaxe when it digs its
@@ -993,7 +1003,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         (and, with `made`, the menu item it came from)."""
         menu = self.menu_names()
         fresh = [i for i in self.c.backpack if i.serial not in before and i.name and not self.is_material(i.name.lower())
-                 and (i.name.lower() in menu or not any(w in i.name.lower() for w in self.KEEP))]
+                 and (i.name.lower() in menu or not kept_word(i.name.lower(), self.KEEP))]
         self.__dict__.setdefault("_made_serials", set()).update(i.serial for i in fresh)       # what this bot made (r_sell: refusals count only for these)
         new = {i.name.lower() for i in fresh}
         if made and new - set(self.made_as.get(made, ())):
