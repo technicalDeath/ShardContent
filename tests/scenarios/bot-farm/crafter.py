@@ -43,7 +43,8 @@ CRAFTS = {
 LEAF = re.compile(r"\((\d+) [^)]+\)\s*$")
 UNIT_PRICE = {"cut cloth": 2, "cloth": 2, "iron ingot": 5, "board": 3, "log": 2, "leather": 6,    # the shard's vendor prices (CraftedGoodsPricing.MaterialPrices)
               "cut up leather": 3}       # a leather-mode tailor's leather: a hide at the Furtrader (SBFurtrader Hides 3) cuts into one (Hides.Scissor)
-UNSOLD_VALID_FROM = 1793605500   # 2026-11-02 02:45: strikes from before this were sales of 100+ entries the server dropped (basics.SELL_MAX), not refusals
+UNSOLD_VALID_FROM = 1793866639   # 2026-11-05 03:17: strikes from before this were names the sale did not match (a vendor's "tear kite shield" for the pack's
+                                 # "kite shield", kept_word's "kit"), not refusals; before that, 2026-11-02 02:45: sales of 100+ entries the server dropped
 BOLT_PRICE = 100          # a bolt of cloth at the Tailor and the Weaver (SBTailor, SBWeaver)
 BOLT_WEIGHT = 5.0         # BoltOfCloth.DefaultWeight; it cuts into 50 cloth (BoltOfCloth.OnScissor)
 BOLT_BATCH = 10           # bolts a trip at most: 500 cloth (CRAFTS[18] wanted "bolt of cloth" 500: at 100, two bolts a walk, 7 surcoats, 2026-11-02); a sold-out shelf doubles at the next hourly restock (GenericBuyInfo.OnRestock)
@@ -94,6 +95,14 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 from market import CrafterDemand, CrafterMarket  # noqa: E402
 from colours import ColourSmith  # noqa: E402  (coloured armour for the fighters; feature colour_craft)
 from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
+
+
+def sernum(s):
+    """A serial as a number, from 0x4007... or an int; None when it is neither."""
+    try:
+        return int(s, 16) if isinstance(s, str) and s.lower().startswith("0x") else int(s)
+    except (TypeError, ValueError):
+        return None
 
 
 def kept_word(n, keep):
@@ -959,6 +968,15 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
     def kept_word(self, n):
         return kept_word(n, self.KEEP)
 
+    def carried_serials(self, stock):
+        """{serial number: item} of the products carried (stock, from products()), to match a sell list by serial as well as by name."""
+        out = {}
+        for i in stock or []:
+            n = sernum(i.serial)
+            if n is not None:
+                out[n] = i
+        return out
+
     def working_tools(self):
         """Serials of the tools this crafter works with, one of each, never sold as products: its craft tool, and a shovel or pickaxe when it digs its
         own ore. A tinker makes shovels and tinker's tools, so is_product called them goods: BotTinkAR bought a shovel for 55-88 gold, sold it for 9 at
@@ -1071,9 +1089,10 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 continue
             answered += 1
             matched = 0
+            mine = self.carried_serials(stock)
             for line in lines:
                 m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
-                if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0:
+                if m and (self.is_product(m.group(4).strip()) or sernum(m.group(1)) in mine) and int(m.group(2)) > 0:
                     matched += 1
             if chosen is None or matched > chosen[2]:
                 chosen = (v, lines, matched)
@@ -1095,11 +1114,25 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         # the pieces products() keeps back stay out of the cart too: the cart is built from the vendor's list by name, so it sold the coloured pieces on
         # offer to the fighters at the iron price (BotSmithAR's bronze plate helm, 2026-11-02 16:58) and a tinker's own shovel
         keep = {str(s_).lower() for s_ in (self.working_tools() | self.colour_kept())}
+        mine = self.carried_serials(stock)
         for line in offers:
             m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
             if m:
                 buys[m.group(4).strip().lower()] = int(m.group(2))
-            if m and self.is_product(m.group(4).strip()) and int(m.group(2)) > 0 and m.group(1).lower() not in keep:
+            own = mine.get(sernum(m.group(1))) if m else None
+            if m and own is not None and int(m.group(2)) > 0:
+                pack = (own.name or "").lower()
+                buys.setdefault(pack, int(m.group(2)))             # carried under another name: bought, not refused
+                vname = m.group(4).strip().lower()
+                if pack and vname != pack:
+                    made = next((k for k, v in self.made_as.items() if pack in v), None)
+                    if made and vname not in self.made_as[made]:
+                        self.made_as[made] = sorted(set(self.made_as[made]) | {vname})
+                        try:
+                            json.dump(self.made_as, open(self.made_as_path, "w", encoding="utf-8"))
+                        except Exception:
+                            pass
+            if m and (self.is_product(m.group(4).strip()) or own is not None) and int(m.group(2)) > 0 and m.group(1).lower() not in keep:
                 cart += [m.group(1), m.group(3)]
         # a refusal counts only for a kind this bot made and carries: a newbied starter dagger is on no vendor's list, and was recorded as "dagger: 0" at
         # all three Britain smiths, so no smith made daggers again (2026-11-01)
