@@ -34,7 +34,9 @@ CRAFTS = {
     18: dict(craft="Tailoring", skill="Tailoring", tool="sewing kit", mat="cut cloth", res="Cloth", station_by=None, shop_roles=("tailor", "weaver"), wanted={"cut cloth": 120, "bolt of cloth": 500},
              sell_roles=("tailor", "weaver"), maxcost=20),
     # the Carpenter at 1430,1597 sells boards (3 gp) and buys the work; the Tinker the carpenters used to go to sells none
-    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station_by=None, shop_roles=("carpenter",), wanted={"board": 60}, sell_roles=("carpenter",), maxcost=15),
+    17: dict(craft="Carpentry", skill="Carpentry", tool="saw", mat="board", mat_alt=("log",), res="Log", station_by=None, shop_roles=("carpenter",), wanted={"board": 60}, sell_roles=("carpenter",), maxcost=25),
+    # 25: the dearest piece on the era menu, empty bookcase (DefCarpentry), as for the tailor; 15 left out every piece that teaches past 67 but the
+    # wooden shield and ballot box (large crate 18, bench, throne and writing table 17, yew wood table 23)
     19: dict(craft="Tinkering", skill="Tinkering", tool="tool kit", tool_alt=("tinker's tools",), tool_buy="tinker's tools", mat="iron ingot", res="IronIngot", station_by=None, shop_roles=("tinker",), wanted={"ingot": 50},
              sell_roles=("tinker",), maxcost=10),
 }
@@ -602,7 +604,12 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             if price == 0 and not refused_ok:
                 continue                                  # every shop asked refused it: a crafter trains on what it can sell
             price = price if short else None
-            seen = self.mem.craft_stats(self.cfg["craft"], name) or {"n": 0, "ok": 0, "gain": 0, "exc": 0}
+            # the tries at this skill (memory.CRAFT_BAND), as a player goes by what teaches now: the lifetime record counted gains from 20 points down
+            try:
+                seen = self.mem.craft_stats(self.cfg["craft"], name, self.skill)
+            except TypeError:
+                seen = self.mem.craft_stats(self.cfg["craft"], name)          # a memory without the skill bands (a test's or the simulator's)
+            seen = seen or {"n": 0, "ok": 0, "gain": 0, "exc": 0}
             pick = (name, {"min": 0, "max": 100, "amount": cost, "resource": self.cfg["res"]}, (seen["ok"] + 1) / (seen["n"] + 2))
             if seen["n"] >= 6 and seen["ok"] == 0:
                 continue                                  # never made one in six tries: too hard for now
@@ -621,10 +628,14 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 value = ev / cost + 0.01 * value             # below the reserve: profit per unit of material first, then what it teaches                                # broke: a piece a shop is known to buy comes first
             if best is None or value > best[0]:
                 best = (value, *pick)
+        if best is None and not refused_ok:
+            # nothing sellable teaches now: a piece no shop buys that still teaches comes before a sellable one that cannot (BotCarpBR made wooden boxes at
+            # Carpentry 70 while wooden shields taught it 12 times in 45 tries)
+            again = self.choose_naive(refused_ok=True)
+            if again is not None and (fallback is None or again[0] > 0):
+                return again
         if best is None and fallback is not None:
             return (0.0, *fallback[1:])                   # everything looks too easy: the dearest piece it can still make
-        if best is None and not refused_ok:
-            return self.choose_naive(refused_ok=True)     # nothing sellable can be made now: train on what there is
         if best is None:
             return self.choose_income_naive(have)
         return best
@@ -1703,6 +1714,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             if ok and n < 3:
                 self.learn_made(before, made=name)
             self.mem.record("craft", scope="prof", craft=self.cfg["craft"], item=name, ok=ok, gain=bool(re.search(r"skill in .* has increased", result or "", re.I)),
+                            skill=round(float(self.skill or 0.0), 1),
                             exc=bool(re.search(r"exceptional", result or "", re.I)))
             if re.search(r"fail", result or "", re.I):
                 self.note("craft", f"A failed craft says: {result[-110:]}", key="failmsg")

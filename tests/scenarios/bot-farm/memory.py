@@ -43,6 +43,14 @@ GROUPS = {"Archer": "ranged", "Ranger": "ranged", "Bard": "ranged", "MaceFighter
           "PureMage": "caster", "Warlock": "caster", "Sorcerer": "caster"}
 
 
+CRAFT_BAND = 5                 # skill points of one band of craft tries: a piece teaches only below its window's top (CraftItem, SkillCheck), so a
+                               # record from 20 points down says nothing of it now (BotCarpBR's wooden boxes, 23 gains in 6,011, none at 70)
+
+
+def craft_band_key(item, skill):
+    return f"{item}@{int(float(skill) // CRAFT_BAND * CRAFT_BAND)}"
+
+
 def cell_of(x, y):
     return f"{int(x) // CELL * CELL},{int(y) // CELL * CELL}"
 
@@ -250,11 +258,15 @@ class SharedMemory:
             for item, price in ev.get("buys", []):
                 v["buys"][item.lower()] = price
         elif k == "craft":
-            c = st["crafts"][ev["craft"]][ev["item"]]
-            c["n"] += 1
-            c["ok"] += 1 if ev.get("ok") else 0
-            c["gain"] += 1 if ev.get("gain") else 0
-            c["exc"] = c.get("exc", 0) + (1 if ev.get("exc") else 0)
+            keys = [ev["item"]]
+            if ev.get("skill") is not None:
+                keys.append(craft_band_key(ev["item"], ev["skill"]))     # the same try counted in its skill band (craft_stats with a skill)
+            for key in keys:
+                c = st["crafts"][ev["craft"]][key]
+                c["n"] += 1
+                c["ok"] += 1 if ev.get("ok") else 0
+                c["gain"] += 1 if ev.get("gain") else 0
+                c["exc"] = c.get("exc", 0) + (1 if ev.get("exc") else 0)
         elif k == "res":
             r = st["res"][ev["kind"]][ev["key"]]
             if ev.get("ok"):
@@ -519,8 +531,11 @@ class SharedMemory:
         out.sort(reverse=True)
         return out
 
-    def craft_stats(self, craft: str, item: str):
+    def craft_stats(self, craft: str, item: str, skill=None):
+        """{n, ok, gain, exc} of the item's tries, or None; with a skill, only the tries made in that skill's band (craft_band_key)."""
         self.refresh()
+        if skill is not None:
+            item = craft_band_key(item, skill)
         c = self.state["prof"]["crafts"].get(craft, {}).get(item) or self.state["world"]["crafts"].get(craft, {}).get(item)
         return dict(c) if c and c["n"] else None
 
