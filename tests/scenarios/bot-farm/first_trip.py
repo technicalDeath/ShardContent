@@ -91,6 +91,10 @@ def steps_of(wps):
     return sum(cheb(*wps[i], *wps[i + 1]) for i in range(len(wps) - 1))
 
 
+DH_CUT_S = 300                 # a dungeon hunt that ends out of the dungeon sooner than this was cut short by the bot's own walk, not a visit: the ladder
+                               # counts it neither passed nor failed (BotHealAdvR, out again 3 s after entering Despise, 2026-11-05 06:03)
+
+
 def _gz():
     """The gazetteer, or None where it cannot be imported (then first_trip keeps its Britain-only behaviour)."""
     try:
@@ -981,8 +985,9 @@ class FirstTrip(RideMixin, LadderMixin):
             self.__dict__["_detour_logged"] = now
             near = ", ".join(f"{th.name} at {detour.cheb(here, (th.x, th.y))}" for th in threats)[:90]
             self.log(f"first trip: {leg.kind} to {leg.to[0]},{leg.to[1]} (clearance {leg.clearance}, gain {leg.progress}) round {near}")
-            self.ev("trip_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress,
-                    threats=[[th.name, th.x, th.y, th.caster] for th in threats][:6])
+        # every leg is recorded (the log line above only once in 10 s): BotWarAdvR's legs from an escape at 9 tiles to a scorpion at 1 went unrecorded
+        self.ev("trip_detour", leg=leg.kind, at=list(here), to=list(leg.to), clearance=leg.clearance, gain=leg.progress, hp=int(getattr(self.c, "hp", 0) or 0),
+                esc=bool(esc["on"]), threats=[[th.name, th.x, th.y, th.caster] for th in threats][:6])
         walk = self.goto_near(leg.to[0], leg.to[1], 1)
         self.trip_drink_on_run()                                # with the leg under way (trip_drink_on_run)
         walk.wait(timeout=TRIP_HOT_SLICE)
@@ -1019,6 +1024,7 @@ class FirstTrip(RideMixin, LadderMixin):
             if hasattr(self, "tele_allow"):
                 self.tele_allow(side, seconds=DUNGEON_HUNT_S + 600)
             self.__dict__.pop("_spots", None)                   # the spot list is cached: the dungeon's spots come in at once
+            self.trip_drop_task(side)
             self.trip_save()
             self.log(f"first trip: hunting {side} level 1 for {int(DUNGEON_HUNT_S // 60)} min")
             self.ev("dungeon_hunt", side=side, minutes=round(DUNGEON_HUNT_S / 60))
@@ -1063,6 +1069,8 @@ class FirstTrip(RideMixin, LadderMixin):
             t["stay_until"] = now
             if why not in ("a death", "out of the dungeon"):
                 self.trip_return_plan(t, dh, now)
+            if why == "out of the dungeon" and now - float(dh.get("t0", now)) < DH_CUT_S:
+                t["hunt_cut"] = True                            # not a visit: the ladder counts it neither way (ladder_trip_end)
             self.trip_save()
             mins = (now - float(dh.get("t0", now))) / 60.0
             self.log(f"first trip: the {side} hunt ends ({why}) after {mins:.0f} min")
@@ -1070,6 +1078,21 @@ class FirstTrip(RideMixin, LadderMixin):
             return None
         self.activity = f"hunting {side}"
         return False
+
+    def trip_drop_task(self, side):
+        """A hunt (or wait) the decision core holds for another side than the dungeon the trip just entered ends ("switch", which bans nothing), so the core
+        chooses again from the dungeon's spots. Left running, its travel walks the bot straight back out through the door it came in by."""
+        task = self.facts.get("task")
+        if not task or task.get("task") not in ("hunt", "tour2", "wait") or (task.get("side") or "surface") == side:
+            return False
+        try:
+            import task_core
+            task_core.end_task(self, task, "switch")
+        except Exception as e:
+            self.log(f"first trip: ending the core's {task.get('task')} failed ({type(e).__name__}: {e})")
+            self.facts["task"] = None
+        self.ev("dungeon_task_dropped", side=side, task=task.get("task"), area=task.get("area"), task_side=task.get("side") or "surface")
+        return True
 
     def trip_left_inside(self):
         """True when it acted: a ladder bot on a rung dungeon's side with no trip under way crosses back to the surface (tele.tele_to_side), at most once a
@@ -1403,7 +1426,10 @@ class FirstTrip(RideMixin, LadderMixin):
             return True
         self.activity = f"first trip: {'to' if phase == 'out' else 'home from'} {t['dest']}"
         slice_s = SLICE
-        if self.trip_run_on() and self.trip_near():
+        hot = self.trip_run_on() and self.trip_near()
+        if not hot:
+            self.__dict__.pop("_escape", None)                  # nothing in notice range: an escape, if any, is over (trip_detour runs only with one near)
+        if hot:
             self.activity += " (running past)"
             if hasattr(self, "sprint"):
                 self.sprint()                                   # run whatever the stamina (bot_common.sprint)

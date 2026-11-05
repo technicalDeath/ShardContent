@@ -323,6 +323,14 @@ class LadderMixin:
             self.log(f"ladder: rung {rung} trip to {dest} ended by a restart: not counted")
             self.ladder_save()
             return
+        if rung == 4 and t.get("hunt_cut") and how != "death":
+            # the hunt ended out of the dungeon within first_trip.DH_CUT_S: the bot walked itself out (a surface task left running), which says nothing
+            # of the dungeon. BotHealAdvR's 'rung 4 passed at Despise' after 0 minutes inside (2026-11-05 06:06)
+            st["last_trip_end"] = now
+            self.log(f"ladder: rung {rung} trip to {dest} cut short inside: not counted")
+            self.ev("rung", n=rung, result="uncounted", dest=dest, why="hunt cut", minutes=round((now - t["t0"]) / 60, 1))
+            self.ladder_save()
+            return
         ok = how == "home" and bool(completed) and not t.get("aborted") and not t.get("enter_failed") and (rung != 4 or t.get("entered"))
         why = "" if ok else (t.get("aborted") or ("could not enter" if t.get("enter_failed") else how))
         st["last_trip_end"] = now
