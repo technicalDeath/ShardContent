@@ -461,6 +461,27 @@ def _escapes(b, m):
         return False
 
 
+TTK_REAL = 1.4                  # real kill times ran about 1.4x the rating's (work/botfarm-watch/rating_check.py, 2026-11-04: the walk up is in them)
+
+
+def finish_s(b, m):
+    """Seconds more a fight past its measured give-up time runs (feature rating): the rating's kill time for the target's health left, times TTK_REAL, when
+    the target is hurt, the bot's share of its health is above the target's and the fight still rates as one to take from the bot's health now; else 0.
+    A dropped animal the bot struck keeps biting (FightMode.Aggressor), so letting a won fight go only adds a biter (BotArcherCR, 2026-11-05 10:27)."""
+    try:
+        if not b.feature("rating") or not (m.max_hits or 0):
+            return 0.0
+        theirs = 100.0 * (m.hits or 0) / m.max_hits
+        if theirs >= 100.0 or theirs >= b.hp_pct():
+            return 0.0
+        r = b.rated(m)
+        if not r or not r.get("fight"):
+            return 0.0
+        return TTK_REAL * float(r["rating"]["ttk"]) * theirs / 100.0
+    except Exception:
+        return 0.0
+
+
 def fights_back(m):
     """A monster, or a creature already in war mode: one that fights whether the bot likes it or not (a peaceful animal beside the bot is still judged by its
     worth: the core camped among rabbits and lost 29 of 44 rabbit fights in the 2026-10-21 simulator read, the rule list 4 of 20)."""
@@ -833,6 +854,8 @@ class Fight(Step):
             t.setdefault("fight_start", now)
             lim = measured.give_up_s(b, b.mkey(m))
             if lim and now - t["fight_start"] > lim and c.in_reach(m):         # the kind's measured ttk_p90 for this group: a fight that long is not a normal one
+                lim += finish_s(b, m)                                          # unless it is one the bot is winning (feature rating)
+            if lim and now - t["fight_start"] > lim and c.in_reach(m):
                 try:
                     b.ev("give_up", prey=b.mkey(m), s=round(now - t["fight_start"]), p90=lim)
                 except Exception:

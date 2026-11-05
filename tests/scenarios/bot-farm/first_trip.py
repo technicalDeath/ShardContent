@@ -1069,7 +1069,7 @@ class FirstTrip(RideMixin, LadderMixin):
             t["stay_until"] = now
             if why not in ("a death", "out of the dungeon"):
                 self.trip_return_plan(t, dh, now)
-            if why == "out of the dungeon" and now - float(dh.get("t0", now)) < DH_CUT_S:
+            if why not in ("a death", "kit low") and now - float(dh.get("t0", now)) < DH_CUT_S:
                 t["hunt_cut"] = True                            # not a visit: the ladder counts it neither way (ladder_trip_end)
             self.trip_save()
             mins = (now - float(dh.get("t0", now))) / 60.0
@@ -1080,11 +1080,13 @@ class FirstTrip(RideMixin, LadderMixin):
         return False
 
     def trip_drop_task(self, side):
-        """A hunt (or wait) the decision core holds for another side than the dungeon the trip just entered ends ("switch", which bans nothing), so the core
-        chooses again from the dungeon's spots. Left running, its travel walks the bot straight back out through the door it came in by."""
+        """A task the decision core holds for another side than the dungeon the trip just entered (a hunt, a wait, an errand; not a rest) ends ("switch",
+        which bans nothing), so the core chooses again from the dungeon's spots. Left running, its travel walks the bot straight back out through the door."""
         task = self.facts.get("task")
-        if not task or task.get("task") not in ("hunt", "tour2", "wait") or (task.get("side") or "surface") == side:
-            return False
+        if not task or task.get("task") == "rest" or (task.get("side") or "surface") == side:
+            return False                                 # an errand chosen before the trip goes too (its bank or shop is on the surface: BotHealAdvR's bank
+                                                          # errand ended its Despise hunt in the second it entered, 2026-11-05 09:19); a kit the hunt needs
+                                                          # ends it as "kit low" by itself
         try:
             import task_core
             task_core.end_task(self, task, "switch")
