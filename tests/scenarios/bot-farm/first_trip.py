@@ -319,7 +319,7 @@ class FirstTrip(RideMixin, LadderMixin):
             if st["done"] and not os.path.exists(os.path.join(self.dir, "trip_now")) and not self.ladder_again():
                 return False
             home = self.trip_home_region()
-            if not home or not self.trips_allowed(home):
+            if not home or (not self.trips_allowed(home) and not self.trip_forced(home)):
                 self.trip_why("not in town" if not home else "the ladder offers no trip now")
                 return False
             trip, forced = self.trip_pick(home)
@@ -1359,6 +1359,9 @@ class FirstTrip(RideMixin, LadderMixin):
             self.ev("trip_pos", dest=t["dest"], phase=t["phase"], wp=t["i"], of=len(wps), left_to_dest=cheb(self.c.x, self.c.y, *wps[-1]))
         if self.trip_rest(t, now):
             return True
+        if hasattr(self, "escort_hold") and self.escort_hold(t, now):
+            return True                                         # an escort fell behind: wait for it (escort.py)
+        escort = bool(hasattr(self, "escorting") and self.escorting(t))
         phase = t["phase"]
         if phase == "out" and t.get("in_home", True) and _gz():
             home_now = _gz().home_region(self.c.x, self.c.y, ("town",))
@@ -1373,7 +1376,7 @@ class FirstTrip(RideMixin, LadderMixin):
                 soft = None if hard or self.trip_power() >= SOFT_POWER else self.trip_soft()
                 danger = None
             why = ("hurt" if self.hp_pct() < 60 else f"danger: {danger}" if danger else f"hard kind: {hard}" if hard else f"soft kind: {soft}" if soft else "overweight" if self.c.weight >= self.c.max_weight * 0.9
-                   else "too slow" if phase == "out" and now - t["t0"] > limit_of(trip) * 60 else None)
+                   else "too slow" if phase == "out" and now - t["t0"] > limit_of(trip) * 60 * (3 if escort else 1) else None)
             if self.trip_run_on() and phase == "out":
                 # run past what cannot catch a runner; turn back for a caster, a pack, or half health with something near. The kind lists and the learned
                 # risk were judged standing (a melee monster beside a standing bot), so on the run only "hurt", "overweight" and "too slow" stand from them
@@ -1454,6 +1457,8 @@ class FirstTrip(RideMixin, LadderMixin):
             return True
         self.activity = f"first trip: {'to' if phase == 'out' else 'home from'} {t['dest']}"
         slice_s = SLICE
+        if escort and phase == "out":
+            slice_s = 3                                         # escort.ESCORT_SLICE: short legs, so the follower never drops past 16 tiles
         hot = self.trip_run_on() and self.trip_near()
         if not hot:
             self.__dict__.pop("_escape", None)                  # nothing in notice range: an escape, if any, is over (trip_detour runs only with one near)

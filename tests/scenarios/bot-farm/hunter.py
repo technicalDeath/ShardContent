@@ -62,6 +62,7 @@ from rangerpet import RangerPetMixin  # noqa: E402  (a ranger's tamed companion;
 from colours import ColourBuyer  # noqa: E402  (coloured armour from the smiths; feature colour_craft)
 from peace import PeaceMixin  # noqa: E402  (the bard's Peacemaking in a fight; feature bard_peace)
 from tracking import TrackMixin  # noqa: E402  (the Tracking skill finds prey out of sight; feature tracking)
+from escort import EscortMixin  # noqa: E402  (escort quests: townsfolk who pay on arrival; feature escort)
 
 _REACH = {}
 
@@ -101,7 +102,7 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(RangerPetMixin, TrackMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
@@ -2042,6 +2043,8 @@ for _cls in (HunterBot, BardBot):
         _cls.RULES.insert(_cls.RULES.index("r_flee"), "r_dungeon_out")      # first_trip: a dungeon hunt's way out of a pack, ahead of the flight
     if "r_ride" not in _cls.RULES:
         _cls.RULES.insert(_cls.RULES.index("r_trip") + 1, "r_ride")          # ride.py: between outings (r_trip stays right after r_fight)
+    if "r_escort" not in _cls.RULES:
+        _cls.RULES.insert(_cls.RULES.index("r_ride") + 1, "r_escort")    # escort.py: take a townsperson to the trip's town, paid on arrival (feature escort; r_trip stays right after r_fight)
 
 
 for _cls in (HunterBot, BardBot):

@@ -1,0 +1,261 @@
+"""Escort quests (feature "escort"; owner, 2026-11-05: "adding NEW bot capabilities, I want them doing things they haven't done before"). UO:R's townsfolk who
+want to travel: a noble, a merchant, a peasant or a mage (Mobiles/Townfolk/BaseEscortable.cs, the pre-ML speech system, questSystem.enableMLQuests off):
+  - said within 3 tiles, "destination" makes one answer where it wants to go (1042807, "I'm looking to go somewhere:Vesper" in the client), and
+    "I will take thee" makes it follow ("Lead on! Payment will be made when we arrive in Vesper."); a player takes one escort at a time, and 5 minutes
+    must pass after taking one before the next (EscortDelay: "You must rest N minutes before we set out on this journey.");
+  - it follows as a pet does (about 0.5 s a step behind a moving master, standing for good past 16 tiles: memory pets-keep-up), stays where it is
+    while its escorter is over 30 tiles off, and leaves after 2 minutes of that (AbandonDelay: "You have lost the person you were escorting.");
+  - in the destination town's region it pays 500-1000 gold into the pack (1042809 "We have arrived! I thank thee ... Here is thy pay.") and Fame 10.
+Britain spawns them at the Noble/EscortableMage spawner by the south bank (1483,1760), the Merchant (1434,1717), the Peasant (1304,1826) and the mage
+(1351,1816); the destinations are the other towns (TownNames). The walk is the trip ladder's own (first_trip.py, trip_now): the escort only picks a
+town the bot already has a vetted-or-explore route to and the skill and health for, then holds the walk while the NPC falls behind (escort_hold, from
+trip_step): short slices (ESCORT_SLICE s) and a wait until it is within ESCORT_NEAR tiles, so it never drops past 16.
+Events: escort_ask {who, dest, taken}, escort_take {who, dest}, escort_paid {who, dest, gold, minutes}, escort_lost {who, dest, why, minutes}.
+"""
+from __future__ import annotations
+
+import os
+import re
+import time
+
+ESCORT_TYPES = ("EscortableMage", "Noble", "Merchant", "Peasant")     # SeekerOfAdventure goes to dungeons: not these trips
+SPOTS = ((1483, 1760), (1434, 1717), (1304, 1826), (1351, 1816))        # Britain's spawners (Spawns/TownsPeople.json, Vendors.json), as well as the gazetteer's
+SPOT_NEAR = 80             # tiles from the bot a spawner may be to be worth the walk
+ESCORT_GAP = 900           # s between looks for an escort
+REST_S = 300               # EscortDelay: after taking one, the next only after this
+ESCORT_NEAR = 4            # tiles: the NPC this close, the walk goes on
+ESCORT_SLICE = 3           # s of walking a tick with an escort (a runner makes ~15 tiles, the follower ~6)
+ESCORT_WAIT_MAX = 120      # s of waiting for it before it is given up (its own AbandonDelay is 2 minutes)
+ESCORT_MAX_S = 5400        # an escort not paid in 90 minutes is over
+SLOW_TIMES = 3             # the trip's "too slow" limit, times this, with an escort
+ASK_PER_SPOT = 6
+
+DEST_RE = re.compile(r"looking to go (?:to |somewhere)[:\s]*([A-Z][A-Za-z' ]+?)\s*(?:[,.?!]|$)")
+LEAD_RE = re.compile(r"Lead on!.*arrive in ([A-Z][A-Za-z' ]+?)\s*[.!]")
+REST_RE = re.compile(r"must rest (\d+) minute", re.I)
+PAID_RE = re.compile(r"We have arrived|Here is thy pay", re.I)
+LOST_RE = re.compile(r"You have lost the person you were escorting", re.I)
+
+
+def said(t):
+    """(speaker, text) of a "[SAY] Name: text" journal line, else None."""
+    m = re.match(r"\[SAY\] ([^:]+): (.*)$", t or "")
+    return (m.group(1).strip(), m.group(2).strip()) if m else None
+
+
+class EscortMixin:
+    def escort_on(self):
+        return self.feature("escort") and hasattr(self, "ladder_on") and self.ladder_on()
+
+    def escort_feed(self, t):
+        """Each journal line (bot_common.read_journal): what escorts say, kept for r_escort and escort_tick."""
+        s = said(t)
+        e = self.facts.get("escort") if isinstance(getattr(self, "facts", None), dict) else None
+        if LOST_RE.search(t or "") and e:
+            e["result"] = "lost"
+            return
+        if not s:
+            return
+        who, text = s
+        heard = self.__dict__.setdefault("_escort_heard", {})
+        m = DEST_RE.search(text)
+        if m:
+            heard[who] = ("dest", m.group(1).strip(), time.time())
+            return
+        m = LEAD_RE.search(text)
+        if m:
+            heard[who] = ("lead", m.group(1).strip(), time.time())
+            return
+        m = REST_RE.search(text)
+        if m:
+            heard[who] = ("rest", int(m.group(1)), time.time())
+            return
+        if e and who == e.get("who") and PAID_RE.search(text):
+            e["result"] = "paid"
+
+    # ---- taking one ----------------------------------------------------------------------------------------------------------
+
+    def escort_dests(self, home):
+        """{dest: trip} of the towns this bot may walk to now (first_trip's own checks: skill band, health, a safe route)."""
+        out = {}
+        try:
+            power = self.trip_power()
+            for t in self.trips_for_home(home):
+                if t.get("kind") != "town":
+                    continue
+                if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t):
+                    out[t["dest"]] = t
+        except Exception:
+            pass
+        return out
+
+    def escort_spots(self):
+        """Escort spawners within SPOT_NEAR tiles, nearest first: the gazetteer's places of those types, and SPOTS."""
+        pts = set(SPOTS)
+        try:
+            import gazetteer as gz
+            for p in gz.get().places:
+                if p.get("type") in ESCORT_TYPES:
+                    pts.add((int(p["x"]), int(p["y"])))
+        except Exception:
+            pass
+        x, y = int(self.c.x), int(self.c.y)
+        near = [(max(abs(px - x), abs(py - y)), (px, py)) for px, py in pts]
+        return [p for d, p in sorted(near) if d <= SPOT_NEAR]
+
+    def escort_listen(self, who, kinds, secs=3.0):
+        """Wait up to secs for who to say one of kinds (escort_feed's records), reading the journal meanwhile; the record or None."""
+        end = time.time() + secs
+        t0 = time.time()
+        while time.time() < end:
+            time.sleep(0.4)
+            self.read_journal()
+            h = (self.__dict__.get("_escort_heard") or {}).get(who)
+            if h and h[0] in kinds and h[2] >= t0 - 0.5:
+                return h
+        return None
+
+    def r_escort(self):
+        """Feature escort: an escort under way is watched (escort_tick); else, in its home town, ready for a trip and with none under way, the bot goes to
+        the nearest escort spawner, asks the people there their destination, and takes the first who is going to a town it has a route to."""
+        if not self.escort_on() or self.c.ghost:
+            return False
+        e = self.facts.get("escort")
+        if e:
+            return self.escort_tick(e)
+        now = time.time()
+        if now < float(self.facts.get("escort_next", 0) or 0):
+            return False
+        try:
+            if self.trip_load().get("trip") or os.path.exists(os.path.join(self.dir, "trip_now")):
+                return False
+        except Exception:
+            return False
+        home = self.trip_home_region()
+        if not home or self.hp_pct() < 90 or self.threats(10) or self.c.weight >= self.c.max_weight * 0.7 or not self.trip_kit_ok():
+            return False
+        self.facts["escort_next"] = now + ESCORT_GAP
+        dests = self.escort_dests(home)
+        spots = self.escort_spots()
+        if not dests or not spots:
+            return False
+        asked = self.__dict__.setdefault("_escort_asked", {})
+        for k in [k for k, v in asked.items() if v < now - 3600]:
+            asked.pop(k, None)
+        for sx, sy in spots[:2]:
+            self.activity = "looking for someone to escort"
+            self.goto_near(sx, sy, 3).wait(timeout=60)
+            people = [m for m in self.mobs(10) if getattr(m, "notoriety", "") == "Innocent" and not (m.name or "").startswith("Bot")
+                      and str(m.serial) not in asked and not self.peaceful_person_vendor(m)]
+            for m in people[:ASK_PER_SPOT]:
+                if self.threats(8):
+                    return True
+                if (getattr(m, "distance", 9) or 9) > 2:
+                    self.c.goto(m.x, m.y).wait(timeout=10)
+                self.read_journal()
+                self.c.call("say destination", timeout=5)
+                h = self.escort_listen(m.name, ("dest",))
+                asked[str(m.serial)] = now
+                if not h:
+                    continue
+                dest = h[1]
+                take = dest in dests
+                self.ev("escort_ask", who=m.name, dest=dest, taken=take)
+                if not take:
+                    self.log(f"escort: {m.name} wants to go to {dest}: no route there for this bot")
+                    continue
+                self.c.call("say I will take thee", timeout=5)
+                r = self.escort_listen(m.name, ("lead", "rest"))
+                if not r or r[0] != "lead":
+                    if r and r[0] == "rest":
+                        self.facts["escort_next"] = time.time() + 60 * (int(r[1]) + 1)
+                    self.log(f"escort: {m.name} did not set out ({'rest ' + str(r[1]) + ' min' if r else 'no answer'})")
+                    return True
+                self.facts["escort"] = {"serial": str(m.serial), "who": m.name, "dest": dest, "t0": time.time(), "gold0": int(self.c.gold or 0)}
+                with open(os.path.join(self.dir, "trip_now"), "w", encoding="utf-8") as f:
+                    f.write(dests[dest]["dest"])
+                self.ev("escort_take", who=m.name, dest=dest)
+                self.log(f"escort: taking {m.name} to {dest} (pays 500-1000 gold on arrival)")
+                return True
+        return True
+
+    def peaceful_person_vendor(self, m):
+        """A vendor is not an escort: vendors are Invulnerable (yellow), and the shared memory's vendor names (talk.vendor_names) catch the rest."""
+        try:
+            import talk
+            return m.name in talk.vendor_names(self)
+        except Exception:
+            return False
+
+    # ---- under way -----------------------------------------------------------------------------------------------------------
+
+    def escort_end(self, e, how, **kw):
+        mins = round((time.time() - float(e.get("t0") or time.time())) / 60.0, 1)
+        if how == "paid":
+            gold = max(0, int(self.c.gold or 0) - int(e.get("gold0") or 0))
+            self.ev("escort_paid", who=e.get("who"), dest=e.get("dest"), gold=gold, minutes=mins)
+            self.log(f"escort: {e.get('who')} paid {gold} gold in {e.get('dest')} after {mins} min")
+            try:
+                self.note("escort", f"A noble, merchant, peasant or mage in town answers 'destination' with the town it wants; 'I will take thee' and it follows, and pays on arrival: {gold} gold for {e.get('dest')}.", key="escort")
+            except Exception:
+                pass
+        else:
+            self.ev("escort_lost", who=e.get("who"), dest=e.get("dest"), why=kw.get("why", how), minutes=mins)
+            self.log(f"escort: lost {e.get('who')} on the way to {e.get('dest')} ({kw.get('why', how)}) after {mins} min")
+        self.facts.pop("escort", None)
+        self.facts["escort_next"] = time.time() + REST_S
+
+    def escort_tick(self, e):
+        """An escort under way: its result (paid, lost) or its time out; the walk itself is the trip's. Never acts: returns False."""
+        res = e.get("result")
+        if res == "paid":
+            self.escort_end(e, "paid")
+        elif res == "lost":
+            self.escort_end(e, "lost", why="it lost sight of the bot")
+        elif time.time() - float(e.get("t0") or 0) > ESCORT_MAX_S:
+            self.escort_end(e, "lost", why="no arrival in 90 minutes")
+        else:
+            try:
+                st = self.trip_load()
+                if not st.get("trip") and not os.path.exists(os.path.join(self.dir, "trip_now")) and time.time() - float(e.get("t0") or 0) > 120:
+                    self.escort_end(e, "lost", why="the trip ended or never started")
+            except Exception:
+                pass
+        return False
+
+    def escorting(self, t=None):
+        """The escort under way on this trip, else None."""
+        e = self.facts.get("escort") if isinstance(getattr(self, "facts", None), dict) else None
+        if not e or e.get("result"):
+            return None
+        if t is not None and t.get("dest") != e.get("dest"):
+            return None
+        return e
+
+    def escort_hold(self, t, now):
+        """From trip_step, on the way out: True while the bot waits for its escort to come within ESCORT_NEAR tiles (the follower lags a running master and
+        stands for good past 16), at most ESCORT_WAIT_MAX s; not while a monster is in notice range (the trip's run-past goes on)."""
+        e = self.escorting(t)
+        if not e or t.get("phase") != "out":
+            return False
+        m = next((x for x in self.mobs(24) if str(x.serial) == e["serial"]), None)
+        if m is not None and (getattr(m, "distance", 99) or 99) <= ESCORT_NEAR:
+            e.pop("wait0", None)
+            return False
+        try:
+            if self.trip_near():
+                return False
+        except Exception:
+            pass
+        w0 = e.setdefault("wait0", now)
+        if now - w0 > ESCORT_WAIT_MAX:
+            self.escort_end(e, "lost", why=f"not within {ESCORT_NEAR} tiles for {ESCORT_WAIT_MAX} s" + ("" if m is not None else " (out of sight)"))
+            return False
+        if now - w0 < 1.0:
+            try:
+                self.c.call("stop", timeout=3)
+            except Exception:
+                pass
+        self.activity = f"waiting for {e['who']} to catch up"
+        time.sleep(1.5)
+        return True

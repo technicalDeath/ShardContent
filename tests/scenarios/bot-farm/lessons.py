@@ -228,7 +228,7 @@ class LessonMixin:
             while time.time() < end and not ok:
                 time.sleep(0.4)
                 ok = any("skill level increases" in (ev.text or "").lower() for ev in self.c.events.poll())
-            self.ev("lesson", skill=skill, trainer=m.name, type=ttype, price=price, before=round(before, 1), ok=ok)
+            self.ev("lesson", skill=skill, trainer=m.name, trainer_type=ttype, price=price, before=round(before, 1), ok=ok)
             self.log(f"lesson: {skill} from {m.name} ({ttype}) for {price} gold: {'taught' if ok else 'no answer'} (from {before:.1f})")
             if ok:
                 self.facts["skills_at"] = 0                                 # the skills list read again at the next tick
