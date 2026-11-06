@@ -693,6 +693,9 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         return True
 
     HEAL_CURE = 60.0          # Healing (and Anatomy) from which a bandage cures poison (Bandage.cs: (healing - 30) / 50 - level x 0.1)
+    PRACTICE_MISS = 3         # hit points a practice bandage needs missing: pre-AOS regen is 1 a 11 s (RegenRates.DefaultHitsRate) and a self-bandage
+                              # takes 10.6-13.6 s, so two ticks can land in it; a patient full at the end gets "You heal what little damage your patient
+                              # had" and no skill check (Bandage.cs), as BotSwordBR's 97/98 bandages did (2026-11-06 02:24)
 
     def heal_practice(self):
         """Feature heal_practice: below HEAL_CURE Healing a bandage goes on any scratch with nothing near, as a player trains the skill (every bandage on a
@@ -710,9 +713,12 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
     def r_heal(self):
         threats = self.mobs(3)
         pct = self.hp_pct()
-        want = 55 if threats else (100 if self.heal_practice() and not self.threats(10) else 85)
+        practice = not threats and self.heal_practice() and not self.threats(10)
+        want = 55 if threats else (100 if practice else 85)
         if pct >= want:
             return False
+        if practice and pct >= 85 and (self.c.max_hp or 0) - (self.c.hp or 0) < self.PRACTICE_MISS:
+            return False                      # a scratch regen closes before the bandage ends: no Healing check
         healing = self.skill_values.get("Healing", 0)
         if self.c.poisoned and healing < 60:
             return False                      # r_cure handles poison; a bandage only cures from Healing 60
