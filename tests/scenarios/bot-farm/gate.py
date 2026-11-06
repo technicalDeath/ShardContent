@@ -53,6 +53,14 @@ class GateMixin:
             towns = {r["name"]: r for r in gz.get().towns()}
         except Exception:
             return []
+        # the home's own surveyed walk to its gate (first_trip.TRIPS, kind "gate": Britain's "britain-gate-walk"), as its first leg: a fresh plan from the
+        # bank crossed 1320,1920, where two bots no stronger died, and every gate trip was refused there (2026-11-06 01:26)
+        seed = None
+        try:
+            import first_trip as _ft
+            seed = next((t["wps"] for t in _ft.TRIPS if t.get("kind") == "gate" and t.get("home", "Britain") == home["name"]), None)
+        except Exception:
+            seed = None
         out = []
         for name in GATE_DESTS:
             g, r = GATES.get(name), towns.get(name)
@@ -61,7 +69,7 @@ class GateMixin:
             end = (int(r["centre"][0]), int(r["centre"][1]))
             out.append({"id": f"{home['name']}-{name}-gate".lower().replace(" ", "-"), "feature": "gate_travel", "dest": name + SUFFIX, "town": name, "kind": "town",
                         "band": BAND, "hp": HP, "stay": STAY, "home": home["name"], "vetted": False, "source": "gate",
-                        "gate": {"from": [hg[0], hg[1]], "to": [g[0], g[1]], "radio": g[2], "back": hg[2]},
+                        "gate": {"from": [hg[0], hg[1]], "to": [g[0], g[1]], "radio": g[2], "back": hg[2], "seed_leg": [list(p) for p in seed] if seed else None},
                         "wps": [tuple(start), (hg[0], hg[1]), (g[0], g[1]), end]})
         return out
 

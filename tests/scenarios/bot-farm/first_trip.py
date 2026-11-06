@@ -514,7 +514,11 @@ class FirstTrip(RideMixin, LadderMixin):
             elif trip.get("gate"):
                 # two walks and the moongate between them (gate.py): to the home gate, and from the far gate into the town; jump = the home gate's index
                 g = trip["gate"]
-                a = wr.plan(wps[0], tuple(g["from"]), pen)
+                if g.get("seed_leg"):
+                    sa = wr.repair([tuple(p) for p in g["seed_leg"]], pen)       # the home's surveyed walk to its gate (gate.py)
+                    a = {"waypoints": sa} if sa else None
+                else:
+                    a = wr.plan(wps[0], tuple(g["from"]), pen)
                 b = wr.plan(tuple(g["to"]), wps[-1], pen)
                 if a is None or b is None:
                     new, route = None, "gate"
