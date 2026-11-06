@@ -650,7 +650,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         # as stuck ground for 6 h (2026-10-30). Those steps are skipped, and a box of bodies is no stuck tile.
         try:
             mx = int((self.c.state or {}).get("maxStam") or 0)
-            full = mx <= 0 or int(self.c.stamina or 0) >= mx
+            full = mx <= 0 or int(self.c.stamina or 0) >= mx or bool(self.c.ghost)       # a ghost passes any mobile (Mobile.CheckShove: not Alive)
             bodies = {(m.x, m.y) for m in self.c.mobiles(within=1) if not getattr(m, "ghost", False)}
         except Exception:
             full, bodies = True, set()
@@ -1191,6 +1191,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             time.sleep(2)
         else:
             self.facts.pop("near_since", None)
+            if self.ghost_out():                                    # in a dungeon: out by the stairs and the exit first (tele.ghost_out)
+                return True
             self.far_goto(HEALER, "healer", 5)                      # a ghost far from any healer walks a planned route, not a straight goto
         return True
 

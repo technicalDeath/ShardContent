@@ -660,8 +660,25 @@ class TeleMixin:
             if not route:
                 return False
             hops += 1
-            self.tele_hop(route[0])
+            self.tele_hop(self.tele_level_first(route[0]))
         return self.tele_side() == to_side
+
+    def tele_level_first(self, t):
+        """The inner stair to take first when the entry of t is on another level of this dungeon than the bot (spots.inner_hops: no walk joins
+        them), else t. tele_route knows sides, not levels: from Despise's lizardman floor (walk component 5) its exits at 5588,630-632 are past the stair
+        at 5504,569 and the Destard link at 5506,814 on a third level; walks at them stopped 78-183 tiles short and blocked them all (BotFairSwordVR,
+        boxed in and killed there, 2026-11-05 15:22-15:25)."""
+        try:
+            import spots
+            side = self.tele_side()
+            hops = spots.inner_hops(side, (int(self.c.x), int(self.c.y)), (int(t["src"][0]), int(t["src"][1])))
+        except Exception:
+            return t
+        if not hops:
+            return t
+        self.tele_allow(side)
+        self.log(f"teleport: {t['src'][0]},{t['src'][1]} is on another level: the stair at {hops[0]['src'][0]},{hops[0]['src'][1]} first")
+        return hops[0]
 
     def tele_cross(self, tx, ty):
         """For the goto wrappers: a walk whose target is on another side first crosses. None = carry on with the real walk; else a stand-in walk that
@@ -691,6 +708,35 @@ class TeleMixin:
         if not ok:
             self.log(f"{tag}: could not cross from {self.c.x},{self.c.y} to {side}")
         return ok
+
+    GHOST_OUT_GAP = 60                                   # seconds between a ghost's tries at the way out of a dungeon
+    GHOST_STRANDED = 10                                  # tries before a ghost that cannot get out says so (event ghost_stranded)
+
+    def ghost_out(self):
+        """A ghost off the surface: out first, the healers being on the surface, by tele_to_side (the stairs to the exit's level first,
+        tele_level_first); teleporters take ghosts (Teleporter.CanTeleport: any player). The exits' blocks are cleared first, as in tele_leave. True
+        while the ghost is still off the surface, so the caller does not walk at the healer: a straight walk at a surface point runs a ghost into the
+        dungeon's nearest corner (BotHealAdvR and BotFairSwordVR at 5384,627-628 in Despise, 2026-11-05 14:52-20:17)."""
+        if not self.c.ghost or not self.off_surface():
+            self.__dict__.pop("_ghost_out_n", None)
+            return False
+        now = time.time()
+        if now - float(self.__dict__.get("_ghost_out_at", 0) or 0) < self.GHOST_OUT_GAP:
+            time.sleep(2)
+            return True
+        self.__dict__["_ghost_out_at"] = now
+        n = self.__dict__["_ghost_out_n"] = int(self.__dict__.get("_ghost_out_n", 0) or 0) + 1
+        side = self.tele_side()
+        at = [int(self.c.x), int(self.c.y)]
+        self.activity = f"ghost: out of {side} to the healer"
+        self.facts.pop("tele_bad", None)
+        ok = self.tele_to_side("surface", limit=150)
+        self.log(f"ghost: out of {side} from {at[0]},{at[1]}: {'out' if ok else 'not out yet'} (try {n})")
+        self.ev("ghost_out", side=side, at=at, ok=bool(ok), n=n)
+        if not ok and n == self.GHOST_STRANDED:
+            self.ev("ghost_stranded", side=side, at=[int(self.c.x), int(self.c.y)], n=n)
+            self.note("death", f"A ghost on {side} could not find the way out in {n} tries; the healers are all on the surface.", key="ghoststranded")
+        return not ok
 
     def tele_leave(self, tag="tele", why="walk"):
         """Back to the surface by the entry the route finds; True when the bot is out. Every attempt starts with this bot's blocks cleared: the callers back

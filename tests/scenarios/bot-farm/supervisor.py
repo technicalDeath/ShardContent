@@ -90,6 +90,37 @@ def shed_order():
     return [n for n in SHED_ORDER if n not in keep] + [n for n in SHED_ORDER if n in keep]
 
 
+SHED_RISKY_RULES = ("r_fight", "r_flee", "r_avoid", "r_evade", "r_dungeon_out", "r_trip", "r_heal")
+SHED_RISKY_HP = 0.6        # below this share of its hit points a bot is not stopped while another can be
+
+
+def shed_risky(name):
+    """True when stopping this bot now leaves its character in harm's way: a stopped client leaves the character standing for the logout delay,
+    5 minutes (Region.DefaultLogoutDelay; zero only for Young characters, PlayerMobile.GetLogoutDelay). Fighting, fleeing, on a trip, in a dungeon
+    (x 5120 and up) or hurt. BotHealAdvR, stopped at 13:04:40 18 s into a fight on Despise's lizardman floor, died there (2026-11-05)."""
+    try:
+        st = json.load(open(os.path.join(FARM, name, "status.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    if st.get("ghost"):
+        return False                                       # nothing left to lose
+    rule = str(st.get("rule") or "")
+    pos = st.get("pos") or [0, 0]
+    hp, mx = st.get("hp") or 0, st.get("max_hp") or 0
+    try:
+        deep = int(pos[0]) >= 5120
+    except (TypeError, ValueError, IndexError):
+        deep = False
+    return rule in SHED_RISKY_RULES or rule.endswith(":fight") or deep or (mx > 0 and hp < SHED_RISKY_HP * mx)
+
+
+def shed_victim(bots, shed):
+    """The next bot to stop for memory: the first in shed_order() that is safe to stop (shed_risky), else the first."""
+    names = {b["name"] for b in bots}
+    cands = [n for n in shed_order() if n not in shed and n in names]
+    return next((n for n in cands if not shed_risky(n)), cands[0] if cands else None)
+
+
 def brain_pid(name):
     try:
         return int(open(os.path.join(FARM, name, "brain.pid")).read().strip())
@@ -214,7 +245,7 @@ def main():
         with open(os.path.join(FARM, "shed-auto.txt"), "w", encoding="utf-8") as f:
             f.write("".join(n + "\n" for n in sorted(shed - manual_done)))
         if avail < LOW_MB or commit_free < COMMIT_LOW_MB:
-            victim = next((n for n in shed_order() if n not in shed and any(b["name"] == n for b in bots)), None)
+            victim = shed_victim(bots, shed)              # a bot in no danger first (shed_risky)
             if victim:
                 shed.add(victim)
                 log(f"available memory {avail} MB, free commit {commit_free} MB (floors {LOW_MB}, {COMMIT_LOW_MB}): stopping {victim}")
