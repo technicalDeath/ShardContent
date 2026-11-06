@@ -406,6 +406,7 @@ class FirstTrip(RideMixin, LadderMixin):
     def trip_end(self, how, completed):
         t = self._trip["trip"]
         self.facts.pop("dungeon_hunt", None)                    # (a dungeon hunt ends with its trip, home, stranded or dead)
+        self.trip_drop_task("surface")                           # and the core's dungeon tour with it (see the hunt's end below)
         if how == "death":
             self.ev("trip_abort", why="death", at=[self.c.x, self.c.y], dest=t["dest"], phase=t["phase"])
         elif how == "stranded":
@@ -1152,6 +1153,9 @@ class FirstTrip(RideMixin, LadderMixin):
         if why:
             self.facts.pop("dungeon_hunt", None)
             self.__dict__.pop("_spots", None)
+            # the core's tour of the dungeon ends with the hunt: left running, its travel walked BotHealAdvR back through the door 6 minutes after a stay
+            # ended "out of the dungeon", alone, with no trip or kit check (3 kills, health 55 of 94, 2026-11-06 17:52)
+            self.trip_drop_task("surface")
             t["stay_until"] = now
             if why not in ("a death", "out of the dungeon"):
                 self.trip_return_plan(t, dh, now)
@@ -1205,6 +1209,7 @@ class FirstTrip(RideMixin, LadderMixin):
         self.__dict__["_left_inside_at"] = now
         self.activity = f"leaving {side}"
         self.facts.pop("dungeon_hunt", None)
+        self.trip_drop_task("surface")
         self.trip_stairs_to_exit(side)
         ok = self.tele_to_side("surface")
         self.log(f"first trip: no trip under way inside {side}: leaving for the surface ({'out' if ok else 'not out yet'})")
