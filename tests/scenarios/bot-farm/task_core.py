@@ -1448,6 +1448,13 @@ def errand_candidates(bot, hunting=False, best_hunt=0.0):
                 left = max([until - now() for k, until in b.items() if k.startswith(task + "|")] or [0])
                 bot.ev("errand_skipped", task=task, why="banned after an unmet run", secs_left=round(left), urgency=urg, detail=str(detail)[:80])
             continue
+        if dest is not None and (bot.facts or {}).get("dungeon_hunt"):
+            try:
+                import gazetteer as _gz
+                if _gz.side(int(dest[0]), int(dest[1])) != _gz.side(int(bot.c.x), int(bot.c.y)):
+                    continue                                       # inside a dungeon hunt: its own rules end it (first_trip.trip_dungeon_hunt), no surface errand
+            except Exception:
+                pass
         walk = 0.0
         if dest is not None:
             length = route_length(bot, (int(dest[0]), int(dest[1])))

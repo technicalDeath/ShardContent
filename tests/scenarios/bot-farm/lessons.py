@@ -56,6 +56,7 @@ MARGIN = 2.0               # points a lesson must add over what the bot has to b
 LESSON_NEAR = 100          # tiles to the trainer: a walk inside the town, short of far.FAR (120)
 LESSON_GAP = 600           # s between lesson tries
 FAIL_KEEP = 6 * 3600       # s a refused (skill, trainer type) stays off
+WALK_KEEP = 1200           # s a trainer the walk did not reach stays off (a walk that stopped short, not a refusal)
 PRICE_SLACK = 1.2          # the quote may exceed the guaranteed lesson (the NPC rolled more skill): carried gold covers this much over
 PURSE_KEEP = 40            # gold kept back after paying
 ENTRY_RE = re.compile(r"\[entry (\d+)\]\s+(.+)")
@@ -139,8 +140,8 @@ class LessonMixin:
             return gain, skill, level, ttype, trainers[ttype]
         return None
 
-    def lesson_refuse(self, skill, ttype, why):
-        self.facts.setdefault("lesson_refused", {})[f"{skill}|{ttype}"] = time.time() + FAIL_KEEP
+    def lesson_refuse(self, skill, ttype, why, keep=FAIL_KEEP):
+        self.facts.setdefault("lesson_refused", {})[f"{skill}|{ttype}"] = time.time() + keep
         self.ev("lesson_skip", skill=skill, type=ttype, why=why)
         self.log(f"lesson: {skill} at a {ttype}: {why}")
 
@@ -170,9 +171,13 @@ class LessonMixin:
                 return True
             return False
         self.activity = f"walking to a {ttype} for a {skill} lesson"
-        self.goto_near(xy[0], xy[1], 3).wait(timeout=90)
+        self.__dict__["_walk_again_once"] = True                  # walk_again's second try and the walk grid's route for this walk (bot_common's goto wrapper)
+        try:
+            self.goto_near(xy[0], xy[1], 3).wait(timeout=120)
+        finally:
+            self.__dict__.pop("_walk_again_once", None)
         if max(abs(self.c.x - xy[0]), abs(self.c.y - xy[1])) > 8:
-            self.lesson_refuse(skill, ttype, f"did not reach the trainer at {xy[0]},{xy[1]}")
+            self.lesson_refuse(skill, ttype, f"did not reach the trainer at {xy[0]},{xy[1]}", keep=WALK_KEEP)
             return True
         self.activity = f"asking for a {skill} lesson"
         people = [m for m in self.c.mobiles(within=10) if getattr(m, "notoriety", "") in ("Innocent", "Invulnerable") and m.name and not m.name.startswith("Bot")]

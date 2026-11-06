@@ -537,7 +537,7 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
                     if left >= 1.0:
                         res = bot.tele_wait(orig(x, y, z).wait, left, poll)
                         bot.log(f"after a step out, the walk to {x},{y}: {res}")
-                if bot.feature("walk_again"):
+                if bot.feature("walk_again") or bot.__dict__.get("_walk_again_once"):
                     res = bot.walk_again(res, x, y, z, near, orig, end, poll)
                 return bot.far_arrival(res, x, y, near)
 
