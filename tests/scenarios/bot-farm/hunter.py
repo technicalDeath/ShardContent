@@ -692,10 +692,25 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         self.step_away(d, 8)
         return True
 
+    HEAL_CURE = 60.0          # Healing (and Anatomy) from which a bandage cures poison (Bandage.cs: (healing - 30) / 50 - level x 0.1)
+
+    def heal_practice(self):
+        """Feature heal_practice: below HEAL_CURE Healing a bandage goes on any scratch with nothing near, as a player trains the skill (every bandage on a
+        hurt patient checks Healing, Bandage.cs). The fighters stood at Healing 51-59 with Anatomy 100, climbing 0.4 a day, so none could cure the
+        Greater and Deadly poison of the scorpions and giant spiders that killed BotFairSwordVR on the Cove road (2026-11-06 01:06); Lesser Cure cures
+        Greater 15% and Deadly never."""
+        if not self.feature("heal_practice"):
+            return False
+        try:
+            import skillplan
+            return self.skill_values.get("Healing", 0) < self.HEAL_CURE and skillplan.wants(self, "Healing")
+        except Exception:
+            return False
+
     def r_heal(self):
         threats = self.mobs(3)
         pct = self.hp_pct()
-        want = 55 if threats else 85
+        want = 55 if threats else (100 if self.heal_practice() and not self.threats(10) else 85)
         if pct >= want:
             return False
         healing = self.skill_values.get("Healing", 0)
