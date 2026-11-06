@@ -30,6 +30,7 @@ ESCORT_WAIT_MAX = 120      # s of waiting for it before it is given up (its own 
 ESCORT_MAX_S = 5400        # an escort not paid in 90 minutes is over
 SLOW_TIMES = 3             # the trip's "too slow" limit, times this, with an escort
 ASK_PER_SPOT = 6
+SPOT_REACH = 6             # tiles: the spawner reached (its escorts wander about it); further, its people are not asked
 
 DEST_RE = re.compile(r"looking to go (?:to |somewhere)[:\s]*([A-Z][A-Za-z' ]+?)\s*(?:[,.?!]|$)")
 LEAD_RE = re.compile(r"Lead on!.*arrive in ([A-Z][A-Za-z' ]+?)\s*[.!]")
@@ -159,9 +160,14 @@ class EscortMixin:
             asked.pop(k, None)
         for sx, sy in spots[:2]:
             self.activity = "looking for someone to escort"
-            self.goto_near(sx, sy, 3).wait(timeout=60)
+            res = str(self.goto_near(sx, sy, 3).wait(timeout=60))
+            if max(abs(int(self.c.x) - sx), abs(int(self.c.y) - sy)) > SPOT_REACH:
+                self.log(f"escort: did not reach the spawner at {sx},{sy} ({res[:30]}; at {self.c.x},{self.c.y})")
+                continue
             people = [m for m in self.mobs(10) if getattr(m, "notoriety", "") == "Innocent" and not (m.name or "").startswith("Bot")
                       and str(m.serial) not in asked and not self.peaceful_person_vendor(m)]
+            if not people:
+                self.log(f"escort: nobody new to ask at {sx},{sy}")
             for m in people[:ASK_PER_SPOT]:
                 if self.threats(8):
                     return None
