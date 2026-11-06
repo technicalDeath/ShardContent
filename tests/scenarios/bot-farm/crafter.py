@@ -1955,9 +1955,10 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         return False
 
     def hide_ground(self):
-        """The nearest cell where some bot saw a hide-bearing animal (the shared memory's sights), safe, outside a guard zone, within EARN_REACH of home
-        and not just found empty; else earn_ground. (A town's horses and stabled pets are sights too, and nothing is hunted in a guarded town: BotFairTailorNR
-        stood 20 minutes on Britain's streets "looking for hides", 2026-11-05 23:15-23:35.)"""
+        """The nearest cell where some bot saw a hide-bearing animal (the shared memory's sights), safe, outside a city's core, within EARN_REACH of home
+        and not just found empty; else earn_ground. (A town's horses and stabled pets are sights too, and no fight is started in a city's core (townguard.
+        filter_prey): BotFairTailorNR stood 20 minutes on Britain's streets "looking for hides", 2026-11-05 23:15-23:35. The region's farms and wilds,
+        the beginner spawners, are hunted as before.)"""
         try:
             import townguard
             home = self.home_centre()
@@ -1973,7 +1974,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 x, y = cx + 20, cy + 20
                 if max(abs(x - home[0]), abs(y - home[1])) > self.EARN_REACH or empty.get((x, y), 0) > now:
                     continue
-                if townguard.guarded_at(x, y):
+                rec = townguard.region_at(x, y)
+                if rec and townguard.in_core(self, x, y, rec):
                     continue
                 d = max(abs(x - self.c.x), abs(y - self.c.y))
                 if best is None or d < best[0]:

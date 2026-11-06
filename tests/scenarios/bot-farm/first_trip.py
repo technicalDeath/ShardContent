@@ -1399,6 +1399,8 @@ class FirstTrip(RideMixin, LadderMixin):
             if why:
                 self.trip_abort(why)
                 return True
+        if phase == "stay" and hasattr(self, "escort_return") and self.escort_return(t, now):
+            return True                                         # a townsperson going home with it (escort.py)
         if phase == "stay":
             self.activity = f"looking around {t['dest']}"
             if t.get("entered") and self.feature("dungeon_hunt") and self.trip_dungeon_hunt(t, now) is False:
@@ -1457,7 +1459,7 @@ class FirstTrip(RideMixin, LadderMixin):
             return True
         self.activity = f"first trip: {'to' if phase == 'out' else 'home from'} {t['dest']}"
         slice_s = SLICE
-        if escort and phase == "out":
+        if escort and phase in ("out", "home"):
             slice_s = 3                                         # escort.ESCORT_SLICE: short legs, so the follower never drops past 16 tiles
         hot = self.trip_run_on() and self.trip_near()
         if not hot:

@@ -10,7 +10,8 @@ Britain spawns them at the Noble/EscortableMage spawner by the south bank (1483,
 (1351,1816); the destinations are the other towns (TownNames). The walk is the trip ladder's own (first_trip.py, trip_now): the escort only picks a
 town the bot already has a vetted-or-explore route to and the skill and health for, then holds the walk while the NPC falls behind (escort_hold, from
 trip_step): short slices (ESCORT_SLICE s) and a wait until it is within ESCORT_NEAR tiles, so it never drops past 16.
-Events: escort_ask {who, dest, taken}, escort_take {who, dest}, escort_paid {who, dest, gold, minutes}, escort_lost {who, dest, why, minutes}.
+In the town it took one to, the bot looks once for another going to its home (escort_return, from the trip's stay) and takes it back the same way.
+Events: escort_ask {who, dest, taken, back}, escort_take {who, dest, back}, escort_paid {who, dest, gold, minutes}, escort_lost {who, dest, why, minutes}.
 """
 from __future__ import annotations
 
@@ -139,6 +140,15 @@ class EscortMixin:
         spots = self.escort_spots()
         if not dests or not spots:
             return False
+        got = self.escort_seek(set(dests), spots)
+        if got:
+            with open(os.path.join(self.dir, "trip_now"), "w", encoding="utf-8") as f:
+                f.write(dests[got["dest"]]["dest"])
+        return True
+
+    def escort_seek(self, wanted, spots, back=False):
+        """At the nearest two of spots, ask each person their destination and take the first going to a town in wanted: the new facts["escort"], or None."""
+        now = time.time()
         asked = self.__dict__.setdefault("_escort_asked", {})
         for k in [k for k, v in asked.items() if v < now - 3600]:
             asked.pop(k, None)
@@ -149,7 +159,7 @@ class EscortMixin:
                       and str(m.serial) not in asked and not self.peaceful_person_vendor(m)]
             for m in people[:ASK_PER_SPOT]:
                 if self.threats(8):
-                    return True
+                    return None
                 if (getattr(m, "distance", 9) or 9) > 2:
                     self.c.goto(m.x, m.y).wait(timeout=10)
                 self.read_journal()
@@ -159,8 +169,8 @@ class EscortMixin:
                 if not h:
                     continue
                 dest = h[1]
-                take = dest in dests
-                self.ev("escort_ask", who=m.name, dest=dest, taken=take)
+                take = dest in wanted
+                self.ev("escort_ask", who=m.name, dest=dest, taken=take, back=back)
                 if not take:
                     self.log(f"escort: {m.name} wants to go to {dest}: no route there for this bot")
                     continue
@@ -170,13 +180,38 @@ class EscortMixin:
                     if r and r[0] == "rest":
                         self.facts["escort_next"] = time.time() + 60 * (int(r[1]) + 1)
                     self.log(f"escort: {m.name} did not set out ({'rest ' + str(r[1]) + ' min' if r else 'no answer'})")
-                    return True
-                self.facts["escort"] = {"serial": str(m.serial), "who": m.name, "dest": dest, "t0": time.time(), "gold0": int(self.c.gold or 0)}
-                with open(os.path.join(self.dir, "trip_now"), "w", encoding="utf-8") as f:
-                    f.write(dests[dest]["dest"])
-                self.ev("escort_take", who=m.name, dest=dest)
-                self.log(f"escort: taking {m.name} to {dest} (pays 500-1000 gold on arrival)")
-                return True
+                    return None
+                e = self.facts["escort"] = {"serial": str(m.serial), "who": m.name, "dest": dest, "t0": time.time(), "gold0": int(self.c.gold or 0), "back": back}
+                self.ev("escort_take", who=m.name, dest=dest, back=back)
+                self.log(f"escort: taking {m.name} to {dest}{' on the way home' if back else ''} (pays 500-1000 gold on arrival)")
+                return e
+        return None
+
+    def escort_return(self, t, now):
+        """From trip_step's stay in a town: once a trip, with no escort under way, a townsperson there going to the trip's home is taken back, and the
+        stay ends so the walk home starts (paid on arrival at home)."""
+        if not self.escort_on():
+            return False
+        e0 = self.facts.get("escort")
+        if e0:
+            self.escort_tick(e0)                            # (r_escort does not run during a trip: the pay is settled here)
+        if self.facts.get("escort") or t.get("escort_back_tried") or t.get("phase") != "stay":
+            return False
+        if ((t.get("def") or {}).get("kind") or "town") != "town" or now - float(t.get("t_arrive") or now) < 20:
+            return False
+        if self.hp_pct() < 80 or self.threats(10) or self.c.ghost:
+            return False
+        t["escort_back_tried"] = True                       # (EscortDelay counts from the last one taken, long ago by now; "must rest" is read if not)
+        spots = self.escort_spots()
+        if not spots or not t.get("home"):
+            return False
+        e = self.escort_seek({t["home"]}, spots, back=True)
+        if e:
+            t["stay_until"] = now                           # home now, with it
+            try:
+                self.trip_save()
+            except Exception:
+                pass
         return True
 
     def peaceful_person_vendor(self, m):
@@ -217,8 +252,10 @@ class EscortMixin:
         else:
             try:
                 st = self.trip_load()
-                if not st.get("trip") and not os.path.exists(os.path.join(self.dir, "trip_now")) and time.time() - float(e.get("t0") or 0) > 120:
-                    self.escort_end(e, "lost", why="the trip ended or never started")
+                if st.get("trip") or os.path.exists(os.path.join(self.dir, "trip_now")):
+                    e.pop("gone_at", None)
+                elif time.time() - float(e.setdefault("gone_at", time.time())) > 120 and time.time() - float(e.get("t0") or 0) > 120:
+                    self.escort_end(e, "lost", why="the trip ended or never started")       # (120 s for the follower to walk in first)
             except Exception:
                 pass
         return False
@@ -228,15 +265,18 @@ class EscortMixin:
         e = self.facts.get("escort") if isinstance(getattr(self, "facts", None), dict) else None
         if not e or e.get("result"):
             return None
-        if t is not None and t.get("dest") != e.get("dest"):
+        if t is not None and (t.get("home") if e.get("back") else t.get("dest")) != e.get("dest"):
             return None
         return e
 
     def escort_hold(self, t, now):
         """From trip_step, on the way out: True while the bot waits for its escort to come within ESCORT_NEAR tiles (the follower lags a running master and
         stands for good past 16), at most ESCORT_WAIT_MAX s; not while a monster is in notice range (the trip's run-past goes on)."""
+        e0 = self.facts.get("escort") if isinstance(getattr(self, "facts", None), dict) else None
+        if e0:
+            self.escort_tick(e0)                            # pay, loss or time-out settled as they come (r_escort does not run during a trip)
         e = self.escorting(t)
-        if not e or t.get("phase") != "out":
+        if not e or t.get("phase") != ("home" if e.get("back") else "out"):
             return False
         m = next((x for x in self.mobs(24) if str(x.serial) == e["serial"]), None)
         if m is not None and (getattr(m, "distance", 99) or 99) <= ESCORT_NEAR:
