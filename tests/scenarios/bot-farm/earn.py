@@ -8,6 +8,12 @@ import time
 from memory import cell_of
 
 
+def _on_me(m):
+    """A creature fighting the bot: beside it and in war mode. An animal fights only what attacked it (AI_Animal, FightMode.Aggressor), so one that is merely
+    beside the bot is not a fight to answer."""
+    return (getattr(m, "distance", 99) if getattr(m, "distance", None) is not None else 99) <= 1 and bool(getattr(m, "in_war_mode", False))
+
+
 class EarnMixin:
     def earn_tool(self):
         return self.tool()
@@ -30,14 +36,16 @@ class EarnMixin:
     def prey(self, within=9):
         ps = super().prey(within)
         if getattr(self, "_hide_only", False):
-            # a tailor's hide hunt (crafter.hide_hunting): the animals that carry hides, and whatever is already beside it
-            return [m for m in ps if m.distance <= 1 or self.hide_kind(self.mkey(m))]
+            # a tailor's hide hunt (crafter.hide_hunting): the animals that carry hides, and whatever is already fighting it (beside it in war mode). A cat
+            # or a bird that only wandered up is no hide: BotFairTailorNR and BotTailorBR carved a bird, rats, cats and a chicken for 0 hides in an hour
+            # (the Anomaly sweep, 2026-11-06 16:12-17:12), while the one cow gave 24
+            return [m for m in ps if _on_me(m) or self.hide_kind(self.mkey(m))]
         if not self._coin_only:
             return ps
         keep = []
         for m in ps:
             v = self.coin_value(self.mkey(m))
-            if m.distance <= 1 or v is None or v >= 1.0:
+            if _on_me(m) or v is None or v >= 1.0:
                 keep.append(m)
             else:
                 skipped = self.facts.setdefault("coin_skipped", set())
