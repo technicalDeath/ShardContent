@@ -102,7 +102,7 @@ class EscortMixin:
                     closed[t["dest"]] = "skill/health"
                     continue
                 if not self.trip_ok_route(home, t):
-                    closed[t["dest"]] = "route"
+                    closed[t["dest"]] = "route: " + self.escort_route_why(home, t)
                     continue
                 out[town] = t
         except Exception as ex:
@@ -115,6 +115,30 @@ class EscortMixin:
             except Exception:
                 pass
         return out
+
+    def escort_route_why(self, home, t):
+        """Which part of first_trip's route test refused this trip (for the open/closed log): no land route, a threat on a leg (trip_threat's words), or
+        an unvetted waypoint in a dangerous cell. Every gate route read "closed (route)" on the live bots while the same test passed offline (06:02)."""
+        try:
+            import first_trip as _ft
+            from memory import cell_of
+            r = self.trip_routed(home, t)
+            if r is None:
+                return "no land route"
+            wps = [tuple(int(v) for v in p[:2]) for p in r.get("wps") or []]
+            j = r.get("jump")
+            legs = [wps[:j + 1], wps[j + 1:]] if j is not None else [wps]
+            for i, leg in enumerate(legs):
+                th = self.trip_threat(_ft.dense_path(leg)) if len(leg) >= 2 else None
+                if th:
+                    return f"leg {i + 1}: {th[0]}"
+            if not r.get("vetted", True):
+                bad = [cell_of(x, y) for x, y in wps if self.mem.dangerous_cell(cell_of(x, y))]
+                if bad:
+                    return f"dangerous waypoint cells {bad[:3]}"
+            return "kept route refused (re-planned within the hour)"
+        except Exception as ex:
+            return f"? {type(ex).__name__}"
 
     def escort_fail_share(self, dest):
         """The share of this bot's trips to dest that failed (the ladder's own record: visits, dest_fails), 0.0 without a record."""
