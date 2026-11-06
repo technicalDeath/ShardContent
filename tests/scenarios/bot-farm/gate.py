@@ -99,7 +99,7 @@ class GateMixin:
         e = self.escorting(t) if hasattr(self, "escorting") else None
         if not e:
             return True
-        m = next((x for x in self.mobs(16) if str(x.serial) == e["serial"]), None)
+        m = next((x for x in self.c.mobiles(within=16) if str(x.serial) == e["serial"]), None)      # (an escort is Innocent: not in BotBase.mobs)
         return m is not None and (getattr(m, "distance", 99) or 99) <= FOLLOW_NEAR
 
     def gate_hop(self, frm, to, radio, t=None):

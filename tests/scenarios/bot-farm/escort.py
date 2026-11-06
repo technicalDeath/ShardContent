@@ -171,7 +171,8 @@ class EscortMixin:
             if max(abs(int(self.c.x) - sx), abs(int(self.c.y) - sy)) > SPOT_REACH:
                 self.log(f"escort: did not reach the spawner at {sx},{sy} ({res[:30]}; at {self.c.x},{self.c.y})")
                 continue
-            people = [m for m in self.mobs(10) if getattr(m, "notoriety", "") == "Innocent" and not (m.name or "").startswith("Bot")
+            # (the client's own list: BotBase.mobs keeps only the hostile-looking, Gray to Murderer, and no escort is ever there: 2026-11-06 03:30)
+            people = [m for m in self.c.mobiles(within=10) if getattr(m, "notoriety", "") == "Innocent" and not (m.name or "").startswith("Bot")
                       and str(m.serial) not in asked and not self.peaceful_person_vendor(m)]
             if not people:
                 self.log(f"escort: nobody new to ask at {sx},{sy}")
@@ -297,7 +298,7 @@ class EscortMixin:
         e = self.escorting(t)
         if not e or t.get("phase") != ("home" if e.get("back") else "out"):
             return False
-        m = next((x for x in self.mobs(24) if str(x.serial) == e["serial"]), None)
+        m = next((x for x in self.c.mobiles(within=24) if str(x.serial) == e["serial"]), None)      # (an escort is Innocent: not in BotBase.mobs)
         if m is not None and (getattr(m, "distance", 99) or 99) <= ESCORT_NEAR:
             e.pop("wait0", None)
             return False
