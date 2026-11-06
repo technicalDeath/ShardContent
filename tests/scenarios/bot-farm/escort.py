@@ -31,6 +31,10 @@ ESCORT_WAIT_MAX = 120      # s of waiting for it before it is given up (its own 
 ESCORT_MAX_S = 5400        # an escort not paid in 90 minutes is over
 SLOW_TIMES = 3             # the trip's "too slow" limit, times this, with an escort
 ASK_PER_SPOT = 6
+# a town whose trips this bot fails more often than this is not worth an escort: the escort pays 750 on average (500-1000) and a round trip of about
+# 20 minutes costs a fighter about 400 gold of hunting (1,222 gold a bot-hour, the fighters 2026-11-05 18:00-01:00, night_report.py): worth it only
+# above 400 / 750 = 0.53 success. (BotArchAdvR's Trinsic share is 0.42, 14 failed of 33: just worth it, and the camp turned Ralph's escort back, 04:24.)
+MAX_FAIL_SHARE = 0.47
 SPOT_REACH = 6             # tiles: the spawner reached (its escorts wander about it); further, its people are not asked
 
 DEST_RE = re.compile(r"looking to go (?:to |somewhere)[:\s]*([A-Z][A-Za-z' ]+?)\s*(?:[,.?!]|$)")
@@ -90,11 +94,23 @@ class EscortMixin:
                 town = t.get("town") or t["dest"]
                 if town in out and not t.get("gate"):
                     continue                                    # the gate trip to a town is kept over the road (shorter, and past no road camp)
+                if self.escort_fail_share(t["dest"]) > MAX_FAIL_SHARE:
+                    continue
                 if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t):
                     out[town] = t
         except Exception:
             pass
         return out
+
+    def escort_fail_share(self, dest):
+        """The share of this bot's trips to dest that failed (the ladder's own record: visits, dest_fails), 0.0 without a record."""
+        try:
+            st = self.ladder_state() if hasattr(self, "ladder_state") else {}
+            v = float((st.get("visits") or {}).get(dest, 0) or 0)
+            f = float((st.get("dest_fails") or {}).get(dest, 0) or 0)
+            return f / (v + f) if f else 0.0
+        except Exception:
+            return 0.0
 
     def escort_spots(self):
         """Escort spawners within SPOT_NEAR tiles, nearest first: the gazetteer's places of those types, and SPOTS."""
