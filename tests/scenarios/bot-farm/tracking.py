@@ -108,7 +108,7 @@ class TrackMixin:
         if follow:
             if seen or now > follow["until"] or self.threats(6):
                 if seen:
-                    self.ev("track_found", kind=follow["kind"], s=round(now - follow["t0"]))
+                    self.ev("track_found", prey=follow["kind"], s=round(now - follow["t0"]))
                 self.__dict__.pop("_track_follow", None)
                 return False
             xy = self.track_arrow()
@@ -164,7 +164,7 @@ class TrackMixin:
             time.sleep(0.3)
         xy = self.track_arrow()
         rng = track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))
-        self.ev("track", kind=kind_of(pick[1]), list=[n for _, n in listed][:8], picked=pick[1], range=rng, arrow=list(xy) if xy else None)
+        self.ev("track", prey=kind_of(pick[1]), list=[n for _, n in listed][:8], picked=pick[1], range=rng, arrow=list(xy) if xy else None)
         if not xy:
             return True
         self.log(f"tracking: {pick[1]} at {xy[0]},{xy[1]} ({max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y))} tiles; {len(listed)} {what} within {rng})")
