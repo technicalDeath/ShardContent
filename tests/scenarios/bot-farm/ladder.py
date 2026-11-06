@@ -242,7 +242,10 @@ class LadderMixin:
         now = time.time()
         out = []
         if self.ladder_town_ready(st, now):
+            gate_on = hasattr(self, "gate_on") and self.gate_on()
             for t in self.trips_for_home(home):
+                if t.get("gate") and not gate_on:
+                    continue                                    # a moongate trip only with gate_travel (gate.py)
                 if t["kind"] == "town" and self.ladder_retreat(home, t):
                     out.append(dict(t, rung=3))
         if self.ladder_dungeon_ready(st, now):
