@@ -891,6 +891,24 @@ class FirstTrip(RideMixin, LadderMixin):
             i += step
         return out
 
+    def trip_held_turn(self):
+        """May the way-is-held abort turn the trip back? Not when the run-past costed the way back (the route behind) at a contact with a poisoner the
+        bot cannot cure (casterpass.UNCURABLE) and the way on for less, in the last few seconds: BotFairArcherVR, among two scorpions and an earth
+        elemental on the Cove road, read "passing 4 monsters costs ~0 hp ... (back ~2000022): go on", and the abort the same second sent it home through
+        the scorpions; dead 40 s later (2026-11-06 09:59-10:00). The escapes go on, away from them."""
+        pc = self.__dict__.get("_pass_costs")
+        try:
+            import casterpass
+            if pc and time.time() - float(pc[2]) < 5 and float(pc[1]) >= casterpass.UNCURABLE and float(pc[0]) < float(pc[1]):
+                self.__dict__["_escapes_at"] = []
+                if time.time() - self.__dict__.get("_held_logged", 0) > 30:
+                    self.__dict__["_held_logged"] = time.time()
+                    self.log(f"first trip: the way is held, but the way back passes a poisoner it cannot cure (back ~{pc[1]:.0f}, on ~{pc[0]:.0f}): going on")
+                return False
+        except Exception:
+            pass
+        return True
+
     def trip_pass_ok(self, monsters, ahead, behind):
         """True when running on past these casters is affordable (casterpass.affordable: the expected damage, with the Heal potions drinkable on the way,
         leaves the largest of their spells in hand) or costs no more than turning back along the route behind. A caster not in the stats table cannot
@@ -921,6 +939,7 @@ class FirstTrip(RideMixin, LadderMixin):
             pots = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             ok = casterpass.affordable(self.c.hp, pots, *on) or on[0] <= back[0]
             now = time.time()
+            self.__dict__["_pass_costs"] = (on[0], back[0], now)             # (trip_held_turn: the way-is-held abort reads them)
             if now - self.__dict__.get("_pass_logged", 0) > 10:
                 self.__dict__["_pass_logged"] = now
                 self.log(f"first trip: passing {len(cs)} {'casters' if all(c[3] for c in cs) else 'monsters'} costs ~{on[0]:.0f} hp in {on[1]:.0f} s (back ~{back[0]:.0f}), hp {self.c.hp}, "
@@ -1031,7 +1050,7 @@ class FirstTrip(RideMixin, LadderMixin):
             if leg is not None and t.get("phase") == "out":
                 held = [x for x in self.__dict__.get("_escapes_at", []) if time.time() - x < ESCAPE_HOLD_S] + [time.time()]
                 self.__dict__["_escapes_at"] = held
-                if len(held) >= ESCAPE_HOLD_N:
+                if len(held) >= ESCAPE_HOLD_N and self.trip_held_turn():
                     # escape after escape on the way out: monsters hold the road, so the trip turns back (to be walked home round them by these legs)
                     self.__dict__["_escapes_at"] = []
                     self.trip_abort(f"run: the way is held ({len(held)} escapes in {int(ESCAPE_HOLD_S)} s)")
