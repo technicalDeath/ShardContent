@@ -49,6 +49,41 @@ def parse_list(lines):
     return out
 
 
+def _serial(s):
+    try:
+        return int(str(s), 16) if str(s).lower().startswith("0x") else int(s)
+    except (TypeError, ValueError):
+        return None
+
+
+def own_pet_kind(bot, within=30):
+    """The kind key of the bot's own pet (rangerpet's facts["pet"]) when it is in view, else None. The list names creatures, never serials, and holds tamed
+    ones too, nearest first (TrackWhoGump's InternalSorter): BotRangerBR tracked its own timber wolf 1-4 tiles off every 90 s, 16:46-16:58 2026-11-06, and
+    "found" nothing, since a pet is no prey."""
+    pet = (getattr(bot, "facts", None) or {}).get("pet") or {}
+    want = _serial(pet.get("serial"))
+    if want is None or not pet.get("kind"):
+        return None
+    try:
+        near = bot.c.mobiles(within=within)
+    except Exception:
+        return None
+    return pet["kind"] if any(_serial(getattr(m, "serial", None)) == want for m in near) else None
+
+
+def pick_listed(listed, rate, pet_kind=None):
+    """(button, name) of the first listed creature the rating would fight, skipping the nearest one of the pet's kind (it is the pet), or None."""
+    for button, name in listed:
+        k = kind_of(name)
+        if pet_kind and k == pet_kind:
+            pet_kind = None
+            continue
+        r = rate(k)
+        if r and r.get("engage"):                          # (rating.rate: the fight worth taking)
+            return (button, name)
+    return None
+
+
 class TrackMixin:
     def track_on(self):
         return self.feature("tracking") and float((getattr(self, "skill_values", {}) or {}).get("Tracking", 0)) >= MIN_SKILL
@@ -144,14 +179,9 @@ class TrackMixin:
         if not listed:
             self.ev("track_none", kind_of=what, why="none listed")
             return False
-        pick = None
         try:
             import rating
-            for button, name in listed:
-                r = rating.rate(self, kind_of(name))
-                if r and r.get("engage"):                      # (rating.rate: the fight worth taking)
-                    pick = (button, name)
-                    break
+            pick = pick_listed(listed, lambda k: rating.rate(self, k), own_pet_kind(self, track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))))
         except Exception:
             pick = None
         if pick is None:
