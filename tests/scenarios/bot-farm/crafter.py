@@ -430,6 +430,13 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if hue:
             # a coloured piece (colours.r_colour): the stack of that metal, which the smithing menu then works (BlacksmithMenu: the resource targeted)
             stacks = [i for i in self.c.backpack if int(getattr(i, "hue", 0) or 0) == hue and "ingot" in (i.name or "").lower() and (i.amount or 1) >= need]
+            if not stacks and not self.__dict__.get("_colour_hue") and self.__dict__.get("_spend_hue"):
+                # colour_spend: this metal is short of the piece's cost; the next one that has enough (BotSmithBR: 8 shadow iron for an 8-ingot shield,
+                # "nomenu" three minutes running, with 25 copper and 142 bronze in the pack, 2026-11-05 21:39)
+                alt = self.spend_hue(need)
+                if alt:
+                    self.__dict__["_spend_hue"] = alt[0]
+                    stacks = [i for i in self.c.backpack if int(getattr(i, "hue", 0) or 0) == alt[0] and "ingot" in (i.name or "").lower() and (i.amount or 1) >= need]
             return max(stacks, key=lambda i: i.amount or 1) if stacks else None
         biggest = None
         for n in (self.cfg["mat"],) + tuple(self.cfg.get("mat_alt", ())):
@@ -448,7 +455,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         return sum((i.amount or 1) for i in self.c.backpack if any(self.matname(w, i.name) for w in words)
                    and (self.plain(i) or (spend and int(getattr(i, "hue", 0) or 0) == spend)))
 
-    def spend_hue(self):
+    def spend_hue(self, need=5):
         """Feature colour_spend: the hue of the coloured ingots a smith out of iron makes its products from (the least valuable metal its Blacksmithy can work,
         the biggest stack of it), or None. With colour_craft on, COLOUR_TAKE of each metal stays for the fighters' armour."""
         if not self.feature("colour_spend") or self.cfg.get("craft") not in ("Blacksmith", "Tinkering"):
@@ -456,7 +463,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         keep = self.COLOUR_TAKE if self.colour_on() else 0
         best = None
         for bonus, hue, metal, stack in self.colour_metals():
-            if (stack.amount or 1) - keep < 5:
+            if (stack.amount or 1) - keep < max(5, need):
                 continue
             key = (bonus, -(stack.amount or 1))
             if best is None or key < best[0]:
