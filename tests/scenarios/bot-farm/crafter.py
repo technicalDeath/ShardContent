@@ -426,7 +426,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         """The stack to target: the first material name with a stack big enough for the item being made (self._need), else the largest of any name
         (the first-name rule picked 9 cut cloth over 111 uncut cloth, and every 12-cloth craft failed)."""
         need = getattr(self, "_need", None) or 1
-        hue = self.__dict__.get("_colour_hue")
+        hue = self.__dict__.get("_colour_hue") or self.__dict__.get("_spend_hue")      # (colour_spend: the coloured metal this craft is made of)
         if hue:
             # a coloured piece (colours.r_colour): the stack of that metal, which the smithing menu then works (BlacksmithMenu: the resource targeted)
             stacks = [i for i in self.c.backpack if int(getattr(i, "hue", 0) or 0) == hue and "ingot" in (i.name or "").lower() and (i.amount or 1) >= need]
@@ -444,7 +444,24 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
 
     def count(self, word):
         words = (word,) + tuple(self.cfg.get("mat_alt", ())) if word == self.cfg["mat"] else (word,)
-        return sum((i.amount or 1) for i in self.c.backpack if any(self.matname(w, i.name) for w in words) and self.plain(i))
+        spend = self.__dict__.get("_spend_hue") if word == self.cfg["mat"] else None
+        return sum((i.amount or 1) for i in self.c.backpack if any(self.matname(w, i.name) for w in words)
+                   and (self.plain(i) or (spend and int(getattr(i, "hue", 0) or 0) == spend)))
+
+    def spend_hue(self):
+        """Feature colour_spend: the hue of the coloured ingots a smith out of iron makes its products from (the least valuable metal its Blacksmithy can work,
+        the biggest stack of it), or None. With colour_craft on, COLOUR_TAKE of each metal stays for the fighters' armour."""
+        if not self.feature("colour_spend") or self.cfg.get("craft") != "Blacksmith":
+            return None
+        keep = self.COLOUR_TAKE if self.colour_on() else 0
+        best = None
+        for bonus, hue, metal, stack in self.colour_metals():
+            if (stack.amount or 1) - keep < 5:
+                continue
+            key = (bonus, -(stack.amount or 1))
+            if best is None or key < best[0]:
+                best = (key, hue, metal)
+        return (best[1], best[2]) if best else None
 
     def open_menu(self):
         """Tool, then the material: the era's first menu."""
@@ -844,9 +861,14 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             if cur is None or getattr(cur, "is_dead", False):
                 why = "dead"
                 break
-            if (getattr(cur, "distance", 9) or 9) > 1:
+            d = getattr(cur, "distance", 9) or 9
+            if d > self.HOLD_CHASE:
                 why = "left"
                 break
+            if d > 1:
+                # a step or two off: after it, as a player keeps on a snake that slid aside (BotTinkAR's "left" holds, the snake biting on, 2026-11-05)
+                self.c.goto(cur.x, cur.y).wait(timeout=self.HOLD_STEP_S + 1.5)
+                continue
             if not self.hold_worth(cur):
                 why = "rating"
                 break
@@ -858,6 +880,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         self.ev("hold_fight", at=self.mkey(m), end=why, hp=self.c.hp)
         self.log(f"held the fight with {m.name}: {why}, hp {self.c.hp}")
         return True
+
+    HOLD_CHASE = 2             # tiles a held biter may step off and still be fought (farther, it has left: hold_fight's "left")
 
     def hold_worth(self, m):
         """Still a fight to take from the health left: the rating (rating.rate, current hit points) under feature rating, else is_prey."""
@@ -1649,8 +1673,16 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if not self.tool():
             self.note("craft", f"The {self.pname}'s tool ({self.cfg['tool']}) is gone or worn out; no warning came before the last use.", key="notool")
             return False
+        self.__dict__.pop("_spend_hue", None)
         if self.count(self.cfg["mat"]) < 5:
-            return self.skip_why("r_craft", f"under 5 {self.cfg['mat']}")
+            spend = self.spend_hue()
+            if not spend:
+                return self.skip_why("r_craft", f"under 5 {self.cfg['mat']}")
+            self.__dict__["_spend_hue"] = spend[0]              # held until the next r_craft: count() and material() take this metal for iron
+            if time.time() - self.facts.get("spend_log_at", 0) > 600:
+                self.facts["spend_log_at"] = time.time()
+                self.log(f"out of iron: making the products of {spend[1]} ({self.count(self.cfg['mat'])} ingots), which an NPC pays for like iron")
+                self.ev("colour_spend", metal=spend[1], ingots=self.count(self.cfg["mat"]))
         if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
             if time.time() - self.facts.get("old_toss_at", 0) > 120:
                 self.facts["old_toss_at"] = time.time()
