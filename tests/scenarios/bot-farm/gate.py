@@ -26,6 +26,12 @@ GATES = {
     "Buccaneer's Den": (2711, 2234, 8),
 }
 GATE_DESTS = ("Moonglow", "Jhelom", "Magincia", "Trinsic", "Minoc", "Yew", "Skara Brae")
+# a home's walk to its gate, where the surveyed one will not do: Britain's survey (first_trip "britain-gate-walk") runs down x 1343-1351 past the
+# graveyard edge, through cell 1320,1920, where two bots of skill 91 and 100 died in 14 days (route_deaths), so the route rule refused every gate trip
+# for the strong fighters (2026-11-06 01:26-03:10). This one leaves the survey at 1375,1784 and comes down x 1415-1422, where no cell holds two deaths
+# (1360,1880 holds six), then west along y 1968-1991 to the gate: 420 steps against 369 (walkroute.repair, checked against route_deaths).
+APPROACH = {"Britain": [(1475, 1645), (1448, 1678), (1422, 1715), (1386, 1754), (1375, 1784), (1415, 1790), (1420, 1840), (1422, 1890), (1419, 1934),
+                        (1405, 1968), (1375, 1985), (1336, 1997)]}
 SUFFIX = " by gate"
 BAND, HP, STAY = 50, 70, 10            # the town trips' own skill band and health at Trinsic's level (first_trip TRIPS)
 HOP_TRIES = 4                          # gate attempts on the way out before the trip turns back
@@ -55,12 +61,13 @@ class GateMixin:
             return []
         # the home's own surveyed walk to its gate (first_trip.TRIPS, kind "gate": Britain's "britain-gate-walk"), as its first leg: a fresh plan from the
         # bank crossed 1320,1920, where two bots no stronger died, and every gate trip was refused there (2026-11-06 01:26)
-        seed = None
-        try:
-            import first_trip as _ft
-            seed = next((t["wps"] for t in _ft.TRIPS if t.get("kind") == "gate" and t.get("home", "Britain") == home["name"]), None)
-        except Exception:
-            seed = None
+        seed = APPROACH.get(home["name"])
+        if seed is None:
+            try:
+                import first_trip as _ft
+                seed = next((t["wps"] for t in _ft.TRIPS if t.get("kind") == "gate" and t.get("home", "Britain") == home["name"]), None)
+            except Exception:
+                seed = None
         out = []
         for name in GATE_DESTS:
             g, r = GATES.get(name), towns.get(name)

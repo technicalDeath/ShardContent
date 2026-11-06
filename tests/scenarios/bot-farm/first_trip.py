@@ -631,13 +631,23 @@ class FirstTrip(RideMixin, LadderMixin):
             new, route = again, "planned round " + ",".join(f"{c[0]},{c[1]}" for c in circles)
         return new, route
 
+    @staticmethod
+    def trip_route_key(home, trip):
+        """The key a trip's planned route is kept under in trip.json (ROUTE_V: routes planned before far_penalty are not reused); a gate trip's key also
+        names its first leg, so a new approach to the gate is planned afresh instead of the kept route being refused for the hour (gate.py)."""
+        key = f"{ROUTE_V}|{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"
+        leg = (trip.get("gate") or {}).get("seed_leg")
+        if leg:
+            key += f"|g{zlib.crc32(json.dumps(leg).encode()) & 0xffff:04x}"
+        return key
+
     def trip_routed(self, home, trip):
         """The trip with walkable waypoints, planned once per (home, destination, exit) and kept in trip.json; None when there is no land route."""
         if _wr() is None:
             return dict(trip, route="straight")
         st = self.trip_load()
         routes = st.setdefault("routes", {})
-        key = f"{ROUTE_V}|{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"   # (ROUTE_V: routes planned before far_penalty are not reused)
+        key = self.trip_route_key(home, trip)
         r = routes.get(key)
         if r is None:
             r = routes[key] = self.trip_plan(trip)
@@ -655,7 +665,7 @@ class FirstTrip(RideMixin, LadderMixin):
         if not self.trip_route_dangerous(routed):
             return True
         st = self.trip_load()
-        key = f"{ROUTE_V}|{home['name']}|{trip['dest']}|{','.join(str(v) for v in (trip.get('exit') or []))}"
+        key = self.trip_route_key(home, trip)
         r = (st.get("routes") or {}).get(key)
         if r is not None and time.time() - float(r.get("t", 0) or 0) > 3600:
             st["routes"].pop(key, None)
