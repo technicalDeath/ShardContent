@@ -1241,7 +1241,7 @@ def start_task(bot, g, cand, options, why="chosen"):
     bot.__dict__.pop("_core_tree", None)
     bot.ev("task_start", task=task["task"], area=task["area"], expected=task["expected"], budget_min=round(task["budget"] / 60), walk_min=task["walk_min"], score=task["score"],
            draw=cand.get("draw"), why=why, goal=g["name"], judge=task["judge"], options=len(options), tier=task.get("tier"), side=task.get("side"), partner=task.get("partner"),
-           earning=("fists" if bot.facts.get("fists") else "unarmed" if unarmed(bot) else None), kinds=(cand.get("kinds") or [])[:6])
+           earning=("fists" if bot.facts.get("fists") else "unarmed" if unarmed(bot) else None), kinds=(cand.get("kinds") or [])[:6], rank=cand.get("rank"))
     try:
         import think
         think.task_start(bot, task, cand)

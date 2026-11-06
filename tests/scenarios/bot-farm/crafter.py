@@ -1875,6 +1875,50 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 self.facts["retool_block_until"] = time.time() + 900
         return True
 
+    HIDE_MIN = 6               # hides a kill must carry to be hunted for them: the cheapest leather piece sewn past 78 (studded gorget, 6 leather)
+
+    def hide_hunting(self):
+        """Feature hide_hunt: a leather tailor that must earn hunts for hides, its material, not for coins (earn_planned)."""
+        return self.feature("hide_hunt") and self.leather_on()
+
+    def hide_kind(self, k):
+        """True for a kind whose carve gives at least HIDE_MIN hides (the profit table: the engine's Hides; a hind's corpse reads "deer")."""
+        try:
+            import profit
+            for k_ in (k,) + BotBase.CORPSE_NAMES.get(k, ()):
+                e = profit.table().get(k_)
+                if e and float(e.get("hides") or 0) >= self.HIDE_MIN:
+                    return True
+        except Exception:
+            pass
+        return False
+
+    def hide_ground(self):
+        """The nearest cell where some bot saw a hide-bearing animal (the shared memory's sights), safe, within EARN_REACH of home and not just found
+        empty; else earn_ground."""
+        try:
+            home = self.home_centre()
+            empty = self.facts.get("earn_empty", {})
+            now = time.time()
+            best = None
+            for cell, c in self.mem.state["world"]["cells"].items():
+                if not any(self.hide_kind(k) for k in (c.get("sights") or ())):
+                    continue
+                if self.mem.dangerous_cell(cell) or self.mem.camp_cell(cell):
+                    continue
+                cx, cy = (int(v) for v in cell.split(","))
+                x, y = cx + 20, cy + 20
+                if max(abs(x - home[0]), abs(y - home[1])) > self.EARN_REACH or empty.get((x, y), 0) > now:
+                    continue
+                d = max(abs(x - self.c.x), abs(y - self.c.y))
+                if best is None or d < best[0]:
+                    best = (d, (x, y))
+            if best:
+                return best[1]
+        except Exception:
+            pass
+        return self.earn_ground()
+
     EARN_REACH = 150                                      # tiles from home a broke crafter may go for coins
     EARN_MIN_GOLD = 8                                     # looted gold (decayed) a cell must hold to be a candidate
     EARN_STAND = 120                                      # seconds on a spot without anything to fight before it is called empty
@@ -1906,25 +1950,33 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 self.sell_items(xy, [s[0] for s in scraps if s[2] == xy])
             self.log(f"sold scraps: gold {gold0} -> {self.c.gold}")
             return True
-        self.note("money", f"The {self.pname} has no money for {'a new ' + self.cfg['tool'] if not self.tool() else 'material'} and nothing to sell, so it hunts the vermin that pay (rats), not cats and birds.", key="earnhunt")
-        self.activity = "broke: hunting for coins"
-        ex, ey = self.earn_ground()
+        hides = self.hide_hunting()
+        if hides:
+            self.note("money", "A tailor without hides hunts the animals that carry them (a cow 12, a hind or goat 8) and carves them with a dagger, as the era's hunter-tailor did.", key="hidehunt")
+        else:
+            self.note("money", f"The {self.pname} has no money for {'a new ' + self.cfg['tool'] if not self.tool() else 'material'} and nothing to sell, so it hunts the vermin that pay (rats), not cats and birds.", key="earnhunt")
+        self.activity = "hunting for hides" if hides else "broke: hunting for coins"
+        ex, ey = self.hide_ground() if hides else self.earn_ground()
         if self.monster_ground(self.c.x, self.c.y) and not self.monster_ground(ex, ey) and max(abs(self.c.x - ex), abs(self.c.y - ey)) > 6:
             # off monster ground before hunting for coins: BotTailorBR hunted giant rats beside the ratman, ogre and troll camp in the west hills after each
             # corpse run and died there five times in an hour (2026-11-01 22:16-23:02)
             self.activity = f"broke: leaving monster ground for {ex},{ey}"
             self.goto_near(ex, ey, 4).wait(timeout=90)
             return True
-        self._coin_only = True
+        self._coin_only, self._hide_only = not hides, hides
+        if hides:
+            self.CARVE = self.CUTS_HIDES = True              # (instance attributes) loot_corpse carves, cuts the hides on the corpse and takes the leather
         try:
             for rule in ("r_loot", "r_heal", "r_fight", "r_hunt"):
                 if getattr(HunterBot, rule)(self):
                     self.facts.pop("earn_at", None)
                     return True
         finally:
-            self._coin_only = False
-        x, y = self.earn_ground()
-        self.activity = f"broke: looking for vermin toward {x},{y}"
+            self._coin_only = self._hide_only = False
+            self.__dict__.pop("CARVE", None)
+            self.__dict__.pop("CUTS_HIDES", None)
+        x, y = self.hide_ground() if hides else self.earn_ground()
+        self.activity = f"looking for hides toward {x},{y}" if hides else f"broke: looking for vermin toward {x},{y}"
         now = time.time()
         at = self.facts.get("earn_at")
         if max(abs(self.c.x - x), abs(self.c.y - y)) <= 6:

@@ -29,6 +29,9 @@ class EarnMixin:
 
     def prey(self, within=9):
         ps = super().prey(within)
+        if getattr(self, "_hide_only", False):
+            # a tailor's hide hunt (crafter.hide_hunting): the animals that carry hides, and whatever is already beside it
+            return [m for m in ps if m.distance <= 1 or self.hide_kind(self.mkey(m))]
         if not self._coin_only:
             return ps
         keep = []

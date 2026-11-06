@@ -2353,8 +2353,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         gear = getattr(self, "LOOT_GEAR", ()) if self.c.weight < self.c.max_weight * 0.7 else ()
         worth += (("amethyst", "star sapphire") if self.feature("livelihood") else ())
         worth += (self.LOOT_CLOTHES if self.c.weight < self.c.max_weight * 0.7 else ())
-        worth += gear + (("raw ",) if getattr(self, "CARVE", False) and room else ())
-        if getattr(self, "CARVE", False) and self.core_active() and room:
+        hide_hunt = getattr(self, "_hide_only", False)                          # a tailor hunting its own leather (crafter.hide_hunting): the leather, not the meat
+        worth += gear + (("raw ",) if getattr(self, "CARVE", False) and room and not hide_hunt else ())
+        if getattr(self, "CARVE", False) and (self.core_active() or hide_hunt) and room:
             worth += ("hide", "cut up leather")                                 # a core bot's sell errand cuts hides into leather for the Tanner (owner, 2026-10-20); the rule list's r_lighten drops them
         meat_value = 0
         gold0 = self.c.gold

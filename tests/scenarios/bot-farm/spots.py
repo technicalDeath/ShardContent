@@ -34,6 +34,8 @@ SURFACE_X = 5120
 CELL_COVER = 20                 # a memory cell this close to a spawner spot is that spawner
 SPOT_CACHE_S = 600
 RANK_CAP = 3.0                  # tour_rank: a tour's estimate counts in its score up to this many times EXPECT_CAP (one wild draw does not win everything)
+RANK_GOLD = 2400.0              # tour_rank, judged by gold: up to this many gold an hour. 3 x 120 tied every gold-judged tour (scores 5.75-5.98, 2026-11-05); 2,400 is
+                                # the largest prior and the best fighter hour measured that day was 2,231 earned gold a bot-hour (BotFairSwordNR)
 VISIT_KILLS = 2.0               # kills a visit a spot of enough creatures yields before any record (a player clears two and moves on)
 DUE_SOON = 120.0                # a respawn due within this many seconds is worth the wait at the spot
 # item 5 (docs/Bot-Farm-Capability-Plan-2026-10-20.md, "The world beyond Britain"): the dungeon rungs as tiers above 3. Level 1 of the seven rung dungeons is
@@ -709,13 +711,15 @@ def tours(bot, g, rng, banned=(), relax=0):
         # 18 x minutes/60 / minutes = 0.3, the ties went to the safest or nearest, and the archers and fighters circled the same few spots by town whatever
         # their records said (0.290-0.297 for every choice, 2026-11-01). The capped figure stays the monitor's expectation.
         rank = raw if bot.feature("tour_rank") else exp
-        progress = min(rank[judge], RANK_CAP * task_core.EXPECT_CAP.get(judge, 1e9)) * hours
+        limit = RANK_GOLD if judge == "gold" else RANK_CAP * task_core.EXPECT_CAP.get(judge, 1e9)
+        progress = min(rank[judge], limit) * hours
         if measure == "gold" or judge == "gold":
             progress -= die * kills * float(bot.c.gold or 0) * 0.5
         cost = minutes + die * kills * task_core.DEATH_MIN
         out.append({"task": "hunt", "area": f"tour {seed['id']}", "spots": [[vals[i][0]["x"], vals[i][0]["y"], round(vals[i][2], 2), i] for i in tour], "tour": list(tour),
                     "side": seed.get("side", "surface"), "tier": max(vals[i][0]["tier"] for i in tour),
                     "score": round(progress / max(cost, 1.0), 4), "judge": judge, "draw": round(sek, 2), "mean": round(exp[judge], 3), "expected": {k: round(v, 3) for k, v in exp.items()},
+                    "rank": round(min(rank[judge], limit), 1),
                     "walk_min": round(walk_min, 1), "die": round(die, 3), "n": min(vals[i][3] for i in tour), "kinds": sorted({k for i in tour for k in vals[i][1]["kinds"]})[:8],
                     "load": 0, "minutes": round(minutes, 1), "budget": float(min(task_core.HUNT_BUDGET, max(600.0, minutes * 60.0))), "relax": relax})
     if relax >= 3:
