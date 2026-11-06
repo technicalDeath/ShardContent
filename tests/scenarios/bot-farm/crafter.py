@@ -452,6 +452,12 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
     def count(self, word):
         words = (word,) + tuple(self.cfg.get("mat_alt", ())) if word == self.cfg["mat"] else (word,)
         spend = self.__dict__.get("_spend_hue") if word == self.cfg["mat"] else None
+        if spend:
+            # colour_spend: the menu works the one stack targeted (material()), so what it can pay for is that metal's biggest stack, not iron and every
+            # stack added up: 2 iron + 7 dull copper read 9, an 8-ingot wooden kite shield was chosen, no stack held 8, and BotSmithBR's menu never opened,
+            # once a minute from 13:03 (2026-11-06; its bronze is out of reach at a base under 80)
+            return max([(i.amount or 1) for i in self.c.backpack if any(self.matname(w, i.name) for w in words)
+                        and int(getattr(i, "hue", 0) or 0) == spend] or [0])
         return sum((i.amount or 1) for i in self.c.backpack if any(self.matname(w, i.name) for w in words)
                    and (self.plain(i) or (spend and int(getattr(i, "hue", 0) or 0) == spend)))
 
