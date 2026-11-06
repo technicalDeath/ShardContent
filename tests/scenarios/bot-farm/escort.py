@@ -85,6 +85,7 @@ class EscortMixin:
     def escort_dests(self, home):
         """{dest: trip} of the towns this bot may walk to now (first_trip's own checks: skill band, health, a safe route)."""
         out = {}
+        closed = {}
         try:
             power = self.trip_power()
             gate_on = hasattr(self, "gate_on") and self.gate_on()
@@ -95,11 +96,24 @@ class EscortMixin:
                 if town in out and not t.get("gate"):
                     continue                                    # the gate trip to a town is kept over the road (shorter, and past no road camp)
                 if self.escort_fail_share(t["dest"]) > MAX_FAIL_SHARE:
+                    closed[t["dest"]] = "fails"
                     continue
-                if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t):
-                    out[town] = t
-        except Exception:
-            pass
+                if power < t["band"] or self.c.max_hp < t["hp"]:
+                    closed[t["dest"]] = "skill/health"
+                    continue
+                if not self.trip_ok_route(home, t):
+                    closed[t["dest"]] = "route"
+                    continue
+                out[town] = t
+        except Exception as ex:
+            closed["error"] = f"{type(ex).__name__}"
+        now = time.time()
+        if now - float(self.__dict__.get("_escort_dests_logged", 0) or 0) > 1800:
+            self.__dict__["_escort_dests_logged"] = now
+            try:
+                self.log(f"escort: towns open {sorted(out)}; closed " + ", ".join(f"{k} ({v})" for k, v in sorted(closed.items())))
+            except Exception:
+                pass
         return out
 
     def escort_fail_share(self, dest):
