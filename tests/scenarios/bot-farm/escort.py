@@ -89,6 +89,9 @@ class EscortMixin:
 
     # ---- taking one ----------------------------------------------------------------------------------------------------------
 
+    # (2026-11-06, the first live morning: escorts by moongate 6 of 6 paid (Constanza 711, Verity 606, Lalasa 654, Howard, Carlin), 8 hops, no hit
+    # point lost; by road 0 of 3: Ralph turned back at the Trinsic road camp, Jarman ended in BotMaceCR's death in the gazer pocket on the Cove road,
+    # Ajay turned back at 16 of 100 hit points)
     def escort_dests(self, home):
         """{dest: trip} of the towns this bot may walk to now (first_trip's own checks: skill band, health, a safe route)."""
         out = {}
@@ -99,6 +102,9 @@ class EscortMixin:
             for t in self.trips_for_home(home):
                 if t.get("kind") != "town" or (t.get("gate") and not gate_on):
                     continue
+                if gate_on and not t.get("gate"):
+                    closed[t["dest"]] = "road (gate only)"
+                    continue                                    # by road the escort walks into the road camps with the bot: by moongate only
                 town = t.get("town") or t["dest"]
                 if town in out and not t.get("gate"):
                     continue                                    # the gate trip to a town is kept over the road (shorter, and past no road camp)
