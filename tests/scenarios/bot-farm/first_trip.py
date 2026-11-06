@@ -113,6 +113,9 @@ def dense_path(wps):
     return out + [tuple(wps[-1])] if wps else out
 
 
+# kinds that cannot walk (CantWalk = true: DeepSeaSerpent.cs, SeaSerpent.cs, Kraken.cs, Dolphin.cs; Spawns/SeaLife.json): a spawner of them off the coast
+# is no danger to a walk on land, yet one at 3520,2263 refused every Magincia trip by its gate (2026-11-06 03:30). WaterElemental can walk: not here.
+WATER_ONLY = ("deepseaserpent", "seaserpent", "kraken", "dolphin")
 ENDS_FREE = 25          # tiles at each end of a trip's path left out of trip_threat: a destination (Britain's moongate at 1336,1997 beside Haunted Wood) is gone to anyway
 AVOID_TRIES = 4          # re-plans of a trip round the cells route_danger flags before the trip is refused
 AVOID_FACTOR = 50.0      # the cost a flagged cell's tiles get in that re-plan: high enough that any way round wins
@@ -594,7 +597,8 @@ class FirstTrip(RideMixin, LadderMixin):
         try:
             import spots
             import task_core
-            losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + (RUN_EDGE if run else task_core.PULL_CLEAR), k) for o, k in spots.deadly_spawners(self)]
+            losing = [(o["x"], o["y"], max(int(o.get("home") or 10), 1) + (RUN_EDGE if run else task_core.PULL_CLEAR), k) for o, k in spots.deadly_spawners(self)
+                      if k not in WATER_ONLY]                         # a sea creature never leaves the water: no danger to a walk on land
             if run:
                 # a running trip passes a melee lair (nothing there catches a runner, TRIP_HOT's note); only a caster's or breather's reach is a wall,
                 # and only its home range (RUN_EDGE): the run turns back if one comes within notice range on the way (trip_run)
