@@ -1098,10 +1098,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
         self.log(f"facts taken over from the last brain: {sorted(d)}")
 
     def refresh_skills(self):
+        bases = self.__dict__.setdefault("skill_bases", {})
         for line in self.c.call("skills", timeout=8):
-            m = re.match(r"\[SKILL\]\s+(.+?)\s+(\d+\.\d)\s+\(base", line)
+            m = re.match(r"\[SKILL\]\s+(.+?)\s+(\d+\.\d)\s+\(base\s+(\d+\.\d)\)", line) or re.match(r"\[SKILL\]\s+(.+?)\s+(\d+\.\d)\s+\(base", line)
             if m:
                 self.skill_values[m.group(1).strip()] = float(m.group(2))
+                if m.lastindex and m.lastindex >= 3:
+                    bases[m.group(1).strip()] = float(m.group(3))      # the skill without bonuses: what a craft's metal gate reads (CraftItem, .Base)
 
     # ---- rules every profession has -----------------------------------------------------------------------------
 

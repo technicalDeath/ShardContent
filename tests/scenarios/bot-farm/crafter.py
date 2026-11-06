@@ -461,8 +461,11 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if not self.feature("colour_spend") or self.cfg.get("craft") not in ("Blacksmith", "Tinkering"):
             return None                                   # (the era's tinkering menu takes any ingot, TinkeringMenu.TrySelectResource; DefTinkering's skill needs)
         keep = self.COLOUR_TAKE if self.colour_on() else 0
+        refused = self.facts.get("metal_refused") or {}
         best = None
         for bonus, hue, metal, stack in self.colour_metals():
+            if float(refused.get(str(hue), 0) or 0) > time.time():
+                continue                                   # the server refused it lately (r_craft)
             if (stack.amount or 1) - keep < max(5, need):
                 continue
             key = (bonus, -(stack.amount or 1))
@@ -1761,6 +1764,12 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
                 break
             result = self.craft_once(name, first=(n == 0 or self.last_made != name))
             self.last_made = name
+            if self.__dict__.get("_spend_hue") and "strange and unusual metal" in (result or "").lower():
+                # the server refused the metal (CraftItem's skill gate): not this hue again for an hour (BotSmithBR, once a second, 2026-11-05 22:03)
+                self.facts.setdefault("metal_refused", {})[str(self.__dict__["_spend_hue"])] = time.time() + 3600
+                self.log(f"colour_spend: the server refused this metal (hue {self.__dict__['_spend_hue']}): not again for an hour")
+                self.__dict__.pop("_spend_hue", None)
+                break
             ok = bool(re.search(r"You create|You make|put .* in|exceptional", result or "", re.I))
             tried = ok or bool(TRIED.search(result or ""))  # a real outcome: silence, notool or a refused menu was no try (BotFairTailorVR, 2026-11-05)
             self.made += ok

@@ -173,12 +173,22 @@ class ColourSmith:
         now = time.time()
         return {s for s, r in self.colour_stock().items() if now - float(r.get("t", 0)) < STOCK_DAYS * 86400}
 
+    def metal_skill(self):
+        """The craft skill a coloured metal's gate reads: its base, without bonuses (CraftItem: Skills[MainSkill].Base < RequiredSkill refuses the metal).
+        BotSmithBR read 81.3 on a base of 79.3 and was refused bronze (80), 2026-11-05."""
+        try:
+            b = (self.__dict__.get("skill_bases") or {}).get(self.cfg.get("skill"))
+        except Exception:
+            b = None
+        return min(float(self.skill), float(b)) if b is not None else float(self.skill)
+
     def colour_metals(self):
         """[(bonus, hue, name, stack)] of the coloured ingots in the pack this smith's Blacksmithy can work, best first."""
         out = []
+        skill = self.metal_skill()
         for i in self.c.backpack:
             c = items.colour(i)
-            if c and c[1] == "Blacksmithy" and "ingot" in (i.name or "").lower() and self.skill >= c[2]:
+            if c and c[1] == "Blacksmithy" and "ingot" in (i.name or "").lower() and skill >= c[2]:
                 out.append((c[3], int(i.hue), c[0], i))
         return sorted(out, key=lambda t: (-t[0], -(t[3].amount or 1)))
 
@@ -192,7 +202,7 @@ class ColourSmith:
             return 0
         try:
             stacks = [i for i in self.box_contents(box, timeout=6) if items.colour(i) and items.colour(i)[1] == "Blacksmithy"
-                      and "ingot" in (i.name or "").lower() and self.skill >= items.colour(i)[2]]
+                      and "ingot" in (i.name or "").lower() and self.metal_skill() >= items.colour(i)[2]]
         except Exception:
             return 0
         held = sum((i.amount or 1) for i in self.c.backpack if items.colour(i) and "ingot" in (i.name or "").lower())
