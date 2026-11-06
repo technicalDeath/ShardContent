@@ -97,10 +97,29 @@ class BasicsMixin:
             time.sleep(1.0)
         return True
 
+    SHOP_CLEAR = 2            # tiles beyond a vendor's wander radius (its spawner's, Vendors.json via the gazetteer) that still count as its shop
+
+    def in_shop(self):
+        """True within a vendor's wander radius + SHOP_CLEAR tiles of its spawner (the gazetteer's places): the inside of a shop, where the walkways
+        are a tile or two wide."""
+        try:
+            import gazetteer as gz
+            x, y = int(self.c.x), int(self.c.y)
+            for p in gz.get().places:
+                if not str(p.get("src", "")).startswith("spawner:Vendors"):
+                    continue
+                if max(abs(int(p["x"]) - x), abs(int(p["y"]) - y)) <= int(p.get("radius") or 0) + self.SHOP_CLEAR:
+                    return True
+        except Exception:
+            pass
+        return False
+
     def hide_practice(self):
-        """Hiding practised while idle and safe (the skill only rises with use; nothing is near to make it fail for want of cover)."""
+        """Hiding practised while idle and safe (the skill only rises with use; nothing is near to make it fail for want of cover), never in a shop:
+        hidden, the character is an invisible body in a walkway a tile or two wide that the others' planners cannot see (in_shop). BotCarpAR could not
+        leave the carpenter's for 10 minutes past "something invisible" (2026-11-05)."""
         if (self.c.ghost or not self.hide_on() or self.threats(16) or time.time() - self.facts.get("hide_practice_at", 0) < self.HIDE_PRACTICE
-                or time.time() - self.facts.get("hide_at", 0) < self.HIDE_GAP):
+                or time.time() - self.facts.get("hide_at", 0) < self.HIDE_GAP or self.in_shop()):
             return False
         self.facts["hide_practice_at"] = time.time()
         ok = self.try_hide()
