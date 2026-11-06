@@ -309,6 +309,12 @@ class FirstTrip(RideMixin, LadderMixin):
             return self.ride_on()                                   # riding (ride.py) under the core too
         if name == "r_dungeon_out":
             return bool(self.facts.get("dungeon_hunt"))            # a dungeon hunt's way out of a pack (r_dungeon_out), ahead of r_flee
+        if name == "r_loot":
+            # in a dungeon the kills are r_fight's (the pack comes to the bot), and the hunt tree loots only its own target: BotHealAdvR's two Despise stays
+            # made 103 kills and brought home about 63 gold, the pack at 133 stones from entry to exit (2026-11-05/06). r_loot stands aside while a hostile
+            # is within 7 tiles, so it loots between fights, never instead of one
+            return bool(self.facts.get("dungeon_hunt"))
+
         if name == "r_fight":
             return bool(self.ladder_on() and self.trip_load().get("trip"))
         return False
