@@ -50,7 +50,8 @@ from uo import Event  # noqa: E402
 
 from stock import CasterStock  # noqa: E402
 from hunt import HuntMixin  # noqa: E402
-class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, BasicsMixin, mage_bot.Bot):
+from lessons import LessonMixin  # noqa: E402  (lessons from NPC trainers; feature lessons)
+class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, BasicsMixin, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -580,6 +581,21 @@ class CasterBot(ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWor
 
     r_corpse = RecoveryMixin.recovery_corpse_run                      # only with blue_self_loot or materializing on (recovery.py)
     RULES = ["r_dead", "r_corpse", "r_cure"] + [r for r in mage_bot.Bot.RULES if r != "r_dead"]       # no r_camp: camping cut casters' gains to nothing
+
+    LESSON_READ_S = 600
+
+    def lesson_have(self):
+        """{skill: base} for the lesson gate: a caster keeps no skill table (only Magery), so the client's skill list is read here, every
+        LESSON_READ_S seconds at most (skillplan.read: value, base, lock)."""
+        now = time.time()
+        if now - float(self.__dict__.get("_lesson_read_at", 0) or 0) >= self.LESSON_READ_S:
+            self.__dict__["_lesson_read_at"] = now
+            try:
+                import skillplan
+                self.__dict__["_lesson_bases"] = {k: v[1] for k, v in skillplan.read(self).items()}
+            except Exception:
+                pass
+        return dict(self.__dict__.get("_lesson_bases") or {})
 
     def label_hook(self, t):
         """The NPC labels ("Ryan the minter") the casters' base drops: talk.py learns who is not a person."""

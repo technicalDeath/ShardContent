@@ -8,6 +8,9 @@ r_peace (a reflex, ahead of the flight): a caster in war mode within the bard's 
 at 97), else a creature in war mode within FOE_R tiles, not calmed by this bard, at a chance of PEACE_MIN or more (provoke.difficulty, the creature
 table's floor), the most difficult first: calmed, then the fight goes on against it; a calmed caster casts nothing (the owner's "run past casters"). Events: peace {target, chance,
 ok, secs, foes}.
+A lone creature that is no threat is not calmed (2026-11-05 night: BardBR calmed a starling, a goat and a hind): with one foe in the fight and no
+caster, the bard plays only when the rating says the creature would take at least one Heal potion's worth (rating.json potions.heal_avg, the
+pre-AOS HealPotion 6-20) of the bard's hit points before it dies (rating.rate lost).
 """
 from __future__ import annotations
 
@@ -51,6 +54,19 @@ class PeaceMixin:
             d.pop(s, None)
         return d
 
+    def peace_worth(self, kind):
+        """A lone, non-caster creature is worth a calm when it would take at least a Heal potion's worth of hit points (rating.rate lost >= heal_avg);
+        True when the rating cannot say."""
+        try:
+            import rating
+            r = rating.rate(self, kind)
+            if not r:
+                return True
+            heal = float((rating.config().get("potions") or {}).get("heal_avg", 13.0))
+            return float(r.get("lost", 0) or 0) >= heal
+        except Exception:
+            return True
+
     def peace_pick(self):
         """(mobile, chance, diff) to calm now, or None."""
         import provoke
@@ -59,6 +75,7 @@ class PeaceMixin:
         calmed = self.peace_calmed()
         best = None
         reach = bard_range(skill)
+        foes = len([x for x in self.mobs(FOE_R) if getattr(x, "in_war_mode", False) and str(x.serial) not in calmed])
         for m in self.mobs(reach):
             if str(m.serial) in calmed or not getattr(m, "in_war_mode", False):
                 continue
@@ -74,6 +91,8 @@ class PeaceMixin:
             ch = provoke.chance(skill, diff)
             if ch < PEACE_MIN:
                 continue
+            if not caster and foes <= 1 and not self.peace_worth(provoke.kind(m.name)):
+                continue                                    # a lone creature that is no threat: shoot it
             key = (caster, base)
             if best is None or key > best[3]:
                 best = (m, ch, diff, key)

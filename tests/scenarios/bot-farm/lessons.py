@@ -232,6 +232,11 @@ class LessonMixin:
             self.log(f"lesson: {skill} from {m.name} ({ttype}) for {price} gold: {'taught' if ok else 'no answer'} (from {before:.1f})")
             if ok:
                 self.facts["skills_at"] = 0                                 # the skills list read again at the next tick
+                now_base = round(before + price / 10.0, 1)                  # one gold a tenth (BaseCreature.Teach): the base it was taught to
+                for key in ("skill_bases", "_lesson_bases"):                # (the caster's lesson_have cache too) so the next choice does not repeat it
+                    d = self.__dict__.get(key)
+                    if isinstance(d, dict):
+                        d[skill] = max(float(d.get(skill, 0) or 0), now_base)
                 self.facts["lesson_next"] = time.time() + 60               # the next planned skill soon after
                 self.note("training", f"An NPC's context menu offers 'Train <skill>'; it quotes a price (one gold a tenth of a point) and teaches when the gold is dropped on it: {skill} for {price} gold.", key="lesson")
             else:
