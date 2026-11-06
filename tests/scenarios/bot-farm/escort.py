@@ -23,6 +23,7 @@ ESCORT_TYPES = ("EscortableMage", "Noble", "Merchant", "Peasant")     # SeekerOf
 SPOTS = ((1483, 1760), (1434, 1717), (1304, 1826), (1351, 1816))        # Britain's spawners (Spawns/TownsPeople.json, Vendors.json), as well as the gazetteer's
 SPOT_NEAR = 80             # tiles from the bot a spawner may be to be worth the walk
 ESCORT_GAP = 900           # s between looks for an escort
+ESCORT_RECHECK = 60        # s until the next look when no spawner was near or no town was open
 REST_S = 300               # EscortDelay: after taking one, the next only after this
 ESCORT_NEAR = 4            # tiles: the NPC this close, the walk goes on
 ESCORT_SLICE = 3           # s of walking a tick with an escort (a runner makes ~15 tiles, the follower ~6)
@@ -140,12 +141,17 @@ class EscortMixin:
         home = self.trip_home_region()
         if not home or self.hp_pct() < 90 or self.threats(10) or self.c.weight >= self.c.max_weight * 0.7 or not self.trip_kit_ok():
             return False
-        self.facts["escort_next"] = now + ESCORT_GAP
         dests = self.escort_dests(home)
         spots = self.escort_spots()
         if not dests or not spots:
-            self.log(f"escort: none taken now: {'no town it has a safe trip to' if not dests else 'no escort spawner within ' + str(SPOT_NEAR) + ' tiles'}")
+            # not here, or no town to go to: looked at again in a minute, as the bot moves through town (the gap set first made a bot elsewhere in
+            # Britain's large region wait 15 minutes, and it passed the bank and the spawners in between: BotFenceAdvR, 2026-11-06 02:52)
+            self.facts["escort_next"] = now + ESCORT_RECHECK
+            if now - float(self.__dict__.get("_escort_none_at", 0) or 0) > 600:
+                self.__dict__["_escort_none_at"] = now
+                self.log(f"escort: none taken now: {'no town it has a safe trip to' if not dests else 'no escort spawner within ' + str(SPOT_NEAR) + ' tiles'}")
             return False
+        self.facts["escort_next"] = now + ESCORT_GAP
         got = self.escort_seek(set(dests), spots)
         if got:
             got["trip_dest"] = dests[got["dest"]]["dest"]          # "Moonglow by gate" for a gate trip (gate.py)
