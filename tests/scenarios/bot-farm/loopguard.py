@@ -11,8 +11,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
 QUEUE_PATH = os.path.join(ROOT, "work", "botfarm-watch", "queue.jsonl")
 MASK = re.compile(r"-?\d+(?:\.\d+)?")
-SKIP_PREFIXES = ("rule ->", "tick ", "start:", "facts taken", "features now", "loop guard")
-SKIP_EVENTS = ("loop_guard", "trip_pos", "caster_pos", "area_avoid")      # area_avoid: a planning record, logged in bursts
+# a trip's escape legs and drinks on the run come every TRIP_HOT_SLICE (2 s) while monsters are near: that is the run past working, not a spin. Backed
+# off, r_trip left BotWarAdvR at 32/90 inside the Trinsic road camp to the decision core, which took a hunt tour through the pack (2026-11-05 23:26:28,
+# dead 23:27:31)
+SKIP_PREFIXES = ("rule ->", "tick ", "start:", "facts taken", "features now", "loop guard", "first trip: escape to", "first trip: detour to", "first trip: drank",
+                 "walk: escape to")
+SKIP_EVENTS = ("loop_guard", "trip_pos", "caster_pos", "area_avoid", "trip_detour", "drink_run")      # area_avoid: a planning record, logged in bursts
 PROTECTED = ("r_dead", "r_flee", "r_cure", "r_heal", "r_fight", "r_avoid")      # never backed off, only reported
 WINDOW, LIMIT = 60.0, 20
 BACKOFF, BACKOFF_MAX = 60.0, 900.0

@@ -973,9 +973,22 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         except Exception:
             return False
         self.activity = "going back to town to wait"
-        self.log(f"idle at {self.c.x},{self.c.y} on monster ground, {max(abs(self.c.x - bx), abs(self.c.y - by))} tiles from the bank: waiting in town")
+        d = max(abs(self.c.x - bx), abs(self.c.y - by))
+        self.log(f"idle at {self.c.x},{self.c.y} on monster ground, {d} tiles from the bank: waiting in town")
+        # no dig on that ground until the shops may have ingots again (vendorStock restockMinutes 30: half of it); BotSmithAR was refused twice by a troll and
+        # an ettin at its dig spot, walked back each time, and an ogre boxed it in on the third (2026-11-05 23:47-23:56)
+        self.facts["dig_hold_until"] = now + self.DIG_HOLD
+        try:
+            import far as _far
+            if d > _far.FAR and hasattr(self, "far_goto"):
+                self.far_goto((bx, by), "travel", 90)       # a plain goto cannot plan 300 tiles: it "waited in town" where it stood
+                return True
+        except Exception:
+            pass
         self.goto_near(bx, by, 6).wait(timeout=90)
         return True
+
+    DIG_HOLD = 900                                         # s without r_dig after leaving monster ground (half the 30-minute restock)
 
     def harmless_animal(self, m):
         n = (m.name or "").lower()
@@ -1087,6 +1100,14 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return False
         if not stock:
             return False                                 # nothing made: a trip to the buyer would sell nothing
+        if time.time() < self.facts.get("sell_far_skip_until", 0):
+            try:
+                import far
+                bx, by = self.buyer_xy()
+                if max(abs(bx - self.c.x), abs(by - self.c.y)) > far.FAR:
+                    return False                         # a far trip was not worth it lately (far_after): only from near the buyer
+            except Exception:
+                return False
         if len(stock) < 12 and not heavy and not (stock and self.count(self.cfg["mat"]) < 30 and time.time() - self.facts.get("sold_at", 0) > 300):
             return False
         if self.threats(10) or time.time() - self.facts.get("sold_at", 0) < 150:
@@ -1836,6 +1857,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         """The shops are out of ingots: a smith or tinker with Mining goes to the hills and digs (the miner's own rule), then r_smelt takes it to the forge."""
         if self.cfg["res"] != "IronIngot" or not self.can_gather() or self.count(self.cfg["mat"]) >= (20 if self.menu_map else 40) or self.threats(10) or self.hp_pct() < 50:
             return False
+        if time.time() < self.facts.get("dig_hold_until", 0):
+            return False                                  # it left monster ground at its dig spot lately (idle_to_town)
         if self.c.weight > self.c.max_weight * self.CRAFT_WEIGHT:
             return False                                  # too heavy to craft: the ore could not be used (patch_craft_toss.py)
         if self.facts.get("soldout_until", 0) < time.time() and self.c.gold >= 40 and time.time() >= self.facts.get("stall_gather_until", 0):

@@ -2450,7 +2450,7 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
             return False
         rich = self.c.gold >= self.RICH_GOLD
         made = hasattr(self, "is_product") and any(self.is_product(i.name) for i in self.c.backpack)
-        unsold = made and (time.time() < self.facts.get("sell_skip_until", 0) or not self.products())      # selling paused, or every piece struck as unsold
+        unsold = made and (time.time() < max(self.facts.get("sell_skip_until", 0), self.facts.get("sell_far_skip_until", 0)) or not self.products())      # selling paused, or every piece struck as unsold
         unsold = unsold or time.time() - self.facts.get("craft_heavy_at", 0) < 300      # r_craft refused the weight (pieces from an older menu are no "product")
         # (a crafter heavy with what no shop bought: r_sell waits out sell_skip_until and r_craft refuses a heavy pack, so only a bank visit, whose heavy
         # pass banks the unsold products, breaks it; BotCarpAR stood 18 min with 40 game boards and 20 backgammon boards at 354/390, 2026-10-30)

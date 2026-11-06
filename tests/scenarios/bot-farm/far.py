@@ -480,7 +480,9 @@ class FarMixin:
         if res.startswith("skipped"):
             now = time.time()
             if role == "sell":
-                self.facts["sell_skip_until"] = now + 1800
+                # a far trip not worth it bars far trips only (r_sell reads it for a buyer over FAR tiles away): as sell_skip_until it also barred the sale
+                # from beside the buyer, so BotTinkBR took 12 stacks out of its full bank box every visit and sold none of them (2026-11-05 23:40-00:15)
+                self.facts["sell_far_skip_until"] = now + 1800
                 self.facts["meat_sold_at"] = now + 1500
                 self.facts["gear_sold_at"] = now + 1500
             elif role == "bank":
