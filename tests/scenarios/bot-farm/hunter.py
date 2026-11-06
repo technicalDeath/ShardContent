@@ -63,6 +63,7 @@ from colours import ColourBuyer  # noqa: E402  (coloured armour from the smiths;
 from peace import PeaceMixin  # noqa: E402  (the bard's Peacemaking in a fight; feature bard_peace)
 from tracking import TrackMixin  # noqa: E402  (the Tracking skill finds prey out of sight; feature tracking)
 from escort import EscortMixin  # noqa: E402  (escort quests: townsfolk who pay on arrival; feature escort)
+from gate import GateMixin  # noqa: E402  (moongate travel: trips by the gates; feature gate_travel)
 
 _REACH = {}
 
@@ -102,7 +103,7 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False

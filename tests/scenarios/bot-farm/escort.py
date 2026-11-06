@@ -81,11 +81,15 @@ class EscortMixin:
         out = {}
         try:
             power = self.trip_power()
+            gate_on = hasattr(self, "gate_on") and self.gate_on()
             for t in self.trips_for_home(home):
-                if t.get("kind") != "town":
+                if t.get("kind") != "town" or (t.get("gate") and not gate_on):
                     continue
+                town = t.get("town") or t["dest"]
+                if town in out and not t.get("gate"):
+                    continue                                    # the gate trip to a town is kept over the road (shorter, and past no road camp)
                 if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t):
-                    out[t["dest"]] = t
+                    out[town] = t
         except Exception:
             pass
         return out
@@ -142,8 +146,9 @@ class EscortMixin:
             return False
         got = self.escort_seek(set(dests), spots)
         if got:
+            got["trip_dest"] = dests[got["dest"]]["dest"]          # "Moonglow by gate" for a gate trip (gate.py)
             with open(os.path.join(self.dir, "trip_now"), "w", encoding="utf-8") as f:
-                f.write(dests[got["dest"]]["dest"])
+                f.write(got["trip_dest"])
         return True
 
     def escort_seek(self, wanted, spots, back=False):
@@ -265,7 +270,8 @@ class EscortMixin:
         e = self.facts.get("escort") if isinstance(getattr(self, "facts", None), dict) else None
         if not e or e.get("result"):
             return None
-        if t is not None and (t.get("home") if e.get("back") else t.get("dest")) != e.get("dest"):
+        want = e.get("dest") if e.get("back") else e.get("trip_dest", e.get("dest"))
+        if t is not None and (t.get("home") if e.get("back") else t.get("dest")) != want:
             return None
         return e
 

@@ -464,6 +464,8 @@ class FirstTrip(RideMixin, LadderMixin):
                 end = (r["centre"][0], r["centre"][1])
                 if cheb(start[0], start[1], *end) <= 1600 and gz.side(*end) == side:
                     out.append(self.trip_straight(home, r["name"], "town", start, end, 70, 90, 10, "first_trip_explore"))
+            if hasattr(self, "gate_trips"):
+                out.extend(self.gate_trips(home, start))         # by the moongates (gate.py, feature gate_travel)
         cache[home["name"]] = out
         return out
 
@@ -509,6 +511,17 @@ class FirstTrip(RideMixin, LadderMixin):
             pen = self.trip_penalty()
             if trip.get("source") == "seed":
                 new, route = wr.repair(wps, pen), "seed+repair"
+            elif trip.get("gate"):
+                # two walks and the moongate between them (gate.py): to the home gate, and from the far gate into the town; jump = the home gate's index
+                g = trip["gate"]
+                a = wr.plan(wps[0], tuple(g["from"]), pen)
+                b = wr.plan(tuple(g["to"]), wps[-1], pen)
+                if a is None or b is None:
+                    new, route = None, "gate"
+                else:
+                    wa = [tuple(p[:2]) for p in a["waypoints"]][:-1] + [tuple(g["from"])]
+                    wb = [tuple(g["to"])] + [tuple(p[:2]) for p in b["waypoints"]][1:]
+                    new, route, jump = wa + wb, "gate", len(wa) - 1
             else:
                 pts = [wps[0]] + ([tuple(trip["exit"])] if trip.get("exit") else []) + [wps[-1]]
                 new, route = [], "planned"
@@ -521,10 +534,14 @@ class FirstTrip(RideMixin, LadderMixin):
         except Exception as e:
             self.log(f"first trip: planning {trip['dest']} failed ({type(e).__name__}: {e}); keeping its waypoints")
             return {"wps": [list(p) for p in wps], "route": "straight", "steps": steps_of(wps)}
-        if new and hasattr(self, "route_danger"):
+        if new and hasattr(self, "route_danger") and not trip.get("gate"):
             new, route = self.trip_avoid(wr, wps, trip, pen, new, route)
-        return {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
-                "secs": round(time.time() - t0, 2), "t": round(time.time())}
+        out = {"wps": [list(p) for p in new] if new else [], "route": route if new else "none", "steps": steps_of(new) if new else 0,
+               "secs": round(time.time() - t0, 2), "t": round(time.time())}
+        if new and trip.get("gate"):
+            out["jump"] = jump
+            out["steps"] = steps_of(new[:jump + 1]) + steps_of(new[jump + 1:])      # the hop is no walk
+        return out
 
     def trip_end_threat(self, end, door=False):
         """(why, x, y, radius) when the trip's end lies in the reach of a spawner this bot loses to, melee or not, else None: for a trip that ends
@@ -623,7 +640,7 @@ class FirstTrip(RideMixin, LadderMixin):
             self.trip_save()
         if not r["wps"]:
             return None
-        return dict(trip, wps=[tuple(p) for p in r["wps"]], route=r["route"], route_steps=r["steps"], route_secs=r.get("secs"))
+        return dict(trip, wps=[tuple(p) for p in r["wps"]], route=r["route"], route_steps=r["steps"], route_secs=r.get("secs"), jump=r.get("jump"))
 
     def trip_ok_route(self, home, trip):
         """True when the trip has a land route and the routed waypoints pass no cell where bots die. A kept route that has turned dangerous (deaths since it
@@ -653,7 +670,10 @@ class FirstTrip(RideMixin, LadderMixin):
         wps = [tuple(int(v) for v in p[:2]) for p in trip.get("wps") or []]
         end = tuple(int(v) for v in trip["enter"][:2]) if trip.get("enter") else (wps[-1] if wps else None)
         th = self.trip_end_threat(end, door=bool(trip.get("enter"))) if trip.get("kind") != "town" else None      # a town's end is guarded ground, gone to whatever stands by its gate
-        th = th or (self.trip_threat(dense_path(wps)) if len(wps) >= 2 else None)
+        jump = trip.get("jump")
+        legs = [wps[:jump + 1], wps[jump + 1:]] if jump is not None else [wps]          # a gate trip: each walk on its own, not the sea between the gates
+        for leg in legs:
+            th = th or (self.trip_threat(dense_path(leg)) if len(leg) >= 2 else None)
         bad = th[0] if th else ""
         if bad:
             seen = self.__dict__.setdefault("_trip_bad_logged", {})
@@ -1424,6 +1444,10 @@ class FirstTrip(RideMixin, LadderMixin):
         x, y = wps[idx]
         d = cheb(self.c.x, self.c.y, x, y)
         if d <= REACHED:
+            if hasattr(self, "trip_gate_step"):
+                g = self.trip_gate_step(t, trip, idx, phase)
+                if g is not None:
+                    return g                                    # the moongate between a gate trip's two walks (gate.py)
             if phase == "out":
                 if idx >= len(wps) - 1:
                     others = [m for m in self.c.mobiles(within=20) if m.notoriety == "Innocent" and m.name and not m.name.startswith("Bot")]
