@@ -149,6 +149,11 @@ class WeaponMixin:
         came back unarmed with 2,473 gold). avoid: spots that did not sell it lately."""
         cur, _ = self.weapon_now()
         skill = self.main_skill()
+        if cur and cur.get("skill") != skill:
+            # a weapon of another skill is no weapon to match: an archer whose bow broke draws its dagger, and "a bow stays a bow" below then skipped every bow
+            # against the one-handed dagger, so needs() never offered the arm task (BotRangerBR hunted 25 hours with a skinning knife at Swordsmanship 8 and
+            # Archery 97.9, and died boxed in by four animals, 2026-11-06 11:39)
+            cur = None
         strength = int(self.c.state.get("str") or 0)
         cur_value = cur["value"] if cur and not replace else 0.0
         best = None

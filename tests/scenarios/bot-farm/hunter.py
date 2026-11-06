@@ -52,6 +52,29 @@ REARM = 10                # arrows from which a bot fighting with its hands take
 FACILITIES = {"melee": "dummy", "ranged": "butte"}          # the fixture to try, by role: places.spots_for finds the nearest ones
 
 
+def fighting_bot(bot):
+    """The mobiles fighting this bot now: in war mode beside it (basics.ANIMAL_REACH), or in war mode within RATING_JOIN when the bot struck it and let it go
+    mid-fight (bot.fought_dropped, hunt_tree.Ctx.drop_target). An animal struck once keeps the bot as its combatant and follows it (FightMode.Aggressor), so dropping it ends only the bot's side of the
+    fight: BotRangerBR dropped a great hart, a black bear, another black bear and a grey wolf in 46 s, each new target rated as a pack of 1, and died boxed
+    in by four (2026-11-06 11:39), as BotArcherCR had in the same field (11-05 10:27). A module function: the caster borrows rated_prey (caster.py)."""
+    out = []
+    try:
+        now = time.time()
+        reach = getattr(bot, "ANIMAL_REACH", 2)
+        join = getattr(bot, "RATING_JOIN", 14)
+        dropped = getattr(bot, "fought_dropped", None) or {}
+        for o in bot.mobs(join):
+            if not getattr(o, "in_war_mode", False) or getattr(o, "is_dead", False):
+                continue
+            d = getattr(o, "distance", None)
+            d = join + 1 if d is None else d
+            if d <= reach or dropped.get(o.serial, 0) > now:
+                out.append(o)
+    except Exception:
+        return []
+    return out
+
+
 from market import FighterMarket  # noqa: E402
 from weaponup import WeaponMixin  # noqa: E402
 
@@ -301,13 +324,29 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         try:
             import rating
             import task_core
+            on = fighting_bot(self)
+            if on and m.serial not in {o.serial for o in on}:
+                # something it struck is still on it: no new fight until that one is done or shaken off (a player runs from what beat it, he does not
+                # pull a fresh bear: BotRangerBR, losing to one bear, took another and a wolf with a hart still biting, 2026-11-06 11:38)
+                a[("r", m.serial)] = (now, False)
+                if now - float(self.__dict__.get("_biters_logged", 0) or 0) > 60:
+                    self.__dict__["_biters_logged"] = now
+                    self.log(f"rated {m.name!r}: leave it - {len(on)} already fighting the bot ({', '.join(self.mkey(o) for o in on)})")
+                return False
             kinds = [self.mkey(m)]
+            counted = {m.serial}
             for o in self.mobs((getattr(m, "distance", 0) or 0) + self.RATING_JOIN):
                 if o.serial == m.serial or max(abs(o.x - m.x), abs(o.y - m.y)) > self.RATING_JOIN:
                     continue
                 k = self.mkey(o)
                 if task_core.aggressive_kind(k) and rating.creature(k):
                     kinds.append(k)
+                    counted.add(o.serial)
+            for o in fighting_bot(self):
+                k = self.mkey(o)
+                if o.serial not in counted and rating.creature(k):
+                    kinds.append(k)                            # already on the bot: it fights on whatever the bot picks next
+                    counted.add(o.serial)
             r = rating.rate_pack(self, kinds)
         except Exception as e:
             self.log(f"rating: {self.mkey(m)}: {type(e).__name__}: {e}")

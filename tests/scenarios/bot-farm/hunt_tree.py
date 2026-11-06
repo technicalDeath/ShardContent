@@ -159,6 +159,10 @@ class Ctx:
         t = st.get("target")
         if t:
             self.bot.ignored[t["serial"]] = time.time() + ignore
+            if ignore == RETREAT_IGNORE:
+                # dropped mid-fight (losing, low health, the measured give-up): it was struck and keeps biting (hunter.fighting_bot); one dropped as
+                # unreachable or got away (an alligator in the water) is not counted
+                self.bot.__dict__.setdefault("fought_dropped", {})[t["serial"]] = time.time() + ignore
             self.bot.log(f"hunt tree: dropped {t['name']}: {why}")
         st["target"] = None
         self.bot.target = None
@@ -480,6 +484,16 @@ def finish_s(b, m):
         return TTK_REAL * float(r["rating"]["ttk"]) * theirs / 100.0
     except Exception:
         return 0.0
+
+
+BITE_REACH = 2            # basics.ANIMAL_REACH: an animal fighting this bot stands next to it
+
+
+def biting(m, d, ranged=False):
+    """The target is still fighting the bot: in war mode beside it, or, for an archer, in war mode in bow range (it is closing in). Giving up on it then ends only the bot's side of the fight (FightMode.Aggressor: a struck
+    animal keeps its attacker as combatant and follows), and the next target adds a second biter: BotRangerBR gave up a great hart at 68 s, took two bears and
+    a wolf, and died boxed in by four (2026-11-06 11:39). Such a fight goes on; the losing retreat and "the fight ran too long" (no hurt either way) still end it."""
+    return bool(getattr(m, "in_war_mode", False)) and (d <= BITE_REACH or bool(ranged))
 
 
 def fights_back(m):
@@ -855,7 +869,7 @@ class Fight(Step):
             lim = measured.give_up_s(b, b.mkey(m))
             if lim and now - t["fight_start"] > lim and c.in_reach(m):         # the kind's measured ttk_p90 for this group: a fight that long is not a normal one
                 lim += finish_s(b, m)                                          # unless it is one the bot is winning (feature rating)
-            if lim and now - t["fight_start"] > lim and c.in_reach(m):
+            if lim and now - t["fight_start"] > lim and c.in_reach(m) and not biting(m, d, getattr(b, "ranged", False)):
                 try:
                     b.ev("give_up", prey=b.mkey(m), s=round(now - t["fight_start"]), p90=lim)
                 except Exception:
