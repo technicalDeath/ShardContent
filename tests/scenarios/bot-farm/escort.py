@@ -144,6 +144,7 @@ class EscortMixin:
         dests = self.escort_dests(home)
         spots = self.escort_spots()
         if not dests or not spots:
+            self.log(f"escort: none taken now: {'no town it has a safe trip to' if not dests else 'no escort spawner within ' + str(SPOT_NEAR) + ' tiles'}")
             return False
         got = self.escort_seek(set(dests), spots)
         if got:
