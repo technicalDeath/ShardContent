@@ -396,6 +396,13 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             return trade_tree.tick(self, d)
         return self.market_deal(d)
 
+    POISON_LINE_S = 20.0       # seconds a poison line counts for a Cure drunk after it (a poison's message comes every few ticks, PoisonImpl)
+
+    def poison_seen(self):
+        """The last overhead line of the poison on this character within POISON_LINE_S ("*You feel a bit nauseous*" is Lesser), else None."""
+        pl = (self.facts or {}).get("poison_line")
+        return pl[1] if pl and time.time() - float(pl[0]) <= self.POISON_LINE_S else None
+
     def read_journal(self):
         out = []
         for e in self.c.events.poll():
@@ -426,6 +433,9 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
             self.journal.append(t)
             out.append(t)
             own = t.startswith(f"[SAY] {self.name}:")
+            if own and t.rstrip().endswith("*") and t[len(self.name) + 8:].lstrip().startswith("*You"):
+                # the server's overhead line to this character: the poison's level among them (Mobile.OnPoisoned, cliloc 1042857 + 2 x level)
+                self.facts["poison_line"] = (time.time(), t[len(self.name) + 8:].strip()[:60])
             self.note_attacker(t)
             if re.match(r"\[SAY\] Bot\w+:", t) and not own:
                 self.hear(t)

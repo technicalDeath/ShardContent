@@ -359,6 +359,29 @@ class FirstTrip(RideMixin, LadderMixin):
             return False
         return self.trip_step(t, self.trip_def(t))
 
+    TRIP_REST_S = 240          # as the core's walks (hunt_tree Travel, M1): at most four minutes of bandaging or waiting before walking on hurt
+
+    def trip_rest(self, t, now):
+        """True while it rests: below task_core.WALK_HP health with nothing within 10 tiles, out of a dungeon stay, it bandages (or waits) before walking
+        on, at most TRIP_REST_S a hurt spell. BotHealAdvR walked home at 14 of 94 health after its resurrection and met a bear and a wolf (2026-11-05)."""
+        try:
+            import task_core
+            low = self.hp_pct() < task_core.WALK_HP
+        except Exception:
+            return False
+        if not low:
+            t.pop("rest_since", None)
+            return False
+        if t.get("phase") == "stay" or self.c.ghost or self.threats(10):
+            return False
+        since = t.setdefault("rest_since", now)
+        if now - since > self.TRIP_REST_S:
+            return False
+        self.activity = "first trip: resting before walking on"
+        if not self.bandage_self():
+            time.sleep(3.0)
+        return True
+
     def trip_abort(self, why):
         """Turn the outing into the walk home (a hard kind near, hurt, too slow...); the walk home itself gives up in trip_step."""
         t = self._trip["trip"]
@@ -1297,7 +1320,8 @@ class FirstTrip(RideMixin, LadderMixin):
             self.log(f"first trip: drinking on the run failed ({type(e).__name__}: {e})")       # the leg runs on whatever a drink did
             return []
         if drunk:
-            self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}")
+            seen = self.poison_seen() if hasattr(self, "poison_seen") else None
+            self.log(f"first trip: drank {', '.join(drunk)} on the run at {self.c.hp}/{self.c.max_hp}" + (f" (poison: {seen})" if seen else ""))
         return drunk
 
     def trip_potions(self):
@@ -1333,6 +1357,8 @@ class FirstTrip(RideMixin, LadderMixin):
         if now - t["pos_ev"] > 120:
             t["pos_ev"] = now
             self.ev("trip_pos", dest=t["dest"], phase=t["phase"], wp=t["i"], of=len(wps), left_to_dest=cheb(self.c.x, self.c.y, *wps[-1]))
+        if self.trip_rest(t, now):
+            return True
         phase = t["phase"]
         if phase == "out" and t.get("in_home", True) and _gz():
             home_now = _gz().home_region(self.c.x, self.c.y, ("town",))

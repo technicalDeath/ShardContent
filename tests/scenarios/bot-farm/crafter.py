@@ -338,7 +338,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         leather and hides in all; when no shop has hides, the Tanner's leather. Shelves seen bare are left alone until soldout_until (20 minutes)."""
         if time.time() < self.facts.get("soldout_until", 0):
             return False
-        self.facts["stocked_at"] = time.time()
+        self.mark_stocked()
         self.activity = "buying hides"
         if self.c.gold < self.purse_floor() and self.facts.get("bank_balance", 0) >= self.purse_floor():
             self.visit_bank("poor", withdraw=self.purse_fill())
@@ -1478,6 +1478,19 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         room = max(0.0, (self.c.max_weight * self.CRAFT_WEIGHT - self.c.weight - 5) / mw)
         return self.count(self.cfg["mat"]) + room < self.restock_need()
 
+    def mark_stocked(self):
+        """A restock happened: RESTOCK_GAP runs from now, and the gold carried is kept (stocked_gold) for r_restock's purse test."""
+        self.facts["stocked_at"] = time.time()
+        self.facts["stocked_gold"] = int(self.c.gold or 0)
+
+    def restock_gap(self):
+        """True while RESTOCK_GAP holds: not after a restock the purse cut short, once the purse holds purse_floor again (BotFairTailorNR bought 1 hide on
+        2 gold beside 718 on the shelf, sold for 2,714 gold 13 s later and stood out the gap, 2026-11-05 21:18)."""
+        if time.time() - self.facts.get("stocked_at", 0) >= self.RESTOCK_GAP:
+            return False
+        floor = self.purse_floor()
+        return not (int(self.facts.get("stocked_gold", 1 << 30)) < floor <= int(self.c.gold or 0))
+
     def restock_filled(self):
         """A restock that left restock_need or more material in the pack lifts RESTOCK_GAP, so the next one follows as soon as that is sewn or forged.
         The gap is for a restock that came back short; bare shelves have their own soldout_until. With the gap after every restock BotFairTailorVR sewed
@@ -1499,7 +1512,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         except Exception:
             pass
         need = self.restock_need()
-        if self.count(self.cfg["mat"]) >= need or self.threats(10) or time.time() - self.facts.get("stocked_at", 0) < self.RESTOCK_GAP:
+        if self.count(self.cfg["mat"]) >= need or self.threats(10) or self.restock_gap():
             return False
         if self.facts.get("bank_material", 0) > 0 and time.time() - self.facts.get("mat_bank_at", 0) > self.MAT_BANK_GAP                 and self.c.weight < self.c.max_weight * self.PRODUCTS_OUT_SHARE * 0.9:     # room to carry it out, or the walk takes nothing
             self.facts["mat_bank_at"] = time.time()
@@ -1508,7 +1521,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return True
         if self.too_heavy_to_restock():
             self.facts["sold_at"] = 0
-            self.facts["stocked_at"] = time.time()
+            self.mark_stocked()
             self.facts["restock_heavy_at"] = time.time()   # far_worth("sell") goes whatever the item count: this restock waits on that sale
             self.skip_why("r_restock", "no room for a restock's material under the craft weight: selling what it made first")
             return False
@@ -1518,7 +1531,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look
         if self.trains_on_own_ore():
             return False                                  # training: on its own ore, not on bought ingots (r_dig runs)
-        self.facts["stocked_at"] = time.time()
+        self.mark_stocked()
         self.activity = "buying material"
         if self.c.gold < self.purse_floor() and self.facts["bank_balance"] >= self.purse_floor():
             self.visit_bank("poor", withdraw=self.purse_fill())
@@ -1531,7 +1544,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             # the cheapest material any shelf has shown costs more than it can spend: what it made goes to the buyer first. BotTailorBR walked to three
             # cloth shops with 57 to spend on 100-gold bolts and 14 surcoats in the pack, again and again (2026-11-02 00:19-00:22)
             self.facts["sold_at"] = 0
-            self.facts["stocked_at"] = time.time()
+            self.mark_stocked()
             self.skip_why("r_restock", f"the cheapest material is {cheapest} gold, {spend} to spend: selling what it made first")
             return False
         word = next(iter(self.cfg["wanted"]))

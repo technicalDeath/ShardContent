@@ -270,7 +270,8 @@ class BasicsMixin:
         if pot is None:
             return False
         ok = self.drink(pot)
-        self.ev("consumable_used", item="orange potion", hp=self.hp_pct(), ok=ok, why=why)
+        seen = getattr(self, "poison_seen", lambda: None)()
+        self.ev("consumable_used", item="orange potion", hp=self.hp_pct(), ok=ok, why=why, **({"poison": seen} if seen else {}))
         return ok
 
     def drink_refresh(self, why=""):
