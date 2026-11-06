@@ -451,8 +451,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
     def spend_hue(self):
         """Feature colour_spend: the hue of the coloured ingots a smith out of iron makes its products from (the least valuable metal its Blacksmithy can work,
         the biggest stack of it), or None. With colour_craft on, COLOUR_TAKE of each metal stays for the fighters' armour."""
-        if not self.feature("colour_spend") or self.cfg.get("craft") != "Blacksmith":
-            return None
+        if not self.feature("colour_spend") or self.cfg.get("craft") not in ("Blacksmith", "Tinkering"):
+            return None                                   # (the era's tinkering menu takes any ingot, TinkeringMenu.TrySelectResource; DefTinkering's skill needs)
         keep = self.COLOUR_TAKE if self.colour_on() else 0
         best = None
         for bonus, hue, metal, stack in self.colour_metals():
