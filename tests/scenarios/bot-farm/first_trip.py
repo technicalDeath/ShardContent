@@ -220,7 +220,7 @@ class FirstTrip(RideMixin, LadderMixin):
             return self.ladder_trips(home)                           # the exploration ladder's rungs (ladder.py)
         trips = self.trips_for_home(home)
         own = [t for t in trips if self.feature(t["feature"])]
-        return own or ([t for t in trips if t["vetted"]] if self.feature("first_trip") else [])
+        return own or ([t for t in trips if t["vetted"] and not t.get("gate")] if self.feature("first_trip") else [])      # (a gate trip only with gate_travel)
 
     def trip_forced(self, home):
         p = os.path.join(self.dir, "trip_now")

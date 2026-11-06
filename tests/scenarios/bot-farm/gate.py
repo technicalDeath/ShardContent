@@ -75,7 +75,10 @@ class GateMixin:
                 continue
             end = (int(r["centre"][0]), int(r["centre"][1]))
             out.append({"id": f"{home['name']}-{name}-gate".lower().replace(" ", "-"), "feature": "gate_travel", "dest": name + SUFFIX, "town": name, "kind": "town",
-                        "band": BAND, "hp": HP, "stay": STAY, "home": home["name"], "vetted": False, "source": "gate",
+                        # vetted: the walk to the gate is APPROACH, chosen against route_deaths, and every leg still passes trip_threat (route_danger along
+                        # each tile, the spawners) at each check; unvetted, the old waypoint rule closed every gate trip on cells 1400,1960 and
+                        # 1360,1960 by the gate itself, though the path test passed them (escort log, 2026-11-06 06:28)
+                        "band": BAND, "hp": HP, "stay": STAY, "home": home["name"], "vetted": True, "source": "gate",
                         "gate": {"from": [hg[0], hg[1]], "to": [g[0], g[1]], "radio": g[2], "back": hg[2], "seed_leg": [list(p) for p in seed] if seed else None},
                         "wps": [tuple(start), (hg[0], hg[1]), (g[0], g[1]), end]})
         return out
