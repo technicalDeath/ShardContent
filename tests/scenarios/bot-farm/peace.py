@@ -22,6 +22,13 @@ PEACE_MIN = 0.6            # the chance at which a bard plays rather than shoots
 MIN_SKILL = 30.0
 
 
+
+def _dist(m, default):
+    """A mobile's distance, default when unknown: `getattr(m, "distance", 99) or 99` read a follower standing on the bot's own tile (0) as 99, so
+    escort_hold dropped Verity at the Jhelom gate with her beside it (2026-11-06 07:15) and Constanza before her."""
+    d = getattr(m, "distance", None)
+    return default if d is None else d
+
 def bard_range(skill):
     """Tiles a bard's music reaches: 8 + skill / 15 (BaseInstrument.GetBardRange)."""
     return 8 + int(float(skill or 0) // 15)
@@ -80,7 +87,7 @@ class PeaceMixin:
             if str(m.serial) in calmed or not getattr(m, "in_war_mode", False):
                 continue
             caster = CASTER_FIRST and is_caster(provoke.kind(m.name))
-            if not caster and (getattr(m, "distance", 99) or 99) > FOE_R:
+            if not caster and _dist(m, 99) > FOE_R:
                 continue                                    # past FOE_R only a caster is calmed (it hurts from there)
             if (m.name or "").startswith("Bot") or getattr(m, "notoriety", "") in ("Innocent", "Ally", "Invulnerable"):
                 continue

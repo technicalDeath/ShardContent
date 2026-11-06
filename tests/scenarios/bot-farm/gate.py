@@ -40,6 +40,13 @@ FOLLOW_NEAR = 2                        # tiles: an escort this close goes throug
 FOLLOW_WAIT = 60                       # s at the gate for it to come that close
 
 
+
+def _dist(m, default):
+    """A mobile's distance, default when unknown: `getattr(m, "distance", 99) or 99` read a follower standing on the bot's own tile (0) as 99, so
+    escort_hold dropped Verity at the Jhelom gate with her beside it (2026-11-06 07:15) and Constanza before her."""
+    d = getattr(m, "distance", None)
+    return default if d is None else d
+
 def town_of(dest):
     return dest[:-len(SUFFIX)] if dest.endswith(SUFFIX) else dest
 
@@ -103,7 +110,7 @@ class GateMixin:
         if not e:
             return True
         m = next((x for x in self.c.mobiles(within=16) if str(x.serial) == e["serial"]), None)      # (an escort is Innocent: not in BotBase.mobs)
-        return m is not None and (getattr(m, "distance", 99) or 99) <= FOLLOW_NEAR
+        return m is not None and _dist(m, 99) <= FOLLOW_NEAR
 
     def gate_hop(self, frm, to, radio, t=None):
         """Through the gate at frm to the one at to: True once the bot stands by the far gate. Waits up to FOLLOW_WAIT s for an escort first."""

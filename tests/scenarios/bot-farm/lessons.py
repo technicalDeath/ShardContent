@@ -63,6 +63,13 @@ ENTRY_RE = re.compile(r"\[entry (\d+)\]\s+(.+)")
 PRICE_RE = re.compile(r"price is:?\s*(\d+)", re.I)
 
 
+
+def _dist(m, default):
+    """A mobile's distance, default when unknown: `getattr(m, "distance", 99) or 99` read a follower standing on the bot's own tile (0) as 99, so
+    escort_hold dropped Verity at the Jhelom gate with her beside it (2026-11-06 07:15) and Constanza before her."""
+    d = getattr(m, "distance", None)
+    return default if d is None else d
+
 def entry_matches(skill, text):
     """True when a context entry ("Train Blacksmithing", "Train Arms Lore": the client's cliloc 6000 + skill names, not the skills list's) is this skill's:
     every word of the skill's name starts (5 letters) a word of the entry's; for a name with a slash ("Bowcraft/Fletching") either half will do."""
@@ -181,7 +188,7 @@ class LessonMixin:
             return True
         self.activity = f"asking for a {skill} lesson"
         people = [m for m in self.c.mobiles(within=10) if getattr(m, "notoriety", "") in ("Innocent", "Invulnerable") and m.name and not m.name.startswith("Bot")]
-        for m in sorted(people, key=lambda m: getattr(m, "distance", 9) or 9)[:6]:
+        for m in sorted(people, key=lambda m: _dist(m, 9))[:6]:
             try:
                 lines = self.c.call(f"contextmenu {m.serial}", timeout=6)
             except Exception:
@@ -194,7 +201,7 @@ class LessonMixin:
                     break
             if idx is None:
                 continue
-            if (getattr(m, "distance", 9) or 9) > 1:
+            if _dist(m, 9) > 1:
                 self.c.goto(m.x, m.y).wait(timeout=8)                     # gold is dropped on the NPC from beside it
             before = float(self.lesson_have().get(skill, 0.0) or 0.0)
             self.c.events.drain()

@@ -44,6 +44,13 @@ PAID_RE = re.compile(r"We have arrived|Here is thy pay", re.I)
 LOST_RE = re.compile(r"You have lost the person you were escorting", re.I)
 
 
+
+def _dist(m, default):
+    """A mobile's distance, default when unknown: `getattr(m, "distance", 99) or 99` read a follower standing on the bot's own tile (0) as 99, so
+    escort_hold dropped Verity at the Jhelom gate with her beside it (2026-11-06 07:15) and Constanza before her."""
+    d = getattr(m, "distance", None)
+    return default if d is None else d
+
 def said(t):
     """(speaker, text) of a "[SAY] Name: text" journal line, else None."""
     m = re.match(r"\[SAY\] ([^:]+): (.*)$", t or "")
@@ -243,7 +250,7 @@ class EscortMixin:
             for m in people[:ASK_PER_SPOT]:
                 if self.threats(8):
                     return None
-                if (getattr(m, "distance", 9) or 9) > 2:
+                if _dist(m, 9) > 2:
                     self.c.goto(m.x, m.y).wait(timeout=10)
                 self.read_journal()
                 self.c.call("say destination", timeout=5)
@@ -363,7 +370,7 @@ class EscortMixin:
         if not e or t.get("phase") != ("home" if e.get("back") else "out"):
             return False
         m = next((x for x in self.c.mobiles(within=24) if str(x.serial) == e["serial"]), None)      # (an escort is Innocent: not in BotBase.mobs)
-        if m is not None and (getattr(m, "distance", 99) or 99) <= ESCORT_NEAR:
+        if m is not None and _dist(m, 99) <= ESCORT_NEAR:
             e.pop("wait0", None)
             return False
         try:
