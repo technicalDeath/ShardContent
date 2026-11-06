@@ -14,6 +14,7 @@ import os
 import random
 import items  # noqa: E402  (the shared item table)
 from basics import BasicsMixin  # noqa: E402  (the shared basics: potions, threats, fleeing, selling)
+import basics  # noqa: E402  (walkroute_mod for walk_again)
 import re
 import sys
 import time
@@ -525,6 +526,8 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     if left >= 1.0:
                         res = bot.tele_wait(orig(x, y, z).wait, left, poll)
                         bot.log(f"after a step out, the walk to {x},{y}: {res}")
+                if bot.feature("walk_again"):
+                    res = bot.walk_again(res, x, y, z, near, orig, end, poll)
                 return bot.far_arrival(res, x, y, near)
 
             walk.wait = wait
@@ -582,6 +585,42 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
                     logged.clear()
                 self.log(f"the walk to {x},{y} ended at {self.c.x},{self.c.y}, {max(abs(self.c.x - x), abs(self.c.y - y))} tiles short (closest reachable): counted as nopath")
             return f"nopath: closest {self.c.x},{self.c.y}"
+        return res
+
+    WALK_AGAIN_LEG = 25        # seconds one leg of the walk grid's route may take (far.LEG_TIMEOUT)
+    WALK_AGAIN_MIN = 10        # tiles: a nearer stop still trades (a vendor's buy and sell replies count within 10, IncomingVendorPackets; a banker hears 12)
+
+    def walk_again(self, res, x, y, z, near, orig, end, poll=0.1):
+        """Feature walk_again: a walk that stopped at the closest reachable tile more than `near` short of (x, y) is walked again once from where it
+        stopped, then along the walk grid's route (walkroute), as a player who finds the way blocked looks again and then takes the street. The client
+        plans only through the doors it has seen, and walks a partial route to its end without planning again: BotTinkBR's walks from the weaponsmith's
+        walled yard (1427,1652, z 10) to the bank at 1425,1690 stopped at 1430,1664, the yard's way out being the doors west of it, and the bank trip did
+        nothing (2026-11-05); the walk grid's route leaves by 1432,1666 and 1421,1671 and goes in by the east door at 1438,1692."""
+        def short():
+            return max(abs(self.c.x - x), abs(self.c.y - y))
+
+        if not (str(res).startswith("arrived") and short() > max(near, self.WALK_AGAIN_MIN)) or end - time.time() < 3.0:
+            return res
+        stop, how = (self.c.x, self.c.y), "again"
+        res = str(self.tele_wait(self.goto_avoiding("goto", orig, x, y, z).wait, end - time.time(), poll))
+        if not (res.startswith("arrived") and short() <= near) and res != "teleported" and end - time.time() >= 3.0:
+            how = "route"
+            try:
+                r = basics.walkroute_mod().get().plan((self.c.x, self.c.y), (x, y))
+            except Exception:
+                r = None
+            for wp in (r or {}).get("waypoints", [])[1:]:
+                left = end - time.time()
+                if left < 1.0:
+                    break
+                res = str(self.tele_wait(self.goto_avoiding("goto", orig, int(wp[0]), int(wp[1]), None).wait, min(self.WALK_AGAIN_LEG, left), poll))
+                if res == "teleported" or res.startswith(("stopped", "failed", "timeout")):
+                    break
+            if r is None:
+                how = "no route"
+        self.ev("walk_again", to=[x, y], stop=list(stop), how=how, result=res[:40], short=short())
+        if short() <= near and res.startswith("arrived"):
+            self.log(f"the walk to {x},{y} stopped {max(abs(stop[0] - x), abs(stop[1] - y))} tiles short at {stop[0]},{stop[1]}; walked {how}: arrived")
         return res
 
     def goto_near(self, x, y, near=2):
