@@ -168,6 +168,16 @@ class EscortMixin:
                 return False
         except Exception:
             return False
+        try:
+            known = self.trip_power() > 0
+        except Exception:
+            known = False
+        if not known:
+            # the skill table is not read yet (a brain just started): power 0 fails every town's band, and the route rule then counts only the deaths of
+            # bots under skill 15 (cell 1360,1880 holds two, 7.1 and 7.5), so every gate route reads as closed; BotMaceCR declined Lalasa for Moonglow
+            # 60 s after its restart, an hour after it had walked there (2026-11-06 05:27)
+            self.facts["escort_next"] = now + ESCORT_RECHECK
+            return False
         home = self.trip_home_region()
         if not home or self.hp_pct() < 90 or self.threats(10) or self.c.weight >= self.c.max_weight * 0.7 or not self.trip_kit_ok():
             return False
