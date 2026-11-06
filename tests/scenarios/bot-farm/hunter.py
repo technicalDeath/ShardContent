@@ -60,6 +60,8 @@ from stock import FighterStock  # noqa: E402
 from livelihood import LivelihoodMixin  # noqa: E402
 from rangerpet import RangerPetMixin  # noqa: E402  (a ranger's tamed companion; feature ranger_pet)
 from colours import ColourBuyer  # noqa: E402  (coloured armour from the smiths; feature colour_craft)
+from peace import PeaceMixin  # noqa: E402  (the bard's Peacemaking in a fight; feature bard_peace)
+from tracking import TrackMixin  # noqa: E402  (the Tracking skill finds prey out of sight; feature tracking)
 
 _REACH = {}
 
@@ -99,7 +101,7 @@ def in_losing_range(bot, x, y):
     except Exception:
         return False
 
-class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
+class HunterBot(RangerPetMixin, TrackMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
              "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
@@ -1842,9 +1844,9 @@ class HunterBot(RangerPetMixin, ColourBuyer, ShieldMixin, FieldsMixin, Livelihoo
         return True
 
 
-class BardBot(HunterBot):
+class BardBot(PeaceMixin, HunterBot):
     """A bard also practises its instrument skills: Peacemaking at its own feet, Discordance and Provocation on monsters when some are near."""
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_music", "r_instrument", "r_lighten", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_peace", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_music", "r_instrument", "r_lighten", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility",
              "r_hunt", "r_rest", "r_camp", "r_sewer_in", "r_explore"]
 
     def instrument(self):
@@ -2045,6 +2047,8 @@ for _cls in (HunterBot, BardBot):
 for _cls in (HunterBot, BardBot):
     if "r_wedged" not in _cls.RULES:
         _cls.RULES.insert(_cls.RULES.index("r_hunt"), "r_wedged")        # standing still while a staff move is awaited
+    if "r_track" not in _cls.RULES:
+        _cls.RULES.insert(_cls.RULES.index("r_hunt"), "r_track")         # tracking.py: prey out of sight, by the Tracking skill (feature tracking)
 
 
 for _name, _before in (("r_ranger_pet", "r_loot"), ("r_ranger_pet_heal", "r_loot"), ("r_ranger_tame", "r_fight")):

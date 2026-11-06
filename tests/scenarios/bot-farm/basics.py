@@ -29,6 +29,9 @@ HARMLESS = ("rat", "cat", "dog", "bird", "chicken", "rabbit", "sheep", "cow", "p
             "nightingale", "plover", "thrush", "tern", "warbler", "squirrel", "toad", "frog", "lizard", "gull", "raven", "finch", "towhee", "starling")
 
 
+LESSON_BEFORE = ("r_craft", "r_colour", "r_mine", "r_dig", "r_fish", "r_tame", "r_pet_hunt", "r_hunt", "r_explore", "r_camp", "r_idle", "r_wander")
+
+
 class BasicsMixin:
 
     def house_worth(self):
@@ -147,6 +150,10 @@ class BasicsMixin:
         rules = cls.__dict__.get("RULES")
         if isinstance(rules, list) and "r_cure" in rules and "r_refresh" not in rules:
             rules.insert(rules.index("r_cure") + 1, "r_refresh")
+        if isinstance(rules, list) and "r_lesson" not in rules and hasattr(cls, "r_lesson"):         # (CasterBot borrows BotBase piecemeal: not it)
+            # lessons from NPC trainers (lessons.py, feature lessons): after banking, selling and restocking, before the brain's work
+            work = next((r for r in rules if r in LESSON_BEFORE), None)
+            rules.insert(rules.index(work) if work else len(rules), "r_lesson")
 
     # ---- names ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -755,6 +762,8 @@ class BasicsMixin:
     POOR_PRODUCTS = 60
     POOR_OUT_SHARE = 0.6                 # under the crafters' heavy line (CRAFT_WEIGHT), so the stock taken out can be carried to the shop and crafting goes on
 
+    VENDOR_MAX_SELL = 500      # items one sale takes (BaseVendor.MaxSell): no more of a stack comes out of the bank at once
+
     def bank_products_out(self, box):
         """A crafter's products banked on heavy visits come back out to sell when a shop is known to pay for them. BotCarpAdvR's box held 60 quarter
         staffs (15 gold at the Carpenter) and 22 wooden boxes (25): about 1,450 gold that nothing took out, as the goods step knew only leather, meat,
@@ -770,12 +779,23 @@ class BasicsMixin:
             stock = [i for i in self.c.container(box, timeout=6) if self.is_product(i.name)]
         except Exception:
             return 0
-        priced = [i for i in stock if any(p > 0 for p, xy, item in self.mem.vendor_buying(i.name.lower()) if item == i.name.lower())]
+        def per_stone(i):
+            n = i.name.lower()
+            return max([p for p, xy, item in self.mem.vendor_buying(n) if item == n] or [0]) / max(items.unit_weight(n), 0.1)
+        # best price a stone first, and part of a stack that does not fit whole (BotTinkBR's 2,932 lockpicks never came out: get_item took stacks whole)
+        priced = sorted([i for i in stock if per_stone(i) > 0], key=per_stone, reverse=True)
         taken = 0
         for it in priced[:limit]:
             if self.c.weight >= self.c.max_weight * share:
                 break
-            self.c.get_item(it.serial, None)
+            amt = int(it.amount or 1)
+            n = amt
+            if amt > 1:
+                room = self.c.max_weight * share - self.c.weight
+                n = min(amt, self.VENDOR_MAX_SELL, int(room // max(items.unit_weight(it.name), 0.1)))
+                if n <= 0:
+                    continue
+            self.c.get_item(it.serial, n if n < amt else None)
             time.sleep(1.2)
             taken += 1
         if taken:

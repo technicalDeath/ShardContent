@@ -41,6 +41,7 @@ from buddy import BuddyMixin  # noqa: E402  (buddy pairs: rendezvous, staying to
 from pacing import PacingMixin  # noqa: E402  (walk in town, pause before talking, a break at the bank; features pacing, pacing_walk)
 from housegoal import HouseGoalMixin  # noqa: E402  (the A1 house goal; feature house_goal, off in the farm world)
 from market import MarketMixin  # noqa: E402  (the bots' market: quantity offers / wants, secure trades; feature trade)
+from lessons import LessonMixin  # noqa: E402  (lessons from NPC trainers; feature lessons)
 from uo import Event  # noqa: E402
 from memory import MEMDIR, SharedMemory, cell_center, cell_of  # noqa: E402
 from places import Places  # noqa: E402
@@ -243,7 +244,7 @@ def teleporter_tiles():
         _TELE = sorted(set(out))
     return _TELE
 
-class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard, BasicsMixin):
+class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, TeleMixin, RuneMixin, FarMixin, EvadeMixin, GotoRouteMixin, Places, LoopGuard, BasicsMixin):
     RULES: list = []
 
     def __init__(self, name: str, profession: int):
@@ -1055,7 +1056,7 @@ class BotBase(MarketMixin, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, Am
     # rules below the reflexes that still run under the decision core: each has its own limits (r_music every 22 s at 60%+ health, r_fletch under 200
     # arrows, r_wood under 120 arrows and every so often, r_shield once a half-hour); under the core they never ran, so the bards never played and the
     # archers never fletched (no event in 4 hours, 2026-11-01)
-    CORE_SKILL_RULES = ("r_music", "r_instrument", "r_fletch", "r_wood", "r_shield")      # (r_instrument: a bard's worn-out instrument replaced; both bards had none, 2026-11-01)
+    CORE_SKILL_RULES = ("r_music", "r_instrument", "r_fletch", "r_wood", "r_shield", "r_lesson", "r_track", "r_peace")      # r_peace: the bard's, ahead of its r_flee      # (r_instrument: a bard's worn-out instrument replaced; both bards had none, 2026-11-01)
 
     def core_lets(self, name):
         """A rule below the reflexes that still runs under the decision core: first_trip's trip_core_lets (the ladder's trips), else none."""

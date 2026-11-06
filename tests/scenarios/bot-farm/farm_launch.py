@@ -32,6 +32,18 @@ CUO = os.path.join(NAVREY, "bin", "Debug", "net10.0", "cuo.dll")
 # bin/Lean3 (and Lean4, the same plus the run mode): the 2026-10-14 slim build (hash-only animation UOPs, trimmed map UOP tables, paged Unicode fonts, no UOP hash copies, the map's
 # block index built a page at a time, clilocs decoded on first use): about 178 MB private at rest against about 300 for bin/Release. Each build goes
 # into its own folder because running clients hold the DLLs they loaded; rollout_lean.py moves the farm onto it.
+def client_override(name):
+    """The cuo.dll of a canary build named for this bot in work/botfarm/client_overrides.json ({bot: "Lean14"}), read at each launch; None otherwise."""
+    try:
+        import json as _json
+        with open(os.path.join(ROOT, "work", "botfarm", "client_overrides.json"), encoding="utf-8") as f:
+            folder = (_json.load(f) or {}).get(name)
+        path = os.path.join(NAVREY, "bin", str(folder), "cuo.dll") if folder else None
+        return path if path and os.path.exists(path) else None
+    except (OSError, ValueError):
+        return None
+
+
 LEAN_CUO = os.path.join(NAVREY, "bin", "Lean13", "cuo.dll")        # Lean13: Lean12 + the shard's carry limit from 0xB3 (Agent/CarryWeight.cs, BotFarm QoL, 2026-11-01); was        # Lean12: Lean9 + heap compaction (Agent/MemoryTrim.cs) + lazy string dictionary, 32-byte file index, capped path cache, sparse sprite caches and no pixel picker in lean mode (2026-10-20)
 # NAVREY_RUN=auto (Lean4 on): run only while stamina is at least half, walk below it; always running left bots at stamina 1 after every long walk
 # DOTNET_GCgen0size caps the gen0 budget (it otherwise scales with the CPU cache and kept ~50 MB committed and empty); FNA3D_D3D11_USE_WARP puts
@@ -161,6 +173,9 @@ def start(name: str, profession: int, create: str | None = None, timeout_login=2
                 return {"name": name, "ok": False, "note": f"{os.path.basename(p)} is held by a running process: another client of this bot is up"}
     lean = (client or DEFAULT_CLIENT) == "lean" and os.path.exists(LEAN_CUO)
     cuo = LEAN_CUO if lean else CUO
+    over = client_override(name)
+    if lean and over:
+        cuo = over                                             # a canary build for this bot (client_overrides.json)
     env = dict(os.environ, DOTNET_ROOT=os.path.dirname(DOTNET), DOTNET_GCConserveMemory="9", DOTNET_TieredPGO="0")
     env.update(LEAN_ENV if lean else {})
     env.update(extra_env or {})
