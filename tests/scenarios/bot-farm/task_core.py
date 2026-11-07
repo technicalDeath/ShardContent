@@ -1239,6 +1239,7 @@ def start_task(bot, g, cand, options, why="chosen"):
         bot.log(f"core: decision record failed ({type(e).__name__}: {e})")
     bot.facts["task"] = task
     bot.__dict__.pop("_core_tree", None)
+    claim_tour(bot, task, task["budget"])
     bot.ev("task_start", task=task["task"], area=task["area"], expected=task["expected"], budget_min=round(task["budget"] / 60), walk_min=task["walk_min"], score=task["score"],
            draw=cand.get("draw"), why=why, goal=g["name"], judge=task["judge"], options=len(options), tier=task.get("tier"), side=task.get("side"), partner=task.get("partner"),
            earning=("fists" if bot.facts.get("fists") else "unarmed" if unarmed(bot) else None), kinds=(cand.get("kinds") or [])[:6], rank=cand.get("rank"))
@@ -1252,8 +1253,23 @@ def start_task(bot, g, cand, options, why="chosen"):
     return task
 
 
+def claim_tour(bot, task, ttl):
+    """A hunt tour's ground claim (memory 'claim' kind ground, key cell#bot): every spot cell of the tour for ttl seconds, so another bot's tour choice
+    shares those spawns with this one (spots.share_load); ttl 0 releases them. Presence alone is known only once a bot stands there, after its walk."""
+    if task.get("task") != "hunt" or task.get("side", "surface") != "surface":
+        return
+    try:
+        import spots
+        cells = {spots.cell_of(p[0], p[1]) for p in task.get("spots") or []}
+        for cell in cells:
+            bot.mem.record("claim", kind="ground", key=f"{cell}#{bot.name}", ttl=max(0.0, float(ttl)))
+    except Exception:
+        pass
+
+
 def end_task(bot, task, why):
     t = now()
+    claim_tour(bot, task, 0)
     act = actual(bot, task)
     hours = work_hours(task)
     mins = round((t - task["t0"]) / 60, 1)

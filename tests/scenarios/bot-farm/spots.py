@@ -594,6 +594,20 @@ def availability(bot, s, t=None):
     return 0.35 + 0.65 * (since - s["mn"]) / max(1.0, s["mx"] - s["mn"])
 
 
+def share_load(bot, s):
+    """Other bots hunting this spot's ground now or claiming it (hunter.ground_load: present in the last five minutes, or a ground claim; a started tour
+    claims its spots, task_core.claim_tour). A spawner's respawn is shared among them, so a tour divides the spot's expected kills by 1 + this. Without
+    it five fighters (FencerBR, MaceAdvR, FairSwordNR, MaceCR, SwordBR) toured the same two spots west of Britain at once, each expecting the whole
+    respawn (18 kills a tour, 1-11 made), while the rest of the map stood empty (owner, 2026-11-07: "as soon as a player saw an area is camped/not
+    enough spawns they would move on"). A dungeon hunt's spots are not shared out: one bot per stay is the ladder's rule."""
+    if s.get("side", "surface") != "surface":
+        return 0
+    try:
+        return max(0, int(bot.ground_load(s["cell"])))
+    except Exception:
+        return 0
+
+
 def crowded(bot, s):
     try:
         return bot.ground_load(s["cell"]) >= 1 and s["count"] < CROWD_OK
@@ -624,6 +638,7 @@ def tours(bot, g, rng, banned=(), relax=0):
     rate = task_core.walk_rate(bot)
     now = time.time()
     vals = {}
+    loads = {}
     why = collections.Counter()
     pool = all_spots(bot)
     far_seen = []
@@ -647,6 +662,9 @@ def tours(bot, g, rng, banned=(), relax=0):
         n = float(r[1]) if r else 0.0
         mean = (n * float(r[0]) + task_core.PRIOR_N * pr["ek"]) / (n + task_core.PRIOR_N) if r else pr["ek"]
         ek = task_core.draw(mean, n, rng) * availability(bot, s, now)
+        load = share_load(bot, s)
+        ek /= 1.0 + load                                      # the respawn is shared: each creature dies once, to one of the hunters on it (share_load)
+        loads[s["id"]] = load
         vals[s["id"]] = (s, pr, ek, n)
     bot.__dict__["_spot_why"] = why
     if not vals:
@@ -721,7 +739,7 @@ def tours(bot, g, rng, banned=(), relax=0):
                     "score": round(progress / max(cost, 1.0), 4), "judge": judge, "draw": round(sek, 2), "mean": round(exp[judge], 3), "expected": {k: round(v, 3) for k, v in exp.items()},
                     "rank": round(min(rank[judge], limit), 1),
                     "walk_min": round(walk_min, 1), "die": round(die, 3), "n": min(vals[i][3] for i in tour), "kinds": sorted({k for i in tour for k in vals[i][1]["kinds"]})[:8],
-                    "load": 0, "minutes": round(minutes, 1), "budget": float(min(task_core.HUNT_BUDGET, max(600.0, minutes * 60.0))), "relax": relax})
+                    "load": max(loads.get(i, 0) for i in tour), "minutes": round(minutes, 1), "budget": float(min(task_core.HUNT_BUDGET, max(600.0, minutes * 60.0))), "relax": relax})
     if relax >= 3:
         out.sort(key=lambda c: (c["die"], -c["score"]))           # the safest first
     else:
