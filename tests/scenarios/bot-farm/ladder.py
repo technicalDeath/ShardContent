@@ -8,7 +8,7 @@ strength, supplies, a way back and the OUTCOME of the rung before it (never a ti
                              kit (bandages or Heal potions, ammunition for archers), 300 gold carried or banked, hit points for the trip, a planned land route that passes no death cell, a refuge in
                              the destination town (where it can be healed and resurrected) and one at home. REPEATABLE: the town it has seen least (then the nearest) after TOWN_GAP (45 min) from the
                              last trip; after a failed trip it rests TOWN_FAIL (60 min) times its failures, and after FAIL_LIMIT (3) failures at the same strength it waits for 5 more skill.
-  rung 4  Despise, level 1 (feature ladder_dungeon; Covetous 2026-11-03/04) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the dungeon's
+  rung 4  Despise, level 1 (feature ladder_dungeon, any persona; Covetous 2026-11-03/04) when every kind its hunt fights on level 1 rates a fight, 3 Heal potions, 15 bandages (60 arrows for a bow), mounted, 500 gold (2026-11-07: no town trips, skill band or hit-point floor): walk to the dungeon's
                              entrance (the gazetteer's dungeon entrance on the surface), step through, look around DUNGEON_STAY (8) minutes at the landing, and walk out. At most one visit per
                              DUNGEON_GAP (45 min, 2026-11-07; 3 h before). A casualty or an abort is a failed rung. The step through the door is the one new action; the rest is first_trip's walk and abort rules.
 Events (decisions.jsonl): region_first {region, at} the first time the bot stands in a named region (a town or dungeon); rung {n, result: ok | fail, dest, why, minutes} when a rung is passed (1, 2:
@@ -64,9 +64,17 @@ class LadderMixin:
     # ---- state ------------------------------------------------------------------------------------------------------------------------------------
 
     def ladder_on(self):
-        """The cohort feature "ladder" AND an adventurer's persona (A4, main or second): the same rule that grants first_trip (ambition.py)."""
+        """The cohort feature "ladder" AND an adventurer's persona (A4, main or second): the same rule that grants first_trip (ambition.py); or the
+        dungeon cohort (ladder_dungeon), whatever the persona: its rung asks only for the fights and the supplies (owner, 2026-11-07). Its town rung
+        stays an adventurer's (ladder_trips)."""
         try:
-            return bool(self.feature("ladder") and self.ambition_wants("A4"))
+            return bool(self.feature("ladder") and (self.ambition_wants("A4") or self.feature("ladder_dungeon")))
+        except Exception:
+            return False
+
+    def ladder_adventurer(self):
+        try:
+            return bool(self.ambition_wants("A4"))
         except Exception:
             return False
 
@@ -196,7 +204,7 @@ class LadderMixin:
     def ladder_kit_strict(self):
         if hasattr(self, "bandages"):
             yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
-            return self.bandages() >= 15 and yellow >= 3
+            return self.bandages() >= 15 and yellow >= 3 and not (getattr(self, "ranged", False) and self.ammo() < 60)     # a bow's arrows (trip_kit_ok)
         return self.trip_kit_ok()
 
     def ladder_town_ready(self, st, now):
@@ -204,9 +212,45 @@ class LadderMixin:
                 and self.ladder_quiet(st, now) and self.ladder_worth() >= MIN_WORTH)
 
     def ladder_dungeon_ready(self, st, now):
-        return (self.feature("ladder_dungeon") and st.get("trips_ok", 0) >= 2 and self.trip_power() >= POWER[4] and self.c.max_hp >= DUNGEON_HP
-                and now - st.get("last_dungeon", 0) >= DUNGEON_GAP and now - st.get("last_trip_end", 0) >= TOWN_GAP and self.ladder_rested(st, 4, now)
-                and self.ladder_quiet(st, now) and self.ladder_worth() >= DUNGEON_WORTH and self.ladder_kit_strict())
+        """The dungeon's gates are its fights and the supplies (owner, 2026-11-07: "the only requirement should be monster fight related", "and
+        supplies", a mount, "keep gold minimum"): every kind of its level 1 rates a fight (ladder_dungeon_fights), the kit (ladder_kit_strict, arrows
+        for a bow), riding (ride.py), DUNGEON_WORTH gold; and DUNGEON_GAP since the last trip, the time to sell and restock. No town trips, no skill
+        band or hit-point floor (the rating weighs both), no rest after a failure or a death: BotMaceCR, BotSwordBR and BotFencerBR waited six days on
+        the two town trips."""
+        return (self.feature("ladder_dungeon") and now - max(st.get("last_dungeon", 0), st.get("last_trip_end", 0)) >= DUNGEON_GAP
+                and self.ladder_worth() >= DUNGEON_WORTH and self.ladder_kit_strict() and self.ladder_mounted() and self.ladder_dungeon_fights())
+
+    def ladder_mounted(self):
+        """Riding (owner, 2026-11-07: "maybe having a mount should be a requirement, so bots can travel faster"): r_ride buys and mounts a horse first."""
+        try:
+            return bool(self.c.mounted)
+        except Exception:
+            return False
+
+    def ladder_dungeon_fights(self):
+        """Every creature kind its dungeon hunt fights on level 1 is one this bot engages (rating.rate), cached a minute."""
+        got = self.__dict__.get("_dungeon_fights")
+        if got and time.time() - got[0] < 60:
+            return got[1]
+        ok, why = False, ""
+        try:
+            import rating
+            import spots
+            # the kinds its hunt fights: level 1's spots holding no heavy kind (spots.all_spots' dungeon-hunt filter: the lizardmen, not the ettins and
+            # earth elementals of the floor below them)
+            hunted = [s for s in spots.dungeon_spots() if s.get("side") == DUNGEON and s.get("tier") == spots.TIER_RUNG1
+                      and not any(any(h in k for h in spots.HEAVY_UNMEASURED) or spots.heavy_by_stats(k) for k in s.get("kinds") or ())]
+            kinds = sorted({k for s in hunted for k in s.get("kinds") or ()})
+            bad = [k for k in kinds if not (rating.rate(self, k) or {}).get("engage")]
+            ok = bool(kinds) and not bad
+            why = f"rates {', '.join(bad)} not a fight" if bad else ("no level-1 kinds" if not kinds else "")
+        except Exception as e:
+            why = f"rating failed ({type(e).__name__})"
+        self.__dict__["_dungeon_fights"] = (time.time(), ok)
+        if not ok and time.time() - self.__dict__.get("_dungeon_fights_logged", 0) > 1800:
+            self.__dict__["_dungeon_fights_logged"] = time.time()
+            self.log(f"ladder: not to {DUNGEON} yet: {why}")
+        return ok
 
     def ladder_dungeon_trip(self, home):
         """The trip to the dungeon's surface entrance (gazetteer role dungeon_entrance, the one named DUNGEON), or None."""
@@ -227,7 +271,7 @@ class LadderMixin:
                 d = doors[0]
                 end = (int(d["x"]), int(d["y"]))
                 if cheb(start, end) <= 1600:
-                    out = self.trip_straight(home, DUNGEON, "dungeon", start, end, POWER[4], DUNGEON_HP, DUNGEON_STAY, "ladder_dungeon")
+                    out = self.trip_straight(home, DUNGEON, "dungeon", start, end, 0, 0, DUNGEON_STAY, "ladder_dungeon")   # (the fights: ladder_dungeon_fights)
                     out["enter"] = [end[0], end[1], int(d.get("z", 0))]
                     out["rung"] = 4
         except Exception as e:
@@ -242,7 +286,7 @@ class LadderMixin:
         st = self.ladder_state()
         now = time.time()
         out = []
-        if self.ladder_town_ready(st, now):
+        if self.ladder_adventurer() and self.ladder_town_ready(st, now):
             gate_on = hasattr(self, "gate_on") and self.gate_on()
             for t in self.trips_for_home(home):
                 if t.get("gate") and not gate_on:

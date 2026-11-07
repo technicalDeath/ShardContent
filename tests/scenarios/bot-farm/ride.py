@@ -88,8 +88,8 @@ class RideMixin:
         as it can pay (r_ride's HORSE_PRICE + RIDE_RESERVE), as a Renaissance player rode everywhere once they could afford one (owner 2026-11-05, horses
         for every fighter: "Both, all fighters")."""
         try:
-            if not self.ladder_on():
-                return True
+            if not self.ladder_on() or self.feature("ladder_dungeon"):
+                return True                                     # the dungeon rung asks for a mount (ladder.ladder_mounted)
             return bool(self.ladder_state()["ok"].get("2"))
         except Exception:
             return False

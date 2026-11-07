@@ -267,7 +267,10 @@ class FirstTrip(RideMixin, LadderMixin):
         t = self.trip_forced(home)
         if t:
             return t, True
-        if getattr(self, "mode", "veteran") != "veteran" or time.time() - self.facts.get("trip_check_at", 0) < 60:
+        # newbie mode (the newbie memory folder) keeps a plain first trip a veteran's, not the ladder's trips: its rungs gate on skill, health, kit and
+        # gold. BotMaceCR, BotSwordBR and BotFencerBR (A4 adventurers, skill 100, 140,000+ gold banked) passed rungs 1 and 2 on 2026-11-01 and never set
+        # out: 0 town trips, so never Despise (owner, 2026-11-07: "I want the bots going dungeoneering")
+        if (getattr(self, "mode", "veteran") != "veteran" and not self.ladder_on()) or time.time() - self.facts.get("trip_check_at", 0) < 60:
             return None, False
         self.facts["trip_check_at"] = time.time()
         played = (getattr(self, "base", {}).get("uptime", 0) + time.time() - self.started) / 60.0

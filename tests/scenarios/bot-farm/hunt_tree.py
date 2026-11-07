@@ -645,6 +645,31 @@ class Pick(Step):
         except Exception:
             return CAMP_S
 
+    def shared_quiet(self, now, last_kill, arrived):
+        """True when another bot has hunted this ground in view (IN_VIEW of here) for EMPTY s and this bot made no kill in that time: the spawn is
+        theirs, and a player moves on to the next ground (owner, 2026-11-07: "as soon as a player saw an area is camped/not enough spawns they would
+        move on"; BotBardAdvR paced sp1339,1788 beside BotRangerAR five minutes for 0 kills). The tour fails "crowded" (the area rests REST_S["crowded"]).
+        A shared tour's partner is no other hunter."""
+        b, st = self.ctx.bot, self.ctx.st
+        try:
+            partner = self.ctx.task.get("partner")
+            others = [o for o in b.other_bots(IN_VIEW) if o[0] != partner]
+        except Exception:
+            others = []
+        if not others or last_kill >= now - EMPTY:
+            st.pop("shared_since", None)
+            return False
+        since = st.setdefault("shared_since", max(now, arrived))
+        if now - since < EMPTY:
+            return False
+        b.log(f"hunt tree: {self.ctx.task.get('area')} is {others[0][0]}'s ground: no kill in {int(now - since)} s beside {len(others)} other bot(s): crowded")
+        try:
+            b.ev("ground_shared", area=self.ctx.task.get("area"), others=[o[0] for o in others][:4], secs=round(now - since))
+        except Exception:
+            pass
+        st.pop("shared_since", None)
+        return True
+
     def update(self):
         c, b, st, task = self.ctx, self.ctx.bot, self.ctx.st, self.ctx.task
         now = time.time()
@@ -737,13 +762,18 @@ class Pick(Step):
             b.activity = f"going for {m.name}"
             return Status.SUCCESS
         try:
-            if any(b.is_prey(m) for m in b.mobs(18)):
-                st["seen_at"] = now                         # prey in sight that is not worth the walk right now (ignored lately, a death spot, unsafe ground): the area is not empty
+            others_v = b.other_bots(26)
+            if any(b.is_prey(m) and not b.taken_by_other(m, others_v) for m in b.mobs(18)):
+                # prey in sight that is not worth the walk right now (ignored lately, a death spot, unsafe ground): the area is not empty; prey another bot
+                # is on is not this bot's (taken_by_other), so it keeps no area alive (BotBardAdvR paced sp1339,1788 beside BotRangerAR's kills, 0 of its own)
+                st["seen_at"] = now
                 st["seen_any"] = True
         except Exception:
             pass
         arrived = task.get("arrived") or now
         last_kill = b.facts.get("last_kill_at", 0) or 0
+        if self.shared_quiet(now, last_kill, arrived):
+            return c.fail("pick", "crowded")
         seen = max(st.get("seen_at", 0) or 0, last_kill, arrived)
         if not st.get("seen_any") and last_kill < arrived and now - arrived >= EMPTY:
             b.log(f"hunt tree: nothing to hunt at {task['area']} in {int(now - arrived)} s since arriving: empty")

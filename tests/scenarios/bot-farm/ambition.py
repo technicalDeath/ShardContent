@@ -5,7 +5,7 @@ decide which of its long-term behaviours it uses:
   A1 home         save: the savings goal (goals.py) is on; milestones: 4,000 / 10,000 / 16,000 (a small house deed on this shard) banked and carried
   A2 livelihood   save; milestones: net worth rising 100 / 250 / 500 gold an hour (over the last two hours)
   A3 mastery      milestones: the working skill at 70 / 80 / 90 / 100
-  A4 adventure    first trips out of the home town (never the Britain sewers: owner, 2026-10-18) (first_trip.py; its own gates still apply: a veteran, an hour played, 300 gold, the kit, the
+  A4 adventure    first trips out of the home town (never the Britain sewers: owner, 2026-10-18) (first_trip.py; its own gates still apply: a veteran (a ladder bot: either mode, 2026-11-07), an hour played, 300 gold, the kit, the
                   trip's skill band and hit points, a safe route); milestones: another region seen / a trip completed / a dungeon seen
   A5 possessions  save (the gear goals: the next armour piece it can wear); milestones: worn armour 10 / 20 / 30
   A6 renown, A7 company: the persona carries them (talk and party read them later); no milestones yet (no fame or trade numbers exported)
