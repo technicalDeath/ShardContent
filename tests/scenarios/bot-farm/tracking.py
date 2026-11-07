@@ -138,6 +138,32 @@ class TrackMixin:
             time.sleep(0.5)
         return None, []
 
+    def track_deadly(self, xy, kind):
+        """True (and logged, ev track_skip) when the arrow points into the reach of a spawner this bot loses to (spots.measured_danger_near, the check a
+        hunting tour's spots pass) or into a cell the area danger map marks (mem.dangerous_cell): the prey is not followed there. BotRangerAR tracked a horse to 1749,1316 in the gazer and gargoyle pocket north-east
+        of Britain, rated the gazer that came up "leave it", ran and was killed (2026-11-07 11:15-11:27); 7 ranger deaths there overnight."""
+        why = None
+        try:
+            import spots
+            hit = spots.measured_danger_near(self, {"x": int(xy[0]), "y": int(xy[1])})
+            if hit:
+                why = f"{hit[0]} spawner at {hit[1]['x']},{hit[1]['y']}"
+        except Exception:
+            pass
+        mem = getattr(self, "mem", None)
+        if why is None and mem is not None:
+            try:
+                from memory import cell_of
+                if mem.dangerous_cell(cell_of(int(xy[0]), int(xy[1]))):
+                    why = f"a dangerous cell ({cell_of(int(xy[0]), int(xy[1]))})"       # the area danger map: spawners too strong, or recent deaths
+            except Exception:
+                pass
+        if why is None:
+            return False
+        self.ev("track_skip", prey=kind, at=[int(xy[0]), int(xy[1])], why=why)
+        self.log(f"tracking: not following the {kind} to {int(xy[0])},{int(xy[1])}: {why}")
+        return True
+
     def r_track(self):
         """Feature tracking: find prey out of sight with the Tracking skill and walk at it (the module doc)."""
         if not self.track_on() or self.c.ghost:
@@ -155,7 +181,7 @@ class TrackMixin:
                 self.__dict__.pop("_track_follow", None)
                 return False
             xy = self.track_arrow()
-            if not xy:
+            if not xy or self.track_deadly(xy, follow["kind"]):
                 self.__dict__.pop("_track_follow", None)
                 return False
             d = max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y))
@@ -203,7 +229,7 @@ class TrackMixin:
         xy = self.track_arrow()
         rng = track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))
         self.ev("track", prey=kind_of(pick[1]), list=[n for _, n in listed][:8], picked=pick[1], range=rng, arrow=list(xy) if xy else None)
-        if not xy:
+        if not xy or self.track_deadly(xy, kind_of(pick[1])):
             return True
         self.log(f"tracking: {pick[1]} at {xy[0]},{xy[1]} ({max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y))} tiles; {len(listed)} {what} within {rng})")
         self.__dict__["_track_follow"] = {"kind": kind_of(pick[1]), "t0": now, "until": now + FOLLOW_S}

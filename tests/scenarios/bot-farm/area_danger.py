@@ -195,7 +195,11 @@ class AreaDanger:
                 continue
             ds = d["skill"]
             f = (1.0 if skill <= ds + SKILL_MARGIN else 0.3) if ds is not None else (1.0 if skill < UNDER else 0.3)
-            f *= killer_weight(d.get("killers"), skill, worn)
+            if f < 1.0:
+                # only a stronger bot's discount reads the killer: a bot about as strong (the doc's rule) took the same fight. The killer's prior (danger.prior,
+                # an exchange estimate without the spells) put a gazer at 1% for skill 100 and so weighed nine gazer and gargoyle deaths of skill-100 rangers by
+                # 1749,1316 at a fifth: the cell never marked, and tracking sent BotRangerAR there to die twice (2026-11-07 11:27, 11:35)
+                f *= killer_weight(d.get("killers"), skill, worn)
             w += f * d.get("w", 1.0) * 0.5 ** max(0.0, (now - d["t"]) / HALF_LIFE)     # (a death stamped a hair after now weighs 1, not 1.00001)
         return w
 

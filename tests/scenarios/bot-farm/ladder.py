@@ -10,7 +10,7 @@ strength, supplies, a way back and the OUTCOME of the rung before it (never a ti
                              last trip; after a failed trip it rests TOWN_FAIL (60 min) times its failures, and after FAIL_LIMIT (3) failures at the same strength it waits for 5 more skill.
   rung 4  Despise, level 1 (feature ladder_dungeon; Covetous 2026-11-03/04) once a town trip has been completed twice, main skill >= 65, 80 hit points, 3 Heal potions and 15 bandages, 500 gold: walk to the dungeon's
                              entrance (the gazetteer's dungeon entrance on the surface), step through, look around DUNGEON_STAY (8) minutes at the landing, and walk out. At most one visit per
-                             DUNGEON_GAP (3 h). A casualty or an abort is a failed rung. The step through the door is the one new action; the rest is first_trip's walk and abort rules.
+                             DUNGEON_GAP (45 min, 2026-11-07; 3 h before). A casualty or an abort is a failed rung. The step through the door is the one new action; the rest is first_trip's walk and abort rules.
 Events (decisions.jsonl): region_first {region, at} the first time the bot stands in a named region (a town or dungeon); rung {n, result: ok | fail, dest, why, minutes} when a rung is passed (1, 2:
 once) or a trip of the rung ends (3, 4: each time). Trips keep first_trip's own trip_start / trip_arrive / trip_abort / trip_home events (trip_start carries the rung in its trip_kind).
 State: <bot>/ladder.json (survives a restart). Hooks in first_trip.py (patch_ladder.py): trips_allowed, trip_pick's choice, r_trip's once-only flag, trip_end, and the arrival.
@@ -48,7 +48,8 @@ DUNGEON = "Despise"           # owner 2026-11-04: "Despise is probably the bette
                               # (first_trip.trip_end_threat: a teleporter door is stepped on at a run)
 DUNGEON_DOOR = (1296, 1081)   # its one surface entrance (teleporters.json 1296,1080-1082 -> 5588,630-632)
 DUNGEON_STAY = 8
-DUNGEON_GAP = 10800
+DUNGEON_GAP = TOWN_GAP       # 45 min, as a town's: 3 h (10800) was set for the 8-minute look at the landing; a stay is now a 40-minute hunt that earned
+                             # more than the surface (BotHealAdvR 1,988 gold in 36 min, ~3,300 an hour against ~2,600, 2026-11-07; owner: "I want the bots going dungeoneering")
 DUNGEON_HP = 80
 MIN_WORTH = 300
 DUNGEON_WORTH = 500

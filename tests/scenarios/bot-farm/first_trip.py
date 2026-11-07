@@ -993,6 +993,33 @@ class FirstTrip(RideMixin, LadderMixin):
         except Exception:
             return False
 
+    def trip_dash(self, t, wps):
+        """True when the bot runs the route straight on past the monsters in notice range: none a caster, every one that moves slower than a runner
+        (casterpass.move_s against run_s: a troll 0.45 s a tile, npc-speeds.json, the runner 0.2) and the pass affordable (trip_pass_ok). An escape out of
+        a slow pack's reach gains nothing and the route leads back into it: BotHealAdvR ran four escape legs round the troll camp by Despise's door at
+        93/94 hit points with the pass costed "go on", and the fourth turned the trip back ("the way is held"), 9 of its trips 2026-11-05/07 (owner,
+        2026-11-07: "running past trolls should be easy as long as the bot doesn't stop")."""
+        try:
+            import casterpass
+            import danger
+            table = danger.stats()
+        except Exception:
+            return False
+        near = [m for m in self.trip_near() if getattr(m, "x", None) is not None]
+        if not near:
+            return False
+        run_s = self.run_s() if hasattr(self, "run_s") else casterpass.RUN_S
+        for m in near:
+            k = self.mkey(m)
+            e = table.get(k)
+            if self.trip_caster(k) or not e:
+                return False
+            mv = casterpass.move_s(k, e)
+            if mv is not None and mv <= run_s:
+                return False                                    # it keeps up with a runner: the escapes stand
+        step = 1 if t.get("phase") == "out" else -1
+        return self.trip_pass_ok(near, self.trip_route_slice(wps, t["i"], step), self.trip_route_slice(wps, t["i"] - step, -step))
+
     def trip_lair_home(self):
         """forbidden(point) for detour.py: inside the home range of a caster lair this bot loses to (spots.deadly_spawners), cached a minute. A
         detour bends out round a wandering caster, never into the camp it came from."""
@@ -1029,7 +1056,17 @@ class FirstTrip(RideMixin, LadderMixin):
         hurt = self.hp_pct() < 60
         fixed = self.trip_fixed_spots()
         movers = [th for th in casters if (th.x, th.y) not in fixed]
-        if not esc["on"] and not hurt and fixed:
+        dash = not casters and self.trip_dash(t, wps)
+        if dash:
+            # every one slower than a runner and the pass affordable: run on, never away (trip_dash); a leg round them that still gains, else the route
+            esc.update(on=False, clear=0)
+            self.__dict__["_escapes_at"] = []
+            now = time.time()
+            if now - self.__dict__.get("_dash_logged", 0) > 10:
+                self.__dict__["_dash_logged"] = now
+                self.log(f"first trip: running straight past {len(threats)} ({', '.join(sorted({th.name for th in threats}))[:60]}), hp {self.c.hp}")
+                self.ev("trip_dash", at=list(here), hp=int(getattr(self.c, "hp", 0) or 0), phase=t.get("phase"), threats=[[th.name, th.x, th.y] for th in threats][:6])
+        if not dash and not esc["on"] and not hurt and fixed:
             # a caster that never moves (a reaper, casterpass.IMMOBILE) is run past along the route, the shortest time in its range, when the pass is
             # affordable (trip_pass_ok; trip_turn_back turns back when it is not): running from it only brings the route back into its range. BotFenceAdvR
             # escaped out of a reaper's range and back in for 70 s by the Trinsic road and died, 87 -> 0 (2026-11-04 02:54:50-02:56:03)
@@ -1039,7 +1076,9 @@ class FirstTrip(RideMixin, LadderMixin):
                 monsters = [m for m in self.trip_near() if getattr(m, "x", None) is not None]
                 if self.trip_pass_ok(monsters, self.trip_route_slice(wps, t["i"], step), self.trip_route_slice(wps, t["i"] - step, -step)):
                     return False                                # the straight way on: trip_step walks the route
-        if movers and detour.clearance_at(here, movers) < 0:
+        if dash:
+            pass
+        elif movers and detour.clearance_at(here, movers) < 0:
             esc.update(on=True, clear=0, hurt=False)            # a caster inside its reach: run from it, not along the route past it
         elif hurt and detour.clearance_at(here, threats) < 0:
             esc.update(on=True, clear=0, hurt=True)             # hurt with a monster in reach: out of every reach first, mending on the run
@@ -1063,8 +1102,8 @@ class FirstTrip(RideMixin, LadderMixin):
                     self.trip_abort(f"run: the way is held ({len(held)} escapes in {int(ESCAPE_HOLD_S)} s)")
         else:
             leg = detour.plan_leg(here, (int(target[0]), int(target[1])), threats, wr.leg_clear, forbidden=forbid)
-        if leg is None:
-            return False
+        if leg is None or (dash and leg.progress <= 0):
+            return False                                        # (a dash: no leg that gains, the route straight on)
         if hasattr(self, "detour_note"):
             self.detour_note(here, leg)                         # how the walk goes decides whether this leg end is barred next time
         now = time.time()
@@ -1135,7 +1174,9 @@ class FirstTrip(RideMixin, LadderMixin):
             why = "out of the dungeon"
         elif not ready:
             why = "kit low"
-        elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest"):
+        elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest", "camp", "loot"):
+            # (camp and loot are the hunt's own: a spawner held for two respawns after a good kill, a corpse beside it; task_core keeps a dungeon hunt's
+            # errands on its side. BotHealAdvR's Despise hunt ended "a camp errand" 12.6 minutes into 40, with 45 kills, 2026-11-07 11:21)
             why = f"a {task.get('task')} errand"
         elif task.get("task") == "wait":
             # nothing open to hunt in the dungeon: past the core's own wait (task_core.WAIT_S), the hunt is over and the bot goes home, not stand at the
