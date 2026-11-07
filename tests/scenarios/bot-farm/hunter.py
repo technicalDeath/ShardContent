@@ -1184,14 +1184,25 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         return random.choice([s for s in scored if s[0] >= 0.65 * top])
 
     def ground_load(self, cell):
-        """Other bots on this ground: present in the last five minutes, or on their way (a ground claim, 300 s)."""
+        """Other bots on this ground: present in the last five minutes, or on their way (a ground claim, 300 s; a hunt tour's for its budget,
+        task_core.claim_tour). Both memory folders (mem and mem.news, veteran and newbie): a bot writes its presence and claims to its own, and every
+        bot sees every other on the ground. BotRangerAR (veteran) chose sp1319,1810 a minute after BotArcherCR (newbie) claimed its cell (2026-11-07 13:50)."""
         now = time.time()
-        c = self.mem.state["world"]["cells"].get(cell)
         mine = self.party_names() if self.feature("party") else set()                  # the party is one claim on a ground
-        bots = {b for t, b in (c["pres"] if c else ()) if now - t < 300 and b != self.name and b not in mine}
-        for key, r in self.mem.state["world"]["res"].get("ground", {}).items():
-            if key.split("#")[0] == cell and r["claim_until"] > now and r["claim_by"] != self.name and r["claim_by"] not in mine:
-                bots.add(r["claim_by"])
+        bots = set()
+        for mem in (self.mem, getattr(self.mem, "news", None)):
+            if mem is None:
+                continue
+            if mem is not self.mem:
+                try:
+                    mem.refresh()
+                except Exception:
+                    continue
+            c = mem.state["world"]["cells"].get(cell)
+            bots |= {b for t, b in (c["pres"] if c else ()) if now - t < 300 and b != self.name and b not in mine}
+            for key, r in mem.state["world"]["res"].get("ground", {}).items():
+                if key.split("#")[0] == cell and r["claim_until"] > now and r["claim_by"] != self.name and r["claim_by"] not in mine:
+                    bots.add(r["claim_by"])
         return len(bots)
 
     def gear_loot(self):
