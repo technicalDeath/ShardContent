@@ -1059,7 +1059,7 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
     # rules below the reflexes that still run under the decision core: each has its own limits (r_music every 22 s at 60%+ health, r_fletch under 200
     # arrows, r_wood under 120 arrows and every so often, r_shield once a half-hour); under the core they never ran, so the bards never played and the
     # archers never fletched (no event in 4 hours, 2026-11-01)
-    CORE_SKILL_RULES = ("r_music", "r_instrument", "r_fletch", "r_wood", "r_shield", "r_lesson", "r_track", "r_peace", "r_escort")      # r_peace: the bard's, ahead of its r_flee      # (r_instrument: a bard's worn-out instrument replaced; both bards had none, 2026-11-01)
+    CORE_SKILL_RULES = ("r_music", "r_instrument", "r_fletch", "r_wood", "r_shield", "r_lesson", "r_track", "r_peace", "r_escort", "r_train")      # r_peace: the bard's, ahead of its r_flee      # (r_instrument: a bard's worn-out instrument replaced; both bards had none, 2026-11-01)
 
     def core_lets(self, name):
         """A rule below the reflexes that still runs under the decision core: first_trip's trip_core_lets (the ladder's trips), else none."""

@@ -1267,6 +1267,31 @@ def claim_tour(bot, task, ttl):
         pass
 
 
+def tour_rests(task, why, secs):
+    """[(area, secs)] that an ended task rests. A tour ended for "yield" rests the spots it visited (one that gave no kill for the reason's time, one that
+    gave a kill PAID_REST), and one ended for "deaths" the spot it was at; the spots it never reached stay open, as a player only writes off the ground
+    he saw. Otherwise (no visit known, another reason) every spot, as before. BotRangerAR had 32 spots banned at once, from its east field to the
+    southern farms, and stood "waiting for an open hunting area" 85 minutes a day (2026-11-07 18:25-18:31, 31 refused as banned)."""
+    ids = task.get("tour") or [task["area"]]
+    if not task.get("tour") or why not in ("yield", "deaths"):
+        return [(sid, secs) for sid in ids]
+    st = task.get("state") or {}
+    seen = set()
+    for k in list(st.get("visited") or []) + list((st.get("visited_set") or {}).keys()):
+        try:
+            seen.add(int(k))
+        except (TypeError, ValueError):
+            pass
+    if why == "deaths":
+        cur = st.get("roam_i")
+        if isinstance(cur, int) and 0 <= cur < len(ids):
+            return [(ids[cur], secs)]
+        return [(sid, secs) for sid in ids]
+    tk = st.get("tour_kills") or {}
+    out = [(ids[k], secs if not tk.get(str(k), 0) else min(PAID_REST, secs if secs is not None else PAID_REST)) for k in sorted(seen) if 0 <= k < len(ids)]
+    return out or [(sid, secs) for sid in ids]
+
+
 def end_task(bot, task, why):
     t = now()
     claim_tour(bot, task, 0)
@@ -1300,8 +1325,8 @@ def end_task(bot, task, why):
     if why in REST_S or (supply and why != "done"):
         paid = why == "yield" and act.get("kills", 0) >= PAID_KILLS
         short = ERRAND_UNMET_REST if supply else None          # a supply errand that found nothing to buy, or could not get there, is tried again in minutes (240 s at most), not half an hour or an hour
-        for sid in task.get("tour") or [task["area"]]:
-            ban(bot, "spot" if task.get("tour") else task["task"], sid, why, PAID_REST if paid else short)
+        for sid, secs in tour_rests(task, why, PAID_REST if paid else short):
+            ban(bot, "spot" if task.get("tour") else task["task"], sid, why, secs)
     if task.get("tour"):
         import spots
         tk = (task.get("state") or {}).get("tour_kills") or {}

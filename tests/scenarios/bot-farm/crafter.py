@@ -380,9 +380,12 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             if opened:
                 # the hunter-tailor of the era (Tailoring, Swordsmanship, Tactics, Anatomy, Healing, Tracking: docs/Bot-Farm-Skill-Plans.md) kills and
                 # carves its own hides while the shops restock: BotFairTailorVR wandered 16 minutes "under 5 cut up leather" (2026-11-01). r_earn hunts
-                # with the hunter's rules while stall_earn_until holds, for the same 20 minutes the shelves are left alone
-                self.facts["stall_earn_until"] = self.facts["soldout_until"]
-                self.ev("leather_hunt", until=round(self.facts["soldout_until"]))
+                # with the hunter's rules while stall_earn_until holds, for the same 20 minutes the shelves are left alone. A tailor that does not hunt
+                # hides goes out only when short of money: BotFairTailorVR and BotTailAdvR, 293,406 and 178,287 banked, hunted rats "broke" for 6.9 and
+                # 6.0 hours a day (2026-11-07); the hide hunters earned 9,000-12,000 gold a bot-hour against their 3,200-3,500
+                if self.hide_hunting() or self.short_of_money():
+                    self.facts["stall_earn_until"] = self.facts["soldout_until"]
+                    self.ev("leather_hunt", until=round(self.facts["soldout_until"]))
         else:
             self.log(f"restock: bought {got}; {self.leather_held()} leather and {self.hides_held()} hides in the pack")
             self.restock_filled()
@@ -1893,6 +1896,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             return self.earn_planned()
         if (self.c.gold >= 60 or self.facts["bank_balance"] >= 60 or self.count(self.cfg["mat"]) >= 30) and time.time() >= self.facts.get("stall_earn_until", 0):
             return False
+        if self.rich_no_coins():
+            return False
         if self.products() and time.time() - self.facts.get("earn_sell_at", 0) > 600:
             self.facts["earn_sell_at"] = time.time()
             self.facts["sold_at"] = 0                     # sell what is in the pack before going out with a dagger (once in ten minutes)
@@ -1983,6 +1988,15 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             pass
         return False
 
+    def track_animals_only(self):
+        return bool(getattr(self, "_hide_only", False))   # a hide hunt tracks animals (tracking.r_track; feature tracking)
+
+    def track_rate(self, k):
+        """A hide hunt follows only an animal whose carve gives HIDE_MIN hides or more; otherwise the fight rating as for any hunter."""
+        if getattr(self, "_hide_only", False) and not self.hide_kind(k):
+            return None
+        return HunterBot.track_rate(self, k)
+
     def hide_ground(self):
         """The nearest cell where some bot saw a hide-bearing animal (the shared memory's sights), safe, outside a city's core, within EARN_REACH of home
         and not just found empty; else earn_ground. (A town's horses and stabled pets are sights too, and no fight is started in a city's core (townguard.
@@ -2020,8 +2034,20 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
     EARN_STAND = 120                                      # seconds on a spot without anything to fight before it is called empty
     EARN_EMPTY = 900                                      # and left alone for this long
 
+    def rich_no_coins(self):
+        """True (and the earn window dropped) when the bot is not short of money, gold and bank together: no hunting vermin for coins then, whatever set
+        the window (owner, 2026-11-07: "no bots should be running 'broke' behavior when they have resources in the bank"). A hide hunt is the tailor's
+        material, not coins, and stays."""
+        if self.hide_hunting() or self.short_of_money():
+            return False
+        if self.facts.pop("stall_earn_until", None):
+            self.dlog("choice", what="no coin hunt", why=f"gold {self.c.gold} + bank {self.facts.get('bank_balance', 0)}: not short of money")
+        return True
+
     def earn_planned(self):
         now = time.time()
+        if self.rich_no_coins():
+            return False
         if self.tool():
             if (self.c.gold >= 60 or self.facts["bank_balance"] >= 60 or self.count(self.cfg["mat"]) >= 30) and time.time() >= self.facts.get("stall_earn_until", 0):
                 return False
@@ -2056,14 +2082,14 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
         if self.monster_ground(self.c.x, self.c.y) and not self.monster_ground(ex, ey) and max(abs(self.c.x - ex), abs(self.c.y - ey)) > 6:
             # off monster ground before hunting for coins: BotTailorBR hunted giant rats beside the ratman, ogre and troll camp in the west hills after each
             # corpse run and died there five times in an hour (2026-11-01 22:16-23:02)
-            self.activity = f"broke: leaving monster ground for {ex},{ey}"
+            self.activity = f"{'' if hides else 'broke: '}leaving monster ground for {ex},{ey}"
             self.goto_near(ex, ey, 4).wait(timeout=90)
             return True
         self._coin_only, self._hide_only = not hides, hides
         if hides:
             self.CARVE = self.CUTS_HIDES = True              # (instance attributes) loot_corpse carves, cuts the hides on the corpse and takes the leather
         try:
-            for rule in ("r_loot", "r_heal", "r_fight", "r_hunt"):
+            for rule in ("r_loot", "r_heal", "r_fight") + (("r_track",) if hides else ()) + ("r_hunt",):
                 if getattr(HunterBot, rule)(self):
                     self.facts.pop("earn_at", None)
                     return True

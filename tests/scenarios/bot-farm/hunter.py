@@ -127,8 +127,8 @@ def in_losing_range(bot, x, y):
         return False
 
 class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer, ShieldMixin, FieldsMixin, LivelihoodMixin, FighterStock, WeaponMixin, FighterMarket, FirstTrip, BotBase):
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_hunt",
-             "r_rest", "r_camp", "r_sewer_in", "r_explore"]
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_lighten", "r_fletch", "r_wood", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility", "r_train",
+             "r_hunt", "r_rest", "r_camp", "r_sewer_in", "r_explore"]
     LOOT_MATERIALS = False
     REST_BELOW = 65
     TASK_CORE = True                       # the decision core (task_core.py) under the feature task_core; CrafterBot (which inherits this class) sets it False
@@ -740,12 +740,12 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         """Feature heal_practice: below HEAL_CURE Healing a bandage goes on any scratch with nothing near, as a player trains the skill (every bandage on a
         hurt patient checks Healing, Bandage.cs). The fighters stood at Healing 51-59 with Anatomy 100, climbing 0.4 a day, so none could cure the
         Greater and Deadly poison of the scorpions and giant spiders that killed BotFairSwordVR on the Cove road (2026-11-06 01:06); Lesser Cure cures
-        Greater 15% and Deadly never."""
-        if not self.feature("heal_practice"):
-            return False
+        Greater 15% and Deadly never.
+        Every bot whose plan holds Healing, to the plan's target (skillplan.wants), from 2026-11-07 (owner: "bots should action against their full 700
+        skill bank"): the cohort's two gained 2.0 and 3.7 Healing a day, the other 31 bots with Healing unfinished 0-1.3 (22 under 0.5)."""
         try:
             import skillplan
-            return self.skill_values.get("Healing", 0) < self.HEAL_CURE and skillplan.wants(self, "Healing")
+            return skillplan.wants(self, "Healing")
         except Exception:
             return False
 
@@ -1439,6 +1439,25 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
             return self.bow_kind() and self.skill_values.get("Bowcraft/Fletching", 0) >= 25       # the core's fletch errand (fix C): a bot in fist mode too, whatever the cohort
         return self.ranged and self.skill_values.get("Bowcraft/Fletching", 0) >= 25 and self.feature("fletch")     # A/B: features.json
 
+    BOW_MIN, CROSSBOW_MIN, BOW_LOGS = 30.0, 60.0, 7     # DefBowFletching.cs: Bow 30-70, Crossbow 60-100, 7 logs each
+    BOW_ARROWS = 100                                     # arrows in the pack before the wood goes into bows instead
+    BOW_NAMES = ("bow", "crossbow")
+
+    def fletch_bow(self, arrows, wood):
+        """"Crossbow" or "Bow" when the plan still wants Bowcraft/Fletching, the skill reaches the item's range and the arrows are stocked; else None.
+        Shafts and arrows teach only 0-40 (DefBowFletching.cs), so the archers stopped at 30-35 (2026-11-07); a player trains on bows past that and
+        sells them to the Bowyer."""
+        try:
+            import skillplan
+            if not skillplan.wants(self, "Bowcraft/Fletching"):
+                return None
+        except Exception:
+            return None
+        sk = float(self.skill_values.get("Bowcraft/Fletching", 0) or 0)
+        if sk < self.BOW_MIN or wood < self.BOW_LOGS or arrows < self.BOW_ARROWS:
+            return None
+        return "Crossbow" if sk >= self.CROSSBOW_MIN else "Bow"
+
     def fletch_stock(self):
         """(arrows, shafts, feathers, wood) in the pack; boards and logs both make shafts."""
         def n(*names):
@@ -1458,9 +1477,10 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         if not self.fletcher() or self.mobs(10) or time.time() < self.facts.get("fletch_wait", 0):
             return False
         arrows, shafts, feathers, wood = self.fletch_stock()
-        if arrows >= 200 or not feathers or not (shafts or wood):
+        bow = self.fletch_bow(arrows, wood)
+        if not bow and (arrows >= 200 or not feathers or not (shafts or wood)):
             return False
-        want = "Arrows" if shafts else "Shafts"
+        want = bow or ("Arrows" if shafts else "Shafts")
         tool = next((i for i in self.c.backpack if i.name.lower() == "arrow fletching"), None)
         if not tool:
             self.facts["fletch_wait"] = time.time() + 1800
@@ -1480,6 +1500,7 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         # the era's fletcher's tools first ask "Target the wood or feathers you wish to use."; the menu opens only after the material is targeted
         from uo import Event
         names = ("shaft", "shafts") if want == "Arrows" else ("board", "boards", "log", "logs")
+        bows0 = {i.serial for i in self.c.backpack if (i.name or "").lower() in self.BOW_NAMES}
         mat = next((i for i in self.c.backpack if i.name.lower() in names), None)
         end = time.time() + 4
         asked = busy = False
@@ -1511,6 +1532,9 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         said = next((l for l in reversed(lines) if re.search(r"create|fail|lost|cannot|must", l, re.I)), "")
         self.log(f"fletched {want.lower()}: arrows {arrows} -> {a2}, shafts {shafts} -> {s2}, feathers {feathers} -> {f2}, wood {wood} -> {w2}; {said[:80]}")
         self.ev("fletch", made=want.lower(), arrows=a2 - arrows, shafts=s2 - shafts, feathers=f2 - feathers, wood=w2 - wood)
+        if bow:
+            made = [i.serial for i in self.c.backpack if (i.name or "").lower() in self.BOW_NAMES and i.serial not in bows0]
+            self.facts.setdefault("gear_looted", set()).update(made)      # sold with the looted gear (r_sellgear), never the bot's own bow
         self.facts["fletch_wait"] = time.time() + 15
         self.note("fletch", "An archer makes arrows with the fletcher's tools (the Bowyer lists them as 'Arrow Fletching'): Shafts from boards or logs, then "
                             "Arrows from shafts and feathers, a whole stack at a time. Feathers come from carving chickens and birds.", key="howfletch")
@@ -1522,7 +1546,8 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         if not self.fletcher() or self.threats(10) or self.hp_pct() < 60 or time.time() < self.facts.get("wood_wait", 0):
             return False
         arrows, shafts, feathers, wood = self.fletch_stock()
-        if arrows >= 120 or wood >= 20 or feathers < shafts + wood + 20 or self.c.weight > self.c.max_weight * 0.8:
+        bows = self.fletch_bow(self.BOW_ARROWS, self.BOW_LOGS) is not None and arrows >= self.BOW_ARROWS     # (Lumberjacking is in the archer's plan too)
+        if (not bows and (arrows >= 120 or feathers < shafts + wood + 20)) or wood >= 20 or self.c.weight > self.c.max_weight * 0.8:
             return False
         self.facts["wood_wait"] = time.time() + 900
         hat = next((i for i in self.c.backpack if "hatchet" in i.name.lower()), None) or \
@@ -1920,7 +1945,7 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
 class BardBot(PeaceMixin, HunterBot):
     """A bard also practises its instrument skills: Peacemaking at its own feet, Discordance and Provocation on monsters when some are near."""
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_peace", "r_flee", "r_avoid", "r_sewer_out", "r_heal", "r_loot", "r_fight", "r_music", "r_instrument", "r_lighten", "r_resupply", "r_upgrade", "r_shield", "r_bank", "r_facility",
-             "r_hunt", "r_rest", "r_camp", "r_sewer_in", "r_explore"]
+             "r_train", "r_hunt", "r_rest", "r_camp", "r_sewer_in", "r_explore"]
 
     def instrument(self):
         return next((i for i in self.c.backpack if any(w in i.name.lower() for w in ("harp", "drum", "lute", "tambourine", "flute"))), None)

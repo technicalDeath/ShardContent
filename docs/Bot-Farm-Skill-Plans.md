@@ -112,3 +112,26 @@ Measured first: the plan skills that rose less than 0.3 in four hours while stil
 | The carpenters' wood walk looped (several a second) | it walked to the tree's own tile, which is not walkable | walk beside the tree; a tree it cannot get nearer to is marked off; one wood walk a minute |
 | Open risk: dungeon trips | no fighter has the full kit yet (21:50: 0 of 20; Cure 9-12 of 15, Refresh 0 for several); Britain's Cure shelves restock 10 an hour and double after each sell-out, so supply should overtake demand in 2-3 hours. The only dungeon trips so far (7, on 10-21, to Covetous and Wrong) mostly ended "unreachable" (5) or in a death (2): the walk to Covetous' approach (2422,882) stalled at 2453,896. Today's planner routes Britain to the Covetous entrance (1,151 steps); the live walk is unproven | watch the first trips |
 | Crafters stopped crafting beside a cow or a warbler (40 skips an hour) | `threats()` counts a harmless animal in war mode within 2 tiles, and cows fighting another bot tripped it | the craft rule ignores harmless animals |
+
+## Fourth pass, 2026-11-07 (owner: "bots should action against their full 700 skill bank and not focus on a singular profession/skill")
+
+**Measured** from each bot's `skill_plan` events over 24 hours:
+- **Totals:** base totals are 407-620 of 700, and most bots gained under 10 points in the day.
+- **Where it stops:** the main skills are at 100, and the rest of the plan is what stands still.
+
+| Stuck plan skill (gained under 0.5 in 24 h) | Bots | Cause | Change |
+| --- | --- | --- | --- |
+| Healing | 22 of 33 | practice bandaging (`heal_practice`) was a two-bot cohort capped at 60; the cohort gained 2.0-3.7 a day, the rest 0-1.3 | every bot whose plan holds Healing practises to the plan's target; gatherers bandage a scratch of 3+ hit points (`basics.r_heal`) |
+| Hiding | 16 of 27 (every fighter at 0) | only gatherers and crafters practised it idle; the decision core ran no practice rule | `basics.r_train`: Hiding practice with no prey in view, under the core (`CORE_SKILL_RULES`), ahead of `r_hunt` |
+| Bowcraft/Fletching | 4 of 4 archers (30-35) | they made only shafts and arrows, which teach 0-40 (`DefBowFletching.cs`) | `hunter.fletch_bow`: with 100 arrows and 7 logs, a Bow from 30 (teaches to 70) and a Crossbow from 60 (to 100), sold with the looted gear; `r_wood` chops for them |
+| Tracking (tailors) | 4 of 4 (0-50) | only the rangers had the `tracking` feature | the tailors' hide hunt tracks animals, and follows only kinds with 6+ hides; `tracking` given to the four tailors |
+| Swordsmanship (tailors) | 4 of 4 | they hunt with the starter dagger, a Fencing weapon (`Dagger.cs`), and the plan locks Fencing down | a crafter's weapon skill is its plan's (`crafter.main_skill`); before a hide hunt it wields or buys a sword (`hunt_armed`, `weaponup.arms_buy`). Gate 111 |
+| Tinkering | 8 of 8 gatherers and smiths (about 30) | no bot outside the Tinker brain can open the tinkering menu | smiths (gate 111, `tinkerside.py`): every 15 minutes with ingots to spare, a session of up to 5 items through Tools > item (the paths BotTinkAR learned): their own tongs (35-85) and a shovel (40-90) when short, else scissors (5-55) and lockpicks (45-95), sold to a Tinker. The three miners (another brain class) stay open |
+| Swordsmanship, Tactics, Anatomy (carpenters) | 3 of 3 (about 30) | carpenters never fight | open: hunt with the hatchet (an axe is a Swordsmanship weapon) |
+| Resisting Spells | 9 of 13 | rises only when spells hit the bot | left alone |
+| Healing, Hiding, Tracking practice | - | ships in gate 110 | read after the 19:03 rollover |
+| Provocation | 2 of 2 bards (36-50) | provoking needs two creatures in bard range | open |
+
+**Not broke with money in the bank** (owner, the same day):
+- **The problem:** a bare hide shelf sent two tailors (293,406 and 178,287 gold banked) to hunt rats "broke" for 6-7 hours a day.
+- **The fix:** coin hunting now needs `short_of_money` (gold plus bank under 250). A bare shelf sends a hide hunter after hides and any other tailor back to waiting for the restock. `hide_hunt` now covers all four tailors; its A/B gave 9,000-12,300 gold a bot-hour against 3,200-3,500.

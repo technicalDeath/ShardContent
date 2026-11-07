@@ -53,11 +53,29 @@ class BasicsMixin:
         tiles, while the skill plan holds Healing or Healing is already 20+. The gatherers and crafters had no heal at all: a miner at a third of its hit
         points stood fleeing rabbits for minutes (2026-10-31). docs/Bot-Farm-Skill-Plans.md."""
         import skillplan
-        if self.c.ghost or self.hp_pct() >= 65 or self.mobs(3) or not self.c.find("bandage"):
+        if self.c.ghost or self.mobs(3) or not self.c.find("bandage"):
             return False
+        if self.hp_pct() >= 65:
+            # practice: a scratch of PRACTICE_MISS or more with nothing in view, while the plan holds Healing below its target (every bandage on a hurt
+            # patient checks Healing, Bandage.cs; a patient full at the end checks nothing). Gatherers and crafters stood at Healing 30-45 (2026-11-07)
+            missing = (self.c.max_hp or 0) - (self.c.hp or 0)
+            if missing < self.PRACTICE_MISS or not skillplan.wants(self, "Healing") or self.threats(10):
+                return False
+            return self.bandage_self()
         if self.skill_values.get("Healing", 0) < 20 and not skillplan.wants(self, "Healing"):
             return False
         return self.bandage_self()
+
+    PRACTICE_MISS = 3         # hit points a practice bandage needs missing (hunter.PRACTICE_MISS: regen closes a smaller scratch before the bandage ends)
+
+    def r_train(self):
+        """Practise the plan's skills that rise only with use, when idle and safe (owner, 2026-11-07: "bots should action against their full 700 skill
+        bank and not focus on a singular profession/skill"): Hiding (hide_practice: 60 s apart, nothing hostile within 16, never in a shop), with no
+        prey in view. The fighters' plans hold Hiding at 100 and every one stood at 0 (16 of the 27 bots with Hiding unfinished gained under 0.5 in a
+        day); the gatherers, practising it idle, gained 1-6 a day."""
+        if getattr(self, "prey", None) and self.prey(12):
+            return False
+        return self.hide_practice()
 
     HIDE_GAP = 10.0           # Hiding.cs: the next try 10 s after one (1 s after "You can't seem to hide right now")
     HIDE_STILL = 30.0         # s to stand hidden while the threat is in view (moving reveals: no Stealth in any plan)

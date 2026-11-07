@@ -93,6 +93,14 @@ def pick_listed(listed, rate, tame=None):
 
 
 class TrackMixin:
+    def track_rate(self, k):
+        """The fight rating of a listed kind (rating.rate); a hide hunt (crafter) takes only the kinds that carry hides."""
+        import rating
+        return rating.rate(self, k)
+
+    def track_animals_only(self):
+        return False
+
     def track_on(self):
         return self.feature("tracking") and float((getattr(self, "skill_values", {}) or {}).get("Tracking", 0)) >= MIN_SKILL
 
@@ -198,7 +206,7 @@ class TrackMixin:
         except Exception:
             return False
         self.facts["track_next"] = now + TRACK_GAP
-        what = "monsters" if self.facts.get("track_last") == "animals" else "animals"
+        what = "animals" if self.track_animals_only() or self.facts.get("track_last") != "animals" else "monsters"
         self.facts["track_last"] = what
         self.activity = f"tracking {what}"
         self.c.events.drain()
@@ -214,8 +222,7 @@ class TrackMixin:
             self.ev("track_none", kind_of=what, why="none listed")
             return False
         try:
-            import rating
-            pick = pick_listed(listed, lambda k: rating.rate(self, k), tamed_near(self, track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))))
+            pick = pick_listed(listed, self.track_rate, tamed_near(self, track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))))
         except Exception:
             pick = None
         if pick is None:
