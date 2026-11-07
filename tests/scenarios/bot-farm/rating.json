@@ -18,6 +18,6 @@
     "every_s": 10.0
   },
   "_potions": "Heal potions the bot carries count as hit points, one per every_s seconds of the fight at heal_avg each (HealPotion 6-20 pre-AOS, a 10 s shared delay)",
-  "kinds": {},
-  "_kinds": "per creature kind, e.g. {\"shade\": {\"lost\": 1.5}}: a multiplier on the predicted hit points lost, for a kind the model rates too kindly or too harshly"
+  "kinds": {"gazer": {"lost": 3.73}, "gargoyle": {"lost": 1.47}},
+  "_kinds": "per creature kind, e.g. {\"shade\": {\"lost\": 1.5}}: a multiplier on the predicted hit points lost, for a kind the model rates too kindly or too harshly. 2026-11-06/07, rating_check.py --hours 72: gazer 7 fights, 5 deaths, 80 lost against 21 predicted (3.73); gargoyle 3 fights, 3 deaths, 81 against 55 (1.47, a floor: every fight ended in a death). The rangers died 7 times to them in 13 hours, tracking leading them 68 tiles to a gazer rated 0.19"
 }
