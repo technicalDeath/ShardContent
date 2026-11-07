@@ -56,27 +56,35 @@ def _serial(s):
         return None
 
 
-def own_pet_kind(bot, within=30):
-    """The kind key of the bot's own pet (rangerpet's facts["pet"]) when it is in view, else None. The list names creatures, never serials, and holds tamed
-    ones too, nearest first (TrackWhoGump's InternalSorter): BotRangerBR tracked its own timber wolf 1-4 tiles off every 90 s, 16:46-16:58 2026-11-06, and
-    "found" nothing, since a pet is no prey."""
+def tamed_near(bot, within=30):
+    """{kind key: count} of the tame creatures in view: the bot's own pet (rangerpet's facts["pet"]) and every creature shown Innocent (a tamed one is
+    blue; a wild animal is grey and a monster red, which is all BotBase.mobs() hunts). The list names creatures, never serials, holds tamed ones too,
+    nearest first (TrackWhoGump's InternalSorter): BotRangerBR tracked its own timber wolf 1-4 tiles off every 90 s (16:46-16:58), and after the first
+    fix a second tamed timber wolf beside it (19:18-19:23), 2026-11-06, and "found" nothing, since a pet is no prey."""
+    out = {}
+    try:
+        near = list(bot.c.mobiles(within=within))
+    except Exception:
+        return out
     pet = (getattr(bot, "facts", None) or {}).get("pet") or {}
     want = _serial(pet.get("serial"))
-    if want is None or not pet.get("kind"):
-        return None
-    try:
-        near = bot.c.mobiles(within=within)
-    except Exception:
-        return None
-    return pet["kind"] if any(_serial(getattr(m, "serial", None)) == want for m in near) else None
+    for m in near:
+        own = want is not None and _serial(getattr(m, "serial", None)) == want
+        if own or getattr(m, "notoriety", None) == "Innocent":
+            k = pet.get("kind") if own and pet.get("kind") else kind_of(getattr(m, "name", ""))
+            if k:
+                out[k] = out.get(k, 0) + 1
+    return out
 
 
-def pick_listed(listed, rate, pet_kind=None):
-    """(button, name) of the first listed creature the rating would fight, skipping the nearest one of the pet's kind (it is the pet), or None."""
+def pick_listed(listed, rate, tame=None):
+    """(button, name) of the first listed creature the rating would fight, skipping the nearest ones of each kind as many as are tame in view
+    (tamed_near: they are the pets), or None."""
+    skip = dict(tame or {})
     for button, name in listed:
         k = kind_of(name)
-        if pet_kind and k == pet_kind:
-            pet_kind = None
+        if skip.get(k, 0) > 0:
+            skip[k] -= 1
             continue
         r = rate(k)
         if r and r.get("engage"):                          # (rating.rate: the fight worth taking)
@@ -181,7 +189,7 @@ class TrackMixin:
             return False
         try:
             import rating
-            pick = pick_listed(listed, lambda k: rating.rate(self, k), own_pet_kind(self, track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))))
+            pick = pick_listed(listed, lambda k: rating.rate(self, k), tamed_near(self, track_range((getattr(self, "skill_values", {}) or {}).get("Tracking", 0))))
         except Exception:
             pick = None
         if pick is None:
