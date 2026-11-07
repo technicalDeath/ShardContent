@@ -35,6 +35,12 @@ ASK_PER_SPOT = 6
 # 20 minutes costs a fighter about 400 gold of hunting (1,222 gold a bot-hour, the fighters 2026-11-05 18:00-01:00, night_report.py): worth it only
 # above 400 / 750 = 0.53 success. (BotArchAdvR's Trinsic share is 0.42, 14 failed of 33: just worth it, and the camp turned Ralph's escort back, 04:24.)
 MAX_FAIL_SHARE = 0.47
+ROAD_MIN_OK = 5             # a road escort (with gate_travel) only to a town this bot's own ladder trips have passed this often ...
+ROAD_MAX_FAIL = 0.10        # ... and failed at most this share of (ladder.json visits / dest_fails), with no fleet block on the road (ladder's
+                            # "blocked" trip_dest after a failure): the Vesper road 31 passed of 35 (the 4 failures brain restarts), BotWarAdvR 13 of 14;
+                            # Cove 12 of 32 and Trinsic about half stay closed, where the morning's road escorts were lost (BotMaceCR's death in the
+                            # Cove-road gazer pocket, Ralph and Ajay turned back by Trinsic, 2026-11-06). Vesper has no moongate, and "Cadence wants to
+                            # go to Vesper" was the commonest ask in the eight hours with no escort taken
 SPOT_REACH = 6             # tiles: the spawner reached (its escorts wander about it); further, its people are not asked
 
 DEST_RE = re.compile(r"looking to go (?:to |somewhere)[:\s]*([A-Z][A-Za-z' ]+?)\s*(?:[,.?!]|$)")
@@ -92,6 +98,19 @@ class EscortMixin:
     # (2026-11-06, the first live morning: escorts by moongate 6 of 6 paid (Constanza 711, Verity 606, Lalasa 654, Howard, Carlin), 8 hops, no hit
     # point lost; by road 0 of 3: Ralph turned back at the Trinsic road camp, Jarman ended in BotMaceCR's death in the gazer pocket on the Cove road,
     # Ajay turned back at 16 of 100 hit points)
+    def escort_road_ok(self, dest):
+        """A road this bot has walked well (ROAD_MIN_OK, ROAD_MAX_FAIL, by its own ladder record) and no bot has just failed (the fleet block)."""
+        try:
+            st = self.ladder_state()
+            ok = int((st.get("visits") or {}).get(dest, 0) or 0)
+            bad = int((st.get("dest_fails") or {}).get(dest, 0) or 0)
+            if ok < ROAD_MIN_OK or bad > ROAD_MAX_FAIL * (ok + bad):
+                return False
+            mem = getattr(self, "mem", None)
+            return mem is None or mem.usable("trip_dest", dest)
+        except Exception:
+            return False
+
     def escort_dests(self, home):
         """{dest: trip} of the towns this bot may walk to now (first_trip's own checks: skill band, health, a safe route)."""
         out = {}
@@ -102,9 +121,9 @@ class EscortMixin:
             for t in self.trips_for_home(home):
                 if t.get("kind") != "town" or (t.get("gate") and not gate_on):
                     continue
-                if gate_on and not t.get("gate"):
+                if gate_on and not t.get("gate") and not self.escort_road_ok(t["dest"]):
                     closed[t["dest"]] = "road (gate only)"
-                    continue                                    # by road the escort walks into the road camps with the bot: by moongate only
+                    continue                                    # by road the escort walks into the road camps with the bot: by moongate, or a road it knows
                 town = t.get("town") or t["dest"]
                 if town in out and not t.get("gate"):
                     continue                                    # the gate trip to a town is kept over the road (shorter, and past no road camp)
