@@ -631,8 +631,10 @@ class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixi
         return False
 
     def fight_back(self, m):
-        """No way out (basics.flee_from "trapped"): an attack spell, else fists. A slime has 15-19 hit points, a giant rat 26-39 (creature_stats.json)."""
+        """No way out (basics.flee_from "trapped"): an attack spell, else fists. A slime has 15-19 hit points, a giant rat 26-39 (creature_stats.json).
+        Committed for FLEE_STUCK_S, as basics.fight_back."""
         self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
+        self.facts["fight_until"] = max(float(self.facts.get("fight_until", 0) or 0), time.time() + float(getattr(self, "FLEE_STUCK_S", 20)))
         if self.c.mana >= 4 and self.attack(m):
             return True
         self.c.attack(m.serial)

@@ -610,8 +610,11 @@ class BasicsMixin:
         return out
 
     def fight_back(self, m):
-        """No way out: fight it (a caster casts: CasterBot overrides)."""
+        """No way out: fight it (a caster casts: CasterBot overrides), and stay in the fight FLEE_STUCK_S (fight_until: r_flee and r_avoid keep swinging,
+        fight_committed) rather than try another flight next tick. A trapped flight only swung once between flights: BotFenceAdvR, cornered by a
+        lizardman pack in Despise, logged 26 "flee_trapped" in 35 s, out of war mode at its death (2026-11-07 13:58:54-13:59:29)."""
         self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
+        self.facts["fight_until"] = max(float(self.facts.get("fight_until", 0) or 0), time.time() + float(getattr(self, "FLEE_STUCK_S", 20)))
         if not self.c.war_mode:
             self.c.war(True)
         self.c.attack(m.serial)
