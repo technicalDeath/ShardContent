@@ -946,6 +946,7 @@ class FirstTrip(RideMixin, LadderMixin):
                 self.c.goto(int(self.c.x) + dx * self.DRIFT_HOP, int(self.c.y) + dy * self.DRIFT_HOP).wait(timeout=10)
             except Exception:
                 break
+            self.log(f"first trip: hop away from {len(ms)} ({', '.join(sorted({str(getattr(m, 'name', '?')) for m in ms}))}) to {self.c.x},{self.c.y}")
         if near(notice + self.DRIFT_MARGIN):
             return False
         self.log(f"first trip: the way is held: waiting {int(self.DRIFT_WAIT_S)} s out of notice at {self.c.x},{self.c.y} for the pack to drift")

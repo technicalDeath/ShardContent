@@ -159,6 +159,14 @@ class Ctx:
         t = st.get("target")
         if t:
             self.bot.ignored[t["serial"]] = time.time() + ignore
+            if ignore == FLEE_IGNORE:
+                # it ran or would not be hurt: the kind, not only this one, is passed over on the road for as long (road_fight). BotMaceAdvR dropped and
+                # re-fought crows, swallows, a woodpecker and a rat eight times in 3.5 minutes on one walk, BotFairSwordNR nine fleeing animals in 18
+                # (2026-11-08 05:52-06:05)
+                try:
+                    self.bot.__dict__.setdefault("_fled_kinds", {})[self.bot.mkey(NS_NAME(t["name"]))] = time.time() + ignore
+                except Exception:
+                    pass
             if ignore == RETREAT_IGNORE:
                 # dropped mid-fight (losing, low health, the measured give-up): it was struck and keeps biting (hunter.fighting_bot); one dropped as
                 # unreachable or got away (an alligator in the water) is not counted
@@ -166,6 +174,12 @@ class Ctx:
             self.bot.log(f"hunt tree: dropped {t['name']}: {why}")
         st["target"] = None
         self.bot.target = None
+
+
+class NS_NAME:
+    """A stand-in with only a name, for mkey() on a dropped target (the record keeps the name, not the mobile)."""
+    def __init__(self, name):
+        self.name = name
 
 
 class Step(py_trees.behaviour.Behaviour):
@@ -399,7 +413,9 @@ class Travel(Step):
         if not st.get("target") and not pend:
             if b.hp_pct() < ENGAGE_HP:
                 return None
-            ps = [m for m in b.prey(18) if not b.near_death_spot(m.x, m.y, 40) and not _boxed(b, m) and (m.distance <= 8 or b.safe_ground(m)) and worth_it(b, m)]
+            fled = b.__dict__.get("_fled_kinds") or {}
+            ps = [m for m in b.prey(18) if not b.near_death_spot(m.x, m.y, 40) and not _boxed(b, m) and (m.distance <= 8 or b.safe_ground(m)) and worth_it(b, m)
+                  and fled.get(b.mkey(m), 0) <= now]
             if not ps:
                 return None
             m = ps[0]
