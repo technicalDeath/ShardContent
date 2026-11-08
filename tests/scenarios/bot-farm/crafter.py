@@ -998,6 +998,18 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         # no dig on that ground until the shops may have ingots again (vendorStock restockMinutes 30: half of it); BotSmithAR was refused twice by a troll and
         # an ettin at its dig spot, walked back each time, and an ogre boxed it in on the third (2026-11-05 23:47-23:56)
         self.facts["dig_hold_until"] = now + self.DIG_HOLD
+        # and that ground itself for longer: the mountain spots within DIG_AVOID_R for bw.AVOID_H hours (the death area's own span), so the next dig picks
+        # other hills. BotSmithAR fled a ratman camp at its west-hills dig spot at 11:57 and walked back into it at 12:12; four crafters fled that ground in
+        # four hours (2026-11-08 08:10-12:13)
+        try:
+            import bw
+            until = now + float(bw.AVOID_H) * 3600
+            for t in (self.mountains() if hasattr(self, "mountains") else []):
+                if max(abs(int(t[0]) - int(self.c.x)), abs(int(t[1]) - int(self.c.y))) <= self.DIG_AVOID_R:
+                    self.blocked[(t[0], t[1])] = max(self.blocked.get((t[0], t[1]), 0), until)
+            self.spot = None
+        except Exception:
+            pass
         try:
             import far as _far
             if d > _far.FAR and hasattr(self, "far_goto"):
@@ -1008,6 +1020,7 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         self.goto_near(bx, by, 6).wait(timeout=90)
         return True
 
+    DIG_AVOID_R = 40                                       # tiles round a fled dig spot whose mountain spots are passed by (a memory cell)
     DIG_HOLD = 900                                         # s without r_dig after leaving monster ground (half the 30-minute restock)
 
     def harmless_animal(self, m):
