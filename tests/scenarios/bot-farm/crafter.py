@@ -587,6 +587,7 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
 
     OWN_ORE_MINING = 50       # Mining enough to dig and smelt iron for itself (Mining.cs: iron from 0, smelting iron needs no more)
     OWN_ORE_FOR = 900         # s the shelves are passed by once training is on its own ore
+    BUY_PAYS = 2.0 / 3.0      # success chance from which bought material pays (3.75 x chance - 2.5 gold an ingot, trains_on_own_ore)
 
     def trains_on_own_ore(self):
         """A veteran smith or tinker that can mine and has money to train with digs its own ore instead of buying ingots, as a player with the Mining for it
@@ -601,6 +602,15 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         # Lumberjacking 100 and 54,745 gold, bought the shelf's few boards and stood idle 5 of 13 minutes waiting for more (2026-10-31)
         gather = "Mining" if self.cfg.get("res") == "IronIngot" else "Lumberjacking" if self.cfg.get("craft") == "Carpentry" else None
         if gather is None or self.skill_values.get(gather, 0) < self.OWN_ORE_MINING:
+            return False
+        lc = self.facts.get("craft_ch")
+        if lc and time.time() - float(lc[0]) < 3600 and float(lc[1]) >= self.BUY_PAYS:
+            # the pieces it makes now succeed often enough that bought material pays (the 2-in-3 above): buy it, as a player does, not walk to the
+            # hills. BotSmithAR, making katanas at 95%, walked 256 tiles to dig beside a ratman camp and stood "waiting" 56 of 118 minutes; BotSmithBR
+            # buys its ingots and made 181 pieces an hour to SmithAR's 156 (2026-11-07 19:12-21:12)
+            if time.time() - float(self.__dict__.get("_buy_pays_logged", 0) or 0) > 900:
+                self.__dict__["_buy_pays_logged"] = time.time()
+                self.log(f"material: buying it: the pieces it makes succeed {float(lc[1]):.0%} (bought material pays from {self.BUY_PAYS:.0%})")
             return False
         if time.time() >= self.facts.get("soldout_until", 0):
             self.facts["soldout_until"] = time.time() + self.OWN_ORE_FOR      # r_dig's own test: no shop to look at first
@@ -1787,6 +1797,7 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
                 return self.skip_why("r_craft", f"not at the forge yet ({self.c.x},{self.c.y}, forge {st[0]},{st[1]})")
         self.activity = f"making {name}"
         self.log(f"making {name}: skill {self.skill:.1f} window {it['min']}-{it['max']} chance {ch:.0%} cost {it['amount']}")
+        self.facts["craft_ch"] = (time.time(), float(ch))     # (trains_on_own_ore: bought material pays at this chance or not)
         result = None
         before = {i.serial for i in self.c.backpack}
         self._need = it["amount"]                          # material() targets a stack that holds enough for this item
