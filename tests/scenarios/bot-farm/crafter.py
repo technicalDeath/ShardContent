@@ -2046,6 +2046,7 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
             home = self.home_centre()
             empty = self.facts.get("earn_empty", {})
             now = time.time()
+            reach = self.hide_reach()
             best = None
             for cell, c in self.mem.state["world"]["cells"].items():
                 if not any(self.hide_kind(k) for k in (c.get("sights") or ())):
@@ -2054,14 +2055,26 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
                     continue
                 cx, cy = (int(v) for v in cell.split(","))
                 x, y = cx + 20, cy + 20
-                if max(abs(x - home[0]), abs(y - home[1])) > self.EARN_REACH or empty.get((x, y), 0) > now:
+                if max(abs(x - home[0]), abs(y - home[1])) > reach or empty.get((x, y), 0) > now:
                     continue
                 rec = townguard.region_at(x, y)
                 if rec and townguard.in_core(self, x, y, rec):
                     continue
+                try:
+                    import spots
+                    if spots.measured_danger_near(self, {"x": x, "y": y}):
+                        continue                                # within reach of a spawner this bot loses to (the tours' and tracking's check): the
+                                                                # wider reach touches the gazer pocket east of Britain
+                except Exception:
+                    pass
                 d = max(abs(x - self.c.x), abs(y - self.c.y))
-                if best is None or d < best[0]:
-                    best = (d, (x, y))
+                try:
+                    load = self.ground_load(cell)               # another bot on that ground: last (four tailors shared two farm cells, 2026-11-07)
+                except Exception:
+                    load = 0
+                key = (load > 0, d)
+                if best is None or key < best[0]:
+                    best = (key, (x, y))
             if best:
                 return best[1]
         except Exception:
@@ -2069,6 +2082,18 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         return self.earn_ground()
 
     EARN_REACH = 150                                      # tiles from home a broke crafter may go for coins
+    HIDE_WALK_MIN = 5.0                                   # minutes each way a hide hunt may walk: a quarter of the 20-minute window the shelves rest
+
+    def hide_reach(self):
+        """Tiles from home a hide hunt may go: HIDE_WALK_MIN at the bot's walk rate (task_core.walk_rate, 55 a minute at the farm's median), at least
+        EARN_REACH. Within 150 tiles only 2 of the 877 cells with sightings passed (328 farther; 224 camp cells): all four tailors hunted the same two
+        farm cells and killed 0-3 animals in 3 hours (2026-11-07 19:12-22:12)."""
+        try:
+            import task_core
+            rate = task_core.walk_rate(self)
+        except Exception:
+            rate = 55.0
+        return max(self.EARN_REACH, int(self.HIDE_WALK_MIN * rate))
     EARN_MIN_GOLD = 8                                     # looted gold (decayed) a cell must hold to be a candidate
     EARN_STAND = 120                                      # seconds on a spot without anything to fight before it is called empty
     EARN_EMPTY = 900                                      # and left alone for this long
