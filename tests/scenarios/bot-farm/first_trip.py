@@ -306,8 +306,11 @@ class FirstTrip(RideMixin, LadderMixin):
     def trip_core_lets(self, name):
         """Under the decision core (task_core) only the reflexes run, so a ladder bot's r_trip never did (2026-11-01: three of the four ladder bots run the core).
         A ladder bot keeps r_trip, and r_fight while a trip is under way: the order a bot without the core has (the outing waits behind fights)."""
+        under_way = bool(self.trip_load().get("trip"))
         if name == "r_trip":
-            return self.ladder_on()
+            # a trip under way is finished whatever the features say now: BotRangerAR, walking home from Despise, lost ladder_dungeon by a features
+            # change at the door camp, the core took over there with nothing open to hunt, and a troll killed it standing (2026-11-08 15:14-15:15)
+            return self.ladder_on() or under_way
         if name == "r_ride":
             return self.ride_on()                                   # riding (ride.py) under the core too
         if name == "r_dungeon_out":
@@ -319,7 +322,7 @@ class FirstTrip(RideMixin, LadderMixin):
             return bool(self.facts.get("dungeon_hunt"))
 
         if name == "r_fight":
-            return bool(self.ladder_on() and self.trip_load().get("trip"))
+            return under_way
         return False
 
     def r_trip(self):
@@ -1671,7 +1674,7 @@ class FirstTrip(RideMixin, LadderMixin):
             return True                                         # a townsperson going home with it (escort.py)
         if phase == "stay":
             self.activity = f"looking around {t['dest']}"
-            if t.get("entered") and self.feature("dungeon_hunt") and self.trip_dungeon_hunt(t, now) is False:
+            if t.get("entered") and (self.feature("dungeon_hunt") or self.facts.get("dungeon_hunt")) and self.trip_dungeon_hunt(t, now) is False:
                 if now - float(self._trip.get("saved_at") or 0) > STAY_SAVE_S:
                     self.trip_save()
                 return False                                    # the decision core hunts the dungeon's level 1 (trip_dungeon_hunt)
