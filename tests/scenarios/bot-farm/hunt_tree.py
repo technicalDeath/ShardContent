@@ -877,7 +877,9 @@ class Pursue(Step):
             c.drop_target(f"it is running away: {int(now - t['t0'])} s and no nearer ({d_now} tiles)", ignore=FLEE_IGNORE)       # fix B: prey that runs is let go, and left alone for five minutes
             return Status.SUCCESS
         if now - t["t0"] > PURSUE_S or cheb(c.here(), tuple(t["xy0"])) > PURSUE_TILES:
-            c.drop_target(f"chased {int(now - t['t0'])} s and {cheb(c.here(), tuple(t['xy0']))} tiles")
+            # (FLEE_IGNORE, so the kind is put aside for road fights too: most of the road drops after gate 128 were this one, with the default 90 s
+            # and the serial only, 12 of MaceAdvR's 13 and all 14 of WarAdvR's, 2026-11-08 06:29-07:12)
+            c.drop_target(f"chased {int(now - t['t0'])} s and {cheb(c.here(), tuple(t['xy0']))} tiles", ignore=FLEE_IGNORE)
             return Status.SUCCESS
         b.activity = f"pursuing {m.name}"
         moved = cheb((m.x, m.y), tuple(t.get("txy", (m.x, m.y))))
