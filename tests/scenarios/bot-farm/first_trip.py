@@ -1089,7 +1089,7 @@ class FirstTrip(RideMixin, LadderMixin):
                 return False                                    # it keeps up with a runner: the escapes stand
         step = 1 if t.get("phase") == "out" else -1
         ahead = self.trip_route_slice(wps, t["i"], step)
-        box = self.trip_boxers(near, ahead, run_s, table, end=(wps[-1] if step == 1 and wps else None))
+        box = self.trip_boxers(near, ahead, run_s, table, end=(wps[-1] if step == 1 and wps else None)) if self.DASH_BOX_HOLD else []
         if len(box) >= self.DASH_BOX:
             now = time.time()
             self.__dict__["_box_held"] = {"serials": {sr for _, sr in box if sr is not None}, "until": now + self.BOX_HOLD_S}
@@ -1100,6 +1100,9 @@ class FirstTrip(RideMixin, LadderMixin):
             return False
         return self.trip_pass_ok(near, ahead, self.trip_route_slice(wps, t["i"] - step, -step))
 
+    DASH_BOX_HOLD = False      # owner, 2026-11-08, asked "fewer deaths or more trips getting through?" at the Despise door: "Allow risky dashes". The
+                               # box hold (trip_boxers, gates 113/120) is off: a slow pack on the road or at the door no longer stops the run past it. With it
+                               # on there were no door deaths from 23:27 but 4 of 6 trips turned back in one hour; before it, FenceAdvR and MaceCR died boxed in
     DASH_BOX = 3               # monsters that reach the road ahead before the runner: with 4 and 5 beside it no step moved (BotMaceCR, BotFairSwordNR, BotFenceAdvR)
     BOX_HOLD_S = 60.0          # s a held dash stays held while one of that pack is in view (the trip's own "4 escapes in 60 s" window): BotArchAdvR's hold at
                                # the Trinsic road camp fired at 22:52:07, the next verdict 2 s later ran past four (a giant spider, an orc, a ratman, an ettin),
