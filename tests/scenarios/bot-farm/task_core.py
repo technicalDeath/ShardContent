@@ -1636,6 +1636,16 @@ def tick(bot):
             bot.__dict__["_last_errand"] = task["task"] not in ("hunt", "tour2", "wait")
             end_task(bot, task, why)
             task = None
+    if not task and hasattr(bot, "r_fight"):
+        # monsters on it: fight them off before any new choice. BotFenceAdvR's tour ended "danger" with five on it and the core walked it off to the bank,
+        # bandaging on the way, to its death; BotRangerAR started an ammo errand with three trolls beside it (2026-11-08 18:11, 16:33). r_flee, a reflex
+        # ahead of this, still takes it away from a pack it loses (flee_below, pack_losing)
+        try:
+            import hunter as _h
+            if _h.fighting_bot(bot) and bot.r_fight():
+                return "r_fight"
+        except Exception as e:
+            bot.log(f"core: fight before a choice: {type(e).__name__}: {e}")
     if not task:
         nxt = bot.__dict__.pop("_core_next", None)
         opts = candidates(bot, g, rng)

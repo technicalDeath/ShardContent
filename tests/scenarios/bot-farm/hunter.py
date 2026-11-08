@@ -837,7 +837,10 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
         """Losing (below half health while the target has clearly more of its own left): run at 50%, while there is health to run with.
         At 40% the bots that fled from ettins, ogres and trolls were caught at hp 0-15."""
         try:
-            if len(fighting_bot(self)) >= self.PACK_FLEE_N:
+            on = fighting_bot(self)
+            if len(on) >= 2 and self.pack_losing(on):
+                return 101                                  # a pack the rating says it loses from here: run now, whatever the health
+            if len(on) >= self.PACK_FLEE_N:
                 # a pack on it: run at the "hurt" line (BITERS_HURT, first_trip's turn-back). The pack rating priced BotFencerBR's four ratmen and two
                 # giant rats at 27-41 hit points lost; it lost 81 in 6.5 minutes, fled only at 36 of 91 after ten potions healed less than the bites,
                 # and reached 10 (2026-11-08 11:02-11:09). One kind at a time the rating holds (ratman 1.03 of its prediction over 895 fights)
@@ -846,6 +849,24 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
             pass
         f = self.fight
         return 50 if f and f.get("pct", 100) > self.hp_pct() + 20 else 40
+
+    def pack_losing(self, on):
+        """The monsters fighting it (two or more) rate no fight at its health now (rating.rate_pack, cached 5 s): BotFenceAdvR took on a slime, two snakes
+        and two lizardmen at 85 of 87, fled at 50 and died (2026-11-08 18:12); a player leaves a pack he cannot win before he is half dead."""
+        hit = self.__dict__.get("_pack_losing")
+        key = tuple(sorted(getattr(m, "serial", 0) for m in on))
+        if hit and hit[1] == key and time.time() - hit[0] < 5:
+            return hit[2]
+        losing = False
+        try:
+            import rating
+            kinds = [self.mkey(m) for m in on]
+            p = rating.rate_pack(self, [k for k in kinds if rating.creature(k)])
+            losing = bool(p) and not p.get("engage")
+        except Exception:
+            losing = False
+        self.__dict__["_pack_losing"] = (time.time(), key, losing)
+        return losing
 
     def step_away(self, m, dist=3):
         self.sprint()
