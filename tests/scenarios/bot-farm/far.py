@@ -192,7 +192,13 @@ class FarMixin:
             steered = callable(getattr(self, "planner_acts", None)) and self.planner_acts()
             may_gather = not steered or getattr(self, "plan_current", lambda: "gather")() == "gather"
             if getattr(self, "current_rule", "") == "r_restock" and callable(gather) and gather() and may_gather and value is not True:
-                return False, "it can gather the material near home"                     # a crafter restocking prefers to chop, dig or fish
+                # a crafter restocking prefers to chop, dig or fish: the shelves are passed by for that while (soldout_until, which r_chop and r_dig
+                # read; trains_on_own_ore's OWN_ORE_FOR). Without it the gather rules waited on the shop ("still has money and the shop has boards")
+                # and the shop on the gathering: BotSmithAdvR and BotCarpBR stood 37-40% of an hour in r_wander (2026-11-07 23:12-00:12)
+                facts = getattr(self, "facts", None)
+                if isinstance(facts, dict):
+                    facts["soldout_until"] = max(float(facts.get("soldout_until", 0) or 0), time.time() + float(getattr(self, "OWN_ORE_FOR", 900)))
+                return False, "it can gather the material near home"
             return True, "it cannot work without the shop"
         if role == "travel":
             return True, "already decided"
