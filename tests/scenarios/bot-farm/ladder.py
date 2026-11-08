@@ -55,6 +55,7 @@ MIN_WORTH = 300
 DUNGEON_WORTH = 500
 TRIP_ARROWS = 150             # a bow's quiver before a dungeon trip: what its restock buys (hunter.r_resupply, "=arrow": 150)
 STAY_ARROWS = 25              # and the stay's floor: the restock's own low line (r_resupply, ammo() < 25); the trip's start needs 60 (ladder_kit_strict)
+GEAR_PIECES = 6               # armour pieces one gear check may buy: the suit (torso, legs, arms, gloves, gorget, helm; wear.ERRAND_PIECES)
 GEAR_GAP = 900                # s between the gear errands before a dungeon trip (ladder_geared): the upgrade rules' own wait is 600
 TICK_EVERY = 10
 
@@ -253,13 +254,22 @@ class LadderMixin:
                 return self.ladder_spare() is not None or now - self.facts.get("spare_fail_at", 0) < GEAR_GAP
             self.facts["gear_check_at"] = now
             acted = False
-            for fn, fact in (("r_upgrade", "upgrade_at"), ("arms_buy", "arms_at")):
-                if hasattr(self, fn):
+            for fn, fact, n in (("r_upgrade", "upgrade_at", GEAR_PIECES), ("arms_buy", "arms_at", 1)):
+                if not hasattr(self, fn):
+                    continue
+                for _ in range(n):
+                    # the whole suit in one visit, as wear.armor_errand buys it: r_upgrade takes one piece a call, ten minutes apart, and BotRangerAR,
+                    # resurrected with 156,735 gold banked, began again with a 170-gold ringmail tunic (2026-11-08 13:50)
                     self.facts[fact] = 0
+                    bought = len(self.facts.get("upgrades") or [])
                     try:
-                        acted = bool(getattr(self, fn)()) or acted
+                        did = bool(getattr(self, fn)())
                     except Exception as e:
                         self.log(f"ladder: gear check {fn}: {type(e).__name__}: {e}")
+                        break
+                    acted = did or acted
+                    if not did or (fn == "r_upgrade" and len(self.facts.get("upgrades") or []) == bought):
+                        break
             if getattr(self, "ranged", False) and self.ammo() < TRIP_ARROWS:
                 acted = self.ladder_quiver() or acted
             if self.ladder_spare() is None and not self.ladder_buy_spare():
