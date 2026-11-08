@@ -1534,6 +1534,13 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         self.facts["stocked_at"] = time.time()
         self.facts["stocked_gold"] = int(self.c.gold or 0)
 
+    def gather_allowed(self):
+        """The gather rules may run now: no planner steering, or the planner on "gather" (far.far_worth's own test). With the planner on "craft" r_dig
+        and r_chop are off, so a "gather near home" mark left from earlier held BotSmithAR's restock and nothing dug: 33 minutes of r_wander on "under
+        5 iron ingot" until the stall moved the plan to gather (2026-11-08 03:14-03:47)."""
+        steered = callable(getattr(self, "planner_acts", None)) and self.planner_acts()
+        return not steered or getattr(self, "plan_current", lambda: "gather")() == "gather"
+
     def gather_failing(self):
         """True while its own gathering has just failed: no tree it could work (chop_fail), no pickaxe to be had (pick_fail), or its dig spot held."""
         now = time.time()
@@ -1584,7 +1591,7 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         if self.leather_on():
             return self.leather_restock()                 # hides from the Furtrader, cut with scissors; the Tanner's leather when none are left
         if self.facts.get("soldout_until", 0) > time.time() and self.can_gather() and not (
-                self.facts.get("soldout_by_far") == self.facts.get("soldout_until") and self.gather_failing()):
+                self.facts.get("soldout_by_far") == self.facts.get("soldout_until") and (self.gather_failing() or not self.gather_allowed())):
             return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look (far.py's
                                                           # "gather near home" mark gives way when the gathering fails: BotCarpBR, its trees spent,
                                                           # chop_fail set, stood 78% of a half-hour, 2026-11-08 00:30-01:05)

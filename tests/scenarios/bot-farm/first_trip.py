@@ -901,6 +901,49 @@ class FirstTrip(RideMixin, LadderMixin):
             i += step
         return out
 
+    DRIFT_WAIT_S = ESCAPE_HOLD_S   # s it waits out of notice for a pack to drift off the road: the escape window itself
+
+    def trip_drift_wait(self, t, leg):
+        """Once a trip, on the way out, before "the way is held" turns it back: walk the escape leg, and with nothing in notice range there, stand
+        DRIFT_WAIT_S watching; nothing comes within notice and health holds: True, the run is tried again. A player waits out of sight for a camp
+        to drift. The Despise door camp turned back four trips on 2026-11-08 (SwordBR 01:24, MaceAdvR 02:00, FencerBR 02:44, WarAdvR 04:03, four
+        escapes round the same five trolls), each after a 40-70 minute walk, while eight trips passed it in the hour 03:12-04:12."""
+        if t.get("drift_waited") or t.get("phase") != "out":
+            return False
+        t["drift_waited"] = True
+        try:
+            import detour
+            notice = int(detour.NOTICE)
+        except Exception:
+            notice = 14
+        try:
+            self.c.goto(int(leg.to[0]), int(leg.to[1])).wait(timeout=20)
+        except Exception:
+            return False
+
+        def near():
+            try:
+                return [m for m in self.trip_near() if getattr(m, "x", None) is not None
+                        and max(abs(int(m.x) - int(self.c.x)), abs(int(m.y) - int(self.c.y))) <= notice]
+            except Exception:
+                return []
+
+        if near():
+            return False
+        self.log(f"first trip: the way is held: waiting {int(self.DRIFT_WAIT_S)} s out of notice at {self.c.x},{self.c.y} for the pack to drift")
+        end = time.time() + self.DRIFT_WAIT_S
+        while time.time() < end:
+            if hasattr(self, "beat"):
+                self.beat()
+            time.sleep(1.0)
+            if self.c.ghost or self.hp_pct() < 60 or near():
+                self.ev("trip_drift_wait", ok=False, at=[int(self.c.x), int(self.c.y)])
+                return False
+        self.__dict__.pop("_box_held", None)
+        self.ev("trip_drift_wait", ok=True, at=[int(self.c.x), int(self.c.y)])
+        self.log("first trip: nothing came: trying the run again")
+        return True
+
     def trip_held_turn(self):
         """May the way-is-held abort turn the trip back? Not when the run-past costed the way back (the route behind) at a contact with a poisoner the
         bot cannot cure (casterpass.UNCURABLE) and the way on for less, in the last few seconds: BotFairArcherVR, among two scorpions and an earth
@@ -1141,7 +1184,9 @@ class FirstTrip(RideMixin, LadderMixin):
             if leg is not None and t.get("phase") == "out":
                 held = [x for x in self.__dict__.get("_escapes_at", []) if time.time() - x < ESCAPE_HOLD_S] + [time.time()]
                 self.__dict__["_escapes_at"] = held
-                if len(held) >= ESCAPE_HOLD_N and self.trip_held_turn():
+                if len(held) >= ESCAPE_HOLD_N and self.trip_drift_wait(t, leg):
+                    self.__dict__["_escapes_at"] = []           # waited out of notice and the road cleared: the run goes on (trip_drift_wait)
+                elif len(held) >= ESCAPE_HOLD_N and self.trip_held_turn():
                     # escape after escape on the way out: monsters hold the road, so the trip turns back (to be walked home round them by these legs)
                     self.__dict__["_escapes_at"] = []
                     self.trip_abort(f"run: the way is held ({len(held)} escapes in {int(ESCAPE_HOLD_S)} s)")
