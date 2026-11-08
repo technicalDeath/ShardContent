@@ -53,6 +53,7 @@ DUNGEON_GAP = TOWN_GAP       # 45 min, as a town's: 3 h (10800) was set for the 
 DUNGEON_HP = 80
 MIN_WORTH = 300
 DUNGEON_WORTH = 500
+GEAR_GAP = 900                # s between the gear errands before a dungeon trip (ladder_geared): the upgrade rules' own wait is 600
 TICK_EVERY = 10
 
 
@@ -220,6 +221,73 @@ class LadderMixin:
         return (self.feature("ladder_dungeon") and now - max(st.get("last_dungeon", 0), st.get("last_trip_end", 0)) >= DUNGEON_GAP
                 and self.ladder_worth() >= DUNGEON_WORTH and self.ladder_kit_strict() and self.ladder_mounted() and self.ladder_dungeon_fights())
 
+    def ladder_geared(self):
+        """The best gear its money buys before it leaves for the dungeon (owner, 2026-11-08: "make sure bots get the best gear they can before they head
+        out to the dungeon"): a working weapon of its skill in hand (weapon_state "ok": the core's arm errand replaces a missing, wrong or badly worn one
+        first), a spare of it in the pack, and the armour and weapon upgrades asked once more, their ten-minute waits set aside (r_upgrade, arms_buy).
+        BotMaceCR's club was "badly worn" at 06:51 on 2026-11-08, broke in Despise, and it fought on with its fists, 221,905 gold in the bank. True when
+        geared; False while an errand ran (the trip waits for the next tick). A caster carries no weapon (no WeaponMixin): True."""
+        if not hasattr(self, "weapon_now") or not hasattr(self, "weapon_state"):
+            return True
+        try:
+            state = self.weapon_state()
+            if state == "worn" and self.ladder_spare() is not None:
+                state = "ok"                                       # badly worn, a spare in the pack: the spare takes over when it breaks
+            if state != "ok":
+                if time.time() - self.__dict__.get("_gear_logged", 0) > 1800:
+                    self.__dict__["_gear_logged"] = time.time()
+                    self.log(f"ladder: not to {DUNGEON} yet: weapon {state}")
+                return False
+            now = time.time()
+            if now - self.facts.get("gear_check_at", 0) < GEAR_GAP:
+                return self.ladder_spare() is not None or now - self.facts.get("spare_fail_at", 0) < GEAR_GAP
+            self.facts["gear_check_at"] = now
+            acted = False
+            for fn, fact in (("r_upgrade", "upgrade_at"), ("arms_buy", "arms_at")):
+                if hasattr(self, fn):
+                    self.facts[fact] = 0
+                    try:
+                        acted = bool(getattr(self, fn)()) or acted
+                    except Exception as e:
+                        self.log(f"ladder: gear check {fn}: {type(e).__name__}: {e}")
+            if self.ladder_spare() is None and not self.ladder_buy_spare():
+                self.facts["spare_fail_at"] = now                  # none on any shelf it knows: it goes without, as before, and asks again in GEAR_GAP
+            self.ev("dungeon_gear", acted=acted, spare=self.ladder_spare() is not None, weapon=self.weapon_state())
+            return False
+        except Exception as e:
+            self.log(f"ladder: gear check failed ({type(e).__name__}: {e})")
+            return True
+
+    def ladder_spare(self):
+        """The spare weapon in the pack: one of its skill its strength wields (WeaponMixin.own_weapon_in_pack), else None."""
+        _, worn = self.weapon_now()
+        if worn is None:
+            return None
+        return self.own_weapon_in_pack()
+
+    def ladder_buy_spare(self):
+        """A second of the weapon in hand from the nearest shop whose list on record sells it (shop_weapons), the bank first. True when it is in the pack."""
+        import weaponup
+        cur, worn = self.weapon_now()
+        if worn is None:
+            return False
+        want = weaponup.norm(worn.name)
+        offers = [(price, xy, name) for e, price, xy, name in self.shop_weapons() if weaponup.norm(name) == want]
+        if not offers:
+            return False
+        here = (int(self.c.x), int(self.c.y))
+        price, xy, name = min(offers, key=lambda o: (cheb(here, tuple(o[1])), o[0]))
+        if self.c.gold < price + 5 and self.facts.get("bank_balance", 0) > 0:
+            self.visit_bank("weapon", withdraw=price + 60, reserve=0)
+        if self.c.gold < price:
+            return False
+        self.activity = f"buying a spare {name}"
+        got = self.shop_at(tuple(xy), {"=" + name: 1}, budget=price + 5)
+        ok = bool(got) and self.ladder_spare() is not None
+        self.ev("spare_weapon", item=name, price=price, ok=ok)
+        self.log(f"ladder: a spare {name} for {price} gold before {DUNGEON}: {'in the pack' if ok else 'not bought'}")
+        return ok
+
     def ladder_mounted(self):
         """Riding (owner, 2026-11-07: "maybe having a mount should be a requirement, so bots can travel faster"): r_ride buys and mounts a horse first."""
         try:
@@ -236,8 +304,8 @@ class LadderMixin:
         try:
             import rating
             import spots
-            # the kinds its hunt fights: level 1's spots holding no heavy kind (spots.all_spots' dungeon-hunt filter: the lizardmen, not the ettins and
-            # earth elementals of the floor below them)
+            # the kinds its hunt fights first: level 1's spots holding no heavy kind (the lizardmen); the floors below open on the stay spot by spot to
+            # a bot that rates them (spots.deep_ok, 2026-11-08), so they are no gate on the trip
             hunted = [s for s in spots.dungeon_spots() if s.get("side") == DUNGEON and s.get("tier") == spots.TIER_RUNG1
                       and not any(any(h in k for h in spots.HEAVY_UNMEASURED) or spots.heavy_by_stats(k) for k in s.get("kinds") or ())]
             kinds = sorted({k for s in hunted for k in s.get("kinds") or ()})
@@ -293,7 +361,7 @@ class LadderMixin:
                     continue                                    # a moongate trip only with gate_travel (gate.py)
                 if t["kind"] == "town" and self.ladder_retreat(home, t):
                     out.append(dict(t, rung=3))
-        if self.ladder_dungeon_ready(st, now):
+        if self.ladder_dungeon_ready(st, now) and self.ladder_geared():
             d = self.ladder_dungeon_trip(home)
             if d and self.ladder_retreat(home, d):
                 out.append(dict(d))

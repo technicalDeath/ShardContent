@@ -1296,6 +1296,10 @@ class FirstTrip(RideMixin, LadderMixin):
             ready = self.ladder_kit_strict() if hasattr(self, "ladder_kit_strict") else True
         except Exception:
             ready = True
+        try:
+            lost = hasattr(self, "weapon_now") and self.weapon_state() in ("none", "wrong")
+        except Exception:
+            lost = False
         task = self.facts.get("task") or {}
         if now >= float(dh.get("until", 0)):
             why = "its time"
@@ -1305,6 +1309,10 @@ class FirstTrip(RideMixin, LadderMixin):
             why = "out of the dungeon"
         elif not ready:
             why = "kit low"
+        elif lost:
+            # its weapon broke and no spare of its skill is in the pack (ladder_geared buys one before the trip): a fighter with its fists goes home
+            # to buy another, as a player would (BotMaceCR fought on in Despise with its fists after its club broke, 2026-11-08)
+            why = "weapon lost"
         elif task.get("task") and task.get("task") not in ("hunt", "tour2", "wait", "rest", "camp", "loot"):
             # (camp and loot are the hunt's own: a spawner held for two respawns after a good kill, a corpse beside it; task_core keeps a dungeon hunt's
             # errands on its side. BotHealAdvR's Despise hunt ended "a camp errand" 12.6 minutes into 40, with 45 kills, 2026-11-07 11:21)
@@ -1331,7 +1339,7 @@ class FirstTrip(RideMixin, LadderMixin):
             t["stay_until"] = now
             if why not in ("a death", "out of the dungeon"):
                 self.trip_return_plan(t, dh, now)
-            if why not in ("a death", "kit low") and now - float(dh.get("t0", now)) < DH_CUT_S:
+            if why not in ("a death", "kit low", "weapon lost") and now - float(dh.get("t0", now)) < DH_CUT_S:
                 t["hunt_cut"] = True                            # not a visit: the ladder counts it neither way (ladder_trip_end)
             self.trip_save()
             mins = (now - float(dh.get("t0", now))) / 60.0

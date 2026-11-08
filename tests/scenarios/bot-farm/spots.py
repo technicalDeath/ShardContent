@@ -380,8 +380,9 @@ def all_spots(bot):
         # a dungeon trip's hunt (first_trip.trip_dungeon_hunt): that dungeon's level-1 spots only, so the core neither wanders deeper nor walks out to hunt;
         # and none holding a heavy kind (HEAVY_UNMEASURED, heavy_by_stats): Despise's "level 1" by the grid is two floors, the lizardmen (57, upstairs from
         # the landing) and the ettins and earth elementals below them (Despise.json)
-        return [dict(s, cell=cell_of(s["x"], s["y"])) for s in dungeon_spots() if s["side"] == dh.get("side") and s["tier"] == TIER_RUNG1
-                and not any(any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k) for k in s["kinds"])]
+        return [dict(s, cell=cell_of(s["x"], s["y"])) for s in dungeon_spots() if s["side"] == dh.get("side") and s["tier"] in DEEP_TIERS
+                and ((s["tier"] == TIER_RUNG1 and not any(any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k) for k in s["kinds"]))
+                     or deep_ok(bot, s))]
     cautious = (task_core.cautious(bot), task_core.rung_ready(bot))
     hit = bot.__dict__.get("_spots")
     if hit and time.time() - hit[0] < SPOT_CACHE_S and (len(hit) < 3 or hit[2] == cautious):         # a bot that runs out of heals (or restocks) gets its tiers again at once, not after ten minutes
@@ -460,6 +461,38 @@ HEAVY_UNMEASURED = ("ettin", "troll", "ogre", "gazer", "gargoyle", "shade", "wra
 
 
 STEP_UPS = ("orc", "ratman", "lizardman")      # hunter.HunterBot.TIER2_GROUP's beginner step-ups (the owner killed them easily with a new archer): judged by records, not by hit points
+
+
+DEEP_PACK = 3                  # monsters of a deep spot rated at once (rating.rate_pack): its spawner holds 3-10 (Despise), and they come together
+DEEP_TIERS = (TIER_RUNG1, TIER_DEEP)   # Despise's floors by the grid: 4 the lizardmen and the ettins and earth elementals below them, 5 the trolls, ogres and cyclopes
+
+
+def deep_ok(bot, s):
+    """A spot below a dungeon's beginner floor (a heavy kind on tier 4, or tier 5) this bot may hunt on its dungeon stay (owner, 2026-11-08: "I'm sure
+    there are bots that can try the lower passage now that they have higher skills and better equipment"): every kind on it rates a fight one at a
+    time (rating.rate), and DEEP_PACK of them together (rate_pack, which under-prices a pack: hence the single test as well), at full health. A
+    100-skill longsword in plate rates an ettin 0.017 of its health and an ogre lord 1.99 (2026-11-08): the ettins open, the ogre lord stays shut.
+    Cached a minute per spot."""
+    cache = bot.__dict__.setdefault("_deep_ok", {})
+    hit = cache.get(s["id"])
+    now = time.time()
+    if hit and now - hit[0] < 60:
+        return hit[1]
+    ok = False
+    try:
+        import rating
+        me = rating.bot_numbers(bot)
+        me["hp"] = me["max_hp"]
+        kinds = list(s.get("kinds") or ())
+        one = [rating.rate(bot, k, me) for k in kinds]
+        if kinds and all(r and r.get("engage") for r in one):
+            pack = [kinds[i % len(kinds)] for i in range(min(DEEP_PACK, max(1, int(s.get("count") or 1))))]
+            p = rating.rate_pack(bot, pack, me)
+            ok = bool(p and p.get("engage"))
+    except Exception:
+        ok = False
+    cache[s["id"]] = (now, ok)
+    return ok
 
 
 def heavy_by_stats(kind):
