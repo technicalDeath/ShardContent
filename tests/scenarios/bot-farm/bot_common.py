@@ -654,6 +654,44 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
 
     PET_SHOVE_WAIT = 60.0     # s it waits for full stamina to push past its own pet
 
+    TRAP_WALK = 15            # grid steps a trapped bot walks out once past its pet
+
+    def trap_walk_out(self, mx):
+        """Out of the trap along the shard's own walk grid (walkroute.plan toward home), a tile at a time, pushing past the next pet at full stamina: the
+        client's planner walked BotRangerAR straight back north into the alley's closed end each time it had pushed past a wolf (2026-11-08 03:29-03:33,
+        "pushed past its own a timber wolf" and then 1646 -> 1644)."""
+        try:
+            import walkroute
+            home = self.home_centre() if hasattr(self, "home_centre") else None
+            r = walkroute.plan((int(self.c.x), int(self.c.y)), tuple(home)) if home else None
+        except Exception:
+            r = None
+        path = list((r or {}).get("path") or [])[1:1 + self.TRAP_WALK]
+        back = {v: k for k, v in STEP.items()}
+        moved = 0
+        for px, py in path:
+            x0, y0 = int(self.c.x), int(self.c.y)
+            d = back.get((max(-1, min(1, px - x0)), max(-1, min(1, py - y0))))
+            if not d:
+                break
+            for attempt in range(3):
+                try:
+                    self.c.call(f"walk {d}", timeout=1.5)
+                except Exception:
+                    break
+                time.sleep(0.5)
+                if (self.c.x, self.c.y) != (x0, y0):
+                    break
+                if attempt == 1 and not self.push_past_pets(x0, y0, mx):
+                    break                                      # a body in the way that is not its pet, or no stamina: stop here
+            if (self.c.x, self.c.y) == (x0, y0):
+                break
+            moved += 1
+        self.facts["unreach_here_at"] = []
+        self.ev("trap_walked_out", steps=moved, at=[int(self.c.x), int(self.c.y)])
+        self.log(f"out of the trap along the walk grid: {moved} steps, now at {self.c.x},{self.c.y}")
+        return moved
+
     def push_past_pets(self, x0, y0, mx):
         """Its own pets beside it and no other step: wait for full stamina (Felucca: a step onto a living mobile only at Stam == StamMax, and it costs
         10, Mobile.CheckShove), then step onto a pet's tile. True when it moved. BotRangerAR stood 36% of four hours in the one-tile alley at
@@ -708,6 +746,7 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
         if trapped and bodies and self.push_past_pets(x0, y0, mx):
             # every walk from here ends "unreachable" and its own pet is beside it: the one open step only leads back in. BotRangerAR stepped 1644 <-> 1645
             # in its alley 43 times in 10 minutes with the push never tried, since a step had moved it (2026-11-08 02:31-03:13)
+            self.trap_walk_out(mx)
             return True
         dirs = [d for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw") if full or (x0 + STEP[d][0], y0 + STEP[d][1]) not in bodies]
         doors = self.tele_entries_near(x0, y0)
