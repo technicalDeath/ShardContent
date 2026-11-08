@@ -1534,6 +1534,11 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
         self.facts["stocked_at"] = time.time()
         self.facts["stocked_gold"] = int(self.c.gold or 0)
 
+    def gather_failing(self):
+        """True while its own gathering has just failed: no tree it could work (chop_fail), no pickaxe to be had (pick_fail), or its dig spot held."""
+        now = time.time()
+        return any(float(self.facts.get(k, 0) or 0) > now for k in ("chop_fail", "pick_fail", "dig_hold_until"))
+
     def restock_gap(self):
         """True while RESTOCK_GAP holds: not after a restock the purse cut short, once the purse holds purse_floor again (BotFairTailorNR bought 1 hide on
         2 gold beside 718 on the shelf, sold for 2,714 gold 13 s later and stood out the gap, 2026-11-05 21:18)."""
@@ -1578,8 +1583,11 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
             return False
         if self.leather_on():
             return self.leather_restock()                 # hides from the Furtrader, cut with scissors; the Tanner's leather when none are left
-        if self.facts.get("soldout_until", 0) > time.time() and self.can_gather():
-            return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look
+        if self.facts.get("soldout_until", 0) > time.time() and self.can_gather() and not (
+                self.facts.get("soldout_by_far") == self.facts.get("soldout_until") and self.gather_failing()):
+            return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look (far.py's
+                                                          # "gather near home" mark gives way when the gathering fails: BotCarpBR, its trees spent,
+                                                          # chop_fail set, stood 78% of a half-hour, 2026-11-08 00:30-01:05)
         if self.trains_on_own_ore():
             return False                                  # training: on its own ore, not on bought ingots (r_dig runs)
         self.mark_stocked()
