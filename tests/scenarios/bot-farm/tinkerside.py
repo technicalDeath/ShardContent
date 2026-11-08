@@ -1,14 +1,18 @@
-"""A smith's Tinkering (owner, 2026-11-07: "bots should action against their full 700 skill bank and not focus on a singular profession/skill").
+"""Tinkering for every bot whose plan holds it (owner, 2026-11-07: "bots should action against their full 700 skill bank and not focus on a singular
+profession/skill"; "Get all the bots onto the same tech").
 
-The smiths' plan holds Tinkering (skillplan.TEMPLATES, "make its own tongs and hammers"), and all three stood at about 30 for a day: no brain but the
-Tinker's could open the tinkering menu. A smith of the era made its own tools with tinker's tools and its own ingots. r_tinker, a few times an hour,
-with ingots to spare and nothing near: one session of up to SESSION items through the era's menu (TinkeringMenu.cs: Tools, then "<name> (<n> ingots)",
-the paths a Tinker bot learned, BotTinkAR menu_map.json), the item chosen by the skill's teaching range (DefTinkering.cs):
+The smiths' and the prospectors' plans hold Tinkering (skillplan.TEMPLATES: "make its own tongs and hammers", "Tinkering for its own shovels"), and
+all six stood at about 30 for a day: no brain but the Tinker's could open the tinkering menu. One engine serves them all: TinkerHands runs CrafterBot's
+own T2A menu code (open_menu, the menu pick, tool, material, count, the shop lookups) with the Tinker's craft (crafter.CRAFTS[19]) on any bot, as
+minersmith.SmithHands runs the smithing menu on a miner. session(bot), a few times an hour, with ingots to spare and nothing near: up to SESSION items
+through the era's menu (TinkeringMenu.cs: Tools, then "<name> (<n> ingots)", the paths a Tinker bot learned, BotTinkAR menu_map.json), the item chosen
+by the skill's teaching range (DefTinkering.cs):
   its own tools once they succeed half the time: tongs 35-85 (1 ingot) from 60 while it carries fewer than TONGS_KEPT, a shovel 40-90 (4 ingots)
-  from 65 while it carries no dig tool (the smiths dig their own ore and bought shovels at 89 gold, BotSmithAR 18:33); else scissors 5-55 (2 ingots)
-  below 50 and lockpicks 45-95 (1 ingot),
-  which a smith never uses, so all of them go to a Tinker once SELL_AT are carried (sell_items sells by name: never the smith's own tools).
-Events: tinker {item, made, ok, skill}, tinker_sold {gold}.
+  from 65 while it carries no dig tool (the smiths and miners dig their own ore and bought shovels at 89 gold, BotSmithAR 18:33); else scissors 5-55
+  (2 ingots) below 50 and lockpicks 45-95 (1 ingot), which neither uses, so all of them go to a Tinker once SELL_AT are carried (sell_items sells by
+  name: never its own tools).
+Callers: CrafterBot.r_tinker (TinkerSideMixin; a smith, between crafts) and MinerBot.r_sell (miner_tinker; at the forge after the smelt, before the
+ingots are sold). Events: tinker {item, made, ok, skill}, tinker_sold {gold}.
 """
 from __future__ import annotations
 
@@ -16,13 +20,15 @@ import time
 
 GAP = 900                   # s between sessions
 SESSION = 5                 # items a session
-INGOTS_KEPT = 15            # iron ingots left for the smithing
+INGOTS_KEPT = 15            # iron ingots left for the smithing (a miner's are its sale: it keeps none back, MINER_KEPT)
+MINER_KEPT = 0
 TONGS_KEPT = 2
 SELL_AT = 10                # scissors and lockpicks carried before a sale at a Tinker
 PATHS = {"scissors": ["Tools", "scissors (2 ingots)"], "tongs": ["Tools", "tongs (1 ingots)"],
          "shovel": ["Tools", "shovel (4 ingots)"], "lockpick": ["Tools", "lockpick (1 ingots)"]}
 COST = {"scissors": 2, "tongs": 1, "shovel": 4, "lockpick": 1}
 SELL_WORDS = ("scissors", "lockpick")
+TOOL_NAMES = ("tinker's tools", "tinker tools", "tool kit")
 
 
 def choose(skill: float, dig_tools: int, tongs: int) -> str | None:
@@ -40,86 +46,121 @@ def choose(skill: float, dig_tools: int, tongs: int) -> str | None:
     return None
 
 
-class TinkerSideMixin:
-    def tinker_on(self):
-        try:
-            import skillplan
-            return self.cfg.get("craft") == "Blacksmith" and skillplan.wants(self, "Tinkering")
-        except Exception:
-            return False
+def _crafter():
+    import crafter as _cr                          # (at call time: crafter imports miner, which calls into this module)
+    return _cr
 
-    def tinker_tools_held(self):
-        return next((i for i in self.c.backpack if (i.name or "").lower() in ("tinker's tools", "tinker tools", "tool kit")), None)
 
-    def count_named(self, word):
-        return sum(1 for i in self.c.backpack if word in (i.name or "").lower())
+class TinkerHands:
+    """CrafterBot's menu code run with the Tinker's craft on any bot: what the adapter does not have itself (the client, the journal, the shared
+    memory, the log, the shops) is the bot's. The bot's own cfg (a smith's, or none for a miner) is never touched."""
 
-    def r_tinker(self):
-        if not self.tinker_on() or self.c.ghost or self.threats(10) or time.time() < self.facts.get("tinker_at", 0):
-            return False
-        sk = float(self.skill_values.get("Tinkering", 0) or 0)
-        if sum(self.count_named(w) for w in SELL_WORDS) >= SELL_AT:
-            return self.tinker_sell()
-        item = choose(sk, self.count_named("shovel") + self.count_named("pickaxe"), self.count_named("tongs"))
-        ingots = self.count("iron ingot")
-        if not item or ingots < INGOTS_KEPT + COST[item]:
-            return False
-        self.facts["tinker_at"] = time.time() + GAP
-        import crafter as _cr
-        saved = self.cfg
-        self.cfg = dict(_cr.CRAFTS[19])                       # the Tinker's tool, material and shop for this session (open_menu, tool, material, shop)
-        made = ok = 0
-        try:
-            if not self.tinker_tools_held():
-                xy = self.tool_shop_xy()
-                if xy is None or self.c.gold < 40:
-                    return False
-                self.activity = "buying tinker's tools"
-                got = self.shop_at(xy, {"tinker's tools": 1}, budget=40)
-                self.log(f"tinker: bought tinker's tools {got}")
-                return True
-            self.activity = f"tinkering {item}"
-            for _ in range(SESSION):
-                if self.threats(10) or self.count("iron ingot") < INGOTS_KEPT + COST[item]:
-                    break
-                n0 = self.count_named(item.split()[0])
-                self.read_journal()
-                menu = self.open_menu()
-                for text in PATHS[item]:
-                    if not menu:
-                        break
-                    idx = self.index_of(menu, text)
-                    if not idx:
-                        self.close_menus([menu])
-                        menu = None
-                        break
-                    menu = self.pick(menu, idx)
-                if menu:
-                    self.close_menus([menu])
-                time.sleep(2.5)
-                made += 1
-                if self.count_named(item.split()[0]) > n0:
-                    ok += 1
-        finally:
-            self.cfg = saved
-        self.ev("tinker", item=item, made=made, ok=ok, skill=round(sk, 1))
-        self.log(f"tinker: {ok} of {made} {item} made (Tinkering {sk:.1f})")
-        return made > 0
+    def __init__(self, bot):
+        cr = _crafter()
+        self.__dict__["bot"] = bot
+        self.__dict__["cfg"] = dict(cr.CRAFTS[19])
+        for name in ("tool", "material", "count", "open_menu", "pick", "tool_shop_xy", "shop_xys"):
+            self.__dict__[name] = getattr(cr.CrafterBot, name).__get__(self)
+        for name in ("matname", "plain", "squash"):
+            self.__dict__[name] = cr.CrafterBot.__dict__[name].__get__(self)
 
-    def tinker_sell(self):
-        """The scissors and lockpicks to a Tinker (CRAFTS[19] sell_roles)."""
-        import crafter as _cr
-        saved = self.cfg
-        self.cfg = dict(_cr.CRAFTS[19])
-        try:
-            xy = self.tool_shop_xy()
-        finally:
-            self.cfg = saved
-        self.facts["tinker_at"] = time.time() + GAP
-        if xy is None:
+    def __getattr__(self, name):
+        return getattr(self.__dict__["bot"], name)
+
+
+def hands(bot):
+    h = bot.__dict__.get("_tinker_hands")
+    if h is None:
+        h = bot.__dict__["_tinker_hands"] = TinkerHands(bot)
+    return h
+
+
+def wants(bot):
+    try:
+        import skillplan
+        return bool(skillplan.wants(bot, "Tinkering"))
+    except Exception:
+        return False
+
+
+def count_named(bot, word):
+    return sum(1 for i in bot.c.backpack if word in (i.name or "").lower())
+
+
+def session(bot, kept=INGOTS_KEPT):
+    """One tinkering session (the module doc), or the sale at a Tinker; True when it acted. kept: iron ingots it leaves for its own work."""
+    if not wants(bot) or bot.c.ghost or bot.threats(10) or time.time() < bot.facts.get("tinker_at", 0):
+        return False
+    h = hands(bot)
+    sk = float((getattr(bot, "skill_values", None) or {}).get("Tinkering", 0) or 0)
+    if sum(count_named(bot, w) for w in SELL_WORDS) >= SELL_AT:
+        return sell(bot)
+    item = choose(sk, count_named(bot, "shovel") + count_named(bot, "pickaxe"), count_named(bot, "tongs"))
+    if not item or h.count("iron ingot") < kept + COST[item]:
+        return False
+    bot.facts["tinker_at"] = time.time() + GAP
+    if not any((i.name or "").lower() in TOOL_NAMES for i in bot.c.backpack):
+        xy = h.tool_shop_xy()
+        if xy is None or bot.c.gold < 40:
             return False
-        self.activity = "selling tinkered tools"
-        gold = self.sell_items(xy, list(SELL_WORDS))
-        self.ev("tinker_sold", gold=int(gold or 0))
-        self.log(f"tinker: sold scissors and lockpicks for {gold} gold")
+        bot.activity = "buying tinker's tools"
+        got = bot.shop_at(xy, {"tinker's tools": 1}, budget=40)
+        bot.log(f"tinker: bought tinker's tools {got}")
         return True
+    bot.activity = f"tinkering {item}"
+    h.__dict__["_need"] = COST[item]                          # material(): a stack that covers the item, not whatever the bot's own craft needs
+    made = ok = 0
+    for _ in range(SESSION):
+        if bot.threats(10) or h.count("iron ingot") < kept + COST[item]:
+            break
+        n0 = count_named(bot, item.split()[0])
+        bot.read_journal()
+        menu = h.open_menu()
+        for text in PATHS[item]:
+            if not menu:
+                break
+            idx = bot.index_of(menu, text)
+            if not idx:
+                bot.close_menus([menu])
+                menu = None
+                break
+            menu = h.pick(menu, idx)
+        if menu:
+            bot.close_menus([menu])
+        time.sleep(2.5)
+        made += 1
+        if count_named(bot, item.split()[0]) > n0:
+            ok += 1
+    bot.ev("tinker", item=item, made=made, ok=ok, skill=round(sk, 1))
+    bot.log(f"tinker: {ok} of {made} {item} made (Tinkering {sk:.1f})")
+    return made > 0
+
+
+def sell(bot):
+    """The scissors and lockpicks to a Tinker (CRAFTS[19] shop roles)."""
+    bot.facts["tinker_at"] = time.time() + GAP
+    xy = hands(bot).tool_shop_xy()
+    if xy is None:
+        return False
+    bot.activity = "selling tinkered tools"
+    gold = bot.sell_items(xy, list(SELL_WORDS))
+    bot.ev("tinker_sold", gold=int(gold or 0))
+    bot.log(f"tinker: sold scissors and lockpicks for {gold} gold")
+    return True
+
+
+def miner_tinker(bot):
+    """At the forge after the smelt (MinerBot.r_sell), before the ingots go to the Blacksmith: a session on the fresh ingots."""
+    try:
+        return session(bot, kept=MINER_KEPT)
+    except Exception as e:
+        bot.log(f"tinker: {type(e).__name__}: {e}")
+        return False
+
+
+class TinkerSideMixin:
+    def r_tinker(self):
+        """A smith's session between crafts (the module doc)."""
+        if self.cfg.get("craft") != "Blacksmith":
+            return False
+        return session(self, kept=INGOTS_KEPT)
