@@ -1334,6 +1334,8 @@ def end_task(bot, task, why):
             stuck_here = False
         if stuck_here:
             bot.ev("unreachable_here", area=task.get("area"), at=task["xy0"])
+            hist = [t_ for t_ in (bot.facts.get("unreach_here_at") or []) if t - float(t_) < 600] + [t]
+            bot.facts["unreach_here_at"] = hist[-10:]                  # (bot_common.step_out: three in 10 minutes is a trap where it stands)
     if (why in REST_S or (supply and why != "done")) and not stuck_here:
         paid = why == "yield" and act.get("kills", 0) >= PAID_KILLS
         short = ERRAND_UNMET_REST if supply else None          # a supply errand that found nothing to buy, or could not get there, is tried again in minutes (240 s at most), not half an hour or an hour

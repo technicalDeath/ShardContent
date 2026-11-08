@@ -704,6 +704,11 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
             bodies = {(m.x, m.y) for m in self.c.mobiles(within=1) if not getattr(m, "ghost", False)}
         except Exception:
             full, bodies = True, set()
+        trapped = len([t_ for t_ in (self.facts.get("unreach_here_at") or []) if time.time() - float(t_) < 600]) >= 3
+        if trapped and bodies and self.push_past_pets(x0, y0, mx):
+            # every walk from here ends "unreachable" and its own pet is beside it: the one open step only leads back in. BotRangerAR stepped 1644 <-> 1645
+            # in its alley 43 times in 10 minutes with the push never tried, since a step had moved it (2026-11-08 02:31-03:13)
+            return True
         dirs = [d for d in ("s", "e", "w", "n", "se", "sw", "ne", "nw") if full or (x0 + STEP[d][0], y0 + STEP[d][1]) not in bodies]
         doors = self.tele_entries_near(x0, y0)
         if doors:
