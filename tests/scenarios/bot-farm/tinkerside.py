@@ -4,8 +4,9 @@ The smiths' plan holds Tinkering (skillplan.TEMPLATES, "make its own tongs and h
 Tinker's could open the tinkering menu. A smith of the era made its own tools with tinker's tools and its own ingots. r_tinker, a few times an hour,
 with ingots to spare and nothing near: one session of up to SESSION items through the era's menu (TinkeringMenu.cs: Tools, then "<name> (<n> ingots)",
 the paths a Tinker bot learned, BotTinkAR menu_map.json), the item chosen by the skill's teaching range (DefTinkering.cs):
-  its own tools first: tongs 35-85 (1 ingot) while it carries fewer than TONGS_KEPT, a shovel 40-90 (4 ingots) while it carries no dig tool (the
-  smiths dig their own ore and bought shovels at 89 gold, BotSmithAR 18:33); else scissors 5-55 (2 ingots) below 45 and lockpicks 45-95 (1 ingot),
+  its own tools once they succeed half the time: tongs 35-85 (1 ingot) from 60 while it carries fewer than TONGS_KEPT, a shovel 40-90 (4 ingots)
+  from 65 while it carries no dig tool (the smiths dig their own ore and bought shovels at 89 gold, BotSmithAR 18:33); else scissors 5-55 (2 ingots)
+  below 50 and lockpicks 45-95 (1 ingot),
   which a smith never uses, so all of them go to a Tinker once SELL_AT are carried (sell_items sells by name: never the smith's own tools).
 Events: tinker {item, made, ok, skill}, tinker_sold {gold}.
 """
@@ -25,14 +26,16 @@ SELL_WORDS = ("scissors", "lockpick")
 
 
 def choose(skill: float, dig_tools: int, tongs: int) -> str | None:
-    """The item to make at this Tinkering (DefTinkering.cs ranges): its own tools while short, else what teaches and sells; None past 95."""
-    if 35.0 <= skill < 85.0 and tongs < TONGS_KEPT:
+    """The item to make at this Tinkering (DefTinkering.cs ranges; the success chance is (skill - min) / (max - min), CraftItem): its own tools once
+    they succeed half the time (tongs 35-85 from 60, a shovel 40-90 from 65), else what teaches and sells: scissors (5-55) below 50, lockpicks
+    (45-95) to 95. At Tinkering 37.8 BotSmithBR failed 5 tongs of 5, about 6% each (2026-11-07 19:06)."""
+    if 60.0 <= skill < 85.0 and tongs < TONGS_KEPT:
         return "tongs"
-    if 40.0 <= skill < 90.0 and dig_tools == 0:
+    if 65.0 <= skill < 90.0 and dig_tools == 0:
         return "shovel"
-    if 5.0 <= skill < 45.0:
+    if 5.0 <= skill < 50.0:
         return "scissors"
-    if 45.0 <= skill < 95.0:
+    if 50.0 <= skill < 95.0:
         return "lockpick"
     return None
 
