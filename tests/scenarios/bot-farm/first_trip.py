@@ -1385,6 +1385,24 @@ class FirstTrip(RideMixin, LadderMixin):
         self.ev("dungeon_left", side=side, ok=bool(ok))
         return True
 
+    def retreat_pack_loses(self, near):
+        """Under feature rating: the pack within RETREAT_NEAR is one the rating says not to take now (rating.rate_pack of its attack-on-sight kinds,
+        at the hit points it has); without a rating, any pack (the old rule). Three or four lizardmen rate a fight for a fighter at 100 ("pack of 3
+        (lizardman ...): rating 0.11"), yet each made the bots step through the landing-hall teleporter, 10-14 times an hour each at 70-87% health,
+        until the hunt's walks ended "unreachable" and the stay ended in 12 minutes (2026-11-08 07:30-08:12)."""
+        if not self.feature("rating"):
+            return True
+        try:
+            import rating
+            import task_core
+            kinds = [self.mkey(m) for m in near if task_core.aggressive_kind(self.mkey(m)) and rating.creature(self.mkey(m))]
+            if not kinds:
+                return False
+            r = rating.rate_pack(self, kinds)
+            return r is None or not r.get("engage")
+        except Exception:
+            return True
+
     def r_dungeon_out(self):
         """During a dungeon hunt (feature dungeon_hunt), a pack closing in: run for the nearest teleporter of this level and step through it, as a player
         leaves a room by the stairs; the monsters stay behind (Teleporter.cs: no creatures), and the far side heals in peace (Despise's landing hall has
@@ -1401,7 +1419,8 @@ class FirstTrip(RideMixin, LadderMixin):
             import detour
             near = self.mobs(RETREAT_NEAR)
             close = [m for m in near if (getattr(m, "distance", 9) or 9) <= 1]
-            pack = len(near) >= detour.PACK or (len(close) >= 2 and self.hp_pct() < 50)
+            pack = len(near) >= detour.PACK and self.retreat_pack_loses(near)
+            pack = pack or (len(close) >= 2 and self.hp_pct() < 50)
         except Exception:
             return False
         if not pack:
