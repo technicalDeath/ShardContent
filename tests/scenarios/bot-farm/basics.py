@@ -791,7 +791,9 @@ class BasicsMixin:
         hides and feathers (2026-10-30). At most CLEAR_N stacks a visit, the weight read again after each take."""
         # a heavy or overloaded visit only puts in: taking stock back out there looped (BotSmithAdvR at 296/362 banked as heavy and took 14 pieces out again,
         # every few minutes, 2026-11-01)
-        poor = self.c.gold < self.POOR_GOLD and self.__dict__.get("_bank_why") not in ("heavy", "overloaded")
+        # (at most POOR_GOLD: a bank visit leaves exactly the 100-gold purse, so "under 100" never held after one and only CLEAR_N came out: BotSmithBR
+        # took 12 of 89 banked products a visit at 100 gold and walked 280 tiles to dig between, 2026-11-08 09:32-10:00)
+        poor = self.c.gold <= self.POOR_GOLD and self.__dict__.get("_bank_why") not in ("heavy", "overloaded")
         share = self.POOR_OUT_SHARE if poor else self.PRODUCTS_OUT_SHARE
         limit = self.POOR_PRODUCTS if poor else getattr(self, "CLEAR_N", 12)
         if not hasattr(self, "is_product") or self.c.weight >= self.c.max_weight * share:
