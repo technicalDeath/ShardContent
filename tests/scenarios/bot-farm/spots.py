@@ -463,8 +463,16 @@ HEAVY_UNMEASURED = ("ettin", "troll", "ogre", "gazer", "gargoyle", "shade", "wra
 STEP_UPS = ("orc", "ratman", "lizardman")      # hunter.HunterBot.TIER2_GROUP's beginner step-ups (the owner killed them easily with a new archer): judged by records, not by hit points
 
 
-DEEP_PACK = 3                  # monsters of a deep spot rated at once (rating.rate_pack): its spawner holds 3-10 (Despise), and they come together
+DEEP_PACK = 3                  # the least a deep spot is rated as (rating.rate_pack): its spawner's whole count otherwise (Despise 3-10), as they come together:
+                               # the lower floor met BotArcherCR and BotMaceAdvR as packs of 7-11 (2026-11-08)
 DEEP_TIERS = (TIER_RUNG1, TIER_DEEP)   # Despise's floors by the grid: 4 the lizardmen and the ettins and earth elementals below them, 5 the trolls, ogres and cyclopes
+
+
+def is_deep(s):
+    """A dungeon spot below its beginner floor: tier 5, or tier 4 holding a heavy kind (the floors deep_ok opens)."""
+    if s.get("side", "surface") == "surface":
+        return False
+    return s.get("tier") != TIER_RUNG1 or any(any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k) for k in s.get("kinds") or ())
 
 
 def deep_ok(bot, s):
@@ -473,6 +481,11 @@ def deep_ok(bot, s):
     time (rating.rate), and DEEP_PACK of them together (rate_pack, which under-prices a pack: hence the single test as well), at full health. A
     100-skill longsword in plate rates an ettin 0.017 of its health and an ogre lord 1.99 (2026-11-08): the ettins open, the ogre lord stays shut.
     Cached a minute per spot."""
+    try:
+        if not bot.feature("deep_floors"):
+            return False              # off (features.json "deep_floors", hot reloaded): three deaths in 14 minutes to the ettin packs, 2026-11-08 13:27-13:40
+    except Exception:
+        return False
     cache = bot.__dict__.setdefault("_deep_ok", {})
     hit = cache.get(s["id"])
     now = time.time()
@@ -486,7 +499,7 @@ def deep_ok(bot, s):
         kinds = list(s.get("kinds") or ())
         one = [rating.rate(bot, k, me) for k in kinds]
         if kinds and all(r and r.get("engage") for r in one):
-            pack = [kinds[i % len(kinds)] for i in range(min(DEEP_PACK, max(1, int(s.get("count") or 1))))]
+            pack = [kinds[i % len(kinds)] for i in range(max(DEEP_PACK, int(s.get("count") or 1)))]
             p = rating.rate_pack(bot, pack, me)
             ok = bool(p and p.get("engage"))
     except Exception:
@@ -677,7 +690,9 @@ def tours(bot, g, rng, banned=(), relax=0):
     far_seen = []
     if relax >= 3 and pool:
         low = min(s["tier"] for s in pool)
-        pool = [s for s in pool if s["tier"] == low]
+        pool = [s for s in pool if s["tier"] == low and not is_deep(s)]
+        # never a deep spot with the tests off: BotRangerAR, BotArcherCR and BotMaceAdvR each had the lower floors of Despise refused ("learned avoid"),
+        # relaxed to level 3, toured the ettins' floor and died there to packs of 5-11 (2026-11-08 13:27-13:40)
     for s in pool:
         if s["id"] in banned:
             why["banned"] += 1

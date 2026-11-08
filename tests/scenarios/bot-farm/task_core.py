@@ -1669,7 +1669,8 @@ def tick(bot):
             bot.__dict__["_core_waited"] = False
             if cand.get("task") in ("hunt", "tour2"):
                 bot.__dict__["_no_ground_n"] = 0
-        if cand and cand.get("task") in ("hunt", "tour2") and ((cand.get("tier") or 1) >= 2 or box_bot(bot)) and int(bot.c.gold or 0) > CARRY_TIER2 and now() - bot.facts.get("banked_at", 0) > 300:
+        if cand and cand.get("task") in ("hunt", "tour2") and ((cand.get("tier") or 1) >= 2 or box_bot(bot)) and int(bot.c.gold or 0) > CARRY_TIER2 and now() - bot.facts.get("banked_at", 0) > 300                 and not bot.facts.get("dungeon_hunt"):
+            # (not on a dungeon stay: no bank is reachable from inside, and BotFairArcherNR asked for one 229 times in 40 minutes in Despise, 2026-11-08)
             bank = bank_candidate(bot, cand)                      # fix D: carrying more than CARRY_TIER2 to tier-2+ ground: the bank first, keeping 100
             if bank is not None:
                 bot.log(f"core: {int(bot.c.gold)} gold carried to tier {cand.get('tier')} ground: the bank first")
