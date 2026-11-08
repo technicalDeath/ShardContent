@@ -831,9 +831,19 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
             self.note("healing", f"A bandage applied with Healing {healing:.0f} takes about 14 seconds and heals about 1 hit point ('{text[-48:]}'); the 50 starting bandages are a Healing trainer, not a healer, and the message does not say why.", key="barely")
         return True
 
+    PACK_FLEE_N = 4           # monsters fighting the bot from which it flees at BITERS_HURT
+
     def flee_below(self):
         """Losing (below half health while the target has clearly more of its own left): run at 50%, while there is health to run with.
         At 40% the bots that fled from ettins, ogres and trolls were caught at hp 0-15."""
+        try:
+            if len(fighting_bot(self)) >= self.PACK_FLEE_N:
+                # a pack on it: run at the "hurt" line (BITERS_HURT, first_trip's turn-back). The pack rating priced BotFencerBR's four ratmen and two
+                # giant rats at 27-41 hit points lost; it lost 81 in 6.5 minutes, fled only at 36 of 91 after ten potions healed less than the bites,
+                # and reached 10 (2026-11-08 11:02-11:09). One kind at a time the rating holds (ratman 1.03 of its prediction over 895 fights)
+                return self.BITERS_HURT
+        except Exception:
+            pass
         f = self.fight
         return 50 if f and f.get("pct", 100) > self.hp_pct() + 20 else 40
 
