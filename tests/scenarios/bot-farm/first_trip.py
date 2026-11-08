@@ -1177,11 +1177,30 @@ class FirstTrip(RideMixin, LadderMixin):
         teleporters (tele.py) to the door and goes home along the route."""
         side = t.get("dest")
         dh = self.facts.get("dungeon_hunt")
-        if dh is None:
-            if t.get("dungeon_hunted"):
+        if dh is None and t.get("dungeon_hunted"):
+            # a restart resumed the stay (trip_load) but the hunt lived in the old brain's facts: the rest of it is hunted, or the stay ends now. Returning
+            # "over" without ending the stay stood BotFenceAdvR at the lizardman floor "looking around Despise" from its 19:39 restart to past 20:14, and
+            # BotFencerBR at the landing hall 19:04-19:12 (2026-11-07)
+            until = float(t.get("stay_until") or 0)
+            try:
+                here = _gz().side(int(self.c.x), int(self.c.y)) if _gz() else side
+            except Exception:
+                here = side
+            if until - now < 120 or here != side or self.c.ghost:
+                t["stay_until"] = now
                 return None
+            dh = self.facts["dungeon_hunt"] = {"side": side, "t0": float(t.get("hunt_t0") or now), "until": until, "landing": [int(self.c.x), int(self.c.y)],
+                                               "resumed": True}
+            if hasattr(self, "tele_allow"):
+                self.tele_allow(side, seconds=until - now + 600)
+            self.__dict__.pop("_spots", None)
+            self.trip_drop_task(side)
+            self.log(f"first trip: the {side} hunt resumes after a restart ({(until - now) / 60:.0f} min left)")
+            self.ev("dungeon_hunt_resumed", side=side, minutes_left=round((until - now) / 60, 1))
+        if dh is None:
             dh = self.facts["dungeon_hunt"] = {"side": side, "t0": now, "until": now + DUNGEON_HUNT_S, "landing": [int(self.c.x), int(self.c.y)]}
             t["dungeon_hunted"] = True
+            t["hunt_t0"] = now
             t["stay_until"] = dh["until"]
             if hasattr(self, "tele_allow"):
                 self.tele_allow(side, seconds=DUNGEON_HUNT_S + 600)

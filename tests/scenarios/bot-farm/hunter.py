@@ -313,6 +313,8 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
             return None
         return {"known": True, "fight": r["engage"], "taken": r["lost"], "reason": r["why"], "rating": r, "monster": self.k.monster(m) or {}}
 
+    BITERS_HURT = 60.0        # % hit points under which a bot with a monster on it takes on no other (first_trip's "hurt", the trip's turn-back line)
+
     def rated_prey(self, m):
         """Feature rating: prey when the fight it starts rates as one to take: this monster and every attack-on-sight one within RATING_JOIN tiles of it
         (rating.rate_pack). None for a kind the creature table does not know. Cached 8 s per mobile, as is_prey's assess."""
@@ -325,9 +327,11 @@ class HunterBot(RangerPetMixin, TrackMixin, EscortMixin, GateMixin, ColourBuyer,
             import rating
             import task_core
             on = fighting_bot(self)
-            if on and m.serial not in {o.serial for o in on}:
-                # something it struck is still on it: no new fight until that one is done or shaken off (a player runs from what beat it, he does not
-                # pull a fresh bear: BotRangerBR, losing to one bear, took another and a wolf with a hart still biting, 2026-11-06 11:38)
+            if on and m.serial not in {o.serial for o in on} and self.hp_pct() < self.BITERS_HURT:
+                # something it struck is still on it and the bot is hurt: no new fight until that one is done or shaken off (a player runs from what beat
+                # it, he does not pull a fresh bear: BotRangerBR, losing to one bear, took another and a wolf with a hart still biting, 2026-11-06 11:38).
+                # Not hurt, the pack below (which counts what is on the bot) decides: BotSwordBR at 97-98 of 98 left a ratman whose pack with the rat
+                # biting it rated 0.06, and flipped r_avoid / waiting 28 times while the rat bit (2026-11-07 19:51)
                 a[("r", m.serial)] = (now, False)
                 if now - float(self.__dict__.get("_biters_logged", 0) or 0) > 60:
                     self.__dict__["_biters_logged"] = now
