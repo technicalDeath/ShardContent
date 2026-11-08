@@ -53,6 +53,8 @@ DUNGEON_GAP = TOWN_GAP       # 45 min, as a town's: 3 h (10800) was set for the 
 DUNGEON_HP = 80
 MIN_WORTH = 300
 DUNGEON_WORTH = 500
+TRIP_ARROWS = 150             # a bow's quiver before a dungeon trip: what its restock buys (hunter.r_resupply, "=arrow": 150)
+STAY_ARROWS = 25              # and the stay's floor: the restock's own low line (r_resupply, ammo() < 25); the trip's start needs 60 (ladder_kit_strict)
 GEAR_GAP = 900                # s between the gear errands before a dungeon trip (ladder_geared): the upgrade rules' own wait is 600
 TICK_EVERY = 10
 
@@ -208,6 +210,14 @@ class LadderMixin:
             return self.bandages() >= 15 and yellow >= 3 and not (getattr(self, "ranged", False) and self.ammo() < 60)     # a bow's arrows (trip_kit_ok)
         return self.trip_kit_ok()
 
+    def ladder_kit_stay(self):
+        """The kit a dungeon stay goes on with (first_trip.trip_dungeon_hunt): ladder_kit_strict's bandages and Heal potions, and for a bow STAY_ARROWS,
+        not the start's 60. The start's 60 ended an archer's stay after some twenty shots; a player hunts on until the quiver is nearly empty."""
+        if hasattr(self, "bandages"):
+            yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
+            return self.bandages() >= 15 and yellow >= 3 and not (getattr(self, "ranged", False) and self.ammo() < STAY_ARROWS)
+        return self.trip_kit_ok()
+
     def ladder_town_ready(self, st, now):
         return ("2" in st["ok"] and self.trip_power() >= POWER[3] and now - st.get("last_trip_end", 0) >= TOWN_GAP and self.ladder_rested(st, 3, now)
                 and self.ladder_quiet(st, now) and self.ladder_worth() >= MIN_WORTH)
@@ -250,6 +260,8 @@ class LadderMixin:
                         acted = bool(getattr(self, fn)()) or acted
                     except Exception as e:
                         self.log(f"ladder: gear check {fn}: {type(e).__name__}: {e}")
+            if getattr(self, "ranged", False) and self.ammo() < TRIP_ARROWS:
+                acted = self.ladder_quiver() or acted
             if self.ladder_spare() is None and not self.ladder_buy_spare():
                 self.facts["spare_fail_at"] = now                  # none on any shelf it knows: it goes without, as before, and asks again in GEAR_GAP
             self.ev("dungeon_gear", acted=acted, spare=self.ladder_spare() is not None, weapon=self.weapon_state())
@@ -257,6 +269,32 @@ class LadderMixin:
         except Exception as e:
             self.log(f"ladder: gear check failed ({type(e).__name__}: {e})")
             return True
+
+    def ladder_quiver(self):
+        """Arrows (or bolts) up to TRIP_ARROWS from the ammunition shop the errands use (errands.ammo_shop: not one sold out lately), the bank first. True when it bought some."""
+        want = TRIP_ARROWS - self.ammo()
+        if want <= 0:
+            return False
+        try:
+            import errands
+            item, shop = errands.ammo_item(self), errands.ammo_shop(self)
+        except Exception:
+            item, shop = "=arrow", getattr(self, "FLETCH_SHOP", None)
+        if shop is None:
+            return False                                       # every ammunition shop known sold out within the hour (errands.ammo_shop)
+        cost = want * 5 + 20                                   # a bolt's price (SBRangedWeapon: Arrow 2, Bolt 5), so either is covered
+        if self.c.gold < cost and self.facts.get("bank_balance", 0) > 0:
+            self.visit_bank("ammo", withdraw=cost + 60, reserve=0)
+        before = self.ammo()
+        self.activity = "filling the quiver for the dungeon"
+        try:
+            self.shop_at(tuple(shop), {item: want}, budget=min(int(self.c.gold or 0), cost))
+        except Exception as e:
+            self.log(f"ladder: quiver: {type(e).__name__}: {e}")
+        got = self.ammo() - before
+        self.ev("dungeon_quiver", bought=got, have=self.ammo())
+        self.log(f"ladder: {got} {item.strip('=')}s for {DUNGEON} ({self.ammo()} carried)")
+        return got > 0
 
     def ladder_spare(self):
         """The spare weapon in the pack: one of its skill its strength wields (WeaponMixin.own_weapon_in_pack), else None."""

@@ -1293,7 +1293,8 @@ class FirstTrip(RideMixin, LadderMixin):
         try:
             # the kit the road home needs (ladder_kit_strict: 15 bandages, 3 Heal potions), not the entry gate (task_core.rung_ready: 50 bandages and 90%
             # health): one bandage used, and BotHealAdvR's hunt ended "kit or health low" with 49 bandages and 10 Heal potions at 86% (2026-11-04 12:57)
-            ready = self.ladder_kit_strict() if hasattr(self, "ladder_kit_strict") else True
+            ready = (self.ladder_kit_stay() if hasattr(self, "ladder_kit_stay") else self.ladder_kit_strict() if hasattr(self, "ladder_kit_strict")
+                     else True)
         except Exception:
             ready = True
         try:
