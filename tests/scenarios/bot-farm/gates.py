@@ -10,7 +10,7 @@ for p in (os.path.join(ROOT, "Navrey", "cli"), os.path.join(ROOT, ".claude", "sc
     sys.path.insert(0, p)
 import farm_release  # noqa: E402
 
-MODULES = ("bot_common", "hunter", "caster", "crafter", "tamer", "fisher", "miner", "broke_gather", "task_core", "hunt_tree", "errands", "spots", "travel", "think", "buddy", "party",
+MODULES = ("bot_common", "hunter", "caster", "crafter", "tamer", "fisher", "miner", "broke_gather", "tinkerside", "task_core", "hunt_tree", "errands", "spots", "travel", "think", "buddy", "party",
            "tele", "runes", "places", "memory", "farmdb", "measured")
 
 

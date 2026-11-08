@@ -179,7 +179,13 @@ class WeaponMixin:
         return best
 
     def r_arms(self):
-        if not self.feature("arms") or self.c.ghost or self.mobs(10) or self.hp_pct() < 70 or time.time() - self.facts.get("arms_at", 0) < EVERY:
+        if not self.feature("arms"):
+            return False
+        return self.arms_buy()
+
+    def arms_buy(self):
+        """r_arms without its cohort: a better weapon of the bot's main skill (also a hide-hunting tailor's first sword, crafter.hunt_armed)."""
+        if self.c.ghost or self.mobs(10) or self.hp_pct() < 70 or time.time() - self.facts.get("arms_at", 0) < EVERY:
             return False
         self.facts["arms_at"] = time.time()
         money = self.mkt_money() - self.UPGRADE_RESERVE

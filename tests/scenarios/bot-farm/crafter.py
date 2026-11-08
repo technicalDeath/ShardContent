@@ -99,6 +99,7 @@ OUTCOME = re.compile(r"You create|You failed|You fail|You make|You have worn|wor
 from market import CrafterDemand, CrafterMarket  # noqa: E402
 from colours import ColourSmith  # noqa: E402  (coloured armour for the fighters; feature colour_craft)
 from earn import EarnMixin  # noqa: E402  (shared with the broke miner)
+from tinkerside import TinkerSideMixin  # noqa: E402  (a smith's own tools and Tinkering, 2026-11-07)
 
 
 def sernum(s):
@@ -116,10 +117,10 @@ def kept_word(n, keep):
     return any(re.search(r"\b" + re.escape(w) + r"(s|es)?\b", n) for w in keep)
 
 
-class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
+class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot):
     TASK_CORE = False                                     # the decision core (task_core.py) is the hunter's until the crafter has its own task set
     HOME_DANGER_MOVES = True                              # a home that keeps killing it is left (patch_home_town)
-    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_cures", "r_restock", "r_colour", "r_craft", "r_smelt", "r_dig", "r_earn",
+    RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_avoid", "r_heal", "r_market", "r_bank", "r_retool", "r_upgrade", "r_cut", "r_sell", "r_chop", "r_cures", "r_restock", "r_colour", "r_tinker", "r_craft", "r_smelt", "r_dig", "r_earn",
              "r_wander"]
     LOOT_MATERIALS = True
     LOOT_GEAR = ()                                        # a crafter hunting vermin for coins does not carry weapons home to sell
@@ -134,7 +135,7 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
 
     # a crafter keeps tools and material, not what it makes: products go to the buyer, or into the bank when nobody buys them
     KEEP = ("book", "gold", "candle", "bag", "scroll", "potion", "recall", "scissors", "bedroll", "kindling", "bandage", "tongs", "tool", "ingot", "cloth", "leather",
-            "hide", "board", "log", "hatchet", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
+            "hide", "board", "log", "hatchet", "saw", "hammer", "sewing", "dagger", "pickaxe", "shovel", "gears", "hinge", "springs", "kit", "ore", "feather", "shaft", "arrow", "lockpick") + items.GOODS_WORDS          # goods a shop buys are never banked (items.py)
 
     def shop_xys(self):
         """The material shops by role, nearest first (the shared memory's learned shops are tried before these by r_restock)."""
@@ -1988,6 +1989,32 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             pass
         return False
 
+    def main_skill(self):
+        """The weapon skill the plan holds (a tailor's and a carpenter's Swordsmanship), else the highest: the weapon a hunt fights with (weaponup)."""
+        try:
+            import skillplan
+            plan = skillplan.plan_of(self) or {}
+            for k in self.WEAPON_SKILLS:
+                if k in plan:
+                    return k
+        except Exception:
+            pass
+        return HunterBot.main_skill(self)
+
+    def hunt_armed(self):
+        """Before a hide hunt: a weapon of the plan's skill in hand (one in the pack wielded, rewield_own; else the best value per gold a shop sells,
+        arms_buy, at most every ARMS_EVERY s). True when it acted. Tailors hunted with the starter dagger, a Fencing weapon (Dagger.cs), so the plan's
+        Swordsmanship stood at 31-67 with no gain in a day while their Tactics and Anatomy rose (2026-11-07)."""
+        try:
+            state = self.weapon_state()
+        except Exception:
+            return False
+        if state not in ("none", "wrong"):
+            return False
+        if self.rewield_own():
+            return True
+        return bool(self.arms_buy())                      # (its own gap: weaponup.EVERY, 600 s)
+
     def track_animals_only(self):
         return bool(getattr(self, "_hide_only", False))   # a hide hunt tracks animals (tracking.r_track; feature tracking)
 
@@ -2084,6 +2111,8 @@ class CrafterBot(ColourSmith, EarnMixin, CrafterDemand, CrafterMarket, HunterBot
             # corpse run and died there five times in an hour (2026-11-01 22:16-23:02)
             self.activity = f"{'' if hides else 'broke: '}leaving monster ground for {ex},{ey}"
             self.goto_near(ex, ey, 4).wait(timeout=90)
+            return True
+        if hides and self.hunt_armed():
             return True
         self._coin_only, self._hide_only = not hides, hides
         if hides:
