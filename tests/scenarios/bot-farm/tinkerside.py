@@ -93,7 +93,7 @@ def session(bot, kept=INGOTS_KEPT):
         return False
     h = hands(bot)
     sk = float((getattr(bot, "skill_values", None) or {}).get("Tinkering", 0) or 0)
-    if sum(count_named(bot, w) for w in SELL_WORDS) >= SELL_AT:
+    if sum(count_named(bot, w) for w in SELL_WORDS) >= SELL_AT and time.time() >= float(bot.facts.get("tinker_sell_fail_until", 0) or 0):
         return sell(bot)
     item = choose(sk, count_named(bot, "shovel") + count_named(bot, "pickaxe"), count_named(bot, "tongs"))
     if not item or h.count("iron ingot") < kept + COST[item]:
@@ -144,6 +144,10 @@ def sell(bot):
         return False
     bot.activity = "selling tinkered tools"
     gold = bot.sell_items(xy, list(SELL_WORDS))
+    if not gold:
+        # the Tinker not reached, or nothing bought: tinkering goes on and the sale waits an hour. BotSmithBR sold for 0 three times in 32 minutes
+        # (07:41-08:13) and each time the session was the sale, so it made nothing
+        bot.facts["tinker_sell_fail_until"] = time.time() + 3600
     bot.ev("tinker_sold", gold=int(gold or 0))
     bot.log(f"tinker: sold scissors and lockpicks for {gold} gold")
     return True

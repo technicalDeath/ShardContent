@@ -65,6 +65,8 @@ TELE_CLEAR = 3        # tiles round a known teleporter that a far walk's plan av
 RESTOCK_WAITS_S = 400 # s: a restock refused for weight this recently makes any sell walk worth it (far_worth); twice crafter.RESTOCK_GAP (200 s),
                       # as the restock re-stamps it every gap while it still waits
 
+SELL_FALLBACK_S = 1800      # s after a failed sell walk in which a nearer buyer takes any number of items
+
 class FarMixin:
     _far_last = ""
     _far_pen = None
@@ -184,6 +186,11 @@ class FarMixin:
                 # for 139 tiles", 2026-11-03 20:01-20:31)
                 heavy = True
             need = max(12, d // 30)
+            if time.time() - float((self.facts or {}).get("sell_far_failed_at", 0) or 0) < SELL_FALLBACK_S:
+                # the walk to the buyer it chose failed ("nopath on three legs"): the next buyer takes what there is, as a player who cannot get to one shop
+                # sells at the other. BotSmithBR's 222-tile walk failed, the 122-tile buyer wanted 12 items for 11, and its products piled into a full
+                # bank box while the planner read a buy-sell loop (2026-11-08 07:41-08:51)
+                return (value or 0) > 0, f"{value or 0} items, the farther buyer out of reach"
             return heavy or (value or 0) >= need, f"{value or 0} items, {need} needed for {d} tiles" + (", pack heavy" if heavy else "")
         if role == "shop":
             gather = getattr(self, "can_gather", None)
@@ -456,6 +463,8 @@ class FarMixin:
                     if self.feature("walk_fix"):
                         self.facts.setdefault("far_skip", {})[st["role"] + "|" + str(dest[0] // 20) + "," + str(dest[1] // 20)] = time.time() + 600          # as for a shop that is not worth the walk: not again at once
                         self.far_log(st["role"], dest, cheb((self.c.x, self.c.y), dest), "abort", "nopath on " + ("the last leg" if final else "three legs"))
+                    if st["role"] == "sell":
+                        self.facts["sell_far_failed_at"] = time.time()   # (far_worth "sell": the next buyer takes what there is, SELL_FALLBACK_S)
                     return "nopath: far"
             else:
                 st["fails"] = 0
