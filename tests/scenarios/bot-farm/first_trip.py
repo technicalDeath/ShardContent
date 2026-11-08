@@ -1021,7 +1021,40 @@ class FirstTrip(RideMixin, LadderMixin):
             if mv is not None and mv <= run_s:
                 return False                                    # it keeps up with a runner: the escapes stand
         step = 1 if t.get("phase") == "out" else -1
-        return self.trip_pass_ok(near, self.trip_route_slice(wps, t["i"], step), self.trip_route_slice(wps, t["i"] - step, -step))
+        ahead = self.trip_route_slice(wps, t["i"], step)
+        box = self.trip_boxers(near, ahead, run_s, table, end=(wps[-1] if step == 1 and wps else None))
+        if len(box) >= self.DASH_BOX:
+            now = time.time()
+            if now - self.__dict__.get("_box_logged", 0) > 10:
+                self.__dict__["_box_logged"] = now
+                self.ev("trip_dash_held", boxers=len(box), kinds=sorted({k for k, _ in box}))
+                self.log(f"first trip: no run past {len(box)} standing where it must stop ({', '.join(sorted({k for k, _ in box}))}) on the road or at the door: they would box the runner in")
+            return False
+        return self.trip_pass_ok(near, ahead, self.trip_route_slice(wps, t["i"] - step, -step))
+
+    DASH_BOX = 3               # monsters that reach the road ahead before the runner: with 4 and 5 beside it no step moved (BotMaceCR, BotFairSwordNR, BotFenceAdvR)
+    BOX_TILES = 25             # the road ahead those are counted on
+    DOOR_HELD = 4              # tiles round the trip's end (the door): the stop beside the door at Despise was 4 tiles short of it (1297,1077 for 1296,1081)
+
+    def trip_boxers(self, near, ahead, run_s, table, end=None):
+        """[(kind, serial)] of the monsters in view standing where the run would stop against them: on the next BOX_TILES of road (within a tile:
+        bodies block a step), or within DOOR_HELD tiles of the trip's end (end: the door, where the run stops to step through) when that lies within
+        the slice. A runner passes a slow monster beside the road at the cost of a swing (trip_pass_ok); one it must stop beside, it cannot.
+        BotMaceCR ran "straight past" 3, then 5 trolls at Despise's door, "no step in any direction moved the character (4 mobiles beside it)", and
+        died on the way home (2026-11-07 18:57-19:02); BotFenceAdvR died boxed at the door at 16:07, BotFairSwordNR was stranded there at 18:12."""
+        import casterpass
+        road = casterpass.dense([(int(self.c.x), int(self.c.y))] + list(ahead))[: self.BOX_TILES + 1]
+        stop = None
+        if end is not None and any(max(abs(int(end[0]) - x), abs(int(end[1]) - y)) <= 1 for x, y in road):
+            stop = (int(end[0]), int(end[1]))
+        out = []
+        for m in near:
+            mx, my = int(m.x), int(m.y)
+            on_road = any(max(abs(mx - x), abs(my - y)) <= 1 for x, y in road[1:])
+            at_stop = stop is not None and max(abs(mx - stop[0]), abs(my - stop[1])) <= self.DOOR_HELD
+            if on_road or at_stop:
+                out.append((self.mkey(m), getattr(m, "serial", None)))
+        return out
 
     def trip_lair_home(self):
         """forbidden(point) for detour.py: inside the home range of a caster lair this bot loses to (spots.deadly_spawners), cached a minute. A

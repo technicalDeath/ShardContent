@@ -135,3 +135,12 @@ Measured first: the plan skills that rose less than 0.3 in four hours while stil
 **Not broke with money in the bank** (owner, the same day):
 - **The problem:** a bare hide shelf sent two tailors (293,406 and 178,287 gold banked) to hunt rats "broke" for 6-7 hours a day.
 - **The fix:** coin hunting now needs `short_of_money` (gold plus bank under 250). A bare shelf sends a hide hunter after hides and any other tailor back to waiting for the restock. `hide_hunt` now covers all four tailors; its A/B gave 9,000-12,300 gold a bot-hour against 3,200-3,500.
+
+**First 25 minutes on gates 110-112** (loaded at the 19:03 rollover):
+- **Hiding:** the fighters practised it 11-21 times each. WarAdvR gained 5.5 Hiding and HealAdvR 4.8, from 0.
+- **Healing:** practice bandaging spread from one bot to five.
+- **Fletching:** the archers made 15 bows (+0.1-0.2 Fletching each so far).
+- **Tracking:** the rangers tracked 8 times.
+- **Swords:** both hide-hunting tailors bought a sword at the second shop they tried.
+- **Tinkering:** the smiths' first tongs failed 15 of 15. Tongs teach 35-85, so the success chance at 30-38 is about 6%. Gate 112 moved their own tools to 50% success (tongs from 60, a shovel from 65), so they make scissors first; SmithBR then made 3 of 5.
+- **Broke:** no bot ran "broke" with money banked. Two rich crafters (CarpAdvR, TinkBR) dropped a coin hunt.
