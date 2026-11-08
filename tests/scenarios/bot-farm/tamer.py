@@ -192,9 +192,10 @@ class TamerBot(TamerArmsMixin, PetHuntMixin, FieldsMixin, TamerStock, TameFindMi
         return out
 
     def r_heal(self):
-        if self.hp_pct() >= 65 or self.mobs(3) or not self.c.find("bandage"):
-            return False
-        return self.bandage_self()
+        """The shared rule (basics.r_heal): under 65% with nothing within 3, and a scratch bandaged for practice while the plan holds Healing below its
+        target. The tamer's own copy had no practice, so its plan's Healing stood at 44 (2026-11-07; owner: "Get all the bots onto the same tech")."""
+        from basics import BasicsMixin
+        return BasicsMixin.r_heal(self)
 
     def tame_rolled(self, result, t):
         """True when the engine rolled this tame: accepted, "You fail to tame the creature." or "too angry" (AnimalTaming.cs), at a skill at or above the
