@@ -1592,6 +1592,12 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
             return self.leather_restock()                 # hides from the Furtrader, cut with scissors; the Tanner's leather when none are left
         if self.facts.get("soldout_until", 0) > time.time() and self.can_gather() and not (
                 self.facts.get("soldout_by_far") == self.facts.get("soldout_until") and (self.gather_failing() or not self.gather_allowed())):
+            if not self.gather_allowed() and self.plan_feasible("gather"):
+                # the shelves rest and the planner holds "craft", so the gather rules are off: open its gather window for that while (plan_current
+                # reads stall_gather_until). BotSmithBR, planner on craft at 3,283 gold an hour, stood 15 minutes on "under 5 iron ingot" until the
+                # stall moved the plan (2026-11-08 04:36-04:52)
+                self.facts["stall_gather_until"] = max(float(self.facts.get("stall_gather_until", 0) or 0), float(self.facts["soldout_until"]))
+                self.dlog("choice", what="gather while the shelves rest", why="the planner held craft with the gather rules off")
             return False                                  # the shelves were bare a few minutes ago: gather instead of walking back to look (far.py's
                                                           # "gather near home" mark gives way when the gathering fails: BotCarpBR, its trees spent,
                                                           # chop_fail set, stood 78% of a half-hour, 2026-11-08 00:30-01:05)

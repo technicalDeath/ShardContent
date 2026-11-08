@@ -902,6 +902,8 @@ class FirstTrip(RideMixin, LadderMixin):
         return out
 
     DRIFT_WAIT_S = ESCAPE_HOLD_S   # s it waits out of notice for a pack to drift off the road: the escape window itself
+    DRIFT_MARGIN = 4               # tiles past notice the pack must be before the wait starts (and the wait ends only inside notice)
+    DRIFT_HOP, DRIFT_HOPS = 12, 3  # a hop away from a chasing pack: 12 tiles take a runner 2.4 s (0.2 s a tile) and a troll 5.4 (0.45)
 
     def trip_drift_wait(self, t, leg):
         """Once a trip, on the way out, before "the way is held" turns it back: walk the escape leg, and with nothing in notice range there, stand
@@ -921,14 +923,30 @@ class FirstTrip(RideMixin, LadderMixin):
         except Exception:
             return False
 
-        def near():
+        def near(r=notice):
             try:
                 return [m for m in self.trip_near() if getattr(m, "x", None) is not None
-                        and max(abs(int(m.x) - int(self.c.x)), abs(int(m.y) - int(self.c.y))) <= notice]
+                        and max(abs(int(m.x) - int(self.c.x)), abs(int(m.y) - int(self.c.y))) <= r]
             except Exception:
                 return []
 
-        if near():
+        # clear of the pack first: a hop of DRIFT_HOP tiles straight away from those within DRIFT_CLEAR, up to DRIFT_HOPS times. BotMaceCR began its wait
+        # with two trolls at 13 and 14 tiles that were chasing, and the wait ended in a second (2026-11-08 04:54:33)
+        for _ in range(self.DRIFT_HOPS):
+            ms = near(notice + self.DRIFT_MARGIN)
+            if not ms:
+                break
+            cx = sum(int(m.x) for m in ms) / len(ms)
+            cy = sum(int(m.y) for m in ms) / len(ms)
+            dx = (int(self.c.x) > cx) - (int(self.c.x) < cx)
+            dy = (int(self.c.y) > cy) - (int(self.c.y) < cy)
+            if not dx and not dy:
+                break
+            try:
+                self.c.goto(int(self.c.x) + dx * self.DRIFT_HOP, int(self.c.y) + dy * self.DRIFT_HOP).wait(timeout=10)
+            except Exception:
+                break
+        if near(notice + self.DRIFT_MARGIN):
             return False
         self.log(f"first trip: the way is held: waiting {int(self.DRIFT_WAIT_S)} s out of notice at {self.c.x},{self.c.y} for the pack to drift")
         end = time.time() + self.DRIFT_WAIT_S
