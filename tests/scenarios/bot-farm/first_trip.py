@@ -1011,6 +1011,11 @@ class FirstTrip(RideMixin, LadderMixin):
         near = [m for m in self.trip_near() if getattr(m, "x", None) is not None]
         if not near:
             return False
+        held = self.__dict__.get("_box_held")
+        if held:
+            if time.time() < held["until"] and any(getattr(m, "serial", None) in held["serials"] for m in near):
+                return False                                    # the pack judged to box it in is still in view: no second run past it (BOX_HOLD_S)
+            self.__dict__.pop("_box_held", None)
         run_s = self.run_s() if hasattr(self, "run_s") else casterpass.RUN_S
         for m in near:
             k = self.mkey(m)
@@ -1025,6 +1030,7 @@ class FirstTrip(RideMixin, LadderMixin):
         box = self.trip_boxers(near, ahead, run_s, table, end=(wps[-1] if step == 1 and wps else None))
         if len(box) >= self.DASH_BOX:
             now = time.time()
+            self.__dict__["_box_held"] = {"serials": {sr for _, sr in box if sr is not None}, "until": now + self.BOX_HOLD_S}
             if now - self.__dict__.get("_box_logged", 0) > 10:
                 self.__dict__["_box_logged"] = now
                 self.ev("trip_dash_held", boxers=len(box), kinds=sorted({k for k, _ in box}))
@@ -1033,6 +1039,9 @@ class FirstTrip(RideMixin, LadderMixin):
         return self.trip_pass_ok(near, ahead, self.trip_route_slice(wps, t["i"] - step, -step))
 
     DASH_BOX = 3               # monsters that reach the road ahead before the runner: with 4 and 5 beside it no step moved (BotMaceCR, BotFairSwordNR, BotFenceAdvR)
+    BOX_HOLD_S = 60.0          # s a held dash stays held while one of that pack is in view (the trip's own "4 escapes in 60 s" window): BotArchAdvR's hold at
+                               # the Trinsic road camp fired at 22:52:07, the next verdict 2 s later ran past four (a giant spider, an orc, a ratman, an ettin),
+                               # and it died boxed at 22:52:23, 81 hit points to 0 (2026-11-07)
     BOX_TILES = 25             # the road ahead those are counted on
     DOOR_HELD = 4              # tiles round the trip's end (the door): the stop beside the door at Despise was 4 tiles short of it (1297,1077 for 1296,1081)
 

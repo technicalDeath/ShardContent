@@ -2176,8 +2176,21 @@ class CrafterBot(TinkerSideMixin, ColourSmith, EarnMixin, CrafterDemand, Crafter
                 self.dlog("choice", what="leave the earn spot", why=f"{int(now - at[1])} s at {x},{y} with nothing to fight; not again for {self.EARN_EMPTY // 60} min")
         else:
             self.facts.pop("earn_at", None)
-        self.c.goto(x, y).wait(timeout=5)
+        res = self.c.goto(x, y).wait(timeout=5)
+        miss = self.__dict__.setdefault("_earn_miss", {})
+        if res in ("arrived", "nopath") and max(abs(self.c.x - x), abs(self.c.y - y)) > 2:
+            # the walk ends short of the point (a fence, a wall: "closest reachable") and the next tick walks there again. BotFairTailorNR walked to
+            # 1380,1740 every 20 s for minutes, each time stopping at 1384,1744, while its hunt rules' kills reset the stand clock (2026-11-07 23:00-23:07)
+            miss[(x, y)] = miss.get((x, y), 0) + 1
+            if miss[(x, y)] >= self.EARN_MISS:
+                miss.pop((x, y), None)
+                self.facts.setdefault("earn_empty", {})[(x, y)] = time.time() + self.EARN_EMPTY
+                self.dlog("choice", what="leave the earn spot", why=f"{self.EARN_MISS} walks to {x},{y} ended short at {self.c.x},{self.c.y}; not again for {self.EARN_EMPTY // 60} min")
+        else:
+            miss.pop((x, y), None)
         return True
+
+    EARN_MISS = 3              # short walks to one earn point before it is left (the stand clock, EARN_STAND, resets on every kill)
 
     # the planner's activities (planner.py): crafting is the default, gathering and earning are timed windows the rules read
     CHOICES = {"craft": None, "gather": "stall_gather_until", "earn": "stall_earn_until"}
