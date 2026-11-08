@@ -345,6 +345,13 @@ class RangerPetMixin:
     def r_ranger_tame(self):
         if not self.rp_on() or self.c.ghost:
             return False
+        try:
+            if hasattr(self, "trip_load") and self.trip_load().get("trip"):
+                # not in the middle of a trip: BotRangerAR left its Despise trip's home leg to tame a timber wolf 170 tiles off, walked back for the
+                # wolf onto the troll road and died there (2026-11-08 16:29-16:33)
+                return False
+        except Exception:
+            pass
         st = self.rp_state()
         now = time.time()
         pet = self.facts.get("pet")

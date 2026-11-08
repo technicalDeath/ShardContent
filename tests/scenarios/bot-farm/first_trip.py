@@ -172,13 +172,21 @@ class FirstTrip(RideMixin, LadderMixin):
                 t["def"], t["home"] = dict(seed, vetted=True, source="seed"), "Britain"
             else:
                 t = self._trip["trip"] = None
-        if t and t.get("phase") in ("out", "stay"):
+        if t and float((getattr(self, "facts", None) or {}).get("died_at") or 0) > float(t.get("t0") or 0):
+            # died since the trip began, under a brain that never closed it: BotRangerAR died at the Despise door with its trip suspended (15:15), and
+            # 70 minutes later a new brain resumed its home leg at waypoint 37 from Britain's healer, back out onto the troll road (2026-11-08 16:25)
+            self.trip_end("death", completed=False)
+            t = self._trip["trip"]
+        if t and t.get("phase") in ("out", "stay", "home"):
             age = time.time() - float(self._trip.get("saved_at") or 0)
             if age <= TRIP_RESUME_S and not getattr(self.c, "ghost", False):
                 # a restart (a rollover, a safe restart) a moment ago: the character is where the last brain left it, so the trip goes on. Aborted,
                 # BotFairSwordVR's trips ended at Vesper itself and by the gazer pocket (2026-11-03 15:20, 13:48), each a trip lost
                 t.update(best=1e9, best_at=time.time(), fails=0, deaths0=getattr(self, "deaths", 0))
                 self.log(f"first trip: resumed to {t.get('dest')} after a restart ({age:.0f} s since the last brain saved it)")
+            elif t["phase"] == "home":
+                t["aborted"] = "restart"                 # an old walk home is not carried on either (trip_abort leaves a home leg as it is): the bot is
+                self.trip_end("restart", completed=False)   # wherever the last brain left it, and the core takes it home from there (not counted)
             else:
                 self.trip_abort("restart")               # an old outing (the brain was down a while) is not carried on
         return self._trip
