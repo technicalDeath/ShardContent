@@ -34,6 +34,34 @@ class BrokeMinerBot(EarnMixin, PackAnimalMixin, HunterBot):
     RULES = ["r_dead", "r_corpse", "r_gear", "r_cure", "r_flee", "r_hide", "r_evade", "r_heal", "r_packy", "r_market", "r_stock", "r_upgrade", "r_retool", "r_sell", "r_bank", "r_mine", "r_earn", "r_idle"]
     KEEP = MinerBot.KEEP
 
+    def r_flee(self):
+        """Feature craft_guard: something it would hunt biting it from the next tile is fought to the end (crafter.CrafterBot.hold_fight: until it dies,
+        steps off, or stops rating as a fight), as the guarded crafters do; otherwise the shared flight (BotBase.r_flee). BotMinerBR drank three Lesser
+        Heals 17-20 s apart under a giant rat's teeth, stood between them (r_idle), was boxed in at 39 and died (2026-11-08 01:59-02:01)."""
+        if self.feature("craft_guard"):
+            th = self.threats(6)
+            if th and self.hp_pct() < 90:
+                biter = next((m for m in th if (getattr(m, "distance", 9) or 9) <= 1 and getattr(m, "in_war_mode", False) and self.is_prey(m)), None)
+                if biter is not None:
+                    self.activity = f"fighting back at {biter.name}"
+                    return self.hold_fight(biter)
+        from bot_common import BotBase
+        return BotBase.r_flee(self)
+
+    def hold_fight(self, m):
+        import crafter
+        return crafter.CrafterBot.hold_fight(self, m)
+
+    def hold_cap(self, m):
+        import crafter
+        return crafter.CrafterBot.hold_cap(self, m)
+
+    def hold_worth(self, m):
+        import crafter
+        return crafter.CrafterBot.hold_worth(self, m)
+
+    HOLD_S, HOLD_TTK, HOLD_MAX_S, HOLD_STEP_S, HOLD_CHASE = 45, 1.5, 90, 0.8, 2       # crafter.CrafterBot's own (hold_fight reads them on self)
+
     def earn_tool(self):
         return self.pick()                                # the broke miner's tool is its pickaxe (earn.py)
 

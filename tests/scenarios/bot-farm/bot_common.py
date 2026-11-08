@@ -652,6 +652,42 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
         except Exception:
             return set()
 
+    PET_SHOVE_WAIT = 60.0     # s it waits for full stamina to push past its own pet
+
+    def push_past_pets(self, x0, y0, mx):
+        """Its own pets beside it and no other step: wait for full stamina (Felucca: a step onto a living mobile only at Stam == StamMax, and it costs
+        10, Mobile.CheckShove), then step onto a pet's tile. True when it moved. BotRangerAR stood 36% of four hours in the one-tile alley at
+        1452,1644-1651, its two timber wolves behind it in the only way out, at 61 of 70 stamina: every tour ended "unreachable" (2026-11-07/08)."""
+        try:
+            pets = [m for m in self.c.mobiles(within=1) if (getattr(m, "_d", None) or {}).get("isPet")]
+        except Exception:
+            pets = []
+        if not pets or mx <= 0 or self.threats(8):
+            return False
+        end = time.time() + self.PET_SHOVE_WAIT
+        while time.time() < end and int(self.c.stamina or 0) < mx:
+            time.sleep(1.0)
+        if int(self.c.stamina or 0) < mx:
+            return False
+        back = {v: k for k, v in STEP.items()}
+        for m in pets:
+            d = back.get((max(-1, min(1, int(m.x) - x0)), max(-1, min(1, int(m.y) - y0))))
+            if not d:
+                continue
+            for _ in range(2):                             # the first walk in a new direction only turns the character to face it
+                try:
+                    self.c.call(f"walk {d}", timeout=1.5)
+                except Exception:
+                    break
+                time.sleep(0.5)
+                if (self.c.x, self.c.y) != (x0, y0):
+                    break
+            if (self.c.x, self.c.y) != (x0, y0):
+                self.log(f"no path from {x0},{y0}: pushed past its own {m.name} ({d}) at full stamina")
+                self.ev("pet_shove", pet=m.name, at=[x0, y0])
+                return True
+        return False
+
     def step_out(self):
         """One step in the first direction that moves the character; at most once every 20 seconds."""
         if time.time() - self.facts.get("stepped_out_at", 0) < 20:
@@ -696,6 +732,8 @@ class BotBase(LessonMixin, MarketMixin, GroundRateMixin, BetweenWorldsMixin, Pla
                 self.log(f"no path from {x0},{y0}: stepped {d} to {self.c.x},{self.c.y} and tried again")
                 self.mem.record("blocked", kind="tile", key=f"{x0},{y0}", ttl=3600)
                 return True
+        if bodies and not full and self.push_past_pets(x0, y0, mx):
+            return True
         self.log(f"no path from {x0},{y0}, and no step in any direction moved the character" + (f" ({len(bodies)} mobiles beside it)" if bodies else ""))
         if bodies:
             self.facts["boxed_at"] = time.time()          # every direction tried and none moved it, with bodies about: r_flee fights at once (fight_committed)

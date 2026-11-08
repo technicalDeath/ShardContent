@@ -56,6 +56,7 @@ WAIT_S = 120.0
 RESTED_SOON = 1200.0            # with nothing open, an area whose rest ends within this many seconds (stale, crowded, empty) is a candidate again; the hour bans are not
 GOAL_LIFE = 2 * 3600.0
 DEATH_MIN = 30.0                # a death costs this many minutes (the healer, the corpse run, the gold on the corpse) in the score
+UNREACH_HERE = 8                # tiles from its start within which an "unreachable" end is the bot's own trap, not the tour's (no ban)
 PAID_REST = 1200.0              # a "yield" task that still made PAID_KILLS kills rests the area this long, not the hour: the ground paid before
 PAID_KILLS = 2
 GROUND_RADIUS = 320             # the memory's hunting cells this far from home are areas of their own (the rule list's wider ground, step 1 of the A/B read)
@@ -1224,7 +1225,8 @@ def start_task(bot, g, cand, options, why="chosen"):
             "budget": cand.get("budget") or (HUNT_BUDGET if cand["task"] == "hunt" else WAIT_S),
             "extended": False, "expected": cand.get("expected", {}), "walk_min": cand.get("walk_min", 0.0), "score": cand.get("score", 0.0), "start": counters(bot),
             "goal": g["id"], "measure": g["measure"], "judge": cand.get("judge") or g["measure"], "checked": t, "state": {}, "decision": None, "tour": cand.get("tour"),
-            "tier": cand.get("tier"), "side": cand.get("side", "surface"), "partner": cand.get("partner"), "role": cand.get("role")}
+            "tier": cand.get("tier"), "side": cand.get("side", "surface"), "partner": cand.get("partner"), "role": cand.get("role"),
+            "xy0": [int(getattr(bot.c, "x", 0) or 0), int(getattr(bot.c, "y", 0) or 0)]}
     if task["side"] and task["side"] != "surface":
         try:
             bot.tele_allow(task["side"], seconds=task["budget"] + 1800.0)          # the reason to be on that side (tele.py): the goto wrappers may cross to it
@@ -1322,7 +1324,17 @@ def end_task(bot, task, why):
                 bot.facts.setdefault("ammo_bad_shop", {})[f"{sp[0]},{sp[1]}"] = time.time() + 1800
                 n.clear()
                 bot.ev("ammo_route_changed", shop=[sp[0], sp[1]], why=why)
-    if why in REST_S or (supply and why != "done"):
+    stuck_here = False
+    if why == "unreachable" and task.get("xy0"):
+        try:
+            # the walk failed where the bot stands, not on the way: nothing is learned about the tour's spots (RangerAR, held in a one-tile alley by its
+            # own pets, ended 34 tours "unreachable" in 3 hours, each banned for the hour: 30-31 bans and "no spot open", 2026-11-07/08)
+            stuck_here = max(abs(int(bot.c.x) - int(task["xy0"][0])), abs(int(bot.c.y) - int(task["xy0"][1]))) <= UNREACH_HERE
+        except Exception:
+            stuck_here = False
+        if stuck_here:
+            bot.ev("unreachable_here", area=task.get("area"), at=task["xy0"])
+    if (why in REST_S or (supply and why != "done")) and not stuck_here:
         paid = why == "yield" and act.get("kills", 0) >= PAID_KILLS
         short = ERRAND_UNMET_REST if supply else None          # a supply errand that found nothing to buy, or could not get there, is tried again in minutes (240 s at most), not half an hour or an hour
         for sid, secs in tour_rests(task, why, PAID_REST if paid else short):
