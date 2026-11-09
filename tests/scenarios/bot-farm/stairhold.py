@@ -48,7 +48,8 @@ CROWD_S = 4.0                 # a hop this soon after arriving at the hold is a 
 CROWD_WAIT = BELOW_MIN        # (a frozen camp does not clear: no longer waited for)
 CROWD_MAX = 6                 # bouts in a row shorter than CROWD_S that rest the spot "danger" (a camp too big to wear down)
 LURE_WAIT = 12.0              # s at the hold with nothing in sight before a lure walk
-LURE_MAX = 16                 # tiles a lure walks out from the hold
+LURE_MAX = 16                 # tiles a lure walks out from the hold (the straight line, when no route is known)
+LURE_PATH = 20                # tiles along the walk graph's route toward the spawn a lure walks
 LURE_SLICE = 2.5              # s a lure slice runs before the rules look again
 LURE_PULL = 10                # tiles within which an idle one at the lure's end is pulled with a Magic Arrow (a targeted spell's range before AOS)
 POISON_MIN_HITS = 40          # a kind's average hit points at least for the Poison opener (less dies to one Lightning sooner than to the ticks)
@@ -404,11 +405,13 @@ class StairHoldMixin:
             return False
         p, c = h["post"], (int(spot["x"]), int(spot["y"]))
         d = cheb(p, c) or 1
-        to = None
+        to = tuple(st["lure_to"]) if st.get("lure_to") else (tuple(st["lure_route_to"]) if st.get("lure_route_to") else self.lure_route_point(p, c))
+        if to is not None:
+            st["lure_route_to"] = list(to)
         try:
             import spots
             comp = spots.component_near(p[0], p[1], h["side"])
-            for k in (LURE_MAX, LURE_MAX - 4, LURE_MAX - 8):
+            for k in ((LURE_MAX, LURE_MAX - 4, LURE_MAX - 8) if to is None else ()):
                 f = min(1.0, k / float(d))
                 q = (int(round(p[0] + (c[0] - p[0]) * f)), int(round(p[1] + (c[1] - p[1]) * f)))
                 if comp is None or spots.component_near(q[0], q[1], h["side"]) == comp:
@@ -451,6 +454,23 @@ class StairHoldMixin:
         except Exception:
             pass
         return True
+
+    def lure_route_point(self, p, c):
+        """The point LURE_PATH tiles along the walk graph's route from the hold p toward the spawn's centre c (walkroute.plan), within HOP_REACH of
+        the hold; None without a route."""
+        try:
+            import walkroute
+            r = walkroute.get().plan((int(p[0]), int(p[1])), (int(c[0]), int(c[1])), None, step=4)
+            wps = [tuple(int(v) for v in q[:2]) for q in (r or {}).get("waypoints") or []]
+        except Exception:
+            return None
+        walked, last = 0, tuple(p)
+        for q in wps:
+            walked += cheb(last, q)
+            last = q
+            if walked >= LURE_PATH or cheb(q, p) >= HOP_REACH - 4:
+                return q
+        return wps[-1] if wps else None
 
     # ---- the Poison opener ----------------------------------------------------------------------------------------------------------------------------
 
