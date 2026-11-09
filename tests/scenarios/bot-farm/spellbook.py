@@ -278,8 +278,15 @@ class SpellbookMixin:
         return 12 + 10 * (spell_table().get(n, {}).get("circle", 1) - 1)
 
     def book_scroll(self, n):
+        """The scroll of spell n in the pack, by its name, or by the client's name cut at 18 characters when that still holds the whole spell name:
+        "Reactive Armor Scr" was missed, so the casters bought it again and again (BotWarlockBR held two, 27 gold each; 2026-11-09 01:16-06:49)."""
         keys = scroll_keys(n)
-        return next((i for i in self.c.backpack if norm(i.name or "") in keys), None)
+        whole = norm(n)
+
+        def hit(name):
+            k = norm(name or "")
+            return k in keys or (len(k) >= len(whole) and k.startswith(whole) and any(x.startswith(k) for x in keys))
+        return next((i for i in self.c.backpack if hit(i.name)), None)
 
     def book_buy(self, n):
         """Walk to a shop that has the scroll and buy one. Returns "bought", "nostock", "poor" or "noshop"."""
