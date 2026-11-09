@@ -649,7 +649,12 @@ def spot_prior(bot, s, deadly, relax=0, why=None):
             except Exception:
                 pass
         return None
-    if task_core.avoided(bot, s["kinds"]):                            # the bot's own learned-avoid list (MaceBR's named eleven kinds and it still walked to a bone mage)
+    rated = is_deep(s) and deep_ok(bot, s)
+    # a deep spot whose whole spawn the pack rating has judged winnable (deep_ok) is not refused by the learned-avoid list, kept "for good" from deaths
+    # when the bot was weaker or the rating under-priced packs (BotSwordBR's has ettin, ogre and troll), nor by a kill share of nine fights that were
+    # mostly flights under the old rules (melee ettins: 2 kills in 9, 2026-11-06/08): BotHealAdvR and BotSwordBR stood "waiting for an open hunting
+    # area" in Despise with the lower floors open (2026-11-08 19:19). The danger model still judges each kind (relax 3's test)
+    if not rated and task_core.avoided(bot, s["kinds"]):            # the bot's own learned-avoid list (MaceBR's named eleven kinds and it still walked to a bone mage)
         if why is not None:
             why["learned avoid"] += 1
         return None
@@ -670,7 +675,7 @@ def spot_prior(bot, s, deadly, relax=0, why=None):
         except Exception:
             pass
     import danger
-    if relax >= 3:
+    if relax >= 3 or rated:
         kinds = [k for k in s["kinds"] if danger.acceptable(task_core.kind_risk(bot, k, s["tier"]), "prey")]
     else:
         kinds = [k for k in s["kinds"] if task_core.fightable(bot, k, deadly, s["tier"])]
