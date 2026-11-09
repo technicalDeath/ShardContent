@@ -149,7 +149,15 @@
       "RefreshPotion": 2,
       "Bandage": 10,
       "Arrow": 5,
-      "Bolt": 5
+      "Bolt": 5,
+      "BlackPearl": 3,
+      "Bloodmoss": 3,
+      "Garlic": 3,
+      "Ginseng": 3,
+      "MandrakeRoot": 3,
+      "Nightshade": 3,
+      "SpidersSilk": 3,
+      "SulfurousAsh": 3
     }
   },
   "carryWeight": {

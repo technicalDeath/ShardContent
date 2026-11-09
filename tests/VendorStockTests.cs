@@ -37,7 +37,8 @@ public class VendorStockTests
     {
         var known = new HashSet<string>
         {
-            nameof(LesserCurePotion), nameof(LesserHealPotion), nameof(RefreshPotion), nameof(Bandage), nameof(Arrow), nameof(Bolt)
+            nameof(LesserCurePotion), nameof(LesserHealPotion), nameof(RefreshPotion), nameof(Bandage), nameof(Arrow), nameof(Bolt),
+            nameof(BlackPearl), nameof(Bloodmoss), nameof(Garlic), nameof(Ginseng), nameof(MandrakeRoot), nameof(Nightshade), nameof(SpidersSilk), nameof(SulfurousAsh)
         };
         foreach (var name in SourceRules().StockMultipliers.Keys)
         {
