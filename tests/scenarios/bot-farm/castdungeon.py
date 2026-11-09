@@ -24,7 +24,7 @@ STAIR_POST = 14               # tiles short of the spawn's centre a post stands,
 POST_MIN = 3                  # and at least this far from the stair's tile (not on it)
 POST_HOLD = 2                 # tiles round the post it stands within
 HOLD_SHARE = 2                # bots on a held spot's ground at most: two casters at one stair hold wear its camp down together
-HOLD_WALK = 20                # tiles from a stair hold within which the walk back to it is a straight one (a lure's end is 16 out)
+HOLD_WALK = 30                # tiles from a stair hold within which the walk back to it is a straight one (stairhold.HOP_REACH)
 
 
 class CasterDungeonMixin:
@@ -173,6 +173,8 @@ class CasterDungeonMixin:
             st.update(spot=spot, t0=now, seen=now, plan=None, leg=0, legst={}, fails=0, post=self.cd_post(spot))
         here = (int(self.c.x), int(self.c.y))
         sx, sy = st.get("post") or (int(spot["x"]), int(spot["y"]))
+        if st.get("hold") and hasattr(self, "hold_post"):
+            sx, sy = self.hold_post(st["hold"])                 # a shared stair hold: a free landing tile (stairhold.py)
         if max(abs(here[0] - sx), abs(here[1] - sy)) <= POST_HOLD:
             if not st.get("arrived"):
                 st["arrived"] = now

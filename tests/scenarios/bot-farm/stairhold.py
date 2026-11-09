@@ -37,7 +37,8 @@ HOP_PRIOR = 1.2               # hp a second for each attacker beside it before t
                               # 65% landing), as the logs show it (BotWarlockAR, 93 to 15 in 16 s beside six, 2026-11-09 12:05)
 HOP_TOP = 85                  # the line at most
 RA_LOCK = 60.0                # s after Reactive Armor before it is cast again below (DefensiveSpell.Nullify's lockout once the pool is spent)
-HOP_REACH = 18                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
+HOP_REACH = 30                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
+                              # and the walk round a corner past it (BotMageAR's lure stopped 20 out, 2026-11-09 17:01)
 NOLOS_S = 15.0                # s a target out of sight from the hold is waited for, then left for NOLOS_SKIP s (it stands behind a wall)
 NOLOS_SKIP = 60.0
 UP_HP = 90                    # percent health to go back up
@@ -85,9 +86,10 @@ def hold_geometry(side, centre):
                 b = min(back, key=lambda x: (cheb(x["dst"], mid["src"]), abs(int(x["dst"][0]) - int(mid["src"][0])) + abs(int(x["dst"][1]) - int(mid["src"][1]))))
                 post = (int(b["dst"][0]), int(b["dst"][1]))
                 if cheb(post, centre) <= HOLD_PULL + 2:
+                    posts = sorted({(int(x["dst"][0]), int(x["dst"][1])) for x in back}, key=lambda p: (cheb(p, post), p))
                     out = {"side": side, "stair": [(int(x["src"][0]), int(x["src"][1])) for x in run],
                            "back": [(int(x["src"][0]), int(x["src"][1])) for x in back],
-                           "post": post, "below": (int(mid["dst"][0]), int(mid["dst"][1]))}
+                           "post": post, "posts": posts, "below": (int(mid["dst"][0]), int(mid["dst"][1]))}
     except Exception:
         out = None
     _GEO[key] = out
@@ -139,7 +141,16 @@ class StairHoldMixin:
 
     def holding(self, h=None):
         h = h or self.hold_now()
-        return bool(h) and cheb((self.c.x, self.c.y), h["post"]) <= HOLD_R
+        here = (self.c.x, self.c.y)
+        return bool(h) and any(cheb(here, p) <= HOLD_R for p in (h.get("posts") or [h["post"]]))
+
+    def hold_post(self, h):
+        """The landing tile to hold: the one it stands on or beside, else a free one (a shared hold: one caster a tile), the middle first."""
+        posts = h.get("posts") or [h["post"]]
+        here = (int(self.c.x), int(self.c.y))
+        if any(here == tuple(p) for p in posts):
+            return here
+        return tuple(self.free_tile(posts))
 
     def hold_attackers(self, within):
         """kite_attackers by the bot's own position (a mobile's distance can be a snapshot behind a hop)."""
@@ -174,10 +185,11 @@ class StairHoldMixin:
         why = self.hop_due(att, adj)
         if why:
             return self.hold_hop(h, hs, why, att, adj, now)
-        if cheb(here, h["post"]) > HOLD_R:
+        if not self.holding(h):
             self.activity = "back to the stair hold"
+            p = self.hold_post(h)
             try:
-                self.c.gotoexact(h["post"][0], h["post"][1]).wait(timeout=1.5)
+                self.c.gotoexact(p[0], p[1]).wait(timeout=1.5)
             except Exception:
                 pass
             return True
@@ -374,7 +386,7 @@ class StairHoldMixin:
                 self.c.gotoexact(t[0], t[1]).wait(timeout=2.5)
         except Exception:
             pass
-        ok = cheb((self.c.x, self.c.y), h["post"]) <= 3
+        ok = min(cheb((self.c.x, self.c.y), p) for p in (h.get("posts") or [h["post"]])) <= 3
         self.ev("stair_up", hp=hp, mana=mana, waited=round(waited), ok=ok)
         if ok:
             hs["up_at"] = time.time()
