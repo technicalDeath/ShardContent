@@ -36,6 +36,7 @@ HOP_PRIOR = 1.2               # hp a second for each attacker beside it before t
                               # caster (5-7 scaled by its tactics and strength, halved on a player, about 4 a blow; a 2.6 s swing, 15000 / ((dex + 100) x 30);
                               # 65% landing), as the logs show it (BotWarlockAR, 93 to 15 in 16 s beside six, 2026-11-09 12:05)
 HOP_TOP = 85                  # the line at most
+HOP_BLOCK_S = 4.0             # s a hop that went nowhere waits before the next try (the other rules act meanwhile)
 RA_LOCK = 60.0                # s after Reactive Armor before it is cast again below (DefensiveSpell.Nullify's lockout once the pool is spent)
 HOP_REACH = 30                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
                               # and the walk round a corner past it (BotMageAR's lure stopped 20 out, 2026-11-09 17:01)
@@ -300,14 +301,25 @@ class StairHoldMixin:
                 self.sprint()
             except Exception:
                 pass
+        if now < float(hs.get("hop_block_until", 0) or 0):
+            return False                                        # the last hop went nowhere: the heal, potion and fight rules first
         try:
-            if cheb(here, t) > 1:
-                self.c.goto(t[0], t[1]).wait(timeout=2.5)
+            if cheb(here, t) > 1 and not self.holding(h):
+                p = self.hold_post(h)
+                self.c.goto(p[0], p[1]).wait(timeout=2.5)       # the landing beside the stair first (a walk at the stair tile itself goes nowhere)
+                if cheb((self.c.x, self.c.y), t) > 1 and cheb((self.c.x, self.c.y), h["below"]) > 4:
+                    moved = cheb((self.c.x, self.c.y), here) >= 2
+                    if not moved:
+                        hs["hop_block_until"] = time.time() + HOP_BLOCK_S
+                    self.ev("stair_hop", why=why, hp=self.hp_pct(), adj=len(adj), n=len(att), ok=False, crowd=False, walking=True, moved=moved)
+                    return moved
             if cheb((self.c.x, self.c.y), h["below"]) > 4:
                 self.c.gotoexact(t[0], t[1]).wait(timeout=2.5)
         except Exception:
             pass
         ok = cheb((self.c.x, self.c.y), h["below"]) <= 4
+        if not ok and cheb((self.c.x, self.c.y), here) < 1:
+            hs["hop_block_until"] = time.time() + HOP_BLOCK_S
         hs["hp_hist"] = []
         crowd = now - float(hs.get("up_at", 0) or 0) < CROWD_S
         hs["crowds"] = (int(hs.get("crowds", 0)) + 1) if crowd else 0
@@ -317,6 +329,8 @@ class StairHoldMixin:
         self.ev("stair_hop", why=why, hp=self.hp_pct(), adj=len(adj), n=len(att), ok=ok, crowd=crowd)
         if self.fight:
             self.end_fight("lost")
+        if not ok and now < float(hs.get("hop_block_until", 0) or 0):
+            return False
         if hs["crowds"] >= CROWD_MAX:
             spot = self.cd_state().get("spot")
             if spot:
