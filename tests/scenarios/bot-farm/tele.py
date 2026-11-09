@@ -613,7 +613,9 @@ class TeleMixin:
                     self.tele_goto(land[0], land[1], lz, exact=True).wait(timeout=15)
             if not seen() and cheb((self.c.x, self.c.y), (sx, sy)) > 1:
                 self.c.goto(sx, sy).wait(timeout=45)                         # may step on it already; a jump is noticed and the walk cancelled
-            if not seen() and self.mobs(4) and self.hp_pct() < 60:
+            if not seen() and not getattr(self.c, "ghost", False) and self.mobs(4) and self.hp_pct() < 60:
+                # (the living only: a ghost reads 0 health and nothing attacks it, and BotSorcBR's ghost beside Despise's stair, a lizardman 2 tiles
+                # off, gave up its last step onto the stair every minute, 2026-11-09 14:53-14:56)
                 return False
             if not seen():
                 self.c.gotoexact(sx, sy).wait(timeout=15)

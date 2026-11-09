@@ -264,9 +264,19 @@ class StairHoldMixin:
             return False
         return self.hold_hop(h, self.__dict__.setdefault("_hold", {}), why, att, adj, time.time())
 
+    def free_tile(self, tiles):
+        """The nearest of tiles no mobile stands on, else the nearest."""
+        here = (int(self.c.x), int(self.c.y))
+        try:
+            taken = {(int(m.x), int(m.y)) for m in self.c.mobiles(within=6) if getattr(m, "x", None) is not None}
+        except Exception:
+            taken = set()
+        order = sorted(tiles, key=lambda s: cheb(s, here))
+        return next((s for s in order if tuple(s) not in taken), order[0])
+
     def hold_hop(self, h, hs, why, att, adj, now):
         here = (int(self.c.x), int(self.c.y))
-        t = min(h["stair"], key=lambda s: cheb(s, here))
+        t = self.free_tile(h["stair"])
         self.activity = f"stepping through the stair ({why})"
         try:
             self.tele_allow(h["side"])
@@ -351,7 +361,7 @@ class StairHoldMixin:
             time.sleep(min(2.0, wait_for - waited))
             return True
         here = (int(self.c.x), int(self.c.y))
-        t = min(h["back"], key=lambda s: cheb(s, here))
+        t = self.free_tile(h["back"])
         self.activity = "back up the stair"
         try:
             self.tele_allow(h["side"])
