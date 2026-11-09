@@ -205,6 +205,11 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             talk.feed(self, t)
             self.note_attacker(t)
             self.book_journal(t)                              # "You do not have that spell!": that spell is marked missing
+            if "More reagents are needed" in t:
+                # the count was wrong (mage_bot.cast takes one off per cast; the pack is read once a minute): read it again before the next choice.
+                # BotMageAdvBR cast Magic Arrow, Greater Heal and Teleport from an empty pack for a minute at 85 mana and died (2026-11-09 05:52)
+                self.state_at = 0
+                self.__dict__.pop("_casts_now", None)
         return out
 
     # goods a shop buys stay in the pack for the Butcher and the Tanner (sell_due): mage_bot's bank visit put away everything not on its list, and 54 visits in the

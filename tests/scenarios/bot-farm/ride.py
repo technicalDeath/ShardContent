@@ -60,6 +60,15 @@ class RideMixin:
         except Exception:
             return 0.2
 
+    def ride_area_avoided(self, xy, now=None):
+        """xy lies in a death area Between Worlds marked (bw.py: facts["crowded"], the 3x3 cells round a death, AVOID_H hours)."""
+        try:
+            import bw
+            until = float((self.facts.get("crowded") or {}).get(bw._cell(int(xy[0]), int(xy[1])), 0) or 0)
+            return until > (now or time.time())
+        except Exception:
+            return False
+
     def mount_tired(self):
         """Riding a horse whose running steps were spent within MOUNT_TIRED_S (recovery.py notes the server's line as mount_tired_at)."""
         try:
@@ -141,6 +150,13 @@ class RideMixin:
             corpse = self.facts.get("corpse") or {}
             if corpse.get("xy") and float(corpse.get("t") or 0) >= float(rec.get("seen") or 0) - 60:
                 xy = list(corpse["xy"])                   # it died riding: the horse was put down by its corpse (MountItem.OnParentDeath)
+            if xy and self.ride_area_avoided(xy, now):
+                # the horse stands in the area it just died in: BotMageAdvBR went back for it into Britain's graveyard, nine undead boxed it in, and it
+                # died on the same tile ten minutes after the first death (2026-11-09 05:43, 05:53). A new horse costs less than that
+                self.log(f"ride: the mount at {xy[0]},{xy[1]} is in the death area: left there")
+                self.ev("ride_lost", why="death area")
+                self.facts.pop("ride", None)
+                return False
             if xy and now - rec.get("fetch_at", 0) > FETCH_GAP and max(abs(xy[0] - self.c.x), abs(xy[1] - self.c.y)) <= FETCH_REACH:
                 rec["fetch_at"] = now
                 self.activity = f"going back for the horse at {xy[0]},{xy[1]}"
