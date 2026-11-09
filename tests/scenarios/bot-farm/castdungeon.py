@@ -20,6 +20,9 @@ CD_TILES = 40                 # tiles of walk that halve a spot's worth (the cor
 CD_SLICE = 6.0                # s a walk slice runs before the fight rules look again
 CD_HOLD = 4                   # tiles round the spawner's centre it stands within
 CD_FAIL = 3                   # walk slices in a row without progress that rest the spot "unreachable"
+STAIR_POST = 14               # tiles short of the spawn's centre a post stands, toward the stair out: inside a creature's sight (BaseCreature.DefaultRangePerception 16)
+POST_MIN = 3                  # and at least this far from the stair's tile (not on it)
+POST_HOLD = 2                 # tiles round the post it stands within
 
 
 class CasterDungeonMixin:
@@ -90,6 +93,32 @@ class CasterDungeonMixin:
             pass
         return s
 
+    def cd_post(self, spot):
+        """Where a caster holds for this spot: on the line from the nearest outward stair (spots.outward_stairs within first_trip.RETREAT_REACH) toward the
+        spawn's centre, STAIR_POST tiles short of the centre and at least POST_MIN from the stair, on the spot's walkable component; the centre itself with
+        no stair in reach. Its monsters see it from their ground and come across the open, one or two ahead of the rest; when the fight turns, the stair
+        is a few tiles behind (r_dungeon_out) and no creature follows through it (Teleporter.OnMoveOver: Creatures is off). In the spawn's middle the
+        casters were boxed in by five to thirteen lizardmen and died (Despise, 2026-11-09 01:35-05:30)."""
+        c = (int(spot["x"]), int(spot["y"]))
+        try:
+            import first_trip
+            import spots
+            side = spot.get("side") or (self.facts.get("dungeon_hunt") or {}).get("side")
+            out = spots.outward_stairs(side, c, first_trip.RETREAT_REACH)
+            if not out:
+                return c
+            sx, sy = int(out[0][1]["src"][0]), int(out[0][1]["src"][1])
+            d = max(abs(c[0] - sx), abs(c[1] - sy))
+            comp = spots.component_near(c[0], c[1], side)
+            for k in range(max(POST_MIN, d - STAIR_POST), d + 1):
+                f = k / float(d or 1)
+                p = (int(round(sx + (c[0] - sx) * f)), int(round(sy + (c[1] - sy) * f)))
+                if comp is None or spots.component_near(p[0], p[1], side) == comp:
+                    return p
+        except Exception:
+            pass
+        return c
+
     def r_cdungeon(self):
         dh = self.facts.get("dungeon_hunt")
         if not dh or self.c.ghost:
@@ -107,12 +136,14 @@ class CasterDungeonMixin:
             spot = self.cd_pick()
             if spot is None:
                 self.activity = "no dungeon spot open"
-                return False
+                dh.setdefault("nothing_open_since", now)       # first_trip ends the stay "nothing open" after task_core.WAIT_S: BotSorcAR stood at
+                return False                                    # Despise's landing for the last 18 minutes of its stay, no spot rating a fight (2026-11-09)
+            dh.pop("nothing_open_since", None)
             st.clear()
-            st.update(spot=spot, t0=now, seen=now, plan=None, leg=0, legst={}, fails=0)
+            st.update(spot=spot, t0=now, seen=now, plan=None, leg=0, legst={}, fails=0, post=self.cd_post(spot))
         here = (int(self.c.x), int(self.c.y))
-        sx, sy = int(spot["x"]), int(spot["y"])
-        if max(abs(here[0] - sx), abs(here[1] - sy)) <= max(CD_HOLD, int(spot.get("home") or 0) // 2):
+        sx, sy = st.get("post") or (int(spot["x"]), int(spot["y"]))
+        if max(abs(here[0] - sx), abs(here[1] - sy)) <= POST_HOLD:
             if not st.get("arrived"):
                 st["arrived"] = now
                 st["seen"] = now
@@ -126,11 +157,10 @@ class CasterDungeonMixin:
                 self.cd_rest(spot["id"], "empty")
                 self.__dict__.pop("_cd", None)
                 return True
-            self.activity = f"waiting at {spot['id']} for its spawn"
-            r = int(spot.get("home") or CD_HOLD)
-            self.c.goto(sx + random.randint(-r // 2, r // 2), sy + random.randint(-r // 2, r // 2)).wait(timeout=CD_SLICE)
+            self.activity = f"waiting by the stair for {spot['id']}'s spawn"
+            self.c.goto(sx + random.randint(-1, 1), sy + random.randint(-1, 1)).wait(timeout=CD_SLICE)
             return True
-        return self.cd_walk(st, spot, here)
+        return self.cd_walk(st, dict(spot, x=sx, y=sy), here)
 
     def cd_walk(self, st, spot, here):
         """One slice of the journey to the spot: a walk leg toward its end, or a stair (travel.tele_step)."""

@@ -1415,6 +1415,15 @@ class FirstTrip(RideMixin, LadderMixin):
                 wait_s = 120.0
             if now - float(dh["wait_since"]) > wait_s:
                 why = "nothing open"
+        elif dh.get("nothing_open_since"):
+            # a caster's patrol (castdungeon.r_cdungeon) found no spot it rates: as the core's wait above
+            try:
+                import task_core
+                wait_s = task_core.WAIT_S
+            except Exception:
+                wait_s = 120.0
+            if now - float(dh["nothing_open_since"]) > wait_s:
+                why = "nothing open"
         else:
             dh.pop("wait_since", None)
         if why:

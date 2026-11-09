@@ -405,6 +405,11 @@ class LadderMixin:
             bad = [k for k in kinds if not (rating.rate(self, k) or {}).get("engage")]
             ok = bool(kinds) and not bad
             why = f"rates {', '.join(bad)} not a fight" if bad else ("no level-1 kinds" if not kinds else "")
+            if ok and hasattr(self, "cd_pick"):
+                # a caster patrols spot by spot and takes one only when its whole spawn rates a fight (castdungeon.cd_pick, spots.spawn_ok): with none,
+                # the stay is spent at the landing (BotSorcAR, 2026-11-09 05:47-06:05)
+                ok = any(spots.spawn_ok(self, s) for s in hunted)
+                why = "" if ok else "no level-1 spot's whole spawn rates a fight"
         except Exception as e:
             why = f"rating failed ({type(e).__name__})"
         self.__dict__["_dungeon_fights"] = (time.time(), ok)
