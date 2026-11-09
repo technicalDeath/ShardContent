@@ -175,6 +175,9 @@ class CasterStock:
     """CasterBot: the reagents the held spells use, to 20 each; triggers mage_bot.r_resupply's shop trip when any is under 10."""
 
     TARGET = 20
+    DUNGEON_TARGET = 80                                  # a dungeon caster's stock: its mana over a stay (DUNGEON_HUNT_S 40 min at the UOR regen of (Int + Meditation)
+                                                         # / 2 ~ 86, one point every 1.35 s: ~1,780 mana, + the pool 85) / 11 for a Lightning = ~170 casts, fighting
+                                                         # about half the stay = ~85; 20 lasted five or six lizardmen (2026-11-09)
     PURSE_BASE = 50                                      # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
 
     @property
@@ -198,7 +201,8 @@ class CasterStock:
         for s in self.k.spells.values():
             if s["min_skill"] <= skill and self.spell_ok(s["name"]):
                 keys.update(s["reagents"])
-        return {k: self.TARGET for k in sorted(keys)} or super().reagent_plan()
+        target = self.DUNGEON_TARGET if self.feature("ladder_dungeon") else self.TARGET
+        return {k: target for k in sorted(keys)} or super().reagent_plan()
 
     def r_stock(self):
         if not self.feature("stock") or self.c.ghost or self.dangers(10) or self.hp_pct() < 60:

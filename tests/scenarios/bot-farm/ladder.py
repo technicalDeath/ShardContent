@@ -53,8 +53,8 @@ DUNGEON_GAP = TOWN_GAP       # 45 min, as a town's: 3 h (10800) was set for the 
 DUNGEON_HP = 80
 MIN_WORTH = 300
 DUNGEON_WORTH = 500
-CAST_KIT = 10                 # casts of its attack spell a caster's reagents allow before a dungeon trip: CasterStock's restock line (TARGET 20 // 2); the
-                              # full 20 was short after the first fight (BotMageAR, 18 Mandrake Root, "the ladder offers no trip now", 2026-11-08 23:16)
+CAST_KIT = 40                 # casts of its attack spell a caster's reagents allow before a dungeon trip: CasterStock's restock line for a dungeon caster
+                              # (DUNGEON_TARGET 80 // 2, half a stay's casts); the full stock was short after the first fight (BotMageAR, 2026-11-08 23:16)
 CAST_STAY = 5                 # and on the stay: a stay ends "kit low" under this
 TRIP_ARROWS = 150             # a bow's quiver before a dungeon trip: what its restock buys (hunter.r_resupply, "=arrow": 150)
 STAY_ARROWS = 25              # and the stay's floor: the restock's own low line (r_resupply, ammo() < 25); the trip's start needs 60 (ladder_kit_strict)
