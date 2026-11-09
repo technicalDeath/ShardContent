@@ -222,6 +222,12 @@ class Travel(Step):
             return c.fail("travel", "unreachable")
         try:
             import task_core
+            if b.hp_pct() < task_core.WALK_HP and b.facts.get("dungeon_hunt") and b.threats(10) and hasattr(b, "drink_heal") \
+                    and b.drink_heal("hurt before the next walk"):
+                # in a dungeon, hurt, with a monster too near to bandage: drink, then walk on. BotFairSwordVR, out of two ettins by the stair at 53 of 100,
+                # walked straight back down to the trolls with "not bandaging: an ettin at 7 tiles" and 10 Heal potions in the pack (2026-11-08 20:00)
+                b.log(f"hunt tree: drank a Heal potion before the walk (hp {b.c.hp}, a threat within 10)")
+                return Status.RUNNING
             if b.hp_pct() < task_core.WALK_HP and not b.threats(10) and not st.get("journey") and time.time() - st.setdefault("hurt_wait", time.time()) < 240:
                 c.step = "rest"                              # M1: no far walk below WALK_HP percent health: bandage or wait first (at most four minutes)
                 b.activity = "resting before the walk"

@@ -1566,6 +1566,16 @@ def no_ground(bot, g, rng):
     return [], "rested"
 
 
+def deep_stay(bot, task):
+    """A saved hunt on a dungeon stay's deep floors (spots.DEEP_TIERS, feature deep_floors): the stay's own ground, which tiers() does not list (it holds
+    the ladder's rung). BotFairSwordVR's troll hunt on Despise's lower level was dropped as "no longer allowed" at a restart (2026-11-08 19:59)."""
+    try:
+        import spots
+        return bool(bot.facts.get("dungeon_hunt")) and bot.feature("deep_floors") and (task.get("tier") or 1) in spots.DEEP_TIERS
+    except Exception:
+        return False
+
+
 def bank_candidate(bot, hunt):
     """A bank errand as a candidate (the nearest bank), for the bank-first rule; None when no bank is known."""
     try:
@@ -1626,7 +1636,8 @@ def tick(bot):
         # and BotBardAdvR carried on their saved dungeon tours after the restart, one for 8 more minutes (2026-11-03 02:24-02:31).
         bot.__dict__["_core_resume_checked"] = True
         # (dungeon tiers only: a surface tier can be missing for a moment at start, cautious() before the pack is read)
-        if task.get("task") in ("hunt", "tour2") and (task.get("tier") or 1) > MAX_TIER and (task.get("tier") or 1) not in tiers(bot):
+        if task.get("task") in ("hunt", "tour2") and (task.get("tier") or 1) > MAX_TIER and (task.get("tier") or 1) not in tiers(bot) \
+                and not deep_stay(bot, task):
             bot.log(f"core: the saved task at {task.get('area')} (tier {task.get('tier')}) is no longer allowed: dropped")
             end_task(bot, task, "not allowed")
             task = None
