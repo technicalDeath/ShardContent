@@ -129,6 +129,18 @@ def away_point(bot, spot, dist=FLEE_DIST):
     return int(bot.c.x + vx * dist / n), int(bot.c.y + vy * dist / n)
 
 
+def visible_attackers(bot, within=12):
+    """The hostiles in view that can hurt (the brain's dangers, else its mobs in war mode)."""
+    try:
+        fn = getattr(bot, "dangers", None)
+        ms = list(fn(within)) if callable(fn) else []
+        if not ms:
+            ms = [m for m in bot.mobs(within) if getattr(m, "in_war_mode", False)]
+        return [m for m in ms if getattr(m, "x", None) is not None]
+    except Exception:
+        return []
+
+
 def res_flee(bot):
     """Just back from the dead, weak, hit by something nobody can see: move away from the death spot now."""
     if not on(bot):
@@ -145,7 +157,13 @@ def res_flee(bot):
     if not dm or now - dm[-1][0] > HIT_WITHIN:
         return False
     bot.facts["res_flee_at"] = now
-    x, y = away_point(bot, bot.facts.get("res_from") or (bot.c.x, bot.c.y))
+    spot = bot.facts.get("res_from") or (bot.c.x, bot.c.y)
+    seen = visible_attackers(bot)
+    if seen:
+        # away from what it can see: from the recorded death spot (the ghost's way out of Despise, 1603,1111) BotWarlockAR ran south-east into an ettin,
+        # three ogres and a troll at 22 hit points and died (2026-11-09 05:16)
+        spot = (sum(int(m.x) for m in seen) / len(seen), sum(int(m.y) for m in seen) / len(seen))
+    x, y = away_point(bot, spot)
     bot.activity = "away from where I died"
     bot.log(f"hit at {bot.hp_pct():.0f}% hit points {int(now - t)} s after the resurrection: walking away from {bot.facts.get('res_from')} to {x},{y}")
     try:

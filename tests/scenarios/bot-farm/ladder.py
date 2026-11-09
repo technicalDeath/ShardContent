@@ -58,6 +58,8 @@ CAST_KIT = 40                 # casts of its attack spell a caster's reagents al
 CAST_STAY = 5                 # and on the stay: a stay ends "kit low" under this
 TRIP_ARROWS = 150             # a bow's quiver before a dungeon trip: what its restock buys (hunter.r_resupply, "=arrow": 150)
 STAY_ARROWS = 25              # and the stay's floor: the restock's own low line (r_resupply, ammo() < 25); the trip's start needs 60 (ladder_kit_strict)
+DUNGEON_PURSE = 200           # gold carried into a dungeon: BotBase.visit_bank's own reserve; the rest is banked first (a death takes all it carries)
+PURSE_GAP = 600               # s between two bank tries for it (a failed walk does not hold the trip)
 GEAR_PIECES = 6               # armour pieces one gear check may buy: the suit (torso, legs, arms, gloves, gorget, helm; wear.ERRAND_PIECES)
 GEAR_GAP = 900                # s between the gear errands before a dungeon trip (ladder_geared): the upgrade rules' own wait is 600
 TICK_EVERY = 10
@@ -287,6 +289,22 @@ class LadderMixin:
             self.log(f"ladder: gear check failed ({type(e).__name__}: {e})")
             return True
 
+    def ladder_purse(self):
+        """The gold above DUNGEON_PURSE banked before a dungeon trip, as a player leaves his money at the bank: BotMageAR walked into Despise with 1,354
+        gold and lost all of it there (death_loss, 2026-11-09 05:30). True when the purse is light (or the last try was within PURSE_GAP)."""
+        if (self.c.gold or 0) <= DUNGEON_PURSE + 50:
+            return True
+        now = time.time()
+        if now - float(self.facts.get("purse_bank_at", 0) or 0) < PURSE_GAP:
+            return True
+        self.facts["purse_bank_at"] = now
+        self.log(f"ladder: {self.c.gold} gold carried: the bank first, {DUNGEON_PURSE} kept for {DUNGEON}")
+        try:
+            self.visit_bank("dungeon purse", reserve=DUNGEON_PURSE)
+        except Exception as e:
+            self.log(f"ladder: purse bank failed ({type(e).__name__}: {e})")
+        return False
+
     def ladder_quiver(self):
         """Arrows (or bolts) up to TRIP_ARROWS from the ammunition shop the errands use (errands.ammo_shop: not one sold out lately), the bank first. True when it bought some."""
         want = TRIP_ARROWS - self.ammo()
@@ -438,7 +456,7 @@ class LadderMixin:
                     out.append(dict(t, rung=3))
         if not self.ladder_dungeon_ready(st, now):
             self.ladder_dungeon_why(st, now)
-        elif self.ladder_geared():
+        elif self.ladder_geared() and self.ladder_purse():
             d = self.ladder_dungeon_trip(home)
             if d and self.ladder_retreat(home, d):
                 out.append(dict(d))

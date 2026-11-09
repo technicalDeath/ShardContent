@@ -230,10 +230,22 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
     set_runmode = BotBase.set_runmode
 
     def go_town(self):
+        if self.in_dungeon_now():
+            # mage_bot "backs off" to town when no spell fits: from a dungeon that is a straight walk at a surface point, into Despise's dead-end west
+            # room (BotMageBR, 2026-11-09 04:17): kite the attackers instead, else stay for the patrol and the stay's own way out
+            att = self.kite_attackers()
+            return self.kite_away(att) if att else False
         self.sprint()
         return super().go_town()
 
     def step_away(self, m, dist=3):
+        att = self.kite_attackers()
+        if len(att) >= 2 or self.in_dungeon_now():
+            # mage_bot's r_fight side-steps its target whenever it is adjacent: beside four lizardmen BotMageAR side-stepped for a minute, cast nothing
+            # (mana 83 throughout) and died (Despise, 2026-11-09 05:29). The pack's kite moves it off all of them (toward the way out, else away, else
+            # Teleport), and the next tick casts
+            if self.kite_away(att or [m]):
+                return True
         self.sprint()
         return super().step_away(m, dist)
 
@@ -797,7 +809,21 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         self.end_fight("flee")
         return True
 
+    LEAVE_GAP = 20                # s between two tries of the way out (tele_leave blocks while it walks)
+
     def r_explore(self):
+        if not self.facts.get("dungeon_hunt") and self.in_dungeon_now():
+            # no stay (its trip ended: a restart, a death, the time): the way out by the stairs. r_explore's surface field from inside Despise walked
+            # BotMageAdvR from the ettin level's stair 140 tiles west into four ettins, dead in a minute (2026-11-09 05:28-05:29)
+            now = time.time()
+            if now - float(self.__dict__.get("_leave_at", 0) or 0) < self.LEAVE_GAP:
+                return False
+            self.__dict__["_leave_at"] = now
+            self.activity = "out of the dungeon: no stay"
+            at = [int(self.c.x), int(self.c.y)]
+            ok = bool(self.tele_leave("leave", "no stay"))
+            self.ev("dungeon_leave", at=at, ok=ok)
+            return True
         if self.facts.get("dungeon_hunt") and not self.c.ghost:
             try:
                 import gazetteer
