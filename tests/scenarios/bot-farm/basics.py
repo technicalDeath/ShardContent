@@ -631,6 +631,7 @@ class BasicsMixin:
         """No way out: fight it (a caster casts: CasterBot overrides), and stay in the fight FLEE_STUCK_S (fight_until: r_flee and r_avoid keep swinging,
         fight_committed) rather than try another flight next tick. A trapped flight only swung once between flights: BotFenceAdvR, cornered by a
         lizardman pack in Despise, logged 26 "flee_trapped" in 35 s, out of war mode at its death (2026-11-07 13:58:54-13:59:29)."""
+        m = self.fight_pick(m)
         self.ev("flee_trapped", at=self.mkey(m), hp=self.c.hp)
         self.facts["fight_until"] = max(float(self.facts.get("fight_until", 0) or 0), time.time() + float(getattr(self, "FLEE_STUCK_S", 20)))
         if not self.c.war_mode:
@@ -638,6 +639,34 @@ class BasicsMixin:
         self.c.attack(m.serial)
         time.sleep(1.2)
         return True
+
+    PICK_SWITCH = 0.6           # another attacker is worth the switch only with this share or less of the current one's hit points left
+
+    def fight_pick(self, m):
+        """Of the attackers beside it (in war mode within 2 tiles), the one with the fewest hit points left, by its health bar times its kind's hit points
+        (rating.creature): each one killed is one fewer hitting it, so the quickest kill comes first, as a player cornered by a pack does. The current
+        target stays unless another has PICK_SWITCH of its hit points or fewer. BotMaceAdvR, boxed in by five ettins and three earth elementals on
+        Despise's lower floor, swung at whichever was listed first, 101 "fighting back" lines to its death (2026-11-08 13:31-13:40)."""
+        try:
+            import rating
+            beside = [o for o in self.mobs(2) if getattr(o, "in_war_mode", False) and not getattr(o, "is_dead", False)]
+            if len(beside) < 2:
+                return m
+
+            def left(o):
+                mx = getattr(o, "max_hits", 0) or 0
+                pct = (getattr(o, "hits", 0) or 0) / mx if mx > 1 else 1.0
+                e = rating.creature(self.mkey(o)) or {}
+                hits = e.get("hits") or [50]
+                return pct * (sum(hits) / len(hits))
+
+            best = min(beside, key=left)
+            cur = next((o for o in beside if getattr(o, "serial", None) == getattr(m, "serial", None)), None)
+            if cur is None or left(best) <= self.PICK_SWITCH * left(cur):
+                return best
+        except Exception:
+            pass
+        return m
 
     # ---- selling -----------------------------------------------------------------------------------------------------------------------------------------
 
