@@ -23,6 +23,7 @@ CD_FAIL = 3                   # walk slices in a row without progress that rest 
 STAIR_POST = 14               # tiles short of the spawn's centre a post stands, toward the stair out: inside a creature's sight (BaseCreature.DefaultRangePerception 16)
 POST_MIN = 3                  # and at least this far from the stair's tile (not on it)
 POST_HOLD = 2                 # tiles round the post it stands within
+HOLD_SHARE = 2                # bots on a held spot's ground at most: two casters at one stair hold wear its camp down together
 HOLD_WALK = 20                # tiles from a stair hold within which the walk back to it is a straight one (a lure's end is 16 out)
 
 
@@ -42,6 +43,12 @@ class CasterDungeonMixin:
             secs = 1800.0
         self.facts.setdefault("cd_rest", {})[str(sid)] = time.time() + secs
         self.ev("cd_rest", spot=sid, why=why, secs=int(secs))
+        spot = self.cd_state().get("spot") or {}
+        if str(spot.get("id")) == str(sid) and spot.get("cell"):
+            try:
+                self.mem.record("claim", kind="ground", key=f"{spot['cell']}#{self.name}", ttl=0)     # left: the claim goes with it
+            except Exception:
+                pass
 
     def cd_spawn_ok(self, s):
         """spots.spawn_ok cached a minute per spot (the deep spots have it already in all_spots, deep_ok)."""
@@ -76,8 +83,9 @@ class CasterDungeonMixin:
             except Exception:                                   # stair up) were where four casters were boxed in and died (2026-11-09 02:41-04:05)
                 pass
             try:
-                if self.ground_load(s["cell"]) >= 1:
-                    continue                                    # another bot works it
+                share = HOLD_SHARE if hasattr(self, "hold_for") and self.hold_for(s) else 1
+                if self.ground_load(s["cell"]) >= share:
+                    continue                                    # another bot works it (a stair hold takes two)
             except Exception:
                 pass
             d = max(abs(s["x"] - here[0]), abs(s["y"] - here[1]))
