@@ -542,6 +542,35 @@ def is_deep(s):
     return s.get("tier") != TIER_RUNG1 or any(any(h in k for h in HEAVY_UNMEASURED) or heavy_by_stats(k) for k in s.get("kinds") or ())
 
 
+def join_pack(s):
+    """The monsters of the neighbouring spawners that join a fight at spot s: those whose centre lies within a creature's notice (first_trip.RETREAT_SEE,
+    BaseCreature RangePerception 16) of s's spawn edge (its home), on the same side and walkable component, all their count. BotWarAdvR's spot at
+    5505,747 holds 5, and 7 closed on it with the 5 of 5475,748 30 tiles off (2026-11-08 19:56)."""
+    out = []
+    try:
+        import first_trip
+        reach = first_trip.RETREAT_SEE + max(0, int(s.get("home") or 0))
+        comp = component_near(s["x"], s["y"], s.get("side"))
+        for o in dungeon_spots():
+            if o is s or o.get("side") != s.get("side") or o.get("id") == s.get("id") or (o["x"], o["y"]) == (s["x"], s["y"]):
+                continue
+            if max(abs(o["x"] - s["x"]), abs(o["y"] - s["y"])) > reach or component_near(o["x"], o["y"], o["side"]) != comp:
+                continue
+            ks = [k for k in o.get("kinds") or () if task_core_aggressive(k)]
+            out += [ks[i % len(ks)] for i in range(int(o.get("count") or 1))] if ks else []
+    except Exception:
+        return out
+    return out
+
+
+def task_core_aggressive(kind):
+    try:
+        import task_core
+        return task_core.aggressive(kind)
+    except Exception:
+        return True
+
+
 def deep_ok(bot, s):
     """A spot below a dungeon's beginner floor (a heavy kind on tier 4, or tier 5) this bot may hunt on its dungeon stay (owner, 2026-11-08: "I'm sure
     there are bots that can try the lower passage now that they have higher skills and better equipment"): every kind on it rates a fight one at a
@@ -571,6 +600,7 @@ def deep_ok(bot, s):
         one = [rating.rate(bot, k, me) for k in kinds]
         if kinds and all(r and r.get("engage") for r in one):
             pack = [kinds[i % len(kinds)] for i in range(max(DEEP_PACK, int(s.get("count") or 1)))]
+            pack += join_pack(s)
             p = rating.rate_pack(bot, pack, me)
             ok = bool(p and p.get("engage"))
     except Exception:
