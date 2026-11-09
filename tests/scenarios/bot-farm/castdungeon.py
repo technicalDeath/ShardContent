@@ -133,6 +133,20 @@ class CasterDungeonMixin:
         leg = legs[st["leg"]]
         self.activity = f"walking to {spot['id']} (leg {st['leg'] + 1} of {len(legs)})"
         if leg.get("kind") == "tele":
+            src = (int(leg["t"]["src"][0]), int(leg["t"]["src"][1]))
+            if max(abs(src[0] - here[0]), abs(src[1] - here[1])) > 2:
+                # to the stair's entry in slices first: tele_hop's own walk (exit path replays, up to two minutes) holds every other rule, and BotSorcAR
+                # came out of one at 17 of 92 with four lizardmen on it and died (Despise, 2026-11-09 01:33-01:35)
+                try:
+                    self.c.goto(src[0], src[1]).wait(timeout=CD_SLICE)
+                except Exception:
+                    pass
+                if (int(self.c.x), int(self.c.y)) == here:
+                    st["fails"] = st.get("fails", 0) + 1
+                    if st["fails"] >= CD_FAIL:
+                        self.cd_rest(spot["id"], "unreachable")
+                        self.__dict__.pop("_cd", None)
+                return True
             res = travel.tele_step(self, leg, st["legst"])
             if res == "done":
                 st["leg"] += 1

@@ -419,7 +419,11 @@ class FirstTrip(RideMixin, LadderMixin):
         if now - since > self.TRIP_REST_S:
             return False
         self.activity = "first trip: resting before walking on"
-        if not self.bandage_self():
+        if hasattr(self, "caster_heal"):
+            healed = self.caster_heal()                        # a caster heals with its spells (castfight.py); it has no bandage_self
+        else:
+            healed = self.bandage_self()
+        if not healed:
             time.sleep(3.0)
         return True
 
