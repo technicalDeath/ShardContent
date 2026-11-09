@@ -189,6 +189,19 @@ class CasterFightMixin:
         self.log(f"kite: boxed in by {len(att)}: teleport to {x},{y}: {'out' if moved else 'not out'}")
         return moved
 
+    # ---- leaving what it does not fight ------------------------------------------------------------------------------------------------------------
+
+    def caster_avoid(self, dangers):
+        """A danger within notice that it rates no fight: run from all of them (kite_away: a mounted caster outruns every Slow and Medium chaser, and
+        the run takes it out of a spellcaster's range). True when it moved; False leaves mage_bot's r_avoid (fight back when cornered)."""
+        att = self.kite_attackers(KITE_SEE) or list(dangers)
+        if not att:
+            return False
+        if self.kite_away(att):
+            self.activity = f"leaving {getattr(att[0], 'name', '?')}"
+            return True
+        return False
+
     # ---- buffs ------------------------------------------------------------------------------------------------------------------------------------
 
     def buff_before_fight(self, target):

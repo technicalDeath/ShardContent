@@ -677,6 +677,15 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         self.c.attack(m.serial)
         return True
 
+    def r_avoid(self):
+        """A danger it does not take on (dangers(7)): leave it (castfight.caster_avoid), else mage_bot's (fight back when cornered)."""
+        ds = self.dangers(7)
+        if not ds:
+            return False
+        if self.caster_avoid(ds):
+            return True
+        return super().r_avoid()
+
     def r_flee(self):
         """Low health with something hostile close, in the shared order (basics.py) with the caster's spells: cure first when due; beside an attacker the Heal
         potion (its next hit would ruin a spell), else the Heal spell, else the potion; then run, and fight when trapped."""
