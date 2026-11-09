@@ -1514,7 +1514,30 @@ class FirstTrip(RideMixin, LadderMixin):
         self.log(f"first trip: {len(near)} monsters within {RETREAT_NEAR} tiles at {before[0]},{before[1]} (hp {self.c.hp}): "
                  f"{'through' if ok else 'not through'} the teleporter at {tr['src'][0]},{tr['src'][1]}")
         self.ev("dungeon_retreat", side=side, n=len(near), hp=self.c.hp, at=list(before), stair=[int(tr["src"][0]), int(tr["src"][1])], ok=ok)
+        self.retreat_tally(now)
         return True
+
+    RETREATS_SPOT = 2          # retreats from one hunt's ground in a stay after which that hunt ends "danger" (the spot rests task_core.REST_S["danger"])
+
+    def retreat_tally(self, now):
+        """Counts the retreats from the running hunt's ground; at RETREATS_SPOT the hunt ends "danger", so the core picks other ground while that spot
+        rests, as a player gives up a room that keeps driving him out. BotHealAdvR retreated six times from sp5490,676 in four minutes for one kill
+        and its stay ended "kit low" (2026-11-08 20:22-20:27)."""
+        task = self.facts.get("task") or {}
+        area = task.get("area")
+        if not area or task.get("task") not in ("hunt", "tour2"):
+            return
+        tally = self.__dict__.setdefault("_retreats", {})
+        tally[area] = tally.get(area, 0) + 1
+        if tally[area] >= self.RETREATS_SPOT:
+            tally.pop(area, None)
+            try:
+                import task_core
+                self.log(f"first trip: {self.RETREATS_SPOT} retreats from {area}: that ground is given up for now")
+                task_core.end_task(self, task, "danger")
+                self.facts["task"] = None
+            except Exception as e:
+                self.log(f"first trip: retreat tally: {type(e).__name__}: {e}")
 
     def trip_stair_near(self, side, threats=()):
         """The teleporter entry on this level (same walkable component, spots.component) within RETREAT_REACH tiles to run for: first one no monster stands

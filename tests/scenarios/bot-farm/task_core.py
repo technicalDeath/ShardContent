@@ -1334,6 +1334,13 @@ def end_task(bot, task, why):
             stuck_here = False
         if stuck_here:
             bot.ev("unreachable_here", area=task.get("area"), at=task["xy0"])
+            seen = bot.__dict__.setdefault("_unreach_here_area", {})
+            if t - float(seen.get(task.get("area"), 0) or 0) < 60:
+                # the same area failing where the bot stands twice in a minute is the area, not the spot it stands on: rested a little. BotHealAdvR
+                # re-picked sp5439,851 nine times in nine seconds at the Despise landing, each "unreachable after 0.0 min" (2026-11-08 20:22)
+                stuck_here = False
+                why = "stale"
+            seen[task.get("area")] = t
             hist = [t_ for t_ in (bot.facts.get("unreach_here_at") or []) if t - float(t_) < 600] + [t]
             bot.facts["unreach_here_at"] = hist[-10:]                  # (bot_common.step_out: three in 10 minutes is a trap where it stands)
     if (why in REST_S or (supply and why != "done")) and not stuck_here:
