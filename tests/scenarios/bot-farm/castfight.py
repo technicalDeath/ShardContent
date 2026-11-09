@@ -161,11 +161,47 @@ class CasterFightMixin:
                 return True
         return self.kite_teleport(att, tried)
 
+    TELE_REACH = (10, 8, 6)    # tiles along the way out a Teleport aims at, farthest first (a targeted spell's range is 10 before AOS)
+
+    def teleport_points(self, att):
+        """Points to teleport to toward the way out: along the line to the stair a retreat would take (first_trip.trip_stair_near: not through the pack,
+        toward the exit), TELE_REACH tiles off, on this floor's walk grid. The points straight away from the pack lay in the wall of a dead-end corner:
+        BotMageBR's six Teleports at Despise's west end all failed ("not out", 2026-11-09 02:40-02:41)."""
+        out = []
+        try:
+            import gazetteer
+            import spots
+            here = (int(self.c.x), int(self.c.y))
+            side = gazetteer.side(here[0], here[1])
+            if side == "surface":
+                return out
+            st = self.trip_stair_near(side, att) if hasattr(self, "trip_stair_near") else None
+            if st is None:
+                far = spots.outward_stairs(side, here, 10 ** 4)       # only the direction matters here: the way out at any distance
+                st = far[0][1] if far else None
+            if st is None:
+                return out
+            sx, sy = int(st["src"][0]), int(st["src"][1])
+            d = max(abs(sx - here[0]), abs(sy - here[1])) or 1
+            comp = spots.component_near(here[0], here[1], side)
+            for r in self.TELE_REACH:
+                f = min(1.0, r / d)
+                p = (int(round(here[0] + (sx - here[0]) * f)), int(round(here[1] + (sy - here[1]) * f)))
+                if comp is None or spots.component_near(p[0], p[1], side) == comp:
+                    if not any(max(abs(p[0] - int(m.x)), abs(p[1] - int(m.y))) <= 1 for m in att):
+                        out.append(p)
+        except Exception:
+            return out
+        return out
+
     def kite_teleport(self, att, points):
         """No run moved it (bodies on every side, a wall behind): Teleport (third circle, Bloodmoss and Mandrake Root) to the first open point a kite step
         tried, aimed with a ground cursor (Navrey targettile). A blow during its 1 s cast ruins it (Spell.OnCasterHurt): it is the last way out before a fight
         back. True when it moved."""
-        if not points or not self.spell_ok("teleport") or (self.c.mana or 0) < 9:
+        if not self.spell_ok("teleport") or (self.c.mana or 0) < 9:
+            return False
+        points = self.teleport_points(att) + list(points or [])
+        if not points:
             return False
         regs = getattr(self, "regs", {}) or {}
         if regs.get("Bloodmoss", 0) <= 0 or regs.get("MandrakeRoot", 0) <= 0:

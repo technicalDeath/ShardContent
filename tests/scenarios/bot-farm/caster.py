@@ -549,7 +549,8 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             return True                                            # no spell fits before the nearest attacker arrives: it ran (castfight.py)
         if self.buff_before_fight(m):
             return True                                            # Reactive Armor first (castfight.py)
-        if self.profit_on():
+        if self.profit_on() and not self.facts.get("dungeon_hunt") and len(self.kite_attackers()) < 2:
+            # (the cheapest way is for a lone animal, not a pack or a dungeon: BotMageBR cast Poison at 3 gold a cast with ten lizardmen on it, 2026-11-09 02:40)
             r = self.profit_attack(m)                              # the cheapest way: fists, Poison and follow, the least gold per damage (profit.py)
             if r is not None:
                 return r
