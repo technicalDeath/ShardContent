@@ -468,6 +468,73 @@ DEEP_PACK = 3                  # the least a deep spot is rated as (rating.rate_
 DEEP_TIERS = (TIER_RUNG1, TIER_DEEP)   # Despise's floors by the grid: 4 the lizardmen and the ettins and earth elementals below them, 5 the trolls, ogres and cyclopes
 
 
+_HOPS_OUT = {}
+
+
+def walk_point(x, y, side, cells=2):
+    """(x, y) when the 4-tile grid has a walkable component there, else the nearest point of a walkable cell within `cells` cells (a bot stands on tiles
+    the grid reads as wall: a doorway, a corridor's edge); None when none."""
+    if component(x, y, side) is not None:
+        return (int(x), int(y))
+    for r in range(1, cells + 1):
+        for dx in range(-r, r + 1):
+            for dy in range(-r, r + 1):
+                if max(abs(dx), abs(dy)) == r and component(int(x) + 4 * dx, int(y) + 4 * dy, side) is not None:
+                    return (int(x) + 4 * dx, int(y) + 4 * dy)
+    return None
+
+
+def component_near(x, y, side, cells=2):
+    """component() at walk_point()."""
+    p = walk_point(x, y, side, cells)
+    return component(p[0], p[1], side) if p else None
+
+
+def hops_out(side, p):
+    """Inner stairs from point p to the nearest way out of the dungeon (a teleporter to the surface), by the walk graph (inner_hops); 99 when none."""
+    p = walk_point(p[0], p[1], side) or p
+    comp = component(p[0], p[1], side)
+    key = (side, comp)
+    if comp is not None and key in _HOPS_OUT:
+        return _HOPS_OUT[key]
+    best = 99
+    try:
+        import gazetteer
+        for t in gazetteer.get().trans:
+            if t.get("src_side") == side and t.get("dst_side") == "surface":
+                h = inner_hops(side, p, (int(t["src"][0]), int(t["src"][1])))
+                if h is not None:
+                    best = min(best, len(h))
+    except Exception:
+        pass
+    if comp is not None:
+        _HOPS_OUT[key] = best
+    return best
+
+
+def outward_stairs(side, p, reach):
+    """[(tiles, teleporter)] nearest first: the entries on p's walkable component within `reach` tiles that lead toward the way out (to the surface, or
+    to a level fewer inner stairs from it). Never one into another dungeon (Despise's lower level holds teleporters to Destard and Terathan Keep)."""
+    out = []
+    try:
+        import gazetteer
+        comp = component_near(p[0], p[1], side)
+        mine = hops_out(side, p)
+        for t in gazetteer.get().trans:
+            if t.get("src_side") != side or t.get("dst_side") not in (side, "surface"):
+                continue
+            sx, sy = int(t["src"][0]), int(t["src"][1])
+            d = max(abs(sx - int(p[0])), abs(sy - int(p[1])))
+            if d > reach or (comp is not None and component(sx, sy, side) != comp):
+                continue
+            if t["dst_side"] == "surface" or hops_out(side, (int(t["dst"][0]), int(t["dst"][1]))) < mine:
+                out.append((d, t))
+    except Exception:
+        return []
+    out.sort(key=lambda dt: dt[0])
+    return out
+
+
 def is_deep(s):
     """A dungeon spot below its beginner floor: tier 5, or tier 4 holding a heavy kind (the floors deep_ok opens)."""
     if s.get("side", "surface") == "surface":
@@ -493,6 +560,10 @@ def deep_ok(bot, s):
         return hit[1]
     ok = False
     try:
+        import first_trip
+        if not outward_stairs(s.get("side"), (s["x"], s["y"]), first_trip.RETREAT_REACH):
+            cache[s["id"]] = (now, False)
+            return False                      # no stair out within a retreat's run of it: the ettins of Despise's far west are 131-137 tiles from theirs
         import rating
         me = rating.bot_numbers(bot)
         me["hp"] = me["max_hp"]

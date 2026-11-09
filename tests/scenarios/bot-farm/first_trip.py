@@ -56,6 +56,9 @@ DUNGEON_HUNT_S = 2400        # s a dungeon trip hunts inside (feature dungeon_hu
 RETREAT_NEAR = 4             # tiles: a pack this close (detour.PACK of them) sends a dungeon hunter through the stair (r_dungeon_out)
 RETREAT_REACH = 80           # tiles to the stair at most: at a run (0.2 s a tile on foot, 0.1 mounted) against a Medium chaser's 0.45 the bot gains 2.8 tiles a
                              # second, so 80 tiles is 16-8 s of running with the pack falling behind; Despise's farthest lizardman spawner is ~120 from its stair
+RETREAT_SEE = 16             # tiles: a monster in war mode this near has noticed the bot (BaseCreature.DefaultRangePerception 16) and is coming; two or
+                             # more that rate a lost fight send it to the stair before they arrive (r_dungeon_out), not at RETREAT_NEAR when it is boxed in
+RETREAT_LINE = 2             # tiles from the straight line to a stair at which a monster stands in the way (trip_stair_near)
 RETREAT_GAP = 30             # s between retreats (a pack waiting on the far side of the landing does not bounce the bot)
 LEFT_INSIDE_GAP = 120        # s between tries at leaving a dungeon with no trip under way (trip_left_inside): tele_to_side tries 150 s itself
 RETURN_S = 300               # s the stairs back to a dungeon's landing may take (trip_return_leg): Despise's farthest lizardman spawner is ~120 tiles from
@@ -147,6 +150,16 @@ def _circle_penalty(wr):
             _CIRCLES = []
         _CIRCLE_PEN = wr.penalty_circles(_CIRCLES)
     return _CIRCLE_PEN
+
+
+def seg_dist(a, b, p):
+    """Chebyshev-style distance from point p to the segment a-b (tiles): how far p stands off the straight run from a to b."""
+    ax, ay = a
+    bx, by = b
+    dx, dy = bx - ax, by - ay
+    n = dx * dx + dy * dy
+    u = 0.0 if n == 0 else max(0.0, min(1.0, ((p[0] - ax) * dx + (p[1] - ay) * dy) / n))
+    return max(abs(p[0] - (ax + u * dx)), abs(p[1] - (ay + u * dy)))
 
 
 ROUTE_V = "fp3"                  # the route cache version: bumped when the route penalty changes (fp2, 2026-11-02: re-planned round route_danger's cells, trip_avoid)
@@ -1444,12 +1457,19 @@ class FirstTrip(RideMixin, LadderMixin):
             close = [m for m in near if (getattr(m, "distance", 9) or 9) <= 1]
             pack = len(near) >= detour.PACK and self.retreat_pack_loses(near)
             pack = pack or (len(close) >= 2 and self.hp_pct() < 50)
+            if not pack:
+                # the pack that has seen it, before it arrives: BotMaceAdvR and BotArcherCR rated five to eight ettins at 13:30-13:32 and turned for the
+                # stair only when boxed in, 44-85 tiles from it; 22 of 23 retreats that day failed (2026-11-08)
+                seen = [m for m in self.mobs(RETREAT_SEE) if getattr(m, "in_war_mode", False) and not getattr(m, "is_dead", False)]
+                if len(seen) >= 2 and self.retreat_pack_loses(seen):
+                    near = seen
+                    pack = True
         except Exception:
             return False
         if not pack:
             return False
         side = dh.get("side")
-        tr = self.trip_stair_near(side)
+        tr = self.trip_stair_near(side, near)
         if tr is None:
             return False
         self.__dict__["_retreat_at"] = now
@@ -1469,23 +1489,32 @@ class FirstTrip(RideMixin, LadderMixin):
         self.ev("dungeon_retreat", side=side, n=len(near), hp=self.c.hp, at=list(before), stair=[int(tr["src"][0]), int(tr["src"][1])], ok=ok)
         return True
 
-    def trip_stair_near(self, side):
-        """The nearest teleporter entry on this level (same walkable component, spots.component) within RETREAT_REACH tiles: an inner stair or the way out."""
+    def trip_stair_near(self, side, threats=()):
+        """The teleporter entry on this level (same walkable component, spots.component) within RETREAT_REACH tiles to run for: first one no monster stands
+        in the way of (within RETREAT_LINE of the straight line to it), then one leading toward the way out (fewer inner stairs from its far side to an
+        exit than from here, spots.inner_hops), then the nearest. The nearest alone sent BotMaceAdvR and BotArcherCR on Despise's ettin floor for the stair
+        down to 5386,755, through the pack, while the stair they came by (5521,672) led back up (2026-11-08 13:31-13:40). Any dungeon: the gazetteer's
+        teleporters and the walk graph, nothing of Despise."""
         try:
             import gazetteer
             import spots
             here = (int(self.c.x), int(self.c.y))
-            comp = spots.component(here[0], here[1], side)
+            comp = spots.component_near(here[0], here[1], side)
+            trans = gazetteer.get().trans
+            out_ids = {id(t) for _d, t in spots.outward_stairs(side, here, RETREAT_REACH)}
+            pts = [(int(m.x), int(m.y)) for m in threats if getattr(m, "x", None) is not None]
             best = None
-            for t in gazetteer.get().trans:
-                if t.get("src_side") != side:
-                    continue
+            for t in trans:
+                if t.get("src_side") != side or t.get("dst_side") not in (side, "surface"):
+                    continue                                        # never into another dungeon
                 sx, sy = int(t["src"][0]), int(t["src"][1])
                 d = cheb(here[0], here[1], sx, sy)
                 if d > RETREAT_REACH or (comp is not None and spots.component(sx, sy, side) != comp):
                     continue
-                if best is None or d < best[0]:
-                    best = (d, t)
+                blocked = any(seg_dist(here, (sx, sy), p) <= RETREAT_LINE and cheb(p[0], p[1], sx, sy) < d for p in pts)
+                key = (blocked, id(t) not in out_ids, d)
+                if best is None or key < best[0]:
+                    best = (key, t)
             return best[1] if best else None
         except Exception:
             return None
