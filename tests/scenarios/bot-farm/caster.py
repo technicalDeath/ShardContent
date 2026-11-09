@@ -109,6 +109,10 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
     peaceful_person = BotBase.peaceful_person
     open_corpse = BotBase.open_corpse
     feature = BotBase.feature
+    shop_at = BotBase.shop_at                                     # a vendor's buy list (ride.r_ride's horse; owner 2026-11-08: "don't forget mounts for casters")
+    shop_why = BotBase.shop_why                                   # (shop_at asks them)
+    wants = BotBase.wants
+    SHOP_NEAR = BotBase.SHOP_NEAR                                 # (shop_at reads it)
     ground_items = BotBase.ground_items                    # bones are not containers: the corpse run looks for them here
     CRITTERS = BotBase.CRITTERS
     CRITTER_SKILL = BotBase.CRITTER_SKILL
@@ -480,6 +484,7 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         return None
 
     RATING_JOIN = 14          # tiles: an attack-on-sight monster this near the target joins the fight (hunter.HunterBot.RATING_JOIN)
+    BITERS_HURT = 60.0        # hunter.HunterBot.BITERS_HURT: rated_prey (borrowed) refuses a new monster under it; "rating: zombie: AttributeError" on every sight
 
     def is_prey(self, m):
         if self.feature("rating"):

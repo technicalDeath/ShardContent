@@ -157,7 +157,7 @@ class RideMixin:
             self.ev("ride_lost")
             self.facts.pop("ride", None)
         if not self.ride_wanted() or now - self.facts.get("ride_try_at", 0) < RIDE_TRY_GAP or not hasattr(self, "shop_at"):
-            return False                                  # (a caster brain has no shop_at: it rides a mount it has, it buys none)
+            return False                                  # (every brain has shop_at: a caster borrows BotBase's, 2026-11-08)
         st = self.c.state or {}
         if int(st.get("followers") or 0) + 1 > int(st.get("maxFollowers") or 5):
             return False                                  # no control slot free (Mobile.FollowersMax 5; a horse takes 1)
