@@ -742,7 +742,10 @@ class FirstTrip(RideMixin, LadderMixin):
         if trip.get("vetted", True):
             return False
         from memory import cell_of
-        cells = [cell_of(x, y) for x, y in trip["wps"] if mem.dangerous_cell(cell_of(x, y))]
+        run = self.trip_run_on()
+        # a running trip crosses a cell of deaths that shows no caster (trip_cell_passable, route_danger's own rule for a runner): the troll road to
+        # Despise's door (1360,1240 and seven more) refused every caster's trip with trip_run on (2026-11-09 01:07-01:12)
+        cells = [cell_of(x, y) for x, y in trip["wps"] if mem.dangerous_cell(cell_of(x, y)) and not (run and self.trip_cell_passable(cell_of(x, y)))]
         if cells:
             seen = self.__dict__.setdefault("_trip_bad_logged", {})
             if time.time() - seen.get(("cell", trip.get("dest")), 0) > 1800:
