@@ -924,6 +924,9 @@ class Bot:
                     skip = getattr(self, "recovery_skip", None)
                     if skip and skip(name) or getattr(self, "stall_skip", lambda n: False)(name):
                         continue                              # the farm's CasterBot: this rule would end materializing (recovery.py)
+                    if getattr(self, "trip_skip", lambda n: False)(name):
+                        continue                              # a trip running past monsters: no rule that stands still (first_trip.trip_skip, feature trip_run;
+                                                              # BotMageAR stood and fought four trolls at Despise's door, "cornered by a troll", 2026-11-09 01:30)
                     if getattr(self, name)():
                         acted = name
                         break
