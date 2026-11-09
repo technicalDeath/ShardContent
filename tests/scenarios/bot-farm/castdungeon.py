@@ -131,6 +131,14 @@ class CasterDungeonMixin:
             return False                                        # the fight rules take them (r_fight, r_avoid, r_flee are earlier)
         if (self.c.mana or 0) < 20 and self.hp_pct() >= 50:
             return False                                        # mana first: r_rest (mage_bot) meditates
+        try:
+            from castfight import HEAL_OUT
+        except Exception:
+            HEAL_OUT = 65
+        if self.hp_pct() < HEAL_OUT:
+            # health first: BotWarlockAR's stay resumed at 32 of 93, it walked down the stair to its spot and five lizardmen killed it (2026-11-09 06:44-06:46)
+            self.activity = "healing before the walk"
+            return bool(self.caster_heal())                     # else r_rest (mage_bot) rests
         spot = st.get("spot")
         if spot is None or self.cd_rested(spot["id"]):
             spot = self.cd_pick()

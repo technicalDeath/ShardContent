@@ -16,6 +16,7 @@ import re
 import sys
 import time
 from collections import deque
+from types import SimpleNamespace
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -94,6 +95,30 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         self.book_prep()                                      # attack options only from the spells the book holds
         self.last_status = 0.0
         self.activity = ""
+        self.walks_notice_jumps()
+
+    def walks_notice_jumps(self):
+        """Every goto / gotoexact's wait is tele.tele_wait: a jump in position (a teleporter) cancels the walk at once. The hunters get it from
+        BotBase._wrap_goto, which mage_bot's Bot never ran, so a caster's walk onto a stair went on after the jump toward its old target on the new
+        floor: from Despise's landing stair (5573,628) to 5503,569 and on 25 tiles into the lizardmen of 5504,597, three deaths (2026-11-09 05:29-06:46)."""
+        if getattr(self.c, "_walks_notice_jumps", False):
+            return
+        bot = self
+        for name in ("goto", "gotoexact"):
+            orig = getattr(self.c, name, None)
+            if orig is None:
+                continue
+
+            def make(orig):
+                def walk(*a, **k):
+                    w = orig(*a, **k)
+                    first = getattr(w, "wait", None)
+                    if first is None:
+                        return w
+                    return SimpleNamespace(wait=lambda timeout=300.0, poll=0.1: bot.tele_wait(first, timeout, poll), target=getattr(w, "target", None))
+                return walk
+            setattr(self.c, name, make(orig))
+        self.c._walks_notice_jumps = True
 
     # ---- shared memory: what was met, how fights went, where to hunt ------------------------------------------------
 
