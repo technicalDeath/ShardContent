@@ -1351,8 +1351,10 @@ class FirstTrip(RideMixin, LadderMixin):
             if until - now < 120 or here != side or self.c.ghost:
                 t["stay_until"] = now
                 return None
-            dh = self.facts["dungeon_hunt"] = {"side": side, "t0": float(t.get("hunt_t0") or now), "until": until, "landing": [int(self.c.x), int(self.c.y)],
-                                               "resumed": True}
+            # the landing the stay began at (hunt_landing), not where the bot stands at the restart: BotSorcBR resumed out on Despise's lizardman floor,
+            # and at the stay's end "back to the landing by 1 stair" took it from the landing up that stair into seven lizardmen (2026-11-09 07:33-07:51)
+            dh = self.facts["dungeon_hunt"] = {"side": side, "t0": float(t.get("hunt_t0") or now), "until": until,
+                                               "landing": list(t.get("hunt_landing") or [int(self.c.x), int(self.c.y)]), "resumed": True}
             if hasattr(self, "tele_allow"):
                 self.tele_allow(side, seconds=until - now + 600)
             self.__dict__.pop("_spots", None)
@@ -1363,6 +1365,7 @@ class FirstTrip(RideMixin, LadderMixin):
             dh = self.facts["dungeon_hunt"] = {"side": side, "t0": now, "until": now + DUNGEON_HUNT_S, "landing": [int(self.c.x), int(self.c.y)]}
             t["dungeon_hunted"] = True
             t["hunt_t0"] = now
+            t["hunt_landing"] = [int(self.c.x), int(self.c.y)]
             t["stay_until"] = dh["until"]
             if hasattr(self, "tele_allow"):
                 self.tele_allow(side, seconds=DUNGEON_HUNT_S + 600)
