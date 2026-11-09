@@ -42,6 +42,14 @@ def spell_table():
     return _IDS
 
 
+# The stock Mage vendor's first seven lines show one scroll and sell another (SBMage.cs: itemID 0x1F2E + i for Loot.RegularScrollTypes[i], 0x1F2D at
+# i 6, but RegularScrollTypes now begins with Reactive Armor): the line shown as "Reactive Armor" sells a Night Sight scroll, the one shown as "Clumsy"
+# sells Reactive Armor (2026-11-08: "bought {'Reactive Armor': 1}" and a second Night Sight scroll in the pack, three casters, seven times). The line
+# to buy for each wanted scroll; from Weaken on the lines are true.
+VENDOR_LINE = {"reactive armor": "clumsy", "clumsy": "create food", "create food": "feeblemind", "feeblemind": "heal", "heal": "magic arrow",
+               "magic arrow": "night sight", "night sight": "reactive armor"}
+
+
 def norm(s):
     return re.sub(r"[^a-z]", "", s.lower())
 
@@ -276,7 +284,7 @@ class SpellbookMixin:
     def book_buy(self, n):
         """Walk to a shop that has the scroll and buy one. Returns "bought", "nostock", "poor" or "noshop"."""
         b = self.book_state()
-        keys = scroll_keys(n)
+        keys = scroll_keys(VENDOR_LINE.get(n, n))              # the line that sells it (VENDOR_LINE); the pack check below is the scroll's own name
         for xy in self.book_shops(n)[:2]:
             key = f"{xy[0]},{xy[1]}"
             res = self.c.goto(*xy).wait(timeout=90)
