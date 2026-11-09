@@ -1134,6 +1134,22 @@ class FirstTrip(RideMixin, LadderMixin):
     BOX_TILES = 25             # the road ahead those are counted on
     DOOR_HELD = 4              # tiles round the trip's end (the door): the stop beside the door at Despise was 4 tiles short of it (1297,1077 for 1296,1081)
 
+    PIN_S = 4.0                # s on one tile with two or more beside it that make a trip pinned: a run gains a tile in 0.2 s, so 20 steps without one
+
+    def trip_pinned(self):
+        """The attacker to fight when the bot has stood on one tile PIN_S seconds with two or more monsters in war mode beside it (within a tile:
+        bodies block a step), else None. The position clock restarts whenever the bot moves."""
+        here = (int(self.c.x), int(self.c.y))
+        now = time.time()
+        pos = self.__dict__.get("_pin_pos")
+        if not pos or pos[0] != here:
+            self.__dict__["_pin_pos"] = (here, now)
+            return None
+        if now - pos[1] < self.PIN_S:
+            return None
+        beside = [m for m in self.mobs(1) if getattr(m, "in_war_mode", False) and not getattr(m, "is_dead", False)]
+        return beside[0] if len(beside) >= 2 else None
+
     def trip_boxers(self, near, ahead, run_s, table, end=None):
         """[(kind, serial)] of the monsters in view standing where the run would stop against them: on the next BOX_TILES of road (within a tile:
         bodies block a step), or within DOOR_HELD tiles of the trip's end (end: the door, where the run stops to step through) when that lies within
@@ -1182,6 +1198,17 @@ class FirstTrip(RideMixin, LadderMixin):
         if not threats:
             self.__dict__.pop("_escape", None)                  # nothing in notice range: the escape, if any, is over
             return False
+        pin = self.trip_pinned()
+        if pin is not None:
+            # bodies on every side: no run or leg moves it, so it fights the weakest of them (basics.fight_pick) until a gap opens, as a player does.
+            # BotRangerAR stood 12 s on 1362,1194 beside three trolls under a "go on" dash, 73 -> 53, and died after the trip gave up (2026-11-08 16:33)
+            now = time.time()
+            if now - self.__dict__.get("_pin_logged", 0) > 10:
+                self.__dict__["_pin_logged"] = now
+                self.log(f"first trip: pinned at {self.c.x},{self.c.y} by {len(self.mobs(1))} beside me for {self.PIN_S:.0f} s: fighting out (hp {self.c.hp})")
+                self.ev("trip_pinned", at=[int(self.c.x), int(self.c.y)], hp=int(getattr(self.c, "hp", 0) or 0), n=len(self.mobs(1)))
+            self.fight_back(pin)
+            return True
         if hasattr(self, "note_casters"):
             self.note_casters(threats)                          # a caster seen on the road steers every bot's routes (basics.live_caster_penalty)
         here = (int(self.c.x), int(self.c.y))
