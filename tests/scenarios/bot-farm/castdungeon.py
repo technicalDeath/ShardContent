@@ -66,6 +66,12 @@ class CasterDungeonMixin:
             if not self.cd_spawn_ok(s):
                 continue                                        # its whole spawn rates no fight (spots.spawn_ok)
             try:
+                import first_trip
+                if s.get("side") not in (None, "surface") and not spots.outward_stairs(s.get("side"), (s["x"], s["y"]), first_trip.RETREAT_REACH):
+                    continue                                    # no stair out within a retreat's run: Despise's west lizardman spots (93-118 tiles from the
+            except Exception:                                   # stair up) were where four casters were boxed in and died (2026-11-09 02:41-04:05)
+                pass
+            try:
                 if self.ground_load(s["cell"]) >= 1:
                     continue                                    # another bot works it
             except Exception:

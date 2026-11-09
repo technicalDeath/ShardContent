@@ -133,6 +133,18 @@ class CasterFightMixin:
         except Exception:
             spots, comp = None, None
         tried = []
+        out_step = self.kite_outward(att, here, side, comp, spots)
+        if out_step is not None:
+            # toward the way out when the pack does not stand on that line: away from it led BotWarlockAR, BotSorcBR, BotMageBR and BotMageAR into Despise's
+            # dead-end west corner, boxed in by 4-10 lizardmen, four deaths (2026-11-09 02:41-04:05)
+            try:
+                self.c.goto(out_step[0], out_step[1]).wait(timeout=2.0)
+            except Exception:
+                pass
+            if (int(self.c.x), int(self.c.y)) != here:
+                f = self.fight or {}
+                f["kites"] = f.get("kites", 0) + 1
+                return True
         for k in (0, 1, -1, 2, -2, 3, -3):
             ang = base + k * math.pi / 4
             p = (int(round(here[0] + KITE_DIST * math.cos(ang))), int(round(here[1] + KITE_DIST * math.sin(ang))))
@@ -194,6 +206,53 @@ class CasterFightMixin:
             return out
         return out
 
+    def kite_outward(self, att, here, side, comp, spots):
+        """In a dungeon: the point KITE_DIST tiles along the line to the nearest stair out (spots.outward_stairs, any distance), when no attacker stands
+        within 2 tiles of that stretch and it is on this floor's walk grid; else None."""
+        if not side or side == "surface" or spots is None:
+            return None
+        try:
+            from first_trip import seg_dist
+            far = spots.outward_stairs(side, here, 10 ** 4)
+            if not far:
+                return None
+            sx, sy = int(far[0][1]["src"][0]), int(far[0][1]["src"][1])
+            d = max(abs(sx - here[0]), abs(sy - here[1])) or 1
+            f = min(1.0, KITE_DIST / d)
+            p = (int(round(here[0] + (sx - here[0]) * f)), int(round(here[1] + (sy - here[1]) * f)))
+            if comp is not None and spots.component_near(p[0], p[1], side) != comp:
+                return None
+            if any(seg_dist(here, p, (int(m.x), int(m.y))) <= 2 for m in att):
+                return None
+            return p
+        except Exception:
+            return None
+
+    def floor_tile(self, x, y):
+        """(x, y, z, graphic) of the tile to stand on at x, y: the walkable static (flag Surface) nearest the caster's height, else the land itself;
+        None when nothing there is loaded or walkable. A dungeon's floor is statics over void land: BotSorcBR's fifteen Teleports aimed at the land
+        ("targettile 5394 558 61", graphic 0) and none moved it, and every caster Teleport of the night failed so (2026-11-09 02:40-04:02). Read with
+        Navrey's "tiles x y"."""
+        try:
+            lines = self.c.call(f"tiles {int(x)} {int(y)}", timeout=4) or []
+        except Exception:
+            return None
+        z0 = int(getattr(self.c, "z", 0) or 0)
+        best = None
+        land = None
+        import re as _re
+        for ln in lines:
+            m = _re.search(r"(land|static)\s+0x([0-9A-Fa-f]+)\s+z=\s*(-?\d+)", ln)
+            if not m:
+                continue
+            kind, g, z = m.group(1), int(m.group(2), 16), int(m.group(3))
+            if kind == "static" and "Surface" in ln and "Impassable" not in ln:
+                if best is None or abs(z - z0) < abs(best[2] - z0):
+                    best = (int(x), int(y), z, g)
+            elif kind == "land" and "Impassable" not in ln and int(x) < 5120:
+                land = (int(x), int(y), z, 0)                      # land is ground on the surface only: under a dungeon it is the void
+        return best or land
+
     def kite_teleport(self, att, points):
         """No run moved it (bodies on every side, a wall behind): Teleport (third circle, Bloodmoss and Mandrake Root) to the first open point a kite step
         tried, aimed with a ground cursor (Navrey targettile). A blow during its 1 s cast ruins it (Spell.OnCasterHurt): it is the last way out before a fight
@@ -207,15 +266,21 @@ class CasterFightMixin:
         if regs.get("Bloodmoss", 0) <= 0 or regs.get("MandrakeRoot", 0) <= 0:
             return False
         here = (int(self.c.x), int(self.c.y))
-        x, y = points[0]
-        z = int(getattr(self.c, "z", 0) or 0)
+        aim = None
+        for p in points[:4]:
+            aim = self.floor_tile(p[0], p[1])
+            if aim is not None:
+                break
+        if aim is None:
+            return False
+        x, y, z, graphic = aim
         try:
             from uo import Event
             self.c.events.drain()
             self.cmd("cast teleport")
             if self.c.wait_for(Event.TARGET_REQUEST, timeout=3.0) is None:
                 return False
-            self.cmd(f"targettile {x} {y} {z}")
+            self.cmd(f"targettile {x} {y} {z} {graphic}")
         except Exception as e:
             self.log(f"kite: teleport: {type(e).__name__}: {e}")
             return False
