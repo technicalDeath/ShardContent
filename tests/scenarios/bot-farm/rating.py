@@ -249,7 +249,7 @@ def spell_plan(me, e, hits):
             else:
                 ttk = t1 + (hits - dps * t1) / (regen / cost * dmg)
         if best is None or ttk < best[0]:
-            best = (ttk, name, dmg, t_cast)
+            best = (ttk, name, dmg, t_cast, cost * hits / dmg)
     return best
 
 
@@ -277,7 +277,9 @@ def rate(bot, kind, numbers=None):
     plan = spell_plan(me, e, hits)
     cdps = max(1e-9, float(sc.get("caster_dps", sc.get("bot_dps", 1.0))))     # spells have their own measured scale: no misses and no chase (rating.json)
     kite_holds = False
+    mana_kill = None
     if plan and plan[0] / cdps < ttk:
+        mana_kill = plan[4]                                             # the mana one kill takes (rate_pack shares the pool)
         ttk = plan[0] / cdps                                            # a mage: its best spell, mana included (spell_plan)
         kf, kite_holds = kite_factor(me, kind, e, plan[3])
         ttk *= kf                                                       # the extra running of a kite (kite_factor)
@@ -324,7 +326,8 @@ def rate(bot, kind, numbers=None):
     why = (f"rating {cost:.2f} (lose ~{lost:.0f} of {budget:.0f}; {ttk:.0f}s to kill with {how}; "
            f"it hits {p_in:.0%} x {per_hit_in:.1f}" + (f" + spells {spells_in:.1f}/s" if spells_in else "") + (f" + {pz} poison" if pz in POISON else "") + ")")
     return {"engage": engage, "cost": round(cost, 3), "ttk": round(ttk, 1), "lost": round(lost, 1), "budget": round(budget, 1), "dps_out": round(dps_out, 2),
-            "dps_in": round(dps_in, 2), "p_out": round(p_out, 3), "p_in": round(p_in, 3), "hits": round(hits, 1), "how": how, "why": why}
+            "dps_in": round(dps_in, 2), "p_out": round(p_out, 3), "p_in": round(p_in, 3), "hits": round(hits, 1), "how": how, "why": why,
+            "mana": round(mana_kill, 1) if mana_kill is not None else None}
 
 
 def rate_pack(bot, kinds, numbers=None):
@@ -340,8 +343,18 @@ def rate_pack(bot, kinds, numbers=None):
     cfg = config()
     one.sort(key=lambda kr: kr[1]["ttk"])
     t = lost = 0.0
+    full = pool = max(0.0, float(me.get("mana", 0.0) or 0.0))
+    regen = mana_regen(me)
     for k, r in one:
-        t += r["ttk"]
+        need = float(r.get("mana") or 0.0)
+        wait = 0.0
+        if need > 0:
+            # one pool for the whole pack: each kill was rated from a full pool, so the mana the earlier kills spent is waited for again at the regeneration
+            # rate (beyond what that kill's own rating already waited). A pack of 10 lizardmen rated 190 s and 0.42 "fight" for BotMageBR with 90 mana and
+            # 44 a kill, and boxed it in (Despise, 2026-11-09 04:17)
+            wait = max(0.0, (max(0.0, need - pool) - max(0.0, need - full)) / max(regen, 1e-6))
+            pool = min(full, max(0.0, pool + regen * (r["ttk"] + wait) - need))
+        t += r["ttk"] + wait
         melee_and_spells = r["dps_in"]
         lost += melee_and_spells * t                                   # it hits until it dies, at the sum of the kill times so far
     pois = sum(max(0.0, r["lost"] - r["dps_in"] * r["ttk"]) for _k, r in one)       # each poisoner's poison, once (rate's own term)

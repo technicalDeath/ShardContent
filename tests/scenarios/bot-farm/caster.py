@@ -167,7 +167,24 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         others = self.other_bots(within + 4)
         mine = self.fight["serial"] if self.fight else None
         import townguard
-        return self.profit_prey(townguard.filter_prey(self, [m for m in super().prey(within) if not self.taken_by_other(m, others, mine) and not self.critter_skip(m)]))      # not another bot's fight, not a critter; not inside a guarded region (town_guards)
+        return self.focus_order(self.profit_prey(townguard.filter_prey(self, [m for m in super().prey(within) if not self.taken_by_other(m, others, mine) and not self.critter_skip(m)])))      # not another bot's fight, not a critter; not inside a guarded region (town_guards)
+
+    FOCUS_RANGE = 10              # a targeted spell's range before AOS
+
+    def focus_order(self, ps):
+        """The prey in the order a player picks a target in a pack: the one it is already fighting while it is in spell range, then the most hurt in range,
+        then the nearest. mage_bot's r_fight takes ps[0], the nearest: in a pack of lizardmen the nearest changed every tick, so the spells were spread over
+        all of them and none died (33 caster fights with lizardmen in Despise, no kill, 2026-11-09 01:33-04:21)."""
+        if len(ps) < 2:
+            return ps
+        mine = self.fight["serial"] if self.fight else None
+
+        def key(m):
+            d = int(getattr(m, "distance", 99) or 99)
+            near = d <= self.FOCUS_RANGE
+            pct = float(m.hp_pct) if (getattr(m, "max_hits", 0) or 0) > 0 else 100.0
+            return (0 if (m.serial == mine and near) else 1, pct if near else 101.0, d)
+        return sorted(ps, key=key)
 
     def mobs(self, within):
         return [m for m in super().mobs(within) if not self.peaceful_person(m) and not self.killer_spared(m)]
@@ -712,6 +729,13 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         return True
 
     def r_explore(self):
+        if self.facts.get("dungeon_hunt") and not self.c.ghost:
+            try:
+                import gazetteer
+                if gazetteer.side(int(self.c.x), int(self.c.y)) not in (None, "surface"):
+                    return False                                   # the stay's patrol is r_cdungeon: profit_explore chose Britain's fields from Despise's west
+            except Exception:                                      # room every tick, "not reached in 900 s" (BotMageBR, 2026-11-09 04:16)
+                pass
         self.profit_hold_spot()                                    # a patrol spot that paid in the last minutes is kept (feature caster_profit)
         if self.profit_explore():
             return True                                            # a safe field that pays, worked until it stops paying (patch_safe_fields)
@@ -876,6 +900,7 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         f = self.fight
         if f:
             f["hpmin"] = min(f["hpmin"], self.c.hp)
+            f["near_max"] = max(int(f.get("near_max", 0) or 0), sum(1 for d, _n, _k in threats if d <= 10))     # kite_fight's n: the leak by pack size
             target = next((m for m in self.c.mobiles(within=16) if m.serial == f["serial"]), None)
             if target and not target.is_dead:
                 f["xy"] = (target.x, target.y)

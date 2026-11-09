@@ -388,4 +388,4 @@ class CasterFightMixin:
             stand = None
         dmg = max(0, int(f.get("hp0", 0) or 0) - int(f.get("hpmin", f.get("hp0", 0)) or 0))
         self.ev("kite_fight", m=f.get("key"), secs=round(time.time() - f.get("t0", time.time()), 1), dmg=dmg, stand_lost=stand,
-                kites=int(f.get("kites", 0)), outcome=outcome)
+                kites=int(f.get("kites", 0)), outcome=outcome, n=int(f.get("near_max", 0) or 0))
