@@ -26,6 +26,7 @@ KITE_MARGIN = 0.25            # s of slack between a cast's end and the first at
 KITE_DIST = 6                 # tiles a kite step runs away from the pack
 KITE_SEE = 10                 # tiles within which an attacker counts (the spell range: nothing beyond it is being fought)
 RA_GAP = 240.0                # s between Reactive Armor casts (it holds until spent; recast after a fight has likely used it)
+CASTS_TTL = 5.0               # s a casts_now reading holds (rating.bot_numbers asks it for every rating)
 HEAL_OUT = 65                 # percent health under which a caster with nothing beside it casts Greater Heal
 HEAL_IN = 50                  # percent under which a caster with an attacker beside it casts Heal (first circle, never ruined) or drinks
 GH_MANA = 11
@@ -328,6 +329,7 @@ class CasterFightMixin:
         hp = self.hp_pct()
         if hp >= HEAL_OUT or self.c.poisoned:
             return False
+        self.regs_fresh()
         att = self.kite_attackers(4)
         beside = any(int(getattr(m, "distance", 9) or 9) <= 1 for m in att)
         soon = self.contact_s(att) < cast_delay(4) + KITE_MARGIN
@@ -342,6 +344,28 @@ class CasterFightMixin:
             self.cast("heal", "self")
             return True
         return bool(self.drink_heal("caster: no heal spell"))
+
+    def casts_now(self):
+        """casts_left, read at most every CASTS_TTL s (rating.bot_numbers asks it for every rating): 0 with no reagents for any attack spell."""
+        hit = self.__dict__.get("_casts_now")
+        now = time.time()
+        if hit and now - hit[0] < CASTS_TTL:
+            return hit[1]
+        self.regs_fresh()
+        n = self.casts_left()
+        self.__dict__["_casts_now"] = (now, n)
+        return n
+
+    def regs_fresh(self):
+        """The reagent count read again after a death (mage_bot.refresh_state reads it once a minute): BotSorcBR, resurrected with its reagents on its
+        corpse, cast Greater Heal twelve times from the old count, healed nothing, and a dire wolf killed it (2026-11-09 04:10)."""
+        if self.__dict__.get("_regs_deaths") != getattr(self, "deaths", 0):
+            self.__dict__["_regs_deaths"] = getattr(self, "deaths", 0)
+            self.__dict__.pop("_casts_now", None)
+            try:
+                self.refresh_state(force=True)
+            except Exception:
+                pass
 
     def gh_regs(self):
         regs = getattr(self, "regs", {}) or {}

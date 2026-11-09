@@ -159,7 +159,8 @@ def bot_numbers(bot):
             "book": any("spellbook" in (i.name or "").lower() for i in list(getattr(bot.c, "backpack", None) or []) + [NS_(e) for e in st.get("equipped") or []]),
             "heals": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "yellow" in (i.name or "").lower() or "heal potion" in (i.name or "").lower()),
             "cures": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "orange" in (i.name or "").lower() or "cure potion" in (i.name or "").lower()),
-            "kite": bool(_call(bot, "kite_on", False)), "run_s": float(_call(bot, "run_s", 0.2) or 0.2)}
+            "kite": bool(_call(bot, "kite_on", False)), "run_s": float(_call(bot, "run_s", 0.2) or 0.2),
+            "casts": _call(bot, "casts_now", None)}
 
 
 def _call(bot, name, default):
@@ -206,6 +207,22 @@ def kite_factor(me, kind, e, t_cast):
     return (c + r + x) / (c + r), True
 
 
+def kite_leak(sc, kind, e):
+    """The share of a kited monster's blows that still land, by its chase step (casterpass.move_s): rating.json kite_leak_by_step, measured per speed class
+    from the casters' kite_fight events; kite_leak for a step not measured."""
+    by = sc.get("kite_leak_by_step") or {}
+    try:
+        import casterpass
+        step = casterpass.move_s(kind, e)
+    except Exception:
+        step = None
+    if step is not None:
+        for k, v in by.items():
+            if abs(float(k) - float(step)) < 1e-6:
+                return float(v)
+    return float(sc.get("kite_leak", 0.0))
+
+
 def mana_regen(me):
     """Mana a second pre-AOS (RegenRates.Mobile_ManaRegenRate): one point every 7 - 239p/2400 + 19p^2/48000 s, p = (Int + Meditation) / 2; armour adds to it."""
     p = (me.get("int", 50.0) + me.get("meditation", 0.0)) * 0.5
@@ -218,8 +235,8 @@ def spell_plan(me, e, hits):
     the pool lasts, then as fast as its regeneration pays for it. None when it casts nothing that hurts. A cast: (3 + circle) x 0.25 s plus CAST_RECOVERY;
     it fizzles unless (Magery - 10 x circle) / 40 succeeds; damage x casterpass.scalar(EvalInt, Magery, its Resist), x the resisted factor at
     casterpass.resist_chance."""
-    if me.get("magery", 0.0) < 20 or not me.get("book"):
-        return None
+    if me.get("magery", 0.0) < 20 or not me.get("book") or me.get("casts") == 0:
+        return None                                                      # casts 0: no reagents for any attack spell (BotSorcBR after a death, 04:10)
     try:
         import casterpass
     except Exception:
@@ -295,7 +312,7 @@ def rate(bot, kind, numbers=None):
     per_hit_in = absorbed_hit(lo_in, hi_in, ar / 2.0, ar)
     melee_in = p_in * per_hit_in / swing_s(_mid(e.get("dex"), 50.0), 30.0, False) * float(sc.get("monster_melee", 1.0))
     if kite_holds:
-        melee_in *= float(sc.get("kite_leak", 0.0))                     # kited: its blows land only when the kite fails (a wall, a corner): measured, rating.json
+        melee_in *= kite_leak(sc, kind, e)                              # kited: its blows land only when the kite fails (a wall, a corner): measured, rating.json
     spells_in = 0.0
     if e.get("casts"):
         try:

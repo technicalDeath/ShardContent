@@ -11,7 +11,11 @@
     "poison": 1.0,
     "armor": 1.0,
     "caster_dps": 0.74,
-    "kite_leak": 0.05
+    "kite_leak": 0.05,
+    "kite_leak_by_step": {
+      "0.6": 0.015,
+      "0.45": 0.064
+    }
   },
   "_scale": "multipliers on each input: bot_dps on the bot's damage a second, monster_melee and monster_spells on what it takes from blows and spells, poison on the poison ticks, armor on the bot's armour rating",
   "potions": {
@@ -31,5 +35,6 @@
   "_kinds": "per creature kind, e.g. {\"shade\": {\"lost\": 1.5}}: a multiplier on the predicted hit points lost, for a kind the model rates too kindly or too harshly. 2026-11-06/07, rating_check.py --hours 72: gazer 7 fights, 5 deaths, 80 lost against 21 predicted (3.73); gargoyle 3 fights, 3 deaths, 81 against 55 (1.47, a floor: every fight ended in a death). The rangers died 7 times to them in 13 hours, tracking leading them 68 tiles to a gazer rated 0.19",
   "_bot_dps": "2026-11-08, rating_check.py --hours 48 over the nine melee dungeon fighters: real kill times run 2.2x the model's for every kind that stands and fights (lizardman 20.7 s against 9.4 over 2,093 fights, ratman 22.1 against 9.6 over 586, skeleton 11.5/5.0, zombie 8.4/4.0, bears and wolves 0.39-0.42), so the bot's damage a second is 0.43-0.48 of the model's: 0.45. A pack's loss piles up over those kill times, and four bots died to packs the old scale rated 0.07-0.49 (ettins and earth elementals in Despise, a mixed slime/snake/lizardman pack south of Britain); the ettin pack of eight now rates 0.94 (no fight)",
   "_caster_dps": "2026-11-08: the casters' own kills against kinds that stand and fight, 30 days of fight records: zombie 11.1 s (158 kills) against the model's 8.2, skeleton 14.1 s (122) against 10.4 (cast delay 0.5 + 0.25 x circle, MagerySpell pre-AOS), both 1.35x, so a spell kill runs at 0.74 of the model; the melee scale (bot_dps 0.45, misses and chases) priced casters about twice too slow",
-  "_kite_leak": "the share of a kited monster's blows that still land (a wall, a corner, a missed step), rating.kite_factor. 2026-11-08 23:10, work/botfarm-watch/kite_leak.py over the casters' first 38 kite_fight events (surface, single monsters): 197 hit points taken against 13,055 the stand-still rating predicts (0.02; attack-on-sight kinds alone 91 against 8,547, 0.011; no death); 0.05 = that rounded up for the walls and packs of a dungeon, to be measured again from dungeon kite fights"
+  "_kite_leak": "the share of a kited monster's blows that still land (a wall, a corner, a missed step), rating.kite_factor. 2026-11-08 23:10, work/botfarm-watch/kite_leak.py over the casters' first 38 kite_fight events (surface, single monsters): 197 hit points taken against 13,055 the stand-still rating predicts (0.02; attack-on-sight kinds alone 91 against 8,547, 0.011; no death); 0.05 = that rounded up for the walls and packs of a dungeon, to be measured again from dungeon kite fights",
+  "_kite_leak_by_step": "the kite leak by the chaser's step (npc-speeds.json activeMove: Slow 0.6, Medium 0.45), 2026-11-09 04:35 from the casters' 269 kite_fight events (night of 2026-11-08, surface and Despise): Slow kinds 122 hit points taken against 8,339 standing (0.015, 59 fights, no death), Medium kinds 961 against 15,080 (0.064, 210 fights, 3 deaths, all in Despise's lizardman packs). kite_leak stays for a step not measured"
 }
