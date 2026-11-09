@@ -244,7 +244,13 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             self.mem.record("gain", scope="prof", skill=g.group(1), action=f"fighting {self.fight['key']}", value=float(g.group(3)), m=self.fight["key"])
 
     MEAT_KINDS = ("cow", "bull", "deer", "hart", "hind", "sheep", "goat", "chicken", "pig", "boar", "rabbit", "bird")
-    vendor_list = BotBase.vendor_list
+    def vendor_list(self, vendor, kind):
+        """BotBase.vendor_list; a buy list is kept with where it was read (r_resupply's sold-out test)."""
+        out = BotBase.vendor_list(self, vendor, kind)
+        if kind == "buy" and len(out) >= 2:
+            self.__dict__["_last_buy_list"] = (time.time(), (int(self.c.x), int(self.c.y)), list(out))
+        return out
+
     sell_items = BotBase.sell_items                          # the shared sale at a shop (r_sellmeat, basics.py)
     visit_bank = BotBase.visit_bank                          # the shared bank visit (goods back out, a full box, the goal's reserve)
     drop_excess = BotBase.drop_excess                        # the shared shedding when over the weight limit
@@ -471,10 +477,73 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
                                    "still teach at a given skill.", key=f"practice:{name}")
         return True
 
+    REAGENT_ROLES = ("mage", "alchemist", "herbalist")   # SBMage and SBAlchemist sell all eight reagents, SBHerbalist five; 20 a line (ModernUO SBInfo)
+    SOLD_OUT_S = 1800                                     # a sold-out seller is not asked again for vendorStock.restockMinutes (30, shard-rules.json)
+
+    def reagent_sellers(self):
+        """The reagent sellers on this side of the map, nearest first, the shop it found sold out within SOLD_OUT_S left out."""
+        try:
+            import gazetteer as gz
+        except Exception:
+            return []
+        here = (int(self.c.x), int(self.c.y))
+        out = []
+        for role in self.REAGENT_ROLES:
+            try:
+                ps = gz.near(role, here[0], here[1], n=8, same_side=True)
+            except Exception:
+                ps = []
+            for p in ps:
+                q = (int(p["x"]), int(p["y"]))
+                if all(max(abs(q[0] - o[0]), abs(q[1] - o[1])) > 4 for o in out):
+                    out.append(q)
+        now = time.time()
+        sold = {k: v for k, v in (self.facts.get("regs_soldout") or {}).items() if float(v) > now}
+        self.facts["regs_soldout"] = sold
+        out = [q for q in out if not any(max(abs(q[0] - int(k.split(",")[0])), abs(q[1] - int(k.split(",")[1]))) <= 6 for k in sold)]
+        return sorted(out, key=lambda q: max(abs(q[0] - here[0]), abs(q[1] - here[1])))
+
+    def mage_shop_xy(self):
+        """The nearest reagent seller not found sold out (reagent_sellers), else the Mages' Guild shop (places.py): eight casters each restocking 80 of
+        a reagent emptied Britain's shop of all but Blood Moss, and mage_bot.r_resupply asked the empty one again every 4 s for an hour, its kit at
+        "8 casts" and the dungeon shut (BotWarlockAR, Karol at 1576,1703, 2026-11-09 03:47-04:37)."""
+        s = self.reagent_sellers()
+        return s[0] if s else super().mage_shop_xy()
+
     def r_resupply(self):
         if not self.can_cast() and self.c.gold >= 60 and self.book_has_attack():
             self.facts["last_fail"] = ("reagents", "no reagents for any spell", time.time())    # go and buy them: the mage bot shops after a failed cast
-        return super().r_resupply()
+        self.__dict__.pop("_last_buy_list", None)
+        r = super().r_resupply()
+        self.reagent_soldout_check()
+        return r
+
+    def reagent_soldout_check(self):
+        """After a shop visit: a reagent the plan still has under half of (its line was gone, or its 20 did not cover it) marks that seller sold out
+        for SOLD_OUT_S, and the next resupply walks on to the next seller; with every seller out, r_resupply rests until the first restock. At most
+        one round of the sellers, whatever the cause (a budget that stops the buy ends it the same way)."""
+        got = self.__dict__.pop("_last_buy_list", None)
+        if not got:
+            return
+        _t, xy, _lines = got
+        try:
+            plan = self.reagent_plan()
+            lacking = sorted(k for k, n in plan.items() if (self.regs or {}).get(k, 0) < n // 2)     # after its buy: what this seller did not cover
+        except Exception:
+            return
+        if not lacking:
+            return
+        until = time.time() + self.SOLD_OUT_S
+        self.facts.setdefault("regs_soldout", {})[f"{xy[0]},{xy[1]}"] = until
+        nxt = self.reagent_sellers()
+        self.log(f"resupply: the seller at {xy[0]},{xy[1]} is out of {', '.join(lacking)}; " + (f"next {nxt[0][0]},{nxt[0][1]}" if nxt else "every seller is out: resting"))
+        self.ev("regs_soldout", at=list(xy), lacking=lacking, next=list(nxt[0]) if nxt else None)
+        if nxt:
+            self.facts["resupply_backoff_until"] = 0
+            self.facts["last_fail"] = ("reagents", "the seller was sold out", time.time())        # straight on to the next seller
+        else:
+            soonest = min(float(v) for v in self.facts["regs_soldout"].values())
+            self.facts["resupply_backoff_until"] = soonest
 
     def total_gains(self):
         return sum(self.stats.get("gains", {}).values())
