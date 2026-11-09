@@ -156,8 +156,11 @@ class CasterDungeonMixin:
                 self.__dict__.pop("_cd", None)
             return True
         to = leg.get("to") or [spot["x"], spot["y"]]
-        wps = leg.get("wps") or [to]
-        nxt = next((p for p in wps if max(abs(int(p[0]) - here[0]), abs(int(p[1]) - here[1])) > 2), None)
+        wps = [tuple(int(v) for v in p[:2]) for p in (leg.get("wps") or [])] + [tuple(int(v) for v in to[:2])]
+        # the next waypoint AFTER the nearest one: "the first one more than 2 tiles off" walked back to the path's start and forward again, BotMageBR
+        # bouncing 5574,629 <-> 5582,631 in Despise's landing hall for seven minutes (2026-11-09 02:27-02:34)
+        near_i = min(range(len(wps)), key=lambda i: max(abs(wps[i][0] - here[0]), abs(wps[i][1] - here[1])))
+        nxt = next((p for p in wps[near_i:] if max(abs(p[0] - here[0]), abs(p[1] - here[1])) > 2), None)
         if nxt is None:
             st["leg"] += 1
             return True
