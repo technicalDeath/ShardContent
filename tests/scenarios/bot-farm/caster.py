@@ -612,6 +612,9 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             self.c.goto(hx, hy + 6).wait(timeout=12)
             self.c.goto(hx, hy).wait(timeout=12)
             return True
+        if self.c.ghost and self.ghost_out():
+            return True                                            # in a dungeon: out by the stairs and the exit first (tele.ghost_out): BotSorcAR's ghost walked at
+                                                                   # the healer from inside Despise and stood in its corner at 5384,629 for 46 minutes (2026-11-09)
         return super().r_dead()
 
     r_corpse = RecoveryMixin.recovery_corpse_run                      # only with blue_self_loot or materializing on (recovery.py)
