@@ -1680,6 +1680,34 @@ class FirstTrip(RideMixin, LadderMixin):
             t["ret"] = {"legs": j["legs"], "seg": 0, "wp": 0, "t0": now, "st": {}}
             self.log(f"first trip: back to the {dh['side']} landing by {len(hops)} stair{'s' if len(hops) != 1 else ''}")
 
+    OUT_TRIES = 3              # tries at the way out on a trip's walk home before it ends "stranded" as before
+
+    def trip_out_first(self, t, x, y):
+        """On the walk home, standing inside a dungeon with the route's next waypoint on the surface: the stairs to the exit's level and through the
+        exit (trip_stairs_to_exit, tele_to_side), the walk home going on from the door; True when it acted (OUT_TRIES at most)."""
+        try:
+            import gazetteer
+            here_side = gazetteer.side(int(self.c.x), int(self.c.y))
+            if here_side in (None, "surface") or gazetteer.side(int(x), int(y)) != "surface" or getattr(self.c, "ghost", False):
+                return False
+        except Exception:
+            return False
+        n = int(t.get("out_tries", 0) or 0)
+        if n >= self.OUT_TRIES:
+            return False
+        t["out_tries"] = n + 1
+        self.activity = f"first trip: out of {here_side} for the walk home"
+        try:
+            self.trip_stairs_to_exit(here_side)
+            ok = self.tele_to_side("surface")
+        except Exception as e:
+            self.log(f"first trip: out of {here_side}: {type(e).__name__}: {e}")
+            ok = False
+        self.log(f"first trip: out of {here_side} for the walk home: {'out' if ok else 'not out yet'} (try {n + 1})")
+        t.update(best=1e9, best_at=time.time(), fails=0)
+        self.trip_save()
+        return True
+
     def trip_return_leg(self, t):
         """One tick of t["ret"] (trip_return_plan): True when it acted, False once it is done or dropped (the walk home then runs as before). A walk leg
         goes a waypoint at a time; a stair leg is travel's tele step. RETURN_S caps it: a stair it cannot take leaves the old walk home."""
@@ -1840,6 +1868,8 @@ class FirstTrip(RideMixin, LadderMixin):
             return True                                         # the stairs back to a dungeon's landing first (trip_return_plan)
         idx = t["i"]
         x, y = wps[idx]
+        if phase == "home" and self.trip_out_first(t, x, y):
+            return True                                         # out of the dungeon first, the walk home on the surface after it
         d = cheb(self.c.x, self.c.y, x, y)
         if d <= REACHED:
             if hasattr(self, "trip_gate_step"):
