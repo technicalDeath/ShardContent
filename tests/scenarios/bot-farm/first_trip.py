@@ -299,9 +299,14 @@ class FirstTrip(RideMixin, LadderMixin):
             return self.trip_why("played under an hour" if played < 60 else "under 300 gold" if self.c.gold + self.facts.get("bank_balance", 0) < 300
                                  else "no kit (10 bandages or 2 Heal potions; 60 arrows for a bow)"), False
         power = self.trip_power()
-        ok = [t for t in self.trips_allowed(home) if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t)]
+        allowed = self.trips_allowed(home)
+        ok = [t for t in allowed if power >= t["band"] and self.c.max_hp >= t["hp"] and self.trip_ok_route(home, t)]
         if not ok:
-            return self.trip_why("no trip passes the skill, health and route checks"), False
+            # which check, per trip: the line alone hid it for the casters' Despise trips (2026-11-09 00:25-00:52)
+            why = "; ".join(f"{t['dest']}: " + (f"skill {power:.0f} under {t['band']}" if power < t["band"] else f"hp {self.c.max_hp} under {t['hp']}"
+                            if self.c.max_hp < t["hp"] else "no land route" if self.trip_routed(home, t) is None else "the route crosses a dangerous cell")
+                            for t in allowed[:3]) or "none offered"
+            return self.trip_why(f"no trip passes the skill, health and route checks ({why})"), False
         if self.ladder_on():
             return self.ladder_choose(ok), False
         return ok[zlib.crc32(self.name.encode()) % len(ok)], False
@@ -737,7 +742,13 @@ class FirstTrip(RideMixin, LadderMixin):
         if trip.get("vetted", True):
             return False
         from memory import cell_of
-        return any(mem.dangerous_cell(cell_of(x, y)) for x, y in trip["wps"])
+        cells = [cell_of(x, y) for x, y in trip["wps"] if mem.dangerous_cell(cell_of(x, y))]
+        if cells:
+            seen = self.__dict__.setdefault("_trip_bad_logged", {})
+            if time.time() - seen.get(("cell", trip.get("dest")), 0) > 1800:
+                seen[("cell", trip.get("dest"))] = time.time()
+                self.log(f"first trip: {trip.get('dest')} refused: the route crosses {cells[0]}, a dangerous cell in the memory ({len(cells)} in all)")
+        return bool(cells)
 
     def trip_with_exit(self, home, trip):
         """A straight-line trip with the best learned exit of this home inserted where it costs least; seeds (their gate is in their data) unchanged."""

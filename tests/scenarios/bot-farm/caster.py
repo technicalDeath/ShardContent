@@ -545,6 +545,7 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
                           "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(m.x, m.y), "xy": (m.x, m.y), "pct": 100,
                           "corpses0": {c.serial for c in self.c.containers(within=14)}}
         if self.kite_before_cast(m):
+            self.__dict__["_kite_window"] = None                   # (the window is this cast's only: left set, the kit counted "0 casts", 2026-11-09)
             return True                                            # no spell fits before the nearest attacker arrives: it ran (castfight.py)
         if self.buff_before_fight(m):
             return True                                            # Reactive Armor first (castfight.py)

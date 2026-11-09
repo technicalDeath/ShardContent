@@ -237,6 +237,7 @@ class CasterFightMixin:
 
     def casts_left(self):
         """Casts of its best attack spell its reagents allow (mana aside), 0 when it casts none."""
+        self.__dict__["_kite_window"] = None                       # every spell, not those that fit a fight's moment
         try:
             self.refresh_state()
             pick = self.k.best_attack(self.skill, 999, self.regs)
