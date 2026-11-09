@@ -237,10 +237,49 @@ class CasterStock:
             plan[k] = max(self.TARGET, min(self.DUNGEON_TARGET, int(math.ceil(self.STAY_CASTS * use.get(k, 0) / total))))
         return plan
 
+    POTION_KIT = (("yellow potion", 3), ("orange potion", 2))   # StockMixin.stock_list's Heal and Cure lines, from 200 gold in pack and bank
+
+    def caster_potions(self, now):
+        """Heal and Cure potions as the fighters keep them (StockMixin.stock_list), every EVERY seconds: a caster's flight drinks a Heal potion beside an
+        attacker before it casts (CasterBot.r_flee), and every caster left for Despise with none ("0 Heal potions", 2026-11-09 05:22-06:26). True when
+        it went shopping."""
+        if now - float(self.facts.get("potion_stock_at", 0) or 0) < EVERY:
+            return False
+        self.facts["potion_stock_at"] = now
+        bank = int(self.facts.get("bank_balance", 0) or 0)
+        if (self.c.gold or 0) + bank < 200:
+            return False
+        did = False
+        for item, n in self.POTION_KIT:
+            have = StockMixin.stock_count(self, item)
+            if have >= n:
+                continue
+            price, xy = StockMixin.stock_shop(self, item)
+            xy = xy or StockMixin.stock_default_shop(self, item)
+            cost = (n - have) * price
+            if (self.c.gold or 0) < cost + 10 and bank > 0:
+                self.visit_bank("stock", withdraw=min(bank, cost + 30 - (self.c.gold or 0)), reserve=0)
+            if (self.c.gold or 0) < cost:
+                self.ev("stock_miss", item=item, why=f"gold {self.c.gold}, bank {bank}")
+                continue
+            self.activity = "restocking potions"
+            self.shop_at(tuple(xy), {"=" + item: n}, budget=max((self.c.gold or 0) - 10, 0))
+            try:
+                self.c.open_backpack()
+            except Exception:
+                pass
+            got = StockMixin.stock_count(self, item) - have
+            if got > 0:
+                self.ev("restock", item=item, qty=got, price=price, **{"from": "shop"})
+            did = True
+        return did
+
     def r_stock(self):
         if not self.feature("stock") or self.c.ghost or self.dangers(10) or self.hp_pct() < 60:
             return False
         now = time.time()
+        if self.caster_potions(now):
+            return True
         if now - self.facts.get("stock_at", 0) < EVERY:
             return False
         self.facts["stock_at"] = now
