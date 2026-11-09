@@ -593,20 +593,31 @@ def deep_ok(bot, s):
         if not outward_stairs(s.get("side"), (s["x"], s["y"]), first_trip.RETREAT_REACH):
             cache[s["id"]] = (now, False)
             return False                      # no stair out within a retreat's run of it: the ettins of Despise's far west are 131-137 tiles from theirs
+        ok = spawn_ok(bot, s)
+    except Exception:
+        ok = False
+    cache[s["id"]] = (now, ok)
+    return ok
+
+
+def spawn_ok(bot, s):
+    """The spot's whole spawn rates a fight for this bot at full health: every kind alone (rating.rate) and its count together, with the neighbours
+    that join (join_pack; at least DEEP_PACK), by rating.rate_pack. deep_ok's test, and a caster's patrol pick on any floor (castdungeon.cd_pick): its
+    pick by count alone sent BotSorcAR to the west lizardman spots, where packs of 5-8 rate 0.5-0.6, and it died there (Despise, 2026-11-09 01:35)."""
+    try:
         import rating
         me = rating.bot_numbers(bot)
         me["hp"] = me["max_hp"]
         kinds = list(s.get("kinds") or ())
         one = [rating.rate(bot, k, me) for k in kinds]
-        if kinds and all(r and r.get("engage") for r in one):
-            pack = [kinds[i % len(kinds)] for i in range(max(DEEP_PACK, int(s.get("count") or 1)))]
-            pack += join_pack(s)
-            p = rating.rate_pack(bot, pack, me)
-            ok = bool(p and p.get("engage"))
+        if not kinds or not all(r and r.get("engage") for r in one):
+            return False
+        pack = [kinds[i % len(kinds)] for i in range(max(DEEP_PACK, int(s.get("count") or 1)))]
+        pack += join_pack(s)
+        p = rating.rate_pack(bot, pack, me)
+        return bool(p and p.get("engage"))
     except Exception:
-        ok = False
-    cache[s["id"]] = (now, ok)
-    return ok
+        return False
 
 
 def heavy_by_stats(kind):

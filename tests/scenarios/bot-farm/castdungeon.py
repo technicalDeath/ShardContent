@@ -39,6 +39,18 @@ class CasterDungeonMixin:
         self.facts.setdefault("cd_rest", {})[str(sid)] = time.time() + secs
         self.ev("cd_rest", spot=sid, why=why, secs=int(secs))
 
+    def cd_spawn_ok(self, s):
+        """spots.spawn_ok cached a minute per spot (the deep spots have it already in all_spots, deep_ok)."""
+        cache = self.__dict__.setdefault("_cd_spawn", {})
+        hit = cache.get(s["id"])
+        now = time.time()
+        if hit and now - hit[0] < 60:
+            return hit[1]
+        import spots
+        ok = spots.spawn_ok(self, s)
+        cache[s["id"]] = (now, ok)
+        return ok
+
     def ground_load(self, cell):
         import hunter
         return hunter.HunterBot.ground_load(self, cell)
@@ -51,6 +63,8 @@ class CasterDungeonMixin:
         for s in spots.all_spots(self):
             if self.cd_rested(s["id"]):
                 continue
+            if not self.cd_spawn_ok(s):
+                continue                                        # its whole spawn rates no fight (spots.spawn_ok)
             try:
                 if self.ground_load(s["cell"]) >= 1:
                     continue                                    # another bot works it
