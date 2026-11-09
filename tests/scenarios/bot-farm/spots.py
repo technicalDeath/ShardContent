@@ -606,6 +606,20 @@ def deep_ok(bot, s):
     return ok
 
 
+SIGHT = 16                     # BaseCreature.DefaultRangePerception: a creature acquires what it sees within this box
+
+
+def in_sight_share(post, s):
+    """The share of spot s's spawn that sees a bot standing at post: its creatures keep to the spawner's home box (s["home"], uniform in it), and a
+    creature sees SIGHT tiles in every direction (both Chebyshev boxes, as the engine's ranges are)."""
+    h = max(0, int(s.get("home") or 0))
+    cx, cy = int(s["x"]), int(s["y"])
+    px, py = int(post[0]), int(post[1])
+    ox = max(0, min(cx + h, px + SIGHT) - max(cx - h, px - SIGHT) + 1)
+    oy = max(0, min(cy + h, py + SIGHT) - max(cy - h, py - SIGHT) + 1)
+    return (ox * oy) / float((2 * h + 1) ** 2)
+
+
 def spawn_ok(bot, s):
     """The spot's whole spawn rates a fight for this bot at full health: every kind alone (rating.rate) and its count together, with the neighbours
     that join (join_pack; at least DEEP_PACK), by rating.rate_pack. deep_ok's test, and a caster's patrol pick on any floor (castdungeon.cd_pick): its
@@ -618,7 +632,13 @@ def spawn_ok(bot, s):
         one = [rating.rate(bot, k, me) for k in kinds]
         if not kinds or not all(r and r.get("engage") for r in one):
             return False
-        pack = [kinds[i % len(kinds)] for i in range(max(DEEP_PACK, int(s.get("count") or 1)))]
+        n = max(DEEP_PACK, int(s.get("count") or 1))
+        post = bot.cd_post(s) if hasattr(bot, "cd_post") else None
+        if post is not None and tuple(post) != (int(s["x"]), int(s["y"])):
+            # a caster holds at a post by the stair out (castdungeon.cd_post): the fight is the share of the spawn that sees it there, the rest coming
+            # later or not at all; from 14 tiles short of a home-12 spawn, 15 of its 25 rows (0.6: 3 of Despise's 5 lizardmen)
+            n = max(1, int(math.ceil(int(s.get("count") or 1) * in_sight_share(post, s))))
+        pack = [kinds[i % len(kinds)] for i in range(n)]
         pack += join_pack(s)
         p = rating.rate_pack(bot, pack, me)
         return bool(p and p.get("engage"))
