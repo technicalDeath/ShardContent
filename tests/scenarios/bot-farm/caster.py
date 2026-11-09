@@ -111,7 +111,7 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
     feature = BotBase.feature
     shop_at = BotBase.shop_at                                     # a vendor's buy list (ride.r_ride's horse; owner 2026-11-08: "don't forget mounts for casters")
     shop_why = BotBase.shop_why                                   # (shop_at asks them)
-    wants = BotBase.wants
+    wants = staticmethod(BotBase.wants)                           # (a staticmethod there: borrowed plain it took the bot as its first argument)
     SHOP_NEAR = BotBase.SHOP_NEAR                                 # (shop_at reads it)
     ground_items = BotBase.ground_items                    # bones are not containers: the corpse run looks for them here
     CRITTERS = BotBase.CRITTERS

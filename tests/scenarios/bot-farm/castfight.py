@@ -159,7 +159,35 @@ class CasterFightMixin:
                     self.__dict__["_kite_logged"] = now
                     self.ev("kite_step", n=len(att), near=min(int(getattr(m, "distance", 9) or 9) for m in att), **{"from": list(here), "to": [int(self.c.x), int(self.c.y)]})
                 return True
-        return False
+        return self.kite_teleport(att, tried)
+
+    def kite_teleport(self, att, points):
+        """No run moved it (bodies on every side, a wall behind): Teleport (third circle, Bloodmoss and Mandrake Root) to the first open point a kite step
+        tried, aimed with a ground cursor (Navrey targettile). A blow during its 1 s cast ruins it (Spell.OnCasterHurt): it is the last way out before a fight
+        back. True when it moved."""
+        if not points or not self.spell_ok("teleport") or (self.c.mana or 0) < 9:
+            return False
+        regs = getattr(self, "regs", {}) or {}
+        if regs.get("Bloodmoss", 0) <= 0 or regs.get("MandrakeRoot", 0) <= 0:
+            return False
+        here = (int(self.c.x), int(self.c.y))
+        x, y = points[0]
+        z = int(getattr(self.c, "z", 0) or 0)
+        try:
+            from uo import Event
+            self.c.events.drain()
+            self.cmd("cast teleport")
+            if self.c.wait_for(Event.TARGET_REQUEST, timeout=3.0) is None:
+                return False
+            self.cmd(f"targettile {x} {y} {z}")
+        except Exception as e:
+            self.log(f"kite: teleport: {type(e).__name__}: {e}")
+            return False
+        time.sleep(0.6)
+        moved = max(abs(int(self.c.x) - here[0]), abs(int(self.c.y) - here[1])) >= 3
+        self.ev("kite_teleport", n=len(att), to=[x, y], ok=moved)
+        self.log(f"kite: boxed in by {len(att)}: teleport to {x},{y}: {'out' if moved else 'not out'}")
+        return moved
 
     # ---- buffs ------------------------------------------------------------------------------------------------------------------------------------
 

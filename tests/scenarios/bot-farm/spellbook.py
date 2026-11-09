@@ -309,7 +309,12 @@ class SpellbookMixin:
                 continue
             if self.c.gold - price < RESERVE:
                 return "poor"
-            self.cmd(f"buy {serial} 1", timeout=10)
+            if hasattr(self, "shop_at"):
+                # the fighters' buy (BotBase.shop_at: the vendor's buy gump, the amount, the purchase): "buy <serial> 1" never bought a scroll, no
+                # scroll_bought event in the farm's whole log, "bought the reactive armor scroll but it is not in the pack" seven times (2026-11-08)
+                self.shop_at(xy, {"=" + hit[3].strip().lower(): 1}, budget=price + 5)
+            else:
+                self.cmd(f"buy {serial} 1", timeout=10)
             time.sleep(3)
             if self.book_scroll(n):
                 self.ev("scroll_bought", spell=n, price=price, shop=key)
