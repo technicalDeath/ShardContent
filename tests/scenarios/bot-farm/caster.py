@@ -190,6 +190,17 @@ class CasterBot(StairHoldMixin, CasterFightMixin, CasterDungeonMixin, LessonMixi
     load_facts = BotBase.load_facts
 
     def prey(self, within=9):
+        ign = self.facts.get("ignore_until") or {}
+        if ign:
+            now = time.time()
+            try:
+                for m in self.c.mobiles(within=2):
+                    if getattr(m, "in_war_mode", False) and float(ign.get(m.serial, 0) or 0) > now:
+                        # it came to the caster: no longer out of reach (BotMageAdvR stood five minutes beside a lizardman it had given up as never
+                        # reached, healing, casting nothing, Despise 2026-11-09 15:55-16:00)
+                        ign.pop(m.serial, None)
+            except Exception:
+                pass
         others = self.other_bots(within + 4)
         mine = self.fight["serial"] if self.fight else None
         import townguard
@@ -345,6 +356,8 @@ class CasterBot(StairHoldMixin, CasterFightMixin, CasterDungeonMixin, LessonMixi
             next((i for i in self.c.backpack if i.name.lower() in ("dagger", "butcher knife", "skinning knife")), None)
 
     def r_fight(self):
+        if self.hold_now() and not self.holding() and not any(int(getattr(m, "distance", 9) or 9) <= 2 for m in self.prey(9)):
+            return False                                           # no chase off a stair hold: r_stair fights from it, r_cdungeon walks back (stairhold.py)
         f = self.fight
         if f:
             try:
