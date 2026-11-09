@@ -126,9 +126,12 @@ class CasterFightMixin:
 
     def kite_away(self, att):
         """Run KITE_DIST tiles away from the attackers' centre, the walkable direction nearest straight away (spots.component on a dungeon's walk grid);
-        a mounted or running caster gains on anything slower. True when it moved."""
+        a mounted or running caster gains on anything slower. True when it moved. At a stair hold (stairhold.hold_kite) the stair instead."""
         if not att:
             return False
+        hk = self.hold_kite(att) if hasattr(self, "hold_kite") else None
+        if hk is not None:
+            return hk
         here = (int(self.c.x), int(self.c.y))
         cx = sum(int(m.x) for m in att) / len(att)
         cy = sum(int(m.y) for m in att) / len(att)

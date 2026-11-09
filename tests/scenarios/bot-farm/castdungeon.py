@@ -178,6 +178,16 @@ class CasterDungeonMixin:
                 self.cd_rest(spot["id"], "empty")
                 self.__dict__.pop("_cd", None)
                 return True
+            if st.get("hold"):
+                # the stair hold (stairhold.py): out toward the spawn until one sees it, else stand still (a random step beside the stair is a step on it)
+                if self.hold_lure(st, spot, now):
+                    return True
+                if max(abs(here[0] - sx), abs(here[1] - sy)) > 0:
+                    self.c.gotoexact(sx, sy).wait(timeout=CD_SLICE)
+                else:
+                    time.sleep(1.0)
+                self.activity = f"holding the stair for {spot['id']}'s spawn"
+                return True
             self.activity = f"waiting by the stair for {spot['id']}'s spawn"
             self.c.goto(sx + random.randint(-1, 1), sy + random.randint(-1, 1)).wait(timeout=CD_SLICE)
             return True

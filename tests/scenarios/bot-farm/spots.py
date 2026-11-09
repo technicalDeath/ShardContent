@@ -634,6 +634,12 @@ def spawn_ok(bot, s):
             return False
         n = max(DEEP_PACK, int(s.get("count") or 1))
         post = bot.cd_post(s) if hasattr(bot, "cd_post") else None
+        hold = bot.cd_hold_pack(s) if hasattr(bot, "cd_hold_pack") else None
+        if hold:
+            # a stair hold (stairhold.py): it fights HOLD_PACK at once and steps through the stair when more stand beside it, so that pack is the fight
+            n = max(1, min(int(s.get("count") or 1), int(hold)))
+            p = rating.rate_pack(bot, [kinds[i % len(kinds)] for i in range(n)], me)
+            return bool(p and p.get("engage"))
         if post is not None and tuple(post) != (int(s["x"]), int(s["y"])):
             # a caster holds at a post by the stair out (castdungeon.cd_post): the fight is the share of the spawn that sees it there, the rest coming
             # later or not at all; from 14 tiles short of a home-12 spawn, 15 of its 25 rows (0.6: 3 of Despise's 5 lizardmen)

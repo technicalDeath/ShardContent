@@ -54,8 +54,9 @@ from hunt import HuntMixin  # noqa: E402
 from lessons import LessonMixin  # noqa: E402  (lessons from NPC trainers; feature lessons)
 from castfight import CasterFightMixin  # noqa: E402  (kiting, the spell that fits, Reactive Armor, Greater Heal)
 from castdungeon import CasterDungeonMixin  # noqa: E402  (a caster's hunt on a dungeon stay)
+from stairhold import StairHoldMixin  # noqa: E402  (the stair hold: fight from a stair's landing, hop through it, Poison first)
 from tele import TeleMixin  # noqa: E402  (teleporters: a dungeon trip's door and stairs, the stay's retreat, castdungeon's journeys)
-class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, TeleMixin, BasicsMixin, mage_bot.Bot):
+class CasterBot(StairHoldMixin, CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, TeleMixin, BasicsMixin, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -269,6 +270,8 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         return super().go_town()
 
     def step_away(self, m, dist=3):
+        if self.holding():
+            return self.hold_strike(m)                              # at the stair hold: cast (or hop, hold_kite), never a step off it
         att = self.kite_attackers()
         if len(att) >= 2 or self.in_dungeon_now():
             # mage_bot's r_fight side-steps its target whenever it is adjacent: beside four lizardmen BotMageAR side-stepped for a minute, cast nothing
@@ -695,6 +698,8 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             r = self.profit_attack(m)                              # the cheapest way: fists, Poison and follow, the least gold per damage (profit.py)
             if r is not None:
                 return r
+        if self.hold_poison(m):
+            return True                                            # Poison first on a dungeon stay (stairhold.py)
         self.profit_reached(m)                                     # mage_bot's attack casts at once (its r_fight saw the target in sight)
         try:
             return super().attack(m, train)
@@ -1104,6 +1109,8 @@ if "r_trip" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_fight") + 1, "r_trip")      # first_trip
 if "r_dungeon_out" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_flee"), "r_dungeon_out")     # first_trip: a dungeon hunt's way out of a pack
+if "r_stair" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_dungeon_out"), "r_stair")    # stairhold: the hold's fight and hop, before every danger rule
 if "r_cdungeon" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index(("r_ride" if "r_ride" in CasterBot.RULES else "r_trip")) + 1, "r_cdungeon")   # castdungeon: the stay's patrol
 if "r_ride" not in CasterBot.RULES:
