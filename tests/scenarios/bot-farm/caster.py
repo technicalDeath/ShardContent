@@ -526,6 +526,7 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         if not self.can_cast() and self.c.gold >= 60 and self.book_has_attack():
             self.facts["last_fail"] = ("reagents", "no reagents for any spell", time.time())    # go and buy them: the mage bot shops after a failed cast
         self.__dict__.pop("_last_buy_list", None)
+        self.__dict__["_regs_before"] = dict(getattr(self, "regs", None) or {})
         r = super().r_resupply()
         self.reagent_soldout_check()
         return r
@@ -537,10 +538,22 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         got = self.__dict__.pop("_last_buy_list", None)
         if not got:
             return
-        _t, xy, _lines = got
+        _t, xy, lines = got
         try:
             plan = self.reagent_plan()
-            lacking = sorted(k for k, n in plan.items() if (self.regs or {}).get(k, 0) < n // 2)     # after its buy: what this seller did not cover
+            regs = self.regs or {}
+            before = self.__dict__.pop("_regs_before", None) or {}
+            offered = {}
+            for line in lines:
+                m = re.search(r"(0x[0-9A-Fa-f]+)\s+(\d+)gp\s+x(\d+)\s+(.+)", line)
+                if m:
+                    k = mage_bot.REAGENT_KEYS.get(mage_bot.norm(m.group(4).strip()))
+                    if k:
+                        offered[k] = offered.get(k, 0) + int(m.group(3))
+            # out at this seller: its line gone, or every one on it bought; a line still stocked that the purse did not stretch to is no sell-out
+            # (BotWarlockAR with 0 gold carried marked all five sellers out in two minutes, 2026-11-09 05:37-05:38)
+            lacking = sorted(k for k, n in plan.items() if regs.get(k, 0) < n // 2
+                             and (k not in offered or regs.get(k, 0) - before.get(k, 0) >= offered[k]))
         except Exception:
             return
         if not lacking:
@@ -789,17 +802,23 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         return super().r_avoid()
 
     def r_flee(self):
-        """Low health with something hostile close, in the shared order (basics.py) with the caster's spells: cure first when due; beside an attacker the Heal
-        potion (its next hit would ruin a spell), else the Heal spell, else the potion; then run, and fight when trapped."""
+        """Low health with something hostile close, in the shared order (basics.py) with the caster's spells: cure first when due; off the bodies beside
+        it when two or more stand round it (castfight.kite_away); a Heal potion beside an attacker; the heal spells (castfight.caster_heal: Greater Heal
+        out of reach, Heal beside them: first circle, which no blow disturbs before AOS: Spell.OnCasterHurt passes firstCircle false and Spell.Disturb
+        returns for a first-circle MagerySpell); else the potion; then run, and fight when trapped. Beside seven undead at Britain's graveyard BotMageAdvBR
+        "fled" for 80 s at 85 mana without one heal, because the Heal spell was tried only with nothing adjacent (2026-11-09 05:42-05:43)."""
         danger = self.dangers(10) or self.prey(3)
         if self.hp_pct() >= 40 or not danger:
             return False
         if self.cure_due() and self.potion("cure") is not None:
             return False
         adjacent = self.adjacent_attacker()
+        att = self.kite_attackers(4)
+        if adjacent and len(att) >= 2 and self.kite_away(att):
+            return True
         if adjacent and self.drink_heal("adjacent attacker"):
             return True
-        if not adjacent and self.heal_spell():
+        if self.heal_spell():
             return True
         if self.drink_heal("no spell"):
             return True
