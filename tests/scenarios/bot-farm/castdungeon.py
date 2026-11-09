@@ -119,6 +119,19 @@ class CasterDungeonMixin:
             pass
         return c
 
+    def cd_own_threats(self):
+        """The attackers near that are this caster's to deal with: not one another bot stands beside and fights (BotBase.taken_by_other). A lizardman
+        BotSorcBR was fighting 12 tiles off held BotMageBR and BotWarlockBR at Despise's stair for minutes, every rule passing (2026-11-09 07:37)."""
+        att = self.kite_attackers(12)
+        if not att:
+            return []
+        try:
+            others = self.other_bots(16)
+            mine = self.fight["serial"] if self.fight else None
+            return [m for m in att if not self.taken_by_other(m, others, mine)]
+        except Exception:
+            return att
+
     def r_cdungeon(self):
         dh = self.facts.get("dungeon_hunt")
         if not dh or self.c.ghost:
@@ -126,7 +139,7 @@ class CasterDungeonMixin:
             return False
         st = self.cd_state()
         now = time.time()
-        if self.kite_attackers(12) or self.prey(10):
+        if self.cd_own_threats() or self.prey(10):
             st["seen"] = now
             return False                                        # the fight rules take them (r_fight, r_avoid, r_flee are earlier)
         if (self.c.mana or 0) < 20 and self.hp_pct() >= 50:
