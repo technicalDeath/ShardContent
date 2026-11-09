@@ -80,6 +80,8 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         if self.c.ghost:
             self.facts["ghost_since"] = time.time()          # already dead when this brain started: not a new death
         self.decisions_path = os.path.join(d, "decisions.jsonl")
+        self.base = {"uptime": self.lifetime_s()}             # first_trip's "played under an hour" reads it: a caster keeps no totals.json, so every restart was
+                                                              # a new character (no trip offered for an hour after each, 2026-11-08)
         self.last_presence = 0.0
         self.fight = None
         self.cur_spot = None
@@ -482,6 +484,15 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
         elif (mon.get("hits") or [0, 0])[1] > self.VETO_VERMIN_HITS:
             return f"veto: no spell to cast and it has {mon['hits'][1]} hit points"
         return None
+
+    def lifetime_s(self):
+        """Seconds since the character's first decision record: the caster's playtime for the trips' one-hour guard (a fighter's is totals.json)."""
+        try:
+            with open(self.decisions_path, encoding="utf-8", errors="ignore") as f:
+                first = json.loads(f.readline())
+            return max(0.0, time.time() - float(first.get("t") or time.time()))
+        except Exception:
+            return 0.0
 
     @property
     def skill_values(self):

@@ -343,6 +343,26 @@ class LadderMixin:
         self.log(f"ladder: a spare {name} for {price} gold before {DUNGEON}: {'in the pack' if ok else 'not bought'}")
         return ok
 
+    def ladder_dungeon_why(self, st, now):
+        """Logs, once in 15 minutes, which of the dungeon rung's gates is shut (the trip rule says only "the ladder offers no trip now")."""
+        if now - self.__dict__.get("_dungeon_why_at", 0) < 900 or not self.feature("ladder_dungeon"):
+            return
+        self.__dict__["_dungeon_why_at"] = now
+        shut = []
+        gap = now - max(st.get("last_dungeon", 0), st.get("last_trip_end", 0))
+        if gap < DUNGEON_GAP:
+            shut.append(f"{int((DUNGEON_GAP - gap) // 60)} min of the gap left")
+        if self.ladder_worth() < DUNGEON_WORTH:
+            shut.append(f"worth {self.ladder_worth()} under {DUNGEON_WORTH}")
+        if not self.ladder_kit_strict():
+            shut.append("kit" + (f" ({self.casts_left()} casts)" if hasattr(self, "casts_left") else ""))
+        if not self.ladder_mounted():
+            shut.append("not mounted")
+        if not self.ladder_dungeon_fights():
+            shut.append("the fights")
+        self.log(f"ladder: {DUNGEON} not yet: {', '.join(shut) or 'ready'}")
+        self.ev("ladder_why", shut=shut)
+
     def ladder_mounted(self):
         """Riding (owner, 2026-11-07: "maybe having a mount should be a requirement, so bots can travel faster"): r_ride buys and mounts a horse first."""
         try:
@@ -416,7 +436,9 @@ class LadderMixin:
                     continue                                    # a moongate trip only with gate_travel (gate.py)
                 if t["kind"] == "town" and self.ladder_retreat(home, t):
                     out.append(dict(t, rung=3))
-        if self.ladder_dungeon_ready(st, now) and self.ladder_geared():
+        if not self.ladder_dungeon_ready(st, now):
+            self.ladder_dungeon_why(st, now)
+        elif self.ladder_geared():
             d = self.ladder_dungeon_trip(home)
             if d and self.ladder_retreat(home, d):
                 out.append(dict(d))
