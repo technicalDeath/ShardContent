@@ -62,7 +62,7 @@ class BasicsMixin:
             if missing < self.PRACTICE_MISS or not skillplan.wants(self, "Healing") or self.threats(10):
                 return False
             return self.bandage_self()
-        if self.skill_values.get("Healing", 0) < 20 and not skillplan.wants(self, "Healing"):
+        if (getattr(self, "skill_values", None) or {}).get("Healing", 0) < 20 and not skillplan.wants(self, "Healing"):
             return False
         return self.bandage_self()
 
@@ -83,7 +83,7 @@ class BasicsMixin:
 
     def hide_on(self):
         import skillplan
-        return self.feature("skill_plan") and (skillplan.wants(self, "Hiding") or self.skill_values.get("Hiding", 0) >= 20)
+        return self.feature("skill_plan") and (skillplan.wants(self, "Hiding") or (getattr(self, "skill_values", None) or {}).get("Hiding", 0) >= 20)
 
     def try_hide(self):
         """Use Hiding and read the answer: True when hidden (501240 "You have hidden yourself well")."""

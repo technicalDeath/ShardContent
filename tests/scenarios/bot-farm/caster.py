@@ -51,7 +51,10 @@ from uo import Event  # noqa: E402
 from stock import CasterStock  # noqa: E402
 from hunt import HuntMixin  # noqa: E402
 from lessons import LessonMixin  # noqa: E402  (lessons from NPC trainers; feature lessons)
-class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, BasicsMixin, mage_bot.Bot):
+from castfight import CasterFightMixin  # noqa: E402  (kiting, the spell that fits, Reactive Armor, Greater Heal)
+from castdungeon import CasterDungeonMixin  # noqa: E402  (a caster's hunt on a dungeon stay)
+from tele import TeleMixin  # noqa: E402  (teleporters: a dungeon trip's door and stairs, the stay's retreat, castdungeon's journeys)
+class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, TeleMixin, BasicsMixin, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -518,6 +521,10 @@ class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixi
             self.fight = {"serial": m.serial, "key": BotBase.mkey(m), "t0": time.time(), "hp0": self.c.hp, "hpmin": self.c.hp, "kills0": self.kills,
                           "mhits": (sum(mon["hits"]) / 2.0) if mon else 0, "cell": cell_of(m.x, m.y), "xy": (m.x, m.y), "pct": 100,
                           "corpses0": {c.serial for c in self.c.containers(within=14)}}
+        if self.kite_before_cast(m):
+            return True                                            # no spell fits before the nearest attacker arrives: it ran (castfight.py)
+        if self.buff_before_fight(m):
+            return True                                            # Reactive Armor first (castfight.py)
         if self.profit_on():
             r = self.profit_attack(m)                              # the cheapest way: fists, Poison and follow, the least gold per damage (profit.py)
             if r is not None:
@@ -529,6 +536,7 @@ class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixi
         f, self.fight = self.fight, None
         if not f:
             return
+        self.kite_fight_note(f, outcome)                           # the kite's measure (castfight.py)
         if outcome == "kill":
             self.kills += 1
             self.facts.setdefault("kind_kills", {}).setdefault(f.get("key") or "?", []).append(time.time())             # profit_prey's reach share
@@ -613,7 +621,7 @@ class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixi
     def r_heal(self):
         if self.c.poisoned:
             return False
-        return super().r_heal()
+        return self.caster_heal()                                  # Greater Heal out of reach, Heal or a potion beside one (castfight.py)
 
     def cure_spell(self):
         """The Cure spell (basics.r_cure's hook): a poisoned caster with nothing next to it cures with mana, and keeps its potions."""
@@ -624,6 +632,8 @@ class CasterBot(LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixi
         return False
 
     def heal_spell(self):
+        if self.caster_heal():
+            return True
         if self.c.mana >= 4 and self.spell_ok("heal") and self.heal_regs():
             self.log(f"emergency heal at {self.c.hp}")
             self.cast("heal", "self")
@@ -885,6 +895,8 @@ if "r_trip" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_fight") + 1, "r_trip")      # first_trip
 if "r_dungeon_out" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_flee"), "r_dungeon_out")     # first_trip: a dungeon hunt's way out of a pack
+if "r_cdungeon" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index(("r_ride" if "r_ride" in CasterBot.RULES else "r_trip")) + 1, "r_cdungeon")   # castdungeon: the stay's patrol
 if "r_ride" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_trip") + 1, "r_ride")      # ride.py: between outings (r_trip stays right after r_fight)
 CasterBot.PERSIST = CasterBot.PERSIST + tuple(k for k in ("ride", "ride_try_at") if k not in CasterBot.PERSIST)

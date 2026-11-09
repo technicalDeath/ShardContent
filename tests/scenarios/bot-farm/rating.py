@@ -158,13 +158,52 @@ def bot_numbers(bot):
             "meditation": float(sk.get("Meditation", 0.0) or 0.0), "int": float(st.get("int") or 50), "mana": float(st.get("mana") or st.get("int") or 50),
             "book": any("spellbook" in (i.name or "").lower() for i in list(getattr(bot.c, "backpack", None) or []) + [NS_(e) for e in st.get("equipped") or []]),
             "heals": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "yellow" in (i.name or "").lower() or "heal potion" in (i.name or "").lower()),
-            "cures": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "orange" in (i.name or "").lower() or "cure potion" in (i.name or "").lower())}
+            "cures": sum((i.amount or 1) for i in (getattr(bot.c, "backpack", None) or []) if "orange" in (i.name or "").lower() or "cure potion" in (i.name or "").lower()),
+            "kite": bool(_call(bot, "kite_on", False)), "run_s": float(_call(bot, "run_s", 0.2) or 0.2)}
+
+
+def _call(bot, name, default):
+    """bot.name() when the bot has it, else default (a test stub, a bot class without it)."""
+    try:
+        fn = getattr(bot, name, None)
+        return fn() if callable(fn) else default
+    except Exception:
+        return default
 
 
 CAST_RECOVERY = 0.75             # s between spells pre-AOS (Spell.NextSpellDelay; GetCastRecovery's AOS formula is off)
 MANA = (4, 6, 9, 11, 14, 20, 40, 50)                                     # MagerySpell._manaTable by circle
 BOT_SPELLS = (("magic arrow", 4, 7, 0, 0.75), ("harm", 1, 15, 1, 0.75), ("fireball", 10, 16, 2, 0.75), ("lightning", 12, 20, 3, 0.75),
               ("energy bolt", 24, 41, 5, 0.75), ("explosion", 23, 44, 5, 0.75), ("flamestrike", 27, 48, 6, 0.6))      # casterpass.SPELLS' damage spells
+
+
+def cast_delay(c):
+    """Seconds a cast holds the caster still, c the 0-based circle: 0.5 + 0.25 x circle before AOS (MagerySpell.GetCastDelay; Spell.BlocksMovement while
+    casting). The recovery after it (CAST_RECOVERY) does not hold it: it may run."""
+    return 0.5 + 0.25 * c
+
+
+def kite_factor(me, kind, e, t_cast):
+    """A caster that kites (me["kite"]): casts, then runs while it recovers and as long again as it must, so that a melee monster slower than its run
+    never reaches it. (factor, holds): the kill takes factor x as long (the extra running), and holds is True when the monster cannot close at all.
+    A monster that steps no slower than the run (a lizardman against a caster on foot) cannot be kited: (1.0, False). One that never moves: (1.0, True).
+    Per cycle the monster covers (cast + recovery + x) / its step, the caster (recovery + x) / its run: x = (cast/step + rec/step - rec/run) / (1/run - 1/step)."""
+    if not me.get("kite"):
+        return 1.0, False
+    try:
+        import casterpass
+        step = casterpass.move_s(kind, e)
+    except Exception:
+        return 1.0, False
+    if step is None:
+        return 1.0, True
+    run = float(me.get("run_s") or 0.2)
+    if step <= run:
+        return 1.0, False
+    c = max(0.0, t_cast - CAST_RECOVERY)
+    r = CAST_RECOVERY
+    x = max(0.0, (c / step + r / step - r / run) / (1.0 / run - 1.0 / step))
+    return (c + r + x) / (c + r), True
 
 
 def mana_regen(me):
@@ -198,7 +237,7 @@ def spell_plan(me, e, hits):
         dmg = ok * (lo + hi) / 2.0 * sc * (1 - pr + pr * rf)
         if dmg <= 0:
             continue
-        t_cast = (3 + c) * 0.25 + CAST_RECOVERY
+        t_cast = cast_delay(c) + CAST_RECOVERY
         cost = MANA[c]
         dps, need = dmg / t_cast, cost / t_cast
         if need <= regen:
@@ -236,10 +275,14 @@ def rate(bot, kind, numbers=None):
     ttk = hits / dps_out if dps_out > 0 else float("inf")
     how = f"{w.get('key', 'fists')}"
     plan = spell_plan(me, e, hits)
-    if plan and plan[0] / max(1e-9, float(sc.get("bot_dps", 1.0))) < ttk:
-        ttk = plan[0] / max(1e-9, float(sc.get("bot_dps", 1.0)))       # a mage: its best spell, mana included (spell_plan)
+    cdps = max(1e-9, float(sc.get("caster_dps", sc.get("bot_dps", 1.0))))     # spells have their own measured scale: no misses and no chase (rating.json)
+    kite_holds = False
+    if plan and plan[0] / cdps < ttk:
+        ttk = plan[0] / cdps                                            # a mage: its best spell, mana included (spell_plan)
+        kf, kite_holds = kite_factor(me, kind, e, plan[3])
+        ttk *= kf                                                       # the extra running of a kite (kite_factor)
         dps_out = hits / ttk
-        how = f"{plan[1]} ({plan[2]:.1f} a cast every {plan[3]:.2f}s)"
+        how = f"{plan[1]} ({plan[2]:.1f} a cast every {plan[3]:.2f}s" + (f", kiting x{kf:.2f})" if kite_holds else ")")
     # its blows on the bot
     p_in = hit_chance(_mid(e.get("wrestling")), me["skill"], False)
     dmg = e.get("damage") or [0, 0]
@@ -249,6 +292,8 @@ def rate(bot, kind, numbers=None):
     ar = me["ar"] * float(sc.get("armor", 1.0))
     per_hit_in = absorbed_hit(lo_in, hi_in, ar / 2.0, ar)
     melee_in = p_in * per_hit_in / swing_s(_mid(e.get("dex"), 50.0), 30.0, False) * float(sc.get("monster_melee", 1.0))
+    if kite_holds:
+        melee_in *= float(sc.get("kite_leak", 0.0))                     # kited: its blows land only when the kite fails (a wall, a corner): measured, rating.json
     spells_in = 0.0
     if e.get("casts"):
         try:

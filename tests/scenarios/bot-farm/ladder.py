@@ -53,6 +53,8 @@ DUNGEON_GAP = TOWN_GAP       # 45 min, as a town's: 3 h (10800) was set for the 
 DUNGEON_HP = 80
 MIN_WORTH = 300
 DUNGEON_WORTH = 500
+CAST_KIT = 20                 # casts of its attack spell a caster's reagents allow before a dungeon trip: stock.py's reagent target (20 of each)
+CAST_STAY = 5                 # and on the stay: a stay ends "kit low" under this
 TRIP_ARROWS = 150             # a bow's quiver before a dungeon trip: what its restock buys (hunter.r_resupply, "=arrow": 150)
 STAY_ARROWS = 25              # and the stay's floor: the restock's own low line (r_resupply, ammo() < 25); the trip's start needs 60 (ladder_kit_strict)
 GEAR_PIECES = 6               # armour pieces one gear check may buy: the suit (torso, legs, arms, gloves, gorget, helm; wear.ERRAND_PIECES)
@@ -206,6 +208,8 @@ class LadderMixin:
         return (self.c.gold or 0) + self.facts.get("bank_balance", 0)
 
     def ladder_kit_strict(self):
+        if hasattr(self, "casts_left"):
+            return self.casts_left() >= CAST_KIT and self.caster_heals() >= 3          # a caster: reagents for its attack spell, and Heal potions
         if hasattr(self, "bandages"):
             yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             return self.bandages() >= 15 and yellow >= 3 and not (getattr(self, "ranged", False) and self.ammo() < 60)     # a bow's arrows (trip_kit_ok)
@@ -214,6 +218,8 @@ class LadderMixin:
     def ladder_kit_stay(self):
         """The kit a dungeon stay goes on with (first_trip.trip_dungeon_hunt): ladder_kit_strict's bandages and Heal potions, and for a bow STAY_ARROWS,
         not the start's 60. The start's 60 ended an archer's stay after some twenty shots; a player hunts on until the quiver is nearly empty."""
+        if hasattr(self, "casts_left"):
+            return self.casts_left() >= CAST_STAY                                         # a caster: reagents for a few more casts (it heals with spells)
         if hasattr(self, "bandages"):
             yellow = sum((i.amount or 1) for i in self.c.backpack if items.potion_kind(i.name) == "heal")
             return self.bandages() >= 15 and yellow >= 3 and not (getattr(self, "ranged", False) and self.ammo() < STAY_ARROWS)

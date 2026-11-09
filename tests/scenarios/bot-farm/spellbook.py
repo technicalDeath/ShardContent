@@ -239,6 +239,7 @@ class SpellbookMixin:
         for o in orig(self.skill, 999, full, 0.5)[:3]:
             add(o["spell"]["name"])
         add("heal")
+        add("reactive armor")                                  # it absorbs a third of (Magery + Meditation) of melee damage (castfight.py)
         add("cure")
         b = self.book_state()
         now = time.time()
