@@ -23,6 +23,7 @@ CD_FAIL = 3                   # walk slices in a row without progress that rest 
 STAIR_POST = 14               # tiles short of the spawn's centre a post stands, toward the stair out: inside a creature's sight (BaseCreature.DefaultRangePerception 16)
 POST_MIN = 3                  # and at least this far from the stair's tile (not on it)
 POST_HOLD = 2                 # tiles round the post it stands within
+HOLD_WALK = 20                # tiles from a stair hold within which the walk back to it is a straight one (a lure's end is 16 out)
 
 
 class CasterDungeonMixin:
@@ -191,6 +192,24 @@ class CasterDungeonMixin:
             self.activity = f"waiting by the stair for {spot['id']}'s spawn"
             self.c.goto(sx + random.randint(-1, 1), sy + random.randint(-1, 1)).wait(timeout=CD_SLICE)
             return True
+        if st.get("hold"):
+            # the stair hold (stairhold.py): a lure under way runs to its end; near the hold the walk back is a straight one
+            if st.get("lure_to") and self.hold_lure(st, spot, now):
+                return True
+            if max(abs(here[0] - sx), abs(here[1] - sy)) <= HOLD_WALK:
+                self.activity = f"back to the stair hold for {spot['id']}"
+                try:
+                    self.c.gotoexact(sx, sy).wait(timeout=CD_SLICE)
+                except Exception:
+                    pass
+                if (int(self.c.x), int(self.c.y)) == here:
+                    st["fails"] = st.get("fails", 0) + 1
+                    if st["fails"] >= CD_FAIL:
+                        self.cd_rest(spot["id"], "unreachable")
+                        self.__dict__.pop("_cd", None)
+                else:
+                    st["fails"] = 0
+                return True
         return self.cd_walk(st, dict(spot, x=sx, y=sy), here)
 
     def cd_walk(self, st, spot, here):

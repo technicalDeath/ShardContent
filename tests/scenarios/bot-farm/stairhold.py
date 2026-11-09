@@ -386,7 +386,9 @@ class StairHoldMixin:
         """castdungeon.r_cdungeon at the post, nothing in sight for LURE_WAIT: a slice of the walk out toward the spawn (LURE_MAX tiles), until one sees it
         (r_stair then walks it back to the hold). True when it walked."""
         h = st.get("hold")
-        if not h or now - float(st.get("seen", now)) < LURE_WAIT or now - float(st.get("lure_end", 0) or 0) < LURE_WAIT:
+        if not h:
+            return False
+        if st.get("lure_to") is None and (now - float(st.get("seen", now)) < LURE_WAIT or now - float(st.get("lure_end", 0) or 0) < LURE_WAIT):
             return False
         p, c = h["post"], (int(spot["x"]), int(spot["y"]))
         d = cheb(p, c) or 1
@@ -408,10 +410,12 @@ class StairHoldMixin:
         seen = self.hold_attackers(16)
         if any(getattr(m, "in_war_mode", False) for m in seen):
             st["lure_end"] = now                                # one has noticed it: r_stair walks it back to the hold before it arrives
+            st.pop("lure_to", None)
             self.ev("lure", to=list(to), seen=True)
             return False
         if cheb(here, to) <= 1:
             st["lure_end"] = now
+            st.pop("lure_to", None)
             idle = [m for m in seen if cheb((m.x, m.y), here) <= LURE_PULL and self.los(m.serial)]
             if idle and (self.c.mana or 0) >= 4 and self.spell_ok("magic arrow"):
                 # one in sight that has not noticed it (a creature at rest in its home): a Magic Arrow brings it (first circle, 4 mana)
@@ -422,6 +426,14 @@ class StairHoldMixin:
             self.ev("lure", to=list(to), seen=False)            # out and nothing came: back to the hold (r_cdungeon's walk), the next after LURE_WAIT
             return False
         self.activity = f"luring {spot['id']}'s spawn toward the stair"
+        if st.get("lure_to") is None:
+            st["lure_to"] = list(to)
+            st["lure_t0"] = now
+        elif now - float(st.get("lure_t0", now) or now) > LURE_MAX * 1.5:
+            st["lure_end"] = now                                # the point is not reached in a slow walk's time: given up, back to the hold
+            st.pop("lure_to", None)
+            self.ev("lure", to=list(to), seen=False, stuck=True)
+            return False
         try:
             self.c.goto(to[0], to[1]).wait(timeout=LURE_SLICE)
         except Exception:
