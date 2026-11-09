@@ -38,6 +38,16 @@ def cast_delay(circle):
     return 0.5 + 0.25 * (max(1, int(circle or 1)) - 1)
 
 
+def on_teleporter(p):
+    """p is a teleporter's tile or beside one (gazetteer transitions): Teleport lands on no teleporter (BotSorcBR's seven aims at Despise's stair tile
+    5503,571 all failed, 2026-11-09 07:34), and the stair is walked onto instead."""
+    try:
+        import gazetteer
+        return any(max(abs(int(t["src"][0]) - int(p[0])), abs(int(t["src"][1]) - int(p[1]))) <= 1 for t in gazetteer.get().trans)
+    except Exception:
+        return False
+
+
 class CasterFightMixin:
 
     # ---- who is coming, and how soon ------------------------------------------------------------------------------------------------------------
@@ -97,7 +107,10 @@ class CasterFightMixin:
             window = bot.__dict__.get("_kite_window")
             if window is None:
                 return opts
-            return [o for o in opts if cast_delay(o["spell"].get("circle")) + KITE_MARGIN <= window]
+            # a first-circle spell is cast even beside an attacker: no blow disturbs it before AOS (Spell.OnCasterHurt passes firstCircle false, Spell.Disturb
+            # returns for a first-circle MagerySpell). With all spells dropped, BotSorcBR stood boxed beside one lizardman casting nothing but Teleport
+            # ("no spell the mage can cast now", Despise, 2026-11-09 07:34)
+            return [o for o in opts if o["spell"].get("circle") == 1 or cast_delay(o["spell"].get("circle")) + KITE_MARGIN <= window]
 
         k.attack_options = attack_options
 
@@ -260,7 +273,9 @@ class CasterFightMixin:
         back. True when it moved."""
         if not self.spell_ok("teleport") or (self.c.mana or 0) < 9:
             return False
-        points = self.teleport_points(att) + list(points or [])
+        if sum(1 for m in att if int(getattr(m, "distance", 9) or 9) <= 2) < 2:
+            return False                                       # one beside it: Magic Arrow (first circle, never ruined) beats a 1 s Teleport a blow can ruin
+        points = [p for p in self.teleport_points(att) + list(points or []) if not on_teleporter(p)]
         if not points:
             return False
         regs = getattr(self, "regs", {}) or {}
