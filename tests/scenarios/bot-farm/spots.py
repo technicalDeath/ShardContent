@@ -208,6 +208,12 @@ def inner_hops(side, frm, to):
     """The inner teleporters to take, in order, between two points of one dungeon that no walk joins ([] when one component holds both; None when no chain does)."""
     gr = dungeon_graph(side)
     a, b = gr["comp"].get((int(frm[0]) // 4, int(frm[1]) // 4)), gr["comp"].get((int(to[0]) // 4, int(to[1]) // 4))
+    # a point whose 4-tile cell the graph does not hold (beside a stair's landing) takes its nearest component: BotMageAdvR stood at 5525,671, off the
+    # ettin level's cells by a tile, and every Despise spot rested "unreachable" in one second (2026-11-09 05:10)
+    if a is None:
+        a = component_near(int(frm[0]), int(frm[1]), side)
+    if b is None:
+        b = component_near(int(to[0]), int(to[1]), side)
     if a is None or b is None:
         return None
     if a == b:

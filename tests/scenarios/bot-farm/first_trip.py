@@ -873,9 +873,26 @@ class FirstTrip(RideMixin, LadderMixin):
             return False
         return bool(sights) and not any(self.trip_caster(k) for k in sights)
 
+    DUNGEON_HOLD = ("r_far", "r_sellmeat", "r_sell_leather", "r_stock", "r_rune_buy", "r_resupply", "r_train", "r_house", "r_bank", "r_break",
+                    "r_lesson", "r_buddy", "r_party", "r_book", "r_practice", "r_scribe", "r_upgrade", "r_sell", "r_craft_sell")
+
+    def in_dungeon_now(self):
+        """Standing inside a dungeon (gazetteer.side: not the surface), alive."""
+        try:
+            if getattr(self.c, "ghost", False):
+                return False
+            import gazetteer
+            return gazetteer.side(int(self.c.x), int(self.c.y)) not in (None, "surface")
+        except Exception:
+            return False
+
     def trip_skip(self, name):
         """Feature trip_run: while a trip walks, the rules that stand still wait: no fight on the road, and with a monster in notice range no bandage,
-        no side-step, no flight off the route (the trip runs on, or back, with the potions drunk on the run: trip_potions)."""
+        no side-step, no flight off the route (the trip runs on, or back, with the potions drunk on the run: trip_potions). And inside a dungeon no town
+        errand starts (DUNGEON_HOLD): BotWarlockAR's spellbook rule fetched gold from the bank 20 s into its Despise stay, the walk toward Britain's bank
+        ran it into the dead-end west room and eight lizardmen killed it (2026-11-09 05:04-05:05); the stay's own end (kit low, its time) takes it out."""
+        if name in self.DUNGEON_HOLD and self.in_dungeon_now():
+            return True
         if name not in TRIP_HOLD or not self.trip_run_on() or not self.trip_walking():
             return False
         if name == "r_fight":

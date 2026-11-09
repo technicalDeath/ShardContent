@@ -178,6 +178,8 @@ class CasterStock:
     DUNGEON_TARGET = 80                                  # a dungeon caster's stock: its mana over a stay (DUNGEON_HUNT_S 40 min at the UOR regen of (Int + Meditation)
                                                          # / 2 ~ 86, one point every 1.35 s: ~1,780 mana, + the pool 85) / 11 for a Lightning = ~170 casts, fighting
                                                          # about half the stay = ~85; 20 lasted five or six lizardmen (2026-11-09)
+    STAY_CASTS = 85                                      # the casts a stay fights (DUNGEON_TARGET's note): the share-based plan's scale
+    PLAN_MIN_CASTS = 50                                  # casts on record before the plan goes by shares (else DUNGEON_TARGET for every reagent)
     PURSE_BASE = 50                                      # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
 
     @property
@@ -201,8 +203,39 @@ class CasterStock:
         for s in self.k.spells.values():
             if s["min_skill"] <= skill and self.spell_ok(s["name"]):
                 keys.update(s["reagents"])
-        target = self.DUNGEON_TARGET if self.feature("ladder_dungeon") else self.TARGET
-        return {k: target for k in sorted(keys)} or super().reagent_plan()
+        if not keys:
+            return super().reagent_plan()
+        if not self.feature("ladder_dungeon"):
+            return {k: self.TARGET for k in sorted(keys)}
+        return self.dungeon_reagent_plan(keys, skill)
+
+    def dungeon_reagent_plan(self, keys, skill):
+        """80 of every reagent of every held spell was 640 reagents (about 2,200 gold) a caster, and eight casters emptied Britain's sellers (20 a line,
+        30-minute restock) so that most waited for hours at "kit (5-8 casts)" (2026-11-09 01:56-04:37). The plan instead: the best attack spell's reagents
+        to DUNGEON_TARGET; every other reagent to STAY_CASTS x the share of the bot's own casts that use it (stats["casts"]: MageBR 40% Poison, 21%
+        Lightning, 14% Magic Arrow, 12% Greater Heal), never under TARGET nor over DUNGEON_TARGET."""
+        import math
+        plan = {k: self.DUNGEON_TARGET for k in sorted(keys)}
+        casts = dict((getattr(self, "stats", None) or {}).get("casts") or {})
+        total = sum(int(n or 0) for n in casts.values())
+        if total < self.PLAN_MIN_CASTS:
+            return plan
+        use = {}
+        for name, n in casts.items():
+            s = self.k.spell(str(name)) if hasattr(self.k, "spell") else None
+            for r in (s or {}).get("reagents") or ():
+                use[r] = use.get(r, 0) + int(n or 0)
+        best = set()
+        try:
+            pick = self.k.best_attack(skill, 999, {r: 999 for r in keys})
+            best = set((pick or {}).get("spell", {}).get("reagents") or ())
+        except Exception:
+            pass
+        for k in plan:
+            if k in best:
+                continue
+            plan[k] = max(self.TARGET, min(self.DUNGEON_TARGET, int(math.ceil(self.STAY_CASTS * use.get(k, 0) / total))))
+        return plan
 
     def r_stock(self):
         if not self.feature("stock") or self.c.ghost or self.dangers(10) or self.hp_pct() < 60:
