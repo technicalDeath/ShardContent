@@ -1513,6 +1513,16 @@ class FirstTrip(RideMixin, LadderMixin):
         except Exception:
             return True
 
+    def mobs_here(self, within):
+        """mobs(within) by the monsters' positions from the bot's own (a mobile's distance is the world file's, which can be a snapshot behind a jump)."""
+        here = (int(self.c.x), int(self.c.y))
+        out = []
+        for m in self.mobs(within + 3):
+            x, y = getattr(m, "x", None), getattr(m, "y", None)
+            if x is None or y is None or cheb(here[0], here[1], int(x), int(y)) <= within:
+                out.append(m)
+        return out
+
     def r_dungeon_out(self):
         """During a dungeon hunt (feature dungeon_hunt), a pack closing in: run for the nearest teleporter of this level and step through it, as a player
         leaves a room by the stairs; the monsters stay behind (Teleporter.cs: no creatures), and the far side heals in peace (Despise's landing hall has
@@ -1527,14 +1537,17 @@ class FirstTrip(RideMixin, LadderMixin):
             return False
         try:
             import detour
-            near = self.mobs(RETREAT_NEAR)
+            # by position, not the world file's distance: a snapshot written before a stair still lists the pack beside the bot on the far side, and
+            # r_dungeon_out "retreated" from it at Despise's landing, onto the stair beside it and back up into six lizardmen; it happened on every
+            # caster death of the afternoon (BotWarlockAR 12:05 and 13:03, BotSorcBR 13:45, 2026-11-09)
+            near = self.mobs_here(RETREAT_NEAR)
             close = [m for m in near if (getattr(m, "distance", 9) or 9) <= 1]
             pack = len(near) >= detour.PACK and self.retreat_pack_loses(near)
             pack = pack or (len(close) >= 2 and self.hp_pct() < 50)
             if not pack:
                 # the pack that has seen it, before it arrives: BotMaceAdvR and BotArcherCR rated five to eight ettins at 13:30-13:32 and turned for the
                 # stair only when boxed in, 44-85 tiles from it; 22 of 23 retreats that day failed (2026-11-08)
-                seen = [m for m in self.mobs(RETREAT_SEE) if getattr(m, "in_war_mode", False) and not getattr(m, "is_dead", False)]
+                seen = [m for m in self.mobs_here(RETREAT_SEE) if getattr(m, "in_war_mode", False) and not getattr(m, "is_dead", False)]
                 if len(seen) >= 2 and self.retreat_pack_loses(seen):
                     near = seen
                     pack = True

@@ -5,9 +5,12 @@ Creatures never take a teleporter (Teleporter.OnMoveOver: `if (!Creatures && !m.
 beside the stair back (Despise: the stair 5504,569-571 lands on 5574,628-630, whose stair back 5573,628-630 lands on 5503,569-571; the ettin floor's
 pair is the same). So a caster holds the floor's landing tile (the hold):
  * it fights what comes from there (r_stair: the focus target, Greater Heal when nothing is about to arrive, Heal beside one);
- * with HOP_ADJ attackers beside it, HOP_NEAR_N within HOP_NEAR tiles, under HOP_HP health or out of mana it steps on the stair (the hop: one tile);
- * on the far side, where nothing followed, it heals with spells and meditates to UP_HP / UP_MANA, waits CROWD_WAIT when the top was crowded on arrival
-   (BaseAI's wander walks a creature back inside its spawner's home), and steps back up;
+ * it fights in bouts: when HOP_SECS more of the health loss it measures (at first HOP_PRIOR a second for each attacker beside it) would leave it under HOP_FLOOR, or out of mana, it
+   steps on the stair (the hop: one tile);
+ * on the far side, where nothing followed, it heals with spells, meditates to UP_HP / UP_MANA, casts Reactive Armor, and steps back up. What it left
+   at the top is still there: a creature's AI stops when no player is within two sectors (Map.SectorActiveRange, BaseCreature.OnSectorDeactivate, no
+   SeeksHome), so the camp is worn down bout by bout (it regains 1 a 2 s each, about 15 over a 30-second rest: a meditating caster with Meditation
+   95 and Int 100 gains 1.9 mana a second, RegenRates before AOS);
  * with nothing in sight it walks out toward the spawn until one sees it (the lure: a creature sees 16 tiles, BaseCreature.DefaultRangePerception) and
    comes back to the hold before it arrives (a rider 0.1 s a tile, a Medium chaser such as a lizardman 0.2).
 And it opens on a fresh target with Poison (hold_poison): before AOS Lesser poison is at least 4 a tick for 10 ticks, 3 s apart (PoisonKinds.cs), about
@@ -22,12 +25,18 @@ from __future__ import annotations
 
 import time
 
-HOLD_PULL = 40                # tiles from the hold to the spawn's centre at most (the lure walks LURE_MAX of them; a creature sees 16 more)
+HOLD_PULL = 44                # tiles from the stair to the spawn's centre at most: the lure's LURE_MAX, a creature's sight of 16 and a home of 12
 HOLD_R = 1                    # tiles from the hold it fights within
 HOLD_PACK = 2                 # monsters the hold fights at once (more beside it, and it hops): spots.spawn_ok rates this pack for a held spot
-HOP_HP = 55                   # percent health under which it hops
-HOP_ADJ = 2                   # attackers beside it that send it through
-HOP_NEAR, HOP_NEAR_N = 3, 3   # or this many within this many tiles
+HOP_HP = 45                   # percent health under which it hops with nothing beside it
+HOP_FLOOR = 30                # beside attackers it hops when HOP_SECS more of the bout's measured loss would leave it under this percent
+HOP_SECS = 3.0                # s: a cast under way (Magic Arrow 0.75 + 0.9 of the client's wait) and the step through
+HOP_LOOK = 4.0                # s of health readings the bout's loss is measured over
+HOP_PRIOR = 1.2               # hp a second for each attacker beside it before there are readings: the rating's standing intake for a lizardman on a
+                              # caster (5-7 scaled by its tactics and strength, halved on a player, about 4 a blow; a 2.6 s swing, 15000 / ((dex + 100) x 30);
+                              # 65% landing), as the logs show it (BotWarlockAR, 93 to 15 in 16 s beside six, 2026-11-09 12:05)
+HOP_TOP = 85                  # the line at most
+RA_LOCK = 60.0                # s after Reactive Armor before it is cast again below (DefensiveSpell.Nullify's lockout once the pool is spent)
 HOP_REACH = 18                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
 NOLOS_S = 15.0                # s a target out of sight from the hold is waited for, then left for NOLOS_SKIP s (it stands behind a wall)
 NOLOS_SKIP = 60.0
@@ -35,11 +44,12 @@ UP_HP = 90                    # percent health to go back up
 UP_MANA = 0.8                 # share of its mana to go back up
 BELOW_MIN = 6.0               # s below at least (the world view settles; the stale pack is not a pack below)
 CROWD_S = 4.0                 # a hop this soon after arriving at the hold is a crowded top
-CROWD_WAIT = 45.0             # s below after a crowded top
-CROWD_MAX = 4                 # crowded tops in a row that rest the spot "danger"
+CROWD_WAIT = BELOW_MIN        # (a frozen camp does not clear: no longer waited for)
+CROWD_MAX = 6                 # bouts in a row shorter than CROWD_S that rest the spot "danger" (a camp too big to wear down)
 LURE_WAIT = 12.0              # s at the hold with nothing in sight before a lure walk
 LURE_MAX = 16                 # tiles a lure walks out from the hold
 LURE_SLICE = 2.5              # s a lure slice runs before the rules look again
+LURE_PULL = 10                # tiles within which an idle one at the lure's end is pulled with a Magic Arrow (a targeted spell's range before AOS)
 POISON_MIN_HITS = 40          # a kind's average hit points at least for the Poison opener (less dies to one Lightning sooner than to the ticks)
 POISON_SECS = 33.0            # s a Lesser poison runs: 3.5 s delay + 10 ticks x 3 s (PoisonKinds.cs, before AOS)
 
@@ -74,7 +84,7 @@ def hold_geometry(side, centre):
                 mid = run[len(run) // 2]
                 b = min(back, key=lambda x: (cheb(x["dst"], mid["src"]), abs(int(x["dst"][0]) - int(mid["src"][0])) + abs(int(x["dst"][1]) - int(mid["src"][1]))))
                 post = (int(b["dst"][0]), int(b["dst"][1]))
-                if cheb(post, centre) <= HOLD_PULL:
+                if cheb(post, centre) <= HOLD_PULL + 2:
                     out = {"side": side, "stair": [(int(x["src"][0]), int(x["src"][1])) for x in run],
                            "back": [(int(x["src"][0]), int(x["src"][1])) for x in back],
                            "post": post, "below": (int(mid["dst"][0]), int(mid["dst"][1]))}
@@ -100,6 +110,14 @@ class StairHoldMixin:
         if h:
             return h["post"]
         return super().cd_post(spot)
+
+    def cd_spawn_ok(self, s):
+        """castdungeon's spot test, and in a dungeon only a spot with a hold: from anywhere else a caster stands where the pack can box it in, far from
+        any stair (0 lizardmen killed and 25 deaths at Despise's unheld posts, 2026-11-09 08:22-14:00; BotSorcBR's pick sp5503,529 lay 41 tiles from
+        its stair's landing and it died the old way at 14:53)."""
+        if s.get("side") not in (None, "surface") and not self.hold_for(s):
+            return False
+        return super().cd_spawn_ok(s)
 
     def cd_hold_pack(self, s):
         """spots.spawn_ok's pack for a held spot: HOLD_PACK of its kinds (the hold hops off more), else None."""
@@ -145,6 +163,10 @@ class StairHoldMixin:
         seen = [m for m in self.hold_attackers(16) if float(skip.get(m.serial, 0) or 0) < now]
         att = [m for m in seen if cheb((m.x, m.y), here) <= 10]
         coming = [m for m in seen if getattr(m, "in_war_mode", False) and m not in att]
+        hist = hs.setdefault("hp_hist", [])
+        hist.append((now, float(self.c.hp or 0)))
+        while hist and now - hist[0][0] > HOP_LOOK:
+            hist.pop(0)
         if not att and not coming:
             return False
         self.cd_state()["seen"] = now                             # castdungeon's empty timer and the lure's
@@ -170,16 +192,22 @@ class StairHoldMixin:
         if not att:
             return None
         hp = self.hp_pct()
-        if hp < HOP_HP:
+        mhp = float(getattr(self.c, "max_hp", 0) or 100) or 100.0
+        line = HOP_FLOOR + 100.0 * max(self.hold_intake(), HOP_PRIOR * len(adj)) * HOP_SECS / mhp
+        if adj and hp < min(HOP_TOP, line):
+            return f"health beside {len(adj)}"
+        if not adj and hp < HOP_HP:
             return "health"
-        if len(adj) >= HOP_ADJ:
-            return "beside"
-        here = (int(self.c.x), int(self.c.y))
-        if sum(1 for m in att if cheb((m.x, m.y), here) <= HOP_NEAR) >= HOP_NEAR_N:
-            return "closing"
         if (self.c.mana or 0) < 4:
             return "mana"
         return None
+
+    def hold_intake(self):
+        """Hit points a second lost over the last HOP_LOOK s of readings at the top (r_stair keeps them), 0 with under a second of them."""
+        hist = (self.__dict__.get("_hold") or {}).get("hp_hist") or []
+        if len(hist) < 2 or hist[-1][0] - hist[0][0] < 1.0:
+            return 0.0
+        return max(0.0, (hist[0][1] - hist[-1][1]) / (hist[-1][0] - hist[0][0]))
 
     def hold_fight(self, att, adj, hs=None, now=None):
         """At the hold: heal when it fits, else a spell at the focus target (CasterBot.attack: the window, Reactive Armor, the Poison opener)."""
@@ -192,10 +220,6 @@ class StairHoldMixin:
         if hp < 70 and not adj and self.contact_s(att) >= cast_delay(4) + KITE_MARGIN and mana >= 11 and self.spell_ok("greater heal") and self.gh_regs():
             self.activity = "holding the stair: greater heal"
             self.cast("greater heal", "self")
-            return True
-        if hp < 65 and adj and mana >= 4 and self.spell_ok("heal") and self.heal_regs():
-            self.activity = "holding the stair: heal"
-            self.cast("heal", "self")
             return True
         t = self.focus_order(att)[0]
         if int(getattr(t, "distance", 9) or 9) > 1 and not self.los(t.serial):
@@ -261,6 +285,7 @@ class StairHoldMixin:
         except Exception:
             pass
         ok = cheb((self.c.x, self.c.y), h["below"]) <= 4
+        hs["hp_hist"] = []
         crowd = now - float(hs.get("up_at", 0) or 0) < CROWD_S
         hs["crowds"] = (int(hs.get("crowds", 0)) + 1) if crowd else 0
         if ok:
@@ -310,6 +335,15 @@ class StairHoldMixin:
                 time.sleep(1.0)
             else:
                 time.sleep(2.0)
+            return True
+        if now - float(self.facts.get("ra_at", 0) or 0) >= RA_LOCK and mana >= 8 and self.spell_ok("reactive armor") \
+                and all((getattr(self, "regs", {}) or {}).get(r, 0) > 0 for r in ("Garlic", "SpidersSilk", "SulfurousAsh")):
+            # Reactive Armor before the bout: the camp's blows go into its pool first
+            self.facts["ra_at"] = now
+            self.ra_until = now + 240.0
+            self.activity = "below the stair: reactive armor"
+            self.ev("buff", spell="reactive armor", mana=int(mana), where="below")
+            self.cast("reactive armor", None)
             return True
         wait_for = CROWD_WAIT if hs.get("crowd") else BELOW_MIN
         if waited < wait_for:
@@ -361,18 +395,27 @@ class StairHoldMixin:
         if to is None:
             return False
         here = (int(self.c.x), int(self.c.y))
+        seen = self.hold_attackers(16)
+        if any(getattr(m, "in_war_mode", False) for m in seen):
+            st["lure_end"] = now                                # one has noticed it: r_stair walks it back to the hold before it arrives
+            self.ev("lure", to=list(to), seen=True)
+            return False
         if cheb(here, to) <= 1:
-            st["lure_end"] = now                                # out and nothing came: back to the hold (r_cdungeon's walk), the next after LURE_WAIT
-            self.ev("lure", to=list(to), seen=False)
+            st["lure_end"] = now
+            idle = [m for m in seen if cheb((m.x, m.y), here) <= LURE_PULL and self.los(m.serial)]
+            if idle and (self.c.mana or 0) >= 4 and self.spell_ok("magic arrow"):
+                # one in sight that has not noticed it (a creature at rest in its home): a Magic Arrow brings it (first circle, 4 mana)
+                self.activity = f"pulling {idle[0].name} toward the stair"
+                self.ev("lure", to=list(to), seen=True, pull=True)
+                self.cast("magic arrow", idle[0].serial)
+                return True
+            self.ev("lure", to=list(to), seen=False)            # out and nothing came: back to the hold (r_cdungeon's walk), the next after LURE_WAIT
             return False
         self.activity = f"luring {spot['id']}'s spawn toward the stair"
         try:
             self.c.goto(to[0], to[1]).wait(timeout=LURE_SLICE)
         except Exception:
             pass
-        if self.hold_attackers(16):
-            st["lure_end"] = now
-            self.ev("lure", to=list(to), seen=True)
         return True
 
     # ---- the Poison opener ----------------------------------------------------------------------------------------------------------------------------
