@@ -483,6 +483,13 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             return f"veto: no spell to cast and it has {mon['hits'][1]} hit points"
         return None
 
+    @property
+    def skill_values(self):
+        """{skill name: value} as the fighters keep it (the rating, the skill plan, basics read it): a caster's skills are mage_bot's stats["skill_gains"].
+        Without it the rating rated every caster as fists at 0 Magery (rating.bot_numbers: "wolves 6.18", "eagle 2.44"), and the dungeon rung's fight test
+        refused the lizardmen, so no caster was offered a trip (2026-11-08)."""
+        return dict((getattr(self, "stats", None) or {}).get("skill_gains") or {})
+
     RATING_JOIN = 14          # tiles: an attack-on-sight monster this near the target joins the fight (hunter.HunterBot.RATING_JOIN)
     BITERS_HURT = 60.0        # hunter.HunterBot.BITERS_HURT: rated_prey (borrowed) refuses a new monster under it; "rating: zombie: AttributeError" on every sight
 
@@ -535,7 +542,10 @@ class CasterBot(CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, 
             if r is not None:
                 return r
         self.profit_reached(m)                                     # mage_bot's attack casts at once (its r_fight saw the target in sight)
-        return super().attack(m, train)
+        try:
+            return super().attack(m, train)
+        finally:
+            self.__dict__["_kite_window"] = None                   # the window is this cast's: can_cast and the kit count see every spell (castfight.py)
 
     def end_fight(self, outcome):
         f, self.fight = self.fight, None
