@@ -187,6 +187,8 @@ class StairHoldMixin:
         why = self.hop_due(att, adj)
         if why:
             return self.hold_hop(h, hs, why, att, adj, now)
+        if self.cd_state().get("lure_to") and not adj and not any(getattr(m, "in_war_mode", False) for m in seen):
+            return False                                        # a lure closing on an idle one: r_cdungeon's lure pulls it (nothing has noticed the caster yet)
         if not self.holding(h):
             self.activity = "back to the stair hold"
             p = self.hold_post(h)
@@ -442,17 +444,31 @@ class StairHoldMixin:
             st.pop("lure_to", None)
             self.ev("lure", to=list(to), seen=True)
             return False
+        if seen and (self.c.mana or 0) >= 4 and self.spell_ok("magic arrow"):
+            # an idle one (a creature at rest in its home has not acquired the caster yet): within range and sight a Magic Arrow brings it (first
+            # circle, 4 mana); farther, the caster closes on it first, within the hold's reach
+            m = min(seen, key=lambda q: cheb((q.x, q.y), here))
+            d = cheb((m.x, m.y), here)
+            if d <= LURE_PULL and self.los(m.serial):
+                st["lure_end"] = now
+                st.pop("lure_to", None)
+                self.activity = f"pulling {m.name} toward the stair"
+                self.ev("lure", to=list(to), seen=True, pull=True, d=d)
+                self.cast("magic arrow", m.serial)
+                return True
+            if min(cheb((m.x, m.y), s) for s in h["stair"]) - LURE_PULL <= HOP_REACH - 2 and now - float(st.get("lure_t0", now) or now) <= LURE_MAX * 2.5:
+                st.setdefault("lure_t0", now)
+                st["lure_to"] = list(to)
+                self.activity = f"closing on {m.name} to pull it"
+                try:
+                    self.c.goto(int(m.x), int(m.y)).wait(timeout=1.5)
+                except Exception:
+                    pass
+                return True
         if cheb(here, to) <= 1:
             st["lure_end"] = now
             st.pop("lure_to", None)
-            idle = [m for m in seen if cheb((m.x, m.y), here) <= LURE_PULL and self.los(m.serial)]
-            if idle and (self.c.mana or 0) >= 4 and self.spell_ok("magic arrow"):
-                # one in sight that has not noticed it (a creature at rest in its home): a Magic Arrow brings it (first circle, 4 mana)
-                self.activity = f"pulling {idle[0].name} toward the stair"
-                self.ev("lure", to=list(to), seen=True, pull=True)
-                self.cast("magic arrow", idle[0].serial)
-                return True
-            self.ev("lure", to=list(to), seen=False)            # out and nothing came: back to the hold (r_cdungeon's walk), the next after LURE_WAIT
+            self.ev("lure", to=list(to), seen=bool(seen))       # out and nothing came: back to the hold (r_cdungeon's walk), the next after LURE_WAIT
             return False
         self.activity = f"luring {spot['id']}'s spawn toward the stair"
         if st.get("lure_to") is None:

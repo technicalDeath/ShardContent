@@ -148,6 +148,8 @@ class CasterDungeonMixin:
             return False
         st = self.cd_state()
         now = time.time()
+        if st.get("lure_to") and st.get("hold") and st.get("spot") and hasattr(self, "hold_lure")                 and not any(getattr(m, "in_war_mode", False) for m in self.kite_attackers(16)) and self.hold_lure(st, st["spot"], now):
+            return True                                         # a stair-hold lure closing on an idle one (stairhold.hold_lure): nothing has noticed it yet
         if self.cd_own_threats() or self.prey(10):
             st["seen"] = now
             return False                                        # the fight rules take them (r_fight, r_avoid, r_flee are earlier)
