@@ -50,7 +50,7 @@ CROWD_WAIT = BELOW_MIN        # (a frozen camp does not clear: no longer waited 
 CROWD_MAX = 6                 # bouts in a row shorter than CROWD_S that rest the spot "danger" (a camp too big to wear down)
 LURE_WAIT = 12.0              # s at the hold with nothing in sight before a lure walk
 LURE_MAX = 16                 # tiles a lure walks out from the hold (the straight line, when no route is known)
-LURE_PATH = 20                # tiles along the walk graph's route toward the spawn a lure walks
+LURE_NEAR = 6                 # tiles beyond a spawn's home a lure walks to (a creature sees 16: the nearer ones in its home see the caster)
 LURE_SLICE = 2.5              # s a lure slice runs before the rules look again
 LURE_PULL = 10                # tiles within which an idle one at the lure's end is pulled with a Magic Arrow (a targeted spell's range before AOS)
 POISON_MIN_HITS = 40          # a kind's average hit points at least for the Poison opener (less dies to one Lightning sooner than to the ticks)
@@ -419,7 +419,7 @@ class StairHoldMixin:
             return False
         p, c = h["post"], (int(spot["x"]), int(spot["y"]))
         d = cheb(p, c) or 1
-        to = tuple(st["lure_to"]) if st.get("lure_to") else (tuple(st["lure_route_to"]) if st.get("lure_route_to") else self.lure_route_point(p, c))
+        to = tuple(st["lure_to"]) if st.get("lure_to") else (tuple(st["lure_route_to"]) if st.get("lure_route_to") else self.lure_route_point(p, c, int(spot.get("home") or 12)))
         if to is not None:
             st["lure_route_to"] = list(to)
         try:
@@ -469,9 +469,11 @@ class StairHoldMixin:
             pass
         return True
 
-    def lure_route_point(self, p, c):
-        """The point LURE_PATH tiles along the walk graph's route from the hold p toward the spawn's centre c (walkroute.plan), within HOP_REACH of
-        the hold; None without a route."""
+    def lure_route_point(self, p, c, home=12):
+        """The point along the walk graph's route from the hold p toward the spawn's centre c (walkroute.plan) where its creatures see the caster:
+        within home + LURE_NEAR of the centre, or HOP_REACH - 4 from the hold at most; None without a route. A creature keeps to its spawner's home
+        and sees 16 tiles (BaseCreature.DefaultRangePerception): Despise's lures that stopped 20 tiles along the route ended 30 and more from the
+        centres and saw nothing for an hour once the stair-top camps were cleared (2026-11-09 18:05-19:17)."""
         try:
             import walkroute
             r = walkroute.get().plan((int(p[0]), int(p[1])), (int(c[0]), int(c[1])), None, step=4)
@@ -482,7 +484,7 @@ class StairHoldMixin:
         for q in wps:
             walked += cheb(last, q)
             last = q
-            if walked >= LURE_PATH or cheb(q, p) >= HOP_REACH - 4:
+            if cheb(q, c) <= int(home) + LURE_NEAR or cheb(q, p) >= HOP_REACH - 4:
                 return q
         return wps[-1] if wps else None
 
