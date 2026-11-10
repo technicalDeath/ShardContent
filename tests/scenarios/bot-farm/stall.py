@@ -173,6 +173,18 @@ class StallMixin:
         if own:
             actions.append(own[0])
             keep = own[1]
+        in_dungeon = False
+        try:
+            in_dungeon = bool(self.facts.get("dungeon_hunt")) or bool(getattr(self, "in_dungeon_now", lambda: False)())
+        except Exception:
+            pass
+        if in_dungeon:
+            # a dungeon stay has its own ends (nothing open, its time, the kit), and both of the answers below are wrong inside: a backed-off patrol left
+            # BotSorcAR standing at Despise's landing for 15 minutes, and "back to town" is a straight walk at a surface point, which took it from the
+            # lizardman floor into the dead-end west room, where it died (2026-11-09 21:03-21:37)
+            self.log(f"stall {n}: no progress for {mins} min inside a dungeon: left to the stay's own rules")
+            self.ev("stall", n=n, mins=mins, rules=top, why=why[:240], action="none: in a dungeon")
+            return
         if top and top[0][0] in BUSY:
             self.log(f"stall {n}: no progress for {mins} min, but on {top[0][0]} (a walk with its own limits): left alone")
             self.ev("stall", n=n, mins=mins, rules=top, why=why[:240], action="none: " + top[0][0])
