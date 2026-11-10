@@ -38,7 +38,7 @@ HOP_PRIOR = 1.2               # hp a second for each attacker beside it before t
 HOP_TOP = 85                  # the line at most
 HOP_BLOCK_S = 4.0             # s a hop that went nowhere waits before the next try (the other rules act meanwhile)
 RA_LOCK = 60.0                # s after Reactive Armor before it is cast again below (DefensiveSpell.Nullify's lockout once the pool is spent)
-HOP_REACH = 30                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
+HOP_REACH = 40                # tiles from the stair within which the hold's rule acts (walks back to the hold, or to the stair and through): a lure's end
                               # and the walk round a corner past it (BotMageAR's lure stopped 20 out, 2026-11-09 17:01)
 NOLOS_S = 15.0                # s a target out of sight from the hold is waited for, then left for NOLOS_SKIP s (it stands behind a wall)
 NOLOS_SKIP = 60.0
@@ -52,6 +52,7 @@ LURE_WAIT = 12.0              # s at the hold with nothing in sight before a lur
 LURE_MAX = 16                 # tiles a lure walks out from the hold (the straight line, when no route is known)
 LURE_NEAR = 6                 # tiles beyond a spawn's home a lure walks to (a creature sees 16: the nearer ones in its home see the caster)
 LURE_SLICE = 2.5              # s a lure slice runs before the rules look again
+LURE_REACH = 30               # tiles from the stair a lure closes on a creature within at most (BotSorcAR was found 33 out, beyond the hold, 2026-11-09 23:03)
 LURE_PULL = 10                # tiles within which an idle one at the lure's end is pulled with a Magic Arrow (a targeted spell's range before AOS)
 POISON_MIN_HITS = 40          # a kind's average hit points at least for the Poison opener (less dies to one Lightning sooner than to the ticks)
 POISON_SECS = 33.0            # s a Lesser poison runs: 3.5 s delay + 10 ticks x 3 s (PoisonKinds.cs, before AOS)
@@ -456,7 +457,7 @@ class StairHoldMixin:
                 self.ev("lure", to=list(to), seen=True, pull=True, d=d)
                 self.cast("magic arrow", m.serial)
                 return True
-            if min(cheb((m.x, m.y), s) for s in h["stair"]) - LURE_PULL <= HOP_REACH - 2 and now - float(st.get("lure_t0", now) or now) <= LURE_MAX * 2.5:
+            if min(cheb((m.x, m.y), s) for s in h["stair"]) - LURE_PULL <= LURE_REACH and min(cheb(here, s) for s in h["stair"]) < LURE_REACH and now - float(st.get("lure_t0", now) or now) <= LURE_MAX * 2.5:
                 st.setdefault("lure_t0", now)
                 st["lure_to"] = list(to)
                 self.activity = f"closing on {m.name} to pull it"
@@ -500,7 +501,7 @@ class StairHoldMixin:
         for q in wps:
             walked += cheb(last, q)
             last = q
-            if cheb(q, c) <= int(home) + LURE_NEAR or cheb(q, p) >= HOP_REACH - 4:
+            if cheb(q, c) <= int(home) + LURE_NEAR or cheb(q, p) >= LURE_REACH - 4:
                 return q
         return wps[-1] if wps else None
 

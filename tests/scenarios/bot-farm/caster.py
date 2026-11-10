@@ -356,6 +356,33 @@ class CasterBot(StairHoldMixin, CasterArmor, CasterFightMixin, CasterDungeonMixi
         return next((i for i in self.c.equipped if any(w in i.name.lower() for w in ("dagger", "knife"))), None) or \
             next((i for i in self.c.backpack if i.name.lower() in ("dagger", "butcher knife", "skinning knife")), None)
 
+    HUNT_STUCK = 3            # approaches to one target that do not move the caster before it is left
+    HUNT_SKIP = 600           # s it is left for
+
+    def r_hunt(self):
+        """mage_bot.r_hunt, and a target whose approach walks go nowhere (a fence, a pen, a wall) is left for HUNT_SKIP after HUNT_STUCK of them."""
+        before = (int(self.c.x), int(self.c.y))
+        r = super().r_hunt()
+        if not r:
+            return r
+        try:
+            ps = [m for m in self.prey(16) if m.distance > 8]
+            t = ps[0] if ps else None
+        except Exception:
+            t = None
+        st = self.__dict__.setdefault("_hunt_stuck", {})
+        if t is None:
+            return r
+        if (int(self.c.x), int(self.c.y)) == before:
+            st[t.serial] = st.get(t.serial, 0) + 1
+            if st[t.serial] >= self.HUNT_STUCK:
+                st.pop(t.serial, None)
+                self.facts.setdefault("ignore_until", {})[t.serial] = time.time() + self.HUNT_SKIP
+                self.log(f"hunt: {t.name} cannot be reached from {before[0]},{before[1]} ({self.HUNT_STUCK} walks went nowhere): left for {self.HUNT_SKIP // 60} min")
+        else:
+            st.pop(t.serial, None)
+        return r
+
     def r_fight(self):
         if self.hold_now() and not self.holding() and not any(int(getattr(m, "distance", 9) or 9) <= 2 for m in self.prey(9)):
             return False                                           # no chase off a stair hold: r_stair fights from it, r_cdungeon walks back (stairhold.py)
@@ -366,6 +393,11 @@ class CasterBot(StairHoldMixin, CasterArmor, CasterFightMixin, CasterDungeonMixi
                 g = measured.give_up_s(self, f.get("key"))
             except Exception:
                 g = None
+            tgt = next((m for m in self.c.mobiles(within=3) if m.serial == f.get("serial")), None) if g else None
+            if tgt is not None and int(getattr(tgt, "distance", 9) or 9) <= 2 and getattr(tgt, "in_war_mode", False):
+                g = None                                   # it is beside the caster and fighting it: giving it up changes nothing. The measured limit for
+                # ettins read 2.8 s (shared kills credit every caster at once), and BotSorcAR gave one up every 5 s for five minutes at 91 mana,
+                # casting nothing, until it died (Despise, 2026-11-09 23:03-23:10)
             if g and time.time() - f.get("t0", time.time()) > g:
                 # the kind's measured ttk_p90 for the casters, as the fighters let go (2026-10-29: BotMageAdvR chased one chicken with its fists for the whole
                 # window at 7 of 49 stamina, mana untouched)
