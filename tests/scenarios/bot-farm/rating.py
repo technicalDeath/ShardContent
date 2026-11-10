@@ -208,8 +208,11 @@ def kite_factor(me, kind, e, t_cast):
 
 
 def kite_leak(sc, kind, e):
-    """The share of a kited monster's blows that still land, by its chase step (casterpass.move_s): rating.json kite_leak_by_step, measured per speed class
-    from the casters' kite_fight events; kite_leak for a step not measured."""
+    """The share of a kited monster's blows that still land: the kind's own (rating.json kite_leak_by_kind, 10 or more fights), else by its chase step
+    (casterpass.move_s): kite_leak_by_step, measured per speed class from the casters' kite_fight events; kite_leak for a step not measured."""
+    kinds = sc.get("kite_leak_by_kind") or {}
+    if kind in kinds:
+        return float(kinds[kind])                                       # the kind's own measure (rating.json kite_leak_by_kind)
     by = sc.get("kite_leak_by_step") or {}
     try:
         import casterpass
