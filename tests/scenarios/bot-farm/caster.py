@@ -569,9 +569,23 @@ class CasterBot(StairHoldMixin, CasterArmor, CasterFightMixin, CasterDungeonMixi
         s = self.reagent_sellers()
         return s[0] if s else super().mage_shop_xy()
 
+    HEAL_KEEP = 5             # heals' worth of Garlic, Ginseng and Spider's Silk under which a caster with no Heal or Cure potion goes to buy them
+
+    def can_heal(self):
+        """Reagents for HEAL_KEEP heals and cures, or a Heal potion and a Cure potion. BotMageAR hunted south of Britain with no Garlic and no potion:
+        poisoned by a snake it could neither cure nor heal (a Heal does nothing to the poisoned), fled at 12-19 of 96 for a minute at 83 mana and died
+        (2026-11-09 23:06-23:07); the resupply ran only when no attack spell could be cast."""
+        regs = getattr(self, "regs", None) or {}
+        if min(regs.get(r, 0) for r in ("Garlic", "Ginseng", "SpidersSilk")) >= self.HEAL_KEEP:
+            return True
+        try:
+            return self.potion("heal") is not None and self.potion("cure") is not None
+        except Exception:
+            return True
+
     def r_resupply(self):
-        if not self.can_cast() and self.c.gold >= 60 and self.book_has_attack():
-            self.facts["last_fail"] = ("reagents", "no reagents for any spell", time.time())    # go and buy them: the mage bot shops after a failed cast
+        if self.c.gold >= 60 and (not self.can_cast() and self.book_has_attack() or not self.can_heal() and not self.facts.get("dungeon_hunt")):
+            self.facts["last_fail"] = ("reagents", "no reagents for any spell" if not self.can_cast() else "no reagents to heal or cure", time.time())    # go and buy them: the mage bot shops after a failed cast
         self.__dict__.pop("_last_buy_list", None)
         self.__dict__["_regs_before"] = dict(getattr(self, "regs", None) or {})
         r = super().r_resupply()

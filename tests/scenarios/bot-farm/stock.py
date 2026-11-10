@@ -178,6 +178,8 @@ class CasterStock:
     DUNGEON_TARGET = 80                                  # a dungeon caster's stock: its mana over a stay (DUNGEON_HUNT_S 40 min at the UOR regen of (Int + Meditation)
                                                          # / 2 ~ 86, one point every 1.35 s: ~1,780 mana, + the pool 85) / 11 for a Lightning = ~170 casts, fighting
                                                          # about half the stay = ~85; 20 lasted five or six lizardmen (2026-11-09)
+    HEAL_REGS = ("Garlic", "Ginseng", "SpidersSilk")   # Heal, Greater Heal and Cure all take Garlic and Ginseng, Reactive Armor Garlic and Spider's Silk
+    HEAL_STOCK = 40                                      # a stay's bouts at the stair hold: a Greater Heal and a Reactive Armor below for each, about 15
     STAY_CASTS = 85                                      # the casts a stay fights (DUNGEON_TARGET's note): the share-based plan's scale
     PLAN_MIN_CASTS = 50                                  # casts on record before the plan goes by shares (else DUNGEON_TARGET for every reagent)
     PURSE_BASE = 50                                      # mage_bot.r_resupply never spends below this (patch_caster_budget.py)
@@ -235,6 +237,8 @@ class CasterStock:
             if k in best:
                 continue
             plan[k] = max(self.TARGET, min(self.DUNGEON_TARGET, int(math.ceil(self.STAY_CASTS * use.get(k, 0) / total))))
+            if k in self.HEAL_REGS:
+                plan[k] = max(plan[k], self.HEAL_STOCK)     # the stair hold's Greater Heal and Reactive Armor every bout (stairhold.py)
         return plan
 
     POTION_KIT = (("yellow potion", 3), ("orange potion", 2))   # StockMixin.stock_list's Heal and Cure lines, from 200 gold in pack and bank
