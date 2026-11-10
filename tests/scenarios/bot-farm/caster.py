@@ -55,8 +55,9 @@ from lessons import LessonMixin  # noqa: E402  (lessons from NPC trainers; featu
 from castfight import CasterFightMixin  # noqa: E402  (kiting, the spell that fits, Reactive Armor, Greater Heal)
 from castdungeon import CasterDungeonMixin  # noqa: E402  (a caster's hunt on a dungeon stay)
 from stairhold import StairHoldMixin  # noqa: E402  (the stair hold: fight from a stair's landing, hop through it, Poison first)
+from caster_armor import CasterArmor  # noqa: E402  (leather armour, which does not slow mana before AOS; feature caster_armor)
 from tele import TeleMixin  # noqa: E402  (teleporters: a dungeon trip's door and stairs, the stay's retreat, castdungeon's journeys)
-class CasterBot(StairHoldMixin, CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, TeleMixin, BasicsMixin, mage_bot.Bot):
+class CasterBot(StairHoldMixin, CasterArmor, CasterFightMixin, CasterDungeonMixin, LessonMixin, ProfitMixin, HuntMixin, CasterStock, GroundRateMixin, BetweenWorldsMixin, PlannerMixin, AmbitionMixin, ProgressMixin, StallMixin, RecoveryMixin, HouseGoalMixin, PacingMixin, BuddyMixin, PartyMixin, PracticeMixin, ScribeMixin, RuneMixin, FarMixin, SpellbookMixin, FirstTrip, TeleMixin, BasicsMixin, mage_bot.Bot):
     RICH_GOLD = 900
 
     def __init__(self, name, profession):
@@ -1122,6 +1123,8 @@ if "r_trip" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_fight") + 1, "r_trip")      # first_trip
 if "r_dungeon_out" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_flee"), "r_dungeon_out")     # first_trip: a dungeon hunt's way out of a pack
+if "r_upgrade" not in CasterBot.RULES:
+    CasterBot.RULES.insert(CasterBot.RULES.index("r_resupply"), "r_upgrade")     # caster_armor: a leather piece on a town visit
 if "r_stair" not in CasterBot.RULES:
     CasterBot.RULES.insert(CasterBot.RULES.index("r_dungeon_out"), "r_stair")    # stairhold: the hold's fight and hop, before every danger rule
 if "r_cdungeon" not in CasterBot.RULES:
